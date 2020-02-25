@@ -47,3 +47,5 @@ To run JUnit tests (after you have added JUnit tests), you can run the `test` Gr
 ## CI using GitHub Actions
 
 The project is already configured to use [GitHub actions](https://github.com/features/actions). When you push a commit to your fork or PR against an upstream repo, GitHub actions will run automatically to build and verify the product.
+
+THIS LINE IS CREATED FOR INITIAL PULL REQUEST TO MAIN REPO.
