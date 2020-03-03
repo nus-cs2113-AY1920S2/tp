@@ -33,4 +33,10 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
     }
+
+    public void exitESC(){
+        System.out.println("____________________________________________________________");
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("____________________________________________________________");
+    }
 }
