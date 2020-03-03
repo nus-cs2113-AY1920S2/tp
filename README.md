@@ -1,14 +1,14 @@
-# Duke Project Template
+# Project Template for the tP
 
 This is a project template for a small CLI Java project. It uses Gradle for build automation and GitHub Actions for CI.
 
 ## Setting up in Intellij
 
-Prerequisites: JDK 11
+Prerequisites: JDK 11, update Intellij to the most recent version
 
-1. Open IntelliJ (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
+1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
 1. Set up the correct JDK version
-   1. Click `Configure` > `Project Defaults` > `Project Structure`
+   1. Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`
    1. If JDK 11 is listed in the drop down, select it. If it is not, click `New...` and select the directory where you installed JDK 11
    1. Click `OK`
 1. Click `Import Project`
@@ -47,3 +47,5 @@ To run JUnit tests (after you have added JUnit tests), you can run the `test` Gr
 ## CI using GitHub Actions
 
 The project is already configured to use [GitHub actions](https://github.com/features/actions). When you push a commit to your fork or PR against an upstream repo, GitHub actions will run automatically to build and verify the product.
+
+THIS LINE IS CREATED FOR INITIAL PULL REQUEST TO MAIN REPO.
