@@ -47,4 +47,11 @@ public class CardList {
         return card;
     }
 
+    /**
+     * Returns size of the cardlist.
+     */
+    public int size() {
+        return this.cards.size();
+    }
+
 }
