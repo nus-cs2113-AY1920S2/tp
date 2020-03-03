@@ -6,14 +6,23 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+
+    public static void printGreeting() {
+        String greeting = "";
+        String logo = " ______  _____  _____\n"
+                    + "|  ____|/ ____|/ ____|\n"
+                    + "| |__  | (___ | |\n"
+                    + "|  __|  \\___ \\| |\n"
+                    + "| |____ ____) | |____\n"
+                    + "|______|_____/ \\_____|\n";
+        greeting += "Hello from\n" + logo;
+        greeting += "What is your name?";
+
+        System.out.println(greeting);
+    }
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        printGreeting();
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
