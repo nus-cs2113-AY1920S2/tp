@@ -8,7 +8,7 @@ public class Duke {
      */
 
     /**
-     * Prints the greeting message when ESC is started
+     * Prints the greeting message when ESC is started.
      */
     public static void printGreeting() {
         String greeting = "";
@@ -24,6 +24,9 @@ public class Duke {
         System.out.println(greeting);
     }
 
+    /**
+    * Main method.
+    */
     public static void main(String[] args) {
         printGreeting();
 
