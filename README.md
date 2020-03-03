@@ -12,7 +12,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version
    1. If JDK 11 is listed in the drop down, select it. If it is not, click `New...` and select the directory where you installed JDK 11
    1. Click `OK`
 1. Click `Import Project`
-1. Locate the `build.gradle` file in the project directory, select it, and click `OK`
+1. **IMPORTANT: Locate the `build.gradle` file** in the project directory, select it, and click `OK`
 1. If there are any further prompts, accept the defaults.
 1. After the set up is complete, you can locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
    ```
@@ -47,5 +47,3 @@ To run JUnit tests (after you have added JUnit tests), you can run the `test` Gr
 ## CI using GitHub Actions
 
 The project is already configured to use [GitHub actions](https://github.com/features/actions). When you push a commit to your fork or PR against an upstream repo, GitHub actions will run automatically to build and verify the product.
-
-THIS LINE IS CREATED FOR INITIAL PULL REQUEST TO MAIN REPO.
