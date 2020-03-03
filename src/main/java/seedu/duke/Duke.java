@@ -7,6 +7,9 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
 
+    /**
+     * Prints the greeting message when ESC is started
+     */
     public static void printGreeting() {
         String greeting = "";
         String logo = " ______  _____  _____\n"
