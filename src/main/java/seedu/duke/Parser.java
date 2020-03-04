@@ -73,7 +73,6 @@ public class Parser {
         }
 
         String assignmentName = matcher.group("assignmentName");
-        System.out.println(assignmentName);
         String moduleName = matcher.group("moduleName");
         String comments = matcher.group("comments");
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
@@ -143,17 +142,5 @@ public class Parser {
             Command command = parseCommand(input);
             command.execute();
         }
-//        final Matcher matcher = ASSIGNMENT_PARAMETERS_FORMAT.matcher(input);
-//
-//        if (!matcher.matches()) {
-//            System.out.println("command format dont match");
-//        } else {
-//            System.out.println(matcher.group(0));
-//            System.out.println(matcher.group("taskType"));
-//            System.out.println(matcher.group("assignmentName"));
-//            System.out.println(matcher.group("moduleName"));
-//            System.out.println(matcher.group("dateTime"));
-//            System.out.println(matcher.group("comments"));
-//        }
     }
 }
