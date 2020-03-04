@@ -1,4 +1,4 @@
-package seedu.duke.command;
+package command;
 
 public class DeleteCommand extends Command {
     public DeleteCommand(int index) {

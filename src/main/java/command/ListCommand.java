@@ -1,4 +1,4 @@
-package seedu.duke.command;
+package command;
 
 public class ListCommand extends Command {
     public ListCommand(String listParam) {
