@@ -151,7 +151,7 @@ public class Parser {
     }
 
     /**
-     * Main function to test class
+     * Main function to test class.
      * @param args unused
      */
     public static void main(String[] args) {
