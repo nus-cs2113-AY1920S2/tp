@@ -38,6 +38,11 @@ public class Parser {
             + "\\s+c/\\s+(?<comments>[^/]+)"
     );
 
+    /**
+     * Returns a Command object depending on the command input by the user.
+     * @param fullCommand line input by the user, which represents a command
+     * @return Command depending on user input, with the appropriate arguments set
+     */
     public static Command parseCommand(String fullCommand) {
         String commandType = fullCommand.split("\\s+", 2)[0];
 
@@ -57,6 +62,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a LocalDateTime object based on an input String with the format INPUT_DATE_FORMAT.
+     * @param dateTimeString String representing a date with the format dd/MM/yy HHmm
+     * @return LocalDateTime representing the date and time specified in dateTimeString
+     * @throws DateTimeParseException if dateTimeString does not follow INPUT_DATE_FORMAT
+     * @throws IndexOutOfBoundsException if dateTimeString does not follow INPUT_DATE_FORMAT
+     */
     public static LocalDateTime parseDate(String dateTimeString)
             throws DateTimeParseException, IndexOutOfBoundsException {
         // handle issue where there are multiple spaces between the date and the time
@@ -138,6 +150,10 @@ public class Parser {
         return new ListCommand(tokens[1]);
     }
 
+    /**
+     * Main function to test class
+     * @param args unused
+     */
     public static void main(String[] args) {
         while (true) {
             Scanner scanner = new Scanner(System.in);
