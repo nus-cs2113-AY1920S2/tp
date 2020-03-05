@@ -84,4 +84,8 @@ public class TaskList {
     public void markTaskAsDone(int doneIndex) throws IndexOutOfBoundsException {
         tasks.get(doneIndex).setDone();
     }
+
+    public void deleteTask(int deleteIndex) throws IndexOutOfBoundsException {
+        tasks.remove(deleteIndex);
+    }
 }
