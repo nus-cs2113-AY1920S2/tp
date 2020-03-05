@@ -161,8 +161,10 @@ public class Parser {
             if (input.equals("bb")) {
                 break;
             }
+            TaskList taskList = new TaskList();
+            Ui ui = new Ui();
             Command command = parseCommand(input);
-            command.execute();
+            command.execute(taskList, ui);
         }
     }
 }
