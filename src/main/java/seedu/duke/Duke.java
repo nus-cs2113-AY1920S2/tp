@@ -2,6 +2,7 @@ package seedu.duke;
 
 import java.util.Scanner;
 import seedu.duke.module.Module;
+import seedu.duke.parser.Parser;
 
 public class Duke {
     /**
@@ -17,8 +18,7 @@ public class Duke {
         System.out.println("What is your module?");
 
         Scanner in = new Scanner(System.in);
-        Module module = new Module("id",in.nextLine());
-        System.out.println("Hello " + module);
-        //System.out.println("Hello " + in.nextLine());
+        Module module = Parser.parse(in.nextLine());
+        System.out.println("Module: " + System.lineSeparator() + module);
     }
 }

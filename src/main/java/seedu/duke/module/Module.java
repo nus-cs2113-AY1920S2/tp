@@ -3,17 +3,20 @@ package seedu.duke.module;
 public class Module {
     protected String name;
     protected String id;
+    protected String semester;
     protected boolean isName;
     protected boolean isId;
+
 
     /**
      * This is Module's constructor.
      * @param type the type of module identifier.
      * @param identifier user input identifier.
      */
-    public Module(String type, String identifier) {
+    public Module(String type, String identifier, String semester) {
         this.isName = type.equals("name");
         this.isId = type.equals("id");
+        this.semester = semester;
         if (isName) {
             this.name = identifier;
         } else if (isId) {
@@ -25,12 +28,12 @@ public class Module {
     public String toString() {
         String returnString = null;
         if (isId && isName) {
-            returnString = "id: " + id + " name: " + name;
+            returnString = "ID: " + id + " Name: " + name;
         } else if (isName) {
-            returnString = "name: " + name;
+            returnString = "Name: " + name;
         } else if (isId) {
-            returnString = "id: " + id;
+            returnString = "ID: " + id;
         }
-        return returnString;
+        return returnString + " / Semester: " + semester;
     }
 }
