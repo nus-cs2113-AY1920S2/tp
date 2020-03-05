@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Processes user input and lists tasks accordingly
+     * Processes user input and lists tasks accordingly.
      * @param taskList TaskList class which handles operation involving ArrayList of tasks
      * @param ui Ui class for displaying output of task scheduler
      */
