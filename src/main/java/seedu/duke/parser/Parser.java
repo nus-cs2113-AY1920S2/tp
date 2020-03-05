@@ -31,7 +31,8 @@ public class Parser {
     private static AddCommand processAddCommand(String args) {
         String[] moduleWords;
         moduleWords = args.split(" s/");
-        if (moduleWords.length < 2) {
+        boolean isWrongArgs = moduleWords.length < 2;
+        if (isWrongArgs) {
             return null;
         }
         String module = moduleWords[0];
