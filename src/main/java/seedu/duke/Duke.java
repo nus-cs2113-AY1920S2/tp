@@ -1,5 +1,7 @@
 package seedu.duke;
+import seedu.cards.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -58,6 +60,19 @@ public class Duke {
                 + "Exit: ​exit\n";
 
         System.out.println(helpMessage);
+    }
+
+    /**
+     *  Lists all the cards in the list.
+     *   @param cards A list of card to be displayed.
+     */
+    public static void listCards(ArrayList<Card> cards){
+        System.out.println("Here is the list of questions.");
+        for(int i= 0; i < cards.size(); i++){
+            int j = i+1;
+            System.out.println( j + " ." +cards.get(i).getQuestion());
+            System.out.println( j + " ." +cards.get(i).getAnswer());
+        }
     }
 
     /**
