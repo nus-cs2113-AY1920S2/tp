@@ -1,4 +1,4 @@
-package seedu.duke.command;
+package command;
 
 public class IncorrectCommand extends Command {
     public final String description;
