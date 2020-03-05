@@ -25,20 +25,10 @@ public class Duke {
     }
 
     /**
-    * Main method.
-    */
-    public static void main(String[] args) {
-        printGreeting();
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-    }
-
-    /**
      * Exit method.
      * Terminates the programme.
      */
-    public static void exitESC(){
+    public static void exitEsc() {
         System.out.println("____________________________________________________________");
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________");
@@ -47,7 +37,7 @@ public class Duke {
     /**
      *  Prints a list of commands used in the programme.
      */
-    public static void printHelp(){
+    public static void printHelp() {
         String helpMessage = " Welcome to ESC.\n"
                 + "Create: ​create n/[CATEGORYNAME] \n"
                 + "E.g. ​create n/Biology.\n"
@@ -70,4 +60,13 @@ public class Duke {
         System.out.println(helpMessage);
     }
 
+    /**
+    * Main method.
+    */
+    public static void main(String[] args) {
+        printGreeting();
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Hello " + in.nextLine());
+    }
 }
