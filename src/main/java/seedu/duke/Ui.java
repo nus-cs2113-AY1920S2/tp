@@ -58,4 +58,8 @@ public class Ui {
         System.out.println(String.format("[ %d. %s ] is marked done!",
                 doneIndex, taskMarkedDone.toString()));
     }
+
+    public void showDeleteMessage(Task deletedTask, int deleteIndex) {
+        System.out.println(String.format("[ %d. %s ] is deleted!", deleteIndex, deletedTask.toString()));
+    }
 }

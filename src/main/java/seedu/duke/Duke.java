@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import tasks.Task;
+
 public class Duke {
     private Ui ui;
     private TaskList taskList;

@@ -4,12 +4,15 @@ import seedu.duke.TaskList;
 import seedu.duke.Ui;
 
 public class DeleteCommand extends Command {
-    public DeleteCommand(int index) {
+    protected int deleteIndex;
 
+    public DeleteCommand(int index) {
+        this.deleteIndex = index;
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        return;
+        ui.showDeleteMessage(taskList.getTask(deleteIndex), deleteIndex);
+        taskList.deleteTask(deleteIndex);
     }
 }
