@@ -4,6 +4,8 @@ import seedu.duke.data.ModuleList;
 import seedu.duke.module.Module;
 
 public class AddCommand extends Command {
+
+    public static final String COMMAND_WORD = "add";
     private Module module;
 
     public AddCommand(Module module) {

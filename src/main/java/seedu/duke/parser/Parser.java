@@ -20,18 +20,28 @@ public class Parser {
         words = fullCommand.split("\\s+",2);
         taskType = words[0];
         args = words[1];
-        if (taskType.equals("add")) {
-            String[] moduleWords;
-            moduleWords = args.split(" s/");
-            String module = moduleWords[0];
-            String semester = moduleWords[1];
-            if (module.contains("n/")) {
-                String moduleName = module.replace("n/","");
-                return new AddCommand(new Module("name", moduleName, semester));
-            } else if (module.contains("id/")) {
-                String moduleId = module.replace("id/","");
-                return new AddCommand(new Module("id", moduleId, semester));
-            }
+        switch (taskType) {
+        case AddCommand.COMMAND_WORD:
+            return processAddCommand(args);
+        default:
+            return null;
+        }
+    }
+
+    private static AddCommand processAddCommand(String args) {
+        String[] moduleWords;
+        moduleWords = args.split(" s/");
+        if (moduleWords.length < 2) {
+            return null;
+        }
+        String module = moduleWords[0];
+        String semester = moduleWords[1];
+        if (module.contains("n/")) {
+            String moduleName = module.replace("n/","");
+            return new AddCommand(new Module("name", moduleName, semester));
+        } else if (module.contains("id/")) {
+            String moduleId = module.replace("id/","");
+            return new AddCommand(new Module("id", moduleId, semester));
         }
         return null;
     }
