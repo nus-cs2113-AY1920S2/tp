@@ -50,11 +50,11 @@ public class TaskList {
         LocalDate formattedCurrDate = LocalDate.parse(currentDate, formattedDateObj);
         System.out.println("Here are the tasks you have for today!");
         for (int i = 1; i < sizeOfArray + 1; i++) {
-            LocalDate taskDate = tasks.get(i-1).getDate();
+            LocalDate taskDate = tasks.get(i - 1).getDate();
             int testEquals = formattedCurrDate.compareTo(taskDate);
             if (testEquals == 0) {
                 String taskNum = Integer.toString(i);
-                System.out.println(taskNum + "." + tasks.get(i-1));
+                System.out.println(taskNum + "." + tasks.get(i - 1));
             }
         }
     }
