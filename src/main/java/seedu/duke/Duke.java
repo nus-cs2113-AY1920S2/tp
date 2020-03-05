@@ -22,9 +22,13 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you?");
-
         Scanner in = new Scanner(System.in);
-        Command command = Parser.parse(in.nextLine());
-        command.execute(moduleList);
+        String fullCommand = in.nextLine();
+        while (!fullCommand.equals("bye")) {
+            Command command = Parser.parse(fullCommand);
+            command.execute(moduleList);
+            fullCommand = in.nextLine();
+        }
+        System.out.println(System.lineSeparator() + "bye!");
     }
 }
