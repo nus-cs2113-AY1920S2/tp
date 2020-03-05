@@ -38,20 +38,30 @@ public class TaskList {
         return this.tasks;
     }
 
-
     /**
-     * Lists today tasks in ArrayList.
+     * Getter for the current Local Date.
+     * Formats Local Date into "dd/MM/yyyy" format.
+     * @return LocalDate object of the formatted current Date
      */
-    public void listTodayTasks() {
-        int sizeOfArray = tasks.size();
+    public LocalDate getCurrentDate() {
         LocalDate currentDateObj = LocalDate.now();
         DateTimeFormatter formattedDateObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String currentDate = currentDateObj.format(formattedDateObj);
         LocalDate formattedCurrDate = LocalDate.parse(currentDate, formattedDateObj);
+        return formattedCurrDate;
+    }
+
+
+    /**
+     * Lists tasks due or scheduled today.
+     */
+    public void listTodayTasks() {
+        int sizeOfArray = getListSize();
+        LocalDate currDate = getCurrentDate();
         System.out.println("Here are the tasks you have for today!");
         for (int i = 1; i < sizeOfArray + 1; i++) {
             LocalDate taskDate = tasks.get(i - 1).getDate();
-            int testEquals = formattedCurrDate.compareTo(taskDate);
+            int testEquals = currDate.compareTo(taskDate);
             if (testEquals == 0) {
                 String taskNum = Integer.toString(i);
                 System.out.println(taskNum + "." + tasks.get(i - 1));
@@ -60,7 +70,24 @@ public class TaskList {
     }
 
     /**
-     * Getter for Task with the provided index in TaskList.
+     * Lists the tasks due or scheduled within the next week.
+     */
+    public void listWeekTasks() {
+        int sizeofArray = getListSize();
+        LocalDate currDate = getCurrentDate();
+        LocalDate nextWeekDate = currDate.plusWeeks(1);
+        System.out.println("Here are the tasks you have for this week!");
+        for (int i = 1; i < sizeofArray + 1; i++) {
+            LocalDate taskDate = tasks.get(i - 1).getDate();
+            if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(nextWeekDate) < 0) {
+                String taskNum = Integer.toString(i);
+                System.out.println(taskNum + "." + tasks.get(i - 1));
+            }
+        }
+    }
+
+    /**
+     * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index
      */
