@@ -6,7 +6,7 @@ import seedu.duke.Ui;
 public class ListCommand extends Command {
 
     private final String listParam;
-    private final String TODAY_COMMAND = "today";
+    private static final String TODAY_COMMAND = "today";
 
     public ListCommand(String listParam) {
         this.listParam = listParam;
