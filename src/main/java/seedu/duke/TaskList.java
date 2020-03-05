@@ -87,7 +87,7 @@ public class TaskList {
     }
 
     /**
-     * Getter for Task with the provided index in TaskList.
+     * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index
      */
