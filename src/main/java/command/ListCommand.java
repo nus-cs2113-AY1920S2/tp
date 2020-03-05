@@ -1,6 +1,7 @@
 package command;
 
 import seedu.duke.TaskList;
+import seedu.duke.Ui;
 
 public class ListCommand extends Command {
 
@@ -11,12 +12,7 @@ public class ListCommand extends Command {
         this.listParam = listParam;
     }
 
-    @Override
-    public void execute(TaskList tasks) {
-        if (listParam.equals(LIST_TODAY_COMMAND)) {
-
-        }
-
-
+    public void execute(TaskList taskList, Ui ui) {
+        return;
     }
 }
