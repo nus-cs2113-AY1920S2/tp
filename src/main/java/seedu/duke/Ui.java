@@ -15,31 +15,31 @@ public class Ui {
     }
 
     /**
-     * Prints a line divider
+     * Prints a line divider.
      */
     public void printDividerLine() {
         System.out.println("____________________________________________________________");
     }
 
     /**
-     * Prints welcome messages
+     * Prints welcome messages.
      */
     public void printWelcomeMessage() {
         System.out.println("Hello from\n" + LOGO);
-        System.out.println("How can i help you today?");
+        System.out.println("What is your name?");
+        System.out.println(getUserInput());
         printDividerLine();
     }
 
     /**
-     * Prints exit messages
+     * Prints exit messages.
      */
     public void printGoodbyeMessage() {
         System.out.println("Exiting DUKE\n" + LOGO);
     }
 
     /**
-     * Prints a prompt to user
-     * Returns the next line of user input
+     * Prints a prompt to user and returns the next line of user input.
      * @return String of user input
      */
     public String getUserInput() {
