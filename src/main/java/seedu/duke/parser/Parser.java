@@ -27,10 +27,10 @@ public class Parser {
             String semester = moduleWords[1];
             if (module.contains("n/")) {
                 String moduleName = module.replace("n/","");
-                return new AddCommand( new Module("name", moduleName, semester));
+                return new AddCommand(new Module("name", moduleName, semester));
             } else if (module.contains("id/")) {
                 String moduleId = module.replace("id/","");
-                return new AddCommand( new Module("id", moduleId, semester));
+                return new AddCommand(new Module("id", moduleId, semester));
             }
         }
         return null;

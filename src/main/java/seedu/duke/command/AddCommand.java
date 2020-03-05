@@ -5,9 +5,11 @@ import seedu.duke.module.Module;
 
 public class AddCommand extends Command {
     private Module module;
-    public AddCommand(Module module){
+
+    public AddCommand(Module module) {
         this.module = module;
     }
+
     @Override
     public void execute(ModuleList moduleList) {
         addModule(moduleList);
@@ -15,7 +17,7 @@ public class AddCommand extends Command {
         System.out.println(this.module);
     }
 
-    private void addModule(ModuleList moduleList){
+    private void addModule(ModuleList moduleList) {
         moduleList.add(this.module);
     }
 }

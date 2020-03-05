@@ -2,19 +2,18 @@ package seedu.duke;
 
 import java.util.Scanner;
 
-import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
 import seedu.duke.data.ModuleList;
-import seedu.duke.module.Module;
 import seedu.duke.parser.Parser;
 
-/**
- * Main entry-point for the java.duke.Duke application.
- */
+
 public class Duke {
 
     private static ModuleList moduleList = new ModuleList();
 
+    /**
+     * Main entry-point for the java.duke.Duke application.
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
