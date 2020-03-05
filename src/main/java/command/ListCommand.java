@@ -1,8 +1,6 @@
 package command;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
+import seedu.duke.TaskList;
 
 public class ListCommand extends Command {
 
@@ -13,21 +11,12 @@ public class ListCommand extends Command {
         this.listParam = listParam;
     }
 
-
     @Override
-    public void execute() {
+    public void execute(TaskList tasks) {
         if (listParam.equals(LIST_TODAY_COMMAND)) {
 
         }
 
 
-    }
-
-
-    public static void main(String[] args) {
-        LocalDate myObj = LocalDate.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formatDate = myObj.format(myFormatObj);
-        System.out.println(formatDate);
     }
 }

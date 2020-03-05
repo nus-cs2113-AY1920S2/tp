@@ -4,6 +4,10 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -32,6 +36,11 @@ public class TaskList {
      */
     public ArrayList<Task> getTaskArray() {
         return this.tasks;
+    }
+
+    public void listTodayTasks() {
+
+
     }
 
 
