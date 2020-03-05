@@ -35,7 +35,7 @@ public class TaskList {
     }
 
     /**
-     * Getter for Task with the provided index in TaskList
+     * Getter for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index
      */
@@ -52,7 +52,7 @@ public class TaskList {
     }
 
     /**
-     * Set the Task corresponding to index specified as done
+     * Set the Task corresponding to index specified as done.
      * @param doneIndex index of Task to be marked done
      * @throws IndexOutOfBoundsException throws when index is out of range of size of current TaskList
      */

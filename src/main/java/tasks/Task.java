@@ -71,4 +71,10 @@ public class Task {
             return "[X]";
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s (by: %s)\n    %s",
+                getStatusIcon(isDone), getDetails(), getDateAndTime(), getComments());
+    }
 }

@@ -5,8 +5,13 @@ import seedu.duke.Ui;
 
 public class DoneCommand extends Command {
     protected int doneIndex;
+
+    /**
+     * Constructs a DoneCommand with parameters supplied.
+     * @param index index in the ArrayList to be marked done
+     */
     public DoneCommand(int index) {
-        this.doneIndex = (index + 1);
+        this.doneIndex = index;
     }
 
     /**

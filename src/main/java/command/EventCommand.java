@@ -12,6 +12,14 @@ public class EventCommand extends Command {
     protected String eventLocation;
     protected LocalDateTime dateTime;
     protected String comments;
+
+    /**
+     * Constructs EventCommand with the supplied parameters.
+     * @param eventName String containing name of event
+     * @param eventLocation String containing location of event
+     * @param dateTime LocalDateTime containing date and time of event
+     * @param comments String containing extra comments user might want to tag Event with
+     */
     public EventCommand(String eventName, String eventLocation, LocalDateTime dateTime, String comments) {
         this.eventName = eventName;
         this.eventLocation = eventLocation;

@@ -50,8 +50,8 @@ public class Ui {
     }
 
     public void showAddTaskMessage(Task newTask, int listSize) {
-        System.out.println(String.format("Added task:\n     %s\nNow you have " +
-                        "%d tasks in the list!", newTask.toString(), listSize));
+        System.out.println(String.format("Added task:\n     %s\nNow you have %d tasks in the list!",
+                newTask.toString(), listSize));
     }
 
     public void showDoneMessage(Task taskMarkedDone, int doneIndex) {

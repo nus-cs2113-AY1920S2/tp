@@ -28,7 +28,7 @@ public class AssignmentCommand extends Command {
     }
 
     /**
-     * Creates new Assignment, adds to TaskList, print Ui messages
+     * Creates new Assignment, adds to TaskList, print Ui messages.
      * @param taskList TaskList object that handles adding Task
      * @param ui Ui object that interacts with user
      */
