@@ -13,6 +13,8 @@ public class ListCommand extends Command {
     }
 
     public void execute(TaskList taskList, Ui ui) {
-        return;
+        if (listParam.equals(LIST_TODAY_COMMAND)) {
+            taskList.listTodayTasks();
+        }
     }
 }

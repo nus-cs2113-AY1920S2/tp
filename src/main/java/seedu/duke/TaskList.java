@@ -39,11 +39,25 @@ public class TaskList {
     }
 
 
+    /**
+     * Lists today tasks in ArrayList.
+     */
     public void listTodayTasks() {
-
-
+        int sizeOfArray = tasks.size();
+        LocalDate currentDateObj = LocalDate.now();
+        DateTimeFormatter formattedDateObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String currentDate = currentDateObj.format(formattedDateObj);
+        LocalDate formattedCurrDate = LocalDate.parse(currentDate, formattedDateObj);
+        System.out.println("Here are the tasks you have for today!");
+        for (int i = 1; i < sizeOfArray + 1; i++) {
+            LocalDate taskDate = tasks.get(i-1).getDate();
+            int testEquals = formattedCurrDate.compareTo(taskDate);
+            if (testEquals == 0) {
+                String taskNum = Integer.toString(i);
+                System.out.println(taskNum + "." + tasks.get(i-1));
+            }
+        }
     }
-
 
     /**
      * Getter for Task with the provided index in TaskList.
