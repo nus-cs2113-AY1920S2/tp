@@ -4,12 +4,18 @@ import seedu.duke.TaskList;
 import seedu.duke.Ui;
 
 public class ListCommand extends Command {
-    public ListCommand(String listParam) {
 
+    private final String listParam;
+    private static final String TODAY_COMMAND = "today";
+
+    public ListCommand(String listParam) {
+        this.listParam = listParam;
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        return;
+        if (listParam.equals(TODAY_COMMAND)) {
+            taskList.listTodayTasks();
+        }
     }
 }

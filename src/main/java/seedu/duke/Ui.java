@@ -56,6 +56,6 @@ public class Ui {
 
     public void showDoneMessage(Task taskMarkedDone, int doneIndex) {
         System.out.println(String.format("[ %d. %s ] is marked done!",
-                taskMarkedDone.toString(), doneIndex));
+                doneIndex, taskMarkedDone.toString()));
     }
 }
