@@ -34,6 +34,6 @@ public class Module {
         } else if (isId) {
             returnString = "ID: " + id;
         }
-        return returnString + " / Semester: " + semester;
+        return returnString + " | Semester: " + semester;
     }
 }

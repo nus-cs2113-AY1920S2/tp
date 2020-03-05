@@ -1,5 +1,7 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.Command;
 import seedu.duke.module.Module;
 
 /**
@@ -11,7 +13,7 @@ public class Parser {
      * @param fullCommand full user input command.
      * @return the module.
      */
-    public static Module parse(String fullCommand) {
+    public static Command parse(String fullCommand) {
         String taskType;
         String args;
         String[] words;
@@ -25,10 +27,10 @@ public class Parser {
             String semester = moduleWords[1];
             if (module.contains("n/")) {
                 String moduleName = module.replace("n/","");
-                return new Module("name", moduleName, semester);
+                return new AddCommand( new Module("name", moduleName, semester));
             } else if (module.contains("id/")) {
                 String moduleId = module.replace("id/","");
-                return new Module("id", moduleId, semester);
+                return new AddCommand( new Module("id", moduleId, semester));
             }
         }
         return null;
