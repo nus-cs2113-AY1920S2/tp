@@ -1,16 +1,17 @@
 package seedu.duke;
 
-import seedu.duke.command.AssignmentCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.DoneCommand;
-import seedu.duke.command.EventCommand;
-import seedu.duke.command.IncorrectCommand;
-import seedu.duke.command.ListCommand;
-
+import command.AssignmentCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.DoneCommand;
+import command.EventCommand;
+import command.IncorrectCommand;
+import command.ListCommand;
+import tasks.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +20,7 @@ public class Parser {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy HHmm");
     public static final DateTimeFormatter PRINT_DATE_FORMAT = DateTimeFormatter.ofPattern("EEE dd MMM yyyy HH':'mm");
     public static final DateTimeFormatter PRINT_TIME_FORMAT = DateTimeFormatter.ofPattern("HH':'mm");
-
+    public static ArrayList<Task> taskList;
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<taskType>[^/]+)"
