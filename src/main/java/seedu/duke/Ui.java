@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import tasks.Task;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -45,5 +47,15 @@ public class Ui {
     public String getUserInput() {
         System.out.println(">");
         return in.nextLine().trim();
+    }
+
+    public void showAddTaskMessage(Task newTask, int listSize) {
+        System.out.println(String.format("Added task:\n     %s\nNow you have %d tasks in the list!",
+                newTask.toString(), listSize));
+    }
+
+    public void showDoneMessage(Task taskMarkedDone, int doneIndex) {
+        System.out.println(String.format("[ %d. %s ] is marked done!",
+                taskMarkedDone.toString(), doneIndex));
     }
 }

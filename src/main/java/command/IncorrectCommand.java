@@ -1,5 +1,8 @@
 package command;
 
+import seedu.duke.TaskList;
+import seedu.duke.Ui;
+
 public class IncorrectCommand extends Command {
     public final String description;
 
@@ -8,7 +11,7 @@ public class IncorrectCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(TaskList taskList, Ui ui) {
         System.out.println("Oh no. " + description);
     }
 }
