@@ -27,7 +27,7 @@ public class Ui {
     public void printWelcomeMessage() {
         System.out.println("Hello from\n" + LOGO);
         System.out.println("What is your name?");
-        System.out.println(getUserInput());
+        System.out.println("Hello " + getUserInput());
         printDividerLine();
     }
 
