@@ -1,6 +1,8 @@
 package tasks;
 
 import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,6 +29,26 @@ class TaskTest {
         String dateTime = "03/07/2020 16:00";
         LocalDateTime testDateTime = LocalDateTime.parse(dateTime, formatter);
         assertEquals(new Task(null, null, testDateTime, null).getDateAndTime(), testDateTime);
+    }
+
+    @Test
+    public void testGetTime() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        String dateTime = "03/07/2020 16:00";
+        LocalDateTime testDateTime = LocalDateTime.parse(dateTime, dateTimeFormatter);
+        LocalTime testTime = testDateTime.toLocalTime();
+        assertEquals(new Task(null, null, testDateTime, null).getTime(), testTime);
+    }
+
+    @Test
+    public void testGetDate() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        String dateTime = "03/07/2020 16:00";
+        LocalDateTime testDateTime = LocalDateTime.parse(dateTime, dateTimeFormatter);
+        LocalDate testDate = testDateTime.toLocalDate();
+        assertEquals(new Task(null, null, testDateTime, null).getDate(), testDate);
     }
 
     @Test
