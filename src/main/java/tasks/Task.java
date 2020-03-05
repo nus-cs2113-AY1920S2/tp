@@ -1,7 +1,8 @@
 package tasks;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Task {
 
@@ -38,6 +39,13 @@ public class Task {
         return dateAndTime;
     }
 
+    public LocalDate getDate() {
+        return dateAndTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return dateAndTime.toLocalTime();
+    }
 
     public String getComments() {
         return comments;
