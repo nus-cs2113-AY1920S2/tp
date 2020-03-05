@@ -12,14 +12,14 @@ public class TaskList {
 
     /**
      * Default constructor for TaskList class.
-     * Instantiate a new ArrayList object
+     * Instantiate a new ArrayList object.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
     /**
-     * Getter for size of ArrayList
+     * Getter for size of ArrayList.
      * @return ArrayList size
      */
     public int getListSize() {
@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     /**
-     * Getter for ArrayList of tasks
+     * Getter for ArrayList of tasks.
      * @return ArrayList of tasks
      */
     public ArrayList<Task> getTaskArray() {
