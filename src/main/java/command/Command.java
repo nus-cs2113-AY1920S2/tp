@@ -1,6 +1,5 @@
 package command;
 
-import seedu.duke.Storage;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
 
