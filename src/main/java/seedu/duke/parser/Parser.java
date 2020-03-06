@@ -1,8 +1,9 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.BoughtCommand;
+import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.UnmarkCommand;
 
 public class Parser {
     /**
@@ -18,8 +19,11 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
 
-        case BoughtCommand.COMMAND_WORD:
-            return prepareBought(arguments);
+        case MarkCommand.COMMAND_WORD:
+            return prepareMark(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return prepareUnmark(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -39,12 +43,21 @@ public class Parser {
         }
     }
 
-    private Command prepareBought(String arguments) {
+    private Command prepareMark(String arguments) {
         String[] words = arguments.trim().split(" ");
         if (words.length != 1) {
             throw new IncompleteCommandException;
         }
         int index = Integer.parseInt(words[0]);
-        return new BoughtCommand(index);
+        return new MarkCommand(index);
+    }
+
+    private Command prepareUnmark(String arguments) {
+        String[] words = arguments.trim().split(" ");
+        if (words.length != 1) {
+            throw new IncompleteCommandException;
+        }
+        int index = Integer.parseInt(words[0]);
+        return new UnmarkCommand(index);
     }
 }

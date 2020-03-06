@@ -47,6 +47,8 @@ public class Item {
         isBought = true;
     }
 
+    public void unmarkAsBought() { isBought = false; }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description + " $" + price;
