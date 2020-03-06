@@ -13,9 +13,9 @@ public class Event {
      * Empty constructor. Sets name as "unnamed"
      */
     public Event() {
-        this.name = "unnamed";
-        this.datetime = null;
-        this.venue = null;
+        setName("unnamed");
+        setDatetime(null);
+        setVenue(null);
         this.participantList = new ArrayList<>();
         this.attendanceList = new ArrayList<>();
     }
@@ -28,9 +28,9 @@ public class Event {
      */
     public Event(String name, String datetime, String venue) {
         this();
-        this.name = name;
-        this.datetime = datetime;
-        this.venue = venue;
+        setName(name);
+        setDatetime(datetime);
+        setVenue(venue);
     }
 
     /**
@@ -46,7 +46,7 @@ public class Event {
      * @param name the new name for the event
      */
     public void setName(String name) {
-        this.name = name;
+        this.name = (name.isEmpty() ? "unnamed" : name);
     }
 
     /**

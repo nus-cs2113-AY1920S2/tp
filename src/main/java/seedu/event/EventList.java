@@ -26,7 +26,7 @@ public class EventList {
      * from the list.
      * @param event the event to be deleted
      * @return {@code true} if the specified event is found (and removed)
-     * from the list.
+     *      from the list
      */
     public boolean delete(Event event) {
         return list.remove(event);
