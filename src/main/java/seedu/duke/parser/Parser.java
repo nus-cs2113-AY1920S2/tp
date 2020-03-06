@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.ResetBudgetCommand;
 
 public class Parser {
     /**
@@ -25,6 +26,9 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ResetBudgetCommand.COMMAND_WORD:
+            return new ResetBudgetCommand();
 
         case "bye":
             return new ExitCommand();
