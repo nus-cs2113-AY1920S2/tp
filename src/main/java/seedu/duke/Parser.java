@@ -13,7 +13,7 @@ public class Parser {
      * @param instruction string input command by user
      */
     public void parseTypeOfInstruction(String instruction) {
-        String[] instructions = instruction.split(Pattern.quote("/"));
+        String[] instructions = instruction.split(Pattern.quote(" "));
         String typeOfInstruction = instructions[0];
         instructions = Arrays.copyOfRange(instructions, 1, instructions.length);
         switch (typeOfInstruction) {
