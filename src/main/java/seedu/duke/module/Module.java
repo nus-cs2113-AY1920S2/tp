@@ -4,8 +4,8 @@ public class Module {
     protected String name;
     protected String id;
     protected String semester;
-    protected boolean isName;
-    protected boolean isId;
+    protected boolean isNameValid;
+    protected boolean isIdValid;
 
 
     /**
@@ -14,12 +14,12 @@ public class Module {
      * @param identifier user input identifier.
      */
     public Module(String type, String identifier, String semester) {
-        this.isName = type.equals("name");
-        this.isId = type.equals("id");
+        this.isNameValid = type.equals("name");
+        this.isIdValid = type.equals("id");
         this.semester = semester;
-        if (isName) {
+        if (isNameValid) {
             this.name = identifier;
-        } else if (isId) {
+        } else if (isIdValid) {
             this.id = identifier;
         }
     }
@@ -27,11 +27,11 @@ public class Module {
     @Override
     public String toString() {
         String returnString = null;
-        if (isId && isName) {
+        if (isIdValid && isNameValid) {
             returnString = "ID: " + id + " Name: " + name;
-        } else if (isName) {
+        } else if (isNameValid) {
             returnString = "Name: " + name;
-        } else if (isId) {
+        } else if (isIdValid) {
             returnString = "ID: " + id;
         }
         return returnString + " | Semester: " + semester;
