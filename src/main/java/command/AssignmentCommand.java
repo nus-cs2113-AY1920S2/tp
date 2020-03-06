@@ -1,14 +1,41 @@
 package command;
 
+import seedu.duke.TaskList;
+import seedu.duke.Ui;
+import tasks.Assignment;
+import tasks.Task;
+
 import java.time.LocalDateTime;
 
 public class AssignmentCommand extends Command {
-    public AssignmentCommand(String name, String module, LocalDateTime deadline, String comments) {
+    protected String assignmentName;
+    protected String moduleName;
+    protected LocalDateTime deadline;
+    protected String comments;
 
+    /**
+     * Constructs an AssignmentCommand object with the parameters provided.
+     * @param assignmentName String containing name of Assignment
+     * @param moduleName String containing name of module Assignment belongs to
+     * @param deadline LocalDateTime object containing the deadline of Assignment
+     * @param comments String containing extra comments user might want to tag Assignment with
+     */
+    public AssignmentCommand(String assignmentName, String moduleName, LocalDateTime deadline, String comments) {
+        this.assignmentName = assignmentName;
+        this.moduleName = moduleName;
+        this.deadline = deadline;
+        this.comments = comments;
     }
 
+    /**
+     * Creates new Assignment, adds to TaskList, print Ui messages.
+     * @param taskList TaskList object that handles adding Task
+     * @param ui Ui object that interacts with user
+     */
     @Override
-    public void execute() {
-        return;
+    public void execute(TaskList taskList, Ui ui) {
+        Task newAssignment = new Assignment(assignmentName, moduleName, deadline, comments);
+        taskList.addTask(newAssignment);
+        ui.showAddTaskMessage(newAssignment, taskList.getListSize());
     }
 }

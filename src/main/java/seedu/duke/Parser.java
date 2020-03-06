@@ -20,7 +20,6 @@ public class Parser {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy HHmm");
     public static final DateTimeFormatter PRINT_DATE_FORMAT = DateTimeFormatter.ofPattern("EEE dd MMM yyyy HH':'mm");
     public static final DateTimeFormatter PRINT_TIME_FORMAT = DateTimeFormatter.ofPattern("HH':'mm");
-    public static ArrayList<Task> taskList;
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<taskType>[^/]+)"
@@ -156,6 +155,8 @@ public class Parser {
      * @param args unused
      */
     public static void main(String[] args) {
+        TaskList taskList = new TaskList();
+        Ui ui = new Ui();
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
@@ -163,7 +164,7 @@ public class Parser {
                 break;
             }
             Command command = parseCommand(input);
-            command.execute();
+            command.execute(taskList, ui);
         }
     }
 }

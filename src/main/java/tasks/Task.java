@@ -55,6 +55,10 @@ public class Task {
         return isDone;
     }
 
+    public void setDone() {
+        this.isDone = true;
+    }
+
     /**
      * Returns symbol representing if task is completed.
      * @param isDone boolean value to check if task is completed
@@ -66,5 +70,11 @@ public class Task {
         } else {
             return "[X]";
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s (by: %s)\n    %s",
+                getStatusIcon(isDone), getDetails(), getDateAndTime(), getComments());
     }
 }
