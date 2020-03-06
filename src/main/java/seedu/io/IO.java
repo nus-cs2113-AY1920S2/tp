@@ -1,4 +1,4 @@
-package seedu.IO;
+package seedu.io;
 
 import java.util.Scanner;
 

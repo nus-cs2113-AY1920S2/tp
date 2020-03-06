@@ -38,7 +38,7 @@ public class Parser {
         for (String token : tokens) {
             switch (token.substring(0, 2)) {
             case "i/":
-                if(index.equals(-1)) {
+                if (index.equals(-1)) {
                     throw new DuplicateFormatFlagsException("index");
                 }
                 index = Integer.parseInt(token.substring(2));
@@ -51,21 +51,21 @@ public class Parser {
                 mostRecent = name;
                 break;
             case "t/":
-                if(!time.isEmpty()) {
+                if (!time.isEmpty()) {
                     throw new DuplicateFormatFlagsException("time");
                 }
                 time += token.substring(2);
                 mostRecent = time;
                 break;
             case "d/":
-                if(!date.isEmpty()) {
+                if (!date.isEmpty()) {
                     throw new DuplicateFormatFlagsException("date");
                 }
                 date += token.substring(2);
                 mostRecent = date;
                 break;
             case "v/":
-                if(!venue.isEmpty()) {
+                if (!venue.isEmpty()) {
                     throw new DuplicateFormatFlagsException("venue");
                 }
                 venue += token.substring(2);
@@ -73,10 +73,10 @@ public class Parser {
                 break;
             default:
                 // assumes that all valid flags have been processed before this line
-                if(isUnknownFlag(token)) {
+                if (isUnknownFlag(token)) {
                     throw new UnknownFormatFlagsException("unknown flag");
                 }
-                if(mostRecent == null) {
+                if (mostRecent == null) {
                     throw new NullPointerException("parameter without flag");
                 }
                 mostRecent += (" " + token);
