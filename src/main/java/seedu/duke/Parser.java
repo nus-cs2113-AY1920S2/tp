@@ -1,16 +1,15 @@
 package seedu.duke;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class Parser {
-
     /**
      * Main parser for user commands, it parses the command to its
-     * corresponding type of command: Task, Attendance, or Performance
+     * corresponding type of command: Task, Attendance, or Performance.
      *
-     * @param instruction string input command by user
+     * @param instruction A string input command by user, to be parsed
+     *                    in the method.
      */
     public void parseTypeOfInstruction(String instruction) {
         String[] instructions = instruction.split(Pattern.quote(" "));
