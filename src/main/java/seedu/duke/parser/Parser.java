@@ -22,34 +22,21 @@ public class Parser {
     public Command parseCommand(String userInput) {
         prepareCommand(userInput);
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
-
         case DeleteCommand.COMMAND_WORD:
             createDeleteCommand();
-            return newCommand;
             break;
-
         case SetBudgetCommand.COMMAND_WORD:
-            if (phrases[1].contains("b/")) {
-                createSetBudgetCommand();
-                return newCommand;
-            }
+            createSetBudgetCommand();
             break;
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case "bye":
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD: // Fallthrough
-        default:
-            return new HelpCommand();
+        case ExitCommand.COMMAND_WORD:
+            createExitCommand();
+            break;
         }
+        return newCommand;
+    }
+
+    public static void createExitCommand() {
+        newCommand = new ExitCommand();
     }
 
     /**

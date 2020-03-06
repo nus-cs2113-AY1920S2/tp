@@ -1,6 +1,9 @@
 package seedu.duke.commands;
 
 public class ExitCommand extends Command {
+
+    public static final String COMMAND_WORD = "bye";
+
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting SHOCO as requested ...";
 
     public CommandResult execute() {
