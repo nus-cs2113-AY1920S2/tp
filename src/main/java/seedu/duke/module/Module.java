@@ -1,9 +1,14 @@
 package seedu.duke.module;
 
+import seedu.duke.data.ModuleList;
+
 public class Module {
     protected String name;
     protected String id;
     protected String semester;
+    protected String description;
+    protected Boolean isSUable;
+    protected ModuleList preReqModules;
     protected boolean isNameValid;
     protected boolean isIdValid;
 
