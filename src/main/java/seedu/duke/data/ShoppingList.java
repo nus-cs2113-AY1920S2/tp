@@ -10,6 +10,18 @@ public class ShoppingList {
     public ShoppingList(){
     }
 
+    /**
+     * @return copy of task list
+     */
+    public static ArrayList<Item> copy() {
+        // Clone the list
+        return (new ArrayList<>(items));
+    }
+
+    public static Item retrieve(int targetIndex) {
+        return items.get(targetIndex);
+    }
+
 
 
 

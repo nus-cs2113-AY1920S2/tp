@@ -1,4 +1,12 @@
-package seedu.duke;
+package seedu.duke.commands;
 
-public class HelpCommand {
+/**
+ * Shows help instructions.
+ */
+public class HelpCommand extends Command {
+
+    @Override
+    public CommandResult execute() {
+        return new CommandResult("Oops wrong");
+    }
 }
