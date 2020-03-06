@@ -10,6 +10,26 @@ public class ShoppingList {
     public ShoppingList(){
     }
 
+    /**
+     * Returns the item at the specified index.
+     *
+     * @param index Index of the item requested.
+     * @return Item at the specified index.
+     */
+    public static Item getItem(int index) {
+        return items.get(index);
+    }
+
+    /**
+     * Removes an item at the specified index.
+     *
+     * @param index Index of the item to be removed.
+     */
+    public static void deleteItem(int index) {
+        Item unwantedItem = items.get(index);
+        items.remove(unwantedItem);
+    }
+
 
 
 
