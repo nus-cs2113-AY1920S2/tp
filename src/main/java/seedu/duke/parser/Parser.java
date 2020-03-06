@@ -48,7 +48,7 @@ public class Parser {
         if (words.length != 1) {
             throw new IncompleteCommandException;
         }
-        int index = Integer.parseInt(words[0]);
+        int index = Integer.parseInt(words[0]) - 1;
         return new MarkCommand(index);
     }
 
@@ -57,7 +57,7 @@ public class Parser {
         if (words.length != 1) {
             throw new IncompleteCommandException;
         }
-        int index = Integer.parseInt(words[0]);
+        int index = Integer.parseInt(words[0]) - 1;
         return new UnmarkCommand(index);
     }
 }
