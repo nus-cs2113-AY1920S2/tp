@@ -8,7 +8,8 @@ public class ListCommand extends Command {
     private final String listParam;
     private static final String TODAY_COMMAND = "today";
     private static final String WEEK_COMMAND = "week";
-    private static final String UPCOMING_EVENT_COMMAND = "events";
+    private static final String UPCOMING_EVENT_COMMAND = "upcoming events";
+    private static final String INCOMPLETE_ASSIGN_COMMAND = "incomplete assignments";
 
     /**
      * Default constructor for ListCommand Class.
@@ -35,6 +36,9 @@ public class ListCommand extends Command {
             break;
         case (UPCOMING_EVENT_COMMAND):
             ui.showListTasks(taskList.getUpcomingEventArray());
+            break;
+        case (INCOMPLETE_ASSIGN_COMMAND):
+            ui.showListTasks(taskList.getIncompleteAssignArray());
             break;
         default:
             ui.showListTasks(taskList.getTaskArray());

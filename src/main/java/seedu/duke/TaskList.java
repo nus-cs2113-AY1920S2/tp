@@ -102,6 +102,16 @@ public class TaskList {
         return eventList;
     }
 
+    public ArrayList<Task> getIncompleteAssignArray() {
+        ArrayList<Task> assignList = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task instanceof Assignment && !task.getIsDone()) {
+                assignList.add(task);
+            }
+        }
+        return assignList;
+    }
+
     /**
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
