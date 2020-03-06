@@ -24,10 +24,14 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        if (listParam.equals(TODAY_COMMAND)) {
+        // to deal with null being passed as input
+        switch (listParam==null?"":listParam) {
+        case (TODAY_COMMAND):
             taskList.listTodayTasks();
-        } else if (listParam.equals(WEEK_COMMAND)) {
+        case (WEEK_COMMAND):
             taskList.listWeekTasks();
+        default:
+            ui.showListTasks(taskList.getTaskArray());
         }
     }
 }
