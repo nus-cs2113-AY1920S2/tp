@@ -3,10 +3,16 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.data.Budget;
+import seedu.duke.data.ShoppingList;
 import seedu.duke.parser.Parser;
 import java.util.Scanner;
 
 public class Duke {
+
+    private static ShoppingList items = new ShoppingList();
+    private static Budget myBudget = new Budget(0);
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -67,7 +73,7 @@ public class Duke {
      */
     private CommandResult executeCommand(Command command) {
         try {
-            CommandResult result = command.execute();
+            CommandResult result = command.execute(items,myBudget);
             return result;
         } catch (Exception e) {
             System.out.println(e.getMessage());
