@@ -14,8 +14,8 @@ public class Performance extends Module {
     public String assignment;
     public String grade;
     public int mark;
-    private static boolean isMark;
-    private static boolean isGrade;
+    private static boolean isMark = false;
+    private static boolean isGrade = false;
 
     /**
      * Save the result of student base on a set of module, student and assignment,
