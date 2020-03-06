@@ -87,6 +87,22 @@ public class TaskList {
     }
 
     /**
+     * Getter method for tasks that are events and in the future.
+     * @return ArrayList object containing all future events.
+     */
+    public ArrayList<Task> getUpcomingEventArray() {
+        ArrayList<Task> eventList = new ArrayList<>();
+        LocalDate currDate = getCurrentDate();
+        for (Task task : tasks) {
+            LocalDate taskDate = task.getDate();
+            if (task instanceof Event && taskDate.compareTo(currDate) > 0) {
+                eventList.add(task);
+            }
+        }
+        return eventList;
+    }
+
+    /**
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index
