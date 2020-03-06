@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.commands.BoughtCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 
@@ -17,6 +18,9 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
 
+        case BoughtCommand.COMMAND_WORD:
+            return prepareBought(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
@@ -33,5 +37,14 @@ public class Parser {
         default:
             return new HelpCommand();
         }
+    }
+
+    private Command prepareBought(String arguments) {
+        String[] words = arguments.trim().split(" ");
+        if (words.length != 1) {
+            throw new IncompleteCommandException;
+        }
+        int index = Integer.parseInt(words[0]);
+        return new BoughtCommand(index);
     }
 }

@@ -3,15 +3,20 @@ package seedu.duke.data;
 public class Item {
     private double price;
     private String description;
+    private boolean isBought;
+    public static final String BOUGHT = "B";
+    public static final String NOT_BOUGHT = "0";
 
     public Item(double price, String description) {
         this.price = price;
         this.description = description;
+        this.isBought = false;
     }
 
     public Item(String description) {
         this.price = 0.0;
         this.description = description;
+        this.isBought = false;
     }
 
     public void setPrice(double price) {
@@ -30,9 +35,21 @@ public class Item {
         return description;
     }
 
+    public String getStatusIcon() {
+        if (isBought) {
+            return BOUGHT;
+        } else {
+            return NOT_BOUGHT;
+        }
+    }
+
+    public void markAsBought() {
+        isBought = true;
+    }
+
     @Override
     public String toString() {
-        return description + " $" + price;
+        return "[" + getStatusIcon() + "] " + description + " $" + price;
     }
 
 

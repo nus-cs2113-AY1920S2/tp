@@ -10,7 +10,13 @@ public class ShoppingList {
     public ShoppingList(){
     }
 
-
-
+    public static Item markAsBought(int index) throws ItemNotFoundException {
+        if (index >= items.size()) {
+            throw new ItemNotFoundException;
+        }
+        Item itemBought = items.get(index);
+        itemBought.markAsBought();
+        return itemBought;
+    }
 
 }
