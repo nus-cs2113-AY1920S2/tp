@@ -10,7 +10,9 @@ public class ShoppingList {
     public ShoppingList(){
     }
 
+    public static void add (Item toAdd){
 
-
+        ShoppingList.add(toAdd);
+    }
 
 }
