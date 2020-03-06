@@ -25,13 +25,8 @@ public class Parser {
         switch (commandWord) {
 
         case CommandAdd.COMMAND_WORD:
-            final int indexOfAtPrefix = arguments.indexOf("i/");
-            final int indexOfAtPrefix_2 = arguments.indexOf("p/");
-            String description = arguments.substring(indexOfAtPrefix, indexOfAtPrefix_2);
-            String prices = arguments.substring(indexOfAtPrefix_2 + 3).trim();
-            double price = Double.parseDouble(prices);
 
-            return new CommandAdd(description,price);
+            return prepareAdd(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -49,5 +44,16 @@ public class Parser {
         default:
             return new HelpCommand();
         }
+    }
+
+    private Command prepareAdd(String arguments) {
+
+        final int indexOfAtPrefix = arguments.indexOf("i/");
+        final int indexOfAtPrefix_2 = arguments.indexOf("p/");
+        String description = arguments.substring(indexOfAtPrefix, indexOfAtPrefix_2);
+        String prices = arguments.substring(indexOfAtPrefix_2 + 3).trim();
+        double price = Double.parseDouble(prices);
+
+        return new CommandAdd(description,price);
     }
 }
