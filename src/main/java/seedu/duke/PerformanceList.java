@@ -8,8 +8,16 @@ public class PerformanceList {
     public static int numberOfPerformance;
 
     public PerformanceList() {
-        performanceList = new ArrayList<Performance>();
+        performanceList = new ArrayList<>();
         numberOfPerformance = performanceList.size();
+    }
+
+    public static List<Performance> getPerformanceList() {
+        return performanceList;
+    }
+
+    public static int getSize() {
+        return performanceList.size();
     }
 
     public static void addToList(Performance performance) {

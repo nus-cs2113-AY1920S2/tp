@@ -49,7 +49,7 @@ public class Performance extends Module {
      *
      * @return A string that shows the result of a student base on name.
      */
-    public String storeToPerformanceList() {
+    public String formatForAssignmentList() {
         //store in the format [module][student]result
         return "[" + nameOfModule + "] "
                 + "[" + nameOfStudent + "] " + getResult();
@@ -61,7 +61,7 @@ public class Performance extends Module {
      *
      * @return A string that shows the result of a student base on assignment.
      */
-    public String storeToStudentList() {
+    public String formatForStudentList() {
         return "[" + nameOfModule + "] "
                 + "[" + assignment + "] " + getResult();
     }

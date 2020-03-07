@@ -1,9 +1,7 @@
 package seedu.duke;
 
-import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import java.util.List;
 
 public class Parser {
     /**
@@ -59,13 +57,16 @@ public class Parser {
             parseAddPerformanceResult(dataToParse);
             break;
         case "delete":
-            parseDeleteResult(dataToParse);
+            Performance performance = getPerformance(dataToParse);
+            DeletePerformanceCommand.execute(performance);
             break;
         case "view_student_result":
-            ViewStudentResultCommand.execute(dataToParse);
+            List<Performance> performances = PerformanceList.getPerformanceList();
+            ViewResultCommand.studentPerformanceList(performances);
             break;
         case "view_assignment_result":
-            ViewAssignmentResultCommand.execute(dataToParse);
+            performances = PerformanceList.getPerformanceList();
+            ViewResultCommand.assignmentPerformanceList(performances);
             break;
         default:
             System.out.println("wrong command");
@@ -124,22 +125,23 @@ public class Parser {
     }
 
     /**
-     * Parser for the delete performance result command. To record
-     * the performance set of module, assignment and student to
-     * be deleted.
+     * Read the user input to get the performance data. It returns
+     * the performance set of module, assignment and student for
+     * further instructions.
      *
-     * @param dataToParse The string array to be parsed, each string
+     * @param dataToRead The string array to be parsed, each string
      *                    in the array is parsed by the character "/",
      *                    and store to String data[], where data[0]
      *                    determines which type of data that data[1]
      *                    belongs to.
+     * @return A Performance set of module, assignment and student.
      */
-    private void parseDeleteResult(String[] dataToParse) {
+    private Performance getPerformance(String[] dataToRead) {
         //e.g. dataToParse = a/Assignment n/STUDENT_NAME
         String nameOfModule = "null";
         String nameOfStudent = "null";
         String assignment = "null";
-        for (String s : dataToParse) {
+        for (String s : dataToRead) {
             String[] data = s.split("/");
             switch (data[0]) {
             case "a":
@@ -155,7 +157,7 @@ public class Parser {
                 System.out.println("Wrong data");
             }
         }
-        DeletePerformanceCommand.execute(nameOfModule, assignment, nameOfStudent);
+        return new Performance(nameOfModule, assignment, nameOfStudent);
     }
 
     private void parseAttendanceInstruction(String[] instructions) {
