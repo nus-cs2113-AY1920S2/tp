@@ -3,6 +3,7 @@ package seedu.happypills.ui;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 
+
 public class TextUi {
     public static final String DIVIDER = "    ===================================================";
 
@@ -11,7 +12,7 @@ public class TextUi {
      */
     public static void printList(PatientList patients) {
         for (Patient patient : patients) {
-            System.out.println("    " + patient.getName() + "|" + patient.getNric());
+            System.out.println("    " + patient.getName() + " | " + patient.getNric());
         }
         System.out.println(DIVIDER);
     }
@@ -28,7 +29,8 @@ public class TextUi {
                 + " close\n"
                 + " delete NRIC\n"
                 + " help\n"
-                + " exit\n";
+                + " exit";
+        System.out.println(helpMessage);
         System.out.println(DIVIDER);
     }
 
@@ -46,5 +48,14 @@ public class TextUi {
                 + "|__| |__||__| |__||___|    |___|      |___|  |___|    |___| |_______||_______||_______|\n";
 
         System.out.println("Hello from" + logo);
+    }
+
+    /**
+     * Generates and prints the welcome message upon the start of the application.
+     */
+    public static void printPatient(Patient patient, int patientNum) {
+        System.out.println("    Got it! I've added this patient:");
+        System.out.println(patient + DIVIDER);
+
     }
 }
