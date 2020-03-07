@@ -32,9 +32,6 @@ public class Duke {
     * Main method.
     */
     public static void main(String[] args) {
-        ui.showWelcome();
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
         new Duke().run();
     }
 
@@ -54,6 +51,7 @@ public class Duke {
      * Reads the user's commands and executes them until the user issues the exit command.
      */
     private void run() {
+        ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
