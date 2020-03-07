@@ -1,17 +1,17 @@
 package seedu.happypills;
 
 import seedu.happypills.exception.HappyPillsException;
-import seedu.happypills.ui.TextUi;
+//import seedu.happypills.ui.TextUi;
 import java.util.Scanner;
 
 public class HappyPills {
-    private TextUi ui;
+//    private TextUi ui;
     public HappyPills() {
-        try{
-            ui = new TextUi;
-        } catch (HappyPillsException hpe) {
-            //patients = new PatientsList();
-        }
+//        try{
+//            ui = new TextUi;
+//        } catch (HappyPillsException hpe) {
+//            patients = new PatientsList();
+//        }
     }
 
     /**
@@ -22,6 +22,6 @@ public class HappyPills {
     }
 
     private void run() {
-        ui.showWelcomeMessage();
+        //ui.showWelcomeMessage();
     }
 }
