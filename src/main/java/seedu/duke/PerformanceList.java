@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PerformanceList {
-    public static List<Performance> performanceList = null;
+    public List<Performance> performanceList;
     public static int numberOfPerformance;
 
     public PerformanceList() {
-        performanceList = new ArrayList<>();
+        this.performanceList = new ArrayList<>();
         numberOfPerformance = performanceList.size();
     }
 
-    public static List<Performance> getPerformanceList() {
+    public List<Performance> getPerformanceList() {
         return performanceList;
     }
 
-    public static int getSize() {
+    public int getSize() {
         return performanceList.size();
     }
 
-    public static void addToList(Performance performance) {
+    public void addToList(Performance performance) {
         performanceList.add(performance);
     }
 
@@ -31,7 +31,7 @@ public class PerformanceList {
      *
      * @param performance The Performance of student to be deleted.
      */
-    public static void deletePerformance(Performance performance) {
+    public void deletePerformance(Performance performance) {
         if (numberOfPerformance <= 0) {
             System.out.println("list is empty");
         } else if (!performanceList.contains(performance)) {

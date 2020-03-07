@@ -33,6 +33,16 @@ public class Performance extends Module {
         this.assignment = assignment;
     }
 
+    public String getModule() {
+        return nameOfModule;
+    }
+    public String getStudent() {
+        return nameOfStudent;
+    }
+    public String getAssignment() {
+        return assignment;
+    }
+
     public void recordMark(int mark) {
         this.mark = mark;
         isMark = true;

@@ -13,15 +13,14 @@ public class ViewResultCommand extends Command {
      */
     public static void studentPerformanceList(List<Performance> studentPerformances) {
         int i = 1;
-        if (PerformanceList.getSize() == 0) {
+        int size = studentPerformances.size();
+        if (size == 0) {
             System.out.println("empty");
-        } else if (PerformanceList.getSize() > 0) {
+        } else {
             for (Performance performance : studentPerformances) {
                 System.out.println(i + performance.formatForStudentList());
                 i++;
             }
-        } else {
-            System.out.println("Error in printing assignment performance list.");
         }
     }
 
@@ -35,15 +34,14 @@ public class ViewResultCommand extends Command {
      */
     public static void assignmentPerformanceList(List<Performance> assignmentPerformances) {
         int i = 1;
-        if (PerformanceList.getSize() == 0) {
+        int size = assignmentPerformances.size();
+        if (size == 0) {
             System.out.println("empty");
-        } else if (PerformanceList.getSize() > 0) {
+        } else {
             for (Performance performance : assignmentPerformances) {
                 System.out.println(i + performance.formatForAssignmentList());
                 i++;
             }
-        } else {
-            System.out.println("Error in printing assignment performance list.");
         }
     }
 }

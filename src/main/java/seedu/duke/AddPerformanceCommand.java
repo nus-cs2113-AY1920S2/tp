@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import java.util.List;
+
 public class AddPerformanceCommand extends Command {
     public AddPerformanceCommand() {
     }
@@ -7,34 +9,30 @@ public class AddPerformanceCommand extends Command {
     /**
      * Add the performance when the result of student is record as mark.
      *
-     * @param nameOfModule  A String input by user, that is the name of the module
-     *                      of the result saved.
-     * @param nameOfStudent A String input by user, the name of student who scored
-     *                      the result.
-     * @param assignment    A String input by user, the name of the assignment of the
-     *                      result.
+     * @param performance The Performance of student to be added to
+     *                    the performance list.
      * @param mark          An Integer mark result of the student.
+     * @return The performance list after the new performance added.
      */
-    public static void addMark(String nameOfModule, String nameOfStudent, String assignment, int mark) {
-        Performance performance = new Performance(nameOfModule, nameOfStudent, assignment);
+    public static List<Performance> addMark(List<Performance> performances, Performance performance, int mark) {
         performance.recordMark(mark);
-        PerformanceList.addToList(performance);
+        performances.add(performance);
+        System.out.println("added mark successfully");
+        return performances;
     }
 
     /**
      * Add the performance when the result of student is record as grade.
      *
-     * @param nameOfModule  A String input by user, that is the name of the module
-     *                      of the result saved.
-     * @param nameOfStudent A String input by user, the name of student who scored
-     *                      the result.
-     * @param assignment    A String input by user, the name of the assignment of the
-     *                      result.
+     * @param performance The Performance of student to be added to
+     *                    the performance list.
      * @param grade         A String grade result of the student.
+     * @return The performance list after the new performance added.
      */
-    public static void addGrade(String nameOfModule, String nameOfStudent, String assignment, String grade) {
-        Performance performance = new Performance(nameOfModule, nameOfStudent, assignment);
+    public static List<Performance> addGrade(List<Performance> performances, Performance performance, String grade) {
         performance.recordGrade(grade);
-        PerformanceList.addToList(performance);
+        performances.add(performance);
+        System.out.println("added grade successfully");
+        return performances;
     }
 }

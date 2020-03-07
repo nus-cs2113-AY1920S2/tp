@@ -4,12 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
+    public static List<Performance> performances;
     /**
      * The user input typically include three categories,
      * the command type, command, and data. There is one
      * parser for each of the category respectively.
      */
+
     public Parser() {
+        performances = new PerformanceList().getPerformanceList();
     }
 
     /**
@@ -20,15 +23,15 @@ public class Parser {
      *                    in the method.
      */
     public void parseTypeOfInstruction(String instruction) {
-        String[] instructions = instruction.split(" ");
+        String[] instructions = instruction.split(" ",10);
         String typeOfInstruction = instructions[0];
         instructions = Arrays.copyOfRange(instructions, 1, instructions.length);
         switch (typeOfInstruction) {
         case "task":
-            parseTaskInstruction(instructions);
+            System.out.println("do task parse");
             break;
         case "attendance":
-            parseAttendanceInstruction(instructions);
+            System.out.println("do attendance parse");
             break;
         case "performance":
             parsePerformanceInstruction(instructions);
@@ -58,14 +61,12 @@ public class Parser {
             break;
         case "delete":
             Performance performance = getPerformance(dataToParse);
-            DeletePerformanceCommand.execute(performance);
+            performances = DeletePerformanceCommand.execute(performances, performance);
             break;
         case "view_student_result":
-            List<Performance> performances = PerformanceList.getPerformanceList();
             ViewResultCommand.studentPerformanceList(performances);
             break;
         case "view_assignment_result":
-            performances = PerformanceList.getPerformanceList();
             ViewResultCommand.assignmentPerformanceList(performances);
             break;
         default:
@@ -90,37 +91,42 @@ public class Parser {
         String nameOfStudent = "null";
         String assignment = "null";
         String grade = "null";
-        int mark = -1;
+        int mark = 999;
         boolean isMark = false;
         boolean isGrade = false;
         for (String s : dataToParse) {
-            String[] data = s.split("/");
-            switch (data[0]) {
-            case "a":
-                assignment = data[1];
-                break;
-            case "c":
-                nameOfModule = data[1];
-                break;
-            case "n":
-                nameOfStudent = data[1];
-                break;
-            case "g":
-                grade = data[1];
-                isMark = true;
-                break;
-            case "m":
-                mark = Integer.getInteger(data[1]);
-                isGrade = true;
-                break;
-            default:
-                System.out.println("Wrong data");
+            if (s != null) {
+                String[] data = s.split("/");
+                System.out.println(Arrays.toString(data));
+                switch (data[0]) {
+                case "a":
+                    assignment = data[1];
+                    break;
+                case "c":
+                    nameOfModule = data[1];
+                    break;
+                case "n":
+                    nameOfStudent = data[1];
+                    break;
+                case "g":
+                    grade = data[1];
+                    isGrade = true;
+                    break;
+                case "m":
+                    mark = Integer.parseInt(data[1]);
+                    isMark = true;
+                    break;
+                default:
+                    System.out.println("Wrong data");
+                }
             }
         }
+        System.out.println(nameOfModule+ nameOfStudent+ assignment+grade+mark);
+        Performance performance = new Performance(nameOfModule, nameOfStudent, assignment);
         if (isMark) {
-            AddPerformanceCommand.addMark(nameOfModule, nameOfStudent, assignment, mark);
+            performances = AddPerformanceCommand.addMark(performances, performance, mark);
         } else if (isGrade) {
-            AddPerformanceCommand.addGrade(nameOfModule, nameOfStudent, assignment, grade);
+            performances = AddPerformanceCommand.addGrade(performances, performance, grade);
         }
     }
 
@@ -134,7 +140,8 @@ public class Parser {
      *                    and store to String data[], where data[0]
      *                    determines which type of data that data[1]
      *                    belongs to.
-     * @return A Performance set of module, assignment and student.
+     * @return The performance result after reading, to be used in
+     *         further instructions.
      */
     private Performance getPerformance(String[] dataToRead) {
         //e.g. dataToParse = a/Assignment n/STUDENT_NAME
@@ -142,27 +149,24 @@ public class Parser {
         String nameOfStudent = "null";
         String assignment = "null";
         for (String s : dataToRead) {
-            String[] data = s.split("/");
-            switch (data[0]) {
-            case "a":
-                assignment = data[1];
-                break;
-            case "c":
-                nameOfModule = data[1];
-                break;
-            case "n":
-                nameOfStudent = data[1];
-                break;
-            default:
-                System.out.println("Wrong data");
+            if (s != null) {
+                String[] data = s.split("/");
+                switch (data[0]) {
+                case "a":
+                    assignment = data[1];
+                    break;
+                case "c":
+                    nameOfModule = data[1];
+                    break;
+                case "n":
+                    nameOfStudent = data[1];
+                    break;
+                default:
+                    System.out.println("Wrong data");
+                }
             }
         }
-        return new Performance(nameOfModule, assignment, nameOfStudent);
-    }
-
-    private void parseAttendanceInstruction(String[] instructions) {
-    }
-
-    private void parseTaskInstruction(String[] instructions) {
+        System.out.println("performance = " + nameOfModule+ nameOfStudent+ assignment);
+        return new Performance(nameOfModule, nameOfStudent, assignment);
     }
 }
