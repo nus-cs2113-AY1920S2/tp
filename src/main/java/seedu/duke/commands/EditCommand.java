@@ -1,12 +1,12 @@
 package seedu.duke.commands;
 
 import seedu.duke.data.Item;
-import seedu.duke.data.ShoppingList;
 
 public class EditCommand extends Command {
 
-    public static final String MESSAGE_SUCCESS = System.lineSeparator() + "The item has been updated to: "
-            + "%s";
+    public static final String COMMAND_WORD = "EDIT";
+    public static final String MESSAGE_SUCCESS = System.lineSeparator() + "The item has been updated to: %s";
+    public static final String MESSAGE_FAILURE = System.lineSeparator() + "OOPS! You have entered an invalid index no. ..";
 
     private int indexOfItem;
     private String newDescription;
@@ -23,7 +23,7 @@ public class EditCommand extends Command {
     public CommandResult execute() {
         try {
             indexOfItem -= 1;
-            Item item = ShoppingList.retrieve(indexOfItem);
+            Item item = items.retrieve(indexOfItem);
             if(newDescription == null && newPrice != null){ //only edit price
                  item.setPrice(Double.parseDouble(newPrice));
             }
@@ -35,8 +35,8 @@ public class EditCommand extends Command {
                 item.setPrice(Double.parseDouble(newPrice));
             }
             return new CommandResult(String.format(MESSAGE_SUCCESS, item.toString()));
-        } catch (Exception e) {
-            return new CommandResult(e.getMessage());
+        } catch (NullPointerException | NumberFormatException e) {
+            return new CommandResult(MESSAGE_FAILURE);
         }
     }
 }

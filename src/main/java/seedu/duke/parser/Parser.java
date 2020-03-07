@@ -24,7 +24,7 @@ public class Parser {
 
         switch (commandWord) {
 
-        case "edit":
+        case EditCommand.COMMAND_WORD:
             return prepareEdit(arguments);
 
         default:
