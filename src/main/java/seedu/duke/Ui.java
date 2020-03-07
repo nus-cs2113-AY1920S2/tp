@@ -64,11 +64,15 @@ public class Ui {
         System.out.println(String.format("[ %d. %s ] is deleted!", deleteIndex, deletedTask.toString()));
     }
 
+    /**
+     * Converts an ArrayList object to text for printing.
+     * @param taskList ArrayList object to be converted to string.
+     */
     public void showListTasks(ArrayList<Task> taskList) {
         StringBuilder stringFromArrayList = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
-            stringFromArrayList.append((i+1) + "." + taskList.get(i).toString());
-            if (i != taskList.size()-1) {
+            stringFromArrayList.append((i + 1) + "." + taskList.get(i).toString());
+            if (i != taskList.size() - 1) {
                 stringFromArrayList.append(System.lineSeparator());
             }
         }

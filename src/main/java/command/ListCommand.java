@@ -27,7 +27,7 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         // to deal with null being passed as input
-        switch (listParam==null?"":listParam) {
+        switch (listParam == null ? "" : listParam) {
         case (TODAY_COMMAND):
             taskList.listTodayTasks();
             break;
