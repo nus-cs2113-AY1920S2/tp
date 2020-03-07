@@ -2,6 +2,8 @@ package seedu.happypills;
 
 import seedu.happypills.commands.AddCommand;
 import seedu.happypills.commands.Command;
+import seedu.happypills.commands.HelpCommand;
+import seedu.happypills.commands.ListCommand;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
@@ -27,9 +29,16 @@ public class HappyPills {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        new HappyPills().run();
+        try {
+            new HappyPills().run();
+        } catch (HappyPillsException hpe) {
+            hpe.getMessage();
+        }
     }
 
+    /**
+     * Runs the program until termination.
+     */
     private void run() throws HappyPillsException {
         ui.printWelcomeMessage();
         Scanner in = new Scanner(System.in);
@@ -41,21 +50,26 @@ public class HappyPills {
         }
     }
 
+    /**
+     * Parses user input.
+     */
     private Command parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.split(" ", 2);
 
         if (userCommand[0].equalsIgnoreCase("list")) {
-            // return new ListCommand();
+            return new ListCommand();
         } else if (userCommand[0].equalsIgnoreCase("add")) {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
                 throw new HappyPillsException("lenght is empty");
             }
             String[] patientDetail = userCommand[1].split(",");
-            return new AddCommand(patientDetail[0], patientDetail[1], Integer.parseInt(patientDetail[2]), patientDetail[3], patientDetail[4], patientDetail[5], patientDetail[6]);
+            return new AddCommand(patientDetail[0], patientDetail[1],
+                    Integer.parseInt(patientDetail[2]), patientDetail[3],
+                    patientDetail[4], patientDetail[5], patientDetail[6]);
 
         } else if (userCommand[0].equalsIgnoreCase("help")) {
-            //return new HelpCommand();
-        } else{
+            return new HelpCommand();
+        } else {
             throw new HappyPillsException("Invalid Command");
         }
     }

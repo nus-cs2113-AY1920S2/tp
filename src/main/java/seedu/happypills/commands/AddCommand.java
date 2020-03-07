@@ -34,7 +34,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds a new task to the list with the information provided by calling
+     * Adds a new task to the list with the information provided by calling.
      * {} (or) {}
      * (or) {} as require
      *

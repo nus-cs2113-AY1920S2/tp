@@ -1,9 +1,38 @@
 package seedu.happypills.ui;
 
 import seedu.happypills.data.Patient;
+import seedu.happypills.data.PatientList;
+
 
 public class TextUi {
     public static final String DIVIDER = "    ===================================================";
+
+    /**
+     * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
+     */
+    public static void printList(PatientList patients) {
+        for (Patient patient : patients) {
+            System.out.println("    " + patient.getName() + " | " + patient.getNric());
+        }
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Generates and prints the list of commands.
+     */
+    public static void printHelp() {
+        String helpMessage = "Shows program usage instructions.\n"
+                + " add NAME, NRIC, PHONE_NUMBER, DOB, BLOOD_TYPE, [ALLERGIES], [REMARKS]\n"
+                + " list \n"
+                + " open NRIC\n"
+                + " edit phone/allergies/remarks INPUT\n"
+                + " close\n"
+                + " delete NRIC\n"
+                + " help\n"
+                + " exit";
+        System.out.println(helpMessage);
+        System.out.println(DIVIDER);
+    }
 
     /**
      * Generates and prints the welcome message upon the start of the application.
@@ -26,12 +55,7 @@ public class TextUi {
      */
     public static void printPatient(Patient patient, int patientNum) {
         System.out.println("    Got it! I've added this patient:");
-        System.out.println(patient);
-    }
-
-    private static void printRemaining(int patientNum) {
+        System.out.println(patient + DIVIDER);
 
     }
-
-
 }

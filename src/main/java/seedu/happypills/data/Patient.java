@@ -157,13 +157,13 @@ public class Patient {
 
     @Override
     public String toString() {
-        String text = "Name : " + this.name + "\n"
-                + "NRIC : " + this.nric + "\n"
-                + "Phone Number : " + this.phoneNumber + "\n"
-                + "DOB : " + this.dateOfBirth + "\n"
-                + "Blood Type : " + this.bloodType + "\n"
-                + "Allergies : " + this.allergies + "\n"
-                + "Remarks : " + this.remarks + "\n";
+        String text = "        Name : " + this.name + "\n"
+                + "        NRIC : " + this.nric + "\n"
+                + "        Phone Number : " + this.phoneNumber + "\n"
+                + "        DOB : " + this.dateOfBirth + "\n"
+                + "        Blood Type : " + this.bloodType + "\n"
+                + "        Allergies : " + this.allergies + "\n"
+                + "        Remarks : " + this.remarks + "\n";
         return text;
     }
 }
