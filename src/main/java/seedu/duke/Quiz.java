@@ -26,7 +26,7 @@ public class Quiz {
     public static Card retrieveCard(CardList cardlist) {
         int size = cardlist.size();
         int randomInt = generateRandomInt(size);
-        Card retrievedCard = cardlist.getCard(randomInt);
+        Card retrievedCard = cardlist.getCard(randomInt + 1);
         return retrievedCard;
     }
 
