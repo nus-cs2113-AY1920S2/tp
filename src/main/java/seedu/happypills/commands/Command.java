@@ -8,7 +8,7 @@ import seedu.happypills.exception.HappyPillsException;
  * Contains both the information related to user commands and methods to execute them.
  * Implementation is done on child classes.
  */
-public class Command {
+public abstract class Command {
     /**
      * Contain boolean to check for exit condition.
      */

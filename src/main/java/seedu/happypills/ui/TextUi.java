@@ -1,5 +1,7 @@
 package seedu.happypills.ui;
 
+import seedu.happypills.data.Patient;
+
 public class TextUi {
     public static final String DIVIDER = "    ===================================================";
 
@@ -18,4 +20,18 @@ public class TextUi {
 
         System.out.println("Hello from" + logo);
     }
+
+    /**
+     * Generates and prints the welcome message upon the start of the application.
+     */
+    public static void printPatient(Patient patient, int patientNum) {
+        System.out.println("    Got it! I've added this patient:");
+        System.out.println(patient);
+    }
+
+    private static void printRemaining(int patientNum) {
+
+    }
+
+
 }

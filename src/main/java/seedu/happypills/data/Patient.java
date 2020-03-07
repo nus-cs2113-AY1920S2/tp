@@ -1,7 +1,5 @@
 package seedu.happypills.data;
 
-import java.security.ProtectionDomain;
-
 /**
  * Represents a task.
  * It also functions as base class from which specialised tasks are inherited from.
@@ -16,8 +14,8 @@ public class Patient {
     protected int phoneNumber;
     protected String dateOfBirth;
     protected String bloodType;
-    protected String allergies;
-    protected String remarks;
+    protected String allergies = null;
+    protected String remarks = null;
 
 
     /**
@@ -37,6 +35,59 @@ public class Patient {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.remarks = remarks;
+    }
+
+    /**
+     * Constructor for Task Class.
+     * It creates a new task with the description provided by the user.
+     * It also sets isDone to false as it is a newly created task.
+     *
+     * @param name Name of the patient.
+     * @param nric NRIC of the patient.
+     */
+    public Patient(String name, String nric, int phoneNumber, String dateOfBirth,
+                   String bloodType, String allergies) {
+        this.name = name;
+        this.nric = nric;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.bloodType = bloodType;
+        this.allergies = allergies;
+    }
+
+    /**
+     * Constructor for Task Class.
+     * It creates a new task with the description provided by the user.
+     * It also sets isDone to false as it is a newly created task.
+     *
+     * @param name Name of the patient.
+     * @param nric NRIC of the patient.
+     */
+    public Patient(String name, String nric, String dateOfBirth,
+                   int phoneNumber, String bloodType, String remarks) {
+        this.name = name;
+        this.nric = nric;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.bloodType = bloodType;
+        this.remarks = remarks;
+    }
+
+    /**
+     * Constructor for Task Class.
+     * It creates a new task with the description provided by the user.
+     * It also sets isDone to false as it is a newly created task.
+     *
+     * @param name Name of the patient.
+     * @param nric NRIC of the patient.
+     */
+    public Patient(String name, String nric, String dateOfBirth,
+                   int phoneNumber, String bloodType) {
+        this.name = name;
+        this.nric = nric;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.bloodType = bloodType;
     }
 
     /**
@@ -102,5 +153,17 @@ public class Patient {
      */
     public String getRemarks() {
         return this.remarks;
+    }
+
+    @Override
+    public String toString() {
+        String text = "Name : " + this.name + "\n"
+                + "NRIC : " + this.nric + "\n"
+                + "Phone Number : " + this.phoneNumber + "\n"
+                + "DOB : " + this.dateOfBirth + "\n"
+                + "Blood Type : " + this.bloodType + "\n"
+                + "Allergies : " + this.allergies + "\n"
+                + "Remarks : " + this.remarks + "\n";
+        return text;
     }
 }
