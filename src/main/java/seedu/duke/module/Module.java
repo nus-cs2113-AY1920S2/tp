@@ -39,6 +39,6 @@ public class Module {
         } else if (isIdValid) {
             returnString = "ID: " + id;
         }
-        return returnString + " | Semester: " + semester;
+        return returnString + " | Sem: " + semester;
     }
 }

@@ -7,8 +7,11 @@ Hello from
 
 What can I do for you?
 Okay! I have added this module to your module list:
-ID: CS2113 | Semester: 19-20 Semester 2
+ID: CS2113 | Sem: 19-20 Semester 2
 Okay! I have added this module to your module list:
-Name: Software Engineering & Object-Oriented Programming | Semester: 19-20 Semester 2
+Name: Software Engineering & Object-Oriented Programming | Sem: 19-20 Semester 2
+Okay! Here is your module plan:
+	1. ID: CS2113 | Sem: 19-20 Semester 2
+	2. Name: Software Engineering & Object-Oriented Programming | Sem: 19-20 Semester 2
 
 bye!
