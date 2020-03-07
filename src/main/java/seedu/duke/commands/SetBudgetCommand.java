@@ -17,7 +17,7 @@ public class SetBudgetCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ShoppingList items, Budget myBudget) {
+    public CommandResult execute() {
         myBudget.setBudget(amount);
         String feedback = SET_BUDGET_MESSAGE + "$" + amount;
         return new CommandResult(feedback);

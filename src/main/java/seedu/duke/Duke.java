@@ -72,7 +72,8 @@ public class Duke {
      */
     private CommandResult executeCommand(Command command) {
         try {
-            CommandResult result = command.execute(items,myBudget);
+            command.setData(items,myBudget);
+            CommandResult result = command.execute();
             return result;
         } catch (Exception e) {
             System.out.println(e.getMessage());

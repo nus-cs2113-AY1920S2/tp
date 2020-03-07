@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ShoppingList items, Budget myBudget) {
+    public CommandResult execute() {
         index -= 1;
         String feedback = DELETE_MESSAGE + items.getItem(index);
         items.deleteItem(index);
