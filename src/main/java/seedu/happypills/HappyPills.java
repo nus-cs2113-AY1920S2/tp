@@ -2,19 +2,20 @@ package seedu.happypills;
 
 //import seedu.happypills.ui.TextUi;
 
+import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.ui.TextUi;
+
 /**
  * Main entry-point for the java.duke.Duke application.
  */
 public class HappyPills {
+    private TextUi ui;
+
     /**
      * Sets up the required objects, loads up the data from the storage file.
      */
     public HappyPills() {
-        //        try{
-        //            ui = new TextUi;
-        //        } catch (HappyPillsException hpe) {
-        //            patients = new PatientsList();
-        //        }
+        ui = new TextUi();
     }
 
     /**
@@ -25,6 +26,6 @@ public class HappyPills {
     }
 
     private void run() {
-        //ui.showWelcomeMessage();
+        ui.printWelcomeMessage();
     }
 }
