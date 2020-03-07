@@ -1,17 +1,20 @@
 package seedu.happypills;
 
-import seedu.happypills.exception.HappyPillsException;
 //import seedu.happypills.ui.TextUi;
-import java.util.Scanner;
 
+/**
+ * Main entry-point for the java.duke.Duke application.
+ */
 public class HappyPills {
-//    private TextUi ui;
+    /**
+     * Sets up the required objects, loads up the data from the storage file.
+     */
     public HappyPills() {
-//        try{
-//            ui = new TextUi;
-//        } catch (HappyPillsException hpe) {
-//            patients = new PatientsList();
-//        }
+        //        try{
+        //            ui = new TextUi;
+        //        } catch (HappyPillsException hpe) {
+        //            patients = new PatientsList();
+        //        }
     }
 
     /**
