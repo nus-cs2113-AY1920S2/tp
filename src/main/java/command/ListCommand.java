@@ -8,6 +8,8 @@ public class ListCommand extends Command {
     private final String listParam;
     private static final String TODAY_COMMAND = "today";
     private static final String WEEK_COMMAND = "week";
+    private static final String UPCOMING_EVENT_COMMAND = "upcoming events";
+    private static final String INCOMPLETE_ASSIGN_COMMAND = "incomplete assignments";
 
     /**
      * Default constructor for ListCommand Class.
@@ -24,10 +26,22 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        if (listParam.equals(TODAY_COMMAND)) {
+        // to deal with null being passed as input
+        switch (listParam == null ? "" : listParam) {
+        case (TODAY_COMMAND):
             taskList.listTodayTasks();
-        } else if (listParam.equals(WEEK_COMMAND)) {
+            break;
+        case (WEEK_COMMAND):
             taskList.listWeekTasks();
+            break;
+        case (UPCOMING_EVENT_COMMAND):
+            ui.showListTasks(taskList.getUpcomingEventArray());
+            break;
+        case (INCOMPLETE_ASSIGN_COMMAND):
+            ui.showListTasks(taskList.getIncompleteAssignArray());
+            break;
+        default:
+            ui.showListTasks(taskList.getTaskArray());
         }
     }
 }

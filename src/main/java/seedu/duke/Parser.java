@@ -155,14 +155,14 @@ public class Parser {
      * @param args unused
      */
     public static void main(String[] args) {
+        TaskList taskList = new TaskList();
+        Ui ui = new Ui();
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             if (input.equals("bb")) {
                 break;
             }
-            TaskList taskList = new TaskList();
-            Ui ui = new Ui();
             Command command = parseCommand(input);
             command.execute(taskList, ui);
         }
