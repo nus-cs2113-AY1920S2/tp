@@ -121,7 +121,6 @@ public class Parser {
                 }
             }
         }
-        System.out.println(nameOfModule+ nameOfStudent+ assignment+grade+mark);
         Performance performance = new Performance(nameOfModule, nameOfStudent, assignment);
         if (isMark) {
             performances = AddPerformanceCommand.addMark(performances, performance, mark);
@@ -166,7 +165,6 @@ public class Parser {
                 }
             }
         }
-        System.out.println("performance = " + nameOfModule+ nameOfStudent+ assignment);
         return new Performance(nameOfModule, nameOfStudent, assignment);
     }
 }

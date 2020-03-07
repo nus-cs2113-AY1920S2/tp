@@ -36,9 +36,11 @@ public class Performance extends Module {
     public String getModule() {
         return nameOfModule;
     }
+
     public String getStudent() {
         return nameOfStudent;
     }
+
     public String getAssignment() {
         return assignment;
     }

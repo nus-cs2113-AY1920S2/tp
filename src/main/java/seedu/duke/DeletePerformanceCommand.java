@@ -13,12 +13,11 @@ public class DeletePerformanceCommand extends Command {
      *                    from the performance list.
      */
     public static List<Performance> execute(List<Performance> performances, Performance performance) {
-        System.out.println(performances);
         for (Performance p: performances) {
-            if (p != null &&
-                    performance.getAssignment().equals(p.getAssignment()) &&
-                    performance.getModule().equals(p.getModule()) &&
-                    performance.getStudent().equals(p.getStudent())) {
+            if (p != null
+                    && performance.getAssignment().equals(p.getAssignment())
+                    && performance.getModule().equals(p.getModule())
+                    && performance.getStudent().equals(p.getStudent())) {
                 performances.remove(p);
                 System.out.println("deleted successfully");
                 return performances;
