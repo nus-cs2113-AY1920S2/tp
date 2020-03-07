@@ -28,7 +28,8 @@ public class Patient {
      * @param name Name of the patient.
      * @param nric NRIC of the patient.
      */
-    public Patient(String name, String nric, int phoneNumber, String dateOfBirth, String bloodType, String allergies, String remarks) {
+    public Patient(String name, String nric, int phoneNumber, String dateOfBirth,
+                   String bloodType, String allergies, String remarks) {
         this.name = name;
         this.nric = nric;
         this.phoneNumber = phoneNumber;
@@ -57,6 +58,7 @@ public class Patient {
     public String getNric() {
         return this.nric;
     }
+
     /**
      * Returns the phone number of the patient.
      *
@@ -65,6 +67,7 @@ public class Patient {
     public int getPhoneNumber() {
         return this.phoneNumber;
     }
+
     /**
      * Returns the date of birth of the patient.
      *
@@ -73,6 +76,7 @@ public class Patient {
     public String getDateOfBirth() {
         return this.dateOfBirth;
     }
+
     /**
      * Returns the blood type of the patient.
      *
@@ -81,6 +85,7 @@ public class Patient {
     public String getBloodType() {
         return this.bloodType;
     }
+
     /**
      * Returns the allergies of the patient.
      *
@@ -89,6 +94,7 @@ public class Patient {
     public String getAllergies() {
         return this.allergies;
     }
+
     /**
      * Returns the remarks of the patient.
      *
