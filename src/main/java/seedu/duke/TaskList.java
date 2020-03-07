@@ -102,6 +102,10 @@ public class TaskList {
         return eventList;
     }
 
+    /**
+     * Getter method for tasks that are assignments and not marked done.
+     * @return ArrayList object containing all incomplete assignments
+     */
     public ArrayList<Task> getIncompleteAssignArray() {
         ArrayList<Task> assignList = new ArrayList<>();
         for (Task task : tasks) {
