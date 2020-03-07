@@ -16,16 +16,16 @@ public class Module {
     /**
      * This is Module's constructor.
      * @param type the type of module identifier.
-     * @param identifier user input identifier.
+     * @param moduleIdentifier the identifier which can be either module's name or module's id.
      */
-    public Module(String type, String identifier, String semester) {
+    public Module(String type, String moduleIdentifier, String semester) {
         this.isNameValid = type.equals("name");
         this.isIdValid = type.equals("id");
         this.semester = semester;
         if (isNameValid) {
-            this.name = identifier;
+            this.name = moduleIdentifier;
         } else if (isIdValid) {
-            this.id = identifier;
+            this.id = moduleIdentifier;
         }
     }
 
