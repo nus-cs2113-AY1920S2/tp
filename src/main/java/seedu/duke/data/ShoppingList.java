@@ -9,7 +9,6 @@ public class ShoppingList {
 
     public ShoppingList(){
     }
-
     /** Returns the item at the specified index.
      *
      * @param index Index of the item requested.
@@ -28,8 +27,9 @@ public class ShoppingList {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }
+    public static void add (Item toAdd){
 
-
-
+        items.add(toAdd);
+    }
 
 }
