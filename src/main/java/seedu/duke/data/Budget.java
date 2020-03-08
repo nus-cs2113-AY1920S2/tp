@@ -26,4 +26,8 @@ public class Budget {
     public double getAmount() {
         return amount;
     }
+
+    public void resetBudget() {
+        this.amount = 0.0;
+    }
 }
