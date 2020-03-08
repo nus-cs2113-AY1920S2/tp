@@ -1,13 +1,11 @@
-package seedu.duke;
+package seedu.nuke;
 
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
-import java.util.Scanner;
-
 import static org.fusesource.jansi.Ansi.ansi;
 
-public class Duke {
+public class Nuke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
