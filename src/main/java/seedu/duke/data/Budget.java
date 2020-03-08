@@ -1,17 +1,33 @@
 package seedu.duke.data;
 
 public class Budget {
-    private static double budget;
+    private double amount;
 
-    public Budget(double i) {
-        this.budget = i;
+    public Budget(double amount) {
+        if (amount > 5000) {
+            this.amount = 5000;
+        } else if (amount < 0) {
+            this.amount = 0;
+        } else {
+            this.amount = amount;
+        }
     }
 
-    public static double getBudget() {
-        return budget;
+    public void setBudget(double amount) {
+        if (amount > 5000) {
+            this.amount = 5000;
+        } else if (amount < 0) {
+            this.amount = 0;
+        } else {
+            this.amount = amount;
+        }
     }
 
-    public static void resetBudget() {
-        budget = 0.0;
+    public double getAmount() {
+        return amount;
+    }
+
+    public void resetBudget() {
+        this.amount = 0.0;
     }
 }
