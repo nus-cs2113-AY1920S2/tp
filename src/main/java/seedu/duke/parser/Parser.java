@@ -52,6 +52,10 @@ public class Parser {
             createSetBudgetCommand(arguments);
             break;
 
+        case ResetBudgetCommand.COMMAND_WORD:
+            createResetBudgetCommand();
+            break;
+
         case ExitCommand.COMMAND_WORD:
             createExitCommand();
             break;
@@ -62,6 +66,12 @@ public class Parser {
         return newCommand;
     }
 
+    /**
+     * Initialises the ResetBudgetCommand
+     */
+    public static void createResetBudgetCommand() {
+        newCommand = new ResetBudgetCommand();
+    }
 
     private Command prepareAdd(String arguments) {
 
