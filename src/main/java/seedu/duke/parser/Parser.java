@@ -3,9 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.ResetBudgetCommand;
-import seedu.duke.data.Budget;
 
-import static seedu.duke.Duke.myBudget;
 
 public class Parser {
     /**
@@ -14,6 +12,9 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
+
+    private static Command newCommand;
+
     public Command parseCommand(String userInput) {
 
         switch (commandWord) {
@@ -31,7 +32,7 @@ public class Parser {
             return new ListCommand();
 
         case ResetBudgetCommand.COMMAND_WORD:
-            return new ResetBudgetCommand();
+            createResetBudgetCommand();
             break;
 
         case "bye":
@@ -41,5 +42,9 @@ public class Parser {
         default:
             return new HelpCommand();
         }
+    }
+
+    public static void createResetBudgetCommand() {
+        newCommand = new ResetBudgetCommand();
     }
 }

@@ -1,8 +1,5 @@
 package seedu.duke.commands;
 
-import seedu.duke.Duke;
-import seedu.duke.data.Budget;
-import seedu.duke.data.ShoppingList;
 import static seedu.duke.Duke.myBudget;
 
 public class ResetBudgetCommand extends Command {
