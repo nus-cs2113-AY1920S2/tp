@@ -1,3 +1,6 @@
+/**
+ * Represents a tag object to tag activities.
+ */
 public class Tag {
     protected String name;
 
