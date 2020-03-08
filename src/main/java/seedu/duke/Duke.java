@@ -14,8 +14,9 @@ public class Duke {
      */
     public static UI ui = new UI();
     private static Scanner in = new Scanner(System.in);
-    private CardList cards = new CardList();
-  
+    private Storage storage = new Storage();
+    private CardList cards = new CardList(storage.loadCards());
+
     /**
      *  Lists all the cards in the list.
      *   @param cards A list of card to be displayed.
@@ -26,13 +27,6 @@ public class Duke {
             int j = i + 1;
             System.out.println(j + ". " + cards.get(i).getQuestion());
         }
-    }
-
-    /**
-    * Main method.
-    */
-    public static void main(String[] args) {
-        new Duke().run();
     }
 
     /**
@@ -58,10 +52,18 @@ public class Duke {
                 String fullCommand = readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(cards);
+                storage.saveCards(cards.getCards());
                 isExit = c.isExit();
             } catch (Exception e) {
                 System.out.println("Invalid command");
             }
         }
+    }
+
+    /**
+     * Main method.
+     */
+    public static void main(String[] args) {
+        new Duke().run();
     }
 }
