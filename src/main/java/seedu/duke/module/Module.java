@@ -41,4 +41,8 @@ public class Module {
         }
         return returnString + " | Semester: " + semester;
     }
+
+    public String getSem() {
+        return semester;
+    }
 }

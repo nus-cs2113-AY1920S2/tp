@@ -4,12 +4,15 @@ import java.util.Scanner;
 
 import seedu.duke.command.Command;
 import seedu.duke.data.ModuleList;
+import seedu.duke.data.SelectedModuleList;
+import seedu.duke.data.SemModuleList;
+import seedu.duke.module.Module;
 import seedu.duke.parser.Parser;
 
 
 public class Duke {
 
-    private static ModuleList moduleList = new ModuleList();
+    private static SelectedModuleList moduleList = new SelectedModuleList();
 
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -27,6 +30,11 @@ public class Duke {
         while (!fullCommand.equals("bye")) {
             Command command = Parser.parse(fullCommand);
             command.execute(moduleList);
+//            for(SemModuleList sem: moduleList){
+//                for(Module module: sem){
+//                    System.out.println(module);
+//                }
+//            }
             fullCommand = in.nextLine();
         }
         System.out.println(System.lineSeparator() + "bye!");
