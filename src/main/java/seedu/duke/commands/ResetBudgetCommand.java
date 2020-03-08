@@ -1,7 +1,5 @@
 package seedu.duke.commands;
 
-import static seedu.duke.Duke.myBudget;
-
 public class ResetBudgetCommand extends Command {
     public static final String COMMAND_WORD = "RES";
     public static final String SUCCESS_RESET_BUDGET = "Budget has been reset to $0.00";

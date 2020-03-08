@@ -1,11 +1,8 @@
 package seedu.duke.commands;
 
-import seedu.duke.data.Budget;
-import seedu.duke.data.ShoppingList;
-
 public class SetBudgetCommand extends Command {
 
-    private static double amount;
+    private double amount;
 
     public static final String COMMAND_WORD = "SET";
 
