@@ -14,12 +14,9 @@ public class Duke {
     public static void main(String[] args) {
         AnsiConsole.systemInstall();
         ansi().reset();
-        AnsiConsole.systemUninstall();
-        System.out.println(ansi().bold().fg(Ansi.Color.RED).a("Hello from NUKE").reset());
+        System.out.println(ansi().bold().fg(Ansi.Color.RED).a("Hello from NUKE.").reset());
         //System.out.println(ansi().bold().fg(Ansi.Color.BLUE).a(logo).reset());
-        System.out.println(ansi().bold().fg(Ansi.Color.MAGENTA).a("Where are you from?").reset());
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        System.out.println(ansi().bold().fg(Ansi.Color.MAGENTA).a("Hope to see you soon.").reset());
+        AnsiConsole.systemUninstall();
     }
-
 }
