@@ -11,6 +11,7 @@ public class Task {
     protected boolean isDone;
     protected LocalDateTime dateAndTime;
     protected String comments;
+    protected String type;
 
     /**
      * Task object representing a Event or Assignment object.
@@ -25,6 +26,7 @@ public class Task {
         this.dateAndTime = dateAndTime;
         this.comments = comments;
         this.isDone = false;
+        this.type = null;
     }
 
     public String getName() {
@@ -70,6 +72,10 @@ public class Task {
         } else {
             return "[X]";
         }
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

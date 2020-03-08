@@ -17,6 +17,7 @@ public class Assignment extends Task {
         this.type = "assignment";
     }
 
+    @Override
     public String getType() {
         return type;
     }
