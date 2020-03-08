@@ -1,6 +1,7 @@
 package seedu.duke.data;
 
 public class Item {
+
     private double price;
     private String description;
     private boolean isBought;
@@ -17,11 +18,6 @@ public class Item {
         this.price = 0.0;
         this.description = description;
         this.isBought = false;
-    }
-
-    public static void add(Item add) {
-
-        Item.add(add);
     }
 
     public void setPrice(double price) {

@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.data.Item;
+import seedu.duke.data.ShoppingList;
 
 public class EditCommand extends Command {
 
@@ -23,7 +24,7 @@ public class EditCommand extends Command {
     public CommandResult execute() {
         try {
             indexOfItem -= 1;
-            Item item = items.getItem(indexOfItem);
+            Item item = ShoppingList.getItem(indexOfItem);
             if(newDescription == null && newPrice != null){ //only edit price
                  item.setPrice(Double.parseDouble(newPrice));
             }
