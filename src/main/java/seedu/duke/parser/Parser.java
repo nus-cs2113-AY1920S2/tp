@@ -1,12 +1,14 @@
 package seedu.duke.parser;
-import seedu.duke.commands.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import seedu.duke.commands.*;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.UnmarkCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.IncorrectCommand;
@@ -15,10 +17,14 @@ import seedu.duke.commands.EditCommand;
 public class Parser {
 
     private static Command newCommand;
-    private static int index;
-    private static double amount;
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S]+)(?<arguments>[\\d\\s\\S]*$)");
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput full user input string
+     * @return the command based on the user input
+     */
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -48,6 +54,14 @@ public class Parser {
             createDeleteCommand(arguments);
             break;
 
+        case ListCommand.COMMAND_WORD:
+            createListCommand();
+            break;
+
+        case ClearCommand.COMMAND_WORD:
+            createClearCommand();
+            break;
+
         case SetBudgetCommand.COMMAND_WORD:
             createSetBudgetCommand(arguments);
             break;
@@ -56,6 +70,8 @@ public class Parser {
             createResetBudgetCommand();
             break;
 
+        case HelpCommand.COMMAND_WORD: // Fallthrough
+
         case ExitCommand.COMMAND_WORD:
             createExitCommand();
             break;
@@ -63,7 +79,16 @@ public class Parser {
         default:
             createHelpCommand();
         }
+
         return newCommand;
+    }
+
+    private void createClearCommand() {
+        newCommand = new ClearCommand();
+    }
+
+    private void createListCommand() {
+        newCommand = new ListCommand();
     }
 
     /**
@@ -84,7 +109,7 @@ public class Parser {
         return new AddCommand(description,price);
     }
 
-    private String[] splitArgsForAddCommand(String arguments) throws NullPointerException{
+    private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
         String[] ArgsArray;
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
@@ -139,7 +164,6 @@ public class Parser {
         }
     }
 
-
     /**
      * Initialises the Unmark Command
      */
@@ -162,7 +186,6 @@ public class Parser {
         }
         int index = Integer.parseInt(words[0]) - 1;
         newCommand = new MarkCommand(index);
-
     }
 
     /**
@@ -225,7 +248,7 @@ public class Parser {
      * Initialises the SetBudgetCommand.
      */
     public static void createSetBudgetCommand(String arguments) {
-        amount = Double.parseDouble(arguments.substring(2));
+        double amount = Double.parseDouble(arguments.substring(2));
         newCommand = new SetBudgetCommand(amount);
     }
 
@@ -233,7 +256,7 @@ public class Parser {
      * Initialises the DeleteCommand.
      */
     public static void createDeleteCommand(String arguments) {
-        index = Integer.parseInt(arguments);
+        int index = Integer.parseInt(arguments);
         newCommand = new DeleteCommand(index);
     }
 
@@ -242,7 +265,6 @@ public class Parser {
      */
     public static void createHelpCommand(){
         newCommand = new HelpCommand();
-
     }
 
 }
