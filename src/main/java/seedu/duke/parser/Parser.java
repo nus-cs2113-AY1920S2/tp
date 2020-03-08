@@ -32,6 +32,7 @@ public class Parser {
 
         case ResetBudgetCommand.COMMAND_WORD:
             return new ResetBudgetCommand();
+            break;
 
         case "bye":
             return new ExitCommand();
