@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Storage  {
 
     private static String dir = System.getProperty("user.dir");
-    private static Path filepath = Paths.get(dir, "data", "cards.txt"); //todo change filepath
+    private static Path filepath = Paths.get(dir, "data", "cards.txt");
     private static String filepathStr  = String.valueOf(filepath);;
     private static File saveFile = new File(filepathStr);
 
@@ -40,7 +40,7 @@ public class Storage  {
                 objRead.close();
             }
             catch (IOException | ClassNotFoundException e) {
-                System.out.println("\nLoad error");
+                System.out.println("\nLoad error" +e);
             }
         }
         return loadCards;
@@ -50,17 +50,17 @@ public class Storage  {
      * Saves the current card list to the save file.
      * @param currCards the current card list
      */
-    public void saveCards(CardList currCards) {
+    public void saveCards(ArrayList<Card> currCards) {
         try{
             FileOutputStream fileWrite = new FileOutputStream(saveFile);
             ObjectOutputStream objWrite = new ObjectOutputStream(fileWrite);
 
-            objWrite.writeObject(currCards.getCards());
+            objWrite.writeObject(currCards);
             objWrite.flush();
             objWrite.close();
         }
         catch (IOException e) {
-            System.out.println("\nSave error");
+            System.out.println("\nSave error " +e);
         }
     }
 }

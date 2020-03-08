@@ -45,13 +45,14 @@ public class Duke {
      * Reads the user's commands and executes them until the user issues the exit command.
      */
     private void run() {
+        ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(cards);
-                storage.saveCards(cards);
+                storage.saveCards(cards.getCards());
                 isExit = c.isExit();
             } catch (Exception e) {
                 System.out.println("Invalid command");
@@ -63,8 +64,6 @@ public class Duke {
      * Main method.
      */
     public static void main(String[] args) {
-        ui.showWelcome();
-        System.out.println("Hello " + in.nextLine());
         new Duke().run();
     }
 }
