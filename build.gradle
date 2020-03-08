@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    //config the jar to Mavern library
+    implementation 'org.fusesource.jansi:jansi:1.18'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
 }
 

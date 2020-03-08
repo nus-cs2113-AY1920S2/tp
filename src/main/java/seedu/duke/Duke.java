@@ -1,6 +1,11 @@
 package seedu.duke;
 
+import org.fusesource.jansi.Ansi;
+import org.fusesource.jansi.AnsiConsole;
+
 import java.util.Scanner;
+
+import static org.fusesource.jansi.Ansi.ansi;
 
 public class Duke {
     /**
@@ -12,9 +17,12 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
+        AnsiConsole.systemInstall();
+        ansi().reset();
+        AnsiConsole.systemUninstall();
+        System.out.println(ansi().bold().fg(Ansi.Color.RED).a("Hello from").reset());
+        System.out.println(ansi().bold().fg(Ansi.Color.BLUE).a(logo).reset());
+        System.out.println(ansi().bold().fg(Ansi.Color.MAGENTA).a("Where are you from?").reset());
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
     }
