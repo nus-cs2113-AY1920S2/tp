@@ -12,11 +12,14 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "  _   _ _    _ _  ________ \n" +
+                " | \\ | | |  | | |/ /  ____|\n" +
+                " |  \\| | |  | | ' /| |__   \n" +
+                " | . ` | |  | |  < |  __|  \n" +
+                " | |\\  | |__| | . \\| |____ \n" +
+                " |_| \\_|\\____/|_|\\_\\______|\n" +
+                "                           \n" +
+                "                           ";
         AnsiConsole.systemInstall();
         ansi().reset();
         AnsiConsole.systemUninstall();
