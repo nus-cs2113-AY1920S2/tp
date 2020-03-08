@@ -11,9 +11,9 @@ public class Duke {
 	 /**
      * Main entry-point for the java.duke.Duke application.
      */
+    public static Budget myBudget = new Budget(0.0);
 
     private static ShoppingList items = new ShoppingList();
-    private static Budget myBudget = new Budget(0);
 
 
     public static void main(String[] args) {
