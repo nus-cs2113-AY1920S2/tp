@@ -2,7 +2,15 @@ package seedu.duke;
 
 import java.util.Scanner;
 
+import seedu.duke.command.Command;
+import seedu.duke.data.ModuleList;
+import seedu.duke.parser.Parser;
+
+
 public class Duke {
+
+    private static ModuleList moduleList = new ModuleList();
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -13,9 +21,14 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
+        System.out.println("What can I do for you?");
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        String fullCommand = in.nextLine();
+        while (!fullCommand.equals("bye")) {
+            Command command = Parser.parse(fullCommand);
+            command.execute(moduleList);
+            fullCommand = in.nextLine();
+        }
+        System.out.println(System.lineSeparator() + "bye!");
     }
 }

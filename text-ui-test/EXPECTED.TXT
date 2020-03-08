@@ -5,5 +5,10 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-What is your name?
-Hello James Gosling
+What can I do for you?
+Okay! I have added this module to your module list:
+ID: CS2113 | Semester: 19-20 Semester 2
+Okay! I have added this module to your module list:
+Name: Software Engineering & Object-Oriented Programming | Semester: 19-20 Semester 2
+
+bye!
