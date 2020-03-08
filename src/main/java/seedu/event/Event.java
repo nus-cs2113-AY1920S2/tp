@@ -1,6 +1,7 @@
 package seedu.event;
 
 import java.util.ArrayList;
+import java.time.Instant;
 
 public class Event {
     private String name;
@@ -13,7 +14,7 @@ public class Event {
      * Empty constructor. Sets name as "unnamed"
      */
     public Event() {
-        setName("unnamed");
+        setName(null);
         setDatetime(null);
         setVenue(null);
         this.participantList = new ArrayList<>();
@@ -42,11 +43,19 @@ public class Event {
     }
 
     /**
-     * Sets the name of the event.
+     * Sets the name of the event. If the specified name is empty or {@code null},
+     * and the original name is also empty or {@code null},
+     * the name will take the form: event_(secondsSinceEpoch)
      * @param name the new name for the event
      */
     public void setName(String name) {
-        this.name = (name.isEmpty() ? "unnamed" : name);
+        if (this.name == null || this.name.isEmpty()) {
+            if (name == null || name.isEmpty()) {
+                this.name = "event_" + Long.toString(Instant.now().getEpochSecond());
+                return;
+            }
+        }
+        this.name = name;
     }
 
     /**
