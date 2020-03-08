@@ -4,7 +4,7 @@ public class Item {
     private double price;
     private String description;
 
-    public Item(double price, String description) {
+    public Item(String description,double price) {
         this.price = price;
         this.description = description;
     }
