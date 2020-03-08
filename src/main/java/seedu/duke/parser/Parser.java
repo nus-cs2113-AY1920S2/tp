@@ -37,7 +37,7 @@ public class Parser {
         String newItemPrice;
         String newItemDescription;
         try {
-            String[] args = splitArgs(arguments);
+            String[] args = splitArgsforEditCommand(arguments);
             indexOfItem = Integer.parseInt(args[0]);
             newItemDescription = args[1];
             newItemPrice = args[2];
@@ -48,7 +48,7 @@ public class Parser {
                     + "has to be in decimal form\n  Example: edit 2 i/apple p/2.50");
         }
     }
-    private String[] splitArgs(String arguments) throws NullPointerException{
+    private String[] splitArgsforEditCommand(String arguments) throws NullPointerException{
         String[] ArgsArray;
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
