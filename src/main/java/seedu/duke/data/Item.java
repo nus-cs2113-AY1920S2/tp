@@ -7,7 +7,7 @@ public class Item {
     public static final String BOUGHT = "B";
     public static final String NOT_BOUGHT = "0";
 
-    public Item(double price, String description) {
+    public Item(String description,double price) {
         this.price = price;
         this.description = description;
         this.isBought = false;
@@ -17,6 +17,11 @@ public class Item {
         this.price = 0.0;
         this.description = description;
         this.isBought = false;
+    }
+
+    public static void add(Item add) {
+
+        Item.add(add);
     }
 
     public void setPrice(double price) {
