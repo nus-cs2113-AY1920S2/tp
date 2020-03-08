@@ -10,8 +10,7 @@ public class ShoppingList {
     public ShoppingList(){
     }
 
-    /**
-     * Returns the item at the specified index.
+    /** Returns the item at the specified index.
      *
      * @param index Index of the item requested.
      * @return Item at the specified index.
