@@ -47,8 +47,8 @@ public class Jikan {
     public static void main(String[] args) {
         System.out.println(GREETING);
         Scanner in = new Scanner(System.in);
-        createActivityList();
         storage = new Storage(DATA_FILE_PATH);
+        createActivityList();
         Parser.parseUserCommands(in, activityList);
     }
 }
