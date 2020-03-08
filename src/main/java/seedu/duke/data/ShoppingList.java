@@ -2,6 +2,8 @@ package seedu.duke.data;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.commands.MarkCommand;
+import seedu.duke.commands.UnmarkCommand;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,7 @@ public class ShoppingList {
      */
     public static Item markAsBought(int index) {
         if (index >= items.size()) {
-            newCommand = new IncorrectCommand("this item does not exist in the list!");
+            newCommand = new IncorrectCommand(MarkCommand.FAIL_MESSAGE);
         }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
@@ -46,7 +48,7 @@ public class ShoppingList {
      */
     public static Item unmarkAsBought(int index) {
         if (index >= items.size()) {
-            newCommand = new IncorrectCommand("this item does not exist in the list!");
+            newCommand = new IncorrectCommand(UnmarkCommand.FAIL_MESSAGE);
         }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
