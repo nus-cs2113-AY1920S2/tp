@@ -1,10 +1,9 @@
-package seedu.duke;
 
 import java.util.Scanner;
 
-public class Duke {
+public class MeetingOrganizer {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the application.
      */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -19,3 +18,4 @@ public class Duke {
         System.out.println("Hello " + in.nextLine());
     }
 }
+
