@@ -10,10 +10,6 @@ public class ShoppingList {
     public ShoppingList(){
     }
 
-    public static void resetBudget() {
-        budget = 0.0;
-    }
-
 
 
 

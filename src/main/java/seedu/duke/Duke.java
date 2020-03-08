@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.data.Budget;
 import seedu.duke.parser.Parser;
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+    public static Budget myBudget = new Budget(0.0);
 
     public static void main(String[] args) {
         new Duke().run();

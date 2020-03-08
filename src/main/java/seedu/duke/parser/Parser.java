@@ -3,6 +3,9 @@ package seedu.duke.parser;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.ResetBudgetCommand;
+import seedu.duke.data.Budget;
+
+import static seedu.duke.Duke.myBudget;
 
 public class Parser {
     /**
