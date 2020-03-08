@@ -10,12 +10,11 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static ShoppingList items = new ShoppingList();
-    private static Budget myBudget = new Budget(0);
-
-    /**
+	 /**
      * Main entry-point for the java.duke.Duke application.
      */
+    public static Budget myBudget = new Budget();
+    private static ShoppingList items = new ShoppingList();
 
     public static void main(String[] args) {
         new Duke().run();
@@ -64,7 +63,6 @@ public class Duke {
         return input;
     }
 
-
     /**
      * Executes the command and returns the result.
      *
@@ -73,13 +71,14 @@ public class Duke {
      */
     private CommandResult executeCommand(Command command) {
         try {
-            CommandResult result = command.execute(items,myBudget);
+            command.setData(items,myBudget);
+            CommandResult result = command.execute();
+            command.setData(items,myBudget);
             return result;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
     }
-
 
 }

@@ -1,18 +1,14 @@
 package seedu.duke.commands;
 
-import seedu.duke.data.Budget;
-import seedu.duke.data.ShoppingList;
-
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "CLEAR";
 
-    public static final String LIST_CLEARED_MESSAGE = "Your shopping list has been cleared.\n";
+    public static final String MESSAGE_SUCCESS = "Your shopping list has been cleared.\n";
 
     @Override
-    public CommandResult execute(ShoppingList items, Budget myBudget) {
+    public CommandResult execute() {
         items.clearList();
-        String feedback = LIST_CLEARED_MESSAGE;
-        return new CommandResult(feedback);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
