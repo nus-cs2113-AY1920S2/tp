@@ -23,7 +23,7 @@ public class EditCommand extends Command {
     public CommandResult execute() {
         try {
             indexOfItem -= 1;
-            Item item = items.retrieve(indexOfItem);
+            Item item = items.getItem(indexOfItem);
             if(newDescription == null && newPrice != null){ //only edit price
                  item.setPrice(Double.parseDouble(newPrice));
             }

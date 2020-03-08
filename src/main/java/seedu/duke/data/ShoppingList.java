@@ -10,16 +10,23 @@ public class ShoppingList {
     public ShoppingList(){
     }
 
-    /**
-     * @return copy of task list
+    /** Returns the item at the specified index.
+     *
+     * @param index Index of the item requested.
+     * @return Item at the specified index.
      */
-    public static ArrayList<Item> copy() {
-        // Clone the list
-        return (new ArrayList<>(items));
+    public static Item getItem(int index) {
+        return items.get(index);
     }
 
-    public static Item retrieve(int targetIndex) {
-        return items.get(targetIndex);
+    /**
+     * Removes an item at the specified index.
+     *
+     * @param index Index of the item to be removed.
+     */
+    public static void deleteItem(int index) {
+        Item unwantedItem = items.get(index);
+        items.remove(unwantedItem);
     }
 
 
