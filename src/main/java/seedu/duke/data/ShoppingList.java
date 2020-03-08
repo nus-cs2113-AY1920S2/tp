@@ -12,7 +12,7 @@ public class ShoppingList {
 
     public static void add (Item toAdd){
 
-        Item.add(toAdd);
+        items.add(toAdd);
     }
 
 }
