@@ -1,4 +1,5 @@
 package seedu.duke;
+
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.ExitCommand;
@@ -8,13 +9,12 @@ import seedu.duke.parser.Parser;
 import java.util.Scanner;
 
 public class Duke {
+
 	 /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static Budget myBudget = new Budget(0.0);
-
+    public static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
-
 
     public static void main(String[] args) {
         new Duke().run();
@@ -63,7 +63,6 @@ public class Duke {
         return input;
     }
 
-
     /**
      * Executes the command and returns the result.
      *
@@ -81,6 +80,5 @@ public class Duke {
             throw new RuntimeException(e);
         }
     }
-
 
 }

@@ -8,23 +8,33 @@ import seedu.duke.commands.UnmarkCommand;
 import java.util.ArrayList;
 
 public class ShoppingList {
+
     private static ArrayList<Item> items = new ArrayList<>();
     private static double budget;
     private static double cost;
     private static Command newCommand;
 
-    public ShoppingList(){
+    public ShoppingList() {
     }
 
-    /** Returns the item at the specified index.
-     *
-     * @param index Index of the item requested.
-     * @return Item at the specified index.
-     */
-    public static Item getItem(int index) {
-        return items.get(index);
+    public ArrayList<Item> getList() {
+        return items;
     }
 
+    public String compileList(String feedback) {
+        int bulletNum = 1;
+        String itemLine;
+        for (Item item : items) {
+            itemLine = bulletNum + ". " + item.toString() + "\n";
+            feedback = feedback + itemLine;
+            bulletNum++;
+        }
+        return feedback;
+    }
+
+    public void clearList() {
+        items.clear();
+    }
 
     /**
      * Marks item in index as bought
@@ -40,6 +50,15 @@ public class ShoppingList {
         return itemBought;
     }
 
+    /**
+     * Returns the item at the specified index.
+     *
+     * @param index Index of the item requested.
+     * @return Item at the specified index.
+     */
+    public static Item getItem(int index) {
+        return items.get(index);
+    }
 
     /**
      * Unmarks item in index as bought
@@ -65,8 +84,7 @@ public class ShoppingList {
         items.remove(unwantedItem);
     }
 
-    public static void add (Item toAdd){
-
+    public static void add(Item toAdd) {
         items.add(toAdd);
     }
 

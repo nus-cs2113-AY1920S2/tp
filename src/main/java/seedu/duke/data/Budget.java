@@ -1,30 +1,25 @@
 package seedu.duke.data;
 
 public class Budget {
+    final static double MAX = 5000;
+    final static double MIN = 0;
     private double amount;
 
-    public Budget(double amount) {
-        if (amount > 5000) {
-            this.amount = 5000;
-        } else if (amount < 0) {
-            this.amount = 0;
-        } else {
-            this.amount = amount;
-        }
+    public Budget() {
+        this.amount = 0;
     }
 
-    public void setBudget(double amount) {
-        if (amount > 5000) {
-            this.amount = 5000;
-        } else if (amount < 0) {
-            this.amount = 0;
-        } else {
-            this.amount = amount;
-        }
+    public void setBudget(double amount){
+        this.amount = Math.min(amount,MAX);
+        this.amount = Math.max(amount,MIN);
     }
 
     public double getAmount() {
         return amount;
+    }
+
+    public double getRemainingBudget(double totalCost) {
+        return amount - totalCost;
     }
 
     public void resetBudget() {
