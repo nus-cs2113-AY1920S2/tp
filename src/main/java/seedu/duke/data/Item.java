@@ -14,6 +14,11 @@ public class Item {
         this.description = description;
     }
 
+    public static void add(Item add) {
+
+        Item.add(add);
+    }
+
     public void setPrice(double price) {
         this.price = price;
     }

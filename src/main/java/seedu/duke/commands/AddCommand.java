@@ -17,7 +17,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute()
     {
-        ShoppingList.add(Add);
+        Item.add(Add);
         return new CommandResult(String.format(SUCCESS_ACK,Add));
     }
     //By right should be able to run once the other function is done.
