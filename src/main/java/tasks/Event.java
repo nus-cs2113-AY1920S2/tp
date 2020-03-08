@@ -17,6 +17,7 @@ public class Event extends Task {
         this.type = "event";
     }
 
+    @Override
     public String getType() {
         return type;
     }
