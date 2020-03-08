@@ -1,8 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandAdd;
-import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,33 +12,19 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S]+)(?<arguments>[\\d\\s\\S]*$)");
     public Command parseCommand(String userInput) {
 
-        String[] words = userInput.trim().split(" ", 2);  // split the input into command and arguments
-
-        final String commandWord = words[0];
-        final String arguments = userInput.replaceFirst(commandWord, "").trim();
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        final String commandWord = matcher.group("commandWord").trim();
+        final String arguments = matcher.group("arguments").trim();
 
         switch (commandWord) {
 
-        case CommandAdd.COMMAND_WORD:
+        case AddCommand.COMMAND_WORD:
 
             return prepareAdd(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case "bye":
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
             return new HelpCommand();
         }
@@ -48,12 +32,51 @@ public class Parser {
 
     private Command prepareAdd(String arguments) {
 
-        final int indexOfAtPrefix = arguments.indexOf("i/");
-        final int indexOfAtPrefix_2 = arguments.indexOf("p/");
-        String description = arguments.substring(indexOfAtPrefix, indexOfAtPrefix_2);
-        String prices = arguments.substring(indexOfAtPrefix_2 + 3).trim();
+        String[] args = splitArgsForAddItem(arguments);
+        String description;
+        String prices;
+        description = args[1];
+        prices = args[2];
         double price = Double.parseDouble(prices);
-
-        return new CommandAdd(description,price);
+        return new AddCommand(description,price);
     }
+
+    private String[] splitArgsForAddItem(String arguments) throws NullPointerException{
+        String[] ArgsArray;
+        String descriptionDelimiter = "i/";
+        String priceDelimiter = "p/";
+        String  itemPrice, itemDescription;
+
+        int buffer = 2;
+        int indexOfiPrefix, indexOfpPrefix;
+        boolean descriptionPresent = arguments.contains(descriptionDelimiter);
+        boolean pricePresent = arguments.contains(priceDelimiter);
+
+        if(descriptionPresent && !pricePresent) { //eg: add i/apple
+            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
+            itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
+            ArgsArray = new String[]{itemDescription, null};
+        } else if (descriptionPresent && pricePresent) {
+            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
+            indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
+            if(indexOfpPrefix < indexOfiPrefix) { //e.g args: edit 2 p/4.50 i/apple
+                itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
+                itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix);
+            } else {
+                itemDescription = arguments.trim().substring(indexOfiPrefix + buffer, indexOfpPrefix);
+                itemPrice = arguments.substring(indexOfpPrefix + buffer);
+            }
+            ArgsArray = new String[]{itemDescription, itemPrice};
+        } else{
+            ArgsArray = new String[]{null, null};
+        }
+        if(ArgsArray[1] == null && ArgsArray[2] == null){
+            throw new NullPointerException();
+        }
+        return ArgsArray;
+    }
+
+
+
+
 }

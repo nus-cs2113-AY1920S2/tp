@@ -3,13 +3,13 @@ package seedu.duke.commands;
 import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
 
-public class CommandAdd extends Command {
+public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "ADD";
     public static final String SUCCESS_ACK = "Added this item: " + "%s";
     private Item Add;
 
-    public CommandAdd(String description, double price){
+    public AddCommand(String description, double price){
 
         this.Add = new Item(description, price);
     }
