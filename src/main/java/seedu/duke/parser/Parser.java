@@ -32,7 +32,7 @@ public class Parser {
 
     private Command prepareAdd(String arguments) {
 
-        String[] args = splitArgsForAddItem(arguments);
+        String[] args = splitArgsForAddCommand(arguments);
         String description;
         String prices;
         description = args[1];
@@ -41,7 +41,7 @@ public class Parser {
         return new AddCommand(description,price);
     }
 
-    private String[] splitArgsForAddItem(String arguments) throws NullPointerException{
+    private String[] splitArgsForAddCommand(String arguments) throws NullPointerException{
         String[] ArgsArray;
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
