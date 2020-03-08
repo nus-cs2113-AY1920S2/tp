@@ -12,6 +12,9 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
+
+    private static Command newCommand;
+
     public Command parseCommand(String userInput) {
 
         switch (commandWord) {
@@ -20,10 +23,12 @@ public class Parser {
             return prepareAdd(arguments);
 
         case MarkCommand.COMMAND_WORD:
-            return prepareMark(arguments);
+            createMarkCommand();
+            break;
 
         case UnmarkCommand.COMMAND_WORD:
-            return prepareUnmark(arguments);
+            createUnmarkCommand();
+            break;
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -43,21 +48,22 @@ public class Parser {
         }
     }
 
-    private Command prepareMark(String arguments) {
+    public static void createUnmarkCommand() {
         String[] words = arguments.trim().split(" ");
         if (words.length != 1) {
             throw new IncompleteCommandException;
         }
         int index = Integer.parseInt(words[0]) - 1;
-        return new MarkCommand(index);
+        newCommand = new UnmarkCommand(index);
     }
 
-    private Command prepareUnmark(String arguments) {
+    public static void createMarkCommand() {
         String[] words = arguments.trim().split(" ");
         if (words.length != 1) {
             throw new IncompleteCommandException;
         }
         int index = Integer.parseInt(words[0]) - 1;
-        return new UnmarkCommand(index);
+        newCommand = new MarkCommand(index);
     }
+
 }
