@@ -2,7 +2,9 @@ import jikan.storage.Storage;
 
 import java.util.Scanner;
 
-
+/**
+ * Represents the Jikan time tracker.
+ */
 public class Jikan {
     /** Constant file path of data file. */
     private static final String DATA_FILE_PATH = "data/data.csv";
@@ -14,20 +16,20 @@ public class Jikan {
     private static ActivityList activityList;
 
     public static final String GREETING =
-            "\n" +
-                    "     _\n" +
-                    "   _/ }\n" +
-                    "  `>' \\\n" +
-                    "   `|  \\\n" +
-                    "    |  /'-.    .-.\n" +
-                    "    \\'   ';`--' .'\n" +
-                    "     \\'.   `'-./\n" +
-                    "      '.`\"-..-;`\n" +
-                    "        `;-..'\n" +
-                    "        _| _|\n" +
-                    "        /` /` \n" +
-                    "Hello! I'm Jikan\n" + "What can I do for you?\n" +
-                    "____________________________________________________________\n";
+            "\n"
+                    + "     _\n"
+                    + "   _/ }\n"
+                    + "  `>' \\\n"
+                    + "   `|  \\\n"
+                    + "    |  /'-.    .-.\n"
+                    + "    \\'   ';`--' .'\n"
+                    + "     \\'.   `'-./\n"
+                    + "      '.`\"-..-;`\n"
+                    + "        `;-..'\n"
+                    + "        _| _|\n"
+                    + "        /` /` \n"
+                    + "Hello! I'm Jikan\n" + "What can I do for you?\n"
+                    + "____________________________________________________________\n";
 
     /**
      * Creates ActivityList and loads data from data file if the data file previously existed;
