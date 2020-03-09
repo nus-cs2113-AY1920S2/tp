@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class ShoppingList {
 
     private static ArrayList<Item> items = new ArrayList<>();
-    private static double budget;
-    private static double cost;
     private static Command newCommand;
 
     public ShoppingList() {
