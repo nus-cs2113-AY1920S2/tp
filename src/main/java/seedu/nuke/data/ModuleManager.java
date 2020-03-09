@@ -26,6 +26,10 @@ public class ModuleManager implements Iterable<Module> {
         return modules;
     }
 
+    //public Module getAModule(String moduleCode) {
+
+    //}
+
     /**
      * Checks if the list contains an equivalent task as the given description.
      * @param toCheck the task to-check
@@ -71,6 +75,10 @@ public class ModuleManager implements Iterable<Module> {
         if (!moduleFoundAndDeleted) {
             throw new ModuleNotFoundException(MESSAGE_MODULE_NOT_FOUND);
         }
+    }
+
+    public void CheckDeadline(String moduleCode) {
+
     }
 
     @Override

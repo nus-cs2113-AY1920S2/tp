@@ -43,6 +43,11 @@ public class TaskManager {
     }
 
     /**
+     * return total number of tasks in the task list
+     */
+    public int countTotalTasks() {return allTasks.size();}
+
+    /**
      * compare this task with other task
      *
      * @param other target task

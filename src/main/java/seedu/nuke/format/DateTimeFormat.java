@@ -18,7 +18,7 @@ public class DateTimeFormat {
 
     /* An exhaustive list of date formats accepted by the Nuke program */
     private static final String[] ALL_DATE_FORMATS = {
-            "dd/MM[/yyyy]", "d/MM[/yyyy]", "dd/M[/yyyy]", "d/M[/yyyy]",
+            "dd-MM-yyyy","dd/MM[/yyyy]", "d/MM[/yyyy]", "dd/M[/yyyy]", "d/M[/yyyy]",
             "dd/MM[/yy]", "d/MM[/yy]", "dd/M[/yy]", "d/M[/yy]",
             "dd-MM[-yyyy]", "d-MM[-yyyy]", "dd-M[-yyyy]", "d-M[-yyyy]",
             "dd-MM[-yy]", "d-MM[-yy]", "dd-M[-yy]", "d-M[-yy]",
@@ -27,7 +27,7 @@ public class DateTimeFormat {
 
     /* An exhaustive list of time formats accepted by the Nuke program */
     private static final String[] ALL_TIME_FORMATS = {
-            "h:mma", "H:mma", "H:mm",
+            "H:mm", "h:mma", "H:mma",
             "h.mma", "H.mma", "H.mm",
             "hmma", "Hmma", "Hmm",
             "ha", "Ha", "H"
@@ -157,3 +157,4 @@ public class DateTimeFormat {
     /** Signals that the <i>time</i> string given is in an invalid format */
     public static class InvalidTimeException extends InvalidFormatException {}
 }
+

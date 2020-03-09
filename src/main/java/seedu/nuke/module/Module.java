@@ -1,8 +1,10 @@
 package seedu.nuke.module;
 
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.task.Task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Module {
     private String moduleCode;
@@ -31,6 +33,10 @@ public class Module {
 
     public ArrayList<Task> getStuffs() {
         return moduleTasks;
+    }
+
+    public void checkDeadline() {
+
     }
 
     public boolean isSameModule(Module module) {
