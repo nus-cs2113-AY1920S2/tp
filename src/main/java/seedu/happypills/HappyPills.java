@@ -1,8 +1,13 @@
 package seedu.happypills;
 
-import seedu.happypills.commands.*;
+import seedu.happypills.commands.AddCommand;
+import seedu.happypills.commands.RetrieveCommand;
+import seedu.happypills.commands.HelpCommand;
+import seedu.happypills.commands.ListCommand;
+import seedu.happypills.commands.EditCommand;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.parser.Parser;
 import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
@@ -26,17 +31,13 @@ public class HappyPills {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        try {
-            new HappyPills().run();
-        } catch (HappyPillsException hpe) {
-            hpe.getMessage();
-        }
+        new HappyPills().run();
     }
 
     /**
      * Runs the program until termination.
      */
-    private void run() throws HappyPillsException {
+    private void run() {
         ui.printWelcomeMessage();
         Scanner in = new Scanner(System.in);
         while (true) {
@@ -70,8 +71,17 @@ public class HappyPills {
             return new RetrieveCommand(userCommand[1]);
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
             return new EditCommand(userCommand[1], userCommand[2], userCommand[3]);
-        }else {
+        } else {
             throw new HappyPillsException("Invalid Command");
+            try {
+                String fullCommand = in.nextLine();
+                System.out.println(ui.DIVIDER);
+                Command c = Parser.parse(fullCommand);
+                c.execute(patients);
+            } catch (HappyPillsException hpe) {
+                System.out.println(hpe.getMessage());
+                System.out.println(ui.DIVIDER);
+            }
         }
     }
 }
