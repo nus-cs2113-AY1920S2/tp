@@ -190,7 +190,7 @@ public class Parser {
     public static void createUnmarkCommand(String arguments) {
         String[] words = arguments.trim().split(" ");
         if (words.length != 1) {
-            newCommand = new IncorrectCommand("Can't find the item to unmark! Try again");
+            newCommand = new IncorrectCommand("Please provide an index number!");
         }
         int index = Integer.parseInt(words[0]) - 1;
         newCommand = new UnmarkCommand(index);
@@ -202,7 +202,7 @@ public class Parser {
     public static void createMarkCommand(String arguments) {
         String[] words = arguments.trim().split(" ");
         if (words.length != 1) {
-            newCommand = new IncorrectCommand("Can't find the item to mark! Try again");
+            newCommand = new IncorrectCommand("Please provide an index number!");
         }
         int index = Integer.parseInt(words[0]) - 1;
         newCommand = new MarkCommand(index);

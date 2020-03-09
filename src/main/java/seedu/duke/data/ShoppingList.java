@@ -45,9 +45,6 @@ public class ShoppingList {
      * @return item that is marked
      */
     public static Item markAsBought(int index) {
-        if (index >= items.size()) {
-            newCommand = new IncorrectCommand(MarkCommand.FAIL_MESSAGE);
-        }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
@@ -69,9 +66,6 @@ public class ShoppingList {
      * @return item that is unmarked
      */
     public static Item unmarkAsBought(int index) {
-        if (index >= items.size()) {
-            newCommand = new IncorrectCommand(UnmarkCommand.FAIL_MESSAGE);
-        }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
         return itemNotBought;

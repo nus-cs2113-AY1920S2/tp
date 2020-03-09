@@ -5,9 +5,13 @@ import seedu.duke.data.ShoppingList;
 
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "UNMARK";
-    public static final String SUCCESS_MESSAGE = "Yes! I've unmarked this item as bought: "
-            + System.lineSeparator() + "%s";
-    public static final String FAIL_MESSAGE = "Oh No! This item does not exist in the list";
+    public static final String SUCCESS_MESSAGE = System.lineSeparator()
+                                    + "Yes! I've unmarked this item as bought: "
+                                    + System.lineSeparator() + "%s"
+                                    + System.lineSeparator();
+    public static final String FAIL_MESSAGE = System.lineSeparator()
+                                    + "Oh No! This item does not exist in the list"
+                                    + System.lineSeparator();
     private int indexOfItem;
 
     public UnmarkCommand(int index) {
@@ -16,7 +20,11 @@ public class UnmarkCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        Item unmarkItem = ShoppingList.unmarkAsBought(indexOfItem);
-        return new CommandResult(String.format(SUCCESS_MESSAGE, unmarkItem));
+        try {
+            Item unmarkItem = ShoppingList.unmarkAsBought(indexOfItem);
+            return new CommandResult(String.format(SUCCESS_MESSAGE, unmarkItem));
+        } catch (IndexOutOfBoundsException e) {
+            return new CommandResult(FAIL_MESSAGE);
+        }
     }
 }
