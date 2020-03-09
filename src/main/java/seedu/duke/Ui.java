@@ -46,22 +46,22 @@ public class Ui {
      * @return String of user input
      */
     public String getUserInput() {
-        System.out.println(">");
+        System.out.println("> ");
         return in.nextLine().trim();
     }
 
     public void showAddTaskMessage(Task newTask, int listSize) {
-        System.out.println(String.format("Added task:\n     %s\nNow you have %d tasks in the list!",
+        System.out.println(String.format("Added task:\n   %s\nNow you have %d tasks in the list!",
                 newTask.toString(), listSize));
     }
 
     public void showDoneMessage(Task taskMarkedDone, int doneIndex) {
-        System.out.println(String.format("[ %d. %s ] is marked done!",
-                doneIndex, taskMarkedDone.toString()));
+        System.out.println(String.format(" %d. %s is marked done!",
+                doneIndex + 1, taskMarkedDone.toString()));
     }
 
     public void showDeleteMessage(Task deletedTask, int deleteIndex) {
-        System.out.println(String.format("[ %d. %s ] is deleted!", deleteIndex, deletedTask.toString()));
+        System.out.println(String.format("%d. %s is deleted!", deleteIndex, deletedTask.toString()));
     }
 
     /**

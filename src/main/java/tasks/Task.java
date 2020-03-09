@@ -1,52 +1,27 @@
 package tasks;
 
-import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Task {
-
+public abstract class Task {
     protected String name;
-    protected String details;
     protected boolean isDone;
-    protected LocalDateTime dateAndTime;
     protected String comments;
-    protected String type;
 
     /**
      * Task object representing a Event or Assignment object.
      * @param name name of event or assignment
-     * @param details module code or location
-     * @param dateAndTime date and time of event or deadline
      * @param comments comments to the event or assignment
      */
-    public Task(String name, String details, LocalDateTime dateAndTime, String comments) {
+    public Task(String name, String comments) {
         this.name = name;
-        this.details = details;
-        this.dateAndTime = dateAndTime;
         this.comments = comments;
         this.isDone = false;
-        this.type = null;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public LocalDateTime getDateAndTime() {
-        return dateAndTime;
-    }
-
-    public LocalDate getDate() {
-        return dateAndTime.toLocalDate();
-    }
-
-    public LocalTime getTime() {
-        return dateAndTime.toLocalTime();
     }
 
     public String getComments() {
@@ -61,6 +36,12 @@ public class Task {
         this.isDone = true;
     }
 
+    public abstract LocalDateTime getDateAndTime();
+
+    public abstract LocalDate getDate();
+
+    public abstract LocalTime getTime();
+
     /**
      * Returns symbol representing if task is completed.
      * @param isDone boolean value to check if task is completed
@@ -74,13 +55,8 @@ public class Task {
         }
     }
 
-    public String getType() {
-        return type;
-    }
-
     @Override
     public String toString() {
-        return String.format("%s %s (by: %s)\n    %s",
-                getStatusIcon(isDone), getDetails(), getDateAndTime(), getComments());
+        return String.format("%s %s", getStatusIcon(isDone), name);
     }
 }

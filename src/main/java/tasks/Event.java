@@ -1,9 +1,15 @@
 package tasks;
 
+import seedu.duke.Parser;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Event extends Task {
-    protected String type;
+    public static final String EVENT_ICON = "E";
+    protected String location;
+    protected LocalDateTime dateAndTime;
 
     /**
      * Event object.
@@ -13,12 +19,39 @@ public class Event extends Task {
      * @param comments comments for the Event
      */
     public Event(String name, String location, LocalDateTime dateTime, String comments) {
-        super(name, location, dateTime, comments);
-        this.type = "event";
+        super(name, comments);
+        this.location = location;
+        this.dateAndTime = dateTime;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     @Override
-    public String getType() {
-        return type;
+    public LocalDateTime getDateAndTime() {
+        return dateAndTime;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return dateAndTime.toLocalDate();
+    }
+
+    @Override
+    public LocalTime getTime() {
+        return dateAndTime.toLocalTime();
+    }
+
+    @Override
+    public String toString() {
+        return "[" + EVENT_ICON + "]"
+                + super.toString()
+                + " (at: "
+                + dateAndTime.format(Parser.PRINT_DATE_FORMAT)
+                + ")"
+                + System.lineSeparator()
+                + "   "
+                + comments;
     }
 }
