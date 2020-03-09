@@ -25,7 +25,8 @@ public class ListCommand extends Command {
 
         feedback = feedback + String.format(TOTAL_COST_MESSAGE, totalCost);
 
-        feedback = feedback + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
+        feedback = feedback
+                + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
 
         return new CommandResult(feedback);
     }

@@ -10,11 +10,13 @@ import java.util.Scanner;
 
 public class Duke {
 
-	 /**
-     * Main entry-point for the java.duke.Duke application.
+    /**
+      * Main entry-point for the java.duke.Duke application.
+      *
      */
     public static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
+
 
     public static void main(String[] args) {
         new Duke().run();
@@ -33,7 +35,7 @@ public class Duke {
      *
      */
     private void start() {
-        System.out.println("HELLO");
+        System.out.println("HELLO! I'm SHOCO. Your digital shopping list!\n");
     }
 
     /** Prints the Goodbye message and exits. */
@@ -47,16 +49,21 @@ public class Duke {
         Command command;
         do {
             String userCommandText = readCommand();
+            System.out.println(userCommandText);
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             System.out.println(result.feedbackToUser);
         } while (!ExitCommand.isExit(command));
     }
 
-    public String readCommand(){
+    /**Read the input when user type the command.
+     *
+     * @return input
+     */
+    public String readCommand() {
         Scanner in = new Scanner(System.in);
         String input = "";
-        while(input.isEmpty()){
+        while (input.isEmpty()) {
             input = in.nextLine();
             input = input.trim();
         }

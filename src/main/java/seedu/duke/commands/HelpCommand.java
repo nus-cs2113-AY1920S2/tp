@@ -5,7 +5,6 @@ package seedu.duke.commands;
  */
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "HELP";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions."
             + System.lineSeparator();
 

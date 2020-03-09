@@ -19,6 +19,11 @@ public class ShoppingList {
         return items;
     }
 
+    /**
+     * Formats the list to be printed to user.
+     * @param feedback String that is to be made into list to be printed to user
+     * @return the contents of the list, formatted into a string
+     */
     public String compileList(String feedback) {
         int bulletNum = 1;
         String itemLine;
@@ -35,7 +40,7 @@ public class ShoppingList {
     }
 
     /**
-     * Marks item in index as bought
+     * Marks item in index as bought.
      * @param index index of item to mark
      * @return item that is marked
      */
@@ -59,7 +64,7 @@ public class ShoppingList {
     }
 
     /**
-     * Unmarks item in index as bought
+     * Unmarks item in index as bought.
      * @param index index of item to unmark
      * @return item that is unmarked
      */
