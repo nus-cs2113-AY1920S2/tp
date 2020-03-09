@@ -12,9 +12,17 @@ import static seedu.nuke.util.Message.*;
 public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules;
 
+    /**
+     * initialize with empty module list
+     */
     public ModuleManager() {
+        this.modules  = new ArrayList<Module>();
     }
 
+    /**
+     *
+     * @param modules initialize with existed module list
+     */
     public ModuleManager(ArrayList<Module> modules) {
         this.modules = modules;
     }
@@ -22,7 +30,7 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * @return all modules
      */
-    public List<Module> getModules() {
+    public List<Module> getModuleList() {
         return modules;
     }
 
@@ -84,5 +92,12 @@ public class ModuleManager implements Iterable<Module> {
     @Override
     public Iterator<Module> iterator() {
         return modules.iterator();
+    }
+
+    /**
+     * @return the next-to-add task index
+     */
+    public int getNextTaskIndex(){
+        return modules.size();
     }
 }
