@@ -51,4 +51,8 @@ public class Task {
         }
         return printOut.toString();
     }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
 }

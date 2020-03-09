@@ -4,10 +4,10 @@ import seedu.nuke.task.Task;
 
 import java.util.ArrayList;
 
-public class TaskList {
+public class ModuleTaskList {
     ArrayList<Task> taskList;
 
-    public TaskList() {
+    public ModuleTaskList() {
         taskList = new ArrayList<>();
     }
 
