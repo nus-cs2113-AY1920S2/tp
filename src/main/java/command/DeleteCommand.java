@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
         try {
             Task taskToBeDeleted = taskList.getTask(deleteIndex);
             taskList.deleteTask(deleteIndex);
-            return new CommandResult(String.format(Messages.DELETE_SUCCESS_MESSAGE, deleteIndex,
+            return new CommandResult(String.format(Messages.DELETE_SUCCESS_MESSAGE, deleteIndex + 1,
                     taskToBeDeleted.getName()));
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new DukeException(String.format(Messages.INVALID_ID_ERROR,

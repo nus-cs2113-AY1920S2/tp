@@ -44,10 +44,9 @@ public abstract class Task {
 
     /**
      * Returns symbol representing if task is completed.
-     * @param isDone boolean value to check if task is completed
      * @return return tick if task is completed, else return cross
      */
-    public String getStatusIcon(boolean isDone) {
+    public String getStatusIcon() {
         if (isDone) {
             return "[/]";
         } else {
@@ -57,6 +56,6 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return String.format("%s %s", getStatusIcon(isDone), name);
+        return String.format("%s %s", getStatusIcon(), name);
     }
 }
