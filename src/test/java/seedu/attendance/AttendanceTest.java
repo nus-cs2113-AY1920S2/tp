@@ -1,34 +1,32 @@
 package seedu.attendance;
 
 import org.junit.jupiter.api.Test;
-import seedu.student.Student;
-import seedu.student.attendance.Attendance;
+import seedu.module.attendance.Attendance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AttendanceTest {
 
     @Test
-    void testAttendance() {
-        assertEquals("Richard CS2040C false", new Attendance("Richard", "CS2040C").toString());
+    void getModuleName() {
+        assertEquals("CS2040C", new Attendance("CS2040C","Richard", "Tutorial 1").getModuleName());
     }
 
     @Test
     void getStudentName() {
-        assertEquals("Richard",  new Student("Richard").getStudentName());
-        assertEquals("Richard",  new Attendance("Richard", "CS2040C").getStudentName());
+        assertEquals("Richard", new Attendance("CS2040C","Richard", "Tutorial 1").getStudentName());
     }
 
     @Test
     void getDescription() {
-        assertEquals("CS2040C",  new Attendance("Richard", "CS2040C").getDescription());
+        assertEquals("Tutorial 1", new Attendance("CS2040C","Richard", "Tutorial 1").getDescription());
     }
 
     @Test
     void getAttendance() {
-        assertEquals(false,  new Attendance("Richard", "CS2040C").getAttendance());
-        assertEquals(false,  new Attendance("Richard", "CS2040C", false).getAttendance());
-        assertEquals(true,  new Attendance("Richard", "CS2040C", true).getAttendance());
+        assertEquals(false, new Attendance("CS2040C","Richard", "Tutorial 1").getAttendance());
+        assertEquals(false, new Attendance("CS2040C","Richard", "Tutorial 1", false).getAttendance());
+        assertEquals(true, new Attendance("CS2040C","Richard", "Tutorial 1", true).getAttendance());
 
     }
 }
