@@ -1,15 +1,15 @@
 package seedu.duke.data;
 
 public class Budget {
-    final static double MAX = 5000;
-    final static double MIN = 0;
+    private static final double MAX = 5000;
+    private static final double MIN = 0;
     private double amount;
 
     public Budget() {
         this.amount = 0;
     }
 
-    public void setBudget(double amount){
+    public void setBudget(double amount) {
         this.amount = Math.min(amount,MAX);
         this.amount = Math.max(amount,MIN);
     }
