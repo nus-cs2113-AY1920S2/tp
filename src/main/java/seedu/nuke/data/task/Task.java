@@ -1,8 +1,8 @@
-package seedu.nuke.task;
+package seedu.nuke.data.task;
 
+import seedu.nuke.data.file.TaskFile;
+import seedu.nuke.data.file.TaskFileList;
 import seedu.nuke.format.DateTime;
-
-import java.util.ArrayList;
 
 import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
@@ -10,16 +10,16 @@ import static seedu.nuke.common.Constants.YES_ICON;
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected int priority;
     protected DateTime deadline;
-    protected ArrayList<String> files;
+    protected int priority;
+    protected TaskFileList files;
 
-    public Task(String description, DateTime dateTime, int priority) {
+    public Task(String description, DateTime deadline, int priority) {
         this.description = description;
-        this.files = new ArrayList<>();
-        this.deadline = dateTime;
-        this.priority = priority;
         this.isDone = false;
+        this.deadline = deadline;
+        this.priority = priority;
+        this.files = new TaskFileList();
     }
 
     public String getDescription() {
@@ -38,23 +38,22 @@ public class Task {
         return (isDone ? YES_ICON : NO_ICON);
     }
 
-    public ArrayList<String> getFiles() {
+    public TaskFileList getFiles() {
         return files;
-    }
-
-    public String toString() {
-        StringBuilder printOut = new StringBuilder(getStatusIcon() + " " + getDescription() + " by " + getDeadline());
-        for (String file: files) {
-            printOut.append(" ").append(file);
-        }
-        return printOut.toString();
     }
 
     public void setDeadline(DateTime deadline) {
         this.deadline = deadline;
     }
 
-    public void addFile(String filePath) {
-        files.add(filePath);
+    public void addFile(String fileName, String filePath) {
+        files.add(new TaskFile(fileName, filePath));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder printOut = new StringBuilder(getStatusIcon() + " " + getDescription() + " by " + getDeadline());
+        printOut.append(files);
+        return printOut.toString();
     }
 }

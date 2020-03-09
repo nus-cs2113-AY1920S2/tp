@@ -1,11 +1,8 @@
 package seedu.nuke.data;
 
-import seedu.nuke.task.Task;
+import seedu.nuke.data.task.Task;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 public class TaskManager {
     ArrayList<Task> allTasks = new ArrayList<>();
