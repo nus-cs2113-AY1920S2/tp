@@ -1,10 +1,14 @@
 package seedu.nuke.module;
 
+import seedu.nuke.command.CheckDeadlineCommand;
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.task.Task;
+import seedu.nuke.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Module {
     private String moduleCode;
@@ -41,6 +45,15 @@ public class Module {
         return this.taskManager;
     }
 
+    public void checkDeadline() {
+        ArrayList<String> deadlines = new ArrayList<>();
+        ArrayList<Task> tasks = taskManager.getTaskList();
+        Collections.sort(tasks);
+        for(Task task: tasks) {
+            deadlines.add("Task: " + task.getDescription()+"  Deadline: " + task.getDeadline().toString());
+        }
+        TextUi.listDeadlines(deadlines);
+    }
 
     public boolean isSameModule(Module module) {
         return this.moduleCode.equals(module.moduleCode);

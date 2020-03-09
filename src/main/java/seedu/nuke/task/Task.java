@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
 
-public class Task {
+public class Task implements Comparable{
     protected String description;
     protected boolean isDone;
     protected int priority;
@@ -57,4 +57,10 @@ public class Task {
     public void addFile(String filePath) {
         files.add(filePath);
     }
+
+    public int compareTo(Object o) {
+        Task task = (Task) o;
+        return (deadline.toString().compareToIgnoreCase(task.deadline.toString()) > 0) ? 1 : 0;
+    }
+
 }

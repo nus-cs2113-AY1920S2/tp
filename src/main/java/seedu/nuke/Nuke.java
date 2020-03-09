@@ -17,6 +17,11 @@ import static seedu.nuke.ui.TextUi.printDivider;
 public class Nuke {
     private CommandResult commandResult;
     public ModuleManager moduleManager;
+
+    public Nuke() {
+        moduleManager = new ModuleManager();
+    }
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */

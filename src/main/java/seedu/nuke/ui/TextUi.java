@@ -2,7 +2,9 @@ package seedu.nuke.ui;
 
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
+import seedu.nuke.command.CommandResult;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.Color.*;
@@ -61,4 +63,19 @@ public class TextUi {
 
     public static final String DIVIDER = "---------------------------------------------------------------------------------";
 
+    public static void printCommandResult(CommandResult result) {
+        AnsiConsole.systemInstall();
+        System.out.println( ansi().bold().fg(result.feedbackToUser).a(DIVIDER).reset() );
+        printDivider();
+        AnsiConsole.systemUninstall();
+    }
+
+    public static void listDeadlines(ArrayList<String> deadlines) {
+        AnsiConsole.systemInstall();
+        printDivider();
+        for(String deadline: deadlines) {
+            System.out.println( ansi().bold().fg(deadline).a(DIVIDER).reset() );
+        }
+        AnsiConsole.systemUninstall();
+    }
 }
