@@ -1,24 +1,18 @@
 package seedu.nuke.data.module;
 
-import seedu.nuke.exception.ModuleNotFoundException;
+import seedu.nuke.exception.DataNotFoundException;
+import seedu.nuke.exception.DuplicateDataException;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static seedu.nuke.util.Message.MESSAGE_DUPLICATE_MODULE_ADD;
-import static seedu.nuke.util.Message.MESSAGE_MODULE_NOT_FOUND;
 
 public class ModuleList {
-    private ArrayList<Module> moduleList;
-
-    public ModuleList() {
-        this.moduleList = new ArrayList<>();
-    }
+    /* The module list containing all the modules the user is enrolled in */
+    public static ArrayList<Module> moduleList = new ArrayList<>();
 
     /**
      * @return all moduleList
      */
-    public ArrayList<Module> getModuleList() {
+    public static ArrayList<Module> getModuleList() {
         return moduleList;
     }
 
@@ -38,13 +32,13 @@ public class ModuleList {
 
     /**
      * Add a module to the module List.
-     * @param toAdd the module to-add
+     *
+     * @param toAdd the module to add
      */
-    public void add(Module toAdd)  {
+    public static void add(Module toAdd) throws DuplicateModuleException {
         //check duplicate
-        if (moduleList.contains(toAdd)){
-            //display duplicate message
-            System.out.println(MESSAGE_DUPLICATE_MODULE_ADD);
+        if (moduleList.contains(toAdd)) {
+            throw new DuplicateModuleException();
         } else {
             moduleList.add(toAdd);
         }
@@ -62,10 +56,31 @@ public class ModuleList {
      * @param toDelete the task to remove
      * @throws ModuleNotFoundException if the to-remove module does not exist
      */
-    public void delete(Module toDelete) throws ModuleNotFoundException {
+    public static void delete(Module toDelete) throws ModuleNotFoundException {
         boolean isModuleFoundAndDeleted = moduleList.remove(toDelete);
         if (!isModuleFoundAndDeleted) {
-            throw new ModuleNotFoundException(MESSAGE_MODULE_NOT_FOUND);
+            throw new ModuleNotFoundException();
         }
     }
+
+    /**
+     * Deletes a <b>Module</b> with the specified <code>module code</code> in the <b>Module List</b>.
+     *
+     * @param moduleCode    The module code of the <b>Module</b> to be deleted
+     * @throws ModuleNotFoundException  If the module with the specified module code is not found in the <b>Module List</b>
+     * @see Module
+     */
+    public static Module delete(String moduleCode) throws ModuleNotFoundException {
+        for (Module module : moduleList) {
+            if (module.getModuleCode().toUpperCase().equals(moduleCode)) {
+                moduleList.remove(module);
+                return module;
+            }
+        }
+        throw new ModuleNotFoundException();
+    }
+
+
+    public static class ModuleNotFoundException extends DataNotFoundException {}
+    public static class DuplicateModuleException extends DuplicateDataException {}
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.ExceptionMessage.*;
 
 public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules;
