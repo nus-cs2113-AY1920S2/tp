@@ -36,7 +36,6 @@ public class Nuke {
         Scanner scanner = new Scanner(System.in);
         do {
             String userCommandText = scanner.nextLine();
-            printDivider();
             command = new Parser().parseCommand(moduleManager, userCommandText);
             executeCommand(command);
         } while (!ExitCommand.isExit(command));

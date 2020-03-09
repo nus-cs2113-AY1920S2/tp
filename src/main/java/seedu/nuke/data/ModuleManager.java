@@ -13,10 +13,10 @@ public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules;
 
     /**
-     * initialize with module list
+     * initialize with empty module list
      */
     public ModuleManager() {
-        this.modules  = new ArrayList<>();
+        this.modules  = new ArrayList<Module>();
     }
 
     /**
