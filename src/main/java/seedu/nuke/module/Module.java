@@ -6,13 +6,13 @@ public class Module {
     private String moduleCode;
     private String title;
     private String description;
-    private TaskList taskList;
+    private ModuleTaskList taskList;
 
     public Module(String moduleCode, String title, String description) {
         this.moduleCode = moduleCode;
         this.title = title;
         this.description = description;
-        this.taskList = new TaskList();
+        this.taskList = new ModuleTaskList();
     }
 
     public String getModuleCode() {
@@ -27,7 +27,7 @@ public class Module {
         return description;
     }
 
-    public TaskList getTaskList() {
+    public ModuleTaskList getTaskList() {
         return taskList;
     }
 
