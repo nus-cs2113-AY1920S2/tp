@@ -21,16 +21,24 @@ public class TextUi {
      * Generates and prints the list of commands.
      */
     public static void printHelp() {
-        String helpMessage = "Shows program usage instructions.\n"
-                + " add NAME, NRIC, PHONE_NUMBER, DOB, BLOOD_TYPE, [ALLERGIES], [REMARKS]\n"
-                + " list \n"
-                + " open NRIC\n"
-                + " edit phone/allergies/remarks INPUT\n"
-                + " close\n"
-                + " delete NRIC\n"
-                + " help\n"
-                + " exit";
+        String helpMessage = "    Shows program usage instructions:\n"
+                + "      add NAME, NRIC, PHONE_NUMBER, DOB, BLOOD_TYPE, [ALLERGIES], [REMARKS]\n"
+                + "      list \n"
+                + "      open NRIC\n"
+                + "      edit phone/allergies/remarks EDITED_INPUT\n"
+                + "      close\n"
+                + "      delete NRIC\n"
+                + "      help\n"
+                + "      exit";
         System.out.println(helpMessage);
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Displays empty list message when there are no patients in the list.
+     */
+    public static void printEmptyList() {
+        System.out.println("    There are no patients in the list.");
         System.out.println(DIVIDER);
     }
 
