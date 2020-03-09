@@ -38,11 +38,13 @@ public class Nuke {
 
     private void runCommandLoopUntilExitCommand() {
         Command command;
+        CommandResult commandResult;
         Scanner scanner = new Scanner(System.in);
         do {
             String userCommandText = scanner.nextLine();
             command = new Parser().parseCommand(moduleManager, userCommandText);
-            executeCommand(command);
+            commandResult = executeCommand(command);
+            TextUi.printCommandResult(commandResult);
         } while (!ExitCommand.isExit(command));
     }
 
