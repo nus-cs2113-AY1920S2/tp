@@ -49,24 +49,24 @@ public class Event {
      * the name will take the form: event_(secondsSinceEpoch)
      * @param name the new name for the event
      * @throws InvalidParameterException when trying to overwrite a non-empty
-     * and non-null name with an empty or null name
+     *      and non-null name with an empty or null name
      */
     public void setName(String name) throws InvalidParameterException {
         if (this.name == null || this.name.isEmpty()) {
-        // if original name is empty or null
+            // if original name is empty or null
             if (name == null || name.isEmpty()) {
-            // if new name is empty or null
+                // if new name is empty or null
                 this.name = "event_" + Instant.now().getEpochSecond();
             } else {
                 this.name = name;
             }
         } else {
-        // if original name is not empty and null
+            // if original name is not empty and null
             if (name == null || name.isEmpty()) {
-            // if new name is empty or null
+                // if new name is empty or null
                 throw new InvalidParameterException("empty name");
             } else {
-            // if new name is not empty and not null
+                // if new name is not empty and not null
                 this.name = name;
             }
         }

@@ -1,9 +1,12 @@
 package seedu.event;
 
 import org.junit.jupiter.api.Test;
+
+import java.security.InvalidParameterException;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EventTest {
 
@@ -24,6 +27,16 @@ class EventTest {
         Event event1 = new Event();
         event1.setName("event1");
         assertEquals("event1", event1.getName());
+
+        Event event2 = new Event();
+        assertThrows(InvalidParameterException.class, () -> event2.setName(null));
+
+        Event event3 = new Event("1", "2", "3");
+        assertThrows(InvalidParameterException.class, () -> event3.setName(""));
+
+        Event event4 = new Event("1", "2", "3");
+        event4.setName("event4");
+        assertEquals("event4", event4.getName());
     }
 
     @Test
