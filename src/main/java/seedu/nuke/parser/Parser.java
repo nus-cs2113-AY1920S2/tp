@@ -1,6 +1,7 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.command.Command;
+import seedu.nuke.command.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.ModuleManager;
 
@@ -33,8 +34,11 @@ public class Parser {
         switch (commandWordFirstPart[COMMAND_WORD_INDEX]){
         //exit
         case ExitCommand.COMMAND_WORD:
-        default:
             return new ExitCommand();
+        case EditDeadlineCommand.COMMAND_WORD:
+            return new EditDeadlineCommand(commandWordFirstPart[1]);
+        default:
+            return null;
         }
     }
 

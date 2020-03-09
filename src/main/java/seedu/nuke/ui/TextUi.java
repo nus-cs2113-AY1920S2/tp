@@ -24,9 +24,9 @@ public class TextUi {
     public static void showWelcomeMessage (){
         AnsiConsole.systemInstall();
         printDivider();
-        System.out.print(
+        System.out.println(
                 ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(MESSAGE_WELCOME_1).reset());
-        System.out.print(
+        System.out.println(
                 ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(MESSAGE_WELCOME_2).reset());
         printDivider();
         AnsiConsole.systemUninstall();
@@ -65,7 +65,7 @@ public class TextUi {
 
     public static void printCommandResult(CommandResult result) {
         AnsiConsole.systemInstall();
-        System.out.println( ansi().bold().fg(result.feedbackToUser).a(DIVIDER).reset() );
+        System.out.println( ansi().bold().fg(SYSTEM_COLOR_RESPONSE).a(result.feedbackToUser).reset() );
         printDivider();
         AnsiConsole.systemUninstall();
     }
@@ -74,7 +74,7 @@ public class TextUi {
         AnsiConsole.systemInstall();
         printDivider();
         for(String deadline: deadlines) {
-            System.out.println( ansi().bold().fg(deadline).a(DIVIDER).reset() );
+            System.out.println( ansi().bold().fg(SYSTEM_COLOR_RESPONSE).a(deadline).reset() );
         }
         AnsiConsole.systemUninstall();
     }
