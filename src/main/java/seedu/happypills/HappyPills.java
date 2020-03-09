@@ -1,5 +1,7 @@
 package seedu.happypills;
 
+import seedu.happypills.commands.AddCommand;
+import seedu.happypills.commands.RetrieveCommand;
 import seedu.happypills.commands.Command;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
