@@ -35,4 +35,7 @@ public class Module {
         return stuffs;
     }
 
+    public boolean isSameModule(Module module) {
+        return this.moduleCode.equals(module.moduleCode);
+    }
 }

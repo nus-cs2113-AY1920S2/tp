@@ -7,13 +7,13 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class TaskList {
+public class TaskManager {
     ArrayList<Task> internalList = new ArrayList<>();
 
     /**
      * Constructs empty task list.
      */
-    public TaskList() {}
+    public TaskManager() {}
 
     /**
      * todo add check same function
