@@ -2,22 +2,26 @@ package seedu.duke.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import seedu.duke.commands.*;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.DeleteCommand;
-import seedu.duke.commands.SetBudgetCommand;
+import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.ListCommand;
-import seedu.duke.commands.UnmarkCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.IncorrectCommand;
-import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.MarkCommand;
+import seedu.duke.commands.ResetBudgetCommand;
+import seedu.duke.commands.SetBudgetCommand;
+import seedu.duke.commands.UnmarkCommand;
+
 
 public class Parser {
 
     private static Command newCommand;
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S]+)(?<arguments>[\\d\\s\\S]*$)");
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S]+)"
+            + "(?<arguments>[\\d\\s\\S]*$)");
 
     /**
      * Parses user input into command for execution.
@@ -28,7 +32,8 @@ public class Parser {
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            newCommand = new IncorrectCommand("Invalid input. Please try again or type 'help' to show a list of instructions.\n");
+            newCommand = new IncorrectCommand("Invalid input."
+                    + "Please try again or type 'help' to show a list of instructions.\n");
         }
         final String commandWord = matcher.group("commandWord").trim();
         final String arguments = matcher.group("arguments").trim();
@@ -92,7 +97,7 @@ public class Parser {
     }
 
     /**
-     * Initialises the ResetBudgetCommand
+     * Initialises the ResetBudgetCommand.
      */
     public static void createResetBudgetCommand() {
         newCommand = new ResetBudgetCommand();
@@ -110,38 +115,40 @@ public class Parser {
     }
 
     private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
-        String[] ArgsArray;
+        String[] argsArray;
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
-        String  itemPrice, itemDescription;
+        String itemPrice;
+        String itemDescription;
 
         int buffer = 2;
-        int indexOfiPrefix, indexOfpPrefix;
+        int indexOfiPrefix;
+        int indexOfpPrefix;
         boolean descriptionPresent = arguments.contains(descriptionDelimiter);
         boolean pricePresent = arguments.contains(priceDelimiter);
 
-        if(descriptionPresent && !pricePresent) { //eg: add i/apple
+        if (descriptionPresent && !pricePresent) { //eg: add i/apple
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
             itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
-            ArgsArray = new String[]{itemDescription, null};
+            argsArray = new String[]{itemDescription, null};
         } else if (descriptionPresent && pricePresent) {
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
             indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
-            if(indexOfpPrefix < indexOfiPrefix) { //e.g args: edit 2 p/4.50 i/apple
+            if (indexOfpPrefix < indexOfiPrefix) { //e.g args: edit 2 p/4.50 i/apple
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix);
             } else {
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer, indexOfpPrefix);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer);
             }
-            ArgsArray = new String[]{itemDescription, itemPrice};
-        } else{
-            ArgsArray = new String[]{null, null};
+            argsArray = new String[]{itemDescription, itemPrice};
+        } else {
+            argsArray = new String[]{null, null};
         }
-        if(ArgsArray[1] == null && ArgsArray[2] == null){
+        if (argsArray[1] == null && argsArray[2] == null) {
             throw new NullPointerException();
         }
-        return ArgsArray;
+        return argsArray;
     }
 
     /**
@@ -165,7 +172,7 @@ public class Parser {
     }
 
     /**
-     * Initialises the Unmark Command
+     * Initialises the Unmark Command.
      */
     public static void createUnmarkCommand(String arguments) {
         String[] words = arguments.trim().split(" ");
@@ -177,7 +184,7 @@ public class Parser {
     }
 
     /**
-     * Initialises the MarkCommand
+     * Initialises the MarkCommand.
      */
     public static void createMarkCommand(String arguments) {
         String[] words = arguments.trim().split(" ");
@@ -189,16 +196,19 @@ public class Parser {
     }
 
     /**
-     * Split args for Edit Command
+     * Split args for Edit Command.
      */
     private String[] splitArgsforEditCommand(String arguments) throws NullPointerException {
-        String[] ArgsArray;
+        String[] argsArray;
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
-        String indexOfItem, itemPrice, itemDescription;
+        String indexOfItem;
+        String itemPrice;
+        String itemDescription;
 
         int buffer = 2;
-        int indexOfiPrefix, indexOfpPrefix;
+        int indexOfiPrefix;
+        int indexOfpPrefix;
         boolean descriptionPresent = arguments.contains(descriptionDelimiter);
         boolean pricePresent = arguments.contains(priceDelimiter);
 
@@ -206,13 +216,13 @@ public class Parser {
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
             itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
             indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
-            ArgsArray = new String[]{indexOfItem, itemDescription, null};
+            argsArray = new String[]{indexOfItem, itemDescription, null};
 
         } else if (pricePresent && !descriptionPresent) { //e.g args: edit 2 p/4.50
             indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
             itemPrice = arguments.trim().substring(indexOfpPrefix + buffer);
             indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
-            ArgsArray = new String[]{indexOfItem, null, itemPrice};
+            argsArray = new String[]{indexOfItem, null, itemPrice};
 
         } else if (descriptionPresent && pricePresent) { //e.g args: edit 2 i/apple p/4.50
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
@@ -227,14 +237,14 @@ public class Parser {
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer, indexOfpPrefix);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer);
             }
-            ArgsArray = new String[]{indexOfItem, itemDescription, itemPrice};
+            argsArray = new String[]{indexOfItem, itemDescription, itemPrice};
         } else {
-            ArgsArray = new String[]{null, null, null};
+            argsArray = new String[]{null, null, null};
         }
-        if (ArgsArray[1] == null && ArgsArray[2] == null) {
+        if (argsArray[1] == null && argsArray[2] == null) {
             throw new NullPointerException();
         }
-        return ArgsArray;
+        return argsArray;
     }
 
     /**
@@ -263,7 +273,7 @@ public class Parser {
     /**
      * Initialises the HelpCommand.
      */
-    public static void createHelpCommand(){
+    public static void createHelpCommand() {
         newCommand = new HelpCommand();
     }
 
