@@ -15,10 +15,17 @@ public class Parser {
      * The user input typically include three categories,
      * the command type, command, and data. There is one
      * parser for each of the category respectively.
+     * Get Command word from userInput.
+     *
+     * @param userInput The userInput read by Ui.
+     * @return The Command word.
      */
-
     public Parser() {
         performances = new PerformanceList().getPerformanceList();
+    }
+  
+    public static String getCommandWord(String userInput) {
+        return userInput.strip().split(" ")[0];
     }
 
     /**
