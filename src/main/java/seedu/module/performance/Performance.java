@@ -1,4 +1,6 @@
-package seedu.module;
+package seedu.module.performance;
+
+import seedu.module.Module;
 
 import java.io.Serializable;
 

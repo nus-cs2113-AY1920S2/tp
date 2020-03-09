@@ -14,12 +14,5 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        Parser parser = new Parser();
-        Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
-        while (!input.equals("exit")) {
-            parser.parseTypeOfInstruction(input);
-            input = in.nextLine();
-        }
     }
 }

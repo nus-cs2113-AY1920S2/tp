@@ -1,31 +1,24 @@
 package seedu.command.performance;
 
-import seedu.module.Performance;
+import seedu.command.Command;
+import seedu.module.performance.Performance;
+import seedu.module.performance.PerformanceList;
+import seedu.parser.PerformanceDataParser;
 
 import java.util.List;
 
 public class DeletePerformanceCommand extends Command {
-    public DeletePerformanceCommand() {
-    }
+    Performance performance;
+    public String userInput;
 
     /**
-     * Delete the performance that was input by the user.
-     *
-     * @param performance The performance to be deleted
-     *                    from the performance list.
+     * Constructor for DeletePerformanceCommand. Takes String userInput
+     * and parse it to get the Performance to be deleted.
+     * @param userInput A String to be parsed.
      */
-    public static List<Performance> execute(List<Performance> performances, Performance performance) {
-        for (Performance p: performances) {
-            if (p != null
-                    && performance.getAssignment().equals(p.getAssignment())
-                    && performance.getModule().equals(p.getModule())
-                    && performance.getStudent().equals(p.getStudent())) {
-                performances.remove(p);
-                System.out.println("deleted successfully");
-                return performances;
-            }
-        }
-        System.out.println("delete fail");
-        return performances;
+    public DeletePerformanceCommand(String userInput) {
+        this.userInput = userInput;
+        performance = new PerformanceDataParser(userInput).getPerformance();
+        PerformanceList.deletePerformance(performance);
     }
 }
