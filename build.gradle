@@ -5,7 +5,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'seedu.duke'
+group 'seedu.nuke'
 version '0.1.0'
 
 repositories {
@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    //config the jar to Mavern library
+    implementation 'org.fusesource.jansi:jansi:1.18'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
 }
 
@@ -21,11 +23,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.nuke.Nuke"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "nuke"
     archiveVersion = "0.0.1"
     archiveClassifier = null
     archiveAppendix = null
