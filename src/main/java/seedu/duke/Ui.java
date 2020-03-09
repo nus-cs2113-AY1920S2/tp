@@ -46,7 +46,7 @@ public class Ui {
      * @return String of user input
      */
     public String getUserInput() {
-        System.out.println("> ");
+        System.out.println(">");
         return in.nextLine().trim();
     }
 
