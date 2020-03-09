@@ -34,4 +34,8 @@ public class Module {
     public void addTask(Task task) {
         taskList.add(task);
     }
+
+    public boolean isSameModule(Module module) {
+        return this.moduleCode.equals(module.moduleCode);
+    }
 }
