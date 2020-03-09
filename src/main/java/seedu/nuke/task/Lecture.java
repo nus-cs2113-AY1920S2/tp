@@ -3,8 +3,5 @@ package seedu.nuke.task;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Lecture extends Stuff {
-    public Lecture(String description) {
-        super(description);
-    }
+public class Lecture {
 }
