@@ -14,6 +14,7 @@ public class CommandResult {
         this.feedbackToUser = feedbackToUser;
         this.items = null;
     }
+
     public CommandResult(String feedbackToUser, ArrayList<Item> items) {
         this.feedbackToUser = feedbackToUser;
         this.items = items;
