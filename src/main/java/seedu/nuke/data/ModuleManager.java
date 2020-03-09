@@ -1,5 +1,7 @@
 package seedu.nuke.data;
 
+import seedu.nuke.exception.DataNotFoundException;
+import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 
@@ -10,27 +12,12 @@ import java.util.List;
 import static seedu.nuke.util.Message.*;
 
 public class ModuleManager implements Iterable<Module> {
-    private ArrayList<Module> modules;
-
-    /**
-     * initialize with empty module list
-     */
-    public ModuleManager() {
-        this.modules  = new ArrayList<Module>();
-    }
-
-    /**
-     *
-     * @param modules initialize with existed module list
-     */
-    public ModuleManager(ArrayList<Module> modules) {
-        this.modules = modules;
-    }
+    public static ArrayList<Module> modules = new ArrayList<>();
 
     /**
      * @return all modules
      */
-    public List<Module> getModuleList() {
+    public static List<Module> getModuleList() {
         return modules;
     }
 
@@ -43,7 +30,7 @@ public class ModuleManager implements Iterable<Module> {
      * @param toCheck the task to-check
      * @return true if the task exists
      */
-    public boolean contains(Module toCheck) {
+    public static boolean contains(Module toCheck) {
         for (Module p : modules) {
             if (p.isSameModule(toCheck)) {
                 return true;
@@ -53,14 +40,14 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * Add a module to the moduleList.
-     * @param toAdd the module to-add
+     * Add a module to the module List.
+     *
+     * @param toAdd the module to add
      */
-    public void addModule(Module toAdd)  {
+    public static void add(Module toAdd) throws DuplicateModuleException {
         //check duplicate
-        if (modules.contains(toAdd)){
-            //display duplicate message
-            System.out.println(MESSAGE_DUPLICATE_MODULE_ADD);
+        if (ModuleManager.contains(toAdd)) {
+            throw new DuplicateModuleException();
         } else {
             modules.add(toAdd);
         }
@@ -75,14 +62,31 @@ public class ModuleManager implements Iterable<Module> {
 
     /**
      * Remove a module to the list.
-     * @param toRemove the task to-remove
+     * @param toDelete the task to remove
      * @throws ModuleNotFoundException if the to-remove module does not exist
      */
-    public void remove(Module toRemove) throws ModuleNotFoundException {
-        final boolean moduleFoundAndDeleted = modules.remove(toRemove);
-        if (!moduleFoundAndDeleted) {
-            throw new ModuleNotFoundException(MESSAGE_MODULE_NOT_FOUND);
+    public static void delete(Module toDelete) throws ModuleNotFoundException {
+        boolean isModuleFoundAndDeleted = modules.remove(toDelete);
+        if (!isModuleFoundAndDeleted) {
+            throw new ModuleNotFoundException();
         }
+    }
+
+    /**
+     * Deletes a <b>Module</b> with the specified <code>module code</code> in the <b>Module List</b>.
+     *
+     * @param moduleCode    The module code of the <b>Module</b> to be deleted
+     * @throws ModuleNotFoundException  If the module with the specified module code is not found in the <b>Module List</b>
+     * @see Module
+     */
+    public static Module delete(String moduleCode) throws ModuleNotFoundException {
+        for (Module module : modules) {
+            if (module.getModuleCode().toUpperCase().equals(moduleCode)) {
+                modules.remove(module);
+                return module;
+            }
+        }
+        throw new ModuleNotFoundException();
     }
 
     public void CheckDeadline(String moduleCode) {
@@ -100,4 +104,7 @@ public class ModuleManager implements Iterable<Module> {
     public int getNextTaskIndex(){
         return modules.size();
     }
+
+    public static class ModuleNotFoundException extends DataNotFoundException {}
+    public static class DuplicateModuleException extends DuplicateDataException {}
 }

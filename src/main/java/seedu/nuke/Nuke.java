@@ -10,6 +10,7 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.module.DummyModule;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
+import seedu.nuke.ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,11 +18,13 @@ import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.ansi;
 import static seedu.nuke.ui.TextUi.printDivider;
+import static seedu.nuke.util.ExceptionMessage.*;
 
 public class Nuke {
     private CommandResult commandResult;
     public ModuleManager moduleManager;
     public ArrayList<DummyModule> modules;
+    private Ui ui;
 
     public Nuke() throws FileNotFoundException {
         moduleManager = new ModuleManager();
@@ -38,20 +41,27 @@ public class Nuke {
     }
 
     private void run() {
+        this.ui = new Ui();
+
         TextUi.showWelcomeMessage();
         runCommandLoopUntilExitCommand();
     }
 
     private void runCommandLoopUntilExitCommand() {
-        Command command;
-        CommandResult commandResult;
-        Scanner scanner = new Scanner(System.in);
         do {
-            String userCommandText = scanner.nextLine();
-            command = new Parser().parseCommand(moduleManager, userCommandText);
-            commandResult = executeCommand(command);
-            TextUi.printCommandResult(commandResult);
-        } while (!ExitCommand.isExit(command));
+            String userCommandText = ui.getInput();
+            try {
+                Command command = new Parser().parseInput(userCommandText);
+                CommandResult result = executeCommand(command);
+                ui.showResult(result);
+            } catch (Parser.InputLengthExceededException e) {
+                System.out.println(MESSAGE_INPUT_LENGTH_EXCEEDED);
+            } catch (Parser.EmptyInputException e) {
+                System.out.println(MESSAGE_EMPTY_INPUT);
+            } catch (Parser.InvalidCommandException e) {
+                System.out.println(MESSAGE_INVALID_COMMAND);
+            }
+        } while (!ExitCommand.isExit());
     }
 
     /**

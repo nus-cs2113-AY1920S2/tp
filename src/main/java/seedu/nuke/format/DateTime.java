@@ -61,7 +61,7 @@ public class DateTime {
      * @return The <code>date</code> in a string format
      */
     public String getTimeInSortFormat() {
-        return date.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT));
+        return time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT));
     }
 
     /**
