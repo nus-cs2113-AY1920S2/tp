@@ -13,11 +13,9 @@ public class Budget {
      * Sets the budget based on input amount.
      */
     public void setBudget(double amount) {
-        if (amount > 5000) {
-            this.amount = Math.min(amount, MAX);
-        } else {
-            this.amount = Math.max(amount, MIN);
-        }
+        amount = Math.min(amount,MAX);
+        amount = Math.max(amount,0);
+        this.amount = amount;
     }
 
     public double getAmount() {
