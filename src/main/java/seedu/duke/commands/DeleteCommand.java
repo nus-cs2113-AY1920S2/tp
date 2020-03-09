@@ -17,10 +17,16 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        index -= 1;
-        String feedback = DELETE_MESSAGE + ShoppingList.getItem(index);
-        ShoppingList.deleteItem(index);
-        return new CommandResult(feedback);
+        try {
+            index -= 1;
+            String feedback = DELETE_MESSAGE + ShoppingList.getItem(index);
+            ShoppingList.deleteItem(index);
+            return new CommandResult(feedback);
+        } catch (IndexOutOfBoundsException e) {
+            return new CommandResult(System.lineSeparator()
+                    + "Please enter a valid index within the bounds");
+        }
+
     }
 
 }

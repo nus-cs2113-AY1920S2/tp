@@ -271,16 +271,31 @@ public class Parser {
      * Initialises the SetBudgetCommand.
      */
     public static void createSetBudgetCommand(String arguments) {
-        double amount = Double.parseDouble(arguments.substring(2));
-        newCommand = new SetBudgetCommand(amount);
+        try {
+            double amount = Double.parseDouble(arguments.substring(2));
+            newCommand = new SetBudgetCommand(amount);
+        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter an amount for your budget"
+                    + System.lineSeparator()
+                    + "Example: SET b/300");
+        }
     }
 
     /**
      * Initialises the DeleteCommand.
      */
     public static void createDeleteCommand(String arguments) {
-        int index = Integer.parseInt(arguments);
-        newCommand = new DeleteCommand(index);
+        try {
+            int index = Integer.parseInt(arguments);
+            newCommand = new DeleteCommand(index);
+        } catch (NumberFormatException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter an index"
+                    + System.lineSeparator()
+                    + "Example: DEL 3");
+        }
+
     }
 
     /**
