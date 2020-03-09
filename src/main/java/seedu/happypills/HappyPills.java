@@ -1,10 +1,6 @@
 package seedu.happypills;
 
-import seedu.happypills.commands.AddCommand;
-import seedu.happypills.commands.RetrieveCommand;
-import seedu.happypills.commands.Command;
-import seedu.happypills.commands.HelpCommand;
-import seedu.happypills.commands.ListCommand;
+import seedu.happypills.commands.*;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
@@ -55,7 +51,7 @@ public class HappyPills {
      * Parses user input.
      */
     private Command parse(String fullCommand) throws HappyPillsException {
-        String[] userCommand = fullCommand.split(" ", 2);
+        String[] userCommand = fullCommand.split(" ");
 
         if (userCommand[0].equalsIgnoreCase("list")) {
             return new ListCommand();
@@ -72,7 +68,9 @@ public class HappyPills {
             return new HelpCommand();
         } else if (userCommand[0].equalsIgnoreCase("get")) {
             return new RetrieveCommand(userCommand[1]);
-        } else {
+        } else if (userCommand[0].equalsIgnoreCase("edit")) {
+            return new EditCommand(userCommand[1], userCommand[2], userCommand[3]);
+        }else {
             throw new HappyPillsException("Invalid Command");
         }
     }
