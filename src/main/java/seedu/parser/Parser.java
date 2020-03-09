@@ -11,19 +11,22 @@ import java.util.List;
 
 public class Parser {
     public static List<Performance> performances;
+
     /**
      * The user input typically include three categories,
      * the command type, command, and data. There is one
      * parser for each of the category respectively.
-     * Get Command word from userInput.
-     *
-     * @param userInput The userInput read by Ui.
-     * @return The Command word.
      */
     public Parser() {
         performances = new PerformanceList().getPerformanceList();
     }
-  
+
+    /**
+     *Get Command word from userInput.
+     *
+     * @param userInput The userInput read by Ui.
+     * @return The Command word.
+     */
     public static String getCommandWord(String userInput) {
         return userInput.strip().split(" ")[0];
     }

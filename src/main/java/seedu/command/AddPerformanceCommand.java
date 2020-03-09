@@ -13,8 +13,8 @@ public class AddPerformanceCommand extends Command {
      *
      * @param performance The Performance of student to be added to
      *                    the performance list.
-     * @param mark          An Integer mark result of the student.
-     * @return The performance list after the new performance added.
+     * @param mark        An Integer mark result of the student.
+     * @return            The performance list after the new performance added.
      */
     public static List<Performance> addMark(List<Performance> performances, Performance performance, int mark) {
         performance.recordMark(mark);
@@ -28,8 +28,8 @@ public class AddPerformanceCommand extends Command {
      *
      * @param performance The Performance of student to be added to
      *                    the performance list.
-     * @param grade         A String grade result of the student.
-     * @return The performance list after the new performance added.
+     * @param grade       A String grade result of the student.
+     * @return            The performance list after the new performance added.
      */
     public static List<Performance> addGrade(List<Performance> performances, Performance performance, String grade) {
         performance.recordGrade(grade);
