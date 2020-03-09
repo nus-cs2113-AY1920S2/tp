@@ -61,7 +61,6 @@ public class TextUi {
 
     public static void printPatient(Patient patient) {
         System.out.println(patient + DIVIDER);
-
     }
 
 }
