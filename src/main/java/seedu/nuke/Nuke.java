@@ -5,10 +5,14 @@ import org.fusesource.jansi.AnsiConsole;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
+import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.module.DummyModule;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.ansi;
@@ -17,15 +21,17 @@ import static seedu.nuke.ui.TextUi.printDivider;
 public class Nuke {
     private CommandResult commandResult;
     public ModuleManager moduleManager;
+    public ArrayList<DummyModule> modules;
 
-    public Nuke() {
+    public Nuke() throws FileNotFoundException {
         moduleManager = new ModuleManager();
+        //modules = ModuleLoader.load("moduleList.json");
     }
 
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         TextUi.clearScreen();
         TextUi.displayLogo();
         new Nuke().run();
