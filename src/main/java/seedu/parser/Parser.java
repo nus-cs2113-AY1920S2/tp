@@ -19,7 +19,7 @@ public class Parser {
     }
 
     /**
-     *Get Command word from userInput.
+     * Get Command word from userInput.
      *
      * @param userInput The userInput read by Ui.
      * @return The Command word.
@@ -32,5 +32,4 @@ public class Parser {
         String[] instructions = userInput.split(" ",20);
         return Arrays.copyOfRange(instructions, 1, instructions.length);
     }
-
 }
