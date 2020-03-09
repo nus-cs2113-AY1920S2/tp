@@ -65,17 +65,17 @@ public class StorageHandler {
      * @param dataFilePath Path to data file.
      * @throws IOException If an error occurs while writing to file.
      */
-    private static void updateIndexes(List<String> fileContent, int removedIndex, String dataFilePath) throws IOException {
+    private static void updateIndexes(List<String> fileContent, int removedIndex, String dataFilePath)
+            throws IOException {
         // Update indexes of subsequent tasks (e.g. if you remove task 2, task 3 becomes task 2)
-        for (int i = removedIndex; i < fileContent.size(); i++)
-        {
+        for (int i = removedIndex; i < fileContent.size(); i++) {
             // Get current comma separated string
             String currString = fileContent.get(i);
 
             String updatedString = decrementIndex(currString, i);
 
             // Replace the line with the updated string
-            replaceLine(i+1, updatedString, dataFilePath);
+            replaceLine(i + 1, updatedString, dataFilePath);
         }
     }
 
