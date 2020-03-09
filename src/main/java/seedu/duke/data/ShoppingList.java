@@ -2,13 +2,14 @@ package seedu.duke.data;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.commands.MarkCommand;
+import seedu.duke.commands.UnmarkCommand;
+
 import java.util.ArrayList;
 
 public class ShoppingList {
 
     private static ArrayList<Item> items = new ArrayList<>();
-    private static double budget;
-    private static double cost;
     private static Command newCommand;
 
     public ShoppingList() {
@@ -18,6 +19,11 @@ public class ShoppingList {
         return items;
     }
 
+    /**
+     * Formats the list to be printed to user.
+     * @param feedback String that is to be made into list to be printed to user
+     * @return the contents of the list, formatted into a string
+     */
     public String compileList(String feedback) {
         int bulletNum = 1;
         String itemLine;
@@ -34,13 +40,13 @@ public class ShoppingList {
     }
 
     /**
-     * Marks item in index as bought
+     * Marks item in index as bought.
      * @param index index of item to mark
      * @return item that is marked
      */
     public static Item markAsBought(int index) {
         if (index >= items.size()) {
-            newCommand = new IncorrectCommand("this item does not exist in the list!");
+            newCommand = new IncorrectCommand(MarkCommand.FAIL_MESSAGE);
         }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
@@ -58,13 +64,13 @@ public class ShoppingList {
     }
 
     /**
-     * Unmarks item in index as bought
+     * Unmarks item in index as bought.
      * @param index index of item to unmark
      * @return item that is unmarked
      */
     public static Item unmarkAsBought(int index) {
         if (index >= items.size()) {
-            newCommand = new IncorrectCommand("this item does not exist in the list!");
+            newCommand = new IncorrectCommand(UnmarkCommand.FAIL_MESSAGE);
         }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
