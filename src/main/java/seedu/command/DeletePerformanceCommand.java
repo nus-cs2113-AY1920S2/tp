@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.command;
+
+import seedu.module.Performance;
 
 import java.util.List;
 

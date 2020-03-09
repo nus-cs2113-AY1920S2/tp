@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.list;
+
+import seedu.module.Performance;
 
 import java.util.ArrayList;
 import java.util.List;

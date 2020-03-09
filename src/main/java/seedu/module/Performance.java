@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.module;
 
 import java.io.Serializable;
 

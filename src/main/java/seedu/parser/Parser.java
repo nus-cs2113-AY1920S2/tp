@@ -1,4 +1,10 @@
-package seedu.duke;
+package seedu.parser;
+
+import seedu.command.AddPerformanceCommand;
+import seedu.command.DeletePerformanceCommand;
+import seedu.command.ViewResultCommand;
+import seedu.list.PerformanceList;
+import seedu.module.Performance;
 
 import java.util.Arrays;
 import java.util.List;

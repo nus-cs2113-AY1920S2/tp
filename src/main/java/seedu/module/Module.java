@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.module;
 
 public class Module {
     String nameOfModule;

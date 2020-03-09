@@ -1,7 +1,7 @@
 package seedu.duke;
 
-import java.util.ArrayList;
-import java.util.List;
+import seedu.parser.Parser;
+
 import java.util.Scanner;
 
 public class Duke {
