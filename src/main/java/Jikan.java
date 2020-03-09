@@ -1,3 +1,5 @@
+import jikan.storage.Storage;
+
 import java.util.Scanner;
 
 /**
@@ -15,7 +17,18 @@ public class Jikan {
             + " Hello! I'm Jikan\n"
             + " What can I do for you today?\n"
             + "-------------------------------------------\n";
-
+  
+    /**
+     * Creates ActivityList and loads data from data file if the data file previously existed;
+     * otherwise, an empty task list is initialized.
+     */
+    private static void createActivityList() {
+        if (storage.loadFile()) {
+            activityList = new ActivityList(storage.dataFile);
+        } else {
+            activityList = new ActivityList();
+        }
+    }
   
     /**
      * Main entry-point for the Jikan application.
@@ -23,7 +36,8 @@ public class Jikan {
     public static void main(String[] args) {
         System.out.println(GREETING);
         Scanner in = new Scanner(System.in);
-        ActivityList activityList = new ActivityList();
+        storage = new Storage(DATA_FILE_PATH);
+        createActivityList();
         Parser.parseUserCommands(in, activityList);
     }
 }
