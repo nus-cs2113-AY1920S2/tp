@@ -3,8 +3,8 @@ package seedu.parser;
 import seedu.module.performance.Performance;
 
 public class PerformanceDataParser {
-
     private String userInput;
+
     public PerformanceDataParser(String userInput) {
         this.userInput = userInput;
     }

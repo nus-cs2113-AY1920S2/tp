@@ -1,9 +1,11 @@
 package seedu.command;
 
-import seedu.command.performance.*;
+
+import seedu.command.performance.AddPerformanceCommand;
+import seedu.command.performance.DeletePerformanceCommand;
+import seedu.command.performance.ViewAssignmentResultCommand;
+import seedu.command.performance.ViewStudentResultCommand;
 import seedu.exception.DukeException;
-import seedu.exception.PerformanceAssignmentListException;
-import seedu.exception.PerformanceStudentListException;
 
 import static seedu.parser.Parser.getCommandWord;
 
