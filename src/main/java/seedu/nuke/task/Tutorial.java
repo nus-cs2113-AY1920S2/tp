@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Tutorial extends Stuff {
-    public Tutorial() {
-        super();
+    public Tutorial(String description) {
+        super(description);
     }
 }
