@@ -25,7 +25,7 @@ public class DoneCommand extends Command {
                 throw new DukeException(Messages.COMPLETED_TASK_ERROR);
             }
             taskList.markTaskAsDone(doneIndex);
-            return new CommandResult(String.format(Messages.DONE_SUCCESS_MESSAGE, doneIndex,
+            return new CommandResult(String.format(Messages.DONE_SUCCESS_MESSAGE, doneIndex + 1,
                     taskToBeMarkDone.getName()));
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new DukeException(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
