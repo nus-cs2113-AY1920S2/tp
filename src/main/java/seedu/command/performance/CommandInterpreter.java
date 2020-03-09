@@ -1,4 +1,4 @@
-package seedu.command;
+package seedu.command.performance;
 
 import seedu.exception.DukeException;
 
