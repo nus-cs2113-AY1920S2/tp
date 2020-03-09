@@ -1,18 +1,22 @@
 package seedu.nuke.module;
 
+import seedu.nuke.task.Stuff;
 import seedu.nuke.task.Task;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Module {
     private String moduleCode;
     private String title;
     private String description;
-    private TaskList taskList;
+    private ArrayList<Stuff> stuffs;
 
     public Module(String moduleCode, String title, String description) {
         this.moduleCode = moduleCode;
         this.title = title;
         this.description = description;
-        this.taskList = new TaskList();
+        this.stuffs = new ArrayList<Stuff>();
     }
 
     public String getModuleCode() {
@@ -27,11 +31,8 @@ public class Module {
         return description;
     }
 
-    public TaskList getTaskList() {
-        return taskList;
+    public ArrayList<Stuff> getStuffs() {
+        return stuffs;
     }
 
-    public void addTask(Task task) {
-        taskList.add(task);
-    }
 }
