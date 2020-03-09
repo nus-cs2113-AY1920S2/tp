@@ -89,7 +89,7 @@ public class Parser {
         try {
             dateTime = parseDate(matcher.group("dateTime"));
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR_);
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
         String assignmentName = matcher.group("assignmentName");
@@ -134,7 +134,7 @@ public class Parser {
         try {
             dateTime = parseDate(matcher.group("dateTime"));
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR_);
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
         String eventName = matcher.group("eventName");

@@ -8,15 +8,16 @@ public abstract class Command {
     public static final String COMMAND_NAME = null; // todo: override this
 
     /**
-     * Executes the specific command
+     * Executes the specific command.
      * @param taskList TaskList object that handles adding Task
      * @param ui Ui object that interacts with user
      * @return CommandResult object with acknowledgment message
      */
-    public abstract CommandResult execute(TaskList taskList, Ui ui) throws Exception; // todo: take TaskList, Ui, Storage as parameters
+    public abstract CommandResult execute(TaskList taskList, Ui ui) throws Exception; //
+    // todo: take TaskList, Ui, Storage as parameters
 
     /**
-     * Obtain a range of numbers that is valid for usage on taskList
+     * Obtain a range of numbers that is valid for usage on taskList.
      * @param taskList The interested list in TaskManager to find the range of values
      * @return A string with the range of valid numbers.
      */
