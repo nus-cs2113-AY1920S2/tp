@@ -3,7 +3,7 @@ package seedu.nuke.command;
 /*
     edit-type command
  */
-public abstract class EditCommand extends Command{
+public abstract class EditTaskCommand extends TaskCommand{
 
     protected String taskDescription;
 
@@ -11,7 +11,7 @@ public abstract class EditCommand extends Command{
      * set the deadline of a task
      * @param taskDescription full command args string
      */
-    public EditCommand(String taskDescription) {
+    public EditTaskCommand(String taskDescription) {
         this.taskDescription = taskDescription;
     }
 

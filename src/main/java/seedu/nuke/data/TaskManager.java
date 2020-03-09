@@ -8,7 +8,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class TaskManager {
-    ArrayList<Task> internalList = new ArrayList<>();
+    ArrayList<Task> allTasks = new ArrayList<>();
 
     /**
      * Constructs empty task list.
@@ -23,5 +23,36 @@ public class TaskManager {
      */
     public boolean contains(Task toCheck) {
         return false;
+    }
+
+    /**
+     * Parses the given arguments string as a single index number.
+     *
+     * @return the task list
+     */
+    public ArrayList<Task> getTaskList() {
+        return allTasks;
+    }
+
+    /**
+     * clears all tasks from the task list.
+     * call by clear function
+     */
+    public void clear() {
+        allTasks.clear();
+    }
+
+    /**
+     * compare this task with other task
+     *
+     * @param other target task
+     * @return true if tasks are equal
+     */
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskManager // instanceof handles nulls
+                && this.allTasks.equals(((TaskManager) other).allTasks));
     }
 }
