@@ -23,13 +23,19 @@ public class ListCommandTest {
     private static Assignment testCaseTwo;
     private static Event testCaseThree;
     private static Event testCaseFour;
-    private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks from your query:\n" +
-            "1.[A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00)" + System.lineSeparator() + "    " + System.lineSeparator() +
-            "2.[A][X] OP1 (by: Wed 01 Jan 2020 00:00)" + System.lineSeparator() + "   15%" + System.lineSeparator() +
-            "3.[E][X] midterms (at: Fri 13 Mar 2020 18:00)" + System.lineSeparator() + "    " + System.lineSeparator() +
-            "4.[E][X] Countdown (at: Wed 01 Jan 2020 00:00)" + System.lineSeparator() + "   new year new me";
+    private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks from your query:\n"
+            + "1.[A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00)" + System.lineSeparator() + "    "
+            + System.lineSeparator()
+            + "2.[A][X] OP1 (by: Wed 01 Jan 2020 00:00)" + System.lineSeparator() + "   15%"
+            + System.lineSeparator()
+            + "3.[E][X] midterms (at: Fri 13 Mar 2020 18:00)" + System.lineSeparator() + "    "
+            + System.lineSeparator()
+            + "4.[E][X] Countdown (at: Wed 01 Jan 2020 00:00)" + System.lineSeparator() + "   new year new me";
 
     @BeforeAll
+    /**
+     * Initialize hardcoded test cases for testing.
+     */
     public static void setup() {
         filledTasklist = new TaskList();
         emptyTasklist = new TaskList();
@@ -64,7 +70,8 @@ public class ListCommandTest {
     /* TODO Figure out whats wrong
     @Test
     public void printList_filledList_filledListMsg() {
-        assertEquals(expectedOutputFromFilledTasklist, new ListCommand(null).execute(filledTasklist, ui).feedbackToUser);
+        assertEquals(expectedOutputFromFilledTasklist,
+                new ListCommand(null).execute(filledTasklist, ui).feedbackToUser);
     }
      */
 }
