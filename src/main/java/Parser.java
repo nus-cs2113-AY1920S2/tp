@@ -4,12 +4,20 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
  */
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Scanner;
+import jikan.storage.Storage;
 
+/**
+ * Represents the object which parses user input to relevant functions for the execution of commands.
+ */
 public class Parser {
 
+    /**
+     * Parses user commands to relevant functions to carry out the commands.
+     * @param scanner scanner object which reads user input
+     * @param activityList the list of activities
+     */
     public static void parseUserCommands(Scanner scanner, ActivityList activityList) {
         boolean exit = false;
         Activity newActivity;
