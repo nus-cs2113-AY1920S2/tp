@@ -8,6 +8,10 @@ public class SetBudgetCommand extends Command {
 
     public static final String SET_BUDGET_MESSAGE = "Setting budget to ";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the budget based on user input."
+            + System.lineSeparator() + "|| Parameters: SET /b[BUDGET]"
+            + System.lineSeparator() + "|| Example: SET /b 100.00" + System.lineSeparator();;
+
     public SetBudgetCommand(double amount) {
         super();
         this.amount = amount;

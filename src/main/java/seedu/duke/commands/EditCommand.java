@@ -6,10 +6,15 @@ import seedu.duke.data.ShoppingList;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "EDIT";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified item in the list."
+            + System.lineSeparator() + "|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]"
+            + System.lineSeparator() + "|| Example 1: EDIT 1 i/apple p/3.00"
+            + System.lineSeparator() + "|| Example 2: EDIT 1 i/apple"
+            + System.lineSeparator() + "|| Example 3: EDIT 1 p/6.00" + System.lineSeparator();
     public static final String MESSAGE_SUCCESS = System.lineSeparator()
                                                  + "The item has been updated to: %s";
     public static final String MESSAGE_FAILURE = System.lineSeparator()
-                                                 + "OOPS! You have entered an invalid index no. ..";
+                                                 + "OOPS! I don't have that item in the list yet. Try again? :D";
 
     private int indexOfItem;
     private String newDescription;

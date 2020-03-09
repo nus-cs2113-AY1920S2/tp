@@ -77,6 +77,8 @@ public class Parser {
             break;
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
+            createHelpCommand();
+            break;
 
         case ExitCommand.COMMAND_WORD:
             createExitCommand();
@@ -123,6 +125,16 @@ public class Parser {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Error! Description of an item cannot be empty."
                     + "\nExample: ADD 1 i/apple p/4.50");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Oops! For that to be done properly, check if these are met:"
+                    + System.lineSeparator()
+                    + " - Description of an item cannot be empty."
+                    + " - Price of an item has to be in decimal form."
+                    + System.lineSeparator()
+                    + " - At least 'i/' or 'p/' should be present."
+                    + System.lineSeparator()
+                    + "|| Example: ADD i/apple p/2.50");
         }
     }
 
@@ -179,8 +191,15 @@ public class Parser {
             newCommand = new EditCommand(indexOfItem, newItemDescription, newItemPrice);
         } catch (NumberFormatException | NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Error! Index of item must be a positive number and the price of an item"
-                    + "has to be in decimal form\n  Example: edit 2 i/apple p/2.50");
+                    + "Oops! For that to be done properly, check if these are met:"
+                    + System.lineSeparator()
+                    + " - Index of item must be a positive number."
+                    + System.lineSeparator()
+                    + " - Price of an item has to be in decimal form."
+                    + System.lineSeparator()
+                    + " - At least 'i/' or 'p/' should be present."
+                    + System.lineSeparator()
+                    + "|| Example: EDIT 2 i/apple p/2.50");
         }
     }
 
@@ -237,7 +256,7 @@ public class Parser {
             indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
             argsArray = new String[]{indexOfItem, null, itemPrice};
 
-        } else if (descriptionPresent && pricePresent) { //e.g args: EDIT 2 i/apple p/4.50
+        } else if (descriptionPresent && pricePresent) { //e.g args: EDIT 2 i/.. p/..
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
             indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
 
@@ -245,7 +264,7 @@ public class Parser {
                 indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix);
-            } else {
+            } else { //e.g args: EDIT 2 i/apple p/4.50
                 indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer, indexOfpPrefix);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer);

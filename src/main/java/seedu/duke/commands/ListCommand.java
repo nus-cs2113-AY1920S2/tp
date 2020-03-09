@@ -12,6 +12,10 @@ public class ListCommand extends Command {
 
     public static final String BUDGET_MESSAGE = "Your remaining budget / total budget: %.2f / %.2f\n";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all items in the list."
+            + System.lineSeparator() + "|| Parameters: DISPLAY"
+            + System.lineSeparator() + "|| Example: DISPLAY" + System.lineSeparator();
+
     @Override
     public CommandResult execute() {
 

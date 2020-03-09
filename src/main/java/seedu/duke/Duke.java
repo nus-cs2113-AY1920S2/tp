@@ -6,6 +6,8 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.parser.Parser;
+
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Duke {
@@ -35,7 +37,7 @@ public class Duke {
      *
      */
     private void start() {
-        System.out.println("HELLO! I'm SHOCO. Your digital shopping list!\n");
+        System.out.println("HELLO! I'm SHOCO. Your digital shopping list!");
     }
 
     /** Prints the Goodbye message and exits. */
@@ -49,7 +51,6 @@ public class Duke {
         Command command;
         do {
             String userCommandText = readCommand();
-            System.out.println(userCommandText);
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             System.out.println(result.feedbackToUser);
