@@ -10,7 +10,7 @@ public class SetBudgetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the budget based on user input."
             + System.lineSeparator() + "|| Parameters: SET /b[BUDGET]"
-            + System.lineSeparator() + "|| Example: SET /b 100.00" + System.lineSeparator();;
+            + System.lineSeparator() + "|| Example: SET /b 100.00" + System.lineSeparator();
 
     public SetBudgetCommand(double amount) {
         super();
