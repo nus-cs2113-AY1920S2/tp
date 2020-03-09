@@ -16,8 +16,8 @@ public class Messages {
     public static final String EXIT_MESSAGE = "Exiting DUKE" + System.lineSeparator() + Messages.LOGO;
 
     // Command Print Messages
-    public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + "%s" +
-            System.lineSeparator() + "Now you have %d tasks in the list!";
+    public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + "%s"
+            + System.lineSeparator() + "Now you have %d tasks in the list!";
     public static final String DELETE_SUCCESS_MESSAGE = "%d. %s is deleted!";
     public static final String DONE_SUCCESS_MESSAGE = "%d. %s is marked done!";
     public static final String INCORRECT_COMMAND_ERROR = "Oh no. %s";

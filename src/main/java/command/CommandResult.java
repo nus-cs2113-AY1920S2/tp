@@ -1,4 +1,5 @@
 package command;
+
 /**
  * Result from running the Command to be shown to user.
  */
