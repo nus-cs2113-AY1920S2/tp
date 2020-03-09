@@ -23,8 +23,8 @@ public class EditCommandTest {
 
     @Test
     void testEdit_ItemDescriptionOnly_Success() {
-
-        Command command = new EditCommand(1, "apples", null);
+        command.setData(items, null);
+        command = new EditCommand(1, "apples", null);
         CommandResult result = command.execute();
         String expectedFeedback = System.lineSeparator() + "The item has been updated to: " + items.getList().get(0).toString();
         assertEquals(expectedFeedback, result.feedbackToUser);
@@ -33,16 +33,16 @@ public class EditCommandTest {
 
     @Test
     void testEdit_ItemPriceOnly_Success() {
-        Command command1 = new EditCommand(2, null, "3.5");
-        CommandResult result1 = command1.execute();
+        command = new EditCommand(2, null, "3.5");
+        CommandResult result1 = command.execute();
         String expectedFeedback1 = System.lineSeparator() + "The item has been updated to: " + items.getList().get(1).toString();
         assertEquals(expectedFeedback1, result1.feedbackToUser);
     }
 
     @Test
     void testEdit_ItemPriceAndDescription_Success() {
-        Command command2 = new EditCommand(3, "banana", "5.00");
-        CommandResult result2 = command2.execute();
+        command = new EditCommand(3, "banana", "5.00");
+        CommandResult result2 = command.execute();
         String expectedFeedback2 = System.lineSeparator() + "The item has been updated to: " + items.getList().get(2).toString();
         assertEquals(expectedFeedback2, result2.feedbackToUser);
     }
@@ -51,8 +51,8 @@ public class EditCommandTest {
     public void testEdit_exceptionThrown() {
         CommandResult result3 = null;
         try{
-            Command command3 = new EditCommand(0, "banana", "5.00");
-            result3 = command3.execute();
+            command = new EditCommand(0, "banana", "5.00");
+            result3 = command.execute();
         }catch (NullPointerException | IndexOutOfBoundsException | NumberFormatException e){
             String expectedFeedback3 = System.lineSeparator() + "OOPS! You have entered an invalid index no. ..";
             assert result3 != null;
