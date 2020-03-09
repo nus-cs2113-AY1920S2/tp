@@ -15,18 +15,24 @@ public class Duke {
     private static ModuleList selectedModulesList;
     private static Ui ui;
 
+    /**
+     * Instantiate all required classes.
+     */
     public Duke() {
         ui = new Ui();
         availableModulesList = new AvailableModulesList();
         selectedModulesList = new SelectedModulesList();
     }
 
+    /**
+     * Main program to run.
+     */
     public void run() {
         ui.greetUser();
         String fullCommand;
         boolean isExit = false;
         Scanner in = new Scanner(System.in);
-        do{
+        do {
             fullCommand = in.nextLine();
             Command command = Parser.parse(fullCommand);
             command.execute(selectedModulesList, availableModulesList);

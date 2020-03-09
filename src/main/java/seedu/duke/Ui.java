@@ -17,7 +17,7 @@ public class Ui {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    private static void showToUser(String... messages){
+    private static void showToUser(String... messages) {
         for (String m: messages) {
             System.out.println(m);
         }

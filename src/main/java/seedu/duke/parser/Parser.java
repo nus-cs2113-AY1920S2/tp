@@ -21,13 +21,13 @@ public class Parser {
         words = fullCommand.split(" ",2);
         taskType = words[0];
         switch (taskType) {
-            case AddCommand.COMMAND_WORD:
-                args = words[1];
-                return processAddCommand(args);
-            case ExitCommand.COMMAND_WORD:
-                return processExitCommand();
-            default:
-                return null;
+        case AddCommand.COMMAND_WORD:
+            args = words[1];
+            return processAddCommand(args);
+        case ExitCommand.COMMAND_WORD:
+            return processExitCommand();
+        default:
+            return null;
         }
     }
 

@@ -6,5 +6,7 @@ public class Command {
     public void execute(ModuleList selectedModulesList, ModuleList availableModulesList) {
     }
 
-    public boolean isExit() { return false; }
+    public boolean isExit() {
+        return false;
+    }
 }
