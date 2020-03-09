@@ -42,7 +42,7 @@ public class Jikan {
             activityList = new ActivityList();
         }
     }
-
+  
     /**
      * Main entry-point for the Jikan application.
      */
