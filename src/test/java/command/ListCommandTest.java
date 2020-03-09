@@ -32,10 +32,10 @@ public class ListCommandTest {
             + System.lineSeparator()
             + "4.[E][X] Countdown (at: Wed 01 Jan 2020 00:00)" + System.lineSeparator() + "   new year new me";
 
-    @BeforeAll
     /**
      * Initialize hardcoded test cases for testing.
      */
+    @BeforeAll
     public static void setup() {
         filledTasklist = new TaskList();
         emptyTasklist = new TaskList();
