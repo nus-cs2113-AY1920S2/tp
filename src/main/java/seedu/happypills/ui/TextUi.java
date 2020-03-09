@@ -48,6 +48,7 @@ public class TextUi {
                 + "|__| |__||__| |__||___|    |___|      |___|  |___|    |___| |_______||_______||_______|\n";
 
         System.out.println("Hello from" + logo);
+        System.out.println("What can I do for you today, doctor?");
     }
 
     /**
@@ -56,10 +57,14 @@ public class TextUi {
     public static void printPatient(Patient patient, int patientNum) {
         System.out.println("    Got it! I've added this patient:");
         System.out.println(patient + DIVIDER);
-
     }
 
     public static void printPatient(Patient patient) {
+        System.out.println(patient + DIVIDER);
+    }
+
+    public static void printEditSuccess(Patient patient) {
+        System.out.println("Patient details have been updated as follows: ");
         System.out.println(patient + DIVIDER);
     }
 
