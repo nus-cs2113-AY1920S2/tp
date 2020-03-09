@@ -10,7 +10,7 @@ public class Activity {
 
     /**
      * Constructor to create activity when endTime is previously known
-     * (i.e. when loading from storage)
+     * (i.e. when loading from jikan.storage)
      *
      * @param name Name of activity.
      * @param startTime Time at which activity started.

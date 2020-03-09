@@ -1,4 +1,4 @@
-import storage.Storage;
+import jikan.storage.Storage;
 
 import java.util.Scanner;
 
