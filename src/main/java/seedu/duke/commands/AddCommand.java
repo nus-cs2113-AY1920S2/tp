@@ -1,7 +1,6 @@
 package seedu.duke.commands;
 
 import seedu.duke.data.Item;
-import seedu.duke.data.ShoppingList;
 
 public class AddCommand extends Command {
 
