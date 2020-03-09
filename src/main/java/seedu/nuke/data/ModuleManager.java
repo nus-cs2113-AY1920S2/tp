@@ -12,9 +12,17 @@ import static seedu.nuke.util.Message.*;
 public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules;
 
+    /**
+     * initialize with module list
+     */
     public ModuleManager() {
+        this.modules  = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param modules initialize with existed module list
+     */
     public ModuleManager(ArrayList<Module> modules) {
         this.modules = modules;
     }
