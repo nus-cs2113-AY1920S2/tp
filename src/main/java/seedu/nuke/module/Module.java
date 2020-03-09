@@ -23,7 +23,7 @@ public class Module {
      * @param description
      */
     public Module(String moduleCode, String title, String description) {
-        this.moduleCode = moduleCode;
+        this.moduleCode = moduleCode.toUpperCase();
         this.title = title;
         this.description = description;
         this.taskManager = new TaskManager();
@@ -56,6 +56,6 @@ public class Module {
     }
 
     public boolean isSameModule(Module module) {
-        return this.moduleCode.equals(module.moduleCode);
+        return this.moduleCode.equals(module.moduleCode.toUpperCase());
     }
 }
