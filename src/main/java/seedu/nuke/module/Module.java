@@ -10,6 +10,12 @@ public class Module {
     private String description;
     private ArrayList<Task> moduleTasks;
 
+    /**
+     * initialize a module with module code, title, and description
+     * @param moduleCode
+     * @param title
+     * @param description
+     */
     public Module(String moduleCode, String title, String description) {
         this.moduleCode = moduleCode;
         this.title = title;

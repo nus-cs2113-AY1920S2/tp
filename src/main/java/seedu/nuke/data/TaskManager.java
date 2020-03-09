@@ -7,6 +7,9 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+/**
+ * every module has a task manager to manage tasks within module
+ */
 public class TaskManager {
     ArrayList<Task> allTasks = new ArrayList<>();
 
