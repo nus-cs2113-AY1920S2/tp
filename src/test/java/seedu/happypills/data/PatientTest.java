@@ -2,7 +2,7 @@ package seedu.happypills.data;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PatientTest {
 
@@ -48,16 +48,18 @@ class PatientTest {
         assertEquals("NIL", patientThree.getRemarks());
     }
 
-//    @Test
-//    void testToString() {
-//        String correctOutput = "        Name : Nyan\n"
-//                + "        NRIC : S1234Z\n"
-//                + "        Phone Number : 999\n"
-//                + "        DOB : 22 Aug\n"
-//                + "        Blood Type : O+\n"
-//                + "        Allergies : Peanuts\n"
-//                + "        Remarks : NIL\n";
-//
-//        assertEquals(correctOutput, patientOne);
-//    }
+    /*
+    @Test
+    void testToString() {
+        String correctOutput = "        Name : Nyan\n"
+                + "        NRIC : S1234Z\n"
+                + "        Phone Number : 999\n"
+                + "        DOB : 22 Aug\n"
+                + "        Blood Type : O+\n"
+                + "        Allergies : Peanuts\n"
+                + "        Remarks : NIL\n";
+
+        assertEquals(correctOutput, patientOne);
+    }
+    */
 }

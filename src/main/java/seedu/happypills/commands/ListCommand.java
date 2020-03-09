@@ -8,10 +8,9 @@ import seedu.happypills.ui.TextUi;
  */
 public class ListCommand extends Command {
 
-
     @Override
     public void execute(PatientList patients) {
-        if (patients.isEmpty()){
+        if (patients.isEmpty()) {
             TextUi.printEmptyList();
         } else {
             TextUi.printList(patients);
