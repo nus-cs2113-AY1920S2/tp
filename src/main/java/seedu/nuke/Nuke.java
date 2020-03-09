@@ -39,7 +39,7 @@ public class Nuke {
             printDivider();
             command = new Parser().parseCommand(moduleManager, userCommandText);
             executeCommand(command);
-        } while (!ExitCommand.isExit(command))a;
+        } while (!ExitCommand.isExit(command));
     }
 
     /**
@@ -47,16 +47,16 @@ public class Nuke {
      * @param command the parsed Command object
      * @return commandResult that contains the execute output information
      */
-    private CommandResult executeCommand(Command command) throws StorageOperationException {
+    private CommandResult executeCommand(Command command) {
         try {
             // supplies the data the command will operate on.
             // if there is no file to load or the file is empty, setData will initialize a new taskManager system
-            command.setData(moduleManager);
+            //command.setData(moduleManager);
             // Execute according to the command itself
             commandResult = command.execute();
             // save the taskManager to a file
-            moduleManager.getStorager().save(taskManager);
-            StorageFile.saveJson(taskManager);
+            //moduleManager.getStorager().save(taskManager);
+            //StorageFile.saveJson(taskManager);
         } catch (Exception ex) {
             // the out layer exception handler
             System.out.println(ex);

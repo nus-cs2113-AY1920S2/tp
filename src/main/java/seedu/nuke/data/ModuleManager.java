@@ -30,7 +30,7 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * @return all modules
      */
-    public List<Module> getModules() {
+    public List<Module> getModuleList() {
         return modules;
     }
 
@@ -84,5 +84,12 @@ public class ModuleManager implements Iterable<Module> {
     @Override
     public Iterator<Module> iterator() {
         return modules.iterator();
+    }
+
+    /**
+     * @return the next-to-add task index
+     */
+    public int getNextTaskIndex(){
+        return modules.size();
     }
 }
