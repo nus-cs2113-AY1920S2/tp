@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Assignment extends Stuff {
-    public Assignment() {
-        super();
+    public Assignment(String description) {
+        super(description);
     }
 }
