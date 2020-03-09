@@ -11,4 +11,5 @@ public class Message {
             "                         \n";
     public static final String MESSAGE_WELCOME_1 = "Welcome to NUKE";
     public static final String MESSAGE_WELCOME_2 = "What can I do for you?";
+    public static final String MESSAGE_FAREWELL = "Bye. Hope to see you again soon!";
 }
