@@ -1,22 +1,20 @@
 package seedu.nuke.module;
 
-import seedu.nuke.task.Stuff;
 import seedu.nuke.task.Task;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Module {
     private String moduleCode;
     private String title;
     private String description;
-    private ArrayList<Stuff> stuffs;
+    private ArrayList<Task> moduleTasks;
 
     public Module(String moduleCode, String title, String description) {
         this.moduleCode = moduleCode;
         this.title = title;
         this.description = description;
-        this.stuffs = new ArrayList<Stuff>();
+        this.moduleTasks = new ArrayList<Task>();
     }
 
     public String getModuleCode() {
@@ -31,8 +29,8 @@ public class Module {
         return description;
     }
 
-    public ArrayList<Stuff> getStuffs() {
-        return stuffs;
+    public ArrayList<Task> getStuffs() {
+        return moduleTasks;
     }
 
     public boolean isSameModule(Module module) {
