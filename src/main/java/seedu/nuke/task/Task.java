@@ -1,6 +1,7 @@
 package seedu.nuke.task;
 
-import java.time.LocalDateTime;
+import seedu.nuke.format.DateTime;
+
 import java.util.ArrayList;
 
 import static seedu.nuke.common.Constants.NO_ICON;
@@ -9,16 +10,13 @@ import static seedu.nuke.common.Constants.YES_ICON;
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected ArrayList<String> files;
-    protected LocalDateTime deadline;
     protected int priority;
+    protected DateTime deadline;
+    protected ArrayList<String> files;
 
-    public Task(String description, ArrayList<String> files, LocalDateTime dateTime, int priority) {
+    public Task(String description, DateTime dateTime, int priority) {
         this.description = description;
-        this.files = new ArrayList<String>();
-        for (String file: files) {
-            this.files.add(file);
-        }
+        this.files = new ArrayList<>();
         this.deadline = dateTime;
         this.priority = priority;
         this.isDone = false;
@@ -28,7 +26,7 @@ public class Task {
         return description;
     }
 
-    public LocalDateTime getDeadline() {
+    public DateTime getDeadline() {
         return deadline;
     }
 
@@ -52,7 +50,11 @@ public class Task {
         return printOut.toString();
     }
 
-    public void setDeadline(LocalDateTime deadline) {
+    public void setDeadline(DateTime deadline) {
         this.deadline = deadline;
+    }
+
+    public void addFile(String filePath) {
+        files.add(filePath);
     }
 }
