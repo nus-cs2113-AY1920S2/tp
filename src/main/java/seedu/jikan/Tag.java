@@ -1,3 +1,5 @@
+package seedu.jikan;
+
 /**
  * Represents a tag object to tag activities.
  */

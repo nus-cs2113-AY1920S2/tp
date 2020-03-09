@@ -1,3 +1,4 @@
+package seedu.jikan;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -59,8 +60,20 @@ public class Activity {
         return ("You have ended " + this.name + " . Great job !\n");
     }
 
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
     /**
-     * Converts the Activity object to data representation to be stored in a data file.
+     * Converts the seedu.jikan.Activity object to data representation to be stored in a data file.
      * File format:
      * name, startTime, endTime
      *

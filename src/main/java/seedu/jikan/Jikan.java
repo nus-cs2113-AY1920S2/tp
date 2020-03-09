@@ -1,9 +1,11 @@
-import jikan.storage.Storage;
+package seedu.jikan;
+
+import seedu.jikan.storage.Storage;
 
 import java.util.Scanner;
 
 /**
- * Represents the Jikan time tracker.
+ * Represents the seedu.jikan.Jikan time tracker.
  */
 public class Jikan {
     /** Constant file path of data file. */
@@ -12,7 +14,7 @@ public class Jikan {
     /** Storage object for data file. */
     private static Storage storage;
 
-    /** Activity list to store current tasks in. */
+    /** seedu.jikan.Activity list to store current tasks in. */
     private static ActivityList activityList;
 
     public static final String GREETING = "___________________________________________\n"
@@ -23,12 +25,12 @@ public class Jikan {
             + "01. 01    .01.   01 `01. 01   01 01  1010 \n"
             + "010101  01010101 10   10 10   10 10   110 \n"
             + "___________________________________________\n"
-            + " Hello! I'm Jikan\n"
+            + " Hello! I'm seedu.jikan.Jikan\n"
             + " What can I do for you today?\n"
             + "-------------------------------------------\n";
     
     /**
-     * Creates ActivityList and loads data from data file if the data file previously existed;
+     * Creates seedu.jikan.ActivityList and loads data from data file if the data file previously existed;
      * otherwise, an empty task list is initialized.
      */
     private static void createActivityList() {
@@ -40,7 +42,7 @@ public class Jikan {
     }
   
     /**
-     * Main entry-point for the Jikan application.
+     * Main entry-point for the seedu.jikan.Jikan application.
      */
     public static void main(String[] args) {
         System.out.println(GREETING);

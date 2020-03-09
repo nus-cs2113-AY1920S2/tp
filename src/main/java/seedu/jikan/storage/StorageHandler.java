@@ -1,4 +1,4 @@
-package jikan.storage;
+package seedu.jikan.storage;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

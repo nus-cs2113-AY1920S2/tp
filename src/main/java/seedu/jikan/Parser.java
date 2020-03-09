@@ -1,4 +1,4 @@
-/*
+package seedu.jikan;/*
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -6,7 +6,6 @@ import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Scanner;
-import jikan.storage.Storage;
 
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
