@@ -2,6 +2,7 @@ package command;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.TaskList;
+import tasks.Assignment;
 import tasks.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +12,7 @@ public class DeleteCommandTest {
     @Test
     public void testDelete_success() {
         TaskList testTaskList = new TaskList();
-        Task newTask = new Task(null, null, null, null);
+        Task newTask = new Assignment(null, null, null, null);
         testTaskList.addTask(newTask);
         testTaskList.addTask(newTask);
         testTaskList.deleteTask(1);
