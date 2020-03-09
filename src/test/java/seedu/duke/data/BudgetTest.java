@@ -12,7 +12,7 @@ public class BudgetTest {
     public void getRemaining_zeroTotalCost_remainingEqualsBudget() {
         testBudget.setBudget(50);
         double totalCost = 0.0;
-        assertEquals(testBudget.getRemainingBudget(totalCost), testBudget.getAmount());
+        assertEquals(testBudget.getAmount(),testBudget.getRemainingBudget(totalCost));
     }
 
     @Test
@@ -20,7 +20,7 @@ public class BudgetTest {
         testBudget.setBudget(50);
         double totalCost = 60;
         double expectedResult = -10;
-        assertEquals(testBudget.getRemainingBudget(totalCost), expectedResult);
+        assertEquals(expectedResult,testBudget.getRemainingBudget(totalCost));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class BudgetTest {
         double testAmount = -100;
         double expectedResult = 0;
         testBudget.setBudget(testAmount);
-        assertEquals(testBudget.getAmount(),expectedResult);
+        assertEquals(expectedResult,testBudget.getAmount());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class BudgetTest {
         double testAmount = 6000;
         double expectedResult = 5000;
         testBudget.setBudget(testAmount);
-        assertEquals(testBudget.getAmount(),expectedResult);
+        assertEquals(expectedResult,testBudget.getAmount());
     }
 
 }
