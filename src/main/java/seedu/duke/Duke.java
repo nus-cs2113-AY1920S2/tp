@@ -10,8 +10,9 @@ import java.util.Scanner;
 
 public class Duke {
 
-	 /**
-     * Main entry-point for the java.duke.Duke application.
+    /**
+      * Main entry-point for the java.duke.Duke application.
+      *
      */
     public static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
@@ -53,10 +54,14 @@ public class Duke {
         } while (!ExitCommand.isExit(command));
     }
 
-    public String readCommand(){
+    /**Read the input when user type the command.
+     *
+     * @return input
+     */
+    public String readCommand() {
         Scanner in = new Scanner(System.in);
         String input = "";
-        while(input.isEmpty()){
+        while (input.isEmpty()) {
             input = in.nextLine();
             input = input.trim();
         }
