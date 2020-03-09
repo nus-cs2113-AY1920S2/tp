@@ -1,21 +1,48 @@
-
 import java.util.Scanner;
 
 public class MeetingOrganizer {
+    public MeetingOrganizer() {
+        //declare objects here
+    }
+    void botResponse(String userInput) throws MoException {
+        switch (userInput) {
+            case "1":
+                System.out.println("You have selected new scheduled meeting");
+                break;
+            case "2":
+                System.out.println("Which meeting slot do you want to delete?");
+                break;
+            case "3":
+                System.out.println("Which meeting slot do you want to edit?");
+                break;
+            case "4":
+                System.out.println("Here are all your meeting slots.");
+                break;
+            default:
+                throw new MoException("Unknown command, please try again.");
+        }
+    }
     /**
      * Main entry-point for the application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
+    public void run() {
+        TextUI.introMsg();
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        String userInput = in.nextLine();
+        while (!userInput.equals("5")) {
+            try {
+                botResponse(userInput);
+            } catch (MoException e) {
+                TextUI.errorMsg(e);
+            } finally {
+                userInput = in.nextLine();
+            }
+        }
+        TextUI.exitMsg();
+    }
+
+    public static void main(String[] args) {
+        new MeetingOrganizer().run();
     }
 }
 
