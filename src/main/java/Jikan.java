@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Represents the Jikan time tracker.
+ */
 public class Jikan {
     public static final String GREETING = "___________________________________________\n"
             + "   0101 01010101 01   01  .010.  101   01 \n"
@@ -13,8 +16,9 @@ public class Jikan {
             + " What can I do for you today?\n"
             + "-------------------------------------------\n";
 
+  
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the Jikan application.
      */
     public static void main(String[] args) {
         System.out.println(GREETING);
