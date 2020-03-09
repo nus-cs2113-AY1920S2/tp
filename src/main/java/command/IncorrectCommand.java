@@ -1,5 +1,6 @@
 package command;
 
+import common.Messages;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
 
@@ -11,7 +12,7 @@ public class IncorrectCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        System.out.println("Oh no. " + description);
+    public CommandResult execute(TaskList taskList, Ui ui) {
+        return new CommandResult(String.format(Messages.INCORRECT_COMMAND_ERROR, description));
     }
 }

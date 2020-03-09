@@ -2,11 +2,13 @@ package seedu.duke;
 
 import command.AssignmentCommand;
 import command.Command;
+import command.CommandResult;
 import command.DeleteCommand;
 import command.DoneCommand;
 import command.EventCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
+import common.Messages;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -58,7 +60,7 @@ public class Parser {
         case "list":
             return prepareListCommand(fullCommand);
         default:
-            return new IncorrectCommand("Unknown command entered");
+            return new IncorrectCommand(Messages.UNKNOWN_COMMAND_ERROR);
         }
     }
 
@@ -80,14 +82,14 @@ public class Parser {
     private static Command prepareAssignmentCommand(String fullCommand) {
         final Matcher matcher = ASSIGNMENT_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
-            return new IncorrectCommand("Incorrect format for Assignment Command");
+            return new IncorrectCommand(Messages.ASSIGN_INCORRECT_FORMAT_ERROR);
         }
 
         LocalDateTime dateTime;
         try {
             dateTime = parseDate(matcher.group("dateTime"));
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand("Wrong date format or invalid date provided");
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR_);
         }
 
         String assignmentName = matcher.group("assignmentName");
@@ -102,9 +104,9 @@ public class Parser {
         try {
             deleteIndex = Integer.parseInt(tokens[1]) - 1;
         } catch (NumberFormatException e) {
-            return new IncorrectCommand("Please provide an integer as the command parameter");
+            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
-            return new IncorrectCommand("Insufficient args for Delete Command");
+            return new IncorrectCommand(Messages.DELETE_INSUFFICIENT_ARGS_ERROR);
         }
         return new DeleteCommand(deleteIndex);
     }
@@ -115,9 +117,9 @@ public class Parser {
         try {
             doneIndex = Integer.parseInt(tokens[1]) - 1;
         } catch (NumberFormatException e) {
-            return new IncorrectCommand("Please provide an integer as the command parameter");
+            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
-            return new IncorrectCommand("Insufficient args for Done Command");
+            return new IncorrectCommand(Messages.DONE_INSUFFICIENT_ARGS_ERROR);
         }
         return new DoneCommand(doneIndex);
     }
@@ -125,14 +127,14 @@ public class Parser {
     private static Command prepareEventCommand(String fullCommand) {
         final Matcher matcher = EVENT_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
-            return new IncorrectCommand("Incorrect format for Event Command");
+            return new IncorrectCommand(Messages.EVENT_INCORRECT_FORMAT_ERROR);
         }
 
         LocalDateTime dateTime;
         try {
             dateTime = parseDate(matcher.group("dateTime"));
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand("Wrong date format or invalid date provided");
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR_);
         }
 
         String eventName = matcher.group("eventName");
@@ -163,8 +165,13 @@ public class Parser {
             if (input.equals("bb")) {
                 break;
             }
-            Command command = parseCommand(input);
-            command.execute(taskList, ui);
+            try {
+                Command command = parseCommand(input);
+                CommandResult result = command.execute(taskList, ui);
+                ui.showToUser(result.feedbackToUser);
+            } catch (Exception errorMsg) {
+                ui.showToUser(errorMsg.toString());
+            }
         }
     }
 }
