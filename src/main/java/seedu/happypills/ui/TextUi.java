@@ -58,4 +58,10 @@ public class TextUi {
         System.out.println(patient + DIVIDER);
 
     }
+
+    public static void printPatient(Patient patient) {
+        System.out.println(patient + DIVIDER);
+
+    }
+
 }

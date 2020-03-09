@@ -1,6 +1,7 @@
 package seedu.happypills;
 
 import seedu.happypills.commands.AddCommand;
+import seedu.happypills.commands.RetrieveCommand;
 import seedu.happypills.commands.Command;
 import seedu.happypills.commands.HelpCommand;
 import seedu.happypills.commands.ListCommand;
@@ -60,7 +61,7 @@ public class HappyPills {
             return new ListCommand();
         } else if (userCommand[0].equalsIgnoreCase("add")) {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
-                throw new HappyPillsException("lenght is empty");
+                throw new HappyPillsException("length is empty");
             }
             String[] patientDetail = userCommand[1].split(",");
             return new AddCommand(patientDetail[0], patientDetail[1],
@@ -69,6 +70,8 @@ public class HappyPills {
 
         } else if (userCommand[0].equalsIgnoreCase("help")) {
             return new HelpCommand();
+        } else if (userCommand[0].equalsIgnoreCase("get")) {
+            return new RetrieveCommand(userCommand[1]);
         } else {
             throw new HappyPillsException("Invalid Command");
         }
