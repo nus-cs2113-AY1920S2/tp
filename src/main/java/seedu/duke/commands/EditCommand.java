@@ -24,7 +24,7 @@ public class EditCommand extends Command {
     public CommandResult execute() {
         try {
             indexOfItem -= 1;
-            Item item = ShoppingList.getItem(indexOfItem);
+            Item item = items.getItem(indexOfItem);
             if(newDescription == null && newPrice != null){ //only edit price
                  item.setPrice(Double.parseDouble(newPrice));
             }
@@ -36,7 +36,7 @@ public class EditCommand extends Command {
                 item.setPrice(Double.parseDouble(newPrice));
             }
             return new CommandResult(String.format(MESSAGE_SUCCESS, item.toString()));
-        } catch (NullPointerException | NumberFormatException e) {
+        } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
             return new CommandResult(MESSAGE_FAILURE);
         }
     }
