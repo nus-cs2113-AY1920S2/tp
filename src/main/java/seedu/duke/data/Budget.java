@@ -10,8 +10,11 @@ public class Budget {
     }
 
     public void setBudget(double amount) {
-        this.amount = Math.min(amount,MAX);
-        this.amount = Math.max(amount,MIN);
+        if (amount > 5000) {
+            this.amount = Math.min(amount, MAX);
+        } else {
+            this.amount = Math.max(amount, MIN);
+        }
     }
 
     public double getAmount() {
