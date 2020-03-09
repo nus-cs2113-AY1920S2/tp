@@ -2,7 +2,7 @@ package seedu.attendance;
 
 import org.junit.jupiter.api.Test;
 import seedu.student.Student;
-import seedu.student.attendance.Attendance;
+import seedu.module.attendance.Attendance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
