@@ -22,7 +22,7 @@ import static seedu.nuke.util.ExceptionMessage.*;
 
 public class Nuke {
     private CommandResult commandResult;
-    public ModuleManager moduleManager;
+    private ModuleManager moduleManager;
     public ArrayList<DummyModule> modules;
     private Ui ui;
 
@@ -67,7 +67,7 @@ public class Nuke {
             // if there is no file to load or the file is empty, setData will initialize a new taskManager system
             //command.setData(moduleManager);
             // Execute according to the command itself
-            commandResult = command.execute();
+            commandResult = command.execute(moduleManager, ui);
             // save the taskManager to a file
             //moduleManager.getStorager().save(taskManager);
             //StorageFile.saveJson(taskManager);

@@ -89,10 +89,6 @@ public class ModuleManager implements Iterable<Module> {
         throw new ModuleNotFoundException();
     }
 
-    public void CheckDeadline(String moduleCode) {
-
-    }
-
     @Override
     public Iterator<Module> iterator() {
         return modules.iterator();
