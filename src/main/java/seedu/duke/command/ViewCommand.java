@@ -1,7 +1,11 @@
 package seedu.duke.command;
 
 import seedu.duke.data.ModuleList;
+import seedu.duke.data.SelectedModulesList;
+import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
+import seedu.duke.module.SelectedModule;
+import seedu.duke.ui.Ui;
 
 public class ViewCommand extends Command {
 
@@ -23,13 +27,13 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(ModuleList moduleList) {
+    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList) {
         switch (viewTaskType) {
         case VIEW_MODULE_PLAN:
-            viewModulePlan(moduleList);
+            viewModulePlan(selectedModulesList);
             break;
         default:
-            System.out.println("\tError!");
+            return;
         }
     }
 
@@ -37,11 +41,18 @@ public class ViewCommand extends Command {
      * Prints the user's module plan.
      * @param moduleList user's module list.
      */
-    private void viewModulePlan(ModuleList moduleList) {
-        System.out.println("Okay! Here is your module plan:");
-        for (Module module: moduleList) {
-            int index = moduleList.indexOf(module) + 1;
-            System.out.println("\t" + index + ". " + module);
+    private void viewModulePlan(SelectedModulesList moduleList) {
+        StringBuilder viewList = new StringBuilder();
+        for (SemModulesList sem: moduleList) {
+            viewList.append(sem.getSem()).append(System.lineSeparator());
+            for (Module selectedModule: sem) {
+                int index = sem.indexOf(selectedModule) + 1;
+                viewList.append(index).append(".")
+                        .append(selectedModule.toString())
+                        .append(System.lineSeparator());
+            }
+            viewList.append(System.lineSeparator());
         }
+        Ui.showViewedMessage(viewList.toString().trim());
     }
 }
