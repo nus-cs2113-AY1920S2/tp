@@ -8,6 +8,7 @@ import command.DoneCommand;
 import command.EventCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
+import command.HelpCommand;
 import common.Messages;
 
 import java.time.LocalDateTime;
@@ -49,6 +50,8 @@ public class Parser {
         String commandType = fullCommand.split("\\s+", 2)[0];
 
         switch (commandType) {
+        case "help":
+            return new HelpCommand();
         case "assignment":
             return prepareAssignmentCommand(fullCommand);
         case "delete":
@@ -159,6 +162,7 @@ public class Parser {
     public static void main(String[] args) {
         TaskList taskList = new TaskList();
         Ui ui = new Ui();
+        ui.showToUser(Messages.HELP_FORMAT_MESSAGE);
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
