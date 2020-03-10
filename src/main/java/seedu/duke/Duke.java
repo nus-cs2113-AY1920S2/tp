@@ -16,10 +16,23 @@ public class Duke {
         System.out.println("What is your name?");
 
         Scanner sc = new Scanner(System.in);
-        String userName = sc.nextLine();
-        System.out.println("Hello " + userName);
 
-        Person mainUser = new Person(userName);
+        String userName = sc.nextLine();
+
+        System.out.println("Hello " + userName +
+                " We would require some basic information about you before we begin :)");
+        System.out.print("Please enter your current age: ");
+        int age = Integer.parseInt(sc.nextLine());
+        System.out.print(System. lineSeparator());
+        System.out.print("Please enter your gender: ");
+        String gender = sc.nextLine();
+        System.out.print(System. lineSeparator());
+        System.out.print("Please enter your current height: ");
+        double height = Double.parseDouble(sc.nextLine());
+        System.out.print(System. lineSeparator());
+        System.out.print("Please enter your current weight: ");
+        double weight = Double.parseDouble(sc.nextLine());
+        System.out.print(System. lineSeparator());
 
     }
 }
