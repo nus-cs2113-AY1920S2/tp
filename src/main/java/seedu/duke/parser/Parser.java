@@ -119,7 +119,6 @@ public class Parser {
             } else {
                 double price = Double.parseDouble(prices);
                 newCommand = new AddCommand(description, price);
-
             }
         } catch (NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()

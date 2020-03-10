@@ -18,16 +18,16 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
-
-        String feedback = LIST_MESSAGE;
-        feedback = items.compileList(feedback);
+        System.out.println(LIST_MESSAGE);
+        String feedback;
+        items.compileList();
 
         double totalCost = 0.0;
         for (Item item : items.getList()) {
             totalCost += item.getPrice();
         }
 
-        feedback = feedback + String.format(TOTAL_COST_MESSAGE, totalCost);
+        feedback = String.format(TOTAL_COST_MESSAGE, totalCost);
 
         feedback = feedback
                 + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
