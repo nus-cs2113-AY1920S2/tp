@@ -9,9 +9,17 @@ public class Budget {
         this.amount = 0;
     }
 
-    public void setBudget(double amount) {
-        this.amount = Math.min(amount,MAX);
-        this.amount = Math.max(amount,MIN);
+    /**
+     * Sets the budget based on user input.
+     *
+     * @param amount The user supplied amount.
+     * @return The correct budget amount in case the user-specified amount is too high or negative.
+     */
+    public double setBudget(double amount) {
+        amount = Math.min(amount,MAX);
+        amount = Math.max(amount,0);
+        this.amount = amount;
+        return amount;
     }
 
     public double getAmount() {
