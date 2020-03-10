@@ -19,7 +19,6 @@ public class Parser {
     /** 
      * Parses the user's input into specific command type 
      * based on the command word used. 
-     * 
      * For instance: 'add stock; i/bacon; q/10; p/$0.50;' 
      * will be parse an AddCommand due to the word 'add'.
      * 
@@ -48,7 +47,6 @@ public class Parser {
     /** 
      * Parses the user's input into specific AddCommand  
      * based on the category. 
-     * 
      * For instance: 'add stock; i/bacon; q/10; p/$0.50;' 
      * will be parse an AddCommand for the category 'stock' 
      * due to the word 'stock' used.
@@ -72,7 +70,6 @@ public class Parser {
     /** 
      * Parses the user's input into specific DeleteCommand  
      * based on the category. 
-     * 
      * For instance: 'delete stock; i/bacon; q/10;' 
      * will be parse a DeleteCommand for the category 'stock' 
      * due to the word 'stock' used.
@@ -96,7 +93,6 @@ public class Parser {
     /** 
      * Parses the user's input into specific ListCommand  
      * based on the category. 
-     * 
      * For instance: 'list stock' will be parse a ListCommand 
      * for the category 'stock' due to the word 'stock' used.
      * 
@@ -118,7 +114,6 @@ public class Parser {
     
     /** 
      * Extract the commandType word from the user's input.
-     * 
      * For example: 'add stock; i/tomato; q/10; p/$0.50;' 
      * will extract the commandType of 'add' 
      * 
@@ -143,7 +138,6 @@ public class Parser {
 
     /** 
      * Extract the category word from the user's input.
-     * 
      * For example: 'add stock; i/tomato; q/10; p/$0.50;' 
      * will extract the category of 'stock'. 
      * 
@@ -170,13 +164,10 @@ public class Parser {
      * Parses the user's input into readable arguments that 
      * will be used to construct an Ingredient object.
      * The arguments are then stored in a HashMap.
-     * 
      * For example: 'add stock; i/tomato; q/10; p/$0.50;' 
      * will store 'tomato' as the ingredient name, '10' as
      * the ingredient quantity and '$0.50' as the ingedient's 
-     * price.
-     * 
-     * Note that the constructor of an Ingredient is
+     * price. Note that the constructor of an Ingredient is
      * new Ingredient(NAME, QUANTITY, PRICE).
      * 
      */
@@ -198,12 +189,10 @@ public class Parser {
      * Parses the user's input into readable arguments that 
      * will be used to construct an Ingredient object.
      * The arguments are then stored in a HashMap.
-     * 
      * For example: 'delete stock; i/tomato; q/10;' 
      * will store 'tomato' as the ingredient name, '10' as
-     * the ingredient quantity to be deleted.
-     * 
-     * Note that the specification of the ingredient's quantity 
+     * the ingredient quantity to be deleted. Note that the 
+     * specification of the ingredient's quantity 
      * is optional.
      * 
      */
@@ -228,7 +217,6 @@ public class Parser {
     
     /**
      * Extract the name of the ingredient from a string.
-     * 
      * For example, 'i/tomato' will return 'tomato'.
      * 
      */ 
@@ -241,7 +229,6 @@ public class Parser {
     
     /**
      * Extract the quantity of the ingredient from a string.
-     * 
      * For example, 'q/10' will return '10'.
      * 
      */ 
@@ -254,9 +241,7 @@ public class Parser {
     
     /**
      * Extract the price of the ingredient from a string.
-     * 
      * For example, 'p/$0.50' will return '0.5'.
-     * 
      * Note that the price will not strictly be in 2 decimal 
      * places. This will be handled in the AddCommand.
      * 

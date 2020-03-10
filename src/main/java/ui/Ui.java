@@ -22,8 +22,8 @@ public class Ui {
     }
     
     public Ui(InputStream in, PrintStream out) {
-            this.in = new Scanner(in);
-            this.out = out;
+        this.in = new Scanner(in);
+        this.out = out;
     }
     
     public String getUserCommand() {

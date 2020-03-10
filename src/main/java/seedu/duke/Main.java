@@ -46,7 +46,7 @@ public class Main {
         } while (!ExitCommand.isExit(command));
     }
     
-    /** Executes a command */
+    /** Executes a command. */
     private CommandResult executeCommand(Command command) {
         try {
             command.setData(this.stock);

@@ -15,6 +15,11 @@ public class DeleteCommand extends Command {
     
     private final Ingredient ingredientToDelete;
     
+    /**
+     * A convenience constructor that contains information of an ingredient 
+     * stored in a hashMap.
+     * 
+     */
     public DeleteCommand(Map<String, Optional<Integer>> ingredientInfo) {
         
         String ingredientName = ingredientInfo
@@ -37,8 +42,8 @@ public class DeleteCommand extends Command {
         try {
             this.stock.deleteIngredient(ingredientToDelete);
         } catch (IngredientNotFoundException e) {
-            return new CommandResult("Ingredient " + 
-                    this.ingredientToDelete.getIngredientName() 
+            return new CommandResult("Ingredient " 
+                    + this.ingredientToDelete.getIngredientName() 
                     + " not found and cannot be deleted!");
         }
         return new CommandResult(createDeleteResultMessage());
@@ -49,8 +54,9 @@ public class DeleteCommand extends Command {
         
         String outputMessage = "Ingredient " 
                     + ingredientToDelete.getIngredientName()
-                    + (hasQuantitySpecified ? 
-                            " reduced by " + ingredientToDelete.getIngredientQuantity() + "!"
+                    + (hasQuantitySpecified 
+                            ? " reduced by " 
+                            + ingredientToDelete.getIngredientQuantity() + "!"
                             : " deleted from the stock!");
         
         return outputMessage;

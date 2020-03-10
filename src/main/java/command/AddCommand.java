@@ -16,6 +16,11 @@ public class AddCommand extends Command {
     /** The ingredient to be added into the stock. */
     private final Ingredient ingredientToAdd;
     
+    /** 
+     * A convenience constructor that contains information of an ingredient 
+     * stored in a hashMap.
+     * 
+     */
     public AddCommand(Map<String, Pair<Integer, Double>> ingredientInfo) {  
         String ingredientName = ingredientInfo
                 .entrySet()

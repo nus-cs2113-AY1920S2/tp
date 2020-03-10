@@ -18,7 +18,6 @@ public class Stock {
     /** 
      * A HashMap that maps a ingredient's name to its 
      * quantity and price.
-     * 
      * Note that quantity is an Integer and price is a Double.
      * 
      */
@@ -54,11 +53,9 @@ public class Stock {
      * Deletes an ingredientName from the current stock. If the ingredient
      * exists previously, update the quantity by subtracting the quantity
      * supplied by the user to the current quantity. If there is no quantity
-     * specified, removed the ingredientName from the HashMap.
-     * 
-     * Note that the quantity for an ingredient to be deleted is optional. 
-     * 
-     * Also, there is a lower 0 bound such that any subtraction of the quantity
+     * specified, removed the ingredientName from the HashMap. Note that the 
+     * quantity for an ingredient to be deleted is optional. Also, there is a 
+     * lower 0 bound such that any subtraction of the quantity
      * cannot be lesser than zero. An ingredient with 0 quantity however, is not
      * deleted from the hashMap.
      * 
@@ -98,9 +95,7 @@ public class Stock {
     }
     
     /**
-     * A utility function to print the stock.
-     * 
-     * This function also help to parse the price into 2 decimal places
+     * A utility function to print the stock to help to parse the price into 2 decimal places
      * to display as dollars appropriately.
      * 
      */
@@ -111,11 +106,16 @@ public class Stock {
             String ingredientName = ingredient.getKey();
             int quantity = ingredient.getValue().first();
             double price = ingredient.getValue().second();
-            System.out.println(
-                    ingredientCounter + ". " +
-                    "[" + quantity + "]"
-                    + "[$" + String.format("%.2f", price) + "]"
-                    + " " + ingredientName);
+            System.out.println(ingredientCounter 
+                    + ". "
+                    + "[" 
+                    + quantity 
+                    + "]"
+                    + "[$" 
+                    + String.format("%.2f", price) 
+                    + "]"
+                    + " " 
+                    + ingredientName);
            
             ingredientCounter++;
         }

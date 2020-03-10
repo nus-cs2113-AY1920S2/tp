@@ -17,8 +17,9 @@ public class ListCommand extends Command {
         switch (category) {
         case ("stock") :
             this.stock.listIngredient();
-        }
-        
-        return new CommandResult("All ingredients listed successfully!");
+            return new CommandResult("All ingredients listed successfully!");
+        default: 
+            throw new IllegalStateException("Invalid category for list command");
+        }      
     }
 }
