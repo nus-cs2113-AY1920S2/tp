@@ -1,5 +1,7 @@
-package seedu.jikan;
+package jikan.activity;
 
+import jikan.activity.Activity;
+import jikan.activity.ActivityList;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

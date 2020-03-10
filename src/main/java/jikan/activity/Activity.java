@@ -1,4 +1,4 @@
-package seedu.jikan;
+package jikan.activity;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -73,7 +73,7 @@ public class Activity {
     }
 
     /**
-     * Converts the seedu.jikan.Activity object to data representation to be stored in a data file.
+     * Converts the jikan.activity.Activity object to data representation to be stored in a data file.
      * File format:
      * name, startTime, endTime
      *
