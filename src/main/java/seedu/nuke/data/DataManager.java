@@ -5,6 +5,7 @@ import seedu.nuke.module.Module;
 import seedu.nuke.task.Task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * the management system
@@ -20,7 +21,24 @@ public class DataManager {
         }
     }
 
+    public void sortAllTasks() {
+        Collections.sort(allTasks);
+    }
+
     public ArrayList<Task> getAllTasks() {
         return allTasks;
+    }
+
+    public int countAllTasks() {
+        return allTasks.size();
+    }
+
+    public ArrayList<String> checkDeadline() {
+        ArrayList<String> deadlines = new ArrayList<>();
+        sortAllTasks();
+        for (Task task: allTasks) {
+            deadlines.add("Task: " + task.getDescription() + "  deadline: "+task.getDeadline());
+        }
+        return deadlines;
     }
 }

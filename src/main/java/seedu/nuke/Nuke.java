@@ -22,7 +22,7 @@ import static seedu.nuke.util.ExceptionMessage.*;
 
 public class Nuke {
     private CommandResult commandResult;
-    public ModuleManager moduleManager;
+    private ModuleManager moduleManager;
     public ArrayList<DummyModule> modules;
     private Ui ui;
 

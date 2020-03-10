@@ -3,6 +3,7 @@ package seedu.nuke.parser;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
+import seedu.nuke.exception.ModuleNotFoundException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,7 +35,7 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseCommand(String input) {
+    public Command parseCommand(String input) throws ModuleNotFoundException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         /*
         if (input.isEmpty()) {
@@ -63,8 +64,11 @@ public class Parser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case CheckDeadlineCommand.COMMAND_WORD:
-            return new CheckDeadlineCommand();
+        case CheckAllTasksDeadlineCommand.COMMAND_WORD:
+            return new CheckAllTasksDeadlineCommand();
+
+        case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
+            return new CheckModuleTasksDeadlineCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
