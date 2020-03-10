@@ -6,8 +6,9 @@ import static seedu.nuke.util.Message.MESSAGE_FAREWELL;
 
 public class ExitCommand extends TaskCommand{
     public static final String COMMAND_WORD = "bye";
-    public static final String MESSAGE_USAGE_1 = COMMAND_WORD + ": Exit the program.";
-    public static final String MESSAGE_USAGE_2 = "    Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exit the program.\n    Example: " + COMMAND_WORD;
+
+
     private static boolean isExit; // To check if user requests to exit the program
 
     public ExitCommand() {

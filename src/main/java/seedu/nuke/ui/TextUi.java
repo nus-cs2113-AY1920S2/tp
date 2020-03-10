@@ -65,7 +65,7 @@ public class TextUi {
 
     public static void printCommandResult(CommandResult result) {
         AnsiConsole.systemInstall();
-        System.out.println( ansi().bold().fg(SYSTEM_COLOR_RESPONSE).a(result.feedbackToUser).reset() );
+        System.out.println( ansi().bold().fg(SYSTEM_COLOR_RESPONSE).a(result.getFeedbackToUser()).reset() );
         printDivider();
         AnsiConsole.systemUninstall();
     }

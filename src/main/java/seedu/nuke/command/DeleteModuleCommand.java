@@ -10,7 +10,7 @@ import static seedu.nuke.util.Message.MESSAGE_DELETE_MODULE_SUCCESS;
 
 public class DeleteModuleCommand extends Command {
     public static final String COMMAND_WORD = "delm";
-    public static final String FORMAT = "delm <module code>";
+    public static final String MESSAGE_USAGE = "delm <module code>";
 
     private String moduleCode;
 
