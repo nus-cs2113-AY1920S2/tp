@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StorageTest {
 
@@ -39,7 +42,7 @@ public class StorageTest {
     }
 
     @Test
-    public void testCreateDataFile_IOException() {
+    public void testCreateDataFile_IOException() throws IOException {
         Storage storage = new Storage("//\\-@#4/\\/**3");
 
         IOException thrown = assertThrows(
@@ -47,11 +50,16 @@ public class StorageTest {
                 storage::loadFile,
                 "IOException during file creation"
         );
+        storage.dataFile.delete();
     }
 
     @Test
     public void testWriteToFile() throws IOException {
-        Storage storage = new Storage("data/test.txt");
+        // Generate random suffix for file
+        // (quick solution to avoid conflicts with other tests)
+        int random = (int )(Math.random() * 500 + 1);
+        String filepath = "data/test" + random + ".txt";
+        Storage storage = new Storage(filepath);
         storage.loadFile();
         String originalString = "This is a test string.";
         String writtenString = "";
@@ -61,5 +69,6 @@ public class StorageTest {
             writtenString = dataScanner.nextLine();
         }
         assertEquals(originalString, writtenString);
+        storage.dataFile.delete();
     }
 }
