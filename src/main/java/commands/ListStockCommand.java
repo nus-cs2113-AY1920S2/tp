@@ -1,25 +1,16 @@
 package commands;
 
+import stock.Stock;
+
 /**
  * This class focuses on the 'list' functionality of the application.
  * 
  */
-public class ListCommand extends Command {
-    
-    private final String category;
-    
-    public ListCommand(String category) {
-        this.category = category;
-    }
-    
+public class ListStockCommand extends StockCommand {
+  
     @Override
-    public CommandResult execute() {
-        switch (category) {
-        case ("stock") :
-            this.stock.listIngredient();
-            return new CommandResult("All ingredients listed successfully!");
-        default: 
-            throw new IllegalStateException("Invalid category for list command");
-        }      
+    public void execute(Stock stock) {
+        stock.listIngredient();
+        System.out.println("All ingredients listed successfully!");     
     }
 }

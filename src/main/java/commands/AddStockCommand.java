@@ -1,17 +1,20 @@
 package commands;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import ingredient.Ingredient;
+import stock.Stock;
 import utils.Pair;
 
 /**
- * This class focuses on the 'add' functionality of the application.
+ * This class focuses on the 'add' functionality of the application
+ * on the stock category.
  * 
  */
-public class AddCommand extends Command {
+public class AddStockCommand extends StockCommand {
     
     /** The ingredient to be added into the stock. */
     private final Ingredient ingredientToAdd;
@@ -21,7 +24,10 @@ public class AddCommand extends Command {
      * stored in a hashMap.
      * 
      */
-    public AddCommand(Map<String, Pair<Integer, Double>> ingredientInfo) {  
+    public AddStockCommand(String ingredientInput) {  
+        Map<String, Pair<Integer, Double>> ingredientInfo = 
+                parseIntoAddIngredientArgs(ingredientInput);
+        
         String ingredientName = ingredientInfo
                 .entrySet()
                 .stream()
@@ -36,10 +42,35 @@ public class AddCommand extends Command {
                 Optional.of(quantity), Optional.of(price));               
     }
     
+    /** 
+     * Parses the user's input into readable arguments that 
+     * will be used to construct an Ingredient object.
+     * The arguments are then stored in a HashMap.
+     * For example: ' i/tomato; q/10; p/$0.50;' 
+     * will store 'tomato' as the ingredient name, '10' as
+     * the ingredient quantity and '$0.50' as the ingedient's 
+     * price. Note that the constructor of an Ingredient is
+     * new Ingredient(NAME, QUANTITY, PRICE).
+     * 
+     */
+    private Map<String, Pair<Integer, Double>> parseIntoAddIngredientArgs(
+            String fullInputLine) {
+        
+        Map<String, Pair<Integer, Double>> ingredientInfo = new HashMap<>();
+        String[] wordArgs = fullInputLine.split(";");
+        
+        String ingredientName = parseIngredientName(wordArgs[1].trim());
+        int quantity = parseIngredientQuantity(wordArgs[2].trim());
+        double price = parseIngredientPrice(wordArgs[3].trim());
+        
+        ingredientInfo.put(ingredientName, Pair.of(quantity, price));
+        return ingredientInfo;
+    }
+    
     @Override
-    public CommandResult execute() {
-        this.stock.addIngredient(ingredientToAdd);
-        return new CommandResult("Ingredient " 
+    public void execute(Stock stock) {
+        stock.addIngredient(ingredientToAdd);
+        System.out.println("Ingredient " 
                 + ingredientToAdd.getIngredientName() 
                 + " successfully added!");
     }
