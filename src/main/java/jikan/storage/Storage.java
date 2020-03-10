@@ -37,23 +37,17 @@ public class Storage {
         fw.close();
     }
 
-    // Return true if file previously existed, false if it didn't exist (and it created a new one)
-
     /**
      * Loads the data file. Creates file and directories if data file did not previously exist.
      *
      * @return True if file previously existed (and was not created); False if file did not exist and was created.
      */
-    public boolean loadFile() {
+    public boolean loadFile() throws IOException {
 
         // Create data file if it does not exist already
         if (!dataFile.exists()) {
-            try  {
-                createDataFile();
-                return false; // false = file didn't previously exist, so it was created
-            } catch (IOException e) {
-                System.out.println("Error loading data file.");
-            }
+            createDataFile();
+            return false; // false = file didn't previously exist, so it was created
         }
         return true; // true = file previously existed, and was not created
     }
