@@ -24,7 +24,7 @@ public class Ui {
     }
 
     public static void greetUser() {
-        showToUser(START_MESSAGE);
+        showToUser(START_MESSAGE, LINE_SEPARATOR);
     }
 
     public static void greetFarewell() {
@@ -32,6 +32,6 @@ public class Ui {
     }
 
     public static void showAddedMessage(String module) {
-        showToUser(ADDED_MESSAGE, module);
+        showToUser(ADDED_MESSAGE, module,LINE_SEPARATOR);
     }
 }
