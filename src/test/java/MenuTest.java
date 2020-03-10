@@ -1,5 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
@@ -7,18 +9,18 @@ class MenuTest {
 
     @Test
     public void parseIngredientsTest() {
-        String d1a = "n/bacon pizza; i/cheese, bacon;";
         ArrayList<String> l1 = new ArrayList<String>();
         l1.add("cheese");
         l1.add("bacon");
+        String d1a = "n/bacon pizza; i/cheese, bacon;";
         assertEquals(l1, Menu.parseIngredients(d1a));
         String d1b = "i/cheese, bacon; n/bacon pizza;";
         assertEquals(l1, Menu.parseIngredients(d1b));
-        String d2 = "i/chicken, rice, chili; n/chicken biryani;";
         ArrayList<String> l2 = new ArrayList<String>();
         l2.add("chicken");
         l2.add("rice");
         l2.add("chili");
+        String d2 = "i/chicken, rice, chili; n/chicken biryani;";
         assertEquals(l2, Menu.parseIngredients(d2));
     }
 
