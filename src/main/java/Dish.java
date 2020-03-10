@@ -3,17 +3,17 @@ import java.util.ArrayList;
 public class Dish {
 
     /**
-     * Arraylist of all ingredients for dish
+     * Arraylist of all ingredients for dish.
      */
     private ArrayList<String> ingredients;
 
     /**
-     * Name of dish
+     * Name of dish.
      */
     private String name;
 
     /**
-     * Dish constructor
+     * Dish constructor.
      * @param name name of dish
      * @param ingredients arraylist of ingredients in dish
      */
@@ -23,7 +23,7 @@ public class Dish {
     }
 
     /**
-     * Returns ingredients in dish
+     * Returns ingredients in dish.
      * @return arraylist of ingredients in dish
      */
     public ArrayList<String> getIngredients() {

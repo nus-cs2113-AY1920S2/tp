@@ -1,16 +1,15 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class Menu {
 
     /**
-     * Hashmap of all dishes on menu
+     * Hashmap of all dishes on menu.
      */
     private static HashMap<String, Dish> dishMap = new HashMap<String, Dish>();
 
     /**
-     * Adds a dish to the menu based on the input string
+     * Adds a dish to the menu based on the input string.
      * @param input input string that include dish name and ingredients in no specific order
      */
     public static void addDish(String input) {
@@ -21,7 +20,7 @@ public class Menu {
     }
 
     /**
-     * Removes dish from menu
+     * Removes dish from menu.
      * @param name name of dish to remove
      */
     public static void deleteDish(String name) {
@@ -29,7 +28,7 @@ public class Menu {
     }
 
     /**
-     * Parses ingredients from string
+     * Parses ingredients from string.
      * @param input string of ingredients
      * @return ArrayList of ingredients
      */
@@ -45,7 +44,7 @@ public class Menu {
     }
 
     /**
-     * Parses name from input string
+     * Parses name from input string.
      * @param input input string
      * @return name of dish
      */
@@ -56,7 +55,7 @@ public class Menu {
     }
 
     /**
-     * Print's dishes out from dishMap
+     * Print's dishes out from dishMap.
      */
     public static void printDishes() {
         for (String name: dishMap.keySet()) {
@@ -70,7 +69,7 @@ public class Menu {
     }
 
     /**
-     * Return's dishMap hashmap
+     * Return's dishMap hashmap.
      * @return dishmap hashmap
      */
     public static HashMap<String, Dish> getDishMap() {
