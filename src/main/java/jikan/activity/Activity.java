@@ -9,11 +9,11 @@ import java.util.Arrays;
  */
 
 public class Activity {
-    protected String name;
-    protected String[] tags;
-    protected LocalDateTime startTime;
-    protected LocalDateTime endTime;
-    protected Duration duration;
+    public String name;
+    public String[] tags;
+    public LocalDateTime startTime;
+    public LocalDateTime endTime;
+    public Duration duration;
 
     /*
     protected String name;

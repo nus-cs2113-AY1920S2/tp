@@ -16,7 +16,7 @@ import java.util.Scanner;
  * Represents the list of activities.
  */
 public class ActivityList {
-    ArrayList<Activity> activities;
+    public ArrayList<Activity> activities;
     public Storage storage; // Storage the list was loaded from
 
     //int size;
@@ -73,27 +73,6 @@ public class ActivityList {
         return activities.size();
     }
 
-    /**
-     * Prints the activityList.
-     */
-    public void printList() {
-        System.out.println("Your completed activities:");
-        for (int i = 0; i < this.getSize(); i++) {
-            long durationInNanos = (activities.get(i).duration).toNanos();
-            String duration = String.format("%02d:%02d:%02d",
-                    TimeUnit.NANOSECONDS.toHours(durationInNanos),
-                    TimeUnit.NANOSECONDS.toMinutes(durationInNanos)
-                            - TimeUnit.HOURS.toMinutes(TimeUnit.NANOSECONDS.toHours(durationInNanos)),
-                    TimeUnit.NANOSECONDS.toSeconds(durationInNanos)
-                            - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(durationInNanos)));
-            System.out.print(i + 1 + ". " + activities.get(i).name + " " + duration);
-            if (activities.get(i).tags != null) {
-                System.out.println(" " + Arrays.toString(activities.get(i).tags));
-            } else {
-                System.out.print("\n");
-            }
-        }
-    }
 
     /**
      * Populates task list from file.
@@ -119,7 +98,6 @@ public class ActivityList {
     private void parseDataLine(String s) {
 
         List<String> strings = Arrays.asList(s.split(","));
-
         String[] tags;
 
         // if there are tags

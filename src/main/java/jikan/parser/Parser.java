@@ -1,5 +1,6 @@
 package jikan.parser;
 
+import jikan.Ui;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 
@@ -12,54 +13,81 @@ import java.util.Scanner;
  */
 public class Parser {
 
+    protected LocalDateTime startTime = null;
+    protected LocalDateTime endTime = null;
+    private String[] tags = null;
+    private Ui ui = new Ui();
+    protected String[] tokenizedInputs;
+    String instruction;
+
     /**
      * Parses user commands to relevant functions to carry out the commands.
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
-    public static void parseUserCommands(Scanner scanner, ActivityList activityList) {
-        boolean exit = false;
-        Activity newActivity;
-        LocalDateTime startTime = null;
-        String[] tags = null;
-
-        while (exit == false) {
+    public void parseUserCommands(Scanner scanner, ActivityList activityList) {
+        while (true) {
             String userInput = scanner.nextLine();
-            String[] tokenizedInputs = userInput.split(" ");
-            String instruction = tokenizedInputs[0];
+            tokenizedInputs = userInput.split(" ");
+            instruction = tokenizedInputs[0];
 
             switch (instruction) {
             case "bye":
-                System.out.println("Bye! See you again.\n");
-                exit = true;
+                ui.exitFromApp();
                 break;
             case "start":
-                System.out.println("Started " + tokenizedInputs[1] + "\n");
-                if (tokenizedInputs.length > 2) {
-                    tags = Arrays.copyOfRange(tokenizedInputs, 2, tokenizedInputs.length);
-                }
-                startTime = LocalDateTime.now();
+                parseStart();
                 break;
             case "end":
-                if (startTime == null) {
-                    System.out.println("You have not started any activity!");
-                } else {
-                    System.out.println("Ended " + tokenizedInputs[1] + "\n");
-                    newActivity = new Activity(tokenizedInputs[1], startTime, LocalDateTime.now(), tags);
-                    activityList.add(newActivity);
-                }
+                parseEnd(activityList);
                 break;
             case "list":
-                activityList.printList();
+                ui.printList(activityList);
                 break;
             case "abort":
-                startTime = null;
-                System.out.println("You have aborted the current activity!");
+                parseAbort();
                 break;
             default:
-                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                parseDefault();
                 break;
             }
+        }
+    }
+
+    /** Method to parse user inputs that are not recognised. */
+    private void parseDefault() {
+        String line = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        ui.printDivider(line);
+    }
+
+    /** Method to parse the abort command. */
+    private void parseAbort() {
+        startTime = null;
+        String line = "You have aborted the current activity!";
+        ui.printDivider(line);
+    }
+
+    /** Method to parse the start activity command. */
+    public void parseStart() {
+        String line = "Started " + tokenizedInputs[1];
+        ui.printDivider(line);
+        if (tokenizedInputs.length > 2) {
+            tags = Arrays.copyOfRange(tokenizedInputs, 2, tokenizedInputs.length);
+        }
+        startTime = LocalDateTime.now();
+    }
+
+    /** Method to parse the end activity command. */
+    public void parseEnd(ActivityList activityList) {
+        if (startTime == null) {
+            String line = "You have not started any activity!";
+            ui.printDivider(line);
+        } else {
+            String line = "Ended " + tokenizedInputs[1];
+            ui.printDivider(line);
+            endTime = LocalDateTime.now();
+            Activity newActivity = new Activity(tokenizedInputs[1], startTime, endTime, tags);
+            activityList.add(newActivity);
         }
     }
 }

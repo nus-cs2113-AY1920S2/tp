@@ -1,6 +1,5 @@
 package jikan.activity;
 
-import jikan.activity.Activity;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
