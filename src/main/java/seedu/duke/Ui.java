@@ -11,7 +11,7 @@ public class Ui {
 
     private static final String START_MESSAGE = "Hello from\n" + LOGO + "What can I do for you?";
 
-    private static final String FAREWELL_MESSAGE = "Bye!";
+    private static final String FAREWELL_MESSAGE = "bye!";
 
     private static final String ADDED_MESSAGE = "Okay! I have added this module to your module list:";
 
