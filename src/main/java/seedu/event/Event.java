@@ -15,9 +15,9 @@ public class Event {
      * Empty constructor. Sets name as "unnamed"
      */
     public Event() {
-        setName(null); //this.name = " ";
-        setDatetime(null);
-        setVenue(null);
+        setName("");
+        setDatetime("");
+        setVenue("");
         this.participantList = new ArrayList<>();
         this.attendanceList = new ArrayList<>();
     }

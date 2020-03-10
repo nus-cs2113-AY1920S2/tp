@@ -41,23 +41,24 @@ class EventTest {
 
     @Test
     void getDatetime() {
-        Event event1 = new Event();
-        assertEquals(null, event1.getDatetime());
-        Event event2 = new Event("1", "2", "3");
-        assertEquals("2", event2.getDatetime());
+       // Event event1 = new Event();
+        //assertEquals(null, event1.getDatetime());
+
+        Event event2 = new Event("1", "2020-05-04 0130", "3");
+        assertEquals("May 4 2020 0130", event2.getDatetime());
     }
 
     @Test
     void setDatetime() {
         Event event1 = new Event();
-        event1.setDatetime("Sunday");
-        assertEquals("Sunday", event1.getDatetime());
+        event1.setDatetime("2020-05-04 0130");
+        assertEquals("May 4 2020 0130", event1.getDatetime());
     }
 
     @Test
     void getVenue() {
         Event event1 = new Event();
-        assertEquals(null, event1.getVenue());
+        assertEquals("", event1.getVenue());
         Event event2 = new Event("1", "2", "3");
         assertEquals("3", event2.getVenue());
     }
