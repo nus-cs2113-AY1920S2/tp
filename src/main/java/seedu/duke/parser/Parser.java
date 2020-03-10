@@ -20,8 +20,6 @@ import seedu.duke.commands.UnmarkCommand;
 public class Parser {
 
     private static Command newCommand;
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S]+)"
-            + "(?<arguments>[\\d\\s\\S]*$)");
 
     /**
      * Parses user input into command for execution.
@@ -30,13 +28,14 @@ public class Parser {
      * @return the command based on the user input
      */
     public Command parseCommand(String userInput) {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            newCommand = new IncorrectCommand("Invalid input."
-                    + "Please try again or type 'help' to show a list of instructions.\n");
+        String[] commandAndArgs = splitCommandAndArgs(userInput);
+        String commandWord = commandAndArgs[0];
+        String arguments;
+        try {
+           arguments = commandAndArgs[1];
+        } catch (IndexOutOfBoundsException e) {
+            arguments = null;
         }
-        final String commandWord = matcher.group("commandWord").trim();
-        final String arguments = matcher.group("arguments").trim();
 
         switch (commandWord) {
 
@@ -77,6 +76,8 @@ public class Parser {
             break;
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
+            createHelpCommand();
+            break;
 
         case ExitCommand.COMMAND_WORD:
             createExitCommand();
@@ -131,7 +132,6 @@ public class Parser {
             } else {
                 double price = Double.parseDouble(prices);
                 newCommand = new AddCommand(description, price);
-
             }
         } catch (NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
@@ -140,6 +140,10 @@ public class Parser {
         }
     }
 
+    private String[] splitCommandAndArgs (String userInput) {
+        String[] commandandArgs = userInput.trim().split(" ", 2);
+        return commandandArgs;
+    }
     private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
         String[] argsArray = new String[]{};
         String descriptionDelimiter = "i/";
@@ -193,8 +197,15 @@ public class Parser {
             newCommand = new EditCommand(indexOfItem, newItemDescription, newItemPrice);
         } catch (NumberFormatException | NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Error! Index of item must be a positive number and the price of an item"
-                    + "has to be in decimal form\n  Example: edit 2 i/apple p/2.50");
+                    + "Oops! For that to be done properly, check if these are met:"
+                    + System.lineSeparator()
+                    + " - Index of item must be a positive number."
+                    + System.lineSeparator()
+                    + " - Price of an item has to be in decimal form."
+                    + System.lineSeparator()
+                    + " - At least 'i/' or 'p/' should be present."
+                    + System.lineSeparator()
+                    + "|| Example: EDIT 2 i/apple p/2.50");
         }
     }
 
@@ -251,7 +262,7 @@ public class Parser {
             indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
             argsArray = new String[]{indexOfItem, null, itemPrice};
 
-        } else if (descriptionPresent && pricePresent) { //e.g args: EDIT 2 i/apple p/4.50
+        } else if (descriptionPresent && pricePresent) { //e.g args: EDIT 2 i/.. p/..
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
             indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
 
@@ -259,7 +270,7 @@ public class Parser {
                 indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix);
-            } else {
+            } else { //e.g args: EDIT 2 i/apple p/4.50
                 indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer, indexOfpPrefix);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer);
