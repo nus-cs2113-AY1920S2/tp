@@ -46,7 +46,7 @@ class ParserTest {
     @Test
     public void parse_listCommand_parsedCorrectly() {
         final String input = "list";
-        parseAndAssertCommandType(input, ListCommand.class);
+        parseAndAssertCommandType(input, ListModuleCommand.class);
     }
 
     @Test

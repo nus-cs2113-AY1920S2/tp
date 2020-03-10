@@ -15,7 +15,7 @@ import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULY_LIST;
 public class CheckDeadlineCommand extends Command{
     protected DataManager dataManager;
 
-    public static final String COMMAND_WORD = "ck";
+    public static final String COMMAND_WORD = "lst";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     @Override
