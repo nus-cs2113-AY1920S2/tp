@@ -13,7 +13,7 @@ public class Ui {
 
     private static final String FAREWELL_MESSAGE = "Bye!";
 
-    private static final String ADDED_MESSAGE = "Okay! I have added this module to your module list";
+    private static final String ADDED_MESSAGE = "Okay! I have added this module to your module list:";
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
