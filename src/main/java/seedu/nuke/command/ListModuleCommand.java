@@ -1,6 +1,6 @@
 package seedu.nuke.command;
 
-import static seedu.nuke.util.Message.MESSAGE_SHOW_TASKS;
+import static seedu.nuke.util.Message.MESSAGE_SHOW_MODULES;
 
 public class ListModuleCommand extends Command {
     public static final String COMMAND_WORD = "lsm";
@@ -8,6 +8,6 @@ public class ListModuleCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(MESSAGE_SHOW_TASKS, true);
+        return new CommandResult(MESSAGE_SHOW_MODULES, true);
     }
 }

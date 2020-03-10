@@ -31,6 +31,6 @@ public class Message {
         return String.format("SUCCESS!! Module %s %s has been deleted.\n", moduleCode, title);
     }
 
-    public static final String MESSAGE_SHOW_TASKS = "Here are ALL your modules.\n";
+    public static final String MESSAGE_SHOW_MODULES = "Here are ALL your modules.\n";
 
 }
