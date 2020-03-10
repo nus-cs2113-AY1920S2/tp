@@ -5,6 +5,7 @@ import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
 import seedu.nuke.exception.InvalidFormatException;
 
+import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +17,7 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
+    public static final Pattern MODULE_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     public static final String COMMAND_PARAMETER_SPLITTER = "\\s+";
     public static final String PARAMETER_SPLITTER = " ";
@@ -74,19 +76,6 @@ public class Parser {
     }
 
     /**
-     * check length validation of user input
-     * @param input
-     * @throws EmptyInputException
-     * @throws InputLengthExceededException
-     * @return
-     */
-    private IncorrectCommand checkInputLengthValidation(String input) throws EmptyInputException, InputLengthExceededException {
-
-
-        return null;
-    }
-
-    /**
      * Splits user input into command word and rest of parameters (if any)
      * @param input
      * @return array of String contains command and parameter
@@ -99,25 +88,25 @@ public class Parser {
     }
 
     private Command prepareAddModuleCommand(String parameters) {
-        try {
-            String moduleCode = extractModuleCode(parameters);
-            return new AddModuleCommand(moduleCode);
-        } catch (MissingParameterException e) {
-            return new IncorrectCommand(MESSAGE_MISSING_MODULE_CODE);
-        } catch (ExcessParameterException e) {
-            return new IncorrectCommand(MESSAGE_EXCESS_PARAMETERS);
+        String moduleCode = parameters;
+        if (parameters.isEmpty()){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
+        if (hasMultipleParameters(parameters)) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
+        }
+        return new AddModuleCommand(moduleCode);
     }
 
     private Command prepareDeleteModuleCommand(String parameters) {
-        try {
-            String moduleCode = extractModuleCode(parameters);
-            return new DeleteModuleCommand(moduleCode);
-        } catch (MissingParameterException e) {
-            return new IncorrectCommand(MESSAGE_MISSING_MODULE_CODE);
-        } catch (ExcessParameterException e) {
-            return new IncorrectCommand(MESSAGE_EXCESS_PARAMETERS);
+        String moduleCode = parameters;
+        if (parameters.isEmpty()){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
         }
+        if (hasMultipleParameters(parameters)) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
+        }
+        return new DeleteModuleCommand(moduleCode);
     }
 
     /**
@@ -129,30 +118,4 @@ public class Parser {
     private boolean hasMultipleParameters(String parameters) {
         return parameters.contains(PARAMETER_SPLITTER);
     }
-
-    private String extractModuleCode(String parameters) throws MissingParameterException, ExcessParameterException {
-        if (parameters.isEmpty()) {
-            throw new MissingParameterException();
-        }
-
-        if (hasMultipleParameters(parameters)) {
-            throw new ExcessParameterException();
-        }
-        return parameters;
-    }
-
-    /** Signals that the user has provided an empty input. */
-    public static class EmptyInputException extends InvalidFormatException {}
-
-    /** Signals that the user has provided an input that is longer than {@value MAX_INPUT_LENGTH} characters. */
-    public static class InputLengthExceededException extends InvalidFormatException {}
-
-    /** Signals that the user has provided an unrecognised command */
-    public static class InvalidCommandException extends InvalidFormatException {}
-
-    /** Signals that the user has provided surplus parameters. */
-    public static class ExcessParameterException extends InvalidFormatException {}
-
-    /** Signals that the user has not provided sufficient parameters. */
-    public static class MissingParameterException extends InvalidFormatException {}
 }

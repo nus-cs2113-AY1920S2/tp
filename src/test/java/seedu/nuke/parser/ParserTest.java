@@ -2,9 +2,7 @@ package seedu.nuke.parser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.nuke.command.Command;
-import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -23,10 +21,57 @@ class ParserTest {
      */
 
     @Test
-    public void parse_emptyInput_returnsIncorrect() throws Parser.InputLengthExceededException, Parser.EmptyInputException, Parser.InvalidCommandException {
+    public void parse_emptyInput_returnsIncorrect() {
         final String[] emptyInputs = { "", "  ", "\n  \n" };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, emptyInputs);
+    }
+
+    @Test
+    public void parse_unknownCommandWord_returnsHelp() {
+        final String input = "unknowncommandword arguments arguments";
+        parseAndAssertCommandType(input, HelpCommand.class);
+    }
+
+    /*
+     * Tests for 0-argument commands =======================================================================
+     */
+
+    @Test
+    public void parse_helpCommand_parsedCorrectly() {
+        final String input = "help";
+        parseAndAssertCommandType(input, HelpCommand.class);
+    }
+
+    @Test
+    public void parse_listCommand_parsedCorrectly() {
+        final String input = "list";
+        parseAndAssertCommandType(input, ListCommand.class);
+    }
+
+    @Test
+    public void parse_exitCommand_parsedCorrectly() {
+        final String input = "exit";
+        parseAndAssertCommandType(input, ExitCommand.class);
+    }
+
+    /*
+     * Tests for single index argument commands ===============================================================
+     */
+
+    @Test
+    public void parse_deleteCommandNoArgs_errorMessage() {
+        final String[] inputs = { "delm", "delm " };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    //todo
+    @Test
+    public void parse_deleteCommandArgsIsNotSingleNumber_errorMessage() {
+        final String[] inputs = { "delete notAnumber ", "delete 8*wh12", "delete 1 2 3 4 5" };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
     /*
@@ -36,7 +81,7 @@ class ParserTest {
     /**
      * Asserts that parsing the given inputs will return IncorrectCommand with the given feedback message.
      */
-    private void parseAndAssertIncorrectWithMessage(String feedbackMessage, String... inputs) throws Parser.EmptyInputException, Parser.InputLengthExceededException, Parser.InvalidCommandException {
+    private void parseAndAssertIncorrectWithMessage(String feedbackMessage, String... inputs){
         for (String input : inputs) {
             final IncorrectCommand result = parseAndAssertCommandType(input, IncorrectCommand.class);
             assertEquals(result.getFeedbackToUSer(), feedbackMessage);
@@ -50,7 +95,7 @@ class ParserTest {
      * @param expectedCommandClass expected class of returned command
      * @return the parsed command object
      */
-    private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass) throws Parser.InputLengthExceededException, Parser.EmptyInputException, Parser.InvalidCommandException {
+    private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass)  {
         final Command result = parser.parseCommand(input);
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
         return (T) result;
