@@ -22,6 +22,10 @@ public class PerformanceList {
 
     public static void addToList(Performance performance) {
         performanceList.add(performance);
+        System.out.println("[" + performance.nameOfModule + "]["
+                + performance.assignment + "]["
+                + performance.nameOfStudent + "] "
+                + performance.getResult() + " has been added.");
     }
 
     /**
