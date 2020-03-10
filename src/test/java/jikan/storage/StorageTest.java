@@ -34,7 +34,7 @@ public class StorageTest {
     }
 
     @Test
-    public void testCreateDataFile() throws IOException{
+    public void testCreateDataFile() throws IOException {
         Storage storage = new Storage("data/test.txt");
         storage.loadFile();
         assertTrue(storage.dataFile.exists());

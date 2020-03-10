@@ -59,7 +59,7 @@ public class StorageHandlerTest {
         String filepath = "data/test" + random + ".txt";
         Storage storage = new Storage(filepath);
 
-        for (int i = 0 ; i < list.size() ; i++) {
+        for (int i = 0; i < list.size(); i++) {
             storage.writeToFile(list.get(i));
         }
 
