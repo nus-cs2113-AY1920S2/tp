@@ -44,6 +44,10 @@ public class ActivityList {
         return activities.get(i);
     }
 
+    /**
+     * Adds activity to activity list and stores it in the data file.
+     * @param activity
+     */
     public void add(Activity activity) {
         activities.add(activity);
 
