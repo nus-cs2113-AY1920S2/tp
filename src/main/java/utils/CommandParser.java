@@ -26,7 +26,7 @@ public class CommandParser {
                 menu.addDish(commands[1]);
             } else if (split_commands[1].equals("stock")){
                 //Add stock
-               new Parser().parseCommand(commands[1]);
+               new AddStockCommand(commands[1]).execute(stock);
             } else if (split_commands[1].equals("reservation")){
                 //Add reservation
                 new AddReservationCommand(commands[1]).execute(reservations);
@@ -39,7 +39,7 @@ public class CommandParser {
                 menu.deleteDish(commands[1]);
             } else if (split_commands[1].equals("stock")){
                 //delete stock
-                new Parser().parseCommand(commands[1]);
+                new DeleteStockCommand(commands[1]).execute(stock);
             } else if (split_commands[1].equals("reservation")){
                 //delete reservation
                 new VoidReservationCommand(commands[1]).execute(reservations);
@@ -52,7 +52,7 @@ public class CommandParser {
                 menu.printDishes();
             } else if (split_commands[1].equals("stock")){
                 //list stock
-                new Parser().parseCommand(commands[1]);
+                new ListStockCommand().execute(stock);
             } else if (split_commands[1].equals("reservation")){
                 //list reservation
                 new ListReservationCommand().execute(reservations);
