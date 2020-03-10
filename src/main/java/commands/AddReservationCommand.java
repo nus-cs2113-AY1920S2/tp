@@ -6,15 +6,19 @@ import reservation.ReservationList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static utils.Constants.*;
+import static utils.Constants.DELIMITER;
+import static utils.Constants.RES_PERSON_MARKER;
+import static utils.Constants.RES_DATE_MARKER;
+import static utils.Constants.RES_NUM_MARKER;
+import static utils.Constants.RES_CONTACT_MARKER;
+import static utils.Constants.RES_COMMENT_MARKER;
+
 
 /* Command object for "add reservation" command */
-public class AddReservationCommand extends ReservationCommand{
-    private int reservationNumber;
+public class AddReservationCommand extends ReservationCommand {
     private String description;
     
-    public AddReservationCommand(int reservationNumber, String description) {
-        this.reservationNumber = reservationNumber;
+    public AddReservationCommand(String description) {
         this.description = description;
     }
 
@@ -34,23 +38,26 @@ public class AddReservationCommand extends ReservationCommand{
         // date
         int datePos = description.indexOf(RES_DATE_MARKER);
         int dateEndPos = description.indexOf(DELIMITER, datePos);
-        LocalDate date = LocalDate.parse(description.substring(datePos + RES_DATE_MARKER.length(), dateEndPos + 1).trim(), 
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        LocalDate date = LocalDate.parse(description.substring(datePos + RES_DATE_MARKER.length(), 
+                dateEndPos + 1).trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         
         // numberOfGuests
         int numberPos = description.indexOf(RES_NUM_MARKER);
         int numberEndPos = description.indexOf(DELIMITER, numberPos);
-        int numberOfGuests = Integer.parseInt(description.substring(numberPos + RES_NUM_MARKER.length(), numberEndPos + 1).trim());
+        int numberOfGuests = Integer.parseInt(description.substring(numberPos + RES_NUM_MARKER.length(), 
+                numberEndPos + 1).trim());
         
         // contact
         int contactPos = description.indexOf(RES_CONTACT_MARKER);
         int contactEndPos = description.indexOf(DELIMITER, contactPos);
-        String contact = description.substring(contactPos + RES_CONTACT_MARKER.length(), contactEndPos + 1).trim();
+        String contact = description.substring(contactPos + RES_CONTACT_MARKER.length(), 
+                contactEndPos + 1).trim();
         
         // comments
         int commentsPos = description.indexOf(RES_COMMENT_MARKER);
         int commentsEndPos = description.indexOf(DELIMITER, commentsPos);
-        String comments = description.substring(commentsPos + RES_COMMENT_MARKER.length(), commentsEndPos + 1).trim();
+        String comments = description.substring(commentsPos + RES_COMMENT_MARKER.length(), 
+                commentsEndPos + 1).trim();
         
         // reservationNumber
         int reservationNumber = reservations.getSize();

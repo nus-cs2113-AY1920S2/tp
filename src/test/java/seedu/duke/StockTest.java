@@ -1,18 +1,20 @@
 package seedu.duke;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertTrue;
+import ingredient.Ingredient;
+import ingredient.IngredientNotFoundException;
 import org.junit.jupiter.api.Test;
+import stock.Stock;
+import utils.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import stock.Stock;
-import utils.Pair;
-import ingredient.Ingredient;
-import ingredient.IngredientNotFoundException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class StockTest {
     
@@ -42,6 +44,4 @@ class StockTest {
         Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
         assertFalse(stock.getStock().equals(stockCopy));
     }
-    
-
 }

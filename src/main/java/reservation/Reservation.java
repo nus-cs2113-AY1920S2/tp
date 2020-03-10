@@ -2,9 +2,12 @@ package reservation;
 
 import java.time.LocalDate;
 
-import static utils.Constants.*;
+import static utils.Constants.NOT_SERVED;
+import static utils.Constants.SMALL_TABLE;
+import static utils.Constants.MEDIUM_TABLE;
+import static utils.Constants.LARGE_TABLE;
 
-/** Reservation of the restaurant */
+/** Reservation of the restaurant. */
 public class Reservation {
     private int reservationNumber;
     private String name;
@@ -15,8 +18,11 @@ public class Reservation {
     
     private Character status;
     private Character tableSize;
-    
-    // Comments are optional.
+
+    /**
+     * Defines the constructor for a Reservation.
+     * Notes that comments for reservation are optional.
+     */
     public Reservation(int reservationNumber, String name, LocalDate date, int numberOfGuests, String contact) {
         this.reservationNumber = reservationNumber;
         this.name = name;
@@ -31,7 +37,8 @@ public class Reservation {
     }
 
     /**
-     * Gets the index number of the reservation
+     * Gets the index number of the reservation.
+     * 
      * @return Index number of the reservation
      */
     public int getReservationNumber() {
@@ -49,7 +56,8 @@ public class Reservation {
     }
 
     /**
-     * Gets the contact person of the reservation
+     * Gets the contact person of the reservation.
+     * 
      * @return Name of the contact person
      */
     public String getName() {
@@ -168,13 +176,13 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return String.format("Reservation [%d]\n" +
-                        "contact person: %s\n" +
-                        "date: %s\n" +
-                        "number of guests: %d\n" +
-                        "table size: %c\n" +
-                        "contact details: %s\n" +
-                        "comments: %s", 
+        return String.format("Reservation [%d]\n"
+                        + "contact person: %s\n"
+                        + "date: %s\n" 
+                        + "number of guests: %d\n" 
+                        + "table size: %c\n" 
+                        + "contact details: %s\n" 
+                        + "comments: %s", 
                 this.reservationNumber, this.name, this.date,
                 this.numberOfGuests, this.tableSize, this.contact, this.comments);
     }
