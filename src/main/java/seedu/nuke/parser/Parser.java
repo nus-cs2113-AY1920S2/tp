@@ -3,14 +3,10 @@ package seedu.nuke.parser;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
-import seedu.nuke.exception.InvalidFormatException;
 
-import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_EXCESS_PARAMETERS;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_MODULE_CODE;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class Parser {
@@ -61,11 +57,14 @@ public class Parser {
         case DeleteModuleCommand.COMMAND_WORD:
             return prepareDeleteModuleCommand(parameters);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case CheckDeadlineCommand.COMMAND_WORD:
+            return new CheckDeadlineCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
