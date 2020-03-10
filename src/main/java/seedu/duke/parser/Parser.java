@@ -22,7 +22,7 @@ public class Parser {
         words = fullCommand.split(" ",2);
         taskType = words[0];
 
-        if(words.length > 1){
+        if (words.length > 1) {
             args = words[1];
         }
 
