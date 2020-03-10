@@ -2,13 +2,13 @@ package seedu.duke;
 
 public class Food {
     String foodName;
-    double carbohydrates;
-    double fats;
-    double fiber;
-    double minerals;
-    double proteins;
-    double vitamins;
-    double water;
+    private double carbohydrates;
+    private double fats;
+    private double fiber;
+    private double minerals;
+    private double proteins;
+    private double vitamins;
+    private double water;
 
     public Food(String foodName, double carbohydrates, double fats, double fiber, double minerals,
                 double proteins, double vitamins, double water) {
