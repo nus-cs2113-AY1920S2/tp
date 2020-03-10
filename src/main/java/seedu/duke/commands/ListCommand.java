@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import seedu.duke.data.Item;
+
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "DISPLAY";
@@ -10,14 +12,25 @@ public class ListCommand extends Command {
 
     public static final String BUDGET_MESSAGE = "Your remaining budget / total budget: %.2f / %.2f\n";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all items in the list."
+            + System.lineSeparator() + "|| Parameters: DISPLAY"
+            + System.lineSeparator() + "|| Example: DISPLAY" + System.lineSeparator();
+
     @Override
     public CommandResult execute() {
 
-        double totalCost = items.getTotalCost();
+        System.out.println(LIST_MESSAGE);
+        String feedback;
+        items.compileList();
 
-        String feedback = LIST_MESSAGE
-                + items.createStringOfItems()
-                + String.format(TOTAL_COST_MESSAGE, totalCost)
+        double totalCost = 0.0;
+        for (Item item : items.getList()) {
+            totalCost += item.getPrice();
+        }
+
+        totalCost = items.getTotalCost();
+
+         feedback = String.format(TOTAL_COST_MESSAGE, totalCost)
                 + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
 
         return new CommandResult(feedback);

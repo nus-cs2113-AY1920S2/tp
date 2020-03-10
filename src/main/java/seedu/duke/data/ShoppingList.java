@@ -4,6 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.UnmarkCommand;
+import seedu.duke.ui.CommandLineTable;
 
 import java.util.ArrayList;
 
@@ -20,19 +21,22 @@ public class ShoppingList {
     }
 
     /**
-     * Formats the list of items to be printed to user.
-     * @return the items of the list, formatted into a string
+     * Formats the list to be printed to user.
+     *
      */
-    public String createStringOfItems() {
+    public void compileList() {
+        CommandLineTable st = new CommandLineTable();
+        st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
+        st.setHeaders("Item", "Price");//optional - if not used then there will be no header and horizontal lines
         int bulletNum = 1;
-        String itemsStr = "";
         String itemLine;
         for (Item item : items) {
-            itemLine = bulletNum + ". " + item.toString() + "\n";
-            itemsStr = itemsStr.concat(itemLine);
+
+            itemLine = bulletNum + ". [" + item.getStatusIcon() + "] " + item.getDescription();
+            st.addRow(itemLine, String.format("$%.2f",item.getPrice()));
             bulletNum++;
         }
-        return itemsStr;
+        st.print();
     }
 
     public double getTotalCost() {
@@ -41,6 +45,7 @@ public class ShoppingList {
             totalCost += item.getPrice();
         }
         return totalCost;
+
     }
 
     public void clearList() {

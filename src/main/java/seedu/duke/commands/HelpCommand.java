@@ -1,16 +1,30 @@
 package seedu.duke.commands;
 
+import javax.xml.stream.events.EndDocument;
+
 /**
  * Shows help instructions.
  */
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "HELP";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions."
-            + System.lineSeparator();
+            + System.lineSeparator() + "|| Parameters: HELP"
+            + System.lineSeparator() + "|| Example: HELP" + System.lineSeparator();
+
 
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(HelpCommand.MESSAGE_USAGE);
+        return new CommandResult(System.lineSeparator()
+                + AddCommand.MESSAGE_USAGE + System.lineSeparator()
+                + EditCommand.MESSAGE_USAGE + System.lineSeparator()
+                + DeleteCommand.MESSAGE_USAGE + System.lineSeparator()
+                + ClearCommand.MESSAGE_USAGE + System.lineSeparator()
+                + MarkCommand.MESSAGE_USAGE + System.lineSeparator()
+                + UnmarkCommand.MESSAGE_USAGE + System.lineSeparator()
+                + SetBudgetCommand.MESSAGE_USAGE + System.lineSeparator()
+                + ResetBudgetCommand.MESSAGE_USAGE + System.lineSeparator()
+                + HelpCommand.MESSAGE_USAGE + System.lineSeparator()
+                + ExitCommand.MESSAGE_USAGE + System.lineSeparator());
     }
 }

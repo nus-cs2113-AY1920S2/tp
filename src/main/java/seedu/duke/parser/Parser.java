@@ -137,6 +137,16 @@ public class Parser {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Error! Description of an item cannot be empty."
                     + "\nExample: ADD 1 i/apple p/4.50");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Oops! For that to be done properly, check if these are met:"
+                    + System.lineSeparator()
+                    + " - Description of an item cannot be empty."
+                    + " - Price of an item has to be in decimal form."
+                    + System.lineSeparator()
+                    + " - At least 'i/' or 'p/' should be present."
+                    + System.lineSeparator()
+                    + "|| Example: ADD i/apple p/2.50");
         }
     }
 

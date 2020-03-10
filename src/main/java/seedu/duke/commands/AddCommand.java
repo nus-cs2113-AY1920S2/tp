@@ -6,6 +6,9 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "ADD";
     public static final String SUCCESS_ACK = "Added this item: " + "%s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the list."
+            + System.lineSeparator() + "|| Parameters: ADD i/[DESCRIPTION] p/[PRICE]"
+            + System.lineSeparator() + "|| Example: ADD i/apple p/3.00" + System.lineSeparator();
     private Item add;
 
     public AddCommand(String description, double price) {
