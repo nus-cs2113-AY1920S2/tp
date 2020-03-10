@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
 import seedu.duke.module.Module;
 
 /**
@@ -17,12 +18,14 @@ public class Parser {
         String taskType;
         String args;
         String[] words;
-        words = fullCommand.split("\\s+",2);
+        words = fullCommand.split(" ",2);
         taskType = words[0];
-        args = words[1];
         switch (taskType) {
         case AddCommand.COMMAND_WORD:
+            args = words[1];
             return processAddCommand(args);
+        case ExitCommand.COMMAND_WORD:
+            return processExitCommand();
         default:
             return null;
         }
@@ -47,5 +50,8 @@ public class Parser {
         return null;
     }
 
+    private static ExitCommand processExitCommand() {
+        return new ExitCommand();
+    }
 
 }

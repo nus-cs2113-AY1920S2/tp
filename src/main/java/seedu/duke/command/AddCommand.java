@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.Ui;
 import seedu.duke.data.ModuleList;
 import seedu.duke.module.Module;
 
@@ -13,10 +14,9 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(ModuleList moduleList) {
-        addModule(moduleList);
-        System.out.println("Okay! I have added this module to your module list:");
-        System.out.println(this.module);
+    public void execute(ModuleList selectedModulesList, ModuleList availableModulesList) {
+        addModule(selectedModulesList);
+        Ui.showAddedMessage(module.toString());
     }
 
     private void addModule(ModuleList moduleList) {
