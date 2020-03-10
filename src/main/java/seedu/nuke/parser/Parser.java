@@ -3,14 +3,11 @@ package seedu.nuke.parser;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
-import seedu.nuke.exception.InvalidFormatException;
+import seedu.nuke.exception.ModuleNotFoundException;
 
-import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_EXCESS_PARAMETERS;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_MODULE_CODE;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class Parser {
@@ -38,7 +35,7 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseCommand(String input) {
+    public Command parseCommand(String input) throws ModuleNotFoundException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         /*
         if (input.isEmpty()) {
@@ -61,11 +58,17 @@ public class Parser {
         case DeleteModuleCommand.COMMAND_WORD:
             return prepareDeleteModuleCommand(parameters);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case CheckAllTasksDeadlineCommand.COMMAND_WORD:
+            return new CheckAllTasksDeadlineCommand();
+
+        case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
+            return new CheckModuleTasksDeadlineCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

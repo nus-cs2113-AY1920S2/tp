@@ -65,9 +65,9 @@ public class Nuke {
         try {
             // supplies the data the command will operate on.
             // if there is no file to load or the file is empty, setData will initialize a new taskManager system
-            //command.setData(moduleManager);
+            command.setData(moduleManager);
             // Execute according to the command itself
-            commandResult = command.execute(moduleManager, ui);
+            commandResult = command.execute();
             // save the taskManager to a file
             //moduleManager.getStorager().save(taskManager);
             //StorageFile.saveJson(taskManager);

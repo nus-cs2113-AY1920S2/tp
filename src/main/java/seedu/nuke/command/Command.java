@@ -1,14 +1,20 @@
 package seedu.nuke.command;
 
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.TaskManager;
 import seedu.nuke.task.Task;
 import seedu.nuke.ui.Ui;
 
 public abstract class Command {
     public static String COMMAND_WORD;
-    public abstract CommandResult execute (ModuleManager moduleManager, Ui ui) ;
+    protected ModuleManager moduleManager;
 
+    public abstract CommandResult execute () ;
     public String toString(){
         return this.COMMAND_WORD;
+    }
+
+    public void setData(ModuleManager moduleManager) {
+        this.moduleManager = moduleManager;
     }
 }

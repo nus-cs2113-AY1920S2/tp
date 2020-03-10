@@ -12,7 +12,8 @@ public class HelpCommand extends Command {
         return new CommandResult(
                 AddModuleCommand.MESSAGE_USAGE
                         + "\n" + DeleteModuleCommand.MESSAGE_USAGE
-                        + "\n" + ListCommand.MESSAGE_USAGE
+                        + "\n" + ListModuleCommand.MESSAGE_USAGE
+                        + "\n" + CheckAllTasksDeadlineCommand.MESSAGE_USAGE
                         + "\n" + HelpCommand.MESSAGE_USAGE
                         + "\n" + ExitCommand.MESSAGE_USAGE
         );

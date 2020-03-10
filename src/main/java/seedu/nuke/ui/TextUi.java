@@ -70,12 +70,4 @@ public class TextUi {
         AnsiConsole.systemUninstall();
     }
 
-    public static void listDeadlines(ArrayList<String> deadlines) {
-        AnsiConsole.systemInstall();
-        printDivider();
-        for(String deadline: deadlines) {
-            System.out.println( ansi().bold().fg(SYSTEM_COLOR_RESPONSE).a(deadline).reset() );
-        }
-        AnsiConsole.systemUninstall();
-    }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 import static seedu.nuke.util.Message.*;
 
 public class ModuleManager implements Iterable<Module> {
-    public static ArrayList<Module> modules = new ArrayList<>();
+    private static ArrayList<Module> modules = new ArrayList<>();
 
     /**
      * @return all modules
@@ -68,7 +68,7 @@ public class ModuleManager implements Iterable<Module> {
     public static void delete(Module toDelete) throws ModuleNotFoundException {
         boolean isModuleFoundAndDeleted = modules.remove(toDelete);
         if (!isModuleFoundAndDeleted) {
-            throw new ModuleNotFoundException();
+            throw new ModuleNotFoundException("");
         }
     }
 
@@ -86,7 +86,7 @@ public class ModuleManager implements Iterable<Module> {
                 return module;
             }
         }
-        throw new ModuleNotFoundException();
+        throw new ModuleNotFoundException("");
     }
 
     @Override
@@ -101,6 +101,5 @@ public class ModuleManager implements Iterable<Module> {
         return modules.size();
     }
 
-    public static class ModuleNotFoundException extends DataNotFoundException {}
     public static class DuplicateModuleException extends DuplicateDataException {}
 }
