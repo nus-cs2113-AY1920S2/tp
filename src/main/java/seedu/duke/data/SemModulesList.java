@@ -1,13 +1,13 @@
 package seedu.duke.data;
 
-public class SemModuleList extends ModuleList {
+public class SemModulesList extends ModuleList {
     private String semName;
 
-    public SemModuleList(String semName){
+    public SemModulesList(String semName) {
         this.semName = semName;
     }
 
-    public String getSem(){
+    public String getSem() {
         return semName;
     }
 }

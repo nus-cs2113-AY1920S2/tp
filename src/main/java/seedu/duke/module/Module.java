@@ -17,6 +17,7 @@ public class Module {
      * This is Module's constructor.
      * @param type the type of module identifier.
      * @param moduleIdentifier the identifier which can be either module's name or module's id.
+     * @param semester the module's semester.
      */
     public Module(String type, String moduleIdentifier, String semester) {
         this.isNameValid = type.equals("name");
