@@ -3,6 +3,7 @@ package jikan;
 import jikan.activity.ActivityList;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
+import jikan.ui.Ui;
 
 import java.io.IOException;
 import java.util.Scanner;

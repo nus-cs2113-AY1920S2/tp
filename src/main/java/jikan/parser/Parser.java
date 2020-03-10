@@ -1,8 +1,8 @@
 package jikan.parser;
 
-import jikan.Ui;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

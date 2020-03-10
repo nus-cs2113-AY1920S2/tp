@@ -1,4 +1,4 @@
-package jikan;
+package jikan.ui;
 
 import jikan.activity.ActivityList;
 import java.util.Arrays;
