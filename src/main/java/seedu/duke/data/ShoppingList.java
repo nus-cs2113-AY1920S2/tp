@@ -20,19 +20,27 @@ public class ShoppingList {
     }
 
     /**
-     * Formats the list to be printed to user.
-     * @param feedback String that is to be made into list to be printed to user
-     * @return the contents of the list, formatted into a string
+     * Formats the list of items to be printed to user.
+     * @return the items of the list, formatted into a string
      */
-    public String compileList(String feedback) {
+    public String createStringOfItems() {
         int bulletNum = 1;
+        String itemsStr = "";
         String itemLine;
         for (Item item : items) {
             itemLine = bulletNum + ". " + item.toString() + "\n";
-            feedback = feedback + itemLine;
+            itemsStr = itemsStr.concat(itemLine);
             bulletNum++;
         }
-        return feedback;
+        return itemsStr;
+    }
+
+    public double getTotalCost() {
+        double totalCost = 0.0;
+        for (Item item : items) {
+            totalCost += item.getPrice();
+        }
+        return totalCost;
     }
 
     public void clearList() {
