@@ -1,25 +1,30 @@
 package seedu.duke;
 
 public class Person {
-    private String Name;
-    private int Age;
-    private double Height; //Height in meter
-    private double Weight; //Wight in Kg
-    private String Gender;
+    private String name;
+    private int age;
+    private double height; //Height in meter
+    private double weight; //Wight in Kg
+    private String gender;
     private double weightGoal;
 
-    public Person(String Name, int Age, String Gender, double Height, double Weight, double weightGoal){
-        this.Name = Name;
-        this.Age = Age;
-        this.Gender = Gender;
-        this.Height = Height / 100;
-        this.Weight = Weight;
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public Person(String name, int age, String gender, double height, double weight, double weightGoal){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.height = height;
+        this.weight = weight;
         this.weightGoal = weightGoal;
     }
 
     public double getBMI(){
-        return Weight / Height * Height;
+        return weight / Math.pow(height/100, 2);
     }
+
     public void setWeightGoal(double weightGoal){
         this.weightGoal = weightGoal;
     }
