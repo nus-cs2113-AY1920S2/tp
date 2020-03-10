@@ -4,6 +4,7 @@ import jikan.activity.ActivityList;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -36,11 +37,15 @@ public class Jikan {
      * otherwise, an empty task list is initialized.
      */
     private static void createActivityList() {
-        if (storage.loadFile()) {
-            activityList = new ActivityList(storage);
-        } else {
-            activityList = new ActivityList();
-            activityList.storage = storage;
+        try {
+            if (storage.loadFile()) {
+                activityList = new ActivityList(storage);
+            } else {
+                activityList = new ActivityList();
+                activityList.storage = storage;
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading/creating data file.");
         }
     }
   

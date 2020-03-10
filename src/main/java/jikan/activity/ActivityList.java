@@ -46,7 +46,7 @@ public class ActivityList {
 
     /**
      * Adds activity to activity list and stores it in the data file.
-     * @param activity
+     * @param activity Activity to add.
      */
     public void add(Activity activity) {
         activities.add(activity);

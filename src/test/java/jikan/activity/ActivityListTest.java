@@ -1,7 +1,6 @@
 package jikan.activity;
 
-import jikan.activity.Activity;
-import jikan.activity.ActivityList;
+import jikan.storage.Storage;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -13,6 +12,7 @@ class ActivityListTest {
     @Test
     void getIndex() {
         ActivityList activities = new ActivityList();
+        activities.storage = new Storage("data/activityList_test.txt");
         String[] tags = {"tag1", "tag2"};
         Activity activity1 = new Activity("Activity1", LocalDateTime.parse("2020-01-01T08:00:00"),
                 LocalDateTime.parse("2020-01-01T10:00:00"), tags);
@@ -25,5 +25,7 @@ class ActivityListTest {
         activities.add(activity3);
 
         assertEquals(activity2, activities.get(1));
+
+        activities.storage.dataFile.delete();
     }
 }
