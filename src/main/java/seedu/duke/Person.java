@@ -8,7 +8,7 @@ public class Person {
     private String Gender;
     private double weightGoal;
 
-    public Person(String Name, int Age, String Gender, double Height, double Weight, double Goal_Weight){
+    public Person(String Name, int Age, String Gender, double Height, double Weight, double weightGoal){
         this.Name = Name;
         this.Age = Age;
         this.Gender = Gender;
