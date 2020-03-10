@@ -8,7 +8,7 @@ package commands;
  * executing a CommandResult.
  * 
  */
-public class CommandResult extends Command {
+public class CommandResult extends StockCommand {
     
     /** String representation of a result after executing. */
     public final String commandResult;
