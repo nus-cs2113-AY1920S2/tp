@@ -1,6 +1,6 @@
-package seedu.duke.commands;
+package commands;
 
-import seedu.duke.reservation.ReservationList;
+import reservation.ReservationList;
 
 /* Command object for "list reservations" command */
 public class ListReservationCommand extends ReservationCommand {

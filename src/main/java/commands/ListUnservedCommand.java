@@ -1,8 +1,8 @@
-package seedu.duke.commands;
+package commands;
 
-import seedu.duke.reservation.ReservationList;
+import reservation.ReservationList;
 
-import static seedu.duke.utils.Constants.NOT_SERVED;
+import static utils.Constants.NOT_SERVED;
 
 /* Command object for "list unserved reservations" command */
 public class ListUnservedCommand extends ReservationCommand {

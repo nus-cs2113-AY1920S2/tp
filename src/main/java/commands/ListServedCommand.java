@@ -1,8 +1,8 @@
-package seedu.duke.commands;
+package commands;
 
-import seedu.duke.reservation.ReservationList;
+import reservation.ReservationList;
 
-import static seedu.duke.utils.Constants.SERVED;
+import static utils.Constants.SERVED;
 
 /* Command object for "list served reservations" command */
 public class ListServedCommand extends ReservationCommand {

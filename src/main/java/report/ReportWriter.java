@@ -1,10 +1,14 @@
-package seedu.duke;
+package report;
 
 import java.util.*;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
+
+import dish.Dish;
+import menu.Menu;
+import reservation.Reservation;
+import reservation.ReservationList;
+import stock.Stock;
 import utils.Pair;
 
 public class ReportWriter {
@@ -16,14 +20,14 @@ public class ReportWriter {
         this.reservations = reservations;
         this.menu = menu;
     }
-    public static void writeToFile() throws IOException {
-        /* Written in Menu > Stock > Reservation Order
+    public void writeToFile() throws IOException {
+        /* Written in menu.Menu > Stock > Reservation Order
 
          */
         FileWriter fw = new FileWriter("./report.txt");
 
         try {
-            String menuTitle = String.format("Menu Items\n\n");
+            String menuTitle = String.format("menu.Menu Items\n\n");
             fw.write(menuTitle);
             HashMap<String, Dish>  menuItems = menu.getDishMap();
             int counter = 1;
@@ -40,9 +44,8 @@ public class ReportWriter {
             String stockTitle = String.format("\nCurrent Stock\n\n");
             fw.write(stockTitle);
             counter = 1;
-            for (Map.Entry<String, Pair<Integer,Double>> ingredient : stock.entrySet()) {
-
-                String writtenString = String.format("%d. %s \t %d %f \n", counter, ingredient.getKey(), ingredient.getValue().second(), ingredient.getValue().first())
+            for (Map.Entry<String, Pair<Integer,Double>> ingredient : stock.getStock().entrySet()) {
+                String writtenString = String.format("%d. %s \t %d %f \n", counter, ingredient.getKey(), ingredient.getValue().second(), ingredient.getValue().first());
                 fw.write(writtenString);
                 counter += 1;
             }
@@ -50,7 +53,7 @@ public class ReportWriter {
             String reserveTitle = String.format("\nReservations\n\n");
             fw.write(reserveTitle);
             for (int i = 0; i < reservations.getSize(); i ++) {
-                Reservation reserved = reservations.get(i);
+                Reservation reserved = reservations.getReservation(i);
                 String writtenString = String.format("%s\n",reserved.toString());
                 fw.write(writtenString);
             }

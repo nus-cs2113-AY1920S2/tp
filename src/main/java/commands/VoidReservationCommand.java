@@ -1,21 +1,21 @@
-package seedu.duke.commands;
+package commands;
 
-import seedu.duke.reservation.ReservationList;
+import reservation.ReservationList;
 
-import static seedu.duke.utils.Constants.DELIMITER;
-import static seedu.duke.utils.Constants.RES_INDEX_MARKER;
+import static utils.Constants.DELIMITER;
+import static utils.Constants.RES_INDEX_MARKER;
 
-/* Command object for "mark reservation" command */
-public class MarkReservationCommand extends ReservationCommand {
+/* Command object for "void reservation" command */
+public class VoidReservationCommand extends ReservationCommand {
     private String description;
     
-    public MarkReservationCommand(String description) {
+    public VoidReservationCommand(String description) {
         this.description = description;
     }
-
+    
     /**
      * Specifies the index number of the target reservations.
-     * Marks the reservation as done.
+     * Marks the reservation as invalid in the case like reservation cancellation and etc.
      * 
      * @param reservations Existing reservation list.
      */
@@ -27,7 +27,7 @@ public class MarkReservationCommand extends ReservationCommand {
         int reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
                 numberEndPos + 1).trim());
         
-        // mark the reservation as done
-        reservations.markReservationAsServed(reservationNumber);
+        // voids the reservation
+        reservations.voidReservation(reservationNumber);
     }
 }

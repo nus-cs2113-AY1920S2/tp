@@ -4,7 +4,7 @@ import java.util.Optional;
 
 /** 
  * The ingredient class that is used by the Stock and the
- * Dish class.
+ * dish.Dish class.
  *
  */
 public class Ingredient {

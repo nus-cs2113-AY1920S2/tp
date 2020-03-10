@@ -1,12 +1,12 @@
-package seedu.duke.commands;
+package commands;
 
-import seedu.duke.reservation.Reservation;
-import seedu.duke.reservation.ReservationList;
+import reservation.Reservation;
+import reservation.ReservationList;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static seedu.duke.utils.Constants.*;
+import static utils.Constants.*;
 
 /* Command object for "add reservation" command */
 public class AddReservationCommand extends ReservationCommand{

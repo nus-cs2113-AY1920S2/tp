@@ -1,10 +1,10 @@
-package seedu.duke.reservation;
+package reservation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static seedu.duke.utils.Constants.INVALID;
-import static seedu.duke.utils.Constants.SERVED;
+import static utils.Constants.INVALID;
+import static utils.Constants.SERVED;
 
 public class ReservationList {
     List<Reservation> reservations;

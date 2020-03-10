@@ -1,4 +1,4 @@
-package seedu.duke.utils;
+package utils;
 
 /** Constants used in the program */
 public class Constants {

@@ -1,3 +1,5 @@
+package dish;
+
 import java.util.ArrayList;
 
 public class Dish {
@@ -13,7 +15,7 @@ public class Dish {
     private String name;
 
     /**
-     * Dish constructor.
+     * dish.Dish constructor.
      * @param name name of dish
      * @param ingredients arraylist of ingredients in dish
      */
