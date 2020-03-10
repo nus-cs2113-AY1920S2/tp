@@ -6,11 +6,11 @@ import java.time.format.DateTimeFormatter;
 public class DateTime {
     private String dateTime;
 
-    public DateTime (String arguments) {
+    public DateTime(String arguments) {
         this.dateTime = arguments;
     }
 
-    public String getDateTimeFormat(){
+    public String getDateTimeFormat() {
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.dateTime =  localDateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a"));
         return dateTime;
