@@ -12,6 +12,10 @@ public class UnmarkCommand extends Command {
     public static final String FAIL_MESSAGE = System.lineSeparator()
                                     + "Oh No! This item does not exist in the list"
                                     + System.lineSeparator();
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a bought item."
+                                    + System.lineSeparator() + "|| Parameters: UNMARK [INDEX]"
+                                    + System.lineSeparator() + "|| UNMARK 1" + System.lineSeparator();
+
     private int indexOfItem;
 
     public UnmarkCommand(int index) {

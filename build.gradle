@@ -29,7 +29,18 @@ shadowJar {
     archiveVersion = "0.0.1"
     archiveClassifier = null
     archiveAppendix = null
+    manifest {
+        attributes 'Main-Class': 'seedu.duke.Duke'
+    }
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'seedu.duke.Duke'
+    }
+}
+
+
 
 checkstyle {
     toolVersion = '8.23'
