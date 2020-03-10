@@ -2,11 +2,16 @@ package seedu.duke;
 
 import java.util.Scanner;
 
-public class Duke {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) {
+public class Ui {
+    Scanner sc = new Scanner(System.in);
+    private Ui() {
+    }
+
+    public String readCommand() {
+        return sc.nextLine();
+    }
+
+    public void showGreeting() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -14,12 +19,6 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
-
-        Scanner sc = new Scanner(System.in);
-        String userName = sc.nextLine();
-        System.out.println("Hello " + userName);
-
-        Person mainUser = new Person(userName);
-
+        System.out.println("Hello " + sc.nextLine());
     }
 }
