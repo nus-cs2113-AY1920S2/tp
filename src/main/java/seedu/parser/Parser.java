@@ -13,9 +13,9 @@ import seedu.commands.QuizCommand;
  */
 public class Parser {
 
-    private static final String QUESTION_ARG = "q/ ";
+    private static final String QUESTION_ARG = "q/";
 
-    private static final String ANSWER_ARG = "a/ ";
+    private static final String ANSWER_ARG = "a/";
 
     private static final String INCORRECT_COMMAND = "Incorrect Command.";
 
