@@ -49,7 +49,6 @@ public class Duke {
         Command command;
         do {
             String userCommandText = readCommand();
-            System.out.println(userCommandText);
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             System.out.println(result.feedbackToUser);
