@@ -11,6 +11,8 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
+    public static final String MESSAGE_USAGE = "\tTo exit, type command: exit";
+
     /**
      * Lists the cards currently stored in the application.
      */

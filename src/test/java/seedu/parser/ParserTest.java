@@ -10,6 +10,7 @@ import seedu.commands.ListCommand;
 import seedu.commands.DeleteCommand;
 import seedu.commands.AddCardCommand;
 import seedu.commands.ExitCommand;
+import seedu.exception.EscException;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +20,8 @@ class ParserTest {
 
     private Parser parser;
 
+    private EscException expectedException;
+
     @BeforeEach
     void setUp() {
         parser = new Parser();
@@ -27,11 +30,13 @@ class ParserTest {
     @Test
     void parse_emptyQuery_exceptionThrown() {
         String emptyQuery = "";
+        String resultMessage = parser.INCORRECT_COMMAND + HelpCommand.MESSAGE_USAGE;
+        EscException resultException = new EscException(resultMessage);
         try {
             parser.parse(emptyQuery);
             fail("Empty query should have thrown an exception.");
         } catch (Exception e) {
-            assertEquals("Incorrect Command.",e.getMessage());
+            assertEquals(resultException.getMessage(),e.getMessage());
         }
     }
 
@@ -65,6 +70,7 @@ class ParserTest {
 
     @Test
     void parse_addQueryWithNoArgs_exceptionThrown() {
+        expectedException = new EscException(AddCardCommand.MESSAGE_USAGE);
         String[] addQueries = {
             "add",
             "add "};
@@ -73,13 +79,14 @@ class ParserTest {
                 parser.parse(query);
                 fail("Empty query should have thrown an exception.");
             } catch (Exception e) {
-                assertEquals("Incorrect Command.",e.getMessage());
+                assertEquals(expectedException.getMessage(),e.getMessage());
             }
         }
     }
 
-    /*    @Test
+    @Test
     void parse_addQueryWithInvalidArgs_exceptionThrown() {
+        expectedException = new EscException(AddCardCommand.MESSAGE_USAGE);
         String[] addQueries = {
             "add q/",
             "add a/",
@@ -89,12 +96,12 @@ class ParserTest {
         for (String query : addQueries) {
             try {
                 parser.parse(query);
-                fail("Empty query should have thrown an exception.");
+                fail("Empty query should have thrown an exception.\n");
             } catch (Exception e) {
-                assertEquals("Incorrect Command.",e.getMessage());
+                assertEquals(expectedException.getMessage(),e.getMessage());
             }
         }
-    }*/
+    }
 
     @Test
     void parse_addQueryCorrectFormat_AddCommandReturned() throws Exception {
@@ -104,26 +111,28 @@ class ParserTest {
     }
 
 
-    /*    @Test
+    @Test
     void parse_deleteQueryWithNoArgs_exceptionThrown() {
         String addQuery = "delete ";
+        expectedException = new EscException(DeleteCommand.MESSAGE_USAGE);
         try {
             parser.parse(addQuery);
             fail("Empty query should have thrown an exception.");
         } catch (Exception e) {
-            assertEquals("Incorrect Command.",e.getMessage());
+            assertEquals(expectedException.getMessage(),e.getMessage());
         }
-    }*/
+    }
 
 
     @Test
     void parse_deleteQueryWithNonInteger_exceptionThrown() {
         String addQuery = "delete a";
+        expectedException = new EscException("The card item has to be an integer.");
         try {
             parser.parse(addQuery);
             fail("Empty query should have thrown an exception.");
         } catch (Exception e) {
-            assertEquals("The task item has to be an integer.",e.getMessage());
+            assertEquals(expectedException.getMessage(),e.getMessage());
         }
     }
 
