@@ -61,11 +61,11 @@ public class Parser {
             break;
 
         case ListCommand.COMMAND_WORD:
-            createListCommand();
+            createListCommand(arguments);
             break;
 
         case ClearCommand.COMMAND_WORD:
-            createClearCommand();
+            createClearCommand(arguments);
             break;
 
         case SetBudgetCommand.COMMAND_WORD:
@@ -89,12 +89,26 @@ public class Parser {
         return newCommand;
     }
 
-    private void createClearCommand() {
-        newCommand = new ClearCommand();
+    private void createClearCommand(String arguments) {
+        if (arguments != null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To clear your shopping list, just input \"CLEAR\".");
+        } else {
+            newCommand = new ClearCommand();
+        }
     }
 
-    private void createListCommand() {
-        newCommand = new ListCommand();
+    private void createListCommand(String arguments) {
+        if (arguments != null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To display your shopping list, just input \"DISPLAY\".");
+        } else {
+            newCommand = new ListCommand();
+        }
     }
 
     /**
