@@ -67,6 +67,9 @@ public class Parser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case CheckDeadlineCommand.COMMAND_WORD:
+            return new CheckDeadlineCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

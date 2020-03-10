@@ -19,6 +19,8 @@ public class Message {
     public static final String MESSAGE_WELCOME_1 = "Welcome to NUKE";
     public static final String MESSAGE_WELCOME_2 = "What can I do for you?";
     public static final String MESSAGE_FAREWELL = "Bye. Hope to see you again soon!";
+    public static final String MESSAGE_NO_TASK_IN_LIST = "There is no task in the list!";
+    public static final String MESSAGE_TASK_SUCCESSFULY_LIST = "There are (is) %d task(s) in the list!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 
     public static String MESSAGE_ADD_MODULE_SUCCESS(String moduleCode, String title) {

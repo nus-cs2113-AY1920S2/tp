@@ -9,6 +9,9 @@ import seedu.nuke.ui.TextUi;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
+import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULY_LIST;
+
 public class CheckDeadlineCommand extends Command{
     protected DataManager dataManager;
 
@@ -22,10 +25,13 @@ public class CheckDeadlineCommand extends Command{
     public CommandResult execute() {
         //get the large task list
         dataManager = new DataManager(moduleManager);
+        if (dataManager.getAllTasks() == null){
+            return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
+        }
         for (Task task: dataManager.getAllTasks()
              ) {
             System.out.println(String.format(task.getDescription()+" deadline:"+task.getDeadline()));
         }
-        return new CommandResult("");
+        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULY_LIST, dataManager.getAllTasks().size()));
     }
 }
