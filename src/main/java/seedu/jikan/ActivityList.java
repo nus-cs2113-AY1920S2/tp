@@ -1,4 +1,5 @@
-import java.time.Duration;
+package seedu.jikan;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,10 @@ public class ActivityList {
     public ActivityList(File dataFile) {
         this.activities = new ArrayList<>();
         populateTaskList(dataFile);
+    }
+
+    public Activity get(int i) {
+        return activities.get(i);
     }
 
     public void add(Activity activity) {
@@ -80,7 +85,7 @@ public class ActivityList {
     }
 
     /**
-     * Parses the current line in the data file to an Activity object.
+     * Parses the current line in the data file to an seedu.jikan.Activity object.
      *
      * @param s String to parse.
      */
