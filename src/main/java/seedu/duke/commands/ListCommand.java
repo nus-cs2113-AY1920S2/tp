@@ -18,6 +18,7 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
+
         System.out.println(LIST_MESSAGE);
         String feedback;
         items.compileList();
@@ -27,9 +28,9 @@ public class ListCommand extends Command {
             totalCost += item.getPrice();
         }
 
-        feedback = String.format(TOTAL_COST_MESSAGE, totalCost);
+        totalCost = items.getTotalCost();
 
-        feedback = feedback
+         feedback = String.format(TOTAL_COST_MESSAGE, totalCost)
                 + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
 
         return new CommandResult(feedback);

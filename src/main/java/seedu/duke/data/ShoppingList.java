@@ -28,15 +28,23 @@ public class ShoppingList {
         CommandLineTable st = new CommandLineTable();
         st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
         st.setHeaders("Item", "Price");//optional - if not used then there will be no header and horizontal lines
-
         int bulletNum = 1;
         String itemLine;
         for (Item item : items) {
+
             itemLine = bulletNum + ". [" + item.getStatusIcon() + "] " + item.getDescription();
             st.addRow(itemLine, String.format("$%.2f",item.getPrice()));
             bulletNum++;
         }
         st.print();
+    }
+
+    public double getTotalCost() {
+        double totalCost = 0.0;
+        for (Item item : items) {
+            totalCost += item.getPrice();
+        }
+        return totalCost;
 
     }
 

@@ -1,1 +1,14 @@
-James Gosling
+ADD i/apple p/2.45
+ADD i/banana p/3.00
+ADD i/cherry p/5.60
+SET b/500.00
+DISPLAY
+EDIT 1 i/apples
+EDIT 2 p/6.50 i/bananas
+EDIT 3 P/8.00
+DISPLAY
+MARK 1
+MARK 2
+UNMARK 1
+MARK 3
+DISPLAY

@@ -19,8 +19,8 @@ public class SetBudgetCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        myBudget.setBudget(amount);
-        String feedback = SET_BUDGET_MESSAGE + "$" + amount;
+        double correctBudget = myBudget.setBudget(amount);
+        String feedback = SET_BUDGET_MESSAGE + "$" + correctBudget;
         return new CommandResult(feedback);
     }
 }

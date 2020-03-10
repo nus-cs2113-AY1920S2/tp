@@ -20,8 +20,6 @@ import seedu.duke.commands.UnmarkCommand;
 public class Parser {
 
     private static Command newCommand;
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S]+)"
-            + "(?<arguments>[\\d\\s\\S]*$)");
 
     /**
      * Parses user input into command for execution.
@@ -30,13 +28,14 @@ public class Parser {
      * @return the command based on the user input
      */
     public Command parseCommand(String userInput) {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            newCommand = new IncorrectCommand("Invalid input."
-                    + "Please try again or type 'help' to show a list of instructions.\n");
+        String[] commandAndArgs = splitCommandAndArgs(userInput);
+        String commandWord = commandAndArgs[0];
+        String arguments;
+        try {
+           arguments = commandAndArgs[1];
+        } catch (IndexOutOfBoundsException e) {
+            arguments = null;
         }
-        final String commandWord = matcher.group("commandWord").trim();
-        final String arguments = matcher.group("arguments").trim();
 
         switch (commandWord) {
 
@@ -61,11 +60,11 @@ public class Parser {
             break;
 
         case ListCommand.COMMAND_WORD:
-            createListCommand();
+            createListCommand(arguments);
             break;
 
         case ClearCommand.COMMAND_WORD:
-            createClearCommand();
+            createClearCommand(arguments);
             break;
 
         case SetBudgetCommand.COMMAND_WORD:
@@ -91,12 +90,26 @@ public class Parser {
         return newCommand;
     }
 
-    private void createClearCommand() {
-        newCommand = new ClearCommand();
+    private void createClearCommand(String arguments) {
+        if (arguments != null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To clear your shopping list, just input \"CLEAR\".");
+        } else {
+            newCommand = new ClearCommand();
+        }
     }
 
-    private void createListCommand() {
-        newCommand = new ListCommand();
+    private void createListCommand(String arguments) {
+        if (arguments != null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To display your shopping list, just input \"DISPLAY\".");
+        } else {
+            newCommand = new ListCommand();
+        }
     }
 
     /**
@@ -137,6 +150,10 @@ public class Parser {
         }
     }
 
+    private String[] splitCommandAndArgs (String userInput) {
+        String[] commandandArgs = userInput.trim().split(" ", 2);
+        return commandandArgs;
+    }
     private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
         String[] argsArray = new String[]{};
         String descriptionDelimiter = "i/";
@@ -289,16 +306,31 @@ public class Parser {
      * Initialises the SetBudgetCommand.
      */
     public static void createSetBudgetCommand(String arguments) {
-        double amount = Double.parseDouble(arguments.substring(2));
-        newCommand = new SetBudgetCommand(amount);
+        try {
+            double amount = Double.parseDouble(arguments.substring(2));
+            newCommand = new SetBudgetCommand(amount);
+        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter an amount for your budget"
+                    + System.lineSeparator()
+                    + "Example: SET b/300");
+        }
     }
 
     /**
      * Initialises the DeleteCommand.
      */
     public static void createDeleteCommand(String arguments) {
-        int index = Integer.parseInt(arguments);
-        newCommand = new DeleteCommand(index);
+        try {
+            int index = Integer.parseInt(arguments);
+            newCommand = new DeleteCommand(index);
+        } catch (NumberFormatException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter an index"
+                    + System.lineSeparator()
+                    + "Example: DEL 3");
+        }
+
     }
 
     /**
