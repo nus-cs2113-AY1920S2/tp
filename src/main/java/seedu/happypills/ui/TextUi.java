@@ -76,4 +76,9 @@ public class TextUi {
         System.out.println(patient + DIVIDER);
     }
 
+    public static void printExit() {
+        System.out.println("Thank you for using HappyPills! ^_^");
+        System.out.println("See you again!");
+    }
+
 }

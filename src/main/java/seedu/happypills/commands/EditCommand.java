@@ -7,13 +7,7 @@ import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
 public class EditCommand extends Command {
-    protected String name;
     protected String nric;
-    protected int phoneNumber;
-    protected String dateOfBirth;
-    protected String bloodType;
-    protected String allergies;
-    protected String remarks;
     protected String editField;
     protected String newContent;
 
