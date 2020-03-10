@@ -66,4 +66,5 @@ public class CommandParser {
     public static void errorCommand() {
         System.out.println("Incorrect command");
     }
+    public static void successfulCommand(String string) { System.out.println(string + "has been successfully executed.");}
 }

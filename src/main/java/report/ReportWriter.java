@@ -27,7 +27,7 @@ public class ReportWriter {
         FileWriter fw = new FileWriter("./report.txt");
 
         try {
-            String menuTitle = String.format("menu.Menu Items\n\n");
+            String menuTitle = String.format("Menu Items\n\n");
             fw.write(menuTitle);
             HashMap<String, Dish>  menuItems = menu.getDishMap();
             int counter = 1;

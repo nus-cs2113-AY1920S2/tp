@@ -1,6 +1,10 @@
 import commands.Command;
 import commands.CommandResult;
 import commands.ExitCommand;
+import menu.Menu;
+import reservation.Reservation;
+import reservation.ReservationList;
+import utils.CommandParser;
 import utils.Parser;
 import stock.Stock;
 import ui.Ui;
@@ -14,6 +18,8 @@ public class Main {
     
     private Stock stock;
     private Ui ui;
+    private ReservationList reservations;
+    private Menu menu;
 
     /** Driver code for the program. */
     public static void main(String... args) {
@@ -30,6 +36,8 @@ public class Main {
     /** Sets up the required objects and shows a welcome message. */
     public void start(String[] args) {
         this.stock = new Stock();
+        this.menu = new Menu();
+        this.reservations = new ReservationList();
         this.ui = new Ui();
         ui.showWelcomeMessage();
     }
@@ -37,11 +45,12 @@ public class Main {
     /** Read user's input, parse it into readable command format and execute it. */
     private void runCommandUntilExit() {                     
         Command command;
-        do {
+        while(true){
+            System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
-            command = new Parser().parseCommand(userInput);
-            CommandResult result = executeCommand(command);
-        } while (!ExitCommand.isExit(command));
+            new CommandParser().parseCommand(userInput,this.menu,this.stock,this.reservations);
+            //CommandResult result = executeCommand(command);
+        }
     }
     
     /** Executes a command. */
