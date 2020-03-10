@@ -1,4 +1,4 @@
-package seedu.jikan;
+package jikan.activity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -85,7 +85,7 @@ public class ActivityList {
     }
 
     /**
-     * Parses the current line in the data file to an seedu.jikan.Activity object.
+     * Parses the current line in the data file to an jikan.activity.Activity object.
      *
      * @param s String to parse.
      */

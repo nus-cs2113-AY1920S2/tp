@@ -1,4 +1,7 @@
-package seedu.jikan;
+package jikan.parser;
+
+import jikan.activity.Activity;
+import jikan.activity.ActivityList;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

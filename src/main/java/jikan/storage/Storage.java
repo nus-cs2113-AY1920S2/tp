@@ -1,4 +1,4 @@
-package seedu.jikan.storage;
+package jikan.storage;
 
 import java.io.File;
 import java.io.FileWriter;
