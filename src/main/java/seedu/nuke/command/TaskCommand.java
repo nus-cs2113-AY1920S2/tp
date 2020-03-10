@@ -34,7 +34,5 @@ public abstract class TaskCommand extends ModuleCommand {
     }
 
     @Override
-    public CommandResult execute() {
-        return null;
-    }
+    public abstract CommandResult execute();
 }

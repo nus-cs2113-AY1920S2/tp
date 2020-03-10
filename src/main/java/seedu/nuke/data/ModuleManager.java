@@ -12,7 +12,7 @@ import java.util.List;
 import static seedu.nuke.util.Message.*;
 
 public class ModuleManager implements Iterable<Module> {
-    public static ArrayList<Module> modules = new ArrayList<>();
+    private static ArrayList<Module> modules = new ArrayList<>();
 
     /**
      * @return all modules
