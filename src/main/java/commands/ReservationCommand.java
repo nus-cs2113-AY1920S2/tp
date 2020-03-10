@@ -1,6 +1,6 @@
-package seedu.duke.commands;
+package commands;
 
-import seedu.duke.reservation.ReservationList;
+import reservation.ReservationList;
 
 public abstract class ReservationCommand {
     public abstract void execute(ReservationList reservations);

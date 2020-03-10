@@ -1,8 +1,6 @@
-package seedu.duke;
-
-import command.Command;
-import command.CommandResult;
-import command.ExitCommand;
+import commands.Command;
+import commands.CommandResult;
+import commands.ExitCommand;
 import utils.Parser;
 import stock.Stock;
 import ui.Ui;

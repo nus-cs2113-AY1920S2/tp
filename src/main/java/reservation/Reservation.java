@@ -1,8 +1,8 @@
-package seedu.duke.reservation;
+package reservation;
 
 import java.time.LocalDate;
 
-import static seedu.duke.utils.Constants.*;
+import static utils.Constants.*;
 
 /** Reservation of the restaurant */
 public class Reservation {

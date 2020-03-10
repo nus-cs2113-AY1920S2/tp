@@ -1,4 +1,4 @@
-package command;
+package commands;
 
 /**
  * This class focuses on the 'list' functionality of the application.

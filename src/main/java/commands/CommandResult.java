@@ -1,4 +1,4 @@
-package command;
+package commands;
 
 /**
  * Represents the result after executing a command. A CommandResult

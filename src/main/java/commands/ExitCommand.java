@@ -1,4 +1,4 @@
-package command;
+package commands;
 
 /** 
  * Represents the 'Exit' functionality of a command. This command

@@ -1,3 +1,7 @@
+package menu;
+
+import dish.Dish;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

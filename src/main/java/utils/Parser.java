@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import command.AddCommand;
-import command.Command;
-import command.DeleteCommand;
-import command.ListCommand;
+import commands.AddCommand;
+import commands.Command;
+import commands.DeleteCommand;
+import commands.ListCommand;
 
 /**
  * This class is used to parse user's input into readable format
