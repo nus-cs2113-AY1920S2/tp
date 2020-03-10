@@ -1,9 +1,11 @@
 package seedu.cards;
 
+import java.io.Serializable;
+
 /**
  * Flashcard object used to store a question and its answer.
  */
-public class Card {
+public class Card implements Serializable {
     private final String question;
     private final String answer;
 

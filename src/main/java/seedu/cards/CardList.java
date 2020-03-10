@@ -1,5 +1,7 @@
 package seedu.cards;
 
+import seedu.duke.Storage;
+
 import java.util.ArrayList;
 
 /**
@@ -25,15 +27,19 @@ public class CardList {
      * @param card Card to be added.
      */
     public void addCard(Card card) {
-        //method stub
+        cards.add(card);
     }
 
     /**
      * Removes a card from the deck.
      * @param index Index of card to be removed.
      */
-    public void removeCard(int index) {
-        //method stub
+    public void removeCard(int index) throws Exception {
+        try {
+            cards.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new Exception("The task item does not exist.");
+        }
     }
 
     /**
@@ -43,7 +49,7 @@ public class CardList {
      */
     public Card getCard(int index) {
         // assuming that our question index starts from 1 and not 0.
-        Card card = cards.get(index + 1);
+        Card card = cards.get(index - 1);
         return card;
     }
 
