@@ -146,7 +146,8 @@ public class Parser {
                     + System.lineSeparator()
                     + " - At least 'i/' or 'p/' should be present."
                     + System.lineSeparator()
-                    + "|| Example: ADD i/apple p/2.50");
+                    + "|| Example: ADD i/apple p/2.50"
+                    + System.lineSeparator());
         }
     }
 
