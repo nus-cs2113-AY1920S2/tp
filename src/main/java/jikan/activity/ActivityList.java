@@ -1,5 +1,8 @@
 package jikan.activity;
 
+import jikan.storage.Storage;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +17,8 @@ import java.util.Scanner;
  */
 public class ActivityList {
     ArrayList<Activity> activities;
+    public Storage storage; // Storage the list was loaded from
+
     //int size;
 
     /**
@@ -27,11 +32,12 @@ public class ActivityList {
     /**
      * Loads activityList from data file.
      *
-     * @param dataFile Data file to load from.
+     * @param storage Storage to load from.
      */
-    public ActivityList(File dataFile) {
+    public ActivityList(Storage storage) {
         this.activities = new ArrayList<>();
-        populateTaskList(dataFile);
+        this.storage = storage;
+        populateTaskList(storage.dataFile);
     }
 
     public Activity get(int i) {
@@ -40,6 +46,23 @@ public class ActivityList {
 
     public void add(Activity activity) {
         activities.add(activity);
+
+        String dataLine = activity.toData();
+
+        updateFile(dataLine);
+    }
+
+    /**
+     * Updates data file with new task.
+     *
+     * @param dataLine Line to write to file.
+     */
+    private void updateFile(String dataLine) {
+        try {
+            storage.writeToFile(dataLine);
+        } catch (IOException e) {
+            System.out.println("Error saving task to data file.");
+        }
     }
 
     public int getSize() {

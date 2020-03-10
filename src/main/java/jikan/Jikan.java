@@ -37,9 +37,10 @@ public class Jikan {
      */
     private static void createActivityList() {
         if (storage.loadFile()) {
-            activityList = new ActivityList(storage.dataFile);
+            activityList = new ActivityList(storage);
         } else {
             activityList = new ActivityList();
+            activityList.storage = storage;
         }
     }
   
