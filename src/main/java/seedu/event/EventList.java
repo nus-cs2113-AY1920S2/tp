@@ -1,5 +1,7 @@
 package seedu.event;
 
+import seedu.event.Event;
+
 import java.util.ArrayList;
 
 public class EventList {
