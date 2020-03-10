@@ -10,12 +10,16 @@ public class Budget {
     }
 
     /**
-     * Sets the budget based on input amount.
+     * Sets the budget based on user input.
+     *
+     * @param amount The user supplied amount.
+     * @return The correct budget amount in case the user-specified amount is too high or negative.
      */
-    public void setBudget(double amount) {
+    public double setBudget(double amount) {
         amount = Math.min(amount,MAX);
         amount = Math.max(amount,0);
         this.amount = amount;
+        return amount;
     }
 
     public double getAmount() {
