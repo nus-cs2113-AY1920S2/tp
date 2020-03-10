@@ -1,5 +1,7 @@
 package seedu.cards;
 
+import seedu.duke.Storage;
+
 import java.util.ArrayList;
 
 /**

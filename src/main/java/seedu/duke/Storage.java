@@ -1,57 +1,66 @@
-//package seedu.duke;
-//
-//import java.io.*;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//import java.util.ArrayList;
-//
-//TODO update to card & cardlist
-//
-//public class Storage  {
-//
-//    String dir = System.getProperty("user.dir");
-//    Path filepath = Paths.get(dir, "data", "taskList.txt"); //todo change filepath
-//    String filepathStr  = String.valueOf(filepath);;
-//    File dukeFile = new File(filepathStr);
-//
-//    public ArrayList<Task> loadDuke() {
-//        ArrayList<Task> loadTasks = new ArrayList<>();
-//        if(!dukeFile.exists()) {
-//            try {
-//                // creates all sub dir if not exist
-//                dukeFile.getParentFile().mkdirs();
-//                dukeFile.createNewFile();
-//            }
-//            catch (IOException e){
-//                System.out.println("File creation error");
-//            }
-//        }
-//        else {
-//            try{
-//                FileInputStream fileRead = new FileInputStream(dukeFile);
-//                ObjectInputStream objRead = new ObjectInputStream(fileRead);
-//
-//                loadTasks = (ArrayList<Task>) objRead.readObject();
-//                objRead.close();
-//            }
-//            catch (IOException | ClassNotFoundException e) {
-//                System.out.println("\nLoad error");
-//            }
-//        }
-//        return loadTasks;
-//    }
-//
-//    public void saveDuke(TaskList saveTasks) {
-//        try{
-//            FileOutputStream fileWrite = new FileOutputStream(dukeFile);
-//            ObjectOutputStream objWrite = new ObjectOutputStream(fileWrite);
-//
-//            objWrite.writeObject(saveTasks.getTaskList());
-//            objWrite.flush();
-//            objWrite.close();
-//        }
-//        catch (IOException e) {
-//            System.out.println("\nSave error");
-//        }
-//    }
-//}
+package seedu.duke;
+
+import seedu.cards.Card;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
+public class Storage {
+
+    private static String dir = System.getProperty("user.dir");
+    private static Path filepath = Paths.get(dir, "data", "cards.txt");
+    private static String filepathStr  = String.valueOf(filepath);
+    private static File saveFile = new File(filepathStr);
+
+    /**
+     * Loads any pre-existing cards from the save file and creates a new card list.
+     * @return pre-existing card list (if any) or a new list
+     */
+    public static ArrayList<Card> loadCards() {
+        ArrayList<Card> loadCards = new ArrayList<>();
+        if (!saveFile.exists()) {
+            try {
+                // creates all sub dir if not exist
+                saveFile.getParentFile().mkdirs();
+                saveFile.createNewFile();
+            } catch (IOException e) {
+                System.out.println("File creation error");
+            }
+        } else {
+            try {
+                FileInputStream fileRead = new FileInputStream(saveFile);
+                ObjectInputStream objRead = new ObjectInputStream(fileRead);
+
+                loadCards = (ArrayList<Card>) objRead.readObject();
+                objRead.close();
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("\nLoad error");
+            }
+        }
+        return loadCards;
+    }
+
+    /**
+     * Saves the current card list to the save file.
+     * @param currCards the current card list
+     */
+    public void saveCards(ArrayList<Card> currCards) {
+        try {
+            FileOutputStream fileWrite = new FileOutputStream(saveFile);
+            ObjectOutputStream objWrite = new ObjectOutputStream(fileWrite);
+
+            objWrite.writeObject(currCards);
+            objWrite.flush();
+            objWrite.close();
+        } catch (IOException e) {
+            System.out.println("\nSave error");
+        }
+    }
+}
