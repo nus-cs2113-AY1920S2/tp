@@ -1,4 +1,7 @@
-# IDEAg files
+# data files
+/data/
+
+# IDEA files
 /.idea/
 /out/
 /*.iml
