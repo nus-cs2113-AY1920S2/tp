@@ -5,11 +5,15 @@ package seedu.nuke.command;
  * A <b>Command</b> that is determined to be invalid.
  * @see Command
  */
-public class InvalidCommand extends Command {
-    private final String message; // Message to be shown to the user
+public class IncorrectCommand extends Command {
+    private final String feedbackToUSer; // Message to be shown to the user
 
-    public InvalidCommand(String message) {
-        this.message = message;
+    public IncorrectCommand(String message) {
+        this.feedbackToUSer = message;
+    }
+
+    public String getFeedbackToUSer() {
+        return feedbackToUSer;
     }
 
     /**
@@ -21,6 +25,6 @@ public class InvalidCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        return new CommandResult(message);
+        return new CommandResult(feedbackToUSer);
     }
 }

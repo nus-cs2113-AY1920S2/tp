@@ -1,53 +1,30 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.command.Command;
-import seedu.nuke.command.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
-import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.InvalidFormatException;
+
+import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_EXCESS_PARAMETERS;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_MODULE_CODE;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class Parser {
-    public static final String COMMAND_SPLITTER = " ";
+    /**
+     * Used for initial separation of command word and args.
+     */
+    public static final Pattern MODULE_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    public static final String COMMAND_PARAMETER_SPLITTER = "\\s+";
+    public static final String PARAMETER_SPLITTER = " ";
+    public static final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
     public static final int COMMAND_WORD_INDEX = 0;
+    public static final int PARAMETER_WORD_INDEX = 1;
     private static final int MAX_INPUT_LENGTH = 100; // Maximum length of user input accepted
-
-    /**
-     * Parses user input into command for execution.
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * split the user input, command word and the description
-     * commandWord stores the whole user input
-     * commandWordFirstPart [0] stores the Command Word
-     * description stores additional information
-     */
-    public Command parseCommand(ModuleManager moduleManager, String userInput) {
-        final String commandWord = userInput;
-        final String[] commandWordFirstPart = commandWord.split(COMMAND_SPLITTER);
-        /* further split the user input, get the secondary part, the description */
-        final String commandWordDescription = commandWord.substring(commandWordFirstPart[COMMAND_WORD_INDEX].length());
-        //operates according to different command word
-        return getCommand(commandWordFirstPart);
-    }
-
-    /**
-     * @param commandWordFirstPart, commandWordDescription the input String spited parts
-     * @return parsed command
-     */
-    private Command getCommand(String[] commandWordFirstPart) {
-        switch (commandWordFirstPart[COMMAND_WORD_INDEX]){
-        //exit
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-        case EditDeadlineCommand.COMMAND_WORD:
-            return new EditDeadlineCommand(commandWordFirstPart[1]);
-        default:
-            return null;
-        }
-    }
 
     /**
      * Parses the input string read by the <b>UI</b> and converts the string into a specific <b>Command</b>, which is
@@ -58,68 +35,79 @@ public class Parser {
      *
      * @param input The user input read by the <b>UI.java</b>
      * @return The <b>corresponding</b> command to be executed
-     * @throws EmptyInputException If user input is empty
-     * @throws InputLengthExceededException If the length of the user input > {@value MAX_INPUT_LENGTH}
-     * @throws InvalidCommandException If the user input cannot be recognised as any of the  <b>Command</b>
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseInput(String input)
-            throws EmptyInputException, InputLengthExceededException, InvalidCommandException {
+    public Command parseCommand(String input) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
+        /*
         if (input.isEmpty()) {
-            throw new EmptyInputException();
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         if (input.length() > MAX_INPUT_LENGTH) {
-            throw new InputLengthExceededException();
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }*/
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-
-        // Splits user input into command word and rest of parameters (if any)
-        String[] separatedInput = input.split("\\s+", 2);
-
-        String commandWord = separatedInput[0].toLowerCase();
-        String parameters = (separatedInput.length == 2) ? separatedInput[1].trim() : "";
+        String commandWord = getCommandAndParameter(input)[COMMAND_WORD_INDEX];
+        String parameters = getCommandAndParameter(input)[PARAMETER_WORD_INDEX];
 
         switch (commandWord) {
 
-            case AddModuleCommand.COMMAND_WORD:
-                return createAddModuleCommand(parameters);
+        case AddModuleCommand.COMMAND_WORD:
+            return prepareAddModuleCommand(parameters);
 
-            case DeleteModuleCommand.COMMAND_WORD:
-                return createDeleteModuleCommand(parameters);
+        case DeleteModuleCommand.COMMAND_WORD:
+            return prepareDeleteModuleCommand(parameters);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                throw new InvalidCommandException();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        default:
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
     }
 
-    private Command createAddModuleCommand(String parameters) {
-        try {
-            String moduleCode = extractModuleCode(parameters);
-            return new AddModuleCommand(moduleCode);
-        } catch (MissingParameterException e) {
-            return new InvalidCommand(MESSAGE_MISSING_MODULE_CODE);
-        } catch (ExcessParameterException e) {
-            return new InvalidCommand(MESSAGE_EXCESS_PARAMETERS);
-        }
+    /**
+     * Splits user input into command word and rest of parameters (if any)
+     * @param input
+     * @return array of String contains command and parameter
+     */
+    private String[] getCommandAndParameter(String input){
+        String[] separatedInput = input.split(COMMAND_PARAMETER_SPLITTER, COMMAND_PARAMETER_MAXIMUM_LIMIT);
+        String commandWord = separatedInput[COMMAND_WORD_INDEX].toLowerCase();
+        String parameters = (separatedInput.length == COMMAND_PARAMETER_MAXIMUM_LIMIT) ? separatedInput[PARAMETER_WORD_INDEX].trim() : "";
+        return new String[] {commandWord, parameters};
     }
 
-    private Command createDeleteModuleCommand(String parameters) {
-        try {
-            String moduleCode = extractModuleCode(parameters);
-            return new DeleteModuleCommand(moduleCode);
-        } catch (MissingParameterException e) {
-            return new InvalidCommand(MESSAGE_MISSING_MODULE_CODE);
-        } catch (ExcessParameterException e) {
-            return new InvalidCommand(MESSAGE_EXCESS_PARAMETERS);
+    private Command prepareAddModuleCommand(String parameters) {
+        String moduleCode = parameters;
+        if (parameters.isEmpty()){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
+        if (hasMultipleParameters(parameters)) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
+        }
+        return new AddModuleCommand(moduleCode);
     }
 
+    private Command prepareDeleteModuleCommand(String parameters) {
+        String moduleCode = parameters;
+        if (parameters.isEmpty()){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
+        }
+        if (hasMultipleParameters(parameters)) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
+        }
+        return new DeleteModuleCommand(moduleCode);
+    }
 
     /**
      * Checks if there is more than <b>one</b> parameter in the input
@@ -128,33 +116,6 @@ public class Parser {
      * @return <code>TRUE</code> if there is more than one parameter in the input, and <code>FALSE</code> otherwise
      */
     private boolean hasMultipleParameters(String parameters) {
-        return parameters.contains(" ");
+        return parameters.contains(PARAMETER_SPLITTER);
     }
-
-    private String extractModuleCode(String parameters) throws MissingParameterException, ExcessParameterException {
-        if (parameters.isEmpty()) {
-            throw new MissingParameterException();
-        }
-
-        if (hasMultipleParameters(parameters)) {
-            throw new ExcessParameterException();
-        }
-
-        return parameters;
-    }
-
-    /** Signals that the user has provided an empty input. */
-    public static class EmptyInputException extends InvalidFormatException {}
-
-    /** Signals that the user has provided an input that is longer than {@value MAX_INPUT_LENGTH} characters. */
-    public static class InputLengthExceededException extends InvalidFormatException {}
-
-    /** Signals that the user has provided an unrecognised command */
-    public static class InvalidCommandException extends InvalidFormatException {}
-
-    /** Signals that the user has provided surplus parameters. */
-    public static class ExcessParameterException extends InvalidFormatException {}
-
-    /** Signals that the user has not provided sufficient parameters. */
-    public static class MissingParameterException extends InvalidFormatException {}
 }

@@ -50,17 +50,9 @@ public class Nuke {
     private void runCommandLoopUntilExitCommand() {
         do {
             String userCommandText = ui.getInput();
-            try {
-                Command command = new Parser().parseInput(userCommandText);
-                CommandResult result = executeCommand(command);
-                ui.showResult(result);
-            } catch (Parser.InputLengthExceededException e) {
-                System.out.println(MESSAGE_INPUT_LENGTH_EXCEEDED);
-            } catch (Parser.EmptyInputException e) {
-                System.out.println(MESSAGE_EMPTY_INPUT);
-            } catch (Parser.InvalidCommandException e) {
-                System.out.println(MESSAGE_INVALID_COMMAND);
-            }
+            Command command = new Parser().parseCommand(userCommandText);
+            CommandResult result = executeCommand(command);
+            ui.showResult(result);
         } while (!ExitCommand.isExit());
     }
 
