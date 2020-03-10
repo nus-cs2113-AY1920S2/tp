@@ -1,1 +1,7 @@
-James Gosling
+add stock; i/tomato; q/10; p/$0.40
+add stock; i/tomato; q/10; p/$0.50
+list stock
+delete stock; i/tomato; q/1;
+delete stock; i/tomato; q/9;
+delete stock; i/tomato; 
+list stock
