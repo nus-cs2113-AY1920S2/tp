@@ -42,7 +42,7 @@ public class StorageTest {
     }
 
     @Test
-    public void testCreateDataFile_IOException() throws IOException {
+    public void testCreateDataFile_IoException() throws IOException {
         Storage storage = new Storage("//\\-@#4/\\/**3");
 
         IOException thrown = assertThrows(
