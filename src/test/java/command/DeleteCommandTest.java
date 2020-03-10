@@ -6,7 +6,7 @@ import tasks.Assignment;
 import tasks.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DeleteCommandTest {
     @Test
@@ -24,10 +24,6 @@ public class DeleteCommandTest {
     @Test
     public void testDelete_failure() {
         TaskList testTaskList = new TaskList();
-        try {
-            testTaskList.deleteTask(0);
-        } catch (IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+        assertThrows(IndexOutOfBoundsException.class, () -> testTaskList.deleteTask(0));
     }
 }
