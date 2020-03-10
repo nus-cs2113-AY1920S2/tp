@@ -63,7 +63,7 @@ public class Duke {
     public String readCommand() {
         Scanner in = new Scanner(System.in);
         String input = "";
-        while (input.isEmpty()) {
+        while (input == "") {
             input = in.nextLine();
             input = input.trim();
         }

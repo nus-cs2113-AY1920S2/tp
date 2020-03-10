@@ -1,9 +1,5 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+HELLO! I'm SHOCO. Your digital shopping list!
 
-What is your name?
-Hello James Gosling
+ADD i/apple p/2.45
+Added this item: [0] apple  $2.45
+

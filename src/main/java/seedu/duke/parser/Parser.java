@@ -20,8 +20,7 @@ import seedu.duke.commands.UnmarkCommand;
 public class Parser {
 
     private static Command newCommand;
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S]+)"
-            + "(?<arguments>[\\d\\s\\S]*$)");
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>^[\\S\\n]+)+(?<arguments>[\\d\\s\\S].*$)");
 
     /**
      * Parses user input into command for execution.
@@ -31,12 +30,15 @@ public class Parser {
      */
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             newCommand = new IncorrectCommand("Invalid input."
                     + "Please try again or type 'help' to show a list of instructions.\n");
+            return newCommand;
         }
         final String commandWord = matcher.group("commandWord").trim();
         final String arguments = matcher.group("arguments").trim();
+
 
         switch (commandWord) {
 
