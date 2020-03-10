@@ -7,6 +7,7 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.parser.Parser;
+import seedu.duke.ui.Ui;
 
 
 public class Duke {
