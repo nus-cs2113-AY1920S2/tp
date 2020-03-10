@@ -21,6 +21,7 @@ public class StorageHandlerTest {
         int random = (int )(Math.random() * 500 + 1);
         String filepath = "data/test" + random + ".txt";
         Storage storage = new Storage(filepath);
+        storage.loadFile();
 
         String line1 = "1. a";
         String line2 = "2. b";
@@ -58,6 +59,7 @@ public class StorageHandlerTest {
         int random = (int )(Math.random() * 500 + 1);
         String filepath = "data/test" + random + ".txt";
         Storage storage = new Storage(filepath);
+        storage.loadFile();
 
         for (int i = 0; i < list.size(); i++) {
             storage.writeToFile(list.get(i));
