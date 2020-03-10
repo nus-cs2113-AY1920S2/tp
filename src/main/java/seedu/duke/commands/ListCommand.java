@@ -12,20 +12,25 @@ public class ListCommand extends Command {
 
     public static final String BUDGET_MESSAGE = "Your remaining budget / total budget: %.2f / %.2f\n";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all items in the list."
+            + System.lineSeparator() + "|| Parameters: DISPLAY"
+            + System.lineSeparator() + "|| Example: DISPLAY" + System.lineSeparator();
+
     @Override
     public CommandResult execute() {
 
-        String feedback = LIST_MESSAGE;
-        feedback = items.compileList(feedback);
+        System.out.println(LIST_MESSAGE);
+        String feedback;
+        items.compileList();
 
         double totalCost = 0.0;
         for (Item item : items.getList()) {
             totalCost += item.getPrice();
         }
 
-        feedback = feedback + String.format(TOTAL_COST_MESSAGE, totalCost);
+        totalCost = items.getTotalCost();
 
-        feedback = feedback
+         feedback = String.format(TOTAL_COST_MESSAGE, totalCost)
                 + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
 
         return new CommandResult(feedback);
