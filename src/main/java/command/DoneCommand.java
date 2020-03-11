@@ -1,7 +1,9 @@
 package command;
 
+import common.Messages;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
+import tasks.Task;
 
 public class DoneCommand extends Command {
     protected int doneIndex;
@@ -14,14 +16,20 @@ public class DoneCommand extends Command {
         this.doneIndex = index;
     }
 
-    /**
-     * Set Task as completed, prints Ui message.
-     * @param taskList TaskList object that handles adding Task
-     * @param ui Ui object that interacts with user
-     */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        taskList.markTaskAsDone(doneIndex);
-        ui.showDoneMessage(taskList.getTask(doneIndex), doneIndex);
+    public CommandResult execute(TaskList taskList, Ui ui) {
+        if (taskList.getListSize() == 0) {
+            return new CommandResult(Messages.NO_TASKS_MSG);
+        }
+        try {
+            Task taskToBeMarkDone = taskList.getTask(doneIndex);
+            if (taskToBeMarkDone.getIsDone()) {
+                return new CommandResult(Messages.COMPLETED_TASK_ERROR);
+            }
+            taskList.markTaskAsDone(doneIndex);
+            return new CommandResult(String.format(Messages.DONE_SUCCESS_MESSAGE, taskToBeMarkDone.getName()));
+        } catch (IndexOutOfBoundsException e) {
+            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
+        }
     }
 }

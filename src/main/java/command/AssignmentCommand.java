@@ -1,5 +1,6 @@
 package command;
 
+import common.Messages;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
 import tasks.Assignment;
@@ -31,11 +32,14 @@ public class AssignmentCommand extends Command {
      * Creates new Assignment, adds to TaskList, print Ui messages.
      * @param taskList TaskList object that handles adding Task
      * @param ui Ui object that interacts with user
+     * @return CommandResult object with acknowledgment message
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public CommandResult execute(TaskList taskList, Ui ui) {
         Task newAssignment = new Assignment(assignmentName, moduleName, deadline, comments);
         taskList.addTask(newAssignment);
-        ui.showAddTaskMessage(newAssignment, taskList.getListSize());
+        int listSize = taskList.getListSize();
+        return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE,
+                newAssignment, listSize, listSize == 1 ? "" : "s"));
     }
 }

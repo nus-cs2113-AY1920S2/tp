@@ -51,39 +51,37 @@ public class TaskList {
         return formattedCurrDate;
     }
 
-
     /**
-     * Lists tasks due or scheduled today.
+     * Getter method for tasks due or scheduled today.
+     * @return ArrayList object containing all tasks for today.
      */
-    public void listTodayTasks() {
-        int sizeOfArray = getListSize();
+    public ArrayList<Task> getTodayTasks() {
+        ArrayList<Task> todayList = new ArrayList<>();
         LocalDate currDate = getCurrentDate();
-        System.out.println("Here are the tasks you have for today!");
-        for (int i = 1; i < sizeOfArray + 1; i++) {
-            LocalDate taskDate = tasks.get(i - 1).getDate();
-            int testEquals = currDate.compareTo(taskDate);
-            if (testEquals == 0) {
-                String taskNum = Integer.toString(i);
-                System.out.println(taskNum + "." + tasks.get(i - 1));
+        for (Task task : tasks) {
+            LocalDate taskDate = task.getDate();
+            if (currDate.compareTo(taskDate) == 0) {
+                todayList.add(task);
             }
         }
+        return todayList;
     }
 
     /**
-     * Lists the tasks due or scheduled within the next week.
+     * Getter method for tasks due or scheduled within the next 7 days.
+     * @return ArrayList object containing all tasks in next 7 days.
      */
-    public void listWeekTasks() {
-        int sizeofArray = getListSize();
+    public ArrayList<Task> getWeekTasks() {
+        ArrayList<Task> weekList = new ArrayList<>();
         LocalDate currDate = getCurrentDate();
         LocalDate nextWeekDate = currDate.plusWeeks(1);
-        System.out.println("Here are the tasks you have for this week!");
-        for (int i = 1; i < sizeofArray + 1; i++) {
-            LocalDate taskDate = tasks.get(i - 1).getDate();
+        for (Task task : tasks) {
+            LocalDate taskDate = task.getDate();
             if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(nextWeekDate) < 0) {
-                String taskNum = Integer.toString(i);
-                System.out.println(taskNum + "." + tasks.get(i - 1));
+                weekList.add(task);
             }
         }
+        return weekList;
     }
 
     /**
@@ -120,8 +118,9 @@ public class TaskList {
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index
+     * @throws IndexOutOfBoundsException if index is invalid
      */
-    public Task getTask(int index) {
+    public Task getTask(int index) throws IndexOutOfBoundsException {
         return this.tasks.get(index);
     }
 

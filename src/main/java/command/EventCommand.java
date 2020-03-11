@@ -1,5 +1,6 @@
 package command;
 
+import common.Messages;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
 import tasks.Event;
@@ -27,15 +28,12 @@ public class EventCommand extends Command {
         this.comments = comments;
     }
 
-    /**
-     * Creates new Event, adds to TaskList, print Ui messages.
-     * @param taskList TaskList object that handles adding Task
-     * @param ui Ui object that interacts with user
-     */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public CommandResult execute(TaskList taskList, Ui ui) {
         Task newEvent = new Event(eventName, eventLocation, dateTime, comments);
         taskList.addTask(newEvent);
-        ui.showAddTaskMessage(newEvent, taskList.getListSize());
+        int listSize = taskList.getListSize();
+        return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE,
+                newEvent, listSize, listSize == 1 ? "" : "s"));
     }
 }

@@ -1,7 +1,11 @@
 package command;
 
+import common.Messages;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
+import tasks.Task;
+
+import java.util.ArrayList;
 
 public class ListCommand extends Command {
 
@@ -19,29 +23,44 @@ public class ListCommand extends Command {
         this.listParam = listParam;
     }
 
-    /**
-     * Processes user input and lists tasks accordingly.
-     * @param taskList TaskList class which handles operation involving ArrayList of tasks
-     * @param ui Ui class for displaying output of task scheduler
-     */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public CommandResult execute(TaskList taskList, Ui ui) {
         // to deal with null being passed as input
         switch (listParam == null ? "" : listParam) {
         case (TODAY_COMMAND):
-            taskList.listTodayTasks();
-            break;
+            return new CommandResult(showListTasks(taskList.getTodayTasks()));
         case (WEEK_COMMAND):
-            taskList.listWeekTasks();
-            break;
+            return new CommandResult(showListTasks(taskList.getWeekTasks()));
         case (UPCOMING_EVENT_COMMAND):
-            ui.showListTasks(taskList.getUpcomingEventArray());
-            break;
+            return new CommandResult(showListTasks(taskList.getUpcomingEventArray()));
         case (INCOMPLETE_ASSIGN_COMMAND):
-            ui.showListTasks(taskList.getIncompleteAssignArray());
-            break;
+            return new CommandResult(showListTasks(taskList.getIncompleteAssignArray()));
         default:
-            ui.showListTasks(taskList.getTaskArray());
+            return new CommandResult(showListTasks(taskList.getTaskArray()));
         }
+    }
+
+    /**
+     * Converts an ArrayList object to text for printing.
+     * @param taskList ArrayList object to be converted to string.
+     */
+    public String showListTasks(ArrayList<Task> taskList) {
+        if (taskList.size() == 0) {
+            //If there are no tasks found within the provided taskList
+            return (Messages.EMPTY_TASKLIST_MESSAGE);
+        }
+        String stringFromArrayList = stringTaskList(taskList);
+        return (String.format(Messages.SHOW_TASKLIST_MESSAGE, System.lineSeparator(), stringFromArrayList));
+    }
+
+    private String stringTaskList(ArrayList<Task> taskList) {
+        StringBuilder stringFromArrayList = new StringBuilder();
+        for (int i = 0; i < taskList.size(); i++) {
+            stringFromArrayList.append(String.format("%3d. %s", i + 1, taskList.get(i).toString()));
+            if (i != taskList.size() - 1) {
+                stringFromArrayList.append(System.lineSeparator());
+            }
+        }
+        return stringFromArrayList.toString();
     }
 }
