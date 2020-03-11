@@ -24,9 +24,9 @@ public class AttendanceTest {
 
     @Test
     void getAttendance() {
-        assertEquals(false, new Attendance("CS2040C","Richard", "Tutorial 1").getAttendance());
-        assertEquals(false, new Attendance("CS2040C","Richard", "Tutorial 1", false).getAttendance());
-        assertEquals(true, new Attendance("CS2040C","Richard", "Tutorial 1", true).getAttendance());
+        assertEquals("false", new Attendance("CS2040C","Richard", "Tutorial 1").getAttendance());
+        assertEquals("false", new Attendance("CS2040C","Richard", "Tutorial 1", "false").getAttendance());
+        assertEquals("true", new Attendance("CS2040C","Richard", "Tutorial 1", "true").getAttendance());
 
     }
 }
