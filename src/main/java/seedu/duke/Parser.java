@@ -63,7 +63,7 @@ public class Parser {
             return prepareEventCommand(fullCommand);
         case "list":
             return prepareListCommand(fullCommand);
-        case "bye":
+        case "bb":
             return new ExitCommand();
         default:
             return new IncorrectCommand(Messages.UNKNOWN_COMMAND_ERROR);

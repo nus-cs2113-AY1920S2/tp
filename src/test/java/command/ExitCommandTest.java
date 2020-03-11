@@ -14,7 +14,7 @@ public class ExitCommandTest {
     public void testExit() {
         Ui testUi = new Ui();
         TaskList testTaskList = new TaskList();
-        CommandResult testResult = Parser.parseCommand("bye").execute(testTaskList, testUi);
+        CommandResult testResult = Parser.parseCommand("bb").execute(testTaskList, testUi);
         CommandResult compareResult = new CommandResult(Messages.EXIT_MESSAGE).setExit();
         assertEquals(testResult.getClass(), compareResult.getClass());
         assertEquals(testResult.feedbackToUser, Messages.EXIT_MESSAGE);
