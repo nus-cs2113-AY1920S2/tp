@@ -32,6 +32,9 @@ public class ViewCommand extends Command {
         case VIEW_MODULE_PLAN:
             viewModulePlan(selectedModulesList);
             break;
+        case VIEW_DONE_MODULES:
+            viewDoneModules(selectedModulesList);
+            break;
         default:
             return;
         }
@@ -47,9 +50,35 @@ public class ViewCommand extends Command {
             viewList.append(sem.getSem()).append(System.lineSeparator());
             for (Module selectedModule: sem) {
                 int index = sem.indexOf(selectedModule) + 1;
+                String doneIcon;
+                if (selectedModule.getDone()) {
+                    doneIcon = "[✓]";
+                } else {
+                    doneIcon = "[✗]";
+                }
                 viewList.append(index).append(".")
                         .append(selectedModule.toString())
+                        .append(doneIcon)
                         .append(System.lineSeparator());
+            }
+            viewList.append(System.lineSeparator());
+        }
+        Ui.showViewedMessage(viewList.toString().trim());
+    }
+
+    private void viewDoneModules(SelectedModulesList moduleList){
+        StringBuilder viewList = new StringBuilder();
+        for (SemModulesList sem: moduleList) {
+            viewList.append(sem.getSem()).append(System.lineSeparator());
+            for (Module selectedModule: sem) {
+                int index = sem.indexOf(selectedModule) + 1;
+                if (selectedModule.getDone()) {
+                    viewList.append(index).append(".")
+                            .append(selectedModule.toString())
+                            .append("[✓]")
+                            .append(System.lineSeparator());
+
+                }
             }
             viewList.append(System.lineSeparator());
         }

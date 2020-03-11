@@ -11,6 +11,7 @@ public class Module {
     protected ModuleList preReqModules;
     protected boolean isNameValid;
     protected boolean isIdValid;
+    protected boolean isDone;
 
 
     /**
@@ -28,6 +29,7 @@ public class Module {
         } else if (isIdValid) {
             this.id = moduleIdentifier;
         }
+        this.isDone = false;
     }
 
     @Override
@@ -46,4 +48,17 @@ public class Module {
     public String getSem() {
         return semester;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setAsDone() {
+        this.isDone = true;
+    }
+
+    public boolean getDone() {
+        return this.isDone;
+    }
+
 }

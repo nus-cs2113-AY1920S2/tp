@@ -15,4 +15,8 @@ public class SelectedModule extends Module {
         super(type, moduleIdentifier, semester);
     }
 
+    public void markAsDone(){
+        boolean isCompleted = true;
+    }
+
 }
