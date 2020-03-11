@@ -1,13 +1,20 @@
 package seedu.duke;
 
-import command.*;
+import command.AssignmentCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.DoneCommand;
+import command.EventCommand;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.ListCommand;
+
 import common.Messages;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
-import tasks.Assignment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
