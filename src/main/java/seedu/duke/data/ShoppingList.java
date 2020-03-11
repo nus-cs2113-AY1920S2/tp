@@ -89,7 +89,7 @@ public class ShoppingList {
      *
      * @param index Index of the item to be removed.
      */
-    public static void deleteItem(int index) {
+    public void deleteItem(int index) {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }

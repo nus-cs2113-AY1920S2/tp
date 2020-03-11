@@ -21,8 +21,8 @@ public class DeleteCommand extends Command {
     public CommandResult execute() {
         try {
             index -= 1;
-            String feedback = DELETE_MESSAGE + ShoppingList.getItem(index);
-            ShoppingList.deleteItem(index);
+            String feedback = DELETE_MESSAGE + items.getItem(index);
+            items.deleteItem(index);
             return new CommandResult(feedback);
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult(System.lineSeparator()

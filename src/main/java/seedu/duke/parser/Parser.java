@@ -310,7 +310,7 @@ public class Parser {
         try {
             double amount = Double.parseDouble(arguments.substring(2));
             newCommand = new SetBudgetCommand(amount);
-        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+        } catch (NumberFormatException | NullPointerException | StringIndexOutOfBoundsException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Please enter an amount for your budget"
                     + System.lineSeparator()
