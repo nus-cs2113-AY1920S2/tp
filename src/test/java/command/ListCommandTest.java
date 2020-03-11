@@ -23,7 +23,8 @@ public class ListCommandTest {
     private static Assignment testCaseTwo;
     private static Event testCaseThree;
     private static Event testCaseFour;
-    private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks from your query:\n"
+    private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks from your query:"
+            + System.lineSeparator()
             + "1.[A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00)" + System.lineSeparator() + "    "
             + System.lineSeparator()
             + "2.[A][X] OP1 (by: Wed 01 Jan 2020 00:00)" + System.lineSeparator() + "   15%"
@@ -67,11 +68,9 @@ public class ListCommandTest {
                 new ListCommand(null).execute(emptyTasklist, ui).feedbackToUser);
     }
 
-    /* TODO Figure out whats wrong
     @Test
     public void printList_filledList_filledListMsg() {
         assertEquals(expectedOutputFromFilledTasklist,
                 new ListCommand(null).execute(filledTasklist, ui).feedbackToUser);
     }
-     */
 }
