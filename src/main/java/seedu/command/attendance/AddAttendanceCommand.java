@@ -4,7 +4,7 @@ import seedu.command.Command;
 import seedu.exception.DukeException;
 import seedu.attendance.Attendance;
 import seedu.storage.Storage;
-import seedu.ui.Ui;
+import seedu.ui.UI;
 
 public class AddAttendanceCommand extends Command {
 
@@ -28,7 +28,7 @@ public class AddAttendanceCommand extends Command {
      */
 
     @Override
-    public void execute(Ui ui, Storage storage) throws DukeException {
+    public void execute(UI ui, Storage storage) throws DukeException {
         storage.getAttendance().add(attendance);
     }
 }

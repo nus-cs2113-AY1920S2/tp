@@ -5,7 +5,7 @@ import seedu.exception.DukeException;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 import seedu.storage.Storage;
-import seedu.ui.Ui;
+import seedu.ui.UI;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class ViewAssignmentResultCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) throws DukeException {
+    public void execute(UI ui, Storage storage) throws DukeException {
 
     }
 }

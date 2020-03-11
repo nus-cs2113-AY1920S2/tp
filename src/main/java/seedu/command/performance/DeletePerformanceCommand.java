@@ -6,7 +6,7 @@ import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 import seedu.parser.PerformanceDataParser;
 import seedu.storage.Storage;
-import seedu.ui.Ui;
+import seedu.ui.UI;
 
 public class DeletePerformanceCommand extends Command {
     Performance performance;
@@ -24,7 +24,7 @@ public class DeletePerformanceCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) throws DukeException {
+    public void execute(UI ui, Storage storage) throws DukeException {
 
     }
 }

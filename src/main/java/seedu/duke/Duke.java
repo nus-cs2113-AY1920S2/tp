@@ -1,22 +1,23 @@
 package seedu.duke;
 
+import seedu.ui.UI;
+
 import java.util.Scanner;
 
 public class Duke {
+    private static UI ui;
+    public Duke() {
+        ui = new UI();
+    }
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        Duke duke = new Duke();
 
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+//        ui.showListHeader("Student Name", "Assignment 1", "Result");
+//        ui.showListFormat("Person1", "CS2101", "A");
+//        ui.showListFormat("Person2", "CS2113", "A");
     }
 }

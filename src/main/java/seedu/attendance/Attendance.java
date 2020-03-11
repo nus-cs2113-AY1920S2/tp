@@ -3,8 +3,8 @@ package seedu.attendance;
 /**
  * Class representing attendance of a student.
  */
-public class Attendance extends Module {
-
+public class Attendance {
+    public String moduleName;
     public String studentName;
     public String description;
     public String hasAttended;
@@ -19,7 +19,7 @@ public class Attendance extends Module {
      * @param hasAttended The status of the attendance.
      */
     public Attendance(String moduleName, String studentName, String description, String hasAttended) {
-        super(moduleName);
+        this.moduleName = moduleName;
         this.studentName = studentName;
         this.description = description;
         this.hasAttended = hasAttended;
@@ -34,7 +34,7 @@ public class Attendance extends Module {
      *
      */
     public Attendance(String moduleName, String studentName, String description) {
-        super(moduleName);
+        this.moduleName = moduleName;
         this.studentName = studentName;
         this.description = description;
         this.hasAttended = "false";
@@ -46,7 +46,7 @@ public class Attendance extends Module {
      * @return The name of the module.
      */
     public String getModuleName() {
-        return nameOfModule;
+        return moduleName;
     }
 
     /**
@@ -78,7 +78,7 @@ public class Attendance extends Module {
 
     @Override
     public String toString() {
-        return nameOfModule + " " + studentName + " " + description + " " + hasAttended;
+        return moduleName + " " + studentName + " " + description + " " + hasAttended;
     }
 
 }

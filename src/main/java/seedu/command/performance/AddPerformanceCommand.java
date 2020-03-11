@@ -7,7 +7,7 @@ import seedu.performance.PerformanceList;
 import seedu.parser.Parser;
 import seedu.parser.PerformanceDataParser;
 import seedu.storage.Storage;
-import seedu.ui.Ui;
+import seedu.ui.UI;
 
 public class AddPerformanceCommand extends Command {
     Performance performance;
@@ -56,7 +56,7 @@ public class AddPerformanceCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) throws DukeException {
+    public void execute(UI ui, Storage storage) throws DukeException {
 
     }
 }
