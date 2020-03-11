@@ -11,6 +11,8 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
+    public static final String MESSAGE_USAGE = "\tTo view help menu, type command: help";
+
     /**
      * Displays the help menu.
      */
