@@ -6,6 +6,8 @@ import seedu.duke.Ui;
 import tasks.Task;
 
 public class DeleteCommand extends Command {
+    public static final String DELETE_COMMAND_WORD = "delete";
+
     protected int deleteIndex;
 
     /**

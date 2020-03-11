@@ -6,6 +6,8 @@ import seedu.duke.Ui;
 import tasks.Task;
 
 public class DoneCommand extends Command {
+    public static final String DONE_COMMAND_WORD = "done";
+
     protected int doneIndex;
 
     /**

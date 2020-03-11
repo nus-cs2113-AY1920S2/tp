@@ -5,6 +5,7 @@ import seedu.duke.TaskList;
 import seedu.duke.Ui;
 
 public class HelpCommand extends Command {
+    public static final String HELP_COMMAND_WORD = "help";
 
     /**
      * Prints to user the help message.

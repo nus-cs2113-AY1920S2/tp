@@ -9,6 +9,8 @@ import tasks.Task;
 import java.time.LocalDateTime;
 
 public class EventCommand extends Command {
+    public static final String EVENT_COMMAND_WORD = "event";
+
     protected String eventName;
     protected String eventLocation;
     protected LocalDateTime dateTime;
