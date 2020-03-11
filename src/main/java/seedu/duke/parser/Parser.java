@@ -1,6 +1,10 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.*;
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.MarkAsDoneCommand;
+import seedu.duke.command.ViewCommand;
 import seedu.duke.module.Module;
 
 /**

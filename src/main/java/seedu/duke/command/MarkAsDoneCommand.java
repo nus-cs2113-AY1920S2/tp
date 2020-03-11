@@ -37,7 +37,7 @@ public class MarkAsDoneCommand extends Command {
                 for (Module module: sem) {
                     System.out.println(module.getName());
                     System.out.println(module.toString());
-                    if (module.getName()!=null) {
+                    if (module.getName() != null) {
                         if (module.getName().equals(moduleName)) {
                             module.setAsDone();
                         }
