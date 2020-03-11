@@ -48,12 +48,14 @@ public class Ui {
                 TimeUnit.NANOSECONDS.toSeconds(durationInNanos)
                         - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(durationInNanos)));
         if (gotTags) {
-            System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %-100s", index + 1, "|",
-                    activityList.get(index).getName(), "|", duration, "|", activityList.get(index).getDate().toString(), "|",
+            System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %-100s",
+                    index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
+                    activityList.get(index).getDate().toString(), "|",
                     Arrays.toString(activityList.get(index).getTags())));
         } else {
-            System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %s", index + 1, "|",
-                    activityList.get(index).getName(), "|", duration, "|", activityList.get(index).getDate().toString(), "|", ""));
+            System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %s",
+                    index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
+                    activityList.get(index).getDate().toString(), "|", ""));
         }
     }
 
@@ -61,8 +63,8 @@ public class Ui {
     public void printList(ActivityList activityList) {
         System.out.println(DIVIDER);
         System.out.println("Your completed activities:");
-        System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s", "|", "Name", "|",
-                "Duration", "|", "Date", "|", "Tags"));
+        System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s",
+                "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
         for (int i = 0; i < activityList.getSize(); i++) {
             if (activityList.get(i).getTags() != null && !activityList.get(i).getTags()[0].equals("null")) {
                 printTableFormat(activityList, i, true);
