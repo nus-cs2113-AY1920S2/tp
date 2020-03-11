@@ -12,7 +12,7 @@ public class Messages {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     public static final String DIVIDER = "____________________________________________________________";
-    public static final String EXIT_MESSAGE = "Exiting DUKE" + System.lineSeparator() + Messages.LOGO;
+    public static final String EXIT_MESSAGE = "Exiting DUKE";
 
     // Help Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";

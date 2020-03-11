@@ -118,8 +118,9 @@ public class TaskList {
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index
+     * @throws IndexOutOfBoundsException if index is invalid
      */
-    public Task getTask(int index) {
+    public Task getTask(int index) throws IndexOutOfBoundsException {
         return this.tasks.get(index);
     }
 

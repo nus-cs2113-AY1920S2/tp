@@ -18,15 +18,14 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList taskList, Ui ui) throws DukeException {
+    public CommandResult execute(TaskList taskList, Ui ui) {
         try {
             Task taskToBeDeleted = taskList.getTask(deleteIndex);
             taskList.deleteTask(deleteIndex);
             return new CommandResult(String.format(Messages.DELETE_SUCCESS_MESSAGE, deleteIndex + 1,
                     taskToBeDeleted.getName()));
         } catch (IndexOutOfBoundsException | NullPointerException e) {
-            throw new DukeException(String.format(Messages.INVALID_ID_ERROR,
-                    getRangeOfValidIndex(taskList)));
+            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
         }
     }
 }
