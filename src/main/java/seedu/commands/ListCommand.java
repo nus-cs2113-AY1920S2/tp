@@ -10,11 +10,13 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
+    public static final String MESSAGE_USAGE = "To list cards, type command: list";
+
     /**
      * Lists the cards currently stored in the application.
      */
     @Override
-    public void execute(CardList cards) throws Exception {
+    public void execute(CardList cards) {
         Duke.listCards(cards.getCards());
     }
 }

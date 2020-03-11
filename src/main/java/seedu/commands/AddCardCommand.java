@@ -10,22 +10,28 @@ public class AddCardCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    private String question;
-    private String answer;
+    public static final String MESSAGE_USAGE = "\tTo add card, type command:​ add q/[QUESTION] a/[ANSWER]";
+
+    private Card card;
 
     /**
      * Initialises the parameters for card creation.
      */
-    public AddCardCommand(String question, String answer) {
-        this.question = question;
-        this.answer = answer;
+    public AddCardCommand(Card card) {
+        this.card = card;
+    }
+
+    /**
+     * Returns card to be added.
+     */
+    public Card getCard() {
+        return card;
     }
 
     /**
      * Adds a card into the application.
      */
-    public void execute(CardList cards) throws Exception {
-        Card card = new Card(this.question,this.answer);
+    public void execute(CardList cards) {
         cards.addCard(card);
     }
 }
