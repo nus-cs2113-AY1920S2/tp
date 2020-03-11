@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package seedu.duke.commands;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.MarkCommand;
+import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.EditCommand;
