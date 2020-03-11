@@ -1,6 +1,4 @@
-package seedu.module.performance;
-
-import seedu.module.Module;
+package seedu.performance;
 
 import java.io.Serializable;
 
@@ -11,7 +9,8 @@ import java.io.Serializable;
  * list -> list of student -> list of student result for all assignment
  *      -> list of assignment -> list of assignment result for all its students
  */
-public class Performance extends Module {
+public class Performance {
+    public String nameOfModule;
     public String nameOfStudent;
     public String assignment;
     public String grade;
@@ -30,7 +29,7 @@ public class Performance extends Module {
      *                   result.
      */
     public Performance(String nameOfModule, String nameOfStudent, String assignment) {
-        super(nameOfModule);
+        this.nameOfModule = nameOfModule;
         this.nameOfStudent = nameOfStudent;
         this.assignment = assignment;
     }

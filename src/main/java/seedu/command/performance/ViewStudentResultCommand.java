@@ -1,9 +1,11 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.exception.PerformanceStudentListException;
-import seedu.module.performance.Performance;
-import seedu.module.performance.PerformanceList;
+import seedu.exception.DukeException;
+import seedu.performance.Performance;
+import seedu.performance.PerformanceList;
+import seedu.storage.Storage;
+import seedu.ui.Ui;
 
 import java.util.List;
 
@@ -41,5 +43,10 @@ public class ViewStudentResultCommand extends Command {
                 }
             }
         }
+    }
+
+    @Override
+    public void execute(Ui ui, Storage storage) throws DukeException {
+
     }
 }

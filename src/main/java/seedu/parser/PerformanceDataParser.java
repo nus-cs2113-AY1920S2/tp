@@ -1,6 +1,6 @@
 package seedu.parser;
 
-import seedu.module.performance.Performance;
+import seedu.performance.Performance;
 
 public class PerformanceDataParser {
     private String userInput;

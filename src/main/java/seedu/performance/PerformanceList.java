@@ -1,4 +1,4 @@
-package seedu.module.performance;
+package seedu.performance;
 
 import java.util.ArrayList;
 import java.util.List;
