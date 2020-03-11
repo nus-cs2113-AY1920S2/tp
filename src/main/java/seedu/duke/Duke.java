@@ -35,11 +35,14 @@ public class Duke {
      * @return User command.
      */
     private static String readCommand() {
-        System.out.println("Enter command: ");
-        String userInput = in.nextLine();
+        String userInput = "";
+        do {
+            System.out.println("Enter command: ");
+            userInput = in.nextLine();
 
-        System.out.println("[Command entered: " + userInput + "]");
-        return userInput;
+            System.out.println("[Command entered: " + userInput + "]");
+            return userInput;
+        } while (in.hasNextLine());
     }
 
     /**
