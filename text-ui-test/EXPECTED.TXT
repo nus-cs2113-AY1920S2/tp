@@ -15,6 +15,9 @@ Okay! I have added this module to your module list:
 Name: Software Engineering & Object-Oriented Programming | Sem: 19-20 Semester 2
 
 
+Okay, i've marked the module as done!
+
+
 Okay! I have added this module to your module list:
 ID: CS1010 | Sem: 19-20 Semester 1
 

@@ -7,6 +7,8 @@ import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
 import seedu.duke.ui.Ui;
 
+import java.sql.SQLOutput;
+
 public class MarkAsDoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
     private String moduleName;
@@ -33,13 +35,15 @@ public class MarkAsDoneCommand extends Command {
         for (SemModulesList sem: selectedModulesList) {
             if (sem.getSem().equals(semester)) {
                 for (Module module: sem) {
-                    if (module.getName().equals(moduleName)) {
-                        module.setAsDone();
-                        System.out.println("Marked as done!");
+                    System.out.println(module.getName());
+                    System.out.println(module.toString());
+                    if (module.getName()!=null) {
+                        if (module.getName().equals(moduleName)) {
+                            module.setAsDone();
+                        }
                     }
                 }
             }
         }
-        System.out.println("WWEEWW");
     }
 }
