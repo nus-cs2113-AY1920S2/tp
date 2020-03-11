@@ -34,7 +34,7 @@ public class ParserStorage {
      */
 
     public static String toStorageString(Event event) {
-        return "D | " + event.getName() + " | " + event.getDatetime() + " | " + event.getVenue() ;
+        return "D | " + event.getName() + " | " + event.getDatetime() + " | " + event.getVenue();
     }
 
 }
