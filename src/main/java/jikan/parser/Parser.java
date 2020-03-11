@@ -1,11 +1,14 @@
 package jikan.parser;
 
+import jikan.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -37,7 +40,13 @@ public class Parser {
                 ui.exitFromApp();
                 break;
             case "start":
-                parseStart();
+                try {
+                    parseStart();
+                } catch (EmptyNameException e) {
+                    ui.printDivider("Task name cannot be empty!");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    ui.printDivider("Task name cannot be empty!");
+                }
                 break;
             case "end":
                 parseEnd(activityList);
@@ -77,7 +86,7 @@ public class Parser {
     }
 
     /** Method to parse the start activity command. */
-    public void parseStart() {
+    public void parseStart() throws ArrayIndexOutOfBoundsException, EmptyNameException {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
@@ -87,9 +96,15 @@ public class Parser {
             int delimiter = tokenizedInputs[1].indexOf("/t");
             if (delimiter == -1) {
                 activityName = tokenizedInputs[1];
+                if (activityName.equals("")) {
+                    throw new EmptyNameException();
+                }
                 line = "Started " + activityName;
             } else {
                 activityName = tokenizedInputs[1].substring(0, delimiter);
+                if (activityName.equals("")) {
+                    throw new EmptyNameException();
+                }
                 line = "Started " + activityName;
                 tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
             }
@@ -100,7 +115,7 @@ public class Parser {
     }
 
     /** Method to parse the end activity command. */
-    public void parseEnd(ActivityList activityList) {
+    public void parseEnd(ActivityList activityList) throws ArrayIndexOutOfBoundsException {
         if (startTime == null) {
             String line = "You have not started any activity!";
             ui.printDivider(line);

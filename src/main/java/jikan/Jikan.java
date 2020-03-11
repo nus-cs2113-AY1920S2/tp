@@ -42,6 +42,7 @@ public class Jikan {
             System.out.println("Error loading/creating data file.");
         }
     }
+
   
     /**
      * Main entry-point for the Jikan application.
