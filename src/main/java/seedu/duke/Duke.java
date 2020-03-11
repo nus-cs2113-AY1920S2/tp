@@ -2,7 +2,6 @@ package seedu.duke;
 
 import command.Command;
 import command.CommandResult;
-import common.Messages;
 
 public class Duke {
     private Ui ui;
@@ -30,10 +29,14 @@ public class Duke {
     public void runLoop() {
         CommandResult result = new CommandResult(null);
         while (!result.isExit()) {
-            String input = ui.getUserInput();
-            Command command = Parser.parseCommand(input);
-            result = command.execute(taskList, ui);
-            ui.showToUser(result.feedbackToUser);
+            try {
+                String input = ui.getUserInput();
+                Command command = Parser.parseCommand(input);
+                result = command.execute(taskList, ui);
+                ui.showToUser(result.feedbackToUser);
+            } finally {
+                ui.printDividerLine();
+            }
         }
     }
 
