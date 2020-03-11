@@ -1,6 +1,7 @@
 package seedu.cards;
 
 import seedu.duke.Storage;
+import seedu.exception.EscException;
 
 import java.util.ArrayList;
 
@@ -34,11 +35,15 @@ public class CardList {
      * Removes a card from the deck.
      * @param index Index of card to be removed.
      */
-    public void removeCard(int index) throws Exception {
+    public void removeCard(int index) throws EscException {
+        if (this.size() == 0) {
+            throw new EscException("The card list is empty.");
+        }
+
         try {
             cards.remove(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new Exception("The task item does not exist.");
+            throw new EscException("The card item does not exist.");
         }
     }
 
