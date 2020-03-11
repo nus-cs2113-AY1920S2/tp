@@ -1,10 +1,13 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
+import seedu.exception.DukeException;
 import seedu.module.performance.Performance;
 import seedu.module.performance.PerformanceList;
 import seedu.parser.Parser;
 import seedu.parser.PerformanceDataParser;
+import seedu.storage.Storage;
+import seedu.ui.Ui;
 
 import java.util.List;
 
@@ -52,5 +55,10 @@ public class AddPerformanceCommand extends Command {
                 }
             }
         }
+    }
+
+    @Override
+    public void execute(Ui ui, Storage storage) throws DukeException {
+
     }
 }

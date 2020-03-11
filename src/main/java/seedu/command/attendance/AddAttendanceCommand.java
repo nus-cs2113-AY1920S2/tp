@@ -1,18 +1,34 @@
 package seedu.command.attendance;
 
 import seedu.command.Command;
+import seedu.exception.DukeException;
 import seedu.module.attendance.Attendance;
-import seedu.module.attendance.AttendanceList;
+import seedu.storage.Storage;
+import seedu.ui.Ui;
 
 public class AddAttendanceCommand extends Command {
 
+    private final Attendance attendance;
+
     /**
-     * Creates a new AddCommand with the given task.
+     * Creates a new AddAttendanceCommand with the given task.
      *
-     * @param studentAttendance The student attendance to add.
+     * @param attendance The student attendance to add.
      */
 
-    public AddAttendanceCommand(Attendance studentAttendance, AttendanceList list) {
-        list.add(studentAttendance);
+    public AddAttendanceCommand(Attendance attendance) {
+        this.attendance = attendance;
+    }
+
+    /**
+     * Executes this command on the given task list and user interface.
+     *
+     * @param ui The user interface displaying events on the task list.
+     * @param storage The duke.storage object containing task list.
+     */
+
+    @Override
+    public void execute(Ui ui, Storage storage) throws DukeException {
+        storage.getAttendance().add(attendance);
     }
 }
