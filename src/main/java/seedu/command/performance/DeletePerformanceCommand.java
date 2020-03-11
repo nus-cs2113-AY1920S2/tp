@@ -1,9 +1,12 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
+import seedu.exception.DukeException;
 import seedu.module.performance.Performance;
 import seedu.module.performance.PerformanceList;
 import seedu.parser.PerformanceDataParser;
+import seedu.storage.Storage;
+import seedu.ui.Ui;
 
 import java.util.List;
 
@@ -20,5 +23,10 @@ public class DeletePerformanceCommand extends Command {
         this.userInput = userInput;
         performance = new PerformanceDataParser(userInput).getPerformance();
         PerformanceList.deletePerformance(performance);
+    }
+
+    @Override
+    public void execute(Ui ui, Storage storage) throws DukeException {
+
     }
 }
