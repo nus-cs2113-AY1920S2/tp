@@ -8,6 +8,7 @@ import command.EventCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
 import command.HelpCommand;
+import command.ExitCommand;
 
 import common.Messages;
 
@@ -62,6 +63,8 @@ public class Parser {
             return prepareEventCommand(fullCommand);
         case ListCommand.LIST_COMMAND_WORD:
             return prepareListCommand(fullCommand);
+        case ExitCommand.EXIT_COMMAND_WORD:
+            return new ExitCommand();
         default:
             return new IncorrectCommand(Messages.UNKNOWN_COMMAND_ERROR);
         }
