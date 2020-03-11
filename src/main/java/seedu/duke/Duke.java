@@ -2,6 +2,7 @@ package seedu.duke;
 
 import command.Command;
 import command.CommandResult;
+import common.Messages;
 
 public class Duke {
     private Ui ui;
@@ -21,20 +22,17 @@ public class Duke {
     public void run() {
         ui.printWelcomeMessage();
         runLoop();
-        ui.printGoodbyeMessage();
     }
 
     /**
      * Run loop until exit command is received.
      */
     public void runLoop() {
-        while (true) {
+        CommandResult result = new CommandResult(null);
+        while (!result.isExit()) {
             String input = ui.getUserInput();
-            if (input.equals("bb")) {
-                break;
-            }
             Command command = Parser.parseCommand(input);
-            CommandResult result = command.execute(taskList, ui);
+            result = command.execute(taskList, ui);
             ui.showToUser(result.feedbackToUser);
         }
     }

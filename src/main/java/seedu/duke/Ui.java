@@ -30,13 +30,6 @@ public class Ui {
     }
 
     /**
-     * Prints exit messages.
-     */
-    public void printGoodbyeMessage() {
-        out.println(Messages.EXIT_MESSAGE);
-    }
-
-    /**
      * Prints a prompt to user and returns the next line of user input.
      * @return String of user input
      */
