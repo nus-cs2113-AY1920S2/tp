@@ -13,9 +13,9 @@ public class MarkAsDoneCommand extends Command {
     private String semester;
 
     /**
-     * marks the module in a semester in the selectedList as done
-     * @param moduleName : name of the module that the user wants to mark as done
-     * @param semester : Semester that the user wants to mark as done
+     * marks the module in a semester in the selectedList as done.
+     * @param moduleName : name of the module that the user wants to mark as done.
+     * @param semester : Semester that the user wants to mark as done.
      */
     public MarkAsDoneCommand(String moduleName, String semester) {
         super();
