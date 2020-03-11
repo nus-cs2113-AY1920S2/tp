@@ -97,19 +97,22 @@ public class ActivityList {
      */
     private void parseDataLine(String s) {
 
-        List<String> strings = Arrays.asList(s.split(","));
-        String[] tags;
+        if (!s.isEmpty()) {
+            List<String> strings = Arrays.asList(s.split(","));
+            String[] tags;
 
-        // if there are tags
-        if (strings.size() > 3) {
-            tags = strings.get(3).split(" ");
-        } else {
-            tags = null;
+            // if there are tags
+            if (!strings.get(3).equals("null")) {
+                // remove square brackets surrounding tags
+                tags = strings.get(3).substring(1,strings.get(3).length() - 1).split(" ");
+            } else {
+                tags = null;
+            }
+
+            // strings[0] = name, strings[1] = startDate, string[2] = endDate
+            Activity e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),
+                    LocalDateTime.parse(strings.get(2)), tags);
+            activities.add(e);
         }
-
-        // strings[0] = name, strings[1] = startDate, string[2] = endDate
-        Activity e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),
-                LocalDateTime.parse(strings.get(2)), tags);
-        activities.add(e);
     }
 }

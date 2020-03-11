@@ -15,6 +15,7 @@ public class Parser {
 
     protected LocalDateTime startTime = null;
     protected LocalDateTime endTime = null;
+    private String activityName = null;
     private String[] tags = null;
     private Ui ui = new Ui();
     protected String[] tokenizedInputs;
@@ -62,23 +63,40 @@ public class Parser {
 
     /** Method to parse the abort command. */
     private void parseAbort() {
-        startTime = null;
-        String line = "You have aborted the current activity!";
-        ui.printDivider(line);
+        if (startTime == null) {
+            String line = "You have not started any activity!";
+            ui.printDivider(line);
+        } else {
+            startTime = null;
+            tags = null;
+            activityName = null;
+            String line = "You have aborted the current activity!";
+            ui.printDivider(line);
+        }
+
     }
 
     /** Method to parse the start activity command. */
     public void parseStart() {
-        String line;
-        int delimiter = tokenizedInputs[1].indexOf("/t");
-        if (delimiter == -1) {
-            line = "Started " + tokenizedInputs[1];
+        // check if an activity has already been started
+        if (startTime != null) {
+            String line = activityName + " is ongoing!";
+            ui.printDivider(line);
         } else {
-            line = "Started " + tokenizedInputs[1].substring(0, delimiter);
-            tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
+            String line;
+            int delimiter = tokenizedInputs[1].indexOf("/t");
+            if (delimiter == -1) {
+                activityName = tokenizedInputs[1];
+                line = "Started " + activityName;
+            } else {
+                activityName = tokenizedInputs[1].substring(0, delimiter);
+                line = "Started " + activityName;
+                tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
+            }
+            startTime = LocalDateTime.now();
+            ui.printDivider(line);
         }
-        startTime = LocalDateTime.now();
-        ui.printDivider(line);
+
     }
 
     /** Method to parse the end activity command. */
@@ -87,11 +105,12 @@ public class Parser {
             String line = "You have not started any activity!";
             ui.printDivider(line);
         } else {
-            String line = "Ended " + tokenizedInputs[1];
+            String line = "Ended " + activityName;
             ui.printDivider(line);
             endTime = LocalDateTime.now();
-            Activity newActivity = new Activity(tokenizedInputs[1], startTime, endTime, tags);
+            Activity newActivity = new Activity(activityName, startTime, endTime, tags);
             activityList.add(newActivity);
+            startTime = null;
         }
     }
 }

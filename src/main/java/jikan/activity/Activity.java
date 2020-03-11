@@ -9,17 +9,11 @@ import java.util.Arrays;
  */
 
 public class Activity {
-    public String name;
-    public String[] tags;
-    public LocalDateTime startTime;
-    public LocalDateTime endTime;
-    public Duration duration;
-
-    /*
-    protected String name;
-    protected String startTime;
-    protected String endTime;
-    */
+    private String name;
+    private String[] tags;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Duration duration;
 
     /**
      * Constructor for a new activity entry.
@@ -29,7 +23,7 @@ public class Activity {
      * @param endTime the time that the activity ended
      */
     public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, String[] tags) {
-        this.name = name;
+        this.name = name.strip();
         this.startTime = startTime;
         this.tags = tags;
         this.endTime = endTime;
