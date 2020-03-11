@@ -1,26 +1,26 @@
-package seedu.student.attendance;
-
-import seedu.student.Student;
-
+package seedu.attendance;
 
 /**
  * Class representing attendance of a student.
  */
-public class Attendance extends Student {
+public class Attendance extends Module {
 
+    public String studentName;
     public String description;
-    public boolean hasAttended;
+    public String hasAttended;
 
     /**
      * The class that handles the attendance.
      * Contains hasAttended input.
      *
+     * @param moduleName The name of the module.
      * @param studentName The name of the student.
      * @param description The description of the lesson.
      * @param hasAttended The status of the attendance.
      */
-    public Attendance(String studentName, String description, boolean hasAttended) {
-        super(studentName);
+    public Attendance(String moduleName, String studentName, String description, String hasAttended) {
+        super(moduleName);
+        this.studentName = studentName;
         this.description = description;
         this.hasAttended = hasAttended;
     }
@@ -31,11 +31,31 @@ public class Attendance extends Student {
      *
      * @param studentName The name of the student.
      * @param description The description of the lesson.
+     *
      */
-    public Attendance(String studentName, String description) {
-        super(studentName);
+    public Attendance(String moduleName, String studentName, String description) {
+        super(moduleName);
+        this.studentName = studentName;
         this.description = description;
-        this.hasAttended = false;
+        this.hasAttended = "false";
+    }
+
+    /**
+     * To retrieve the name of the module.
+     *
+     * @return The name of the module.
+     */
+    public String getModuleName() {
+        return nameOfModule;
+    }
+
+    /**
+     * To retrieve the name of student.
+     *
+     * @return The name of student.
+     */
+    public String getStudentName() {
+        return studentName;
     }
 
     /**
@@ -52,13 +72,13 @@ public class Attendance extends Student {
      *
      * @return The status of the attendance.
      */
-    public boolean getAttendance() {
+    public String getAttendance() {
         return hasAttended;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " " + description + " " + hasAttended;
+        return nameOfModule + " " + studentName + " " + description + " " + hasAttended;
     }
 
 }
