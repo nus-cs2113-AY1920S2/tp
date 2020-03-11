@@ -39,6 +39,11 @@ public class ShoppingList {
         st.print();
     }
 
+    /**
+     * Calculates and returns the total cost of the items in the shopping list.
+     *
+     * @return Total cost of items in shopping list.
+     */
     public double getTotalCost() {
         double totalCost = 0.0;
         for (Item item : items) {
@@ -89,7 +94,7 @@ public class ShoppingList {
      *
      * @param index Index of the item to be removed.
      */
-    public static void deleteItem(int index) {
+    public void deleteItem(int index) {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }

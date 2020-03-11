@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package seedu.duke.commands;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.MarkCommand;
+import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.EditCommand;
@@ -37,11 +38,15 @@ public class MarkCommandTest {
 
     @Test
     void testMark_outOfLimitIndex_Success() {
-        command.setData(items, null);
-        command = new MarkCommand(10);
-        CommandResult result1 = command.execute();
-        String expectedFeedback1 = MarkCommand.FAIL_MESSAGE;
-        assertEquals(expectedFeedback1, result1.feedbackToUser);
+        CommandResult result1 = null;
+        try {
+            command.setData(items, null);
+            command = new MarkCommand(10);
+            result1 = command.execute();
+        } catch (IndexOutOfBoundsException e) {
+            String expectedFeedback1 = MarkCommand.FAIL_MESSAGE;
+            assertEquals(expectedFeedback1, result1.feedbackToUser);
+        }
     }
 
     @Test
