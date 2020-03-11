@@ -36,11 +36,15 @@ public class UnmarkCommandTest {
 
     @Test
     void testUnmark_outOfLimitIndex_Success() {
-        command.setData(items, null);
-        command = new UnmarkCommand(10);
-        CommandResult result1 = command.execute();
-        String expectedFeedback1 = UnmarkCommand.FAIL_MESSAGE;
-        assertEquals(expectedFeedback1, result1.feedbackToUser);
+        CommandResult result1 = null;
+        try {
+            command.setData(items, null);
+            command = new UnmarkCommand(10);
+            result1 = command.execute();
+        } catch (IndexOutOfBoundsException e) {
+            String expectedFeedback1 = UnmarkCommand.FAIL_MESSAGE;
+            assertEquals(expectedFeedback1, result1.feedbackToUser);
+        }
     }
 
     @Test
