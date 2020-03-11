@@ -53,7 +53,11 @@ public class Ui {
                             - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(durationInNanos)));
             System.out.print(i + 1 + ". " + activityList.get(i).name + " " + duration);
             if (activityList.get(i).tags != null) {
-                System.out.println(" " + Arrays.toString(activityList.get(i).tags));
+                if (!activityList.get(i).tags[0].equals("null")) {
+                    System.out.println(" " + Arrays.toString(activityList.get(i).tags));
+                } else {
+                    System.out.println();
+                }
             } else {
                 System.out.print("\n");
             }

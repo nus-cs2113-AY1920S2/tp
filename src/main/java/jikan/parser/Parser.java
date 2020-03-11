@@ -28,7 +28,7 @@ public class Parser {
     public void parseUserCommands(Scanner scanner, ActivityList activityList) {
         while (true) {
             String userInput = scanner.nextLine();
-            tokenizedInputs = userInput.split(" ");
+            tokenizedInputs = userInput.split(" ", 2);
             instruction = tokenizedInputs[0];
 
             switch (instruction) {
@@ -69,12 +69,16 @@ public class Parser {
 
     /** Method to parse the start activity command. */
     public void parseStart() {
-        String line = "Started " + tokenizedInputs[1];
-        ui.printDivider(line);
-        if (tokenizedInputs.length > 2) {
-            tags = Arrays.copyOfRange(tokenizedInputs, 2, tokenizedInputs.length);
+        String line;
+        int delimiter = tokenizedInputs[1].indexOf("/t");
+        if (delimiter == -1) {
+            line = "Started " + tokenizedInputs[1];
+        } else {
+            line = "Started " + tokenizedInputs[1].substring(0, delimiter);
+            tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
         }
         startTime = LocalDateTime.now();
+        ui.printDivider(line);
     }
 
     /** Method to parse the end activity command. */
