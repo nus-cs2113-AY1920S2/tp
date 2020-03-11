@@ -23,12 +23,15 @@ public class CommandParser {
             if (split_commands[1].equals("dish")) {
                 //Add dish
                 menu.addDish(commands[1]);
+                successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //Add stock
                new AddStockCommand(commands[1]).execute(stock);
+                successfulCommand();
             } else if (split_commands[1].equals("reservation")){
                 //Add reservation
                 new AddReservationCommand(commands[1]).execute(reservations);
+                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -36,12 +39,15 @@ public class CommandParser {
             if (split_commands[1].equals("dish")) {
                 //delete dish
                 menu.deleteDish(commands[1]);
+                successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //delete stock
                 new DeleteStockCommand(commands[1]).execute(stock);
+                successfulCommand();
             } else if (split_commands[1].equals("reservation")){
                 //delete reservation
                 new VoidReservationCommand(commands[1]).execute(reservations);
+                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -49,12 +55,15 @@ public class CommandParser {
             if (split_commands[1].equals("dish")) {
                 //list dish
                 menu.printDishes();
+                successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //list stock
                 new ListStockCommand().execute(stock);
+                successfulCommand();
             } else if (split_commands[1].equals("reservation")){
                 //list reservation
                 new ListReservationCommand().execute(reservations);
+                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -65,5 +74,5 @@ public class CommandParser {
     public static void errorCommand() {
         System.out.println("Incorrect command");
     }
-    public static void successfulCommand(String string) { System.out.println(string + "has been successfully executed.");}
+    public static void successfulCommand() { System.out.println("The command has been successfully executed.");}
 }
