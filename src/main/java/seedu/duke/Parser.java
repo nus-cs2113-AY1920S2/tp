@@ -9,6 +9,7 @@ import command.EventCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
 import command.HelpCommand;
+import command.ExitCommand;
 import common.Messages;
 
 import java.time.LocalDateTime;
@@ -62,6 +63,8 @@ public class Parser {
             return prepareEventCommand(fullCommand);
         case "list":
             return prepareListCommand(fullCommand);
+        case "bb":
+            return new ExitCommand();
         default:
             return new IncorrectCommand(Messages.UNKNOWN_COMMAND_ERROR);
         }
