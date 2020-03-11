@@ -2,6 +2,7 @@ package seedu.storage;
 
 import seedu.event.Event;
 import seedu.exception.DukeException;
+import seedu.module.attendance.Attendance;
 import seedu.parser.ParserStorage;
 import seedu.ui.Ui;
 
@@ -16,6 +17,7 @@ public class Storage {
 
     private String filePath;
     private ArrayList<Event> events;
+    private ArrayList<Attendance> attendances;
     private Ui ui;
 
     /**
@@ -28,13 +30,14 @@ public class Storage {
     public Storage(String filePath, Ui ui) {
         this.filePath = filePath;
         this.ui = ui;
-        read();
+        readEvent();
+        readAttendance();
     }
 
     /**
-     * Reads duke.tasks from filepath. Creates empty duke.tasks if file cannot be read.
+     * Reads events.tasks from filepath. Creates empty duke.tasks if file cannot be read.
      */
-    private void read() {
+    private void readEvent() {
         ArrayList<Event> newEvents = new ArrayList<>();
         try {
             File f = new File(filePath);
@@ -45,7 +48,7 @@ public class Storage {
                 e.printStackTrace();
             }
             while (s.hasNext()) {
-                newEvents.add(ParserStorage.createTaskFromStorage(s.nextLine()));
+                newEvents.add(ParserStorage.createTaskFromStorageEvent(s.nextLine()));
             }
             s.close();
         } catch (DukeException | FileNotFoundException e) {
@@ -56,13 +59,37 @@ public class Storage {
     }
 
     /**
-     * Writes the duke.tasks into a file of the given filepath.
+     * Reads attendances.tasks from filepath. Creates empty duke.tasks if file cannot be read.
      */
-    public void write() {
+    private void readAttendance() {
+        ArrayList<Attendance> newAttendance = new ArrayList<>();
+        try {
+            File f = new File(filePath);
+            Scanner s = new Scanner(f);
+            try {
+                s = new Scanner(f);
+            } catch (java.io.FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            while (s.hasNext()) {
+                newAttendance.add(ParserStorage.createTaskFromStorageAttendance(s.nextLine()));
+            }
+            s.close();
+        } catch (DukeException | FileNotFoundException e) {
+            Ui.displayError("FILE_NOT_FOUND");
+            Ui.displayError("NEW_FILE_CREATED");
+        }
+        attendances = newAttendance;
+    }
+
+    /**
+     * Writes the duke.events into a file of the given filepath.
+     */
+    public void writeEvent() {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Event event : events) {
-                writer.write(ParserStorage.toStorageString(event) + "\n");
+                writer.write(ParserStorage.toStorageStringEvent(event) + "\n");
             }
             writer.close();
         } catch (IOException e) {
@@ -71,10 +98,34 @@ public class Storage {
     }
 
     /**
-     * Retrieves the existing tasks.
+     * Writes the duke.events into a file of the given filepath.
+     */
+    public void writeAttendance() {
+        try {
+            FileWriter writer = new FileWriter(filePath);
+            for (Attendance attendance : attendances) {
+                writer.write(ParserStorage.toStorageStringAttendance(attendance) + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            Ui.displayError("FILE_NOT_SAVE");
+        }
+    }
+
+    /**
+     * Retrieves the existing events.
      */
     public ArrayList<Event> getEvents() {
         return events;
     }
+
+    /**
+     * Retrieves the existing attendances.
+     */
+    public ArrayList<Attendance> getAttendance() {
+        return attendances;
+    }
+
+
 
 }
