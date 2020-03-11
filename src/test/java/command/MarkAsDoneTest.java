@@ -5,6 +5,7 @@ import seedu.duke.TaskList;
 import tasks.Assignment;
 import tasks.Task;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MarkAsDoneTest {
@@ -20,10 +21,6 @@ public class MarkAsDoneTest {
     @Test
     public void testMarkAsDone_failure() {
         TaskList testTaskList = new TaskList();
-        try {
-            testTaskList.markTaskAsDone(0);
-        } catch (IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+        assertThrows(IndexOutOfBoundsException.class, () -> testTaskList.markTaskAsDone(0));
     }
 }

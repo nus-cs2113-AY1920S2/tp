@@ -1,7 +1,10 @@
 package command;
 
+import common.Messages;
+import exceptions.DukeException;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
+import tasks.Task;
 
 public class DeleteCommand extends Command {
     protected int deleteIndex;
@@ -14,14 +17,16 @@ public class DeleteCommand extends Command {
         this.deleteIndex = index;
     }
 
-    /**
-     * Deletes task and prints out Ui message.
-     * @param taskList ArrayList of tasks
-     * @param ui ui object representing delete message
-     */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.showDeleteMessage(taskList.getTask(deleteIndex), deleteIndex);
-        taskList.deleteTask(deleteIndex);
+    public CommandResult execute(TaskList taskList, Ui ui) throws DukeException {
+        try {
+            Task taskToBeDeleted = taskList.getTask(deleteIndex);
+            taskList.deleteTask(deleteIndex);
+            return new CommandResult(String.format(Messages.DELETE_SUCCESS_MESSAGE, deleteIndex + 1,
+                    taskToBeDeleted.getName()));
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            throw new DukeException(String.format(Messages.INVALID_ID_ERROR,
+                    getRangeOfValidIndex(taskList)));
+        }
     }
 }
