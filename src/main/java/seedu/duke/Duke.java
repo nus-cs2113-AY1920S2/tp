@@ -2,6 +2,7 @@ package seedu.duke;
 
 import command.Command;
 import command.CommandResult;
+import common.Messages;
 
 public class Duke {
     private Ui ui;

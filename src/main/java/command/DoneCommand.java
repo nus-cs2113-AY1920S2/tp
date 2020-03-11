@@ -1,7 +1,6 @@
 package command;
 
 import common.Messages;
-import exceptions.DukeException;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
 import tasks.Task;
@@ -19,15 +18,17 @@ public class DoneCommand extends Command {
 
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
+        if (taskList.getListSize() == 0) {
+            return new CommandResult(Messages.NO_TASKS_MSG);
+        }
         try {
             Task taskToBeMarkDone = taskList.getTask(doneIndex);
             if (taskToBeMarkDone.getIsDone()) {
-                return new CommandResult(String.format(Messages.COMPLETED_TASK_ERROR));
+                return new CommandResult(Messages.COMPLETED_TASK_ERROR);
             }
             taskList.markTaskAsDone(doneIndex);
-            return new CommandResult(String.format(Messages.DONE_SUCCESS_MESSAGE, doneIndex + 1,
-                    taskToBeMarkDone.getName()));
-        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            return new CommandResult(String.format(Messages.DONE_SUCCESS_MESSAGE, taskToBeMarkDone.getName()));
+        } catch (IndexOutOfBoundsException e) {
             return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
         }
     }

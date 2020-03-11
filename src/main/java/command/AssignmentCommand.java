@@ -38,6 +38,8 @@ public class AssignmentCommand extends Command {
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newAssignment = new Assignment(assignmentName, moduleName, deadline, comments);
         taskList.addTask(newAssignment);
-        return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE, newAssignment, taskList.getListSize()));
+        int listSize = taskList.getListSize();
+        return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE,
+                newAssignment, listSize, listSize == 1 ? "" : "s"));
     }
 }

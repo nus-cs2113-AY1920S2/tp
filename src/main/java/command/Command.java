@@ -5,8 +5,6 @@ import seedu.duke.TaskList;
 import seedu.duke.Ui;
 
 public abstract class Command {
-    public static final String COMMAND_NAME = null; // todo: override this
-
     /**
      * Executes the specific command.
      * @param taskList TaskList object that handles adding Task
@@ -23,11 +21,7 @@ public abstract class Command {
      */
     protected String getRangeOfValidIndex(TaskList taskList) {
         int maxTasks = taskList.getListSize();
-        if (maxTasks > 0) {
-            return String.format(Messages.RANGE_OF_VALID_TASKS_INDEX_MSG, maxTasks);
-        } else {
-            return Messages.NO_TASK_MSG;
-        }
+        return String.format(Messages.RANGE_OF_VALID_TASK_INDEX_MSG, maxTasks);
     }
 }
 

@@ -1,5 +1,6 @@
 package tasks;
 
+import common.Messages;
 import org.junit.jupiter.api.Test;
 import seedu.duke.Parser;
 import java.time.LocalDateTime;
@@ -62,8 +63,8 @@ public class EventTest {
 
     @Test
     public void testToString() {
-        String printedString = "[E][X] project meeting (at: Fri 20 Mar 2020 09:00)"
-                + System.lineSeparator() + "   "
+        String printedString = "[E][X] project meeting (at: NUS SOC | Fri 20 Mar 2020 09:00)"
+                + System.lineSeparator() + Messages.NEWLINE_INDENT
                 + "My Very Long Long Long Long Long Comment";
         assertEquals(newEvent.toString(), printedString);
     }
