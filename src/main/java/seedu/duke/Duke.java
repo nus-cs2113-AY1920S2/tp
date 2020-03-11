@@ -35,6 +35,9 @@ public class Duke {
                 Command command = Parser.parseCommand(input);
                 result = command.execute(taskList, ui);
                 ui.showToUser(result.feedbackToUser);
+            } catch (Exception e) {
+                ui.showToUser(e.toString());
+                return;
             } finally {
                 ui.showToUser(Messages.DIVIDER);
             }
