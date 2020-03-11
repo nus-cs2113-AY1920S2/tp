@@ -13,7 +13,7 @@ public abstract class Command {
      * @param ui Ui object that interacts with user
      * @return CommandResult object with acknowledgment message
      */
-    public abstract CommandResult execute(TaskList taskList, Ui ui) throws Exception; //
+    public abstract CommandResult execute(TaskList taskList, Ui ui); //
     // todo: take TaskList, Ui, Storage as parameters
 
     /**

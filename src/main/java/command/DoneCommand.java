@@ -18,17 +18,17 @@ public class DoneCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList taskList, Ui ui) throws DukeException {
+    public CommandResult execute(TaskList taskList, Ui ui) {
         try {
             Task taskToBeMarkDone = taskList.getTask(doneIndex);
             if (taskToBeMarkDone.getIsDone()) {
-                throw new DukeException(Messages.COMPLETED_TASK_ERROR);
+                return new CommandResult(String.format(Messages.COMPLETED_TASK_ERROR));
             }
             taskList.markTaskAsDone(doneIndex);
             return new CommandResult(String.format(Messages.DONE_SUCCESS_MESSAGE, doneIndex + 1,
                     taskToBeMarkDone.getName()));
         } catch (IndexOutOfBoundsException | NullPointerException e) {
-            throw new DukeException(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
+            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
         }
     }
 }
