@@ -62,10 +62,10 @@ public class Messages {
     public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + DATE_FORMAT_HELP;
     public static final String NUM_FORMAT_ERROR = "Please provide an integer as the command parameter";
-    public static final String DELETE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Delete Command" +
-            System.lineSeparator() + DELETE_FORMAT_HELP;
-    public static final String DONE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Done Command" +
-            System.lineSeparator() + DONE_FORMAT_HELP;
+    public static final String DELETE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Delete Command"
+            + System.lineSeparator() + DELETE_FORMAT_HELP;
+    public static final String DONE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Done Command"
+            + System.lineSeparator() + DONE_FORMAT_HELP;
 
     public static final String INVALID_ID_ERROR = "Please provide a valid task number from %1$s";
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
