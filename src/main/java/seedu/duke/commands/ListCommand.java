@@ -20,7 +20,6 @@ public class ListCommand extends Command {
     public CommandResult execute() {
 
         System.out.println(LIST_MESSAGE);
-        String feedback;
         items.compileList();
 
         double totalCost = 0.0;
@@ -30,7 +29,7 @@ public class ListCommand extends Command {
 
         totalCost = items.getTotalCost();
 
-         feedback = String.format(TOTAL_COST_MESSAGE, totalCost)
+        String feedback = String.format(TOTAL_COST_MESSAGE, totalCost)
                 + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
 
         return new CommandResult(feedback);
