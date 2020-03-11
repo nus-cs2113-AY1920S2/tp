@@ -1,5 +1,6 @@
 package tasks;
 
+import common.Messages;
 import org.junit.jupiter.api.Test;
 import seedu.duke.Parser;
 import java.time.LocalDateTime;
@@ -62,9 +63,9 @@ public class AssignmentTest {
 
     @Test
     public void testToString() {
-        String printedString = "[A][X] project meeting (by: Fri 20 Mar 2020 09:00)"
-                + System.lineSeparator()
-                + "   My Very Long Long Long Long Long Comment";
+        String printedString = "[A][X] project meeting (by: Fri 20 Mar 2020 09:00 | mod: CS2113T)"
+                + System.lineSeparator() + Messages.NEWLINE_INDENT
+                + "My Very Long Long Long Long Long Comment";
         assertNotEquals(newAssignment.toString(), printedString);
     }
 }
