@@ -1,18 +1,14 @@
 package seedu.duke;
 
-import command.AssignmentCommand;
-import command.Command;
-import command.DeleteCommand;
-import command.DoneCommand;
-import command.EventCommand;
-import command.HelpCommand;
-import command.ListCommand;
+import command.*;
 import common.Messages;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
+import tasks.Assignment;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -59,14 +55,15 @@ public class ParserTest {
     /** Assignment Command Tests. */
     @Test
     public void parseAssignmentCommand_expectedInput_success() {
-        Command parsedCommand = Parser.parseCommand("assignment n/name m/cs2113T d/22/01/20 1800 c/comments");
+        Command parsedCommand = Parser.parseCommand(AssignmentCommand.ASSIGNMENT_COMMAND_WORD
+                + " n/name m/cs2113T d/22/01/20 1800 c/comments");
         assertTrue((parsedCommand instanceof AssignmentCommand));
     }
 
     @Test
     public void parseAssignmentCommand_extraWhitespacePresent_success() {
         Command parsedCommand = Parser.parseCommand(
-                "assignment  "
+                AssignmentCommand.ASSIGNMENT_COMMAND_WORD + "  "
                         + "n/   long long name   "
                         + "m/   cs2113T  "
                         + "d/  22/01/20   1800 "
@@ -77,7 +74,8 @@ public class ParserTest {
 
     @Test
     public void parseAssignmentCommand_missingParameters_returnIncorrectCommand() {
-        assertEquals(Parser.parseCommand("assignment n/ASS m/cs1010 d/30/02/20 1111")
+        assertEquals(Parser.parseCommand(AssignmentCommand.ASSIGNMENT_COMMAND_WORD
+                        + " n/ASS m/cs1010 d/30/02/20 1111")
                         .execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.ASSIGN_INCORRECT_FORMAT_ERROR));
     }
@@ -85,14 +83,15 @@ public class ParserTest {
     /** Event Command Tests. */
     @Test
     public void parseEventCommand_expectedInput_success() {
-        Command parsedCommand = Parser.parseCommand("event n/name l/somewhere ah d/22/01/20 1800 c/comment");
+        Command parsedCommand = Parser.parseCommand(EventCommand.EVENT_COMMAND_WORD
+                + " n/name l/somewhere ah d/22/01/20 1800 c/comment");
         assertTrue((parsedCommand instanceof EventCommand));
     }
 
     @Test
     public void parseEventCommand_extraWhitespacePresent_success() {
         Command parsedCommand = Parser.parseCommand(
-                "event "
+                EventCommand.EVENT_COMMAND_WORD + " "
                         + "n/   long long name   "
                         + "l/   somewhere over the rainbow   "
                         + "d/  22/01/20   1800  "
@@ -103,7 +102,7 @@ public class ParserTest {
 
     @Test
     public void parseEventCommand_missingParameters_returnIncorrectCommand() {
-        assertEquals(Parser.parseCommand("event n/EVE l/LOC d/30/02/20 1111 c/")
+        assertEquals(Parser.parseCommand(EventCommand.EVENT_COMMAND_WORD + " n/EVE l/LOC d/30/02/20 1111 c/")
                         .execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.EVENT_INCORRECT_FORMAT_ERROR));
     }
@@ -111,26 +110,26 @@ public class ParserTest {
     /** Delete Command Tests. */
     @Test
     public void parseDeleteCommand_expectedInput_success() {
-        Command parsedCommand = Parser.parseCommand("delete 123");
+        Command parsedCommand = Parser.parseCommand(DeleteCommand.DELETE_COMMAND_WORD + " 123");
         assertTrue(parsedCommand instanceof DeleteCommand);
     }
 
     @Test
     public void parseDeleteCommand_extraWhitespacePresent_success() {
-        Command parsedCommand = Parser.parseCommand("delete    123    ");
+        Command parsedCommand = Parser.parseCommand(DeleteCommand.DELETE_COMMAND_WORD + "    123    ");
         assertTrue(parsedCommand instanceof DeleteCommand);
     }
 
     @Test
     public void parseDeleteCommand_missingParameter_returnIncorrectCommand() {
-        Command parsedCommand = Parser.parseCommand("delete");
+        Command parsedCommand = Parser.parseCommand(DeleteCommand.DELETE_COMMAND_WORD);
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DELETE_INSUFFICIENT_ARGS_ERROR));
     }
 
     @Test
     public void parseDeleteCommand_invalidParameter_returnIncorrectCommand() {
-        Command parsedCommand = Parser.parseCommand("delete abc");
+        Command parsedCommand = Parser.parseCommand(DeleteCommand.DELETE_COMMAND_WORD + " abc");
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.NUM_FORMAT_ERROR));
     }
@@ -138,26 +137,26 @@ public class ParserTest {
     /** Done Command Tests. */
     @Test
     public void parseDoneCommand_expectedInput_success() {
-        Command parsedCommand = Parser.parseCommand("done 123");
+        Command parsedCommand = Parser.parseCommand(DoneCommand.DONE_COMMAND_WORD + " 123");
         assertTrue(parsedCommand instanceof DoneCommand);
     }
 
     @Test
     public void parseDoneCommand_extraWhitespacePresent_success() {
-        Command parsedCommand = Parser.parseCommand("done    123    ");
+        Command parsedCommand = Parser.parseCommand(DoneCommand.DONE_COMMAND_WORD + "    123    ");
         assertTrue(parsedCommand instanceof DoneCommand);
     }
 
     @Test
     public void parseDoneCommand_missingParameter_returnIncorrectCommand() {
-        Command parsedCommand = Parser.parseCommand("done");
+        Command parsedCommand = Parser.parseCommand(DoneCommand.DONE_COMMAND_WORD);
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DONE_INSUFFICIENT_ARGS_ERROR));
     }
 
     @Test
     public void parseDoneCommand_invalidParameter_returnIncorrectCommand() {
-        Command parsedCommand = Parser.parseCommand("done abc");
+        Command parsedCommand = Parser.parseCommand(DoneCommand.DONE_COMMAND_WORD + " abc");
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.NUM_FORMAT_ERROR));
     }
@@ -165,23 +164,29 @@ public class ParserTest {
     /** Help Command Tests. */
     @Test
     public void parseHelpCommand_expectedInput_success() {
-        Command parsedCommand = Parser.parseCommand("help");
+        Command parsedCommand = Parser.parseCommand(HelpCommand.HELP_COMMAND_WORD);
         assertTrue(parsedCommand instanceof HelpCommand);
     }
 
     /** List Command Tests. */
     @Test
     public void parseListCommand_expectedInput_success() {
-        Command parsedCommand = Parser.parseCommand("list");
+        Command parsedCommand = Parser.parseCommand(ListCommand.LIST_COMMAND_WORD);
         assertTrue(parsedCommand instanceof ListCommand);
-        parsedCommand = Parser.parseCommand("list today");
+        parsedCommand = Parser.parseCommand(ListCommand.LIST_COMMAND_WORD + " today");
         assertTrue(parsedCommand instanceof ListCommand);
-        parsedCommand = Parser.parseCommand("list week");
+        parsedCommand = Parser.parseCommand(ListCommand.LIST_COMMAND_WORD + " week");
         assertTrue(parsedCommand instanceof ListCommand);
-        parsedCommand = Parser.parseCommand("list incomplete assignments");
+        parsedCommand = Parser.parseCommand(ListCommand.LIST_COMMAND_WORD + " incomplete assignments");
         assertTrue(parsedCommand instanceof ListCommand);
-        parsedCommand = Parser.parseCommand("list upcoming events");
+        parsedCommand = Parser.parseCommand(ListCommand.LIST_COMMAND_WORD + " upcoming events");
         assertTrue(parsedCommand instanceof ListCommand);
     }
 
+    /** Exit Command Tests. */
+    @Test
+    public void parseExitCommand_expectedInput_success() {
+        Command parsedCommand = Parser.parseCommand(ExitCommand.EXIT_COMMAND_WORD);
+        assertTrue(parsedCommand instanceof ExitCommand);
+    }
 }
