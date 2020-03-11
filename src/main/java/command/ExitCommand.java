@@ -5,6 +5,7 @@ import seedu.duke.TaskList;
 import seedu.duke.Ui;
 
 public class ExitCommand extends Command {
+    public static final String EXIT_COMMAND_WORD = "exit";
 
     /**
      * Executes the Exit command.
