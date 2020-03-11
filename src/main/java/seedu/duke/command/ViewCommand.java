@@ -66,7 +66,7 @@ public class ViewCommand extends Command {
         Ui.showViewedMessage(viewList.toString().trim());
     }
 
-    private void viewDoneModules(SelectedModulesList moduleList){
+    private void viewDoneModules(SelectedModulesList moduleList) {
         StringBuilder viewList = new StringBuilder();
         for (SemModulesList sem: moduleList) {
             viewList.append(sem.getSem()).append(System.lineSeparator());

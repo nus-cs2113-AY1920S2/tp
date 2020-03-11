@@ -12,6 +12,11 @@ public class MarkAsDoneCommand extends Command {
     private String moduleName;
     private String semester;
 
+    /**
+     * marks the module in a semester in the selectedList as done
+     * @param moduleName : name of the module that the user wants to mark as done
+     * @param semester : Semester that the user wants to mark as done
+     */
     public MarkAsDoneCommand(String moduleName, String semester) {
         super();
         this.moduleName = moduleName;
@@ -19,7 +24,7 @@ public class MarkAsDoneCommand extends Command {
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList){
+    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList) {
         markAsDoneCommand(selectedModulesList);
         Ui.showDoneMessage();
     }
@@ -29,7 +34,7 @@ public class MarkAsDoneCommand extends Command {
             if (sem.getSem().equals(semester)) {
                 for (Module module: sem) {
                     if (module.getName().equals(moduleName)) {
-                       module.setAsDone();
+                        module.setAsDone();
                         System.out.println("Marked as done!");
                     }
                 }
