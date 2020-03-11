@@ -41,9 +41,8 @@ class EventTest {
 
     @Test
     void getDatetime() {
-       // Event event1 = new Event();
-        //assertEquals(null, event1.getDatetime());
-
+        // Event event1 = new Event();
+        // assertEquals(null, event1.getDatetime());
         Event event2 = new Event("1", "2020-05-04 0130", "3");
         assertEquals("May 4 2020 0130", event2.getDatetime());
     }
