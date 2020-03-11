@@ -1,9 +1,10 @@
-package seedu.duke.data;
+package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.AddCommand;
+import seedu.duke.data.ShoppingList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,15 +1,18 @@
-package seedu.duke.data;
+package seedu.duke.commands;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.*;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.MarkCommand;
+import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
-
+import seedu.duke.commands.CommandResult;
+import seedu.duke.commands.EditCommand;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UnmarkCommandTest {
+public class MarkCommandTest {
     ShoppingList items = new ShoppingList();
     Command command = new Command();
 
@@ -22,33 +25,36 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    void testUnmark_MarkedItem_Success() {
+    void testMark_unmarkedItem_Success() {
         command.setData(items, null);
         command = new MarkCommand(1);
-        command = new UnmarkCommand(1);
         CommandResult result = command.execute();
         String expectedFeedback = System.lineSeparator()
-                + "Yes! I've unmarked this item as bought: "
+                + "Yes! I've marked this item as bought: "
                 + System.lineSeparator() + items.getList().get(1).toString()
                 + System.lineSeparator();
         assertEquals(expectedFeedback, result.feedbackToUser);
     }
 
     @Test
-    void testUnmark_outOfLimitIndex_Success() {
-        command.setData(items, null);
-        command = new UnmarkCommand(10);
-        CommandResult result1 = command.execute();
-        String expectedFeedback1 = UnmarkCommand.FAIL_MESSAGE;
-        assertEquals(expectedFeedback1, result1.feedbackToUser);
+    void testMark_outOfLimitIndex_Success() {
+        CommandResult result1 = null;
+        try {
+            command.setData(items, null);
+            command = new MarkCommand(10);
+            result1 = command.execute();
+        } catch (IndexOutOfBoundsException e) {
+            String expectedFeedback1 = MarkCommand.FAIL_MESSAGE;
+            assertEquals(expectedFeedback1, result1.feedbackToUser);
+        }
     }
 
     @Test
-    void testUnmark_negativeIndex_Success() {
+    void testMark_negativeIndex_Success() {
         command.setData(items, null);
-        command = new UnmarkCommand(-5);
+        command = new MarkCommand(-5);
         CommandResult result2 = command.execute();
-        String expectedFeedback2 = UnmarkCommand.FAIL_MESSAGE;
+        String expectedFeedback2 = MarkCommand.FAIL_MESSAGE;
         assertEquals(expectedFeedback2, result2.feedbackToUser);
     }
 }
