@@ -6,11 +6,11 @@ package common;
 public class Messages {
     // Generic Print Messages
     public static final String LOGO =
-            " ____        _\n"
-            + "|  _ \\ _   _| | _____\n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+            "   _____________________    _________\n"
+            + "  /  _  \\__    ___/  _  \\  /   _____/\n"
+            + " /  /_\\  \\|    | /  /_\\  \\ \\_____  \\\n"
+            + "/    |    \\    |/    |    \\/        \\\n"
+            + "\\____|____/____|\\____|____/_________/\n";
     public static final String DIVIDER = "____________________________________________________________";
     public static final String EXIT_MESSAGE = "Exiting DUKE";
 
