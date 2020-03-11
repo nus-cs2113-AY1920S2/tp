@@ -42,10 +42,8 @@ public class Parser {
             case "start":
                 try {
                     parseStart();
-                } catch (EmptyNameException e) {
-                    ui.printDivider("Task name cannot be empty!");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    ui.printDivider("Task name cannot be empty!");
+                } catch (EmptyNameException | ArrayIndexOutOfBoundsException e) {
+                    ui.printDivider("Activity name cannot be empty!");
                 }
                 break;
             case "end":
@@ -99,13 +97,13 @@ public class Parser {
                 if (activityName.equals("")) {
                     throw new EmptyNameException();
                 }
-                line = "Started " + activityName;
+                line = "Started: " + activityName;
             } else {
                 activityName = tokenizedInputs[1].substring(0, delimiter);
                 if (activityName.equals("")) {
                     throw new EmptyNameException();
                 }
-                line = "Started " + activityName;
+                line = "Started: " + activityName;
                 tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
             }
             startTime = LocalDateTime.now();
@@ -120,7 +118,7 @@ public class Parser {
             String line = "You have not started any activity!";
             ui.printDivider(line);
         } else {
-            String line = "Ended " + activityName;
+            String line = "Ended: " + activityName;
             ui.printDivider(line);
             endTime = LocalDateTime.now();
             Activity newActivity = new Activity(activityName, startTime, endTime, tags);

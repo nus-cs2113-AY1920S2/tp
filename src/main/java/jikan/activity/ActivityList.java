@@ -99,12 +99,21 @@ public class ActivityList {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
-            String[] tags;
+            String[] tags = new String[strings.size() - 3];
 
             // if there are tags
             if (!strings.get(3).equals("null")) {
-                // remove square brackets surrounding tags
-                tags = strings.get(3).substring(1,strings.get(3).length() - 1).split(" ");
+                int tagsIndex = 0;
+                for (int i = 3; i < strings.size(); i++) {
+                    if (i == 3) {
+                        tags[tagsIndex] = strings.get(i).substring(1);
+                    } else if (i == strings.size() - 1) {
+                        tags[tagsIndex] = strings.get(i).substring(0, strings.get(i).length() - 1);
+                    } else {
+                        tags[tagsIndex] = strings.get(i);
+                    }
+                    tagsIndex++;
+                }
             } else {
                 tags = null;
             }

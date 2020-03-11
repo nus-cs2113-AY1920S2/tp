@@ -1,6 +1,7 @@
 package jikan.activity;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -14,6 +15,7 @@ public class Activity {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Duration duration;
+    private LocalDate date;
 
     /**
      * Constructor for a new activity entry.
@@ -28,6 +30,7 @@ public class Activity {
         this.tags = tags;
         this.endTime = endTime;
         this.duration = Duration.between(startTime, endTime);
+        this.date = endTime.toLocalDate();
     }
 
     /**
@@ -64,6 +67,10 @@ public class Activity {
 
     public String[] getTags() {
         return tags;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     /**
