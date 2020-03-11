@@ -8,6 +8,7 @@ public class DietManager {
 
         FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
         Profile profile = new Profile();
+        UI ui = new UI();
 
         Scanner sc = new Scanner(System.in);
 
@@ -23,9 +24,7 @@ public class DietManager {
         System.out.println(logo);
         System.out.println("Welcome to Diet Manager! How may I assist you today?");
 
-        boolean isExitStatus = false;
-
-        while (!isExitStatus) {
+        while (!ui.isExitStatus()) {
             String[] inputArray = sc.nextLine().trim().split(" ", 2);
             switch (inputArray[0]) {
             case "profile":
@@ -65,6 +64,9 @@ public class DietManager {
                 profile.setWeightGoal(Double.parseDouble(inputArray[1]));
                 System.out.println(String.format("Your username has been changed to %s", profile.getName()));
                 break;
+            case "exit":
+                System.out.println("Thank you and see you again soon!");
+                ui.setExitStatus(false);
             default:
                 System.out.println("Sorry, I don't understand that command :(");
                 break;
