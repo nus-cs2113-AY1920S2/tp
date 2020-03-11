@@ -1,10 +1,7 @@
 package seedu.duke.commands;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.*;
 import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
 

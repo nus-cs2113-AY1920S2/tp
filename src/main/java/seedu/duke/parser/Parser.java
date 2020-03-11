@@ -32,7 +32,7 @@ public class Parser {
         String commandWord = commandAndArgs[0];
         String arguments;
         try {
-           arguments = commandAndArgs[1];
+            arguments = commandAndArgs[1];
         } catch (IndexOutOfBoundsException e) {
             arguments = null;
         }
@@ -151,10 +151,11 @@ public class Parser {
         }
     }
 
-    private String[] splitCommandAndArgs (String userInput) {
+    private String[] splitCommandAndArgs(String userInput) {
         String[] commandandArgs = userInput.trim().split(" ", 2);
         return commandandArgs;
     }
+
     private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
         String[] argsArray = new String[]{};
         String descriptionDelimiter = "i/";
@@ -308,8 +309,16 @@ public class Parser {
      */
     public static void createSetBudgetCommand(String arguments) {
         try {
-            double amount = Double.parseDouble(arguments.substring(2));
-            newCommand = new SetBudgetCommand(amount);
+            if (!arguments.contains("b/")) {
+                newCommand = new IncorrectCommand(System.lineSeparator()
+                        + "Please enter the amount after the \"b/\" divider"
+                        + System.lineSeparator()
+                        + "Example: SET b/300");
+            } else {
+                double amount = Double.parseDouble(arguments.substring(2));
+                newCommand = new SetBudgetCommand(amount);
+            }
+
         } catch (NumberFormatException | NullPointerException | StringIndexOutOfBoundsException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Please enter an amount for your budget"
