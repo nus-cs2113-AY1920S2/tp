@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.ViewCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.module.Module;
 
@@ -16,14 +17,20 @@ public class Parser {
      */
     public static Command parse(String fullCommand) {
         String taskType;
-        String args;
+        String args = null;
         String[] words;
         words = fullCommand.split(" ",2);
         taskType = words[0];
+
+        if (words.length > 1) {
+            args = words[1];
+        }
+
         switch (taskType) {
         case AddCommand.COMMAND_WORD:
-            args = words[1];
             return processAddCommand(args);
+        case ViewCommand.COMMAND_WORD:
+            return processViewCommand(args);
         case ExitCommand.COMMAND_WORD:
             return processExitCommand();
         default:
@@ -46,6 +53,23 @@ public class Parser {
         } else if (module.contains("id/")) {
             String moduleId = module.replace("id/","");
             return new AddCommand(new Module("id", moduleId, semester));
+        }
+        return null;
+    }
+
+    private static ViewCommand processViewCommand(String args) {
+        if (args.contains("/cm")) {
+            return new ViewCommand(ViewCommand.VIEW_COMPULSORY_MODULES);
+        } else if (args.contains("/dm")) {
+            return new ViewCommand(ViewCommand.VIEW_DONE_MODULES);
+        } else if (args.contains("/mp")) {
+            return new ViewCommand(ViewCommand.VIEW_MODULE_PLAN);
+        } else if (args.contains("n/")) {
+            String moduleToBeViewed = args.replace("n/","");
+            return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
+        } else if (args.contains("id/")) {
+            String moduleToBeViewed = args.replace("id/","");
+            return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
         }
         return null;
     }

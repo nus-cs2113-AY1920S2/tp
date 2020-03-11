@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import seedu.duke.command.Command;
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
@@ -12,8 +11,8 @@ import seedu.duke.ui.Ui;
 
 public class Duke {
 
-    private static ModuleList availableModulesList;
-    private static ModuleList selectedModulesList;
+    private static AvailableModulesList availableModulesList;
+    private static SelectedModulesList selectedModulesList;
     private static Ui ui;
 
     /**
@@ -45,7 +44,6 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-
     public static void main(String[] args) {
         new Duke().run();
     }

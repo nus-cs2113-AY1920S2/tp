@@ -1,6 +1,8 @@
 package seedu.duke.data;
 
-public class SelectedModulesList extends ModuleList {
+import java.util.ArrayList;
+
+public class SelectedModulesList extends ArrayList<SemModulesList> {
     public SelectedModulesList() {
         super();
     }

@@ -15,6 +15,8 @@ public class Ui {
 
     private static final String ADDED_MESSAGE = "Okay! I have added this module to your module list:";
 
+    private static final String VIEWED_MODULE_PLAN_MESSAGE = "Okay! Here is your module plan:";
+
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     private static void showToUser(String... messages) {
@@ -33,5 +35,9 @@ public class Ui {
 
     public static void showAddedMessage(String module) {
         showToUser(ADDED_MESSAGE, module,LINE_SEPARATOR);
+    }
+
+    public static void showViewedMessage(String viewList) {
+        showToUser(VIEWED_MODULE_PLAN_MESSAGE, viewList,LINE_SEPARATOR);
     }
 }
