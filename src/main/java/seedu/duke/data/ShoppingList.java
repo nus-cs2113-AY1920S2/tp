@@ -4,6 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.UnmarkCommand;
+import seedu.duke.ui.CommandLineTable;
 
 import java.util.ArrayList;
 
@@ -21,18 +22,35 @@ public class ShoppingList {
 
     /**
      * Formats the list to be printed to user.
-     * @param feedback String that is to be made into list to be printed to user
-     * @return the contents of the list, formatted into a string
+     *
      */
-    public String compileList(String feedback) {
+    public void compileList() {
+        CommandLineTable st = new CommandLineTable();
+        st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
+        st.setHeaders("Item", "Price");//optional - if not used then there will be no header and horizontal lines
         int bulletNum = 1;
         String itemLine;
         for (Item item : items) {
-            itemLine = bulletNum + ". " + item.toString() + "\n";
-            feedback = feedback + itemLine;
+
+            itemLine = bulletNum + ". [" + item.getStatusIcon() + "] " + item.getDescription();
+            st.addRow(itemLine, String.format("$%.2f",item.getPrice()));
             bulletNum++;
         }
-        return feedback;
+        st.print();
+    }
+
+    /**
+     * Calculates and returns the total cost of the items in the shopping list.
+     *
+     * @return Total cost of items in shopping list.
+     */
+    public double getTotalCost() {
+        double totalCost = 0.0;
+        for (Item item : items) {
+            totalCost += item.getPrice();
+        }
+        return totalCost;
+
     }
 
     public void clearList() {
@@ -45,9 +63,6 @@ public class ShoppingList {
      * @return item that is marked
      */
     public static Item markAsBought(int index) {
-        if (index >= items.size()) {
-            newCommand = new IncorrectCommand(MarkCommand.FAIL_MESSAGE);
-        }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
@@ -69,9 +84,6 @@ public class ShoppingList {
      * @return item that is unmarked
      */
     public static Item unmarkAsBought(int index) {
-        if (index >= items.size()) {
-            newCommand = new IncorrectCommand(UnmarkCommand.FAIL_MESSAGE);
-        }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
         return itemNotBought;
@@ -82,7 +94,7 @@ public class ShoppingList {
      *
      * @param index Index of the item to be removed.
      */
-    public static void deleteItem(int index) {
+    public void deleteItem(int index) {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }
