@@ -1,10 +1,9 @@
 package utils;
 import commands.*;
-import dish.*;
-import menu.*;
-import report.*;
-import stock.*;
-import reservation.*;
+import menu.Menu;
+import report.ReportWriter;
+import reservation.ReservationList;
+import stock.Stock;
 
 import java.io.IOException;
 
@@ -16,7 +15,7 @@ public class CommandParser {
             } catch (IOException e) {
                 System.out.println("Error writing to file");
             }
-            new ExitCommand().execute();
+            new QuitCommand().execute();
         }
         String[] commands = command.split(";",2);
         String[] split_commands = commands[0].split(" ",2);
