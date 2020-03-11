@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParserTest {
 
-    /** Date Tests */
+    /** Date Tests. */
     @Test
     public void parseDate_correctFormat_success() {
         LocalDateTime parsedDateTime = Parser.parseDate("22/02/20 2359");
@@ -47,7 +47,7 @@ public class ParserTest {
         assertThrows(IndexOutOfBoundsException.class, () -> Parser.parseDate("1800"));
     }
 
-    /** Unknown Command Tests */
+    /** Unknown Command Tests. */
     @Test
     public void testUnknownCommand() {
         TaskList testTaskList = new TaskList();
@@ -56,7 +56,7 @@ public class ParserTest {
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.UNKNOWN_COMMAND_ERROR));
     }
 
-    /** Assignment Command Tests */
+    /** Assignment Command Tests. */
     @Test
     public void parseAssignmentCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand("assignment n/name m/cs2113T d/22/01/20 1800 c/comments");
@@ -82,7 +82,7 @@ public class ParserTest {
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.ASSIGN_INCORRECT_FORMAT_ERROR));
     }
 
-    /** Event Command Tests */
+    /** Event Command Tests. */
     @Test
     public void parseEventCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand("event n/name l/somewhere ah d/22/01/20 1800 c/comment");
@@ -108,7 +108,7 @@ public class ParserTest {
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.EVENT_INCORRECT_FORMAT_ERROR));
     }
 
-    /** Delete Command Tests */
+    /** Delete Command Tests. */
     @Test
     public void parseDeleteCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand("delete 123");
@@ -135,7 +135,7 @@ public class ParserTest {
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.NUM_FORMAT_ERROR));
     }
 
-    /** Done Command Tests */
+    /** Done Command Tests. */
     @Test
     public void parseDoneCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand("done 123");
@@ -162,14 +162,14 @@ public class ParserTest {
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.NUM_FORMAT_ERROR));
     }
 
-    /** Help Command Tests */
+    /** Help Command Tests. */
     @Test
     public void parseHelpCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand("help");
         assertTrue(parsedCommand instanceof HelpCommand);
     }
 
-    /** List Command Tests */
+    /** List Command Tests. */
     @Test
     public void parseListCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand("list");
