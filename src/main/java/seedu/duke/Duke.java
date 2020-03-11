@@ -2,6 +2,7 @@ package seedu.duke;
 
 import command.Command;
 import command.CommandResult;
+import common.Messages;
 
 public class Duke {
     private Ui ui;
@@ -35,7 +36,7 @@ public class Duke {
                 result = command.execute(taskList, ui);
                 ui.showToUser(result.feedbackToUser);
             } finally {
-                ui.printDividerLine();
+                ui.showToUser(Messages.DIVIDER);
             }
         }
     }
