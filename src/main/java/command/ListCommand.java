@@ -56,7 +56,7 @@ public class ListCommand extends Command {
     private String stringTaskList(ArrayList<Task> taskList) {
         StringBuilder stringFromArrayList = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
-            stringFromArrayList.append((i + 1) + "." + taskList.get(i).toString());
+            stringFromArrayList.append(String.format("%3d. %s", i + 1, taskList.get(i).toString()));
             if (i != taskList.size() - 1) {
                 stringFromArrayList.append(System.lineSeparator());
             }

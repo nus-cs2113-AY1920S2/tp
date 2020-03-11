@@ -1,5 +1,6 @@
 package tasks;
 
+import common.Messages;
 import seedu.duke.Parser;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,9 +49,11 @@ public class Assignment extends Task {
                 + super.toString()
                 + " (by: "
                 + deadline.format(Parser.PRINT_DATE_FORMAT)
+                + " | mod: "
+                + module
                 + ")"
                 + System.lineSeparator()
-                + "   "
+                + Messages.NEWLINE_INDENT
                 + comments;
     }
 }

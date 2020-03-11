@@ -32,6 +32,8 @@ public class EventCommand extends Command {
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newEvent = new Event(eventName, eventLocation, dateTime, comments);
         taskList.addTask(newEvent);
-        return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE, newEvent, taskList.getListSize()));
+        int listSize = taskList.getListSize();
+        return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE,
+                newEvent, listSize, listSize == 1 ? "" : "s"));
     }
 }
