@@ -9,6 +9,8 @@ import tasks.Task;
 import java.time.LocalDateTime;
 
 public class AssignmentCommand extends Command {
+    public static final String ASSIGNMENT_COMMAND_WORD = "assignment";
+
     protected String assignmentName;
     protected String moduleName;
     protected LocalDateTime deadline;

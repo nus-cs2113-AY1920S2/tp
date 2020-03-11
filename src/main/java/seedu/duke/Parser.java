@@ -2,7 +2,6 @@ package seedu.duke;
 
 import command.AssignmentCommand;
 import command.Command;
-import command.CommandResult;
 import command.DeleteCommand;
 import command.DoneCommand;
 import command.EventCommand;
@@ -10,12 +9,13 @@ import command.IncorrectCommand;
 import command.ListCommand;
 import command.HelpCommand;
 import command.ExitCommand;
+
 import common.Messages;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,22 +48,22 @@ public class Parser {
      * @return Command depending on user input, with the appropriate arguments set
      */
     public static Command parseCommand(String fullCommand) {
-        String commandType = fullCommand.split("\\s+", 2)[0];
+        String commandType = fullCommand.split("\\s+", 2)[0].trim().toLowerCase();
 
         switch (commandType) {
-        case "help":
+        case HelpCommand.HELP_COMMAND_WORD:
             return new HelpCommand();
-        case "assignment":
+        case AssignmentCommand.ASSIGNMENT_COMMAND_WORD:
             return prepareAssignmentCommand(fullCommand);
-        case "delete":
+        case DeleteCommand.DELETE_COMMAND_WORD:
             return prepareDeleteCommand(fullCommand);
-        case "done":
+        case DoneCommand.DONE_COMMAND_WORD:
             return prepareDoneCommand(fullCommand);
-        case "event":
+        case EventCommand.EVENT_COMMAND_WORD:
             return prepareEventCommand(fullCommand);
-        case "list":
+        case ListCommand.LIST_COMMAND_WORD:
             return prepareListCommand(fullCommand);
-        case "bb":
+        case ExitCommand.EXIT_COMMAND_WORD:
             return new ExitCommand();
         default:
             return new IncorrectCommand(Messages.UNKNOWN_COMMAND_ERROR);
@@ -108,7 +108,7 @@ public class Parser {
         String[] tokens = fullCommand.split("\\s+", 2);
         int deleteIndex;
         try {
-            deleteIndex = Integer.parseInt(tokens[1]) - 1;
+            deleteIndex = Integer.parseInt(tokens[1].trim()) - 1;
         } catch (NumberFormatException e) {
             return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
@@ -121,7 +121,7 @@ public class Parser {
         String[] tokens = fullCommand.split("\\s+", 2);
         int doneIndex;
         try {
-            doneIndex = Integer.parseInt(tokens[1]) - 1;
+            doneIndex = Integer.parseInt(tokens[1].trim()) - 1;
         } catch (NumberFormatException e) {
             return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
@@ -156,29 +156,5 @@ public class Parser {
             return new ListCommand(null);
         }
         return new ListCommand(tokens[1]);
-    }
-
-    /**
-     * Main function to test class.
-     * @param args unused
-     */
-    public static void main(String[] args) {
-        TaskList taskList = new TaskList();
-        Ui ui = new Ui();
-        ui.showToUser(Messages.HELP_FORMAT_MESSAGE);
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
-            if (input.equals("bb")) {
-                break;
-            }
-            try {
-                Command command = parseCommand(input);
-                CommandResult result = command.execute(taskList, ui);
-                ui.showToUser(result.feedbackToUser);
-            } catch (Exception errorMsg) {
-                ui.showToUser(errorMsg.toString());
-            }
-        }
     }
 }

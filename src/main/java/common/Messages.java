@@ -12,7 +12,7 @@ public class Messages {
             + "/    |    \\    |/    |    \\/        \\\n"
             + "\\____|____/____|\\____|____/_________/\n";
     public static final String DIVIDER = "____________________________________________________________";
-    public static final String EXIT_MESSAGE = "Exiting DUKE";
+    public static final String EXIT_MESSAGE = "Exiting ATAS";
     public static final String NEWLINE_INDENT = "     ";
 
     // Help Messages

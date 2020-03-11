@@ -8,6 +8,7 @@ import tasks.Task;
 import java.util.ArrayList;
 
 public class ListCommand extends Command {
+    public static final String LIST_COMMAND_WORD = "list";
 
     private final String listParam;
     private static final String TODAY_COMMAND = "today";
