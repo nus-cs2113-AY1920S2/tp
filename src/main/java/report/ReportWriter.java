@@ -38,7 +38,7 @@ public class ReportWriter {
                     iList += str + ", ";
                 }
                 iList = iList.substring(0, iList.length()-2);
-                String writtenString = String.format("%d. %s \t %s \n",counter,name, iList);
+                String writtenString = String.format("%d. %s \t %s \n", counter, name, iList);
                 fw.write(writtenString);
                 counter += 1;
             }
