@@ -126,7 +126,19 @@ public class TaskList {
         tasks.get(doneIndex).setDone();
     }
 
+    /**
+     * Delete tasks according to the index specified by user.
+     * @param deleteIndex index of task to be deleted
+     * @throws IndexOutOfBoundsException throws when index is out of range of the size of current Tasklist
+     */
     public void deleteTask(int deleteIndex) throws IndexOutOfBoundsException {
         tasks.remove(deleteIndex);
+    }
+
+    /**
+     * Deletes all the tasks in the list.
+     */
+    public void clearList() {
+        tasks.clear();
     }
 }
