@@ -52,36 +52,21 @@ public class TaskList {
     }
 
     /**
-     * Getter method for tasks due or scheduled today.
-     * @return ArrayList object containing all tasks for today.
+     * Getter method for tasks depending of days from today.
+     * @param days Integer representing number of days from today
+     * @return ArrayList object containing all tasks from indicated days from today
      */
-    public ArrayList<Task> getTodayTasks() {
-        ArrayList<Task> todayList = new ArrayList<>();
+    public ArrayList<Task> getTasksByDays(int days) {
+        ArrayList<Task> taskList = new ArrayList<>();
         LocalDate currDate = getCurrentDate();
+        LocalDate daysIndicated = currDate.plusDays(days);
         for (Task task : tasks) {
             LocalDate taskDate = task.getDate();
-            if (currDate.compareTo(taskDate) == 0) {
-                todayList.add(task);
+            if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(daysIndicated) <= 0) {
+                taskList.add(task);
             }
         }
-        return todayList;
-    }
-
-    /**
-     * Getter method for tasks due or scheduled within the next 7 days.
-     * @return ArrayList object containing all tasks in next 7 days.
-     */
-    public ArrayList<Task> getWeekTasks() {
-        ArrayList<Task> weekList = new ArrayList<>();
-        LocalDate currDate = getCurrentDate();
-        LocalDate nextWeekDate = currDate.plusWeeks(1);
-        for (Task task : tasks) {
-            LocalDate taskDate = task.getDate();
-            if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(nextWeekDate) < 0) {
-                weekList.add(task);
-            }
-        }
-        return weekList;
+        return taskList;
     }
 
     /**

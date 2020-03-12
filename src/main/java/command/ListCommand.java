@@ -29,9 +29,9 @@ public class ListCommand extends Command {
         // to deal with null being passed as input
         switch (listParam == null ? "" : listParam) {
         case (TODAY_COMMAND):
-            return new CommandResult(showListTasks(taskList.getTodayTasks()));
+            return new CommandResult(showListTasks(taskList.getTasksByDays(0)));
         case (WEEK_COMMAND):
-            return new CommandResult(showListTasks(taskList.getWeekTasks()));
+            return new CommandResult(showListTasks(taskList.getTasksByDays(7)));
         case (UPCOMING_EVENT_COMMAND):
             return new CommandResult(showListTasks(taskList.getUpcomingEventArray()));
         case (INCOMPLETE_ASSIGN_COMMAND):
