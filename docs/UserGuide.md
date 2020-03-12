@@ -6,7 +6,7 @@
     + [3.1. Add:](#add) `add`
     + [3.2. Delete:](#delete) `delete`
     + [3.3. List:](#list) `list`
-* [4. Command Summary](#summary)
+* [4. Command Summary](#command-summary)
 
 <a name="introduction"></a>
 
@@ -49,6 +49,7 @@ Add menu items, ingredients, and reservations.
 #### Add reservation into list: add reservation 
 * Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
 * Example: `add reservation; r/12;`
+
 *The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be an integer.*
 
 <a name="delete"></a>
@@ -76,7 +77,7 @@ List items in the menu, ingredients and reservations.
 * List ingredients : `list ingredient`
 * List reservation : `list reservation`
 
-<a name="summary"></a>
+<a name="command summary"></a>
 
 ## Command Summary
 
