@@ -6,10 +6,13 @@ import seedu.nuke.command.InvalidCommand;
 import seedu.nuke.command.ListCommand;
 import seedu.nuke.command.module.AddModuleCommand;
 import seedu.nuke.command.module.DeleteModuleCommand;
+import seedu.nuke.command.taskCategory.AddCategoryCommand;
+import seedu.nuke.command.taskCategory.DeleteCategoryCommand;
 import seedu.nuke.exception.InvalidFormatException;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_EXCESS_PARAMETERS;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_MODULE_CODE;
+import java.util.Arrays;
+
+import static seedu.nuke.util.ExceptionMessage.*;
 
 /**
  * <h3>Parser</h3>
@@ -61,11 +64,45 @@ public class Parser {
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
 
+            case AddCategoryCommand.COMMAND_WORD:
+                return createAddCategoryCommand(parameters);
+
+            case DeleteCategoryCommand.COMMAND_WORD:
+                return createDeleteCategoryCommand(parameters);
+
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
 
             default:
                 return new InvalidCommand("");
+        }
+    }
+
+    private Command createAddCategoryCommand(String parameters) {
+        try {
+            String[] categoryDetails = extractCategoryDetails(parameters);
+            String moduleCode = categoryDetails[1];
+            String categoryName = categoryDetails[0];
+            Integer priority = Integer.parseInt(categoryDetails[2]);
+            return new AddCategoryCommand(moduleCode, categoryName, priority);
+        } catch (MissingParameterException | StringIndexOutOfBoundsException e) {
+            return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
+        } catch (NumberFormatException e) {
+            return new InvalidCommand(MESSAGE_INVALID_PRIORITY);
+        }
+    }
+
+    private Command createDeleteCategoryCommand(String parameters) {
+        try {
+            String[] categoryDetails = extractCategoryDetails(parameters);
+            String moduleCode = categoryDetails[1];
+            String categoryName = categoryDetails[0];
+            //Integer priority = Integer.parseInt(categoryDetails[2]);
+            return new DeleteCategoryCommand(moduleCode, categoryName);
+        } catch (MissingParameterException | StringIndexOutOfBoundsException e) {
+            return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
+        } catch (NumberFormatException e) {
+            return new InvalidCommand(MESSAGE_INVALID_PRIORITY);
         }
     }
 
@@ -112,6 +149,26 @@ public class Parser {
         }
 
         return parameters;
+    }
+
+    private String[] extractCategoryDetails(String parameters) throws MissingParameterException {
+        String[] categoryDetails = new String[3];
+        int moduleCodePrefixIndex = parameters.indexOf("-m");
+        int priorityPrefixIndex = parameters.indexOf("-p");
+
+        categoryDetails[0] = parameters.substring(0, moduleCodePrefixIndex).trim();
+        categoryDetails[1] = parameters.substring(moduleCodePrefixIndex+2, priorityPrefixIndex).trim();
+        categoryDetails[2] = parameters.substring(priorityPrefixIndex+2).trim();
+
+        if (hasEmptyField(categoryDetails)) {
+            throw new MissingParameterException();
+        }
+
+        return categoryDetails;
+    }
+
+    private boolean hasEmptyField(String[] details) {
+        return Arrays.asList(details).contains("");
     }
 
     /** Signals that the user has provided an empty input. */

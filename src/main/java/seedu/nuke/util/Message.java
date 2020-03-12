@@ -1,9 +1,6 @@
 package seedu.nuke.util;
 
 public class Message {
-
-    public static final String MESSAGE_DUPLICATE_MODULE_ADD = "ALERT! The module already existed";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "Alert! Module is not found";
     public static final String MESSAGE_LOGO = "      ___          ___          ___          ___     \n" +
             "     /__/\\        /__/\\        /__/|        /  /\\    \n" +
             "     \\  \\:\\       \\  \\:\\      |  |:|       /  /:/_   \n" +
@@ -36,5 +33,13 @@ public class Message {
     public static final String MESSAGE_TASK_ADDED = "Task added!";
     public static final String MESSAGE_TASK_REMOVED = "Task removed!";
     public static final String MESSAGE_MODULE_CHANGE_SUCCESSFUL = "Module change succeeded";
+
+    public static String MESSAGE_ADD_CATEGORY_SUCCESS(String categoryName) {
+        return String.format("SUCCESS!! Category %s is created.\n", categoryName);
+    }
+
+    public static String MESSAGE_DELETE_CATEGORY_SUCCESS(String categoryName) {
+        return String.format("SUCCESS!! Category %s has been deleted.\n", categoryName);
+    }
 
 }

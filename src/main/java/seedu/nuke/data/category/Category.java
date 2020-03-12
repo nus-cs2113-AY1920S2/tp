@@ -1,19 +1,19 @@
-package seedu.nuke.data.taskCategory;
+package seedu.nuke.data.category;
 
 import seedu.nuke.data.task.TaskList;
 
-public class TaskCategory {
+public class Category {
     private String categoryName;
     private int categoryPriority;
     private TaskList tasks;
 
-    public TaskCategory(String categoryName, int categoryPriority) {
+    public Category(String categoryName, int categoryPriority) {
         this.categoryName = categoryName;
         this.categoryPriority = categoryPriority;
         this.tasks = new TaskList();
     }
 
-    public TaskCategory(String categoryName) {
+    public Category(String categoryName) {
         this.categoryName = categoryName;
         this.categoryPriority = 0;
         this.tasks = new TaskList();
@@ -37,5 +37,15 @@ public class TaskCategory {
 
     public void setCategoryPriority(int categoryPriority) {
         this.categoryPriority = categoryPriority;
+    }
+
+    /**
+     * Checks if one category has the same category name as another.
+     *
+     * @param category  The category to check
+     * @return  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
+     */
+    public boolean isSameCategory(Category category) {
+        return this.categoryName.equals(category.categoryName);
     }
 }

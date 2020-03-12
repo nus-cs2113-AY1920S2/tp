@@ -48,7 +48,7 @@ public class ModuleManager implements Iterable<Module> {
         //check duplicate
         if (modules.contains(toAdd)){
             //display duplicate message
-            System.out.println(MESSAGE_DUPLICATE_MODULE_ADD);
+            System.out.println(MESSAGE_DUPLICATE_MODULE);
         } else {
             modules.add(toAdd);
         }

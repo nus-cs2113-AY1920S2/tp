@@ -1,5 +1,6 @@
 package seedu.nuke.data.module;
 
+import seedu.nuke.data.category.CategoryList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 
@@ -17,13 +18,13 @@ public class ModuleList {
     }
 
     /**
-     * Checks if the list contains an equivalent task as the given description.
-     * @param toCheck the task to-check
+     * Checks if the list contains the same module.
+     * @param toCheck The module to check
      * @return true if the task exists
      */
-    public boolean contains(Module toCheck) {
-        for (Module p : moduleList) {
-            if (p.isSameModule(toCheck)) {
+    private static boolean contains(Module toCheck) {
+        for (Module module : moduleList) {
+            if (module.isSameModule(toCheck)) {
                 return true;
             }
         }
@@ -37,7 +38,7 @@ public class ModuleList {
      */
     public static void add(Module toAdd) throws DuplicateModuleException {
         //check duplicate
-        if (moduleList.contains(toAdd)) {
+        if (contains(toAdd)) {
             throw new DuplicateModuleException();
         } else {
             moduleList.add(toAdd);
@@ -52,9 +53,9 @@ public class ModuleList {
     }
 
     /**
-     * Remove a module to the list.
+     * Deletes a module to the list.
      * @param toDelete the task to remove
-     * @throws ModuleNotFoundException if the to-remove module does not exist
+     * @throws ModuleNotFoundException If the to delete module does not exist
      */
     public static void delete(Module toDelete) throws ModuleNotFoundException {
         boolean isModuleFoundAndDeleted = moduleList.remove(toDelete);
@@ -75,6 +76,15 @@ public class ModuleList {
             if (module.getModuleCode().toUpperCase().equals(moduleCode)) {
                 moduleList.remove(module);
                 return module;
+            }
+        }
+        throw new ModuleNotFoundException();
+    }
+
+    public static CategoryList filterExact(String moduleCode) throws ModuleNotFoundException {
+        for (Module module : moduleList) {
+            if (module.getModuleCode().equals(moduleCode.toUpperCase())) {
+                return module.getCategories();
             }
         }
         throw new ModuleNotFoundException();

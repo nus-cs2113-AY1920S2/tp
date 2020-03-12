@@ -5,7 +5,7 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE_ADD;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE;
 import static seedu.nuke.util.Message.MESSAGE_ADD_MODULE_SUCCESS;
 
 /**
@@ -17,7 +17,7 @@ import static seedu.nuke.util.Message.MESSAGE_ADD_MODULE_SUCCESS;
  */
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addm";
-    public static final String FORMAT = "addm <module code>";
+    public static final String FORMAT = COMMAND_WORD + " <module code>";
 
     private String moduleCode;
 
@@ -40,7 +40,7 @@ public class AddModuleCommand extends Command {
             ModuleList.add(toAdd);
             return new CommandResult(MESSAGE_ADD_MODULE_SUCCESS(toAdd.getModuleCode(), toAdd.getTitle()));
         } catch (ModuleList.DuplicateModuleException e) {
-            return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);
+            return new CommandResult(MESSAGE_DUPLICATE_MODULE);
         }
     }
 }
