@@ -24,7 +24,7 @@ public class ShoppingList {
      * Formats the list to be printed to user.
      *
      */
-    public void compileList() {
+    public void showTableOfItems() {
         CommandLineTable st = new CommandLineTable();
         st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
         st.setHeaders("Item", "Price");//optional - if not used then there will be no header and horizontal lines
@@ -39,6 +39,11 @@ public class ShoppingList {
         st.print();
     }
 
+    /**
+     * Calculates and returns the total cost of the items in the shopping list.
+     *
+     * @return Total cost of items in shopping list.
+     */
     public double getTotalCost() {
         double totalCost = 0.0;
         for (Item item : items) {
@@ -57,7 +62,7 @@ public class ShoppingList {
      * @param index index of item to mark
      * @return item that is marked
      */
-    public static Item markAsBought(int index) {
+    public Item markAsBought(int index) {
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
@@ -69,7 +74,7 @@ public class ShoppingList {
      * @param index Index of the item requested.
      * @return Item at the specified index.
      */
-    public static Item getItem(int index) {
+    public Item getItem(int index) {
         return items.get(index);
     }
 
@@ -78,7 +83,7 @@ public class ShoppingList {
      * @param index index of item to unmark
      * @return item that is unmarked
      */
-    public static Item unmarkAsBought(int index) {
+    public Item unmarkAsBought(int index) {
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
         return itemNotBought;
@@ -94,7 +99,7 @@ public class ShoppingList {
         items.remove(unwantedItem);
     }
 
-    public static void add(Item toAdd) {
+    public void add(Item toAdd) {
         items.add(toAdd);
     }
 

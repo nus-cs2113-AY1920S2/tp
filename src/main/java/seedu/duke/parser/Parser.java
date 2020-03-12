@@ -1,7 +1,5 @@
 package seedu.duke.parser;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ClearCommand;
@@ -32,7 +30,7 @@ public class Parser {
         String commandWord = commandAndArgs[0];
         String arguments;
         try {
-           arguments = commandAndArgs[1];
+            arguments = commandAndArgs[1];
         } catch (IndexOutOfBoundsException e) {
             arguments = null;
         }
@@ -75,7 +73,7 @@ public class Parser {
             createResetBudgetCommand();
             break;
 
-        case HelpCommand.COMMAND_WORD: // Fallthrough
+        case HelpCommand.COMMAND_WORD:
             createHelpCommand();
             break;
 
@@ -90,33 +88,12 @@ public class Parser {
         return newCommand;
     }
 
-    private void createClearCommand(String arguments) {
-        if (arguments != null) {
-            newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Invalid command."
-                    + System.lineSeparator()
-                    + "To clear your shopping list, just input \"CLEAR\".");
-        } else {
-            newCommand = new ClearCommand();
-        }
-    }
-
-    private void createListCommand(String arguments) {
-        if (arguments != null) {
-            newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Invalid command."
-                    + System.lineSeparator()
-                    + "To display your shopping list, just input \"DISPLAY\".");
-        } else {
-            newCommand = new ListCommand();
-        }
-    }
-
     /**
-     * Initialises the ResetBudgetCommand.
+     * Splits Command and Args from full input string.
+     * @param userInput full input string.
      */
-    public static void createResetBudgetCommand() {
-        newCommand = new ResetBudgetCommand();
+    private String[] splitCommandAndArgs(String userInput) {
+        return userInput.trim().split(" ", 2);
     }
 
     private void createAddCommand(String arguments) {
@@ -151,10 +128,6 @@ public class Parser {
         }
     }
 
-    private String[] splitCommandAndArgs (String userInput) {
-        String[] commandandArgs = userInput.trim().split(" ", 2);
-        return commandandArgs;
-    }
     private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
         String[] argsArray = new String[]{};
         String descriptionDelimiter = "i/";
@@ -175,10 +148,10 @@ public class Parser {
         } else if (descriptionPresent && pricePresent) {
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
             indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
-            if (indexOfpPrefix < indexOfiPrefix) { //e.g args: ADD 2 p/4.50 i/apple
+            if (indexOfpPrefix < indexOfiPrefix) { //e.g args: ADD p/4.50 i/apple
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix);
-            } else { //e.g args: ADD 2 i/apple p/4.50
+            } else { //e.g args: ADD i/apple p/4.50
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer, indexOfpPrefix);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer);
             }
@@ -194,6 +167,30 @@ public class Parser {
     }
 
     /**
+     * Initialises the MarkCommand.
+     */
+    private void createMarkCommand(String arguments) {
+        String[] words = arguments.trim().split(" ");
+        if (words.length != 1) {
+            newCommand = new IncorrectCommand("Please provide an index number!");
+        }
+        int index = Integer.parseInt(words[0]) - 1;
+        newCommand = new MarkCommand(index);
+    }
+
+    /**
+     * Initialises the Unmark Command.
+     */
+    private void createUnmarkCommand(String arguments) {
+        String[] words = arguments.trim().split(" ");
+        if (words.length != 1) {
+            newCommand = new IncorrectCommand("Please provide an index number!");
+        }
+        int index = Integer.parseInt(words[0]) - 1;
+        newCommand = new UnmarkCommand(index);
+    }
+
+    /**
      * Initialises the EditCommand.
      */
     private void createEditCommand(String arguments) {
@@ -201,7 +198,7 @@ public class Parser {
         String newItemPrice;
         String newItemDescription;
         try {
-            String[] args = splitArgsforEditCommand(arguments);
+            String[] args = splitArgsForEditCommand(arguments);
             indexOfItem = Integer.parseInt(args[0]);
             newItemDescription = args[1];
             newItemPrice = args[2];
@@ -221,33 +218,9 @@ public class Parser {
     }
 
     /**
-     * Initialises the Unmark Command.
-     */
-    public static void createUnmarkCommand(String arguments) {
-        String[] words = arguments.trim().split(" ");
-        if (words.length != 1) {
-            newCommand = new IncorrectCommand("Please provide an index number!");
-        }
-        int index = Integer.parseInt(words[0]) - 1;
-        newCommand = new UnmarkCommand(index);
-    }
-
-    /**
-     * Initialises the MarkCommand.
-     */
-    public static void createMarkCommand(String arguments) {
-        String[] words = arguments.trim().split(" ");
-        if (words.length != 1) {
-            newCommand = new IncorrectCommand("Please provide an index number!");
-        }
-        int index = Integer.parseInt(words[0]) - 1;
-        newCommand = new MarkCommand(index);
-    }
-
-    /**
      * Split args for Edit Command.
      */
-    private String[] splitArgsforEditCommand(String arguments) throws NullPointerException {
+    private String[] splitArgsForEditCommand(String arguments) throws NullPointerException {
         String[] argsArray;
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
@@ -297,31 +270,9 @@ public class Parser {
     }
 
     /**
-     * Initialises the ExitCommand.
-     */
-    public static void createExitCommand() {
-        newCommand = new ExitCommand();
-    }
-
-    /**
-     * Initialises the SetBudgetCommand.
-     */
-    public static void createSetBudgetCommand(String arguments) {
-        try {
-            double amount = Double.parseDouble(arguments.substring(2));
-            newCommand = new SetBudgetCommand(amount);
-        } catch (NumberFormatException | NullPointerException | StringIndexOutOfBoundsException e) {
-            newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Please enter an amount for your budget"
-                    + System.lineSeparator()
-                    + "Example: SET b/300");
-        }
-    }
-
-    /**
      * Initialises the DeleteCommand.
      */
-    public static void createDeleteCommand(String arguments) {
+    private void createDeleteCommand(String arguments) {
         try {
             int index = Integer.parseInt(arguments);
             newCommand = new DeleteCommand(index);
@@ -334,11 +285,70 @@ public class Parser {
 
     }
 
+    private void createListCommand(String arguments) {
+        if (arguments != null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To display your shopping list, just input \"DISPLAY\".");
+        } else {
+            newCommand = new ListCommand();
+        }
+    }
+
+    private void createClearCommand(String arguments) {
+        if (arguments != null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To clear your shopping list, just input \"CLEAR\".");
+        } else {
+            newCommand = new ClearCommand();
+        }
+    }
+
+    /**
+     * Initialises the SetBudgetCommand.
+     */
+    private void createSetBudgetCommand(String arguments) {
+        try {
+            if (!arguments.contains("b/")) {
+                newCommand = new IncorrectCommand(System.lineSeparator()
+                        + "Please enter the amount after the \"b/\" divider"
+                        + System.lineSeparator()
+                        + "Example: SET b/300");
+            } else {
+                double amount = Double.parseDouble(arguments.substring(2));
+                newCommand = new SetBudgetCommand(amount);
+            }
+
+        } catch (NumberFormatException | NullPointerException | StringIndexOutOfBoundsException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter an amount for your budget"
+                    + System.lineSeparator()
+                    + "Example: SET b/300");
+        }
+    }
+
+    /**
+     * Initialises the ResetBudgetCommand.
+     */
+    private void createResetBudgetCommand() {
+        newCommand = new ResetBudgetCommand();
+    }
+
     /**
      * Initialises the HelpCommand.
      */
-    public static void createHelpCommand() {
+    private void createHelpCommand() {
         newCommand = new HelpCommand();
+    }
+
+    /**
+     * Initialises the ExitCommand.
+     */
+    private void createExitCommand() {
+        newCommand = new ExitCommand();
     }
 
 }
