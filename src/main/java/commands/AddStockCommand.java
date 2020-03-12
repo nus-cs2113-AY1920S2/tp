@@ -59,9 +59,9 @@ public class AddStockCommand extends StockCommand {
         Map<String, Pair<Integer, Double>> ingredientInfo = new HashMap<>();
         String[] wordArgs = fullInputLine.split(";");
         
-        String ingredientName = parseIngredientName(wordArgs[1].trim());
-        int quantity = parseIngredientQuantity(wordArgs[2].trim());
-        double price = parseIngredientPrice(wordArgs[3].trim());
+        String ingredientName = parseIngredientName(wordArgs[0].trim());
+        int quantity = parseIngredientQuantity(wordArgs[1].trim());
+        double price = parseIngredientPrice(wordArgs[2].trim());
         
         ingredientInfo.put(ingredientName, Pair.of(quantity, price));
         return ingredientInfo;
