@@ -11,22 +11,21 @@ public class DateTime {
     private String dateTime;
     private String dateTimeFormat;
 
-    public DateTime(String arguments) throws DukeException {
-            this.dateTime = arguments;
-            this.dateTimeFormat = getDateTimeFormat();;
+    public DateTime(String arguments) {
+        this.dateTime = arguments;
+        this.dateTimeFormat = getDateTimeFormat();
     }
 
-    public String getDateTimeFormat() throws DukeException {
+    public String getDateTimeFormat() {
         try {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             return localDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
-        } catch (DateTimeParseException e){
-            throw new DukeException("Please provide the correct format");
+        } catch (DateTimeParseException e) {
+            return "Please provide correct format";
         }
     }
 
     public String toString() {
         return this.dateTimeFormat;
     }
-
 }

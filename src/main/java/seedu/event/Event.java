@@ -17,7 +17,7 @@ public class Event {
     /**
      * Empty constructor. Sets name as "unnamed"
      */
-    public Event() throws DukeException{
+    public Event() {
         setName("");
         setDatetime("");
         setVenue("");
@@ -31,7 +31,7 @@ public class Event {
      * @param datetime datetime of event
      * @param venue venue of event
      */
-    public Event(String name, String datetime, String venue) throws DukeException {
+    public Event(String name, String datetime, String venue) {
         this();
         setName(name);
         setDatetime(datetime);
@@ -79,7 +79,7 @@ public class Event {
      * Returns the datetime of the event.
      * @return the datetime of the event
      */
-    public String getDatetime() throws DukeException {
+    public String getDatetime() {
         return datetime.getDateTimeFormat();
     }
 
@@ -87,7 +87,7 @@ public class Event {
      * Sets the datetime of the event.
      * @param datetime the new datetime for the event
      */
-    public void setDatetime(String datetime) throws DukeException {
+    public void setDatetime(String datetime) {
         this.datetime = new DateTime(datetime);
     }
 
@@ -108,10 +108,6 @@ public class Event {
     }
 
     public String toString() {
-        try {
-            return "[E] + " + getName() + getDatetime() + getVenue();
-        } catch (DukeException e) {
-            return "Please provide the correct format";
-        }
+        return "[E] + " + getName() + getDatetime() + getVenue();
     }
 }

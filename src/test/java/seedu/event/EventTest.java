@@ -24,7 +24,7 @@ class EventTest {
     }
 
     @Test
-    void setName() throws DukeException {
+    void setName() {
         Event event1 = new Event();
         event1.setName("event1");
         assertEquals("event1", event1.getName());
@@ -41,15 +41,15 @@ class EventTest {
     }
 
     @Test
-    void getDatetime() throws DukeException{
-        assertThrows(DukeException.class, () -> new Event("1", "99", "3"));
-       // assertThrows(DukeException.class, event1::getDatetime);
+    void getDatetime() {
+        Event event1 = new Event("1", "4", "3");
+        assertEquals("Please provide correct format", event1.getDatetime());
         Event event2 = new Event("1", "2020-05-04 0130", "3");
         assertEquals("May 04 2020 0130", event2.getDatetime());
     }
 
     @Test
-    void setDatetime() throws DukeException {
+    void setDatetime() {
         Event event1 = new Event();
         event1.setDatetime("2020-05-04 0130");
         assertEquals("May 04 2020 0130", event1.getDatetime());
