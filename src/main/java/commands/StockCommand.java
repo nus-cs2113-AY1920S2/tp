@@ -38,7 +38,6 @@ public class StockCommand {
      * 
      */ 
     protected int parseIngredientQuantity(String ingredientQuantityInput) {
-        System.out.println(ingredientQuantityInput);
         String trimmedInput = ingredientQuantityInput.trim();
         
         int quantity = Integer.parseInt(trimmedInput
