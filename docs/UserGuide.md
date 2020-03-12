@@ -72,7 +72,7 @@ If the event has time/date/venue, use the following commands respectively.
 If the date input does not specify the year, it is by default the current year. 
 If the event is a repeatable event, you may add one of the following command:
 
-1. se r/FREQ[/TIME], when FREQ is “Day”, TIME is in 24hr format.
+1. Use r/FREQ[/TIME], when FREQ is “Day”, TIME is in 24hr format.
 1. Use r/FREQ[/DAY], where FREQ is “Week”, DAY is “Monday”, “Friday”, etc. 
 1. Use r/FREQ, where FREQ is “Year”.
 
