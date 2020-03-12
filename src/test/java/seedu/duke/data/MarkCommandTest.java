@@ -9,7 +9,6 @@ import seedu.duke.commands.MarkCommand;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.EditCommand;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MarkCommandTest {
@@ -39,11 +38,14 @@ public class MarkCommandTest {
     @Test
     void testMark_outOfLimitIndex_Success() {
         CommandResult result1 = null;
-        command.setData(items, null);
-        command = new MarkCommand(10);
-        result1 = command.execute();
-        String expectedFeedback1 = MarkCommand.FAIL_MESSAGE;
-        assertEquals(expectedFeedback1, result1.feedbackToUser);
+        try {
+            command.setData(items, null);
+            command = new MarkCommand(10);
+            result1 = command.execute();
+        } catch (IndexOutOfBoundsException e) {
+            String expectedFeedback1 = MarkCommand.FAIL_MESSAGE;
+            assertEquals(expectedFeedback1, result1.feedbackToUser);
+        }
     }
 
     @Test
