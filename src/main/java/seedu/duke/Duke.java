@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.cards.Card;
 import seedu.cards.CardList;
 import seedu.commands.Command;
+import seedu.exception.EscException;
 import seedu.parser.Parser;
 
 import java.util.ArrayList;
@@ -34,11 +35,14 @@ public class Duke {
      * @return User command.
      */
     private static String readCommand() {
-        System.out.println("Enter command: ");
-        String userInput = in.nextLine();
+        String userInput = "";
+        do {
+            System.out.println("Enter command: ");
+            userInput = in.nextLine();
 
-        System.out.println("[Command entered: " + userInput + "]");
-        return userInput;
+            System.out.println("[Command entered: " + userInput + "]");
+            return userInput;
+        } while (in.hasNextLine());
     }
 
     /**
@@ -54,8 +58,8 @@ public class Duke {
                 c.execute(cards);
                 storage.saveCards(cards.getCards());
                 isExit = c.isExit();
-            } catch (Exception e) {
-                System.out.println("Invalid command");
+            } catch (EscException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
