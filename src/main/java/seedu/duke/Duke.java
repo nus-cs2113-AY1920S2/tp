@@ -63,7 +63,10 @@ public class Duke {
      */
     public String readCommand() {
         String input = "";
-        input = in.nextLine();
+        while (input.isEmpty()) {
+            input = in.nextLine();
+            input.trim();
+        }
         return input;
     }
 
