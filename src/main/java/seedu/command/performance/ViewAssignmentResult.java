@@ -9,35 +9,35 @@ import seedu.ui.Ui;
 
 import java.util.List;
 
-public class ViewStudentResultCommand extends Command {
+public class ViewAssignmentResult extends Command {
     public static List<Performance> performances;
-    private String name;
+    private String assignment;
 
     /**
      * Constructor for ViewAssignmentResultCommand. Takes String userInput
-     * and parse it to get the student result list to be showed.
+     * and parse it to get the assignment result list to be showed.
      * @param userInput A String to be parsed.
      */
-    public ViewStudentResultCommand(String userInput) {
+    public ViewAssignmentResult(String userInput) {
         String[] instructions = userInput.split(" ", 2);
-        name = instructions[1];
+        assignment = instructions[1];
         performances = new PerformanceList().getPerformanceList();
-        studentPerformanceList();
+        assignmentPerformanceList();
     }
 
     /**
      * Selects specific results of the assignment input by user
      * from the Performance list, and print the list in the format of
-     * [module][assignment]result.
+     * [module][student]result.
      */
-    public void studentPerformanceList() {
+    public void assignmentPerformanceList() {
         int size = performances.size();
         if (size == 0) {
             System.out.println("empty");
         } else {
             int i = 1;
             for (Performance performance : performances) {
-                if (performance.nameOfStudent.equals(name)) {
+                if (performance.assignment.equals(assignment)) {
                     System.out.println(i + performance.formatForStudentList());
                     i++;
                 }
@@ -46,7 +46,7 @@ public class ViewStudentResultCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) throws DukeException {
+    public void execute() {
 
     }
 }

@@ -1,6 +1,7 @@
 package seedu.event;
 
 import org.junit.jupiter.api.Test;
+import seedu.exception.DukeException;
 
 import java.security.InvalidParameterException;
 import java.time.Instant;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class EventTest {
 
     @Test
-    void getName() {
+    void getName() throws DukeException {
         Event event1 = new Event();
         long time = Instant.now().getEpochSecond();
         String expectedName = "event_" + time;
@@ -41,29 +42,29 @@ class EventTest {
 
     @Test
     void getDatetime() {
-        Event event1 = new Event();
-        assertEquals(null, event1.getDatetime());
-        Event event2 = new Event("1", "2", "3");
-        assertEquals("2", event2.getDatetime());
+        Event event1 = new Event("1", "4", "3");
+        assertEquals("Please provide correct format", event1.getDatetime());
+        Event event2 = new Event("1", "2020-05-04 0130", "3");
+        assertEquals("May 04 2020 0130", event2.getDatetime());
     }
 
     @Test
     void setDatetime() {
         Event event1 = new Event();
-        event1.setDatetime("Sunday");
-        assertEquals("Sunday", event1.getDatetime());
+        event1.setDatetime("2020-05-04 0130");
+        assertEquals("May 04 2020 0130", event1.getDatetime());
     }
 
     @Test
-    void getVenue() {
+    void getVenue() throws DukeException {
         Event event1 = new Event();
-        assertEquals(null, event1.getVenue());
+        assertEquals("", event1.getVenue());
         Event event2 = new Event("1", "2", "3");
         assertEquals("3", event2.getVenue());
     }
 
     @Test
-    void setVenue() {
+    void setVenue() throws DukeException {
         Event event1 = new Event();
         event1.setVenue("sea");
         assertEquals("sea", event1.getVenue());
