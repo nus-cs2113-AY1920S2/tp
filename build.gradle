@@ -21,11 +21,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "MeetingOrganizer"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "MeetingOrganizer"
     archiveVersion = "0.0.1"
     archiveClassifier = null
     archiveAppendix = null
