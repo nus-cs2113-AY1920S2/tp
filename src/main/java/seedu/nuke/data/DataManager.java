@@ -45,4 +45,8 @@ public class DataManager {
     public void addTask(Task toAdd){
         this.allTasks.add(toAdd);
     }
+
+    public void removeTask(Task toRemove){
+        this.allTasks.remove(toRemove);
+    }
 }
