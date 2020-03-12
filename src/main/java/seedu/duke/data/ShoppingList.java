@@ -63,6 +63,12 @@ public class ShoppingList {
      * @return item that is marked
      */
     public Item markAsBought(int index) {
+        if (index >= items.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
@@ -84,6 +90,12 @@ public class ShoppingList {
      * @return item that is unmarked
      */
     public Item unmarkAsBought(int index) {
+        if (index >= items.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
         return itemNotBought;

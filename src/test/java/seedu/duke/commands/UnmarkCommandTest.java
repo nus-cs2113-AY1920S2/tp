@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.Item;
@@ -13,19 +15,28 @@ public class UnmarkCommandTest {
 
     @BeforeEach
     void setUp() {
+        items.clearList();
         items.add(new Item("apple", 2.0));
         items.add(new Item("donut", 3.0));
         items.add(new Item("banana", 4.5));
     }
 
+    @AfterEach
+    void tearDown() {
+        items.clearList();
+    }
+
+
     @Test
     void testUnmark_MarkedItem_Success() {
         command = new MarkCommand(1);
         command.setData(items, null);
-        command.execute();
+        CommandResult result = command.execute();
+
         command = new UnmarkCommand(1);
         command.setData(items, null);
-        CommandResult result = command.execute();
+        result = command.execute();
+
         String expectedFeedback = System.lineSeparator()
                 + "Yes! I've unmarked this item as bought: "
                 + System.lineSeparator() + items.getList().get(1).toString()
@@ -35,10 +46,9 @@ public class UnmarkCommandTest {
 
     @Test
     void testUnmark_outOfLimitIndex_Success() {
-        CommandResult result1 = null;
         command = new UnmarkCommand(10);
         command.setData(items, null);
-        result1 = command.execute();
+        CommandResult result1 = command.execute();
        String expectedFeedback1 = UnmarkCommand.FAIL_MESSAGE;
        assertEquals(expectedFeedback1, result1.feedbackToUser);
 
