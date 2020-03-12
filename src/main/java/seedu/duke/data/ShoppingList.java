@@ -99,8 +99,11 @@ public class ShoppingList {
         items.remove(unwantedItem);
     }
 
-    public void add(Item toAdd) {
+    public void add(Item toAdd) throws NullPointerException {
         items.add(toAdd);
+        if (toAdd.getDescription() == null) {
+            throw new NullPointerException();
+        }
     }
 
 }
