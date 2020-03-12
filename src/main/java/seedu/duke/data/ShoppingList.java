@@ -62,7 +62,7 @@ public class ShoppingList {
      * @param index index of item to mark
      * @return item that is marked
      */
-    public static Item markAsBought(int index) {
+    public Item markAsBought(int index) {
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
@@ -74,7 +74,7 @@ public class ShoppingList {
      * @param index Index of the item requested.
      * @return Item at the specified index.
      */
-    public static Item getItem(int index) {
+    public Item getItem(int index) {
         return items.get(index);
     }
 
@@ -83,7 +83,7 @@ public class ShoppingList {
      * @param index index of item to unmark
      * @return item that is unmarked
      */
-    public static Item unmarkAsBought(int index) {
+    public Item unmarkAsBought(int index) {
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
         return itemNotBought;
@@ -99,7 +99,7 @@ public class ShoppingList {
         items.remove(unwantedItem);
     }
 
-    public static void add(Item toAdd) {
+    public void add(Item toAdd) {
         items.add(toAdd);
     }
 

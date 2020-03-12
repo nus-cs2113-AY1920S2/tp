@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            Item unmarkItem = ShoppingList.unmarkAsBought(indexOfItem);
+            Item unmarkItem = items.unmarkAsBought(indexOfItem);
             return new CommandResult(String.format(SUCCESS_MESSAGE, unmarkItem));
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult(FAIL_MESSAGE);

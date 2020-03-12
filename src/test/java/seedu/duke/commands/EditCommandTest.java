@@ -56,7 +56,7 @@ public class EditCommandTest {
         result3 = command.execute();
         String expectedFeedback3 = EditCommand.MESSAGE_FAILURE;
         assertEquals(expectedFeedback3, result3.feedbackToUser);
-        }
+    }
 
 
 }
