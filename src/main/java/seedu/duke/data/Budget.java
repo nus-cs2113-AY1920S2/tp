@@ -17,7 +17,7 @@ public class Budget {
      */
     public double setBudget(double amount) {
         amount = Math.min(amount,MAX);
-        amount = Math.max(amount,0);
+        amount = Math.max(amount,MIN);
         this.amount = amount;
         return amount;
     }

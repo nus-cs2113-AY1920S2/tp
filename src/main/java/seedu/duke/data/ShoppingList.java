@@ -24,7 +24,7 @@ public class ShoppingList {
      * Formats the list to be printed to user.
      *
      */
-    public void compileList() {
+    public void showTableOfItems() {
         CommandLineTable st = new CommandLineTable();
         st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
         st.setHeaders("Item", "Price");//optional - if not used then there will be no header and horizontal lines
