@@ -1,5 +1,7 @@
 package seedu.duke.module;
 
+import seedu.duke.data.ModuleList;
+
 public class SelectedModule extends Module {
     private boolean isCompleted;
     private double grade;
@@ -15,8 +17,30 @@ public class SelectedModule extends Module {
         super(type, moduleIdentifier, semester);
     }
 
+    /**
+     * This is Module's constructor.
+     *
+     * @param module           the module from available module list.
+     */
+    public SelectedModule(Module module) {
+        super();
+        super.name = module.name;
+        super.id = module.id;
+        super.semester = module.semester;
+        super.description = module.description;
+        super.isSUable = module.isSUable;
+        super.preReqModules = module.preReqModules;
+        super.isNameValid = module.isNameValid;
+        super.isIdValid = module.isIdValid;
+        super.isDone = module.isDone;
+    }
+
     public void markAsDone() {
         boolean isCompleted = true;
     }
 
+    @Override
+    public String toString() {
+        return super.getIcon() + " " + super.toString();
+    }
 }

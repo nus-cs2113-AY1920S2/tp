@@ -34,6 +34,10 @@ public class Module {
         this.isDone = false;
     }
 
+    protected Module(){
+
+    }
+
     @Override
     public String toString() {
         String returnString = null;
