@@ -5,10 +5,10 @@ package commands;
  * serves to exit the program upon executed.  
  * 
  */
-public class ExitCommand extends Command {
+public class ExitCommand extends StockCommand {
     
     /** Returns true if a Command is an ExitCommand. */
-    public static boolean isExit(Command command) {
+    public static boolean isExit(StockCommand command) {
         return command instanceof ExitCommand;
     }
     

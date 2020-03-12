@@ -1,4 +1,4 @@
-import commands.Command;
+import commands.StockCommand;
 import commands.CommandResult;
 import commands.ExitCommand;
 import utils.Parser;
@@ -36,7 +36,7 @@ public class Main {
     
     /** Read user's input, parse it into readable command format and execute it. */
     private void runCommandUntilExit() {                     
-        Command command;
+        StockCommand command;
         do {
             String userInput = ui.getUserCommand();
             command = new Parser().parseCommand(userInput);
@@ -45,7 +45,7 @@ public class Main {
     }
     
     /** Executes a command. */
-    private CommandResult executeCommand(Command command) {
+    private CommandResult executeCommand(StockCommand command) {
         try {
             command.setData(this.stock);
             CommandResult output = command.execute();
