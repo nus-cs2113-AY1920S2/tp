@@ -9,7 +9,7 @@ public class Attendance extends Module {
 
     public String studentName;
     public String description;
-    public boolean hasAttended;
+    public String hasAttended;
 
     /**
      * The class that handles the attendance.
@@ -20,7 +20,7 @@ public class Attendance extends Module {
      * @param description The description of the lesson.
      * @param hasAttended The status of the attendance.
      */
-    public Attendance(String moduleName, String studentName, String description, boolean hasAttended) {
+    public Attendance(String moduleName, String studentName, String description, String hasAttended) {
         super(moduleName);
         this.studentName = studentName;
         this.description = description;
@@ -39,7 +39,7 @@ public class Attendance extends Module {
         super(moduleName);
         this.studentName = studentName;
         this.description = description;
-        this.hasAttended = false;
+        this.hasAttended = "false";
     }
 
     /**
@@ -74,7 +74,7 @@ public class Attendance extends Module {
      *
      * @return The status of the attendance.
      */
-    public boolean getAttendance() {
+    public String getAttendance() {
         return hasAttended;
     }
 
