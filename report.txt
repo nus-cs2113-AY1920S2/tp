@@ -1,11 +1,10 @@
 Menu Items
 
-1. pasta 	 linguini 
-2. coke 	 coke 
-3. rice 	 rice 
+1. pizza 	 cheese, sauce 
 
 Current Stock
 
+1. tomato 	 $0.40 10 
 
 Reservations
 
