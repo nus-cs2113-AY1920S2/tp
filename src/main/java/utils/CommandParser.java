@@ -1,10 +1,9 @@
 package utils;
 import commands.*;
-import dish.*;
-import menu.*;
-import report.*;
-import stock.*;
-import reservation.*;
+import menu.Menu;
+import report.ReportWriter;
+import reservation.ReservationList;
+import stock.Stock;
 
 import java.io.IOException;
 
@@ -16,7 +15,7 @@ public class CommandParser {
             } catch (IOException e) {
                 System.out.println("Error writing to file");
             }
-            new ExitCommand().execute();
+            new QuitCommand().execute();
         }
         String[] commands = command.split(";",2);
         String[] split_commands = commands[0].split(" ",2);
@@ -24,12 +23,15 @@ public class CommandParser {
             if (split_commands[1].equals("dish")) {
                 //Add dish
                 menu.addDish(commands[1]);
+                successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //Add stock
                new AddStockCommand(commands[1]).execute(stock);
+                successfulCommand();
             } else if (split_commands[1].equals("reservation")){
                 //Add reservation
                 new AddReservationCommand(commands[1]).execute(reservations);
+                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -37,12 +39,15 @@ public class CommandParser {
             if (split_commands[1].equals("dish")) {
                 //delete dish
                 menu.deleteDish(commands[1]);
+                successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //delete stock
                 new DeleteStockCommand(commands[1]).execute(stock);
+                successfulCommand();
             } else if (split_commands[1].equals("reservation")){
                 //delete reservation
                 new VoidReservationCommand(commands[1]).execute(reservations);
+                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -50,12 +55,15 @@ public class CommandParser {
             if (split_commands[1].equals("dish")) {
                 //list dish
                 menu.printDishes();
+                successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //list stock
                 new ListStockCommand().execute(stock);
+                successfulCommand();
             } else if (split_commands[1].equals("reservation")){
                 //list reservation
                 new ListReservationCommand().execute(reservations);
+                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -66,4 +74,5 @@ public class CommandParser {
     public static void errorCommand() {
         System.out.println("Incorrect command");
     }
+    public static void successfulCommand() { System.out.println("The command has been successfully executed.");}
 }
