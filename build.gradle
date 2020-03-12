@@ -16,6 +16,7 @@ dependencies {
     //config the jar to Mavern library
     implementation 'org.fusesource.jansi:jansi:1.18'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.alibaba:fastjson:1.2.12'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
 }
 
