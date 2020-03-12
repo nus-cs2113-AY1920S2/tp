@@ -1,10 +1,12 @@
 package seedu.duke.commands;
 
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MarkCommandTest {
@@ -16,6 +18,11 @@ public class MarkCommandTest {
         items.add(new Item("apple", 2.0));
         items.add(new Item("donut", 3.0));
         items.add(new Item("banana", 4.5));
+    }
+
+    @AfterEach
+    void tearDown() {
+        items.clearList();
     }
 
     @Test
