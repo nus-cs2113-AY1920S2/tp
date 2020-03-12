@@ -1,15 +1,16 @@
 package report;
 
-import java.util.*;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import dish.Dish;
 import menu.Menu;
 import reservation.Reservation;
 import reservation.ReservationList;
 import stock.Stock;
 import utils.Pair;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReportWriter {
     protected Menu menu;
@@ -27,7 +28,7 @@ public class ReportWriter {
         FileWriter fw = new FileWriter("./report.txt");
 
         try {
-            String menuTitle = String.format("menu.Menu Items\n\n");
+            String menuTitle = String.format("Menu Items\n\n");
             fw.write(menuTitle);
             HashMap<String, Dish>  menuItems = menu.getDishMap();
             int counter = 1;
@@ -38,6 +39,7 @@ public class ReportWriter {
                 }
                 iList = iList.substring(0, iList.length()-1);
                 String writtenString = String.format("%d. %s \t %s \n",counter,name, iList);
+                fw.write(writtenString);
                 counter += 1;
             }
 

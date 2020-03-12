@@ -10,11 +10,11 @@ import static utils.Constants.*;
 
 /* Command object for "add reservation" command */
 public class AddReservationCommand extends ReservationCommand{
-    private int reservationNumber;
+
     private String description;
     
-    public AddReservationCommand(int reservationNumber, String description) {
-        this.reservationNumber = reservationNumber;
+    public AddReservationCommand(String description) {
+
         this.description = description;
     }
 
