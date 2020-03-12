@@ -1,5 +1,73 @@
 HELLO! I'm SHOCO. Your digital shopping list!
 
-ADD i/apple p/2.45
 Added this item: [0] apple  $2.45
 
+Added this item: [0] banana  $3.0
+
+Added this item: [0] cherry  $5.6
+
+Setting budget to $500.0
+
+Here is your shopping list:
+
++----------------+-------+
+| Item           | Price |
++----------------+-------+
+| 1. [0] apple   | $2.45 |
+| 2. [0] banana  | $3.00 |
+| 3. [0] cherry  | $5.60 |
++----------------+-------+
+Total cost of items: 11.05
+Your remaining budget / total budget: 488.95 / 500.00
+
+
+
+The item has been updated to: [0] apples $2.45
+
+The item has been updated to: [0] bananas $6.5
+
+The item has been updated to: [0] cherry  $8.0
+
+Here is your shopping list:
+
++----------------+-------+
+| Item           | Price |
++----------------+-------+
+| 1. [0] apples  | $2.45 |
+| 2. [0] bananas | $6.50 |
+| 3. [0] cherry  | $8.00 |
++----------------+-------+
+Total cost of items: 16.95
+Your remaining budget / total budget: 483.05 / 500.00
+
+
+Yes! I've marked this item as bought: 
+[B] apples $2.45
+
+
+Yes! I've marked this item as bought: 
+[B] bananas $6.5
+
+
+Yes! I've unmarked this item as bought: 
+[0] apples $2.45
+
+
+Yes! I've marked this item as bought: 
+[B] cherry  $8.0
+
+
+Here is your shopping list:
+
++----------------+-------+
+| Item           | Price |
++----------------+-------+
+| 1. [0] apples  | $2.45 |
+| 2. [B] bananas | $6.50 |
+| 3. [B] cherry  | $8.00 |
++----------------+-------+
+Total cost of items: 16.95
+Your remaining budget / total budget: 483.05 / 500.00
+
+
+Exiting SHOCO as requested ...
