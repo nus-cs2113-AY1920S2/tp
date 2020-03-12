@@ -3,11 +3,11 @@ package seedu.command.event;
 import seedu.command.Command;
 import seedu.event.EventList;
 
-public class Delete extends Command {
+public class DeleteEvent extends Command {
     private Integer index;
     private EventList eventList;
 
-    public Delete(Integer index, EventList eventList) {
+    public DeleteEvent(Integer index, EventList eventList) {
         this.index = index;
         this.eventList = eventList;
     }

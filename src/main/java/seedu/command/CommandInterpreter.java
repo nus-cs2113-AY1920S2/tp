@@ -14,11 +14,11 @@ public class CommandInterpreter {
     }
 
     /**
-     * Returns the command category from userInput in lower cases.
+     * Returns the first word in lower cases.
      * @param userInput raw user input
-     * @return the command category from userInput in lower cases
+     * @return the first word in lower cases
      */
-    protected String getCommandCategory(String userInput) {
+    protected String getFirstWord(String userInput) {
         String commandType = userInput.split(" ")[0];
         commandType = commandType.trim();
         commandType = commandType.toLowerCase();
@@ -26,19 +26,20 @@ public class CommandInterpreter {
     }
 
     /**
-     * Returns the parameters associated with command category from userInput.
+     * Returns the 2nd to last words.
      * @param userInput raw user input
-     * @return the parameters associated with command category
-     * @throws DukeException if parameters are not found
+     * @return the 2nd to last words
+     * @throws DukeException if there is only 1 word from the input
      */
-    protected String getCommandParameters(String userInput) throws DukeException {
-        int startIndexOfParameter = userInput.indexOf(" ");
+    protected String getSubsequentWords(String userInput) throws DukeException {
+        int startIndexOfSpace = userInput.trim().indexOf(" ");
 
-        if (startIndexOfParameter == -1) {
+        if (startIndexOfSpace == -1) {
             throw new DukeException("No parameters provided");
         }
 
-        return userInput.substring(startIndexOfParameter + 1);
+        int startIndexOfParameter = startIndexOfSpace + 1;
+        return userInput.substring(startIndexOfParameter);
     }
 
     /**
@@ -50,8 +51,8 @@ public class CommandInterpreter {
     public Command decideCommand(String userInput) throws DukeException {
         Command command = null;
 
-        String commandCategory = getCommandCategory(userInput);         // first word
-        String commandDescription = getCommandParameters(userInput);    // subsequent
+        String commandCategory = getFirstWord(userInput);
+        String commandDescription = getSubsequentWords(userInput);
         switch (commandCategory) {
         case "event":
             EventCommandInterpreter eci = new EventCommandInterpreter(eventList);
