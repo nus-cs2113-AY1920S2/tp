@@ -102,4 +102,14 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     public static class DuplicateModuleException extends DuplicateDataException {}
+
+    public static Module getModuleWithCode(String moduleCode){
+        for (Module module: getModuleList()
+             ) {
+            if (module.getModuleCode().equals(moduleCode)){
+                return module;
+            }
+        }
+        return null;
+    }
 }

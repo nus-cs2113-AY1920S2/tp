@@ -8,13 +8,15 @@ public class ChangeModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
     public static final String MESSAGE_USAGE = COMMAND_WORD+ " <module code>";
-
+    private Module moduleToChange;
     public ChangeModuleCommand(Module destinatedModule) {
-        currentModule = destinatedModule;
+        this.moduleToChange = destinatedModule;
     }
 
     @Override
     public CommandResult execute() {
+        //context switch
+        currentModule = moduleToChange;
         return new CommandResult(MESSAGE_MODULE_CHANGE_SUCCESSFUL);
     }
 }
