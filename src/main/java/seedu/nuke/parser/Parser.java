@@ -56,7 +56,7 @@ public class Parser {
         switch (commandWord) {
 
         case ChangeModuleCommand.COMMAND_WORD:
-            prepareChangeModuleCommand(parameters);
+            return prepareChangeModuleCommand(parameters);
 
         case AddModuleCommand.COMMAND_WORD:
             return prepareAddModuleCommand(parameters);
@@ -76,7 +76,7 @@ public class Parser {
         //case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
             //return new CheckModuleTasksDeadlineCommand();
         case AddTaskCommand.COMMAND_WORD:
-            prepareAddTaskCommand(parameters);
+            return prepareAddTaskCommand(parameters);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -87,11 +87,9 @@ public class Parser {
     }
 
     private Command prepareChangeModuleCommand(String parameters) {
-        for (Module module: ModuleManager.getModuleList()
-             ) {
-            if (module.getModuleCode().equals(parameters)){
-                return new ChangeModuleCommand(module);
-            }
+        //System.out.println(parameters);
+        if(ModuleManager.getModuleWithCode(parameters)!=null){
+            return new ChangeModuleCommand(ModuleManager.getModuleWithCode(parameters));
         }
         return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
     }
