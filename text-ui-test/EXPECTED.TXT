@@ -21,7 +21,6 @@ Total cost of items: 11.05
 Your remaining budget / total budget: 488.95 / 500.00
 
 
-
 The item has been updated to: [0] apples $2.45
 
 The item has been updated to: [0] bananas $6.5
@@ -71,3 +70,4 @@ Your remaining budget / total budget: 483.05 / 500.00
 
 
 Exiting SHOCO as requested ...
+BYE
