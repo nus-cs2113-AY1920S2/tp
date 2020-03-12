@@ -7,7 +7,6 @@ import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.parser.Parser;
 
-import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Duke {
@@ -18,6 +17,7 @@ public class Duke {
      */
     public static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
+    private static Scanner in = new Scanner(System.in);
 
 
     public static void main(String[] args) {
@@ -62,10 +62,8 @@ public class Duke {
      * @return input
      */
     public String readCommand() {
-        Scanner in = new Scanner(System.in);
         String input = "";
         input = in.nextLine();
-        input = input.trim();
         return input;
     }
 
