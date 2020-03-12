@@ -4,8 +4,6 @@ import seedu.event.Event;
 import seedu.exception.DukeException;
 
 import java.util.Arrays;
-import java.util.DuplicateFormatFlagsException;
-import java.util.UnknownFormatFlagsException;
 
 public class Parser {
     /**
@@ -41,7 +39,7 @@ public class Parser {
      * @param parameters original parameters
      * @return an Event object with the relevant information
      */
-    public Event parseEvent(String parameters) {
+    public Event parseEvent(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
         String name = "";
         String time = "";
@@ -55,49 +53,47 @@ public class Parser {
         return new Event(name, datetime, venue);
     }
 
-    private void splitByEventFlags(String[] tokens, String name,
-                                   String time, String date, String venue) {
+    private void splitByEventFlags(String[] tokens, String name, String time,
+                                   String date, String venue) throws DukeException {
         String mostRecent = null;
         for (String token : tokens) {
             switch (token.substring(0, 2)) {
             case "n/":
-                if (!name.isEmpty()) {
-                    throw new DuplicateFormatFlagsException("name");
-                }
+                ensureNotDuplicateFlag(name, "duplicate name flag");
                 name += token.substring(2);
                 mostRecent = name;
                 break;
             case "t/":
-                if (!time.isEmpty()) {
-                    throw new DuplicateFormatFlagsException("time");
-                }
+                ensureNotDuplicateFlag(time, "duplicate time flag");
                 time += token.substring(2);
                 mostRecent = time;
                 break;
             case "d/":
-                if (!date.isEmpty()) {
-                    throw new DuplicateFormatFlagsException("date");
-                }
+                ensureNotDuplicateFlag(date, "duplicate date flag");
                 date += token.substring(2);
                 mostRecent = date;
                 break;
             case "v/":
-                if (!venue.isEmpty()) {
-                    throw new DuplicateFormatFlagsException("venue");
-                }
+                ensureNotDuplicateFlag(venue, "duplicate venue flag");
                 venue += token.substring(2);
                 mostRecent = venue;
                 break;
             default:
                 // assumes that all valid flags have been processed before this line
                 if (isUnknownFlag(token)) {
-                    throw new UnknownFormatFlagsException("unknown flag");
+                    throw new DukeException("unknown flag");
                 }
                 if (mostRecent == null) {
-                    throw new NullPointerException("parameter without flag");
+                    throw new DukeException("parameter without flag");
                 }
                 mostRecent += (" " + token);
             }
+        }
+    }
+
+    private void ensureNotDuplicateFlag(String name, String message) throws DukeException {
+        if (!name.isEmpty()) {
+            throw new DukeException(message);
         }
     }
 
