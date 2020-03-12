@@ -49,8 +49,8 @@ public class UnmarkCommandTest {
         command = new UnmarkCommand(10);
         command.setData(items, null);
         CommandResult result1 = command.execute();
-       String expectedFeedback1 = UnmarkCommand.FAIL_MESSAGE;
-       assertEquals(expectedFeedback1, result1.feedbackToUser);
+        String expectedFeedback1 = UnmarkCommand.FAIL_MESSAGE;
+        assertEquals(expectedFeedback1, result1.feedbackToUser);
 
     }
 

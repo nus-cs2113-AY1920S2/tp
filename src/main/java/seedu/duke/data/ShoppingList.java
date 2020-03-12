@@ -111,9 +111,15 @@ public class ShoppingList {
         items.remove(unwantedItem);
     }
 
-    public void add(Item toAdd) throws NullPointerException {
-        items.add(toAdd);
-        if (toAdd.getDescription() == null) {
+    /**
+     * Adds item to list.
+     *
+     * @param item Item to add.
+     * @throws NullPointerException If there is no description.
+     */
+    public void add(Item item) throws NullPointerException {
+        items.add(item);
+        if (item.getDescription() == null) {
             throw new NullPointerException();
         }
     }
