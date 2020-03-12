@@ -4,6 +4,8 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
 import seedu.nuke.exception.ModuleNotFoundException;
+import seedu.nuke.module.Module;
+import seedu.nuke.task.Task;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,7 +37,7 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseCommand(String input) throws ModuleNotFoundException {
+    public Command parseCommand(String input) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         /*
         if (input.isEmpty()) {
@@ -67,8 +69,10 @@ public class Parser {
         case CheckAllTasksDeadlineCommand.COMMAND_WORD:
             return new CheckAllTasksDeadlineCommand();
 
-        case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
-            return new CheckModuleTasksDeadlineCommand();
+        //case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
+            //return new CheckModuleTasksDeadlineCommand();
+        case AddTaskCommand.COMMAND_WORD:
+            prepareAddTaskCommand(parameters);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -76,6 +80,13 @@ public class Parser {
         default:
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
+    }
+
+    private Command prepareAddTaskCommand(String parameters) {
+        Module module = null;
+        Task task = null;
+
+        return new AddTaskCommand(module, task);
     }
 
     /**
