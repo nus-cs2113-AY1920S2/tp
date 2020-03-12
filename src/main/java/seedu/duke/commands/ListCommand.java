@@ -6,7 +6,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "DISPLAY";
 
-    public static final String LIST_MESSAGE = "Here is your shopping list:\n";
+    public static final String LIST_MESSAGE = System.lineSeparator() + "Here is your shopping list:\n";
 
     public static final String TOTAL_COST_MESSAGE = "Total cost of items: %.2f\n";
 
@@ -20,17 +20,11 @@ public class ListCommand extends Command {
     public CommandResult execute() {
 
         System.out.println(LIST_MESSAGE);
-        String feedback;
-        items.compileList();
+        items.showTableOfItems();
 
-        double totalCost = 0.0;
-        for (Item item : items.getList()) {
-            totalCost += item.getPrice();
-        }
+        double totalCost = items.getTotalCost();
 
-        totalCost = items.getTotalCost();
-
-         feedback = String.format(TOTAL_COST_MESSAGE, totalCost)
+        String feedback = String.format(TOTAL_COST_MESSAGE, totalCost)
                 + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
 
         return new CommandResult(feedback);
