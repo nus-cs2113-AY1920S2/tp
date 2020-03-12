@@ -3,6 +3,7 @@ package seedu.parser;
 import seedu.event.Event;
 import seedu.exception.DukeException;
 
+import java.util.Arrays;
 import java.util.DuplicateFormatFlagsException;
 import java.util.UnknownFormatFlagsException;
 
@@ -20,6 +21,10 @@ public class Parser {
             switch (token.substring(0, 2)) {
             case "i/":
                 index = Integer.parseInt(parameters.substring(2));
+                break;
+            default:
+                // does nothing, as intended
+                break;
             }
         }
 
@@ -106,4 +111,10 @@ public class Parser {
     private boolean isUnknownFlag(String input) {
         return input.charAt(1) == '/';
     }
+
+    public static String[] performanceDataToParse(String userInput) {
+        String[] instructions = userInput.split(" ",20);
+        return Arrays.copyOfRange(instructions, 1, instructions.length);
+    }
+
 }
