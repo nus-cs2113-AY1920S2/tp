@@ -36,14 +36,13 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseInput(String input)
-            throws EmptyInputException, InputLengthExceededException, InvalidCommandException {
-        if (input.isEmpty()) {
-            throw new EmptyInputException();
-        }
-        if (input.length() > MAX_INPUT_LENGTH) {
-            throw new InputLengthExceededException();
-        }
+    public Command parseInput(String input) {
+//        if (input.isEmpty()) {
+//            throw new EmptyInputException();
+//        }
+//        if (input.length() > MAX_INPUT_LENGTH) {
+//            throw new InputLengthExceededException();
+//        }
 
         // Splits user input into command word and rest of parameters (if any)
         String[] separatedInput = input.split("\\s+", 2);
@@ -66,7 +65,7 @@ public class Parser {
                 return new ExitCommand();
 
             default:
-                throw new InvalidCommandException();
+                return new InvalidCommand("");
         }
     }
 

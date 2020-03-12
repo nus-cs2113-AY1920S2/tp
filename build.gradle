@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
 group 'seedu.nuke'
@@ -15,6 +16,8 @@ repositories {
 dependencies {
     //config the jar to Mavern library
     implementation 'org.fusesource.jansi:jansi:1.18'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.alibaba:fastjson:1.2.12'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
 }
 
@@ -39,4 +42,9 @@ checkstyle {
 
 run{
     standardInput = System.in
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' ]
 }
