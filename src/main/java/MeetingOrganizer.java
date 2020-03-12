@@ -8,6 +8,14 @@ public class MeetingOrganizer {
         switch (userInput) {
             case "1":
                 System.out.println("You have selected new scheduled meeting");
+                TeamMember testing = new TeamMember("john");
+                testing.addBusyBlocks("testmeeting", 0, "10:30", 2, "12:00");
+                for (int i = 0; i < 7; i++) {
+                    for (int j=0; j < 48; j++) {
+                        System.out.print(testing.getSchedule()[i][j]);
+                    }
+                    System.out.println("");
+                }
                 break;
             case "2":
                 System.out.println("Which meeting slot do you want to delete?");
