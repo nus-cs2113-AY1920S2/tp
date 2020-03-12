@@ -13,9 +13,9 @@ public class Constants {
     public static final String RES_ADD_COMMAND = "add reservation";
     public static final String RES_MARK_COMMAND = "mark reservation";
     public static final String RES_VOID_COMMAND = "void reservation";
-    public static final String RES_LIST_COMMAND = "list reservations";
-    public static final String RES_LIST_SERVED_COMMAND = "list served reservations";
-    public static final String RES_LIST_UNSERVED_COMMAND = "list unserved reservations";
+    public static final String RES_LIST_COMMAND = "list reservation";
+    public static final String RES_LIST_SERVED_COMMAND = "list served reservation";
+    public static final String RES_LIST_UNSERVED_COMMAND = "list unserved reservation";
     
     public static final String RES_INDEX_MARKER = "r/";
     public static final String RES_PERSON_MARKER = "p/";
