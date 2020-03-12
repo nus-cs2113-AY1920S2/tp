@@ -42,8 +42,9 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Converts an ArrayList object to text for printing.
-     * @param taskList ArrayList object to be converted to string.
+     * Formats String of tasks with standard task listing message.
+     * @param taskList ArrayList object with tasks to be printed
+     * @return Formatted string of tasks and printing message
      */
     public String showListTasks(ArrayList<Task> taskList) {
         if (taskList.size() == 0) {
@@ -54,6 +55,11 @@ public class ListCommand extends Command {
         return (String.format(Messages.SHOW_TASKLIST_MESSAGE, System.lineSeparator(), stringFromArrayList));
     }
 
+    /**
+     * Converts ArrayList object into string to be printed.
+     * @param taskList ArrayList object with tasks to be printed
+     * @return Formatted string of tasks
+     */
     private String stringTaskList(ArrayList<Task> taskList) {
         StringBuilder stringFromArrayList = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
