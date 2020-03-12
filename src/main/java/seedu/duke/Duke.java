@@ -1,20 +1,38 @@
 package seedu.duke;
 
+import seedu.command.CommandInterpreter;
+import seedu.command.Command;
+import seedu.event.EventList;
 import seedu.ui.UI;
-
-import java.util.Scanner;
+import seedu.exception.DukeException;
 
 public class Duke {
-    public Duke() {
+    protected UI ui;
+    protected CommandInterpreter interpreter;
+    protected EventList eventList;
 
+    public Duke() {
+        ui = new UI();
+        eventList = new EventList();  //TODO: new Storage().load()
+        interpreter = new CommandInterpreter(eventList);
+    }
+
+    public void run() {
+        UI.setUserName();
+        Command command;
+        UI.readUserInput();
+        try {
+            command = interpreter.decideCommand(ui.getUserInput());
+            command.execute();
+        } catch (DukeException m) {
+            System.out.println("asd");
+        }
     }
 
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        UI.printListHeader("Index", "Student Name", "Assignment 1", "Result");
-        UI.printListBody(1, "Person1", "CS2101", 100);
-        UI.printListBody(2, "Person2", "CS2113", "A");
+        new Duke().run();
     }
 }

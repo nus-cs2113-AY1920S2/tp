@@ -2,13 +2,6 @@ package seedu.performance;
 
 import java.io.Serializable;
 
-/*
- * if Performance.student = student
- * studentlist.add(performance.viewbystudent)
- *
- * list -> list of student -> list of student result for all assignment
- *      -> list of assignment -> list of assignment result for all its students
- */
 public class Performance {
     public String eventName;
     public String studentName;

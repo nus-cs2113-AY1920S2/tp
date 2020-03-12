@@ -33,6 +33,7 @@ public class Attendance {
      * @param description The description of the lesson.
      *
      */
+
     public Attendance(String eventName, String studentName, String description) {
         this.eventName = eventName;
         this.studentName = studentName;

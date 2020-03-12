@@ -1,39 +1,77 @@
 package seedu.command;
 
-
-import seedu.command.performance.AddPerformanceCommand;
-import seedu.command.performance.DeletePerformanceCommand;
-import seedu.command.performance.ViewAssignmentResultCommand;
-import seedu.command.performance.ViewStudentResultCommand;
+import seedu.parser.Parser;
+import seedu.event.EventList;
 import seedu.exception.DukeException;
 
-import static seedu.parser.Parser.getCommandWord;
-
 public class CommandInterpreter {
+    protected Parser parser;
+    protected EventList eventList;
+
+    public CommandInterpreter(EventList eventList) {
+        this.parser = new Parser();
+        this.eventList = eventList;
+    }
+
+    /**
+     * Returns the first word in lower cases.
+     * @param userInput raw user input
+     * @return the first word in lower cases
+     */
+    protected String getFirstWord(String userInput) {
+        String commandType = userInput.split(" ")[0];
+        commandType = commandType.trim();
+        commandType = commandType.toLowerCase();
+        return commandType;
+    }
+
+    /**
+     * Returns the 2nd to last words.
+     * @param userInput raw user input
+     * @return the 2nd to last words
+     * @throws DukeException if there is only 1 word from the input
+     */
+    protected String getSubsequentWords(String userInput) throws DukeException {
+        int startIndexOfSpace = userInput.trim().indexOf(" ");
+
+        if (startIndexOfSpace == -1) {
+            throw new DukeException("No parameters provided");
+        }
+
+        int startIndexOfParameter = startIndexOfSpace + 1;
+        return userInput.substring(startIndexOfParameter);
+    }
 
     /**
      * Execute the command from userInput.
      *
      * @param userInput The userInput from the Ui.
-     * @return The command object.
      * @throws DukeException If the command is undefined.
      */
-    public static Command executeCommand(String userInput) throws DukeException {
-        String commandWord = getCommandWord(userInput);
-        switch (commandWord) {
-        //case "addEvent":
-        //  create new EventObject
-        case "addPerformance":
-            return new AddPerformanceCommand(userInput);
-        case "deletePerformance":
-            return new DeletePerformanceCommand(userInput);
-        case "view_student_result":
-            return new ViewStudentResultCommand(userInput);
-        case "view_assignment_result":
-            return new ViewAssignmentResultCommand(userInput);
+    public Command decideCommand(String userInput) throws DukeException {
+        Command command = null;
+
+        String commandCategory = getFirstWord(userInput);
+        String commandDescription = getSubsequentWords(userInput);
+        switch (commandCategory) {
+        case "event":
+            EventCommandInterpreter eci = new EventCommandInterpreter(eventList);
+            command = eci.decideCommand(commandDescription);
+            break;
+        case "attendance":
+            //TODO AttendanceCommandInterpreter
+            break;
+        case "performance":
+            //TODO PerformanceCommandInterpreter
+            break;
         default:
-            throw new DukeException("UNKNOWN COMMAND");
+            throw new DukeException("Unknown command");
         }
+
+        if (command == null) {
+            throw new DukeException("duke is null");
+        }
+        return command;
     }
 }
 

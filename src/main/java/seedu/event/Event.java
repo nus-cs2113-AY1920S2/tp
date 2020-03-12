@@ -6,7 +6,7 @@ import java.time.Instant;
 
 public class Event {
     private String name;
-    private String datetime;
+    private DateTime datetime;
     private String venue;
     private ArrayList<String> participantList;
     private ArrayList<String> attendanceList;
@@ -15,9 +15,9 @@ public class Event {
      * Empty constructor. Sets name as "unnamed"
      */
     public Event() {
-        setName(null);
-        setDatetime(null);
-        setVenue(null);
+        setName("");
+        setDatetime("");
+        setVenue("");
         this.participantList = new ArrayList<>();
         this.attendanceList = new ArrayList<>();
     }
@@ -77,7 +77,7 @@ public class Event {
      * @return the datetime of the event
      */
     public String getDatetime() {
-        return this.datetime;
+        return datetime.getDateTimeFormat();
     }
 
     /**
@@ -85,7 +85,7 @@ public class Event {
      * @param datetime the new datetime for the event
      */
     public void setDatetime(String datetime) {
-        this.datetime = datetime;
+        this.datetime = new DateTime(datetime);
     }
 
     /**
@@ -102,5 +102,9 @@ public class Event {
      */
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public String toString() {
+        return "[E] + " + getName() + getDatetime() + getVenue();
     }
 }

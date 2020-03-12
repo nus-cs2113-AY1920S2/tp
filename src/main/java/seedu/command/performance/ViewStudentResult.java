@@ -9,37 +9,36 @@ import seedu.ui.UI;
 
 import java.util.List;
 
-public class ViewAssignmentResultCommand extends Command {
+public class ViewStudentResult extends Command {
     public static List<Performance> performances;
-    private String assignment;
+    private String name;
 
     /**
      * Constructor for ViewAssignmentResultCommand. Takes String userInput
-     * and parse it to get the assignment result list to be showed.
+     * and parse it to get the student result list to be showed.
      * @param userInput A String to be parsed.
      */
-    public ViewAssignmentResultCommand(String userInput) {
+    public ViewStudentResult(String userInput) {
         String[] instructions = userInput.split(" ", 2);
-        assignment = instructions[1];
+        name = instructions[1];
         performances = new PerformanceList().getPerformanceList();
-        assignmentPerformanceList();
+        studentPerformanceList();
     }
 
     /**
      * Selects specific results of the assignment input by user
      * from the Performance list, and print the list in the format of
-     * [module][student]result.
+     * [module][assignment]result.
      */
-    public void assignmentPerformanceList() {
+    public void studentPerformanceList() {
         int size = performances.size();
         if (size == 0) {
-            UI.display("The list is empty.");
+            System.out.println("empty");
         } else {
             int i = 1;
-            UI.printListHeader("Index", "Module", "Assignment", "Result");
             for (Performance performance : performances) {
-                if (performance.assignment.equals(assignment)) {
-                    UI.printListBody(i, performance.eventName, performance.assignment, performance.getResult());
+                if (performance.studentName.equals(name)) {
+                    System.out.println(i + performance.formatForStudentList());
                     i++;
                 }
             }
@@ -47,7 +46,6 @@ public class ViewAssignmentResultCommand extends Command {
     }
 
     @Override
-    public void execute(UI ui, Storage storage) throws DukeException {
-
+    public void execute() {
     }
 }
