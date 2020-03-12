@@ -89,7 +89,7 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Event event : events) {
-                writer.write(ParserStorage.toStorageStringEvent(event) + "\n");
+                writer.write(UI.eventToStorage(event));
             }
             writer.close();
         } catch (IOException e) {
@@ -104,7 +104,7 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Attendance attendance : attendances) {
-                writer.write(ParserStorage.toStorageStringAttendance(attendance) + "\n");
+                writer.write(UI.attendanceToStorage(attendance));
             }
             writer.close();
         } catch (IOException e) {

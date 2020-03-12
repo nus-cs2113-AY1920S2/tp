@@ -32,6 +32,7 @@ public class AddPerformanceCommand extends Command {
     public void addToList() {
         String grade;
         int mark;
+        String eventName = performance.getEvent();
         String[] dataToParser = Parser.performanceDataToParse(userInput);
         for (String s : dataToParser) {
             if (s != null) {
@@ -40,15 +41,15 @@ public class AddPerformanceCommand extends Command {
                 case "g":
                     grade = data[1];
                     performance.recordGrade(grade);
-                    PerformanceList.addToList(performance);
+                    PerformanceList.addToList(performance, eventName);
                     break;
                 case "m":
                     mark = Integer.parseInt(data[1]);
                     performance.recordMark(mark);
-                    PerformanceList.addToList(performance);
+                    PerformanceList.addToList(performance, eventName);
                     break;
                 default:
-                    PerformanceList.addToList(performance);
+                    PerformanceList.addToList(performance, eventName);
                     System.out.println("No grade or mark input.");
                 }
             }

@@ -33,12 +33,13 @@ public class ViewAssignmentResultCommand extends Command {
     public void assignmentPerformanceList() {
         int size = performances.size();
         if (size == 0) {
-            System.out.println("empty");
+            UI.display("The list is empty.");
         } else {
             int i = 1;
+            UI.printListHeader("Index", "Module", "Assignment", "Result");
             for (Performance performance : performances) {
                 if (performance.assignment.equals(assignment)) {
-                    System.out.println(i + performance.formatForStudentList());
+                    UI.printListBody(i, performance.eventName, performance.assignment, performance.getResult());
                     i++;
                 }
             }

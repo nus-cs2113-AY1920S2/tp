@@ -10,7 +10,7 @@ import java.io.Serializable;
  *      -> list of assignment -> list of assignment result for all its students
  */
 public class Performance {
-    public String moduleName;
+    public String eventName;
     public String studentName;
     public String assignment;
     public String grade;
@@ -21,21 +21,21 @@ public class Performance {
     /**
      * Save the result of student base on a set of module, student and assignment,
      * the result can be saved as either mark in integer or grade in string.
-     * @param moduleName A string input by user, that is the name of the module
+     * @param eventName A string input by user, that is the name of the module
      *                     of the result saved.
      * @param studentName A string input by user, the name of student who scored
      *                      the result.
      * @param assignment A string input by user, the name of the assignment of the
      *                   result.
      */
-    public Performance(String moduleName, String studentName, String assignment) {
-        this.moduleName = moduleName;
+    public Performance(String eventName, String studentName, String assignment) {
+        this.eventName = eventName;
         this.studentName = studentName;
         this.assignment = assignment;
     }
 
-    public String getModule() {
-        return moduleName;
+    public String getEvent() {
+        return eventName;
     }
 
     public String getStudent() {
@@ -63,7 +63,7 @@ public class Performance {
      * @return A string that shows the result of a student base on assignment.
      */
     public String formatForStudentList() {
-        return "[" + moduleName + "] "
+        return "[" + eventName + "] "
                 + "[" + assignment + "] " + getResult();
     }
 

@@ -1,4 +1,5 @@
 package seedu.parser;
+
 import java.util.Arrays;
 
 public class Parser {

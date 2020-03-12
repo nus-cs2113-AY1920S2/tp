@@ -1,5 +1,7 @@
 package seedu.performance;
 
+import seedu.ui.UI;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class PerformanceList {
     public static int numberOfPerformance;
 
     public PerformanceList() {
-        this.performanceList = new ArrayList<>();
+        performanceList = new ArrayList<>();
         numberOfPerformance = performanceList.size();
     }
 
@@ -20,12 +22,9 @@ public class PerformanceList {
         return performanceList.size();
     }
 
-    public static void addToList(Performance performance) {
+    public static void addToList(Performance performance, String eventName) {
         performanceList.add(performance);
-        System.out.println("[" + performance.moduleName + "]["
-                + performance.assignment + "]["
-                + performance.studentName + "] "
-                + performance.getResult() + " has been added.");
+        UI.addPerformanceMessage(performance.studentName, eventName);
     }
 
     /**
@@ -42,7 +41,7 @@ public class PerformanceList {
             for (Performance p : performanceList) {
                 if (p != null
                         && performance.getAssignment().equals(p.getAssignment())
-                        && performance.getModule().equals(p.getModule())
+                        && performance.getEvent().equals(p.getEvent())
                         && performance.getStudent().equals(p.getStudent())) {
                     performanceList.remove(p);
                     System.out.println("deleted successfully");
