@@ -1,0 +1,11 @@
+Menu Items
+
+1. pasta 	 linguini 
+2. coke 	 coke 
+3. rice 	 rice 
+
+Current Stock
+
+
+Reservations
+
