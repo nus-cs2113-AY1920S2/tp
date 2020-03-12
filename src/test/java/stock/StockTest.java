@@ -1,4 +1,4 @@
-package seedu.duke;
+package stock;
 
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertFalse;
