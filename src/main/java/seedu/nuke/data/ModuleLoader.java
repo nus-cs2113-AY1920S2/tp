@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,11 +24,20 @@ import java.util.Scanner;
  * appear in the list of the list which load method return, or else fail.
  */
 public class ModuleLoader {
-    public static List<DummyModule> load(String dataFileName) throws FileNotFoundException {
+    public static HashMap<String,String> load(String dataFileName) throws FileNotFoundException {
         String jsonStr;
         jsonStr = loadJsonStringFromFile(dataFileName);
         List<DummyModule> moduleList = JSON.parseArray(jsonStr, DummyModule.class);// extractModules(jsonStr);
-        return moduleList;
+        HashMap<String, String> modulesMap = convertToHashMap(moduleList);
+        return modulesMap;
+    }
+
+    private static HashMap<String, String> convertToHashMap(List<DummyModule> moduleList) {
+        HashMap<String, String> modulesMap = new HashMap<>();
+        for (DummyModule i: moduleList) {
+            modulesMap.put(i.getModuleCode(), i.getTitle());
+        }
+        return modulesMap;
     }
 
     private static String loadJsonStringFromFile(String dataFileName) throws FileNotFoundException {

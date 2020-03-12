@@ -15,6 +15,7 @@ import seedu.nuke.ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,13 +27,13 @@ public class Nuke {
     private CommandResult commandResult;
     private ModuleManager moduleManager;
     private DataManager dataManager;
-    public List<DummyModule> modules;
+    public HashMap<String,String> modulesMap;
     private Ui ui;
 
     public Nuke() throws FileNotFoundException {
         moduleManager = new ModuleManager();
         dataManager = new DataManager(moduleManager);
-        modules = ModuleLoader.load("moduleList.json");
+        modulesMap  = ModuleLoader.load("moduleList.json");
     }
 
     /**
