@@ -1,3 +1,8 @@
+add dish; n/pizza; i/cheese, sauce;
+list dish
+add dish; n/rice; i/rice, salt;
+delete dish; n/pizza;
+list dish
 add stock; i/tomato; q/10; p/$0.40
 add stock; i/tomato; q/10; p/$0.50
 list stock
@@ -5,3 +10,4 @@ delete stock; i/tomato; q/1;
 delete stock; i/tomato; q/9;
 delete stock; i/tomato; 
 list stock
+add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98953422;

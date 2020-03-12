@@ -74,10 +74,10 @@ public class DeleteStockCommand extends StockCommand {
         String[] wordArgs = fullInputLine.split(";");
         
         boolean hasQuantitySpecified = fullInputLine.contains("q/");
-        String ingredientName = parseIngredientName(wordArgs[1].trim());
+        String ingredientName = parseIngredientName(wordArgs[0].trim());
 
         if (hasQuantitySpecified) {            
-            int quantity = parseIngredientQuantity(wordArgs[2].trim());
+            int quantity = parseIngredientQuantity(wordArgs[1].trim());
             ingredientInfo.put(ingredientName, Optional.of(quantity));
         } else {
             ingredientInfo.put(ingredientName, Optional.empty());

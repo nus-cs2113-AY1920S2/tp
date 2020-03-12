@@ -1,15 +1,16 @@
 package report;
 
-import java.util.*;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import dish.Dish;
 import menu.Menu;
 import reservation.Reservation;
 import reservation.ReservationList;
 import stock.Stock;
 import utils.Pair;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReportWriter {
     protected Menu menu;
@@ -27,17 +28,18 @@ public class ReportWriter {
         FileWriter fw = new FileWriter("./report.txt");
 
         try {
-            String menuTitle = String.format("menu.Menu Items\n\n");
+            String menuTitle = String.format("Menu Items\n\n");
             fw.write(menuTitle);
             HashMap<String, Dish>  menuItems = menu.getDishMap();
             int counter = 1;
             for (String name: menuItems.keySet()) {
                 String iList = "";
                 for (String str: menuItems.get(name).getIngredients()) {
-                    iList += str + ",";
+                    iList += str + ", ";
                 }
-                iList = iList.substring(0, iList.length()-1);
-                String writtenString = String.format("%d. %s \t %s \n",counter,name, iList);
+                iList = iList.substring(0, iList.length()-2);
+                String writtenString = String.format("%d. %s \t %s \n", counter, name, iList);
+                fw.write(writtenString);
                 counter += 1;
             }
 
@@ -45,7 +47,7 @@ public class ReportWriter {
             fw.write(stockTitle);
             counter = 1;
             for (Map.Entry<String, Pair<Integer,Double>> ingredient : stock.getStock().entrySet()) {
-                String writtenString = String.format("%d. %s \t %d %f \n", counter, ingredient.getKey(), ingredient.getValue().second(), ingredient.getValue().first());
+                String writtenString = String.format("%d. %s \t $%.2f %d \n", counter, ingredient.getKey(), ingredient.getValue().second(), ingredient.getValue().first());
                 fw.write(writtenString);
                 counter += 1;
             }

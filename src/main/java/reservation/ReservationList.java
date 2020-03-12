@@ -69,6 +69,6 @@ public class ReservationList {
      * @return Reservation indexed with the target number.
      */
     public Reservation getReservation(int reservationNumber) {
-        return reservations.get(reservationNumber - 1);
+        return reservations.get(reservationNumber);
     }
 }
