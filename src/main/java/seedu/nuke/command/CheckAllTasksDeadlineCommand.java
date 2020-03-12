@@ -13,6 +13,9 @@ import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
 import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULY_LIST;
 
 public class CheckAllTasksDeadlineCommand extends Command{
+    /**
+     * module level
+     */
     protected DataManager dataManager;
     private ArrayList<String> deadlines;
 
@@ -20,9 +23,6 @@ public class CheckAllTasksDeadlineCommand extends Command{
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     @Override
-    /**
-     * module level
-     */
     public CommandResult execute() {
         //get the large task list
         dataManager = new DataManager(moduleManager);
