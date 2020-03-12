@@ -63,6 +63,12 @@ public class ShoppingList {
      * @return item that is marked
      */
     public Item markAsBought(int index) {
+        if (index >= items.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
@@ -84,6 +90,12 @@ public class ShoppingList {
      * @return item that is unmarked
      */
     public Item unmarkAsBought(int index) {
+        if (index >= items.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
         return itemNotBought;
@@ -99,9 +111,15 @@ public class ShoppingList {
         items.remove(unwantedItem);
     }
 
-    public void add(Item toAdd) throws NullPointerException {
-        items.add(toAdd);
-        if (toAdd.getDescription() == null) {
+    /**
+     * Adds item to list.
+     *
+     * @param item Item to add.
+     * @throws NullPointerException If there is no description.
+     */
+    public void add(Item item) throws NullPointerException {
+        items.add(item);
+        if (item.getDescription() == null) {
             throw new NullPointerException();
         }
     }

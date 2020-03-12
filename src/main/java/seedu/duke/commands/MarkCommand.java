@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
+import java.util.ArrayList;
 
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "MARK";
