@@ -26,8 +26,10 @@ public class Module {
         this.semester = semester;
         if (isNameValid) {
             this.name = moduleIdentifier;
+            this.id = "unnamed";
         } else if (isIdValid) {
             this.id = moduleIdentifier;
+            this.name = "unnamed";
         }
         this.isDone = false;
     }
@@ -57,8 +59,22 @@ public class Module {
         this.isDone = true;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * Returns the icon [✓] when this module is done, and returns [✗] if the module is not done.
+     */
+    public String getIcon() {
+        if (this.isDone) {
+            return "[✓]";
+        } else {
+            return "[✗]";
+        }
+    }
+
     public boolean getDone() {
         return this.isDone;
     }
-
 }

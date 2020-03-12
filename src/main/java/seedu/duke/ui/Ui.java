@@ -17,6 +17,8 @@ public class Ui {
 
     private static final String VIEWED_MODULE_PLAN_MESSAGE = "Okay! Here is your module plan:";
 
+    private static final String VIEWED_DONE_MODULE_MESSAGE = "Okay! Here are your completed modules:";
+
     private static final String DONE_MESSAGE = "Okay, i've marked the module as done!";
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -39,8 +41,12 @@ public class Ui {
         showToUser(ADDED_MESSAGE, module, LINE_SEPARATOR);
     }
 
-    public static void showViewedMessage(String viewList) {
+    public static void showViewMessage(String viewList) {
         showToUser(VIEWED_MODULE_PLAN_MESSAGE, viewList, LINE_SEPARATOR);
+    }
+
+    public static void showViewDoneMessage(String viewList) {
+        showToUser(VIEWED_DONE_MODULE_MESSAGE, viewList, LINE_SEPARATOR);
     }
 
     public static void showDoneMessage() {

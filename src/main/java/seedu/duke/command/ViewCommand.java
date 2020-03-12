@@ -4,7 +4,6 @@ import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
-import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 
 public class ViewCommand extends Command {
@@ -51,19 +50,14 @@ public class ViewCommand extends Command {
             for (Module selectedModule: sem) {
                 int index = sem.indexOf(selectedModule) + 1;
                 String doneIcon;
-                if (selectedModule.getDone()) {
-                    doneIcon = "[✓]";
-                } else {
-                    doneIcon = "[✗]";
-                }
                 viewList.append(index).append(".")
                         .append(selectedModule.toString())
-                        .append(doneIcon)
+                        .append(selectedModule.getIcon())
                         .append(System.lineSeparator());
             }
             viewList.append(System.lineSeparator());
         }
-        Ui.showViewedMessage(viewList.toString().trim());
+        Ui.showViewMessage(viewList.toString().trim());
     }
 
     private void viewDoneModules(SelectedModulesList moduleList) {
@@ -75,13 +69,13 @@ public class ViewCommand extends Command {
                 if (selectedModule.getDone()) {
                     viewList.append(index).append(".")
                             .append(selectedModule.toString())
-                            .append("[✓]")
+                            .append(selectedModule.getIcon())
                             .append(System.lineSeparator());
 
                 }
             }
             viewList.append(System.lineSeparator());
         }
-        Ui.showViewedMessage(viewList.toString().trim());
+        Ui.showViewDoneMessage(viewList.toString().trim());
     }
 }
