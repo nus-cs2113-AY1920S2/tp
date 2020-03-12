@@ -32,5 +32,6 @@ public class Message {
     }
 
     public static final String MESSAGE_SHOW_MODULES = "Here are ALL your modules.\n";
+    public static final String MESSAGE_TASK_ADDED = "Task added!";
 
 }

@@ -21,12 +21,14 @@ public class CheckAllTasksDeadlineCommand extends Command{
 
     public static final String COMMAND_WORD = "lst";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final int EMPTY = 0;
+
 
     @Override
     public CommandResult execute() {
         //get the large task list
         dataManager = new DataManager(moduleManager);
-        if (dataManager.countAllTasks() == 0){
+        if (dataManager.countAllTasks() == EMPTY){
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
         deadlines = dataManager.checkDeadline();
