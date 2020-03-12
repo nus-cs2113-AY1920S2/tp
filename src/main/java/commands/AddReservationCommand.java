@@ -38,13 +38,15 @@ public class AddReservationCommand extends ReservationCommand {
         // date
         int datePos = description.indexOf(RES_DATE_MARKER);
         int dateEndPos = description.indexOf(DELIMITER, datePos);
-        LocalDateTime date = LocalDateTime.parse(description.substring(datePos + RES_DATE_MARKER.length(), dateEndPos).trim(), 
+        LocalDateTime date = LocalDateTime.parse(description.substring(datePos + RES_DATE_MARKER.length(), 
+                dateEndPos).trim(), 
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         
         // numberOfGuests
         int numberPos = description.indexOf(RES_NUM_MARKER);
         int numberEndPos = description.indexOf(DELIMITER, numberPos);
-        int numberOfGuests = Integer.parseInt(description.substring(numberPos + RES_NUM_MARKER.length(), numberEndPos).trim());
+        int numberOfGuests = Integer.parseInt(description.substring(numberPos + RES_NUM_MARKER.length(), 
+                numberEndPos).trim());
         
         // contact
         int contactPos = description.indexOf(RES_CONTACT_MARKER);
