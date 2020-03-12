@@ -1,6 +1,7 @@
 package reservation;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static utils.Constants.*;
 
@@ -8,7 +9,7 @@ import static utils.Constants.*;
 public class Reservation {
     private int reservationNumber;
     private String name;
-    private LocalDate date;
+    private LocalDateTime date;
     private int numberOfGuests;
     private String contact;
     private String comments;
@@ -17,7 +18,7 @@ public class Reservation {
     private Character tableSize;
     
     // Comments are optional.
-    public Reservation(int reservationNumber, String name, LocalDate date, int numberOfGuests, String contact) {
+    public Reservation(int reservationNumber, String name, LocalDateTime date, int numberOfGuests, String contact) {
         this.reservationNumber = reservationNumber;
         this.name = name;
         this.date = date;
@@ -62,7 +63,7 @@ public class Reservation {
      * 
      * @param date When the reservation is. Format: yyyy-MM-dd HH:mm
      */
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -71,7 +72,7 @@ public class Reservation {
      * 
      * @return Date of the reservation.
      */
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return this.date;
     }
 
@@ -169,13 +170,14 @@ public class Reservation {
     @Override
     public String toString() {
         return String.format("Reservation [%d]\n" +
+                        "Status: %c\n" +
                         "contact person: %s\n" +
                         "date: %s\n" +
                         "number of guests: %d\n" +
                         "table size: %c\n" +
                         "contact details: %s\n" +
-                        "comments: %s", 
-                this.reservationNumber, this.name, this.date,
+                        "comments: %s\n", 
+                this.reservationNumber, this.status, this.name, this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 this.numberOfGuests, this.tableSize, this.contact, this.comments);
     }
 }

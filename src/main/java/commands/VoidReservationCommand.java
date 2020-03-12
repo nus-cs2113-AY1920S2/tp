@@ -25,7 +25,7 @@ public class VoidReservationCommand extends ReservationCommand {
         int numberPos = description.indexOf(RES_INDEX_MARKER);
         int numberEndPos = description.indexOf(DELIMITER, numberPos);
         int reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
-                numberEndPos + 1).trim());
+                numberEndPos).trim());
         
         // voids the reservation
         reservations.voidReservation(reservationNumber);
