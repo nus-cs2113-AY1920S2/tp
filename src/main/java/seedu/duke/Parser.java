@@ -9,6 +9,7 @@ import command.IncorrectCommand;
 import command.ListCommand;
 import command.HelpCommand;
 import command.ExitCommand;
+import command.ClearCommand;
 
 import common.Messages;
 
@@ -57,6 +58,8 @@ public class Parser {
             return prepareAssignmentCommand(fullCommand);
         case DeleteCommand.DELETE_COMMAND_WORD:
             return prepareDeleteCommand(fullCommand);
+        case ClearCommand.CLEAR_COMMAND_WORD:
+            return prepareClearCommand(fullCommand);
         case DoneCommand.DONE_COMMAND_WORD:
             return prepareDoneCommand(fullCommand);
         case EventCommand.EVENT_COMMAND_WORD:
@@ -156,5 +159,9 @@ public class Parser {
             return new ListCommand(null);
         }
         return new ListCommand(tokens[1]);
+    }
+
+    private static Command prepareClearCommand(String fullCommand) {
+        return new ClearCommand();
     }
 }
