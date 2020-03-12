@@ -1,77 +1,89 @@
 # User Guide
 
+* [1. Introduction](#introduction)
+* [2. Quick Start](#quick-start)
+* [3. Features](#features)
+    + [3.1. Add:](#add) `add`
+    + [3.2. Delete:](#delete) `delete`
+    + [3.3. List:](#list) `list`
+* [4. Command Summary](#summary)
+
+<a name="introduction"></a>
+
 ## Introduction
 
-{Give a product intro}
+Restaurant Daily Report is a CLI app that generates a whitepaper, 
+summarizing the internals of a restaurant. It’s aim is to provide 
+restaurant owners a quick overview of how their restaurant is performing 
+daily so that restaurant owners can better manage their business operations.
+
+As such, the daily report will include these categories:
+* Menu: Information on all menu items
+* Reservation: Information on number of reservations a day
+* Stock: Information on all food items/quantities/prices
+
+<a name="quick-start"></a>
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Down the latest version of `Restaurant Report` from [here](https://github.com/AY1920S2-CS2113-T14-4/tp).
+
+<a name="features"></a>
 
 ## Features 
 
-{Give detailed description of each feature}
+Add menu items, ingredients and reservations.
 
-**Command Format**
+<a name="add"></a>
 
-* Words in UPPER_CASE are the parameters to be supplied by the user<br/>
-e.g. in `delete reservation; r/RESERVATION_ NUMBER;`, RESERVATION_ NUMBER is a parameter which can be used as `delete reservation; r/12;`.<br/>
-* Items in square brackets are optional e.g `n/NAME; [i/INGREDRIENT;]` can be used as `n/pizza;i/bacon` or as `n/pizza`.<br/>
-* Parameters can be in any order e.g. if the command specifies `n/NAME; i/INGREDIENT;`, `i/INGREDIENT; n/NAME` also acceptable.
-* Different types of parameters should be separated by semicolon. Space is optional.<br/>
-Parameters inside the same type should be separated by a comma.<br/>
+### Add
+Add menu items, ingredients, and reservations.
 
+#### Add menu item: add dish
+* Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
+* Example: `add dish; n/bacon pizza; i/cheese, bacon;`
+#### Add ingredient into stock: add stock
+* Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
+* Example: `add stock; i/tomato; q/10; p/$0.50;`
+#### Add reservation into list: add reservation 
+* Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
+* Example: `add reservation; r/12;`
+*The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be an integer.*
 
-### Adding a reservation: `add reservation`
-Adds a reservation to the reservation list.
+<a name="delete"></a>
 
-Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
+### Delete
+Delete menu items, ingredients and reservations.
 
-* The `DATE` must be in **yyyy-mm-dd HH:mm** format.
-* The `NUMBER_OF_GUESTS` must be an integer.
-* Other parameters are strings which can have punctuations except semicolon.
+#### Delete menu item: delete dish
+* Format: `delete dish; n/NAME;`
+* Example: `delete dish; n/bacon pizza;`
+#### Delete stock of ingredient: delete stock
+* Format: `delete stock; i/[INGREDIENT]; q/[QUANTITY];` or
+* Format: `delete stock; i/[INGREDIENT];`
+* Example: `delete stock; i/tomato; q/1;`
+#### Mark reservation as invalid: delete reservation
+* Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
+* Example: `delete reservation; r/12;`
 
-### Marking as reservation as served: `delete reservation`
-Marks a reservation as served.
+<a name="list"></a>
 
-Format: `delete reservation; r/RESERVATION_NUMBER;
+### List
+List items in the menu, ingredients and reservations.
 
-* The `RESERVATION_NUMBER` must be a valid integer which is the index of reservation in the reservation list.
+* List menu : `list menu`
+* List ingredients : `list ingredient`
+* List reservation : `list reservation`
 
-### Listing all reservations: `list reservation`
-Shows a list of all reservations.
-
-Format: `list reservation;`
-
-### Adding a to-do: `todo`
-Adds a to-do item to the list of to-dos.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
-
-## FAQ
-
-**Q**: How do I transfer my data to another computer? 
-
-**A**: Well, write the User Guide in active voice anyway.
+<a name="summary"></a>
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add reservation `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
-* Mark reservation as served `delete reservation; r/RESERVATION_NUMBER;`  
-* List reservations `list reservation;`
-
-* Add to-do `todo n/TODO_NAME d/DEADLINE`
+* Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
+* Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
+* Format: `add reservation; r/NUMBER_OF_RESERVATIONS;`
+* Format: `delete dish; n/NAME;`
+* Format: `delete stock; i/[INGREDIENT]; q/[QUANTITY];`
+* Format: `delete stock; i/[INGREDIENT];`
+* Format: `delete reservation; r/NUMBER_OF_RESERVATIONS;`
