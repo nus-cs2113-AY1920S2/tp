@@ -3,6 +3,7 @@ package seedu.nuke.parser;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
+import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 import seedu.nuke.task.Task;
@@ -54,6 +55,9 @@ public class Parser {
 
         switch (commandWord) {
 
+        case ChangeModuleCommand.COMMAND_WORD:
+            prepareChangeModuleCommand(parameters);
+
         case AddModuleCommand.COMMAND_WORD:
             return prepareAddModuleCommand(parameters);
 
@@ -82,10 +86,19 @@ public class Parser {
         }
     }
 
+    private Command prepareChangeModuleCommand(String parameters) {
+        for (Module module: ModuleManager.getModuleList()
+             ) {
+            if (module.getModuleCode().equals(parameters)){
+                return new ChangeModuleCommand(module);
+            }
+        }
+        return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
     private Command prepareAddTaskCommand(String parameters) {
         Module module = null;
         Task task = null;
-
         return new AddTaskCommand(module, task);
     }
 
