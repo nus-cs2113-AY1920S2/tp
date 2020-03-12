@@ -1,0 +1,17 @@
+Menu Items
+
+
+Current Stock
+
+
+Reservations
+
+Reservation [0]
+Status: I
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98953422
+comments: No comments.
+

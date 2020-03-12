@@ -10,3 +10,4 @@ delete stock; i/tomato; q/1;
 delete stock; i/tomato; q/9;
 delete stock; i/tomato; 
 list stock
+add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98953422;

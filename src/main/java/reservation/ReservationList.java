@@ -62,6 +62,6 @@ public class ReservationList {
     }
     
     public Reservation getReservation(int reservationNumber) {
-        return reservations.get(reservationNumber - 1);
+        return reservations.get(reservationNumber);
     }
 }
