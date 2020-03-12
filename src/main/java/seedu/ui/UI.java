@@ -93,22 +93,22 @@ public class UI {
 
     public static void addEventMessage(String eventType, String eventName) {
         System.out.printf("New %s: %s was added successfully to "
-                + "your Event list.", eventType, eventName);
+                + "your Event list.\n", eventType, eventName);
     }
 
     public static void addAttendanceMessage(String studentName, String eventName) {
         System.out.printf("Attendance of %s has been taken successfully"
-                + " under event %s.", studentName, eventName);
+                + " under event %s.\n", studentName, eventName);
     }
 
     public static void addPerformanceMessage(String studentName, String taskName) {
         System.out.printf("The result of student %s has been added "
-                + "successfully under event %s.", studentName, taskName);
+                + "successfully under event %s.\n", studentName, taskName);
     }
 
     public static void deleteEventMessage(String eventType, String eventName) {
         System.out.printf("%s: %s was deleted successfully from "
-                + "your Event list.", eventType, eventName);
+                + "your Event list.\n", eventType, eventName);
     }
 
     /**
@@ -120,9 +120,9 @@ public class UI {
             String studentName = attendance.getStudentName();
             String eventName = attendance.getEventName();
             System.out.printf("Attendance of %s has been taken successfully"
-                    + " under event %s.", studentName, eventName);
+                    + " under event %s.\n", studentName, eventName);
         } else {
-            System.out.printf("There is no %s's attendance record in the list",
+            System.out.printf("There is no %s's attendance record in the list\n",
                     attendance.getStudentName());
         }
     }
@@ -136,9 +136,9 @@ public class UI {
             String studentName = performance.getStudent();
             String eventName = performance.getEvent();
             System.out.printf("The result of student %s has been added "
-                    + "successfully under event %s.", studentName, eventName);
+                    + "successfully under event %s.\n", studentName, eventName);
         } else {
-            System.out.printf("There is no %s's performance record in the list",
+            System.out.printf("There is no %s's performance record in the list\n",
                     performance.getStudent());
         }
     }
@@ -167,15 +167,11 @@ public class UI {
 
     public static void printWrongInput(String typeInput) {
         System.out.printf("Wrong %s input. If you need help with "
-                + "the input format, please input help.", typeInput);
+                + "the input format, please input help.\n", typeInput);
     }
 
-    public void deleteMessageEvent() {
-    }
-
-    public void deleteMessageAttendance() {
-    }
-
-    public void deleteMessagePerformance() {
+    public static void printInsufficientInput(String typeInput) {
+        System.out.printf("No %s input. If you need help with "
+                + "the input format, please input help.\n", typeInput);
     }
 }

@@ -22,7 +22,7 @@ public class PerformanceList {
         return performanceList.size();
     }
 
-    public static void addToList(Performance performance, String eventName) {
+    public void addToList(Performance performance, String eventName) {
         performanceList.add(performance);
         UI.addPerformanceMessage(performance.studentName, eventName);
     }

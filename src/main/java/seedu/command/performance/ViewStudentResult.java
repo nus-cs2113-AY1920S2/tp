@@ -22,7 +22,7 @@ public class ViewStudentResult extends Command {
         String[] instructions = userInput.split(" ", 2);
         name = instructions[1];
         performances = new PerformanceList().getPerformanceList();
-        studentPerformanceList();
+
     }
 
     /**
@@ -30,7 +30,7 @@ public class ViewStudentResult extends Command {
      * from the Performance list, and print the list in the format of
      * [module][assignment]result.
      */
-    public void studentPerformanceList() {
+    public void printStudentPerformanceList() {
         int size = performances.size();
         if (size == 0) {
             System.out.println("empty");
@@ -47,5 +47,6 @@ public class ViewStudentResult extends Command {
 
     @Override
     public void execute() {
+        printStudentPerformanceList();
     }
 }

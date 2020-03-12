@@ -39,12 +39,12 @@ public class Performance {
         return assignment;
     }
 
-    public void recordMark(int mark) {
+    public void setMark(int mark) {
         this.mark = mark;
         isMark = true;
     }
 
-    public void recordGrade(String grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
         isGrade = true;
     }

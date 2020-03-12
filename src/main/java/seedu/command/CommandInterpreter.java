@@ -62,7 +62,7 @@ public class CommandInterpreter {
             //TODO AttendanceCommandInterpreter
             break;
         case "performance":
-            //TODO PerformanceCommandInterpreter
+            new PerformanceCommandInterpreter(eventList).executeCommand(commandDescription);
             break;
         default:
             throw new DukeException("Unknown command");

@@ -1,57 +1,35 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.parser.PerformanceDataParser;
+import seedu.parser.PerformanceParser;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
+import seedu.ui.UI;
 
 public class AddPerformance extends Command {
     Performance performance;
-    public String userInput;
+    public String commandParameters;
 
     /**
      * Constructor for AddPerformanceCommand. Takes String userInput
      * and parse it to get the Performance to be added.
-     * @param userInput A String to be parsed.
+     * @param commandParameters A String to be parsed.
      */
-    public AddPerformance(String userInput) {
-        this.userInput = userInput;
-        performance = new PerformanceDataParser(userInput).getPerformance();
-        addToList();
+    public AddPerformance(String commandParameters) {
+        this.commandParameters = commandParameters;
+        performance = new PerformanceParser().parsePerformance(commandParameters);
     }
 
-
     /**
-     * Determine whether the result of student is mark or grade and record the result,
-     * add the performance to performance list.
+     * Add the performance to performance list.
      */
     public void addToList() {
-        String grade;
-        int mark;
         String eventName = performance.getEvent();
-        String[] dataToParser = PerformanceDataParser.performanceDataToParse(userInput);
-        for (String s : dataToParser) {
-            if (s != null) {
-                String[] data = s.split("/");
-                switch (data[0]) {
-                case "g":
-                    grade = data[1];
-                    performance.recordGrade(grade);
-                    PerformanceList.addToList(performance, eventName);
-                    break;
-                case "m":
-                    mark = Integer.parseInt(data[1]);
-                    performance.recordMark(mark);
-                    PerformanceList.addToList(performance, eventName);
-                    break;
-                default:
-                    PerformanceList.addToList(performance, eventName);
-                    System.out.println("No grade or mark input.");
-                }
-            }
-        }
+        PerformanceList performanceList = new PerformanceList(); //TODO: change this list to the performance list under event input
+        performanceList.addToList(performance, eventName);
     }
 
     public void execute() {
+        addToList();
     }
 }

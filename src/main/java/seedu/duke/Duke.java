@@ -25,7 +25,7 @@ public class Duke {
             command = interpreter.decideCommand(ui.getUserInput());
             command.execute();
         } catch (DukeException m) {
-            System.out.println("asd");
+            System.out.println(m);
         }
     }
 
