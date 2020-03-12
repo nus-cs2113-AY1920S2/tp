@@ -1,17 +1,12 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.exception.DukeException;
 import seedu.module.performance.Performance;
 import seedu.module.performance.PerformanceList;
 import seedu.parser.Parser;
 import seedu.parser.PerformanceDataParser;
-import seedu.storage.Storage;
-import seedu.ui.Ui;
 
-import java.util.List;
-
-public class AddPerformanceCommand extends Command {
+public class AddPerformance extends Command {
     Performance performance;
     public String userInput;
 
@@ -20,7 +15,7 @@ public class AddPerformanceCommand extends Command {
      * and parse it to get the Performance to be added.
      * @param userInput A String to be parsed.
      */
-    public AddPerformanceCommand(String userInput) {
+    public AddPerformance(String userInput) {
         this.userInput = userInput;
         performance = new PerformanceDataParser(userInput).getPerformance();
         addToList();
@@ -58,7 +53,7 @@ public class AddPerformanceCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) throws DukeException {
+    public void execute() {
 
     }
 }
