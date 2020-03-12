@@ -27,8 +27,13 @@ public class CommandParser {
                 successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //Add stock
-                new AddStockCommand(commands[1]).execute(stock);
-                successfulCommand();
+                try {
+                    new AddStockCommand(commands[1]).execute(stock);
+                    successfulCommand();
+                } catch (InvalidStockCommandException isce) {                    
+                    errorCommand();
+                    printErrorMessage(isce.getMessage());
+                }
             } else if (split_commands[1].equals("reservation")){
                 //Add reservation
                 new AddReservationCommand(commands[1]).execute(reservations);
@@ -44,8 +49,13 @@ public class CommandParser {
                 successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //delete stock
-                new DeleteStockCommand(commands[1]).execute(stock);
-                successfulCommand();
+                try {
+                    new DeleteStockCommand(commands[1]).execute(stock);
+                    successfulCommand();
+                } catch (InvalidStockCommandException isce) {                    
+                    errorCommand();
+                    printErrorMessage(isce.getMessage());
+                }
             } else if (split_commands[1].equals("reservation")){
                 //delete reservation
                 new VoidReservationCommand(commands[1]).execute(reservations);
@@ -75,6 +85,16 @@ public class CommandParser {
     }
     public static void errorCommand() {
         System.out.println("Incorrect command");
+    }
+    
+    public static void printErrorMessage(String message) {
+        System.out.println("============================================================"
+                + "================================================================");
+        
+        System.out.println(message);
+        
+        System.out.println("============================================================"
+                + "================================================================");
     }
     public static void successfulCommand() { System.out.println("The command has been successfully executed.");}
 }
