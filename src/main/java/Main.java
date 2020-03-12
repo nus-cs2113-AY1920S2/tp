@@ -1,13 +1,8 @@
-import commands.Command;
-import commands.CommandResult;
-import commands.ExitCommand;
 import menu.Menu;
-import reservation.Reservation;
 import reservation.ReservationList;
-import utils.CommandParser;
-import utils.Parser;
 import stock.Stock;
 import ui.Ui;
+import utils.CommandParser;
 
 /**
  * Entry point of the application.
@@ -44,7 +39,7 @@ public class Main {
     
     /** Read user's input, parse it into readable command format and execute it. */
     private void runCommandUntilExit() {                     
-        Command command;
+
         while(true){
             System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
@@ -54,18 +49,18 @@ public class Main {
     }
     
     /** Executes a command. */
-    private CommandResult executeCommand(Command command) {
-        try {
-            command.setData(this.stock);
-            CommandResult output = command.execute();
-            ui.showMessage(output.getCommandResult());
-            return output; 
-        } catch (Exception e) {
-            ui.showMessage(e.getMessage());
-            throw new RuntimeException(e);
-        }
-        
-    }
+//    private CommandResult executeCommand(Command command) {
+//        try {
+//            command.setData(this.stock);
+//            CommandResult output = command.execute();
+//            ui.showMessage(output.getCommandResult());
+//            return output;
+//        } catch (Exception e) {
+//            ui.showMessage(e.getMessage());
+//            throw new RuntimeException(e);
+//        }
+//
+//    }
     
     /** Exits the program with a goodbye message. */
     private void exit() {
