@@ -3,6 +3,9 @@ package command;
 import common.Messages;
 import seedu.duke.TaskList;
 import seedu.duke.Ui;
+import tasks.Task;
+
+import java.util.ArrayList;
 
 public abstract class Command {
     /**
@@ -23,5 +26,19 @@ public abstract class Command {
         int maxTasks = taskList.getListSize();
         return String.format(Messages.RANGE_OF_VALID_TASK_INDEX_MSG, maxTasks);
     }
-}
 
+    /**
+     * Checks for duplicate task within tasklist.
+     * @param tasklist TaskList to be checked against
+     * @param addedTask new Task that needs to be checked
+     * @return True if there already exists a task within tasklist. Otherwise, false.
+     */
+    protected Boolean isRepeatTask(TaskList tasklist, Task addedTask) {
+        for (Task task : tasklist.getTaskArray()) {
+            if (task.equals(addedTask)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

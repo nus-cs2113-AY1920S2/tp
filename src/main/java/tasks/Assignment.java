@@ -56,4 +56,12 @@ public class Assignment extends Task {
                 + Messages.NEWLINE_INDENT
                 + comments;
     }
+
+    @Override
+    public boolean equals(Object addedTask) {
+        Assignment task = (Assignment) addedTask;
+        return super.equals(addedTask) &&
+                module.equals(task.getModule()) &&
+                deadline.isEqual(task.getDateAndTime());
+    }
 }

@@ -58,4 +58,12 @@ public class Event extends Task {
                 + Messages.NEWLINE_INDENT
                 + comments;
     }
+
+    @Override
+    public boolean equals(Object addedTask) {
+        Event task = (Event) addedTask;
+        return super.equals(addedTask) &&
+                location.equals(task.getLocation()) &&
+                dateAndTime.isEqual(task.getDateAndTime());
+    }
 }

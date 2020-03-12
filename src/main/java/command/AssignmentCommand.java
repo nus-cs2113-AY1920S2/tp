@@ -39,6 +39,9 @@ public class AssignmentCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newAssignment = new Assignment(assignmentName, moduleName, deadline, comments);
+        if (isRepeatTask(taskList, newAssignment)) {
+            return new CommandResult(Messages.REPEAT_TASK_ERROR);
+        }
         taskList.addTask(newAssignment);
         int listSize = taskList.getListSize();
         return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE,

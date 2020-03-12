@@ -33,6 +33,9 @@ public class EventCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newEvent = new Event(eventName, eventLocation, dateTime, comments);
+        if (isRepeatTask(taskList, newEvent)) {
+            return new CommandResult(Messages.REPEAT_TASK_ERROR);
+        }
         taskList.addTask(newEvent);
         int listSize = taskList.getListSize();
         return new CommandResult(String.format(Messages.ADD_SUCCESS_MESSAGE,
