@@ -1,0 +1,2 @@
+add q/question a/answer
+exit

@@ -1,8 +1,10 @@
 package seedu.duke;
+
 import java.util.Scanner;
 
 public class UI {
     public static Scanner in = new Scanner(System.in);
+
     /**
      * Prints the greeting message when ESC is started.
      */

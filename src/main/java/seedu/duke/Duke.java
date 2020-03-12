@@ -7,7 +7,6 @@ import seedu.exception.EscException;
 import seedu.parser.Parser;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Duke {
     /**
