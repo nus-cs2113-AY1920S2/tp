@@ -1,9 +1,10 @@
 # User Guide
 
 ## Professor Assistant Console (PAC)
-![alt text][https://github.com/AY1920S2-CS2113T-T12-4/docs/images/PAC.png "PAC ver1"]
 
-![alt text][https://github.com/benchan911/tp/blob/Benjamin-UserGuide/docs/images/PAC.png "PAC ver1"]
+<p align="center">
+<img src="https://github.com/benchan911/tp/blob/Benjamin-UserGuide/docs/images/PAC.png" />
+</p>
 
 ## 1. Introduction
 
