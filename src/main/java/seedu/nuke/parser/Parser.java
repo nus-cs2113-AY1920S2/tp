@@ -79,12 +79,20 @@ public class Parser {
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
 
+        case DeleteTaskCommand.COMMAND_WORD:
+            return prepareDeleteTaskCommand(parameters);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         default:
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
+    }
+
+    private Command prepareDeleteTaskCommand(String parameters) {
+        //
+        return null;
     }
 
     private Command prepareChangeModuleCommand(String parameters) {

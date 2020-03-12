@@ -20,6 +20,7 @@ public class TaskManager {
 
     /**
      * todo add check same function
+     * todo handle toRemove does not exist exception
      * Checks if the list contains an equivalent task as the given description.
      * @param toCheck the task to-check
      * @return true if the task exists
@@ -30,6 +31,10 @@ public class TaskManager {
 
     public void addTask(Task toAdd){
         this.allTasks.add(toAdd);
+    }
+
+    public void removeTask(Task toRemove){
+        this.allTasks.remove(toRemove);
     }
 
     /**
