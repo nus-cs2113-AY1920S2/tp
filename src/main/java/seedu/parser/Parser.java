@@ -1,11 +1,33 @@
 package seedu.parser;
 
 import seedu.event.Event;
+import seedu.exception.DukeException;
 
 import java.util.DuplicateFormatFlagsException;
 import java.util.UnknownFormatFlagsException;
 
 public class Parser {
+    /**
+     * Returns the index in a string of parameters with this format:
+     * [i/INDEX] ... .
+     * @param parameters original parameters
+     * @return the index in a string of parameters
+     */
+    public int parseIndex(String parameters) throws DukeException {
+        String[] tokens = parameters.split(" ");
+        int index = -1;
+        for (String token: tokens) {
+            switch (token.substring(0, 2)) {
+            case "i/":
+                index = Integer.parseInt(parameters.substring(2));
+            }
+        }
+
+        if (index == -1) {
+            throw new DukeException("index not found");
+        }
+        return index;
+    }
 
     // TODO: [r/FREQ[/TIME or /DAY]]
     /**
@@ -16,30 +38,23 @@ public class Parser {
      */
     public Event parseEvent(String parameters) {
         String[] tokens = parameters.split(" ");
-        Integer index = -1;
         String name = "";
         String time = "";
         String date = "";
         String venue = "";
 
-        splitByEventFlags(tokens, index, name, time, date, venue);
+        splitByEventFlags(tokens, name, time, date, venue);
 
         String datetime = date + " " + time;
 
         return new Event(name, datetime, venue);
     }
 
-    private void splitByEventFlags(String[] tokens, Integer index, String name,
+    private void splitByEventFlags(String[] tokens, String name,
                                    String time, String date, String venue) {
         String mostRecent = null;
         for (String token : tokens) {
             switch (token.substring(0, 2)) {
-            case "i/":
-                if (index.equals(-1)) {
-                    throw new DuplicateFormatFlagsException("index");
-                }
-                index = Integer.parseInt(token.substring(2));
-                break;
             case "n/":
                 if (!name.isEmpty()) {
                     throw new DuplicateFormatFlagsException("name");

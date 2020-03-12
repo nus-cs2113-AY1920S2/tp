@@ -1,18 +1,16 @@
 package seedu.command;
 
-import seedu.event.Event;
 import seedu.parser.Parser;
-import seedu.command.performance.AddPerformanceCommand;
-import seedu.command.performance.DeletePerformanceCommand;
-import seedu.command.performance.ViewAssignmentResultCommand;
-import seedu.command.performance.ViewStudentResultCommand;
+import seedu.event.EventList;
 import seedu.exception.DukeException;
 
 public class CommandInterpreter {
     protected Parser parser;
+    protected EventList eventList;
 
-    public CommandInterpreter() {
+    public CommandInterpreter(EventList eventList) {
         this.parser = new Parser();
+        this.eventList = eventList;
     }
 
     /**
@@ -47,25 +45,32 @@ public class CommandInterpreter {
      * Execute the command from userInput.
      *
      * @param userInput The userInput from the Ui.
-     * @return The command object.
      * @throws DukeException If the command is undefined.
      */
-    public Command executeCommand(String userInput) throws DukeException {
-        String commandCategory = getCommandCategory(userInput);
-        String commandDescription = getCommandParameters(userInput);
+    public Command decideCommand(String userInput) throws DukeException {
+        Command command = null;
 
+        String commandCategory = getCommandCategory(userInput);         // first word
+        String commandDescription = getCommandParameters(userInput);    // subsequent
         switch (commandCategory) {
         case "event":
-            EventCommandInterpreter eci = new EventCommandInterpreter();
-            eci.executeCommand(commandDescription);
+            EventCommandInterpreter eci = new EventCommandInterpreter(eventList);
+            command = eci.decideCommand(commandDescription);
+            break;
         case "attendance":
+            //TODO AttendanceCommandInterpreter
             break;
         case "performance":
-            //TODO
+            //TODO PerformanceCommandInterpreter
             break;
         default:
             throw new DukeException("Unknown command");
         }
+
+        if (command == null) {
+            throw new DukeException("duke is null");
+        }
+        return command;
     }
 }
 
