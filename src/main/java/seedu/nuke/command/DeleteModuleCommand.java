@@ -2,6 +2,7 @@ package seedu.nuke.command;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 import seedu.nuke.data.ModuleManager;
 
@@ -31,7 +32,7 @@ public class DeleteModuleCommand extends Command {
         try {
             Module deletedModule = ModuleManager.delete(moduleCode);
             return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS(deletedModule.getModuleCode(), deletedModule.getTitle()));
-        } catch (ModuleManager.ModuleNotFoundException e) {
+        } catch (ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         }
     }
