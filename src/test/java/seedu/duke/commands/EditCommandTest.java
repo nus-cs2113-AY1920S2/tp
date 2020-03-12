@@ -52,15 +52,11 @@ public class EditCommandTest {
     @Test
     public void testEdit_exceptionThrown() {
         CommandResult result3 = null;
-        try {
-            command = new EditCommand(0, "banana", "5.00");
-            result3 = command.execute();
-        } catch (NullPointerException | IndexOutOfBoundsException | NumberFormatException e) {
-            String expectedFeedback3 = EditCommand.MESSAGE_FAILURE;
-            assert false;
-            assertEquals(expectedFeedback3, result3.feedbackToUser);
+        command = new EditCommand(0, "banana", "5.00");
+        result3 = command.execute();
+        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE;
+        assertEquals(expectedFeedback3, result3.feedbackToUser);
         }
-    }
 
 
 }
