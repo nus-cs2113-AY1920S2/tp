@@ -11,7 +11,7 @@ public abstract class Command {
     public static String COMMAND_WORD;
     protected ModuleManager moduleManager;
     protected DataManager dataManager;
-    protected Module currentModule;
+    protected static Module currentModule;
 
     public abstract CommandResult execute () ;
     public String toString(){
@@ -21,5 +21,13 @@ public abstract class Command {
     public void setData(ModuleManager moduleManager, DataManager dataManager) {
         this.moduleManager = moduleManager;
         this.dataManager = dataManager;
+    }
+
+    public static Module getCurrentModule() {
+        return currentModule;
+    }
+
+    public static void setCurrentModule(Module currentModule) {
+        Command.currentModule = currentModule;
     }
 }
