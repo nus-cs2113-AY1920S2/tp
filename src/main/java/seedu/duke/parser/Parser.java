@@ -32,7 +32,7 @@ public class Parser {
         String commandWord = commandAndArgs[0];
         String arguments;
         try {
-           arguments = commandAndArgs[1];
+            arguments = commandAndArgs[1];
         } catch (IndexOutOfBoundsException e) {
             arguments = null;
         }
@@ -146,14 +146,16 @@ public class Parser {
                     + System.lineSeparator()
                     + " - At least 'i/' or 'p/' should be present."
                     + System.lineSeparator()
-                    + "|| Example: ADD i/apple p/2.50");
+                    + "|| Example: ADD i/apple p/2.50"
+                    + System.lineSeparator());
         }
     }
 
-    private String[] splitCommandAndArgs (String userInput) {
+    private String[] splitCommandAndArgs(String userInput) {
         String[] commandandArgs = userInput.trim().split(" ", 2);
         return commandandArgs;
     }
+
     private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
         String[] argsArray = new String[]{};
         String descriptionDelimiter = "i/";
@@ -225,7 +227,7 @@ public class Parser {
     public static void createUnmarkCommand(String arguments) {
         String[] words = arguments.trim().split(" ");
         if (words.length != 1) {
-            newCommand = new IncorrectCommand("Can't find the item to unmark! Try again");
+            newCommand = new IncorrectCommand("Please provide an index number!");
         }
         int index = Integer.parseInt(words[0]) - 1;
         newCommand = new UnmarkCommand(index);
@@ -237,7 +239,7 @@ public class Parser {
     public static void createMarkCommand(String arguments) {
         String[] words = arguments.trim().split(" ");
         if (words.length != 1) {
-            newCommand = new IncorrectCommand("Can't find the item to mark! Try again");
+            newCommand = new IncorrectCommand("Please provide an index number!");
         }
         int index = Integer.parseInt(words[0]) - 1;
         newCommand = new MarkCommand(index);
@@ -307,9 +309,17 @@ public class Parser {
      */
     public static void createSetBudgetCommand(String arguments) {
         try {
-            double amount = Double.parseDouble(arguments.substring(2));
-            newCommand = new SetBudgetCommand(amount);
-        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+            if (!arguments.contains("b/")) {
+                newCommand = new IncorrectCommand(System.lineSeparator()
+                        + "Please enter the amount after the \"b/\" divider"
+                        + System.lineSeparator()
+                        + "Example: SET b/300");
+            } else {
+                double amount = Double.parseDouble(arguments.substring(2));
+                newCommand = new SetBudgetCommand(amount);
+            }
+
+        } catch (NumberFormatException | NullPointerException | StringIndexOutOfBoundsException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Please enter an amount for your budget"
                     + System.lineSeparator()

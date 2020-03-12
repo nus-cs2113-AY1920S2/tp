@@ -39,6 +39,11 @@ public class ShoppingList {
         st.print();
     }
 
+    /**
+     * Calculates and returns the total cost of the items in the shopping list.
+     *
+     * @return Total cost of items in shopping list.
+     */
     public double getTotalCost() {
         double totalCost = 0.0;
         for (Item item : items) {
@@ -58,9 +63,6 @@ public class ShoppingList {
      * @return item that is marked
      */
     public static Item markAsBought(int index) {
-        if (index >= items.size()) {
-            newCommand = new IncorrectCommand(MarkCommand.FAIL_MESSAGE);
-        }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
@@ -82,9 +84,6 @@ public class ShoppingList {
      * @return item that is unmarked
      */
     public static Item unmarkAsBought(int index) {
-        if (index >= items.size()) {
-            newCommand = new IncorrectCommand(UnmarkCommand.FAIL_MESSAGE);
-        }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
         return itemNotBought;
@@ -95,7 +94,7 @@ public class ShoppingList {
      *
      * @param index Index of the item to be removed.
      */
-    public static void deleteItem(int index) {
+    public void deleteItem(int index) {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }
