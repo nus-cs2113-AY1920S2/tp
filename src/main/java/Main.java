@@ -1,9 +1,8 @@
-import commands.StockCommand;
-import commands.CommandResult;
-import commands.ExitCommand;
-import utils.Parser;
+import menu.Menu;
+import reservation.ReservationList;
 import stock.Stock;
 import ui.Ui;
+import utils.CommandParser;
 
 /**
  * Entry point of the application.
@@ -14,6 +13,8 @@ public class Main {
     
     private Stock stock;
     private Ui ui;
+    private ReservationList reservations;
+    private Menu menu;
 
     /** Driver code for the program. */
     public static void main(String... args) {
@@ -30,33 +31,22 @@ public class Main {
     /** Sets up the required objects and shows a welcome message. */
     public void start(String[] args) {
         this.stock = new Stock();
+        this.menu = new Menu();
+        this.reservations = new ReservationList();
         this.ui = new Ui();
         ui.showWelcomeMessage();
     }
     
     /** Read user's input, parse it into readable command format and execute it. */
     private void runCommandUntilExit() {                     
-        StockCommand command;
-        do {
+
+        while(true){
+            System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
-            command = new Parser().parseCommand(userInput);
-            CommandResult result = executeCommand(command);
-        } while (!ExitCommand.isExit(command));
+            new CommandParser().parseCommand(userInput,this.menu,this.stock,this.reservations);
+        }
     }
     
-    /** Executes a command. */
-    private CommandResult executeCommand(StockCommand command) {
-        try {
-            command.setData(this.stock);
-            CommandResult output = command.execute();
-            ui.showMessage(output.getCommandResult());
-            return output; 
-        } catch (Exception e) {
-            ui.showMessage(e.getMessage());
-            throw new RuntimeException(e);
-        }
-        
-    }
     
     /** Exits the program with a goodbye message. */
     private void exit() {
