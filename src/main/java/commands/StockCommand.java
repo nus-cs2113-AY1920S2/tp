@@ -43,7 +43,6 @@ public class StockCommand {
         
         int quantity = Integer.parseInt(trimmedInput
                 .substring(2, ingredientQuantityInput.length()));
-        
         return quantity;
     }
     

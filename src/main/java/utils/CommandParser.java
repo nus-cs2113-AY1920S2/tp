@@ -8,7 +8,8 @@ import stock.Stock;
 import java.io.IOException;
 
 public class CommandParser {
-    public static void parseCommand(String command,Menu menu, Stock stock, ReservationList reservations) {
+
+    public void parseCommand(String command, Menu menu, Stock stock, ReservationList reservations) {
         if (command.equals("bye")){
             try {
                 new ReportWriter(stock,reservations,menu).writeToFile();
@@ -26,7 +27,7 @@ public class CommandParser {
                 successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //Add stock
-               new AddStockCommand(commands[1]).execute(stock);
+                new AddStockCommand(commands[1]).execute(stock);
                 successfulCommand();
             } else if (split_commands[1].equals("reservation")){
                 //Add reservation
@@ -38,7 +39,8 @@ public class CommandParser {
         } else if (split_commands[0].equals("delete")){
             if (split_commands[1].equals("dish")) {
                 //delete dish
-                menu.deleteDish(commands[1]);
+                String newcomm = commands[1].substring(3, commands[1].length()-1);
+                menu.deleteDish(newcomm);
                 successfulCommand();
             } else if (split_commands[1].equals("stock")){
                 //delete stock
