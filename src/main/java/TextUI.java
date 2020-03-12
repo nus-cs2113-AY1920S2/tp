@@ -22,4 +22,26 @@ public class TextUI {
     public static void errorMsg(MoException e) {
         System.out.println("OOPS!! " + e);
     }
+
+    public static void printTimetable(boolean[][] mySchedule) {
+        System.out.println("      MON TUE WED THU FRI SAT SUN");
+
+        for(int i = 0; i < 24; ++i) {
+            System.out.println(String.format("%04d", (0000 + 100*i)) + " +---+---+---+---+---+---+---+");
+
+            System.out.print("     |");
+            for(int j = 0; j < 7; ++j){
+                System.out.print(" " + (mySchedule[j][2*i] ? "X" : " ") + " |");
+            }
+            System.out.println();
+            System.out.println("     +---+---+---+---+---+---+---+");
+
+            System.out.print("     |");
+            for(int j = 0; j < 7; ++j){
+                System.out.print(" " + (mySchedule[j][2*i+1] ? "X" : " ") + " |");
+            }
+            System.out.println();
+        }
+        System.out.println("0000" + " +---+---+---+---+---+---+---+");
+    }
 }

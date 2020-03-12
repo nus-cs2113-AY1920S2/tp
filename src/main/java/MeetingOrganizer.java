@@ -8,6 +8,12 @@ public class MeetingOrganizer {
         switch (userInput) {
             case "1":
                 System.out.println("You have selected new scheduled meeting");
+                
+                // Test printTimetable
+                boolean[][] mySchedule = new boolean[7][48];
+                TextUI.printTimetable(mySchedule);
+                //
+
                 break;
             case "2":
                 System.out.println("Which meeting slot do you want to delete?");
