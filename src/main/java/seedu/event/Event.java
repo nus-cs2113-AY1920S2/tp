@@ -1,5 +1,8 @@
 package seedu.event;
 
+import seedu.duke.Duke;
+import seedu.exception.DukeException;
+
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.time.Instant;
@@ -14,7 +17,7 @@ public class Event {
     /**
      * Empty constructor. Sets name as "unnamed"
      */
-    public Event() {
+    public Event() throws DukeException{
         setName("");
         setDatetime("");
         setVenue("");
@@ -28,7 +31,7 @@ public class Event {
      * @param datetime datetime of event
      * @param venue venue of event
      */
-    public Event(String name, String datetime, String venue) {
+    public Event(String name, String datetime, String venue) throws DukeException {
         this();
         setName(name);
         setDatetime(datetime);
@@ -76,7 +79,7 @@ public class Event {
      * Returns the datetime of the event.
      * @return the datetime of the event
      */
-    public String getDatetime() {
+    public String getDatetime() throws DukeException {
         return datetime.getDateTimeFormat();
     }
 
@@ -84,7 +87,7 @@ public class Event {
      * Sets the datetime of the event.
      * @param datetime the new datetime for the event
      */
-    public void setDatetime(String datetime) {
+    public void setDatetime(String datetime) throws DukeException {
         this.datetime = new DateTime(datetime);
     }
 
@@ -102,5 +105,13 @@ public class Event {
      */
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public String toString() {
+        try {
+            return "[E] + " + getName() + getDatetime() + getVenue();
+        } catch (DukeException e) {
+            return "Please provide the correct format";
+        }
     }
 }

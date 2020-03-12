@@ -1,6 +1,7 @@
 package seedu.event;
 
 import org.junit.jupiter.api.Test;
+import seedu.exception.DukeException;
 
 import java.security.InvalidParameterException;
 import java.time.Instant;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class EventTest {
 
     @Test
-    void getName() {
+    void getName() throws DukeException {
         Event event1 = new Event();
         long time = Instant.now().getEpochSecond();
         String expectedName = "event_" + time;
@@ -23,7 +24,7 @@ class EventTest {
     }
 
     @Test
-    void setName() {
+    void setName() throws DukeException {
         Event event1 = new Event();
         event1.setName("event1");
         assertEquals("event1", event1.getName());
@@ -40,22 +41,22 @@ class EventTest {
     }
 
     @Test
-    void getDatetime() {
-        // Event event1 = new Event();
-        // assertEquals(null, event1.getDatetime());
+    void getDatetime() throws DukeException{
+        assertThrows(DukeException.class, () -> new Event("1", "99", "3"));
+       // assertThrows(DukeException.class, event1::getDatetime);
         Event event2 = new Event("1", "2020-05-04 0130", "3");
-        assertEquals("May 4 2020 0130", event2.getDatetime());
+        assertEquals("May 04 2020 0130", event2.getDatetime());
     }
 
     @Test
-    void setDatetime() {
+    void setDatetime() throws DukeException {
         Event event1 = new Event();
         event1.setDatetime("2020-05-04 0130");
-        assertEquals("May 4 2020 0130", event1.getDatetime());
+        assertEquals("May 04 2020 0130", event1.getDatetime());
     }
 
     @Test
-    void getVenue() {
+    void getVenue() throws DukeException {
         Event event1 = new Event();
         assertEquals("", event1.getVenue());
         Event event2 = new Event("1", "2", "3");
@@ -63,7 +64,7 @@ class EventTest {
     }
 
     @Test
-    void setVenue() {
+    void setVenue() throws DukeException {
         Event event1 = new Event();
         event1.setVenue("sea");
         assertEquals("sea", event1.getVenue());
