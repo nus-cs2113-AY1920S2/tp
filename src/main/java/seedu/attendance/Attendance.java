@@ -4,7 +4,7 @@ package seedu.attendance;
  * Class representing attendance of a student.
  */
 public class Attendance {
-    public String moduleName;
+    public String eventName;
     public String studentName;
     public String description;
     public String hasAttended;
@@ -13,13 +13,13 @@ public class Attendance {
      * The class that handles the attendance.
      * Contains hasAttended input.
      *
-     * @param moduleName The name of the module.
+     * @param eventName The name of the module.
      * @param studentName The name of the student.
      * @param description The description of the lesson.
      * @param hasAttended The status of the attendance.
      */
-    public Attendance(String moduleName, String studentName, String description, String hasAttended) {
-        this.moduleName = moduleName;
+    public Attendance(String eventName, String studentName, String description, String hasAttended) {
+        this.eventName = eventName;
         this.studentName = studentName;
         this.description = description;
         this.hasAttended = hasAttended;
@@ -33,8 +33,8 @@ public class Attendance {
      * @param description The description of the lesson.
      *
      */
-    public Attendance(String moduleName, String studentName, String description) {
-        this.moduleName = moduleName;
+    public Attendance(String eventName, String studentName, String description) {
+        this.eventName = eventName;
         this.studentName = studentName;
         this.description = description;
         this.hasAttended = "false";
@@ -45,8 +45,8 @@ public class Attendance {
      *
      * @return The name of the module.
      */
-    public String getModuleName() {
-        return moduleName;
+    public String getEventName() {
+        return eventName;
     }
 
     /**
@@ -78,7 +78,7 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return moduleName + " " + studentName + " " + description + " " + hasAttended;
+        return eventName + " " + studentName + " " + description + " " + hasAttended;
     }
 
 }

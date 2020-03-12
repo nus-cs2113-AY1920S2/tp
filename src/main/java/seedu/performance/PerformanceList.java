@@ -35,20 +35,18 @@ public class PerformanceList {
      * @param performance The Performance of student to be deleted.
      */
     public static void deletePerformance(Performance performance) {
-        if (numberOfPerformance <= 0) {
-            System.out.println("list is empty");
-        } else {
+        boolean hasDeleted = false;
+        if (numberOfPerformance > 0) {
             for (Performance p : performanceList) {
                 if (p != null
                         && performance.getAssignment().equals(p.getAssignment())
                         && performance.getEvent().equals(p.getEvent())
                         && performance.getStudent().equals(p.getStudent())) {
                     performanceList.remove(p);
-                    System.out.println("deleted successfully");
-                } else {
-                    System.out.println("list does not contain the student's performance");
+                    hasDeleted = true;
                 }
             }
         }
+        UI.deletePerformanceMessage(performance, hasDeleted);
     }
 }

@@ -2,6 +2,7 @@ package seedu.ui;
 
 import seedu.attendance.Attendance;
 import seedu.event.Event;
+import seedu.performance.Performance;
 
 import java.io.Serializable;
 import java.util.Scanner;
@@ -55,7 +56,8 @@ public class UI {
         display("Hello from\n" + logo);
         display("What is your name?");
         userName = in.nextLine();
-        display("Hello " + userName + ". Welcome to your personal Professor Assistant Console.");
+        display("Hello " + userName + ". Welcome to your "
+                + "personal Professor Assistant Console.");
     }
 
     public static void printSplitContent() {
@@ -75,24 +77,26 @@ public class UI {
         System.out.print("\n");
     }
 
-    public static void printListHeader(String index, String header1, String header2, String header3) {
+    public static void printListHeader(String index, String header1,
+                                       String header2, String header3) {
         String headerFormat = ("| %-10s|  %-30s|  %-35s|  %-10s|%n");
         printSplit();
         System.out.printf(headerFormat, index, header1, header2, header3);
         printSplitContent();
     }
 
-    public static void printListBody(int index, String studentName, String assignmentName, Serializable result) {
+    public static void printListBody(int index, String studentName,
+                                     String assignmentName, Serializable result) {
         System.out.printf(LIST_FORMAT, index, studentName, assignmentName, result);
         printSplitContent();
     }
 
-    public void addEventMessage(String eventType, String eventName) {
+    public static void addEventMessage(String eventType, String eventName) {
         System.out.printf("New %s: %s was added successfully to "
                 + "your Event list.", eventType, eventName);
     }
 
-    public void addAttendanceMessage(String studentName, String eventName) {
+    public static void addAttendanceMessage(String studentName, String eventName) {
         System.out.printf("Attendance of %s has been taken successfully"
                 + " under event %s.", studentName, eventName);
     }
@@ -100,6 +104,43 @@ public class UI {
     public static void addPerformanceMessage(String studentName, String taskName) {
         System.out.printf("The result of student %s has been added "
                 + "successfully under event %s.", studentName, taskName);
+    }
+
+    public static void deleteEventMessage(String eventType, String eventName) {
+        System.out.printf("%s: %s was deleted successfully from "
+                + "your Event list.", eventType, eventName);
+    }
+
+    /**
+     * The message showed to the user after successful deletion of a attendance.
+     * @param attendance The Attendance deleted.
+     */
+    public static void deleteAttendanceMessage(Attendance attendance, boolean hasDeleted) {
+        if (hasDeleted) {
+            String studentName = attendance.getStudentName();
+            String eventName = attendance.getEventName();
+            System.out.printf("Attendance of %s has been taken successfully"
+                    + " under event %s.", studentName, eventName);
+        } else {
+            System.out.printf("There is no %s's attendance record in the list",
+                    attendance.getStudentName());
+        }
+    }
+
+    /**
+     * The message showed to the user after successful deletion of a performance.
+     * @param performance The Performance deleted.
+     */
+    public static void deletePerformanceMessage(Performance performance, boolean hasDeleted) {
+        if (hasDeleted) {
+            String studentName = performance.getStudent();
+            String eventName = performance.getEvent();
+            System.out.printf("The result of student %s has been added "
+                    + "successfully under event %s.", studentName, eventName);
+        } else {
+            System.out.printf("There is no %s's performance record in the list",
+                    performance.getStudent());
+        }
     }
 
     /**
@@ -122,6 +163,11 @@ public class UI {
     public static String attendanceToStorage(Attendance attendance) {
         return attendance.getStudentName() + " | " + attendance.getDescription()
                 + " | " + attendance.getAttendance() + "\n";
+    }
+
+    public static void printWrongInput(String typeInput) {
+        System.out.printf("Wrong %s input. If you need help with "
+                + "the input format, please input help.", typeInput);
     }
 
     public void deleteMessageEvent() {
