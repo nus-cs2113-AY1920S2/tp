@@ -5,7 +5,7 @@ import reservation.ReservationList;
 import static utils.Constants.DELIMITER;
 import static utils.Constants.RES_INDEX_MARKER;
 
-/* Command object for "mark reservation" command */
+/** Command object for "mark reservation" command. */
 public class MarkReservationCommand extends ReservationCommand {
     private String description;
     
