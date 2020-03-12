@@ -2,6 +2,8 @@ package seedu.parser;
 
 import seedu.performance.Performance;
 
+import java.util.Arrays;
+
 public class PerformanceDataParser {
     private String userInput;
 
@@ -9,8 +11,13 @@ public class PerformanceDataParser {
         this.userInput = userInput;
     }
 
+    public static String[] performanceDataToParse(String userInput) {
+        String[] instructions = userInput.split(" ",20);
+        return Arrays.copyOfRange(instructions, 1, instructions.length);
+    }
+
     public Performance getPerformance() {
-        String[] dataToRead = Parser.performanceDataToParse(userInput);
+        String[] dataToRead = performanceDataToParse(userInput);
         String nameOfModule = "null";
         String nameOfStudent = "null";
         String assignment = "null";

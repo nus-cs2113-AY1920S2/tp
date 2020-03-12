@@ -1,7 +1,6 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.parser.Parser;
 import seedu.parser.PerformanceDataParser;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
@@ -30,7 +29,7 @@ public class AddPerformance extends Command {
         String grade;
         int mark;
         String eventName = performance.getEvent();
-        String[] dataToParser = Parser.performanceDataToParse(userInput);
+        String[] dataToParser = PerformanceDataParser.performanceDataToParse(userInput);
         for (String s : dataToParser) {
             if (s != null) {
                 String[] data = s.split("/");

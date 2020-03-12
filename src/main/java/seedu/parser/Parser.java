@@ -107,10 +107,4 @@ public class Parser {
     private boolean isUnknownFlag(String input) {
         return input.charAt(1) == '/';
     }
-
-    public static String[] performanceDataToParse(String userInput) {
-        String[] instructions = userInput.split(" ",20);
-        return Arrays.copyOfRange(instructions, 1, instructions.length);
-    }
-
 }
