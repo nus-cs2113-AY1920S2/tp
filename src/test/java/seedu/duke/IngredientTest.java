@@ -1,14 +1,11 @@
 package seedu.duke;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.*;
-
+import ingredient.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import ingredient.Ingredient;
+import static org.junit.jupiter.api.Assertions.*;
 
 class IngredientTest {
 
