@@ -26,7 +26,7 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            Item markItem = ShoppingList.markAsBought(indexOfItem);
+            Item markItem = items.markAsBought(indexOfItem);
             return new CommandResult(String.format(SUCCESS_MESSAGE, markItem));
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult(FAIL_MESSAGE);
