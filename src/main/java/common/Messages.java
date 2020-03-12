@@ -6,13 +6,17 @@ package common;
 public class Messages {
     // Generic Print Messages
     public static final String LOGO =
-            "   _____________________    _________\n"
-            + "  /  _  \\__    ___/  _  \\  /   _____/\n"
-            + " /  /_\\  \\|    | /  /_\\  \\ \\_____  \\\n"
-            + "/    |    \\    |/    |    \\/        \\\n"
-            + "\\____|____/____|\\____|____/_________/\n";
+            " _______        _______        _______        _______ \n"
+            + "|   _   |      |       |      |   _   |      |       |\n"
+            + "|  |_|  |      |_     _|      |  |_|  |      |  _____|\n"
+            + "|       |        |   |        |       |      | |_____ \n"
+            + "|       | ___    |   |   ___  |       | ___  |_____  |\n"
+            + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |\n"
+            + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|\n";
+
+
     public static final String DIVIDER = "____________________________________________________________";
-    public static final String EXIT_MESSAGE = "Exiting ATAS";
+    public static final String EXIT_MESSAGE = "Exiting A.T.A.S";
     public static final String NEWLINE_INDENT = "     ";
 
     // Help Messages
