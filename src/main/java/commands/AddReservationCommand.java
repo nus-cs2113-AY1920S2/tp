@@ -6,15 +6,19 @@ import reservation.ReservationList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static utils.Constants.*;
+import static utils.Constants.DELIMITER;
+import static utils.Constants.RES_PERSON_MARKER;
+import static utils.Constants.RES_DATE_MARKER;
+import static utils.Constants.RES_NUM_MARKER;
+import static utils.Constants.RES_CONTACT_MARKER;
+import static utils.Constants.RES_COMMENT_MARKER;
+
 
 /* Command object for "add reservation" command */
-public class AddReservationCommand extends ReservationCommand{
-
+public class AddReservationCommand extends ReservationCommand {
     private String description;
     
     public AddReservationCommand(String description) {
-
         this.description = description;
     }
 

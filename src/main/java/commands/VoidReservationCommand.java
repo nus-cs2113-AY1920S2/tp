@@ -5,7 +5,7 @@ import reservation.ReservationList;
 import static utils.Constants.DELIMITER;
 import static utils.Constants.RES_INDEX_MARKER;
 
-/* Command object for "void reservation" command */
+/** Command object for "void reservation" command. */
 public class VoidReservationCommand extends ReservationCommand {
     private String description;
     

@@ -1,6 +1,6 @@
 package utils;
 
-/** Constants used in the program */
+/** Constants used in the program. */
 public class Constants {
     public static final Character SERVED = 'Y';
     public static final Character NOT_SERVED = 'N';

@@ -2,7 +2,7 @@ package commands;
 
 import reservation.ReservationList;
 
-/* Command object for "list reservations" command */
+/** Command object for "list reservations" command. */
 public class ListReservationCommand extends ReservationCommand {
     /**
      * Lists all reservations, including served, unserved, and invalid reservations.
