@@ -28,6 +28,10 @@ public class TaskManager {
         return false;
     }
 
+    public void addTask(Task toAdd){
+        this.allTasks.add(toAdd);
+    }
+
     /**
      * Parses the given arguments string as a single index number.
      *

@@ -12,7 +12,7 @@ import java.util.Collections;
  */
 public class DataManager {
 
-    private ArrayList<Task> allTasks;
+    private ArrayList<Task> allTasks = new ArrayList<>();
 
     public DataManager(ModuleManager moduleManager) {
         for (Module module:ModuleManager.getModuleList()
@@ -40,5 +40,9 @@ public class DataManager {
             deadlines.add("Task: " + task.getDescription() + "  deadline: "+task.getDeadline());
         }
         return deadlines;
+    }
+
+    public void addTask(Task toAdd){
+        this.allTasks.add(toAdd);
     }
 }

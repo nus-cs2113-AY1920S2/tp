@@ -14,6 +14,19 @@ public class Task implements Comparable{
     protected DateTime deadline;
     protected ArrayList<String> files;
 
+
+    /**
+     * constructor for the simplest task
+     * @param description
+     */
+    public Task(String description) {
+        this.description = description;
+        this.files = new ArrayList<>();
+        this.deadline = null;
+        this.priority = -1;
+        this.isDone = false;
+    }
+
     public Task(String description, DateTime dateTime, int priority) {
         this.description = description;
         this.files = new ArrayList<>();

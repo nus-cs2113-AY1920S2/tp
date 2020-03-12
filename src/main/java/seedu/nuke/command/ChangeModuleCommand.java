@@ -16,7 +16,7 @@ public class ChangeModuleCommand extends Command {
     @Override
     public CommandResult execute() {
         //context switch
-        currentModule = moduleToChange;
+        setCurrentModule(this.moduleToChange);
         return new CommandResult(MESSAGE_MODULE_CHANGE_SUCCESSFUL);
     }
 }

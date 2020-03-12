@@ -75,6 +75,7 @@ public class Parser {
 
         //case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
             //return new CheckModuleTasksDeadlineCommand();
+
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
 
@@ -95,9 +96,13 @@ public class Parser {
     }
 
     private Command prepareAddTaskCommand(String parameters) {
-        Module module = null;
-        Task task = null;
-        return new AddTaskCommand(module, task);
+        //todo
+        //add a very simple task (for testing)
+        if (Command.getCurrentModule()!= null){
+            return new AddTaskCommand(new Task(parameters));
+        } else {
+            return new IncorrectCommand("please go inside a Module!");
+        }
     }
 
     /**
