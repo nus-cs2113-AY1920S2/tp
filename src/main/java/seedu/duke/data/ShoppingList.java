@@ -2,51 +2,99 @@ package seedu.duke.data;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.commands.MarkCommand;
+import seedu.duke.commands.UnmarkCommand;
+import seedu.duke.ui.CommandLineTable;
 
 import java.util.ArrayList;
 
 public class ShoppingList {
+
     private static ArrayList<Item> items = new ArrayList<>();
-    private static double budget;
-    private static double cost;
     private static Command newCommand;
 
-    public ShoppingList(){
+    public ShoppingList() {
     }
 
-    /** Returns the item at the specified index.
-     *
-     * @param index Index of the item requested.
-     * @return Item at the specified index.
-     */
-    public static Item getItem(int index) {
-        return items.get(index);
+    public ArrayList<Item> getList() {
+        return items;
     }
-
 
     /**
-     * Marks item in index as bought
+     * Formats the list to be printed to user.
+     *
+     */
+    public void showTableOfItems() {
+        CommandLineTable st = new CommandLineTable();
+        st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
+        st.setHeaders("Item", "Price");//optional - if not used then there will be no header and horizontal lines
+        int bulletNum = 1;
+        String itemLine;
+        for (Item item : items) {
+
+            itemLine = bulletNum + ". [" + item.getStatusIcon() + "] " + item.getDescription();
+            st.addRow(itemLine, String.format("$%.2f",item.getPrice()));
+            bulletNum++;
+        }
+        st.print();
+    }
+
+    /**
+     * Calculates and returns the total cost of the items in the shopping list.
+     *
+     * @return Total cost of items in shopping list.
+     */
+    public double getTotalCost() {
+        double totalCost = 0.0;
+        for (Item item : items) {
+            totalCost += item.getPrice();
+        }
+        return totalCost;
+
+    }
+
+    public void clearList() {
+        items.clear();
+    }
+
+    /**
+     * Marks item in index as bought.
      * @param index index of item to mark
      * @return item that is marked
      */
-    public static Item markAsBought(int index) {
+    public Item markAsBought(int index) {
         if (index >= items.size()) {
-            newCommand = new IncorrectCommand("this item does not exist in the list!");
+            throw new IndexOutOfBoundsException();
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
         }
         Item itemBought = items.get(index);
         itemBought.markAsBought();
         return itemBought;
     }
 
+    /**
+     * Returns the item at the specified index.
+     *
+     * @param index Index of the item requested.
+     * @return Item at the specified index.
+     */
+    public Item getItem(int index) {
+        return items.get(index);
+    }
 
     /**
-     * Unmarks item in index as bought
+     * Unmarks item in index as bought.
      * @param index index of item to unmark
      * @return item that is unmarked
      */
-    public static Item unmarkAsBought(int index) {
+    public Item unmarkAsBought(int index) {
         if (index >= items.size()) {
-            newCommand = new IncorrectCommand("this item does not exist in the list!");
+            throw new IndexOutOfBoundsException();
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
         }
         Item itemNotBought = items.get(index);
         itemNotBought.unmarkAsBought();
@@ -58,14 +106,22 @@ public class ShoppingList {
      *
      * @param index Index of the item to be removed.
      */
-    public static void deleteItem(int index) {
+    public void deleteItem(int index) {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }
 
-    public static void add (Item toAdd){
-
-        items.add(toAdd);
+    /**
+     * Adds item to list.
+     *
+     * @param item Item to add.
+     * @throws NullPointerException If there is no description.
+     */
+    public void add(Item item) throws NullPointerException {
+        items.add(item);
+        if (item.getDescription() == null) {
+            throw new NullPointerException();
+        }
     }
 
 }

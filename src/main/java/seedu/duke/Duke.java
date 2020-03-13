@@ -1,19 +1,23 @@
 package seedu.duke;
+
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.parser.Parser;
+
 import java.util.Scanner;
 
 public class Duke {
-	 /**
-     * Main entry-point for the java.duke.Duke application.
-     */
 
+    /**
+      * Main entry-point for the java.duke.Duke application.
+      *
+     */
+    public static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
-    private static Budget myBudget = new Budget(0);
+    private static Scanner in = new Scanner(System.in);
 
 
     public static void main(String[] args) {
@@ -33,7 +37,7 @@ public class Duke {
      *
      */
     private void start() {
-        System.out.println("HELLO");
+        System.out.println("HELLO! I'm SHOCO. Your digital shopping list!");
     }
 
     /** Prints the Goodbye message and exits. */
@@ -53,16 +57,18 @@ public class Duke {
         } while (!ExitCommand.isExit(command));
     }
 
-    public String readCommand(){
-        Scanner in = new Scanner(System.in);
+    /**Read the input when user type the command.
+     *
+     * @return input
+     */
+    public String readCommand() {
         String input = "";
-        while(input.isEmpty()){
+        while (input.isEmpty()) {
             input = in.nextLine();
-            input = input.trim();
+            input.trim();
         }
         return input;
     }
-
 
     /**
      * Executes the command and returns the result.
@@ -81,6 +87,5 @@ public class Duke {
             throw new RuntimeException(e);
         }
     }
-
 
 }
