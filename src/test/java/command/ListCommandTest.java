@@ -68,7 +68,7 @@ public class ListCommandTest {
         Assignment assignAfterCurrDateTime = new Assignment("Quiz 1", "CS2173", testDateTimeTwo, "15%");
         Event eventBeforeCurrDateTime = new Event("midterms", "MPSH1A", testDateTimeOne, "-");
         Event eventAfterCurrDateTime = new Event("Countdown", "TimeSquare", testDateTimeTwo, "new year new me");
-        Event eventOnSameDayAfterCurrTime = new Event ("Bathe", "Toilet", currDateTime.plusSeconds(45), "-");
+        Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", currDateTime.plusSeconds(45), "-");
 
         filledTasklist.addTask(assignBeforeCurrDateTime);
         filledTasklist.addTask(assignAfterCurrDateTime);
