@@ -14,7 +14,7 @@ public class Duke {
      */
     public static UI ui = new UI();
     private Storage storage = new Storage();
-    private CardList cards = new CardList(storage.loadCards());
+    private CardList cards;
 
     /**
      *  Lists all the cards in the list.
@@ -36,6 +36,7 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             try {
+                cards = new CardList(storage.loadCards());
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(cards);
