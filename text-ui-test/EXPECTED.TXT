@@ -6,3 +6,4 @@ Hello from
 |____/ \__,_|_|\_\___|
 
 seedu.exception.DukeException: Unknown command
+Bye, see you again!
