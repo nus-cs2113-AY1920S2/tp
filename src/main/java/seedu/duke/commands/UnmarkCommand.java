@@ -6,7 +6,7 @@ import seedu.duke.data.ShoppingList;
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "UNMARK";
     public static final String SUCCESS_MESSAGE = System.lineSeparator()
-                                    + "Yes! I've unmarked this item as bought: "
+                                    + "Yes! I've unmarked this item as bought:"
                                     + System.lineSeparator() + "%s"
                                     + System.lineSeparator();
     public static final String FAIL_MESSAGE = System.lineSeparator()

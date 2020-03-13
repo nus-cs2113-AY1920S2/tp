@@ -1,59 +1,151 @@
 HELLO! I'm SHOCO. Your digital shopping list!
 
+Error! Description of an item cannot be empty.
+Example: ADD 1 i/apple p/4.50
+
+Oops! For that to be done properly, check if these are met:
+ - Description of an item cannot be empty.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+|| Example: ADD i/apple p/2.50
+
+
+Error! Description of an item cannot be empty.
+Example: ADD 1 i/apple p/4.50
+
 Added this item: [0] apple  $2.45
 
 Added this item: [0] banana  $3.0
 
 Added this item: [0] cherry  $5.6
 
+Please enter an amount for your budget
+Example: SET b/300
+
+Please enter an amount for your budget
+Example: SET b/300
+
+Please enter an amount for your budget
+Example: SET b/300
+
 Setting budget to $500.0
 
-Here is your shopping list:
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
 
-+----------------+-------+
-| Item           | Price |
-+----------------+-------+
-| 1. [0] apple   | $2.45 |
-| 2. [0] banana  | $3.00 |
-| 3. [0] cherry  | $5.60 |
-+----------------+-------+
-Total cost of items: 11.05
-Your remaining budget / total budget: 488.95 / 500.00
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
 
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
+
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
+
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
+
+OOPS! I couldn't process that because price has to be a number, silly!
+|| Example: EDIT 2 i/apple p/2.00
+
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
 
 The item has been updated to: [0] apples $2.45
+
+The item has been updated to: [0] apple  $2.5
 
 The item has been updated to: [0] bananas $6.5
 
 The item has been updated to: [0] cherry  $8.0
 
-Here is your shopping list:
-
-+----------------+-------+
-| Item           | Price |
-+----------------+-------+
-| 1. [0] apples  | $2.45 |
-| 2. [0] bananas | $6.50 |
-| 3. [0] cherry  | $8.00 |
-+----------------+-------+
-Total cost of items: 16.95
-Your remaining budget / total budget: 483.05 / 500.00
+Yes! I've marked this item as bought:
+[B] apple  $2.5
 
 
-Yes! I've marked this item as bought: 
-[B] apples $2.45
-
-
-Yes! I've marked this item as bought: 
+Yes! I've marked this item as bought:
 [B] bananas $6.5
 
 
-Yes! I've unmarked this item as bought: 
-[0] apples $2.45
+Yes! I've unmarked this item as bought:
+[0] apple  $2.5
 
 
-Yes! I've marked this item as bought: 
-[B] cherry  $8.0
+Got it! I have removed the following item:
+[0] apple  $2.5
+
+Please enter an index
+Example: DEL 3
+
+Please enter an index
+Example: DEL 3
+
+ADD: Adds an item to the list.
+|| Parameters: ADD i/[DESCRIPTION] p/[PRICE]
+|| Example: ADD i/apple p/3.00
+
+EDIT: Edits the specified item in the list.
+|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]
+|| Example 1: EDIT 1 i/apple p/3.00
+|| Example 2: EDIT 1 i/apple
+|| Example 3: EDIT 1 p/6.00
+
+DEL: Deletes an item in the list.
+|| Parameters: DEL [INDEX]
+|| Example: DEL 1
+
+CLEAR: Clears the list.
+|| Parameters: CLEAR
+|| Example: CLEAR
+
+MARK: Marks an item as bought.
+|| Parameters: MARK [INDEX]
+|| Example: MARK 1
+
+UNMARK: Unmarks a bought item.
+|| Parameters: UNMARK [INDEX]
+|| UNMARK 1
+
+SET: Sets the budget based on user input.
+|| Parameters: SET /b[BUDGET]
+|| Example: SET /b 100.00
+
+RES: Resets the budget to $0.00.
+|| Parameters: RES
+|| Example: RES
+
+HELP: Shows program usage instructions.
+|| Parameters: HELP
+|| Example: HELP
+
+BYE: Exits the program.
+|| Parameters: BYE
+|| Example: BYE
+
 
 
 Here is your shopping list:
@@ -61,12 +153,60 @@ Here is your shopping list:
 +----------------+-------+
 | Item           | Price |
 +----------------+-------+
-| 1. [0] apples  | $2.45 |
-| 2. [B] bananas | $6.50 |
-| 3. [B] cherry  | $8.00 |
+| 1. [B] bananas | $6.50 |
+| 2. [0] cherry  | $8.00 |
 +----------------+-------+
-Total cost of items: 16.95
-Your remaining budget / total budget: 483.05 / 500.00
+Total cost of items: 14.50
+Your remaining budget / total budget: 485.50 / 500.00
+
+
+Budget has been reset to $0.00
+
+Your shopping list has been cleared.
+
+
+ADD: Adds an item to the list.
+|| Parameters: ADD i/[DESCRIPTION] p/[PRICE]
+|| Example: ADD i/apple p/3.00
+
+EDIT: Edits the specified item in the list.
+|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]
+|| Example 1: EDIT 1 i/apple p/3.00
+|| Example 2: EDIT 1 i/apple
+|| Example 3: EDIT 1 p/6.00
+
+DEL: Deletes an item in the list.
+|| Parameters: DEL [INDEX]
+|| Example: DEL 1
+
+CLEAR: Clears the list.
+|| Parameters: CLEAR
+|| Example: CLEAR
+
+MARK: Marks an item as bought.
+|| Parameters: MARK [INDEX]
+|| Example: MARK 1
+
+UNMARK: Unmarks a bought item.
+|| Parameters: UNMARK [INDEX]
+|| UNMARK 1
+
+SET: Sets the budget based on user input.
+|| Parameters: SET /b[BUDGET]
+|| Example: SET /b 100.00
+
+RES: Resets the budget to $0.00.
+|| Parameters: RES
+|| Example: RES
+
+HELP: Shows program usage instructions.
+|| Parameters: HELP
+|| Example: HELP
+
+BYE: Exits the program.
+|| Parameters: BYE
+|| Example: BYE
+
 
 
 Exiting SHOCO as requested ...

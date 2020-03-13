@@ -1,15 +1,33 @@
+ADD
+ADD wrong args format
+ADD p/2.50
 ADD i/apple p/2.45
 ADD i/banana p/3.00
 ADD i/cherry p/5.60
+SET
+SET b/ 8*wh12
+SET b/
 SET b/500.00
-DISPLAY
+EDIT
+EDIT wrong args format
+EDIT i/tomato p/3.40
+EDIT 1 i/p/2.50
+EDIT 1 i/apple p/
+EDIT 1 i/TOMATO p/WERT
+EDIT 1 i/p/
 EDIT 1 i/apples
+EDIT 1 i/apple p/2.50
 EDIT 2 p/6.50 i/bananas
 EDIT 3 p/8.00
-DISPLAY
 MARK 1
 MARK 2
 UNMARK 1
-MARK 3
+DEL 1
+DEL
+DEL
+unknownCommandWord arguments
 DISPLAY
+RES
+CLEAR
+HELP
 BYE
