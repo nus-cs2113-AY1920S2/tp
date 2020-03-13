@@ -22,8 +22,8 @@ public class Duke {
     private static ShoppingList items = new ShoppingList();
     private static Scanner in = new Scanner(System.in);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    public static final String DEFAULT_FILEPATH = "Logger.log";
-    public static final String LOG_FILE_ERROR = "Logging to file unsuccessful";
+    private static final String DEFAULT_FILEPATH = "Logger.log";
+    private static final String LOG_FILE_ERROR = "Logging to file unsuccessful";
 
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -40,14 +40,14 @@ public class Duke {
         ConsoleHandler console = new ConsoleHandler();
         console.setLevel(Level.SEVERE);
         LOGGER.addHandler(console);
-        File savedData = new File(DEFAULT_FILEPATH);
+        File logFile = new File(DEFAULT_FILEPATH);
         try {
-            if (!savedData.exists()) {
-                savedData.createNewFile();
+            if (!logFile.exists()) {
+                logFile.createNewFile();
             }
-            FileHandler file = new FileHandler(DEFAULT_FILEPATH);
-            file.setLevel(Level.INFO);
-            LOGGER.addHandler(file);
+            FileHandler logHandler = new FileHandler(DEFAULT_FILEPATH);
+            logHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(logHandler);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE,LOG_FILE_ERROR);
         }
