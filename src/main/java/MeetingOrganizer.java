@@ -8,7 +8,12 @@ public class MeetingOrganizer {
         TeamMember TESTING = new TeamMember("john");
         switch (userInput) {
             case "1":
-                System.out.println("You have selected new scheduled meeting");
+                System.out.println("You have selected new scheduled meeting");                
+                // Test printTimetable
+                boolean[][] mySchedule = new boolean[7][48];
+                TextUI.printTimetable(mySchedule);
+                //
+
                 TESTING.addBusyBlocks("TESTMEETING", 0, "10:30", 2, "12:00");
                 for (int i = 0; i < 7; i++) {
                     for (int j=0; j < 48; j++) {
