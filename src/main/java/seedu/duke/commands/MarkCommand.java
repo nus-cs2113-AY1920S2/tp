@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "MARK";
     public static final String SUCCESS_MESSAGE = System.lineSeparator()
-                                    + "Yes! I've marked this item as bought: "
+                                    + "Yes! I've marked this item as bought:"
                                     + System.lineSeparator() + "%s"
                                     + System.lineSeparator();
     public static final String FAIL_MESSAGE = System.lineSeparator()

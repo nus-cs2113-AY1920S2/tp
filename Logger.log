@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-03-13T16:22:15.977920500Z</date>
+  <millis>1584116535977</millis>
+  <nanos>920500</nanos>
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>start</method>
+  <thread>1</thread>
+  <message>Application starting.</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:23.770955100Z</date>
+  <millis>1584116543770</millis>
+  <nanos>955100</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.parser.Parser</class>
+  <method>createDeleteCommand</method>
+  <thread>1</thread>
+  <message>(Delete command) Rejecting user command, user did not enter a number for index.</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:26.771841400Z</date>
+  <millis>1584116546771</millis>
+  <nanos>841400</nanos>
+  <sequence>2</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>(Delete command) User entered index 0</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:26.776757700Z</date>
+  <millis>1584116546776</millis>
+  <nanos>757700</nanos>
+  <sequence>3</sequence>
+  <logger>global</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Delete command) Invoked with invalid index: -1</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:30.769168Z</date>
+  <millis>1584116550769</millis>
+  <nanos>168000</nanos>
+  <sequence>4</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>(Delete command) User entered index 1000</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:30.770141100Z</date>
+  <millis>1584116550770</millis>
+  <nanos>141100</nanos>
+  <sequence>5</sequence>
+  <logger>global</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Delete command) Invoked with invalid index: 999</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:32.769057600Z</date>
+  <millis>1584116552769</millis>
+  <nanos>57600</nanos>
+  <sequence>6</sequence>
+  <logger>global</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.parser.Parser</class>
+  <method>createDeleteCommand</method>
+  <thread>1</thread>
+  <message>(Delete command) Rejecting user command, user did not enter a number for index.</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:42.773403800Z</date>
+  <millis>1584116562773</millis>
+  <nanos>403800</nanos>
+  <sequence>7</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>(Delete command) User entered index 1</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:42.785069600Z</date>
+  <millis>1584116562785</millis>
+  <nanos>69600</nanos>
+  <sequence>8</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Delete command) Item was removed from index: 0</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:45.774838200Z</date>
+  <millis>1584116565774</millis>
+  <nanos>838200</nanos>
+  <sequence>9</sequence>
+  <logger>global</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.parser.Parser</class>
+  <method>createSetBudgetCommand</method>
+  <thread>1</thread>
+  <message>(Set budget) Rejecting user command, no number was specified for budget.</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:48.775105100Z</date>
+  <millis>1584116568775</millis>
+  <nanos>105100</nanos>
+  <sequence>10</sequence>
+  <logger>global</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.parser.Parser</class>
+  <method>createSetBudgetCommand</method>
+  <thread>1</thread>
+  <message>(Set budget) Rejecting user command, no number was specified for budget.</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:51.775835900Z</date>
+  <millis>1584116571775</millis>
+  <nanos>835900</nanos>
+  <sequence>11</sequence>
+  <logger>global</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.parser.Parser</class>
+  <method>createSetBudgetCommand</method>
+  <thread>1</thread>
+  <message>(Set budget) Rejecting user command, no "b/" substring.</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:55.780879Z</date>
+  <millis>1584116575780</millis>
+  <nanos>879000</nanos>
+  <sequence>12</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.SetBudgetCommand</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>(Set budget) User entered budget: 30.0</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:55.780879Z</date>
+  <millis>1584116575780</millis>
+  <nanos>879000</nanos>
+  <sequence>13</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.SetBudgetCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Set budget) Budget was corrected to: 30.0</message>
+</record>
+<record>
+  <date>2020-03-13T16:22:55.784747800Z</date>
+  <millis>1584116575784</millis>
+  <nanos>747800</nanos>
+  <sequence>14</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.SetBudgetCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Set budget) Budget amount: 30.0 did not fail assertions.</message>
+</record>
+<record>
+  <date>2020-03-13T16:23:01.780375200Z</date>
+  <millis>1584116581780</millis>
+  <nanos>375200</nanos>
+  <sequence>15</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>exit</method>
+  <thread>1</thread>
+  <message>Application shutting down</message>
+</record>
+</log>

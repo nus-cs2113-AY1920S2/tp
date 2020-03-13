@@ -1,9 +1,5 @@
 package seedu.duke.data;
 
-import seedu.duke.commands.Command;
-import seedu.duke.commands.IncorrectCommand;
-import seedu.duke.commands.MarkCommand;
-import seedu.duke.commands.UnmarkCommand;
 import seedu.duke.ui.CommandLineTable;
 
 import java.util.ArrayList;
@@ -11,7 +7,6 @@ import java.util.ArrayList;
 public class ShoppingList {
 
     private static ArrayList<Item> items = new ArrayList<>();
-    private static Command newCommand;
 
     public ShoppingList() {
     }
