@@ -1,18 +1,22 @@
 package seedu.nuke.data;
 
-import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
+import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import static seedu.nuke.util.Message.*;
-
 public class ModuleManager implements Iterable<Module> {
     private static ArrayList<Module> modules = new ArrayList<>();
+    private static HashMap<String, String> modulesMap;
+
+    public ModuleManager(HashMap<String, String> modulesMap) {
+        this.modulesMap = modulesMap;
+    }
 
     /**
      * @return all modules
@@ -27,12 +31,12 @@ public class ModuleManager implements Iterable<Module> {
 
     /**
      * Checks if the list contains an equivalent task as the given description.
-     * @param toCheck the task to-check
-     * @return true if the task exists
+     * @param moduleCode the module code to check if provided by NUS currently
+     * @return true if NUS is providing the module currently
      */
-    public static boolean contains(Module toCheck) {
+    public static boolean contains(String moduleCode) {
         for (Module p : modules) {
-            if (p.isSameModule(toCheck)) {
+            if (p.getModuleCode().equals(moduleCode)) {
                 return true;
             }
         }
@@ -42,13 +46,17 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * Add a module to the module List.
      *
-     * @param toAdd the module to add
+     * @param moduleCode the module code of the module to add
      */
-    public static void add(Module toAdd) throws DuplicateModuleException {
+    public static void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
-        if (ModuleManager.contains(toAdd)) {
+        if (ModuleManager.contains(moduleCode)) {
             throw new DuplicateModuleException();
-        } else {
+        } else if (!modulesMap.containsKey(moduleCode)) {
+            throw new ModuleNotProvidedException();
+        }
+        else {
+            Module toAdd = new Module(moduleCode, modulesMap.get(moduleCode), null);
             modules.add(toAdd);
         }
     }
@@ -58,6 +66,10 @@ public class ModuleManager implements Iterable<Module> {
      */
     public void clear() {
         modules.clear();
+    }
+
+    public static Module getLastAddedModule() {
+        return modules.get(modules.size()-1);
     }
 
     /**

@@ -4,10 +4,9 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.exception.ModuleNotFoundException;
-import seedu.nuke.module.Module;
 import seedu.nuke.task.Task;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

@@ -7,6 +7,8 @@ import seedu.nuke.module.Module;
 import seedu.nuke.task.Task;
 import seedu.nuke.ui.Ui;
 
+import java.util.HashMap;
+
 public abstract class Command {
     public static String COMMAND_WORD;
     protected ModuleManager moduleManager;

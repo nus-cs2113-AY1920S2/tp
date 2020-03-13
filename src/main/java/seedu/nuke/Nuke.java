@@ -31,9 +31,9 @@ public class Nuke {
     private Ui ui;
 
     public Nuke() throws FileNotFoundException {
-        moduleManager = new ModuleManager();
-        dataManager = new DataManager(moduleManager);
         modulesMap  = ModuleLoader.load("moduleList.json");
+        moduleManager = new ModuleManager(modulesMap);
+        dataManager = new DataManager(moduleManager);
     }
 
     /**
