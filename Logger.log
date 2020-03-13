@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-03-13T09:23:46.504375100Z</date>
+  <millis>1584091426504</millis>
+  <nanos>375100</nanos>
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>start</method>
+  <thread>1</thread>
+  <message>Application starting.</message>
+</record>
+<record>
+  <date>2020-03-13T09:24:01.195885900Z</date>
+  <millis>1584091441195</millis>
+  <nanos>885900</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>(Delete command) User entered index 1</message>
+</record>
+<record>
+  <date>2020-03-13T09:24:01.197880100Z</date>
+  <millis>1584091441197</millis>
+  <nanos>880100</nanos>
+  <sequence>2</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Delete command) Item was removed from index: 0</message>
+</record>
+<record>
+  <date>2020-03-13T09:24:03.194087500Z</date>
+  <millis>1584091443194</millis>
+  <nanos>87500</nanos>
+  <sequence>3</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>exit</method>
+  <thread>1</thread>
+  <message>Application shutting down</message>
+</record>
+</log>
