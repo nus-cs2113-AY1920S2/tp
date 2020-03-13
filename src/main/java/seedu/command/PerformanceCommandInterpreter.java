@@ -19,24 +19,20 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
      * @param commandDescription The userInput from the Ui.
      * @throws DukeException If the command is undefined.
      */
-    public void executeCommand(String commandDescription) throws DukeException {
+    public Command decideCommand(String commandDescription) throws DukeException {
         String commandType = getFirstWord(commandDescription);
         String commandParameters = getSubsequentWords(commandDescription);
         switch (commandType) {
         case "add":
-            new AddPerformance(commandParameters).execute();
-            break;
+            return new AddPerformance(commandParameters);
         case "delete":
-            new DeletePerformance(commandParameters).execute();
-            break;
+            return new DeletePerformance(commandParameters);
         case "view_student_result":
-            new ViewStudentResult(commandParameters).execute();
-            break;
+            return new ViewStudentResult(commandParameters);
         case "view_assignment_result":
-            new ViewAssignmentResult(commandParameters).execute();
-            break;
+            return new ViewAssignmentResult(commandParameters);
         default:
-            throw new DukeException("UNKNOWN COMMAND");
+            throw new DukeException("Performance: Unknown command.");
         }
     }
 }

@@ -62,14 +62,15 @@ public class CommandInterpreter {
             //TODO AttendanceCommandInterpreter
             break;
         case "performance":
-            new PerformanceCommandInterpreter(eventList).executeCommand(commandDescription);
+            PerformanceCommandInterpreter pci = new PerformanceCommandInterpreter(eventList);
+            command = pci.decideCommand(commandDescription);
             break;
         default:
-            throw new DukeException("Unknown command");
+            throw new DukeException("Unknown command type.");
         }
 
         if (command == null) {
-            throw new DukeException("duke is null");
+            throw new DukeException("Duke is null.");
         }
         return command;
     }
