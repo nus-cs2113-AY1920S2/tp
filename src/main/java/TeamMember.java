@@ -38,8 +38,8 @@ public class TeamMember {
         Integer startBlock = 0;
         Integer endBlock = 0;
         try {
-            startBlock = getBlocksFromTime(startTime, "START");
-            endBlock = getBlocksFromTime(endTime, "END");
+            startBlock = getBlocksFromTime(startTime);
+            endBlock = getBlocksFromTime(endTime);
         } catch (MoException e) {
             System.out.println(e.getMessage());
             return e.getMessage();
@@ -62,12 +62,12 @@ public class TeamMember {
                 }
                 startDayCopy++;
             }
-            for (int i = 0; i <= endBlock; i++) {
+            for (int i = 0; i < endBlock; i++) {
                 mySchedule[startDayCopy][i] = mySchedule_BLOCKED;
                 myScheduleName[startDayCopy][i] = meetingName;
             }
         } else {
-            for (int i = startBlock; i <= endBlock; i++) {
+            for (int i = startBlock; i < endBlock; i++) {
                 mySchedule[startDay][i] = mySchedule_BLOCKED;
                 myScheduleName[startDay][i] = meetingName;
             }
@@ -89,7 +89,7 @@ public class TeamMember {
             }
         }
     }
-    public Integer getBlocksFromTime(LocalTime myTime, String startOrEnd) throws MoException {
+    public Integer getBlocksFromTime(LocalTime myTime) throws MoException {
         int minuteBlocks = -1;
         int hourBlocks = -1;
         switch (myTime.getMinute()) {
@@ -102,17 +102,8 @@ public class TeamMember {
             default:
                 throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
         }
-        switch (startOrEnd) {
-            case "START":
-                hourBlocks = myTime.getHour() * 2;
-                break;
-            case "END":
-                if (myTime.getHour() == 0)
-                    hourBlocks = 48;
-                else
-                    hourBlocks = myTime.getHour() * 2 - 1; // For eg, if user types 2300-2330, its equivalent to block 46, 2230-2300 : block 45
-        }
-        return minuteBlocks + hourBlocks - 1; // convert to 0-based indexing
+        hourBlocks = myTime.getHour() * 2;
+        return minuteBlocks + hourBlocks;
     }
     public String getName() {
         return this.memberName;
