@@ -52,9 +52,18 @@ public class CardList {
      * @param index Index of card to retrieve.
      * @return card Card corresponding to index.
      */
-    public Card getCard(int index) {
+    public Card getCard(int index) throws EscException {
+        if (this.size() == 0) {
+            throw new EscException("The card list is empty.");
+        }
+
         // assuming that our question index starts from 1 and not 0.
-        Card card = cards.get(index - 1);
+        Card card;
+        try {
+            card = cards.get(index - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new EscException("The card item does not exist.");
+        }
         return card;
     }
 
