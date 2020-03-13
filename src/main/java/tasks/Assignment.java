@@ -53,7 +53,7 @@ public class Assignment extends Task {
                 + module
                 + ")"
                 + System.lineSeparator()
-                + Messages.NEWLINE_INDENT
+                + Messages.COMMENTS_INDENT
                 + comments;
     }
 }
