@@ -88,12 +88,15 @@ public class TeamMember {
                 hourBlocks = myTime.getHour() * 2;
                 break;
             case "END":
-                if (myTime.getHour() == 0)
-                    hourBlocks = 48;
-                else
+                if (myTime.getHour() == 0 && myTime.getMinute() == 0) {
+                    hourBlocks = 47;
+                } else if (myTime.getHour() == 0 && myTime.getMinute() == 30) {
+                    hourBlocks = 0;
+                } else {
                     hourBlocks = myTime.getHour() * 2 - 1; // For eg, if user types 2300-2330, its equivalent to 1 block: block 46, 2230-2300 : block 45
+                }
         }
-        return minuteBlocks + hourBlocks - 1; // convert to 0-based indexing
+        return minuteBlocks + hourBlocks; // convert to 0-based indexing
     }
     public String getName() {
         return this.memberName;
