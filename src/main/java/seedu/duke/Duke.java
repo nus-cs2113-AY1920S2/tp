@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.command.Bye;
 import seedu.command.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
@@ -19,14 +20,21 @@ public class Duke {
 
     public void run() {
         UI.setUserName();
-        Command command;
-        UI.readUserInput();
-        try {
-            command = interpreter.decideCommand(ui.getUserInput());
-            command.execute();
-        } catch (DukeException m) {
-            System.out.println(m);
-        }
+        Command command = null;
+
+        do {
+            UI.readUserInput();
+            try {
+                command = interpreter.decideCommand(ui.getUserInput());
+                command.execute();
+            } catch (DukeException m) {
+                System.out.println(m);
+            }
+        } while (isNotBye(command));
+    }
+
+    private boolean isNotBye(Command command) {
+        return !(command instanceof Bye);
     }
 
     /**

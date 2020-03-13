@@ -43,7 +43,7 @@ public class CommandInterpreter {
     }
 
     /**
-     * Execute the command from userInput.
+     * Decide the command from userInput.
      *
      * @param userInput The userInput from the Ui.
      * @throws DukeException If the command is undefined.
@@ -52,8 +52,16 @@ public class CommandInterpreter {
         Command command = null;
 
         String commandCategory = getFirstWord(userInput);
-        String commandDescription = getSubsequentWords(userInput);
+        String commandDescription = "";
+        // only look for 2nd to last words if commandCategory requires.
+        if (!commandCategory.equals("bye")) {
+            commandDescription = getSubsequentWords(userInput);
+        }
+
         switch (commandCategory) {
+        case "bye":
+            command = new Bye();
+            break;
         case "event":
             EventCommandInterpreter eci = new EventCommandInterpreter(eventList);
             command = eci.decideCommand(commandDescription);
