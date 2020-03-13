@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.command.Bye;
 import seedu.command.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
@@ -29,7 +30,7 @@ public class Duke {
             } catch (DukeException m) {
                 System.out.println(m);
             }
-        } while(isNotBye(command));
+        } while (isNotBye(command));
     }
 
     private boolean isNotBye(Command command) {
