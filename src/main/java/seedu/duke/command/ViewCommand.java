@@ -49,10 +49,8 @@ public class ViewCommand extends Command {
             viewList.append(sem.getSem()).append(System.lineSeparator());
             for (Module selectedModule: sem) {
                 int index = sem.indexOf(selectedModule) + 1;
-                String doneIcon;
                 viewList.append(index).append(".")
                         .append(selectedModule.toString())
-                        .append(selectedModule.getIcon())
                         .append(System.lineSeparator());
             }
             viewList.append(System.lineSeparator());
@@ -69,7 +67,6 @@ public class ViewCommand extends Command {
                 if (selectedModule.getDone()) {
                     viewList.append(index).append(".")
                             .append(selectedModule.toString())
-                            .append(selectedModule.getIcon())
                             .append(System.lineSeparator());
 
                 }
