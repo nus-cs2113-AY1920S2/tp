@@ -58,4 +58,16 @@ public abstract class Task {
     public String toString() {
         return String.format("%s %s", getStatusIcon(), name);
     }
+
+    @Override
+    public boolean equals(Object addedTask) {
+        if (this == addedTask) {
+            return true;
+        }
+        if (addedTask == null || getClass() != addedTask.getClass()) {
+            return false;
+        }
+        Task task = (Task) addedTask;
+        return name.equals(task.getName());
+    }
 }

@@ -79,4 +79,5 @@ public class Messages {
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
     public static final String COMPLETED_TASK_ERROR = "Task is already completed";
+    public static final String REPEAT_TASK_ERROR = "Task already exists in list";
 }
