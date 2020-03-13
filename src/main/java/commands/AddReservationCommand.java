@@ -38,28 +38,33 @@ public class AddReservationCommand extends ReservationCommand {
         // date
         int datePos = description.indexOf(RES_DATE_MARKER);
         int dateEndPos = description.indexOf(DELIMITER, datePos);
-        LocalDateTime date = LocalDateTime.parse(description.substring(datePos + RES_DATE_MARKER.length(), dateEndPos).trim(), 
+        LocalDateTime date = LocalDateTime.parse(
+                description.substring(datePos + RES_DATE_MARKER.length(), dateEndPos).trim(), 
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         
         // numberOfGuests
         int numberPos = description.indexOf(RES_NUM_MARKER);
         int numberEndPos = description.indexOf(DELIMITER, numberPos);
-        int numberOfGuests = Integer.parseInt(description.substring(numberPos + RES_NUM_MARKER.length(), numberEndPos).trim());
+        int numberOfGuests = Integer.parseInt(description.substring(
+                numberPos + RES_NUM_MARKER.length(), numberEndPos).trim());
         
         // contact
         int contactPos = description.indexOf(RES_CONTACT_MARKER);
         int contactEndPos = description.indexOf(DELIMITER, contactPos);
-        String contact = description.substring(contactPos + RES_CONTACT_MARKER.length(), contactEndPos).trim();
+        String contact = description.substring(
+                contactPos + RES_CONTACT_MARKER.length(), contactEndPos).trim();
         
         // comments
         int commentsPos = description.indexOf(RES_COMMENT_MARKER);
         int commentsEndPos = description.indexOf(DELIMITER, commentsPos);
-        String comments = description.substring(commentsPos + RES_COMMENT_MARKER.length(), commentsEndPos).trim();
+        String comments = description.substring(
+                commentsPos + RES_COMMENT_MARKER.length(), commentsEndPos).trim();
         
         // reservationNumber
         int reservationNumber = reservations.getSize();
 
-        Reservation reservation = new Reservation(reservationNumber, name, date, numberOfGuests, contact);
+        Reservation reservation = new Reservation(
+                reservationNumber, name, date, numberOfGuests, contact);
         reservations.addReservation(reservation);
         
         // TODO: display some message

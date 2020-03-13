@@ -1,5 +1,7 @@
 package utils;
 
+import ingredient.Ingredient;
+
 public class Pair<T, U> {
     private final T firstVal;
     private final U secondVal;
@@ -19,5 +21,18 @@ public class Pair<T, U> {
     
     public U second() {
         return this.secondVal;
+    }
+    
+    /** Returns true if both ingredients have the same name. */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        } 
+        if (obj instanceof Pair) {
+            Pair<?, ?> p = (Pair<?, ?>) obj;
+            return (p.firstVal.equals(this.firstVal) && p.secondVal.equals(this.secondVal));
+        }
+        return false;
     }
 } 
