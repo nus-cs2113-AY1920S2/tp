@@ -77,7 +77,7 @@ public class AddStockCommand extends StockCommand {
                 price = Optional.of(parseIngredientPrice(trimmedArg));
             } else {
                 throw new InvalidStockCommandException("The user's input given cannot"
-                        + " be parsed into ingredients' arguments.");
+                        + " be parsed into ingredient arguments.");
             }
         }
         
@@ -118,7 +118,7 @@ public class AddStockCommand extends StockCommand {
                     "The user's input must specify the ingredient's price!");
         } else if (ingredientName.isPresent() && quantity.isEmpty() && price.isPresent()) {
             throw new InvalidStockCommandException(
-                    "The user's input must specify the quantity of the ingredient to be added");
+                    "The user's input must specify the quantity of the ingredient to be added!");
         } else if (ingredientName.isEmpty() && quantity.isPresent() && price.isPresent()) {
             throw new InvalidStockCommandException(
                     "The user's input must specify the ingredient's name!");
@@ -134,5 +134,19 @@ public class AddStockCommand extends StockCommand {
                 + ingredientToAdd.getIngredientName() 
                 + " successfully added!");
     }
-
+    
+    /** A utility function to facilitate testing of execute(). */
+    public String printExecuteOutput(Stock stock) {
+        String outputMessage = "";
+        stock.addIngredient(ingredientToAdd);
+        outputMessage += ("Ingredient " 
+                + ingredientToAdd.getIngredientName() 
+                + " successfully added!");
+        
+        return outputMessage;
+    }
+    
+    public Ingredient getIngredientInAddCommand() {
+        return this.ingredientToAdd;
+    }
 }

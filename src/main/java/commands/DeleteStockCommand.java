@@ -39,11 +39,14 @@ public class DeleteStockCommand extends StockCommand {
     /**
      * A convenience constructor that contains information of an ingredient 
      * stored in a hashMap.
-     * @throws InvalidStockCommandException If the user's input does not meet the required
-     *                                      format by specifying i/INGREDIENT; q/QUANTITY;                                    
+     * @throws InvalidStockCommandException If the user's input does not meet 
+     *                                      the required format by specifying 
+     *                                      i/INGREDIENT; q/QUANTITY;                                    
      * 
      */
-    public DeleteStockCommand(String ingredientInput) throws InvalidStockCommandException {
+    public DeleteStockCommand(String ingredientInput) 
+            throws InvalidStockCommandException {
+        
         Map<String, Optional<Integer>> ingredientInfo = 
                 parseIntoDeleteIngredientArgs(ingredientInput);
         
@@ -60,13 +63,16 @@ public class DeleteStockCommand extends StockCommand {
     }
     
     /**
-     * Parses the user's input into readable arguments that will be used to construct 
-     * an Ingredient object. The arguments are then stored in a HashMap. For example: 
-     * ' i/tomato; q/10;' will store 'tomato' as the ingredient name, '10' as the 
-     * ingredient quantity to be deleted. Note that the specification of the ingredient's 
+     * Parses the user's input into readable arguments that will be used 
+     * to construct an Ingredient object. The arguments are then stored 
+     * in a HashMap. For example: ' i/tomato; q/10;' will store 'tomato' 
+     * as the ingredient name, '10' as the ingredient quantity to be 
+     * deleted. Note that the specification of the ingredient's 
      * quantity is optional.
-     * @throws InvalidStockCommandException If the user's input does not meet the required
-     *                                      format by specifying i/INGREDIENT; q/QUANTITY;
+     * @throws InvalidStockCommandException If the user's input does not 
+     *                                      meet the required format by 
+     *                                      specifying i/INGREDIENT; 
+     *                                      q/QUANTITY;
      * 
      */
     private Map<String, Optional<Integer>> parseIntoDeleteIngredientArgs(
@@ -85,7 +91,7 @@ public class DeleteStockCommand extends StockCommand {
             } else if (trimmedArg.contains("q/")) {
                 quantity = Optional.of(parseIngredientQuantity(trimmedArg));
             } else {
-                throw new InvalidStockCommandException("The user's input cannot"
+                throw new InvalidStockCommandException("The user's input given cannot"
                         + " be parsed into ingredient arguments.");
             }
         }
@@ -119,7 +125,7 @@ public class DeleteStockCommand extends StockCommand {
     public void execute(Stock stock) {    
         try {
             stock.deleteIngredient(ingredientToDelete);
-        } catch (IngredientNotFoundException e) {
+        } catch (IngredientNotFoundException infe) {
             System.out.println("Ingredient " 
                     + this.ingredientToDelete.getIngredientName() 
                     + " not found and cannot be deleted!");
@@ -139,5 +145,26 @@ public class DeleteStockCommand extends StockCommand {
                             : " deleted from the stock!");
         
         return outputMessage;
+    }
+    
+    /** A utility function to facilitate testing of execute(). */
+    public String printExecuteOutput(Stock stock) {
+        String outputMessage = "";
+        
+        try {
+            stock.deleteIngredient(ingredientToDelete);
+        } catch (IngredientNotFoundException infe) {
+            outputMessage += ("Ingredient " 
+                    + ingredientToDelete.getIngredientName() 
+                    + " not found and cannot be deleted!");
+        }
+        
+        outputMessage += (createDeleteResultMessage());
+        
+        return outputMessage;
+    }
+    
+    public Ingredient getIngredientInDeleteCommand() {
+        return this.ingredientToDelete;
     }
 }
