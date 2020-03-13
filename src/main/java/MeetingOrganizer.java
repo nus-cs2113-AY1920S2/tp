@@ -1,4 +1,6 @@
-
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MeetingOrganizer {
     private final Boolean mySchedule_BLOCKED = true;
@@ -37,10 +39,10 @@ public class MeetingOrganizer {
                 break;
             case "2":
                 System.out.println("Which meeting slot do you want to delete?");
-                TESTING.deleteBusyBlocks("TESTMEETING");
+                member1.deleteBusyBlocks("TESTMEETING");
                 for (int i = 0; i < 7; i++) {
                     for (int j=0; j < 48; j++) {
-                        System.out.print(TESTING.getSchedule()[i][j]);
+                        System.out.print(member1.getSchedule()[i][j]);
                     }
                     System.out.println("");
                 }

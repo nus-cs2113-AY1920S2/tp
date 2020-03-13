@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.time.LocalTime;
+import java.lang.Integer;
 
 public class ScheduleHandler {
     private final Boolean mySchedule_BLOCKED = true;
@@ -61,19 +62,43 @@ public class ScheduleHandler {
                     int endDay = i;
                     int endBlock = j - 1;
                     if (change) {
-                        endDay = i - 1;
                         endBlock = 47;
                     }
                     if (end) {
                         endBlock = 47;
+                        endDay = 0;
                     }
-                    ArrayList<Integer> freeSlot = new ArrayList<Integer>();
-                    freeSlot.add(startDay);
-                    freeSlot.add(startBlock);
-                    freeSlot.add(endDay);
-                    freeSlot.add(endBlock);
+                    ArrayList<Integer> freeSlot = makeSlot(startDay, startBlock, endDay, endBlock);
                     this.freeBlocks.add(freeSlot);
                 }
+            }
+        }
+        correctFirstAndLastSlotContinuation();
+    }
+
+    private ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock) {
+        ArrayList<Integer> freeSlot = new ArrayList<Integer>();
+        freeSlot.add(startDay);
+        freeSlot.add(startBlock);
+        freeSlot.add(endDay);
+        freeSlot.add(endBlock);
+        return freeSlot;
+    }
+
+    private void correctFirstAndLastSlotContinuation() {
+        int size = this.freeBlocks.size();
+        if (size > 1){
+            Boolean isSunday = this.freeBlocks.get(0).get(0).equals(this.freeBlocks.get(size-1).get(2));
+            Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0) && this.freeBlocks.get(size-1).get(3).equals(47);
+            Boolean isSundayMidnightOverlap = isSunday && isMidnight;
+            if (isSundayMidnightOverlap){
+                Integer newStartDay = this.freeBlocks.get(size-1).get(0);
+                Integer newStartBlock = this.freeBlocks.get(size-1).get(1);
+                Integer newEndDay = this.freeBlocks.get(0).get(2);
+                Integer newEndBlock = this.freeBlocks.get(0).get(3);
+                ArrayList<Integer> newFreeSlot = makeSlot(newStartDay, newStartBlock, newEndDay, newEndBlock);
+                this.freeBlocks.set(0,newFreeSlot);
+                this.freeBlocks.remove(size-1);
             }
         }
     }
