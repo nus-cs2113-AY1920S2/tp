@@ -3,7 +3,9 @@ package seedu.nuke.util;
 public class ExceptionMessage {
     public static final String MESSAGE_DUPLICATE_MODULE_ADD = "ALERT! The module already existed.\n";
 
-    public static final String MESSAGE_MODULE_NOT_FOUND = "Alert! Module is not found.\n";
+    public static final String MESSAGE_MODULE_NOT_FOUND = "ALERT! Module is not found.\n";
+
+    public static final String MESSAGE_MODULE_NOT_PROVIDED = "ALERT! The module is not provided by NUS currently.\n";
 
     public static final String MESSAGE_MISSING_MODULE_CODE = "ALERT! Module code is missing.\n";
 

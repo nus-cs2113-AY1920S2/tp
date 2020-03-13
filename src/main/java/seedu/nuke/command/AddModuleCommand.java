@@ -1,9 +1,11 @@
 package seedu.nuke.command;
 
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.module.Module;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE_ADD;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_PROVIDED;
 import static seedu.nuke.util.Message.MESSAGE_ADD_MODULE_SUCCESS;
 
 /**
@@ -31,12 +33,14 @@ public class AddModuleCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        Module toAdd = new Module(moduleCode, null, null);
         try {
-            ModuleManager.add(toAdd);
-            return new CommandResult(MESSAGE_ADD_MODULE_SUCCESS(toAdd.getModuleCode(), toAdd.getTitle()));
+            ModuleManager.add(moduleCode);
+            Module addedModule = ModuleManager.getLastAddedModule();
+            return new CommandResult(MESSAGE_ADD_MODULE_SUCCESS(addedModule.getModuleCode(), addedModule.getTitle()));
         } catch (ModuleManager.DuplicateModuleException e) {
             return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);
+        } catch (ModuleNotProvidedException e) {
+            return new CommandResult(MESSAGE_MODULE_NOT_PROVIDED);
         }
     }
 }
