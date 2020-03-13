@@ -46,7 +46,7 @@ class StockTest {
     @Test
     public void testAdd_CompareAgainstStockCopy_TrueIfSameContent() {
         Stock stockC = new Stock();
-        Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
+        final Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
         stockC.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
         stockC.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         stockC.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
@@ -88,7 +88,7 @@ class StockTest {
         stockF.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
         assertFalse(stockF.getStock().containsKey("banana"));
         
-        Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
+        final Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
         stockF.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
         stockF.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
         stockF.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
@@ -115,17 +115,17 @@ class StockTest {
     @Test
     public void list_ListIngredient_ListInSameOrder() {
         Stock stock = new Stock();
-        Stock stockCopy = new Stock();
+        Stock stockCopyB = new Stock();
         
         stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
         stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
         stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         
-        stockCopy.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
-        stockCopy.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
-        stockCopy.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        stockCopyB.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stockCopyB.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockCopyB.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         
-        assertTrue(areEqualMap(stock.getStock(), stockCopy.getStock()));
+        assertTrue(areEqualMap(stock.getStock(), stockCopyB.getStock()));
     }
     
     @Test 
@@ -172,7 +172,7 @@ class StockTest {
      * Utility functions ====================================================================================.
      */
     
-    private final static Map<String, Pair<Integer, Double>> createStockCopy() {
+    private Map<String, Pair<Integer, Double>> createStockCopy() {
         Map<String, Pair<Integer, Double>> stockCopy = new HashMap<>();
         stockCopy.put("tomato", Pair.of(1, 0.40));
         stockCopy.put("tomato", Pair.of(2, 0.50));
