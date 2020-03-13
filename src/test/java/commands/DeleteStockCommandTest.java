@@ -199,7 +199,7 @@ class DeleteStockCommandTest {
     }
     
     /**
-     * Utility functions ================================================================================
+     * Utility functions ================================================================================.
      */  
     
     /**
@@ -254,9 +254,10 @@ class DeleteStockCommandTest {
                     2, ingredientQuantityInput.length()));
             
             if (quantity < 0) {
-                    throw new InvalidStockCommandException("Please enter a"
-                            + " positive value for the quantity to be added!");
-            } return quantity;            
+                throw new InvalidStockCommandException("Please enter a"
+                        + " positive value for the quantity to be added!");
+            } 
+            return quantity;            
         } catch (NumberFormatException nfe) {
             throw new InvalidStockCommandException("Please ensure that the "
                     + "quantity specified is an integer!");

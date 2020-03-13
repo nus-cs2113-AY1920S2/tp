@@ -163,7 +163,7 @@ class AddStockCommandTest {
     }
     
     /**
-     * Utility functions =====================================================================================
+     * Utility functions =====================================================================================.
      */
    
     /**
@@ -221,9 +221,10 @@ class AddStockCommandTest {
                     2, ingredientQuantityInput.length()));
             
             if (quantity < 0) {
-                    throw new InvalidStockCommandException("Please enter a"
-                            + " positive value for the quantity to be added!");
-            } return quantity;            
+                throw new InvalidStockCommandException("Please enter a"
+                        + " positive value for the quantity to be added!");
+            } 
+            return quantity;            
         } catch (NumberFormatException nfe) {
             throw new InvalidStockCommandException("Please ensure that the "
                     + "quantity specified is an integer!");
@@ -246,7 +247,8 @@ class AddStockCommandTest {
             if (price < 0.0) {
                 throw new InvalidStockCommandException("Please enter a"
                         + " positive value for the ingredient's price!");
-            } return price;
+            } 
+            return price;
         } catch (NumberFormatException nfe) {
             throw new InvalidStockCommandException("Please ensure that the "
                     + "price specified has a '$' sign and is a decimal!");

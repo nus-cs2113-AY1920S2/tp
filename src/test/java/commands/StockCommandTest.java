@@ -76,7 +76,7 @@ class StockCommandTest {
         StockCommand stockCommand = new StockCommand();
         
         try {
-            int parsedInvalidQuantityThree= stockCommand.parseIngredientQuantity("q/-10");
+            int parsedInvalidQuantityThree = stockCommand.parseIngredientQuantity("q/-10");
         } catch (NumberFormatException nfe) {
             assertEquals("Please ensure that the quantity specified is an integer!", 
                     nfe.getMessage());

@@ -22,10 +22,10 @@ class StockTest {
      */
     @Test
     public void addIngredient_AddIngredientWithQuantitySupplied_addNormally() {
-        Stock stock = new Stock(); 
-        stock.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.40)));
-        stock.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50)));     
-        assertFalse(stock.getStock().get("tomato").second().equals(0.40));
+        Stock stockA = new Stock(); 
+        stockA.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.40)));
+        stockA.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50)));     
+        assertFalse(stockA.getStock().get("tomato").second().equals(0.40));
     }
     
     /**
@@ -33,11 +33,11 @@ class StockTest {
      */
     @Test
     public void addIngredient_AddIngredientWithQuantitySupplied_sumQuantity() {
-        Stock stock = new Stock();
-        stock.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.40)));
-        stock.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50))); 
-        assertTrue(stock.getStock().get("tomato").first().equals(3));
-        assertFalse(stock.getStock().get("tomato").first().equals(1));
+        Stock stockB = new Stock();
+        stockB.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.40)));
+        stockB.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50))); 
+        assertTrue(stockB.getStock().get("tomato").first().equals(3));
+        assertFalse(stockB.getStock().get("tomato").first().equals(1));
     }
     
     /**
@@ -45,12 +45,12 @@ class StockTest {
      */
     @Test
     public void testAdd_CompareAgainstStockCopy_TrueIfSameContent() {
-        Stock stock = new Stock();
+        Stock stockC = new Stock();
         Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
-        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
-        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
-        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
-        assertEquals(stock.getStock().keySet(), (stockCopy.keySet()));
+        stockC.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockC.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        stockC.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        assertEquals(stockC.getStock().keySet(), (stockCopy.keySet()));
     }
     
     /**
@@ -60,10 +60,10 @@ class StockTest {
     public void deleteIngredient_DeleteIngredientWithQuantity_deleteNormally() 
             throws IngredientNotFoundException {
         
-        Stock stock = new Stock();
-        stock.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.50)));
-        stock.deleteIngredient(new Ingredient("tomato", Optional.of(1), Optional.empty()));        
-        assertEquals(0, stock.getStock().get("tomato").first());
+        Stock stockD = new Stock();
+        stockD.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.50)));
+        stockD.deleteIngredient(new Ingredient("tomato", Optional.of(1), Optional.empty()));        
+        assertEquals(0, stockD.getStock().get("tomato").first());
     }
     
     /**
@@ -73,26 +73,26 @@ class StockTest {
     public void deleteIngredient_DeleteIngredientWithoutQuantity_deleteNormally() 
             throws IngredientNotFoundException {
         
-        Stock stock = new Stock();
-        stock.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
-        stock.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
-        assertFalse(stock.getStock().containsKey("banana"));
+        Stock stockE = new Stock();
+        stockE.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
+        stockE.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
+        assertFalse(stockE.getStock().containsKey("banana"));
     }
     
     @Test
     public void testDelete_CompareAgainstStockCopy_TrueIfSameContent() 
             throws IngredientNotFoundException {
         
-        Stock stock = new Stock();
-        stock.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
-        stock.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
-        assertFalse(stock.getStock().containsKey("banana"));
+        Stock stockF = new Stock();
+        stockF.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
+        stockF.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
+        assertFalse(stockF.getStock().containsKey("banana"));
         
         Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
-        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
-        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
-        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
-        assertEquals(stock.getStock().keySet(), (stockCopy.keySet()));
+        stockF.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stockF.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockF.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        assertEquals(stockF.getStock().keySet(), (stockCopy.keySet()));
     }
     
     @Test
@@ -169,10 +169,10 @@ class StockTest {
     }
     
     /**
-     * Utility functions ====================================================================================
+     * Utility functions ====================================================================================.
      */
     
-    private static Map<String, Pair<Integer, Double>> createStockCopy() {
+    private final static Map<String, Pair<Integer, Double>> createStockCopy() {
         Map<String, Pair<Integer, Double>> stockCopy = new HashMap<>();
         stockCopy.put("tomato", Pair.of(1, 0.40));
         stockCopy.put("tomato", Pair.of(2, 0.50));
