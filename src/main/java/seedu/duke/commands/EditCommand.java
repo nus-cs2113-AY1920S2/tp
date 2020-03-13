@@ -11,9 +11,12 @@ public class EditCommand extends Command {
             + System.lineSeparator() + "|| Example 2: EDIT 1 i/apple"
             + System.lineSeparator() + "|| Example 3: EDIT 1 p/6.00" + System.lineSeparator();
     public static final String MESSAGE_SUCCESS = System.lineSeparator()
-                                                 + "The item has been updated to: %s";
-    public static final String MESSAGE_FAILURE = System.lineSeparator()
-                                                 + "OOPS! I don't have that item in the list yet. Try again? :D";
+            + "The item has been updated to: %s";
+    public static final String MESSAGE_FAILURE_NOT_IN_LIST = System.lineSeparator()
+            + "OOPS! I don't have that item in the list yet. Try again? :D";
+    public static final String MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT =  System.lineSeparator()
+            + "OOPS! I couldn't process that because price has to be a number"
+            + ", silly!" + System.lineSeparator() + "|| Example: EDIT 2 i/apple p/2.00";
 
     private int indexOfItem;
     private String newDescription;
@@ -22,8 +25,7 @@ public class EditCommand extends Command {
     /**
      * Creates an EditCommand and initialises the item index,
      * description and price that needs to be edited.
-     *
-     * @param index index of item to change
+     *  @param index index of item to change
      * @param description new description of item to change
      * @param price new price of item to change
      */
@@ -48,8 +50,11 @@ public class EditCommand extends Command {
                 item.setPrice(Double.parseDouble(newPrice));
             }
             return new CommandResult(String.format(MESSAGE_SUCCESS, item.toString()));
-        } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
-            return new CommandResult(MESSAGE_FAILURE);
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            return new CommandResult(MESSAGE_FAILURE_NOT_IN_LIST);
+        } catch (NumberFormatException e) {
+            return new CommandResult(MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT);
+
         }
     }
 }

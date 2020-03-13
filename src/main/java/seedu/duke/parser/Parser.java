@@ -119,6 +119,7 @@ public class Parser {
                     + "Oops! For that to be done properly, check if these are met:"
                     + System.lineSeparator()
                     + " - Description of an item cannot be empty."
+                    + System.lineSeparator()
                     + " - Price of an item has to be in decimal form."
                     + System.lineSeparator()
                     + " - At least 'i/' or 'p/' should be present."
@@ -195,7 +196,7 @@ public class Parser {
      */
     private void createEditCommand(String arguments) {
         int indexOfItem;
-        String newItemPrice;
+        String newItemPrice;  //newItemPrice is String type as it need not be present (allows null).
         String newItemDescription;
         try {
             String[] args = splitArgsForEditCommand(arguments);
@@ -212,6 +213,8 @@ public class Parser {
                     + " - Price of an item has to be in decimal form."
                     + System.lineSeparator()
                     + " - At least 'i/' or 'p/' should be present."
+                    + System.lineSeparator()
+                    + " - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present."
                     + System.lineSeparator()
                     + "|| Example: EDIT 2 i/apple p/2.50");
         }
@@ -237,12 +240,18 @@ public class Parser {
         if (descriptionPresent && !pricePresent) { //e.g args: EDIT 2 i/apple
             indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
             itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
-            indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
-            argsArray = new String[]{indexOfItem, itemDescription, null};
-
+            if (itemDescription.equals("")) { //e.g args: EDIT 2 i/
+                throw new NullPointerException();
+            } else {
+                indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
+                argsArray = new String[]{indexOfItem, itemDescription, null};
+            }
         } else if (pricePresent && !descriptionPresent) { //e.g args: EDIT 2 p/4.50
             indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
             itemPrice = arguments.trim().substring(indexOfpPrefix + buffer);
+            if (itemPrice.equals("")) { //e.g args: EDIT 2 p/
+                throw new NullPointerException();
+            }
             indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
             argsArray = new String[]{indexOfItem, null, itemPrice};
 
@@ -254,10 +263,17 @@ public class Parser {
                 indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix);
+                if (itemDescription.equals("") || itemPrice.equals("")) { //e.g args: EDIT 2 p/i/apple OR EDIT 2 p/4 i/
+
+                    throw new NullPointerException();
+                }
             } else { //e.g args: EDIT 2 i/apple p/4.50
                 indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
                 itemDescription = arguments.trim().substring(indexOfiPrefix + buffer, indexOfpPrefix);
                 itemPrice = arguments.substring(indexOfpPrefix + buffer);
+                if (itemDescription.equals("") || itemPrice.equals("")) { //e.g args: EDIT 2 i/apple p/ OR EDIT 2  i/p/4
+                    throw new NullPointerException();
+                }
             }
             argsArray = new String[]{indexOfItem, itemDescription, itemPrice};
         } else {

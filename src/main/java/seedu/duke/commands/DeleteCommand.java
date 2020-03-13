@@ -11,6 +11,8 @@ public class DeleteCommand extends Command {
             + System.lineSeparator() + "|| Parameters: DEL [INDEX]"
             + System.lineSeparator() + "|| Example: DEL 1" + System.lineSeparator();
     public static final String DELETE_MESSAGE = "\nGot it! I have removed the following item:\n";
+    public static final String DELETE_MESSAGE_FAILURE = System.lineSeparator()
+            + "Please enter a valid index within the bounds";
 
     public DeleteCommand(int index) {
         super();
@@ -25,8 +27,7 @@ public class DeleteCommand extends Command {
             items.deleteItem(index);
             return new CommandResult(feedback);
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(System.lineSeparator()
-                    + "Please enter a valid index within the bounds");
+            return new CommandResult(DELETE_MESSAGE_FAILURE);
         }
 
     }

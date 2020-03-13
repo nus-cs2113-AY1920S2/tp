@@ -38,7 +38,7 @@ public class UnmarkCommandTest {
         result = command.execute();
 
         String expectedFeedback = System.lineSeparator()
-                + "Yes! I've unmarked this item as bought: "
+                + "Yes! I've unmarked this item as bought:"
                 + System.lineSeparator() + items.getList().get(1).toString()
                 + System.lineSeparator();
         assertEquals(expectedFeedback, result.feedbackToUser);
