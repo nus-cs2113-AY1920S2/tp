@@ -5,6 +5,7 @@ import tasks.Assignment;
 import tasks.Event;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -52,6 +53,17 @@ public class TaskList {
     }
 
     /**
+     * Getter for the current Local Date.
+     * Formats Local Date into "dd/MM/yyyy" format.
+     * @return LocalDate object of the formatted current Date
+     */
+    public LocalDateTime getCurrentDateTime() {
+        LocalDateTime currentDateTimeObj = LocalDateTime.now();
+        String currentDateTime = currentDateTimeObj.format(Parser.PRINT_DATE_FORMAT);
+        return LocalDateTime.parse(currentDateTime, Parser.PRINT_DATE_FORMAT);
+    }
+
+    /**
      * Getter method for tasks depending of days from today.
      * @param days Integer representing number of days from today
      * @return ArrayList object containing all tasks from indicated days from today
@@ -75,10 +87,10 @@ public class TaskList {
      */
     public ArrayList<Task> getUpcomingEventArray() {
         ArrayList<Task> eventList = new ArrayList<>();
-        LocalDate currDate = getCurrentDate();
+        LocalDateTime currDateTime = getCurrentDateTime();
         for (Task task : tasks) {
-            LocalDate taskDate = task.getDate();
-            if (task instanceof Event && taskDate.compareTo(currDate) > 0) {
+            LocalDateTime taskDateTime = task.getDateAndTime();
+            if (task instanceof Event && taskDateTime.compareTo(currDateTime) > 0) {
                 eventList.add(task);
             }
         }
