@@ -30,7 +30,7 @@ public class PerformanceParser {
                 case "a":
                     assignment = data[1];
                     break;
-                case "c":
+                case "e":
                     eventName = data[1];
                     break;
                 case "n":

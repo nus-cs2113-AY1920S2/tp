@@ -5,4 +5,6 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-seedu.exception.DukeException: Unknown command
+What is your name?
+Hello James Gosling. Welcome to your personal Professor Assistant Console.
+seedu.exception.DukeException: No parameters provided
