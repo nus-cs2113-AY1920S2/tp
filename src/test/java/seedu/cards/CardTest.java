@@ -12,7 +12,7 @@ public class CardTest {
     @BeforeEach
     public void setUp() {
         flashcard1 = new Card("What does HTTP stand for?", "HyperText Transfer Protocol");
-        flashcard2 = new Card("What does HTML stand for?", "Hypertext Markup Language");
+        flashcard2 = new Card("What does HTML stand for?", "HyperText Markup Language");
     }
 
     @Test

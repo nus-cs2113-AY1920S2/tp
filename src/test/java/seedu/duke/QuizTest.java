@@ -29,7 +29,7 @@ public class QuizTest {
         emptyCardList = new CardList();
         filledCardList = new CardList();
         flashcard1 = new Card("What does HTTP stand for?", "HyperText Transfer Protocol");
-        flashcard2 = new Card("What does HTML stand for?", "Hypertext Markup Language");
+        flashcard2 = new Card("What does HTML stand for?", "HyperText Markup Language");
         flashcard3 = new Card("What does CSS stand for?", "Cascading Style Sheets");
         filledCardList.addCard(flashcard1);
         filledCardList.addCard(flashcard2);
