@@ -5,20 +5,27 @@ public class MeetingOrganizer {
         //declare objects here
     }
     void botResponse(String userInput) throws MoException {
+        TeamMember TESTING = new TeamMember("john");
         switch (userInput) {
             case "1":
                 System.out.println("You have selected new scheduled meeting");
-                TeamMember testing = new TeamMember("john");
-                testing.addBusyBlocks("testmeeting", 0, "10:30", 2, "12:00");
+                TESTING.addBusyBlocks("TESTMEETING", 0, "10:30", 2, "12:00");
                 for (int i = 0; i < 7; i++) {
                     for (int j=0; j < 48; j++) {
-                        System.out.print(testing.getSchedule()[i][j]);
+                        System.out.print(TESTING.getSchedule()[i][j]);
                     }
                     System.out.println("");
                 }
                 break;
             case "2":
                 System.out.println("Which meeting slot do you want to delete?");
+                TESTING.deleteBusyBlocks("TESTMEETING");
+                for (int i = 0; i < 7; i++) {
+                    for (int j=0; j < 48; j++) {
+                        System.out.print(TESTING.getSchedule()[i][j]);
+                    }
+                    System.out.println("");
+                }
                 break;
             case "3":
                 System.out.println("Which meeting slot do you want to edit?");
