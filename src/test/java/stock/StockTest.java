@@ -115,7 +115,7 @@ class StockTest {
     @Test
     public void list_ListIngredient_ListInSameOrder() {
         Stock stock = new Stock();
-        Stock stockCopyB = new Stock();
+        final Stock stockCopyB = new Stock();
         
         stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
         stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
