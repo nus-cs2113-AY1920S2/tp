@@ -13,6 +13,8 @@ import stock.Stock;
 import utils.Pair;
 
 class ListStockCommandTest {
+    
+    private final String ls = System.lineSeparator();
 
     @Test
     public void execute_executeListCommand_executeNormally() 
@@ -55,15 +57,20 @@ class ListStockCommandTest {
     
     private String createListIngredientOutputCopy(Ingredient ingredient) {
         String outputMessage = "";
-        outputMessage += ("Here are the ingredients in the stock currently:\n")
+        outputMessage += ("Here are the ingredients in the stock currently:"
+                + ls)
                 + ("============================================================"
-                + "================================================================\n");
+                + "================================================================"
+                + ls);
      
-        outputMessage += ("1. [1][$0.50] potato\n")
-                + ("2. [10][$0.50] tomato\n");
+        outputMessage += ("1. [1][$0.50] potato" 
+                + ls)
+                + ("2. [10][$0.50] tomato" 
+                + ls);
                 
         outputMessage += ("============================================================"
-                + "================================================================\n"
+                + "================================================================"
+                + ls
                 + "All ingredients listed successfully!");
         
         return outputMessage;
@@ -84,7 +91,7 @@ class ListStockCommandTest {
             String ingredientName = ingredient.getKey();
             int quantity = ingredient.getValue().first();
             double price = ingredient.getValue().second();
-            outputMessage += ("\n" 
+            outputMessage += (ls 
                     + ingredientCounter 
                     + ". "
                     + "[" 
@@ -107,15 +114,17 @@ class ListStockCommandTest {
      */
     private String printlistIngredientToString(Stock stock) {
         String outputMessage = "";
-        outputMessage += ("Here are the ingredients in the stock currently:\n")
+        outputMessage += ("Here are the ingredients in the stock currently:"
+                + ls)
                 + ("============================================================"
                 + "================================================================");
         
         outputMessage += printStock(stock) 
-                + "\n";
+                + ls;
         
         outputMessage += ("============================================================"
-                + "================================================================\n");
+                + "================================================================"
+                + ls);
         
         return outputMessage;
     }
