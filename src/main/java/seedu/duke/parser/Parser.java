@@ -171,24 +171,36 @@ public class Parser {
      * Initialises the MarkCommand.
      */
     private void createMarkCommand(String arguments) {
-        String[] words = arguments.trim().split(" ");
-        if (words.length != 1) {
-            newCommand = new IncorrectCommand("Please provide an index number!");
+        try {
+            String[] words = arguments.trim().split(" ");
+            if (words.length == 1) {
+                int index = Integer.parseInt(words[0]) - 1;
+                newCommand = new MarkCommand(index);
+            } else {
+                newCommand = new IncorrectCommand("It should be MARK <one existing index>");
+            }
+
+        } catch (NumberFormatException | NullPointerException e) {
+            newCommand = new IncorrectCommand("Please provide a numerical index!!");
         }
-        int index = Integer.parseInt(words[0]) - 1;
-        newCommand = new MarkCommand(index);
     }
 
     /**
      * Initialises the Unmark Command.
      */
     private void createUnmarkCommand(String arguments) {
-        String[] words = arguments.trim().split(" ");
-        if (words.length != 1) {
-            newCommand = new IncorrectCommand("Please provide an index number!");
+        try {
+            String[] words = arguments.trim().split(" ");
+            if (words.length == 1) {
+                int index = Integer.parseInt(words[0]) - 1;
+                newCommand = new UnmarkCommand(index);
+            } else {
+                newCommand = new IncorrectCommand("It should be UNMARK <one existing index>");
+            }
+
+        } catch (NumberFormatException | NullPointerException e) {
+            newCommand = new IncorrectCommand("Please provide a numerical index!!");
         }
-        int index = Integer.parseInt(words[0]) - 1;
-        newCommand = new UnmarkCommand(index);
     }
 
     /**
