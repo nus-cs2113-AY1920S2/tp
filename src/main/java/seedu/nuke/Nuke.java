@@ -1,43 +1,38 @@
 package seedu.nuke;
 
-import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.AnsiConsole;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
-import seedu.nuke.data.DataManager;
-import seedu.nuke.data.ModuleLoader;
-import seedu.nuke.data.ModuleManager;
-import seedu.nuke.module.DummyModule;
+import seedu.nuke.data.*;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.ansi;
-import static seedu.nuke.ui.TextUi.printDivider;
-import static seedu.nuke.util.ExceptionMessage.*;
 
 public class Nuke {
     private CommandResult commandResult;
     private ModuleManager moduleManager;
     private DataManager dataManager;
     public HashMap<String,String> modulesMap;
+    public ScreenShotManager screenShotManager;
+    private ScreenShot screenShot;
+
     private Ui ui;
 
     public Nuke() throws FileNotFoundException {
         modulesMap  = ModuleLoader.load("moduleList.json");
         moduleManager = new ModuleManager(modulesMap);
-        dataManager = new DataManager(moduleManager);
+        dataManager = new DataManager();
+        screenShotManager = new ScreenShotManager();
+        screenShot = new ScreenShot(moduleManager, dataManager, 0);
     }
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * ScreenShot entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) throws FileNotFoundException {
         TextUi.clearScreen();
@@ -45,9 +40,8 @@ public class Nuke {
         new Nuke().run();
     }
 
-    private void run() {
+    public void run() {
         this.ui = new Ui();
-
         TextUi.showWelcomeMessage();
         runCommandLoopUntilExitCommand();
     }
@@ -72,6 +66,8 @@ public class Nuke {
             // if there is no file to load or the file is empty, setData will initialize a new taskManager system
             //update the module manager as well as the data manager
             command.setData(moduleManager, dataManager);
+            //take the screen shot
+            screenShot.takeScreenShot(moduleManager, dataManager);
             // Execute according to the command itself
             commandResult = command.execute();
             // save the taskManager to a file
