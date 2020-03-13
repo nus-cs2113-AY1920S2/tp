@@ -25,7 +25,8 @@ public class AddPerformance extends Command {
      */
     public void addToList() {
         String eventName = performance.getEvent();
-        PerformanceList performanceList = new PerformanceList(); //TODO: change this list to the performance list under event input
+        PerformanceList performanceList = new PerformanceList();
+        //TODO: change this list to the performance list under event input
         performanceList.addToList(performance, eventName);
     }
 

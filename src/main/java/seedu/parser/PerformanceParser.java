@@ -3,12 +3,12 @@ package seedu.parser;
 import seedu.performance.Performance;
 import seedu.ui.UI;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 public class PerformanceParser {
     int mark = -1;
     String grade = null;
+
     public PerformanceParser() {
     }
 
@@ -43,6 +43,7 @@ public class PerformanceParser {
                 case "m":
                     mark = Integer.parseInt(data[1]);
                     r = 2;
+                    break;
                 default:
                     UI.printWrongInput(s);
                 }

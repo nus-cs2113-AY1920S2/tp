@@ -47,6 +47,9 @@ public class UI {
         System.out.println(message);
     }
 
+    /**
+     * This prints the welcome message and set username for the application.
+     */
     public static void setUserName() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -60,6 +63,9 @@ public class UI {
                 + "personal Professor Assistant Console.");
     }
 
+    /**
+     * This prints the horizontal split for a 4 columns table.
+     */
     public static void printSplitContent() {
         System.out.print("|");
         Stream.generate(() -> "_").limit(11).forEach(System.out::print);
@@ -77,6 +83,14 @@ public class UI {
         System.out.print("\n");
     }
 
+    /**
+     * This prints the headers, index, header1, header2, and header 3
+     * in order respectively.
+     * @param index A String printed at row 1 column 1.
+     * @param header1 A String printed at row 1 column 2.
+     * @param header2 A String printed at row 1 column 3.
+     * @param header3 A String printed at row 1 column 4.
+     */
     public static void printListHeader(String index, String header1,
                                        String header2, String header3) {
         String headerFormat = ("| %-10s|  %-30s|  %-35s|  %-10s|%n");
@@ -85,9 +99,17 @@ public class UI {
         printSplitContent();
     }
 
-    public static void printListBody(int index, String studentName,
-                                     String assignmentName, Serializable result) {
-        System.out.printf(LIST_FORMAT, index, studentName, assignmentName, result);
+    /**
+     * This prints the headers, index, body1, body2, and body3
+     * in order respectively.
+     * @param index A String printed at column 1.
+     * @param body1 A String printed at column 2.
+     * @param body2 A String printed at column 3.
+     * @param body3 A String printed at column 4.
+     */
+    public static void printListBody(int index, String body1,
+                                     String body2, Serializable body3) {
+        System.out.printf(LIST_FORMAT, index, body1, body2, body3);
         printSplitContent();
     }
 
