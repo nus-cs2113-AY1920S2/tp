@@ -5,6 +5,7 @@ import tasks.Assignment;
 import tasks.Event;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -75,10 +76,10 @@ public class TaskList {
      */
     public ArrayList<Task> getUpcomingEventArray() {
         ArrayList<Task> eventList = new ArrayList<>();
-        LocalDate currDate = getCurrentDate();
+        LocalDateTime currDateTime = LocalDateTime.now();
         for (Task task : tasks) {
-            LocalDate taskDate = task.getDate();
-            if (task instanceof Event && taskDate.compareTo(currDate) > 0) {
+            LocalDateTime taskDateTime = task.getDateAndTime();
+            if (task instanceof Event && taskDateTime.compareTo(currDateTime) > 0) {
                 eventList.add(task);
             }
         }
