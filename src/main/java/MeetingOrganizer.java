@@ -12,7 +12,6 @@ public class MeetingOrganizer {
                 // Test printTimetable
                 boolean[][] mySchedule = new boolean[7][48];
                 TextUI.printTimetable(mySchedule);
-                //
 
                 TESTING.addBusyBlocks("TESTMEETING", 0, "10:30", 2, "12:00");
                 for (int i = 0; i < 7; i++) {
