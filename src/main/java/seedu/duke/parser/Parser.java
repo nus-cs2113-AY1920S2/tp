@@ -14,9 +14,13 @@ import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.UnmarkCommand;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Parser {
 
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static Command newCommand;
 
     /**
@@ -84,7 +88,7 @@ public class Parser {
         default:
             createHelpCommand();
         }
-
+        assert newCommand != null : "newCommand should have been initialised";
         return newCommand;
     }
 
@@ -293,6 +297,7 @@ public class Parser {
             int index = Integer.parseInt(arguments);
             newCommand = new DeleteCommand(index);
         } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING,"(Delete command) Rejecting user command, user did not enter a number for index.");
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Please enter an index"
                     + System.lineSeparator()
@@ -329,16 +334,19 @@ public class Parser {
     private void createSetBudgetCommand(String arguments) {
         try {
             if (!arguments.contains("b/")) {
+                LOGGER.log(Level.WARNING,"(Set budget) Rejecting user command, no \"b/\" substring.");
                 newCommand = new IncorrectCommand(System.lineSeparator()
                         + "Please enter the amount after the \"b/\" divider"
                         + System.lineSeparator()
                         + "Example: SET b/300");
             } else {
+                assert arguments.indexOf("b/") != -1 : "Substring \"b/\" should be present";
                 double amount = Double.parseDouble(arguments.substring(2));
                 newCommand = new SetBudgetCommand(amount);
             }
 
         } catch (NumberFormatException | NullPointerException | StringIndexOutOfBoundsException e) {
+            LOGGER.log(Level.WARNING,"(Set budget) Rejecting user command, no number was specified for budget.");
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Please enter an amount for your budget"
                     + System.lineSeparator()
