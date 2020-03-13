@@ -165,28 +165,6 @@ public class UI {
         }
     }
 
-    /**
-     * Parses an event to String format to be saved in file.
-     *
-     * @param event The event.
-     * @return The corresponding String format of the event object.
-     */
-    public static String eventToStorage(Event event) {
-        return event.getName() + " | " + event.getDatetime()
-                + " | " + event.getVenue() + "\n";
-    }
-
-    /**
-     * Parses an attendance to String format to be saved in file.
-     *
-     * @param attendance The attendance.
-     * @return The corresponding String format of the attendance object.
-     */
-    public static String attendanceToStorage(Attendance attendance) {
-        return attendance.getStudentName() + " | " + attendance.getDescription()
-                + " | " + attendance.getAttendance() + "\n";
-    }
-
     public static void printWrongInput(String typeInput) {
         System.out.printf("Wrong %s input. If you need help with "
                 + "the input format, please input help.\n", typeInput);
