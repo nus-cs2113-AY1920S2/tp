@@ -1,6 +1,8 @@
 package seedu.nuke.data.module;
 
+import seedu.nuke.data.category.Category;
 import seedu.nuke.data.category.CategoryList;
+import seedu.nuke.data.task.TaskList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 
@@ -15,6 +17,20 @@ public class ModuleList {
      */
     public static ArrayList<Module> getModuleList() {
         return moduleList;
+    }
+
+    public static Module getModule(String moduleCode) throws ModuleNotFoundException {
+        for (Module module : moduleList) {
+            if (module.getModuleCode().equals(moduleCode.toUpperCase())) {
+                return module;
+            }
+        }
+        throw new ModuleNotFoundException();
+    }
+
+    public static Category getCategory(String moduleCode, String categoryName)
+            throws ModuleNotFoundException, CategoryList.CategoryNotFoundException {
+        return getModule(moduleCode).getCategories().getCategory(categoryName);
     }
 
     /**
@@ -72,22 +88,18 @@ public class ModuleList {
      * @see Module
      */
     public static Module delete(String moduleCode) throws ModuleNotFoundException {
-        for (Module module : moduleList) {
-            if (module.getModuleCode().toUpperCase().equals(moduleCode)) {
-                moduleList.remove(module);
-                return module;
-            }
-        }
-        throw new ModuleNotFoundException();
+        Module toDelete = getModule(moduleCode);
+        moduleList.remove(toDelete);
+        return toDelete;
     }
 
     public static CategoryList filterExact(String moduleCode) throws ModuleNotFoundException {
-        for (Module module : moduleList) {
-            if (module.getModuleCode().equals(moduleCode.toUpperCase())) {
-                return module.getCategories();
-            }
-        }
-        throw new ModuleNotFoundException();
+        return getModule(moduleCode).getCategories();
+    }
+
+    public static TaskList filterExact(String moduleCode, String categoryName)
+            throws ModuleNotFoundException, CategoryList.CategoryNotFoundException {
+        return filterExact(moduleCode).filterExact(categoryName);
     }
 
 

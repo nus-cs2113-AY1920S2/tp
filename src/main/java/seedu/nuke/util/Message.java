@@ -42,4 +42,12 @@ public class Message {
         return String.format("SUCCESS!! Category %s has been deleted.\n", categoryName);
     }
 
+    public static String MESSAGE_ADD_TASK_SUCCESS(String taskDescription) {
+        return String.format("SUCCESS!! Task %s is created.\n", taskDescription);
+    }
+
+    public static String MESSAGE_DELETE_TASK_SUCCESS(String taskDescription) {
+        return String.format("SUCCESS!! Task %s has been deleted.\n", taskDescription);
+    }
+
 }

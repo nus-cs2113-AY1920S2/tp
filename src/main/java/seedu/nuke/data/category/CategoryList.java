@@ -1,26 +1,39 @@
 package seedu.nuke.data.category;
 
+import seedu.nuke.data.module.Module;
+import seedu.nuke.data.module.ModuleList;
+import seedu.nuke.data.task.TaskList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 
 import java.util.ArrayList;
 
 public class CategoryList {
-    ArrayList<Category> categoryList;
+    private ArrayList<Category> categoryList;
 
-    public CategoryList() {
-        categoryList = initialiseCategories();
+    public CategoryList(Module parentModule) {
+        categoryList = initialiseCategories(parentModule);
     }
 
-    private ArrayList<Category> initialiseCategories() {
+    public ArrayList<Category> initialiseCategories(Module parentModule) {
         ArrayList<Category> initialTaskCategories = new ArrayList<>();
-        initialTaskCategories.add(new Category("Lecture", 1));
-        initialTaskCategories.add(new Category("Tutorial", 2));
-        initialTaskCategories.add(new Category("Assignment", 4));
-        initialTaskCategories.add(new Category("Lab", 3));
+        initialTaskCategories.add(new Category(parentModule, "Lecture", 1));
+        initialTaskCategories.add(new Category(parentModule, "Tutorial", 2));
+        initialTaskCategories.add(new Category(parentModule, "Assignment", 4));
+        initialTaskCategories.add(new Category(parentModule, "Lab", 3));
 
         return initialTaskCategories;
     }
+
+    public Category getCategory(String categoryName) throws CategoryNotFoundException {
+        for (Category category : categoryList) {
+            if (category.getCategoryName().equals(categoryName)) {
+                return category;
+            }
+        }
+        throw new CategoryNotFoundException();
+    }
+
 
     /**
      * Checks for duplicates of the specified category in the Category List.
@@ -62,13 +75,13 @@ public class CategoryList {
      * @see Category
      */
     public Category delete(String categoryName) throws CategoryNotFoundException {
-        for (Category category : categoryList) {
-            if (category.getCategoryName().equals(categoryName)) {
-                categoryList.remove(category);
-                return category;
-            }
-        }
-        throw new CategoryNotFoundException();
+        Category toDelete = getCategory(categoryName);
+        categoryList.remove(toDelete);
+        return toDelete;
+    }
+
+    public TaskList filterExact(String categoryName) throws CategoryNotFoundException {
+        return getCategory(categoryName).getTasks();
     }
 
     public static class CategoryNotFoundException extends DataNotFoundException {}

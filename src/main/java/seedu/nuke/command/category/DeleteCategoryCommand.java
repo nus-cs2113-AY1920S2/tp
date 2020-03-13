@@ -1,10 +1,9 @@
-package seedu.nuke.command.taskCategory;
+package seedu.nuke.command.category;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.category.Category;
 import seedu.nuke.data.category.CategoryList;
-import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
@@ -28,8 +27,8 @@ public class DeleteCategoryCommand extends Command {
      * <b>Category List</b>.
      *
      * @return The <b>Command Result</b> of the execution
-     * @see Module
-     * @see ModuleList
+     * @see Category
+     * @see CategoryList
      * @see CommandResult
      */
     @Override

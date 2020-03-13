@@ -11,6 +11,10 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_CATEGORY_NOT_FOUND = "Alert! Category is not found.\n";
 
+    public static final String MESSAGE_DUPLICATE_TASK = "ALERT! The task already exists.\n";
+
+    public static final String MESSAGE_TASK_NOT_FOUND = "Alert! Task is not found.\n";
+
     public static final String MESSAGE_MISSING_PARAMETERS = "Alert! Some parameters are missing.\n";
 
     public static final String MESSAGE_INVALID_PRIORITY = "Alert! Priority should be a number.\n";

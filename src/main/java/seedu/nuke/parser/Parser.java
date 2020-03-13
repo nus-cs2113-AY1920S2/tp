@@ -6,8 +6,8 @@ import seedu.nuke.command.InvalidCommand;
 import seedu.nuke.command.ListCommand;
 import seedu.nuke.command.module.AddModuleCommand;
 import seedu.nuke.command.module.DeleteModuleCommand;
-import seedu.nuke.command.taskCategory.AddCategoryCommand;
-import seedu.nuke.command.taskCategory.DeleteCategoryCommand;
+import seedu.nuke.command.category.AddCategoryCommand;
+import seedu.nuke.command.category.DeleteCategoryCommand;
 import seedu.nuke.exception.InvalidFormatException;
 
 import java.util.Arrays;

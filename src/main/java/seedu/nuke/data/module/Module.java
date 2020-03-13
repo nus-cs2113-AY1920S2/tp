@@ -12,7 +12,7 @@ public class Module {
         this.moduleCode = moduleCode.toUpperCase();
         this.title = title;
         this.description = description;
-        this.categories = new CategoryList();
+        this.categories = new CategoryList(this);
     }
 
     public String getModuleCode() {

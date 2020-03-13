@@ -1,34 +1,35 @@
 package seedu.nuke.data.category;
 
+import seedu.nuke.data.module.Module;
 import seedu.nuke.data.task.TaskList;
 
 public class Category {
+    private Module parentModule;
     private String categoryName;
     private int categoryPriority;
     private TaskList tasks;
 
-    public Category(String categoryName, int categoryPriority) {
+    public Category(Module parentModule, String categoryName, int categoryPriority) {
+        this.parentModule = parentModule;
         this.categoryName = categoryName;
         this.categoryPriority = categoryPriority;
         this.tasks = new TaskList();
     }
 
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
-        this.categoryPriority = 0;
-        this.tasks = new TaskList();
+    public Module getParentModule() {
+        return parentModule;
     }
 
     public String getCategoryName() {
         return categoryName;
     }
 
-    public TaskList getTasks() {
-        return tasks;
-    }
-
     public int getCategoryPriority() {
         return categoryPriority;
+    }
+
+    public TaskList getTasks() {
+        return tasks;
     }
 
     public void setCategoryName(String categoryName) {
