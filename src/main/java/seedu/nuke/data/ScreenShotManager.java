@@ -5,9 +5,11 @@ import java.util.List;
 
 public class ScreenShotManager {
     private List<ScreenShot> screenShotList;
+    private int currentPointer;
 
     public ScreenShotManager() {
-        screenShotList = new LinkedList<ScreenShot>();
+        screenShotList = new LinkedList<>();
+        currentPointer = 0;
     }
 
     public ScreenShotManager(List<ScreenShot> screenShotList) {
@@ -20,5 +22,13 @@ public class ScreenShotManager {
 
     public void setScreenShotList(List<ScreenShot> screenShotList) {
         this.screenShotList = screenShotList;
+    }
+
+    public int getCurrentPointer() {
+        return currentPointer;
+    }
+
+    public void setCurrentPointer(int currentPointer) {
+        this.currentPointer = currentPointer;
     }
 }

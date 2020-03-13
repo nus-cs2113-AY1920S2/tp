@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.*;
+import seedu.nuke.module.Module;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
@@ -19,7 +20,7 @@ public class Nuke {
     private DataManager dataManager;
     public HashMap<String,String> modulesMap;
     public ScreenShotManager screenShotManager;
-    private ScreenShot screenShot;
+    private ScreenShot currentScreenShot;
 
     private Ui ui;
 
@@ -28,7 +29,7 @@ public class Nuke {
         moduleManager = new ModuleManager(modulesMap);
         dataManager = new DataManager();
         screenShotManager = new ScreenShotManager();
-        screenShot = new ScreenShot(moduleManager, dataManager, 0);
+        currentScreenShot = new ScreenShot(moduleManager, dataManager);
     }
 
     /**
@@ -62,12 +63,17 @@ public class Nuke {
      */
     private CommandResult executeCommand(Command command) {
         try {
+            //load from current screen shot
+            dataManager.setAllTasks(screenShotManager.getScreenShotList().get(screenShotManager.getCurrentPointer()).getDataManager().getAllTasks());
+
             // supplies the data the command will operate on.
             // if there is no file to load or the file is empty, setData will initialize a new taskManager system
             //update the module manager as well as the data manager
             command.setData(moduleManager, dataManager);
             //take the screen shot
-            screenShot.takeScreenShot(moduleManager, dataManager);
+            currentScreenShot.takeScreenShot(moduleManager, dataManager);
+            //add screen shot
+            screenShotManager.getScreenShotList().add(currentScreenShot);
             // Execute according to the command itself
             commandResult = command.execute();
             // save the taskManager to a file

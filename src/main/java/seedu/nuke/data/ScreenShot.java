@@ -7,12 +7,10 @@ import seedu.nuke.data.ModuleManager;
 public class ScreenShot {
     private ModuleManager moduleManager;
     private DataManager dataManager;
-    private int screenShotIndex;
 
-    public ScreenShot(ModuleManager moduleManager, DataManager dataManager, int screenShotIndex) {
+    public ScreenShot(ModuleManager moduleManager, DataManager dataManager) {
         this.moduleManager = moduleManager;
         this.dataManager = dataManager;
-        this.screenShotIndex = screenShotIndex;
     }
 
     public ModuleManager getModuleManager() {
@@ -31,18 +29,9 @@ public class ScreenShot {
         this.dataManager = dataManager;
     }
 
-    public int getScreenShotIndex() {
-        return screenShotIndex;
-    }
-
-    public void setScreenShotIndex(int screenShotIndex) {
-        this.screenShotIndex = screenShotIndex;
-    }
-
     public void takeScreenShot (ModuleManager moduleManager, DataManager dataManager){
         this.moduleManager = moduleManager;
         this.dataManager = dataManager;
-        this.screenShotIndex++;
     }
 }
 

@@ -21,6 +21,10 @@ public class DataManager {
         }
     }
 
+    public void setAllTasks(ArrayList<Task> allTasks) {
+        this.allTasks = allTasks;
+    }
+
     public void sortAllTasks() {
         Collections.sort(allTasks);
     }

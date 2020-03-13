@@ -18,13 +18,16 @@ public class ModuleManager implements Iterable<Module> {
         this.modulesMap = modulesMap;
     }
 
+    public static void setModules(ArrayList<Module> modules) {
+        ModuleManager.modules = modules;
+    }
+
     /**
      * @return all modules
      */
     public static List<Module> getModuleList() {
         return modules;
     }
-
     //public Module getAModule(String moduleCode) {
 
     //}
