@@ -33,7 +33,7 @@ public class Quiz {
         try {
             int randomInt = generateRandomInt(size);
             retrievedCard = cardlist.getCard(randomInt + 1);
-        } catch(EscException e) {
+        } catch (EscException e) {
             throw e;
         }
         return retrievedCard;
