@@ -19,6 +19,9 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_INVALID_PRIORITY = "Alert! Priority should be a number.\n";
 
+    public static final String MESSAGE_INVALID_DEADLINE_FORMAT = "Alert! Datetime format is invalid.\n";
+
+
 
     public static final String MESSAGE_EXCESS_PARAMETERS = "ALERT! Too many parameters.\n";
 

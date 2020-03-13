@@ -28,20 +28,22 @@ public class AddTaskCommand extends Command {
     private String categoryName;
     private String description;
     private DateTime deadline;
-    private int priority;
+    private Integer priority;
 
-    public AddTaskCommand(String moduleCode, String categoryName, String description, DateTime deadline, Integer priority)
-            throws ModuleList.ModuleNotFoundException, CategoryList.CategoryNotFoundException {
+    public AddTaskCommand(String moduleCode, String categoryName, String description, DateTime deadline, Integer priority) {
         this.moduleCode = moduleCode;
         this.categoryName = categoryName;
         this.description = description;
         this.deadline = deadline;
-        this.priority = (priority != null) ? priority : ModuleList.getCategory(moduleCode, categoryName).getCategoryPriority();
+        this.priority = priority;
     }
 
     @Override
     public CommandResult execute() {
         try {
+            if (priority == null) {
+                priority = ModuleList.getCategory(moduleCode, categoryName).getCategoryPriority();
+            }
             Category parentCategory = ModuleList.getCategory(moduleCode, categoryName);
             Task toAdd = new Task(parentCategory, description, deadline, priority);
             ModuleList.filterExact(moduleCode, categoryName).add(toAdd);
