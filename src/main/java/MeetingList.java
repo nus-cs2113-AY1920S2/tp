@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 public class MeetingList {
     ArrayList<Meeting> myMeeting = new ArrayList<>();
 
