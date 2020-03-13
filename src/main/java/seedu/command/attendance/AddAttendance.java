@@ -1,7 +1,7 @@
 package seedu.command.attendance;
 
+import seedu.attendance.Attendance;
 import seedu.command.Command;
-import seedu.module.attendance.Attendance;
 
 public class AddAttendance extends Command {
 

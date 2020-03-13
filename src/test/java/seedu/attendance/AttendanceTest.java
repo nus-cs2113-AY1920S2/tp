@@ -1,7 +1,6 @@
 package seedu.attendance;
 
 import org.junit.jupiter.api.Test;
-import seedu.module.attendance.Attendance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,7 +8,7 @@ public class AttendanceTest {
 
     @Test
     void getModuleName() {
-        assertEquals("CS2040C", new Attendance("CS2040C","Richard", "Tutorial 1").getModuleName());
+        assertEquals("CS2040C", new Attendance("CS2040C","Richard", "Tutorial 1").getEventName());
     }
 
     @Test

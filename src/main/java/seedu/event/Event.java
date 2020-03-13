@@ -1,8 +1,5 @@
 package seedu.event;
 
-import seedu.duke.Duke;
-import seedu.exception.DukeException;
-
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.time.Instant;
@@ -67,7 +64,7 @@ public class Event {
             // if original name is not empty and null
             if (name == null || name.isEmpty()) {
                 // if new name is empty or null
-                throw new InvalidParameterException("empty name");
+                throw new InvalidParameterException("Empty name");
             } else {
                 // if new name is not empty and not null
                 this.name = name;

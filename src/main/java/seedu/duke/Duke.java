@@ -3,33 +3,26 @@ package seedu.duke;
 import seedu.command.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.io.IO;
+import seedu.ui.UI;
 import seedu.exception.DukeException;
 
 public class Duke {
-    protected IO io;    //TODO: change from io to ui
+    protected UI ui;
     protected CommandInterpreter interpreter;
     protected EventList eventList;
 
     public Duke() {
-        io = new IO();  //TODO: change from io to ui
+        ui = new UI();
         eventList = new EventList();  //TODO: new Storage().load()
         interpreter = new CommandInterpreter(eventList);
     }
 
     public void run() {
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-
-        System.out.println("Hello from\n" + logo);
-
+        UI.setUserName();
         Command command;
-        io.readUserInput(); //TODO: change from io to ui
+        UI.readUserInput();
         try {
-            command = interpreter.decideCommand(io.getUserInput());  //TODO: change to ui.getUserInput()
+            command = interpreter.decideCommand(ui.getUserInput());
             command.execute();
         } catch (DukeException m) {
             System.out.println(m);

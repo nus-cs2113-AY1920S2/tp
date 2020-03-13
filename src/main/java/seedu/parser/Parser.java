@@ -3,8 +3,6 @@ package seedu.parser;
 import seedu.event.Event;
 import seedu.exception.DukeException;
 
-import java.util.Arrays;
-
 public class Parser {
     /**
      * Returns the index in a string of parameters with this format:
@@ -107,10 +105,4 @@ public class Parser {
     private boolean isUnknownFlag(String input) {
         return input.charAt(1) == '/';
     }
-
-    public static String[] performanceDataToParse(String userInput) {
-        String[] instructions = userInput.split(" ",20);
-        return Arrays.copyOfRange(instructions, 1, instructions.length);
-    }
-
 }

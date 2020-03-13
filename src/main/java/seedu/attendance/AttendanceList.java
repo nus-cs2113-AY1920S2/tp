@@ -1,4 +1,4 @@
-package seedu.module.attendance;
+package seedu.attendance;
 
 import java.util.ArrayList;
 
