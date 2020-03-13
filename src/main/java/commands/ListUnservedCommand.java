@@ -4,7 +4,7 @@ import reservation.ReservationList;
 
 import static utils.Constants.NOT_SERVED;
 
-/* Command object for "list unserved reservations" command */
+/** Command object for "list unserved reservations" command. */
 public class ListUnservedCommand extends ReservationCommand {
     /**
      * Lists all unserved reservations.
