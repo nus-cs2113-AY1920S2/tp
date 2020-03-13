@@ -2,8 +2,12 @@ package seedu.duke.commands;
 
 import seedu.duke.data.Item;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class EditCommand extends Command {
 
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static final String COMMAND_WORD = "EDIT";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified item in the list."
             + System.lineSeparator() + "|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]"
@@ -14,7 +18,7 @@ public class EditCommand extends Command {
             + "The item has been updated to: %s";
     public static final String MESSAGE_FAILURE_NOT_IN_LIST = System.lineSeparator()
             + "OOPS! I don't have that item in the list yet. Try again? :D";
-    public static final String MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT =  System.lineSeparator()
+    public static final String MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT = System.lineSeparator()
             + "OOPS! I couldn't process that because price has to be a number"
             + ", silly!" + System.lineSeparator() + "|| Example: EDIT 2 i/apple p/2.00";
 
@@ -25,22 +29,26 @@ public class EditCommand extends Command {
     /**
      * Creates an EditCommand and initialises the item index,
      * description and price that needs to be edited.
-     *  @param index index of item to change
+     *
+     * @param index       index of item to change
      * @param description new description of item to change
-     * @param price new price of item to change
+     * @param price       new price of item to change
      */
     public EditCommand(int index, String description, String price) {
         this.indexOfItem = index;
         this.newDescription = description;
         this.newPrice = price;
-
+        LOGGER.log(Level.INFO, "(Edit command) User entered index: " + indexOfItem
+                + " description: '" + newDescription + "' price: " + newPrice);
     }
 
     @Override
     public CommandResult execute() {
         try {
             indexOfItem -= 1;
+            assert indexOfItem <= items.getList().size() : "(Edit Command) Index provided must be within list range.";
             Item item = items.getItem(indexOfItem);
+
             if (newDescription == null && newPrice != null) { //only edit price
                 item.setPrice(Double.parseDouble(newPrice));
             } else if (newPrice == null && newDescription != null) { //only edit description
@@ -49,12 +57,17 @@ public class EditCommand extends Command {
                 item.setDescription(newDescription);
                 item.setPrice(Double.parseDouble(newPrice));
             }
+
+            LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
             return new CommandResult(String.format(MESSAGE_SUCCESS, item.toString()));
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
+
+        } catch (NullPointerException | IndexOutOfBoundsException | AssertionError e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
             return new CommandResult(MESSAGE_FAILURE_NOT_IN_LIST);
         } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING, "(Edit command) Invoked with invalid price format: '"
+                    + this.newPrice + "'");
             return new CommandResult(MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT);
-
         }
     }
 }
