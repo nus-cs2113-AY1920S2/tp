@@ -177,11 +177,11 @@ public class Parser {
                 int index = Integer.parseInt(words[0]) - 1;
                 newCommand = new MarkCommand(index);
             } else {
-                newCommand = new IncorrectCommand("It should be MARK <one existing index>");
+                newCommand = new IncorrectCommand("Please provide an index number!");
             }
 
         } catch (NumberFormatException | NullPointerException e) {
-            newCommand = new IncorrectCommand("Please provide a numerical index!!");
+            newCommand = new IncorrectCommand("Please provide an index number!");
         }
     }
 
@@ -195,11 +195,11 @@ public class Parser {
                 int index = Integer.parseInt(words[0]) - 1;
                 newCommand = new UnmarkCommand(index);
             } else {
-                newCommand = new IncorrectCommand("It should be UNMARK <one existing index>");
+                newCommand = new IncorrectCommand("Please provide an index number!");
             }
 
         } catch (NumberFormatException | NullPointerException e) {
-            newCommand = new IncorrectCommand("Please provide a numerical index!!");
+            newCommand = new IncorrectCommand("Please provide an index number!");
         }
     }
 

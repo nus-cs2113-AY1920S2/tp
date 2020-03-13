@@ -89,40 +89,36 @@ public class ParserTest {
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
-    /*
     @Test
     public void parse_markCommandNoArgs_errorMessage() {
         final String[] inputs = { "MARK", "MARK " };
         final String resultMessage = "Please provide an index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
-*/
-    /*
+
     @Test
     public void parse_markCommandArgsIsNotSingleNumber_errorMessage() {
         final String[] inputs = { "MARK notAnumber ", "MARK 8*wh12", "MARK 1 2 3 4 5" };
         final String resultMessage = "Please provide an index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
-*/
-    /*
+
     @Test
     public void parse_unMarkCommandNoArgs_errorMessage() {
         final String[] inputs = { "UNMARK", "UNMARK " };
         final String resultMessage = "Please provide an index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
-    */
 
 
-    /*
+
     @Test
     public void parse_unMarkCommandArgsIsNotSingleNumber_errorMessage() {
         final String[] inputs = { "UNMARK notAnumber ", "UNMARK 8*wh12", "MARK 1 2 3 4 5" };
         final String resultMessage = "Please provide an index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
-    */
+
 
     /*
      * Tests for add item command ==============================================================================
