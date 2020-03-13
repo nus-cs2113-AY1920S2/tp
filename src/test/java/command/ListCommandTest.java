@@ -26,16 +26,16 @@ public class ListCommandTest {
     private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks:"
             + System.lineSeparator()
             + "  1. [A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)"
-            + System.lineSeparator() + Messages.NEWLINE_INDENT + " "
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + " "
             + System.lineSeparator()
             + "  2. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)"
-            + System.lineSeparator() + Messages.NEWLINE_INDENT + "15%"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%"
             + System.lineSeparator()
             + "  3. [E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00)"
-            + System.lineSeparator() + Messages.NEWLINE_INDENT + " "
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + " "
             + System.lineSeparator()
             + "  4. [E][X] Countdown (at: TimeSquare | Wed 01 Jan 2020 00:00)"
-            + System.lineSeparator() + Messages.NEWLINE_INDENT + "new year new me";
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me";
 
     /**
      * Initialize hardcoded test cases for testing.

@@ -64,7 +64,7 @@ public class EventTest {
     @Test
     public void testToString() {
         String printedString = "[E][X] project meeting (at: NUS SOC | Fri 20 Mar 2020 09:00)"
-                + System.lineSeparator() + Messages.NEWLINE_INDENT
+                + System.lineSeparator() + Messages.COMMENTS_INDENT
                 + "My Very Long Long Long Long Long Comment";
         assertEquals(newEvent.toString(), printedString);
     }

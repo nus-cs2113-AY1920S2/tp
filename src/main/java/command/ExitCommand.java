@@ -15,6 +15,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
-        return new CommandResult(Messages.EXIT_MESSAGE).setExit();
+        CommandResult.isExit = true;
+        return new CommandResult(Messages.EXIT_MESSAGE);
     }
 }
