@@ -75,7 +75,10 @@ public class ReportWriter {
                 counter += 1;
             }
             counter = 1;
-            String reserveTitle = String.format("\nReservations\n\n");
+            String reserveTitle = String.format(ls 
+                    + "Reservations"
+                    + ls
+                    + ls);
             fw.write(reserveTitle);
             for (int i = 0; i < reservations.getSize(); i++) {
                 Reservation reserved = reservations.getReservation(i);

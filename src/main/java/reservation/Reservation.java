@@ -179,7 +179,9 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return String.format("Reservation [%d]\n "
+        return String.format("Reservation [%d]"
+                + ls
+                + " "
                 + "Status: %c" 
                 + ls 
                 + "contact person: %s" 
