@@ -1,6 +1,9 @@
 package seedu.duke;
 
+import java.util.Scanner;
+
 public class UI {
+    public static Scanner in = new Scanner(System.in);
 
     /**
      * Prints the greeting message when ESC is started.
@@ -21,6 +24,17 @@ public class UI {
 
     public static void showLine() {
         System.out.println("_________________________________________________");
+    }
+
+    /**
+     * Reads the user command.
+     * @return User command.
+     */
+    public static String readCommand() {
+        System.out.println("Enter command: ");
+        String userInput = in.nextLine();
+        System.out.println("[Command entered: " + userInput + "]");
+        return userInput;
     }
 
     /**

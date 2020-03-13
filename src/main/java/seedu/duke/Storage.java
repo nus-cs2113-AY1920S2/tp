@@ -25,6 +25,7 @@ public class Storage {
      */
     public static ArrayList<Card> loadCards() {
         ArrayList<Card> loadCards = new ArrayList<>();
+        ArrayList tempList;
         if (!saveFile.exists()) {
             try {
                 // creates all sub dir if not exist
@@ -37,8 +38,12 @@ public class Storage {
             try {
                 FileInputStream fileRead = new FileInputStream(saveFile);
                 ObjectInputStream objRead = new ObjectInputStream(fileRead);
+                tempList = (ArrayList) objRead.readObject();
 
-                loadCards = (ArrayList<Card>) objRead.readObject();
+                for (int i = 0; i < tempList.size(); i++) {
+                    loadCards.add((Card) tempList.get(i));
+                }
+
                 objRead.close();
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println("\nLoad error");

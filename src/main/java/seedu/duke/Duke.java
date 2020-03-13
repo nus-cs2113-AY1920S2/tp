@@ -7,14 +7,12 @@ import seedu.exception.EscException;
 import seedu.parser.Parser;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static UI ui = new UI();
-    private static Scanner in = new Scanner(System.in);
     private Storage storage = new Storage();
     private CardList cards = new CardList(storage.loadCards());
 
@@ -31,21 +29,6 @@ public class Duke {
     }
 
     /**
-     * Reads the user command.
-     * @return User command.
-     */
-    private static String readCommand() {
-        String userInput = "";
-        do {
-            System.out.println("Enter command: ");
-            userInput = in.nextLine();
-
-            System.out.println("[Command entered: " + userInput + "]");
-            return userInput;
-        } while (in.hasNextLine());
-    }
-
-    /**
      * Reads the user's commands and executes them until the user issues the exit command.
      */
     private void run() {
@@ -53,7 +36,7 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             try {
-                String fullCommand = readCommand();
+                String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(cards);
                 storage.saveCards(cards.getCards());
