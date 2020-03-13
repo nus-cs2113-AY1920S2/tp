@@ -15,10 +15,14 @@ public class DataManager {
     private ArrayList<Task> allTasks = new ArrayList<>();
 
     public DataManager(ModuleManager moduleManager) {
-        for (Module module:ModuleManager.getModuleList()
+        for (Module module:moduleManager.getModuleList()
              ) {
             allTasks.addAll(module.getTaskManager().allTasks);
         }
+    }
+
+    public void setAllTasks(ArrayList<Task> allTasks) {
+        this.allTasks = allTasks;
     }
 
     public void sortAllTasks() {

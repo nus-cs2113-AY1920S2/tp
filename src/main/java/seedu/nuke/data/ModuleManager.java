@@ -11,20 +11,23 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ModuleManager implements Iterable<Module> {
-    private static ArrayList<Module> modules = new ArrayList<>();
-    private static HashMap<String, String> modulesMap;
+    private ArrayList<Module> modules = new ArrayList<>();
+    private HashMap<String, String> modulesMap;
 
     public ModuleManager(HashMap<String, String> modulesMap) {
         this.modulesMap = modulesMap;
     }
 
+    public void setModules(ArrayList<Module> modules) {
+        this.modules = modules;
+    }
+
     /**
      * @return all modules
      */
-    public static List<Module> getModuleList() {
+    public ArrayList<Module> getModuleList() {
         return modules;
     }
-
     //public Module getAModule(String moduleCode) {
 
     //}
@@ -34,7 +37,7 @@ public class ModuleManager implements Iterable<Module> {
      * @param moduleCode the module code to check if provided by NUS currently
      * @return true if NUS is providing the module currently
      */
-    public static boolean contains(String moduleCode) {
+    public boolean contains(String moduleCode) {
         for (Module p : modules) {
             if (p.getModuleCode().equals(moduleCode)) {
                 return true;
@@ -48,9 +51,9 @@ public class ModuleManager implements Iterable<Module> {
      *
      * @param moduleCode the module code of the module to add
      */
-    public static void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
+    public void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
-        if (ModuleManager.contains(moduleCode)) {
+        if (modules.contains(moduleCode)) {
             throw new DuplicateModuleException();
         } else if (!modulesMap.containsKey(moduleCode)) {
             throw new ModuleNotProvidedException();
@@ -68,7 +71,7 @@ public class ModuleManager implements Iterable<Module> {
         modules.clear();
     }
 
-    public static Module getLastAddedModule() {
+    public Module getLastAddedModule() {
         return modules.get(modules.size()-1);
     }
 
@@ -77,7 +80,7 @@ public class ModuleManager implements Iterable<Module> {
      * @param toDelete the task to remove
      * @throws ModuleNotFoundException if the to-remove module does not exist
      */
-    public static void delete(Module toDelete) throws ModuleNotFoundException {
+    public void delete(Module toDelete) throws ModuleNotFoundException {
         boolean isModuleFoundAndDeleted = modules.remove(toDelete);
         if (!isModuleFoundAndDeleted) {
             throw new ModuleNotFoundException("");
@@ -91,7 +94,7 @@ public class ModuleManager implements Iterable<Module> {
      * @throws ModuleNotFoundException  If the module with the specified module code is not found in the <b>Module List</b>
      * @see Module
      */
-    public static Module delete(String moduleCode) throws ModuleNotFoundException {
+    public Module delete(String moduleCode) throws ModuleNotFoundException {
         for (Module module : modules) {
             if (module.getModuleCode().toUpperCase().equals(moduleCode)) {
                 modules.remove(module);
@@ -113,10 +116,10 @@ public class ModuleManager implements Iterable<Module> {
         return modules.size();
     }
 
-    public static class DuplicateModuleException extends DuplicateDataException {}
+    public class DuplicateModuleException extends DuplicateDataException {}
 
-    public static Module getModuleWithCode(String moduleCode){
-        for (Module module: getModuleList()
+    public Module getModuleWithCode(String moduleCode){
+        for (Module module: modules
              ) {
             if (module.getModuleCode().equals(moduleCode)){
                 return module;
