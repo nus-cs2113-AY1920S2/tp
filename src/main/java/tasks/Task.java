@@ -68,6 +68,6 @@ public abstract class Task {
             return false;
         }
         Task task = (Task) addedTask;
-        return name.equals(task.getName()) && comments.equals(task.getComments());
+        return name.equals(task.getName());
     }
 }
