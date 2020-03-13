@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class EventTest {
 
     @Test
-    void getName() throws DukeException {
+    void getName() {
         Event event1 = new Event();
         long time = Instant.now().getEpochSecond();
         String expectedName = "event_" + time;

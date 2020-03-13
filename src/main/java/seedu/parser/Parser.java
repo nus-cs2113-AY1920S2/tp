@@ -3,8 +3,6 @@ package seedu.parser;
 import seedu.event.Event;
 import seedu.exception.DukeException;
 
-import java.util.Arrays;
-
 public class Parser {
     /**
      * Returns the index in a string of parameters with this format:
