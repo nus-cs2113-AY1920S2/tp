@@ -24,8 +24,6 @@ public class CardListTest {
 
     @Test
     void getCards() {
-        assertFalse(cards.getCards().contains(flashcard1));
-        assertFalse(cards.getCards().contains(flashcard2));
         cards.addCard(flashcard1);
         cards.addCard(flashcard2);
         assertTrue(cards.getCards().contains(flashcard1));
