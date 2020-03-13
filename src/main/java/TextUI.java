@@ -23,6 +23,7 @@ public class TextUI {
         System.out.println("OOPS!! " + e);
     }
 
+
     public static void printTimetable(boolean[][] mySchedule) {
         System.out.println("      MON TUE WED THU FRI SAT SUN");
 
@@ -44,4 +45,5 @@ public class TextUI {
         }
         System.out.println("0000" + " +---+---+---+---+---+---+---+");
     }
+
 }

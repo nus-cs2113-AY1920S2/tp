@@ -8,8 +8,8 @@ import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 
 public class TeamMember {
-    private final Boolean mySchedule_BLOCKED = false;
-    private final Boolean mySchedule_FREE = true;
+    private final Boolean mySchedule_BLOCKED = true;
+    private final Boolean mySchedule_FREE = false;
     private String memberName;
     private Boolean[][] mySchedule; //String[7][48]; 7 days, separated into 30mins within 24 hours period.
     private String[][] myScheduleName;
@@ -21,10 +21,12 @@ public class TeamMember {
         for (int i=0; i<7; i++) {
             Arrays.fill(mySchedule[i], mySchedule_FREE); // fill every 48 index of the 7 days with 0 initially
             Arrays.fill(myScheduleName[i], null);
+
         }
     }
 
     // Monday = 0, Tues = 1 ..... Sunday = 6
+
     public String addBusyBlocks(String meetingName, Integer startDay, String stringStartTime, Integer endDay, String stringEndTime) {
         LocalTime startTime = null;
         LocalTime endTime = null;
@@ -79,12 +81,14 @@ public class TeamMember {
         return day >= 0 && day <= 6;
     }
 
+
     public void deleteBusyBlocks(String meetingName) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
                 if (myScheduleName[i][j].equals(meetingName)) {
                     mySchedule[i][j] = mySchedule_FREE;
                     myScheduleName[i][j] = null;
+
                 }
             }
         }
@@ -101,6 +105,7 @@ public class TeamMember {
                 break;
             default:
                 throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
+
         }
         hourBlocks = myTime.getHour() * 2;
         return minuteBlocks + hourBlocks;
@@ -111,5 +116,6 @@ public class TeamMember {
     public Boolean[][] getSchedule() {
         return this.mySchedule;
     }
+
 
 }
