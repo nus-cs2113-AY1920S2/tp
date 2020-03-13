@@ -1,16 +1,31 @@
 package utils;
-import commands.*;
+
+import java.io.IOException;
+
+import commands.AddReservationCommand;
+import commands.AddStockCommand;
+import commands.DeleteStockCommand;
+import commands.InvalidStockCommandException;
+import commands.ListReservationCommand;
+import commands.ListStockCommand;
+import commands.QuitCommand;
+import commands.VoidReservationCommand;
+
 import menu.Menu;
 import report.ReportWriter;
 import reservation.ReservationList;
 import stock.Stock;
 
-import java.io.IOException;
-
 public class CommandParser {
-
-    public void parseCommand(String command, Menu menu, Stock stock, ReservationList reservations) {
-        if (command.equals("bye")){
+    
+    /** Pass the parsed user input into readable formats to be processed
+     * by either a menu, stock or a reservation.
+     *
+     */
+    public void parseCommand(String command, Menu menu, 
+            Stock stock, ReservationList reservations) {
+        
+        if (command.equals("bye")) {
             try {
                 new ReportWriter(stock,reservations,menu).writeToFile();
             } catch (IOException e) {
@@ -18,62 +33,64 @@ public class CommandParser {
             }
             new QuitCommand().execute();
         }
+        
         String[] commands = command.split(";",2);
-        String[] split_commands = commands[0].split(" ",2);
-        if (split_commands[0].equals("add")) {
-            if (split_commands[1].equals("dish")) {
-                //Add dish
+        String[] splitCommands = commands[0].split(" ",2);
+        
+        if (splitCommands[0].equals("add")) {
+            if (splitCommands[1].equals("dish")) {
+                // Add dish.
                 menu.addDish(commands[1]);
                 successfulCommand();
-            } else if (split_commands[1].equals("stock")){
-                //Add stock
+            } else if (splitCommands[1].equals("stock")) {
+                // Add stock.
                 try {
                     new AddStockCommand(commands[1]).execute(stock);
                     successfulCommand();
-                } catch (InvalidStockCommandException isce) {                    
+                } catch (InvalidStockCommandException | IllegalStateException e) {                    
                     errorCommand();
-                    printErrorMessage(isce.getMessage());
+                    printErrorMessage(e.getMessage());
                 }
-            } else if (split_commands[1].equals("reservation")){
-                //Add reservation
+            } else if (splitCommands[1].equals("reservation")) {
+                // Add reservation.
                 new AddReservationCommand(commands[1]).execute(reservations);
                 successfulCommand();
             } else {
                 errorCommand();
             }
-        } else if (split_commands[0].equals("delete")){
-            if (split_commands[1].equals("dish")) {
-                //delete dish
-                String newcomm = commands[1].substring(3, commands[1].length()-1);
+        } else if (splitCommands[0].equals("delete")) {
+            if (splitCommands[1].equals("dish")) {
+                // Delete dish.
+                String newcomm = commands[1].substring(3, commands[1].length() - 1);
                 menu.deleteDish(newcomm);
                 successfulCommand();
-            } else if (split_commands[1].equals("stock")){
-                //delete stock
+            } else if (splitCommands[1].equals("stock")) {
+                // Delete stock.
                 try {
                     new DeleteStockCommand(commands[1]).execute(stock);
                     successfulCommand();
-                } catch (InvalidStockCommandException isce) {                    
+                } catch (InvalidStockCommandException | IllegalStateException e) {                    
                     errorCommand();
-                    printErrorMessage(isce.getMessage());
+                    printErrorMessage(e.getMessage());
                 }
-            } else if (split_commands[1].equals("reservation")){
-                //delete reservation
+            } else if (splitCommands[1].equals("reservation")) {
+                // Delete reservation.
                 new VoidReservationCommand(commands[1]).execute(reservations);
                 successfulCommand();
             } else {
                 errorCommand();
             }
-        } else if (split_commands[0].equals("list")) {
-            if (split_commands[1].equals("dish")) {
-                //list dish
+        } else if (splitCommands[0].equals("list")) {
+            if (splitCommands[1].equals("dish")) {
+                // List dish.
                 menu.printDishes();
                 successfulCommand();
-            } else if (split_commands[1].equals("stock")){
-                //list stock
+            } else if (splitCommands[1].equals("stock")) {
+                // List stock.
                 new ListStockCommand().execute(stock);
                 successfulCommand();
-            } else if (split_commands[1].equals("reservation")){
-                //list reservation
+            } else if (splitCommands[1].equals("reservation")) {
+                // List reservation.
                 new ListReservationCommand().execute(reservations);
                 successfulCommand();
             } else {
@@ -83,10 +100,14 @@ public class CommandParser {
             errorCommand();
         }
     }
+    
     public static void errorCommand() {
         System.out.println("Incorrect command");
     }
     
+    /** 
+     * Displays an error message to the user. 
+     * */
     public static void printErrorMessage(String message) {
         System.out.println("============================================================"
                 + "================================================================");
@@ -96,5 +117,8 @@ public class CommandParser {
         System.out.println("============================================================"
                 + "================================================================");
     }
-    public static void successfulCommand() { System.out.println("The command has been successfully executed.");}
+    
+    public static void successfulCommand() {
+        System.out.println("The command has been successfully executed.");
+    }
 }
