@@ -52,7 +52,9 @@ public class Duke {
         do {
             String userCommandText = readCommand();
             command = new Parser().parseCommand(userCommandText);
+            assert command != null : "Command should have been initialised";
             CommandResult result = executeCommand(command);
+            assert result != null : "Result should have been initialised";
             System.out.println(result.feedbackToUser);
         } while (!ExitCommand.isExit(command));
     }
@@ -80,6 +82,7 @@ public class Duke {
         try {
             command.setData(items,myBudget);
             CommandResult result = command.execute();
+            assert result != null : "Result should have been initialised";
             command.setData(items,myBudget);
             return result;
         } catch (Exception e) {

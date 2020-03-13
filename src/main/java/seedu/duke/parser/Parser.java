@@ -84,7 +84,7 @@ public class Parser {
         default:
             createHelpCommand();
         }
-
+        assert newCommand != null : "newCommand should have been initialised";
         return newCommand;
     }
 
@@ -334,6 +334,7 @@ public class Parser {
                         + System.lineSeparator()
                         + "Example: SET b/300");
             } else {
+                assert arguments.indexOf("b/") != -1 : "Substring \"b/\" should be present";
                 double amount = Double.parseDouble(arguments.substring(2));
                 newCommand = new SetBudgetCommand(amount);
             }

@@ -20,6 +20,8 @@ public class SetBudgetCommand extends Command {
     @Override
     public CommandResult execute() {
         double correctBudget = myBudget.setBudget(amount);
+        assert correctBudget <= 5000 : "Budget should not exceed $5000";
+        assert correctBudget >= 0 : "Budget should not be negative";
         String feedback = SET_BUDGET_MESSAGE + "$" + correctBudget;
         return new CommandResult(feedback);
     }
