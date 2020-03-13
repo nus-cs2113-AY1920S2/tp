@@ -28,11 +28,10 @@ public class Duke {
      * Run loop until exit command is received.
      */
     public void runLoop() {
-        CommandResult result = new CommandResult(null);
-        while (!result.isExit()) {
+        while (!CommandResult.isExit) {
             String input = ui.getUserInput();
             Command command = Parser.parseCommand(input);
-            result = command.execute(taskList, ui);
+            CommandResult result = command.execute(taskList, ui);
             ui.showToUser(result.feedbackToUser);
             ui.showToUser(Messages.DIVIDER);
         }
