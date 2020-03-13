@@ -17,7 +17,6 @@ public class UI {
                 + "| |____ ____) | |____\n"
                 + "|______|_____/ \\_____|\n";
         greeting += "Hello from\n" + logo;
-        //greeting += "What is your name?";
 
         System.out.println(greeting);
     }
@@ -61,9 +60,8 @@ public class UI {
      * Exits the ESC program.
      */
     public static void exitEsc() {
-        System.out.println("____________________________________________________________");
+        showLine();
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+        showLine();
     }
-
 }
