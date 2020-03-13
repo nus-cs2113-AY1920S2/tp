@@ -2,7 +2,7 @@ package seedu.parser;
 
 import seedu.event.Event;
 import seedu.exception.DukeException;
-import seedu.module.attendance.Attendance;
+import seedu.attendance.Attendance;
 
 public class ParserStorage {
 
