@@ -29,9 +29,9 @@ public class ListCommand extends Command {
         // to deal with null being passed as input
         switch (listParam == null ? "" : listParam) {
         case (TODAY_COMMAND):
-            return new CommandResult(showListTasks(taskList.getTodayTasks()));
+            return new CommandResult(showListTasks(taskList.getTasksByDays(0)));
         case (WEEK_COMMAND):
-            return new CommandResult(showListTasks(taskList.getWeekTasks()));
+            return new CommandResult(showListTasks(taskList.getTasksByDays(7)));
         case (UPCOMING_EVENT_COMMAND):
             return new CommandResult(showListTasks(taskList.getUpcomingEventArray()));
         case (INCOMPLETE_ASSIGN_COMMAND):
@@ -42,8 +42,9 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Converts an ArrayList object to text for printing.
-     * @param taskList ArrayList object to be converted to string.
+     * Formats String of tasks with standard task listing message.
+     * @param taskList ArrayList object with tasks to be printed
+     * @return Formatted string of tasks and printing message
      */
     public String showListTasks(ArrayList<Task> taskList) {
         if (taskList.size() == 0) {
@@ -54,6 +55,11 @@ public class ListCommand extends Command {
         return (String.format(Messages.SHOW_TASKLIST_MESSAGE, System.lineSeparator(), stringFromArrayList));
     }
 
+    /**
+     * Converts ArrayList object into string to be printed.
+     * @param taskList ArrayList object with tasks to be printed
+     * @return Formatted string of tasks
+     */
     private String stringTaskList(ArrayList<Task> taskList) {
         StringBuilder stringFromArrayList = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {

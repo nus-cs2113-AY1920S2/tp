@@ -6,14 +6,19 @@ package common;
 public class Messages {
     // Generic Print Messages
     public static final String LOGO =
-            "   _____________________    _________\n"
-            + "  /  _  \\__    ___/  _  \\  /   _____/\n"
-            + " /  /_\\  \\|    | /  /_\\  \\ \\_____  \\\n"
-            + "/    |    \\    |/    |    \\/        \\\n"
-            + "\\____|____/____|\\____|____/_________/\n";
-    public static final String DIVIDER = "____________________________________________________________";
-    public static final String EXIT_MESSAGE = "Exiting ATAS";
+            " _______        _______        _______        _______ \n"
+            + "|   _   |      |       |      |   _   |      |       |\n"
+            + "|  |_|  |      |_     _|      |  |_|  |      |  _____|\n"
+            + "|       |        |   |        |       |      | |_____ \n"
+            + "|       | ___    |   |   ___  |       | ___  |_____  |\n"
+            + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |\n"
+            + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|\n";
+
+
+    public static final String DIVIDER = "_______________________________________________________________________";
+    public static final String EXIT_MESSAGE = "Exiting A.T.A.S";
     public static final String NEWLINE_INDENT = "     ";
+    public static final String COMMENTS_INDENT = "            notes: ";
 
     // Help Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
@@ -30,6 +35,7 @@ public class Messages {
             + "list upcoming events";
     public static final String LIST_INCOMPLETE_ASSIGN_FORMAT_HELP = "List Incomplete Assignments: "
             + "list incomplete assignments";
+    public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear";
     public static final String HELP_FORMAT_MESSAGE =
             "Following is the list of commands available:" + System.lineSeparator()
             + "1.  Help Format: help" + System.lineSeparator()
@@ -41,7 +47,8 @@ public class Messages {
             + "7.  " + LIST_INCOMPLETE_ASSIGN_FORMAT_HELP + System.lineSeparator()
             + "8.  " + LIST_UPCOMING_EVENT_FORMAT_HELP + System.lineSeparator()
             + "9.  " + DONE_FORMAT_HELP + System.lineSeparator()
-            + "10. " + DELETE_FORMAT_HELP;
+            + "10.  " + CLEAR_FORMAT_HELP + System.lineSeparator()
+            + "12. " + DELETE_FORMAT_HELP;
 
     // Command Print Messages
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
@@ -51,6 +58,7 @@ public class Messages {
     public static final String INCORRECT_COMMAND_ERROR = "Oh no. %s";
     public static final String EMPTY_TASKLIST_MESSAGE = "No tasks were found";
     public static final String SHOW_TASKLIST_MESSAGE = "Here are the relevant tasks:%s%s";
+    public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
 
     // Error Messages
     public static final String UNKNOWN_COMMAND_ERROR = "Unknown command entered";

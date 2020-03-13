@@ -9,7 +9,6 @@ public class HelpCommand extends Command {
 
     /**
      * Prints to user the help message.
-     *
      * @param taskList TaskList object that handles adding Task
      * @param ui       Ui object that interacts with user
      * @return CommandResult object with acknowledgment message
