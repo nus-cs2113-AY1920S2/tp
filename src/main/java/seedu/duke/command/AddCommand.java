@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
@@ -10,9 +11,11 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
     private Module module;
+    private SelectedModule selectedModule;
 
     public AddCommand(Module module) {
         this.module = module;
+        this.selectedModule = new SelectedModule(module);
     }
 
     @Override
@@ -23,13 +26,13 @@ public class AddCommand extends Command {
 
     private void addModule(SelectedModulesList moduleList) {
         for (SemModulesList sem: moduleList) {
-            if (sem.getSem().equals(module.getSem())) {
-                sem.add(module);
+            if (sem.getSem().equals(selectedModule.getSem())) {
+                sem.add(selectedModule);
                 return;
             }
         }
-        SemModulesList sem = new SemModulesList(module.getSem());
-        sem.add(module);
+        SemModulesList sem = new SemModulesList(selectedModule.getSem());
+        sem.add(selectedModule);
         moduleList.add(sem);
     }
 }

@@ -2,8 +2,9 @@ package seedu.duke.parser;
 
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.ViewCommand;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.MarkAsDoneCommand;
+import seedu.duke.command.ViewCommand;
 import seedu.duke.module.Module;
 
 /**
@@ -17,13 +18,13 @@ public class Parser {
      */
     public static Command parse(String fullCommand) {
         String taskType;
-        String args = null;
-        String[] words;
-        words = fullCommand.split(" ",2);
-        taskType = words[0];
+        String args = "";
+        String[] argsWords;
+        argsWords = fullCommand.split(" ",2);
+        taskType = argsWords[0];
 
-        if (words.length > 1) {
-            args = words[1];
+        if (argsWords.length > 1) {
+            args = argsWords[1];
         }
 
         switch (taskType) {
@@ -33,16 +34,35 @@ public class Parser {
             return processViewCommand(args);
         case ExitCommand.COMMAND_WORD:
             return processExitCommand();
+        case MarkAsDoneCommand.COMMAND_WORD:
+            return processMarkAsDone(args);
         default:
             return null;
         }
     }
 
+    private static MarkAsDoneCommand processMarkAsDone(String args) {
+        String[] moduleWords;
+        moduleWords = args.split(" s/");
+        if (moduleWords.length < 2) {
+            return null;
+        }
+        String module = moduleWords[0];
+        String semester = moduleWords[1];
+        if (module.contains("n/")) {
+            String moduleName = module.replace("n/","");
+            return new MarkAsDoneCommand(moduleName, semester);
+        } else if (module.contains("id/")) {
+            String moduleId = module.replace("id/","");
+            return new MarkAsDoneCommand(moduleId, semester);
+        }
+        return null;
+    }
+
     private static AddCommand processAddCommand(String args) {
         String[] moduleWords;
         moduleWords = args.split(" s/");
-        boolean isWrongArgs = moduleWords.length < 2;
-        if (isWrongArgs) {
+        if (moduleWords.length < 2) {
             return null;
         }
         String module = moduleWords[0];
