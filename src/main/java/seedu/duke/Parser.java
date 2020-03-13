@@ -53,7 +53,7 @@ public class Parser {
 
         switch (commandType) {
         case HelpCommand.HELP_COMMAND_WORD:
-            return new HelpCommand();
+            return prepareHelpCommand(fullCommand);
         case AssignmentCommand.ASSIGNMENT_COMMAND_WORD:
             return prepareAssignmentCommand(fullCommand);
         case DeleteCommand.DELETE_COMMAND_WORD:
@@ -67,7 +67,7 @@ public class Parser {
         case ListCommand.LIST_COMMAND_WORD:
             return prepareListCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
-            return new ExitCommand();
+            return prepareExitCommand(fullCommand);
         default:
             return new IncorrectCommand(Messages.UNKNOWN_COMMAND_ERROR);
         }
@@ -101,9 +101,9 @@ public class Parser {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
-        String assignmentName = matcher.group("assignmentName");
+        String assignmentName = capitalize(matcher.group("assignmentName"));
         String moduleName = matcher.group("moduleName");
-        String comments = matcher.group("comments");
+        String comments = capitalize(matcher.group("comments"));
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
@@ -146,9 +146,9 @@ public class Parser {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
-        String eventName = matcher.group("eventName");
+        String eventName = capitalize(matcher.group("eventName"));
         String location = matcher.group("location");
-        String comments = matcher.group("comments");
+        String comments = capitalize(matcher.group("comments"));
         return new EventCommand(eventName, location, dateTime, comments);
     }
 
@@ -163,5 +163,20 @@ public class Parser {
 
     private static Command prepareClearCommand(String fullCommand) {
         return new ClearCommand();
+    }
+
+    private static Command prepareExitCommand(String fullCommand) {
+        return new ExitCommand();
+    }
+
+    private static Command prepareHelpCommand(String fullCommand) {
+        return new HelpCommand();
+    }
+
+    private static String capitalize(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }

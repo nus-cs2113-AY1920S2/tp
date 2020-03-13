@@ -55,7 +55,7 @@ public class Event extends Task {
                 + dateAndTime.format(Parser.PRINT_DATE_FORMAT)
                 + ")"
                 + System.lineSeparator()
-                + Messages.NEWLINE_INDENT
+                + Messages.COMMENTS_INDENT
                 + comments;
     }
 }
