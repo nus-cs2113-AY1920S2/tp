@@ -30,7 +30,7 @@ public class DeleteModuleCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            Module deletedModule = ModuleManager.delete(moduleCode);
+            Module deletedModule = moduleManager.delete(moduleCode);
             return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS(deletedModule.getModuleCode(), deletedModule.getTitle()));
         } catch (ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

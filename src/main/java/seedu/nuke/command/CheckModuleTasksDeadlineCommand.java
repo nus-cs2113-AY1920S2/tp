@@ -21,7 +21,7 @@ public class CheckModuleTasksDeadlineCommand extends Command {
     public CheckModuleTasksDeadlineCommand(int moduleIndex) throws ModuleNotFoundException {
         this.moduleIndex = moduleIndex;
         try {
-            this.module = ModuleManager.getModuleList().get(moduleIndex);
+            this.module = moduleManager.getModuleList().get(moduleIndex);
         } catch (IndexOutOfBoundsException e) {
             throw new ModuleNotFoundException("Module index is out of bound");
         }

@@ -6,19 +6,15 @@ import seedu.nuke.data.ScreenShotManager;
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "un";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
+    private ScreenShot targetScreenShot;
+    public UndoCommand() {
 
-    private ScreenShotManager screenShotManager;
-
-    public UndoCommand(ScreenShotManager screenShotManager) {
-        this.screenShotManager = screenShotManager;
     }
 
     @Override
     public CommandResult execute() {
-        //change to the screen
-
-        //update new screen shot
-
+        //change to the screen one step before
+        targetScreenShot = screenShotManager.unDo();
         return null;
     }
 }

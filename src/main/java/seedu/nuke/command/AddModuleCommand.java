@@ -34,8 +34,8 @@ public class AddModuleCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            ModuleManager.add(moduleCode);
-            Module addedModule = ModuleManager.getLastAddedModule();
+            moduleManager.add(moduleCode);
+            Module addedModule = moduleManager.getLastAddedModule();
             return new CommandResult(MESSAGE_ADD_MODULE_SUCCESS(addedModule.getModuleCode(), addedModule.getTitle()));
         } catch (ModuleManager.DuplicateModuleException e) {
             return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);

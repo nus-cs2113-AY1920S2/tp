@@ -27,7 +27,7 @@ public class Nuke {
     public Nuke() throws FileNotFoundException {
         modulesMap  = ModuleLoader.load("moduleList.json");
         moduleManager = new ModuleManager(modulesMap);
-        dataManager = new DataManager();
+        dataManager = new DataManager(moduleManager);
         screenShotManager = new ScreenShotManager();
         currentScreenShot = new ScreenShot(moduleManager, dataManager);
     }
@@ -64,18 +64,17 @@ public class Nuke {
     private CommandResult executeCommand(Command command) {
         try {
             //load from current screen shot
-            dataManager.setAllTasks(screenShotManager.getScreenShotList().get(screenShotManager.getCurrentPointer()).getDataManager().getAllTasks());
-
+            readScreenShot();
             // supplies the data the command will operate on.
             // if there is no file to load or the file is empty, setData will initialize a new taskManager system
             //update the module manager as well as the data manager
-            command.setData(moduleManager, dataManager);
+            setCommandData(command);
             //take the screen shot
-            currentScreenShot.takeScreenShot(moduleManager, dataManager);
+            takeScreenShot();
             //add screen shot
-            screenShotManager.getScreenShotList().add(currentScreenShot);
+            addScreenShotToScreenShotList();
             // Execute according to the command itself
-            commandResult = command.execute();
+            execute(command);
             // save the taskManager to a file
             //moduleManager.getStorager().save(taskManager);
             //StorageFile.saveJson(taskManager);
@@ -84,5 +83,26 @@ public class Nuke {
             System.out.println(ex);
         }
         return commandResult;
+    }
+
+    private void execute(Command command) {
+        commandResult = command.execute();
+    }
+
+    private void addScreenShotToScreenShotList() {
+        screenShotManager.getScreenShotList().add(currentScreenShot);
+    }
+
+    private void setCommandData(Command command) {
+        command.setData(moduleManager, dataManager, screenShotManager);
+    }
+
+    private void takeScreenShot() {
+        currentScreenShot.takeScreenShot(moduleManager, dataManager);
+    }
+
+    private void readScreenShot() {
+        dataManager.setAllTasks(screenShotManager.getCurrentScreenShot().getDataManager().getAllTasks());
+        moduleManager.setModules(screenShotManager.getCurrentScreenShot().getModuleManager().getModuleList());
     }
 }

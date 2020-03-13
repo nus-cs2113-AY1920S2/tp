@@ -31,4 +31,13 @@ public class ScreenShotManager {
     public void setCurrentPointer(int currentPointer) {
         this.currentPointer = currentPointer;
     }
+
+    public ScreenShot unDo(){
+        currentPointer = currentPointer -1;
+        return screenShotList.get(currentPointer - 1);
+    }
+
+    public ScreenShot getCurrentScreenShot() {
+        return screenShotList.get(currentPointer);
+    }
 }

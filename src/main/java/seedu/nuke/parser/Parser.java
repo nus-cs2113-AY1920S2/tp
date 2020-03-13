@@ -24,7 +24,7 @@ public class Parser {
     public static final int COMMAND_WORD_INDEX = 0;
     public static final int PARAMETER_WORD_INDEX = 1;
     private static final int MAX_INPUT_LENGTH = 100; // Maximum length of user input accepted
-
+    private ModuleManager moduleManager;
     /**
      * Parses the input string read by the <b>UI</b> and converts the string into a specific <b>Command</b>, which is
      * to be executed by the <b>Nuke</b> program.
@@ -96,8 +96,8 @@ public class Parser {
 
     private Command prepareChangeModuleCommand(String parameters) {
         //System.out.println(parameters);
-        if(ModuleManager.getModuleWithCode(parameters)!=null){
-            return new ChangeModuleCommand(ModuleManager.getModuleWithCode(parameters));
+        if(moduleManager.getModuleWithCode(parameters)!=null){
+            return new ChangeModuleCommand(moduleManager.getModuleWithCode(parameters));
         }
         return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
     }
