@@ -4,7 +4,6 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -59,6 +58,7 @@ public class TaskList {
      * @return ArrayList object containing all tasks from indicated days from today
      */
     public ArrayList<Task> getTasksByDays(int days) {
+        assert days >= 0;
         ArrayList<Task> taskList = new ArrayList<>();
         LocalDate currDate = getCurrentDate();
         LocalDate daysIndicated = currDate.plusDays(days);

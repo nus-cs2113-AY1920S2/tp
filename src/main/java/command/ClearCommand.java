@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ClearCommand  extends Command {
     public static final String CLEAR_COMMAND_WORD = "clear";
+
     private static final String ALL_CLEAR_COMMAND = "";
     protected final String clearAllParam  = "all";
     protected final String clearDoneParam = "done";

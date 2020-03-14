@@ -9,7 +9,6 @@ import seedu.duke.Ui;
 import tasks.Assignment;
 import tasks.Event;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,14 +22,18 @@ public class ListCommandTest {
     private static Ui ui;
 
     private static LocalDateTime currDateTime = LocalDateTime.now();
-    private static String beforeCurrDateTime = "13/02/20 1800";
-    private static String afterCurrDateTime = "01/01/21 0000";
-    private static LocalDateTime testDateTimeOne = LocalDateTime.parse(beforeCurrDateTime, Parser.INPUT_DATE_FORMAT);
-    private static LocalDateTime testDateTimeTwo = LocalDateTime.parse(afterCurrDateTime, Parser.INPUT_DATE_FORMAT);
     private static LocalDateTime oneWeekDateTime = currDateTime.plusDays(7);
+    private static LocalDateTime afterCurrButSameDayDateTime = currDateTime.plusSeconds(15);
+    private static String beforeCurrDateTimeString = "13/02/20 1800";
+    private static String afterCurrDateTimeString = "01/01/21 0000";
+
+    private static LocalDateTime beforeCurrDateTime = LocalDateTime.parse(beforeCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
+    private static LocalDateTime afterCurrDateTime = LocalDateTime.parse(afterCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
     private static String currDateTimeStringForPrint = currDateTime.format(Parser.PRINT_DATE_FORMAT);
     private static String nextWeekDateTimeStringForPrint = oneWeekDateTime.format(Parser.PRINT_DATE_FORMAT);
-    
+    private static String afterCurrButSameDayStringForPrint = afterCurrButSameDayDateTime.format(Parser.PRINT_DATE_FORMAT);
+
+
     private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks:"
             + System.lineSeparator()
             + "  1. [A][/] Assignment 3 (by: Thu 13 Feb 2020 18:00 | mod: CS2109)"
@@ -45,7 +48,7 @@ public class ListCommandTest {
             + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
             + System.lineSeparator()
-            + "  5. [E][X] Bathe (at: Toilet | " + currDateTime.plusSeconds(45).format(Parser.PRINT_DATE_FORMAT) + ")"
+            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-";
 
     private static String expectedOutputFromUpcomingEvent = "Here are the relevant tasks:"
@@ -53,7 +56,7 @@ public class ListCommandTest {
             + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
             + System.lineSeparator()
-            + "  5. [E][X] Bathe (at: Toilet | " + currDateTime.plusSeconds(45).format(Parser.PRINT_DATE_FORMAT) + ")"
+            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-";
 
     private static String expectedOutputFromIncompleteAssign = "Here are the relevant tasks:"
@@ -93,10 +96,10 @@ public class ListCommandTest {
         filledWeeklyTaskList = new TaskList();
         ui = new Ui();
 
-        Assignment assignBeforeCurrDateTime = new Assignment("Assignment 3", "CS2109", testDateTimeOne, "-");
-        Assignment assignAfterCurrDateTime = new Assignment("Quiz 1", "CS2173", testDateTimeTwo, "15%");
-        Event eventBeforeCurrDateTime = new Event("midterms", "MPSH1A", testDateTimeOne, "-");
-        Event eventAfterCurrDateTime = new Event("Countdown", "TimeSquare", testDateTimeTwo, "new year new me");
+        Assignment assignBeforeCurrDateTime = new Assignment("Assignment 3", "CS2109", beforeCurrDateTime, "-");
+        Assignment assignAfterCurrDateTime = new Assignment("Quiz 1", "CS2173", afterCurrDateTime, "15%");
+        Event eventBeforeCurrDateTime = new Event("midterms", "MPSH1A", beforeCurrDateTime, "-");
+        Event eventAfterCurrDateTime = new Event("Countdown", "TimeSquare", afterCurrDateTime, "new year new me");
         Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", currDateTime.plusSeconds(45), "-");
 
         filledTasklist.addTask(assignBeforeCurrDateTime);

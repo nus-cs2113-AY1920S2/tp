@@ -67,7 +67,10 @@ public class ListCommand extends Command {
      */
     private String stringTaskList(ArrayList<Task> allTaskList, ArrayList<Task> selectedTaskList) {
         StringBuilder stringFromArrayList = new StringBuilder();
+        assert selectedTaskList.size() > 0;
+        assert allTaskList.size() > 0;
         Task lastTask = selectedTaskList.get(selectedTaskList.size() - 1);
+        assert lastTask != null;
         for (Task task : selectedTaskList) {
             stringFromArrayList.append(String.format("%3d. %s", allTaskList.indexOf(task) + 1, task.toString()));
             if (task.equals(lastTask)) {

@@ -4,7 +4,7 @@ package common;
  * Container for all default messages printed to user.
  */
 public class Messages {
-    // Generic Print Messages
+    // Start up and Exit Print Messages
     public static final String LOGO =
             " _______        _______        _______        _______ \n"
             + "|   _   |      |       |      |   _   |      |       |\n"
@@ -13,14 +13,14 @@ public class Messages {
             + "|       | ___    |   |   ___  |       | ___  |_____  |\n"
             + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |\n"
             + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|\n";
-
-
-    public static final String DIVIDER = "_______________________________________________________________________";
     public static final String EXIT_MESSAGE = "Exiting A.T.A.S";
+
+    // Common Print Messages
+    public static final String DIVIDER = "_______________________________________________________________________";
     public static final String NEWLINE_INDENT = "     ";
     public static final String COMMENTS_INDENT = "            notes: ";
 
-    // Help Messages
+    // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
     public static final String EVENT_FORMAT_HELP = "Add Event: "
             + "event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm] c/[COMMENTS]";
@@ -53,33 +53,36 @@ public class Messages {
     // Command Print Messages
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
             + "%s" + System.lineSeparator() + "Now you have %d task%s in the list!";
-    public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";
-    public static final String DONE_SUCCESS_MESSAGE = "[%s] has been marked done!";
-    public static final String INCORRECT_COMMAND_ERROR = "Oh no. %s";
     public static final String EMPTY_TASKLIST_MESSAGE = "No tasks were found";
     public static final String SHOW_TASKLIST_MESSAGE = "Here are the relevant tasks:%s%s";
+    public static final String DONE_SUCCESS_MESSAGE = "[%s] has been marked done!";
+    public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";
     public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
     public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
+
+    // Others
+    public static final String NO_TASKS_MSG = "You have no tasks at the moment";
+    public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
+
     // Error Messages
+    public static final String INCORRECT_COMMAND_ERROR = "Oh no. %s";
     public static final String UNKNOWN_COMMAND_ERROR = "Unknown command entered";
+    public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
+            + System.lineSeparator() + DATE_FORMAT_HELP;
+    public static final String NUM_FORMAT_ERROR = "Please provide an integer as the command parameter";
+    public static final String INVALID_ID_ERROR = "Please provide a valid task number from %1$s";
+    public static final String COMPLETED_TASK_ERROR = "Task is already completed";
+    public static final String REPEAT_TASK_ERROR = "Please use a different name. Task already exists in list";
+    public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
+
     public static final String ASSIGN_INCORRECT_FORMAT_ERROR = "Incorrect format for Assignment Command"
             + System.lineSeparator() + ASSIGNMENT_FORMAT_HELP;
     public static final String EVENT_INCORRECT_FORMAT_ERROR = "Incorrect format for Event Command"
             + System.lineSeparator() + EVENT_FORMAT_HELP;
     public static final String LIST_INCORRECT_FORMAT_ERROR = "Invalid argument for List Command";
-    public static final String CLEAR_INCORRECT_FORMAT_ERROR = "Invalid argument for Clear Command";
-    public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
-            + System.lineSeparator() + DATE_FORMAT_HELP;
-    public static final String NUM_FORMAT_ERROR = "Please provide an integer as the command parameter";
-    public static final String DELETE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Delete Command"
-            + System.lineSeparator() + DELETE_FORMAT_HELP;
     public static final String DONE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Done Command"
             + System.lineSeparator() + DONE_FORMAT_HELP;
-
-    public static final String INVALID_ID_ERROR = "Please provide a valid task number from %1$s";
-    public static final String NO_TASKS_MSG = "You have no tasks at the moment";
-    public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
-    public static final String COMPLETED_TASK_ERROR = "Task is already completed";
-    public static final String REPEAT_TASK_ERROR = "Please use a different name. Task already exists in list";
-    public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
+    public static final String DELETE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Delete Command"
+            + System.lineSeparator() + DELETE_FORMAT_HELP;
+    public static final String CLEAR_INCORRECT_FORMAT_ERROR = "Invalid argument for Clear Command";
 }
