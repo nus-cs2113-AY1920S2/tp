@@ -7,6 +7,7 @@ import seedu.command.event.EditName;
 import seedu.command.event.EditVenue;
 import seedu.command.event.EditEvent;
 import seedu.command.event.DeleteEvent;
+import seedu.command.event.ListEvent;
 import seedu.exception.DukeException;
 import seedu.event.Event;
 import seedu.event.EventList;
@@ -57,7 +58,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new DeleteEvent(index, this.eventList);
             break;
         case "list":
-            //TODO list
+            command = new ListEvent(this.eventList);
             break;
         default:
             throw new DukeException("Unknown command");

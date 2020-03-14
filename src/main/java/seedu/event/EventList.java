@@ -89,4 +89,9 @@ public class EventList {
         list.remove(index);
         list.add(index, event);
     }
+
+    public int getSize() {
+        return list.size();
+    }
+
 }

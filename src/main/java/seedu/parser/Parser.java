@@ -18,7 +18,7 @@ public class Parser {
         for (String token: tokens) {
             switch (token.substring(0, 2)) {
             case "i/":
-                index = Integer.parseInt(parameters.substring(2));
+                index = Integer.parseInt(parameters.substring(2, 3));
                 break;
             default:
                 // does nothing, as intended
