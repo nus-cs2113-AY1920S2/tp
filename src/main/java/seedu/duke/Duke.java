@@ -2,6 +2,7 @@ package seedu.duke;
 
 import command.Command;
 import command.CommandResult;
+import command.ExitCommand;
 import common.Messages;
 
 public class Duke {
@@ -28,7 +29,7 @@ public class Duke {
      * Run loop until exit command is received.
      */
     public void runLoop() {
-        while (!CommandResult.isExit) {
+        while (!ExitCommand.isExit()) {
             String input = ui.getUserInput();
             Command command = Parser.parseCommand(input);
             CommandResult result = command.execute(taskList, ui);
