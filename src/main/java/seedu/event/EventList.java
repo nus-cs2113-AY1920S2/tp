@@ -1,6 +1,5 @@
 package seedu.event;
 
-import seedu.event.Event;
 import seedu.exception.DukeException;
 
 import java.util.ArrayList;

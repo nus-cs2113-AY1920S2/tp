@@ -2,9 +2,9 @@ package seedu.storage;
 
 import seedu.event.Event;
 import seedu.exception.DukeException;
-import seedu.module.attendance.Attendance;
+import seedu.attendance.Attendance;
 import seedu.parser.ParserStorage;
-import seedu.ui.Ui;
+import seedu.ui.UI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +18,7 @@ public class Storage {
     private String filePath;
     private ArrayList<Event> events;
     private ArrayList<Attendance> attendances;
-    private Ui ui;
+    private UI ui;
 
     /**
      * Constructs a Storage object that contains duke.tasks and duke.storage related operations.
@@ -27,7 +27,7 @@ public class Storage {
      * @param filePath The filepath to the txt file.
      * @param ui The user interface displaying events on the task list.
      */
-    public Storage(String filePath, Ui ui) {
+    public Storage(String filePath, UI ui) {
         this.filePath = filePath;
         this.ui = ui;
         readEvent();
@@ -52,8 +52,8 @@ public class Storage {
             }
             s.close();
         } catch (DukeException | FileNotFoundException e) {
-            Ui.displayError("FILE_NOT_FOUND");
-            Ui.displayError("NEW_FILE_CREATED");
+            UI.display("FILE_NOT_FOUND");
+            UI.display("NEW_FILE_CREATED");
         }
         events = newEvents;
     }
@@ -76,8 +76,8 @@ public class Storage {
             }
             s.close();
         } catch (DukeException | FileNotFoundException e) {
-            Ui.displayError("FILE_NOT_FOUND");
-            Ui.displayError("NEW_FILE_CREATED");
+            UI.display("FILE_NOT_FOUND");
+            UI.display("NEW_FILE_CREATED");
         }
         attendances = newAttendance;
     }
@@ -89,11 +89,11 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Event event : events) {
-                writer.write(ParserStorage.toStorageStringEvent(event) + "\n");
+                writer.write(ParserStorage.toStorageStringEvent(event));
             }
             writer.close();
         } catch (IOException e) {
-            Ui.displayError("FILE_NOT_SAVE");
+            UI.display("FILE_NOT_SAVE");
         }
     }
 
@@ -104,11 +104,11 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Attendance attendance : attendances) {
-                writer.write(ParserStorage.toStorageStringAttendance(attendance) + "\n");
+                writer.write(ParserStorage.toStorageStringAttendance(attendance));
             }
             writer.close();
         } catch (IOException e) {
-            Ui.displayError("FILE_NOT_SAVE");
+            UI.display("FILE_NOT_SAVE");
         }
     }
 

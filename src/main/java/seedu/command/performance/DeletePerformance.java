@@ -1,14 +1,9 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.exception.DukeException;
-import seedu.module.performance.Performance;
-import seedu.module.performance.PerformanceList;
-import seedu.parser.PerformanceDataParser;
-import seedu.storage.Storage;
-import seedu.ui.Ui;
-
-import java.util.List;
+import seedu.performance.Performance;
+import seedu.performance.PerformanceList;
+import seedu.parser.PerformanceParser;
 
 public class DeletePerformance extends Command {
     Performance performance;
@@ -17,16 +12,17 @@ public class DeletePerformance extends Command {
     /**
      * Constructor for DeletePerformanceCommand. Takes String userInput
      * and parse it to get the Performance to be deleted.
-     * @param userInput A String to be parsed.
+     * @param commandParameters A String to be parsed.
      */
-    public DeletePerformance(String userInput) {
-        this.userInput = userInput;
-        performance = new PerformanceDataParser(userInput).getPerformance();
-        PerformanceList.deletePerformance(performance);
+    public DeletePerformance(String commandParameters) {
+        this.userInput = commandParameters;
+        performance = new PerformanceParser().parsePerformance(commandParameters);
+
     }
 
     @Override
     public void execute() {
-
+        PerformanceList.deletePerformance(performance);
     }
+
 }
