@@ -31,7 +31,7 @@ public class MarkCommandTest {
         command.setData(items, null);
         CommandResult result = command.execute();
         String expectedFeedback = System.lineSeparator()
-                + "Yes! I've marked this item as bought: "
+                + "Yes! I've marked this item as bought:"
                 + System.lineSeparator() + items.getList().get(1).toString()
                 + System.lineSeparator();
         assertEquals(expectedFeedback, result.feedbackToUser);

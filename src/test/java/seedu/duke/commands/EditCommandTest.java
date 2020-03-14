@@ -2,9 +2,6 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandResult;
-import seedu.duke.commands.EditCommand;
 import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
 
@@ -51,12 +48,22 @@ public class EditCommandTest {
     }
 
     @Test
-    public void testEdit_exceptionThrown() {
-        CommandResult result3 = null;
+    public void testEdit_ItemToEditNotInList_exceptionThrown() {
+        CommandResult result3;
         command = new EditCommand(0, "banana", "5.00");
         command.setData(items, null);
         result3 = command.execute();
-        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE;
+        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_NOT_IN_LIST;
+        assertEquals(expectedFeedback3, result3.feedbackToUser);
+    }
+
+    @Test
+    public void testEdit_ItemPriceIncorrectFormat_exceptionThrown() {
+        CommandResult result3;
+        command = new EditCommand(1, "banana", "QWERTY");
+        command.setData(items, null);
+        result3 = command.execute();
+        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT;
         assertEquals(expectedFeedback3, result3.feedbackToUser);
     }
 
