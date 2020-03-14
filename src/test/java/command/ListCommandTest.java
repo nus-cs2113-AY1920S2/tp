@@ -27,11 +27,14 @@ public class ListCommandTest {
     private static String beforeCurrDateTimeString = "13/02/20 1800";
     private static String afterCurrDateTimeString = "01/01/21 0000";
 
-    private static LocalDateTime beforeCurrDateTime = LocalDateTime.parse(beforeCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
-    private static LocalDateTime afterCurrDateTime = LocalDateTime.parse(afterCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
+    private static LocalDateTime beforeCurrDateTime =
+            LocalDateTime.parse(beforeCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
+    private static LocalDateTime afterCurrDateTime =
+            LocalDateTime.parse(afterCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
     private static String currDateTimeStringForPrint = currDateTime.format(Parser.PRINT_DATE_FORMAT);
     private static String nextWeekDateTimeStringForPrint = oneWeekDateTime.format(Parser.PRINT_DATE_FORMAT);
-    private static String afterCurrButSameDayStringForPrint = afterCurrButSameDayDateTime.format(Parser.PRINT_DATE_FORMAT);
+    private static String afterCurrButSameDayStringForPrint =
+            afterCurrButSameDayDateTime.format(Parser.PRINT_DATE_FORMAT);
 
 
     private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks:"
