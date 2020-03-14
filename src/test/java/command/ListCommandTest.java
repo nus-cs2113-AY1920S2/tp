@@ -23,7 +23,7 @@ public class ListCommandTest {
 
     private static LocalDateTime currDateTime = LocalDateTime.now();
     private static LocalDateTime oneWeekDateTime = currDateTime.plusDays(7);
-    private static LocalDateTime afterCurrButSameDayDateTime = currDateTime.plusSeconds(15);
+    private static LocalDateTime afterCurrButSameDayDateTime = currDateTime.plusSeconds(30);
     private static String beforeCurrDateTimeString = "13/02/20 1800";
     private static String afterCurrDateTimeString = "01/01/21 0000";
 
