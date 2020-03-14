@@ -99,13 +99,6 @@ public class ListCommandTest {
         Event eventAfterCurrDateTime = new Event("Countdown", "TimeSquare", testDateTimeTwo, "new year new me");
         Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", currDateTime.plusSeconds(45), "-");
 
-        Assignment currDateTimeAssignment = new Assignment("Assignment 1", "CS2113", currDateTime, "Assignment 1 Notes");
-        Event currDateTimeEvent = new Event("Event 1", "Classroom", currDateTime, "Event 1 Notes");
-
-        Assignment nextWeekAssignment = new Assignment("Assignment 2", "CS2113", oneWeekDateTime, "Assignment 2 Notes");
-        Event nextWeekEvent = new Event("Event 2", "Classroom", oneWeekDateTime, "Event 2 Notes");
-
-
         filledTasklist.addTask(assignBeforeCurrDateTime);
         filledTasklist.addTask(assignAfterCurrDateTime);
         filledTasklist.addTask(eventBeforeCurrDateTime);
@@ -113,6 +106,12 @@ public class ListCommandTest {
         filledTasklist.addTask(eventOnSameDayAfterCurrTime);
         filledTasklist.markTaskAsDone(0);
 
+        Assignment currDateTimeAssignment = new Assignment("Assignment 1", "CS2113", currDateTime,
+                "Assignment 1 Notes");
+        Event currDateTimeEvent = new Event("Event 1", "Classroom", currDateTime, "Event 1 Notes");
+        Assignment nextWeekAssignment = new Assignment("Assignment 2", "CS2113", oneWeekDateTime,
+                "Assignment 2 Notes");
+        Event nextWeekEvent = new Event("Event 2", "Classroom", oneWeekDateTime, "Event 2 Notes");
         filledWeeklyTaskList.addTask(currDateTimeAssignment);
         filledWeeklyTaskList.addTask(currDateTimeEvent);
         filledWeeklyTaskList.addTask(nextWeekAssignment);
@@ -153,6 +152,6 @@ public class ListCommandTest {
     @Test
     public void printList_filledWeeklyList_weeklyTasks() {
         assertEquals(expectedOutputFromListWeek,
-                new ListCommand("week").execute(filledWeeklyTaskList,ui).feedbackToUser );
+                new ListCommand("week").execute(filledWeeklyTaskList,ui).feedbackToUser);
     }
 }
