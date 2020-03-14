@@ -1,5 +1,7 @@
 package seedu.event;
 
+import seedu.exception.DukeException;
+
 import java.util.ArrayList;
 
 public class EventList {
@@ -67,7 +69,7 @@ public class EventList {
      * @param index index of the event
      * @param datetime new datetime for the event
      */
-    public void editDatetime(int index, String datetime) {
+    public void editDatetime(int index, String datetime) throws DukeException {
         Event event = this.find(index);
         event.setDatetime(datetime);
     }
