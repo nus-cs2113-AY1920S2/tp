@@ -44,15 +44,15 @@ public class ListCommandTest {
 
     private static String expectedOutputFromUpcomingEvent = "Here are the relevant tasks:"
             + System.lineSeparator()
-            + "  1. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00)"
+            + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
             + System.lineSeparator()
-            + "  2. [E][X] Bathe (at: Toilet | " + currDateTime.plusSeconds(45).format(Parser.PRINT_DATE_FORMAT) + ")"
+            + "  5. [E][X] Bathe (at: Toilet | " + currDateTime.plusSeconds(45).format(Parser.PRINT_DATE_FORMAT) + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-";
 
     private static String expectedOutputFromIncompleteAssign = "Here are the relevant tasks:"
             + System.lineSeparator()
-            + "  1. [A][X] Quiz 1 (by: Fri 01 Jan 2021 00:00 | mod: CS2173)"
+            + "  2. [A][X] Quiz 1 (by: Fri 01 Jan 2021 00:00 | mod: CS2173)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%";
 
     /**

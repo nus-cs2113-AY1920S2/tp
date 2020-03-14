@@ -1,5 +1,7 @@
 package tasks;
 
+import seedu.duke.TaskList;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -67,6 +69,7 @@ public abstract class Task {
         if (addedTask == null || getClass() != addedTask.getClass()) {
             return false;
         }
+        assert ((addedTask.getClass() == Assignment.class) || (addedTask.getClass() == Event.class));
         Task task = (Task) addedTask;
         return name.equals(task.getName());
     }
