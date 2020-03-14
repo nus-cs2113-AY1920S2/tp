@@ -37,9 +37,11 @@ public class DietManager {
                     System.out.println(String.format("Weight Goal:  %f kilograms", profile.getWeightGoal()));
                 } else {
                     System.out.println("No existing profile found. To create a new profile, enter:\n" +
-                            "createProfile {name} {age} {gender} {height} {weight} {weight goal}");
+                            "setProfile {name} {age} {gender} {height} {weight} {weight goal}");
                 }
                 break;
+            case "setProfile":
+
             case"setName":
                 profile.setName(inputArray[1]);
                 System.out.println(String.format("Your username has been changed to %s", profile.getName()));
