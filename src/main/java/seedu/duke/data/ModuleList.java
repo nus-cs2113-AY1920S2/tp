@@ -8,13 +8,4 @@ public class ModuleList extends ArrayList<Module> {
     public ModuleList() {
         super();
     }
-
-    /*
-    public ModuleList(String[] modules) {
-        for (String moduleIdentifier : modules) {
-            for (Module module : )
-        }
-    }
-
-     */
 }

@@ -1,38 +1,38 @@
 package seedu.duke.command;
 
-import seedu.duke.module.SelectedModule;
+import seedu.duke.data.AvailableModulesList;
 import seedu.duke.ui.Ui;
-import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
-import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
+import seedu.duke.module.NewModule;
 
 public class AddToDataCommand extends Command {
 
     public static final String COMMAND_WORD = "addtodata";
-    private Module module;
+    private NewModule newModule;
 
-    public AddToDataCommand(Module module) {
-        this.module = module;
+    public AddToDataCommand(NewModule newModule) {
+        this.newModule = newModule;
     }
 
-    @Override
-    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList) {
-        addModule(selectedModulesList);
-        Ui.showAddedMessage(module.toString());
+    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
+        addModule(availableModulesList);
+        Ui.showAddedToDataMessage(newModule.toString());
     }
 
-    /*
-    private void addModule(SelectedModulesList moduleList) {
-        for (SemModulesList sem: moduleList) {
-            if (sem.getSem().equals(selectedModule.getSem())) {
-                sem.add(selectedModule);
+    private void addModule(AvailableModulesList availableModulesList) {
+        for (Module module : availableModulesList) {
+            boolean hasSameId = newModule.getId().equals(module.getId());
+            boolean hasSameName = newModule.getName().equals(module.getName());
+            if (hasSameId || hasSameName) {
                 return;
             }
         }
-        SemModulesList sem = new SemModulesList(selectedModule.getSem());
-        sem.add(selectedModule);
-        moduleList.add(sem);
+        availableModulesList.add(newModule);
     }
-     */
+
+    @Override
+    public String toString() {
+        return COMMAND_WORD + " " + newModule;
+    }
 }

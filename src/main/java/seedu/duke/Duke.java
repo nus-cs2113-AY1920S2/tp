@@ -30,7 +30,7 @@ public class Duke {
     public void run() {
         ui.greetUser();
         String fullCommand;
-        boolean isExit = false;
+        boolean isExit;
         Scanner in = new Scanner(System.in);
         do {
             fullCommand = in.nextLine();

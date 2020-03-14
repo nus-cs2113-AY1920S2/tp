@@ -26,7 +26,7 @@ public class MarkAsDoneCommand extends Command {
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList) {
+    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
         markAsDoneCommand(selectedModulesList);
         Ui.showDoneMessage();
     }

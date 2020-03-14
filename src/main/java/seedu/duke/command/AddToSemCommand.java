@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.data.AvailableModulesList;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
-import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
@@ -19,9 +19,9 @@ public class AddToSemCommand extends Command {
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList) {
+    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
         addModule(selectedModulesList);
-        Ui.showAddedMessage(module.toString());
+        Ui.showAddedToSemMessage(module.toString());
     }
 
     private void addModule(SelectedModulesList moduleList) {
