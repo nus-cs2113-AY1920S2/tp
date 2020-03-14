@@ -13,11 +13,11 @@ Oops! For that to be done properly, check if these are met:
 Error! Description of an item cannot be empty.
 Example: ADD 1 i/apple p/4.50
 
-Added this item: [0] apple  $2.45
+Added this item: [0] apple $2.45
 
-Added this item: [0] banana  $3.0
+Added this item: [0] banana $3.00
 
-Added this item: [0] cherry  $5.6
+Added this item: [0] cherry $5.60
 
 Please enter an amount for your budget
 Example: SET b/300
@@ -77,26 +77,26 @@ Oops! For that to be done properly, check if these are met:
 
 The item has been updated to: [0] apples $2.45
 
-The item has been updated to: [0] apple  $2.5
+The item has been updated to: [0] apple $2.50
 
-The item has been updated to: [0] bananas $6.5
+The item has been updated to: [0] bananas $6.50
 
-The item has been updated to: [0] cherry  $8.0
-
-Yes! I've marked this item as bought:
-[B] apple  $2.5
-
+The item has been updated to: [0] cherry $8.00
 
 Yes! I've marked this item as bought:
-[B] bananas $6.5
+[B] apple $2.50
+
+
+Yes! I've marked this item as bought:
+[B] bananas $6.50
 
 
 Yes! I've unmarked this item as bought:
-[0] apple  $2.5
+[0] apple $2.50
 
 
 Got it! I have removed the following item:
-[0] apple  $2.5
+[0] apple $2.50
 
 Please enter an index
 Example: DEL 3

@@ -70,7 +70,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description + " $" + price;
+        return "[" + getStatusIcon() + "] " + description + String.format(" $%.2f", price);
     }
 
 

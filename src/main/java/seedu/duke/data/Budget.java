@@ -17,7 +17,9 @@ public class Budget {
      */
     public double setBudget(double amount) {
         amount = Math.min(amount,MAX);
+        assert amount <= 5000 : "Amount should not be greater than 5000";
         amount = Math.max(amount,MIN);
+        assert amount >= 0 : "Amount should not be negative";
         this.amount = amount;
         return amount;
     }
