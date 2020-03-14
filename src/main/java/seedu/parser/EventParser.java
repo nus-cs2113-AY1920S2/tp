@@ -1,9 +1,22 @@
 package seedu.parser;
 
+import seedu.event.DateTime;
 import seedu.event.Event;
 import seedu.exception.DukeException;
 
-public class Parser {
+public class EventParser {
+    private String name;
+    private String date;
+    private String time;
+    private String venue;
+
+    public EventParser() {
+        this.name = "";
+        this.date = "";
+        this.time = "";
+        this.venue = "";
+    }
+
     /**
      * Returns the index in a string of parameters with this format:
      * [i/INDEX] ... .
@@ -39,20 +52,15 @@ public class Parser {
      */
     public Event parseEvent(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-        String name = "";
-        String time = "";
-        String date = "";
-        String venue = "";
 
-        splitByEventFlags(tokens, name, time, date, venue);
+        splitByEventFlags(tokens);
 
         String datetime = date + " " + time;
 
         return new Event(name, datetime, venue);
     }
 
-    private void splitByEventFlags(String[] tokens, String name, String time,
-                                   String date, String venue) throws DukeException {
+    private void splitByEventFlags(String[] tokens) throws DukeException {
         String mostRecent = null;
         for (String token : tokens) {
             switch (token.substring(0, 2)) {
