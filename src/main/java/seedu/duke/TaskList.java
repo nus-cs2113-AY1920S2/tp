@@ -63,6 +63,7 @@ public class TaskList {
         LocalDate daysIndicated = currDate.plusDays(days);
         for (Task task : tasks) {
             LocalDate taskDate = task.getDate();
+            assert taskList.size() <= tasks.size();
             if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(daysIndicated) <= 0) {
                 taskList.add(task);
             }
