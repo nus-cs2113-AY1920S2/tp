@@ -1,10 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.MarkAsDoneCommand;
-import seedu.duke.command.ViewCommand;
+import seedu.duke.command.*;
 import seedu.duke.module.Module;
 
 /**
@@ -28,8 +24,10 @@ public class Parser {
         }
 
         switch (taskType) {
-        case AddCommand.COMMAND_WORD:
-            return processAddCommand(args);
+        case AddToSemCommand.COMMAND_WORD:
+            return processAddToSemCommand(args);
+        case AddToDataCommand.COMMAND_WORD:
+            //return processAddToDataCommand(args);
         case ViewCommand.COMMAND_WORD:
             return processViewCommand(args);
         case ExitCommand.COMMAND_WORD:
@@ -59,7 +57,7 @@ public class Parser {
         return null;
     }
 
-    private static AddCommand processAddCommand(String args) {
+    private static AddToSemCommand processAddToSemCommand(String args) {
         String[] moduleWords;
         moduleWords = args.split(" s/");
         if (moduleWords.length < 2) {
@@ -69,13 +67,20 @@ public class Parser {
         String semester = moduleWords[1];
         if (module.contains("n/")) {
             String moduleName = module.replace("n/","");
-            return new AddCommand(new Module("name", moduleName, semester));
+            return new AddToSemCommand(new Module("name", moduleName, semester));
         } else if (module.contains("id/")) {
             String moduleId = module.replace("id/","");
-            return new AddCommand(new Module("id", moduleId, semester));
+            return new AddToSemCommand(new Module("id", moduleId, semester));
         }
         return null;
     }
+
+/*    private static AddToDataCommand processAddToDataCommand(String args) {
+        String[] modulewords;
+        //modulewords = args.split()
+    }
+
+ */
 
     private static ViewCommand processViewCommand(String args) {
         if (args.contains("/cm")) {

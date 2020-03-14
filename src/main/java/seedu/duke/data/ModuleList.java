@@ -9,4 +9,12 @@ public class ModuleList extends ArrayList<Module> {
         super();
     }
 
+    /*
+    public ModuleList(String[] modules) {
+        for (String moduleIdentifier : modules) {
+            for (Module module : )
+        }
+    }
+
+     */
 }

@@ -8,7 +8,7 @@ public class Module {
     protected String semester;
     protected String description;
     protected Boolean isSUable;
-    protected ModuleList preReqModules;
+    protected ModuleList preRequisiteModules;
     protected boolean isNameValid;
     protected boolean isIdValid;
     protected boolean isDone;

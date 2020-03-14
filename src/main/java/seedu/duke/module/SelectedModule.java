@@ -1,7 +1,5 @@
 package seedu.duke.module;
 
-import seedu.duke.data.ModuleList;
-
 public class SelectedModule extends Module {
     private boolean isCompleted;
     private double grade;
@@ -23,13 +21,13 @@ public class SelectedModule extends Module {
      * @param module           the module from available module list.
      */
     public SelectedModule(Module module) {
-        super();
+        //super(); // not sure if commenting this out will affect anything
         super.name = module.name;
         super.id = module.id;
         super.semester = module.semester;
         super.description = module.description;
         super.isSUable = module.isSUable;
-        super.preReqModules = module.preReqModules;
+        super.preRequisiteModules = module.preRequisiteModules;
         super.isNameValid = module.isNameValid;
         super.isIdValid = module.isIdValid;
         super.isDone = module.isDone;
