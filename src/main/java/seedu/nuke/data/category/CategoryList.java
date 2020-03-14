@@ -1,7 +1,6 @@
 package seedu.nuke.data.category;
 
 import seedu.nuke.data.module.Module;
-import seedu.nuke.data.module.ModuleList;
 import seedu.nuke.data.task.TaskList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
@@ -82,6 +81,16 @@ public class CategoryList {
 
     public TaskList filterExact(String categoryName) throws CategoryNotFoundException {
         return getCategory(categoryName).getTasks();
+    }
+
+    public ArrayList<Category> filter(String categoryKeyword) {
+        ArrayList<Category> filteredCategoryList = new ArrayList<>();
+        for (Category category : categoryList) {
+            if (category.getCategoryName().toLowerCase().contains(categoryKeyword.toLowerCase())) {
+                filteredCategoryList.add(category);
+            }
+        }
+        return filteredCategoryList;
     }
 
     public static class CategoryNotFoundException extends DataNotFoundException {}

@@ -13,9 +13,14 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
+import seedu.nuke.data.task.Task;
+import seedu.nuke.format.ListCreator;
 import seedu.nuke.parser.Parser;
+import seedu.nuke.util.Util;
 
+import java.awt.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static seedu.nuke.util.Message.*;
@@ -71,6 +76,7 @@ public class MainController implements Initializable {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void displayResult(CommandResult result) {
         // Auto scroll-down
         consoleScreenScrollPane.vvalueProperty().bind(consoleScreen.heightProperty());
@@ -78,25 +84,26 @@ public class MainController implements Initializable {
         Text feedbackToUser = createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.BLUE);
         consoleScreen.getChildren().add(feedbackToUser);
 
-        if (result.isShowTasks()) {
-            Text taskList = createText(String.format("%s\n", createModuleList()), Color.BROWN);
-            consoleScreen.getChildren().add(taskList);
+        if (result.isShowList()) {
+            ArrayList<Task> taskList = (ArrayList<Task>) result.getList();
+            Text taskListTable = createText(ListCreator.createTaskListTable(taskList), Color.BROWN);
+            consoleScreen.getChildren().add(taskListTable);
         }
 
     }
 
-    private String createModuleList() {
-        final String DIVIDER = String.format("%s%s%s\n", "+", "-".repeat(78), "+");
-        StringBuilder listToShow = new StringBuilder();
-
-        listToShow.append(DIVIDER);
-
-        for (Module module : ModuleList.getModuleList()) {
-            listToShow.append(String.format("%s\n", module.getModuleCode()));
-        }
-
-        listToShow.append(DIVIDER);
-
-        return listToShow.toString();
-    }
+//    private String createModuleList() {
+//        final String DIVIDER = String.format("%s%s%s\n", "+", "-".repeat(78), "+");
+//        StringBuilder listToShow = new StringBuilder();
+//
+//        listToShow.append(DIVIDER);
+//
+//        for (Module module : ModuleList.getModuleList()) {
+//            listToShow.append(String.format("%s\n", module.getModuleCode()));
+//        }
+//
+//        listToShow.append(DIVIDER);
+//
+//        return listToShow.toString();
+//    }
 }

@@ -37,7 +37,7 @@ public class Ui {
      */
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
-        if (result.isShowTasks()) {
+        if (result.isShowList()) {
             showSystemMessage(createModuleList());
         }
     }

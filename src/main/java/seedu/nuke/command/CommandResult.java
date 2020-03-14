@@ -1,31 +1,39 @@
 package seedu.nuke.command;
 
+import seedu.nuke.data.task.Task;
+
+import java.util.ArrayList;
+
 /*
     construct the feedback to user String
  */
 public class CommandResult {
     private final String feedbackToUser;
-    private final boolean isShowTasks;
+    private final boolean isShowList;
+    private final ArrayList<?> list;
 
 
-    /**
-     * @parameter: Execute feedback to user
-     */
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
-        this.isShowTasks = false;
+        this.isShowList = false;
+        this.list = null;
     }
 
-    public CommandResult(String feedbackToUser, boolean isShowTasks) {
+    public CommandResult(String feedbackToUser, boolean isShowList, ArrayList<?> listToShow) {
         this.feedbackToUser = feedbackToUser;
-        this.isShowTasks = isShowTasks;
+        this.isShowList = isShowList;
+        this.list = listToShow;
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowTasks() {
-        return isShowTasks;
+    public boolean isShowList() {
+        return isShowList;
+    }
+
+    public ArrayList<?> getList() {
+        return list;
     }
 }

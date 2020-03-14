@@ -14,7 +14,6 @@ import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,7 +26,6 @@ import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
  * The <b>Parser</b> then converts the input into a <b>Command</b> to be executed by the <b>Nuke</b> program.
  */
 public class Parser {
-    private final int MAX_INPUT_LENGTH = 100; // Maximum length of user input accepted
     private final String MODULE_CODE_PREFIX = "-m";
     private final String CATEGORY_NAME_PREFIX = "-c";
     private final String TASK_DESCRIPTION_PREFIX = "-t";
@@ -36,12 +34,12 @@ public class Parser {
 
     private final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
     private final Pattern COMMAND_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<identifier>[^-]+)"
-            + "(?<moduleCode>(?: " + MODULE_CODE_PREFIX + " [^-]+)?)"
-            + "(?<categoryName>(?: " + CATEGORY_NAME_PREFIX + " [^-]+)?)"
-            + "(?<taskDescription>(?: " + TASK_DESCRIPTION_PREFIX + " [^-]+)?)"
-            + "(?<deadline>(?: " + DEADLINE_PREFIX + " [^-]+)?)"
-            + "(?<priority>(?: " + PRIORITY_PREFIX + " [^-]+)?)"
+            "(?<identifier>([^-]*)?)"
+            + "(?<moduleCode>(" + MODULE_CODE_PREFIX + " [^-]+)?)"
+            + "(?<categoryName>(" + CATEGORY_NAME_PREFIX + " [^-]+)?)"
+            + "(?<taskDescription>(" + TASK_DESCRIPTION_PREFIX + " [^-]+)?)"
+            + "(?<deadline>(" + DEADLINE_PREFIX + " [^-]+)?)"
+            + "(?<priority>(" + PRIORITY_PREFIX + " [^-]+)?)"
     );
 
     /**
@@ -51,21 +49,12 @@ public class Parser {
      * <b>Note</b>: The user input has to start with a certain keyword (i.e. <i>command word</i>), otherwise an
      * <i>Invalid Command Exception</i> will be thrown.
      *
-     * @param input The user input read by the <b>UI.java</b>
+     * @param input The user input read by the <b>UI</b>
      * @return The <b>corresponding</b> command to be executed
-     * @throws EmptyInputException If user input is empty
-     * @throws InputLengthExceededException If the length of the user input > {@value MAX_INPUT_LENGTH}
-     * @throws InvalidCommandException If the user input cannot be recognised as any of the  <b>Command</b>
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
     public Command parseInput(String input) {
-//        if (input.isEmpty()) {
-//            throw new EmptyInputException();
-//        }
-//        if (input.length() > MAX_INPUT_LENGTH) {
-//            throw new InputLengthExceededException();
-//        }
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
 
@@ -85,7 +74,7 @@ public class Parser {
                 return createDeleteModuleCommand(parameters);
 
             case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+                return createListCommand(parameters);
 
             case AddCategoryCommand.COMMAND_WORD:
                 return createAddCategoryCommand(parameters);
@@ -110,7 +99,7 @@ public class Parser {
     private Command createAddModuleCommand(String parameters) {
         final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
 
-        if (!matcher.matches()) {
+        if (!matcher.find()) {
             return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
@@ -189,7 +178,7 @@ public class Parser {
     private Command createAddTaskCommand(String parameters) {
         final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
 
-        if (!matcher.matches()) {
+        if (!matcher.find()) {
             return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
@@ -240,7 +229,24 @@ public class Parser {
         return new DeleteTaskCommand(moduleCode, categoryName, taskDescription);
     }
 
+    private Command createListCommand(String parameters) {
+        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
 
+        if (!matcher.find()) {
+            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+
+        String moduleCode = matcher.group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryName = matcher.group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
+        String taskDescription = matcher.group("taskDescription")
+                .replace(TASK_DESCRIPTION_PREFIX, "").trim();
+
+        System.out.println(String.format("%s %s %s\n", moduleCode, categoryName, taskDescription));
+
+        return new ListCommand(moduleCode, categoryName, taskDescription);
+    }
 
     /**
      * Checks if there is more than <b>one</b> parameter in the input
@@ -251,12 +257,6 @@ public class Parser {
     private boolean hasMultipleParameters(String parameters) {
         return parameters.contains(" ");
     }
-
-    /** Signals that the user has provided an empty input. */
-    public static class EmptyInputException extends InvalidFormatException {}
-
-    /** Signals that the user has provided an input that is longer than {@value MAX_INPUT_LENGTH} characters. */
-    public static class InputLengthExceededException extends InvalidFormatException {}
 
     /** Signals that the user has provided an unrecognised command */
     public static class InvalidCommandException extends InvalidFormatException {}

@@ -47,7 +47,7 @@ public class AddTaskCommand extends Command {
             Category parentCategory = ModuleList.getCategory(moduleCode, categoryName);
             Task toAdd = new Task(parentCategory, description, deadline, priority);
             ModuleList.filterExact(moduleCode, categoryName).add(toAdd);
-            return new CommandResult(MESSAGE_ADD_TASK_SUCCESS(categoryName));
+            return new CommandResult(MESSAGE_ADD_TASK_SUCCESS(description));
         } catch (ModuleList.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         } catch (CategoryList.CategoryNotFoundException e) {

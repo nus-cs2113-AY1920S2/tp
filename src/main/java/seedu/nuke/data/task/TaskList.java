@@ -80,6 +80,16 @@ public class TaskList {
         return getTask(description).getFiles();
     }
 
+    public ArrayList<Task> filter(String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Task category : taskList) {
+            if (category.getDescription().toLowerCase().contains(taskKeyword.toLowerCase())) {
+                filteredTaskList.add(category);
+            }
+        }
+        return filteredTaskList;
+    }
+
     public static class TaskNotFoundException extends DataNotFoundException {}
     public static class DuplicateTaskException extends DuplicateDataException {}
 }

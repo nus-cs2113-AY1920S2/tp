@@ -2,6 +2,7 @@ package seedu.nuke.data.module;
 
 import seedu.nuke.data.category.Category;
 import seedu.nuke.data.category.CategoryList;
+import seedu.nuke.data.task.Task;
 import seedu.nuke.data.task.TaskList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
@@ -102,6 +103,31 @@ public class ModuleList {
         return filterExact(moduleCode).filterExact(categoryName);
     }
 
+    public static ArrayList<Module> filter(String moduleKeyword) {
+        ArrayList<Module> filteredModuleList = new ArrayList<>();
+        for (Module module : moduleList) {
+            if (module.getModuleCode().toLowerCase().contains(moduleKeyword.toLowerCase())) {
+                filteredModuleList.add(module);
+            }
+        }
+        return filteredModuleList;
+    }
+
+    public static ArrayList<Category> filter(String moduleKeyword, String categoryKeyword) {
+        ArrayList<Category> filteredCategoryList = new ArrayList<>();
+        for (Module module : filter(moduleKeyword)) {
+            filteredCategoryList.addAll(module.getCategories().filter(categoryKeyword));
+        }
+        return filteredCategoryList;
+    }
+
+    public static ArrayList<Task> filter(String moduleKeyword, String categoryKeyword, String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Category category : filter(moduleKeyword, categoryKeyword)) {
+            filteredTaskList.addAll(category.getTasks().filter(taskKeyword));
+        }
+        return filteredTaskList;
+    }
 
     public static class ModuleNotFoundException extends DataNotFoundException {}
     public static class DuplicateModuleException extends DuplicateDataException {}
