@@ -38,23 +38,23 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new AddEvent(event, this.eventList);
             break;
         case "editname":
-            index = parser.parseIndex(commandParameters);
-            name = parser.parseEventName(commandParameters);
+            index = eventParser.parseIndex(commandParameters);
+            name = eventParser.parseEventName(commandParameters);
             command = new EditName(index, name, this.eventList);
             break;
         case "editdatetime":
-            index = parser.parseIndex(commandParameters);
-            datetime = parser.parseEventDateTime(commandParameters);
+            index = eventParser.parseIndex(commandParameters);
+            datetime = eventParser.parseEventDateTime(commandParameters);
             command = new EditDateTime(index, datetime, this.eventList);
             break;
         case "editvenue":
-            index = parser.parseIndex(commandParameters);
-            venue = parser.parseVenue(commandParameters);
+            index = eventParser.parseIndex(commandParameters);
+            venue = eventParser.parseVenue(commandParameters);
             command = new EditVenue(index, venue, this.eventList);
             break;
         case "editevent":
-            index = parser.parseIndex(commandParameters);
-            event = parser.parseEvent(commandParameters);
+            index = eventParser.parseIndex(commandParameters);
+            event = eventParser.parseEvent(commandParameters);
             command = new EditEvent(index, event, this.eventList);
             break;
         case "delete":
