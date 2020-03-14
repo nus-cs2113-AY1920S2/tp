@@ -70,7 +70,7 @@ public class EventList {
      * @param index index of the event
      * @param datetime new datetime for the event
      */
-    public void editDatetime(int index, String datetime) throws DukeException {
+    public void editDatetime(int index, String datetime) {
         Event event = this.find(index);
         event.setDatetime(datetime);
     }
@@ -83,5 +83,10 @@ public class EventList {
     public void editVenue(int index, String venue) {
         Event event = this.find(index);
         event.setVenue(venue);
+    }
+
+    public void editEvent(int index, Event event) {
+        list.remove(index);
+        list.add(index, event);
     }
 }

@@ -53,6 +53,26 @@ public class Parser {
         return new Event(name, datetime, venue);
     }
 
+    public String parseEventName(String parameters) {
+        String[] tokens = parameters.split(" ");
+        String name = tokens[1].substring(2);
+        return name;
+    }
+
+    public String parseEventDateTime(String parameters) {
+        String[] tokens = parameters.split(" ");
+        String date = tokens[1].substring(2);
+        String time = tokens[2].substring(2);
+        String datetime = date + " " + time;
+        return datetime;
+    }
+
+    public String parseVenue(String parameters) {
+        String[] tokens = parameters.split(" ");
+        String venue = tokens[1].substring(2);
+        return venue;
+    }
+
     private void splitByEventFlags(String[] tokens, String name, String time,
                                    String date, String venue) throws DukeException {
         String mostRecent = null;
@@ -63,15 +83,15 @@ public class Parser {
                 name += token.substring(2);
                 mostRecent = name;
                 break;
-            case "t/":
-                ensureNotDuplicateFlag(time, "duplicate time flag");
-                time += token.substring(2);
-                mostRecent = time;
-                break;
             case "d/":
                 ensureNotDuplicateFlag(date, "duplicate date flag");
                 date += token.substring(2);
                 mostRecent = date;
+                break;
+            case "t/":
+                ensureNotDuplicateFlag(time, "duplicate time flag");
+                time += token.substring(2);
+                mostRecent = time;
                 break;
             case "v/":
                 ensureNotDuplicateFlag(venue, "duplicate venue flag");

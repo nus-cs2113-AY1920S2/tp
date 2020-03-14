@@ -63,15 +63,6 @@ public class Event {
             } else {
                 this.name = name;
             }
-        } else {
-            // if original name is not empty and null
-            if (name == null || name.isEmpty()) {
-                // if new name is empty or null
-                throw new InvalidParameterException("empty name");
-            } else {
-                // if new name is not empty and not null
-                this.name = name;
-            }
         }
     }
 
@@ -107,7 +98,8 @@ public class Event {
         this.venue = venue;
     }
 
+    @Override
     public String toString() {
-        return "[E] + " + getName() + getDatetime() + getVenue();
+        return "Event: " + getName() + "at: " + getDatetime() + ", " + getVenue();
     }
 }

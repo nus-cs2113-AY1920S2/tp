@@ -65,7 +65,7 @@ public class CommandInterpreter {
             //TODO PerformanceCommandInterpreter
             break;
         default:
-            throw new DukeException("Unknown command");
+            throw new DukeException("Unknown main command");
         }
 
         if (command == null) {
