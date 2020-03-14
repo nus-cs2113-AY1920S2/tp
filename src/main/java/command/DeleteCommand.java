@@ -20,7 +20,6 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         if (taskList.getListSize() == 0) {
-            assert taskList.getListSize() == 0;
             return new CommandResult(Messages.NO_TASKS_MSG);
         }
         try {
