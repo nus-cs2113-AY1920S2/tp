@@ -72,7 +72,7 @@ public class CommandInterpreter {
             command = pci.decideCommand(commandDescription);
             break;
         default:
-            throw new DukeException("Unknown command type.");
+            throw new DukeException("No parameters provided");
         }
 
         if (command == null) {
