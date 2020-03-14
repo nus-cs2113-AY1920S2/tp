@@ -63,8 +63,7 @@ public class Event {
             } else {
                 this.name = name;
             }
-        }
-        else {
+        } else {
             // if original name is not empty and null
             if (name == null || name.isEmpty()) {
                 // if new name is empty or null
