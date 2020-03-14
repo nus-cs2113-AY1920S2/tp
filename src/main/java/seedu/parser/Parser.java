@@ -3,8 +3,6 @@ package seedu.parser;
 import seedu.event.Event;
 import seedu.exception.DukeException;
 
-import java.util.Arrays;
-
 public class Parser {
     /**
      * Returns the index in a string of parameters with this format:
@@ -18,7 +16,7 @@ public class Parser {
         for (String token: tokens) {
             switch (token.substring(0, 2)) {
             case "i/":
-                index = Integer.parseInt(parameters.substring(2));
+                index = Integer.parseInt(parameters.substring(2, 3));
                 break;
             default:
                 // does nothing, as intended
@@ -27,7 +25,7 @@ public class Parser {
         }
 
         if (index == -1) {
-            throw new DukeException("index not found");
+            throw new DukeException("Index not found. Please provide a correct index");
         }
         return index;
     }
@@ -35,7 +33,7 @@ public class Parser {
     // TODO: [r/FREQ[/TIME or /DAY]]
     /**
      * Parse parameters based on the following format:
-     * n/EVENTNAME [t/EVENTTIME] [d/EVENTDATE] [v/EVENTVENUE].
+     * n/EVENTNAME [d/EVENTDATE] [d/EVENTTIME] [v/EVENTVENUE].
      * @param parameters original parameters
      * @return an Event object with the relevant information
      */
@@ -53,6 +51,44 @@ public class Parser {
         return new Event(name, datetime, venue);
     }
 
+    /**
+     * Parses string passed in to obtain name of the event.
+     *
+     * @param parameters Input String by user in the format: i/[INDEX] n/[EVENTNAME]
+     * @return Name of event as a string.
+     */
+    public String parseEventName(String parameters) {
+        String[] tokens = parameters.split(" ");
+        String name = tokens[1].substring(2);
+        return name;
+    }
+
+    /**
+     * Parses input string to obtain date and time of the event.
+     *
+     * @param parameters Input String by user in the format: i/[INDEX] d/[EVENTDATE] t/[EVENTTIME]
+     * @return Date and time of the event as a string.
+     */
+    public String parseEventDateTime(String parameters) {
+        String[] tokens = parameters.split(" ");
+        String date = tokens[1].substring(2);
+        String time = tokens[2].substring(2);
+        String datetime = date + " " + time;
+        return datetime;
+    }
+
+    /**
+     * Parses input string to obtain venue of the event.
+     *
+     * @param parameters Input String by user in the format: i/[INDEX] v/[EVENTVENUE]
+     * @return Venue of the event as a String
+     */
+    public String parseVenue(String parameters) {
+        String[] tokens = parameters.split(" ");
+        String venue = tokens[1].substring(2);
+        return venue;
+    }
+
     private void splitByEventFlags(String[] tokens, String name, String time,
                                    String date, String venue) throws DukeException {
         String mostRecent = null;
@@ -63,15 +99,15 @@ public class Parser {
                 name += token.substring(2);
                 mostRecent = name;
                 break;
-            case "t/":
-                ensureNotDuplicateFlag(time, "duplicate time flag");
-                time += token.substring(2);
-                mostRecent = time;
-                break;
             case "d/":
                 ensureNotDuplicateFlag(date, "duplicate date flag");
                 date += token.substring(2);
                 mostRecent = date;
+                break;
+            case "t/":
+                ensureNotDuplicateFlag(time, "duplicate time flag");
+                time += token.substring(2);
+                mostRecent = time;
                 break;
             case "v/":
                 ensureNotDuplicateFlag(venue, "duplicate venue flag");
@@ -107,10 +143,4 @@ public class Parser {
     private boolean isUnknownFlag(String input) {
         return input.charAt(1) == '/';
     }
-
-    public static String[] performanceDataToParse(String userInput) {
-        String[] instructions = userInput.split(" ",20);
-        return Arrays.copyOfRange(instructions, 1, instructions.length);
-    }
-
 }

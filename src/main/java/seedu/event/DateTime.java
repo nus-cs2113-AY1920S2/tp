@@ -2,7 +2,6 @@ package seedu.event;
 
 import seedu.exception.DukeException;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
