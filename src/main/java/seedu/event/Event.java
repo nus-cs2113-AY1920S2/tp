@@ -64,6 +64,16 @@ public class Event {
                 this.name = name;
             }
         }
+        else {
+            // if original name is not empty and null
+            if (name == null || name.isEmpty()) {
+                // if new name is empty or null
+                throw new InvalidParameterException("Empty name");
+            } else {
+                // if new name is not empty and not null
+                this.name = name;
+            }
+        }
     }
 
     /**
