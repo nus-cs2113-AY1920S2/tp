@@ -11,10 +11,14 @@ import seedu.command.event.ListEvent;
 import seedu.exception.DukeException;
 import seedu.event.Event;
 import seedu.event.EventList;
+import seedu.parser.EventParser;
 
 public class EventCommandInterpreter extends CommandInterpreter {
+    protected EventParser eventParser;
+
     public EventCommandInterpreter(EventList eventList) {
         super(eventList);
+        this.eventParser = new EventParser();
     }
 
     @Override
@@ -30,7 +34,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
         String commandParameters = getSubsequentWords(commandDescription);
         switch (commandType) {
         case "add":
-            event = parser.parseEvent(commandParameters);
+            event = eventParser.parseEvent(commandParameters);
             command = new AddEvent(event, this.eventList);
             break;
         case "editname":
@@ -54,7 +58,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new EditEvent(index, event, this.eventList);
             break;
         case "delete":
-            index = parser.parseIndex(commandParameters);
+            index = eventParser.parseIndex(commandParameters);
             command = new DeleteEvent(index, this.eventList);
             break;
         case "list":

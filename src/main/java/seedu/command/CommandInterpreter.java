@@ -1,15 +1,12 @@
 package seedu.command;
 
-import seedu.parser.Parser;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
 public class CommandInterpreter {
-    protected Parser parser;
     protected EventList eventList;
 
     public CommandInterpreter(EventList eventList) {
-        this.parser = new Parser();
         this.eventList = eventList;
     }
 
