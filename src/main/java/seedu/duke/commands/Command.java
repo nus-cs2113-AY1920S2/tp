@@ -7,6 +7,7 @@ public class Command {
 
     protected ShoppingList items;
     protected Budget myBudget;
+    public boolean isExit = false;
 
     /**
      * Executes the command and returns the result.

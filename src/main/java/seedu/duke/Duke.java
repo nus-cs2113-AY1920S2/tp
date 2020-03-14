@@ -87,7 +87,7 @@ public class Duke {
             CommandResult result = executeCommand(command);
             assert result != null : "Result should have been initialised";
             System.out.println(result.feedbackToUser);
-        } while (!ExitCommand.isExit(command));
+        } while (!command.isExit);
     }
 
     /**Read the input when user type the command.
