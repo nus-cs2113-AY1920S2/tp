@@ -6,7 +6,6 @@ package command;
 public class CommandResult {
 
     public String feedbackToUser;
-    public static boolean isExit = false;
 
     /**
      * Default constructor to initialise the input to be shown to user.
