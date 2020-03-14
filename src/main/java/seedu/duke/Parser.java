@@ -165,8 +165,12 @@ public class Parser {
     }
 
     private static Command prepareClearCommand(String fullCommand) {
-        assert fullCommand.trim().equals(ClearCommand.CLEAR_COMMAND_WORD);
-        return new ClearCommand();
+        String[] tokens = fullCommand.trim().split("\\s+", 2);
+        if (tokens.length  == 1) {
+            return new ClearCommand(null);
+        }
+        assert tokens.length == 2;
+        return new ClearCommand(tokens[1]);
     }
 
     private static Command prepareExitCommand(String fullCommand) {

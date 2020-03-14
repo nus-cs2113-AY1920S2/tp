@@ -59,7 +59,7 @@ public class Messages {
     public static final String EMPTY_TASKLIST_MESSAGE = "No tasks were found";
     public static final String SHOW_TASKLIST_MESSAGE = "Here are the relevant tasks:%s%s";
     public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
-
+    public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
     // Error Messages
     public static final String UNKNOWN_COMMAND_ERROR = "Unknown command entered";
     public static final String ASSIGN_INCORRECT_FORMAT_ERROR = "Incorrect format for Assignment Command"
@@ -67,7 +67,7 @@ public class Messages {
     public static final String EVENT_INCORRECT_FORMAT_ERROR = "Incorrect format for Event Command"
             + System.lineSeparator() + EVENT_FORMAT_HELP;
     public static final String LIST_INCORRECT_FORMAT_ERROR = "Invalid argument for List Command";
-
+    public static final String CLEAR_INCORRECT_FORMAT_ERROR = "Invalid argument for Clear Command";
     public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + DATE_FORMAT_HELP;
     public static final String NUM_FORMAT_ERROR = "Please provide an integer as the command parameter";
@@ -81,4 +81,5 @@ public class Messages {
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
     public static final String COMPLETED_TASK_ERROR = "Task is already completed";
     public static final String REPEAT_TASK_ERROR = "Please use a different name. Task already exists in list";
+    public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
 }

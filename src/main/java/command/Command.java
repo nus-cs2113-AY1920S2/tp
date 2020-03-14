@@ -5,8 +5,6 @@ import seedu.duke.TaskList;
 import seedu.duke.Ui;
 import tasks.Task;
 
-import java.util.ArrayList;
-
 public abstract class Command {
     /**
      * Executes the specific command.
