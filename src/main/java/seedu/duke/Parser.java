@@ -31,7 +31,7 @@ public class Parser {
             + "\\s+n/\\s*(?<assignmentName>[^/]+)"
             + "\\s+m/\\s*(?<moduleName>[^/]+)"
             + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-            + "\\s+c/\\s*(?<comments>[^/]+)"
+            + "\\s+c/\\s*(?<comments>.+)$"
     );
 
     // regex for an add event command
@@ -40,7 +40,7 @@ public class Parser {
             + "\\s+n/\\s*(?<eventName>[^/]+)"
             + "\\s+l/\\s*(?<location>[^/]+)"
             + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-            + "\\s+c/\\s*(?<comments>[^/]+)"
+            + "\\s+c/\\s*(?<comments>.+)$"
     );
 
     /**
