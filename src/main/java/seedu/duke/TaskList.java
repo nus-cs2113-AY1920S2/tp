@@ -4,6 +4,7 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -138,6 +139,14 @@ public class TaskList {
         int size = tasks.size();
         tasks.remove(deleteIndex);
         assert tasks.size() == size - 1;
+    }
+
+    /**
+     * Updates current task list with a new task list.
+     * @param tasks ArrayList containing all the tasks
+     */
+    public void updateTaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**
