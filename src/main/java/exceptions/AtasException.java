@@ -1,8 +1,8 @@
 package exceptions;
 
-public class DukeException extends Exception {
+public class AtasException extends Exception {
 
-    public DukeException(String errorMsg) {
+    public AtasException(String errorMsg) {
         super(errorMsg);
     }
 
