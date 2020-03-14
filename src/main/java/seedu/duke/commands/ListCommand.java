@@ -13,7 +13,7 @@ public class ListCommand extends Command {
 
     public static final String TOTAL_COST_MESSAGE = "Total cost of items: %.2f\n";
 
-    public static final String BUDGET_MESSAGE = "Your remaining budget / total budget: %.2f / %.2f\n";
+    public static final String BUDGET_MESSAGE = "Your remaining budget / total budget: %.2f / %.2f";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all items in the list."
             + System.lineSeparator() + "|| Parameters: DISPLAY"

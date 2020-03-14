@@ -5,8 +5,8 @@ public class Item {
     private double price;
     private String description;
     private boolean isBought;
-    public static final String BOUGHT = "B";
-    public static final String NOT_BOUGHT = "0";
+    private static final String BOUGHT = "B";
+    private static final String NOT_BOUGHT = "0";
 
     /**
      * Constructs an Item object with the provided description and price.

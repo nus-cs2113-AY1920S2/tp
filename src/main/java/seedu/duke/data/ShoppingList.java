@@ -8,9 +8,6 @@ public class ShoppingList {
 
     private static ArrayList<Item> items = new ArrayList<>();
 
-    public ShoppingList() {
-    }
-
     public ArrayList<Item> getList() {
         return items;
     }

@@ -1,7 +1,5 @@
 package seedu.duke.commands;
 
-import javax.xml.stream.events.EndDocument;
-
 /**
  * Shows help instructions.
  */
@@ -10,8 +8,6 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions."
             + System.lineSeparator() + "|| Parameters: HELP"
             + System.lineSeparator() + "|| Example: HELP" + System.lineSeparator();
-
-
 
     @Override
     public CommandResult execute() {

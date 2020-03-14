@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class Duke {
 
-    public static Budget myBudget = new Budget();
+    private static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
     private static Scanner in = new Scanner(System.in);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
