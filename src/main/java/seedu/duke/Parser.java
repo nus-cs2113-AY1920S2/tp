@@ -179,4 +179,19 @@ public class Parser {
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
+
+    public static void main(String[] args) {
+        LocalDateTime currDateTime = LocalDateTime.now();
+        String currDateTimeStringForInput = currDateTime.format(Parser.INPUT_DATE_FORMAT);
+        String currDateTimeStringForPrint = currDateTime.format(Parser.PRINT_DATE_FORMAT);
+        String expectedOutputFromListToday = "Here are the relevant tasks:"
+                + System.lineSeparator()
+                + "  1. [A][X] Assignment 1 (by: " + currDateTimeStringForPrint + " | mod: CS2113)"
+                + System.lineSeparator() + Messages.COMMENTS_INDENT + "Assignment Notes"
+                + System.lineSeparator()
+                + "  2. [E][X] Event 1 (at: Classroom | " + currDateTimeStringForPrint + ")"
+                + System.lineSeparator() + Messages.COMMENTS_INDENT + "Event Notes";
+        System.out.println(expectedOutputFromListToday);
+
+    }
 }
