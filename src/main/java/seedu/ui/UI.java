@@ -51,11 +51,13 @@ public class UI {
      * This prints the welcome message and set username for the application.
      */
     public static void setUserName() {
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "\n"
+                + " ______       ____           ______\n"
+                + "|   __  \\    /    \\      /     ___|\n"
+                + "|  |__| |   /  /\\  \\     |   /\n"
+                + "|   ____/  /   _    \\    |   |\n"
+                + "|  |      /  /    \\  \\   |   \\____\n"
+                + "|__|     /__/      \\__\\  \\________|\n";
         display("Hello from\n" + logo);
         display("What is your name?");
         userName = in.nextLine();
@@ -139,13 +141,13 @@ public class UI {
      */
     public static void deleteAttendanceMessage(Attendance attendance, boolean hasDeleted) {
         if (hasDeleted) {
-            String studentName = attendance.getStudentName();
-            String eventName = attendance.getEventName();
+            String studentName = attendance.getStudent();
+            String eventName = attendance.getEvent();
             System.out.printf("Attendance of %s has been taken successfully"
                     + " under event %s.\n", studentName, eventName);
         } else {
             System.out.printf("There is no %s's attendance record in the list\n",
-                    attendance.getStudentName());
+                    attendance.getStudent());
         }
     }
 

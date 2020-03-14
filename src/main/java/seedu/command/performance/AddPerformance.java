@@ -30,6 +30,7 @@ public class AddPerformance extends Command {
         performanceList.addToList(performance, eventName);
     }
 
+    @Override
     public void execute() {
         addToList();
     }

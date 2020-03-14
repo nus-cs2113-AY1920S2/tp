@@ -67,7 +67,8 @@ public class CommandInterpreter {
             command = eci.decideCommand(commandDescription);
             break;
         case "attendance":
-            //TODO AttendanceCommandInterpreter
+            AttendanceCommandInterpreter aci = new AttendanceCommandInterpreter(eventList);
+            command = aci.decideCommand(commandDescription);
             break;
         case "performance":
             PerformanceCommandInterpreter pci = new PerformanceCommandInterpreter(eventList);
