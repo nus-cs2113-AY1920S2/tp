@@ -21,11 +21,13 @@ public class DoneCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         if (taskList.getListSize() == 0) {
+            assert taskList.getListSize() == 0;
             return new CommandResult(Messages.NO_TASKS_MSG);
         }
         try {
             Task taskToBeMarkDone = taskList.getTask(doneIndex);
             if (taskToBeMarkDone.getIsDone()) {
+                assert taskToBeMarkDone.getIsDone() == true;
                 return new CommandResult(Messages.COMPLETED_TASK_ERROR);
             }
             taskList.markTaskAsDone(doneIndex);

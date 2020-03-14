@@ -125,6 +125,7 @@ public class TaskList {
      */
     public void markTaskAsDone(int doneIndex) throws IndexOutOfBoundsException {
         tasks.get(doneIndex).setDone();
+        assert tasks.get(doneIndex).getIsDone() == true;
     }
 
     /**
@@ -133,7 +134,9 @@ public class TaskList {
      * @throws IndexOutOfBoundsException throws when index is out of range of the size of current Tasklist
      */
     public void deleteTask(int deleteIndex) throws IndexOutOfBoundsException {
+        int size = tasks.size();
         tasks.remove(deleteIndex);
+        assert tasks.size() == size - 1;
     }
 
     /**
@@ -141,5 +144,6 @@ public class TaskList {
      */
     public void clearList() {
         tasks.clear();
+        assert tasks.size() == 0;
     }
 }
