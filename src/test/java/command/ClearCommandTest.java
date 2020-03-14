@@ -3,7 +3,6 @@ package command;
 import common.Messages;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.duke.TaskList;
@@ -25,8 +24,7 @@ public class ClearCommandTest {
     /**
      * Initialize hard-coded test cases for testing purposes.
      */
-    @BeforeAll
-    public static void setup() {
+    public ClearCommandTest() {
         filledTaskList = new TaskList();
         emptyTaskList = new TaskList();
         ui = new Ui();
@@ -54,24 +52,38 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void testClear_success() {
-        filledTaskList.clearList();
-        assertEquals(filledTaskList.getListSize(),0);
+    public void clearAll_filledList() {
+        assertEquals(new ClearCommand("all").execute(filledTaskList,ui).feedbackToUser,
+                Messages.CLEAR_SUCCESS_MESSAGE);
     }
 
     @Test
-    public void testClear_failure() {
-        emptyTaskList.clearList();
-        assertEquals(emptyTaskList.getListSize(), 0);
+    public void clearAll_emptyList() {
+        assertEquals(filledTaskList.getListSize(),6);
+        assertEquals(new ClearCommand("all").execute(emptyTaskList,ui).feedbackToUser,
+                Messages.NO_TASKS_MSG);
+    }
+
+
+    @Test
+    public void clearDone_filledList_success() {
+        filledTaskList.markTaskAsDone(2);
+        filledTaskList.markTaskAsDone(4);
+        assertEquals(new ClearCommand("done").execute(filledTaskList,ui).feedbackToUser,
+                Messages.CLEAR_DONE_SUCCESS_MESSAGE);
+
     }
 
     @Test
-    public void testClear_successMessage() {
-        assertEquals(new ClearCommand().execute(filledTaskList, ui).feedbackToUser, Messages.CLEAR_SUCCESS_MESSAGE);
+    public void clearDone_filledList_failure() {
+        assertEquals(new ClearCommand("done").execute(filledTaskList,ui).feedbackToUser,
+                Messages.EMPTY_DONE_CLEAR_ERROR);
     }
 
+
     @Test
-    public void testClear_failureMessage() {
-        assertEquals(new ClearCommand().execute(emptyTaskList, ui).feedbackToUser, Messages.NO_TASKS_MSG);
+    public void clearDone_EmptyList() {
+        assertEquals(new ClearCommand("done").execute(emptyTaskList,ui).feedbackToUser,
+                Messages.EMPTY_TASKLIST_MESSAGE);
     }
 }

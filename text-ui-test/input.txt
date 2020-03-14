@@ -12,6 +12,6 @@ list
 list upcoming events
 list incomplete assignments
 event n/Countdown l/TimeSquare d/13/03/22 1800 c/new year new me
-clear
+clear all
 list
 exit
