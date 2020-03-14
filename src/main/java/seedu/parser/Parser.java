@@ -27,7 +27,7 @@ public class Parser {
         }
 
         if (index == -1) {
-            throw new DukeException("index not found");
+            throw new DukeException("Index not found. Please provide a correct index");
         }
         return index;
     }
@@ -35,7 +35,7 @@ public class Parser {
     // TODO: [r/FREQ[/TIME or /DAY]]
     /**
      * Parse parameters based on the following format:
-     * n/EVENTNAME [t/EVENTTIME] [d/EVENTDATE] [v/EVENTVENUE].
+     * n/EVENTNAME [d/EVENTDATE] [d/EVENTTIME] [v/EVENTVENUE].
      * @param parameters original parameters
      * @return an Event object with the relevant information
      */
@@ -53,12 +53,24 @@ public class Parser {
         return new Event(name, datetime, venue);
     }
 
+    /**
+     * Parses string passed in to obtain name of the event.
+     *
+     * @param parameters Input String by user in the format: i/[INDEX] n/[EVENTNAME]
+     * @return Name of event as a string.
+     */
     public String parseEventName(String parameters) {
         String[] tokens = parameters.split(" ");
         String name = tokens[1].substring(2);
         return name;
     }
 
+    /**
+     * Parses input string to obtain date and time of the event.
+     *
+     * @param parameters Input String by user in the format: i/[INDEX] d/[EVENTDATE] t/[EVENTTIME]
+     * @return Date and time of the event as a string.
+     */
     public String parseEventDateTime(String parameters) {
         String[] tokens = parameters.split(" ");
         String date = tokens[1].substring(2);
@@ -67,6 +79,12 @@ public class Parser {
         return datetime;
     }
 
+    /**
+     * Parses input string to obtain venue of the event.
+     *
+     * @param parameters Input String by user in the format: i/[INDEX] v/[EVENTVENUE]
+     * @return Venue of the event as a String
+     */
     public String parseVenue(String parameters) {
         String[] tokens = parameters.split(" ");
         String venue = tokens[1].substring(2);

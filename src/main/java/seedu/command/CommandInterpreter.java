@@ -34,9 +34,9 @@ public class CommandInterpreter {
     protected String getSubsequentWords(String userInput) throws DukeException {
         int startIndexOfSpace = userInput.trim().indexOf(" ");
 
-//        if (startIndexOfSpace == -1) {
-//            throw new DukeException("No parameters provided");
-//        }
+        /*if (startIndexOfSpace == -1) {
+            throw new DukeException("No parameters provided");
+        }*/
 
         int startIndexOfParameter = startIndexOfSpace + 1;
         return userInput.substring(startIndexOfParameter);
