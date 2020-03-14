@@ -19,6 +19,8 @@ public class Reservation {
     
     private Character status;
     private Character tableSize;
+    
+    private final String ls = System.lineSeparator();
 
     /**
      * Defines the constructor for a Reservation.
@@ -177,15 +179,25 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return String.format("Reservation [%d]\n" +
-                        "Status: %c\n" +
-                        "contact person: %s\n" +
-                        "date: %s\n" +
-                        "number of guests: %d\n" +
-                        "table size: %c\n" +
-                        "contact details: %s\n" +
-                        "comments: %s\n", 
-                this.reservationNumber, this.status, this.name, this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+        return String.format("Reservation [%d]"
+                + ls
+                + " "
+                + "Status: %c" 
+                + ls 
+                + "contact person: %s" 
+                + ls 
+                + "date: %s" 
+                + ls
+                + "number of guests: %d" 
+                + ls
+                + "table size: %c" 
+                + ls
+                + "contact details: %s" 
+                + ls 
+                + "comments: %s" 
+                + ls, 
+                this.reservationNumber, this.status, this.name, this.date.format(
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 this.numberOfGuests, this.tableSize, this.contact, this.comments);
     }
 }
