@@ -1,6 +1,11 @@
 package seedu.duke.commands;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ClearCommand extends Command {
+
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static final String COMMAND_WORD = "CLEAR";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the list."
@@ -10,7 +15,11 @@ public class ClearCommand extends Command {
 
     @Override
     public CommandResult execute() {
+
         items.clearList();
+
+        LOGGER.log(Level.INFO,"(Clear command) List of items is now empty.");
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
