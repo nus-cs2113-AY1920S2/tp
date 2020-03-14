@@ -5,7 +5,6 @@ import seedu.duke.TaskList;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public abstract class Task {
     protected String name;
