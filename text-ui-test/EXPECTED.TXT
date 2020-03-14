@@ -7,6 +7,18 @@ Hello from
 |   _   ||   |   |   |  |   | |   _   ||   |  _____| |
 |__| |__||___|   |___|  |___| |__| |__||___| |_______|
 
+Following is the list of commands available:
+1.  Help Format: help
+2.  Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
+3.  Add Event: event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm] c/[COMMENTS]
+4.  List Today's Tasks: list today
+5.  List This Week's Tasks: list week
+6.  List All Tasks: list
+7.  List Incomplete Assignments: list incomplete assignments
+8.  List Upcoming Events: list upcoming events
+9.  Mark Task as Done: done [TASK NUMBER]
+10.  Clear all tasks: clear
+12. Delete a Task: delete [TASK NUMBER]
 _______________________________________________________________________
 > Following is the list of commands available:
 1.  Help Format: help
