@@ -1,8 +1,5 @@
 package seedu.event;
 
-import seedu.duke.Duke;
-import seedu.exception.DukeException;
-
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.time.Instant;
@@ -63,7 +60,7 @@ public class Event {
             } else {
                 this.name = name;
             }
-        }
+        } 
     }
 
     /**

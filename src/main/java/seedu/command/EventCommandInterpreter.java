@@ -64,11 +64,11 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new ListEvent(this.eventList);
             break;
         default:
-            throw new DukeException("Unknown command");
+            throw new DukeException("Event: Unknown command");
         }
 
         if (command == null) {
-            throw new DukeException("command is null");
+            throw new DukeException("Event: Command is null");
         }
         return command;
     }

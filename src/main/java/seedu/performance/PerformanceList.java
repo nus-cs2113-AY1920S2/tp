@@ -1,4 +1,6 @@
-package seedu.module.performance;
+package seedu.performance;
+
+import seedu.ui.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ public class PerformanceList {
     public static int numberOfPerformance;
 
     public PerformanceList() {
-        this.performanceList = new ArrayList<>();
+        performanceList = new ArrayList<>();
         numberOfPerformance = performanceList.size();
     }
 
@@ -20,8 +22,9 @@ public class PerformanceList {
         return performanceList.size();
     }
 
-    public static void addToList(Performance performance) {
+    public void addToList(Performance performance, String eventName) {
         performanceList.add(performance);
+        UI.addPerformanceMessage(performance.studentName, eventName);
     }
 
     /**
@@ -32,20 +35,18 @@ public class PerformanceList {
      * @param performance The Performance of student to be deleted.
      */
     public static void deletePerformance(Performance performance) {
-        if (numberOfPerformance <= 0) {
-            System.out.println("list is empty");
-        } else {
+        boolean hasDeleted = false;
+        if (numberOfPerformance > 0) {
             for (Performance p : performanceList) {
                 if (p != null
                         && performance.getAssignment().equals(p.getAssignment())
-                        && performance.getModule().equals(p.getModule())
+                        && performance.getEvent().equals(p.getEvent())
                         && performance.getStudent().equals(p.getStudent())) {
                     performanceList.remove(p);
-                    System.out.println("deleted successfully");
-                } else {
-                    System.out.println("list does not contain the student's performance");
+                    hasDeleted = true;
                 }
             }
         }
+        UI.deletePerformanceMessage(performance, hasDeleted);
     }
 }

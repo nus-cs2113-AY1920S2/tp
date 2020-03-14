@@ -2,7 +2,7 @@ package seedu.parser;
 
 import seedu.event.Event;
 import seedu.exception.DukeException;
-import seedu.module.attendance.Attendance;
+import seedu.attendance.Attendance;
 
 public class ParserStorage {
 
@@ -62,6 +62,6 @@ public class ParserStorage {
     }
 
     public static String toStorageStringAttendance(Attendance attendance) {
-        return attendance.getStudentName() + " | " + attendance.getDescription() + " | " + attendance.getAttendance();
+        return attendance.getStudent() + " | " + attendance.getDescription() + " | " + attendance.getAttendance();
     }
 }
