@@ -45,6 +45,7 @@ public class ClearCommand  extends Command {
             return new CommandResult(Messages.NO_TASKS_MSG);
         } else {
             taskList.clearList();
+            assert taskList.getListSize() == 0;
             return new CommandResult(Messages.CLEAR_SUCCESS_MESSAGE);
         }
     }
@@ -84,13 +85,14 @@ public class ClearCommand  extends Command {
      */
     public CommandResult clearDone(TaskList taskList) {
         doneIndex = getDoneIndex(taskList);
-        System.out.println(doneIndex.size());
         if (taskList.getListSize() == 0) {
             return new CommandResult(Messages.EMPTY_TASKLIST_MESSAGE);
         } else if (doneIndex.size() == 0) {
             return new CommandResult(Messages.EMPTY_DONE_CLEAR_ERROR);
         } else {
+            int size = taskList.getListSize();
             deleteDoneTasks(taskList);
+            assert taskList.getListSize() == size - doneIndex.size();
             return new CommandResult(Messages.CLEAR_DONE_SUCCESS_MESSAGE);
         }
     }

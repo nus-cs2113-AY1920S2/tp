@@ -169,6 +169,7 @@ public class Parser {
         if (tokens.length  == 1) {
             return new ClearCommand(null);
         }
+        assert tokens.length == 2;
         return new ClearCommand(tokens[1]);
     }
 
