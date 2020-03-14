@@ -7,6 +7,10 @@ import seedu.nuke.data.category.CategoryList;
 import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
 
+import java.util.regex.Pattern;
+
+import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
+import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.MESSAGE_ADD_CATEGORY_SUCCESS;
 
@@ -21,6 +25,12 @@ import static seedu.nuke.util.Message.MESSAGE_ADD_CATEGORY_SUCCESS;
 public class AddCategoryCommand extends Command {
     public static final String COMMAND_WORD = "addc";
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> -p <priority>";
+    public static final Pattern[] REGEX_FORMATS = {
+            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
+            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+))"),
+            Pattern.compile("(?<priority>(?:" + PRIORITY_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<invalid>(?:-(?:[^mp].*|[mp]\\S+)))")
+    };
 
     private String moduleCode;
     private String categoryName;

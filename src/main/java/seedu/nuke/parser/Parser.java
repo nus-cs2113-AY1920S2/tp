@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_PARAMETERS;
 
 /**
  * <h3>Parser</h3>
@@ -26,20 +27,20 @@ import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
  * The <b>Parser</b> then converts the input into a <b>Command</b> to be executed by the <b>Nuke</b> program.
  */
 public class Parser {
-    private final String MODULE_CODE_PREFIX = "-m";
-    private final String CATEGORY_NAME_PREFIX = "-c";
-    private final String TASK_DESCRIPTION_PREFIX = "-t";
-    private final String PRIORITY_PREFIX = "-p";
-    private final String DEADLINE_PREFIX = "-d";
+    public static final String MODULE_CODE_PREFIX = "-m";
+    public static final String CATEGORY_NAME_PREFIX = "-c";
+    public static final String TASK_DESCRIPTION_PREFIX = "-t";
+    public static final String PRIORITY_PREFIX = "-p";
+    public static final String DEADLINE_PREFIX = "-d";
 
     private final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
     private final Pattern COMMAND_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<identifier>([^-]*)?)"
-            + "(?<moduleCode>(" + MODULE_CODE_PREFIX + " [^-]+)?)"
-            + "(?<categoryName>(" + CATEGORY_NAME_PREFIX + " [^-]+)?)"
-            + "(?<taskDescription>(" + TASK_DESCRIPTION_PREFIX + " [^-]+)?)"
-            + "(?<deadline>(" + DEADLINE_PREFIX + " [^-]+)?)"
-            + "(?<priority>(" + PRIORITY_PREFIX + " [^-]+)?)"
+            "(?<identifier>^\\s+[^-]*)"
+            + "(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"
+            + "(?<categoryName>(?:" + CATEGORY_NAME_PREFIX + " [^-]+)?)"
+            + "(?<taskDescription>(?:" + TASK_DESCRIPTION_PREFIX + " [^-]+)?)"
+            + "(?<deadline>(?:" + DEADLINE_PREFIX + " [^-]+)?)"
+            + "(?<priority>(?:" + PRIORITY_PREFIX + " [^-]+)?)"
     );
 
     /**
@@ -97,56 +98,59 @@ public class Parser {
     }
 
     private Command createAddModuleCommand(String parameters) {
-        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
+        final Pattern[] ADD_MODULE_FORMAT = AddModuleCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = ADD_MODULE_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[ADD_MODULE_FORMAT.length];
 
-        if (!matcher.find()) {
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-        String moduleCode = matcher.group("identifier").trim();
-
-        // This is a compulsory field
-        if (moduleCode.isEmpty()) {
+        if (isMissingCompulsoryParameters(ADD_MODULE_FORMAT, matchers, parameters)) {
             return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
         }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        String moduleCode = matchers[0].group("identifier").trim();
 
         return new AddModuleCommand(moduleCode);
     }
 
     private Command createDeleteModuleCommand(String parameters) {
-        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
+        final Pattern[] DELETE_MODULE_FORMAT = DeleteModuleCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = DELETE_MODULE_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[DELETE_MODULE_FORMAT.length];
 
-        if (!matcher.matches()) {
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-        String moduleCode = matcher.group("identifier").trim();
-
-        // This is a compulsory field
-        if (moduleCode.isEmpty()) {
+        if (isMissingCompulsoryParameters(DELETE_MODULE_FORMAT, matchers, parameters)) {
             return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
         }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        String moduleCode = matchers[0].group("identifier").trim();
 
         return new DeleteModuleCommand(moduleCode);
     }
 
     private Command createAddCategoryCommand(String parameters) {
-        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
+        final Pattern[] ADD_CATEGORY_FORMAT = AddCategoryCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = ADD_CATEGORY_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[ADD_CATEGORY_FORMAT.length];
 
-        if (!matcher.matches()) {
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-        String categoryName = matcher.group("identifier").trim();
-        String moduleCode = matcher.group("moduleCode")
-                .replace(MODULE_CODE_PREFIX, "").trim();
-        String priority = matcher.group("priority")
-                .replace(PRIORITY_PREFIX, "").trim();
-
-        // These are compulsory fields
-        if (moduleCode.isEmpty() || categoryName.isEmpty()) {
+        if (isMissingCompulsoryParameters(ADD_CATEGORY_FORMAT, matchers, parameters)) {
             return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
         }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        String categoryName = matchers[0].group("identifier").trim();
+        String moduleCode = matchers[1].group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String priority = matchers[2].group("priority")
+                .replace(PRIORITY_PREFIX, "").trim();
 
         try {
             Integer categoryPriority = (priority.isEmpty()) ? null : Integer.parseInt(priority);
@@ -157,45 +161,47 @@ public class Parser {
     }
 
     private Command createDeleteCategoryCommand(String parameters) {
-        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
+        final Pattern[] DELETE_CATEGORY_FORMAT = DeleteCategoryCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = DELETE_CATEGORY_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[DELETE_CATEGORY_FORMAT.length];
 
-        if (!matcher.matches()) {
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-        String categoryName = matcher.group("identifier").trim();
-        String moduleCode = matcher.group("moduleCode")
-                .replace(MODULE_CODE_PREFIX, "").trim();
-
-        // These are compulsory fields
-        if (moduleCode.isEmpty() || categoryName.isEmpty()) {
+        if (isMissingCompulsoryParameters(DELETE_CATEGORY_FORMAT, matchers, parameters)) {
             return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
         }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        String categoryName = matchers[0].group("identifier").trim();
+        String moduleCode = matchers[1].group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
 
         return new DeleteCategoryCommand(moduleCode, categoryName);
     }
 
     private Command createAddTaskCommand(String parameters) {
-        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
+        final Pattern[] ADD_TASK_FORMAT = AddTaskCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = ADD_TASK_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[ADD_TASK_FORMAT.length];
 
-        if (!matcher.find()) {
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-        String taskDescription = matcher.group("identifier").trim();
-        String moduleCode = matcher.group("moduleCode")
-                .replace(MODULE_CODE_PREFIX, "").trim();
-        String categoryName = matcher.group("categoryName")
-                .replace(CATEGORY_NAME_PREFIX, "").trim();
-        String deadline = matcher.group("deadline")
-                .replace(DEADLINE_PREFIX, "").trim();
-        String priority = matcher.group("priority")
-                .replace(PRIORITY_PREFIX, "").trim();
-
-        // These are compulsory fields
-        if (moduleCode.isEmpty() || categoryName.isEmpty() || taskDescription.isEmpty()) {
+        if (isMissingCompulsoryParameters(ADD_TASK_FORMAT, matchers, parameters)) {
             return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
         }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        String taskDescription = matchers[0].group("identifier").trim();
+        String moduleCode = matchers[1].group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryName = matchers[2].group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
+        String deadline = matchers[3].group("deadline")
+                .replace(DEADLINE_PREFIX, "").trim();
+        String priority = matchers[4].group("priority")
+                .replace(PRIORITY_PREFIX, "").trim();
 
         try {
             DateTime taskDeadline = (deadline.isEmpty()) ? null : DateTimeFormat.stringToDateTime(deadline);
@@ -209,53 +215,66 @@ public class Parser {
     }
 
     private Command createDeleteTaskCommand(String parameters) {
-        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
+        final Pattern[] DELETE_TASK_FORMAT = DeleteTaskCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = DELETE_TASK_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[DELETE_TASK_FORMAT.length];
 
-        if (!matcher.matches()) {
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-        String taskDescription = matcher.group("identifier").trim();
-        String moduleCode = matcher.group("moduleCode")
-                .replace(MODULE_CODE_PREFIX, "").trim();
-        String categoryName = matcher.group("categoryName")
-                .replace(CATEGORY_NAME_PREFIX, "").trim();
-
-        // These are compulsory fields
-        if (moduleCode.isEmpty() || categoryName.isEmpty() || taskDescription.isEmpty()) {
+        if (isMissingCompulsoryParameters(DELETE_TASK_FORMAT, matchers, parameters)) {
             return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
         }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        String taskDescription = matchers[0].group("identifier").trim();
+        String moduleCode = matchers[1].group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryName = matchers[2].group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
 
         return new DeleteTaskCommand(moduleCode, categoryName, taskDescription);
     }
 
     private Command createListCommand(String parameters) {
-        final Matcher matcher = COMMAND_PARAMETERS_FORMAT.matcher(parameters);
+        final Pattern[] LIST_FORMAT = ListCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = LIST_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[LIST_FORMAT.length];
 
-        if (!matcher.find()) {
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        if (isMissingCompulsoryParameters(LIST_FORMAT, matchers, parameters)) {
+            return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
         }
 
-        String moduleCode = matcher.group("moduleCode")
-                .replace(MODULE_CODE_PREFIX, "").trim();
-        String categoryName = matcher.group("categoryName")
-                .replace(CATEGORY_NAME_PREFIX, "").trim();
-        String taskDescription = matcher.group("taskDescription")
-                .replace(TASK_DESCRIPTION_PREFIX, "").trim();
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
 
-        System.out.println(String.format("%s %s %s\n", moduleCode, categoryName, taskDescription));
+        String moduleCode = matchers[0].group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryName = matchers[1].group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
+        String taskDescription = matchers[2].group("taskDescription")
+                .replace(TASK_DESCRIPTION_PREFIX, "").trim();
 
         return new ListCommand(moduleCode, categoryName, taskDescription);
     }
 
-    /**
-     * Checks if there is more than <b>one</b> parameter in the input
-     *
-     * @param parameters The parameter(s) provided in the input
-     * @return <code>TRUE</code> if there is more than one parameter in the input, and <code>FALSE</code> otherwise
-     */
-    private boolean hasMultipleParameters(String parameters) {
-        return parameters.contains(" ");
+
+
+    private boolean isMissingCompulsoryParameters(Pattern[] formats, Matcher[] matchers, String parameters) {
+        // Match patterns
+        for (int i = 0; i < formats.length; ++i) {
+            matchers[i] = formats[i].matcher(parameters);
+        }
+
+        // Check if matches with each pattern except last pattern which checks for invalid parameters
+        for (int i = 0; i < formats.length - 1; ++i) {
+            if (!matchers[i].find()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /** Signals that the user has provided an unrecognised command */

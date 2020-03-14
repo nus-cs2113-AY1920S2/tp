@@ -20,6 +20,8 @@ public class Message {
     public static final String MESSAGE_NO_TASK_IN_LIST = "There is no task in the list!";
     public static final String MESSAGE_TASK_LIST_SUCCESSFUL = "There are (is) %d task(s) in the list!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
+    public static final String MESSAGE_INVALID_PARAMETERS = "Invalid parameters found!\n";
+
 
     public static String MESSAGE_ADD_MODULE_SUCCESS(String moduleCode, String title) {
         return String.format("SUCCESS!! Module %s %s has been added.\n", moduleCode, title);

@@ -5,6 +5,9 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
 
+import java.util.regex.Pattern;
+
+import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE;
 import static seedu.nuke.util.Message.MESSAGE_ADD_MODULE_SUCCESS;
 
@@ -18,6 +21,10 @@ import static seedu.nuke.util.Message.MESSAGE_ADD_MODULE_SUCCESS;
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addm";
     public static final String FORMAT = COMMAND_WORD + " <module code>";
+    public static final Pattern[] REGEX_FORMATS = {
+            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
+            Pattern.compile("(?<invalid>-.+)")
+    };
 
     private String moduleCode;
 

@@ -6,6 +6,10 @@ import seedu.nuke.data.category.Category;
 import seedu.nuke.data.category.CategoryList;
 import seedu.nuke.data.module.ModuleList;
 
+import java.util.regex.Pattern;
+
+import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
+import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
@@ -13,6 +17,11 @@ import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
 public class DeleteCategoryCommand extends Command {
     public static final String COMMAND_WORD = "delc";
     public static final String FORMAT = COMMAND_WORD + " <category name>";
+    public static final Pattern[] REGEX_FORMATS = {
+            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
+            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+))"),
+            Pattern.compile("(?<invalid>(?:-(?:[^m].*|[m]\\S+)))")
+    };
 
     private String moduleCode;
     private String categoryName;

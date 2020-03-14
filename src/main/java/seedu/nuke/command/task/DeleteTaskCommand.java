@@ -7,12 +7,22 @@ import seedu.nuke.data.module.ModuleList;
 import seedu.nuke.data.task.Task;
 import seedu.nuke.data.task.TaskList;
 
+import java.util.regex.Pattern;
+
+import static seedu.nuke.parser.Parser.*;
+import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
 
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delt";
     public static final String FORMAT = COMMAND_WORD + " <task description> -m <module code> -c <category name>";
+    public static final Pattern[] REGEX_FORMATS = {
+            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
+            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+))"),
+            Pattern.compile("(?<categoryName>(?:" + CATEGORY_NAME_PREFIX + " [^-]+))"),
+            Pattern.compile("(?<invalid>(?:-(?:[^mc].*|[mc]\\S+)))")
+    };
 
     private String moduleCode;
     private String categoryName;

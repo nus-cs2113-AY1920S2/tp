@@ -5,12 +5,18 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
 
+import java.util.regex.Pattern;
+
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_MODULE_SUCCESS;
 
 public class DeleteModuleCommand extends Command {
     public static final String COMMAND_WORD = "delm";
     public static final String FORMAT = COMMAND_WORD + " <module code>";
+    public static final Pattern[] REGEX_FORMATS = {
+            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
+            Pattern.compile("(?<invalid>-.+)")
+    };
 
     private String moduleCode;
 
