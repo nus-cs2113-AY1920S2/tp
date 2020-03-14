@@ -109,6 +109,7 @@ public class Parser {
 
     private static Command prepareDeleteCommand(String fullCommand) {
         String[] tokens = fullCommand.split("\\s+", 2);
+        assert tokens.length == 1 || tokens.length == 2;
         int deleteIndex;
         try {
             deleteIndex = Integer.parseInt(tokens[1].trim()) - 1;
@@ -122,6 +123,7 @@ public class Parser {
 
     private static Command prepareDoneCommand(String fullCommand) {
         String[] tokens = fullCommand.split("\\s+", 2);
+        assert tokens.length == 1 || tokens.length == 2;
         int doneIndex;
         try {
             doneIndex = Integer.parseInt(tokens[1].trim()) - 1;
@@ -158,18 +160,22 @@ public class Parser {
             // check if list has no parameters
             return new ListCommand(null);
         }
+        assert tokens.length == 2;
         return new ListCommand(tokens[1]);
     }
 
     private static Command prepareClearCommand(String fullCommand) {
+        assert fullCommand.trim().equals(ClearCommand.CLEAR_COMMAND_WORD);
         return new ClearCommand();
     }
 
     private static Command prepareExitCommand(String fullCommand) {
+        assert fullCommand.trim().equals(ExitCommand.EXIT_COMMAND_WORD);
         return new ExitCommand();
     }
 
     private static Command prepareHelpCommand(String fullCommand) {
+        assert fullCommand.trim().equals(HelpCommand.HELP_COMMAND_WORD);
         return new HelpCommand();
     }
 
