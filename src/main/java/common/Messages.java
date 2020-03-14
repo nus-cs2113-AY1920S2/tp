@@ -66,6 +66,7 @@ public class Messages {
             + System.lineSeparator() + ASSIGNMENT_FORMAT_HELP;
     public static final String EVENT_INCORRECT_FORMAT_ERROR = "Incorrect format for Event Command"
             + System.lineSeparator() + EVENT_FORMAT_HELP;
+    public static final String LIST_INCORRECT_FORMAT_ERROR = "Invalid argument for List Command";
 
     public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + DATE_FORMAT_HELP;
@@ -79,5 +80,5 @@ public class Messages {
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
     public static final String COMPLETED_TASK_ERROR = "Task is already completed";
-    public static final String REPEAT_TASK_ERROR = "Task already exists in list";
+    public static final String REPEAT_TASK_ERROR = "Please use a different name. Task already exists in list";
 }
