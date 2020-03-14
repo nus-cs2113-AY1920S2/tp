@@ -17,6 +17,7 @@ public class ClearCommand extends Command {
     public CommandResult execute() {
 
         items.clearList();
+        assert  items.getList().size() == 0: "Size of list should be zero.";
 
         LOGGER.log(Level.INFO,"(Clear command) List of items is now empty.");
 
