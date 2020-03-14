@@ -9,13 +9,13 @@ public class ExitCommand extends Command {
 
     /**
      * Executes the Exit command.
-     *
      * @param taskList TaskList object that handles adding Task
      * @param ui       Ui object that interacts with user
      * @return CommandResult object with acknowledgment message
      */
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
-        return new CommandResult(Messages.EXIT_MESSAGE).setExit();
+        CommandResult.isExit = true;
+        return new CommandResult(Messages.EXIT_MESSAGE);
     }
 }

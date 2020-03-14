@@ -3,7 +3,6 @@ package tasks;
 import common.Messages;
 import seedu.duke.Parser;
 
-import java.lang.reflect.Member;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -55,7 +54,7 @@ public class Event extends Task {
                 + dateAndTime.format(Parser.PRINT_DATE_FORMAT)
                 + ")"
                 + System.lineSeparator()
-                + Messages.NEWLINE_INDENT
+                + Messages.COMMENTS_INDENT
                 + comments;
     }
 }

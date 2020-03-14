@@ -5,6 +5,7 @@ import tasks.Assignment;
 import tasks.Event;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -52,36 +53,22 @@ public class TaskList {
     }
 
     /**
-     * Getter method for tasks due or scheduled today.
-     * @return ArrayList object containing all tasks for today.
+     * Getter method for tasks depending of days from today.
+     * @param days Integer representing number of days from today
+     * @return ArrayList object containing all tasks from indicated days from today
      */
-    public ArrayList<Task> getTodayTasks() {
-        ArrayList<Task> todayList = new ArrayList<>();
+    public ArrayList<Task> getTasksByDays(int days) {
+        ArrayList<Task> taskList = new ArrayList<>();
         LocalDate currDate = getCurrentDate();
+        LocalDate daysIndicated = currDate.plusDays(days);
         for (Task task : tasks) {
             LocalDate taskDate = task.getDate();
-            if (currDate.compareTo(taskDate) == 0) {
-                todayList.add(task);
+            assert taskList.size() <= tasks.size();
+            if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(daysIndicated) <= 0) {
+                taskList.add(task);
             }
         }
-        return todayList;
-    }
-
-    /**
-     * Getter method for tasks due or scheduled within the next 7 days.
-     * @return ArrayList object containing all tasks in next 7 days.
-     */
-    public ArrayList<Task> getWeekTasks() {
-        ArrayList<Task> weekList = new ArrayList<>();
-        LocalDate currDate = getCurrentDate();
-        LocalDate nextWeekDate = currDate.plusWeeks(1);
-        for (Task task : tasks) {
-            LocalDate taskDate = task.getDate();
-            if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(nextWeekDate) < 0) {
-                weekList.add(task);
-            }
-        }
-        return weekList;
+        return taskList;
     }
 
     /**
@@ -90,10 +77,10 @@ public class TaskList {
      */
     public ArrayList<Task> getUpcomingEventArray() {
         ArrayList<Task> eventList = new ArrayList<>();
-        LocalDate currDate = getCurrentDate();
+        LocalDateTime currDateTime = LocalDateTime.now();
         for (Task task : tasks) {
-            LocalDate taskDate = task.getDate();
-            if (task instanceof Event && taskDate.compareTo(currDate) > 0) {
+            LocalDateTime taskDateTime = task.getDateAndTime();
+            if (task instanceof Event && taskDateTime.compareTo(currDateTime) > 0) {
                 eventList.add(task);
             }
         }
@@ -139,9 +126,25 @@ public class TaskList {
      */
     public void markTaskAsDone(int doneIndex) throws IndexOutOfBoundsException {
         tasks.get(doneIndex).setDone();
+        assert tasks.get(doneIndex).getIsDone() == true;
     }
 
+    /**
+     * Delete tasks according to the index specified by user.
+     * @param deleteIndex index of task to be deleted
+     * @throws IndexOutOfBoundsException throws when index is out of range of the size of current Tasklist
+     */
     public void deleteTask(int deleteIndex) throws IndexOutOfBoundsException {
+        int size = tasks.size();
         tasks.remove(deleteIndex);
+        assert tasks.size() == size - 1;
+    }
+
+    /**
+     * Deletes all the tasks in the list.
+     */
+    public void clearList() {
+        tasks.clear();
+        assert tasks.size() == 0;
     }
 }

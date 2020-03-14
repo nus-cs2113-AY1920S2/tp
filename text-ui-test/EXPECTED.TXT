@@ -1,10 +1,92 @@
 Hello from
-   _____________________    _________
-  /  _  \__    ___/  _  \  /   _____/
- /  /_\  \|    | /  /_\  \ \_____  \
-/    |    \    |/    |    \/        \
-\____|____/____|\____|____/_________/
+ _______        _______        _______        _______ 
+|   _   |      |       |      |   _   |      |       |
+|  |_|  |      |_     _|      |  |_|  |      |  _____|
+|       |        |   |        |       |      | |_____ 
+|       | ___    |   |   ___  |       | ___  |_____  |
+|   _   ||   |   |   |  |   | |   _   ||   |  _____| |
+|__| |__||___|   |___|  |___| |__| |__||___| |_______|
 
-____________________________________________________________
-> Exiting ATAS
-____________________________________________________________
+_______________________________________________________________________
+> Following is the list of commands available:
+1.  Help Format: help
+2.  Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
+3.  Add Event: event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm] c/[COMMENTS]
+4.  List Today's Tasks: list today
+5.  List This Week's Tasks: list week
+6.  List All Tasks: list
+7.  List Incomplete Assignments: list incomplete assignments
+8.  List Upcoming Events: list upcoming events
+9.  Mark Task as Done: done [TASK NUMBER]
+10.  Clear all tasks: clear
+12. Delete a Task: delete [TASK NUMBER]
+_______________________________________________________________________
+> Oh no. Incorrect format for Assignment Command
+Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
+_______________________________________________________________________
+> Added task:
+     [A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
+            notes: 5%
+Now you have 1 task in the list!
+_______________________________________________________________________
+> Added task:
+     [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+Now you have 2 tasks in the list!
+_______________________________________________________________________
+> Added task:
+     [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00)
+            notes: 20%
+Now you have 3 tasks in the list!
+_______________________________________________________________________
+> Added task:
+     [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00)
+            notes: New year new me
+Now you have 4 tasks in the list!
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
+            notes: 5%
+  2. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+  3. [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00)
+            notes: 20%
+  4. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00)
+            notes: New year new me
+_______________________________________________________________________
+> [Assignment 3] has been marked done!
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][/] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
+            notes: 5%
+  2. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+  3. [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00)
+            notes: 20%
+  4. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00)
+            notes: New year new me
+_______________________________________________________________________
+> [OP1] has been deleted!
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][/] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
+            notes: 5%
+  2. [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00)
+            notes: 20%
+  3. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00)
+            notes: New year new me
+_______________________________________________________________________
+> Here are the relevant tasks:
+  3. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00)
+            notes: New year new me
+_______________________________________________________________________
+> No tasks were found
+_______________________________________________________________________
+> Please use a different name. Task already exists in list
+_______________________________________________________________________
+> All tasks have been deleted
+_______________________________________________________________________
+> No tasks were found
+_______________________________________________________________________
+> Exiting A.T.A.S
+_______________________________________________________________________
