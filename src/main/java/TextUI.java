@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class TextUI {
     public static void introMsg() {
         String logo = "  ___        _____                 __  .__                 ________                            .__                       ___     \n" +
@@ -16,9 +14,11 @@ public class TextUI {
         System.out.println("5) Exit application.");
         System.out.println("________________________________________________________________________________________________________________________________");
     }
+
     public static void exitMsg() {
         System.out.println("Thank you for using MeetingOrganizer, goodbye!");
     }
+
     public static void errorMsg(MoException e) {
         System.out.println("OOPS!! " + e);
     }
@@ -27,19 +27,19 @@ public class TextUI {
     public static void printTimetable(boolean[][] mySchedule) {
         System.out.println("      MON TUE WED THU FRI SAT SUN");
 
-        for(int i = 0; i < 24; ++i) {
-            System.out.println(String.format("%04d", (0000 + 100*i)) + " +---+---+---+---+---+---+---+");
+        for (int i = 0; i < 24; ++i) {
+            System.out.println(String.format("%04d", (0000 + 100 * i)) + " +---+---+---+---+---+---+---+");
 
             System.out.print("     |");
-            for(int j = 0; j < 7; ++j){
-                System.out.print(" " + (mySchedule[j][2*i] ? "X" : " ") + " |");
+            for (int j = 0; j < 7; ++j) {
+                System.out.print(" " + (mySchedule[j][2 * i] ? "X" : " ") + " |");
             }
             System.out.println();
             System.out.println("     +---+---+---+---+---+---+---+");
 
             System.out.print("     |");
-            for(int j = 0; j < 7; ++j){
-                System.out.print(" " + (mySchedule[j][2*i+1] ? "X" : " ") + " |");
+            for (int j = 0; j < 7; ++j) {
+                System.out.print(" " + (mySchedule[j][2 * i + 1] ? "X" : " ") + " |");
             }
             System.out.println();
         }

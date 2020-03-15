@@ -1,18 +1,22 @@
-
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.LocalTime;
-import java.lang.Integer;
 
+import static java.lang.System.out;
+
+/**
+ *
+ */
 public class ScheduleHandler {
-    private final Boolean mySchedule_BLOCKED = true;
-    private final Boolean mySchedule_FREE = false;
+    private final Boolean myScheduleBlocked = true;
+    private final Boolean myScheduleFree = false;
     private Boolean[][] masterSchedule = new Boolean[7][48];
-    private ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>(); // ArrayList of free slots in Integer type {startDay, startBlock, endDay, endBlock}
+    // ArrayList of free slots in Integer type {startDay, startBlock, endDay, endBlock}
+    private ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
 
     public ScheduleHandler(ArrayList<TeamMember> teamMemberList) {
         for (int i = 0; i < 7; i++) {
-            Arrays.fill(masterSchedule[i], mySchedule_FREE); // fill every 48 index of the 7 days with 0 initially
+            Arrays.fill(masterSchedule[i], myScheduleFree); // fill every 48 index of the 7 days with 0 initially
         }
         for (TeamMember t : teamMemberList) {
             Boolean[][] memberSchedule = t.getSchedule();
@@ -21,7 +25,7 @@ public class ScheduleHandler {
         updateFreeBlocks();
     }
 
-    public Boolean[][] getMasterSchedule(){
+    public Boolean[][] getMasterSchedule() {
         return masterSchedule;
     }
 
@@ -29,7 +33,7 @@ public class ScheduleHandler {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
                 if (s[i][j]) {
-                    masterSchedule[i][j] = mySchedule_BLOCKED;
+                    masterSchedule[i][j] = myScheduleBlocked;
                 }
             }
         }
@@ -39,13 +43,13 @@ public class ScheduleHandler {
     public void updateFreeBlocks() {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
-                if (masterSchedule[i][j] == mySchedule_FREE) {
+                if (masterSchedule[i][j] == myScheduleFree) {
                     int startDay = i;
                     int startBlock = j;
                     boolean change = false;
                     boolean end = false;
-                    while(masterSchedule[i][j] == mySchedule_FREE){
-                        if (change){
+                    while (masterSchedule[i][j] == myScheduleFree) {
+                        if (change) {
                             change = false;
                         }
                         if (i == 6 && j == 47) {
@@ -87,30 +91,31 @@ public class ScheduleHandler {
 
     private void correctFirstAndLastSlotContinuation() {
         int size = this.freeBlocks.size();
-        if (size > 1){
-            Boolean isSunday = this.freeBlocks.get(0).get(0).equals(this.freeBlocks.get(size-1).get(2));
-            Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0) && this.freeBlocks.get(size-1).get(3).equals(47);
+        if (size > 1) {
+            Boolean isSunday = this.freeBlocks.get(0).get(0).equals(this.freeBlocks.get(size - 1).get(2));
+            Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0) &&
+                                this.freeBlocks.get(size - 1).get(3).equals(47);
             Boolean isSundayMidnightOverlap = isSunday && isMidnight;
-            if (isSundayMidnightOverlap){
-                Integer newStartDay = this.freeBlocks.get(size-1).get(0);
-                Integer newStartBlock = this.freeBlocks.get(size-1).get(1);
+            if (isSundayMidnightOverlap) {
+                Integer newStartDay = this.freeBlocks.get(size - 1).get(0);
+                Integer newStartBlock = this.freeBlocks.get(size - 1).get(1);
                 Integer newEndDay = this.freeBlocks.get(0).get(2);
                 Integer newEndBlock = this.freeBlocks.get(0).get(3);
                 ArrayList<Integer> newFreeSlot = makeSlot(newStartDay, newStartBlock, newEndDay, newEndBlock);
-                this.freeBlocks.set(0,newFreeSlot);
-                this.freeBlocks.remove(size-1);
+                this.freeBlocks.set(0, newFreeSlot);
+                this.freeBlocks.remove(size - 1);
             }
         }
     }
 
 
     public void printFreeTimings() {
-        for (int i = 0; i < this.freeBlocks.size(); i++) {
-            String startDay = getDayFromNumber(this.freeBlocks.get(i).get(0).intValue());
-            LocalTime startTime = getTimeFromBlock(this.freeBlocks.get(i).get(1).intValue(), "START");
-            String endDay = getDayFromNumber(this.freeBlocks.get(i).get(2).intValue());
-            LocalTime endTime = getTimeFromBlock(this.freeBlocks.get(i).get(3).intValue(), "END");
-            System.out.println(startDay + " " + startTime + " to " + endDay + " " + endTime);
+        for (ArrayList<Integer> freeBlock : this.freeBlocks) {
+            String startDay = getDayFromNumber(freeBlock.get(0));
+            LocalTime startTime = getTimeFromBlock(freeBlock.get(1).intValue(), "START");
+            String endDay = getDayFromNumber(freeBlock.get(2));
+            LocalTime endTime = getTimeFromBlock(freeBlock.get(3), "END");
+            out.println(startDay + " " + startTime + " to " + endDay + " " + endTime);
         }
     }
 
@@ -156,10 +161,10 @@ public class ScheduleHandler {
                 }
                 break;
             case "END":
-                if (blockNum == 47){
+                if (blockNum == 47) {
                     hourTime = 0;
                 } else {
-                    hourTime = (blockNum+1) / 2;
+                    hourTime = (blockNum + 1) / 2;
                 }
 
                 if (blockNum % 2 == 0) {

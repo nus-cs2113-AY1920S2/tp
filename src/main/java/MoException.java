@@ -1,4 +1,8 @@
-public class MoException extends Exception{
+/**
+ *
+ */
+public class MoException extends Exception {
+
     public MoException(String s) {
         super(s);
     }
