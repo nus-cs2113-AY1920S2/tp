@@ -27,7 +27,7 @@ As such, the daily report will include these categories:
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Restaurant Report` from [here](https://github.com/AY1920S2-CS2113-T14-4/tp).
+2. Download the latest version of `Restaurant Report` from [here](https://github.com/AY1920S2-CS2113-T14-4/tp).
 
 <a name="features"></a>
 
@@ -61,8 +61,8 @@ Delete menu items, ingredients and reservations.
 * Format: `delete dish; n/NAME;`
 * Example: `delete dish; n/bacon pizza;`
 #### Delete stock of ingredient: delete stock
-* Format: `delete stock; i/[INGREDIENT]; q/[QUANTITY];` or
-* Format: `delete stock; i/[INGREDIENT];`
+* Format: `delete stock; i/INGREDIENT; q/QUANTITY;` or
+* Format: `delete stock; i/INGREDIENT;`
 * Example: `delete stock; i/tomato; q/1;`
 #### Mark reservation as invalid: delete reservation
 * Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
@@ -77,7 +77,7 @@ List items in the menu, ingredients and reservations.
 * List ingredients : `list ingredient`
 * List reservation : `list reservation`
 
-<a name="command summary"></a>
+<a name="command-summary"></a>
 
 ## Command Summary
 
@@ -85,6 +85,6 @@ List items in the menu, ingredients and reservations.
 * Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
 * Format: `add reservation; r/NUMBER_OF_RESERVATIONS;`
 * Format: `delete dish; n/NAME;`
-* Format: `delete stock; i/[INGREDIENT]; q/[QUANTITY];`
-* Format: `delete stock; i/[INGREDIENT];`
+* Format: `delete stock; i/INGREDIENT; q/QUANTITY;`
+* Format: `delete stock; i/INGREDIENT;`
 * Format: `delete reservation; r/NUMBER_OF_RESERVATIONS;`
