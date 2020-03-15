@@ -130,7 +130,7 @@ public class ListCommandTest {
         assertEquals(Messages.EMPTY_TASKLIST_MESSAGE,
                 new ListCommand(null).execute(emptyTasklist, ui).feedbackToUser);
     }
-    
+
     @Test
     public void printList_filledList_incompleteAssignOnly() {
         assertEquals(expectedOutputFromIncompleteAssign,
