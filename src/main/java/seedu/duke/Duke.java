@@ -76,7 +76,7 @@ public class Duke {
                 break;
             case "exit":
                 System.out.println("Thank you and see you again soon!");
-                ui.setExitStatus(false);
+                ui.setExitStatus(true);
                 break;
             default:
                 System.out.println("Sorry, I don't understand that command :(");
