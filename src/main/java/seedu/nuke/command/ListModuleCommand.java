@@ -13,7 +13,7 @@ public class ListModuleCommand extends Command {
     @Override
     public CommandResult execute() {
         ArrayList<String> modules = new ArrayList<>();
-        for(Module module: moduleManager.getModuleList()) {
+        for (Module module: moduleManager.getModuleList()) {
             modules.add(module.getModuleCode() + " " + module.getTitle() + " " + module.getDescription());
         }
         return new CommandResult(MESSAGE_SHOW_MODULES, true, modules);

@@ -1,6 +1,5 @@
 package seedu.nuke.command;
 
-import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 
@@ -9,6 +8,9 @@ import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULY_LIST;
 
 import java.util.ArrayList;
 
+/**
+ * sort all tasks of one module according to deadline of task and print it out to the user
+ */
 public class CheckModuleTasksDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "lstm";

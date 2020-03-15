@@ -16,7 +16,7 @@ import static seedu.nuke.util.Message.MESSAGE_ADD_MODULE_SUCCESS;
  */
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addm";
-    public static final String MESSAGE_USAGE = COMMAND_WORD+ " <module code>";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
 
     private String moduleCode;
 

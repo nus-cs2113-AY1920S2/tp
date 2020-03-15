@@ -34,7 +34,7 @@ public class ScreenShotManager {
     }
 
     public ScreenShot unDo(){
-        currentPointer = currentPointer -1;
+        currentPointer = currentPointer - 1;
         return screenShotList.get(currentPointer - 1);
     }
 

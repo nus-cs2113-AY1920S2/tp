@@ -12,10 +12,11 @@ import java.util.Collections;
 import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
 import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULY_LIST;
 
+/**
+ * sort all tasks of all modules according to deadline of task and print it out to the user
+ */
 public class CheckAllTasksDeadlineCommand extends Command{
-    /**
-     * module level
-     */
+
     protected DataManager dataManager;
     private ArrayList<String> deadlines;
 
@@ -28,7 +29,7 @@ public class CheckAllTasksDeadlineCommand extends Command{
     public CommandResult execute() {
         //get the large task list
         dataManager = new DataManager(moduleManager);
-        if (dataManager.countAllTasks() == EMPTY){
+        if (dataManager.countAllTasks() == EMPTY) {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
         deadlines = dataManager.checkDeadline();

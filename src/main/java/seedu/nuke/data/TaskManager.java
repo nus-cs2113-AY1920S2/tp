@@ -1,11 +1,7 @@
 package seedu.nuke.data;
 
 import seedu.nuke.task.Task;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 /**
  * every module has a task manager to manage tasks within module
@@ -16,7 +12,8 @@ public class TaskManager {
     /**
      * Constructs empty task list.
      */
-    public TaskManager() {}
+    public TaskManager() {
+    }
 
     /**
      * todo add check same function
@@ -29,17 +26,16 @@ public class TaskManager {
         return false;
     }
 
-    public void addTask(Task toAdd){
+    public void addTask(Task toAdd) {
         this.allTasks.add(toAdd);
     }
 
-    public void removeTask(Task toRemove){
+    public void removeTask(Task toRemove) {
         this.allTasks.remove(toRemove);
     }
 
     /**
      * Parses the given arguments string as a single index number.
-     *
      * @return the task list
      */
     public ArrayList<Task> getTaskList() {
@@ -57,15 +53,15 @@ public class TaskManager {
     /**
      * return total number of tasks in the task list
      */
-    public int countTotalTasks() {return allTasks.size();}
+    public int countTotalTasks() {
+        return allTasks.size();
+    }
 
     /**
      * compare this task with other task
-     *
      * @param other target task
      * @return true if tasks are equal
      */
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

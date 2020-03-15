@@ -1,9 +1,9 @@
 package seedu.nuke.command;
 
-/*
-    edit-type command
+/**
+ * edit-type command
  */
-public abstract class EditTaskCommand extends TaskCommand{
+public abstract class EditTaskCommand extends TaskCommand {
 
     protected String taskDescription;
 

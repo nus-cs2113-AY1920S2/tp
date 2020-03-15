@@ -4,7 +4,7 @@ import seedu.nuke.task.Task;
 
 import static seedu.nuke.util.Message.MESSAGE_FAREWELL;
 
-public class ExitCommand extends TaskCommand{
+public class ExitCommand extends TaskCommand {
     public static final String COMMAND_WORD = "bye";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exit the program.\n    Example: " + COMMAND_WORD;
 
@@ -32,7 +32,7 @@ public class ExitCommand extends TaskCommand{
      *
      * @return <code>TRUE</code> if an exit is requested, and <code>FALSE</code> otherwise
      */
-    public static boolean isExit () {
+    public static boolean isExit() {
         return isExit; // Returns true if command is exit command
     }
 }

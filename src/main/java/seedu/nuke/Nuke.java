@@ -21,6 +21,10 @@ public class Nuke {
     private ScreenShot currentScreenShot;
     private Ui ui;
 
+    /**
+     * constructor of nuke
+     * @throws FileNotFoundException if file cannot be found when loading jason file
+     */
     public Nuke() throws FileNotFoundException {
         ui = new Ui();
         modulesMap  = ModuleLoader.load("moduleList.json");
@@ -44,7 +48,7 @@ public class Nuke {
         exit();
     }
 
-    public void welcomeUser () {
+    public void welcomeUser() {
         TextUi.clearScreen();
         TextUi.displayLogo();
         TextUi.showWelcomeMessage();
