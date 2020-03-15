@@ -14,8 +14,11 @@ public class DataManager {
 
     private ArrayList<Task> allTasks;
 
-    public DataManager() {
+    public DataManager(ModuleManager moduleManager) {
         allTasks = new ArrayList<>();
+        for(Module module: moduleManager.getModuleList()) {
+            allTasks.addAll(module.getTaskManager().getTaskList());
+        }
     }
 
     public void setAllTasks(ArrayList<Task> allTasks) {
