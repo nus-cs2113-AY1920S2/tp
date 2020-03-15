@@ -21,23 +21,23 @@ public class AddCommand extends Command {
     private Item add;
 
     public AddCommand(String description, double price) {
-        this.add = new Item(description, price);
+        add = new Item(description, price);
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
 
         try {
             items.add(add);
             LOGGER.log(Level.INFO, "(Add command)  Added item: " + items.toString());
-            return new CommandResult(String.format(SUCCESS_ACK,add));
+            feedbackToUser = String.format(SUCCESS_ACK,add);
         } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-            return new CommandResult(String.format(FAILURE_ACK));
+            feedbackToUser = String.format(FAILURE_ACK);
         } catch (NumberFormatException nfe) {
             LOGGER.log(Level.WARNING, "(Add command) Invoked with invalid price format: '"
                     + add.getPrice() + "'");
-            return new CommandResult(String.format(FAILURE_ACK_2));
+            feedbackToUser = String.format(FAILURE_ACK_2);
         }
 
     }

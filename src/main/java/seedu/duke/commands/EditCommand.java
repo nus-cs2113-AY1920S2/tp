@@ -43,7 +43,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
         try {
             indexOfItem -= 1;
             assert indexOfItem <= items.getList().size() : "(Edit Command) Index provided must be within list range.";
@@ -59,15 +59,15 @@ public class EditCommand extends Command {
             }
 
             LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
-            return new CommandResult(String.format(MESSAGE_SUCCESS, item.toString()));
+            feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
 
         } catch (NullPointerException | IndexOutOfBoundsException | AssertionError e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-            return new CommandResult(MESSAGE_FAILURE_NOT_IN_LIST);
+            feedbackToUser = MESSAGE_FAILURE_NOT_IN_LIST;
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "(Edit command) Invoked with invalid price format: '"
                     + this.newPrice + "'");
-            return new CommandResult(MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT);
+            feedbackToUser = MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT;
         }
     }
 }
