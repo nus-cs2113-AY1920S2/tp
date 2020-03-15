@@ -27,7 +27,7 @@ As such, the daily report will include these categories:
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Restaurant Report` from [here](https://github.com/AY1920S2-CS2113-T14-4/tp).
+2. Download the latest version of `Restaurant Report` from [here](https://github.com/AY1920S2-CS2113-T14-4/tp).
 
 <a name="features"></a>
 
