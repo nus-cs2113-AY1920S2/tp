@@ -1,12 +1,10 @@
 package seedu.happypills.commands;
 
-import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.ui.TextUi;
 
 public class ExitCommand extends Command {
     public ExitCommand() {
-
     }
 
     /**

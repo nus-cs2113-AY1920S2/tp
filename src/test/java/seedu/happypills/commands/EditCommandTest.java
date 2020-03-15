@@ -5,7 +5,7 @@ import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EditCommandTest {
     @Test

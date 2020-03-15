@@ -1,6 +1,5 @@
 package seedu.happypills.commands;
 
-import org.w3c.dom.Text;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
