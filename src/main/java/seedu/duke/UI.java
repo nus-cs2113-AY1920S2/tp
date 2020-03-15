@@ -58,5 +58,8 @@ public class UI {
 
     }
 
+    public void showResult() {
+
+    }
 
 }
