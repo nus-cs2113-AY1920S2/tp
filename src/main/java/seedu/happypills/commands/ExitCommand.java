@@ -20,6 +20,7 @@ public class ExitCommand extends Command {
     public String execute(PatientList patients) {
         TextUi.printExit();
         System.exit(0);
+        assert false;
         return null;
     }
 }
