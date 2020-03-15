@@ -35,8 +35,8 @@ public class TextUI {
     }
 
 
-    public static void printTimetable(boolean[][] mySchedule) {
-        System.out.println("      MON TUE WED THU FRI SAT SUN");
+    public static void printTimetable(Boolean[][] mySchedule) {
+        System.out.println("      SUN MON TUE WED THU FRI SAT");
 
         for (int i = 0; i < 24; ++i) {
             System.out.println(String.format("%04d", (0000 + 100 * i)) + " +---+---+---+---+---+---+---+");
