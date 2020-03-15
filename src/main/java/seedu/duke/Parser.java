@@ -104,6 +104,10 @@ public class Parser {
         String assignmentName = capitalize(matcher.group("assignmentName"));
         String moduleName = matcher.group("moduleName");
         String comments = capitalize(matcher.group("comments"));
+        assert assignmentName.charAt(0) == matcher.group("assignmentName").toUpperCase().charAt(0)
+                && assignmentName.substring(1).equals(matcher.group("assignmentName").substring(1));;
+        assert comments.charAt(0) == matcher.group("comments").toUpperCase().charAt(0)
+                && comments.substring(1).equals(matcher.group("comments").substring(1));
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
@@ -151,6 +155,10 @@ public class Parser {
         String eventName = capitalize(matcher.group("eventName"));
         String location = matcher.group("location");
         String comments = capitalize(matcher.group("comments"));
+        assert eventName.charAt(0) == matcher.group("eventName").toUpperCase().charAt(0)
+                && eventName.substring(1).equals(matcher.group("eventName").substring(1));;
+        assert comments.charAt(0) == matcher.group("comments").toUpperCase().charAt(0)
+                && comments.substring(1).equals(matcher.group("comments").substring(1));
         return new EventCommand(eventName, location, dateTime, comments);
     }
 
