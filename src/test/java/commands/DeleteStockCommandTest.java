@@ -1,10 +1,9 @@
 package commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import ingredient.Ingredient;
+import ingredient.IngredientNotFoundException;
 import org.junit.jupiter.api.Test;
+import stock.Stock;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,9 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import ingredient.Ingredient;
-import ingredient.IngredientNotFoundException;
-import stock.Stock;
+import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteStockCommandTest {
     
@@ -53,7 +50,7 @@ class DeleteStockCommandTest {
      * Test execution of deleteStockCommand when quantity is specified.
      */
     @Test
-    public void excute_ExecuteDeleteStockCommandWithQuantity_executeNormally() 
+    public void execute_ExecuteDeleteStockCommandWithQuantity_executeNormally() 
             throws InvalidStockCommandException, IngredientNotFoundException {
         
         Stock stock = new Stock();

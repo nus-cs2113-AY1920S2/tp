@@ -8,6 +8,7 @@ import static utils.Constants.SMALL_TABLE;
 import static utils.Constants.MEDIUM_TABLE;
 import static utils.Constants.LARGE_TABLE;
 
+
 /** Reservation of the restaurant. */
 public class Reservation {
     private int reservationNumber;
@@ -17,7 +18,7 @@ public class Reservation {
     private String contact;
     private String comments;
     
-    private Character status;
+    private String status;
     private Character tableSize;
     
     private final String ls = System.lineSeparator();
@@ -33,7 +34,7 @@ public class Reservation {
         this.numberOfGuests = numberOfGuests;
         this.contact = contact;
         
-        this.comments = "No comments.";
+        this.comments = "No comments";
         this.status = NOT_SERVED;
         
         setTableSize(this.numberOfGuests);
@@ -141,7 +142,7 @@ public class Reservation {
      * 
      * @param status Status character of the reservation.
      */
-    public void setStatus(Character status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -150,7 +151,7 @@ public class Reservation {
      * 
      * @return Status of the reservation.
      */
-    public Character getStatus() {
+    public String getStatus() {
         return this.status;
     }
 
@@ -181,8 +182,7 @@ public class Reservation {
     public String toString() {
         return String.format("Reservation [%d]"
                 + ls
-                + " "
-                + "Status: %c" 
+                + "Status: %s" 
                 + ls 
                 + "contact person: %s" 
                 + ls 
@@ -196,8 +196,8 @@ public class Reservation {
                 + ls 
                 + "comments: %s" 
                 + ls, 
-                this.reservationNumber, this.status, this.name, this.date.format(
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+                this.reservationNumber, this.status, this.name, 
+                this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 this.numberOfGuests, this.tableSize, this.contact, this.comments);
     }
 }
