@@ -29,8 +29,7 @@ public class Duke {
 
         try {
             storage.loadFileData(personList);
-        } catch (FileNotFoundException e) {
-//            System.out.println("File not found!!! Already create a new one for you!!!");
+        } catch (FileNotFoundException ignored) {
         }
     }
 
