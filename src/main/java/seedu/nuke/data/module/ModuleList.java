@@ -8,6 +8,7 @@ import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ModuleList {
     /* The module list containing all the modules the user is enrolled in */
@@ -70,14 +71,27 @@ public class ModuleList {
     }
 
     /**
-     * Deletes a module to the list.
-     * @param toDelete the task to remove
-     * @throws ModuleNotFoundException If the to delete module does not exist
+     * Deletes a single module to the list.
+     * @param toDelete
+     *  The module to remove
      */
-    public static void delete(Module toDelete) throws ModuleNotFoundException {
-        boolean isModuleFoundAndDeleted = moduleList.remove(toDelete);
-        if (!isModuleFoundAndDeleted) {
-            throw new ModuleNotFoundException();
+    public static void delete(Module toDelete) {
+        moduleList.remove(toDelete);
+    }
+
+    /**
+     * Deletes module(s) from the module list.
+     *
+     * @param modules
+     *  The filtered list of modules
+     * @param toDeleteIndices
+     *  The indices of the modules to be deleted from the list
+     */
+    public static void delete(ArrayList<Module> modules, ArrayList<Integer> toDeleteIndices) {
+        // Reverse order to prevent deleting at wrong index
+        toDeleteIndices.sort(Collections.reverseOrder());
+        for (int index : toDeleteIndices) {
+            modules.remove(index);
         }
     }
 
@@ -165,7 +179,7 @@ public class ModuleList {
         }
         return filteredTaskList;
     }
-    
+
     public static class ModuleNotFoundException extends DataNotFoundException {}
     public static class DuplicateModuleException extends DuplicateDataException {}
 }

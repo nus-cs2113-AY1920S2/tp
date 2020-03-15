@@ -1,5 +1,10 @@
 package seedu.nuke.util;
 
+import seedu.nuke.data.module.Module;
+import seedu.nuke.format.ListCreator;
+
+import java.util.ArrayList;
+
 public class Message {
     public static final String MESSAGE_LOGO = "      ___          ___          ___          ___     \n" +
             "     /__/\\        /__/\\        /__/|        /  /\\    \n" +
@@ -27,9 +32,11 @@ public class Message {
         return String.format("SUCCESS!! Module %s %s has been added.\n", moduleCode, title);
     }
 
-    public static String MESSAGE_DELETE_MODULE_SUCCESS(String moduleCode, String title) {
-        return String.format("SUCCESS!! Module %s %s has been deleted.\n", moduleCode, title);
-    }
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "SUCCESS!! Module(s) have been deleted.\n";
+
+    public static final String MESSAGE_DELETE_MODULE_ABORTED = "Module deletion is aborted.\n";
+
+    public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
 
     public static final String MESSAGE_SHOW_MODULES = "Here are what you are looking for..\n";
     public static final String MESSAGE_TASK_ADDED = "Task added!";
@@ -51,5 +58,31 @@ public class Message {
     public static String MESSAGE_DELETE_TASK_SUCCESS(String taskDescription) {
         return String.format("SUCCESS!! Task %s has been deleted.\n", taskDescription);
     }
+
+    /* PROMPT MESSAGES */
+    public static String MESSAGE_CONFIRM_DELETE_MODULE(Module toDelete) {
+        return String.format("Confirm delete %s %s?\n", toDelete.getModuleCode() , toDelete.getTitle());
+    }
+
+    public static String MESSAGE_CONFIRM_DELETE_MODULE(ArrayList<Module> filteredModules, ArrayList<Integer> toDeleteIndices) {
+        StringBuilder promptMessage = new StringBuilder();
+        promptMessage.append("Confirm delete these modules?\n");
+        for (int index : toDeleteIndices) {
+            String toDeleteModuleCode = filteredModules.get(index).getModuleCode();
+            String toDeleteTitle = filteredModules.get(index).getTitle();
+            promptMessage.append(String.format("%s %s\n", toDeleteModuleCode, toDeleteTitle));
+        }
+        return promptMessage.toString();
+    }
+
+    public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.";
+
+    public static String MESSAGE_PROMPT_DELETE_MODULE_INDICES(ArrayList<Module> filteredModules) {
+        return "Multiple matching modules found.\n" +
+                ListCreator.createModuleListTable(filteredModules) +
+                "\nEnter the list number(s) to delete modules.\n";
+    }
+
+    public static final String MESSAGE_INVALID_INDICES = "";
 
 }

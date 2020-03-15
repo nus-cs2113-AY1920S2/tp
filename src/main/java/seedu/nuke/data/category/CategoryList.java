@@ -1,7 +1,6 @@
 package seedu.nuke.data.category;
 
 import seedu.nuke.data.module.Module;
-import seedu.nuke.data.module.ModuleList;
 import seedu.nuke.data.task.TaskList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;

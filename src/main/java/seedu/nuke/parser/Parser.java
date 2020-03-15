@@ -14,8 +14,11 @@ import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -33,15 +36,10 @@ public class Parser {
     public static final String PRIORITY_PREFIX = "-p";
     public static final String DEADLINE_PREFIX = "-d";
 
+    private final String WHITESPACES = "\\s+";
     private final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
-    private final Pattern COMMAND_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<identifier>^\\s+[^-]*)"
-            + "(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"
-            + "(?<categoryName>(?:" + CATEGORY_NAME_PREFIX + " [^-]+)?)"
-            + "(?<taskDescription>(?:" + TASK_DESCRIPTION_PREFIX + " [^-]+)?)"
-            + "(?<deadline>(?:" + DEADLINE_PREFIX + " [^-]+)?)"
-            + "(?<priority>(?:" + PRIORITY_PREFIX + " [^-]+)?)"
-    );
+    private final Pattern INDICES_FORMAT = Pattern.compile("(?<indices>(?:\\s*\\d+)+\\s*)");
+
 
     /**
      * Parses the input string read by the <b>UI</b> and converts the string into a specific <b>Command</b>, which is
@@ -68,32 +66,32 @@ public class Parser {
 
         switch (commandWord) {
 
-            case AddModuleCommand.COMMAND_WORD:
-                return createAddModuleCommand(parameters);
+        case AddModuleCommand.COMMAND_WORD:
+            return createAddModuleCommand(parameters);
 
-            case DeleteModuleCommand.COMMAND_WORD:
-                return createDeleteModuleCommand(parameters);
+        case DeleteModuleCommand.COMMAND_WORD:
+            return createDeleteModuleCommand(parameters);
 
-            case ListCommand.COMMAND_WORD:
-                return createListCommand(parameters);
+        case ListCommand.COMMAND_WORD:
+            return createListCommand(parameters);
 
-            case AddCategoryCommand.COMMAND_WORD:
-                return createAddCategoryCommand(parameters);
+        case AddCategoryCommand.COMMAND_WORD:
+            return createAddCategoryCommand(parameters);
 
-            case DeleteCategoryCommand.COMMAND_WORD:
-                return createDeleteCategoryCommand(parameters);
+        case DeleteCategoryCommand.COMMAND_WORD:
+            return createDeleteCategoryCommand(parameters);
 
-            case AddTaskCommand.COMMAND_WORD:
-                return createAddTaskCommand(parameters);
+        case AddTaskCommand.COMMAND_WORD:
+            return createAddTaskCommand(parameters);
 
-            case DeleteTaskCommand.COMMAND_WORD:
-                return createDeleteTaskCommand(parameters);
+        case DeleteTaskCommand.COMMAND_WORD:
+            return createDeleteTaskCommand(parameters);
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            default:
-                return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        default:
+            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 
@@ -259,8 +257,6 @@ public class Parser {
         return new ListCommand(moduleCode, categoryName, taskDescription);
     }
 
-
-
     private boolean isMissingCompulsoryParameters(Pattern[] formats, Matcher[] matchers, String parameters) {
         // Match patterns
         for (int i = 0; i < formats.length; ++i) {
@@ -276,6 +272,25 @@ public class Parser {
 
         return false;
     }
+
+    public ArrayList<Integer> parseInputAsIndices(String input) {
+        final Matcher matcher = INDICES_FORMAT.matcher(input.trim());
+
+        if (!matcher.matches()) {
+            return null;
+        }
+
+        String indicesString = matcher.group("indices");
+        String[] separatedIndicesString = indicesString.split(WHITESPACES);
+
+        // Convert String array to Integer ArrayList and removing duplicates
+        return Stream.of(separatedIndicesString)
+                .map(Integer::parseInt).distinct()
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+
+
 
     /** Signals that the user has provided an unrecognised command */
     public static class InvalidCommandException extends InvalidFormatException {}

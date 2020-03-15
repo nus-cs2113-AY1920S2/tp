@@ -1,7 +1,5 @@
 package seedu.nuke.data.task;
 
-import seedu.nuke.data.category.Category;
-import seedu.nuke.data.category.CategoryList;
 import seedu.nuke.data.file.TaskFileList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
