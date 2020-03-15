@@ -12,12 +12,20 @@ public class DailyFoodRecord {
     private ArrayList<Food> lunch;
     private ArrayList<Food> dinner;
 
-    public DailyFoodRecord(String date){
+    /**
+     * Constructs the Daily Food Record.
+     */
+
+    public DailyFoodRecord(String date) {
         setDate(date);
         breakfast = new ArrayList<Food>();
         lunch = new ArrayList<Food>();
         dinner = new ArrayList<Food>();
     }
+
+    /**
+     * Sets the date of the record.
+     */
 
     public void setDate(String date) {
         LocalDate standardTime = null;
@@ -26,6 +34,7 @@ public class DailyFoodRecord {
             standardTime = LocalDate.parse(date);
             isStandardTime = true;
         } catch (DateTimeParseException ignored) {
+            System.out.println("Invalid Date Format");
         } finally {
             if (isStandardTime) {
                 this.date = standardTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH));
@@ -35,9 +44,12 @@ public class DailyFoodRecord {
         }
     }
 
+    /**
+     * Records the meals consumed into their respective categories.
+     */
 
-    public void recordMeals(String mealType, ArrayList<Food> foodList){
-        switch (mealType){
+    public void recordMeals(String mealType, ArrayList<Food> foodList) {
+        switch (mealType) {
         case "breakfast":
             breakfast.addAll(foodList);
             break;
@@ -47,22 +59,40 @@ public class DailyFoodRecord {
         case "dinner":
             dinner.addAll(foodList);
             break;
+        default:
+            break;
         }
     }
 
-    public void showDailyRecord(){
+    /**
+     * Displays the Daily Food Record.
+     */
+
+    public void showDailyRecord() {
         this.showBreakfast();
         this.showLunch();
         this.showDinner();
     }
 
-    public void showBreakfast(){
+    /**
+     * Displays the Daily Breakfast Record.
+     */
+
+    public void showBreakfast() {
     }
 
-    public void showLunch(){
+    /**
+     * Displays the Daily Lunch Record.
+     */
+
+    public void showLunch() {
     }
 
-    public void showDinner(){
+    /**
+     * Displays the Daily Dinner Record.
+     */
+
+    public void showDinner() {
     }
 
     public String getBreakfast(){

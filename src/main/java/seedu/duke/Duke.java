@@ -3,7 +3,7 @@ package seedu.duke;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class DietManager {
+public class Duke {
     private static Person currentUser;
     private static Parser parser;
     private static Storage storage;
@@ -20,7 +20,11 @@ public class DietManager {
             + "                                                       __/ |            \n"
             + "                                                      |___/             ";;
 
-    public DietManager(String filePath){
+    /**
+     * Begins the application and creates the relevant objects required for the application to function.
+     */
+
+    public Duke(String filePath){
         foodNutritionInfo = new FoodNutritionInfo();
         personList = new PersonList();
         ui = new UI();
@@ -35,8 +39,7 @@ public class DietManager {
     }
 
     public static void main(String[] args) {
-        new DietManager("data/user info.txt").run();
-        Scanner sc = new Scanner(System.in);
+        new Duke("data/user info.txt").run();
     }
 
     public static void welcome(){
