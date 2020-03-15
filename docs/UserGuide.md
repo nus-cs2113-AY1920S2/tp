@@ -6,7 +6,7 @@
     + [3.1. Add:](#add) `add`
     + [3.2. Delete:](#delete) `delete`
     + [3.3. List:](#list) `list`
-* [4. Command Summary](#summary)
+* [4. Command Summary](#command-summary)
 
 <a name="introduction"></a>
 
@@ -60,8 +60,8 @@ Delete menu items, ingredients and reservations.
 * Format: `delete dish; n/NAME;`
 * Example: `delete dish; n/bacon pizza;`
 #### Delete stock of ingredient: delete stock
-* Format: `delete stock; i/[INGREDIENT]; q/[QUANTITY];` or
-* Format: `delete stock; i/[INGREDIENT];`
+* Format: `delete stock; i/INGREDIENT; q/QUANTITY;` or
+* Format: `delete stock; i/INGREDIENT;`
 * Example: `delete stock; i/tomato; q/1;`
 #### Mark reservation as invalid: delete reservation
 * Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
@@ -76,7 +76,7 @@ List items in the menu, ingredients and reservations.
 * List ingredients : `list ingredient`
 * List reservation : `list reservation`
 
-<a name="summary"></a>
+<a name="command-summary"></a>
 
 ## Command Summary
 
@@ -84,6 +84,6 @@ List items in the menu, ingredients and reservations.
 * Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
 * Format: `add reservation; r/NUMBER_OF_RESERVATIONS;`
 * Format: `delete dish; n/NAME;`
-* Format: `delete stock; i/[INGREDIENT]; q/[QUANTITY];`
-* Format: `delete stock; i/[INGREDIENT];`
+* Format: `delete stock; i/INGREDIENT; q/QUANTITY;`
+* Format: `delete stock; i/INGREDIENT;`
 * Format: `delete reservation; r/NUMBER_OF_RESERVATIONS;`
