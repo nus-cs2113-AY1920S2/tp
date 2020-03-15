@@ -2,9 +2,15 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
+<<<<<<< HEAD
+  <date>2020-03-14T13:18:49.912748100Z</date>
+  <millis>1584191929912</millis>
+  <nanos>748100</nanos>
+=======
   <date>2020-03-15T06:28:26.123378600Z</date>
   <millis>1584253706123</millis>
   <nanos>378600</nanos>
+>>>>>>> master
   <sequence>0</sequence>
   <logger>global</logger>
   <level>INFO</level>
@@ -14,6 +20,18 @@
   <message>Application starting.</message>
 </record>
 <record>
+<<<<<<< HEAD
+  <date>2020-03-14T13:18:55.419702Z</date>
+  <millis>1584191935419</millis>
+  <nanos>702000</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>exit</method>
+  <thread>1</thread>
+  <message>Application shutting down</message>
+=======
   <date>2020-03-15T06:29:00.915827800Z</date>
   <millis>1584253740915</millis>
   <nanos>827800</nanos>
@@ -48,5 +66,6 @@
   <method>execute</method>
   <thread>1</thread>
   <message>(Add command)  Added item: seedu.duke.data.ShoppingList@77a567e1</message>
+>>>>>>> master
 </record>
 </log>

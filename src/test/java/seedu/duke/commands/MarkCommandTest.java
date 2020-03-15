@@ -29,29 +29,29 @@ public class MarkCommandTest {
     void testMark_unmarkedItem_Success() {
         command = new MarkCommand(1);
         command.setData(items, null);
-        CommandResult result = command.execute();
+        command.execute();
         String expectedFeedback = System.lineSeparator()
                 + "Yes! I've marked this item as bought:"
                 + System.lineSeparator() + items.getList().get(1).toString()
                 + System.lineSeparator();
-        assertEquals(expectedFeedback, result.feedbackToUser);
+        assertEquals(expectedFeedback, command.feedbackToUser);
     }
 
     @Test
     void testMark_outOfLimitIndex_Success() {
         command = new MarkCommand(10);
         command.setData(items, null);
-        CommandResult result1 = command.execute();
+        command.execute();
         String expectedFeedback1 = MarkCommand.FAIL_MESSAGE;
-        assertEquals(expectedFeedback1, result1.feedbackToUser);
+        assertEquals(expectedFeedback1, command.feedbackToUser);
     }
 
     @Test
     void testMark_negativeIndex_Success() {
         command = new MarkCommand(-5);
         command.setData(items, null);
-        CommandResult result2 = command.execute();
+        command.execute();
         String expectedFeedback2 = MarkCommand.FAIL_MESSAGE;
-        assertEquals(expectedFeedback2, result2.feedbackToUser);
+        assertEquals(expectedFeedback2, command.feedbackToUser);
     }
 }
