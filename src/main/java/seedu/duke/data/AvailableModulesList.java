@@ -22,7 +22,7 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals"));
         availableModulesList.add(new NewModule("CS2102", "Database Systems", "CS2030", "CS1231"));
 
-        for (Module module: availableModulesList){
+        for (Module module: availableModulesList) {
             super.add(module);
         }
     }
