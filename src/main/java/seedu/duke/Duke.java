@@ -99,7 +99,7 @@ public class Duke {
         String input = "";
         while (input.isEmpty()) {
             input = in.nextLine();
-            input.trim();
+            input = input.trim();
         }
         return input;
     }
