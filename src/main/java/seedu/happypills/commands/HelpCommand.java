@@ -8,7 +8,8 @@ import seedu.happypills.ui.TextUi;
  */
 public class HelpCommand extends Command {
 
-    public void execute(PatientList patients) {
-        TextUi.printHelp();
+    public String execute(PatientList patients) {
+        String message = TextUi.getHelp();
+        return message;
     }
 }

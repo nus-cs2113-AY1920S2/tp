@@ -15,8 +15,9 @@ public class ExitCommand extends Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      */
     @Override
-    public void execute(PatientList patients) {
+    public String execute(PatientList patients) {
         TextUi.printExit();
         System.exit(0);
+        return null;
     }
 }

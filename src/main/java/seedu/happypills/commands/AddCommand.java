@@ -41,9 +41,11 @@ public class AddCommand extends Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      */
     @Override
-    public void execute(PatientList patients) {
+    public String execute(PatientList patients) {
+        String message;
         int patientNum = patients.size();
         patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
-        TextUi.printPatient(patients.get(patientNum), patientNum);
+        message = TextUi.getPatient(patients.get(patientNum), patientNum);
+        return message;
     }
 }
