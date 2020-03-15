@@ -130,8 +130,8 @@ public class DateTime {
      * @return <code>TRUE</code> if the <b>Date Time</b> has expired, and <code>FALSE</code> otherwise
      */
     private boolean isDue() {
-        return LocalDate.now().isAfter(date) ||
-                (hasTime() && isToday() && LocalTime.now().isAfter(time));
+        return LocalDate.now().isAfter(date)
+                || (hasTime() && isToday() && LocalTime.now().isAfter(time));
     }
 
     /**

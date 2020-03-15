@@ -29,7 +29,7 @@ public class ScreenShot {
         this.dataManager = dataManager;
     }
 
-    public void takeScreenShot (ModuleManager moduleManager, DataManager dataManager) {
+    public void takeScreenShot(ModuleManager moduleManager, DataManager dataManager) {
         this.moduleManager = moduleManager;
         this.dataManager = dataManager;
     }

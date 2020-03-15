@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * a manager that manages all modules
+ * a manager that manages all modules.
  * have an arraylist that contains all modules
  * deals with operations that are related to modules
  */
@@ -27,6 +27,7 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
+     * method to return all the modules.
      * @return all modules
      */
     public ArrayList<Module> getModuleList() {
@@ -114,7 +115,7 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * get the index of new-to-add task
+     * get the index of new-to-add task.
      * @return the next-to-add task index
      */
     public int getNextTaskIndex() {
@@ -125,14 +126,14 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * get a module object according to moduleCode
+     * get a module object according to moduleCode.
      * @param moduleCode the moduleCode of the module
      * @return a module object that has the moduleCode
      */
     public Module getModuleWithCode(String moduleCode) {
         for (Module module: modules
              ) {
-            if (module.getModuleCode().equals(moduleCode)){
+            if (module.getModuleCode().equals(moduleCode)) {
                 return module;
             }
         }

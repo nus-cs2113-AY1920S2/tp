@@ -2,9 +2,15 @@ package seedu.nuke.parser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.nuke.command.*;
+import seedu.nuke.command.Command;
+import seedu.nuke.command.DeleteModuleCommand;
+import seedu.nuke.command.ExitCommand;
+import seedu.nuke.command.HelpCommand;
+import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.ListModuleCommand;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 
 class ParserTest {

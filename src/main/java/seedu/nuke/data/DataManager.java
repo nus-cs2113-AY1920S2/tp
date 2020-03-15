@@ -8,15 +8,19 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * the management system
+ * the management system.
  */
 public class DataManager {
 
     private ArrayList<Task> allTasks;
 
+    /**
+     * Constructor for DataManager class.
+     * @param moduleManager the ModuleManager object for the module.
+     */
     public DataManager(ModuleManager moduleManager) {
         allTasks = new ArrayList<>();
-        for(Module module: moduleManager.getModuleList()) {
+        for (Module module: moduleManager.getModuleList()) {
             allTasks.addAll(module.getTaskManager().getTaskList());
         }
     }
@@ -26,7 +30,7 @@ public class DataManager {
     }
 
     /**
-     * sort all tasks of all modules in ascending order of deadlines
+     * sort all tasks of all modules in ascending order of deadlines.
      */
     public void sortAllTasks() {
         Collections.sort(allTasks, new Comparator<Task>() {
@@ -46,8 +50,8 @@ public class DataManager {
     }
 
     /**
-     * return an orders lists of all tasks of all modules
-     * @return ArrayList<String> the ordered list
+     * return an orders lists of all tasks of all modules.
+     * @return an ArrayList of String which represents the ordered list
      */
     public ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();

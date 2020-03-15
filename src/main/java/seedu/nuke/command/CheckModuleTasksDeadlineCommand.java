@@ -4,12 +4,12 @@ import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 
 import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
-import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULY_LIST;
+import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULLY_LIST;
 
 import java.util.ArrayList;
 
 /**
- * sort all tasks of one module according to deadline of task and print it out to the user
+ * sort all tasks of one module according to deadline of task and print it out to the user.
  */
 public class CheckModuleTasksDeadlineCommand extends Command {
 
@@ -20,6 +20,11 @@ public class CheckModuleTasksDeadlineCommand extends Command {
     private Module module;
     private ArrayList<String> deadlines;
 
+    /**
+     * Constructor method for CheckModuleTaskDeadlineCommand class.
+     * @param moduleIndex the index of the module of the user.
+     * @throws ModuleNotFoundException exception is thrown if the specified module is not found.
+     */
     public CheckModuleTasksDeadlineCommand(int moduleIndex) throws ModuleNotFoundException {
         this.moduleIndex = moduleIndex;
         try {
@@ -35,6 +40,6 @@ public class CheckModuleTasksDeadlineCommand extends Command {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
         deadlines = module.checkDeadline();
-        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULY_LIST, module.countTasks()), true, deadlines);
+        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, module.countTasks()), true, deadlines);
     }
 }

@@ -6,7 +6,7 @@ import seedu.nuke.module.Module;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE_ADD;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_PROVIDED;
-import static seedu.nuke.util.Message.MESSAGE_ADD_MODULE_SUCCESS;
+import static seedu.nuke.util.Message.messageAddModuleSuccess;
 
 /**
  * <h3>Add Module Command</h3>
@@ -36,7 +36,7 @@ public class AddModuleCommand extends Command {
         try {
             moduleManager.add(moduleCode);
             Module addedModule = moduleManager.getLastAddedModule();
-            return new CommandResult(MESSAGE_ADD_MODULE_SUCCESS(addedModule.getModuleCode(), addedModule.getTitle()));
+            return new CommandResult(messageAddModuleSuccess(addedModule.getModuleCode(), addedModule.getTitle()));
         } catch (ModuleManager.DuplicateModuleException e) {
             return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);
         } catch (ModuleNotProvidedException e) {

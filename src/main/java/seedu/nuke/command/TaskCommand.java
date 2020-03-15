@@ -4,7 +4,7 @@ import seedu.nuke.data.TaskManager;
 import seedu.nuke.task.Task;
 
 /**
- * task level command inherits ModuleCommand class
+ * task level command inherits ModuleCommand class.
  */
 public abstract class TaskCommand extends ModuleCommand {
 

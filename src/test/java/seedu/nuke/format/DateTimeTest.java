@@ -11,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DateTimeTest {
 
-    DateTimeTest() throws DateTimeFormat.InvalidTimeException, DateTimeFormat.InvalidDateException {}
+    DateTimeTest() throws DateTimeFormat.InvalidTimeException, DateTimeFormat.InvalidDateException {
+
+    }
 
     DateTime dateTime = new DateTime(DateTimeFormat.stringToDate("08082020"), DateTimeFormat.stringToTime("4:38PM"));
 
@@ -74,15 +76,18 @@ class DateTimeTest {
     @Test
     void testToString() {
         DateTime today = new DateTime(LocalDate.now(), LocalTime.now());
-        DateTime tomorrow = new DateTime(LocalDate.now().plusDays(1), LocalTime.now());
-        DateTime yesterday = new DateTime(LocalDate.now().minusDays(1), LocalTime.now());
-        DateTime weekAfter = new DateTime(LocalDate.now().plusWeeks(1), LocalTime.now());
-        DateTime weekBefore = new DateTime(LocalDate.now().minusWeeks(1), LocalTime.now());
-
         assertEquals("today " + today.getTime() + " [OVER!!]", today.toString());
+
+        DateTime tomorrow = new DateTime(LocalDate.now().plusDays(1), LocalTime.now());
         assertEquals("tomorrow " + tomorrow.getTime(), tomorrow.toString());
+
+        DateTime yesterday = new DateTime(LocalDate.now().minusDays(1), LocalTime.now());
         assertEquals(yesterday.getDate() + " " + yesterday.getTime() + " [OVER!!]", yesterday.toString());
+
+        DateTime weekAfter = new DateTime(LocalDate.now().plusWeeks(1), LocalTime.now());
         assertEquals(weekAfter.getDate() + " " + weekAfter.getTime(), weekAfter.toString());
+
+        DateTime weekBefore = new DateTime(LocalDate.now().minusWeeks(1), LocalTime.now());
         assertEquals(weekBefore.getDate() + " " + weekBefore.getTime() + " [OVER!!]", weekBefore.toString());
     }
 }
