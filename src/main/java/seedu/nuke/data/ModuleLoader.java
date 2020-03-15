@@ -24,7 +24,14 @@ import java.util.Scanner;
  * appear in the list of the list which load method return, or else fail.
  */
 public class ModuleLoader {
-    public static HashMap<String,String> load(String dataFileName) throws FileNotFoundException {
+
+    /**
+     * load data from a jason file that contains all information about all NUS existing modules
+     * @param dataFileName name of the jason file
+     * @return HashMap<String, String> a map that map all modules with its information
+     * @throws FileNotFoundException when cannot find the jason file
+     */
+    public static HashMap<String, String> load(String dataFileName) throws FileNotFoundException {
         String jsonStr;
         jsonStr = loadJsonStringFromFile(dataFileName);
         List<DummyModule> moduleList = JSON.parseArray(jsonStr, DummyModule.class);// extractModules(jsonStr);

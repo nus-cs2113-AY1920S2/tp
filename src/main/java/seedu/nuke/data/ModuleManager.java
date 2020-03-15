@@ -8,8 +8,12 @@ import seedu.nuke.module.Module;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
+/**
+ * a manager that manages all modules
+ * have an arraylist that contains all modules
+ * deals with operations that are related to modules
+ */
 public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules = new ArrayList<>();
     private HashMap<String, String> modulesMap;
@@ -57,8 +61,7 @@ public class ModuleManager implements Iterable<Module> {
             throw new DuplicateModuleException();
         } else if (!modulesMap.containsKey(moduleCode)) {
             throw new ModuleNotProvidedException();
-        }
-        else {
+        } else {
             Module toAdd = new Module(moduleCode, modulesMap.get(moduleCode), null);
             modules.add(toAdd);
         }
@@ -72,7 +75,7 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     public Module getLastAddedModule() {
-        return modules.get(modules.size()-1);
+        return modules.get(modules.size() - 1);
     }
 
     /**
@@ -88,10 +91,11 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * Deletes a <b>Module</b> with the specified <code>module code</code> in the <b>Module List</b>.
+     * Deletes a <b>Module</b> with <code>module code</code> in the <b>Module List</b>.
      *
      * @param moduleCode    The module code of the <b>Module</b> to be deleted
-     * @throws ModuleNotFoundException  If the module with the specified module code is not found in the <b>Module List</b>
+     * @throws ModuleNotFoundException
+     * If the module with the specified module code is not found in the <b>Module List</b>
      * @see Module
      */
     public Module delete(String moduleCode) throws ModuleNotFoundException {
@@ -110,15 +114,22 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
+     * get the index of new-to-add task
      * @return the next-to-add task index
      */
-    public int getNextTaskIndex(){
+    public int getNextTaskIndex() {
         return modules.size();
     }
 
-    public class DuplicateModuleException extends DuplicateDataException {}
+    public class DuplicateModuleException extends DuplicateDataException {
+    }
 
-    public Module getModuleWithCode(String moduleCode){
+    /**
+     * get a module object according to moduleCode
+     * @param moduleCode the moduleCode of the module
+     * @return a module object that has the moduleCode
+     */
+    public Module getModuleWithCode(String moduleCode) {
         for (Module module: modules
              ) {
             if (module.getModuleCode().equals(moduleCode)){

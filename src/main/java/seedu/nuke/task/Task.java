@@ -7,24 +7,26 @@ import java.util.ArrayList;
 import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
 
-public class Task implements Comparable{
+public class Task {
     protected String description;
     protected boolean isDone;
     protected int priority;
     protected DateTime deadline;
     protected ArrayList<String> files;
+    protected String moduleCode;
 
 
     /**
      * constructor for the simplest task
      * @param description
      */
-    public Task(String description) {
+    public Task(String description, String moduleCode) {
         this.description = description;
         this.files = new ArrayList<>();
         this.deadline = null;
         this.priority = -1;
         this.isDone = false;
+        this.moduleCode = moduleCode;
     }
 
     public Task(String description, DateTime dateTime, int priority) {
@@ -34,6 +36,8 @@ public class Task implements Comparable{
         this.priority = priority;
         this.isDone = false;
     }
+
+    public String getModuleCode() {return moduleCode;}
 
     public String getDescription() {
         return description;
@@ -69,11 +73,6 @@ public class Task implements Comparable{
 
     public void addFile(String filePath) {
         files.add(filePath);
-    }
-
-    public int compareTo(Object o) {
-        Task task = (Task) o;
-        return (deadline.toString().compareToIgnoreCase(task.deadline.toString()) > 0) ? 1 : 0;
     }
 
 }

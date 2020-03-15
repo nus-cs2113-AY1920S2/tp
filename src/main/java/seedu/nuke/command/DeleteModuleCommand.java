@@ -31,7 +31,8 @@ public class DeleteModuleCommand extends Command {
     public CommandResult execute() {
         try {
             Module deletedModule = moduleManager.delete(moduleCode);
-            return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS(deletedModule.getModuleCode(), deletedModule.getTitle()));
+            return new CommandResult(
+                    MESSAGE_DELETE_MODULE_SUCCESS(deletedModule.getModuleCode(), deletedModule.getTitle()));
         } catch (ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         }

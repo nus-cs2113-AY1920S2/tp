@@ -4,12 +4,12 @@ import seedu.nuke.data.TaskManager;
 import seedu.nuke.task.Task;
 
 /**
- * task level command
+ * task level command inherits ModuleCommand class
  */
 public abstract class TaskCommand extends ModuleCommand {
 
     protected TaskManager taskManager;
-    public String COMMAND_WORD;
+    //public String commandWord;
     private int targetIndex = -1;
     private static final int DISPLAYED_INDEX_OFFSET = 1;
 
