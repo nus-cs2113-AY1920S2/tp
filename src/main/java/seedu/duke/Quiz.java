@@ -2,8 +2,9 @@ package seedu.duke;
 
 import seedu.cards.Card;
 import seedu.cards.CardList;
+import seedu.exception.EscException;
+import seedu.duke.UI;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Quiz {
@@ -13,7 +14,10 @@ public class Quiz {
      * @param upperRange Upper limit of random number.
      * @return Random number generated.
      */
-    public static int generateRandomInt(int upperRange) {
+    public static int generateRandomInt(int upperRange) throws EscException {
+        if (upperRange < 1) {
+            throw new EscException("The card list is empty.");
+        }
         Random random = new Random();
         return random.nextInt(upperRange);
     }
@@ -23,10 +27,15 @@ public class Quiz {
      * @param cardlist Card list where card is taken from.
      * @return retrievedCard
      */
-    public static Card retrieveCard(CardList cardlist) {
+    public static Card retrieveCard(CardList cardlist) throws EscException {
         int size = cardlist.size();
-        int randomInt = generateRandomInt(size);
-        Card retrievedCard = cardlist.getCard(randomInt + 1);
+        Card retrievedCard;
+        try {
+            int randomInt = generateRandomInt(size);
+            retrievedCard = cardlist.getCard(randomInt + 1);
+        } catch (EscException e) {
+            throw e;
+        }
         return retrievedCard;
     }
 
@@ -35,12 +44,16 @@ public class Quiz {
      * @param cardlist Card list where card is taken from.
      */
     public static void quizQuestion(CardList cardlist) {
-        Card questionCard = retrieveCard(cardlist);
-        String question = questionCard.getQuestion();
-        String answer = questionCard.getAnswer();
-        // To be printed out using ui
-        // ui.println("Question: " + question);
-        // ui.getUserInput
-        // ui.println("Answer: " + answer);
+        UI ui = new UI();
+        try {
+            Card questionCard = retrieveCard(cardlist);
+            String question = questionCard.getQuestion();
+            String answer = questionCard.getAnswer();
+            System.out.println("Question: " + question);
+            ui.readAnswer();
+            System.out.println("Answer: " + answer);
+        } catch (EscException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

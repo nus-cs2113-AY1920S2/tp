@@ -38,6 +38,17 @@ public class UI {
     }
 
     /**
+     * Reads the user answer.
+     * @return User answer.
+     */
+    public static String readAnswer() {
+        System.out.println("Enter answer: ");
+        String userInput = in.nextLine();
+        System.out.println("[Answer entered: " + userInput + "]");
+        return userInput;
+    }
+
+    /**
      *  Prints a list of commands used in the programme.
      */
     public static void printHelp() {
