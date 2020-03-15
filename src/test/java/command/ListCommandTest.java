@@ -134,6 +134,7 @@ public class ListCommandTest {
     
 =======
 
+<<<<<<< HEAD
     @Test
     public void printList_filledList_incompleteAssignOnly() {
         assertEquals(expectedOutputFromIncompleteAssign,
@@ -151,6 +152,19 @@ public class ListCommandTest {
         assertEquals(expectedOutputFromUpcomingEvent,
                 new ListCommand("upcoming events").execute(filledTasklist, ui).feedbackToUser);
     }
+=======
+//    @Test
+//    public void printList_filledList_allTasksList() {
+//        assertEquals(expectedOutputFromFilledTasklist,
+//                new ListCommand(null).execute(filledTasklist, ui).feedbackToUser);
+//    }
+//
+//    @Test
+//    public void printList_filledList_upcomingEventOnly() {
+//        assertEquals(expectedOutputFromUpcomingEvent,
+//                new ListCommand("upcoming events").execute(filledTasklist, ui).feedbackToUser);
+//    }
+>>>>>>> origin/branch-clear
 
 >>>>>>> c4e4062e528709712a109923abb78c2a59929722
     @Test
