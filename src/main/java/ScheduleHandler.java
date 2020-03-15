@@ -98,7 +98,7 @@ public class ScheduleHandler {
         if (size > 1) {
             Boolean isSunday = this.freeBlocks.get(0).get(0).equals(this.freeBlocks.get(size - 1).get(2));
             Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0)
-                && this.freeBlocks.get(size - 1).get(3).equals(47);
+                    && this.freeBlocks.get(size - 1).get(3).equals(47);
             Boolean isSundayMidnightOverlap = isSunday && isMidnight;
             if (isSundayMidnightOverlap) {
                 Integer newStartDay = this.freeBlocks.get(size - 1).get(0);
@@ -126,29 +126,29 @@ public class ScheduleHandler {
     public String getDayFromNumber(int dayNum) {
         String day;
         switch (dayNum) {
-        case 0:
-            day = "Sunday";
-            break;
-        case 1:
-            day = "Monday";
-            break;
-        case 2:
-            day = "Tuesday";
-            break;
-        case 3:
-            day = "Wednesday";
-            break;
-        case 4:
-            day = "Thursday";
-            break;
-        case 5:
-            day = "Friday";
-            break;
-        case 6:
-            day = "Saturday";
-            break;
-        default:
-            day = "";
+            case 0:
+                day = "Sunday";
+                break;
+            case 1:
+                day = "Monday";
+                break;
+            case 2:
+                day = "Tuesday";
+                break;
+            case 3:
+                day = "Wednesday";
+                break;
+            case 4:
+                day = "Thursday";
+                break;
+            case 5:
+                day = "Friday";
+                break;
+            case 6:
+                day = "Saturday";
+                break;
+            default:
+                day = "";
         }
         return day;
     }
@@ -158,24 +158,24 @@ public class ScheduleHandler {
         int hourTime = 0;
 
         switch (startOrEnd) {
-        case "START":
-            hourTime = blockNum / 2;
-            if (blockNum % 2 == 1) {
-                minuteTime = 30;
-            }
-            break;
-        case "END":
-            if (blockNum == 47) {
-                hourTime = 0;
-            } else {
-                hourTime = (blockNum + 1) / 2;
-            }
+            case "START":
+                hourTime = blockNum / 2;
+                if (blockNum % 2 == 1) {
+                    minuteTime = 30;
+                }
+                break;
+            case "END":
+                if (blockNum == 47) {
+                    hourTime = 0;
+                } else {
+                    hourTime = (blockNum + 1) / 2;
+                }
 
-            if (blockNum % 2 == 0) {
-                minuteTime = 30;
-            }
-            break;
-        default:
+                if (blockNum % 2 == 0) {
+                    minuteTime = 30;
+                }
+                break;
+            default:
         }
 
         LocalTime myTime = LocalTime.of(hourTime, minuteTime);
@@ -245,110 +245,90 @@ public class ScheduleHandler {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             } else if (startBlock < endBlock) {
-                for(int i = startBlock; i <= endBlock; ++i) {
-                    //System.out.println(startDay + " " + i);
+                //System.out.println(startDay + " " + i);
+                for (int i = startBlock; i <= endBlock; i++)
                     if (masterSchedule[startDay][i] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
-                }
             } else if (startBlock > endBlock) {
-                for(int i = startBlock; i <= 47; ++i) {
-                    //System.out.println(startDay + " " + i);
+                //System.out.println(startDay + " " + i);
+                for (int i = startBlock; i <= 47; i++)
                     if (masterSchedule[startDay][i] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
-                }
 
-                for(int i = startDay + 1; i <= 6; ++i) {
-                    for(int j = 0; j <= 47; ++j) {
-                        //System.out.println(i + " " + j);
+                for (int i = startDay + 1; i <= 6; i++)
+                    //System.out.println(i + " " + j);
+                    for (int j = 0; j <= 47; j++)
                         if (masterSchedule[i][j] == myScheduleBlocked) {
                             throw new MoException(MESSAGE_INVALID_MEETING);
                         }
-                    }
-                }
 
-                for(int i = 0; i <= endDay - 1; ++i) {
-                    for(int j = 0; j <= 47; ++j) {
-                        //System.out.println(i + " " + j);
+                for (int i = 0; i <= endDay - 1; i++)
+                    //System.out.println(i + " " + j);
+                    for (int j = 0; j <= 47; j++)
                         if (masterSchedule[i][j] == myScheduleBlocked) {
                             throw new MoException(MESSAGE_INVALID_MEETING);
                         }
-                    }
-                }
 
-                for (int i = 0; i <= endBlock; ++i) {
-                    //System.out.println(endDay + " " + i);
+                //System.out.println(endDay + " " + i);
+                for (int i = 0; i <= endBlock; i++)
                     if (masterSchedule[endDay][i] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
-                }
 
             }
         }
 
         if (startDay < endDay) {
-            for (int i = startBlock; i <= 47; ++i) {
-                //System.out.println(startDay + " " + i);
+            //System.out.println(startDay + " " + i);
+            for (int i = startBlock; i <= 47; i++)
                 if (masterSchedule[startDay][i] == myScheduleBlocked) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
-            }
-            for (int i = startDay + 1; i <= endDay - 1; ++i) {
-                for (int j = 0; j < 48; ++j) {
-                    //System.out.println(i + " " + j);
+            //System.out.println(i + " " + j);
+            for (int i = startDay + 1; i <= endDay - 1; i++)
+                for (int j = 0; j < 48; j++)
                     if (masterSchedule[i][j] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
-                }
-            }
 
-            for (int i = 0; i <= endBlock; ++i) {
-                //System.out.println(endDay + " " + i);
-                if (masterSchedule[endDay][i] == myScheduleBlocked) {
-                    throw new MoException(MESSAGE_INVALID_MEETING);
-                }
-            }
+            //System.out.println(endDay + " " + i);
+            for (int i = 0; i <= endBlock; i++)
+                if (masterSchedule[endDay][i] == myScheduleBlocked) throw new MoException(MESSAGE_INVALID_MEETING);
 
         }
 
         if (startDay > endDay) {
-            for(int i = startBlock; i <= 47; ++i) {
-                //System.out.println(startDay + " " + i);
+            //System.out.println(startDay + " " + i);
+            for (int i = startBlock; i <= 47; i++)
                 if (masterSchedule[startDay][i] == myScheduleBlocked) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
-            }
 
-            for(int i = startDay + 1; i <= 6; ++i) {
-                for(int j = 0; j <= 47; ++j) {
-                    //System.out.println(i + " " + j);
+            for (int i = startDay + 1; i <= 6; i++)
+                //System.out.println(i + " " + j);
+                for (int j = 0; j <= 47; j++)
                     if (masterSchedule[i][j] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
-                }
-            }
 
-            for(int i = 0; i <= endDay - 1; ++i) {
-                for(int j = 0; j <= 47; ++j) {
-                    //System.out.println(i + " " + j);
+            for (int i = 0; i <= endDay - 1; i++)
+                //System.out.println(i + " " + j);
+                for (int j = 0; j <= 47; j++)
                     if (masterSchedule[i][j] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
-                }
-            }
 
-            for (int i = 0; i <= endBlock; ++i) {
-                //System.out.println(endDay + " " + i);
+            //System.out.println(endDay + " " + i);
+            for (int i = 0; i <= endBlock; i++)
                 if (masterSchedule[endDay][i] == myScheduleBlocked) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
-            }
         }
 
         return true;
     }
-
 
 
 }
