@@ -66,7 +66,7 @@ public class Storage {
                 }
                 foodList.add(new Food(foodName));
             }
-            if (currentPerson != null && currentRecord!=null) {
+            if (currentPerson != null && currentRecord != null) {
                 currentPerson.setRecordOfDay(currentRecord,info[0],foodList);
             }
         } else if (info[0].equals("user")) {
