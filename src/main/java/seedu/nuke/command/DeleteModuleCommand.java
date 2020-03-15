@@ -1,13 +1,10 @@
 package seedu.nuke.command;
 
-import seedu.nuke.command.Command;
-import seedu.nuke.command.CommandResult;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
-import seedu.nuke.data.ModuleManager;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
-import static seedu.nuke.util.Message.MESSAGE_DELETE_MODULE_SUCCESS;
+import static seedu.nuke.util.Message.messageDeleteModuleSuccess;
 
 public class DeleteModuleCommand extends Command {
     public static final String COMMAND_WORD = "delm";
@@ -32,7 +29,7 @@ public class DeleteModuleCommand extends Command {
         try {
             Module deletedModule = moduleManager.delete(moduleCode);
             return new CommandResult(
-                    MESSAGE_DELETE_MODULE_SUCCESS(deletedModule.getModuleCode(), deletedModule.getTitle()));
+                    messageDeleteModuleSuccess(deletedModule.getModuleCode(), deletedModule.getTitle()));
         } catch (ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         }

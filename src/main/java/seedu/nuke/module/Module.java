@@ -15,10 +15,10 @@ public class Module {
     private TaskManager taskManager;
 
     /**
-     * initialize a module with module code, title, and description
-     * @param moduleCode
-     * @param title
-     * @param description
+     * initialize a module with module code, title, and description.
+     * @param moduleCode the module code of the module
+     * @param title the title of the module
+     * @param description the description of the module
      */
     public Module(String moduleCode, String title, String description) {
         this.moduleCode = moduleCode.toUpperCase();
@@ -47,6 +47,10 @@ public class Module {
         return taskManager.countTotalTasks();
     }
 
+    /**
+     * The method to check the deadline of the tasks in a module.
+     * @return an ArrayList of String representing the deadline of tasks in order.
+     */
     public ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
         ArrayList<Task> tasks = taskManager.getTaskList();
@@ -56,8 +60,8 @@ public class Module {
                 return t1.getDeadline().toString().compareToIgnoreCase(t2.getDeadline().toString());
             }
         });
-        for(Task task: tasks) {
-            deadlines.add("Task: " + task.getDescription()+"  Deadline: " + task.getDeadline().toString());
+        for (Task task: tasks) {
+            deadlines.add("Task: " + task.getDescription() + "  Deadline: " + task.getDeadline().toString());
         }
         return deadlines;
     }

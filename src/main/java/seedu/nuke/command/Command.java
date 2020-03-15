@@ -19,10 +19,10 @@ public abstract class Command {
     }
 
     /**
-     * initialize some attributes of the command if needed
-     * @param moduleManager current module manager that manages all modules
-     * @param dataManager current data managers that manage all tasks
-     * @param screenShotManager screen shot manager that manages all screen shots
+     * initialize some attributes of the command if needed.
+     * @param moduleManager current module manager that manages all modules.
+     * @param dataManager current data managers that manage all tasks.
+     * @param screenShotManager screen shot manager that manages all screen shots.
      */
     public void setData(ModuleManager moduleManager, DataManager dataManager, ScreenShotManager screenShotManager) {
         this.moduleManager = moduleManager;

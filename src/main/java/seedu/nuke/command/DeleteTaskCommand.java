@@ -4,7 +4,7 @@ import seedu.nuke.task.Task;
 
 import static seedu.nuke.util.Message.MESSAGE_TASK_REMOVED;
 
-public class DeleteTaskCommand extends TaskCommand{
+public class DeleteTaskCommand extends TaskCommand {
 
     public static final String COMMAND_WORD = "delt";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";

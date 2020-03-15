@@ -1,8 +1,17 @@
 package seedu.nuke.parser;
 
+import seedu.nuke.command.AddModuleCommand;
+import seedu.nuke.command.AddTaskCommand;
+import seedu.nuke.command.ChangeModuleCommand;
+import seedu.nuke.command.CheckAllTasksDeadlineCommand;
+import seedu.nuke.command.CheckModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
+import seedu.nuke.command.DeleteModuleCommand;
+import seedu.nuke.command.DeleteTaskCommand;
 import seedu.nuke.command.ExitCommand;
-import seedu.nuke.command.*;
+import seedu.nuke.command.HelpCommand;
+import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.ListModuleCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.exception.InvalidIndexException;
@@ -26,6 +35,7 @@ public class Parser {
     public static final int PARAMETER_WORD_INDEX = 1;
     private static final int MAX_INPUT_LENGTH = 100; // Maximum length of user input accepted
     private ModuleManager moduleManager;
+
     /**
      * Parses the input string read by the <b>UI</b> and converts the string into a specific <b>Command</b>, which is
      * to be executed by the <b>Nuke</b> program.
@@ -103,7 +113,7 @@ public class Parser {
 
     private Command prepareChangeModuleCommand(String parameters) {
         //System.out.println(parameters);
-        if(moduleManager.getModuleWithCode(parameters)!=null){
+        if (moduleManager.getModuleWithCode(parameters) != null) {
             return new ChangeModuleCommand(moduleManager.getModuleWithCode(parameters));
         }
         return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -112,7 +122,7 @@ public class Parser {
     private Command prepareAddTaskCommand(String parameters) {
         //todo
         //add a very simple task (for testing)
-        if (Command.getCurrentModule()!= null){
+        if (Command.getCurrentModule() != null) {
             return new AddTaskCommand(new Task(parameters, Command.getCurrentModule().getModuleCode()));
         } else {
             return new IncorrectCommand("please go inside a Module!");
@@ -120,20 +130,22 @@ public class Parser {
     }
 
     /**
-     * Splits user input into command word and rest of parameters (if any)
-     * @param input
+     * Splits user input into command word and rest of parameters (if any).
+     *
+     * @param input the input from the user
      * @return array of String contains command and parameter
      */
-    private String[] getCommandAndParameter(String input){
+    private String[] getCommandAndParameter(String input) {
         String[] separatedInput = input.split(COMMAND_PARAMETER_SPLITTER, COMMAND_PARAMETER_MAXIMUM_LIMIT);
         String commandWord = separatedInput[COMMAND_WORD_INDEX].toLowerCase();
-        String parameters = (separatedInput.length == COMMAND_PARAMETER_MAXIMUM_LIMIT) ? separatedInput[PARAMETER_WORD_INDEX].trim() : "";
-        return new String[] {commandWord, parameters};
+        String parameters = (separatedInput.length == COMMAND_PARAMETER_MAXIMUM_LIMIT)
+                ? separatedInput[PARAMETER_WORD_INDEX].trim() : "";
+        return new String[]{commandWord, parameters};
     }
 
     private Command prepareAddModuleCommand(String parameters) {
         String moduleCode = parameters;
-        if (parameters.isEmpty()){
+        if (parameters.isEmpty()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
         if (hasMultipleParameters(parameters)) {
@@ -144,17 +156,19 @@ public class Parser {
 
     private Command prepareDeleteModuleCommand(String parameters) {
         String moduleCode = parameters;
-        if (parameters.isEmpty()){
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
+        if (parameters.isEmpty()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteModuleCommand.MESSAGE_USAGE));
         }
         if (hasMultipleParameters(parameters)) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteModuleCommand.MESSAGE_USAGE));
         }
         return new DeleteModuleCommand(moduleCode);
     }
 
     /**
-     * Checks if there is more than <b>one</b> parameter in the input
+     * Checks if there is more than <b>one</b> parameter in the input.
      *
      * @param parameters The parameter(s) provided in the input
      * @return <code>TRUE</code> if there is more than one parameter in the input, and <code>FALSE</code> otherwise

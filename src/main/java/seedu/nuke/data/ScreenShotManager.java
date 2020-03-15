@@ -33,7 +33,7 @@ public class ScreenShotManager {
         this.currentPointer = currentPointer;
     }
 
-    public ScreenShot unDo(){
+    public ScreenShot unDo() {
         currentPointer = currentPointer - 1;
         return screenShotList.get(currentPointer - 1);
     }

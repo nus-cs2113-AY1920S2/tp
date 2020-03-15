@@ -18,19 +18,19 @@ public class DateTimeFormat {
 
     /* An exhaustive list of date formats accepted by the Nuke program */
     private static final String[] ALL_DATE_FORMATS = {
-            "dd-MM-yyyy","dd/MM[/yyyy]", "d/MM[/yyyy]", "dd/M[/yyyy]", "d/M[/yyyy]",
-            "dd/MM[/yy]", "d/MM[/yy]", "dd/M[/yy]", "d/M[/yy]",
-            "dd-MM[-yyyy]", "d-MM[-yyyy]", "dd-M[-yyyy]", "d-M[-yyyy]",
-            "dd-MM[-yy]", "d-MM[-yy]", "dd-M[-yy]", "d-M[-yy]",
-            "ddMMyyyy", "ddMMyy"
+        "dd-MM-yyyy", "dd/MM[/yyyy]", "d/MM[/yyyy]", "dd/M[/yyyy]", "d/M[/yyyy]",
+        "dd/MM[/yy]", "d/MM[/yy]", "dd/M[/yy]", "d/M[/yy]",
+        "dd-MM[-yyyy]", "d-MM[-yyyy]", "dd-M[-yyyy]", "d-M[-yyyy]",
+        "dd-MM[-yy]", "d-MM[-yy]", "dd-M[-yy]", "d-M[-yy]",
+        "ddMMyyyy", "ddMMyy"
     };
 
     /* An exhaustive list of time formats accepted by the Nuke program */
     private static final String[] ALL_TIME_FORMATS = {
-            "H:mm", "h:mma", "H:mma",
-            "h.mma", "H.mma", "H.mm",
-            "hmma", "Hmma", "Hmm",
-            "ha", "Ha", "H"
+        "H:mm", "h:mma", "H:mma",
+        "h.mma", "H.mma", "H.mm",
+        "hmma", "Hmma", "Hmm",
+        "ha", "Ha", "H"
     };
 
     private static final int CURRENT_YEAR = LocalDate.now().getYear();
@@ -46,8 +46,8 @@ public class DateTimeFormat {
      * @param datetime The string to be converted into its corresponding <code>DateTime</code> object
      * @return The <code>DateTime</code> object converted from the string
      * @throws InvalidDateTimeException If more than 2 attributes are present in the string
-     * @throws InvalidDateException If the <i>date</i> attribute in the string is invalid
-     * @throws InvalidTimeException If the <i>time</i> attribute in the string is invalid
+     * @throws InvalidDateException     If the <i>date</i> attribute in the string is invalid
+     * @throws InvalidTimeException     If the <i>time</i> attribute in the string is invalid
      */
     public static DateTime stringToDateTime(String datetime)
             throws InvalidDateTimeException, InvalidDateException, InvalidTimeException {
@@ -91,33 +91,32 @@ public class DateTimeFormat {
 
         // Checks if matches date specifiers first, before checking if matches date formats
         switch (date.toLowerCase()) {
+        case "today":
+        case "tdy":
+            return LocalDate.now();
 
-            case "today":
-            case "tdy":
-                return LocalDate.now();
+        case "yesterday":
+        case "yst":
+            return LocalDate.now().minusDays(1);
 
-            case "yesterday":
-            case "yst":
-                return LocalDate.now().minusDays(1);
+        case "tomorrow":
+        case "tmr":
+            return LocalDate.now().plusDays(1);
 
-            case "tomorrow":
-            case "tmr":
-                return LocalDate.now().plusDays(1);
-
-            default:
-                for (String formatPattern : ALL_DATE_FORMATS) {
-                    try {
-                        DateTimeFormatter format = new DateTimeFormatterBuilder()
-                                .appendPattern(formatPattern)
-                                .parseDefaulting(ChronoField.YEAR_OF_ERA, CURRENT_YEAR)
-                                .toFormatter();
-                        return LocalDate.parse(date, format);
-                    } catch (DateTimeParseException e) {
-                        // Ignore invalid formats
-                    }
+        default:
+            for (String formatPattern : ALL_DATE_FORMATS) {
+                try {
+                    DateTimeFormatter format = new DateTimeFormatterBuilder()
+                            .appendPattern(formatPattern)
+                            .parseDefaulting(ChronoField.YEAR_OF_ERA, CURRENT_YEAR)
+                            .toFormatter();
+                    return LocalDate.parse(date, format);
+                } catch (DateTimeParseException e) {
+                    // Ignore invalid formats
                 }
-                // Throws exception if fails to parse all date formats
-                throw new InvalidDateException();
+            }
+            // Throws exception if fails to parse all date formats
+            throw new InvalidDateException();
         }
     }
 
@@ -148,13 +147,22 @@ public class DateTimeFormat {
         throw new InvalidTimeException();
     }
 
-    /** Signals that the <i>datetime</i> string given is in an invalid format */
-    public static class InvalidDateTimeException extends InvalidFormatException {}
+    /**
+     * Signals that the <i>datetime</i> string given is in an invalid format.
+     */
+    public static class InvalidDateTimeException extends InvalidFormatException {
+    }
 
-    /** Signals that the <i>date</i> string given is in an invalid format */
-    public static class InvalidDateException extends InvalidFormatException {}
+    /**
+     * Signals that the <i>date</i> string given is in an invalid format.
+     */
+    public static class InvalidDateException extends InvalidFormatException {
+    }
 
-    /** Signals that the <i>time</i> string given is in an invalid format */
-    public static class InvalidTimeException extends InvalidFormatException {}
+    /**
+     * Signals that the <i>time</i> string given is in an invalid format.
+     */
+    public static class InvalidTimeException extends InvalidFormatException {
+    }
 }
 

@@ -3,7 +3,7 @@ package seedu.nuke.command;
 import java.util.ArrayList;
 
 /**
- *construct the feedback to user String
+ *construct the feedback to user String.
  */
 public class CommandResult {
     private final String feedbackToUser;
@@ -11,7 +11,7 @@ public class CommandResult {
     private final ArrayList<String> shownList;
 
     /**
-     * construct a command result that only have one feedback
+     * construct a command result that only have one feedback.
      * @param feedbackToUser execution feedback that should be shown to the user
      */
     public CommandResult(String feedbackToUser) {
@@ -21,10 +21,10 @@ public class CommandResult {
     }
 
     /**
-     * construct a command result that have feedback and lists of information that needs to be printed out
-     * @param feedbackToUser
-     * @param isShowTasks
-     * @param shownList
+     * construct a command result that have feedback and lists of information that needs to be printed out.
+     * @param feedbackToUser the string of the result which will be printed to the user.
+     * @param isShowTasks if the command is to show tasks
+     * @param shownList the list of tasks to be shown to the user.
      */
     public CommandResult(String feedbackToUser, boolean isShowTasks, ArrayList<String> shownList) {
         this.feedbackToUser = feedbackToUser;

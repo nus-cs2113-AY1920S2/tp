@@ -26,9 +26,9 @@ import java.util.Scanner;
 public class ModuleLoader {
 
     /**
-     * load data from a jason file that contains all information about all NUS existing modules
+     * load data from a jason file that contains all information about all NUS existing modules.
      * @param dataFileName name of the jason file
-     * @return HashMap<String, String> a map that map all modules with its information
+     * @return a HashMapof String to String, which is a map that map all modules with its information
      * @throws FileNotFoundException when cannot find the jason file
      */
     public static HashMap<String, String> load(String dataFileName) throws FileNotFoundException {

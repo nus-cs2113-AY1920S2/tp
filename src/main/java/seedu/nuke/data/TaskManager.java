@@ -4,7 +4,7 @@ import seedu.nuke.task.Task;
 import java.util.ArrayList;
 
 /**
- * every module has a task manager to manage tasks within module
+ * every module has a task manager to manage tasks within module.
  */
 public class TaskManager {
     ArrayList<Task> allTasks = new ArrayList<>();
@@ -51,14 +51,14 @@ public class TaskManager {
     }
 
     /**
-     * return total number of tasks in the task list
+     * return total number of tasks in the task list.
      */
     public int countTotalTasks() {
         return allTasks.size();
     }
 
     /**
-     * compare this task with other task
+     * compare this task with other task.
      * @param other target task
      * @return true if tasks are equal
      */

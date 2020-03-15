@@ -14,7 +14,9 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
 
-    /** Constructs the <code>UI</code>. */
+    /**
+     * Constructs the <code>UI</code>.
+     */
     public Ui() {
         in = new Scanner(System.in);
         out = new PrintStream(System.out);
@@ -52,26 +54,24 @@ public class Ui {
         out.println(message.replace("\n", LS));
     }
 
+    /**
+     * print the Strings in an ArrayList to the user.
+     *
+     * @param shownList an ArrayList of Strings to be shown to the user
+     */
     public void printShownList(ArrayList<String> shownList) {
-        final String DIVIDER = String.format("%s%s%s\n", "+", "-".repeat(100), "+");
+        final String divider = String.format("%s%s%s\n", "+", "-".repeat(100), "+");
         StringBuilder listToShow = new StringBuilder();
 
-        System.out.println(DIVIDER);
+        System.out.println(divider);
 
-        for (String str: shownList) {
+        for (String str : shownList) {
             System.out.println(str);
         }
 
-        System.out.println(DIVIDER);
+        System.out.println(divider);
 
     }
-
-    /**
-     * Returns the list of all tasks created by the user.
-     *
-     * @return The formatted list to be shown to the user
-     */
-
 
     public void showDeadlines(ArrayList<String> deadlines) {
 

@@ -3,7 +3,12 @@ package seedu.nuke;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
-import seedu.nuke.data.*;
+
+import seedu.nuke.data.DataManager;
+import seedu.nuke.data.ModuleLoader;
+import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.ScreenShot;
+import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
@@ -15,13 +20,13 @@ public class Nuke {
     private CommandResult commandResult;
     private ModuleManager moduleManager;
     private DataManager dataManager;
-    public HashMap<String, String> modulesMap; //?public
+    private HashMap<String, String> modulesMap;
     public ScreenShotManager screenShotManager; //?public
     private ScreenShot currentScreenShot;
     private Ui ui;
 
     /**
-     * constructor of nuke
+     * constructor of nuke.
      * @throws FileNotFoundException if file cannot be found when loading jason file
      */
     public Nuke() throws FileNotFoundException {
@@ -36,27 +41,42 @@ public class Nuke {
 
     /**
      * ScreenShot entry-point for the java.duke.Duke application.
+     *
+     * @param args arguments passed to the programme.
+     * @throws FileNotFoundException exception is thrown if the file is not found.
      */
     public static void main(String[] args) throws FileNotFoundException {
         new Nuke().run();
     }
 
+    /**
+     * run method for Nuke class.
+     */
     public void run() {
         welcomeUser();
         runCommandLoopUntilExitCommand();
         exit();
     }
 
+    /**
+     * Method to print the welcome message to the user.
+     */
     public void welcomeUser() {
         TextUi.clearScreen();
         TextUi.displayLogo();
         TextUi.showWelcomeMessage();
     }
 
+    /**
+     * Method to print the exit message to the user.
+     */
     public void exit() {
         TextUi.showExitMessage();
     }
 
+    /**
+     * Method to run the command from the user's input until bye command is received.
+     */
     private void runCommandLoopUntilExitCommand() {
         do {
             String userCommandText = ui.getInput();
@@ -71,7 +91,7 @@ public class Nuke {
     }
 
     /**
-     * initialize the taskManager system, execute command and save the list to the file
+     * initialize the taskManager system, execute command and save the list to the file.
      * @param command the parsed Command object
      * @return commandResult that contains the execute output information
      */
