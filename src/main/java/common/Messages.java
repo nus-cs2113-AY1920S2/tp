@@ -35,7 +35,8 @@ public class Messages {
             + "list upcoming events";
     public static final String LIST_INCOMPLETE_ASSIGN_FORMAT_HELP = "List Incomplete Assignments: "
             + "list incomplete assignments";
-    public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear";
+    public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear all";
+    public static final String CLEAR_DONE_FORMAT_HELP = "Clear all completed tasks: clear done";
     public static final String HELP_FORMAT_MESSAGE =
             "Following is the list of commands available:" + System.lineSeparator()
             + "1.  Help Format: help" + System.lineSeparator()
@@ -47,7 +48,8 @@ public class Messages {
             + "7.  " + LIST_INCOMPLETE_ASSIGN_FORMAT_HELP + System.lineSeparator()
             + "8.  " + LIST_UPCOMING_EVENT_FORMAT_HELP + System.lineSeparator()
             + "9.  " + DONE_FORMAT_HELP + System.lineSeparator()
-            + "10.  " + CLEAR_FORMAT_HELP + System.lineSeparator()
+            + "10. " + CLEAR_FORMAT_HELP + System.lineSeparator()
+            + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
             + "12. " + DELETE_FORMAT_HELP;
 
     // Command Print Messages
