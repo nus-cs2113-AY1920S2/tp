@@ -2,9 +2,9 @@ package utils;
 
 /** Constants used in the program. */
 public class Constants {
-    public static final Character SERVED = 'Y';
-    public static final Character NOT_SERVED = 'N';
-    public static final Character INVALID = 'I';
+    public static final String SERVED = "Served";
+    public static final String NOT_SERVED = "Unserved";
+    public static final String INVALID = "Invalid";
     
     public static final Character SMALL_TABLE = 'S';
     public static final Character MEDIUM_TABLE = 'M';

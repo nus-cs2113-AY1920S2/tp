@@ -1,14 +1,13 @@
 package commands;
 
+import ingredient.Ingredient;
+import stock.Stock;
+import utils.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import commands.InvalidStockCommandException;
-import ingredient.Ingredient;
-import stock.Stock;
-import utils.Pair;
 
 /**
  * This class focuses on the 'add' functionality of the application
