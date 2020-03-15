@@ -26,7 +26,7 @@ class AddStockCommandTest {
     }
     
     @Test
-    public void excute_ExecuteAddStockCommand_executeNormally() 
+    public void execute_ExecuteAddStockCommand_executeNormally() 
             throws InvalidStockCommandException {
         
         Stock stock = new Stock();

@@ -178,7 +178,7 @@ public class Reservation {
     public String toString() {
         return String.format("Reservation [%d]"
                 + ls
-                + "Status: %c" 
+                + "Status: %s" 
                 + ls 
                 + "contact person: %s" 
                 + ls 

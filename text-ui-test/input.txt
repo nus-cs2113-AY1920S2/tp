@@ -34,9 +34,13 @@ delete stock; i/tomato; q/LOL;
 delete stock; i/tomato; q/-10;
 delete stock; tomato; q/1;
 list stock
-add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98953422;
+add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
 add reservation; p/Mary; d/2020-03-11 12:00; n/3; c/99998888;
 add reservation; p/David; d/2020-03-12 12:00; n/3; c/98887777;
+add reservation; p/Lisa; d/2020-03-13 12:00; n/3; c/98889999; m/no spicy food please;
+add reservation; p/David d/2020-03-12 12:00; n/3; c/98887777;
+add reservation; p/David; d/2020-03-12 12:00; c/98887777;
+add reservation; p/David; d/2020-03-1 12:00; n/3; c/98887777;
 list reservation
 delete reservation; r/0;
 delete reservation; r/1;
