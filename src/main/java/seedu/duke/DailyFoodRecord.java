@@ -96,6 +96,7 @@ public class DailyFoodRecord {
     }
 
     /**
+     * Get record of breakfast.
      * @return a record of breakfast
      */
     public String getBreakfast() {
@@ -107,6 +108,7 @@ public class DailyFoodRecord {
     }
 
     /**
+     * Get record of lunch.
      * @return a record of lunch
      */
     public String getLunch() {
@@ -118,6 +120,7 @@ public class DailyFoodRecord {
     }
 
     /**
+     * Get record of dinner.
      * @return a record of dinner
      */
     public String getDinner() {

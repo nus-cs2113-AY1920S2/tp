@@ -12,21 +12,21 @@ public class Person {
     private ArrayList<DailyFoodRecord> personalFoodRecord;
 
     /**
-     *
-     * @param name
+     * Create a Person object simply with name.
+     * @param name name
      */
     public Person(String name) {
         this.name = name;
     }
 
     /**
-     *
-     * @param name
-     * @param age
-     * @param gender
-     * @param height
-     * @param weight
-     * @param weightGoal
+     * Create a Person object with detailed info.
+     * @param name name
+     * @param age age
+     * @param gender gender
+     * @param height height
+     * @param weight weight
+     * @param weightGoal weightGoal
      */
     public Person(String name, int age, String gender, double height, double weight, double weightGoal) {
         this.name = name;

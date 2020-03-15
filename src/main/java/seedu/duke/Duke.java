@@ -38,6 +38,9 @@ public class Duke {
         new Duke("data/user info.txt").run();
     }
 
+    /**
+     * Program shows greetings to user.
+     */
     public static void welcome() {
         String logo = "  _____   _        _     __  __                                         \n"
                 + " |  __ \\ (_)      | |   |  \\/  |                                        \n"

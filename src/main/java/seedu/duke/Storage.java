@@ -14,7 +14,7 @@ public class Storage {
 
     /**
      * represents a class used to save and restore info.
-     * @param filePath
+     * @param filePath the path of file used to save user info.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -24,8 +24,8 @@ public class Storage {
 
     /**
      * restore person information from hard disk.
-     * @param personList
-     * @throws FileNotFoundException
+     * @param personList a list used to maintain all users' info.
+     * @throws FileNotFoundException haven't found file from the given path.
      */
     public void loadFileData(PersonList personList) throws FileNotFoundException {
         checkDirectory();
@@ -45,8 +45,8 @@ public class Storage {
 
     /**
      * restore original person information according to lines recorded in the txt file.
-     * @param record
-     * @param personList
+     * @param record original record in the txt file, plain text.
+     * @param personList a list used to maintain all users' info.
      */
     public void restorePersonInfo(String record,PersonList personList) {
         int curPersonIndex = personList.getLength() - 1;
@@ -79,6 +79,10 @@ public class Storage {
         }
     }
 
+    /**
+     * save all changes of personList to hard disk.
+     * @param personList a list used to maintain all users' info.
+     */
     public void saveToFile(PersonList personList) {
         try {
             rewriteFile(personList);
