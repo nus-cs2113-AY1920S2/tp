@@ -5,7 +5,7 @@ public class Command {
     private String commandType;
     private String description;
 
-    public boolean isExit(){
+    public boolean isExit() {
         return this.commandType.equals("exit");
     }
 

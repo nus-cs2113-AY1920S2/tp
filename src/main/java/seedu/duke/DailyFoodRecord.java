@@ -97,7 +97,7 @@ public class DailyFoodRecord {
 
     public String getBreakfast() {
         String result = null;
-        for(Food food:breakfast) {
+        for (Food food:breakfast) {
             result = result + " " + food.getFoodName();
         }
         return result;
@@ -105,15 +105,15 @@ public class DailyFoodRecord {
 
     public String getLunch() {
         String result = null;
-        for(Food food:lunch){
-            result = result + " "+food.getFoodName();
+        for (Food food:lunch) {
+            result = result + " " + food.getFoodName();
         }
         return result;
     }
 
     public String getDinner() {
         String result = null;
-        for(Food food:dinner){
+        for (Food food:dinner) {
             result = result + " " + food.getFoodName();
         }
         return result;
