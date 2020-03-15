@@ -1,6 +1,12 @@
 package seedu.duke;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.FileHandler;
 
 public class Duke {
 
@@ -10,11 +16,34 @@ public class Duke {
 
     public static void main(String[] args) {
 
+        Logger logger = Logger.getLogger(Duke.class.getName());
+
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+
+        //Console Handler - What appears in the console
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.INFO);
+        logger.addHandler(consoleHandler);
+
+        //File Handler - What appears in log file
+        try {
+            FileHandler fileHandler = new FileHandler("DukeLogger.log");
+            fileHandler.setLevel(Level.FINE);
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger error.", e);
+        }
+
+        logger.log(Level.INFO, "Starting Diet Manager");
+
         FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
         Profile profile = new Profile();
         UI ui = new UI();
 
-        Scanner sc = new Scanner(System.in);
+        //Conduct checks using assert
+        assert !ui.isExitStatus();
+        assert !profile.isProfileExist();
 
         String logo = "  _____   _        _     __  __\n"
                 + " |  __ \\ (_)      | |   |  \\/  |\n"
@@ -83,5 +112,8 @@ public class Duke {
                 break;
             }
         }
+
+        logger.log(Level.INFO, "Exiting Diet Manager");
+
     }
 }
