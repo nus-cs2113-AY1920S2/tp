@@ -45,7 +45,7 @@ Okay! Here is your module plan:
 1.[✗] ID: CS1010 Name: Programming Methodology | Sem: 19-20 Semester 1
 
 
-Okay, i've marked the module as done!
+Okay, I've marked the module as done!
 
 
 Okay! Here are your completed modules:
