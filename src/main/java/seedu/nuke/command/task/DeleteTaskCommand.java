@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.ExceptionMessage.*;
-import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_TASK_SUCCESS;
 
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delt";
@@ -46,7 +46,7 @@ public class DeleteTaskCommand extends Command {
     public CommandResult execute() {
         try {
             Task deletedTask = ModuleList.retrieve(moduleCode, categoryName).delete(description);
-            return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS(deletedTask.getDescription()));
+            return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS(deletedTask.getDescription()));
         } catch (ModuleList.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         } catch (CategoryList.CategoryNotFoundException e) {

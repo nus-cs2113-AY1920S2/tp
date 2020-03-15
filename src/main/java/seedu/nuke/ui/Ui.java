@@ -1,6 +1,7 @@
 package seedu.nuke.ui;
 
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.common.DataType;
 import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
 
@@ -37,7 +38,7 @@ public class Ui {
      */
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
-        if (result.isShowList()) {
+        if (result.getDataType() == DataType.MODULE) {
             showSystemMessage(createModuleList());
         }
     }

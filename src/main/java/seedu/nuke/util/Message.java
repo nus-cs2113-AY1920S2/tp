@@ -38,7 +38,7 @@ public class Message {
 
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
 
-    public static final String MESSAGE_SHOW_MODULES = "Here are what you are looking for..\n";
+    public static final String MESSAGE_SHOW_LIST = "Here are what you are looking for..\n";
     public static final String MESSAGE_TASK_ADDED = "Task added!";
     public static final String MESSAGE_TASK_REMOVED = "Task removed!";
     public static final String MESSAGE_MODULE_CHANGE_SUCCESSFUL = "Module change succeeded";
@@ -58,6 +58,8 @@ public class Message {
     public static String MESSAGE_DELETE_TASK_SUCCESS(String taskDescription) {
         return String.format("SUCCESS!! Task %s has been deleted.\n", taskDescription);
     }
+
+
 
     /* PROMPT MESSAGES */
     public static String MESSAGE_CONFIRM_DELETE_MODULE(Module toDelete) {
@@ -83,6 +85,6 @@ public class Message {
                 "\nEnter the list number(s) to delete modules.\n";
     }
 
-    public static final String MESSAGE_INVALID_INDICES = "";
+    public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
 
 }

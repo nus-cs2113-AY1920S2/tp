@@ -8,6 +8,7 @@ import seedu.nuke.command.module.AddModuleCommand;
 import seedu.nuke.command.module.DeleteModuleCommand;
 import seedu.nuke.command.category.AddCategoryCommand;
 import seedu.nuke.command.category.DeleteCategoryCommand;
+import seedu.nuke.command.module.ListModuleCommand;
 import seedu.nuke.command.task.AddTaskCommand;
 import seedu.nuke.command.task.DeleteTaskCommand;
 import seedu.nuke.exception.InvalidFormatException;
@@ -35,6 +36,8 @@ public class Parser {
     public static final String TASK_DESCRIPTION_PREFIX = "-t";
     public static final String PRIORITY_PREFIX = "-p";
     public static final String DEADLINE_PREFIX = "-d";
+    public static final String ALL_FLAG = "-a";
+    public static final String EXACT_FLAG = "-e";
 
     private final String WHITESPACES = "\\s+";
     private final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
@@ -71,6 +74,9 @@ public class Parser {
 
         case DeleteModuleCommand.COMMAND_WORD:
             return createDeleteModuleCommand(parameters);
+
+        case ListModuleCommand.COMMAND_WORD:
+            return createListModuleCommand(parameters);
 
         case ListCommand.COMMAND_WORD:
             return createListCommand(parameters);
@@ -127,8 +133,31 @@ public class Parser {
         }
 
         String moduleCode = matchers[0].group("identifier").trim();
+        String exactFlag = matchers[1].group("exact").trim();
+        boolean isExact = !exactFlag.isEmpty();
 
-        return new DeleteModuleCommand(moduleCode);
+        return new DeleteModuleCommand(moduleCode, isExact);
+    }
+
+    private Command createListModuleCommand(String parameters) {
+        final Pattern[] LIST_MODULE_FORMAT = ListModuleCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = LIST_MODULE_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[LIST_MODULE_FORMAT.length];
+
+        if (isMissingCompulsoryParameters(LIST_MODULE_FORMAT, matchers, parameters)) {
+            return new InvalidCommand(MESSAGE_MISSING_PARAMETERS);
+        }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        String moduleKeyword = matchers[0].group("identifier").trim();
+        String allFlag = matchers[1].group("all").trim();
+        String exactFlag = matchers[2].group("exact").trim();
+        boolean isExact = !exactFlag.isEmpty();
+
+        return new ListModuleCommand(moduleKeyword, isExact);
     }
 
     private Command createAddCategoryCommand(String parameters) {
@@ -247,14 +276,14 @@ public class Parser {
             return new InvalidCommand(MESSAGE_INVALID_PARAMETERS);
         }
 
-        String moduleCode = matchers[0].group("moduleCode")
+        String moduleKeyword = matchers[0].group("moduleCode")
                 .replace(MODULE_CODE_PREFIX, "").trim();
-        String categoryName = matchers[1].group("categoryName")
+        String categoryKeyword = matchers[1].group("categoryName")
                 .replace(CATEGORY_NAME_PREFIX, "").trim();
-        String taskDescription = matchers[2].group("taskDescription")
+        String taskKeyword = matchers[2].group("taskDescription")
                 .replace(TASK_DESCRIPTION_PREFIX, "").trim();
 
-        return new ListCommand(moduleCode, categoryName, taskDescription);
+        return new ListCommand(moduleKeyword, categoryKeyword, taskKeyword);
     }
 
     private boolean isMissingCompulsoryParameters(Pattern[] formats, Matcher[] matchers, String parameters) {

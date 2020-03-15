@@ -4,12 +4,14 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.module.Module;
 import seedu.nuke.data.module.ModuleList;
+import seedu.nuke.gui.controller.MainController;
 import seedu.nuke.gui.io.Executor;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.parser.Parser.EXACT_FLAG;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DELETE_ERROR;
 import static seedu.nuke.util.Message.*;
 
 public class DeleteModuleCommand extends Command {
@@ -17,20 +19,22 @@ public class DeleteModuleCommand extends Command {
     public static final String FORMAT = COMMAND_WORD + " <module code>";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<invalid>-.+)")
+            Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:-(?:[^e].*|[e]\\S+)))")
     };
 
     private String moduleCode;
     private boolean isExact;
 
-    public DeleteModuleCommand(String moduleCode) {
-        this.moduleCode = moduleCode.toUpperCase();
+    public DeleteModuleCommand(String moduleCode, boolean isExact) {
+        this.moduleCode = moduleCode;
+        this.isExact = isExact;
     }
 
-    private CommandResult ex(ArrayList<Module> filteredModules) throws InterruptedException {
+    private CommandResult executeDelete(ArrayList<Module> filteredModules) throws InterruptedException {
         final int filteredModulesCount = filteredModules.size();
         boolean isConfirmed;
-
+        MainController controller = new MainController();
         switch (filteredModulesCount) {
 
         case 0:
@@ -39,7 +43,8 @@ public class DeleteModuleCommand extends Command {
         case 1:
             Module toDelete = filteredModules.get(0);
             // Prompt user to confirm deletion
-            isConfirmed = new Executor().promptUser(MESSAGE_CONFIRM_DELETE_MODULE(toDelete));
+            isConfirmed = new Executor(controller.getConsole(), controller.getConsoleScreen())
+                    .promptUser(MESSAGE_CONFIRM_DELETE_MODULE(toDelete));
 
             if (isConfirmed) {
                 ModuleList.delete(toDelete);
@@ -51,13 +56,15 @@ public class DeleteModuleCommand extends Command {
         default:
             // Prompt user for which modules to delete
             ArrayList<Integer> toDeleteIndices =
-                    new Executor().getIndicesFromUser(MESSAGE_PROMPT_DELETE_MODULE_INDICES(filteredModules));
+                    new Executor(controller.getConsole(), controller.getConsoleScreen())
+                            .getIndicesFromUser(MESSAGE_PROMPT_DELETE_MODULE_INDICES(filteredModules));
             if (toDeleteIndices == null) {
-                return new CommandResult("");
+                return new CommandResult(MESSAGE_INVALID_DELETE_INDICES);
             }
 
             // Prompt user to confirm deletion
-            isConfirmed = new Executor().promptUser(MESSAGE_CONFIRM_DELETE_MODULE(filteredModules, toDeleteIndices));
+            isConfirmed = new Executor(controller.getConsole(), controller.getConsoleScreen())
+                    .promptUser(MESSAGE_CONFIRM_DELETE_MODULE(filteredModules, toDeleteIndices));
             if (isConfirmed) {
                 ModuleList.delete(filteredModules, toDeleteIndices);
                 return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS);
@@ -79,13 +86,12 @@ public class DeleteModuleCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        ArrayList<Module> filteredModules =
+                isExact ? ModuleList.filterExact(moduleCode) : ModuleList.filter(moduleCode);
         try {
-            ArrayList<Module> filteredModules = ModuleList.filter(moduleCode);
-
-            Module deletedModule = ModuleList.delete(moduleCode);
-            return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS);
-        } catch (ModuleList.ModuleNotFoundException e) {
-            return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
+            return executeDelete(filteredModules);
+        } catch (InterruptedException e) {
+            return new CommandResult(MESSAGE_DELETE_ERROR);
         }
     }
 }

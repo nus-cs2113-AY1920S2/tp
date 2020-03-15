@@ -21,7 +21,7 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_INVALID_DEADLINE_FORMAT = "Alert! Datetime format is invalid.\n";
 
-
+    public static final String MESSAGE_DELETE_ERROR = "ALERT! There was an error in the deletion.\n";
 
     public static final String MESSAGE_EXCESS_PARAMETERS = "ALERT! Too many parameters.\n";
 

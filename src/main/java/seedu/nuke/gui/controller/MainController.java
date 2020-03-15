@@ -7,18 +7,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
-import seedu.nuke.command.Command;
-import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.ExitCommand;
-import seedu.nuke.data.task.Task;
-import seedu.nuke.format.ListCreator;
 import seedu.nuke.gui.io.Executor;
 import seedu.nuke.gui.ui.TextUI;
-import seedu.nuke.parser.Parser;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static seedu.nuke.util.Message.*;
@@ -26,14 +18,25 @@ import static seedu.nuke.util.Message.*;
 
 public class MainController implements Initializable {
     @FXML
-    public static TextFlow consoleScreen;
+    private TextField console;
 
     @FXML
-    public static TextField console;
+    private TextFlow consoleScreen;
 
     @FXML
-    public static ScrollPane consoleScreenScrollPane;
+    private ScrollPane consoleScreenScrollPane;
 
+    public TextField getConsole() {
+        return console;
+    }
+
+    public TextFlow getConsoleScreen() {
+        return consoleScreen;
+    }
+
+    public ScrollPane getConsoleScreenScrollPane() {
+        return consoleScreenScrollPane;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,7 +53,7 @@ public class MainController implements Initializable {
 
     public void submitInput() {
         String userInput = console.getText().trim();
-        new Executor().executeAction(userInput);
+        new Executor(console, consoleScreen).executeAction(userInput);
         console.clear();
     }
 

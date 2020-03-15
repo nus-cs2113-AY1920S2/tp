@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
+import seedu.nuke.common.DataType;
+import seedu.nuke.data.category.Category;
+import seedu.nuke.data.module.Module;
 import seedu.nuke.data.task.Task;
 import seedu.nuke.format.ListCreator;
 import seedu.nuke.gui.controller.MainController;
@@ -25,6 +28,8 @@ public class Executor {
     private static boolean isConfirmedPrompt = false;
     private static ArrayList<Integer> indices = new ArrayList<>();
 
+    private TextField console;
+    private TextFlow consoleScreen;
 
     public boolean promptUser(String promptMessage) throws InterruptedException {
         isPrompt = true;
@@ -41,14 +46,14 @@ public class Executor {
     }
 
     public void executeAction(String userInput) {
-        TextField console = MainController.console;
-
         if (isPrompt) {
             executePromptUser(userInput.toLowerCase());
+            return;
         }
 
         if (isGetIndices) {
             executeGetIndices(userInput);
+            return;
         }
 
         Command command = new Parser().parseInput(userInput);
@@ -62,17 +67,35 @@ public class Executor {
     }
 
     @SuppressWarnings("unchecked")
-    private static void displayResult(CommandResult result) {
-        TextFlow consoleScreen = MainController.consoleScreen;
-
+    private void displayResult(CommandResult result) {
         Text feedbackToUser = TextUI.createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.BLUE);
         consoleScreen.getChildren().add(feedbackToUser);
 
-        if (result.isShowList()) {
-            ArrayList<Task> taskList = (ArrayList<Task>) result.getList();
-            Text taskListTable = TextUI.createText(ListCreator.createTaskListTable(taskList), Color.BROWN);
-            consoleScreen.getChildren().add(taskListTable);
+        DataType dataType = result.getDataType();
+        String listTableToShow = "";
+        switch (dataType) {
+
+        case NONE:
+            return;
+
+        case MODULE:
+        ArrayList<Module> moduleList = (ArrayList<Module>) result.getList();
+            listTableToShow = ListCreator.createModuleListTable(moduleList);
+
+        case CATEGORY:
+        ArrayList<Category> categoryList = (ArrayList<Category>) result.getList();
+            listTableToShow = ListCreator.createCategoryListTable(categoryList);
+
+        case TASK:
+        ArrayList<Task> taskList = (ArrayList<Task>) result.getList();
+            listTableToShow = ListCreator.createTaskListTable(taskList);
+
+        default:
+            listTableToShow = "Error showing list.\n";
         }
+
+        Text taskListTable = TextUI.createText(listTableToShow, Color.BROWN);
+        consoleScreen.getChildren().add(taskListTable);
     }
 
     private void executePromptUser(String userInput) {

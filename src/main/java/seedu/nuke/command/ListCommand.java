@@ -1,5 +1,6 @@
 package seedu.nuke.command;
 
+import seedu.nuke.common.DataType;
 import seedu.nuke.data.module.ModuleList;
 import seedu.nuke.data.task.Task;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.*;
-import static seedu.nuke.util.Message.MESSAGE_SHOW_MODULES;
+import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
@@ -34,6 +35,6 @@ public class ListCommand extends Command {
     @SuppressWarnings("unchecked")
     public CommandResult execute() {
         ArrayList<Task> filteredTaskList = ModuleList.filter(moduleKeyword, categoryKeyword, taskKeyword);
-        return new CommandResult(MESSAGE_SHOW_MODULES, true, filteredTaskList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DataType.TASK, filteredTaskList);
     }
 }
