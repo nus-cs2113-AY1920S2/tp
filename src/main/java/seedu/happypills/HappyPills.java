@@ -36,7 +36,7 @@ public class HappyPills {
     private void run() {
         ui.printWelcomeMessage();
         Scanner in = new Scanner(System.in);
-        while (true) {
+        while (in.hasNextLine()) {
             try {
                 String fullCommand = in.nextLine();
                 System.out.println(ui.DIVIDER);
