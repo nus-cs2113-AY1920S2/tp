@@ -1,7 +1,5 @@
 package utils;
 
-import ingredient.Ingredient;
-
 public class Pair<T, U> {
     private final T firstVal;
     private final U secondVal;
