@@ -23,7 +23,7 @@ public class ListCommand extends Command {
             + System.lineSeparator() + "|| Example: DISPLAY" + System.lineSeparator();
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
 
         // Prepare info for printing
         double totalCost = items.getTotalCost();
@@ -38,6 +38,6 @@ public class ListCommand extends Command {
         LOGGER.log(Level.INFO,"(List command) Items, total cost, and budget have been displayed.");
 
         // Feedback is empty
-        return new CommandResult("");
+        feedbackToUser = "";
     }
 }

@@ -19,13 +19,13 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
 
         try {
             items.add(add);
-            return new CommandResult(String.format(SUCCESS_ACK,add));
+            feedbackToUser = String.format(SUCCESS_ACK,add);
         } catch (NullPointerException e) {
-            return new CommandResult(String.format(FAILURE_ACK));
+            feedbackToUser = String.format(FAILURE_ACK);
         }
 
     }

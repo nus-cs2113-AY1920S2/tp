@@ -27,16 +27,16 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
         try {
             index -= 1;
             String feedback = DELETE_MESSAGE + items.getItem(index);
             items.deleteItem(index);
             LOGGER.log(Level.INFO,"(Delete command) Item was removed from index: " + index);
-            return new CommandResult(feedback);
+            feedbackToUser = feedback;
         } catch (IndexOutOfBoundsException e) {
             LOGGER.log(Level.WARNING,"(Delete command) Invoked with invalid index: " + this.index);
-            return new CommandResult(DELETE_MESSAGE_FAILURE);
+            feedbackToUser = DELETE_MESSAGE_FAILURE;
         }
 
     }

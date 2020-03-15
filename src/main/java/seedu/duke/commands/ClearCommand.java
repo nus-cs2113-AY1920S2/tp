@@ -17,13 +17,13 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = System.lineSeparator() + "Your shopping list has been cleared.\n";
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
 
         items.clearList();
         assert  items.getList().size() == 0 : "Size of list should be zero.";
 
         LOGGER.log(Level.INFO,"(Clear command) List of items is now empty.");
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        feedbackToUser = MESSAGE_SUCCESS;
     }
 }

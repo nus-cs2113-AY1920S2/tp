@@ -10,8 +10,8 @@ public class HelpCommand extends Command {
             + System.lineSeparator() + "|| Example: HELP" + System.lineSeparator();
 
     @Override
-    public CommandResult execute() {
-        return new CommandResult(System.lineSeparator()
+    public void execute() {
+        feedbackToUser = System.lineSeparator()
                 + AddCommand.MESSAGE_USAGE + System.lineSeparator()
                 + EditCommand.MESSAGE_USAGE + System.lineSeparator()
                 + DeleteCommand.MESSAGE_USAGE + System.lineSeparator()
@@ -21,6 +21,6 @@ public class HelpCommand extends Command {
                 + SetBudgetCommand.MESSAGE_USAGE + System.lineSeparator()
                 + ResetBudgetCommand.MESSAGE_USAGE + System.lineSeparator()
                 + HelpCommand.MESSAGE_USAGE + System.lineSeparator()
-                + ExitCommand.MESSAGE_USAGE + System.lineSeparator());
+                + ExitCommand.MESSAGE_USAGE + System.lineSeparator();
     }
 }

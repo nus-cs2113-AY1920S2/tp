@@ -28,13 +28,13 @@ public class SetBudgetCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
         double correctBudget = myBudget.setBudget(amount);
         LOGGER.log(Level.INFO,"(Set budget) Budget was corrected to: " + correctBudget);
         assert correctBudget <= 5000 : "Budget should not exceed $5000";
         assert correctBudget >= 0 : "Budget should not be negative";
         LOGGER.log(Level.INFO,"(Set budget) Budget amount: " + correctBudget + " did not fail assertions.");
         String feedback = SET_BUDGET_MESSAGE + "$" + correctBudget;
-        return new CommandResult(feedback);
+        feedbackToUser = feedback;
     }
 }

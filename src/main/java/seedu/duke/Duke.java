@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandResult;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.parser.Parser;
@@ -84,9 +83,8 @@ public class Duke {
             String userCommandText = readCommand();
             command = new Parser().parseCommand(userCommandText);
             assert command != null : "Command should have been initialised";
-            CommandResult result = executeCommand(command);
-            assert result != null : "Result should have been initialised";
-            System.out.println(result.feedbackToUser);
+            executeCommand(command);
+            System.out.println(command.feedbackToUser);
         } while (!command.isExit);
     }
 
@@ -110,13 +108,11 @@ public class Duke {
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command) {
+    private void executeCommand(Command command) {
         try {
             command.setData(items,myBudget);
-            CommandResult result = command.execute();
-            assert result != null : "Result should have been initialised";
-            command.setData(items,myBudget);
-            return result;
+            command.execute();
+            assert command.feedbackToUser != null : "Result should have been initialised";
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);

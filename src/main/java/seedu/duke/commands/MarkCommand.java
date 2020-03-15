@@ -25,12 +25,12 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
         try {
             Item markItem = items.markAsBought(indexOfItem);
-            return new CommandResult(String.format(SUCCESS_MESSAGE, markItem));
+            feedbackToUser = String.format(SUCCESS_MESSAGE, markItem);
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(FAIL_MESSAGE);
+            feedbackToUser = FAIL_MESSAGE;
         }
     }
 }

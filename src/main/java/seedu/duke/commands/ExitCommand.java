@@ -8,9 +8,9 @@ public class ExitCommand extends Command {
             + System.lineSeparator() + "|| Example: BYE" + System.lineSeparator();
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = System.lineSeparator() + "Exiting SHOCO as requested ...";
 
-    public CommandResult execute() {
+    public void execute() {
         isExit = true;
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
+        feedbackToUser = MESSAGE_EXIT_ACKNOWLEDGEMENT;
     }
 
 }
