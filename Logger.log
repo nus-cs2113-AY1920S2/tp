@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+<<<<<<< HEAD
+  <date>2020-03-14T13:18:49.912748100Z</date>
+  <millis>1584191929912</millis>
+  <nanos>748100</nanos>
+=======
+  <date>2020-03-15T06:28:26.123378600Z</date>
+  <millis>1584253706123</millis>
+  <nanos>378600</nanos>
+>>>>>>> master
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>start</method>
+  <thread>1</thread>
+  <message>Application starting.</message>
+</record>
+<record>
+<<<<<<< HEAD
+  <date>2020-03-14T13:18:55.419702Z</date>
+  <millis>1584191935419</millis>
+  <nanos>702000</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>exit</method>
+  <thread>1</thread>
+  <message>Application shutting down</message>
+=======
+  <date>2020-03-15T06:29:00.915827800Z</date>
+  <millis>1584253740915</millis>
+  <nanos>827800</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Add command)  Added item: seedu.duke.data.ShoppingList@77a567e1</message>
+</record>
+<record>
+  <date>2020-03-15T06:29:00.949806800Z</date>
+  <millis>1584253740949</millis>
+  <nanos>806800</nanos>
+  <sequence>2</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Add command)  Added item: seedu.duke.data.ShoppingList@77a567e1</message>
+</record>
+<record>
+  <date>2020-03-15T06:29:01.902024Z</date>
+  <millis>1584253741902</millis>
+  <nanos>24000</nanos>
+  <sequence>3</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Add command)  Added item: seedu.duke.data.ShoppingList@77a567e1</message>
+>>>>>>> master
+</record>
+</log>
