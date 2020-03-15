@@ -6,6 +6,7 @@ import seedu.duke.Ui;
 
 public class ExitCommand extends Command {
     public static final String EXIT_COMMAND_WORD = "exit";
+    private static boolean isExit = false;
 
     /**
      * Executes the Exit command.
@@ -15,7 +16,15 @@ public class ExitCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
-        CommandResult.isExit = true;
+        isExit = true;
         return new CommandResult(Messages.EXIT_MESSAGE);
+    }
+
+    /**
+     * Checks whether the program should terminate.
+     * @return true if the program should exit, false otherwise
+     */
+    public static Boolean isExit() {
+        return isExit;
     }
 }

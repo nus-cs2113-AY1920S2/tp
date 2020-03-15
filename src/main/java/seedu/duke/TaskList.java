@@ -58,11 +58,13 @@ public class TaskList {
      * @return ArrayList object containing all tasks from indicated days from today
      */
     public ArrayList<Task> getTasksByDays(int days) {
+        assert days >= 0;
         ArrayList<Task> taskList = new ArrayList<>();
         LocalDate currDate = getCurrentDate();
         LocalDate daysIndicated = currDate.plusDays(days);
         for (Task task : tasks) {
             LocalDate taskDate = task.getDate();
+            assert taskList.size() <= tasks.size();
             if (currDate.compareTo(taskDate) <= 0 && taskDate.compareTo(daysIndicated) <= 0) {
                 taskList.add(task);
             }
@@ -137,6 +139,14 @@ public class TaskList {
         int size = tasks.size();
         tasks.remove(deleteIndex);
         assert tasks.size() == size - 1;
+    }
+
+    /**
+     * Updates current task list with a new task list.
+     * @param tasks ArrayList containing all the tasks
+     */
+    public void updateTaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**

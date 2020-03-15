@@ -18,6 +18,6 @@ public class ExitCommandTest {
         CommandResult compareResult = new CommandResult(Messages.EXIT_MESSAGE);
         assertEquals(testResult.getClass(), compareResult.getClass());
         assertEquals(testResult.feedbackToUser, Messages.EXIT_MESSAGE);
-        assertTrue(CommandResult.isExit);
+        assertTrue(ExitCommand.isExit());
     }
 }
