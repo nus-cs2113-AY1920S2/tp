@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import reservation.Reservation;
 import reservation.ReservationList;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class AddReservationCommandTest {
     
@@ -65,36 +65,6 @@ class AddReservationCommandTest {
             fail(); // the test should not reach this line
         } catch (DelimiterMissingException e) {
             assertEquals("Delimiter Missing.", e.getMessage());
-        }
-    }
-
-    @Test
-    void parseInput_invalidNumberGuestsAddReservationCommand_exceptionThrown() {
-        try {
-            new AddReservationCommand("p/David; d/2020-03-10 12:00; n/0; c/98887777;")
-                    .parseInput("p/David; d/2020-03-10 12:00; n/0; c/98887777;");
-            fail(); // the test should not reach this line
-        } catch (NumberFormatException e) {
-            
-        } catch (InputMissingException e) {
-            fail(); // the test should not reach this line
-        } catch (DelimiterMissingException e) {
-            fail(); // the test should not reach this line
-        }
-    }
-
-    @Test
-    void parseInput_invalidDateFormatAddReservationCommand_exceptionThrown() {
-        try {
-            new AddReservationCommand("p/David; d/2020-03-1 12:00; n/3; c/98887777;")
-                    .parseInput("p/David; d/2020-03-1 12:00; n/3; c/98887777;");
-            fail(); // the test should not reach this line
-        } catch (DateTimeException e) {
-
-        } catch (InputMissingException e) {
-            fail(); // the test should not reach this line
-        } catch (DelimiterMissingException e) {
-            fail(); // the test should not reach this line
         }
     }
 }

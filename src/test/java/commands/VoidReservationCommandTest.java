@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 import reservation.Reservation;
 import reservation.ReservationList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class VoidReservationCommandTest {
     ReservationList reservationList; 
+    
     public VoidReservationCommandTest() {
         reservationList = new ReservationList();
         new AddReservationCommand("p/Peter; d/2020-03-12 12:00; n/3; c/98955555;").execute(reservationList);
@@ -20,34 +22,6 @@ class VoidReservationCommandTest {
         new VoidReservationCommand("r/0;").execute(reservationList);
         Reservation reservation = reservationList.getReservation(reservationList.getSize() - 1);
         assertEquals("Invalid", reservation.getStatus());
-    }
-
-    @Test
-    void parseInput_invalidNumberVoidReservationCommand_exceptionThrown() {
-        try {
-            new VoidReservationCommand("r/-1;").parseInput("r/-1;");
-            fail(); // the test should not reach this line
-        } catch (NumberFormatException e) {
-            
-        } catch (InputMissingException e) {
-            fail();
-        } catch (DelimiterMissingException e) {
-            fail();
-        }
-    }
-
-    @Test
-    void parseInput_largeNumberVoidReservationCommand_exceptionThrown() {
-        try {
-            new VoidReservationCommand("r/500;").parseInput("r/500;");
-            fail(); // the test should not reach this line
-        } catch (NumberFormatException e) {
-
-        } catch (InputMissingException e) {
-            fail();
-        } catch (DelimiterMissingException e) {
-            fail();
-        }
     }
 
     @Test
