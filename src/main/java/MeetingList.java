@@ -6,6 +6,7 @@ public class MeetingList {
     public void add(Meeting meeting) {
         meetingList.add(meeting);
     }
+
     public void delete() {
 
     }

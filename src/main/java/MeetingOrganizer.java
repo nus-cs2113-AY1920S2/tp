@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class MeetingOrganizer {
     public MeetingOrganizer() {
         //declare objects here
-        meetings = new MeetingList();
+        myMeetingList = new MeetingList();
     }
 
-    private MeetingList meetings;
+    private MeetingList myMeetingList;
 
     public void botResponse(String userInput) throws MoException {
         switch (userInput) {
@@ -18,19 +18,23 @@ public class MeetingOrganizer {
                 System.out.println("You have selected new scheduled meeting");
                 Scanner in = new Scanner(System.in);
 
+
+                // Test add meeting
                 System.out.println("What do you want to name your meeting?");
                 String meetingName = in.nextLine(); // eg. CS2113 Meeting
-                System.out.println("Enter meeting details: <Date> <Start Time> <End Time> in the format YYYY-MM-DD HH:mm HH:mm>");
-                String input = in.nextLine(); // eg. 2020-03-10 14:00 15:00
-                String[] meetingDetails = input.split(" ", 3);
+                System.out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>");
+                String input = in.nextLine(); // eg. Monday 19:00 Tuesday 12:30
+                String[] meetingDetails = input.split(" ", 4);
 
-                LocalDate meetingDate = LocalDate.parse(meetingDetails[0]);
+                Integer startDay = Integer.parseInt(meetingDetails[0]);
                 LocalTime startTime = LocalTime.parse(meetingDetails[1]);
-                LocalTime endTime = LocalTime.parse(meetingDetails[2]);
+                Integer endDay = Integer.parseInt(meetingDetails[2]);
+                LocalTime endTime = LocalTime.parse(meetingDetails[3]);
 
-                meetings.add(new Meeting(meetingName, meetingDate, startTime, endTime));
+                myMeetingList.add(new Meeting(meetingName, startDay, startTime, endDay, endTime));
 
-                System.out.println("You now have " + meetings.getMeetingListSize() + " meetings in the list.");
+                System.out.println("You now have " + myMeetingList.getMeetingListSize() + " meetings in the list.");
+                //
 
                 break;
             case "2":
@@ -46,6 +50,7 @@ public class MeetingOrganizer {
                 throw new MoException("Unknown command, please try again.");
         }
     }
+
     /**
      * Main entry-point for the application.
      */
