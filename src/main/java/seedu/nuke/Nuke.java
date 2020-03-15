@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.*;
+import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
@@ -56,9 +57,13 @@ public class Nuke {
     private void runCommandLoopUntilExitCommand() {
         do {
             String userCommandText = ui.getInput();
-            Command command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            ui.showResult(result);
+            try {
+                Command command = new Parser().parseCommand(userCommandText);
+                CommandResult result = executeCommand(command);
+                ui.showResult(result);
+            } catch (Exception e) {
+                ui.showSystemMessage(e.getMessage());
+            }
         } while (!ExitCommand.isExit());
     }
 
