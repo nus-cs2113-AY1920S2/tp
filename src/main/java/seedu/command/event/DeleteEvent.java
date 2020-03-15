@@ -2,6 +2,7 @@ package seedu.command.event;
 
 import seedu.command.Command;
 import seedu.event.EventList;
+import seedu.exception.DukeException;
 
 public class DeleteEvent extends Command {
     private Integer index;
@@ -13,7 +14,10 @@ public class DeleteEvent extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws DukeException {
+        if (eventList.getSize() == 0) {
+            throw new DukeException("List is empty, unable to delete any items.");
+        }
         eventList.delete(index);
     }
 }

@@ -58,16 +58,10 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new EditEvent(index, event, this.eventList);
             break;
         case "delete":
-            if (eventList.getSize() == 0) {
-                throw new DukeException("List is empty, unable to delete any items.");
-            }
             index = eventParser.parseIndex(commandParameters);
             command = new DeleteEvent(index, this.eventList);
             break;
         case "list":
-            if (eventList.getSize() == 0) {
-                throw new DukeException("List is empty");
-            }
             command = new ListEvent(this.eventList);
             break;
         default:
