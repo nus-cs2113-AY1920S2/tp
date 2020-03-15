@@ -30,6 +30,7 @@ public class Duke {
         try {
             storage.loadFileData(personList);
         } catch (FileNotFoundException ignored) {
+            System.out.print("");
         }
     }
 
