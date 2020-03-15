@@ -14,7 +14,7 @@ public class ListServedCommand extends ReservationCommand {
     @Override
     public void execute(ReservationList reservations) {
         // TODO: wrap it into Ui class
-        for (int i = 1; i <= reservations.getSize(); i++) {
+        for (int i = 0; i < reservations.getSize(); i++) {
             if (!reservations.getReservation(i).getStatus().equals(SERVED)) {
                 continue;
             }
