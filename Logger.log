@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-03-13T17:50:40.584819700Z</date>
-  <millis>1584121840584</millis>
-  <nanos>819700</nanos>
+  <date>2020-03-15T05:24:19.326180300Z</date>
+  <millis>1584249859326</millis>
+  <nanos>180300</nanos>
   <sequence>0</sequence>
   <logger>global</logger>
   <level>INFO</level>
@@ -13,3 +13,16 @@
   <thread>1</thread>
   <message>Application starting.</message>
 </record>
+<record>
+  <date>2020-03-15T05:25:06.088361600Z</date>
+  <millis>1584249906088</millis>
+  <nanos>361600</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.Duke</class>
+  <method>exit</method>
+  <thread>1</thread>
+  <message>Application shutting down</message>
+</record>
+</log>

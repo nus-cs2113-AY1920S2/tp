@@ -109,8 +109,14 @@ public class Parser {
             if (prices == null) {
                 newCommand = new AddCommand(description, 0.0);
             } else {
-                double price = Double.parseDouble(prices);
-                newCommand = new AddCommand(description, price);
+                try {
+                    double price = Double.parseDouble(prices);
+                    newCommand = new AddCommand(description, price);
+                } catch (NumberFormatException nfe) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Error! price should follow this format"
+                            + "\nExample: p/4.50");
+                }
             }
         } catch (NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
