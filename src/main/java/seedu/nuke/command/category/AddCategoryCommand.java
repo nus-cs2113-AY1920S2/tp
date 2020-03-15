@@ -47,7 +47,7 @@ public class AddCategoryCommand extends Command {
         try {
             Module parentModule = ModuleList.getModule(moduleCode);
             Category toAdd = new Category(parentModule, categoryName, categoryPriority);
-            ModuleList.filterExact(moduleCode).add(toAdd);
+            ModuleList.retrieve(moduleCode).add(toAdd);
             return new CommandResult(MESSAGE_ADD_CATEGORY_SUCCESS(categoryName));
         } catch (ModuleList.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

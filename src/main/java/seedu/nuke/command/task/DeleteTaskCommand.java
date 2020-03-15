@@ -10,7 +10,6 @@ import seedu.nuke.data.task.TaskList;
 import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.*;
-import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
 
@@ -46,7 +45,7 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            Task deletedTask = ModuleList.filterExact(moduleCode, categoryName).delete(description);
+            Task deletedTask = ModuleList.retrieve(moduleCode, categoryName).delete(description);
             return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS(deletedTask.getDescription()));
         } catch (ModuleList.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

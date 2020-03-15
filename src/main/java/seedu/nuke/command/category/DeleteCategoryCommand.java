@@ -9,7 +9,6 @@ import seedu.nuke.data.module.ModuleList;
 import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
-import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
@@ -43,7 +42,7 @@ public class DeleteCategoryCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            Category deletedCategory = ModuleList.filterExact(moduleCode).delete(categoryName);
+            Category deletedCategory = ModuleList.retrieve(moduleCode).delete(categoryName);
             return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS(deletedCategory.getCategoryName()));
         } catch (ModuleList.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

@@ -1,6 +1,7 @@
 package seedu.nuke.data.category;
 
 import seedu.nuke.data.module.Module;
+import seedu.nuke.data.module.ModuleList;
 import seedu.nuke.data.task.TaskList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
@@ -22,6 +23,10 @@ public class CategoryList {
         initialTaskCategories.add(new Category(parentModule, "Lab", 3));
 
         return initialTaskCategories;
+    }
+
+    public ArrayList<Category> getCategoryList() {
+        return categoryList;
     }
 
     public Category getCategory(String categoryName) throws CategoryNotFoundException {
@@ -79,7 +84,7 @@ public class CategoryList {
         return toDelete;
     }
 
-    public TaskList filterExact(String categoryName) throws CategoryNotFoundException {
+    public TaskList retrieve(String categoryName) throws CategoryNotFoundException {
         return getCategory(categoryName).getTasks();
     }
 
@@ -87,6 +92,21 @@ public class CategoryList {
         ArrayList<Category> filteredCategoryList = new ArrayList<>();
         for (Category category : categoryList) {
             if (category.getCategoryName().toLowerCase().contains(categoryKeyword.toLowerCase())) {
+                filteredCategoryList.add(category);
+            }
+        }
+        return filteredCategoryList;
+    }
+
+    public ArrayList<Category> filterExact(String categoryKeyword) {
+        // Returns all categories in the Category List if no keyword is provided.
+        if (categoryKeyword.isEmpty()) {
+            return this.getCategoryList();
+        }
+
+        ArrayList<Category> filteredCategoryList = new ArrayList<>();
+        for (Category category : categoryList) {
+            if (category.getCategoryName().toLowerCase().equals(categoryKeyword.toLowerCase())) {
                 filteredCategoryList.add(category);
             }
         }

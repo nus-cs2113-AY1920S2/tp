@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ModuleList {
     /* The module list containing all the modules the user is enrolled in */
-    public static ArrayList<Module> moduleList = new ArrayList<>();
+    private static ArrayList<Module> moduleList = new ArrayList<>();
 
     /**
      * @return all moduleList
@@ -94,15 +94,18 @@ public class ModuleList {
         return toDelete;
     }
 
-    public static CategoryList filterExact(String moduleCode) throws ModuleNotFoundException {
+    /* Retrieve a specific Data (Category / Task / File) List. Only 1 list is retrieved */
+    public static CategoryList retrieve(String moduleCode) throws ModuleNotFoundException {
         return getModule(moduleCode).getCategories();
     }
 
-    public static TaskList filterExact(String moduleCode, String categoryName)
+    public static TaskList retrieve(String moduleCode, String categoryName)
             throws ModuleNotFoundException, CategoryList.CategoryNotFoundException {
-        return filterExact(moduleCode).filterExact(categoryName);
+        return retrieve(moduleCode).retrieve(categoryName);
     }
 
+    /* Filters for data (module / task / category) that *contains* given keywords (i.e. not exact match)
+    *  in a case-insensitive manner. There may be multiple data that matches. */
     public static ArrayList<Module> filter(String moduleKeyword) {
         ArrayList<Module> filteredModuleList = new ArrayList<>();
         for (Module module : moduleList) {
@@ -129,6 +132,40 @@ public class ModuleList {
         return filteredTaskList;
     }
 
+    /* Filters for data (module / task / category) that *matches exactly* the given keywords in a case-insensitive
+     *  manner. Empty keywords, however, will instead collect all instances of the data.
+     *  There may be multiple data that matches. */
+    public static ArrayList<Module> filterExact(String moduleKeyword) {
+        // Returns all modules in the Module List if no keyword is provided.
+        if (moduleKeyword.isEmpty()) {
+            return getModuleList();
+        }
+
+        ArrayList<Module> filteredModuleList = new ArrayList<>();
+        for (Module module : moduleList) {
+            if (module.getModuleCode().toLowerCase().equals(moduleKeyword.toLowerCase())) {
+                filteredModuleList.add(module);
+            }
+        }
+        return filteredModuleList;
+    }
+
+    public static ArrayList<Category> filterExact(String moduleKeyword, String categoryKeyword) {
+        ArrayList<Category> filteredCategoryList = new ArrayList<>();
+        for (Module module : filterExact(moduleKeyword)) {
+            filteredCategoryList.addAll(module.getCategories().filterExact(categoryKeyword));
+        }
+        return filteredCategoryList;
+    }
+
+    public static ArrayList<Task> filterExact(String moduleKeyword, String categoryKeyword, String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Category category : filterExact(moduleKeyword, categoryKeyword)) {
+            filteredTaskList.addAll(category.getTasks().filterExact(taskKeyword));
+        }
+        return filteredTaskList;
+    }
+    
     public static class ModuleNotFoundException extends DataNotFoundException {}
     public static class DuplicateModuleException extends DuplicateDataException {}
 }

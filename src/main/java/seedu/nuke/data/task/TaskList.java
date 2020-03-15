@@ -15,6 +15,10 @@ public class TaskList {
         taskList = new ArrayList<>();
     }
 
+    public ArrayList<Task> getTaskList() {
+        return taskList;
+    }
+
     public Task getTask(String description) throws TaskNotFoundException {
         for (Task task : taskList) {
             if (task.getDescription().equals(description)) {
@@ -76,7 +80,7 @@ public class TaskList {
         return toDelete;
     }
 
-    public TaskFileList filterExact(String description) throws TaskNotFoundException {
+    public TaskFileList retrieve(String description) throws TaskNotFoundException {
         return getTask(description).getFiles();
     }
 
@@ -84,6 +88,21 @@ public class TaskList {
         ArrayList<Task> filteredTaskList = new ArrayList<>();
         for (Task category : taskList) {
             if (category.getDescription().toLowerCase().contains(taskKeyword.toLowerCase())) {
+                filteredTaskList.add(category);
+            }
+        }
+        return filteredTaskList;
+    }
+
+    public ArrayList<Task> filterExact(String taskKeyword) {
+        // Returns all tasks in the Task List if no keyword is provided.
+        if (taskKeyword.isEmpty()) {
+            return this.getTaskList();
+        }
+
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Task category : taskList) {
+            if (category.getDescription().toLowerCase().equals(taskKeyword.toLowerCase())) {
                 filteredTaskList.add(category);
             }
         }
