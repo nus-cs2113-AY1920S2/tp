@@ -8,19 +8,28 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    private String FILE_PATH;
-    private String DIR_PATH;
-    private File f;
+    private String filePath;
+    private String dirPath;
+    private File file;
 
+    /**
+     * represents a class used to save and restore info.
+     * @param filePath
+     */
     public Storage(String filePath) {
-        this.FILE_PATH = filePath;
-        this.DIR_PATH = FILE_PATH.substring(0,FILE_PATH.indexOf("/"));
-        this.f = new File(FILE_PATH);
+        this.filePath = filePath;
+        this.dirPath = filePath.substring(0,filePath.indexOf("/"));
+        this.file = new File(filePath);
     }
 
+    /**
+     * restore person information from hard disk.
+     * @param personList
+     * @throws FileNotFoundException
+     */
     public void loadFileData(PersonList personList) throws FileNotFoundException {
         checkDirectory();
-        Scanner s = new Scanner(f);
+        Scanner s = new Scanner(file);
         while (s.hasNext()) {
             String record = s.nextLine();
             restorePersonInfo(record,personList);
@@ -28,12 +37,17 @@ public class Storage {
     }
 
     private void checkDirectory() {
-        File dir = new File(DIR_PATH);
-        if(!dir.exists()){
+        File dir = new File(dirPath);
+        if (!dir.exists()) {
             dir.mkdir();
         }
     }
 
+    /**
+     * restore original person information according to lines recorded in the txt file.
+     * @param record
+     * @param personList
+     */
     public void restorePersonInfo(String record,PersonList personList) {
         int curPersonIndex = personList.getLength() - 1;
         Person currentPerson = personList.getOnePerson(curPersonIndex);
@@ -41,10 +55,12 @@ public class Storage {
         DailyFoodRecord currentRecord = currentPerson.getRecordOfDay(curDayIndex);
 
         String[] info = record.split(" ");
-        if(info[0].equals("breakfast") || info[0].equals("lunch") || info[0].equals("dinner")) {
+        if (info[0].equals("breakfast") || info[0].equals("lunch") || info[0].equals("dinner")) {
             ArrayList<Food> foodList = new ArrayList<Food>();
             for (String foodName:info) {
-                if (foodName.equals(info[0])) continue;
+                if (foodName.equals(info[0])) {
+                    continue;
+                }
                 foodList.add(new Food(foodName));
             }
             currentPerson.setRecordOfDay(currentRecord,info[0],foodList);
@@ -72,7 +88,7 @@ public class Storage {
     }
 
     private void rewriteFile(PersonList personList) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH);
+        FileWriter fw = new FileWriter(filePath);
         for (int i = 0; i < personList.getLength(); i++) {
             Person currentPerson = personList.getOnePerson(i);
             String[] personInfo = currentPerson.getPersonInfo();

@@ -17,12 +17,17 @@ public class PersonList {
         return list.size();
     }
 
+    /**
+     * get one Person object from personList with the name.
+     * @param name
+     * @return
+     */
     public Person getOnePerson(String name) {
         boolean personExists = false;
         Person person = null;
 
         for (Person p:list) {
-            if(p.isName(name)){
+            if (p.isName(name)) {
                 person = p;
                 personExists = true;
                 break;

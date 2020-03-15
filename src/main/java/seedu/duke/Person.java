@@ -11,10 +11,23 @@ public class Person {
     private double weightGoal;
     private ArrayList<DailyFoodRecord> personalFoodRecord;
 
+    /**
+     *
+     * @param name
+     */
     public Person(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @param name
+     * @param age
+     * @param gender
+     * @param height
+     * @param weight
+     * @param weightGoal
+     */
     public Person(String name, int age, String gender, double height, double weight, double weightGoal) {
         this.name = name;
         this.age = age;
@@ -25,7 +38,7 @@ public class Person {
         this.personalFoodRecord = new ArrayList<DailyFoodRecord>();
     }
 
-    public double getBMI() {
+    public double getBmi() {
         return weight / Math.pow(height / 100, 2);
     }
 
@@ -33,6 +46,11 @@ public class Person {
         this.weightGoal = weightGoal;
     }
 
+    /**
+     * Get food record of a day with the date.
+     * @param date the day user want to get the record of.
+     * @return food record of a certain day.
+     */
     public DailyFoodRecord getRecordOfDay(String date) {
         boolean recordExists = false;
         DailyFoodRecord record = null;
@@ -43,7 +61,9 @@ public class Person {
                 break;
             }
         }
-        if (!recordExists) addNewRecord(date);
+        if (!recordExists) {
+            addNewRecord(date);
+        }
         return record;
     }
 
@@ -84,12 +104,16 @@ public class Person {
         return personalFoodRecord.size();
     }
 
+    /**
+     * organize a person's info in a format and return.
+     * @return a String array in a certain format for convenient saving to txt file.
+     */
     public String[] getPersonInfo() {
-        int totalLines = 4*getDays() + 1;
+        int totalLines = 4 * getDays() + 1;
         String[] info = new String[totalLines];
-        info[0] = "user "+this.name + " " + this.age + " " + this.gender + " "
+        info[0] = "user " + this.name + " " + this.age + " " + this.gender + " "
                     + this.height + " " + this.weight + " " + this.weightGoal;
-        for (int i=0;i<=getDays()-1;i++) {
+        for (int i = 0;i <= getDays() - 1;i++) {
             DailyFoodRecord currentRecord = getRecordOfDay(i);
             info[i * 4 + 1] = "date " + currentRecord.getDate();
             info[i * 4 + 2] = "breakfast" + currentRecord.getBreakfast();

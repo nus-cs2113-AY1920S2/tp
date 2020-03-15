@@ -1,5 +1,8 @@
 package seedu.duke;
 
+/**
+ * Represent a class of user command.
+ */
 public class Command {
 
     private String commandType;
@@ -10,7 +13,7 @@ public class Command {
     }
 
     /**
-     *
+     * Execute the command.
      * @param personList all operations should work on this list;
      */
     public void execute(PersonList personList) {
