@@ -19,8 +19,8 @@ public class PersonList {
 
     /**
      * get one Person object from personList with the name.
-     * @param name
-     * @return
+     * @param name name of the wanted user.
+     * @return the wanted user.
      */
     public Person getOnePerson(String name) {
         boolean personExists = false;
