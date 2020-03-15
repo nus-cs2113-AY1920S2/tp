@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReservationListTest {
     ReservationList reservationList;
+    
     public ReservationListTest() {
         reservationList = new ReservationList();
         reservationList.addReservation(new Reservation(0, "Lisa",
@@ -38,7 +39,7 @@ class ReservationListTest {
     }
     
     @Test
-    void VoidReservation_normalInput_success() {
+    void voidReservation_normalInput_success() {
         reservationList.voidReservation(0);
         Reservation reservation = reservationList.getReservation(0);
         assertEquals("Invalid", reservation.getStatus());
