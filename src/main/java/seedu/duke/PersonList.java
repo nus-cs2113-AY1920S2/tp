@@ -5,23 +5,23 @@ import java.util.ArrayList;
 public class PersonList {
     private static ArrayList<Person> list;
 
-    public PersonList(){
+    public PersonList() {
         list = new ArrayList<Person>();
     }
 
-    public void append(Person person){
+    public void append(Person person) {
         list.add(person);
     }
 
-    public int getLength(){
+    public int getLength() {
         return list.size();
     }
 
-    public Person getOnePerson(String name){
+    public Person getOnePerson(String name) {
         boolean personExists = false;
         Person person = null;
 
-        for(Person p:list){
+        for(Person p:list) {
             if(p.isName(name)){
                 person = p;
                 personExists = true;
@@ -35,7 +35,7 @@ public class PersonList {
         return person;
     }
 
-    public Person getOnePerson(int index){
+    public Person getOnePerson(int index) {
         return list.get(index);
     }
 

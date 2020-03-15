@@ -13,7 +13,7 @@ public class Command {
      *
      * @param personList all operations should work on this list;
      */
-    public void execute(PersonList personList){
-    }
+    public void execute(PersonList personList) {
 
+    }
 }

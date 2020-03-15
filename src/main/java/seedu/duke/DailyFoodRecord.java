@@ -95,35 +95,35 @@ public class DailyFoodRecord {
     public void showDinner() {
     }
 
-    public String getBreakfast(){
+    public String getBreakfast() {
         String result = null;
-        for(Food food:breakfast){
-            result = result+" "+food.getFoodName();
+        for(Food food:breakfast) {
+            result = result + " " + food.getFoodName();
         }
         return result;
     }
 
-    public String getLunch(){
+    public String getLunch() {
         String result = null;
         for(Food food:lunch){
-            result = result+" "+food.getFoodName();
+            result = result + " "+food.getFoodName();
         }
         return result;
     }
 
-    public String getDinner(){
+    public String getDinner() {
         String result = null;
         for(Food food:dinner){
-            result = result+" "+food.getFoodName();
+            result = result + " " + food.getFoodName();
         }
         return result;
     }
 
-    public String getDate(){
+    public String getDate() {
         return this.date;
     }
 
-    public boolean isDate(String date){
+    public boolean isDate(String date) {
         return this.date.equals(date);
     }
 }

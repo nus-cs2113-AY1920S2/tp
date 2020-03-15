@@ -29,16 +29,16 @@ public class Duke {
      * Begins the application and creates the relevant objects required for the application to function.
      */
 
-    public Duke(String filePath){
+    public Duke(String filePath) {
         foodNutritionInfo = new FoodNutritionInfo();
         personList = new PersonList();
         ui = new UI();
         storage = new Storage(filePath);
         parser = new Parser();
 
-        try{
+        try {
             storage.loadFileData(personList);
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("File not found!!! Already create a new one for you!!!");
         }
     }
@@ -78,12 +78,12 @@ public class Duke {
         new Duke("data/user info.txt").run();
     }
 
-    public static void welcome(){
+    public static void welcome() {
         System.out.println(logo);
         System.out.println("Welcome to Diet Manager! How may I assist you today?");
     }
 
-    public static void handleCommands(){
+    public static void handleCommands() {
         Command command = parser.getCommand();
         while(!command.isExit()){
             command.execute(personList);
@@ -94,11 +94,11 @@ public class Duke {
 //        logger.log(Level.INFO, "Exiting Diet Manager");
     }
 
-    public static void exit(){
+    public static void exit() {
         System.out.println("Thank you and see you again soon!");
     }
 
-    public void run(){
+    public void run() {
         welcome();
         handleCommands();
         exit();
