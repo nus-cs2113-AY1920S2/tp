@@ -1,5 +1,6 @@
 package seedu.duke.module;
 
+import seedu.duke.module.Module;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
