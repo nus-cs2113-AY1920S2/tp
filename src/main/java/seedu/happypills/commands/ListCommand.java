@@ -9,11 +9,13 @@ import seedu.happypills.ui.TextUi;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(PatientList patients) {
-        if (patients.isEmpty()) {
-            TextUi.printEmptyList();
+    public String execute(PatientList patients) {
+        String message;
+        if (patients.size() == 0) {
+            message = TextUi.getEmptyList();
         } else {
-            TextUi.printList(patients);
+            message = TextUi.getList(patients);
         }
+        return message;
     }
 }

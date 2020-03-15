@@ -28,7 +28,8 @@ public abstract class Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      * @throws HappyPillsException If issues are found during execution of command.
      */
-    public void execute(PatientList patients) throws HappyPillsException {
+    public String execute(PatientList patients) throws HappyPillsException {
+        return null;
     }
 
     /**
