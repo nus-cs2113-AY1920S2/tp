@@ -44,6 +44,7 @@ public class MeetingOrganizer {
             myScheduleHandler.printFreeTimings();
 
             // Test add meeting
+            Scanner in = new Scanner(System.in);
             System.out.println("What do you want to name your meeting?");
             String meetingName = in.nextLine(); // eg. CS2113 Meeting
             System.out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>");
