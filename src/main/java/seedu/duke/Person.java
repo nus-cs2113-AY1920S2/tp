@@ -91,12 +91,11 @@ public class Person {
                     +this.height+" "+this.weight+" "+this.weightGoal;
         for(int i=0;i<=getDays()-1;i++){
             DailyFoodRecord currentRecord = getRecordOfDay(i);
-            info[i*4+1] = currentRecord.getDate();
+            info[i*4+1] = "date "+currentRecord.getDate();
             info[i*4+2] = "breakfast"+currentRecord.getBreakfast();
             info[i*4+3] = "lunch"+currentRecord.getLunch();
-            info[i*4+4] = "lunch"+currentRecord.getDinner();
+            info[i*4+4] = "dinner"+currentRecord.getDinner();
         }
-
         return info;
     }
 }

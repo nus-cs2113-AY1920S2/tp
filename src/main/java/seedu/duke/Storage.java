@@ -41,7 +41,7 @@ public class Storage {
         DailyFoodRecord currentRecord = currentPerson.getRecordOfDay(curDayIndex);
 
         String[] info = record.split(" ");
-        if(info[0].equals("breakfast") || info[1].equals("lunch") || info[1].equals("dinner")){
+        if(info[0].equals("breakfast") || info[0].equals("lunch") || info[0].equals("dinner")){
             ArrayList<Food> foodList = new ArrayList<Food>();
             for(String foodName:info){
                 if(foodName.equals(info[0])) continue;
