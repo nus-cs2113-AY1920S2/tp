@@ -4,7 +4,6 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.*;
-import seedu.nuke.module.Module;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
@@ -12,47 +11,62 @@ import seedu.nuke.ui.Ui;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
-import static org.fusesource.jansi.Ansi.ansi;
-
 public class Nuke {
     private CommandResult commandResult;
     private ModuleManager moduleManager;
     private DataManager dataManager;
-    public HashMap<String,String> modulesMap;
-    public ScreenShotManager screenShotManager;
+    public HashMap<String, String> modulesMap; //?public
+    public ScreenShotManager screenShotManager; //?public
     private ScreenShot currentScreenShot;
-
     private Ui ui;
 
+    /**
+     * constructor of nuke
+     * @throws FileNotFoundException if file cannot be found when loading jason file
+     */
     public Nuke() throws FileNotFoundException {
+        ui = new Ui();
         modulesMap  = ModuleLoader.load("moduleList.json");
         moduleManager = new ModuleManager(modulesMap);
         dataManager = new DataManager(moduleManager);
         screenShotManager = new ScreenShotManager();
         currentScreenShot = new ScreenShot(moduleManager, dataManager);
+        screenShotManager.getScreenShotList().add(currentScreenShot);
     }
 
     /**
      * ScreenShot entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) throws FileNotFoundException {
-        TextUi.clearScreen();
-        TextUi.displayLogo();
         new Nuke().run();
     }
 
     public void run() {
-        this.ui = new Ui();
-        TextUi.showWelcomeMessage();
+        welcomeUser();
         runCommandLoopUntilExitCommand();
+        exit();
+    }
+
+    public void welcomeUser() {
+        TextUi.clearScreen();
+        TextUi.displayLogo();
+        TextUi.showWelcomeMessage();
+    }
+
+    public void exit() {
+        TextUi.showExitMessage();
     }
 
     private void runCommandLoopUntilExitCommand() {
         do {
             String userCommandText = ui.getInput();
-            Command command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            ui.showResult(result);
+            try {
+                Command command = new Parser().parseCommand(userCommandText);
+                CommandResult result = executeCommand(command);
+                ui.showResult(result);
+            } catch (Exception e) {
+                ui.showSystemMessage(e.getMessage());
+            }
         } while (!ExitCommand.isExit());
     }
 

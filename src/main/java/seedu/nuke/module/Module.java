@@ -6,6 +6,7 @@ import seedu.nuke.ui.TextUi;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Module {
     private String moduleCode;
@@ -49,7 +50,12 @@ public class Module {
     public ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
         ArrayList<Task> tasks = taskManager.getTaskList();
-        Collections.sort(tasks);
+        Collections.sort(tasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2) {
+                return t1.getDeadline().toString().compareToIgnoreCase(t2.getDeadline().toString());
+            }
+        });
         for(Task task: tasks) {
             deadlines.add("Task: " + task.getDescription()+"  Deadline: " + task.getDeadline().toString());
         }

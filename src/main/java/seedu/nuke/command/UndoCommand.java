@@ -7,6 +7,7 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "un";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     private ScreenShot targetScreenShot;
+
     public UndoCommand() {
 
     }
