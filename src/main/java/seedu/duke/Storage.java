@@ -49,11 +49,14 @@ public class Storage {
      * @param personList a list used to maintain all users' info.
      */
     public void restorePersonInfo(String record,PersonList personList) {
+        Person currentPerson = null;
+        DailyFoodRecord currentRecord = null;
         int curPersonIndex = personList.getLength() - 1;
-        Person currentPerson = personList.getOnePerson(curPersonIndex);
-        int curDayIndex = currentPerson.getDays() - 1;
-        DailyFoodRecord currentRecord = currentPerson.getRecordOfDay(curDayIndex);
-
+        if (curPersonIndex >= 0) {
+            currentPerson = personList.getOnePerson(curPersonIndex);
+            int curDayIndex = currentPerson.getDays() - 1;
+            currentRecord = currentPerson.getRecordOfDay(curDayIndex);
+        }
         String[] info = record.split(" ");
         if (info[0].equals("breakfast") || info[0].equals("lunch") || info[0].equals("dinner")) {
             ArrayList<Food> foodList = new ArrayList<Food>();
@@ -63,7 +66,9 @@ public class Storage {
                 }
                 foodList.add(new Food(foodName));
             }
-            currentPerson.setRecordOfDay(currentRecord,info[0],foodList);
+            if (currentPerson!=null && currentRecord!=null) {
+                currentPerson.setRecordOfDay(currentRecord,info[0],foodList);
+            }
         } else if (info[0].equals("user")) {
             String name = info[1];
             int age = Integer.parseInt(info[2]);
@@ -75,7 +80,9 @@ public class Storage {
             Person person = new Person(name,age,gender,height,weight,weightGoal);
             personList.append(person);
         } else if (info[0].equals("date")) {
-            currentPerson.addNewRecord(info[1]);
+            if (currentPerson!=null) {
+                currentPerson.addNewRecord(info[1]);
+            }
         }
     }
 
