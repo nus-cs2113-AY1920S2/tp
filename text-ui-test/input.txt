@@ -3,43 +3,4 @@ list dish
 add dish; n/rice; i/rice, salt;
 delete dish; n/pizza;
 list dish
-add stock; i/tomato; q/10; p/$0.40;
-add stock; p/$0.40; q/10; i/tomato;
-add stock; i/tomato; p/$0.40; q/10;
-add stock; i/tomato; q/10; p/$0.50;
-add stock;
-add stock; i/tomato;
-add stock; q/10;
-add stock; p/$0.50;
-add stock; q/10; p/$0.50;
-add stock; i/tomato; p/$0.50;
-add stock; i/tomato; q/10;
-add stock; i/tomato; q/LOL; p/$0.50;
-add stock; i/tomato; q/10; p/0.5;
-add stock; i/tomato; q/-10; p/$0.50;
-add stock; i/tomato; q/10; p/$-0.50;
-add stock; i/tomato; q/10; p/LOL;
-add stock; tomato; q/10; p/$0.50;
-add stock; i/tomato; 10; p/$0.50;
-add stock; i/tomato; q/10; 0.50;
-list stock
-delete stock; i/tomato; q/1;
-delete stock; q/1; i/tomato;
-delete stock; i/tomato; q/9;
-list stock
-delete stock; i/tomato;
-delete stock;
-delete stock; q/10;
-delete stock; i/tomato; q/LOL;
-delete stock; i/tomato; q/-10;
-delete stock; tomato; q/1;
-list stock
-add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98953422;
-add reservation; p/Mary; d/2020-03-11 12:00; n/3; c/99998888;
-add reservation; p/David; d/2020-03-12 12:00; n/3; c/98887777;
-list reservation
-delete reservation; r/0;
-delete reservation; r/1;
-delete reservation; r/2;
-list reservation
 bye
