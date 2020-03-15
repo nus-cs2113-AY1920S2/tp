@@ -48,6 +48,16 @@ public class TextUi {
         System.out.println(patient + DIVIDER);
     }
 
+    public static void printGetPatient(Patient patient) {
+        System.out.println("    Here are the patient's details:");
+        System.out.println(patient + DIVIDER);
+    }
+
+    public static void printEditPatient(Patient patient) {
+        System.out.println("    Here are the patient's updated details:");
+        System.out.println(patient + DIVIDER);
+    }
+
     /**
      * Generates and prints the welcome message upon the start of the application.
      */

@@ -1,6 +1,5 @@
 package seedu.happypills.commands;
 
-import org.w3c.dom.Text;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
@@ -8,7 +7,6 @@ import seedu.happypills.ui.TextUi;
 
 public class EditCommand extends Command {
     protected String nric;
-    protected String editField;
     protected String newContent;
 
     /**
@@ -16,40 +14,58 @@ public class EditCommand extends Command {
      * It creates a new EditCommand Object with the information provided.
      *
      * @param nric Contains the nric of the patient that is to be retrieved.
-     * @param editField Contains the attribute that is to be edited.
      * @param newContent Contains the string that the attribute is to be updated to.
      */
-    public EditCommand(String nric, String editField, String newContent) {
+    public EditCommand(String nric, String newContent) {
         this.nric = nric;
-        this.editField = editField;
         this.newContent = newContent;
     }
 
     /**
-     * Edit the attribute of the patient according to the given attribute.
+     * Retrieve the patient from the NRIC of the Edit command.
      *
-     * @param patients Contains the list of tasks on which the commands are executed on.
-     * @throws HappyPillsException Throws an exception if patient does not exist in patient list.
+     * @param patients Contains the list of patients to be searched.
      */
-    private void editChanges(PatientList patients) throws HappyPillsException {
-        boolean inList = false;
+    private Patient findPatient(PatientList patients) {
         for (Patient patient : patients) {
-            if (patient.getNric().equals(nric)) {
-                inList = true;
-                if (editField.equals("phone")) {
-                    patient.setPhoneNumber(Integer.parseInt(newContent));
-                } else if (editField.equals("allergies")) {
-                    patient.setAllergies(newContent);
-                } else if (editField.equals("remarks")) {
-                    patient.setRemarks(newContent);
-                }
-                TextUi.printEditSuccess(patient);
-                break;
+            if (patient.getNric().equalsIgnoreCase(nric)) {
+                return patient;
             }
         }
-        if (!inList) {
-            throw new HappyPillsException("NRIC not in patient list.");
-        }
+        return null;
+    }
+
+    /**
+     * Edit the phone number of the patient.
+     *
+     * @param patient The patient whose phone number is to be edited.
+     * @param content The patient's new phone number.
+     */
+    private void editPhone(Patient patient, String content) {
+        patient.setPhoneNumber(Integer.parseInt(content));
+        TextUi.printEditPatient(patient);
+    }
+
+    /**
+     * Edit the allergies of the patient.
+     *
+     * @param patient The patient whose allergies is to be edited.
+     * @param content The patient's updated allergies.
+     */
+    private void editAllergies(Patient patient, String content) {
+        patient.setAllergies(content);
+        TextUi.printEditPatient(patient);
+    }
+
+    /**
+     * Edit the remarks of the patient.
+     *
+     * @param patient The patient whose remarks is to be edited.
+     * @param content The patient's new remarks.
+     */
+    private void editRemarks(Patient patient, String content) {
+        patient.setRemarks(content);
+        TextUi.printEditPatient(patient);
     }
 
     /**
@@ -62,10 +78,28 @@ public class EditCommand extends Command {
      */
     @Override
     public String execute(PatientList patients) throws HappyPillsException {
-        if (editField.equals("phone") || editField.equals("allergies") || editField.equals("remarks")) {
-            editChanges(patients);
+        if (newContent.length() < 2) {
+            throw new HappyPillsException("    Content is invalid. Please try again");
+        }
+        assert newContent.length() >= 2 : "Length of content has to be more than 2 characters.";
+        String field = newContent.substring(0,2);
+        String content = newContent.substring(2);
+        Patient editPatient = findPatient(patients);
+        if (editPatient == null) {
+            throw new HappyPillsException("    Patient not found. Please try again.");
+        }
+        assert editPatient != null : "Patient is not in PatientList";
+        if (field.equals("/p")) {
+            editPhone(editPatient, content);
+        } else if (field.equals("/r")) {
+            editRemarks(editPatient, content);
+        } else if (field.equals("/a")) {
+            editAllergies(editPatient, content);
         } else {
-            throw new HappyPillsException("Edit field is not valid.");
+            throw new HappyPillsException("    Please try again. To edit, use the following commands: \n"
+                                    + "    edit [NRIC] /p[PHONE_NUMBER] to edit patient's phone number,\n"
+                                    + "    edit [NRIC] /p[ALLERGIES] to edit patient's allergies,\n"
+                                    + "    edit [NRIC] /p[REMARKS] to edit patient's remarks");
         }
         return null;
     }
