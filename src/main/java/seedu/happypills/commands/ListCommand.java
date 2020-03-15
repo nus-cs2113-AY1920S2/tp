@@ -12,6 +12,7 @@ public class ListCommand extends Command {
     public String execute(PatientList patients) {
         String message;
         if (patients.size() == 0) {
+            assert patients.isEmpty();
             message = TextUi.getEmptyList();
         } else {
             message = TextUi.getList(patients);

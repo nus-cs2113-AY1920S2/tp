@@ -5,7 +5,8 @@ import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.parser.Parser;
 import seedu.happypills.ui.TextUi;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Scanner;
 
 /**
@@ -34,9 +35,14 @@ public class HappyPills {
      * Runs the program until termination.
      */
     private void run() {
+        Level logLevel = Level.INFO;
+        Logger logger = Logger.getLogger(HappyPills.class.getName());
+
         ui.printWelcomeMessage();
         Scanner in = new Scanner(System.in);
+
         while (in.hasNextLine()) {
+            logger.log(logLevel, "going to start processing");
             try {
                 String fullCommand = in.nextLine();
                 System.out.println(ui.DIVIDER);
@@ -47,6 +53,8 @@ public class HappyPills {
                 System.out.println(hpe.getMessage());
                 System.out.println(ui.DIVIDER);
             }
+
+            logger.log(logLevel, "end of processing");
         }
     }
 }

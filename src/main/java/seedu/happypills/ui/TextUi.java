@@ -3,7 +3,6 @@ package seedu.happypills.ui;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 
-
 public class TextUi {
     public static final String DIVIDER = "    ===================================================";
 
