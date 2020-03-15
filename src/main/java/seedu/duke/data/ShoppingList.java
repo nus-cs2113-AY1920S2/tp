@@ -112,11 +112,12 @@ public class ShoppingList {
      * @param item Item to add.
      * @throws NullPointerException If there is no description.
      */
-    public void add(Item item) throws NullPointerException {
+    public void add(Item item) throws NullPointerException, NumberFormatException {
         items.add(item);
         if (item.getDescription() == null) {
             throw new NullPointerException();
         }
     }
+
 
 }

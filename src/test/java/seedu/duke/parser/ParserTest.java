@@ -137,7 +137,7 @@ public class ParserTest {
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
-    /*
+
     @Test
     public void parse_addCommandIncorrectPriceFormat_errorMessage() {
         final String[] inputs = { "ADD i/apple p/8*wh12", "ADD i/apple p/ " };
@@ -155,7 +155,7 @@ public class ParserTest {
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
- */
+
 
 
     /*
