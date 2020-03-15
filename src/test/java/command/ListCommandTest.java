@@ -103,7 +103,7 @@ public class ListCommandTest {
         Assignment assignAfterCurrDateTime = new Assignment("Quiz 1", "CS2173", afterCurrDateTime, "15%");
         Event eventBeforeCurrDateTime = new Event("midterms", "MPSH1A", beforeCurrDateTime, "-");
         Event eventAfterCurrDateTime = new Event("Countdown", "TimeSquare", afterCurrDateTime, "new year new me");
-        Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", currDateTime.plusSeconds(45), "-");
+        Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", afterCurrButSameDayDateTime, "-");
 
         filledTasklist.addTask(assignBeforeCurrDateTime);
         filledTasklist.addTask(assignAfterCurrDateTime);
@@ -135,6 +135,18 @@ public class ListCommandTest {
     public void printList_filledList_incompleteAssignOnly() {
         assertEquals(expectedOutputFromIncompleteAssign,
                 new ListCommand("incomplete assignments").execute(filledTasklist, ui).feedbackToUser);
+    }
+
+    @Test
+    public void printList_filledList_allTaskListMsg() {
+        assertEquals(expectedOutputFromFilledTasklist,
+                new ListCommand(null).execute(filledTasklist, ui).feedbackToUser);
+    }
+
+    @Test
+    public void printList_filledList_upcomingEventsOnly() {
+        assertEquals(expectedOutputFromUpcomingEvent,
+                new ListCommand("upcoming events").execute(filledTasklist, ui).feedbackToUser);
     }
 
     @Test
