@@ -21,14 +21,14 @@ public class PersonList {
         boolean personExists = false;
         Person person = null;
 
-        for(Person p:list) {
+        for (Person p:list) {
             if(p.isName(name)){
                 person = p;
                 personExists = true;
                 break;
             }
         }
-        if(!personExists) {
+        if (!personExists) {
             System.out.println("Person not found in the list,check your spelling first!!!");
             return null;
         }

@@ -35,20 +35,20 @@ public class Storage {
     }
 
     public void restorePersonInfo(String record,PersonList personList) {
-        int curPersonIndex = personList.getLength()-1;
+        int curPersonIndex = personList.getLength() - 1;
         Person currentPerson = personList.getOnePerson(curPersonIndex);
-        int curDayIndex = currentPerson.getDays()-1;
+        int curDayIndex = currentPerson.getDays() - 1;
         DailyFoodRecord currentRecord = currentPerson.getRecordOfDay(curDayIndex);
 
         String[] info = record.split(" ");
         if(info[0].equals("breakfast") || info[0].equals("lunch") || info[0].equals("dinner")) {
             ArrayList<Food> foodList = new ArrayList<Food>();
-            for(String foodName:info){
-                if(foodName.equals(info[0])) continue;
+            for (String foodName:info) {
+                if (foodName.equals(info[0])) continue;
                 foodList.add(new Food(foodName));
             }
             currentPerson.setRecordOfDay(currentRecord,info[0],foodList);
-        } else if(info[0].equals("user")) {
+        } else if (info[0].equals("user")) {
             String name = info[1];
             int age = Integer.parseInt(info[2]);
             String gender = info[3];
@@ -58,7 +58,7 @@ public class Storage {
 
             Person person = new Person(name,age,gender,height,weight,weightGoal);
             personList.append(person);
-        } else if(info[0].equals("date")) {
+        } else if (info[0].equals("date")) {
             currentPerson.addNewRecord(info[1]);
         }
     }
@@ -76,8 +76,8 @@ public class Storage {
         for (int i = 0; i < personList.getLength(); i++) {
             Person currentPerson = personList.getOnePerson(i);
             String[] personInfo = currentPerson.getPersonInfo();
-            for(int j=0;j<personInfo.length;j++){
-                fw.write(personInfo[j]+System.lineSeparator());
+            for (String s : personInfo) {
+                fw.write(s + System.lineSeparator());
             }
         }
         fw.close();
