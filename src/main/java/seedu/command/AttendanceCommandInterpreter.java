@@ -23,6 +23,8 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
     public Command decideCommand(String commandDescription) throws DukeException {
         String commandType = getFirstWord(commandDescription);
         String commandParameters = getSubsequentWords(commandDescription);
+        assert commandType == "" : "UnknownType";
+        assert commandType == "" : "UnknownParameter";
         switch (commandType) {
         case "add":
             return new AddAttendance(commandParameters);
