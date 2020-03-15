@@ -1,12 +1,14 @@
 package seedu.duke.commands;
 
-
 import seedu.duke.data.Item;
 
 import java.util.ArrayList;
 
+/**
+ * Gets a feedback message from a command and shows it to the user.
+ */
 public class CommandResult {
-    /** The feedback message to be shown to the user. Contains a description of the execution result */
+
     public final String feedbackToUser;
     public final ArrayList<Item> items;
 

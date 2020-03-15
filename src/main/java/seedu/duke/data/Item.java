@@ -73,5 +73,4 @@ public class Item {
         return "[" + getStatusIcon() + "] " + description + String.format(" $%.2f", price);
     }
 
-
 }

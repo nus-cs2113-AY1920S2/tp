@@ -5,6 +5,9 @@ public class Budget {
     private static final double MIN_BUDGET = 0;
     private double amount;
 
+    /**
+     * Creates a new budget object with the smallest allowable amount.
+     */
     public Budget() {
         amount = MIN_BUDGET;
     }
@@ -30,6 +33,12 @@ public class Budget {
         return amount;
     }
 
+    /**
+     * Calculates the remaining budget based on the total cost of items.
+     *
+     * @param totalCost Total cost of items.
+     * @return The remaining budget.
+     */
     public double getRemainingBudget(double totalCost) {
         return amount - totalCost;
     }

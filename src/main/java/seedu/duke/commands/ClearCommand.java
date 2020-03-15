@@ -3,6 +3,9 @@ package seedu.duke.commands;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clears the shopping list.
+ */
 public class ClearCommand extends Command {
 
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);

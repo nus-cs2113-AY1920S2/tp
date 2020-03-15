@@ -13,8 +13,7 @@ public class ShoppingList {
     }
 
     /**
-     * Formats the list to be printed to user.
-     *
+     * Prints a table representing the shopping list.
      */
     public void showTableOfItems() {
         CommandLineTable st = new CommandLineTable();
@@ -45,6 +44,9 @@ public class ShoppingList {
 
     }
 
+    /**
+     * Clear all items from the list.
+     */
     public void clearList() {
         items.clear();
     }

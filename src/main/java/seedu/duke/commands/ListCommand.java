@@ -3,6 +3,9 @@ package seedu.duke.commands;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Displays the shopping list, cost of items, and budget details.
+ */
 public class ListCommand extends Command {
 
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -24,13 +27,13 @@ public class ListCommand extends Command {
 
         // Prepare info for printing
         double totalCost = items.getTotalCost();
-        String budgetInfo = String.format(TOTAL_COST_MESSAGE, totalCost)
+        String budgetDetails = String.format(TOTAL_COST_MESSAGE, totalCost)
                 + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
 
         // Printing gets done here
         System.out.println(LIST_MESSAGE);
         items.showTableOfItems();
-        System.out.println(budgetInfo);
+        System.out.println(budgetDetails);
 
         LOGGER.log(Level.INFO,"(List command) Items, total cost, and budget have been displayed.");
 
