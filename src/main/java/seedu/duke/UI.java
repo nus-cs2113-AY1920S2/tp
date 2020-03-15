@@ -24,7 +24,6 @@ public class UI {
 
     /**
      * Returns the exit status.
-     *
      * @return the exit status.
      */
 
@@ -34,7 +33,6 @@ public class UI {
 
     /**
      * Updates the exit status.
-     *
      * @param update the updated exit status.
      */
 
@@ -44,7 +42,6 @@ public class UI {
 
     /**
      * Returns the next line of user input.
-     *
      * @return the next line of user input.
      */
 
