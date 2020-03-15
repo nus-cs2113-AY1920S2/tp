@@ -6,7 +6,7 @@ import seedu.happypills.commands.ExitCommand;
 import seedu.happypills.commands.ListCommand;
 import seedu.happypills.commands.HelpCommand;
 import seedu.happypills.commands.Command;
-import seedu.happypills.commands.RetrieveCommand;
+import seedu.happypills.commands.GetCommand;
 import seedu.happypills.exception.HappyPillsException;
 
 /**
@@ -27,11 +27,11 @@ public class Parser {
             return new ListCommand();
         } else if (userCommand[0].equalsIgnoreCase("add")) {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
-                throw new HappyPillsException("    detail is empty");
+                throw new HappyPillsException("    Patient's detail is empty");
             }
             String[] patientDetail = userCommand[1].split(",");
             if (patientDetail.length != 7) {
-                throw new HappyPillsException("    please ensure to input your patient's details");
+                throw new HappyPillsException("    Please ensure to input your patient's details");
             }
             return new AddCommand(patientDetail[0], patientDetail[1],
                     Integer.parseInt(patientDetail[2]), patientDetail[3],
@@ -39,11 +39,11 @@ public class Parser {
         } else if (userCommand[0].equalsIgnoreCase("help")) {
             return new HelpCommand();
         } else if (userCommand[0].equalsIgnoreCase("get")) {
-            return new RetrieveCommand(userCommand[1]);
+            return new GetCommand(userCommand[1]);
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
             String[] edit = fullCommand.split(" ", 3);
             if (edit.length < 3) {
-                throw new HappyPillsException("    please ensure to input your patient's details correctly");
+                throw new HappyPillsException("    Please input your patient's details correctly");
             }
             return new EditCommand(edit[1], edit[2]);
         } else if (userCommand[0].equalsIgnoreCase("exit")) {

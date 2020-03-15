@@ -7,7 +7,6 @@ import seedu.happypills.ui.TextUi;
 
 public class EditCommand extends Command {
     protected String nric;
-    protected String editField;
     protected String newContent;
 
     /**
@@ -44,7 +43,7 @@ public class EditCommand extends Command {
      */
     private void editPhone(Patient patient, String content) {
         patient.setPhoneNumber(Integer.parseInt(content));
-        TextUi.printPatient(patient);
+        TextUi.printEditPatient(patient);
     }
 
     /**
@@ -55,7 +54,7 @@ public class EditCommand extends Command {
      */
     private void editAllergies(Patient patient, String content) {
         patient.setAllergies(content);
-        TextUi.printPatient(patient);
+        TextUi.printEditPatient(patient);
     }
 
     /**
@@ -66,7 +65,7 @@ public class EditCommand extends Command {
      */
     private void editRemarks(Patient patient, String content) {
         patient.setRemarks(content);
-        TextUi.printPatient(patient);
+        TextUi.printEditPatient(patient);
     }
 
     /**
@@ -85,11 +84,11 @@ public class EditCommand extends Command {
         assert newContent.length() >= 2 : "Length of content has to be more than 2 characters.";
         String field = newContent.substring(0,2);
         String content = newContent.substring(2);
-        System.out.println(content);
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
         }
+        assert editPatient != null : "Patient is not in PatientList";
         if (field.equals("/p")) {
             editPhone(editPatient, content);
         } else if (field.equals("/r")) {
