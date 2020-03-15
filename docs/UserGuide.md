@@ -49,6 +49,7 @@ Add menu items, ingredients, and reservations.
 #### Add reservation into list: add reservation 
 * Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
 * Example: `add reservation; r/12;`
+
 *The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be an integer.*
 
 <a name="delete"></a>
