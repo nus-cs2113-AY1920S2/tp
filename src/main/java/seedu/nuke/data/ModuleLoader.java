@@ -50,7 +50,7 @@ public class ModuleLoader {
             in.read(fileContent);
             in.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new FileNotFoundException();
         } catch (IOException e) {
             e.printStackTrace();
         }
