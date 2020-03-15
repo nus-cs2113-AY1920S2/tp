@@ -13,8 +13,6 @@ import seedu.happypills.exception.HappyPillsException;
  * Parses user input.
  */
 public class Parser {
-    protected boolean isExit = false;
-
     /**
      * Parses user input into command for execution.
      *
@@ -33,7 +31,7 @@ public class Parser {
             }
             String[] patientDetail = userCommand[1].split(",");
             if (patientDetail.length != 7) {
-                throw new HappyPillsException("    please ensure to input your details");
+                throw new HappyPillsException("    please ensure to input your patient's details");
             }
             return new AddCommand(patientDetail[0], patientDetail[1],
                     Integer.parseInt(patientDetail[2]), patientDetail[3],
@@ -43,8 +41,11 @@ public class Parser {
         } else if (userCommand[0].equalsIgnoreCase("get")) {
             return new RetrieveCommand(userCommand[1]);
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
-            String[] edit = fullCommand.split(" ", 4);
-            return new EditCommand(edit[1], edit[2], edit[3]);
+            String[] edit = fullCommand.split(" ", 3);
+            if (edit.length < 3) {
+                throw new HappyPillsException("    please ensure to input your patient's details correctly");
+            }
+            return new EditCommand(edit[1], edit[2]);
         } else if (userCommand[0].equalsIgnoreCase("exit")) {
             return new ExitCommand();
         } else {

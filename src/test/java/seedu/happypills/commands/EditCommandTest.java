@@ -14,7 +14,7 @@ class EditCommandTest {
                 "kesin", "S0618", 912, "22aug", "B-","meat", "Strong"
         );
         testAddCommand.execute(patients);
-        EditCommand testEditCommand = new EditCommand("S0618", "remarks", "Weak");
+        EditCommand testEditCommand = new EditCommand("S0618", "/rWeak");
         try {
             testEditCommand.execute(patients);
         } catch (HappyPillsException e) {
