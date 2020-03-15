@@ -175,6 +175,9 @@ Input next command:
 Please follow the date time format strictly: yyyy-MM-dd HH:mm; eg. 2000-01-01 12:00
 The command has been successfully executed.
 Input next command:
+Please enter a valid positive integer.
+The command has been successfully executed.
+Input next command:
 Reservation [0]
 Status: Unserved
 contact person: Peter
@@ -182,25 +185,25 @@ date: 2020-03-12 12:00
 number of guests: 3
 table size: S
 contact details: 98955555
-comments: No comments.
+comments: No comments
 
 Reservation [1]
 Status: Unserved
 contact person: Mary
 date: 2020-03-11 12:00
-number of guests: 3
-table size: S
+number of guests: 8
+table size: M
 contact details: 99998888
-comments: No comments.
+comments: No comments
 
 Reservation [2]
 Status: Unserved
 contact person: David
 date: 2020-03-12 12:00
-number of guests: 3
-table size: S
+number of guests: 9
+table size: L
 contact details: 98887777
-comments: No comments.
+comments: No comments
 
 Reservation [3]
 Status: Unserved
@@ -213,13 +216,25 @@ comments: no spicy food please
 
 The command has been successfully executed.
 Input next command:
+Please enter a valid positive integer.
+The command has been successfully executed.
+Input next command:
 Successfully void Reservation[0]
+The command has been successfully executed.
+Input next command:
+Delimiter Missing.
+The command has been successfully executed.
+Input next command:
+Please enter a valid positive integer.
 The command has been successfully executed.
 Input next command:
 Successfully void Reservation[1]
 The command has been successfully executed.
 Input next command:
 Successfully void Reservation[2]
+The command has been successfully executed.
+Input next command:
+Please enter a valid positive integer.
 The command has been successfully executed.
 Input next command:
 Reservation [0]
@@ -229,25 +244,25 @@ date: 2020-03-12 12:00
 number of guests: 3
 table size: S
 contact details: 98955555
-comments: No comments.
+comments: No comments
 
 Reservation [1]
 Status: Invalid
 contact person: Mary
 date: 2020-03-11 12:00
-number of guests: 3
-table size: S
+number of guests: 8
+table size: M
 contact details: 99998888
-comments: No comments.
+comments: No comments
 
 Reservation [2]
 Status: Invalid
 contact person: David
 date: 2020-03-12 12:00
-number of guests: 3
-table size: S
+number of guests: 9
+table size: L
 contact details: 98887777
-comments: No comments.
+comments: No comments
 
 Reservation [3]
 Status: Unserved

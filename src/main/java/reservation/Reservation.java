@@ -30,7 +30,7 @@ public class Reservation {
         this.numberOfGuests = numberOfGuests;
         this.contact = contact;
         
-        this.comments = "No comments.";
+        this.comments = "No comments";
         this.status = NOT_SERVED;
         
         setTableSize(this.numberOfGuests);

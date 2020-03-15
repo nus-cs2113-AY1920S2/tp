@@ -52,9 +52,9 @@ public class AddReservationCommand extends ReservationCommand {
         } catch (DateTimeException e) {
             System.out.println("Please follow the date time format strictly: yyyy-MM-dd HH:mm; eg. 2000-01-01 12:00");
         } catch (InputMissingException e) {
-            System.out.println(String.format("Input Missing: %s is missing.", e.getInput()));
+            System.out.println(e.getMessage());
         } catch (DelimiterMissingException e) {
-            System.out.println("Delimiter Missing.");
+            System.out.println(e.getMessage());
         }
     }
     

@@ -11,6 +11,7 @@ import static utils.Constants.RES_INDEX_MARKER;
 public class MarkReservationCommand extends ReservationCommand {
     private String description;
     private int reservationNumber;
+    private int validMaxRange;
     
     public MarkReservationCommand(String description) {
         this.description = description;
@@ -25,6 +26,7 @@ public class MarkReservationCommand extends ReservationCommand {
     @Override
     public void execute(ReservationList reservations) {
         try {
+            validMaxRange = reservations.getSize() - 1;
             parseInput(this.description);
 
             // mark the reservation as done
@@ -35,9 +37,9 @@ public class MarkReservationCommand extends ReservationCommand {
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid positive integer.");
         } catch (InputMissingException e) {
-            System.out.println(String.format("Input Missing: %s is missing.", e.getInput()));
+            System.out.println(e.getMessage());
         } catch (DelimiterMissingException e) {
-            System.out.println("Delimiter Missing.");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -62,5 +64,9 @@ public class MarkReservationCommand extends ReservationCommand {
         
         this.reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
                 numberEndPos + 1).trim());
+
+        if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
+            throw new NumberFormatException();
+        }
     }
 }
