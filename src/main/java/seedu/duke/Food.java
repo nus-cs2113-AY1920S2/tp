@@ -10,6 +10,10 @@ public class Food {
     private double vitamins;
     private double water;
 
+    /**
+     * Constructs the Food Object and its relevant nutirtional information.
+     */
+
     public Food(String foodName, double carbohydrates, double fats, double fiber, double minerals,
                 double proteins, double vitamins, double water) {
         this.foodName = foodName;

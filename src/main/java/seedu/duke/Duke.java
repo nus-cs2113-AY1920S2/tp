@@ -2,7 +2,11 @@ package seedu.duke;
 
 import java.util.Scanner;
 
-public class DietManager {
+public class Duke {
+
+    /**
+     * Begins the application and creates the relevant objects required for the application to function.
+     */
 
     public static void main(String[] args) {
 
@@ -25,7 +29,7 @@ public class DietManager {
         System.out.println("Welcome to Diet Manager! How may I assist you today?");
 
         while (!ui.isExitStatus()) {
-            String[] inputArray = sc.nextLine().trim().split(" ", 2);
+            String[] inputArray = ui.readInput().trim().split(" ", 2);
             switch (inputArray[0]) {
             case "profile":
                 if (profile.isProfileExist()) {
@@ -36,12 +40,16 @@ public class DietManager {
                     System.out.println(String.format("Weight        %f kilograms", profile.getWeight()));
                     System.out.println(String.format("Weight Goal:  %f kilograms", profile.getWeightGoal()));
                 } else {
-                    System.out.println("No existing profile found. To create a new profile, enter:\n" +
-                            "setProfile {name} {age} {gender} {height} {weight} {weight goal}");
+                    System.out.println("No existing profile found. To create a new profile, enter:\n"
+                            + "setProfile {name} {age} {gender} {height} {weight} {weight goal}");
                 }
                 break;
             case "setProfile":
-
+                String[] profileArray = inputArray[1].split(" ", 6);
+                profile.setProfile(profileArray[0], Integer.parseInt(profileArray[1]),
+                        profileArray[2], Double.parseDouble(profileArray[3]),
+                        Double.parseDouble(profileArray[4]), Double.parseDouble(profileArray[5]));
+                break;
             case"setName":
                 profile.setName(inputArray[1]);
                 System.out.println(String.format("Your username has been changed to %s", profile.getName()));
@@ -69,6 +77,7 @@ public class DietManager {
             case "exit":
                 System.out.println("Thank you and see you again soon!");
                 ui.setExitStatus(false);
+                break;
             default:
                 System.out.println("Sorry, I don't understand that command :(");
                 break;

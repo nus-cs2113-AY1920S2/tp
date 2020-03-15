@@ -13,6 +13,10 @@ public class Profile {
         this.profileExist = false;
     }
 
+    /**
+     * Sets the User Profile with the relevant information required.
+     */
+
     public void setProfile(String name, int age, String gender, double height, double weight, double weightGoal) {
         this.name = name;
         this.age = age;
@@ -48,7 +52,7 @@ public class Profile {
         this.profileExist = true;
     }
 
-    public void setWeightGoal(double weightGoal){
+    public void setWeightGoal(double weightGoal) {
         this.weightGoal = weightGoal;
         this.profileExist = true;
     }
@@ -85,8 +89,8 @@ public class Profile {
         return name;
     }
 
-    public double getBMI(){
-        return weight / Math.pow(height/100, 2);
+    public double getBmi() {
+        return weight / Math.pow(height / 100, 2);
     }
 
 }

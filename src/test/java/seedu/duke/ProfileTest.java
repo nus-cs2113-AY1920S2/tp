@@ -2,7 +2,7 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProfileTest {
 
@@ -112,9 +112,9 @@ class ProfileTest {
     }
 
     @Test
-    void getBMI() {
+    void getBmi() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
-        assertEquals(80/(1.80*1.80), profile.getBMI());
+        assertEquals(80 / (1.80 * 1.80), profile.getBmi());
     }
 }
