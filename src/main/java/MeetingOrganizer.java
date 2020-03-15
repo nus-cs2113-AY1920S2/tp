@@ -1,10 +1,11 @@
+import static java.lang.System.out;
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static java.lang.System.out;
-
 /**
- *
+ * TESTING SUMMARY DOC.
  */
 public class MeetingOrganizer {
 
@@ -22,45 +23,45 @@ public class MeetingOrganizer {
         TeamMember member1 = new TeamMember("john");
         TeamMember member2 = new TeamMember("mary");
         switch (userInput) {
-            case "1":
-                out.println("You have selected new scheduled meeting");
-                // Test printTimetable
-                boolean[][] mySchedule = new boolean[7][48];
-                TextUI.printTimetable(mySchedule);
+        case "1":
+            out.println("You have selected new scheduled meeting");
+            // Test printTimetable
+            boolean[][] mySchedule = new boolean[7][48];
+            TextUI.printTimetable(mySchedule);
 
-                member1.addBusyBlocks("test1", 0, "10:00", 2, "12:00");
-                printSchedule("member 1 schedule", member1.getSchedule()); //check
+            member1.addBusyBlocks("test1", 0, "10:00", 2, "12:00");
+            printSchedule("member 1 schedule", member1.getSchedule()); //check
 
-                member2.addBusyBlocks("test2", 2, "14:00", 2, "18:00");
-                printSchedule("member 2 schedule", member2.getSchedule()); //check
+            member2.addBusyBlocks("test2", 2, "14:00", 2, "18:00");
+            printSchedule("member 2 schedule", member2.getSchedule()); //check
 
-                ArrayList<TeamMember> myScheduleList = new ArrayList<>();
-                myScheduleList.add(member1);
-                myScheduleList.add(member2);
-                ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
-                Boolean[][] myMasterSchedule = myScheduleHandler.getMasterSchedule();
-                printSchedule("master schedule", myMasterSchedule); //check
-                myScheduleHandler.printFreeTimings();
+            ArrayList<TeamMember> myScheduleList = new ArrayList<>();
+            myScheduleList.add(member1);
+            myScheduleList.add(member2);
+            ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
+            Boolean[][] myMasterSchedule = myScheduleHandler.getMasterSchedule();
+            printSchedule("master schedule", myMasterSchedule); //check
+            myScheduleHandler.printFreeTimings();
 
-                break;
-            case "2":
-                out.println("Which meeting slot do you want to delete?");
-                member1.deleteBusyBlocks("TESTMEETING");
-                for (int i = 0; i < 7; i++) {
-                    for (int j = 0; j < 48; j++) {
-                        out.print(member1.getSchedule()[i][j]);
-                    }
-                    out.println();
+            break;
+        case "2":
+            out.println("Which meeting slot do you want to delete?");
+            member1.deleteBusyBlocks("TESTMEETING");
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 48; j++) {
+                    out.print(member1.getSchedule()[i][j]);
                 }
-                break;
-            case "3":
-                out.println("Which meeting slot do you want to edit?");
-                break;
-            case "4":
-                out.println("Here are all your meeting slots.");
-                break;
-            default:
-                throw new MoException("Unknown command, please try again.");
+                out.println();
+            }
+            break;
+        case "3":
+            out.println("Which meeting slot do you want to edit?");
+            break;
+        case "4":
+            out.println("Here are all your meeting slots.");
+            break;
+        default:
+            throw new MoException("Unknown command, please try again.");
         }
     }
 

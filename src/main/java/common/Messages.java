@@ -1,7 +1,7 @@
 package common;
 
 /**
- *
+ * TESTING SUMMARY DOC.
  */
 public class Messages {
     public static final String MESSAGE_STARTENDTIME_OUT_OF_RANGE = "Start and end time must be between of 00:00-23:30";

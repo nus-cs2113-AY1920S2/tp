@@ -1,12 +1,14 @@
+import static java.lang.System.out;
+
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static java.lang.System.out;
-
 /**
- *
+ * TESTING SUMMARY DOC.
  */
+
 public class ScheduleHandler {
     private final Boolean myScheduleBlocked = true;
     private final Boolean myScheduleFree = false;
@@ -44,8 +46,6 @@ public class ScheduleHandler {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
                 if (masterSchedule[i][j] == myScheduleFree) {
-                    int startDay = i;
-                    int startBlock = j;
                     boolean change = false;
                     boolean end = false;
                     while (masterSchedule[i][j] == myScheduleFree) {
@@ -63,6 +63,8 @@ public class ScheduleHandler {
                         }
                         j++;
                     }
+                    int startDay = i;
+                    int startBlock = j;
                     int endDay = i;
                     int endBlock = j - 1;
                     if (change) {
@@ -93,8 +95,8 @@ public class ScheduleHandler {
         int size = this.freeBlocks.size();
         if (size > 1) {
             Boolean isSunday = this.freeBlocks.get(0).get(0).equals(this.freeBlocks.get(size - 1).get(2));
-            Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0) &&
-                                this.freeBlocks.get(size - 1).get(3).equals(47);
+            Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0)
+                && this.freeBlocks.get(size - 1).get(3).equals(47);
             Boolean isSundayMidnightOverlap = isSunday && isMidnight;
             if (isSundayMidnightOverlap) {
                 Integer newStartDay = this.freeBlocks.get(size - 1).get(0);
@@ -122,29 +124,29 @@ public class ScheduleHandler {
     public String getDayFromNumber(int dayNum) {
         String day;
         switch (dayNum) {
-            case 0:
-                day = "Sunday";
-                break;
-            case 1:
-                day = "Monday";
-                break;
-            case 2:
-                day = "Tuesday";
-                break;
-            case 3:
-                day = "Wednesday";
-                break;
-            case 4:
-                day = "Thursday";
-                break;
-            case 5:
-                day = "Friday";
-                break;
-            case 6:
-                day = "Saturday";
-                break;
-            default:
-                day = "";
+        case 0:
+            day = "Sunday";
+            break;
+        case 1:
+            day = "Monday";
+            break;
+        case 2:
+            day = "Tuesday";
+            break;
+        case 3:
+            day = "Wednesday";
+            break;
+        case 4:
+            day = "Thursday";
+            break;
+        case 5:
+            day = "Friday";
+            break;
+        case 6:
+            day = "Saturday";
+            break;
+        default:
+            day = "";
         }
         return day;
     }
@@ -154,24 +156,24 @@ public class ScheduleHandler {
         int hourTime = 0;
 
         switch (startOrEnd) {
-            case "START":
-                hourTime = blockNum / 2;
-                if (blockNum % 2 == 1) {
-                    minuteTime = 30;
-                }
-                break;
-            case "END":
-                if (blockNum == 47) {
-                    hourTime = 0;
-                } else {
-                    hourTime = (blockNum + 1) / 2;
-                }
+        case "START":
+            hourTime = blockNum / 2;
+            if (blockNum % 2 == 1) {
+                minuteTime = 30;
+            }
+            break;
+        case "END":
+            if (blockNum == 47) {
+                hourTime = 0;
+            } else {
+                hourTime = (blockNum + 1) / 2;
+            }
 
-                if (blockNum % 2 == 0) {
-                    minuteTime = 30;
-                }
-
-                break;
+            if (blockNum % 2 == 0) {
+                minuteTime = 30;
+            }
+            break;
+        default:
         }
 
         LocalTime myTime = LocalTime.of(hourTime, minuteTime);

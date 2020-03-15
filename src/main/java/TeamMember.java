@@ -1,16 +1,17 @@
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
-
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static java.lang.System.out;
 
+
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+
 /**
- *
+ * TESTING SUMMARY DOC.
  */
-@SuppressWarnings("checkstyle:LineLength")
+
 public class TeamMember {
     private final Boolean myScheduleBlocked = true;
     private final Boolean myScheduleFree = false;
@@ -29,12 +30,12 @@ public class TeamMember {
         }
     }
 
-    public String addBusyBlocks(String meetingName, Integer startDay, String stringStartTime, Integer endDay, String stringEndTime) {
-        LocalTime startTime;
-        LocalTime endTime;
+    public String addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime) {
+        LocalTime localTimeStart;
+        LocalTime localTimeEnd;
         try {
-            startTime = LocalTime.parse(stringStartTime);
-            endTime = LocalTime.parse(stringEndTime);
+            localTimeStart = LocalTime.parse(startTime);
+            localTimeEnd = LocalTime.parse(endTime);
         } catch (DateTimeParseException e) {
             out.println(MESSAGE_STARTENDTIME_OUT_OF_RANGE);
             return MESSAGE_STARTENDTIME_OUT_OF_RANGE;
@@ -42,8 +43,8 @@ public class TeamMember {
         Integer startBlock = 0;
         Integer endBlock = 0;
         try {
-            startBlock = getBlocksFromTime(startTime);
-            endBlock = getBlocksFromTime(endTime);
+            startBlock = getBlocksFromTime(localTimeStart);
+            endBlock = getBlocksFromTime(localTimeEnd);
         } catch (MoException e) {
             out.println(e.getMessage());
             return e.getMessage();
@@ -101,14 +102,14 @@ public class TeamMember {
         int minuteBlocks = -1;
         int hourBlocks = -1;
         switch (myTime.getMinute()) {
-            case 0:
-                minuteBlocks = 0;
-                break;
-            case 30:
-                minuteBlocks = 1;
-                break;
-            default:
-                throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
+        case 0:
+            minuteBlocks = 0;
+            break;
+        case 30:
+            minuteBlocks = 1;
+            break;
+        default:
+            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
 
         }
         hourBlocks = myTime.getHour() * 2;

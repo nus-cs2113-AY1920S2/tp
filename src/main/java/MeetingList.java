@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- *
+ * TESTING SUMMARY DOC.
  */
 public class MeetingList {
     ArrayList<Meeting> myMeeting = new ArrayList<>();
