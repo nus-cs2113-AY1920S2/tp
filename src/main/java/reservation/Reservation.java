@@ -3,7 +3,11 @@ package reservation;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static utils.Constants.*;
+import static utils.Constants.NOT_SERVED;
+import static utils.Constants.SMALL_TABLE;
+import static utils.Constants.MEDIUM_TABLE;
+import static utils.Constants.LARGE_TABLE;
+
 
 /** Reservation of the restaurant. */
 public class Reservation {

@@ -9,7 +9,12 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static utils.Constants.*;
+import static utils.Constants.DELIMITER;
+import static utils.Constants.RES_PERSON_MARKER;
+import static utils.Constants.RES_DATE_MARKER;
+import static utils.Constants.RES_NUM_MARKER;
+import static utils.Constants.RES_CONTACT_MARKER;
+import static utils.Constants.RES_COMMENT_MARKER;
 
 
 /* Command object for "add reservation" command */
@@ -96,7 +101,7 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
         
-        delimiterMissing = hasDelimiterInBetween(datePos+ RES_DATE_MARKER.length(), dateEndPos);
+        delimiterMissing = hasDelimiterInBetween(datePos + RES_DATE_MARKER.length(), dateEndPos);
         if (delimiterMissing) {
             throw new DelimiterMissingException();
         }
@@ -172,8 +177,8 @@ public class AddReservationCommand extends ReservationCommand {
      * @return True if there is another marker, False otherwise.
      */
     private boolean hasDelimiterInBetween(int startPos, int endPos) {
-        String[] markers = new String[]{RES_PERSON_MARKER, RES_DATE_MARKER, RES_NUM_MARKER, RES_CONTACT_MARKER, 
-                RES_CONTACT_MARKER, RES_COMMENT_MARKER};
+        String[] markers = {RES_PERSON_MARKER, RES_DATE_MARKER, RES_NUM_MARKER, 
+            RES_CONTACT_MARKER, RES_CONTACT_MARKER, RES_COMMENT_MARKER};
 
         String targetSubstring = this.description.substring(startPos, endPos);
         for (String marker: markers) {
