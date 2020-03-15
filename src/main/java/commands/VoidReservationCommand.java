@@ -30,4 +30,9 @@ public class VoidReservationCommand extends ReservationCommand {
         // voids the reservation
         reservations.voidReservation(reservationNumber);
     }
+    
+    @Override
+    protected void parseInput(String description) {
+
+    }
 }

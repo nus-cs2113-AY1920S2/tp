@@ -39,28 +39,14 @@ public class Main {
     
     /** Read user's input, parse it into readable command format and execute it. */
     private void runCommandUntilExit() {                     
-
-        while(true){
+        
+        while (true) {
             System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
             new CommandParser().parseCommand(userInput,this.menu,this.stock,this.reservations);
-            //CommandResult result = executeCommand(command);
         }
     }
     
-    /** Executes a command. */
-//    private CommandResult executeCommand(Command command) {
-//        try {
-//            command.setData(this.stock);
-//            CommandResult output = command.execute();
-//            ui.showMessage(output.getCommandResult());
-//            return output;
-//        } catch (Exception e) {
-//            ui.showMessage(e.getMessage());
-//            throw new RuntimeException(e);
-//        }
-//
-//    }
     
     /** Exits the program with a goodbye message. */
     private void exit() {

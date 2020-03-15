@@ -30,4 +30,9 @@ public class MarkReservationCommand extends ReservationCommand {
         // mark the reservation as done
         reservations.markReservationAsServed(reservationNumber);
     }
+    
+    @Override
+    protected void parseInput(String description) {
+
+    }
 }
