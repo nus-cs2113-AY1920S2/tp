@@ -63,6 +63,8 @@ public class CommandInterpreter {
             EventCommandInterpreter eci = new EventCommandInterpreter(eventList);
             command = eci.decideCommand(commandDescription);
             break;
+        case "seminar":
+
         case "attendance":
             AttendanceCommandInterpreter aci = new AttendanceCommandInterpreter(eventList);
             command = aci.decideCommand(commandDescription);

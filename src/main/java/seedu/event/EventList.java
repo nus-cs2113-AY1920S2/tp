@@ -1,6 +1,7 @@
 package seedu.event;
 
 import seedu.exception.DukeException;
+import seedu.ui.UI;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class EventList {
      */
     public void add(Event event) {
         list.add(event);
+        UI.addEventMessage("Event", event.getName());
     }
 
     /**
@@ -41,6 +43,7 @@ public class EventList {
      * @return the removed event
      */
     public Event delete(int index) {
+        UI.deleteEventMessage("Event", list.get(index).getName());
         Event removedEvent = list.remove(index);
         return removedEvent;
     }

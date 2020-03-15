@@ -9,13 +9,14 @@ public class Seminar extends Event {
     private String venue;
 
     public Seminar() {
+        //super();
         setName("");
         setDatetime("");
         setVenue("");
     }
 
     public Seminar(String name, String datetime, String venue) {
-        this();
+        //super(name, datetime, venue);
         setName(name);
         setDatetime(datetime);
         setVenue(venue);
