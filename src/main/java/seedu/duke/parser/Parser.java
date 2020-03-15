@@ -114,8 +114,16 @@ public class Parser {
                     newCommand = new AddCommand(description, price);
                 } catch (NumberFormatException nfe) {
                     newCommand = new IncorrectCommand(System.lineSeparator()
-                            + "Error! price should follow this format"
-                            + "\nExample: p/4.50");
+                            + "Oops! For that to be done properly, check if these are met:"
+                            + System.lineSeparator()
+                            + " - Description of an item cannot be empty."
+                            + System.lineSeparator()
+                            + " - Price of an item has to be in numerical form."
+                            + System.lineSeparator()
+                            + " - At least 'i/' or 'p/' should be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apple p/2.50"
+                            + System.lineSeparator());
                 }
             }
         } catch (NullPointerException e) {

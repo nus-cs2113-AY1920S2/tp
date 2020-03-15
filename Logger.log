@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-03-15T05:24:19.326180300Z</date>
-  <millis>1584249859326</millis>
-  <nanos>180300</nanos>
+  <date>2020-03-15T05:27:17.340236700Z</date>
+  <millis>1584250037340</millis>
+  <nanos>236700</nanos>
   <sequence>0</sequence>
   <logger>global</logger>
   <level>INFO</level>
@@ -14,15 +14,39 @@
   <message>Application starting.</message>
 </record>
 <record>
-  <date>2020-03-15T05:25:06.088361600Z</date>
-  <millis>1584249906088</millis>
-  <nanos>361600</nanos>
+  <date>2020-03-15T05:27:32.176113700Z</date>
+  <millis>1584250052176</millis>
+  <nanos>113700</nanos>
   <sequence>1</sequence>
   <logger>global</logger>
   <level>INFO</level>
-  <class>seedu.duke.Duke</class>
-  <method>exit</method>
+  <class>seedu.duke.commands.AddCommand</class>
+  <method>execute</method>
   <thread>1</thread>
-  <message>Application shutting down</message>
+  <message>(Add command)  Added item: seedu.duke.data.ShoppingList@45283ce2</message>
+</record>
+<record>
+  <date>2020-03-15T05:27:32.198256300Z</date>
+  <millis>1584250052198</millis>
+  <nanos>256300</nanos>
+  <sequence>2</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Add command)  Added item: seedu.duke.data.ShoppingList@45283ce2</message>
+</record>
+<record>
+  <date>2020-03-15T05:27:34.101090100Z</date>
+  <millis>1584250054101</millis>
+  <nanos>90100</nanos>
+  <sequence>3</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>seedu.duke.commands.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>(Add command)  Added item: seedu.duke.data.ShoppingList@45283ce2</message>
 </record>
 </log>
