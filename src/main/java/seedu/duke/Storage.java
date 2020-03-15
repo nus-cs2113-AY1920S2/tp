@@ -66,7 +66,7 @@ public class Storage {
                 }
                 foodList.add(new Food(foodName));
             }
-            if (currentPerson!=null && currentRecord!=null) {
+            if (currentPerson != null && currentRecord!=null) {
                 currentPerson.setRecordOfDay(currentRecord,info[0],foodList);
             }
         } else if (info[0].equals("user")) {
@@ -80,7 +80,7 @@ public class Storage {
             Person person = new Person(name,age,gender,height,weight,weightGoal);
             personList.append(person);
         } else if (info[0].equals("date")) {
-            if (currentPerson!=null) {
+            if (currentPerson != null) {
                 currentPerson.addNewRecord(info[1]);
             }
         }
