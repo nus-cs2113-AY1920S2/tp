@@ -9,10 +9,6 @@ import java.util.ArrayList;
 
 public class ClearCommand  extends Command {
     public static final String CLEAR_COMMAND_WORD = "clear";
-<<<<<<< HEAD
-
-=======
->>>>>>> branch-clear
     private static final String ALL_CLEAR_COMMAND = "";
     protected final String clearAllParam  = "all";
     protected final String clearDoneParam = "done";
@@ -54,19 +50,6 @@ public class ClearCommand  extends Command {
     }
 
     /**
-<<<<<<< HEAD
-     * Deletes all completed tasks.
-     * @param taskList ArrayList containing all the tasks
-     * @return ArrayList containing the new taskList
-     */
-    public ArrayList<Task> deleteCompletedTask(TaskList taskList) {
-        ArrayList<Task> tasks = taskList.getTaskArray();
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getIsDone()) {
-                tasks.remove(i);
-            }
-        }
-=======
      * Removes all completed tasks in 1 iteration of loop.
      * @param tasks TaskList containing all the tasks
      * @param deleted number of tasks that have already been deleted
@@ -93,26 +76,10 @@ public class ClearCommand  extends Command {
         while (deleted < doneIndex.size()) {
             deleted = getDeleted(tasks,deleted);
         }
->>>>>>> branch-clear
         return tasks;
     }
 
     /**
-<<<<<<< HEAD
-     * Returns the total number of completed tasks.
-     * @param taskList ArrayList storing all the tasks
-     * @return number of completed tasks
-     */
-    public int getNumberCompletedTask(TaskList taskList) {
-        int count = 0;
-        ArrayList<Task> tasks = taskList.getTaskArray();
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getIsDone()) {
-                count++;
-            }
-        }
-        return count;
-=======
      * Get all the index of tasks that have been completed.
      * @param taskList list of tasks
      * @return ArrayList of index of completed tasks
@@ -127,7 +94,6 @@ public class ClearCommand  extends Command {
             count++;
         }
         return doneIndex;
->>>>>>> branch-clear
     }
 
     /**
@@ -136,18 +102,6 @@ public class ClearCommand  extends Command {
      * @return user messages
      */
     public CommandResult clearDone(TaskList taskList) {
-<<<<<<< HEAD
-        if (taskList.getListSize() == 0) {
-            return new CommandResult(Messages.EMPTY_TASKLIST_MESSAGE);
-        } else if (getNumberCompletedTask(taskList) == 0) {
-            return new CommandResult(Messages.EMPTY_DONE_CLEAR_ERROR);
-        } else {
-            int size = taskList.getListSize();
-            int completed = getNumberCompletedTask(taskList);
-            ArrayList<Task> newTaskList = deleteCompletedTask(taskList);
-            taskList.updateTaskList(newTaskList);
-            assert taskList.getListSize() == size - completed;
-=======
         int originalTaskSize = taskList.getListSize();
         ArrayList<Integer> doneIndex = getCompletedIndex(taskList);
         if (taskList.getListSize() == 0) {
@@ -158,7 +112,6 @@ public class ClearCommand  extends Command {
             ArrayList<Task> tasks = deleteCompletedTask(taskList, doneIndex);
             taskList.updateTaskList(tasks);
             assert taskList.getListSize() == originalTaskSize - doneIndex.size();
->>>>>>> branch-clear
             return new CommandResult(Messages.CLEAR_DONE_SUCCESS_MESSAGE);
         }
     }
