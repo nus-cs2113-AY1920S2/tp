@@ -30,12 +30,12 @@ public class Duke {
         try {
             storage.loadFileData(personList);
         } catch (FileNotFoundException e) {
-            System.out.println("File not found!!! Already create a new one for you!!!");
+//            System.out.println("File not found!!! Already create a new one for you!!!");
         }
     }
 
     public static void main(String[] args) {
-        new Duke("data/user info.txt").run();
+        new Duke("data/userInfo.txt").run();
     }
 
     /**
@@ -51,7 +51,7 @@ public class Duke {
                 + "                                                       __/ |            \n"
                 + "                                                      |___/             ";
         System.out.println(logo);
-        System.out.println("Welcome to Diet Manager! How may I assist you today?");
+        System.out.println("Welcome to Diet Manager! How may I assist you today? ");
     }
 
     /**

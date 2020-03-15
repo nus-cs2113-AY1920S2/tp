@@ -19,7 +19,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
         this.dirPath = filePath.substring(0,filePath.indexOf("/"));
-        this.file = new File(filePath);
+        this.file = new File(this.filePath);
     }
 
     /**

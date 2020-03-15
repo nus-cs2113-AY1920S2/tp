@@ -17,7 +17,9 @@ public class Parser {
      */
     public Command convertToCommand(String input) {
         Command command = new Command();
+        String[] info = input.split(" ");
         //deal with command according to user input (i.e, set commandType and description)
+        command.setCommandType(info[0]);
         return command;
     }
 }
