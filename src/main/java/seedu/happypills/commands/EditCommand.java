@@ -61,11 +61,12 @@ public class EditCommand extends Command {
      * @throws HappyPillsException Throws an exception if the edit field is not valid.
      */
     @Override
-    public void execute(PatientList patients) throws HappyPillsException {
+    public String execute(PatientList patients) throws HappyPillsException {
         if (editField.equals("phone") || editField.equals("allergies") || editField.equals("remarks")) {
             editChanges(patients);
         } else {
             throw new HappyPillsException("Edit field is not valid.");
         }
+        return null;
     }
 }

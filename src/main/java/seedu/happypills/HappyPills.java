@@ -41,7 +41,8 @@ public class HappyPills {
                 String fullCommand = in.nextLine();
                 System.out.println(ui.DIVIDER);
                 Command c = Parser.parse(fullCommand);
-                c.execute(patients);
+                String message = c.execute(patients);
+                System.out.println(message);
             } catch (HappyPillsException hpe) {
                 System.out.println(hpe.getMessage());
                 System.out.println(ui.DIVIDER);

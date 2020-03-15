@@ -10,17 +10,19 @@ public class TextUi {
     /**
      * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
      */
-    public static void printList(PatientList patients) {
+    public static String getList(PatientList patients) {
+        String message = "";
         for (Patient patient : patients) {
-            System.out.println("    " + patient.getName() + " | " + patient.getNric());
+            message += "    " + patient.getName() + " | " + patient.getNric() + "\n";
         }
-        System.out.println(DIVIDER);
+        message += DIVIDER;
+        return message;
     }
 
     /**
      * Generates and prints the list of commands.
      */
-    public static void printHelp() {
+    public static String getHelp() {
         String helpMessage = "    Shows program usage instructions:\n"
                 + "      add NAME, NRIC, PHONE_NUMBER, DOB, BLOOD_TYPE, [ALLERGIES], [REMARKS]\n"
                 + "      list \n"
@@ -29,17 +31,22 @@ public class TextUi {
                 + "      close\n"
                 + "      delete NRIC\n"
                 + "      help\n"
-                + "      exit";
-        System.out.println(helpMessage);
-        System.out.println(DIVIDER);
+                + "      exit\n";
+        helpMessage += DIVIDER;
+        return helpMessage;
     }
 
     /**
      * Displays empty list message when there are no patients in the list.
      */
-    public static void printEmptyList() {
-        System.out.println("    There are no patients in the list.");
-        System.out.println(DIVIDER);
+    public static String getEmptyList() {
+        String emptyListMessage = "    There are no patients in the list.\n" + DIVIDER;
+        return emptyListMessage;
+    }
+
+    public static void printPatient(Patient patient) {
+        System.out.println("    Got it! I've added this patient:");
+        System.out.println(patient + DIVIDER);
     }
 
     /**
@@ -62,13 +69,10 @@ public class TextUi {
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
-    public static void printPatient(Patient patient, int patientNum) {
-        System.out.println("    Got it! I've added this patient:");
-        System.out.println(patient + DIVIDER);
-    }
-
-    public static void printPatient(Patient patient) {
-        System.out.println(patient + DIVIDER);
+    public static String getPatient(Patient patient, int patientNum) {
+        String message;
+        message = "    Got it! I've added this patient:\n" + patient + DIVIDER;
+        return message;
     }
 
     public static void printEditSuccess(Patient patient) {

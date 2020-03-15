@@ -18,12 +18,13 @@ public class RetrieveCommand extends Command {
     }
 
     @Override
-    public void execute(PatientList patients) {
+    public String execute(PatientList patients) {
         for (Patient patient : patients) {
             if (patient.getNric().equals(patientNric)) {
                 TextUi.printPatient(patient);
             }
         }
+        return null;
     }
 
 }
