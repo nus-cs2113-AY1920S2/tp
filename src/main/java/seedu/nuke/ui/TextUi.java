@@ -4,9 +4,6 @@ import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 import seedu.nuke.command.CommandResult;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import static org.fusesource.jansi.Ansi.Color.*;
 import static org.fusesource.jansi.Ansi.ansi;
 import static seedu.nuke.util.Message.*;
@@ -28,6 +25,14 @@ public class TextUi {
                 ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(MESSAGE_WELCOME_1).reset());
         System.out.println(
                 ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(MESSAGE_WELCOME_2).reset());
+        printDivider();
+        AnsiConsole.systemUninstall();
+    }
+
+    public static void showExitMessage (){
+        AnsiConsole.systemInstall();
+        printDivider();
+        System.out.println(ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(MESSAGE_EXIT).reset());
         printDivider();
         AnsiConsole.systemUninstall();
     }
@@ -58,15 +63,6 @@ public class TextUi {
     public static void printDivider(){
         AnsiConsole.systemInstall();
         System.out.println( ansi().bold().fg(SYSTEM_COLOR_DIVIDER).a(DIVIDER).reset() );
-        AnsiConsole.systemUninstall();
-    }
-
-    public static final String DIVIDER = "---------------------------------------------------------------------------------";
-
-    public static void printCommandResult(CommandResult result) {
-        AnsiConsole.systemInstall();
-        System.out.println( ansi().bold().fg(SYSTEM_COLOR_RESPONSE).a(result.getFeedbackToUser()).reset() );
-        printDivider();
         AnsiConsole.systemUninstall();
     }
 

@@ -5,6 +5,7 @@ import seedu.nuke.module.Module;
 import seedu.nuke.data.ModuleManager;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -38,7 +39,7 @@ public class Ui {
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
         if (result.isShowTasks()) {
-            showSystemMessage(createModuleList());
+            printShownList(result.getShownList());
         }
     }
 
@@ -51,23 +52,28 @@ public class Ui {
         out.println(message.replace("\n", LS));
     }
 
+    public void printShownList(ArrayList<String> shownList) {
+        final String DIVIDER = String.format("%s%s%s\n", "+", "-".repeat(100), "+");
+        StringBuilder listToShow = new StringBuilder();
+
+        System.out.println(DIVIDER);
+
+        for (String str: shownList) {
+            System.out.println(str);
+        }
+
+        System.out.println(DIVIDER);
+
+    }
+
     /**
      * Returns the list of all tasks created by the user.
      *
      * @return The formatted list to be shown to the user
      */
-    private String createModuleList() {
-        final String DIVIDER = String.format("%s%s%s\n", "+", "-".repeat(100), "+");
-        StringBuilder listToShow = new StringBuilder();
 
-        listToShow.append(DIVIDER);
 
-        for (Module module : ModuleManager.getModuleList()) {
-            listToShow.append(String.format("%s\n", module.getModuleCode()));
-        }
+    public void showDeadlines(ArrayList<String> deadlines) {
 
-        listToShow.append(DIVIDER);
-
-        return listToShow.toString();
     }
 }

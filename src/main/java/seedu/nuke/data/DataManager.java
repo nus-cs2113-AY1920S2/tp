@@ -6,6 +6,8 @@ import seedu.nuke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * the management system
@@ -26,7 +28,12 @@ public class DataManager {
     }
 
     public void sortAllTasks() {
-        Collections.sort(allTasks);
+        Collections.sort(allTasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2) {
+                return t1.getDeadline().toString().compareToIgnoreCase(t2.getDeadline().toString());
+            }
+        });
     }
 
     public ArrayList<Task> getAllTasks() {
@@ -41,7 +48,7 @@ public class DataManager {
         ArrayList<String> deadlines = new ArrayList<>();
         sortAllTasks();
         for (Task task: allTasks) {
-            deadlines.add("Task: " + task.getDescription() + "  deadline: "+task.getDeadline());
+            deadlines.add(task.getDescription() + task.getModuleCode() + "  deadline: "+task.getDeadline());
         }
         return deadlines;
     }

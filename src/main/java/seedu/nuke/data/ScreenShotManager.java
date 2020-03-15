@@ -12,8 +12,9 @@ public class ScreenShotManager {
         currentPointer = 0;
     }
 
-    public ScreenShotManager(List<ScreenShot> screenShotList) {
+    public ScreenShotManager(List<ScreenShot> screenShotList, int currentPointer) {
         this.screenShotList = screenShotList;
+        this.currentPointer = currentPointer;
     }
 
     public List<ScreenShot> getScreenShotList() {

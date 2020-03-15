@@ -32,6 +32,6 @@ public class CheckAllTasksDeadlineCommand extends Command{
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
         deadlines = dataManager.checkDeadline();
-        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULY_LIST, dataManager.countAllTasks()));
+        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULY_LIST, dataManager.countAllTasks()), true, deadlines);
     }
 }

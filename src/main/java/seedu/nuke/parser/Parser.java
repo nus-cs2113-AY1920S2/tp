@@ -4,9 +4,10 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.*;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.exception.ModuleNotFoundException;
+import seedu.nuke.exception.InvalidIndexException;
 import seedu.nuke.task.Task;
 
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,7 +38,7 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseCommand(String input) {
+    public Command parseCommand(String input) throws InvalidIndexException, ModuleNotFoundException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         /*
         if (input.isEmpty()) {
@@ -72,8 +73,14 @@ public class Parser {
         case CheckAllTasksDeadlineCommand.COMMAND_WORD:
             return new CheckAllTasksDeadlineCommand();
 
-        //case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
-            //return new CheckModuleTasksDeadlineCommand();
+        case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
+            try {
+                return new CheckModuleTasksDeadlineCommand(Integer.parseInt(parameters));
+            } catch (NumberFormatException e) {
+                throw new InvalidIndexException();
+            } catch (ModuleNotFoundException e) {
+                throw e;
+            }
 
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
@@ -106,7 +113,7 @@ public class Parser {
         //todo
         //add a very simple task (for testing)
         if (Command.getCurrentModule()!= null){
-            return new AddTaskCommand(new Task(parameters));
+            return new AddTaskCommand(new Task(parameters, Command.getCurrentModule().getModuleCode()));
         } else {
             return new IncorrectCommand("please go inside a Module!");
         }

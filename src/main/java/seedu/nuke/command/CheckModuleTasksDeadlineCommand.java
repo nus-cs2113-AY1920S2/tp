@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class CheckModuleTasksDeadlineCommand extends Command {
 
-    public static final String COMMAND_WORD = "lst";
+    public static final String COMMAND_WORD = "lstm";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     private int moduleIndex;
@@ -33,6 +33,6 @@ public class CheckModuleTasksDeadlineCommand extends Command {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
         deadlines = module.checkDeadline();
-        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULY_LIST, module.countTasks()));
+        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULY_LIST, module.countTasks()), true, deadlines);
     }
 }

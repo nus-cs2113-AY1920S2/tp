@@ -21,8 +21,6 @@ public class AddTaskCommand extends TaskCommand{
     public CommandResult execute() {
         //add the task to the module's task manager
         currentModule.getTaskManager().addTask(taskToAdd);
-        //add the task to the data manager
-        dataManager.addTask(taskToAdd);
         return new CommandResult(MESSAGE_TASK_ADDED);
     }
 }
