@@ -22,7 +22,7 @@ public class Duke {
     private static AvailableModulesList availableModulesList;
     private static SelectedModulesList selectedModulesList;
     private static Ui ui;
-    private final static Logger logr = Logger.getLogger("Duke");
+    private static final Logger logr = Logger.getLogger("Duke");
 
     /**
      * Instantiate all required classes.
