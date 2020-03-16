@@ -4,7 +4,10 @@ import seedu.happypills.commands.Command;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.parser.Parser;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
+
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
@@ -15,13 +18,19 @@ import java.util.Scanner;
 public class HappyPills {
     private TextUi ui;
     private PatientList patients;
+    private static final String FILEPATH = "data/data.txt";
 
     /**
      * Sets up the required objects, loads up the data from the storage file.
      */
     public HappyPills() {
         ui = new TextUi();
-        patients = new PatientList();
+        //patients = new PatientList();
+        try {
+            patients = Storage.loadFromFile(FILEPATH);
+        } catch (FileNotFoundException e) {
+            patients = new PatientList();
+        }
     }
 
     /**
@@ -45,7 +54,7 @@ public class HappyPills {
             logger.log(logLevel, "going to start processing");
             try {
                 String fullCommand = in.nextLine();
-                System.out.println(ui.DIVIDER);
+                System.out.println(TextUi.DIVIDER);
                 Command c = Parser.parse(fullCommand);
                 String message = c.execute(patients);
                 if (message != null) {
@@ -53,7 +62,7 @@ public class HappyPills {
                 }
             } catch (HappyPillsException hpe) {
                 System.out.println(hpe.getMessage());
-                System.out.println(ui.DIVIDER);
+                System.out.println(TextUi.DIVIDER);
             }
 
             logger.log(logLevel, "end of processing");
