@@ -2,6 +2,7 @@ package seedu.happypills.commands;
 
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
+import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
 
@@ -45,6 +46,29 @@ public class AddCommand extends Command {
         this.remarks = remarks;
     }
 
+    private boolean isInList(PatientList patients) {
+        for (Patient p : patients) {
+            if (p.getNric().equalsIgnoreCase(nric)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Retrieve the patient from the NRIC of the Add command.
+     *
+     * @param patients Contains the list of patients to be searched.
+     */
+    private Patient findPatient(PatientList patients) {
+        for (Patient patient : patients) {
+            if (patient.getNric().equalsIgnoreCase(nric)) {
+                return patient;
+            }
+        }
+        return null;
+    }
+
     /**
      * Adds a new task to the list with the information provided by calling.
      * {} (or) {}
@@ -54,10 +78,36 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(PatientList patients) {
-        String message;
+        String message = "";
         int patientNum = patients.size();
-        patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
-        message = TextUi.getPatient(patients.get(patientNum), patientNum);
+        if (name.equalsIgnoreCase("")) {
+            Patient addPatient = findPatient(patients);
+            if (!remarks.equalsIgnoreCase("")) {
+                String rem = addPatient.getRemarks();
+                if (!rem.equalsIgnoreCase("")) {
+                    rem += "\n                  " + remarks;
+                } else {
+                    rem = remarks;
+                }
+                addPatient.setRemarks(rem);
+                message = TextUi.printEditSuccess(addPatient);
+            } else if (!allergies.equalsIgnoreCase("")) {
+                String patientAllergies = addPatient.getAllergies();
+                if (!patientAllergies.equalsIgnoreCase("")) {
+                    patientAllergies += "\n                    " + allergies;
+                } else {
+                    patientAllergies = allergies;
+                }
+                addPatient.setAllergies(patientAllergies);
+                message = TextUi.printEditSuccess(addPatient);
+            }
+        } else {
+            if (isInList(patients)) {
+                System.out.println("    Patient already exists in the program.");
+            }
+            patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
+            message = TextUi.getPatient(patients.get(patientNum), patientNum);
+        }
         return message;
     }
 }

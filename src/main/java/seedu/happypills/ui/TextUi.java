@@ -72,8 +72,8 @@ public class TextUi {
                 + "|  | |  ||   _   ||       ||       ||  | |  ||       ||   | |   |    |   |    |       |\n"
                 + "|  |_|  ||  |_|  ||    _  ||    _  ||  |_|  ||    _  ||   | |   |    |   |    |  _____|\n"
                 + "|       ||       ||   |_| ||   |_| ||       ||   |_| ||   | |   |    |   |    | |_____\n"
-                + "|   _   ||   _   ||    ___||    ___||_     _||    ___||   | |   |___ |   |___ |_____  |\n"
-                + "|  | |  ||  | |  ||   |    |   |      |   |  |   |    |   | |       ||       | _____| |\n"
+                + "|       ||       ||    ___||    ___||_     _||    ___||   | |   |___ |   |___ |_____  |\n"
+                + "|   _   ||   _   ||   |    |   |      |   |  |   |    |   | |       ||       | _____| |\n"
                 + "|__| |__||__| |__||___|    |___|      |___|  |___|    |___| |_______||_______||_______|\n";
 
         System.out.println("Hello from" + logo);
@@ -94,13 +94,28 @@ public class TextUi {
     }
 
     /**
+     * Displays confirmation message for deleting patients.
+     *
+     * @param patient The patient to be deleted.
+     */
+    public static void printDeleteConfirmation(Patient patient) {
+        System.out.println("    Are you sure you want to delete this patient: \n      "
+                + patient.getName()
+                + " || "
+                + patient.getNric()
+                + "? \n"
+                + DIVIDER
+                + "\n      (y/n)");
+    }
+
+    /**
      * Display updated patient's records.
      *
      * @param patient The patient whose records were updated.
      * @return The patient's updated records.
      */
     public static String printEditSuccess(Patient patient) {
-        String message = "Patient details have been updated as follows: \n"
+        String message = "    Patient details have been updated as follows: \n"
                 + patient + DIVIDER;
         return message;
     }
@@ -222,4 +237,23 @@ public class TextUi {
         System.out.println("See you again!");
     }
 
+    /**
+     * Append the divider to the given message.
+     *
+     * @param s The message that requires the divider to be appended.
+     * @return The message with the appended divider.
+     */
+    public static String appendDivider(String s) {
+        return s + DIVIDER;
+    }
+
+    /**
+     * Prepend the divider to the given message.
+     *
+     * @param s The message that requires the divider to be prepended.
+     * @return The message with the prepended divider.
+     */
+    public static String prependDivider(String s) {
+        return DIVIDER + "\n" + s;
+    }
 }
