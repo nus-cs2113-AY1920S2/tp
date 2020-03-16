@@ -1,4 +1,7 @@
-import static common.Messages.*;
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
+import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_INVALID_MEETING;
+
 import static java.lang.System.out;
 
 
