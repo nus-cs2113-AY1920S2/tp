@@ -85,8 +85,13 @@ public class TextUi {
      * @param patient The patient to be deleted.
      */
     public static void printDeleteConfirmation(Patient patient) {
-        System.out.println("    Are you sure you want to delete this patient: \n"
-                + patient.getName() + " || " + patient.getNric() + "?\n (y/n)");
+        System.out.println("    Are you sure you want to delete this patient: \n      "
+                + patient.getName()
+                + " || "
+                + patient.getNric()
+                + "? \n"
+                + DIVIDER
+                + "\n      (y/n)");
     }
 
     /**
@@ -226,5 +231,15 @@ public class TextUi {
      */
     public static String appendDivider(String s) {
         return s + DIVIDER;
+    }
+
+    /**
+     * Prepend the divider to the given message.
+     *
+     * @param s The message that requires the divider to be prepended.
+     * @return The message with the prepended divider.
+     */
+    public static String prependDivider(String s) {
+        return DIVIDER + "\n" + s;
     }
 }
