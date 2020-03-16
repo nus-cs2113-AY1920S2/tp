@@ -41,9 +41,10 @@ public class EditCommand extends Command {
      * @param patient The patient whose phone number is to be edited.
      * @param content The patient's new phone number.
      */
-    private void editPhone(Patient patient, String content) {
+    private String editPhone(Patient patient, String content) {
         patient.setPhoneNumber(Integer.parseInt(content));
-        TextUi.printEditPatient(patient);
+        String message = TextUi.printEditSuccess(patient);
+        return message;
     }
 
     /**
@@ -52,9 +53,10 @@ public class EditCommand extends Command {
      * @param patient The patient whose allergies is to be edited.
      * @param content The patient's updated allergies.
      */
-    private void editAllergies(Patient patient, String content) {
+    private String editAllergies(Patient patient, String content) {
         patient.setAllergies(content);
-        TextUi.printEditPatient(patient);
+        String message = TextUi.printEditSuccess(patient);
+        return message;
     }
 
     /**
@@ -63,9 +65,10 @@ public class EditCommand extends Command {
      * @param patient The patient whose remarks is to be edited.
      * @param content The patient's new remarks.
      */
-    private void editRemarks(Patient patient, String content) {
+    private String editRemarks(Patient patient, String content) {
         patient.setRemarks(content);
-        TextUi.printEditPatient(patient);
+        String message = TextUi.printEditSuccess(patient);
+        return message;
     }
 
     /**
@@ -85,20 +88,22 @@ public class EditCommand extends Command {
         String field = newContent.substring(0,2);
         String content = newContent.substring(2);
         Patient editPatient = findPatient(patients);
+        String output = "";
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
         }
         assert editPatient != null : "Patient is not in PatientList";
         if (field.equals("/p")) {
-            editPhone(editPatient, content);
+            output = editPhone(editPatient, content);
         } else if (field.equals("/r")) {
-            editRemarks(editPatient, content);
+            output = editRemarks(editPatient, content);
         } else if (field.equals("/a")) {
-            editAllergies(editPatient, content);
+            output = editAllergies(editPatient, content);
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
             + "    enter \"help edit\"");
         }
-        return null;
+        assert output.length() > 0 : "output message is invalid";
+        return output;
     }
 }
