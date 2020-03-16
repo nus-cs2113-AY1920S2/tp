@@ -54,7 +54,7 @@ public class TextUi {
      * @param patient patient object to be returned as a part of the string.
      * @return a formatted success message string to be displayed to user.
      */
-    public static String getPatientSuccessMessage(Patient patient) {
+        public static String getPatientSuccessMessage(Patient patient) {
         String returnMessage = "    Here are the patient's details:\n" + patient + DIVIDER;
         return returnMessage;
     }
