@@ -75,9 +75,9 @@ public class CommandInterpreter {
             command = pci.decideCommand(commandDescription);
             break;
         default:
-            assert ( !commandCategory.equals("bye") && !commandCategory.equals("event")
+            assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
-                    && !commandCategory.equals("performance") )
+                    && !commandCategory.equals("performance"))
                     : "accepted command category is not further interpreted!";
             throw new DukeException("Unknown command category is provided");
         }
