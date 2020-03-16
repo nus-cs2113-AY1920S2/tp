@@ -3,6 +3,7 @@ package jikan.parser;
 import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
 
@@ -52,13 +53,21 @@ public class Parser {
                 }
                 break;
             case "end":
-                parseEnd(activityList);
+                try {
+                    parseEnd(activityList);
+                } catch (NoSuchActivityException e) {
+                    ui.printDivider("There is no such task!");
+                }
                 break;
             case "list":
                 ui.printList(activityList);
                 break;
             case "abort":
-                parseAbort();
+                try {
+                    parseAbort();
+                } catch (NoSuchActivityException e) {
+                    ui.printDivider("There is no such task!");
+                }
                 break;
             default:
                 parseDefault();
@@ -74,10 +83,9 @@ public class Parser {
     }
 
     /** Method to parse the abort command. */
-    private void parseAbort() {
+    public void parseAbort() throws NoSuchActivityException {
         if (startTime == null) {
-            String line = "You have not started any activity!";
-            ui.printDivider(line);
+            throw new NoSuchActivityException();
         } else {
             startTime = null;
             tags = null;
@@ -122,10 +130,9 @@ public class Parser {
     }
 
     /** Method to parse the end activity command. */
-    public void parseEnd(ActivityList activityList) {
+    public void parseEnd(ActivityList activityList) throws NoSuchActivityException {
         if (startTime == null) {
-            String line = "You have not started any activity!";
-            ui.printDivider(line);
+            throw new NoSuchActivityException();
         } else {
             String line = "Ended " + activityName;
             ui.printDivider(line);

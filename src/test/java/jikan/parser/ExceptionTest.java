@@ -1,19 +1,15 @@
 package jikan.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
-import jikan.parser.Parser;
+import jikan.exception.NoSuchActivityException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
 
 class ExceptionTest {
 
     Parser parser = new Parser();
+    ActivityList activityList = new ActivityList();
 
     @Test
     public void testEmptyNameException() {
@@ -22,6 +18,17 @@ class ExceptionTest {
             parser.parseStart();
         });
     }
+
+    @Test
+    public void testNoSuchActivityException() {
+        Assertions.assertThrows(NoSuchActivityException.class, () -> {
+            parser.startTime = null;
+            parser.parseEnd(activityList);
+            parser.parseAbort();
+        });
+
+    }
+
 
 }
 
