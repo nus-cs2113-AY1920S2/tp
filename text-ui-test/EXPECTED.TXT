@@ -13,6 +13,20 @@ Oops! For that to be done properly, check if these are met:
 Error! Description of an item cannot be empty.
 Example: ADD 1 i/apple p/4.50
 
+Oops! For that to be done properly, check if these are met:
+ - Description of an item cannot be empty.
+ - Price of an item has to be in numerical form.
+ - At least 'i/' or 'p/' should be present.
+|| Example: ADD i/apple p/2.50
+
+
+Oops! For that to be done properly, check if these are met:
+ - Description of an item cannot be empty.
+ - Price of an item has to be in numerical form.
+ - At least 'i/' or 'p/' should be present.
+|| Example: ADD i/apple p/2.50
+
+
 Added this item: [0] apple $2.45
 
 Added this item: [0] banana $3.00
@@ -82,6 +96,7 @@ The item has been updated to: [0] apple $2.50
 The item has been updated to: [0] bananas $6.50
 
 The item has been updated to: [0] cherry $8.00
+Please provide a single numerical index number!
 
 Yes! I've marked this item as bought:
 [B] apple $2.50
@@ -90,16 +105,26 @@ Yes! I've marked this item as bought:
 Yes! I've marked this item as bought:
 [B] bananas $6.50
 
+Please provide a single numerical index number!
 
 Yes! I've unmarked this item as bought:
 [0] apple $2.50
 
-
-Got it! I have removed the following item:
-[0] apple $2.50
+Please provide a single numerical index number!
+Please provide a single numerical index number!
+Please provide a single numerical index number!
 
 Please enter an index
 Example: DEL 3
+
+Please enter an index
+Example: DEL 3
+
+Please enter an index
+Example: DEL 3
+
+Got it! I have removed the following item:
+[0] apple $2.50
 
 Please enter an index
 Example: DEL 3

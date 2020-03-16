@@ -8,16 +8,12 @@ public class ShoppingList {
 
     private static ArrayList<Item> items = new ArrayList<>();
 
-    public ShoppingList() {
-    }
-
     public ArrayList<Item> getList() {
         return items;
     }
 
     /**
-     * Formats the list to be printed to user.
-     *
+     * Prints a table representing the shopping list.
      */
     public void showTableOfItems() {
         CommandLineTable st = new CommandLineTable();
@@ -48,6 +44,9 @@ public class ShoppingList {
 
     }
 
+    /**
+     * Clear all items from the list.
+     */
     public void clearList() {
         items.clear();
     }

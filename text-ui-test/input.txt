@@ -1,6 +1,8 @@
 ADD
 ADD wrong args format
 ADD p/2.50
+ADD i/apple p/8*wh12
+ADD i/apple p/
 ADD i/apple p/2.45
 ADD i/banana p/3.00
 ADD i/cherry p/5.60
@@ -19,11 +21,18 @@ EDIT 1 i/apples
 EDIT 1 i/apple p/2.50
 EDIT 2 p/6.50 i/bananas
 EDIT 3 p/8.00
+MARK
 MARK 1
 MARK 2
+UNMARK
 UNMARK 1
+UNMARK notAnumber
+UNMARK 8*wh12
+UNMARK 1 2 3 4 5
+DEL notAnumber
+DEL 8*wh12
+DEL 1 2 3 4 5
 DEL 1
-DEL
 DEL
 unknownCommandWord arguments
 DISPLAY

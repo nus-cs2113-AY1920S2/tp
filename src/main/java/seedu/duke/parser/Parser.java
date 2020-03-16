@@ -343,6 +343,9 @@ public class Parser {
 
     }
 
+    /**
+     * Initialises the ListCommand.
+     */
     private void createListCommand(String arguments) {
         if (arguments != null) {
             newCommand = new IncorrectCommand(System.lineSeparator()
@@ -354,6 +357,9 @@ public class Parser {
         }
     }
 
+    /**
+     * Initialises the ClearCommand.
+     */
     private void createClearCommand(String arguments) {
         if (arguments != null) {
             newCommand = new IncorrectCommand(System.lineSeparator()
