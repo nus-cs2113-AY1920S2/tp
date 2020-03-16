@@ -96,10 +96,8 @@ public class EditCommand extends Command {
         } else if (field.equals("/a")) {
             editAllergies(editPatient, content);
         } else {
-            throw new HappyPillsException("    Please try again. To edit, use the following commands: \n"
-                                    + "    edit [NRIC] /p[PHONE_NUMBER] to edit patient's phone number,\n"
-                                    + "    edit [NRIC] /p[ALLERGIES] to edit patient's allergies,\n"
-                                    + "    edit [NRIC] /p[REMARKS] to edit patient's remarks");
+            throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
+            + "    enter \"help edit\"");
         }
         return null;
     }

@@ -84,14 +84,17 @@ public class TextUi {
         return message;
     }
 
-    public static void printEditSuccess(Patient patient) {
-        System.out.println("Patient details have been updated as follows: ");
-        System.out.println(patient + DIVIDER);
-    }
-
     public static void printExit() {
-        System.out.println("Thank you for using HappyPills! ^_^");
-        System.out.println("See you again!");
+        System.out.println("    Thank you for using HappyPills! ^_^");
+        System.out.println("    See you again!");
     }
 
+    public static void printDeleteConfirmation(Patient patient) {
+        System.out.println("    Are you sure you want to delete this patient: \n"
+                + patient.getName() + " || " + patient.getNric() + "?\n (y/n)");
+    }
+
+    public static String appendDivider(String s) {
+        return s + DIVIDER;
+    }
 }
