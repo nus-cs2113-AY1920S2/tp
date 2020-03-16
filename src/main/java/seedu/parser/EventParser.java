@@ -1,5 +1,6 @@
 package seedu.parser;
 
+import seedu.duke.Duke;
 import seedu.event.DateTime;
 import seedu.event.Event;
 import seedu.exception.DukeException;
@@ -27,17 +28,21 @@ public class EventParser {
         String[] tokens = parameters.split(" ");
         int index = -1;
         for (String token: tokens) {
-            switch (token.substring(0, 2)) {
-            case "i/":
-                index = Integer.parseInt(parameters.substring(2));
-                break;
-            default:
-                // does nothing, as intended
-                break;
+            try {
+                switch (token.substring(0, 2)) {
+                case "i/":
+                    index = Integer.parseInt(parameters.substring(2, 3));
+                    break;
+                default:
+                    // does nothing, as intended
+                    break;
+                }
+            } catch (Exception m) {
+                throw new DukeException(m.getMessage());
             }
         }
 
-        if (index == -1) {
+        if (index < 0) {
             throw new DukeException("index not found");
         }
         return index;
@@ -101,7 +106,15 @@ public class EventParser {
     private void splitByEventFlags(String[] tokens) throws DukeException {
         String mostRecent = null;
         for (String token : tokens) {
-            switch (token.substring(0, 2)) {
+            if (token.length() < 2) {
+                if (mostRecent == null) {
+                    throw new DukeException("invalid flag, less than 2 chars long");
+                } else {
+                    mostRecent += (" " + token);    //TODO
+                }
+            }
+
+            switch (token.substring(0,2)) {
             case "n/":
                 ensureNotDuplicateFlag(name, "duplicate name flag");
                 name += token.substring(2);
@@ -121,6 +134,8 @@ public class EventParser {
                 ensureNotDuplicateFlag(venue, "duplicate venue flag");
                 venue += token.substring(2);
                 mostRecent = venue;
+                break;
+            case "i/":
                 break;
             default:
                 // assumes that all valid flags have been processed before this line

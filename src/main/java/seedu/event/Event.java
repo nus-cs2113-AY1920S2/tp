@@ -109,6 +109,11 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event: " + getName() + "at: " + getDatetime() + ", " + getVenue();
+        if (getDatetime() == "yyyy-MM-dd HHmm" && getVenue() == "") {
+            return "Event: " + getName();
+        } else if (getVenue() == "") {
+            return "Event: " + getName() + ", time: " + getDatetime();
+        }
+        return "Event: " + getName() + ", time: " + getDatetime() + ", venue: " + getVenue();
     }
 }

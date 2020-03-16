@@ -1,6 +1,7 @@
 package seedu.command.event;
 
 import seedu.command.Command;
+import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
@@ -17,7 +18,7 @@ public class ListEvent extends Command {
             throw new DukeException("List is empty");
         }
         for (int i = 0; i < eventList.getSize(); i++) {
-            eventList.find(i);
+            System.out.println(i+1 + ". " +  eventList.find(i));
         }
     }
 }
