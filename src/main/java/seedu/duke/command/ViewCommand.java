@@ -14,6 +14,7 @@ public class ViewCommand extends Command {
     public static final String VIEW_DONE_MODULES = "dm";
     public static final String VIEW_MODULE_PLAN = "mp";
     public static final String VIEW_SPECIFIC_MODULE = "sm";
+    public static final String VIEW_AVAILABLE_MODULES = "am";
     private String viewTaskType;
     private String moduleToBeViewed;
 
@@ -34,6 +35,9 @@ public class ViewCommand extends Command {
             break;
         case VIEW_DONE_MODULES:
             viewDoneModules(selectedModulesList);
+            break;
+        case VIEW_AVAILABLE_MODULES:
+            viewAvailableModules(availableModulesList);
             break;
         default:
             return;
@@ -75,5 +79,17 @@ public class ViewCommand extends Command {
             viewList.append(System.lineSeparator());
         }
         Ui.showViewDoneMessage(viewList.toString().trim());
+    }
+
+    private void viewAvailableModules(AvailableModulesList modulesList) {
+        StringBuilder viewList = new StringBuilder();
+        for (Module module : modulesList) {
+            int index = modulesList.indexOf(module) + 1;
+            viewList.append(index).append(".")
+                    .append(module.toString())
+                    .append(System.lineSeparator());
+        }
+        viewList.append(System.lineSeparator());
+        Ui.showViewAvailableMessage(viewList.toString().trim());
     }
 }

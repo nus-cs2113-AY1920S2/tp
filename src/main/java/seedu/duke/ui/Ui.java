@@ -20,6 +20,8 @@ public class Ui {
 
     private static final String VIEWED_MODULE_PLAN_MESSAGE = "Okay! Here is your module plan:";
 
+    private static final String VIEWED_AVAILABLE_MODULE_MESSAGE = "Okay! Here are your available modules in database:";
+
     private static final String VIEWED_DONE_MODULE_MESSAGE = "Okay! Here are your completed modules:";
 
     private static final String DONE_MESSAGE = "Okay, I've marked the module as done!";
@@ -52,12 +54,20 @@ public class Ui {
         showToUser(VIEWED_MODULE_PLAN_MESSAGE, viewList, LINE_SEPARATOR);
     }
 
+    public static void showViewAvailableMessage(String viewList) {
+        showToUser(VIEWED_AVAILABLE_MODULE_MESSAGE, viewList, LINE_SEPARATOR);
+    }
+
     public static void showViewDoneMessage(String viewList) {
         showToUser(VIEWED_DONE_MODULE_MESSAGE, viewList, LINE_SEPARATOR);
     }
 
     public static void showDoneMessage() {
         showToUser(DONE_MESSAGE, LINE_SEPARATOR);
+    }
+
+    public static void showError(String errorMessage) {
+        showToUser(errorMessage);
     }
 
 }
