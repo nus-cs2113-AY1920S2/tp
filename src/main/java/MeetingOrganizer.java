@@ -75,7 +75,7 @@ public class MeetingOrganizer {
             TextUI.menuMsg();
             break;
         case "2":
-            TextUI.deleteMeetingMsg();
+            TextUI.editMeetingMsg();
 
             break;
         case "3":
@@ -86,9 +86,11 @@ public class MeetingOrganizer {
                 myMeetingList.delete(index);
             } catch (IndexOutOfBoundsException e) {
                 TextUI.displayInvalidDeleteTarget();
+                TextUI.menuMsg();
             }
             break;
         case "4": //list all current meeting slots
+            TextUI.listMeetings();
             myMeetingList.show();
             break;
         default:
