@@ -1,0 +1,9 @@
+start studying
+end studying
+start exercising
+abort exercising
+start
+end
+abort
+list
+bye
