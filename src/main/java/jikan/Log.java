@@ -78,26 +78,26 @@ public class Log {
     }
 
     /**
-     * Creates a long entry at info level.
-     * @param message the info message to be logged
+     * Creates a long entry at FINE level.
+     * @param message the FINE message to be logged
+     */
+    public void makeFineLog(String message) {
+        logger.log(Level.FINE, message);
+    }
+
+    /**
+     * Creates a long entry at INFO level.
+     * @param message the INFO message to be logged
      */
     public void makeInfoLog(String message) {
         logger.log(Level.INFO, message);
     }
 
     /**
-     * Creates a long entry at warning level.
-     * @param message the warning message to be logged
+     * Creates a long entry at WARNING level.
+     * @param message the WARNING warning message to be logged
      */
     public void makeWarningLog(String message) {
         logger.log(Level.WARNING, message);
-    }
-
-    /**
-     * Creates a long entry at severe level.
-     * @param message the severe warning message to be logged
-     */
-    public void makeSevereLog(String message) {
-        logger.log(Level.SEVERE, message);
     }
 }
