@@ -1,5 +1,4 @@
-import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
-import static common.Messages.MESSAGE_INVALID_MEETING;
+import static common.Messages.*;
 import static java.lang.System.out;
 
 
@@ -221,6 +220,14 @@ public class ScheduleHandler {
     }
 
     public boolean isValidMeeting(Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
+        if (!(startDay >= 0 && startDay <= 6) || !(endDay >= 0 && endDay <= 6)) {
+            throw new MoException(MESSAGE_STARTENDDAY_OUT_OF_RANGE);
+        }
+
+        if ((startTime.getMinute() != 0 && startTime.getMinute() != 30) || (endTime.getMinute() != 0 && endTime.getMinute() != 30)) {
+            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
+        }
+
         Integer startBlock = getBlocksFromStartTime(startTime);
         System.out.println(startBlock);
         Integer endBlock = -1;
