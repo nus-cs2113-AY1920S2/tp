@@ -1,9 +1,13 @@
 package seedu.happypills.commands;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class AddCommand extends Command {
@@ -14,6 +18,8 @@ public class AddCommand extends Command {
     protected String bloodType;
     protected String allergies;
     protected String remarks;
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
+    Level logLevel = Level.INFO;
 
     /**
      * Constructor for AddCommand Class.
@@ -44,11 +50,13 @@ public class AddCommand extends Command {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.remarks = remarks;
+        logger.log(logLevel, "patient is add");
     }
 
     private boolean isInList(PatientList patients) {
         for (Patient p : patients) {
             if (p.getNric().equalsIgnoreCase(nric)) {
+                logger.log(logLevel, "patient in the list");
                 return true;
             }
         }
@@ -63,6 +71,8 @@ public class AddCommand extends Command {
     private Patient findPatient(PatientList patients) {
         for (Patient patient : patients) {
             if (patient.getNric().equalsIgnoreCase(nric)) {
+                assert !nric.isEmpty() : "No NRIC was provided";
+                logger.log(logLevel, "patient detail is found and return to user");
                 return patient;
             }
         }
@@ -108,6 +118,7 @@ public class AddCommand extends Command {
             patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
             message = TextUi.getPatient(patients.get(patientNum), patientNum);
         }
+        logger.log(logLevel, "end of addCommand");
         return message;
     }
 }
