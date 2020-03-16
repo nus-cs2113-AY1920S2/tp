@@ -1,14 +1,11 @@
 package jikan.parser;
 
-import jikan.EmptyNameException;
+import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.ui.Ui;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -45,6 +42,8 @@ public class Parser {
                 } catch (EmptyNameException e) {
                     ui.printDivider("Task name cannot be empty!");
                 } catch (ArrayIndexOutOfBoundsException e) {
+                    ui.printDivider("Task name cannot be empty!");
+                } catch (NullPointerException e) {
                     ui.printDivider("Task name cannot be empty!");
                 }
                 break;
@@ -86,7 +85,7 @@ public class Parser {
     }
 
     /** Method to parse the start activity command. */
-    public void parseStart() throws ArrayIndexOutOfBoundsException, EmptyNameException {
+    public void parseStart() throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
@@ -115,7 +114,7 @@ public class Parser {
     }
 
     /** Method to parse the end activity command. */
-    public void parseEnd(ActivityList activityList) throws ArrayIndexOutOfBoundsException {
+    public void parseEnd(ActivityList activityList) {
         if (startTime == null) {
             String line = "You have not started any activity!";
             ui.printDivider(line);
