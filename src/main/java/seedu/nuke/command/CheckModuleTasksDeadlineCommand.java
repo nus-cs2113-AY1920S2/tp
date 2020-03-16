@@ -17,31 +17,22 @@ public class CheckModuleTasksDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     public static final int EMPTY = 0;
 
-    private int moduleIndex;
-    private Module module;
     private ArrayList<String> deadlines;
 
     /**
      * Constructor method for CheckModuleTaskDeadlineCommand class.
-     * @param moduleIndex the index of the module of the user.
      * @throws ModuleNotFoundException exception is thrown if the specified module is not found.
      */
-    public CheckModuleTasksDeadlineCommand(int moduleIndex) throws ModuleNotFoundException {
-        this.moduleIndex = moduleIndex;
-        try {
-            this.module = moduleManager.getModuleList().get(moduleIndex);
-        } catch (IndexOutOfBoundsException e) {
-            throw new ModuleNotFoundException("Module index is out of bound");
-        }
+    public CheckModuleTasksDeadlineCommand() {
     }
 
     @Override
     public CommandResult execute() {
-        if (module.countTasks() == EMPTY) {
+        if (currentModule.countTasks() == EMPTY) {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
-        assert module.countTasks() != EMPTY : "make sure the list is not empty";
-        deadlines = module.checkDeadline();
-        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, module.countTasks()), true, deadlines);
+        assert currentModule.countTasks() != EMPTY : "make sure the list is not empty";
+        deadlines = currentModule.checkDeadline();
+        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, currentModule.countTasks()), true, deadlines);
     }
 }
