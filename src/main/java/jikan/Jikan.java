@@ -24,7 +24,10 @@ public class Jikan {
     /** Ui to handle printing. */
     private static Ui ui = new Ui();
 
+    /** Parser to parse commands*/
     private static Parser parser = new Parser();
+
+    private static Log logger = new Log();
     
     /**
      * Creates ActivityList and loads data from data file if the data file previously existed;
@@ -52,6 +55,6 @@ public class Jikan {
         Scanner in = new Scanner(System.in);
         storage = new Storage(DATA_FILE_PATH);
         createActivityList();
-        parser.parseUserCommands(in, activityList);
+        parser.parseUserCommands(in, activityList, logger);
     }
 }
