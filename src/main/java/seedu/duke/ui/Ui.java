@@ -3,8 +3,8 @@ package seedu.duke.ui;
 public class Ui {
 
     private static final String LOGO =
-              " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
+            " ____        _\n"
+            + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
@@ -22,7 +22,7 @@ public class Ui {
 
     private static final String VIEWED_DONE_MODULE_MESSAGE = "Okay! Here are your completed modules:";
 
-    private static final String DONE_MESSAGE = "Okay, i've marked the module as done!";
+    private static final String DONE_MESSAGE = "Okay, I've marked the module as done!";
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 

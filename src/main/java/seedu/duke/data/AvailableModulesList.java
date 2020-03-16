@@ -1,9 +1,10 @@
 package seedu.duke.data;
 
+import seedu.duke.module.Module;
 import seedu.duke.module.NewModule;
 
 public class AvailableModulesList extends ModuleList {
-    public static ModuleList availableModulesList = new ModuleList();
+    public static ModuleList availableModulesList;
 
     public AvailableModulesList() {
         super();
@@ -20,7 +21,15 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(new NewModule("ES1103", "English for Academic Purposes", "ES1000"));
         availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals"));
         availableModulesList.add(new NewModule("CS2102", "Database Systems", "CS2030", "CS1231"));
+
+        for (Module module: availableModulesList) {
+            super.add(module);
+        }
     }
 
-
+    @Override
+    public boolean add(Module module) {
+        availableModulesList.add(module);
+        return super.add(module);
+    }
 }

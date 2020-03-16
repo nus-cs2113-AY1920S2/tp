@@ -31,9 +31,14 @@ public class NewModule extends Module {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder(String.format("ID: %s Name: %s | Prerequisites: ", id, name));
+        StringBuilder output = new StringBuilder(String.format("ID: %s Name: %s | Prerequisites:", id, name));
+        boolean hasPreReqModule = false;
         for (Module preReqModule : preRequisiteModules) {
-            output.append(preReqModule.getId() + " ");
+            output.append(" " + preReqModule.getId());
+            hasPreReqModule = true;
+        }
+        if (!hasPreReqModule) {
+            output.append(" null");
         }
         return output.toString();
     }

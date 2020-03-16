@@ -1,7 +1,6 @@
 package seedu.duke.module;
 
 public class SelectedModule extends Module {
-    private boolean isCompleted;
     private double grade;
 
     /**
@@ -33,8 +32,14 @@ public class SelectedModule extends Module {
         super.isDone = module.isDone;
     }
 
-    public void markAsDone() {
-        boolean isCompleted = true;
+    public void setModuleConfig(Module availableModule) {
+        super.name = availableModule.name;
+        super.id = availableModule.id;
+        super.description = availableModule.description;
+        super.isSUable = availableModule.isSUable;
+        super.preRequisiteModules = availableModule.preRequisiteModules;
+        super.isNameValid = availableModule.isNameValid;
+        super.isIdValid = availableModule.isIdValid;
     }
 
     @Override
