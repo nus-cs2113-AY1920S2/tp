@@ -26,6 +26,19 @@ public class Patient {
      * @param name Name of the patient.
      * @param nric NRIC of the patient.
      */
+    /**
+     * Constructor for Task Class.
+     * It creates a new task with the description provided by the user.
+     * It also sets isDone to false as it is a newly created task.
+     *
+     * @param name          Name of the patient.
+     * @param nric          NRIC of the patient.
+     * @param phoneNumber   Phone number of the patient.
+     * @param dateOfBirth   Date of birth of the patient.
+     * @param bloodType     Blood type of the patient.
+     * @param allergies     Allergies the patient may have.
+     * @param remarks       Remarks for the patient.
+     */
     public Patient(String name, String nric, int phoneNumber, String dateOfBirth,
                    String bloodType, String allergies, String remarks) {
         this.name = name;
@@ -38,12 +51,22 @@ public class Patient {
     }
 
     /**
+
+     *
+     * @param name Name of the patient.
+     * @param nric NRIC of the patient.
+     */
+    /**
      * Constructor for Task Class.
      * It creates a new task with the description provided by the user.
      * It also sets isDone to false as it is a newly created task.
      *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
+     * @param name          Name of the patient.
+     * @param nric          NRIC of the patient.
+     * @param phoneNumber   Phone number of the patient.
+     * @param dateOfBirth   Date of birth of the patient.
+     * @param bloodType     Blood type of the patient.
+     * @param allergies     Allergies the patient may have.
      */
     public Patient(String name, String nric, int phoneNumber, String dateOfBirth,
                    String bloodType, String allergies) {
@@ -60,8 +83,12 @@ public class Patient {
      * It creates a new task with the description provided by the user.
      * It also sets isDone to false as it is a newly created task.
      *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
+     * @param name          Name of the patient.
+     * @param nric          NRIC of the patient.
+     * @param phoneNumber   Phone number of the patient.
+     * @param dateOfBirth   Date of birth of the patient.
+     * @param bloodType     Blood type of the patient.
+     * @param remarks       Remarks for the patient.
      */
     public Patient(String name, String nric, String dateOfBirth,
                    int phoneNumber, String bloodType, String remarks) {
@@ -78,8 +105,11 @@ public class Patient {
      * It creates a new task with the description provided by the user.
      * It also sets isDone to false as it is a newly created task.
      *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
+     * @param name          Name of the patient.
+     * @param nric          NRIC of the patient.
+     * @param phoneNumber   Phone number of the patient.
+     * @param dateOfBirth   Date of birth of the patient.
+     * @param bloodType     Blood type of the patient.
      */
     public Patient(String name, String nric, String dateOfBirth,
                    int phoneNumber, String bloodType) {

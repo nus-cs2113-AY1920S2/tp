@@ -8,6 +8,8 @@ public class TextUi {
 
     /**
      * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
+     * @param patients A patient list with all existing patients
+     * @return a message to be displayed to user
      */
     public static String getList(PatientList patients) {
         String message = "";
@@ -20,6 +22,7 @@ public class TextUi {
 
     /**
      * Generates and prints the list of commands.
+     * @return a message to be displayed to user
      */
     public static String getHelp() {
         String helpMessage = "    HappyPills Commands:\n"
@@ -37,6 +40,7 @@ public class TextUi {
 
     /**
      * Displays empty list message when there are no patients in the list.
+     * @return a message to be displayed to user
      */
     public static String getEmptyList() {
         String emptyListMessage = "    There are no patients in the list.\n" + DIVIDER;
