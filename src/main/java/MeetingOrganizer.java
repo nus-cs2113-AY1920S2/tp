@@ -3,6 +3,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -26,7 +27,10 @@ public class MeetingOrganizer {
         case "1":
             out.println("You have selected new scheduled meeting");
             // Test printTimetable
-            boolean[][] mySchedule = new boolean[7][48];
+            Boolean[][] mySchedule = new Boolean[7][48];
+            for (int i = 0; i < 7; i++) {
+                Arrays.fill(mySchedule[i], false); // fill every 48 index of the 7 days with 0 initially
+            }
             TextUI.printTimetable(mySchedule);
 
             member1.addBusyBlocks("test1", 0, "10:00", 2, "12:00");
@@ -43,12 +47,15 @@ public class MeetingOrganizer {
             printSchedule("master schedule", myMasterSchedule); //check
             myScheduleHandler.printFreeTimings();
 
+            //
+            TextUI.printTimetable(myMasterSchedule);
+
             // Test add meeting
             Scanner in = new Scanner(System.in);
             System.out.println("What do you want to name your meeting?");
             String meetingName = in.nextLine(); // eg. CS2113 Meeting
             System.out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>");
-            String input = in.nextLine(); // eg. Monday 19:00 Tuesday 12:30
+            String input = in.nextLine(); // eg. 1 19:00 2 12:30
             String[] meetingDetails = input.split(" ", 4);
 
             Integer startDay = Integer.parseInt(meetingDetails[0]);
@@ -56,10 +63,10 @@ public class MeetingOrganizer {
             Integer endDay = Integer.parseInt(meetingDetails[2]);
             LocalTime endTime = LocalTime.parse(meetingDetails[3]);
 
-            myMeetingList.add(new Meeting(meetingName, startDay, startTime, endDay, endTime));
-
-            System.out.println("You now have " + myMeetingList.getMeetingListSize() + " meetings in the list.");
-            //            
+            if (myScheduleHandler.isValidMeeting(startDay, startTime, endDay, endTime)) {
+                myMeetingList.add(new Meeting(meetingName, startDay, startTime, endDay, endTime));
+                System.out.println("You now have " + myMeetingList.getMeetingListSize() + " meetings in the list.");
+            }
             
             break;
         case "2":

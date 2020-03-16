@@ -1,3 +1,5 @@
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
+import static common.Messages.MESSAGE_INVALID_MEETING;
 import static java.lang.System.out;
 
 
@@ -180,8 +182,158 @@ public class ScheduleHandler {
         return myTime;
     }
 
+    private Integer getBlocksFromStartTime(LocalTime startTime) throws MoException {
+        int minuteBlocks = -1;
+        int hourBlocks = -1;
+        switch (startTime.getMinute()) {
+        case 0:
+            minuteBlocks = 0;
+            break;
+        case 30:
+            minuteBlocks = 1;
+            break;
+        default:
+            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
+        }
+        hourBlocks = startTime.getHour() * 2;
+        return minuteBlocks + hourBlocks;
+    }
+
+    private Integer getBlocksFromEndTime(LocalTime endTime) throws MoException {
+        int minuteBlocks = -1;
+        int hourBlocks = -1;
+        switch (endTime.getMinute()) {
+        case 0:
+            minuteBlocks = 0;
+            break;
+        case 30:
+            minuteBlocks = 1;
+            break;
+        default:
+            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
+        }
+        hourBlocks = endTime.getHour() * 2;
+        return minuteBlocks + hourBlocks - 1;
+    }
+
     public ArrayList<ArrayList<Integer>> getFreeBlocks() {
         return this.freeBlocks;
     }
+
+    public boolean isValidMeeting(Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
+        Integer startBlock = getBlocksFromStartTime(startTime);
+        System.out.println(startBlock);
+        Integer endBlock = -1;
+        if (endTime == LocalTime.parse("00:00")) {
+            endBlock = 47;
+            if (endDay == 0) {
+                endDay = 6;
+            } else {
+                endDay = endDay - 1;
+            }
+        } else {
+            endBlock = getBlocksFromEndTime(endTime);
+        }
+        System.out.println(endDay + " " + endBlock);
+
+        if (startDay.equals(endDay)) {
+            if (startBlock.equals(endBlock)) {
+                if (masterSchedule[startDay][startBlock] == myScheduleBlocked) {
+                    throw new MoException(MESSAGE_INVALID_MEETING);
+                }
+            } else if (startBlock < endBlock) {
+                for (int i = startBlock; i <= endBlock; ++i) {
+                    if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                        throw new MoException(MESSAGE_INVALID_MEETING);
+                    }
+                }
+            } else if (startBlock > endBlock) {
+                for (int i = startBlock; i <= 47; ++i) {
+                    if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                        throw new MoException(MESSAGE_INVALID_MEETING);
+                    }
+                }
+
+                for (int i = startDay + 1; i <= 6; ++i) {
+                    for (int j = 0; j <= 47; ++j) {
+                        if (masterSchedule[i][j] == myScheduleBlocked) {
+                            throw new MoException(MESSAGE_INVALID_MEETING);
+                        }
+                    }
+                }
+
+                for (int i = 0; i <= endDay - 1; ++i) {
+                    for (int j = 0; j <= 47; ++j) {
+                        if (masterSchedule[i][j] == myScheduleBlocked) {
+                            throw new MoException(MESSAGE_INVALID_MEETING);
+                        }
+                    }
+                }
+
+                for (int i = 0; i <= endBlock; ++i) {
+                    if (masterSchedule[endDay][i] == myScheduleBlocked) {
+                        throw new MoException(MESSAGE_INVALID_MEETING);
+                    }
+                }
+
+            }
+        }
+
+        if (startDay < endDay) {
+            for (int i = startBlock; i <= 47; ++i) {
+                if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                    throw new MoException(MESSAGE_INVALID_MEETING);
+                }
+            }
+            for (int i = startDay + 1; i <= endDay - 1; ++i) {
+                for (int j = 0; j < 48; ++j) {
+                    if (masterSchedule[i][j] == myScheduleBlocked) {
+                        throw new MoException(MESSAGE_INVALID_MEETING);
+                    }
+                }
+            }
+
+            for (int i = 0; i <= endBlock; ++i) {
+                if (masterSchedule[endDay][i] == myScheduleBlocked) {
+                    throw new MoException(MESSAGE_INVALID_MEETING);
+                }
+            }
+
+        }
+
+        if (startDay > endDay) {
+            for (int i = startBlock; i <= 47; ++i) {
+                if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                    throw new MoException(MESSAGE_INVALID_MEETING);
+                }
+            }
+
+            for (int i = startDay + 1; i <= 6; ++i) {
+                for (int j = 0; j <= 47; ++j) {
+                    if (masterSchedule[i][j] == myScheduleBlocked) {
+                        throw new MoException(MESSAGE_INVALID_MEETING);
+                    }
+                }
+            }
+
+            for (int i = 0; i <= endDay - 1; ++i) {
+                for (int j = 0; j <= 47; ++j) {
+                    if (masterSchedule[i][j] == myScheduleBlocked) {
+                        throw new MoException(MESSAGE_INVALID_MEETING);
+                    }
+                }
+            }
+
+            for (int i = 0; i <= endBlock; ++i) {
+                if (masterSchedule[endDay][i] == myScheduleBlocked) {
+                    throw new MoException(MESSAGE_INVALID_MEETING);
+                }
+            }
+        }
+
+        return true;
+    }
+
+
 
 }
