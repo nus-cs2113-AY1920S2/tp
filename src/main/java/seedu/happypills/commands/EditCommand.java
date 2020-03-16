@@ -1,13 +1,19 @@
 package seedu.happypills.commands;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class EditCommand extends Command {
     protected String nric;
     protected String newContent;
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
+    Level logLevel = Level.INFO;
 
     /**
      * Constructor for EditCommand Class.
@@ -29,6 +35,7 @@ public class EditCommand extends Command {
     private Patient findPatient(PatientList patients) {
         for (Patient patient : patients) {
             if (patient.getNric().equalsIgnoreCase(nric)) {
+                logger.log(logLevel, "patient to be edited is found");
                 return patient;
             }
         }
@@ -100,8 +107,8 @@ public class EditCommand extends Command {
         } else if (field.equals("/a")) {
             output = editAllergies(editPatient, content);
         } else {
-            throw new HappyPillsException("    Command is invalid. Please enter \"help edit\" "
-                    + "for edit command instructions.");
+            throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
+            + "    enter \"help edit\"");
         }
         assert output.length() > 0 : "output message is invalid";
         return output;

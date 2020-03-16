@@ -1,12 +1,13 @@
 package seedu.happypills.parser;
 
+import seedu.happypills.commands.Command;
 import seedu.happypills.commands.AddCommand;
+import seedu.happypills.commands.DeleteCommand;
 import seedu.happypills.commands.EditCommand;
 import seedu.happypills.commands.ExitCommand;
-import seedu.happypills.commands.ListCommand;
-import seedu.happypills.commands.HelpCommand;
-import seedu.happypills.commands.Command;
 import seedu.happypills.commands.GetCommand;
+import seedu.happypills.commands.HelpCommand;
+import seedu.happypills.commands.ListCommand;
 import seedu.happypills.exception.HappyPillsException;
 
 /**
@@ -57,6 +58,8 @@ public class Parser {
             return new EditCommand(edit[1], edit[2]);
         } else if (userCommand[0].equalsIgnoreCase("exit")) {
             return new ExitCommand();
+        } else if (userCommand[0].equalsIgnoreCase("delete")) {
+            return new DeleteCommand(userCommand[1]);
         } else {
             throw new HappyPillsException("    Invalid Command.");
         }
