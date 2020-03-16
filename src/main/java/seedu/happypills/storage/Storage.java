@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -19,10 +18,10 @@ public class Storage {
      * Save individual patient data as strings to file. Creates file if it does not exist.
      *
      * @param filePath location of file to save to, requires directory/file
-     * @param patientDataString  patient data as string to be saved to file
+     * @param patientDataString  single patient data as string to be saved to file
      * @throws IOException if unable to save to file, possibly due to interruptions
      */
-    public static void addToFile(String filePath, String patientDataString) throws IOException {
+    public static void addPatientToFile(String filePath, String patientDataString) throws IOException {
         File d = new File(filePath.substring(0, filePath.lastIndexOf('/')));
         if (!d.exists()) {
             d.mkdir();

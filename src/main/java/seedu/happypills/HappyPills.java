@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class HappyPills {
     private TextUi ui;
     private PatientList patients;
+    private static final String FILEPATH = "data/data.txt";
 
     /**
      * Sets up the required objects, loads up the data from the storage file.
@@ -26,7 +27,7 @@ public class HappyPills {
         ui = new TextUi();
         //patients = new PatientList();
         try {
-            patients = Storage.loadFromFile("data/data.txt");
+            patients = Storage.loadFromFile(FILEPATH);
         } catch (FileNotFoundException e) {
             patients = new PatientList();
         }
