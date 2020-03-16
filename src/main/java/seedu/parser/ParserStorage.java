@@ -62,6 +62,6 @@ public class ParserStorage {
     }
 
     public static String toStorageStringAttendance(Attendance attendance) {
-        return attendance.getStudentName() + " | " + attendance.getDescription() + " | " + attendance.getAttendance();
+        return attendance.getStudent() + " | " + attendance.getDescription() + " | " + attendance.getAttendance();
     }
 }
