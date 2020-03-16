@@ -1,5 +1,9 @@
 package jikan;
 
+import jikan.ui.Ui;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -13,6 +17,29 @@ import java.util.logging.FileHandler;
 public class Log {
     private static Logger logger;
     private static SimpleFormatter formatterTxt;
+    public String logFilePath = "data/LogRecord.txt";
+    private static File logFile;
+
+    /*
+    /**
+     * Constructor for a new logger.
+     *
+    public Log() throws IOException {
+        logger = Logger.getLogger(Log.class.getName());
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.WARNING);
+        logger.addHandler(consoleHandler);
+
+        FileHandler fileHandler = new FileHandler("data/LogRecord.txt", true);
+
+        formatterTxt = new SimpleFormatter();
+        fileHandler.setFormatter(formatterTxt);
+        fileHandler.setLevel(Level.INFO);
+        logger.addHandler(fileHandler);
+    } */
 
     /**
      * Constructor for a new logger.
@@ -26,15 +53,28 @@ public class Log {
         consoleHandler.setLevel(Level.WARNING);
         logger.addHandler(consoleHandler);
 
-        try {
-            FileHandler fileHandler = new FileHandler("data/LogRecord.txt");
-            formatterTxt = new SimpleFormatter();
-            fileHandler.setFormatter(formatterTxt);
-            fileHandler.setLevel(Level.INFO);
-            logger.addHandler(fileHandler);
-        } catch (java.io.IOException e) {
-            logger.log(Level.SEVERE, "File logger not working", e);
+        logFile = new File(logFilePath);
+
+        if (!logFile.exists()) {
+            try {
+                // Create file
+                logFile.getParentFile().mkdirs(); // Create data directory (does nothing if directory already exists)
+                logFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+        FileHandler fileHandler = null;
+        try {
+            fileHandler = new FileHandler("data/LogRecord.txt", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        formatterTxt = new SimpleFormatter();
+        fileHandler.setFormatter(formatterTxt);
+        fileHandler.setLevel(Level.INFO);
+        logger.addHandler(fileHandler);
     }
 
     /**

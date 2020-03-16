@@ -7,6 +7,7 @@ import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -23,7 +24,6 @@ public class Parser {
     private Ui ui = new Ui();
     protected String[] tokenizedInputs;
     String instruction;
-
     Log logger = new Log();
 
     /**
@@ -31,8 +31,8 @@ public class Parser {
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
-    public void parseUserCommands(Scanner scanner, ActivityList activityList, Log logger) {
-        logger.makeFineLog("Starting to parse inputs.");
+    public void parseUserCommands(Scanner scanner, ActivityList activityList) {
+        logger.makeInfoLog("Starting to parse inputs.");
         while (true) {
             String userInput = scanner.nextLine();
             tokenizedInputs = userInput.split(" ", 2);
