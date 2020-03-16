@@ -64,7 +64,7 @@ public class Module {
         });
         for (Task task: tasks) {
             String deadline = task.getDeadline() == null ? "" : task.getDeadline().toString();
-            deadlines.add("Task: " + task.getDescription() + "  Deadline: " + deadline);
+            deadlines.add(String.format("%-30s", task.getDescription()) + "   Deadline: " + task.getDeadline());
         }
         return deadlines;
     }
