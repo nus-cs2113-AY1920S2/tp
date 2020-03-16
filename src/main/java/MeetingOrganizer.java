@@ -8,23 +8,24 @@ import java.util.Scanner;
  * TESTING SUMMARY DOC.
  */
 public class MeetingOrganizer {
+    public static Storage storage;
     private MeetingList myMeetingList;
     private ArrayList<TeamMember> myScheduleList;
     private ScheduleHandler myScheduleHandler;
     private Boolean[][] myMasterSchedule;
-    public static Storage storage;
 
     public MeetingOrganizer() {
         //declare objects here
+        myMeetingList = new MeetingList();
         myScheduleList = new ArrayList<>();
         try {
+            myScheduleList = new ArrayList<>();
             storage = new Storage("data/meeting_list.txt");
             myMeetingList = new MeetingList(storage.loadListFromDisk());
         } catch (FileNotFoundException e) {
             TextUI.showLoadingError();
             myMeetingList = new MeetingList();
         }
-        myMeetingList = new MeetingList();
     }
 
 
