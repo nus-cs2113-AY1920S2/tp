@@ -1,8 +1,6 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandResult;
-import seedu.duke.commands.ExitCommand;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.parser.Parser;
@@ -18,7 +16,7 @@ import java.util.logging.Logger;
 
 public class Duke {
 
-    public static Budget myBudget = new Budget();
+    private static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
     private static Scanner in = new Scanner(System.in);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -34,6 +32,9 @@ public class Duke {
         new Duke().run();
     }
 
+    /**
+     * Sets up the logger to log to the console and a file.
+     */
     private static void setUpLogger() {
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.ALL);
@@ -61,9 +62,7 @@ public class Duke {
     }
 
     /**
-     * Sets up the required objects, loads up the data from the storage file, and prints the welcome message.
-     *
-     *
+     * Prints the welcome message.
      */
     private void start() {
         LOGGER.log(Level.INFO,"Application starting.");
@@ -84,21 +83,21 @@ public class Duke {
             String userCommandText = readCommand();
             command = new Parser().parseCommand(userCommandText);
             assert command != null : "Command should have been initialised";
-            CommandResult result = executeCommand(command);
-            assert result != null : "Result should have been initialised";
-            System.out.println(result.feedbackToUser);
-        } while (!ExitCommand.isExit(command));
+            executeCommand(command);
+            System.out.println(command.feedbackToUser);
+        } while (!command.isExit);
     }
 
-    /**Read the input when user type the command.
+    /**
+     * Reads a non-empty input from the user.
      *
-     * @return input
+     * @return non-empty input
      */
     public String readCommand() {
         String input = "";
         while (input.isEmpty()) {
             input = in.nextLine();
-            input.trim();
+            input = input.trim();
         }
         return input;
     }
@@ -109,13 +108,11 @@ public class Duke {
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command) {
+    private void executeCommand(Command command) {
         try {
             command.setData(items,myBudget);
-            CommandResult result = command.execute();
-            assert result != null : "Result should have been initialised";
-            command.setData(items,myBudget);
-            return result;
+            command.execute();
+            assert command.feedbackToUser != null : "Result should have been initialised";
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);

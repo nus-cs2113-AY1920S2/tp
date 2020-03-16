@@ -11,8 +11,8 @@ public class ResetBudgetCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
         myBudget.resetBudget();
-        return new CommandResult(SUCCESS_RESET_BUDGET);
+        feedbackToUser = SUCCESS_RESET_BUDGET;
     }
 }

@@ -23,9 +23,9 @@ class DeleteCommandTest {
     void execute_negativeIndex() {
         Command command = new DeleteCommand(-1);
         command.setData(things,null);
-        CommandResult result = command.execute();
+        command.execute();
         assertEquals(System.lineSeparator()
-                + "Please enter a valid index within the bounds",result.feedbackToUser);
+                + "Please enter a valid index within the bounds", command.feedbackToUser);
 
     }
 
@@ -33,9 +33,9 @@ class DeleteCommandTest {
     void execute_zeroIndex() {
         Command command = new DeleteCommand(0);
         command.setData(things,null);
-        CommandResult result = command.execute();
+        command.execute();
         assertEquals(System.lineSeparator()
-                + "Please enter a valid index within the bounds",result.feedbackToUser);
+                + "Please enter a valid index within the bounds", command.feedbackToUser);
 
     }
 
@@ -43,9 +43,9 @@ class DeleteCommandTest {
     void execute_tooLargeIndex() {
         Command command = new DeleteCommand(100);
         command.setData(things,null);
-        CommandResult result = command.execute();
+        command.execute();
         assertEquals(System.lineSeparator()
-                + "Please enter a valid index within the bounds",result.feedbackToUser);
+                + "Please enter a valid index within the bounds",command.feedbackToUser);
 
     }
 
