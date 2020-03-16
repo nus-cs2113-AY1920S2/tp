@@ -26,8 +26,8 @@ public class TeamMemberTest {
         String invalidOutOfRangeEndTime = "24:00";
         String meetingName = "TEST_MEETING";
 
-        myMembers.add(new TeamMember("TEST_MEMBER2"));
-        String invalidOutOfRangeEndTime_Message = myMembers.get(1).addBusyBlocks(meetingName, validStartDay, validStartTime, validEndDay, invalidOutOfRangeEndTime);
+        myMembers.add(new TeamMember("TEST_MEMBER1"));
+        String invalidOutOfRangeEndTime_Message = myMembers.get(0).addBusyBlocks(meetingName, validStartDay, validStartTime, validEndDay, invalidOutOfRangeEndTime);
         assertEquals(invalidOutOfRangeEndTime_Message, MESSAGE_STARTENDTIME_OUT_OF_RANGE);
 
         myMembers.clear();
@@ -43,12 +43,12 @@ public class TeamMemberTest {
         String validEndTime = "12:00";
         String meetingName = "TEST_MEETING";
 
-        myMembers.add(new TeamMember("TEST_MEMBER3"));
-        String invalidOutOfRangeEndDay_Message = myMembers.get(2).addBusyBlocks(meetingName, validStartDay, validStartTime, invalidOutOfRangeEndDay, validEndTime);
+        myMembers.add(new TeamMember("TEST_MEMBER1"));
+        String invalidOutOfRangeEndDay_Message = myMembers.get(0).addBusyBlocks(meetingName, validStartDay, validStartTime, invalidOutOfRangeEndDay, validEndTime);
         assertEquals(invalidOutOfRangeEndDay_Message, MESSAGE_STARTENDDAY_OUT_OF_RANGE);
 
-        myMembers.add(new TeamMember("TEST_MEMBER4"));
-        String invalidOutOfRangeStartDay_Message = myMembers.get(3).addBusyBlocks(meetingName, invalidOutOfRangeStartDay, validStartTime, validEndDay, validEndTime);
+        myMembers.add(new TeamMember("TEST_MEMBER2"));
+        String invalidOutOfRangeStartDay_Message = myMembers.get(1).addBusyBlocks(meetingName, invalidOutOfRangeStartDay, validStartTime, validEndDay, validEndTime);
         assertEquals(invalidOutOfRangeStartDay_Message, MESSAGE_STARTENDDAY_OUT_OF_RANGE);
 
         myMembers.clear();
