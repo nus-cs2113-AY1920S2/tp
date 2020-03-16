@@ -37,6 +37,7 @@ public class Messages {
             + "list incomplete assignments";
     public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear all";
     public static final String CLEAR_DONE_FORMAT_HELP = "Clear all completed tasks: clear done";
+    public static final String EXIT_FORMAT_HELP = "Exit ATAS: exit";
     public static final String HELP_FORMAT_MESSAGE =
             "Following is the list of commands available:" + System.lineSeparator()
             + "1.  Help Format: help" + System.lineSeparator()
@@ -50,7 +51,9 @@ public class Messages {
             + "9.  " + DONE_FORMAT_HELP + System.lineSeparator()
             + "10. " + CLEAR_FORMAT_HELP + System.lineSeparator()
             + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
-            + "12. " + DELETE_FORMAT_HELP;
+            + "12. " + DELETE_FORMAT_HELP + System.lineSeparator()
+            + "13. " + EXIT_FORMAT_HELP;
+
 
     // Command Print Messages
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
