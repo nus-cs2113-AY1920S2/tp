@@ -1,7 +1,11 @@
 package seedu.duke;
 
 import java.io.IOException;
-import java.util.logging.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import seedu.command.Bye;
 import seedu.command.CommandInterpreter;
 import seedu.command.Command;
@@ -10,7 +14,7 @@ import seedu.ui.UI;
 import seedu.exception.DukeException;
 
 public class Duke {
-    public static final Logger logger = Logger.getLogger( Duke.class.getName() );
+    public static final Logger logger = Logger.getLogger(Duke.class.getName());
 
     protected UI ui;
     protected CommandInterpreter interpreter;
