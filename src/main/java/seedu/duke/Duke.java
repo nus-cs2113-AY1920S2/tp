@@ -5,6 +5,7 @@ import java.util.Scanner;
 import seedu.duke.command.Command;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SelectedModulesList;
+import seedu.duke.exception.ModuleManagerException;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
 
@@ -30,13 +31,17 @@ public class Duke {
     public void run() {
         ui.greetUser();
         String fullCommand;
-        boolean isExit;
+        boolean isExit = false;
         Scanner in = new Scanner(System.in);
         do {
-            fullCommand = in.nextLine();
-            Command command = Parser.parse(fullCommand);
-            command.execute(selectedModulesList, availableModulesList);
-            isExit = command.isExit();
+            try {
+                fullCommand = in.nextLine();
+                Command command = Parser.parse(fullCommand);
+                command.execute(selectedModulesList, availableModulesList);
+                isExit = command.isExit();
+            } catch (ModuleManagerException e) {
+                ui.showError(e.getMessage());
+            }
         } while (!isExit);
         ui.greetFarewell();
     }
