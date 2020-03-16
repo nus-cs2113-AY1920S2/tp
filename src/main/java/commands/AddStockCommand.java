@@ -122,6 +122,7 @@ public class AddStockCommand extends StockCommand {
             throw new InvalidStockCommandException(
                     "The user's input must specify the ingredient's name!");
         } else {
+            assert (ingredientName.isPresent() && quantity.isPresent() && price.isPresent());
             return;
         }
     }
