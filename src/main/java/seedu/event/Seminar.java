@@ -1,5 +1,7 @@
 package seedu.event;
 
+import seedu.exception.DukeException;
+
 import java.security.InvalidParameterException;
 import java.time.Instant;
 
@@ -8,14 +10,14 @@ public class Seminar extends Event {
     private DateTime datetime;
     private String venue;
 
-    public Seminar() {
+    public Seminar() throws DukeException {
         //super();
         setName("");
         setDatetime("");
         setVenue("");
     }
 
-    public Seminar(String name, String datetime, String venue) {
+    public Seminar(String name, String datetime, String venue) throws DukeException {
         //super(name, datetime, venue);
         setName(name);
         setDatetime(datetime);
