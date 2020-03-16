@@ -4,7 +4,6 @@ import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
 import seedu.parser.AttendanceParser;
-import seedu.performance.PerformanceList;
 
 public class DeleteAttendance extends Command {
     Attendance attendance;

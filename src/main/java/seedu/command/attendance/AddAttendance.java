@@ -4,8 +4,6 @@ import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
 import seedu.parser.AttendanceParser;
-import seedu.parser.PerformanceParser;
-import seedu.performance.PerformanceList;
 
 public class AddAttendance extends Command {
 
