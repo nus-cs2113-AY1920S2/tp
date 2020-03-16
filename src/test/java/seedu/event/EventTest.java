@@ -43,7 +43,7 @@ class EventTest {
     @Test
     void getDatetime() throws DukeException {
         Event event1 = new Event("1", "4", "3");
-        assertEquals("Please provide correct format", event1.getDatetime());
+        assertEquals("yyyy-MM-dd HHmm", event1.getDatetime());
         Event event2 = new Event("1", "2020-05-04 0130", "3");
         assertEquals("May 04 2020 0130", event2.getDatetime());
     }
