@@ -97,22 +97,7 @@ public class MeetingOrganizer {
 
         TextUI.menuMsg();
     }
-/*
-    private void printSchedule(String scheduleName, Boolean[][] s) {
-        out.println(scheduleName);
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 48; j++) {
-                if (s[i][j]) {
-                    out.print("1");
-                } else {
-                    out.print("0");
-                }
-            }
-            out.println();
-        }
-        out.println();
-    }
-*/
+
     /**
      * Main entry-point for the application.
      */
