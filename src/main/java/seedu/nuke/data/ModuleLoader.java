@@ -11,9 +11,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -27,6 +29,7 @@ public class ModuleLoader {
 
     /**
      * load data from a jason file that contains all information about all NUS existing modules.
+     *
      * @param dataFileName name of the jason file
      * @return a HashMapof String to String, which is a map that map all modules with its information
      * @throws FileNotFoundException when cannot find the jason file
@@ -41,7 +44,7 @@ public class ModuleLoader {
 
     private static HashMap<String, String> convertToHashMap(List<DummyModule> moduleList) {
         HashMap<String, String> modulesMap = new HashMap<>();
-        for (DummyModule i: moduleList) {
+        for (DummyModule i : moduleList) {
             modulesMap.put(i.getModuleCode(), i.getTitle());
         }
         return modulesMap;
@@ -57,7 +60,8 @@ public class ModuleLoader {
             in.read(fileContent);
             in.close();
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException();
+            //System.out.println("Retrieving the module list from nusmods...");
+            return openFile("https://api.nusmods.com/v2/2019-2020/moduleList.json");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,12 +72,40 @@ public class ModuleLoader {
             e.printStackTrace();
             return null;
         }
-
     }
 
-    private static ArrayList<DummyModule> extractModules(String jsonStr) {
-        Type listType = new TypeToken<ArrayList<DummyModule>>(){}.getType();
-        Gson gson = new Gson();
-        return gson.fromJson(jsonStr, listType);
+    private static String openFile(String filePath) {
+        int httpResult; // the status from the server response
+        String content = "";
+        try {
+            URL url = new URL(filePath); // create URL
+            URLConnection urlConn = url.openConnection(); // try to connect and get the status code
+            urlConn.connect();
+            HttpURLConnection httpConn = (HttpURLConnection) urlConn;
+            httpResult = httpConn.getResponseCode();
+            if (httpResult != HttpURLConnection.HTTP_OK) {
+                System.out.print("cannot connect!");
+            } else {
+                int fileSize = urlConn.getContentLength(); // get the length of the data
+                InputStreamReader isReader = new InputStreamReader(urlConn.getInputStream(), "UTF-8");
+                BufferedReader reader = new BufferedReader(isReader);
+                StringBuffer buffer = new StringBuffer();
+                String line; // to save the content of every line
+                line = reader.readLine(); // read the first line
+                while (line != null) { // if line is empty, means finish reading
+                    buffer.append(line); // append to the buffer
+                    buffer.append(" "); // add new line
+                    line = reader.readLine(); // read the next line
+                }
+                //System.out.print(buffer.toString());
+                content = buffer.toString();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
     }
+
 }
