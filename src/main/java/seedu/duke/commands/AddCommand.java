@@ -20,6 +20,14 @@ public class AddCommand extends Command {
             + "\nExample: p/4.50";
     private Item add;
 
+    /**
+     * Creates an AddCommand.
+     * Description is a compulsory input,
+     * while price is an optional input.
+     *
+     * @param description description of item
+     * @param price       price of item
+     */
     public AddCommand(String description, double price) {
         add = new Item(description, price);
     }
@@ -29,7 +37,8 @@ public class AddCommand extends Command {
 
         try {
             items.add(add);
-            LOGGER.log(Level.INFO, "(Add command)  Added item: " + items.toString());
+            assert add.getDescription() != null : "(Add Command): Item must not be null.";
+            LOGGER.log(Level.INFO, "(Add command)  Added item: " + add);
             feedbackToUser = String.format(SUCCESS_ACK,add);
         } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
