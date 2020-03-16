@@ -179,10 +179,16 @@ public class Patient {
         this.remarks = remarks;
     }
 
+    /**
+     * Create a string with all the patient's data for storage to a text file.
+     * Each variable is separated with | as a divider.
+     *
+     * @return a formatted string with patient's data.
+     */
     public String toSave() {
         String text = this.name + "|" + this.nric + "|"
                 + this.phoneNumber + "|" + this.dateOfBirth + "|"
-                +this.bloodType + "|" + this.allergies +"|" + this.remarks;
+                + this.bloodType + "|" + this.allergies + "|" + this.remarks;
         return text;
     }
 }
