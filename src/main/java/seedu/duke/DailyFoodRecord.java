@@ -94,48 +94,4 @@ public class DailyFoodRecord {
 
     public void showDinner() {
     }
-
-    /**
-     * Get record of breakfast.
-     * @return a record of breakfast
-     */
-    public String getBreakfast() {
-        String result = null;
-        for (Food food:breakfast) {
-            result = result + " " + food.getFoodName();
-        }
-        return result;
-    }
-
-    /**
-     * Get record of lunch.
-     * @return a record of lunch
-     */
-    public String getLunch() {
-        String result = null;
-        for (Food food:lunch) {
-            result = result + " " + food.getFoodName();
-        }
-        return result;
-    }
-
-    /**
-     * Get record of dinner.
-     * @return a record of dinner
-     */
-    public String getDinner() {
-        String result = null;
-        for (Food food:dinner) {
-            result = result + " " + food.getFoodName();
-        }
-        return result;
-    }
-
-    public String getDate() {
-        return this.date;
-    }
-
-    public boolean isDate(String date) {
-        return this.date.equals(date);
-    }
 }
