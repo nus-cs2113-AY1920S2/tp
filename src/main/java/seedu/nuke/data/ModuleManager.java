@@ -134,6 +134,7 @@ public class ModuleManager implements Iterable<Module> {
         for (Module module: modules
              ) {
             if (module.getModuleCode().equals(moduleCode)) {
+                assert module.getModuleCode().equals(moduleCode);
                 return module;
             }
         }

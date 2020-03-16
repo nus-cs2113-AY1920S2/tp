@@ -8,7 +8,8 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * the management system.
+ * the manager that manages all tasks of all modules
+ * deals with operations in task-level
  */
 public class DataManager {
 
@@ -57,7 +58,7 @@ public class DataManager {
         ArrayList<String> deadlines = new ArrayList<>();
         sortAllTasks();
         for (Task task: allTasks) {
-            deadlines.add(task.getDescription() + task.getModuleCode() + "  deadline: " + task.getDeadline());
+            deadlines.add(task.getDescription() + " " + task.getModuleCode() + "  deadline: " + task.getDeadline());
         }
         return deadlines;
     }

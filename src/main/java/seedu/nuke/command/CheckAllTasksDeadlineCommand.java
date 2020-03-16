@@ -27,6 +27,7 @@ public class CheckAllTasksDeadlineCommand extends Command {
         if (dataManager.countAllTasks() == EMPTY) {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
+        assert dataManager.countAllTasks() != EMPTY: "make sure there are some tasks in the list";
         deadlines = dataManager.checkDeadline();
         return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, dataManager.countAllTasks()),
                 true, deadlines);
