@@ -1,6 +1,8 @@
 package seedu.nuke.util;
 
+import seedu.nuke.data.category.Category;
 import seedu.nuke.data.module.Module;
+import seedu.nuke.data.task.Task;
 import seedu.nuke.format.ListCreator;
 
 import java.util.ArrayList;
@@ -34,7 +36,11 @@ public class Message {
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "SUCCESS!! Module(s) have been deleted.\n";
 
-    public static final String MESSAGE_DELETE_MODULE_ABORTED = "Module deletion is aborted.\n";
+    public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "SUCCESS!! Category/Categories have been deleted.\n";
+
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "SUCCESS!! Task(s) have been deleted.\n";
+
+    public static final String MESSAGE_DELETE_ABORTED = "Deletion is aborted.\n";
 
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
 
@@ -61,6 +67,7 @@ public class Message {
 
 
 
+
     /* PROMPT MESSAGES */
     public static String MESSAGE_CONFIRM_DELETE_MODULE(Module toDelete) {
         return String.format("Confirm delete %s %s?\n", toDelete.getModuleCode() , toDelete.getTitle());
@@ -77,14 +84,53 @@ public class Message {
         return promptMessage.toString();
     }
 
-    public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.";
-
     public static String MESSAGE_PROMPT_DELETE_MODULE_INDICES(ArrayList<Module> filteredModules) {
         return "Multiple matching modules found.\n" +
                 ListCreator.createModuleListTable(filteredModules) +
-                "\nEnter the list number(s) to delete modules.\n";
+                "\nEnter the list number(s) of the modules to delete.\n";
     }
 
+    public static String MESSAGE_CONFIRM_DELETE_CATEGORY(Category toDelete) {
+        return String.format("Confirm delete %s?\n", toDelete.getCategoryName());
+    }
+
+    public static String MESSAGE_CONFIRM_DELETE_CATEGORY(ArrayList<Category> filteredCategory, ArrayList<Integer> toDeleteIndices) {
+        StringBuilder promptMessage = new StringBuilder();
+        promptMessage.append("Confirm delete these categories?\n");
+        for (int index : toDeleteIndices) {
+            String toDeleteCategoryName = filteredCategory.get(index).getCategoryName();
+            promptMessage.append(String.format("%s\n", toDeleteCategoryName));
+        }
+        return promptMessage.toString();
+    }
+
+    public static String MESSAGE_PROMPT_DELETE_CATEGORY_INDICES(ArrayList<Category> filteredCategories) {
+        return "Multiple matching categories found.\n" +
+                ListCreator.createCategoryListTable(filteredCategories) +
+                "\nEnter the list number(s) of the categories to delete.\n";
+    }
+
+    public static String MESSAGE_CONFIRM_DELETE_TASK(Task toDelete) {
+        return String.format("Confirm delete %s?\n", toDelete.getDescription());
+    }
+
+    public static String MESSAGE_CONFIRM_DELETE_TASK(ArrayList<Task> filteredTasks, ArrayList<Integer> toDeleteIndices) {
+        StringBuilder promptMessage = new StringBuilder();
+        promptMessage.append("Confirm delete these tasks?\n");
+        for (int index : toDeleteIndices) {
+            String toDeleteTaskDescription = filteredTasks.get(index).getDescription();
+            promptMessage.append(String.format("%s\n", toDeleteTaskDescription));
+        }
+        return promptMessage.toString();
+    }
+
+    public static String MESSAGE_PROMPT_DELETE_TASK_INDICES(ArrayList<Task> filteredTasks) {
+        return "Multiple matching tasks found.\n" +
+                ListCreator.createTaskListTable(filteredTasks) +
+                "\nEnter the list number(s) of the tasks to delete.\n";
+    }
+
+    public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.";
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
 
 }

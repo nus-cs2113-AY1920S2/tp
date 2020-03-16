@@ -1,14 +1,14 @@
 package seedu.nuke.parser;
 
-import seedu.nuke.command.Command;
-import seedu.nuke.command.ExitCommand;
-import seedu.nuke.command.InvalidCommand;
-import seedu.nuke.command.ListCommand;
+import seedu.nuke.command.*;
 import seedu.nuke.command.module.AddModuleCommand;
 import seedu.nuke.command.module.DeleteModuleCommand;
 import seedu.nuke.command.category.AddCategoryCommand;
 import seedu.nuke.command.category.DeleteCategoryCommand;
 import seedu.nuke.command.module.ListModuleCommand;
+import seedu.nuke.command.prompt.DeleteConfirmationPrompt;
+import seedu.nuke.command.prompt.ConfirmationStatus;
+import seedu.nuke.command.prompt.ListNumberPrompt;
 import seedu.nuke.command.task.AddTaskCommand;
 import seedu.nuke.command.task.DeleteTaskCommand;
 import seedu.nuke.exception.InvalidFormatException;
@@ -22,8 +22,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.*;
-import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.nuke.util.Message.MESSAGE_INVALID_PARAMETERS;
+import static seedu.nuke.util.Message.*;
 
 /**
  * <h3>Parser</h3>
@@ -41,7 +40,6 @@ public class Parser {
 
     private final String WHITESPACES = "\\s+";
     private final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
-    private final Pattern INDICES_FORMAT = Pattern.compile("(?<indices>(?:\\s*\\d+)+\\s*)");
 
 
     /**
@@ -302,20 +300,42 @@ public class Parser {
         return false;
     }
 
-    public ArrayList<Integer> parseInputAsIndices(String input) {
-        final Matcher matcher = INDICES_FORMAT.matcher(input.trim());
+    public Command parseInputAsConfirmation(String userInput) {
+        switch (userInput) {
+        case "yes":
+        case "y":
+            return new DeleteConfirmationPrompt(ConfirmationStatus.CONFIRM);
+
+        case "no":
+        case "n":
+            return new DeleteConfirmationPrompt(ConfirmationStatus.ABORT);
+
+        default:
+            return new DeleteConfirmationPrompt(ConfirmationStatus.WAIT);
+        }
+    }
+
+    public Command parseInputAsIndices(String input) {
+        final Matcher matcher = ListNumberPrompt.INDICES_FORMAT.matcher(input.trim());
 
         if (!matcher.matches()) {
-            return null;
+            return new ListNumberPrompt(null);
         }
 
         String indicesString = matcher.group("indices");
         String[] separatedIndicesString = indicesString.split(WHITESPACES);
 
         // Convert String array to Integer ArrayList and removing duplicates
-        return Stream.of(separatedIndicesString)
+        ArrayList<Integer> indices = Stream.of(separatedIndicesString)
                 .map(Integer::parseInt).distinct()
                 .collect(Collectors.toCollection(ArrayList::new));
+
+        // Decrement each index by 1 due to 0-based indexing
+        for (int i = 0; i < indices.size(); i++) {
+            indices.set(i, indices.get(i)-1);
+        }
+
+        return new ListNumberPrompt(indices);
     }
 
 

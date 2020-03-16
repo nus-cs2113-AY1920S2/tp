@@ -52,7 +52,7 @@ public class ListCreator {
         int id = 1;
         for (Module module : moduleList) {
             String moduleCode = module.getModuleCode();
-            String moduleTitle = module.getTitle();
+            String moduleTitle = (module.getTitle()!=null) ? module.getTitle() : "-NIL-";
 
             moduleListTable.append(String.format("%s%s%s%s%s\n",
                     centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
@@ -167,17 +167,12 @@ public class ListCreator {
     }
 
     private static String centraliseText(String text, int maximumLength) {
-        int numberOfSpaces = (maximumLength - text.length()) / 2;
-        return addSpaces(numberOfSpaces) + text + addSpaces(numberOfSpaces);
+        int numberOfLeftSpaces = (maximumLength - text.length()) / 2;
+        int numberOfRightSpaces = (maximumLength - text.length() + 1) / 2;
+        return addSpaces(numberOfLeftSpaces) + text + addSpaces(numberOfRightSpaces);
     }
 
     private static String fitText(String text, int maximumLength) {
-        if (text.length() <= maximumLength) {
-            int padLength = maximumLength - text.length();
-            return text + addSpaces(padLength);
-        } else {
-            // Truncate and add ellipses
-            return text.substring(0 , maximumLength-3) + "...";
-        }
+        return text.length() > maximumLength ? text.substring(0 , maximumLength-3) + "..." : text;
     }
 }

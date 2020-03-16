@@ -1,10 +1,13 @@
 package seedu.nuke.data.task;
 
+import seedu.nuke.data.category.Category;
 import seedu.nuke.data.file.TaskFileList;
+import seedu.nuke.data.module.Module;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TaskList {
     ArrayList<Task> taskList;
@@ -57,11 +60,20 @@ public class TaskList {
         taskList.remove(index);
     }
 
-    public void delete(Task toDelete) throws TaskNotFoundException {
-        boolean isTaskFoundAndDeleted = taskList.remove(toDelete);
-        if (!isTaskFoundAndDeleted) {
-            throw new TaskNotFoundException();
+    public void delete(ArrayList<Task> tasks, ArrayList<Integer> toDeleteIndices) {
+        for (int index : toDeleteIndices) {
+            Task toDelete = tasks.get(index);
+            for (Task task : taskList) {
+                if (task == toDelete) {
+                    delete(task);
+                    break;
+                }
+            }
         }
+    }
+
+    public boolean delete(Task toDelete) {
+        return taskList.remove(toDelete);
     }
 
     /**

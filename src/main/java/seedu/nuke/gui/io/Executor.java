@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
+import seedu.nuke.command.prompt.PromptType;
 import seedu.nuke.common.DataType;
 import seedu.nuke.data.category.Category;
 import seedu.nuke.data.module.Module;
@@ -23,40 +24,69 @@ import static seedu.nuke.util.Message.MESSAGE_PROMPT_FORMAT;
 
 public class Executor {
     /* Variables to transit between parsing regular commands and prompts */
-    private static boolean isPrompt = false;
-    private static boolean isGetIndices = false;
-    private static boolean isConfirmedPrompt = false;
-    private static ArrayList<Integer> indices = new ArrayList<>();
+    private static PromptType promptType = PromptType.NONE;
+    private static String userMessage;
+    private static DataType dataType = DataType.NONE;
+    private static ArrayList<?> filteredList;
+    private static ArrayList<Integer> indices;
 
     private TextField console;
     private TextFlow consoleScreen;
 
-    public boolean promptUser(String promptMessage) throws InterruptedException {
-        isPrompt = true;
-        displayResult(new CommandResult(promptMessage));
-        wait();
-        return isConfirmedPrompt;
+    public Executor(TextField console, TextFlow consoleScreen) {
+        this.console = console;
+        this.consoleScreen = consoleScreen;
     }
 
-    public ArrayList<Integer> getIndicesFromUser(String promptMessage) throws InterruptedException {
-        isGetIndices = true;
-        displayResult(new CommandResult(promptMessage));
-        wait();
+    public static void preparePromptIndices() {
+        promptType = PromptType.INDICES;
+    }
+
+    public static void preparePromptConfirmation() {
+        promptType = PromptType.CONFIRMATION;
+    }
+
+    public static void terminatePrompt() {
+        promptType = PromptType.NONE;
+    }
+
+    public static ArrayList<Integer> getIndices() {
         return indices;
     }
 
+    public static void setIndices(ArrayList<Integer> indices) {
+        Executor.indices = indices;
+    }
+
+    public static DataType getDataType() {
+        return dataType;
+    }
+
+    public static ArrayList<?> getFilteredList() {
+        return filteredList;
+    }
+
+    public static void setFilteredList(ArrayList<?> filteredList, DataType dataType) {
+        Executor.filteredList = filteredList;
+        Executor.dataType = dataType;
+    }
+
     public void executeAction(String userInput) {
-        if (isPrompt) {
-            executePromptUser(userInput.toLowerCase());
-            return;
+        Command command;
+        switch (promptType) {
+            case CONFIRMATION:
+                command = new Parser().parseInputAsConfirmation(userInput.toLowerCase());
+                break;
+
+            case INDICES:
+                command = new Parser().parseInputAsIndices(userInput);
+                break;
+
+            default:
+                command = new Parser().parseInput(userInput);
+                break;
         }
 
-        if (isGetIndices) {
-            executeGetIndices(userInput);
-            return;
-        }
-
-        Command command = new Parser().parseInput(userInput);
         CommandResult result = command.execute();
         displayResult(result);
 
@@ -72,55 +102,25 @@ public class Executor {
         consoleScreen.getChildren().add(feedbackToUser);
 
         DataType dataType = result.getDataType();
-        String listTableToShow = "";
+        String listTableToShow;
         switch (dataType) {
-
-        case NONE:
-            return;
-
-        case MODULE:
-        ArrayList<Module> moduleList = (ArrayList<Module>) result.getList();
-            listTableToShow = ListCreator.createModuleListTable(moduleList);
-
-        case CATEGORY:
-        ArrayList<Category> categoryList = (ArrayList<Category>) result.getList();
-            listTableToShow = ListCreator.createCategoryListTable(categoryList);
-
-        case TASK:
-        ArrayList<Task> taskList = (ArrayList<Task>) result.getList();
-            listTableToShow = ListCreator.createTaskListTable(taskList);
-
-        default:
-            listTableToShow = "Error showing list.\n";
+            case MODULE:
+                ArrayList<Module> moduleList = (ArrayList<Module>) result.getList();
+                listTableToShow = ListCreator.createModuleListTable(moduleList);
+                break;
+            case CATEGORY:
+                ArrayList<Category> categoryList = (ArrayList<Category>) result.getList();
+                listTableToShow = ListCreator.createCategoryListTable(categoryList);
+                break;
+            case TASK:
+                ArrayList<Task> taskList = (ArrayList<Task>) result.getList();
+                listTableToShow = ListCreator.createTaskListTable(taskList);
+                break;
+            default:
+                return;
         }
 
-        Text taskListTable = TextUI.createText(listTableToShow, Color.BROWN);
+        Text taskListTable = TextUI.createText(String.format("%s\n\n", listTableToShow), Color.BROWN);
         consoleScreen.getChildren().add(taskListTable);
     }
-
-    private void executePromptUser(String userInput) {
-        switch (userInput) {
-        case "yes":
-        case "y":
-            isConfirmedPrompt = true;
-            isPrompt = false;
-            notifyAll(); // Prompt is over
-
-        case "no":
-        case "n":
-            isConfirmedPrompt = false;
-            isPrompt = false;
-            notifyAll(); // Prompt is over
-
-        default:
-            displayResult(new CommandResult(MESSAGE_PROMPT_FORMAT));
-        }
-    }
-
-    private void executeGetIndices(String userInput) {
-        indices = new Parser().parseInputAsIndices(userInput);
-        isGetIndices = false;
-        notifyAll();
-    }
-
 }

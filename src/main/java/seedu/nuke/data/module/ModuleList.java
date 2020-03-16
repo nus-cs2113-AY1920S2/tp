@@ -79,21 +79,7 @@ public class ModuleList {
         moduleList.remove(toDelete);
     }
 
-    /**
-     * Deletes module(s) from the module list.
-     *
-     * @param modules
-     *  The filtered list of modules
-     * @param toDeleteIndices
-     *  The indices of the modules to be deleted from the list
-     */
-    public static void delete(ArrayList<Module> modules, ArrayList<Integer> toDeleteIndices) {
-        // Reverse order to prevent deleting at wrong index
-        toDeleteIndices.sort(Collections.reverseOrder());
-        for (int index : toDeleteIndices) {
-            modules.remove(index);
-        }
-    }
+
 
     /**
      * Deletes a <b>Module</b> with the specified <code>module code</code> in the <b>Module List</b>.

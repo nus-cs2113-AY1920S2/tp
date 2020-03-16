@@ -14,10 +14,9 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String FORMAT = COMMAND_WORD + " ( -m <module code> -c <category name> -t <task description> )";
     public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
             Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"),
             Pattern.compile("(?<categoryName>(?:" + CATEGORY_NAME_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<categoryName>(?:" + TASK_DESCRIPTION_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<taskDescription>(?:" + TASK_DESCRIPTION_PREFIX + " [^-]+)?)"),
             Pattern.compile("(?<invalid>(?:-(?:[^mct].*|[mct]\\S+)))")
     };
 

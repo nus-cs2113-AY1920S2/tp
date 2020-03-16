@@ -1,11 +1,13 @@
 package seedu.nuke.data.category;
 
 import seedu.nuke.data.module.Module;
+import seedu.nuke.data.task.Task;
 import seedu.nuke.data.task.TaskList;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CategoryList {
     private ArrayList<Category> categoryList;
@@ -65,10 +67,30 @@ public class CategoryList {
         }
     }
 
-    public void delete(Category toDelete) {
-        categoryList.remove(toDelete);
+    public boolean delete(Category toDelete) {
+        return categoryList.remove(toDelete);
     }
 
+    public void searchAndDelete(Task toDelete) {
+        for (Category category : categoryList) {
+            TaskList taskList = category.getTasks();
+            if (taskList.delete(toDelete)) {
+                break;
+            }
+        }
+    }
+
+    public void delete(ArrayList<Category> categories, ArrayList<Integer> toDeleteIndices) {
+        for (int index : toDeleteIndices) {
+            Category toDelete = categories.get(index);
+            for (Category category : categoryList) {
+                if (category == toDelete) {
+                    delete(category);
+                    break;
+                }
+            }
+        }
+    }
 
     /**
      * Deletes a <b>Category</b> with the specified <code>category name</code> from the <b>Category List</b>.
