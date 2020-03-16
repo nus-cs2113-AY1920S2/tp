@@ -1,14 +1,13 @@
 package commands;
 
+import ingredient.Ingredient;
+import stock.Stock;
+import utils.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import commands.InvalidStockCommandException;
-import ingredient.Ingredient;
-import stock.Stock;
-import utils.Pair;
 
 /**
  * This class focuses on the 'add' functionality of the application
@@ -123,6 +122,7 @@ public class AddStockCommand extends StockCommand {
             throw new InvalidStockCommandException(
                     "The user's input must specify the ingredient's name!");
         } else {
+            assert (ingredientName.isPresent() && quantity.isPresent() && price.isPresent());
             return;
         }
     }

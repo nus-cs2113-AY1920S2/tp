@@ -1,18 +1,16 @@
 package commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import ingredient.Ingredient;
 import org.junit.jupiter.api.Test;
+import stock.Stock;
+import utils.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import commands.AddStockCommand;
-import ingredient.Ingredient;
-import stock.Stock;
-import utils.Pair;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddStockCommandTest {
 
@@ -28,7 +26,7 @@ class AddStockCommandTest {
     }
     
     @Test
-    public void excute_ExecuteAddStockCommand_executeNormally() 
+    public void execute_ExecuteAddStockCommand_executeNormally() 
             throws InvalidStockCommandException {
         
         Stock stock = new Stock();
