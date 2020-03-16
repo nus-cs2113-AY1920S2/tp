@@ -49,9 +49,9 @@ public class TextUi {
     }
 
     /**
-     * prints the patients details with a specific string and a divider
-     * @param patient patient object to be returned as a part of the string
-     * @return a formatted success message string to be displayed to user
+     * prints the patients details with a specific string and a divider.
+     * @param patient patient object to be returned as a part of the string.
+     * @return a formatted success message string to be displayed to user.
      */
     public static String getPatientSuccessMessage(Patient patient) {
         String returnMessage = "    Here are the patient's details:\n" + patient + DIVIDER;
@@ -80,6 +80,13 @@ public class TextUi {
         System.out.println("What can I do for you today, doctor?");
     }
 
+    /**
+     * format an add patient success message for user verification.
+     * Includes a specified string, patient details and a divider.
+     * @param patient patient object added to patientList
+     * @param patientNum index of the patient object in the patientList
+     * @return a string message to be displayed to the user for successful addCommand executed
+     */
     public static String getPatient(Patient patient, int patientNum) {
         String message;
         message = "    Got it! I've added this patient:\n" + patient + DIVIDER;

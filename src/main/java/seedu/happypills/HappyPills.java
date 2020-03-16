@@ -8,7 +8,9 @@ import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
 import java.io.FileNotFoundException;
-import java.util.logging.*;
+import java.util.logging.Logger;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
 import java.util.Scanner;
 
 /**
@@ -76,7 +78,7 @@ public class HappyPills {
                 logger.info(hpe.getMessage());
             }
 
-            logger.info( "end of processing");
+            logger.info("end of processing");
         }
     }
 }

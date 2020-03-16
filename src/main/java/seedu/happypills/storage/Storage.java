@@ -59,9 +59,9 @@ public class Storage {
     }
 
     /**
-     * convert a single line data into values of a patients and add it back to the provided patientList
-     * @param savedString a single string with all the data required for a patient
-     * @param storedPatients a list which the patient details retrieved should be added to
+     * convert a single line data into values of a patients and add it back to the provided patientList.
+     * @param savedString a single string with all the data required for a patient.
+     * @param storedPatients a list which the patient details retrieved should be added into.
      */
     private static void parseFileContent(String savedString, PatientList storedPatients) {
         String[] dataString = savedString.split("[|]", 7);
