@@ -16,9 +16,31 @@
 Welcome to NUKE
 What can I do for you?
 ---------------------------------------------------------------------------------
-Invalid command format!
+Here are ALL your modules.
 
-SUCCESS!! Module CS1010 Programming Methodology has been added.
++----------------------------------------------------------------------------------------------------+
+CS1231 Discrete Structures null
+CS1010 Programming Methodology null
+CS3235 Computer Security null
++----------------------------------------------------------------------------------------------------+
+
+ALERT! The module already existed.
+
+ALERT! The module is not provided by NUS currently.
+
+There are (is) 4 task(s) in the list!
++----------------------------------------------------------------------------------------------------+
+asdfasdf                       CS1231     deadline: null
+complete tutorial              CS1231     deadline: null
+qwerqwerqwer                   CS1010     deadline: null
+complete assignment 2          CS3235     deadline: null
++----------------------------------------------------------------------------------------------------+
+
+Module change succeeded
+
+There are (is) 1 task(s) in the list!
++----------------------------------------------------------------------------------------------------+
+complete assignment 2            Deadline: null
++----------------------------------------------------------------------------------------------------+
 
 Bye. Hope to see you again soon.
----------------------------------------------------------------------------------

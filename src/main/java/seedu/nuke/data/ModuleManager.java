@@ -16,15 +16,23 @@ import java.util.Iterator;
  */
 public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules;
-    private ArrayList<String> moduleCodes = new ArrayList<>();
+    private ArrayList<String> moduleCodes;
     private HashMap<String, String> modulesMap;
 
     public ModuleManager(HashMap<String, String> modulesMap) {
         this.modulesMap = modulesMap;
     }
 
+    /**
+     * This mothod is to restore the list of modules when loading from the json data file.
+     * @param modules an ArrayList of Module objects parsed from the json string in the data file
+     */
     public void setModules(ArrayList<Module> modules) {
+        this.moduleCodes = new ArrayList<>();
         this.modules = modules;
+        for (Module module: modules) {
+            moduleCodes.add(module.getModuleCode());
+        }
     }
 
     /**
