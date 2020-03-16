@@ -44,7 +44,7 @@ public class Log {
     /**
      * Constructor for a new logger.
      */
-    public Log(){
+    public Log() {
         logger = Logger.getLogger(Log.class.getName());
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
