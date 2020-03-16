@@ -22,6 +22,18 @@ public class AddCommand extends Command {
      * @param nric        Contains the nric of the patient.
      * @param phoneNumber Contains the phone number of the patient.
      */
+    /**
+     * Constructor for AddCommand Class.
+     * It creates a new AddCommand Object with the information provided.
+     *
+     * @param name          Contains the name of the patient.
+     * @param nric          Contains the nric of the patient.
+     * @param phoneNumber   Contains the phone number of the patient.
+     * @param dateOfBirth   Contains the date of birth of the patient.
+     * @param bloodType     Contains the blood type of the patient.
+     * @param allergies     Contains any allergies the patient has.
+     * @param remarks       Contains any remarks for the patient.
+     */
     public AddCommand(String name, String nric, int phoneNumber, String dateOfBirth,
                       String bloodType, String allergies, String remarks) {
         this.name = name;

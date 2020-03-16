@@ -22,6 +22,7 @@ public class PatientList extends ArrayList<Patient> {
      *
      * @param patients Current list of tasks..
      * @param keyword  The word used for search.
+     * @return true of the keyword is found, false otherwise.
      */
     public boolean findKeyword(String keyword, PatientList patients) {
         for (Patient patient : patients) {
