@@ -1,4 +1,10 @@
 import java.time.LocalTime;
+import java.io.FileNotFoundException;
+
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_INVALID_NUMBER;
+import static java.lang.System.out;
+
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,11 +13,16 @@ import java.util.Scanner;
  * TESTING SUMMARY DOC.
  */
 public class MeetingOrganizer {
-
+    public static Storage storage;
 
     public MeetingOrganizer() {
-        //declare objects here
-        myMeetingList = new MeetingList();
+        try {
+            storage = new Storage("data/meeting_list.txt");
+            myMeetingList = new MeetingList(storage.loadListFromDisk());
+        } catch (FileNotFoundException e) {
+            TextUI.showLoadingError();
+            myMeetingList = new MeetingList();
+        }
     }
 
     private MeetingList myMeetingList;
@@ -48,8 +59,9 @@ public class MeetingOrganizer {
             break;
 
         case "2":
-            TextUI.deleteMeetingMsg();
+            TextUI.editMeetingMsg();//previously was delete
             /*
+            out.println("Which meeting slot do you want to ...?"); //previously was delete
             member1.deleteBusyBlocks("TESTMEETING");
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 48; j++) {
@@ -60,10 +72,17 @@ public class MeetingOrganizer {
              */
             break;
         case "3":
-            TextUI.editMeetingMsg();
+            TextUI.deleteMeetingMsg();
+            Scanner scanner = new Scanner(System.in);
+            int index = Integer.parseInt(String.valueOf(scanner.next())) - 1;
+            try {
+                myMeetingList.delete(index);
+            } catch (IndexOutOfBoundsException e) {
+                TextUI.displayInvalidDeleteTarget();
+            }
             break;
-        case "4":
-            TextUI.listMeetings();
+        case "4": //list all current meeting slots
+            myMeetingList.show();
             break;
         default:
             throw new MoException("Unknown command, please try again.");
@@ -110,6 +129,7 @@ public class MeetingOrganizer {
         while (!userInput.equals("5")) {
             try {
                 botResponse(userInput);
+                storage.updateListToDisk(myMeetingList.getMeetingList());
             } catch (MoException e) {
                 TextUI.errorMsg(e);
             } catch (DateTimeParseException e) {
