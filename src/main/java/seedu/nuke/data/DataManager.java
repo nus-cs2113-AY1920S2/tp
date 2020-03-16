@@ -21,7 +21,7 @@ public class DataManager {
     public DataManager(ModuleManager moduleManager) {
         allTasks = new ArrayList<>();
         for (Module module: moduleManager.getModuleList()) {
-            allTasks.addAll(module.getTaskManager().getTaskList());
+            allTasks.addAll(module.getTaskManager().getAllTasks());
         }
     }
 

@@ -30,7 +30,7 @@ public abstract class TaskCommand extends ModuleCommand {
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
     protected Task getTargetTask() throws IndexOutOfBoundsException {
-        return taskManager.getTaskList().get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
+        return taskManager.getAllTasks().get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
     }
 
     @Override

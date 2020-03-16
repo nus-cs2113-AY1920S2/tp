@@ -15,7 +15,7 @@ import java.util.Iterator;
  * deals with operations that are related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private ArrayList<Module> modules = new ArrayList<>();
+    private ArrayList<Module> modules;
     private ArrayList<String> moduleCodes = new ArrayList<>();
     private HashMap<String, String> modulesMap;
 

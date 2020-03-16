@@ -46,6 +46,34 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task() {
+
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public void setFiles(ArrayList<String> files) {
+        this.files = files;
+    }
+
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
     /**
      * moduleCode getter method.
      *

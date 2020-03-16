@@ -9,6 +9,7 @@ import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShot;
 import seedu.nuke.data.ScreenShotManager;
+import seedu.nuke.data.StorageManager;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
@@ -24,6 +25,7 @@ public class Nuke {
     public ScreenShotManager screenShotManager; //?public
     private ScreenShot currentScreenShot;
     private Ui ui;
+    private StorageManager storageManager;
 
     /**
      * constructor of nuke.
@@ -32,7 +34,9 @@ public class Nuke {
     public Nuke() throws FileNotFoundException {
         ui = new Ui();
         modulesMap  = ModuleLoader.load("moduleList.json");
+        storageManager = new StorageManager("data.json");
         moduleManager = new ModuleManager(modulesMap);
+        moduleManager.setModules(storageManager.load());
         dataManager = new DataManager(moduleManager);
         screenShotManager = new ScreenShotManager();
         currentScreenShot = new ScreenShot(moduleManager, dataManager);
@@ -72,6 +76,7 @@ public class Nuke {
      */
     public void exit() {
         TextUi.showExitMessage();
+        storageManager.save(moduleManager.getModuleList());
     }
 
     /**
