@@ -10,25 +10,25 @@ import java.util.Scanner;
 
 
 public class Storage {
-    File f;
+    File file;
 
     /**
      * Constructor specifying file path.
      * @param filePath the file path to store on hard drive
      * @throws FileNotFoundException If file is not found
      */
-    public Storage (String filePath) throws FileNotFoundException {
-        f = new File("data/meeting_list.txt");
+    public Storage(String filePath) throws FileNotFoundException {
+        file = new File("data/meeting_list.txt");
     }
 
-    public void updateListToDisk(ArrayList<Meeting> meetingList){
+    public void updateListToDisk(ArrayList<Meeting> meetingList) {
         try {
             Files.createDirectory(Paths.get("data"));
-        } catch (IOException ignored) {//ignored as the error would mean the directory exists, thus no action needed
+        } catch (IOException ignored) { //ignored as the error would mean the directory exists, thus no action needed
         }
         try {
             Files.createFile(Paths.get("data/meeting_list.txt"));
-        } catch (IOException ignored) {//ignored as the error would mean the file exists, thus no action needed
+        } catch (IOException ignored) { //ignored as the error would mean the file exists, thus no action needed
         }
         try {
             FileWriter fw = new FileWriter("data/meeting_list.txt");
@@ -56,7 +56,7 @@ public class Storage {
      */
     public ArrayList<Meeting> loadListFromDisk() throws FileNotFoundException {
         ArrayList<Meeting> list = new ArrayList<>();
-        Scanner reader = new Scanner(f);
+        Scanner reader = new Scanner(file);
         while (reader.hasNext()) {
             String[] data = reader.nextLine().split(" ");
             list.add(new Meeting(data[0], Integer.parseInt(data[1]),

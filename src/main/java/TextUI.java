@@ -117,7 +117,7 @@ public class TextUI {
         for (int i = 0; i < meetingList.size(); i++) {
             String startDay = getDayFromNumber(meetingList.get(i).getStartDay());
             String endDay = getDayFromNumber(meetingList.get(i).getEndDay());
-            System.out.println((i+1) + ". " + startDay + " " + meetingList.get(i).getStartTime()
+            System.out.println((i + 1) + ". " + startDay + " " + meetingList.get(i).getStartTime()
                     + " to " + endDay + " " + meetingList.get(i).getEndTime());
         }
     }
@@ -156,11 +156,11 @@ public class TextUI {
         System.out.println("There is no scheduled meetings so far.");
     }
 
-    public static void displayRemovedMeeting(ArrayList<Meeting> meetingList, int index) throws IndexOutOfBoundsException{
+    public static void displayRemovedMeeting(ArrayList<Meeting> meetingList, int index) throws IndexOutOfBoundsException {
         String startDay = getDayFromNumber(meetingList.get(index).getStartDay());
         String endDay = getDayFromNumber(meetingList.get(index).getEndDay());
         System.out.println("I have removed:");
-        System.out.println((index+1) + ". " + startDay + " " + meetingList.get(index).getStartTime()
+        System.out.println((index + 1) + ". " + startDay + " " + meetingList.get(index).getStartTime()
                 + " to " + endDay + " " + meetingList.get(index).getEndTime());
     }
 
@@ -168,7 +168,7 @@ public class TextUI {
         System.out.println("Item does not exist.");
     }
 
-    public static void showLoadingError(){
+    public static void showLoadingError() {
         System.out.println("There are no previous records of meetings, let's create a new one!");
     }
 }
