@@ -49,7 +49,7 @@ public class Log {
      * Creates a long entry at INFO level.
      * @param message the INFO message to be logged
      */
-    public void makeINFOLog(String message) {
+    public void makeInfoLog(String message) {
         logger.log(Level.INFO, message);
     }
 
