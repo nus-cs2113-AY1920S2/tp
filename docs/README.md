@@ -1,4 +1,4 @@
-# Duke
+# HappyPills
 
 {Give product intro here}
 

@@ -1,6 +1,5 @@
 package seedu.happypills.commands;
 
-import org.w3c.dom.Text;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 import seedu.happypills.ui.TextUi;
@@ -20,13 +19,13 @@ public class GetCommand extends Command {
 
     @Override
     public String execute(PatientList patients) {
-        assert !patientNric.equals("") : "No NRIC is provided";
+        assert !patientNric.isEmpty() : "No NRIC was provided";
         for (Patient patient : patients) {
             if (patient.getNric().equalsIgnoreCase(patientNric)) {
-                return TextUi.successfulGetPatientMessage(patient);
+                return TextUi.getPatientSuccessMessage(patient);
             }
         }
-        return "The patient you are looking for does not exist";
+        return "The patient you are looking for cannot be found";
     }
 
 }
