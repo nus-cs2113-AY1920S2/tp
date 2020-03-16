@@ -18,10 +18,10 @@ public class Storage {
      * Save individual patient data as strings to file. Creates file if it does not exist.
      *
      * @param filePath location of file to save to, requires directory/file.
-     * @param patientDataString  single patient data as string to be saved to file.
+     * @param dataString  single patient data as string to be saved to file.
      * @throws IOException if unable to save to file, possibly due to interruptions.
      */
-    public static void addPatientToFile(String filePath, String patientDataString) throws IOException {
+    public static void addStringToFile(String filePath, String dataString) throws IOException {
         File d = new File(filePath.substring(0, filePath.lastIndexOf('/')));
         if (!d.exists()) {
             d.mkdir();
@@ -33,16 +33,17 @@ public class Storage {
         }
 
         FileWriter fw = new FileWriter(filePath);
-        fw.write(patientDataString);
+        fw.write(dataString);
         fw.close();
     }
 
     /**
-     * Read in file as strings.
+     * Read and send file data to parse line by line as string.
+     * Returns a list of historical patients patient list
      *
      * @param filePath location of file to read from.
-     * @return <code>ArrayList</code> of each line read from the file.
-     * @throws FileNotFoundException if the file specified by <code>filePath</code> does not exist.
+     * @return patientList of all patients found in the file.
+     * @throws FileNotFoundException if the file specified by directory/filename does not exist.
      */
     public static PatientList loadFromFile(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
@@ -57,6 +58,11 @@ public class Storage {
         return storedPatients;
     }
 
+    /**
+     * convert a single line data into values of a patients and add it back to the provided patientList
+     * @param savedString a single string with all the data required for a patient
+     * @param storedPatients a list which the patient details retrieved should be added to
+     */
     private static void parseFileContent(String savedString, PatientList storedPatients) {
         String[] dataString = savedString.split("[|]", 7);
         Patient tempPatient = new Patient(dataString[0], dataString[1],

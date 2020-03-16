@@ -48,7 +48,12 @@ public class TextUi {
         System.out.println(patient + DIVIDER);
     }
 
-    public static String successfulGetPatientMessage(Patient patient) {
+    /**
+     * prints the patients details with a specific string and a divider
+     * @param patient patient object to be returned as a part of the string
+     * @return a formatted success message string to be displayed to user
+     */
+    public static String getPatientSuccessMessage(Patient patient) {
         String returnMessage = "    Here are the patient's details:\n" + patient + DIVIDER;
         return returnMessage;
     }
@@ -67,17 +72,14 @@ public class TextUi {
                 + "|  | |  ||   _   ||       ||       ||  | |  ||       ||   | |   |    |   |    |       |\n"
                 + "|  |_|  ||  |_|  ||    _  ||    _  ||  |_|  ||    _  ||   | |   |    |   |    |  _____|\n"
                 + "|       ||       ||   |_| ||   |_| ||       ||   |_| ||   | |   |    |   |    | |_____\n"
-                + "|       ||       ||    ___||    ___||_     _||    ___||   | |   |___ |   |___ |_____  |\n"
-                + "|   _   ||   _   ||   |    |   |      |   |  |   |    |   | |       ||       | _____| |\n"
+                + "|   _   ||   _   ||    ___||    ___||_     _||    ___||   | |   |___ |   |___ |_____  |\n"
+                + "|  | |  ||  | |  ||   |    |   |      |   |  |   |    |   | |       ||       | _____| |\n"
                 + "|__| |__||__| |__||___|    |___|      |___|  |___|    |___| |_______||_______||_______|\n";
 
         System.out.println("Hello from" + logo);
         System.out.println("What can I do for you today, doctor?");
     }
 
-    /**
-     * Generates and prints the welcome message upon the start of the application.
-     */
     public static String getPatient(Patient patient, int patientNum) {
         String message;
         message = "    Got it! I've added this patient:\n" + patient + DIVIDER;
