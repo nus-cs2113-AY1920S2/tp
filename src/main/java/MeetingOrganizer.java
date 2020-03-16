@@ -1,14 +1,6 @@
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_INVALID_NUMBER;
-import static java.lang.System.out;
-
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -23,42 +15,21 @@ public class MeetingOrganizer {
     }
 
     private MeetingList myMeetingList;
+    private ArrayList<TeamMember> myScheduleList;
+    private ScheduleHandler myScheduleHandler;
+    private Boolean[][] myMasterSchedule;
 
     void botResponse(String userInput) throws MoException, DateTimeParseException, NumberFormatException {
+        Scanner in = new Scanner(System.in);
 
-        TeamMember member1 = new TeamMember("john");
-        TeamMember member2 = new TeamMember("mary");
         switch (userInput) {
         case "1":
-            out.println("You have selected new scheduled meeting");
-
-            Boolean[][] mySchedule = new Boolean[7][48];
-            for (int i = 0; i < 7; i++) {
-                Arrays.fill(mySchedule[i], false); // fill every 48 index of the 7 days with 0 initially
-            }
-
-            member1.addBusyBlocks("test1", 0, "10:00", 2, "12:00");
-            printSchedule("member 1 schedule", member1.getSchedule()); //check
-
-            member2.addBusyBlocks("test2", 2, "14:00", 2, "18:00");
-            printSchedule("member 2 schedule", member2.getSchedule()); //check
-
-            ArrayList<TeamMember> myScheduleList = new ArrayList<>();
-            myScheduleList.add(member1);
-            myScheduleList.add(member2);
-            ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
-            Boolean[][] myMasterSchedule = myScheduleHandler.getMasterSchedule();
-            printSchedule("master schedule", myMasterSchedule); //check
-            myScheduleHandler.printFreeTimings();
-
-            //
+            TextUI.scheduleMeetingMsg();
             TextUI.printTimetable(myMasterSchedule);
-
             // Test add meeting
-            Scanner in = new Scanner(System.in);
-            System.out.println("What do you want to name your meeting?");
+            TextUI.meetingNameMsg();
             String meetingName = in.nextLine(); // eg. CS2113 Meeting
-            System.out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>");
+            TextUI.meetingDetailsMsg();
             String input = in.nextLine(); // eg. 1 19:00 2 12:30
             String[] meetingDetails = input.split(" ", 4);
 
@@ -69,12 +40,16 @@ public class MeetingOrganizer {
 
             if (myScheduleHandler.isValidMeeting(startDay, startTime, endDay, endTime)) {
                 myMeetingList.add(new Meeting(meetingName, startDay, startTime, endDay, endTime));
-                System.out.println("You now have " + myMeetingList.getMeetingListSize() + " meetings in the list.");
+                myScheduleHandler.updateMasterSchedule(startDay, startTime, endDay, endTime);
+                myMasterSchedule = myScheduleHandler.getMasterSchedule();
+                TextUI.printTimetable(myMasterSchedule);
+                TextUI.meetingListSizeMsg(myMeetingList);
             }
-
             break;
+
         case "2":
-            out.println("Which meeting slot do you want to delete?");
+            TextUI.deleteMeetingMsg();
+            /*
             member1.deleteBusyBlocks("TESTMEETING");
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 48; j++) {
@@ -82,18 +57,47 @@ public class MeetingOrganizer {
                 }
                 out.println();
             }
+             */
             break;
         case "3":
-            out.println("Which meeting slot do you want to edit?");
+            TextUI.editMeetingMsg();
             break;
         case "4":
-            out.println("Here are all your meeting slots.");
+            TextUI.listMeetings();
             break;
         default:
             throw new MoException("Unknown command, please try again.");
         }
     }
 
+
+    private void setMembersSchedule(Scanner in) {
+        TextUI.membersMsg();
+        Integer membersN = Integer.parseInt(in.nextLine());
+        TextUI.enterScheduleMsg();
+
+        myScheduleList = new ArrayList<>();
+        for (int i = 0; i < membersN; ++i) { // HANDLE EXCEPTION
+            TeamMember member = new TeamMember(String.valueOf(i));
+            String input = in.nextLine(); // eg. LessonA 1 19:00 2 12:30
+            String[] scheduleDetails = input.split(" ", 5);
+
+            String scheduleName = scheduleDetails[0];
+            Integer startDay = Integer.parseInt(scheduleDetails[1]);
+            String startTime = scheduleDetails[2];
+            Integer endDay = Integer.parseInt(scheduleDetails[3]);
+            String endTime = scheduleDetails[4];
+            member.addBusyBlocks(scheduleName, startDay, startTime, endDay, endTime);
+            myScheduleList.add(member);
+        }
+        myScheduleHandler = new ScheduleHandler(myScheduleList);
+        myMasterSchedule = myScheduleHandler.getMasterSchedule();
+        TextUI.printTimetable(myMasterSchedule);
+        myScheduleHandler.printFreeTimings();
+
+        TextUI.menuMsg();
+    }
+/*
     private void printSchedule(String scheduleName, Boolean[][] s) {
         out.println(scheduleName);
         for (int i = 0; i < 7; i++) {
@@ -108,23 +112,25 @@ public class MeetingOrganizer {
         }
         out.println();
     }
-
+*/
     /**
      * Main entry-point for the application.
      */
     public void run() {
         TextUI.introMsg();
         Scanner in = new Scanner(System.in);
+        setMembersSchedule(in);
         String userInput = in.nextLine();
+
         while (!userInput.equals("5")) {
             try {
                 botResponse(userInput);
             } catch (MoException e) {
                 TextUI.errorMsg(e);
             } catch (DateTimeParseException e) {
-                System.out.println(MESSAGE_STARTENDTIME_OUT_OF_RANGE);
+                TextUI.timeOutOfRangeMsg();
             } catch (NumberFormatException e) {
-                System.out.println(MESSAGE_INVALID_NUMBER);
+                TextUI.invalidNumberMsg();
             } finally {
                 userInput = in.nextLine();
             }

@@ -1,3 +1,7 @@
+import static common.Messages.MESSAGE_INVALID_NUMBER;
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static java.lang.System.out;
+
 /**
  * TESTING SUMMARY DOC.
  */
@@ -16,45 +20,93 @@ public class TextUI {
             + "|  \\___  (____  /___|  /__/_____ \\\\___  >__|             \n"
             + "                  \\/     \\/     \\/             \\//_____/           \\/     "
             + "/_____/     \\/     \\/         \\/    \\/                 ";
-        System.out.println("Welcome to....\n" + logo);
-        System.out.println("1) Schedule a new meeting.");
-        System.out.println("2) Delete a scheduled meeting.");
-        System.out.println("3) Edit a scheduled meeting.");
-        System.out.println("4) List all scheduled meetings.");
-        System.out.println("5) Exit application.");
-        System.out.println("__________________________________________________________"
-            + "______________________________________________________________________");
+        out.println("Welcome to....\n" + logo);
+    }
+
+    public static void menuMsg() {
+        out.println("__________________________________________________________"
+                + "______________________________________________________________________");
+        out.println("1) Schedule a new meeting.");
+        out.println("2) Delete a scheduled meeting.");
+        out.println("3) Edit a scheduled meeting.");
+        out.println("4) List all scheduled meetings.");
+        out.println("5) Exit application.");
+        out.println("__________________________________________________________"
+                + "______________________________________________________________________");
     }
 
     public static void exitMsg() {
-        System.out.println("Thank you for using MeetingOrganizer, goodbye!");
+        out.println("Thank you for using MeetingOrganizer, goodbye!");
     }
 
     public static void errorMsg(MoException e) {
-        System.out.println("OOPS!! " + e);
+        out.println("OOPS!! " + e);
     }
 
 
     public static void printTimetable(Boolean[][] mySchedule) {
-        System.out.println("      SUN MON TUE WED THU FRI SAT");
+        out.println("      SUN MON TUE WED THU FRI SAT");
 
         for (int i = 0; i < 24; ++i) {
-            System.out.println(String.format("%04d", (0000 + 100 * i)) + " +---+---+---+---+---+---+---+");
+            out.println(String.format("%04d", (0000 + 100 * i)) + " +---+---+---+---+---+---+---+");
 
-            System.out.print("     |");
+            out.print("     |");
             for (int j = 0; j < 7; ++j) {
-                System.out.print(" " + (mySchedule[j][2 * i] ? "X" : " ") + " |");
+                out.print(" " + (mySchedule[j][2 * i] ? "X" : " ") + " |");
             }
-            System.out.println();
-            System.out.println("     +---+---+---+---+---+---+---+");
+            out.println();
+            out.println("     +---+---+---+---+---+---+---+");
 
-            System.out.print("     |");
+            out.print("     |");
             for (int j = 0; j < 7; ++j) {
-                System.out.print(" " + (mySchedule[j][2 * i + 1] ? "X" : " ") + " |");
+                out.print(" " + (mySchedule[j][2 * i + 1] ? "X" : " ") + " |");
             }
-            System.out.println();
+            out.println();
         }
-        System.out.println("0000" + " +---+---+---+---+---+---+---+");
+        out.println("0000" + " +---+---+---+---+---+---+---+");
     }
 
+    public static void scheduleMeetingMsg() {
+        out.println("You have selected new scheduled meeting");
+    }
+
+    public static void meetingNameMsg() {
+        out.println("What do you want to name your meeting?");
+    }
+
+    public static void meetingDetailsMsg() {
+        out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>");
+    }
+
+    public static void meetingListSizeMsg(MeetingList myMeetingList) {
+        out.println("You now have " + myMeetingList.getMeetingListSize() + " meetings in the list.");
+    }
+
+    public static void deleteMeetingMsg() {
+        out.println("Which meeting slot do you want to delete?");
+    }
+
+    public static void editMeetingMsg() {
+        out.println("Which meeting slot do you want to edit?");
+    }
+
+    public static void listMeetings() {
+        out.println("Here are all your meeting slots.");
+    }
+
+    public static void membersMsg() {
+        out.println("How many members are there in your team?");
+    }
+
+    public static void enterScheduleMsg() {
+        out.println("Enter schedule of team members: <Schedule Name> <Start Day> <Start Time> <End Day> <End Time>");
+    }
+
+    public static void timeOutOfRangeMsg() {
+        out.println(MESSAGE_STARTENDTIME_OUT_OF_RANGE);
+    }
+
+    public static void invalidNumberMsg() {
+        out.println(MESSAGE_INVALID_NUMBER);
+    }
 }
