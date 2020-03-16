@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
@@ -26,7 +27,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList) {
+    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
         switch (viewTaskType) {
         case VIEW_MODULE_PLAN:
             viewModulePlan(selectedModulesList);
