@@ -4,6 +4,7 @@ import jikan.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.ui.Ui;
+import jikan.Log;
 
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
@@ -24,12 +25,15 @@ public class Parser {
     protected String[] tokenizedInputs;
     String instruction;
 
+    Log logger = new Log();
+
     /**
      * Parses user commands to relevant functions to carry out the commands.
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
     public void parseUserCommands(Scanner scanner, ActivityList activityList) {
+        logger.makeInfoLog("Starting to parse inputs.");
         while (true) {
             String userInput = scanner.nextLine();
             tokenizedInputs = userInput.split(" ", 2);
@@ -90,6 +94,7 @@ public class Parser {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
+            logger.makeWarningLog("Could not start activity due to ongoing activity.");
             ui.printDivider(line);
         } else {
             String line;
@@ -111,7 +116,7 @@ public class Parser {
             startTime = LocalDateTime.now();
             ui.printDivider(line);
         }
-
+        logger.makeInfoLog("Started: " + activityName);
     }
 
     /** Method to parse the end activity command. */
@@ -127,5 +132,6 @@ public class Parser {
             activityList.add(newActivity);
             startTime = null;
         }
+        logger.makeInfoLog("Ended: " + activityName);
     }
 }
