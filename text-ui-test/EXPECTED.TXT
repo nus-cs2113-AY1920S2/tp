@@ -25,14 +25,18 @@ You have aborted the current activity!
 Task name cannot be empty!
 -------------------------------------------
 -------------------------------------------
-There is no such task!
+You have not started any activity!
 -------------------------------------------
 -------------------------------------------
-There is no such task!
+You have not started any activity!
 -------------------------------------------
 -------------------------------------------
 Your completed activities:
-1. studying 00:00:02
+1. studying 00:00:00
+2. studying 00:00:00
+3. studying 00:00:00
+4. studying 00:00:00
+5. studying 00:00:00
 -------------------------------------------
 -------------------------------------------
  Bye! See you again.
