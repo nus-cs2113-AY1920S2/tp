@@ -60,8 +60,8 @@ public class DataManager {
         sortAllTasks();
 
         for (Task task: allTasks) {
-            deadlines.add(String.format("%-30s", task.getDescription()) + " " +
-                    String.format("%-8s", task.getModuleCode()) + "   deadline: " + task.getDeadline());
+            deadlines.add(String.format("%-30s", task.getDescription()) + " "
+                    + String.format("%-8s", task.getModuleCode()) + "   deadline: " + task.getDeadline());
         }
         return deadlines;
     }
