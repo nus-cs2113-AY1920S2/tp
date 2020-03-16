@@ -116,6 +116,7 @@ public class ScheduleHandler {
 
 
     public void printFreeTimings() {
+        System.out.println("Here are your free slots:");
         for (int i = 0; i < this.freeBlocks.size(); i++) {
             String startDay = getDayFromNumber(this.freeBlocks.get(i).get(0).intValue());
             LocalTime startTime = getTimeFromBlock(this.freeBlocks.get(i).get(1).intValue(), "START");
@@ -234,7 +235,6 @@ public class ScheduleHandler {
         }
 
         Integer startBlock = getBlocksFromStartTime(startTime);
-        System.out.println(startBlock);
         Integer endBlock = -1;
         if (endTime == LocalTime.parse("00:00")) {
             endBlock = 47;
@@ -246,7 +246,6 @@ public class ScheduleHandler {
         } else {
             endBlock = getBlocksFromEndTime(endTime);
         }
-        System.out.println(endDay + " " + endBlock);
 
         if (startDay.equals(endDay)) {
             if (startBlock.equals(endBlock)) {
@@ -344,5 +343,91 @@ public class ScheduleHandler {
         }
 
         return true;
+    }
+
+    public void updateMasterSchedule(Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
+
+        Integer startBlock = getBlocksFromStartTime(startTime);
+        Integer endBlock = -1;
+        if (endTime == LocalTime.parse("00:00")) {
+            endBlock = 47;
+            if (endDay == 0) {
+                endDay = 6;
+            } else {
+                endDay = endDay - 1;
+            }
+        } else {
+            endBlock = getBlocksFromEndTime(endTime);
+        }
+
+        if (startDay.equals(endDay)) {
+            if (startBlock.equals(endBlock)) {
+                masterSchedule[startDay][startBlock] = myScheduleBlocked;
+            } else if (startBlock < endBlock) {
+                for (int i = startBlock; i <= endBlock; ++i) {
+                    masterSchedule[startDay][i] = myScheduleBlocked;
+                }
+            } else if (startBlock > endBlock) {
+                for (int i = startBlock; i <= 47; ++i) {
+                    masterSchedule[startDay][i] = myScheduleBlocked;
+                }
+
+                for (int i = startDay + 1; i <= 6; ++i) {
+                    for (int j = 0; j <= 47; ++j) {
+                        masterSchedule[i][j] = myScheduleBlocked;
+                    }
+                }
+
+                for (int i = 0; i <= endDay - 1; ++i) {
+                    for (int j = 0; j <= 47; ++j) {
+                        masterSchedule[i][j] = myScheduleBlocked;
+                    }
+                }
+
+                for (int i = 0; i <= endBlock; ++i) {
+                    masterSchedule[endDay][i] = myScheduleBlocked;
+                }
+
+            }
+        }
+
+        if (startDay < endDay) {
+            for (int i = startBlock; i <= 47; ++i) {
+                masterSchedule[startDay][i] = myScheduleBlocked;
+            }
+            for (int i = startDay + 1; i <= endDay - 1; ++i) {
+                for (int j = 0; j < 48; ++j) {
+                    masterSchedule[i][j] = myScheduleBlocked;
+                }
+            }
+
+            for (int i = 0; i <= endBlock; ++i) {
+                masterSchedule[endDay][i] = myScheduleBlocked;
+            }
+
+        }
+
+        if (startDay > endDay) {
+            for (int i = startBlock; i <= 47; ++i) {
+                masterSchedule[startDay][i] = myScheduleBlocked;
+            }
+
+            for (int i = startDay + 1; i <= 6; ++i) {
+                for (int j = 0; j <= 47; ++j) {
+                    masterSchedule[i][j] = myScheduleBlocked;
+                }
+            }
+
+            for (int i = 0; i <= endDay - 1; ++i) {
+                for (int j = 0; j <= 47; ++j) {
+                    masterSchedule[i][j] = myScheduleBlocked;
+                }
+            }
+
+            for (int i = 0; i <= endBlock; ++i) {
+                masterSchedule[endDay][i] = myScheduleBlocked;
+            }
+        }
+
     }
 }
