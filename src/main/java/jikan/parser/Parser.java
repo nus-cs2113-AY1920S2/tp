@@ -1,15 +1,13 @@
 package jikan.parser;
 
-import jikan.EmptyNameException;
+import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 
@@ -48,25 +46,34 @@ public class Parser {
                 try {
                     parseStart();
                 } catch (EmptyNameException e) {
-                    ui.printDivider("Task name cannot be empty!");
                     logger.makeWarningLog("Activity started without task name");
+                    ui.printDivider("Task name cannot be empty!");
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    ui.printDivider("Task name cannot be empty!");
                     logger.makeWarningLog("Activity started without task name");
+                    ui.printDivider("Task name cannot be empty!");
+                } catch (NullPointerException e) {
+                    logger.makeWarningLog("Activity started without task name");
+                    ui.printDivider("Task name cannot be empty!");
                 }
                 break;
             case "end":
-                parseEnd(activityList);
-                assert startTime == null;
+                try {
+                    parseEnd(activityList);
+                } catch (NoSuchActivityException e) {
+                    logger.makeWarningLog("End command failed as no activity was ongoing");
+                    ui.printDivider("You have not started any activity!");
+                }
                 break;
             case "list":
                 ui.printList(activityList);
                 break;
             case "abort":
-                parseAbort();
-                assert activityName == null;
-                assert startTime == null;
-                assert endTime == null;
+                try {
+                    parseAbort();
+                } catch (NoSuchActivityException e) {
+                    ui.printDivider("You have not started any activity!");
+                    logger.makeWarningLog("Abort command failed as no activity was ongoing");
+                }
                 break;
             default:
                 parseDefault();
@@ -83,11 +90,9 @@ public class Parser {
     }
 
     /** Method to parse the abort command. */
-    private void parseAbort() {
+    public void parseAbort() throws NoSuchActivityException {
         if (startTime == null) {
-            String line = "You have not started any activity!";
-            logger.makeWarningLog("Abort command failed as no activity was ongoing");
-            ui.printDivider(line);
+            throw new NoSuchActivityException();
         } else {
             logger.makeInfoLog("Aborted " + activityName);
             startTime = null;
@@ -100,7 +105,7 @@ public class Parser {
     }
 
     /** Method to parse the start activity command. */
-    public void parseStart() throws ArrayIndexOutOfBoundsException, EmptyNameException {
+    public void parseStart() throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
@@ -134,11 +139,9 @@ public class Parser {
     }
 
     /** Method to parse the end activity command. */
-    public void parseEnd(ActivityList activityList) throws ArrayIndexOutOfBoundsException {
+    public void parseEnd(ActivityList activityList) throws NoSuchActivityException {
         if (startTime == null) {
-            String line = "You have not started any activity!";
-            logger.makeWarningLog("End command failed as there was no ongoing activity");
-            ui.printDivider(line);
+            throw new NoSuchActivityException();
         } else {
             String line = "Ended " + activityName;
             ui.printDivider(line);
