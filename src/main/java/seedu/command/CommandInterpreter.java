@@ -31,9 +31,9 @@ public class CommandInterpreter {
     protected String getSubsequentWords(String userInput) throws DukeException {
         int startIndexOfSpace = userInput.trim().indexOf(" ");
 
-        if (startIndexOfSpace == -1) {
+        /*if (startIndexOfSpace == -1) {
             throw new DukeException("No parameters provided");
-        }
+        }*/
 
         int startIndexOfParameter = startIndexOfSpace + 1;
         return userInput.substring(startIndexOfParameter);
@@ -63,6 +63,8 @@ public class CommandInterpreter {
             EventCommandInterpreter eci = new EventCommandInterpreter(eventList);
             command = eci.decideCommand(commandDescription);
             break;
+        case "seminar":
+
         case "attendance":
             AttendanceCommandInterpreter aci = new AttendanceCommandInterpreter(eventList);
             command = aci.decideCommand(commandDescription);
@@ -72,7 +74,7 @@ public class CommandInterpreter {
             command = pci.decideCommand(commandDescription);
             break;
         default:
-            throw new DukeException("Unknown command type.");
+            throw new DukeException("No parameters provided");
         }
 
         if (command == null) {
