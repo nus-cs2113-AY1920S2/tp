@@ -178,4 +178,11 @@ public class Patient {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public String toSave() {
+        String text = this.name + "|" + this.nric + "|"
+                + this.phoneNumber + "|" + this.dateOfBirth + "|"
+                +this.bloodType + "|" + this.allergies +"|" + this.remarks;
+        return text;
+    }
 }
