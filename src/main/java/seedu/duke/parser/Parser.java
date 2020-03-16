@@ -109,8 +109,22 @@ public class Parser {
             if (prices == null) {
                 newCommand = new AddCommand(description, 0.0);
             } else {
-                double price = Double.parseDouble(prices);
-                newCommand = new AddCommand(description, price);
+                try {
+                    double price = Double.parseDouble(prices);
+                    newCommand = new AddCommand(description, price);
+                } catch (NumberFormatException nfe) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! For that to be done properly, check if these are met:"
+                            + System.lineSeparator()
+                            + " - Description of an item cannot be empty."
+                            + System.lineSeparator()
+                            + " - Price of an item has to be in numerical form."
+                            + System.lineSeparator()
+                            + " - At least 'i/' or 'p/' should be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apple p/2.50"
+                            + System.lineSeparator());
+                }
             }
         } catch (NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
@@ -215,26 +229,11 @@ public class Parser {
         try {
             String[] args = splitArgsForEditCommand(arguments);
             indexOfItem = Integer.parseInt(args[0]);
-            assert indexOfItem > 0 : "(Edit command) Rejecting user command, index provided must be a positive number";
             newItemDescription = args[1];
             newItemPrice = args[2];
             newCommand = new EditCommand(indexOfItem, newItemDescription, newItemPrice);
         } catch (NumberFormatException | NullPointerException e) {
             LOGGER.log(Level.WARNING, "(Edit command) Rejecting user command, invalid command format entered.");
-            newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Oops! For that to be done properly, check if these are met:"
-                    + System.lineSeparator()
-                    + " - Index of item must be a positive number."
-                    + System.lineSeparator()
-                    + " - Price of an item has to be in decimal form."
-                    + System.lineSeparator()
-                    + " - At least 'i/' or 'p/' should be present."
-                    + System.lineSeparator()
-                    + " - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present."
-                    + System.lineSeparator()
-                    + "|| Example: EDIT 2 i/apple p/2.50");
-        } catch (AssertionError e) {
-            LOGGER.log(Level.WARNING, e.getMessage());
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Oops! For that to be done properly, check if these are met:"
                     + System.lineSeparator()
@@ -306,7 +305,7 @@ public class Parser {
         } else {
             argsArray = new String[]{null, null, null};
         }
-        if (argsArray[1] == null && argsArray[2] == null) {
+        if ((Integer.parseInt(argsArray[0]) < 0) | (argsArray[1] == null && argsArray[2] == null)) { //index < 0 or i/p/
             throw new NullPointerException();
         }
         return argsArray;
@@ -329,6 +328,9 @@ public class Parser {
 
     }
 
+    /**
+     * Initialises the ListCommand.
+     */
     private void createListCommand(String arguments) {
         if (arguments != null) {
             newCommand = new IncorrectCommand(System.lineSeparator()
@@ -340,6 +342,9 @@ public class Parser {
         }
     }
 
+    /**
+     * Initialises the ClearCommand.
+     */
     private void createClearCommand(String arguments) {
         if (arguments != null) {
             newCommand = new IncorrectCommand(System.lineSeparator()

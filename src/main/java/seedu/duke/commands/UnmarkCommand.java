@@ -23,12 +23,12 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
         try {
             Item unmarkItem = items.unmarkAsBought(indexOfItem);
-            return new CommandResult(String.format(SUCCESS_MESSAGE, unmarkItem));
+            feedbackToUser = String.format(SUCCESS_MESSAGE, unmarkItem);
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(FAIL_MESSAGE);
+            feedbackToUser = FAIL_MESSAGE;
         }
     }
 }

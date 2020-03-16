@@ -8,16 +8,12 @@ public class ShoppingList {
 
     private static ArrayList<Item> items = new ArrayList<>();
 
-    public ShoppingList() {
-    }
-
     public ArrayList<Item> getList() {
         return items;
     }
 
     /**
-     * Formats the list to be printed to user.
-     *
+     * Prints a table representing the shopping list.
      */
     public void showTableOfItems() {
         CommandLineTable st = new CommandLineTable();
@@ -48,6 +44,9 @@ public class ShoppingList {
 
     }
 
+    /**
+     * Clear all items from the list.
+     */
     public void clearList() {
         items.clear();
     }
@@ -112,11 +111,12 @@ public class ShoppingList {
      * @param item Item to add.
      * @throws NullPointerException If there is no description.
      */
-    public void add(Item item) throws NullPointerException {
+    public void add(Item item) throws NullPointerException, NumberFormatException {
         items.add(item);
         if (item.getDescription() == null) {
             throw new NullPointerException();
         }
     }
+
 
 }

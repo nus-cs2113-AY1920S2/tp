@@ -43,31 +43,35 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public void execute() {
         try {
             indexOfItem -= 1;
-            assert indexOfItem <= items.getList().size() : "(Edit Command) Index provided must be within list range.";
             Item item = items.getItem(indexOfItem);
 
             if (newDescription == null && newPrice != null) { //only edit price
                 item.setPrice(Double.parseDouble(newPrice));
+                assert item.getPrice() == Double.parseDouble(newPrice);
             } else if (newPrice == null && newDescription != null) { //only edit description
                 item.setDescription(newDescription);
+                assert item.getDescription() == newDescription;
+
             } else if (newPrice != null && newDescription != null) { //edit both price and description
                 item.setDescription(newDescription);
                 item.setPrice(Double.parseDouble(newPrice));
+                assert item.getDescription() == newDescription;
+                assert item.getPrice() == Double.parseDouble(newPrice);
             }
 
             LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
-            return new CommandResult(String.format(MESSAGE_SUCCESS, item.toString()));
+            feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
 
-        } catch (NullPointerException | IndexOutOfBoundsException | AssertionError e) {
-            LOGGER.log(Level.WARNING, e.getMessage());
-            return new CommandResult(MESSAGE_FAILURE_NOT_IN_LIST);
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            LOGGER.log(Level.WARNING, "(Edit command)  Item to edit is not found in list");
+            feedbackToUser = MESSAGE_FAILURE_NOT_IN_LIST;
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "(Edit command) Invoked with invalid price format: '"
                     + this.newPrice + "'");
-            return new CommandResult(MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT);
+            feedbackToUser = MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT;
         }
     }
 }
