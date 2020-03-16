@@ -4,20 +4,20 @@ import seedu.command.Command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
-public class DeleteEvent extends Command {
-    private Integer index;
+public class ListEvent extends Command {
     private EventList eventList;
 
-    public DeleteEvent(Integer index, EventList eventList) {
-        this.index = index;
+    public ListEvent(EventList eventList) {
         this.eventList = eventList;
     }
 
     @Override
     public void execute() throws DukeException {
         if (eventList.getSize() == 0) {
-            throw new DukeException("List is empty, unable to delete any items.");
+            throw new DukeException("List is empty");
         }
-        eventList.delete(index);
+        for (int i = 0; i < eventList.getSize(); i++) {
+            eventList.find(i);
+        }
     }
 }

@@ -1,5 +1,8 @@
 package seedu.event;
 
+import seedu.duke.Duke;
+import seedu.exception.DukeException;
+
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.time.Instant;
@@ -104,7 +107,8 @@ public class Event {
         this.venue = venue;
     }
 
+    @Override
     public String toString() {
-        return "[E] + " + getName() + getDatetime() + getVenue();
+        return "Event: " + getName() + "at: " + getDatetime() + ", " + getVenue();
     }
 }
