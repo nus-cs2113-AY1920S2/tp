@@ -23,7 +23,7 @@ public class TextUI {
             + "|  \\___  (____  /___|  /__/_____ \\\\___  >__|             \n"
             + "                  \\/     \\/     \\/             \\//_____/           \\/     "
             + "/_____/     \\/     \\/         \\/    \\/                 ";
-        out.println("Welcome to....\n" + logo);
+        out.println(logo);
     }
 
     public static void menuMsg() {
@@ -43,11 +43,12 @@ public class TextUI {
     }
 
     public static void errorMsg(MoException e) {
-        out.println("OOPS!! " + e);
+        out.println("OOPS!! " + e.getMessage());
     }
 
 
     public static void printTimetable(Boolean[][] mySchedule) {
+        out.println("Here are your common free slots:\n");
         out.println("      SUN MON TUE WED THU FRI SAT");
 
         for (int i = 0; i < 24; ++i) {
@@ -78,11 +79,11 @@ public class TextUI {
     }
 
     public static void meetingDetailsMsg() {
-        out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>");
+        out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>.\nType \"exit\" to exit setting a meeting");
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
-        out.println("You now have " + myMeetingList.getMeetingListSize() + " meetings in the list.");
+        out.println("You now have " + myMeetingList.getMeetingListSize() + " meeting/s in the list.");
     }
 
     public static void deleteMeetingMsg() {
@@ -101,8 +102,8 @@ public class TextUI {
         out.println("How many members are there in your team?");
     }
 
-    public static void enterScheduleMsg() {
-        out.println("Enter schedule of team members: <Schedule Name> <Start Day> <Start Time> <End Day> <End Time>");
+    public static void enterScheduleMsg(String memberName) {
+        out.println("Enter schedule of member " + memberName + ": <Schedule Name> <Start Day> <Start Time> <End Day> <End Time>");
     }
 
     public static void timeOutOfRangeMsg() {
