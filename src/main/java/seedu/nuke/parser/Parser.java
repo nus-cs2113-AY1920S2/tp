@@ -1,6 +1,20 @@
 package seedu.nuke.parser;
 
-import seedu.nuke.command.*;
+
+import seedu.nuke.command.AddModuleCommand;
+import seedu.nuke.command.AddTaskCommand;
+import seedu.nuke.command.ChangeModuleCommand;
+import seedu.nuke.command.CheckAllTasksDeadlineCommand;
+import seedu.nuke.command.CheckModuleTasksDeadlineCommand;
+import seedu.nuke.command.Command;
+import seedu.nuke.command.DeleteModuleCommand;
+import seedu.nuke.command.DeleteTaskCommand;
+import seedu.nuke.command.EditDeadlineCommand;
+import seedu.nuke.command.ExitCommand;
+import seedu.nuke.command.HelpCommand;
+import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.ListModuleCommand;
+import seedu.nuke.command.UndoCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.exception.InvalidIndexException;
@@ -97,12 +111,12 @@ public class Parser {
         taskToEdit = new Task(temp[0], Command.getCurrentModule().getModuleCode());
         try {
             deadline = DateTimeFormat.stringToDateTime(temp[1]);
-        } catch (DateTimeFormat.InvalidDateException e ){
-
+        } catch (DateTimeFormat.InvalidDateException e) {
+            return null;
         } catch (DateTimeFormat.InvalidDateTimeException e) {
-
-        } catch (DateTimeFormat.InvalidTimeException e ) {
-
+            return null;
+        } catch (DateTimeFormat.InvalidTimeException e) {
+            return null;
         }
         return new EditDeadlineCommand(taskToEdit, deadline);
     }
