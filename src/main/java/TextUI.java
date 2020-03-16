@@ -1,6 +1,7 @@
 import static common.Messages.MESSAGE_INVALID_NUMBER;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static java.lang.System.out;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 

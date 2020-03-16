@@ -1,5 +1,10 @@
 import java.time.LocalTime;
 import java.io.FileNotFoundException;
+
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_INVALID_NUMBER;
+import static java.lang.System.out;
+
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -56,6 +61,7 @@ public class MeetingOrganizer {
         case "2":
             TextUI.editMeetingMsg();//previously was delete
             /*
+            out.println("Which meeting slot do you want to ...?"); //previously was delete
             member1.deleteBusyBlocks("TESTMEETING");
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 48; j++) {
