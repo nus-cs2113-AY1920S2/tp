@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class TaskList {
 
@@ -142,18 +143,21 @@ public class TaskList {
     }
 
     /**
-     * Updates current task list with a new task list.
-     * @param tasks ArrayList containing all the tasks
-     */
-    public void updateTaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    /**
      * Deletes all the tasks in the list.
      */
     public void clearList() {
         tasks.clear();
         assert tasks.size() == 0;
+    }
+
+    /**
+     * Deletes the all tasks specified by doneIndex.
+     * @param doneIndex ArrayList of indexes to be removed
+     */
+    public void deleteAllDoneTask(ArrayList<Integer> doneIndex) {
+        doneIndex.sort(Comparator.reverseOrder());
+        for (int index : doneIndex) {
+            deleteTask(index);
+        }
     }
 }
