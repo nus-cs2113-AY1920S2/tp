@@ -20,7 +20,7 @@ public class ViewAssignmentResult extends Command {
         String[] instructions = userInput.split(" ", 2);
         assignment = instructions[1];
         performances = new PerformanceList().getPerformanceList();
-
+        //TODO: This performance list should be under the event input by student
     }
 
     /**

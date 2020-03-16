@@ -4,7 +4,6 @@ import seedu.command.Command;
 import seedu.parser.PerformanceParser;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
-import seedu.ui.UI;
 
 public class AddPerformance extends Command {
     Performance performance;
