@@ -18,6 +18,7 @@ public class ScheduleHandler {
     // ArrayList of free slots in Integer type {startDay, startBlock, endDay, endBlock}
     private ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
 
+
     public ScheduleHandler(ArrayList<TeamMember> teamMemberList) {
         for (int i = 0; i < 7; i++) {
             Arrays.fill(masterSchedule[i], MYSCHEDULEFREE); // fill every 48 index of the 7 days with 0 initially
@@ -29,13 +30,11 @@ public class ScheduleHandler {
         updateFreeBlocks();
     }
 
-
-
     public Boolean[][] getMasterSchedule() {
         return masterSchedule;
     }
 
-    public void fillMasterSchedule(Boolean[][] s) {
+    private void fillMasterSchedule(Boolean[][] s) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
                 if (s[i][j]) {
@@ -45,7 +44,7 @@ public class ScheduleHandler {
         }
     }
 
-    public void updateFreeBlocks() {
+    private void updateFreeBlocks() {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
                 if (masterSchedule[i][j] == MYSCHEDULEFREE) {
@@ -85,7 +84,7 @@ public class ScheduleHandler {
         correctFirstAndLastSlotContinuation();
     }
 
-    private ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock) {
+    public static ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock) {
         ArrayList<Integer> freeSlot = new ArrayList<Integer>();
         freeSlot.add(startDay);
         freeSlot.add(startBlock);
@@ -124,7 +123,7 @@ public class ScheduleHandler {
         }
     }
 
-    public String getDayFromNumber(int dayNum) {
+    public static String getDayFromNumber(int dayNum) {
         String day;
         switch (dayNum) {
         case 0:
@@ -154,7 +153,7 @@ public class ScheduleHandler {
         return day;
     }
 
-    public LocalTime getTimeFromBlock(int blockNum, String startOrEnd) {
+    public static LocalTime getTimeFromBlock(int blockNum, String startOrEnd) {
         int minuteTime = 0;
         int hourTime = 0;
 
