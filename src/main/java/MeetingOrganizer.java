@@ -1,5 +1,4 @@
 import java.time.LocalTime;
-import java.io.FileNotFoundException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,16 +7,11 @@ import java.util.Scanner;
  * TESTING SUMMARY DOC.
  */
 public class MeetingOrganizer {
-    public static Storage storage;
+
 
     public MeetingOrganizer() {
-        try {
-            storage = new Storage("data/meeting_list.txt");
-            myMeetingList = new MeetingList(storage.loadListFromDisk());
-        } catch (FileNotFoundException e) {
-            TextUI.showLoadingError();
-            myMeetingList = new MeetingList();
-        }
+        //declare objects here
+        myMeetingList = new MeetingList();
     }
 
     private MeetingList myMeetingList;
@@ -54,7 +48,7 @@ public class MeetingOrganizer {
             break;
 
         case "2":
-            TextUI.editMeetingMsg();//previously was delete
+            TextUI.deleteMeetingMsg();
             /*
             member1.deleteBusyBlocks("TESTMEETING");
             for (int i = 0; i < 7; i++) {
@@ -66,17 +60,10 @@ public class MeetingOrganizer {
              */
             break;
         case "3":
-            TextUI.deleteMeetingMsg();
-            Scanner scanner = new Scanner(System.in);
-            int index = Integer.parseInt(String.valueOf(scanner.next())) - 1;
-            try {
-                myMeetingList.delete(index);
-            } catch (IndexOutOfBoundsException e) {
-                TextUI.displayInvalidDeleteTarget();
-            }
+            TextUI.editMeetingMsg();
             break;
-        case "4": //list all current meeting slots
-            myMeetingList.show();
+        case "4":
+            TextUI.listMeetings();
             break;
         default:
             throw new MoException("Unknown command, please try again.");
@@ -123,7 +110,6 @@ public class MeetingOrganizer {
         while (!userInput.equals("5")) {
             try {
                 botResponse(userInput);
-                storage.updateListToDisk(myMeetingList.getMeetingList());
             } catch (MoException e) {
                 TextUI.errorMsg(e);
             } catch (DateTimeParseException e) {
