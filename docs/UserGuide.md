@@ -48,7 +48,7 @@ Add menu items, ingredients, and reservations.
 * Example: `add stock; i/tomato; q/10; p/$0.50;`
 #### Add reservation into list: add reservation 
 * Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
-* Example: `add reservation; r/12;`
+* Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
 
 *The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be an integer.*
 
@@ -73,8 +73,8 @@ Delete menu items, ingredients and reservations.
 ### List
 List items in the menu, ingredients and reservations.
 
-* List menu : `list menu`
-* List ingredients : `list ingredient`
+* List menu : `list dish`
+* List ingredients : `list stock`
 * List reservation : `list reservation`
 
 <a name="command-summary"></a>
