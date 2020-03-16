@@ -37,7 +37,7 @@ public class AddCommand extends Command {
 
         try {
             items.add(add);
-            assert add.getDescription() == null : "(Add Command): Item must not be null.";
+            assert add.getDescription() != null : "(Add Command): Item must not be null.";
             LOGGER.log(Level.INFO, "(Add command)  Added item: " + items.toString());
             feedbackToUser = String.format(SUCCESS_ACK,add);
         } catch (NullPointerException e) {
