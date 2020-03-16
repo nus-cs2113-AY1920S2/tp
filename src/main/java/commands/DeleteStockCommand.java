@@ -117,6 +117,7 @@ public class DeleteStockCommand extends StockCommand {
             throw new InvalidStockCommandException("The user's input must specify"
                     + " an ingredient name.");
         } else {
+            assert (ingredientName.isPresent());
             return;
         }
     }
