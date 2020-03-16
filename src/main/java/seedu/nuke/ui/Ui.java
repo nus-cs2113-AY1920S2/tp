@@ -61,8 +61,6 @@ public class Ui {
      */
     public void printShownList(ArrayList<String> shownList) {
         final String divider = String.format("%s%s%s\n", "+", "-".repeat(100), "+");
-        StringBuilder listToShow = new StringBuilder();
-
         System.out.println(divider);
 
         for (String str : shownList) {
@@ -73,7 +71,4 @@ public class Ui {
 
     }
 
-    public void showDeadlines(ArrayList<String> deadlines) {
-
-    }
 }
