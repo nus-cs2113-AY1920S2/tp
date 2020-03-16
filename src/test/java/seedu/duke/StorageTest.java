@@ -7,12 +7,17 @@ import seedu.cards.Card;
 import seedu.cards.CardList;
 import seedu.exception.EscException;
 
-import java.io.*;
+
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
+import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -40,6 +45,7 @@ class StorageTest {
         Card newCard = new Card("test question", "test answer");
         cardList.addCard(newCard);
 
+        //create the file data
         byteOut = new ByteArrayOutputStream();
         ObjectOutputStream objWriteToBytes = new ObjectOutputStream(byteOut);
         objWriteToBytes.writeObject(cardList.getCards());
@@ -56,19 +62,22 @@ class StorageTest {
         assertTrue(Files.exists(tempPath), "file exists");
 
         //Check bytes written are the same
-        assertEquals(byteOut.toByteArray(), Files.readAllBytes(tempPath));
+        assertEquals(Arrays.toString(byteOut.toByteArray()), Arrays.toString(Files.readAllBytes(tempPath)));
     }
 
     @Test
-    public void testLoadCards(@TempDir Path tempDir) throws EscException, IOException {
+    public void testLoadCards(@TempDir Path tempDir) throws EscException, ClassNotFoundException, IOException {
         Path tempPath = tempDir.resolve("temp.txt");
         Files.write(tempPath, byteOut.toByteArray());
         assertTrue(Files.exists(tempPath), "file exists");
 
+        String filepathStr  = String.valueOf(tempPath);
+        File tempFile = new File(filepathStr);
+
         ArrayList<Card> loadCards = new ArrayList<>();
         ArrayList tempList;
         try {
-            FileInputStream fileRead = new FileInputStream(String.valueOf(Files.readAllBytes(tempPath)));
+            FileInputStream fileRead = new FileInputStream(tempFile);
             ObjectInputStream objRead = new ObjectInputStream(fileRead);
             tempList = (ArrayList) objRead.readObject();
 
@@ -80,7 +89,15 @@ class StorageTest {
         } catch (IOException | ClassNotFoundException e) {
             throw new EscException("Load error");
         }
-        assertEquals(loadCards, cardList);
+
+        assertEquals(loadCards.size(),cardList.getCards().size());
+
+        for (int i = 0; i < loadCards.size(); i++) {
+            Card expectedCard = cardList.getCard(i + 1);
+            Card actualCard = loadCards.get(i);
+            assertEquals(expectedCard.getQuestion(),actualCard.getQuestion());
+            assertEquals(expectedCard.getAnswer(),actualCard.getAnswer());
+        }
     }
 
     @Test
