@@ -20,6 +20,7 @@ public class GetCommand extends Command {
 
     @Override
     public String execute(PatientList patients) {
+        assert !patientNric.equals("") : "No NRIC is provided";
         for (Patient patient : patients) {
             if (patient.getNric().equalsIgnoreCase(patientNric)) {
                 return TextUi.successfulGetPatientMessage(patient);
