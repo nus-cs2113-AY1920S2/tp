@@ -1,6 +1,18 @@
 package seedu.nuke.ui;
 
+import seedu.nuke.command.AddModuleCommand;
+import seedu.nuke.command.AddTaskCommand;
+import seedu.nuke.command.ChangeModuleCommand;
+import seedu.nuke.command.CheckAllTasksDeadlineCommand;
+import seedu.nuke.command.CheckModuleTasksDeadlineCommand;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.command.DeleteModuleCommand;
+import seedu.nuke.command.DeleteTaskCommand;
+import seedu.nuke.command.EditDeadlineCommand;
+import seedu.nuke.command.ExitCommand;
+import seedu.nuke.command.HelpCommand;
+import seedu.nuke.command.ListModuleCommand;
+import seedu.nuke.command.UndoCommand;
 import seedu.nuke.module.Module;
 import seedu.nuke.data.ModuleManager;
 
@@ -10,9 +22,11 @@ import java.util.Scanner;
 
 public class Ui {
     private static final String LS = System.lineSeparator();
+    public static final ArrayList<String> commands = new ArrayList<>();
 
     private final Scanner in;
     private final PrintStream out;
+
 
     /**
      * Constructs the <code>UI</code>.
@@ -20,6 +34,18 @@ public class Ui {
     public Ui() {
         in = new Scanner(System.in);
         out = new PrintStream(System.out);
+        commands.add(AddModuleCommand.MESSAGE_USAGE);
+        commands.add(AddTaskCommand.MESSAGE_USAGE);
+        commands.add(ChangeModuleCommand.MESSAGE_USAGE);
+        commands.add(CheckAllTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(CheckModuleTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(DeleteModuleCommand.MESSAGE_USAGE);
+        commands.add(DeleteTaskCommand.MESSAGE_USAGE);
+        commands.add(EditDeadlineCommand.MESSAGE_DONE);
+        commands.add(ListModuleCommand.MESSAGE_USAGE);
+        commands.add(UndoCommand.MESSAGE_USAGE);
+        commands.add(HelpCommand.MESSAGE_USAGE);
+        commands.add(ExitCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -60,14 +86,14 @@ public class Ui {
      * @param shownList an ArrayList of Strings to be shown to the user
      */
     public void printShownList(ArrayList<String> shownList) {
-        final String divider = String.format("%s%s%s\n", "+", "-".repeat(100), "+");
+        final String divider = String.format("%s%s%s", "+", "-".repeat(100), "+");
         System.out.println(divider);
 
         for (String str : shownList) {
             System.out.println(str);
         }
 
-        System.out.println(divider);
+        System.out.println(divider + "\n");
 
     }
 

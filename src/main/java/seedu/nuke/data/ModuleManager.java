@@ -15,19 +15,25 @@ import java.util.Iterator;
  * deals with operations that are related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private ArrayList<Module> modules = new ArrayList<>();
+    private ArrayList<Module> modules;
+    private ArrayList<String> moduleCodes;
     private HashMap<String, String> modulesMap;
 
     public ModuleManager(HashMap<String, String> modulesMap) {
         this.modulesMap = modulesMap;
     }
 
-    public ModuleManager() {
 
-    }
-
-    public void setAllModules(ArrayList<Module> modules) {
+    /**
+     * This mothod is to restore the list of modules when loading from the json data file.
+     * @param modules an ArrayList of Module objects parsed from the json string in the data file
+     */
+    public void setModules(ArrayList<Module> modules) {
+        this.moduleCodes = new ArrayList<>();
         this.modules = modules;
+        for (Module module: modules) {
+            moduleCodes.add(module.getModuleCode());
+        }
     }
 
     /**
@@ -62,13 +68,14 @@ public class ModuleManager implements Iterable<Module> {
      */
     public void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
-        if (modules.contains(moduleCode)) {
+        if (moduleCodes.contains(moduleCode)) {
             throw new DuplicateModuleException();
         } else if (!modulesMap.containsKey(moduleCode)) {
             throw new ModuleNotProvidedException();
         } else {
             Module toAdd = new Module(moduleCode, modulesMap.get(moduleCode), null);
             modules.add(toAdd);
+            moduleCodes.add(moduleCode);
         }
     }
 

@@ -15,6 +15,10 @@ public class TaskManager {
     public TaskManager() {
     }
 
+    public void setAllTasks(ArrayList<Task> allTasks) {
+        this.allTasks = allTasks;
+    }
+
     /**
      * todo add check same function
      * todo handle toRemove does not exist exception
@@ -38,7 +42,7 @@ public class TaskManager {
      * Parses the given arguments string as a single index number.
      * @return the task list
      */
-    public ArrayList<Task> getTaskList() {
+    public ArrayList<Task> getAllTasks() {
         return allTasks;
     }
 

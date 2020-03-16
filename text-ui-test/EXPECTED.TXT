@@ -1,3 +1,4 @@
+error when reading from data.json
 
       ___          ___          ___          ___     
      /__/\        /__/\        /__/|        /  /\    
@@ -16,11 +17,19 @@
 Welcome to NUKE
 What can I do for you?
 ---------------------------------------------------------------------------------
-Invalid command format! 
-help
-SUCCESS!! Module CS1010 Programming Methodology has been added.
+Here are ALL your modules.
 
-Bye. Hope to see you again soon!
----------------------------------------------------------------------------------
-Bye. Hope to see you soon.
----------------------------------------------------------------------------------
++----------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------+
+
+SUCCESS!! Module CS3235 Computer Security has been added.
+
+ALERT! The module is not provided by NUS currently.
+
+There is no task in the list!
+
+Module change succeeded
+
+There is no task in the list!
+
+Bye. Hope to see you again soon.

@@ -1,11 +1,7 @@
 package seedu.nuke.command;
 
-import seedu.nuke.data.TaskManager;
 import seedu.nuke.format.DateTime;
-import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.task.Task;
-
-import java.time.LocalDateTime;
 
 /**
  * edit the deadline of the task.

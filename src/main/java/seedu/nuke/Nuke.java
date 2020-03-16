@@ -15,9 +15,11 @@ import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShot;
 import seedu.nuke.data.ScreenShotManager;
+import seedu.nuke.data.StorageManager;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
+import seedu.nuke.util.Message;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class Nuke {
     public ScreenShotManager screenShotManager; //?public
     private ScreenShot currentScreenShot;
     private Ui ui;
+    private StorageManager storageManager;
 
     /**
      * constructor of nuke.
@@ -38,7 +41,9 @@ public class Nuke {
     public Nuke() throws FileNotFoundException {
         ui = new Ui();
         modulesMap  = ModuleLoader.load("moduleList.json");
+        storageManager = new StorageManager("data.json");
         moduleManager = new ModuleManager(modulesMap);
+        moduleManager.setModules(storageManager.load());
         dataManager = new DataManager(moduleManager);
         screenShotManager = new ScreenShotManager();
         currentScreenShot = new ScreenShot(moduleManager, dataManager);
@@ -61,7 +66,8 @@ public class Nuke {
     public void run() {
         welcomeUser();
         runCommandLoopUntilExitCommand();
-        exit();
+        storageManager.save(moduleManager.getModuleList());
+        //exit();
     }
 
     /**
@@ -77,7 +83,7 @@ public class Nuke {
      * Method to print the exit message to the user.
      */
     public void exit() {
-        TextUi.showExitMessage();
+        ui.showSystemMessage(Message.DIVIDER);
     }
 
     /**
@@ -139,7 +145,5 @@ public class Nuke {
      * set module manager data according to screen shot manager data
      */
     private void readFromScreenShot() {
-        dataManager.setAllTasks(ScreenShotManager.getCurrentScreenShot().getDataManager().getAllTasks());
-        moduleManager.setAllModules(ScreenShotManager.getCurrentScreenShot().getModuleManager().getModuleList());
     }
 }

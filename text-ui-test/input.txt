@@ -1,3 +1,7 @@
-James Gosling
-addm CS1010
+lsm
+addm CS3235
+addm CS1111
+lst
+cd CS3235
+lstm
 bye

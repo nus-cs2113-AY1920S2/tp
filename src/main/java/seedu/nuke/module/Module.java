@@ -2,7 +2,6 @@ package seedu.nuke.module;
 
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.task.Task;
-import seedu.nuke.ui.TextUi;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +12,10 @@ public class Module {
     private String title;
     private String description;
     private TaskManager taskManager;
+
+    public Module() {
+
+    }
 
     /**
      * initialize a module with module code, title, and description.
@@ -25,6 +28,22 @@ public class Module {
         this.title = title;
         this.description = description;
         this.taskManager = new TaskManager();
+    }
+
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTaskManager(TaskManager taskManager) {
+        this.taskManager = taskManager;
     }
 
     public String getModuleCode() {
@@ -53,15 +72,18 @@ public class Module {
      */
     public ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
-        ArrayList<Task> tasks = taskManager.getTaskList();
+        ArrayList<Task> tasks = taskManager.getAllTasks();
         Collections.sort(tasks, new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                return t1.getDeadline().toString().compareToIgnoreCase(t2.getDeadline().toString());
+                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toString();
+                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toString();
+                return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });
         for (Task task: tasks) {
-            deadlines.add("Task: " + task.getDescription() + "  Deadline: " + task.getDeadline().toString());
+            String deadline = task.getDeadline() == null ? "" : task.getDeadline().toString();
+            deadlines.add(String.format("%-30s", task.getDescription()) + "   Deadline: " + task.getDeadline());
         }
         return deadlines;
     }

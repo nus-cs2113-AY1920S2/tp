@@ -21,7 +21,7 @@ public class DataManager {
     public DataManager(ModuleManager moduleManager) {
         allTasks = new ArrayList<>();
         for (Module module: moduleManager.getModuleList()) {
-            allTasks.addAll(module.getTaskManager().getTaskList());
+            allTasks.addAll(module.getTaskManager().getAllTasks());
         }
     }
 
@@ -36,7 +36,9 @@ public class DataManager {
         Collections.sort(allTasks, new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                return t1.getDeadline().toString().compareToIgnoreCase(t2.getDeadline().toString());
+                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toString();
+                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toString();
+                return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });
     }
@@ -56,8 +58,10 @@ public class DataManager {
     public ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
         sortAllTasks();
+
         for (Task task: allTasks) {
-            deadlines.add(task.getDescription() + " " + task.getModuleCode() + "  deadline: " + task.getDeadline());
+            deadlines.add(String.format("%-30s", task.getDescription()) + " "
+                    + String.format("%-8s", task.getModuleCode()) + "   deadline: " + task.getDeadline());
         }
         return deadlines;
     }
