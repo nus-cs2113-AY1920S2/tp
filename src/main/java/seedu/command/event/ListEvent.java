@@ -18,7 +18,7 @@ public class ListEvent extends Command {
             throw new DukeException("List is empty");
         }
         for (int i = 0; i < eventList.getSize(); i++) {
-            System.out.println(i+1 + ". " +  eventList.find(i));
+            System.out.println(i + 1 + ". " +  eventList.find(i));
         }
     }
 }

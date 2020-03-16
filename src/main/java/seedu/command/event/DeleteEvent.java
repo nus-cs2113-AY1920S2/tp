@@ -18,7 +18,7 @@ public class DeleteEvent extends Command {
     public void execute() throws DukeException {
         if (eventList.getSize() == 0) {
             throw new DukeException("List is empty, unable to delete any items.");
-        } else if (index > eventList.getSize()){
+        } else if (index > eventList.getSize()) {
             throw new DukeException("Index not found");
         }
         eventList.delete(index);

@@ -112,41 +112,41 @@ public class EventParser {
                 } else {
                     append(mostRecent, token);
                 }
-            }
+            } else {
+                switch (token.substring(0, 2)) {
+                case "n/":
+                    ensureNotDuplicateFlag(name, "duplicate name flag");
+                    name += token.substring(2);
+                    mostRecent = "name";
+                    break;
+                case "t/":
+                    ensureNotDuplicateFlag(time, "duplicate time flag");
+                    time += token.substring(2);
+                    mostRecent = "time";
+                    break;
+                case "d/":
+                    ensureNotDuplicateFlag(date, "duplicate date flag");
+                    date += token.substring(2);
+                    mostRecent = "date";
+                    break;
+                case "v/":
+                    ensureNotDuplicateFlag(venue, "duplicate venue flag");
+                    venue += token.substring(2);
+                    mostRecent = "venue";
+                    break;
+                case "i/":
+                    break;
+                default:
+                    // assumes that all valid flags have been processed before this line
+                    if (isUnknownFlag(token)) {
+                        throw new DukeException("unknown flag");
+                    }
+                    if (mostRecent == null) {
+                        throw new DukeException("parameter without flag");
+                    }
 
-            switch (token.substring(0, 2)) {
-            case "n/":
-                ensureNotDuplicateFlag(name, "duplicate name flag");
-                name += token.substring(2);
-                mostRecent = "name";
-                break;
-            case "t/":
-                ensureNotDuplicateFlag(time, "duplicate time flag");
-                time += token.substring(2);
-                mostRecent = "time";
-                break;
-            case "d/":
-                ensureNotDuplicateFlag(date, "duplicate date flag");
-                date += token.substring(2);
-                mostRecent = "date";
-                break;
-            case "v/":
-                ensureNotDuplicateFlag(venue, "duplicate venue flag");
-                venue += token.substring(2);
-                mostRecent = "venue";
-                break;
-            case "i/":
-                break;
-            default:
-                // assumes that all valid flags have been processed before this line
-                if (isUnknownFlag(token)) {
-                    throw new DukeException("unknown flag");
+                    append(mostRecent, token);
                 }
-                if (mostRecent == null) {
-                    throw new DukeException("parameter without flag");
-                }
-
-                append(mostRecent, token);
             }
         }
     }
@@ -157,12 +157,15 @@ public class EventParser {
      * @param token the string to be appended
      */
     private void append(String mostRecent, String token) throws DukeException {
+        if (token.isEmpty() || token.equals(" ")) {
+            return;
+        }
         switch (mostRecent) {
         case "name":
-            name += (" " + token);
+            name += name.isEmpty() ? token : (" " + token);
             break;
         case "venue":
-            venue += (" " + token);
+            venue += venue.isEmpty() ? token : (" " + token);
             break;
         default:
             throw new DukeException("invalid flag");
