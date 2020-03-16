@@ -27,7 +27,8 @@ public class MarkAsDoneCommand extends Command {
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) throws RuntimeException {
+    public void execute(SelectedModulesList selectedModulesList,
+                        AvailableModulesList availableModulesList) throws RuntimeException {
         markAsDoneCommand(selectedModulesList);
         Ui.showDoneMessage();
     }

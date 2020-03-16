@@ -38,6 +38,7 @@ public class ViewCommand extends Command {
             break;
         case VIEW_AVAILABLE_MODULES:
             viewAvailableModules(availableModulesList);
+            break;
         default:
             return;
         }

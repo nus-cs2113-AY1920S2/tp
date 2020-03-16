@@ -88,8 +88,8 @@ public class Parser {
         String[] moduleWords;
         moduleWords = args.split("id/");
         if (moduleWords.length < 2) {
-            throw new InputException("invalid 'addtodata' command"
-                    , "addtodata id/ID n/NAME pre/PREREQMODULES");
+            throw new InputException("invalid 'addtodata' command",
+                    "addtodata id/ID n/NAME pre/PREREQMODULES");
         }
         moduleWords = moduleWords[1].split(" n/");
         if (moduleWords.length < 2) {

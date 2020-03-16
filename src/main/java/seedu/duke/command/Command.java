@@ -6,7 +6,8 @@ import seedu.duke.exception.RuntimeException;
 
 public class Command {
 
-    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) throws RuntimeException {
+    public void execute(SelectedModulesList selectedModulesList,
+                        AvailableModulesList availableModulesList) throws RuntimeException {
     }
 
     public boolean isExit() {
