@@ -14,6 +14,7 @@ public class HelpCommand extends Command {
         feedbackToUser = System.lineSeparator()
                 + AddCommand.MESSAGE_USAGE + System.lineSeparator()
                 + EditCommand.MESSAGE_USAGE + System.lineSeparator()
+                + ListCommand.MESSAGE_USAGE + System.lineSeparator()
                 + DeleteCommand.MESSAGE_USAGE + System.lineSeparator()
                 + ClearCommand.MESSAGE_USAGE + System.lineSeparator()
                 + MarkCommand.MESSAGE_USAGE + System.lineSeparator()
