@@ -1,9 +1,11 @@
+view
 addtosem id/CS2113 s/19-20 Semester 2
 addtosem n/Software Engineering & Object-Oriented Programming s/19-20 Semester 2
 addtosem id/CS1010 s/19-20 Semester 1
 addtosem id/CS4241 s/19-20 Semester 2
 addtodata id/CS1231 n/Discrete Structures
 addtodata id/CS2104 n/Programming Language Concepts pre/CS2030
+view
 addtosem id/CS1231 s/19-20 Semester 2
 view /mp
 done id/CS2113 s/19-20 Semester 2

@@ -7,6 +7,20 @@ Hello from
 What can I do for you?
 
 
+Okay! Here are your available modules in database:
+1.ID: CS1010 Name: Programming Methodology | Prerequisites: null
+2.ID: CS2030 Name: Programming Methodology II | Prerequisites: CS1010
+3.ID: CS2040 Name: Data Structures and Algorithms | Prerequisites: CS1010
+4.ID: CS2100 Name: Computer Organisation | Prerequisites: CS1010
+5.ID: CS2106 Name: Introduction to Operating Systems | Prerequisites: CS2100
+6.ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Prerequisites: CS2040
+7.ID: CS2105 Name: Introduction to Computer Networks | Prerequisites: CS2040
+8.ID: ES1000 Name: Foundation Academic English | Prerequisites: null
+9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
+10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
+11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
+
+
 Okay! I have added this module to your semester's module list:
 ID: CS2113 | Sem: 19-20 Semester 2
 
@@ -29,6 +43,22 @@ ID: CS1231 Name: Discrete Structures | Prerequisites: null
 
 Okay! I have added this module to the available modules to choose from:
 ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
+
+
+Okay! Here are your available modules in database:
+1.ID: CS1010 Name: Programming Methodology | Prerequisites: null
+2.ID: CS2030 Name: Programming Methodology II | Prerequisites: CS1010
+3.ID: CS2040 Name: Data Structures and Algorithms | Prerequisites: CS1010
+4.ID: CS2100 Name: Computer Organisation | Prerequisites: CS1010
+5.ID: CS2106 Name: Introduction to Operating Systems | Prerequisites: CS2100
+6.ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Prerequisites: CS2040
+7.ID: CS2105 Name: Introduction to Computer Networks | Prerequisites: CS2040
+8.ID: ES1000 Name: Foundation Academic English | Prerequisites: null
+9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
+10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
+11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
+12.ID: CS1231 Name: Discrete Structures | Prerequisites: null
+13.ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
 
 
 Okay! I have added this module to your semester's module list:
