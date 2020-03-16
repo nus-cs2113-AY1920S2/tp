@@ -17,7 +17,7 @@ public class Event {
     /**
      * Empty constructor. Sets name as "unnamed"
      */
-    public Event() {
+    public Event() throws DukeException {
         setName("");
         setDatetime("");
         setVenue("");
@@ -31,7 +31,7 @@ public class Event {
      * @param datetime datetime of event
      * @param venue venue of event
      */
-    public Event(String name, String datetime, String venue) {
+    public Event(String name, String datetime, String venue) throws DukeException {
         this();
         setName(name);
         setDatetime(datetime);
@@ -51,10 +51,10 @@ public class Event {
      * and the original name is also empty or {@code null},
      * the name will take the form: event_(secondsSinceEpoch)
      * @param name the new name for the event
-     * @throws InvalidParameterException when trying to overwrite a non-empty
+     * @throws DukeException when trying to overwrite a non-empty
      *      and non-null name with an empty or null name
      */
-    public void setName(String name) throws InvalidParameterException {
+    public void setName(String name) throws DukeException {
         if (this.name == null || this.name.isEmpty()) {
             // if original name is empty or null
             if (name == null || name.isEmpty()) {
@@ -67,7 +67,7 @@ public class Event {
             // if original name is not empty and null
             if (name == null || name.isEmpty()) {
                 // if new name is empty or null
-                throw new InvalidParameterException("Empty name");
+                throw new DukeException("Empty name");
             } else {
                 // if new name is not empty and not null
                 this.name = name;

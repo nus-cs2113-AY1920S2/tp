@@ -62,7 +62,7 @@ public class EventList {
      * @param index index of the event
      * @param name new name for the event
      */
-    public void editName(int index, String name) {
+    public void editName(int index, String name) throws DukeException {
         Event event = this.find(index);
         event.setName(name);
     }
