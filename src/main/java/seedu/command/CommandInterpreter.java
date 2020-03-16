@@ -3,6 +3,8 @@ package seedu.command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
+import java.io.IOException;
+
 public class CommandInterpreter {
     protected EventList eventList;
 

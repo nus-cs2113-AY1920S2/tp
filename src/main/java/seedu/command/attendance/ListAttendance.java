@@ -3,8 +3,6 @@ package seedu.command.attendance;
 import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.performance.Performance;
-import seedu.performance.PerformanceList;
 
 import java.util.List;
 
