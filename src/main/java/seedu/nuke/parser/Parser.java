@@ -84,13 +84,15 @@ public class Parser {
             return new CheckAllTasksDeadlineCommand();
 
         case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
-//            try {
-//                return new CheckModuleTasksDeadlineCommand(Integer.parseInt(parameters));
-//            } catch (NumberFormatException e) {
-//                throw new InvalidIndexException();
-//            } catch (ModuleNotFoundException e) {
-//                throw e;
-//            }
+            /*
+              try {
+                  return new CheckModuleTasksDeadlineCommand(Integer.parseInt(parameters));
+              } catch (NumberFormatException e) {
+                  throw new InvalidIndexException();
+              } catch (ModuleNotFoundException e) {
+                  throw e;
+              }
+             */
             return null;
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
