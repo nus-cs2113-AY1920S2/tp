@@ -112,9 +112,9 @@ public class Nuke {
             // save the taskManager to a file
             //moduleManager.getStorager().save(taskManager);
             //StorageFile.saveJson(taskManager);
-        } catch (Exception ex) {
+        } catch (Exception e) {
             // the out layer exception handler
-            System.out.println(ex);
+            ui.showSystemMessage(e.getMessage());
         }
         return commandResult;
     }
