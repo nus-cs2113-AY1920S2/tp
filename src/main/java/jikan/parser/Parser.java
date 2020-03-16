@@ -4,6 +4,7 @@ import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.ui.Ui;
+import jikan.Log;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -21,12 +22,15 @@ public class Parser {
     protected String[] tokenizedInputs;
     String instruction;
 
+    Log logger = new Log();
+
     /**
      * Parses user commands to relevant functions to carry out the commands.
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
     public void parseUserCommands(Scanner scanner, ActivityList activityList) {
+        logger.makeInfoLog("Starting to parse inputs.");
         while (true) {
             String userInput = scanner.nextLine();
             tokenizedInputs = userInput.split(" ", 2);
@@ -89,8 +93,12 @@ public class Parser {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
+            logger.makeWarningLog("Could not start activity due to ongoing activity.");
             ui.printDivider(line);
         } else {
+            // tags should be reset
+            assert tags == null;
+
             String line;
             int delimiter = tokenizedInputs[1].indexOf("/t");
             if (delimiter == -1) {
@@ -110,7 +118,7 @@ public class Parser {
             startTime = LocalDateTime.now();
             ui.printDivider(line);
         }
-
+        logger.makeInfoLog("Started: " + activityName);
     }
 
     /** Method to parse the end activity command. */
@@ -124,7 +132,10 @@ public class Parser {
             endTime = LocalDateTime.now();
             Activity newActivity = new Activity(activityName, startTime, endTime, tags);
             activityList.add(newActivity);
+            // reset activity info
             startTime = null;
+            tags = null;
         }
+        logger.makeInfoLog("Ended: " + activityName);
     }
 }
