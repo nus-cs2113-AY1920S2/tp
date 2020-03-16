@@ -5,10 +5,4 @@ Welcome to....
           /    Y    \  ___/\  ___/|  | |  |   |  \/ /_/  > /    |    \  | \/ /_/  > __ \|   |  \  |/    /\  ___/|  | \/          
           \____|__  /\___  >\___  >__| |__|___|  /\___  /  \_______  /__ |  \___  (____  /___|  /__/_____ \\___  >__|             
                   \/     \/     \/             \//_____/           \/     /_____/     \/     \/         \/    \/                 
-1) Schedule a new meeting.
-2) Delete a scheduled meeting.
-3) Edit a scheduled meeting.
-4) List all scheduled meetings.
-5) Exit application.
-________________________________________________________________________________________________________________________________
-Thank you for using MeetingOrganizer, goodbye!
+How many members are there in your team?
