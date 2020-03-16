@@ -1,6 +1,13 @@
 package seedu.duke;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import seedu.duke.command.Command;
 import seedu.duke.data.AvailableModulesList;
@@ -15,6 +22,7 @@ public class Duke {
     private static AvailableModulesList availableModulesList;
     private static SelectedModulesList selectedModulesList;
     private static Ui ui;
+    private final static Logger logr = Logger.getLogger("Duke");
 
     /**
      * Instantiate all required classes.
@@ -29,7 +37,8 @@ public class Duke {
      * Main program to run.
      */
     public void run() {
-        ui.greetUser();
+        setupLogger();
+        Ui.greetUser();
         String fullCommand;
         boolean isExit = false;
         Scanner in = new Scanner(System.in);
@@ -40,10 +49,26 @@ public class Duke {
                 command.execute(selectedModulesList, availableModulesList);
                 isExit = command.isExit();
             } catch (ModuleManagerException e) {
-                ui.showError(e.getMessage());
+                logr.log(Level.WARNING, e.getMessage());
             }
         } while (!isExit);
-        ui.greetFarewell();
+        Ui.greetFarewell();
+    }
+
+    static void setupLogger() {
+        LogManager.getLogManager().reset();
+        logr.setLevel(Level.ALL);
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.INFO);
+        logr.addHandler(consoleHandler);
+        try {
+            FileHandler fileHandler = new FileHandler("myLogger.log", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            fileHandler.setLevel(Level.FINE);
+            logr.addHandler(fileHandler);
+        } catch (IOException e) {
+            logr.log(Level.SEVERE, "File logger not working.", e);
+        }
     }
 
     /**
