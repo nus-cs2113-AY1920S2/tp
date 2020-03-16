@@ -1,11 +1,20 @@
 package jikan;
 
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+
 
 public class Log {
     private static Logger logger;
-    static private SimpleFormatter formatterTxt;
+    private static SimpleFormatter formatterTxt;
 
+    /**
+     * Constructor for a new logger.
+     */
     public Log() {
         logger = Logger.getLogger(Log.class.getName());
         LogManager.getLogManager().reset();
@@ -21,7 +30,7 @@ public class Log {
             fileHandler.setFormatter(formatterTxt);
             fileHandler.setLevel(Level.INFO);
             logger.addHandler(fileHandler);
-        } catch (java.io.IOException e){
+        } catch (java.io.IOException e) {
             logger.log(Level.SEVERE, "File logger not working", e);
         }
     }
