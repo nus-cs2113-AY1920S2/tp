@@ -1,6 +1,8 @@
 package seedu.nuke.command;
 
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.format.DateTime;
+import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.task.Task;
 
 import java.time.LocalDateTime;
@@ -15,13 +17,14 @@ public class EditDeadlineCommand extends EditTaskCommand {
     //public static final String MESSAGE_USAGE_2 = "      Example: " + COMMAND_WORD + " read a book" + "YYYY-MM-DD
     // hh:mm:ss";
     public static final String MESSAGE_DONE = "  Nice! I've marked this task as done:  %s";
-
+    public DateTime deadline;
     /**
      * set the new deadline.
      * @param toEdit full command args string
      */
-    public EditDeadlineCommand(String toEdit) {
+    public EditDeadlineCommand(Task toEdit, DateTime deadline) {
         super(toEdit);
+        this.deadline = deadline;
     }
 
     @Override
@@ -29,7 +32,7 @@ public class EditDeadlineCommand extends EditTaskCommand {
         // todo find the target task
         final Task toEdit = getTargetTask();
         // todo set the description
-        toEdit.setDeadline(null);
+        toEdit.setDeadline(deadline);
         return new CommandResult(String.format(MESSAGE_DONE, toEdit.getDescription()));
     }
 }
