@@ -18,5 +18,6 @@ public class EditEvent extends Command {
     @Override
     public void execute() {
         eventList.editEvent(index, newEvent);
+        System.out.println(newEvent);
     }
 }
