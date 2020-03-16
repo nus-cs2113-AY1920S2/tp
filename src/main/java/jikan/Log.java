@@ -1,5 +1,6 @@
 package jikan;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -15,7 +16,7 @@ public class Log {
     /**
      * Constructor for a new logger.
      */
-    public Log() {
+    public Log() throws IOException {
         logger = Logger.getLogger(Log.class.getName());
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -24,15 +25,12 @@ public class Log {
         consoleHandler.setLevel(Level.WARNING);
         logger.addHandler(consoleHandler);
 
-        try {
-            FileHandler fileHandler = new FileHandler("data/LogRecord.txt");
-            formatterTxt = new SimpleFormatter();
-            fileHandler.setFormatter(formatterTxt);
-            fileHandler.setLevel(Level.INFO);
-            logger.addHandler(fileHandler);
-        } catch (java.io.IOException e) {
-            logger.log(Level.SEVERE, "File logger not working", e);
-        }
+        FileHandler fileHandler = new FileHandler("data/LogRecord.txt", true);
+
+        formatterTxt = new SimpleFormatter();
+        fileHandler.setFormatter(formatterTxt);
+        fileHandler.setLevel(Level.INFO);
+        logger.addHandler(fileHandler);
     }
 
     public void makeInfoLog(String message) {

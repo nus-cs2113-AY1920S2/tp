@@ -7,6 +7,7 @@ import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -22,8 +23,18 @@ public class Parser {
     private Ui ui = new Ui();
     protected String[] tokenizedInputs;
     String instruction;
+    Log logger;
 
-    Log logger = new Log();
+    /**
+     * Constructor for Parser.
+     */
+    public Parser() {
+        try {
+            logger = new Log();
+        } catch (IOException e) {
+            ui.printDivider("Could not initialize logger.");
+        }
+    }
 
     /**
      * Parses user commands to relevant functions to carry out the commands.
