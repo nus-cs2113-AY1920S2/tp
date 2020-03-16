@@ -24,6 +24,11 @@ public class StorageManager {
         this.dataFileName = dataFileName;
     }
 
+    /**
+     * load from json data file and return an ArrayList of Module objects.
+     *
+     * @return an ArrayList of Module objects.
+     */
     public ArrayList<Module> load() {
         String jsonStr;
         try {
@@ -60,7 +65,11 @@ public class StorageManager {
         }
     }
 
-    public void save(ArrayList<Module> moduleList){
+    /**
+     * Save the current ArrayList of Module objects into json file.
+     * @param moduleList an ArrayList of Module objects
+     */
+    public void save(ArrayList<Module> moduleList) {
         String jsonStr = JSON.toJSONString(moduleList);
         try {
             FileWriter fw = new FileWriter(dataFileName);

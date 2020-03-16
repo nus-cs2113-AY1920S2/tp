@@ -16,23 +16,22 @@ import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.ListModuleCommand;
 import seedu.nuke.command.UndoCommand;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.exception.ModuleNotFoundException;
-import seedu.nuke.exception.InvalidIndexException;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.task.Task;
 
-import java.text.DateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static seedu.nuke.util.Message.MESSAGE_GOINTOMODULE;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    public static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)", Pattern.DOTALL);
     public static final String COMMAND_PARAMETER_SPLITTER = "\\s+";
     public static final String PARAMETER_SPLITTER = " ";
     public static final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
@@ -106,11 +105,11 @@ public class Parser {
 
     private Command prepareEditDeadlineCommand(String parameters) {
         Task taskToEdit;
-        DateTime deadline = null;
+        DateTime deadline;
         String [] temp = parameters.split("-d");
-        taskToEdit = new Task(temp[0], Command.getCurrentModule().getModuleCode());
+        taskToEdit = new Task(temp[0].trim(), Command.getCurrentModule().getModuleCode());
         try {
-            deadline = DateTimeFormat.stringToDateTime(temp[1]);
+            deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
         } catch (DateTimeFormat.InvalidDateException e) {
             return null;
         } catch (DateTimeFormat.InvalidDateTimeException e) {
@@ -139,7 +138,7 @@ public class Parser {
         if (Command.getCurrentModule() != null) {
             return new AddTaskCommand(new Task(parameters, Command.getCurrentModule().getModuleCode()));
         } else {
-            return new IncorrectCommand("please go inside a Module!");
+            return new IncorrectCommand(MESSAGE_GOINTOMODULE);
         }
     }
 

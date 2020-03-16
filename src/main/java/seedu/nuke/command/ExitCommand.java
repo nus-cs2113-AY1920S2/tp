@@ -2,7 +2,7 @@ package seedu.nuke.command;
 
 import seedu.nuke.task.Task;
 
-import static seedu.nuke.util.Message.MESSAGE_FAREWELL;
+import static seedu.nuke.util.Message.MESSAGE_EXIT;
 
 public class ExitCommand extends TaskCommand {
     public static final String COMMAND_WORD = "bye";
@@ -24,7 +24,7 @@ public class ExitCommand extends TaskCommand {
     @Override
     public CommandResult execute() {
         isExit = true;
-        return new CommandResult(MESSAGE_FAREWELL);
+        return new CommandResult(MESSAGE_EXIT);
     }
 
     /**
