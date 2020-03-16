@@ -16,6 +16,7 @@ import java.util.Iterator;
  */
 public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules = new ArrayList<>();
+    private ArrayList<String> moduleCodes = new ArrayList<>();
     private HashMap<String, String> modulesMap;
 
     public ModuleManager(HashMap<String, String> modulesMap) {
@@ -58,13 +59,14 @@ public class ModuleManager implements Iterable<Module> {
      */
     public void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
-        if (modules.contains(moduleCode)) {
+        if (moduleCodes.contains(moduleCode)) {
             throw new DuplicateModuleException();
         } else if (!modulesMap.containsKey(moduleCode)) {
             throw new ModuleNotProvidedException();
         } else {
             Module toAdd = new Module(moduleCode, modulesMap.get(moduleCode), null);
             modules.add(toAdd);
+            moduleCodes.add(moduleCode);
         }
     }
 
