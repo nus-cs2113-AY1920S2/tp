@@ -38,4 +38,6 @@ public class Message {
         return String.format("SUCCESS!! Module %s %s has been deleted.\n", moduleCode, title);
     }
 
+    public static final String MESSAGE_UNDO_SUCCESSFUL = "Successfully undo!";
+
 }

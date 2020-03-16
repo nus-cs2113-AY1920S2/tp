@@ -1,22 +1,14 @@
 package seedu.nuke.parser;
 
-import seedu.nuke.command.AddModuleCommand;
-import seedu.nuke.command.AddTaskCommand;
-import seedu.nuke.command.ChangeModuleCommand;
-import seedu.nuke.command.CheckAllTasksDeadlineCommand;
-import seedu.nuke.command.CheckModuleTasksDeadlineCommand;
-import seedu.nuke.command.Command;
-import seedu.nuke.command.DeleteModuleCommand;
-import seedu.nuke.command.DeleteTaskCommand;
-import seedu.nuke.command.ExitCommand;
-import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.ListModuleCommand;
+import seedu.nuke.command.*;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.exception.InvalidIndexException;
+import seedu.nuke.format.DateTime;
+import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.task.Task;
 
+import java.text.DateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +18,6 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    public static final Pattern MODULE_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     public static final String COMMAND_PARAMETER_SPLITTER = "\\s+";
     public static final String PARAMETER_SPLITTER = " ";
@@ -34,7 +25,7 @@ public class Parser {
     public static final int COMMAND_WORD_INDEX = 0;
     public static final int PARAMETER_WORD_INDEX = 1;
     private static final int MAX_INPUT_LENGTH = 100; // Maximum length of user input accepted
-    private ModuleManager moduleManager;
+
 
     /**
      * Parses the input string read by the <b>UI</b> and converts the string into a specific <b>Command</b>, which is
@@ -48,15 +39,8 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseCommand(String input) {
+    public Command parseCommand(String input, ModuleManager moduleManager) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
-        /*
-        if (input.isEmpty()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-        if (input.length() > MAX_INPUT_LENGTH) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }*/
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -65,8 +49,14 @@ public class Parser {
 
         switch (commandWord) {
 
+        case EditDeadlineCommand.COMMAND_WORD:
+            return prepareEditDeadlineCommand(parameters);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
         case ChangeModuleCommand.COMMAND_WORD:
-            return prepareChangeModuleCommand(parameters);
+            return prepareChangeModuleCommand(parameters, moduleManager);
 
         case AddModuleCommand.COMMAND_WORD:
             return prepareAddModuleCommand(parameters);
@@ -100,6 +90,23 @@ public class Parser {
         }
     }
 
+    private Command prepareEditDeadlineCommand(String parameters) {
+        Task taskToEdit;
+        DateTime deadline = null;
+        String [] temp = parameters.split("-d");
+        taskToEdit = new Task(temp[0], Command.getCurrentModule().getModuleCode());
+        try {
+            deadline = DateTimeFormat.stringToDateTime(temp[1]);
+        } catch (DateTimeFormat.InvalidDateException e ){
+
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
+
+        } catch (DateTimeFormat.InvalidTimeException e ) {
+
+        }
+        return new EditDeadlineCommand(taskToEdit, deadline);
+    }
+
     private Command prepareCheckModuleTasksDeadlineCommand(String parameters) {
         try {
             return new CheckModuleTasksDeadlineCommand(Integer.parseInt(parameters));
@@ -113,8 +120,7 @@ public class Parser {
         return null;
     }
 
-    private Command prepareChangeModuleCommand(String parameters) {
-        //System.out.println(parameters);
+    private Command prepareChangeModuleCommand(String parameters, ModuleManager moduleManager) {
         if (moduleManager.getModuleWithCode(parameters) != null) {
             return new ChangeModuleCommand(moduleManager.getModuleWithCode(parameters));
         }

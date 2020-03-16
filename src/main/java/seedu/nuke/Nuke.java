@@ -80,13 +80,11 @@ public class Nuke {
     private void runCommandLoopUntilExitCommand() {
         do {
             String userCommandText = ui.getInput();
-            try {
-                Command command = new Parser().parseCommand(userCommandText);
-                CommandResult result = executeCommand(command);
-                ui.showResult(result);
-            } catch (Exception e) {
-                ui.showSystemMessage(e.getMessage());
-            }
+
+            Command command = new Parser().parseCommand(userCommandText, moduleManager);
+            CommandResult result = executeCommand(command);
+            ui.showResult(result);
+
         } while (!ExitCommand.isExit());
     }
 
