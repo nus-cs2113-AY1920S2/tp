@@ -3,8 +3,6 @@ package seedu.command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
-import java.io.IOException;
-
 public class CommandInterpreter {
     protected EventList eventList;
 
@@ -66,7 +64,8 @@ public class CommandInterpreter {
             command = eci.decideCommand(commandDescription);
             break;
         case "seminar":
-
+            //TODO
+            break;
         case "attendance":
             AttendanceCommandInterpreter aci = new AttendanceCommandInterpreter(eventList);
             command = aci.decideCommand(commandDescription);
@@ -76,7 +75,11 @@ public class CommandInterpreter {
             command = pci.decideCommand(commandDescription);
             break;
         default:
-            throw new DukeException("No parameters provided");
+            assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
+                    && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
+                    && !commandCategory.equals("performance"))
+                    : "accepted command category is not further interpreted!";
+            throw new DukeException("Unknown command category is provided");
         }
 
         if (command == null) {
