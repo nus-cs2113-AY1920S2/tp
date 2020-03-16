@@ -18,6 +18,7 @@ public class EditDeadlineCommand extends EditTaskCommand {
     // hh:mm:ss";
     public static final String MESSAGE_DONE = "  Nice! I've marked this task as done:  %s";
     public DateTime deadline;
+
     /**
      * set the new deadline.
      * @param toEdit full command args string
