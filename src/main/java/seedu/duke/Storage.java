@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.cards.Card;
+import seedu.exception.EscException;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,25 +24,29 @@ public class Storage {
      * Loads any pre-existing cards from the save file and creates a new card list.
      * @return pre-existing card list (if any) or a new list
      */
-    public static ArrayList<Card> loadCards() {
+    public static ArrayList<Card> loadCards() throws EscException {
         ArrayList<Card> loadCards = new ArrayList<>();
+        ArrayList tempList;
         if (!saveFile.exists()) {
             try {
-                // creates all sub dir if not exist
                 saveFile.getParentFile().mkdirs();
                 saveFile.createNewFile();
             } catch (IOException e) {
-                System.out.println("File creation error");
+                throw new EscException("File creation error");
             }
         } else {
             try {
                 FileInputStream fileRead = new FileInputStream(saveFile);
                 ObjectInputStream objRead = new ObjectInputStream(fileRead);
+                tempList = (ArrayList) objRead.readObject();
 
-                loadCards = (ArrayList<Card>) objRead.readObject();
+                for (int i = 0; i < tempList.size(); i++) {
+                    loadCards.add((Card) tempList.get(i));
+                }
+
                 objRead.close();
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println("\nLoad error");
+                throw new EscException("Load error");
             }
         }
         return loadCards;
@@ -51,7 +56,7 @@ public class Storage {
      * Saves the current card list to the save file.
      * @param currCards the current card list
      */
-    public void saveCards(ArrayList<Card> currCards) {
+    public void saveCards(ArrayList<Card> currCards) throws EscException {
         try {
             FileOutputStream fileWrite = new FileOutputStream(saveFile);
             ObjectOutputStream objWrite = new ObjectOutputStream(fileWrite);
@@ -60,7 +65,7 @@ public class Storage {
             objWrite.flush();
             objWrite.close();
         } catch (IOException e) {
-            System.out.println("\nSave error");
+            throw new EscException("Save error");
         }
     }
 }

@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Returns the index of the card to be deleted
+     * Returns the index of the card to be deleted.
      */
     public int getIndex() {
         return index;

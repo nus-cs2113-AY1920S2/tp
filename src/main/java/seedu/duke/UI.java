@@ -1,6 +1,9 @@
 package seedu.duke;
 
+import java.util.Scanner;
+
 public class UI {
+    public static Scanner in = new Scanner(System.in);
 
     /**
      * Prints the greeting message when ESC is started.
@@ -14,38 +17,53 @@ public class UI {
                 + "| |____ ____) | |____\n"
                 + "|______|_____/ \\_____|\n";
         greeting += "Hello from\n" + logo;
-        //greeting += "What is your name?";
 
         System.out.println(greeting);
     }
 
     public static void showLine() {
-        System.out.println("_________________________________________________");
+        System.out.println("______________________");
+    }
+
+    /**
+     * Reads the user command.
+     * @return User command.
+     */
+    public static String readCommand() {
+        showLine();
+        System.out.println("Enter command: ");
+        String userInput = in.nextLine();
+        System.out.println("[Command entered: " + userInput + "]"); //TODO remove if not necessary
+        return userInput;
+    }
+
+    /**
+     * Reads the user answer.
+     * @return User answer.
+     */
+    public static String readAnswer() {
+        System.out.println("Enter answer: ");
+        String userInput = in.nextLine();
+        System.out.println("[Answer entered: " + userInput + "]");
+        return userInput;
     }
 
     /**
      *  Prints a list of commands used in the programme.
      */
     public static void printHelp() {
-        String helpMessage = " Welcome to ESC.\n"
-                + "Create: ​create n/[CATEGORYNAME] \n"
-                + "E.g. ​create n/Biology.\n"
-                + "List Category: ​list category\n"
-                + "Select Category: ​select [INDEX]\n"
-                + "Eg. ​select 1\n"
-                + "Delete Category: ​delete category [INDEX]\n"
-                + "Eg. ​delete 1\n"
-                + "Add Card:​ add q/[QUESTION] a/[ANSWER]\n"
-                + "Eg. ​add q/Which year was NUS founded? a/1980\n"
-                + "List Card: ​list card\n"
-                + "Delete Card: ​delete [INDEX]\n"
-                + "Eg. ​delete 1\n"
-                + "Quiz: ​quiz\n"
-                + "Answer: ​answer​ / ​answer [INDEX]\n"
-                + "Eg. ​answer 1\n"
-                + "Help: ​help\n"
-                + "Exit: ​exit\n";
-
+        String helpMessage = "Here's a list of things you can do:\n"
+                + "\t> Create Category:     create n/[CATEGORYNAME]  e.g. create n/Biology.\n"
+                + "\t> List Category: ​     list category\n"
+                + "\t> Select Category: ​   select [INDEX] e.g. select 1\n"
+                + "\t> Delete Category: ​   delete category [INDEX] e.g. delete 1\n"
+                + "\t> Add New Card:​       add q/[QUESTION] a/[ANSWER] e.g. add q/Which year was NUS founded? a/1980\n"
+                + "\t> List all Cards: ​    list card\n"
+                + "\t> Delete a Card: ​     delete [INDEX] e.g. delete 1\n"
+                + "\t> Start Quiz: ​        quiz\n"
+                + "\t> View Answer: ​       answer [INDEX] e.g. answer 1\n"
+                + "\t> Help Page: ​         help\n"
+                + "\t> Exit the Program: ​  exit";
         System.out.println(helpMessage);
     }
 
@@ -53,9 +71,8 @@ public class UI {
      * Exits the ESC program.
      */
     public static void exitEsc() {
-        System.out.println("____________________________________________________________");
+        showLine();
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+        showLine();
     }
-
 }

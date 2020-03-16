@@ -5,5 +5,13 @@ Hello from
 |  __|  \___ \| |
 | |____ ____) | |____
 |______|_____/ \_____|
-What is your name?
-Hello James Gosling
+
+______________________
+Enter command: 
+[Command entered: add q/question a/answer]
+______________________
+Enter command: 
+[Command entered: exit]
+______________________
+Bye. Hope to see you again soon!
+______________________
