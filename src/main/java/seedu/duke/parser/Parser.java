@@ -41,6 +41,7 @@ public class Parser {
             assert taskType.equals("bye");
             return processExitCommand();
         case MarkAsDoneCommand.COMMAND_WORD:
+            assert taskType.equals("done");
             return processMarkAsDone(args);
         default:
             throw new InputException("invalid command");
