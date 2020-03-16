@@ -97,6 +97,9 @@ public class Parser {
             logger.makeWarningLog("Could not start activity due to ongoing activity.");
             ui.printDivider(line);
         } else {
+            // tags should be reset
+            assert tags == null;
+
             String line;
             int delimiter = tokenizedInputs[1].indexOf("/t");
             if (delimiter == -1) {
@@ -130,7 +133,9 @@ public class Parser {
             endTime = LocalDateTime.now();
             Activity newActivity = new Activity(activityName, startTime, endTime, tags);
             activityList.add(newActivity);
+            // reset activity info
             startTime = null;
+            tags = null;
         }
         logger.makeInfoLog("Ended: " + activityName);
     }
