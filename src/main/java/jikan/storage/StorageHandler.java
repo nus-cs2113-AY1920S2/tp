@@ -1,6 +1,9 @@
 package jikan.storage;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,11 +23,17 @@ public class StorageHandler {
      * @param dataFilePath Path to data file.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void removeLine(int lineNumber, String dataFilePath) throws IOException {
+    public static void removeLine(int lineNumber, Storage storage) throws IOException {
         // Read file into list of strings, where each string is a line in the file
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(dataFilePath), StandardCharsets.UTF_8));
-        int removedIndex = 0;
+        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(storage.dataFilePath), StandardCharsets.UTF_8));
 
+        //int removedIndex = 0;
+
+        fileContent.remove(lineNumber);
+
+        saveNewList(fileContent, storage.dataFile);
+
+        /*
         // Remove line from fileContent list
         removedIndex = removeLineFromList(lineNumber, fileContent, removedIndex);
 
@@ -33,6 +42,19 @@ public class StorageHandler {
 
         // Update indexes of subsequent lines
         updateIndexes(fileContent, removedIndex, dataFilePath);
+
+         */
+    }
+
+    public static void saveNewList(List<String> newList, File dataFile) throws IOException {
+        FileOutputStream fo = new FileOutputStream(dataFile);
+        PrintWriter pw = new PrintWriter(fo);
+
+        for (int i = 0; i < newList.size(); i++) {
+            pw.println(newList.get(i));
+        }
+        pw.close();
+        fo.close();
     }
 
     /**

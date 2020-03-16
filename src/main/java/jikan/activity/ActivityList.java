@@ -1,6 +1,7 @@
 package jikan.activity;
 
 import jikan.storage.Storage;
+import jikan.storage.StorageHandler;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -66,6 +67,19 @@ public class ActivityList {
             storage.writeToFile(dataLine);
         } catch (IOException e) {
             System.out.println("Error saving task to data file.");
+        }
+    }
+
+    public void delete(int index) {
+        activities.remove(index);
+        deleteUpdateFile(index);
+    }
+
+    private void deleteUpdateFile(int index) {
+        try {
+            StorageHandler.removeLine(index, storage);
+        } catch (IOException e) {
+            System.out.println("Error while deleting task from data file.");
         }
     }
 

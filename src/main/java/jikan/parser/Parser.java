@@ -55,6 +55,9 @@ public class Parser {
             case "abort":
                 parseAbort();
                 break;
+            case "delete":
+                parseDelete(activityList);
+                break;
             default:
                 parseDefault();
                 break;
@@ -125,5 +128,12 @@ public class Parser {
             activityList.add(newActivity);
             startTime = null;
         }
+    }
+
+    public void parseDelete(ActivityList activityList) {
+        int index = Integer.parseInt(tokenizedInputs[1]) - 1;
+        String line = "You have deleted " + activityList.get(index).getName();
+        ui.printDivider(line);
+        activityList.delete(index);
     }
 }
