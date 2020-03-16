@@ -28,25 +28,45 @@ public class DeleteCommand extends Command {
     private Patient findPatient(PatientList patients) {
         for (Patient patient : patients) {
             if (patient.getNric().equalsIgnoreCase(nric)) {
+                logger.log(logLevel, "patient to be deleted is found");
                 return patient;
             }
         }
         return null;
     }
 
+    /**
+     * Retrieve the patient's confirmation.
+     *
+     * @return y to confirm deletion, n to stop deletion.
+     */
     private String getPatientConfirmation() {
         Scanner in = new Scanner(System.in);
         String confirm = in.nextLine();
         return confirm;
     }
 
+    /**
+     * Remove the patient from the patient list in the program.
+     *
+     * @param patient The patient to be deleted.
+     * @param patients The patient list within the program.
+     * @return Message to inform the user that the patient has been deleted.
+     */
     private String deletePatient(Patient patient, PatientList patients) {
         patients.remove(patient);
-        String message = "      Patient " + patient.getName() + " || " + patient.getNric() +
-                " has been deleted successfully.\n";
+        String message = "      Patient " + patient.getName() + " || " + patient.getNric()
+                + " has been deleted successfully.\n";
         return message;
     }
 
+    /**
+     * Run the delete command.
+     *
+     * @param patients Contains the list of tasks on which the commands are executed on.
+     * @return The message to confirm deletion of patient or to confirm that the patient has not be deleted.
+     * @throws HappyPillsException Throws an exception if patient does not exist.
+     */
     public String execute(PatientList patients) throws HappyPillsException {
         Patient delPatient = findPatient(patients);
         if (delPatient == null) {

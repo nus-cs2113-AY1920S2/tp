@@ -79,14 +79,15 @@ public class TextUi {
         return message;
     }
 
-    public static void printExit() {
-        System.out.println("    Thank you for using HappyPills! ^_^");
-        System.out.println("    See you again!");
-    }
-
+    /**
+     * Displays confirmation message for deleting patients.
+     *
+     * @param patient The patient to be deleted.
+     */
     public static void printDeleteConfirmation(Patient patient) {
         System.out.println("    Are you sure you want to delete this patient: \n"
                 + patient.getName() + " || " + patient.getNric() + "?\n (y/n)");
+    }
 
     /**
      * Display updated patient's records.
@@ -95,7 +96,7 @@ public class TextUi {
      * @return The patient's updated records.
      */
     public static String printEditSuccess(Patient patient) {
-        String message = "Patient details have been updated as follows: \n"
+        String message = "    Patient details have been updated as follows: \n"
                 + patient + DIVIDER;
         return message;
     }
@@ -217,6 +218,12 @@ public class TextUi {
         System.out.println("See you again!");
     }
 
+    /**
+     * Append the divider to the given message.
+     *
+     * @param s The message that requires the divider to be appended.
+     * @return The message with the appended divider.
+     */
     public static String appendDivider(String s) {
         return s + DIVIDER;
     }

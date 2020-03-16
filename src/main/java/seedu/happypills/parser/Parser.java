@@ -1,6 +1,13 @@
 package seedu.happypills.parser;
 
-import seedu.happypills.commands.*;
+import seedu.happypills.commands.Command;
+import seedu.happypills.commands.AddCommand;
+import seedu.happypills.commands.DeleteCommand;
+import seedu.happypills.commands.EditCommand;
+import seedu.happypills.commands.ExitCommand;
+import seedu.happypills.commands.GetCommand;
+import seedu.happypills.commands.HelpCommand;
+import seedu.happypills.commands.ListCommand;
 import seedu.happypills.exception.HappyPillsException;
 
 /**
