@@ -1,6 +1,7 @@
 package seedu.happypills.storage;
 
 import seedu.happypills.data.Patient;
+import seedu.happypills.data.PatientList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,10 +45,10 @@ public class Storage {
      * @return <code>ArrayList</code> of each line read from the file
      * @throws FileNotFoundException if the file specified by <code>filePath</code> does not exist
      */
-    public static ArrayList<Patient> loadFromFile(String filePath) throws FileNotFoundException {
+    public static PatientList loadFromFile(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
-        ArrayList<Patient> storedPatients = new ArrayList<>();
+        PatientList storedPatients = new PatientList();
 
         while (s.hasNext()) {
             String stringInput = s.nextLine();
@@ -57,7 +58,7 @@ public class Storage {
         return storedPatients;
     }
 
-    private static void parseFileContent(String savedString, ArrayList<Patient> storedPatients) {
+    private static void parseFileContent(String savedString, PatientList storedPatients) {
         String[] dataString = savedString.split("[|]", 7);
         Patient tempPatient = new Patient(dataString[0], dataString[1], Integer.parseInt(dataString[2]), dataString[3], dataString[4], dataString[5], dataString[6]);
         storedPatients.add(tempPatient);
