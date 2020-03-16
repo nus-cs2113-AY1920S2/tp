@@ -22,5 +22,4 @@ SUCCESS!! Module CS1010 Programming Methodology has been added.
 
 Bye. Hope to see you again soon!
 ---------------------------------------------------------------------------------
-Bye. Hope to see you soon.
----------------------------------------------------------------------------------
+
