@@ -1,7 +1,13 @@
 package seedu.nuke;
 
+import seedu.nuke.command.AddModuleCommand;
+import seedu.nuke.command.AddTaskCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.command.DeleteModuleCommand;
+import seedu.nuke.command.DeleteTaskCommand;
+import seedu.nuke.command.EditDeadlineCommand;
+import seedu.nuke.command.EditTaskCommand;
 import seedu.nuke.command.ExitCommand;
 
 import seedu.nuke.data.DataManager;
@@ -95,24 +101,19 @@ public class Nuke {
      */
     private CommandResult executeCommand(Command command) {
         try {
-            //set module manager data according to screen shot manager data
-            readScreenShot();
-            // supplies the data the command will operate on.
-            // if there is no file to load or the file is empty, setData will initialize a new taskManager system
-            //update the module manager as well as the data manager
+            readFromScreenShot();
             setCommandData(command);
-            //take the screen shot
-            takeScreenShot();
-            //add screen shot
-            addScreenShotToScreenShotList();
-            // Execute according to the command itself
+            if (command instanceof AddModuleCommand | command instanceof AddTaskCommand |
+                    command instanceof EditDeadlineCommand | command instanceof DeleteModuleCommand |
+                    command instanceof DeleteTaskCommand){
+                saveToScreenShot();
+                addScreenShotToScreenShotList();
+            }
             execute(command);
-            // save the taskManager to a file
-            //moduleManager.getStorager().save(taskManager);
-            //StorageFile.saveJson(taskManager);
-        } catch (Exception e) {
-            // the out layer exception handler
-            //ui.showSystemMessage(e.getMessage());
+            System.out.println(ScreenShotManager.getCurrentPointer());
+            System.out.println("there are "+ dataManager.getAllTasks().size() +"tasks in the module");
+        } catch (Exception ignored) {
+
         }
         return commandResult;
     }
@@ -122,22 +123,23 @@ public class Nuke {
     }
 
     private void addScreenShotToScreenShotList() {
-        screenShotManager.getScreenShotList().add(currentScreenShot);
+        ScreenShotManager.getScreenShotList().add(currentScreenShot);
+        ScreenShotManager.setCurrentPointerForward();
     }
 
     private void setCommandData(Command command) {
         command.setData(moduleManager, dataManager, screenShotManager);
     }
 
-    private void takeScreenShot() {
+    private void saveToScreenShot() {
         currentScreenShot.takeScreenShot(moduleManager, dataManager);
     }
 
     /**
      * set module manager data according to screen shot manager data
      */
-    private void readScreenShot() {
-        dataManager.setAllTasks(screenShotManager.getCurrentScreenShot().getDataManager().getAllTasks());
-        moduleManager.setModules(screenShotManager.getCurrentScreenShot().getModuleManager().getModuleList());
+    private void readFromScreenShot() {
+        dataManager.setAllTasks(ScreenShotManager.getCurrentScreenShot().getDataManager().getAllTasks());
+        moduleManager.setAllModules(ScreenShotManager.getCurrentScreenShot().getModuleManager().getModuleList());
     }
 }

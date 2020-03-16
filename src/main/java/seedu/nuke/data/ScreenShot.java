@@ -10,7 +10,7 @@ public class ScreenShot {
 
     public ScreenShot(ModuleManager moduleManager, DataManager dataManager) {
         this.moduleManager = new ModuleManager();
-        this.moduleManager.setModules(moduleManager.getModuleList());
+        this.moduleManager.setAllModules(moduleManager.getModuleList());
         this.dataManager = dataManager;
     }
 
@@ -31,8 +31,9 @@ public class ScreenShot {
     }
 
     public void takeScreenShot(ModuleManager moduleManager, DataManager dataManager) {
-        this.moduleManager = moduleManager;
-        this.dataManager = dataManager;
+        this.moduleManager = new ModuleManager();
+        this.moduleManager.setAllModules(moduleManager.getModuleList());
+        this.dataManager = new DataManager(this.moduleManager);
     }
 }
 

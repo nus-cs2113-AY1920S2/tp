@@ -12,7 +12,7 @@ import java.util.Comparator;
  */
 public class DataManager {
 
-    private ArrayList<Task> allTasks;
+    private ArrayList<Task> allTasks = new ArrayList<>();
 
     /**
      * Constructor for DataManager class.

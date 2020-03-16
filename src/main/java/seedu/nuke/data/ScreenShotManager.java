@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ScreenShotManager {
     private static List<ScreenShot> screenShotList;
+    // initial index - 0
     private static int currentPointer = 0;
 
     public ScreenShotManager() {
@@ -34,11 +35,13 @@ public class ScreenShotManager {
     }
 
     public static void unDo() {
-        if (currentPointer <= 0){
-            currentPointer = 0;
-        } else {
+        if (currentPointer > 0){
             currentPointer = currentPointer - 1;
         }
+    }
+
+    public static void setCurrentPointerForward(){
+        currentPointer++;
     }
 
     public static ScreenShot getCurrentScreenShot() {
