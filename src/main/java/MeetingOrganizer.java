@@ -1,7 +1,12 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_INVALID_NUMBER;
 import static java.lang.System.out;
+
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -19,7 +24,7 @@ public class MeetingOrganizer {
 
     private MeetingList myMeetingList;
 
-    void botResponse(String userInput) throws MoException {
+    void botResponse(String userInput) throws MoException, DateTimeParseException, NumberFormatException {
 
         TeamMember member1 = new TeamMember("john");
         TeamMember member2 = new TeamMember("mary");
@@ -66,7 +71,7 @@ public class MeetingOrganizer {
                 myMeetingList.add(new Meeting(meetingName, startDay, startTime, endDay, endTime));
                 System.out.println("You now have " + myMeetingList.getMeetingListSize() + " meetings in the list.");
             }
-            
+
             break;
         case "2":
             out.println("Which meeting slot do you want to delete?");
@@ -116,6 +121,10 @@ public class MeetingOrganizer {
                 botResponse(userInput);
             } catch (MoException e) {
                 TextUI.errorMsg(e);
+            } catch (DateTimeParseException e) {
+                System.out.println(MESSAGE_STARTENDTIME_OUT_OF_RANGE);
+            } catch (NumberFormatException e) {
+                System.out.println(MESSAGE_INVALID_NUMBER);
             } finally {
                 userInput = in.nextLine();
             }

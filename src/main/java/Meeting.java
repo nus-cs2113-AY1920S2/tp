@@ -1,9 +1,4 @@
-import java.util.ArrayList;
-import java.time.LocalDate;
 import java.time.LocalTime;
-
-import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 
 /**
  * TESTING SUMMARY DOC.
@@ -15,16 +10,7 @@ public class Meeting {
     private Integer endDay;
     private LocalTime endTime;
 
-    public Meeting(String meetingName, Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
-
-        if (startDay < 0 || startDay > 6 || endDay < 0 || endDay > 6) {
-            throw new MoException(MESSAGE_STARTENDDAY_OUT_OF_RANGE);
-        }
-
-        if ((startTime.getMinute() != 0 && startTime.getMinute() != 30) || (endTime.getMinute() != 0 && endTime.getMinute() != 30)) {
-            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
-        }
-
+    public Meeting(String meetingName, Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) {
         this.meetingName = meetingName;
         this.startDay = startDay;
         this.endDay = endDay;
