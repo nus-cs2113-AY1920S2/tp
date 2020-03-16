@@ -48,7 +48,7 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseCommand(String input) throws InvalidIndexException, ModuleNotFoundException {
+    public Command parseCommand(String input) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         /*
         if (input.isEmpty()) {
@@ -84,14 +84,16 @@ public class Parser {
             return new CheckAllTasksDeadlineCommand();
 
         case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
-            try {
-                return new CheckModuleTasksDeadlineCommand(Integer.parseInt(parameters));
-            } catch (NumberFormatException e) {
-                throw new InvalidIndexException();
-            } catch (ModuleNotFoundException e) {
-                throw e;
-            }
-
+            /*
+              try {
+                  return new CheckModuleTasksDeadlineCommand(Integer.parseInt(parameters));
+              } catch (NumberFormatException e) {
+                  throw new InvalidIndexException();
+              } catch (ModuleNotFoundException e) {
+                  throw e;
+              }
+             */
+            return null;
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
 
