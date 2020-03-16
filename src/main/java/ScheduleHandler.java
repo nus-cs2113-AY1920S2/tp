@@ -242,28 +242,28 @@ public class ScheduleHandler {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             } else if (startBlock < endBlock) {
-                for(int i = startBlock; i <= endBlock; ++i) {
+                for (int i = startBlock; i <= endBlock; ++i) {
                     if (masterSchedule[startDay][i] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
             } else if (startBlock > endBlock) {
-                for(int i = startBlock; i <= 47; ++i) {
+                for (int i = startBlock; i <= 47; ++i) {
                     if (masterSchedule[startDay][i] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
 
-                for(int i = startDay + 1; i <= 6; ++i) {
-                    for(int j = 0; j <= 47; ++j) {
+                for (int i = startDay + 1; i <= 6; ++i) {
+                    for (int j = 0; j <= 47; ++j) {
                         if (masterSchedule[i][j] == myScheduleBlocked) {
                             throw new MoException(MESSAGE_INVALID_MEETING);
                         }
                     }
                 }
 
-                for(int i = 0; i <= endDay - 1; ++i) {
-                    for(int j = 0; j <= 47; ++j) {
+                for (int i = 0; i <= endDay - 1; ++i) {
+                    for (int j = 0; j <= 47; ++j) {
                         if (masterSchedule[i][j] == myScheduleBlocked) {
                             throw new MoException(MESSAGE_INVALID_MEETING);
                         }
@@ -302,22 +302,22 @@ public class ScheduleHandler {
         }
 
         if (startDay > endDay) {
-            for(int i = startBlock; i <= 47; ++i) {
+            for (int i = startBlock; i <= 47; ++i) {
                 if (masterSchedule[startDay][i] == myScheduleBlocked) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             }
 
-            for(int i = startDay + 1; i <= 6; ++i) {
-                for(int j = 0; j <= 47; ++j) {
+            for (int i = startDay + 1; i <= 6; ++i) {
+                for (int j = 0; j <= 47; ++j) {
                     if (masterSchedule[i][j] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
             }
 
-            for(int i = 0; i <= endDay - 1; ++i) {
-                for(int j = 0; j <= 47; ++j) {
+            for (int i = 0; i <= endDay - 1; ++i) {
+                for (int j = 0; j <= 47; ++j) {
                     if (masterSchedule[i][j] == myScheduleBlocked) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
