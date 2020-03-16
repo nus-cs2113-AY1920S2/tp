@@ -49,7 +49,8 @@ public class TextUi {
     }
 
     /**
-     * prints the patients details with a specific string and a divider.
+     * format a get patient success message for user.
+     * Includes a specified string, requested patient details and a divider.
      * @param patient patient object to be returned as a part of the string.
      * @return a formatted success message string to be displayed to user.
      */
