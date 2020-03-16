@@ -5,5 +5,4 @@ abort exercising
 start
 end
 abort
-list
 bye
