@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
@@ -32,7 +33,7 @@ public class Parser {
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
-    public void parseUserCommands(Scanner scanner, ActivityList activityList) {
+    public void parseUserCommands(Scanner scanner, ActivityList activityList, Log logger) {
         logger.makeInfoLog("Starting to parse inputs.");
         while (true) {
             String userInput = scanner.nextLine();
@@ -48,18 +49,24 @@ public class Parser {
                     parseStart();
                 } catch (EmptyNameException e) {
                     ui.printDivider("Task name cannot be empty!");
+                    logger.makeWarningLog("Activity started without task name");
                 } catch (ArrayIndexOutOfBoundsException e) {
                     ui.printDivider("Task name cannot be empty!");
+                    logger.makeWarningLog("Activity started without task name");
                 }
                 break;
             case "end":
                 parseEnd(activityList);
+                assert startTime == null;
                 break;
             case "list":
                 ui.printList(activityList);
                 break;
             case "abort":
                 parseAbort();
+                assert activityName == null;
+                assert startTime == null;
+                assert endTime == null;
                 break;
             default:
                 parseDefault();
@@ -71,6 +78,7 @@ public class Parser {
     /** Method to parse user inputs that are not recognised. */
     private void parseDefault() {
         String line = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        logger.makeInfoLog("Invalid command entered");
         ui.printDivider(line);
     }
 
@@ -78,8 +86,10 @@ public class Parser {
     private void parseAbort() {
         if (startTime == null) {
             String line = "You have not started any activity!";
+            logger.makeWarningLog("Abort command failed as no activity was ongoing");
             ui.printDivider(line);
         } else {
+            logger.makeInfoLog("Aborted " + activityName);
             startTime = null;
             tags = null;
             activityName = null;
@@ -114,6 +124,7 @@ public class Parser {
                     throw new EmptyNameException();
                 }
                 line = "Started " + activityName;
+                logger.makeInfoLog("Started " + activityName);
                 tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
             }
             startTime = LocalDateTime.now();
@@ -126,6 +137,7 @@ public class Parser {
     public void parseEnd(ActivityList activityList) throws ArrayIndexOutOfBoundsException {
         if (startTime == null) {
             String line = "You have not started any activity!";
+            logger.makeWarningLog("End command failed as there was no ongoing activity");
             ui.printDivider(line);
         } else {
             String line = "Ended " + activityName;
