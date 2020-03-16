@@ -26,12 +26,11 @@ public class MeetingOrganizer {
         switch (userInput) {
         case "1":
             out.println("You have selected new scheduled meeting");
-            // Test printTimetable
+
             Boolean[][] mySchedule = new Boolean[7][48];
             for (int i = 0; i < 7; i++) {
                 Arrays.fill(mySchedule[i], false); // fill every 48 index of the 7 days with 0 initially
             }
-            TextUI.printTimetable(mySchedule);
 
             member1.addBusyBlocks("test1", 0, "10:00", 2, "12:00");
             printSchedule("member 1 schedule", member1.getSchedule()); //check
