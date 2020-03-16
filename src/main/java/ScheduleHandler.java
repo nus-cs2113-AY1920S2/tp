@@ -2,8 +2,6 @@ import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_INVALID_MEETING;
 
-import static java.lang.System.out;
-
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -14,8 +12,8 @@ import java.util.Arrays;
  */
 
 public class ScheduleHandler {
-    private final Boolean myScheduleBlocked = true;
-    private final Boolean myScheduleFree = false;
+    private static final Boolean MYSCHEDULEBLOCKED = true;
+    private static final Boolean MYSCHEDULEFREE = false;
     private Boolean[][] masterSchedule = new Boolean[7][48];
     // ArrayList of free slots in Integer type {startDay, startBlock, endDay, endBlock}
     private ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
@@ -23,7 +21,7 @@ public class ScheduleHandler {
 
     public ScheduleHandler(ArrayList<TeamMember> teamMemberList) {
         for (int i = 0; i < 7; i++) {
-            Arrays.fill(masterSchedule[i], myScheduleFree); // fill every 48 index of the 7 days with 0 initially
+            Arrays.fill(masterSchedule[i], MYSCHEDULEFREE); // fill every 48 index of the 7 days with 0 initially
         }
         for (TeamMember t : teamMemberList) {
             Boolean[][] memberSchedule = t.getSchedule();
@@ -40,7 +38,7 @@ public class ScheduleHandler {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
                 if (s[i][j]) {
-                    masterSchedule[i][j] = myScheduleBlocked;
+                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
                 }
             }
         }
@@ -49,12 +47,12 @@ public class ScheduleHandler {
     private void updateFreeBlocks() {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
-                if (masterSchedule[i][j] == myScheduleFree) {
+                if (masterSchedule[i][j] == MYSCHEDULEFREE) {
                     boolean change = false;
                     boolean end = false;
                     final int startDay = i;
                     final int startBlock = j;
-                    while (masterSchedule[i][j] == myScheduleFree) {
+                    while (masterSchedule[i][j] == MYSCHEDULEFREE) {
                         if (change) {
                             change = false;
                         }
@@ -248,25 +246,25 @@ public class ScheduleHandler {
 
         if (startDay.equals(endDay)) {
             if (startBlock.equals(endBlock)) {
-                if (masterSchedule[startDay][startBlock] == myScheduleBlocked) {
+                if (masterSchedule[startDay][startBlock] == MYSCHEDULEBLOCKED) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             } else if (startBlock < endBlock) {
                 for (int i = startBlock; i <= endBlock; ++i) {
-                    if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                    if (masterSchedule[startDay][i] == MYSCHEDULEBLOCKED) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
             } else if (startBlock > endBlock) {
                 for (int i = startBlock; i <= 47; ++i) {
-                    if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                    if (masterSchedule[startDay][i] == MYSCHEDULEBLOCKED) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
 
                 for (int i = startDay + 1; i <= 6; ++i) {
                     for (int j = 0; j <= 47; ++j) {
-                        if (masterSchedule[i][j] == myScheduleBlocked) {
+                        if (masterSchedule[i][j] == MYSCHEDULEBLOCKED) {
                             throw new MoException(MESSAGE_INVALID_MEETING);
                         }
                     }
@@ -274,14 +272,14 @@ public class ScheduleHandler {
 
                 for (int i = 0; i <= endDay - 1; ++i) {
                     for (int j = 0; j <= 47; ++j) {
-                        if (masterSchedule[i][j] == myScheduleBlocked) {
+                        if (masterSchedule[i][j] == MYSCHEDULEBLOCKED) {
                             throw new MoException(MESSAGE_INVALID_MEETING);
                         }
                     }
                 }
 
                 for (int i = 0; i <= endBlock; ++i) {
-                    if (masterSchedule[endDay][i] == myScheduleBlocked) {
+                    if (masterSchedule[endDay][i] == MYSCHEDULEBLOCKED) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
@@ -291,20 +289,20 @@ public class ScheduleHandler {
 
         if (startDay < endDay) {
             for (int i = startBlock; i <= 47; ++i) {
-                if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                if (masterSchedule[startDay][i] == MYSCHEDULEBLOCKED) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             }
             for (int i = startDay + 1; i <= endDay - 1; ++i) {
                 for (int j = 0; j < 48; ++j) {
-                    if (masterSchedule[i][j] == myScheduleBlocked) {
+                    if (masterSchedule[i][j] == MYSCHEDULEBLOCKED) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
             }
 
             for (int i = 0; i <= endBlock; ++i) {
-                if (masterSchedule[endDay][i] == myScheduleBlocked) {
+                if (masterSchedule[endDay][i] == MYSCHEDULEBLOCKED) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             }
@@ -313,14 +311,14 @@ public class ScheduleHandler {
 
         if (startDay > endDay) {
             for (int i = startBlock; i <= 47; ++i) {
-                if (masterSchedule[startDay][i] == myScheduleBlocked) {
+                if (masterSchedule[startDay][i] == MYSCHEDULEBLOCKED) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             }
 
             for (int i = startDay + 1; i <= 6; ++i) {
                 for (int j = 0; j <= 47; ++j) {
-                    if (masterSchedule[i][j] == myScheduleBlocked) {
+                    if (masterSchedule[i][j] == MYSCHEDULEBLOCKED) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
@@ -328,14 +326,14 @@ public class ScheduleHandler {
 
             for (int i = 0; i <= endDay - 1; ++i) {
                 for (int j = 0; j <= 47; ++j) {
-                    if (masterSchedule[i][j] == myScheduleBlocked) {
+                    if (masterSchedule[i][j] == MYSCHEDULEBLOCKED) {
                         throw new MoException(MESSAGE_INVALID_MEETING);
                     }
                 }
             }
 
             for (int i = 0; i <= endBlock; ++i) {
-                if (masterSchedule[endDay][i] == myScheduleBlocked) {
+                if (masterSchedule[endDay][i] == MYSCHEDULEBLOCKED) {
                     throw new MoException(MESSAGE_INVALID_MEETING);
                 }
             }
@@ -361,30 +359,30 @@ public class ScheduleHandler {
 
         if (startDay.equals(endDay)) {
             if (startBlock.equals(endBlock)) {
-                masterSchedule[startDay][startBlock] = myScheduleBlocked;
+                masterSchedule[startDay][startBlock] = MYSCHEDULEBLOCKED;
             } else if (startBlock < endBlock) {
                 for (int i = startBlock; i <= endBlock; ++i) {
-                    masterSchedule[startDay][i] = myScheduleBlocked;
+                    masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
                 }
             } else if (startBlock > endBlock) {
                 for (int i = startBlock; i <= 47; ++i) {
-                    masterSchedule[startDay][i] = myScheduleBlocked;
+                    masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
                 }
 
                 for (int i = startDay + 1; i <= 6; ++i) {
                     for (int j = 0; j <= 47; ++j) {
-                        masterSchedule[i][j] = myScheduleBlocked;
+                        masterSchedule[i][j] = MYSCHEDULEBLOCKED;
                     }
                 }
 
                 for (int i = 0; i <= endDay - 1; ++i) {
                     for (int j = 0; j <= 47; ++j) {
-                        masterSchedule[i][j] = myScheduleBlocked;
+                        masterSchedule[i][j] = MYSCHEDULEBLOCKED;
                     }
                 }
 
                 for (int i = 0; i <= endBlock; ++i) {
-                    masterSchedule[endDay][i] = myScheduleBlocked;
+                    masterSchedule[endDay][i] = MYSCHEDULEBLOCKED;
                 }
 
             }
@@ -392,39 +390,39 @@ public class ScheduleHandler {
 
         if (startDay < endDay) {
             for (int i = startBlock; i <= 47; ++i) {
-                masterSchedule[startDay][i] = myScheduleBlocked;
+                masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
             }
             for (int i = startDay + 1; i <= endDay - 1; ++i) {
                 for (int j = 0; j < 48; ++j) {
-                    masterSchedule[i][j] = myScheduleBlocked;
+                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
                 }
             }
 
             for (int i = 0; i <= endBlock; ++i) {
-                masterSchedule[endDay][i] = myScheduleBlocked;
+                masterSchedule[endDay][i] = MYSCHEDULEBLOCKED;
             }
 
         }
 
         if (startDay > endDay) {
             for (int i = startBlock; i <= 47; ++i) {
-                masterSchedule[startDay][i] = myScheduleBlocked;
+                masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
             }
 
             for (int i = startDay + 1; i <= 6; ++i) {
                 for (int j = 0; j <= 47; ++j) {
-                    masterSchedule[i][j] = myScheduleBlocked;
+                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
                 }
             }
 
             for (int i = 0; i <= endDay - 1; ++i) {
                 for (int j = 0; j <= 47; ++j) {
-                    masterSchedule[i][j] = myScheduleBlocked;
+                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
                 }
             }
 
             for (int i = 0; i <= endBlock; ++i) {
-                masterSchedule[endDay][i] = myScheduleBlocked;
+                masterSchedule[endDay][i] = MYSCHEDULEBLOCKED;
             }
         }
 

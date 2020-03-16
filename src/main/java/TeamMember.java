@@ -1,8 +1,6 @@
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
-import static java.lang.System.out;
-
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -13,8 +11,8 @@ import java.util.Arrays;
  */
 
 public class TeamMember {
-    private final Boolean myScheduleBlocked = true;
-    private final Boolean myScheduleFree = false;
+    private static final Boolean MYSCHEDULEBLOCKED = true;
+    private static final Boolean MYSCHEDULEFREE = false;
     private String memberName;
     private Boolean[][] mySchedule; //String[7][48]; 7 days, separated into 30mins within 24 hours period.
     private String[][] myScheduleName;
@@ -24,7 +22,7 @@ public class TeamMember {
         this.mySchedule = new Boolean[7][48];
         this.myScheduleName = new String[7][48];
         for (int i = 0; i < 7; i++) {
-            Arrays.fill(mySchedule[i], myScheduleFree); // fill every 48 index of the 7 days with 0 initially
+            Arrays.fill(mySchedule[i], MYSCHEDULEFREE); // fill every 48 index of the 7 days with 0 initially
             Arrays.fill(myScheduleName[i], null);
 
         }
@@ -37,7 +35,7 @@ public class TeamMember {
             localTimeStart = LocalTime.parse(startTime);
             localTimeEnd = LocalTime.parse(endTime);
         } catch (DateTimeParseException e) {
-            out.println(MESSAGE_STARTENDTIME_OUT_OF_RANGE);
+            System.out.println(MESSAGE_STARTENDTIME_OUT_OF_RANGE);
             return MESSAGE_STARTENDTIME_OUT_OF_RANGE;
         }
         Integer startBlock = 0;
@@ -46,7 +44,7 @@ public class TeamMember {
             startBlock = getBlocksFromTime(localTimeStart);
             endBlock = getBlocksFromTime(localTimeEnd);
         } catch (MoException e) {
-            out.println(e.getMessage());
+            System.out.println(e.getMessage());
             return e.getMessage();
         }
 
@@ -55,30 +53,30 @@ public class TeamMember {
         }
 
         if (!startDay.equals(endDay)) {
-            int startDayCopy = startDay; // prevent modifying param aruguments
+            int startDayCopy = startDay; // prevent modifying param arguments
             for (int i = startBlock; i < 48; i++) {
-                mySchedule[startDayCopy][i] = myScheduleBlocked;
+                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
                 myScheduleName[startDayCopy][i] = meetingName;
             }
             startDayCopy++;
             while (startDayCopy != endDay) {
                 for (int i = 0; i < 48; i++) {
-                    mySchedule[startDayCopy][i] = myScheduleBlocked;
+                    mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
                     myScheduleName[startDayCopy][i] = meetingName;
                 }
                 startDayCopy++;
             }
             for (int i = 0; i < endBlock; i++) {
-                mySchedule[startDayCopy][i] = myScheduleBlocked;
+                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
                 myScheduleName[startDayCopy][i] = meetingName;
             }
         } else {
             for (int i = startBlock; i < endBlock; i++) {
-                mySchedule[startDay][i] = myScheduleBlocked;
+                mySchedule[startDay][i] = MYSCHEDULEBLOCKED;
                 myScheduleName[startDay][i] = meetingName;
             }
         }
-        return "Success";
+        return "SUCCESS";
     }
 
     boolean checkLegitDay(Integer day) {
@@ -90,7 +88,7 @@ public class TeamMember {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
                 if (myScheduleName[i][j].equals(meetingName)) {
-                    mySchedule[i][j] = myScheduleFree;
+                    mySchedule[i][j] = MYSCHEDULEFREE;
                     myScheduleName[i][j] = null;
 
                 }
