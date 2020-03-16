@@ -71,7 +71,6 @@ public class Nuke {
      * Method to print the exit message to the user.
      */
     public void exit() {
-        TextUi.showExitMessage();
     }
 
     /**

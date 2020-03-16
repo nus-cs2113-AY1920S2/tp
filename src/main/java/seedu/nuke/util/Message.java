@@ -21,7 +21,7 @@ public class Message {
     public static final String MESSAGE_NO_TASK_IN_LIST = "There is no task in the list!\n";
     public static final String MESSAGE_TASK_SUCCESSFULLY_LIST = "There are (is) %d task(s) in the list!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
-    public static final String MESSAGE_EXIT = "Bye. Hope to see you soon.";
+    public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
     public static final String DIVIDER =
             "---------------------------------------------------------------------------------";
     public static final String MESSAGE_SHOW_MODULES = "Here are ALL your modules.\n";
