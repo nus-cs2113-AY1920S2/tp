@@ -12,6 +12,12 @@ public class StockCommand {
     
     protected Stock stock;   
     
+    /** The relative index after the '/' present within the string. */
+    protected final int indexAfterSlash = 2;
+    
+    /** The relative index after the '$' present within the string. */
+    protected final int indexAfterDollarSign = 3;
+    
     public void setData(Stock stock) {
         this.stock = stock;
     }
@@ -23,7 +29,7 @@ public class StockCommand {
      */ 
     protected String parseIngredientName(String ingredientNameInput) {
         String ingredientName = ingredientNameInput.trim()
-                .substring(2, ingredientNameInput.length());
+                .substring(indexAfterSlash, ingredientNameInput.length());
         
         return ingredientName;
     }
@@ -43,12 +49,13 @@ public class StockCommand {
         
         try {
             int quantity = Integer.parseInt(trimmedInput.substring(
-                    2, ingredientQuantityInput.length()));
+                    indexAfterSlash, ingredientQuantityInput.length()));
             
             if (quantity < 0) {
                 throw new InvalidStockCommandException("Please enter a "
                         + "positive value for the quantity to be added!");
             } 
+            assert (quantity >= 0) : "quantity is negative:" + quantity;
             return quantity;            
         } catch (NumberFormatException nfe) {
             throw new InvalidStockCommandException("Please ensure that the "
@@ -73,12 +80,13 @@ public class StockCommand {
         try {
             
             double price = Double.parseDouble(trimmedInput.substring(
-                    3, ingredientPriceInput.length()));
+                    indexAfterDollarSign, ingredientPriceInput.length()));
             
             if (price < 0.0) {
                 throw new InvalidStockCommandException("Please enter a"
                         + " positive value for the ingredient's price!");
-            } 
+            }
+            assert (price >= 0.0) : "quantity is negative:" + price;
             return price;
         } catch (NumberFormatException nfe) {
             throw new InvalidStockCommandException("Please ensure that the "

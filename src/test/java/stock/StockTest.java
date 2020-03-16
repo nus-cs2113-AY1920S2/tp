@@ -17,6 +17,8 @@ import utils.Pair;
 
 class StockTest {
     
+    private final String ls = System.lineSeparator();
+    
     /**
      * Test that the ingredient saves the new price supplied whenever the user inputs it.
      */
@@ -138,9 +140,12 @@ class StockTest {
         stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         stock.deleteIngredient(new Ingredient("tomato", Optional.of(3), Optional.empty()));
         
-        String stockCopyOutput = "1. [10][$1.00] chicken\n"
-                + "2. [0][$0.50] tomato\n"
-                + "3. [1][$0.50] rice\n";
+        String stockCopyOutput = "1. [10][$1.00] chicken"
+                + ls
+                + "2. [0][$0.50] tomato"
+                + ls
+                + "3. [1][$0.50] rice"
+                + ls;
  
         assertEquals(printStockOutput(stock), stockCopyOutput);
     }
@@ -155,15 +160,20 @@ class StockTest {
         stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         stock.deleteIngredient(new Ingredient("tomato", Optional.of(3), Optional.empty()));
 
-        String stockCopyOutput = "1. [10][$1.00] chicken\n"
-                + "2. [0][$0.50] tomato\n"
-                + "3. [1][$0.50] rice\n";
+        String stockCopyOutput = "1. [10][$1.00] chicken"
+                + ls
+                + "2. [0][$0.50] tomato"
+                + ls
+                + "3. [1][$0.50] rice"
+                + ls;
  
         assertEquals(printStockOutput(stock), stockCopyOutput);
         
         stock.deleteIngredient(new Ingredient("tomato", Optional.empty(), Optional.empty()));
-        String newStockCopyOutput = "1. [10][$1.00] chicken\n"
-                + "2. [1][$0.50] rice\n";
+        String newStockCopyOutput = "1. [10][$1.00] chicken"
+                + ls
+                + "2. [1][$0.50] rice"
+                + ls;
         
         assertEquals(printStockOutput(stock), newStockCopyOutput);
     }
@@ -202,7 +212,7 @@ class StockTest {
                     + "]"
                     + " " 
                     + ingredientName
-                    + "\n");
+                    + ls);
            
             ingredientCounter++;
         }
