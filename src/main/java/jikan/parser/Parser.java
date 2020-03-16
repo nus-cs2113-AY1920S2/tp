@@ -32,7 +32,7 @@ public class Parser {
      * @param activityList the list of activities
      */
     public void parseUserCommands(Scanner scanner, ActivityList activityList, Log logger) {
-        logger.makeInfoLog("Starting to parse inputs.");
+        logger.makeFineLog("Starting to parse inputs.");
         while (true) {
             String userInput = scanner.nextLine();
             tokenizedInputs = userInput.split(" ", 2);
@@ -46,13 +46,13 @@ public class Parser {
                 try {
                     parseStart();
                 } catch (EmptyNameException e) {
-                    logger.makeWarningLog("Activity started without task name");
+                    logger.makeInfoLog("Activity started without task name");
                     ui.printDivider("Task name cannot be empty!");
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    logger.makeWarningLog("Activity started without task name");
+                    logger.makeInfoLog("Activity started without task name");
                     ui.printDivider("Task name cannot be empty!");
                 } catch (NullPointerException e) {
-                    logger.makeWarningLog("Activity started without task name");
+                    logger.makeInfoLog("Activity started without task name");
                     ui.printDivider("Task name cannot be empty!");
                 }
                 break;
@@ -60,7 +60,7 @@ public class Parser {
                 try {
                     parseEnd(activityList);
                 } catch (NoSuchActivityException e) {
-                    logger.makeWarningLog("End command failed as no activity was ongoing");
+                    logger.makeInfoLog("End command failed as no activity was ongoing");
                     ui.printDivider("You have not started any activity!");
                 }
                 break;
@@ -72,7 +72,7 @@ public class Parser {
                     parseAbort();
                 } catch (NoSuchActivityException e) {
                     ui.printDivider("You have not started any activity!");
-                    logger.makeWarningLog("Abort command failed as no activity was ongoing");
+                    logger.makeInfoLog("Abort command failed as no activity was ongoing");
                 }
                 break;
             default:
@@ -94,7 +94,7 @@ public class Parser {
         if (startTime == null) {
             throw new NoSuchActivityException();
         } else {
-            logger.makeInfoLog("Aborted " + activityName);
+            logger.makeFineLog("Aborted " + activityName);
             startTime = null;
             tags = null;
             activityName = null;
@@ -109,7 +109,7 @@ public class Parser {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
-            logger.makeWarningLog("Could not start activity due to ongoing activity.");
+            logger.makeInfoLog("Could not start activity due to already ongoing activity.");
             ui.printDivider(line);
         } else {
             // tags should be reset
@@ -129,13 +129,12 @@ public class Parser {
                     throw new EmptyNameException();
                 }
                 line = "Started " + activityName;
-                logger.makeInfoLog("Started " + activityName);
                 tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
             }
             startTime = LocalDateTime.now();
             ui.printDivider(line);
         }
-        logger.makeInfoLog("Started: " + activityName);
+        logger.makeFineLog("Started: " + activityName);
     }
 
     /** Method to parse the end activity command. */
@@ -152,6 +151,6 @@ public class Parser {
             startTime = null;
             tags = null;
         }
-        logger.makeInfoLog("Ended: " + activityName);
+        logger.makeFineLog("Ended: " + activityName);
     }
 }
