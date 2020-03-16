@@ -1,1 +1,3 @@
 James Gosling
+addm CS1010
+bye
