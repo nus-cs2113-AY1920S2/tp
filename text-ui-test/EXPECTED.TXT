@@ -1,3 +1,4 @@
+error when reading from data.json
 
       ___          ___          ___          ___     
      /__/\        /__/\        /__/|        /  /\    
@@ -19,28 +20,16 @@ What can I do for you?
 Here are ALL your modules.
 
 +----------------------------------------------------------------------------------------------------+
-CS1231 Discrete Structures null
-CS1010 Programming Methodology null
-CS3235 Computer Security null
 +----------------------------------------------------------------------------------------------------+
 
-ALERT! The module already existed.
+SUCCESS!! Module CS3235 Computer Security has been added.
 
 ALERT! The module is not provided by NUS currently.
 
-There are (is) 4 task(s) in the list!
-+----------------------------------------------------------------------------------------------------+
-asdfasdf                       CS1231     deadline: null
-complete tutorial              CS1231     deadline: null
-qwerqwerqwer                   CS1010     deadline: null
-complete assignment 2          CS3235     deadline: null
-+----------------------------------------------------------------------------------------------------+
+There is no task in the list!
 
 Module change succeeded
 
-There are (is) 1 task(s) in the list!
-+----------------------------------------------------------------------------------------------------+
-complete assignment 2            Deadline: null
-+----------------------------------------------------------------------------------------------------+
+There is no task in the list!
 
 Bye. Hope to see you again soon.
