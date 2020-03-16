@@ -8,9 +8,12 @@ import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
 import java.io.FileNotFoundException;
-import java.util.logging.Logger;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 import java.util.Scanner;
 
 /**
@@ -41,8 +44,10 @@ public class HappyPills {
      * Sets up the logging configuration for the main program.
      */
     public void logSetup() {
+        LogManager.getLogManager().reset();
         ConsoleHandler ch = new ConsoleHandler();
         ch.setLevel(Level.SEVERE);
+        ch.setFormatter(new SimpleFormatter());
         logger.addHandler(ch);
     }
 
