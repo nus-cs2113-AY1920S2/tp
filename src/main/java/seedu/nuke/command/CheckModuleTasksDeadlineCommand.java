@@ -31,7 +31,9 @@ public class CheckModuleTasksDeadlineCommand extends Command {
         if (currentModule.countTasks() == EMPTY) {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
+
         assert currentModule.countTasks() != EMPTY : "make sure the list is not empty";
+
         deadlines = currentModule.checkDeadline();
         return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, currentModule.countTasks()),
                 true, deadlines);
