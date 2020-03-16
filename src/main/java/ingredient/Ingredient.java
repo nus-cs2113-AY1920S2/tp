@@ -44,8 +44,8 @@ public class Ingredient {
             return true;
         } 
         if (obj instanceof Ingredient) {
-            Ingredient task = (Ingredient) obj;
-            return task.name == (this.name);
+            Ingredient ingredient = (Ingredient) obj;
+            return ingredient.name.equals(this.name);
         }
         return false;
     }

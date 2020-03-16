@@ -22,7 +22,6 @@ public class Stock {
      * 
      */
     private final Map<String, Pair<Integer, Double>> stock;
-
     
     public Stock() {
         this.stock = new HashMap<>();
@@ -32,7 +31,8 @@ public class Stock {
      * Adds an ingredientName to the current stock. If the ingredient
      * exists previously, update the quantity by adding the current quantity
      * to the previous quantity. Otherwise, add an entirely new entry into
-     * the HashMap.
+     * the HashMap. Note that the latest price of an ingredient specified by 
+     * the user will override the current price of that ingredient in the stock.
      * 
      */
     public void addIngredient(Ingredient ingredientToAdd) {
@@ -89,9 +89,11 @@ public class Stock {
      */
     public void listIngredient() {
         System.out.println("Here are the ingredients in the stock currently:");
-        System.out.println("====================================================");
+        System.out.println("============================================================"
+                + "================================================================");
         printStock();
-        System.out.println("====================================================");       
+        System.out.println("============================================================"
+                + "================================================================");       
     }
     
     /**
