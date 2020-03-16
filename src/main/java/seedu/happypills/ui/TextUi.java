@@ -48,9 +48,9 @@ public class TextUi {
         System.out.println(patient + DIVIDER);
     }
 
-    public static void printGetPatient(Patient patient) {
-        System.out.println("    Here are the patient's details:");
-        System.out.println(patient + DIVIDER);
+    public static String successfulGetPatientMessage(Patient patient) {
+        String returnMessage = "    Here are the patient's details:\n" + patient + DIVIDER;
+        return returnMessage;
     }
 
     public static void printEditPatient(Patient patient) {
