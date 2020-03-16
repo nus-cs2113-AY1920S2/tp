@@ -90,7 +90,7 @@ public class Parser {
             return new CheckAllTasksDeadlineCommand();
 
         case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
-            return prepareCheckModuleTasksDeadlineCommand(parameters);
+            return new CheckModuleTasksDeadlineCommand();
 
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
@@ -126,14 +126,6 @@ public class Parser {
             return null;
         }
         return new EditDeadlineCommand(taskToEdit, deadline);
-    }
-
-    private Command prepareCheckModuleTasksDeadlineCommand(String parameters) {
-        try {
-            return new CheckModuleTasksDeadlineCommand(Integer.parseInt(parameters));
-        } catch (ModuleNotFoundException e) {
-            return new IncorrectCommand("Module cannot be found");
-        }
     }
 
     private Command prepareDeleteTaskCommand(String parameters) {
