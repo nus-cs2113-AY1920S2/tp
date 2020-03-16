@@ -139,6 +139,10 @@ EDIT: Edits the specified item in the list.
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/6.00
 
+DISPLAY: Lists all items in the list.
+|| Parameters: DISPLAY
+|| Example: DISPLAY
+
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
 || Example: DEL 1
@@ -199,6 +203,10 @@ EDIT: Edits the specified item in the list.
 || Example 1: EDIT 1 i/apple p/3.00
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/6.00
+
+DISPLAY: Lists all items in the list.
+|| Parameters: DISPLAY
+|| Example: DISPLAY
 
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
