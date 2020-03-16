@@ -22,15 +22,15 @@ public class TextUi {
      * Generates and prints the list of commands.
      */
     public static String getHelp() {
-        String helpMessage = "    Shows program usage instructions:\n"
+        String helpMessage = "    HappyPills Commands:\n"
                 + "      add NAME, NRIC, PHONE_NUMBER, DOB, BLOOD_TYPE, [ALLERGIES], [REMARKS]\n"
                 + "      list \n"
-                + "      open NRIC\n"
+                + "      get NRIC\n"
                 + "      edit phone/allergies/remarks EDITED_INPUT\n"
-                + "      close\n"
                 + "      delete NRIC\n"
                 + "      help\n"
-                + "      exit\n";
+                + "      exit\n"
+                + "      For more detailed command instructions, enter help [COMMAND].\n";
         helpMessage += DIVIDER;
         return helpMessage;
     }
@@ -51,11 +51,6 @@ public class TextUi {
     public static String successfulGetPatientMessage(Patient patient) {
         String returnMessage = "    Here are the patient's details:\n" + patient + DIVIDER;
         return returnMessage;
-    }
-
-    public static void printEditPatient(Patient patient) {
-        System.out.println("    Here are the patient's updated details:");
-        System.out.println(patient + DIVIDER);
     }
 
     /**
@@ -84,11 +79,130 @@ public class TextUi {
         return message;
     }
 
-    public static void printEditSuccess(Patient patient) {
-        System.out.println("Patient details have been updated as follows: ");
-        System.out.println(patient + DIVIDER);
+    /**
+     * Display updated patient's records.
+     *
+     * @param patient The patient whose records were updated.
+     * @return The patient's updated records.
+     */
+    public static String printEditSuccess(Patient patient) {
+        String message = "Patient details have been updated as follows: \n"
+                + patient + DIVIDER;
+        return message;
     }
 
+    /**
+     * Displays detailed Add command instruction.
+     *
+     * @return The Add command instruction.
+     */
+    public static String printAddHelp() {
+        String message = "    To add a new patient into the program, use the following command:\n"
+                + "    Note: patient details are within the parenthesis [ ]\n"
+                + "      add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]\n"
+                + "    The command above adds a new patient.\n"
+                + "    To add allergies and remarks to the patient's details, use the following commands\n"
+                + "      add /ic[NRIC] /a[ALLERGIES]\n"
+                + "      add /ic[NRIC] /r[REMARKS]\n"
+                + "    Example:\n"
+                + "      add /icS9999999Z /nJanice /p999 /d12-11-98 /bA+\n"
+                + "      add /icS9999999Z /aSchool\n"
+                + "      add /icS9999999Z /rHad contact with COVID-19 Case200\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed List command instruction.
+     *
+     * @return The List command instruction.
+     */
+    public static String printListHelp() {
+        String message = "    To retrieve a list of all the patients within the program,\n"
+                + "    run the following command:\n"
+                + "      list"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Get command instruction.
+     *
+     * @return The Get command instruction.
+     */
+    public static String printGetHelp() {
+        String message = "    To retrieve a patient's information, run the following command:\n"
+                + "    Note: patient details are within the parenthesis [ ]\n"
+                + "      get [NRIC]\n"
+                + "    Example:\n"
+                + "      get S9999999Z\n"
+                + "    The command above will display information regarding the patient with NRIC S9999999Z.\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Edit command instruction.
+     *
+     * @return The Edit command instruction.
+     */
+    public static String printEditHelp() {
+        String message = "    To edit a patient's information, run the following command:\n"
+                + "    Note: patient details are within the parenthesis [ ]\n"
+                + "      edit [NRIC] /p[PHONE_NUMBER] to edit patient's phone number,\n"
+                + "      edit [NRIC] /p[ALLERGIES] to edit patient's allergies,\n"
+                + "      edit [NRIC] /p[REMARKS] to edit patient's remarks\"\n"
+                + "    Do note that editing the patient's records will overwrite any previous information.\n"
+                + "    Adding of allergies or remarks can be done with the add command.\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Delete command instruction.
+     *
+     * @return The Delete command instruction.
+     */
+    public static String printDeleteHelp() {
+        String message = "    To delete a patient's records, run the following command:\n"
+                + "    Note: patient details are within the parenthesis [ ]\n"
+                + "      delete [NRIC]\n"
+                + "    The user will be prompted to confirm if they would like to delete the patient's records.\n"
+                + "    Do note that deletion cannot be undone.\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Help command instruction.
+     *
+     * @return The Help command instruction.
+     */
+    public static String printHelpHelp() {
+        String message = "    To understand more of the program's features, run the following command:\n"
+                + "      help\n"
+                + "    The above command will list down all the commands of the program.\n"
+                + "    For more detailed usage of each command, enter help [COMMAND].\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Exit command instruction.
+     *
+     * @return The Exit command instruction.
+     */
+    public static String printExitHelp() {
+        String message = "    To exit the program, run the following command:\n"
+                + "      exit\n"
+                + "    The above command will save the current patient records and terminate the program.\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays Exit message.
+     */
     public static void printExit() {
         System.out.println("Thank you for using HappyPills! ^_^");
         System.out.println("See you again!");
