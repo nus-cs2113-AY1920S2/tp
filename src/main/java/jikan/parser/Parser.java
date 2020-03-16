@@ -24,25 +24,14 @@ public class Parser {
     private Ui ui = new Ui();
     protected String[] tokenizedInputs;
     String instruction;
-    Log logger;
-
-    /**
-     * Constructor for Parser.
-     */
-    public Parser() {
-        try {
-            logger = new Log();
-        } catch (IOException e) {
-            ui.printDivider("Could not initialize logger.");
-        }
-    }
+    Log logger = new Log();
 
     /**
      * Parses user commands to relevant functions to carry out the commands.
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
-    public void parseUserCommands(Scanner scanner, ActivityList activityList, Log logger) {
+    public void parseUserCommands(Scanner scanner, ActivityList activityList) {
         logger.makeInfoLog("Starting to parse inputs.");
         while (true) {
             String userInput = scanner.nextLine();
