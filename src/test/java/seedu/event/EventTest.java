@@ -30,10 +30,10 @@ class EventTest {
         assertEquals("event1", event1.getName());
 
         Event event2 = new Event();
-        assertThrows(InvalidParameterException.class, () -> event2.setName(null));
+        assertThrows(DukeException.class, () -> event2.setName(null));
 
         Event event3 = new Event("1", "2", "3");
-        assertThrows(InvalidParameterException.class, () -> event3.setName(""));
+        assertThrows(DukeException.class, () -> event3.setName(""));
 
         Event event4 = new Event("1", "2", "3");
         event4.setName("event4");
