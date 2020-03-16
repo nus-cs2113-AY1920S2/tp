@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-03-16T16:26:31.455603Z</date>
+  <millis>1584375991455</millis>
+  <nanos>603000</nanos>
+  <sequence>0</sequence>
+  <logger>seedu.duke.InfoLogger</logger>
+  <level>INFO</level>
+  <class>seedu.duke.InfoLogger</class>
+  <method>logExecuteProgramme</method>
+  <thread>1</thread>
+  <message>Starting Diet Manager</message>
+</record>
+<record>
+  <date>2020-03-16T16:27:01.244892700Z</date>
+  <millis>1584376021244</millis>
+  <nanos>892700</nanos>
+  <sequence>1</sequence>
+  <logger>seedu.duke.InfoLogger</logger>
+  <level>INFO</level>
+  <class>seedu.duke.InfoLogger</class>
+  <method>logExitProgramme</method>
+  <thread>1</thread>
+  <message>Exiting Diet Manager</message>
+</record>
+</log>

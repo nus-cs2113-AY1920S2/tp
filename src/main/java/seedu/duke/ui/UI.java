@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.ui;
 
 import java.util.Scanner;
 
@@ -20,6 +20,23 @@ public class UI {
 
     public UI() {
         this.exitStatus = false;
+    }
+
+    /**
+     * Prints the welcome message for the user.
+     */
+
+    public void displayWelcomeMessage() {
+        System.out.println(MessageBank.LOGO);
+        System.out.println(MessageBank.WELCOME_MESSAGE);
+    }
+
+    public void displayInvalidCommandMessage() {
+        System.out.println(MessageBank.INVALID_COMMAND_MESSAGE);
+    }
+
+    public void displayInvalidFormatMessage() {
+        System.out.println(MessageBank.INVALID_FORMAT_MESSAGE);
     }
 
     /**
@@ -49,14 +66,5 @@ public class UI {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
-
-    /**
-     * Prints the welcome message for the user.
-     */
-
-    public void displayWelcomeMessage() {
-
-    }
-
 
 }
