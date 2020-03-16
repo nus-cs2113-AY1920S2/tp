@@ -1,6 +1,8 @@
 import static common.Messages.MESSAGE_INVALID_NUMBER;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static java.lang.System.out;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * TESTING SUMMARY DOC.
@@ -27,8 +29,8 @@ public class TextUI {
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
         out.println("1) Schedule a new meeting.");
-        out.println("2) Delete a scheduled meeting.");
-        out.println("3) Edit a scheduled meeting.");
+        out.println("2) Edit a scheduled meeting."); //previous was delete
+        out.println("3) Delete a scheduled meeting.");
         out.println("4) List all scheduled meetings.");
         out.println("5) Exit application.");
         out.println("__________________________________________________________"
@@ -109,4 +111,65 @@ public class TextUI {
     public static void invalidNumberMsg() {
         out.println(MESSAGE_INVALID_NUMBER);
     }
+
+    public static void listAllScheduledMeetings(ArrayList<Meeting> meetingList) {
+        System.out.println("The current scheduled meeting(s):");
+        for (int i = 0; i < meetingList.size(); i++) {
+            String startDay = getDayFromNumber(meetingList.get(i).getStartDay());
+            String endDay = getDayFromNumber(meetingList.get(i).getEndDay());
+            System.out.println((i+1) + ". " + startDay + " " + meetingList.get(i).getStartTime()
+                    + " to " + endDay + " " + meetingList.get(i).getEndTime());
+        }
+    }
+
+    public static String getDayFromNumber(int dayNum) {
+        String day;
+        switch (dayNum) {
+        case 0:
+            day = "Sunday";
+            break;
+        case 1:
+            day = "Monday";
+            break;
+        case 2:
+            day = "Tuesday";
+            break;
+        case 3:
+            day = "Wednesday";
+            break;
+        case 4:
+            day = "Thursday";
+            break;
+        case 5:
+            day = "Friday";
+            break;
+        case 6:
+            day = "Saturday";
+            break;
+        default:
+            day = "";
+        }
+        return day;
+    }
+
+    public static void displayNoMeetings() {
+        System.out.println("There is no scheduled meetings so far.");
+    }
+
+    public static void displayRemovedMeeting(ArrayList<Meeting> meetingList, int index) throws IndexOutOfBoundsException{
+        String startDay = getDayFromNumber(meetingList.get(index).getStartDay());
+        String endDay = getDayFromNumber(meetingList.get(index).getEndDay());
+        System.out.println("I have removed:");
+        System.out.println((index+1) + ". " + startDay + " " + meetingList.get(index).getStartTime()
+                + " to " + endDay + " " + meetingList.get(index).getEndTime());
+    }
+
+    public static void displayInvalidDeleteTarget() {
+        System.out.println("Item does not exist.");
+    }
+
+    public static void showLoadingError(){
+        System.out.println("There are no previous records of meetings, let's create a new one!");
+    }
 }
+
