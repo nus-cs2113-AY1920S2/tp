@@ -8,8 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * the manager that manages all tasks of all modules
- * deals with operations in task-level
+ * the manager that manages all tasks of all modules deals with operations in task-level.
  */
 public class DataManager {
 
