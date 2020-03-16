@@ -11,7 +11,7 @@ class AddCommandTest {
     void testExecute() {
         PatientList patients = new PatientList();
         AddCommand testAddCommand = new AddCommand(
-                "kesin", "S0618", 912, "22aug", "B-","meat", "Strong"
+                "kesin", "S0618", 912, "22aug", "B-","", ""
         );
         testAddCommand.execute(patients);
         assertEquals(1,patients.size());

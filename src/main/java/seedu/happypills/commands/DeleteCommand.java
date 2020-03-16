@@ -57,7 +57,7 @@ public class DeleteCommand extends Command {
         patients.remove(patient);
         String message = "      Patient " + patient.getName() + " || " + patient.getNric()
                 + " has been deleted successfully.\n";
-        return message;
+        return TextUi.prependDivider(message);
     }
 
     /**
