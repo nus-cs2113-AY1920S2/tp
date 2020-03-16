@@ -9,7 +9,8 @@ public class ScreenShot {
     private DataManager dataManager;
 
     public ScreenShot(ModuleManager moduleManager, DataManager dataManager) {
-        this.moduleManager = moduleManager;
+        this.moduleManager = new ModuleManager();
+        this.moduleManager.setModules(moduleManager.getModuleList());
         this.dataManager = dataManager;
     }
 

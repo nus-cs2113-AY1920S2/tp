@@ -95,7 +95,7 @@ public class Nuke {
      */
     private CommandResult executeCommand(Command command) {
         try {
-            //load from current screen shot
+            //set module manager data according to screen shot manager data
             readScreenShot();
             // supplies the data the command will operate on.
             // if there is no file to load or the file is empty, setData will initialize a new taskManager system
@@ -112,7 +112,7 @@ public class Nuke {
             //StorageFile.saveJson(taskManager);
         } catch (Exception e) {
             // the out layer exception handler
-            ui.showSystemMessage(e.getMessage());
+            //ui.showSystemMessage(e.getMessage());
         }
         return commandResult;
     }
@@ -133,6 +133,9 @@ public class Nuke {
         currentScreenShot.takeScreenShot(moduleManager, dataManager);
     }
 
+    /**
+     * set module manager data according to screen shot manager data
+     */
     private void readScreenShot() {
         dataManager.setAllTasks(screenShotManager.getCurrentScreenShot().getDataManager().getAllTasks());
         moduleManager.setModules(screenShotManager.getCurrentScreenShot().getModuleManager().getModuleList());

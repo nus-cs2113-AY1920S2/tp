@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ScreenShotManager {
-    private List<ScreenShot> screenShotList;
-    private int currentPointer;
+    private static List<ScreenShot> screenShotList;
+    private static int currentPointer = 0;
 
     public ScreenShotManager() {
         screenShotList = new LinkedList<>();
@@ -13,19 +13,19 @@ public class ScreenShotManager {
     }
 
     public ScreenShotManager(List<ScreenShot> screenShotList, int currentPointer) {
-        this.screenShotList = screenShotList;
-        this.currentPointer = currentPointer;
+        screenShotList = screenShotList;
+        currentPointer = currentPointer;
     }
 
-    public List<ScreenShot> getScreenShotList() {
+    public static List<ScreenShot> getScreenShotList() {
         return screenShotList;
     }
 
-    public void setScreenShotList(List<ScreenShot> screenShotList) {
-        this.screenShotList = screenShotList;
+    public static void setScreenShotList(List<ScreenShot> screenShotList) {
+        screenShotList = screenShotList;
     }
 
-    public int getCurrentPointer() {
+    public static int getCurrentPointer() {
         return currentPointer;
     }
 
@@ -33,12 +33,15 @@ public class ScreenShotManager {
         this.currentPointer = currentPointer;
     }
 
-    public ScreenShot unDo() {
-        currentPointer = currentPointer - 1;
-        return screenShotList.get(currentPointer - 1);
+    public static void unDo() {
+        if (currentPointer <= 0){
+            currentPointer = 0;
+        } else {
+            currentPointer = currentPointer - 1;
+        }
     }
 
-    public ScreenShot getCurrentScreenShot() {
+    public static ScreenShot getCurrentScreenShot() {
         return screenShotList.get(currentPointer);
     }
 }

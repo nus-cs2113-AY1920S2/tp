@@ -18,6 +18,10 @@ public class ModuleManager implements Iterable<Module> {
     private ArrayList<Module> modules = new ArrayList<>();
     private HashMap<String, String> modulesMap;
 
+    public ModuleManager() {
+
+    }
+
     public ModuleManager(HashMap<String, String> modulesMap) {
         this.modulesMap = modulesMap;
     }

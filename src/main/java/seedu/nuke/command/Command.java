@@ -37,4 +37,5 @@ public abstract class Command {
     public static void setCurrentModule(Module currentModule) {
         Command.currentModule = currentModule;
     }
+
 }

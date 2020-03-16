@@ -16,6 +16,8 @@ import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.ListModuleCommand;
 import seedu.nuke.command.UndoCommand;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.ScreenShot;
+import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.exception.InvalidIndexException;
 import seedu.nuke.format.DateTime;
@@ -67,7 +69,7 @@ public class Parser {
             return prepareEditDeadlineCommand(parameters);
 
         case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
+            return prepareUndoCommand();
 
         case ChangeModuleCommand.COMMAND_WORD:
             return prepareChangeModuleCommand(parameters, moduleManager);
@@ -102,6 +104,11 @@ public class Parser {
         default:
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
+    }
+
+    private Command prepareUndoCommand() {
+        ScreenShotManager.unDo();
+        return new UndoCommand();
     }
 
     private Command prepareEditDeadlineCommand(String parameters) {
