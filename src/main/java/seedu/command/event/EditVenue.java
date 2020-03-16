@@ -10,7 +10,7 @@ public class EditVenue extends Command {
     private String venue;
 
     public EditVenue(Integer index, String venue, EventList eventList) {
-        this.index = index;
+        this.index = index - 1;
         this.venue = venue;
         this.eventList = eventList;
     }
@@ -18,5 +18,6 @@ public class EditVenue extends Command {
     @Override
     public void execute() {
         eventList.editVenue(index, venue);
+        System.out.println(eventList.list.get(index));
     }
 }

@@ -20,7 +20,7 @@ public class DateTime {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             return localDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
         } catch (DateTimeParseException e) {
-            return "Please provide correct format";
+            return "yyyy-MM-dd HHmm";
         }
     }
 

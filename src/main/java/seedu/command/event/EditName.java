@@ -10,7 +10,7 @@ public class EditName extends Command {
     private String name;
 
     public EditName(Integer index, String name, EventList eventList) {
-        this.index = index;
+        this.index = index - 1;
         this.name = name;
         this.eventList = eventList;
     }
@@ -19,5 +19,6 @@ public class EditName extends Command {
     @Override
     public void execute() throws DukeException {
         eventList.editName(index, name);
+        System.out.println(eventList.list.get(index));
     }
 }
