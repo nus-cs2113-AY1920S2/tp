@@ -12,6 +12,7 @@ import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
+import seedu.nuke.util.Message;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -71,7 +72,7 @@ public class Nuke {
      * Method to print the exit message to the user.
      */
     public void exit() {
-        TextUi.showExitMessage();
+        ui.showSystemMessage(Message.DIVIDER);
     }
 
     /**

@@ -16,11 +16,9 @@
 Welcome to NUKE
 What can I do for you?
 ---------------------------------------------------------------------------------
-Invalid command format! 
-help
+Invalid command format!
+
 SUCCESS!! Module CS1010 Programming Methodology has been added.
 
-Bye. Hope to see you again soon!
----------------------------------------------------------------------------------
-Bye. Hope to see you soon.
+Bye. Hope to see you again soon.
 ---------------------------------------------------------------------------------
