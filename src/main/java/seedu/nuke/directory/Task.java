@@ -1,19 +1,21 @@
 package seedu.nuke.directory;
 
 import seedu.nuke.format.DateTime;
+import seedu.nuke.tag.Tag;
 
 import java.util.ArrayList;
 
 import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
 
-public class Task extends Directory {
+public class Task extends Directory implements Tag {
     protected String description;
     protected boolean isDone;
     protected int priority;
     protected DateTime deadline;
     protected ArrayList<String> files;
     protected String moduleCode;
+    private ArrayList<String> tag;
 
     public Task() {
     }
@@ -32,6 +34,7 @@ public class Task extends Directory {
         this.priority = -1;
         this.isDone = false;
         this.moduleCode = moduleCode;
+        this.tag = null;
     }
 
     /**
@@ -158,4 +161,22 @@ public class Task extends Directory {
         files.add(filePath);
     }
 
+    @Override
+    public void setTag(String info) {
+        this.tag.add(info);
+    }
+
+    @Override
+    public void removeTag() {
+        this.tag = null;
+    }
+
+    @Override
+    public String getTag() {
+        if (this.tag != null){
+            return tag.toString();
+        } else {
+            return null;
+        }
+    }
 }
