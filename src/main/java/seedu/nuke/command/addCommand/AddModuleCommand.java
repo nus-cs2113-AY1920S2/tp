@@ -44,10 +44,13 @@ public class AddModuleCommand extends Command {
         try {
             moduleManager.add(moduleCode);
             Module addedModule = moduleManager.getLastAddedModule();
+            assert addedModule.getModuleCode().equals(moduleCode) : "Incorrect last added module!";
             return new CommandResult(messageAddModuleSuccess(addedModule.getModuleCode(), addedModule.getTitle()));
         } catch (ModuleManager.DuplicateModuleException e) {
+            assert moduleManager.contains(moduleCode) : "Incorrect identifying of duplicate module.";
             return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);
         } catch (ModuleNotProvidedException e) {
+            assert !moduleManager.getModulesMap().containsKey(moduleCode) : "Incorrect identifying of unprovided module!";
             return new CommandResult(MESSAGE_MODULE_NOT_PROVIDED);
         }
     }

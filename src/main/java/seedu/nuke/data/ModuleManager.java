@@ -31,6 +31,10 @@ public class ModuleManager implements Iterable<Module> {
         this.root = root;
     }
 
+    public HashMap<String, String> getModulesMap() {
+        return modulesMap;
+    }
+
     /**
      * This mothod is to restore the list of modules when loading from the json data file.
      * @param moduleList an ArrayList of Module objects parsed from the json string in the data file
