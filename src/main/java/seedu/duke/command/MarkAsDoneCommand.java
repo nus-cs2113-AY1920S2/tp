@@ -4,6 +4,7 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
+import seedu.duke.exception.RuntimeException;
 import seedu.duke.module.Module;
 import seedu.duke.ui.Ui;
 
@@ -26,20 +27,23 @@ public class MarkAsDoneCommand extends Command {
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, ModuleList availableModulesList) {
+    public void execute(SelectedModulesList selectedModulesList,
+                        AvailableModulesList availableModulesList) throws RuntimeException {
         markAsDoneCommand(selectedModulesList);
         Ui.showDoneMessage();
     }
 
-    private void markAsDoneCommand(SelectedModulesList selectedModulesList) {
+    private void markAsDoneCommand(SelectedModulesList selectedModulesList) throws RuntimeException {
         for (SemModulesList sem: selectedModulesList) {
             if (sem.getSem().equals(semester)) {
                 for (Module module: sem) {
                     if (module.getName().equals(description) || module.getId().equals(description)) {
                         module.setAsDone();
+                        return;
                     }
                 }
             }
         }
+        throw new RuntimeException("module not found");
     }
 }

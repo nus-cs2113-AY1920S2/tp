@@ -3,8 +3,13 @@ package seedu.duke.module;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.ModuleList;
 
+/**
+ * Mainly for the input of any new modules to the database.
+ * In order to differentiate the constructors for normal Modules and new Modules with prerequisites to be added in.
+ */
+
 public class NewModule extends Module {
-    public NewModule(String id, String name, String ... preRequisiteModules) {
+    public NewModule(String id, String name, String... preRequisiteModules) {
         this.id = id;
         this.name = name;
         this.preRequisiteModules = convertFromStringToModuleList(preRequisiteModules);
@@ -22,5 +27,19 @@ public class NewModule extends Module {
             }
         }
         return modules;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder(String.format("ID: %s Name: %s | Prerequisites:", id, name));
+        boolean hasPreReqModule = false;
+        for (Module preReqModule : preRequisiteModules) {
+            output.append(" " + preReqModule.getId());
+            hasPreReqModule = true;
+        }
+        if (!hasPreReqModule) {
+            output.append(" null");
+        }
+        return output.toString();
     }
 }

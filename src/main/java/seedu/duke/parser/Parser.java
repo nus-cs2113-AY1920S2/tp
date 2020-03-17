@@ -1,7 +1,14 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.*;
+import seedu.duke.command.AddToDataCommand;
+import seedu.duke.command.AddToSemCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.MarkAsDoneCommand;
+import seedu.duke.command.ViewCommand;
+import seedu.duke.exception.InputException;
 import seedu.duke.module.Module;
+import seedu.duke.module.NewModule;
 
 /**
  * Parses user input.
@@ -12,7 +19,7 @@ public class Parser {
      * @param fullCommand full user input command.
      * @return the module.
      */
-    public static Command parse(String fullCommand) {
+    public static Command parse(String fullCommand) throws InputException {
         String taskType;
         String args = "";
         String[] argsWords;
@@ -27,23 +34,25 @@ public class Parser {
         case AddToSemCommand.COMMAND_WORD:
             return processAddToSemCommand(args);
         case AddToDataCommand.COMMAND_WORD:
-            //return processAddToDataCommand(args);
+            return processAddToDataCommand(args);
         case ViewCommand.COMMAND_WORD:
             return processViewCommand(args);
         case ExitCommand.COMMAND_WORD:
+            assert taskType.equals("bye");
             return processExitCommand();
         case MarkAsDoneCommand.COMMAND_WORD:
+            assert taskType.equals("done");
             return processMarkAsDone(args);
         default:
-            return null;
+            throw new InputException("invalid command");
         }
     }
 
-    private static MarkAsDoneCommand processMarkAsDone(String args) {
+    private static MarkAsDoneCommand processMarkAsDone(String args) throws InputException {
         String[] moduleWords;
         moduleWords = args.split(" s/");
         if (moduleWords.length < 2) {
-            return null;
+            throw new InputException("invalid 'done' command", "done n/NAME s/SEMESTER | done id/ID s/SEMESTER");
         }
         String module = moduleWords[0];
         String semester = moduleWords[1];
@@ -57,11 +66,12 @@ public class Parser {
         return null;
     }
 
-    private static AddToSemCommand processAddToSemCommand(String args) {
+    private static AddToSemCommand processAddToSemCommand(String args) throws InputException {
         String[] moduleWords;
         moduleWords = args.split(" s/");
         if (moduleWords.length < 2) {
-            return null;
+            throw new InputException("invalid 'addtosem' command",
+                    "addtosem id/ID s/SEMESTER | addtosem n/Name s/SEMESTER ");
         }
         String module = moduleWords[0];
         String semester = moduleWords[1];
@@ -75,12 +85,29 @@ public class Parser {
         return null;
     }
 
-/*    private static AddToDataCommand processAddToDataCommand(String args) {
-        String[] modulewords;
-        //modulewords = args.split()
-    }
+    private static AddToDataCommand processAddToDataCommand(String args) throws InputException {
+        String[] moduleWords;
+        moduleWords = args.split("id/");
+        if (moduleWords.length < 2) {
+            throw new InputException("invalid 'addtodata' command",
+                    "addtodata id/ID n/NAME pre/PREREQMODULES");
+        }
+        moduleWords = moduleWords[1].split(" n/");
+        if (moduleWords.length < 2) {
+            return null;
+        }
+        String moduleId = moduleWords[0];
+        moduleWords = moduleWords[1].split(" pre/");
+        String moduleName = moduleWords[0];
+        if (moduleWords.length < 2) {
+            return new AddToDataCommand(new NewModule(moduleId, moduleName));
+        }
+        String[] preRequisiteModules;
+        preRequisiteModules = moduleWords[1].split(" ");
+        return new AddToDataCommand((new NewModule(moduleId, moduleName, preRequisiteModules)));
 
- */
+
+    }
 
     private static ViewCommand processViewCommand(String args) {
         if (args.contains("/cm")) {
@@ -96,7 +123,7 @@ public class Parser {
             String moduleToBeViewed = args.replace("id/","");
             return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
         }
-        return null;
+        return new ViewCommand(ViewCommand.VIEW_AVAILABLE_MODULES);
     }
 
     private static ExitCommand processExitCommand() {
