@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+import seedu.duke.data.Person;
+
 public class Ui {
 
     private static final String LOGO =
@@ -28,6 +30,10 @@ public class Ui {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
+    private static final String REQUIRED_INPUT_USER_NAME = "Please input your name:";
+
+    private static final String REQUIRED_INPUT_USER_MATRIC_YEAR = "Please input your matric year:";
+
     private static void showToUser(String... messages) {
         for (String m: messages) {
             System.out.println(m);
@@ -35,7 +41,7 @@ public class Ui {
     }
 
     public static void greetUser() {
-        showToUser(START_MESSAGE, LINE_SEPARATOR);
+        showToUser(START_MESSAGE, Person.getName(), LINE_SEPARATOR);
     }
 
     public static void greetFarewell() {
@@ -68,6 +74,14 @@ public class Ui {
 
     public static void showError(String errorMessage) {
         showToUser(errorMessage);
+    }
+
+    public static void showInputUserMatricYearRequest() {
+        showToUser(REQUIRED_INPUT_USER_MATRIC_YEAR);
+    }
+
+    public static void showInputUserNameRequest() {
+        showToUser(REQUIRED_INPUT_USER_NAME);
     }
 
 }

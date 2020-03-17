@@ -1,13 +1,17 @@
+Duke
+2017
 view
-addtosem id/CS2113 s/19-20 Semester 2
-addtosem n/Software Engineering & Object-Oriented Programming s/19-20 Semester 2
-addtosem id/CS1010 s/19-20 Semester 1
-addtosem id/CS4241 s/19-20 Semester 2
-addtodata id/CS1231 n/Discrete Structures
-addtodata id/CS2104 n/Programming Language Concepts pre/CS2030
+add id/CS2113 s/4
+add n/Software Engineering & Object-Oriented Programming s/4
+add id/CS1010 s/3
+add id/IS4241 s/4
+add id/IS4241 n/Social Media Network Analysis pre/CS1010 IS1103 s/4
+add id/IS4241 s/4
+add id/CS1231 n/Discrete Structures
+add id/CS2104 n/Programming Language Concepts pre/CS2030
 view
-addtosem id/CS1231 s/19-20 Semester 2
+add id/CS1231 s/3
 view /mp
-done id/CS2113 s/19-20 Semester 2
+done id/CS2113 s/3
 view /dm
 bye
