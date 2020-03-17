@@ -3,7 +3,7 @@ package seedu.nuke.parser;
 
 import seedu.nuke.command.addCommand.AddModuleCommand;
 import seedu.nuke.command.addCommand.AddTaskCommand;
-import seedu.nuke.command.ChangeModuleCommand;
+import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
 import seedu.nuke.command.listCommand.ListCommand;
 import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
@@ -71,7 +71,7 @@ public class Parser {
         case EditDeadlineCommand.COMMAND_WORD:
             return prepareEditDeadlineCommand(parameters);
 
-        case ChangeModuleCommand.COMMAND_WORD:
+        case ChangeDirectoryCommand.COMMAND_WORD:
             return prepareChangeModuleCommand(parameters, moduleManager);
 
         case AddModuleCommand.COMMAND_WORD:
@@ -136,7 +136,7 @@ public class Parser {
 
     private Command prepareChangeModuleCommand(String parameters, ModuleManager moduleManager) {
         if (moduleManager.getModuleWithCode(parameters) != null) {
-            return new ChangeModuleCommand(moduleManager.getModuleWithCode(parameters));
+            return new ChangeDirectoryCommand(moduleManager.getModuleWithCode(parameters));
         }
         return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
     }
