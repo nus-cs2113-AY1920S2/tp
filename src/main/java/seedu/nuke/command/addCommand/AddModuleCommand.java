@@ -1,11 +1,16 @@
 package seedu.nuke.command.addCommand;
 
+import seedu.nuke.NukeLogger;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.directory.Module;
 
+import java.io.IOException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE_ADD;
@@ -41,15 +46,20 @@ public class AddModuleCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        Logger logger = NukeLogger.getLogger();
+        logger.log(Level.INFO, "Add command is being executed.");
         try {
             moduleManager.add(moduleCode);
             Module addedModule = moduleManager.getLastAddedModule();
+            logger.log(Level.INFO, String.format("Module %s was added into the module list.", moduleCode));
             assert addedModule.getModuleCode().equals(moduleCode) : "Incorrect last added module!";
             return new CommandResult(messageAddModuleSuccess(addedModule.getModuleCode(), addedModule.getTitle()));
         } catch (ModuleManager.DuplicateModuleException e) {
+            logger.log(Level.WARNING, String.format("Duplicate module %s attempted to be added.", moduleCode));
             assert moduleManager.contains(moduleCode) : "Incorrect identifying of duplicate module.";
             return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);
         } catch (ModuleNotProvidedException e) {
+            logger.log(Level.WARNING, String.format("Unknown module %s attempted to be added.", moduleCode));
             assert !moduleManager.getModulesMap().containsKey(moduleCode) : "Incorrect identifying of unprovided module!";
             return new CommandResult(MESSAGE_MODULE_NOT_PROVIDED);
         }
