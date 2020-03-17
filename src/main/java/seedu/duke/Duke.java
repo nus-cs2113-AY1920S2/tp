@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import seedu.cards.CardList;
-import seedu.Subjects.Subject;
+import seedu.subjects.Subject;
 import seedu.commands.Command;
 import seedu.exception.EscException;
 import seedu.parser.Parser;

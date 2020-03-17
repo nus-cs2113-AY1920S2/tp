@@ -1,4 +1,4 @@
-package seedu.Subjects;
+package seedu.subjects;
 
 import seedu.exception.EscException;
 

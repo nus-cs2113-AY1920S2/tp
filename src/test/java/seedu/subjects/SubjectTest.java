@@ -2,8 +2,6 @@ package seedu.subjects;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.Subjects.Subject;
-import seedu.cards.Card;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
