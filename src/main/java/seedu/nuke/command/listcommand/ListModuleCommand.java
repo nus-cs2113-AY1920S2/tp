@@ -1,6 +1,8 @@
 package seedu.nuke.command.listCommand;
 
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.common.DataType;
+import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
+import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_MODULES;
 
 public class ListModuleCommand extends ListCommand {
@@ -20,13 +23,19 @@ public class ListModuleCommand extends ListCommand {
             Pattern.compile("(?<invalid>(?:-(?:[^ae].*|[ae]\\S+)))")
     };
 
+    private String moduleKeyWord;
+    private boolean isExact;
+
+    public ListModuleCommand(String moduleKeyWord, boolean isExact) {
+        this.moduleKeyWord = moduleKeyWord;
+        this.isExact = isExact;
+    }
+
+
     @Override
     public CommandResult execute() {
-        ArrayList<String> modules = new ArrayList<>();
-        for (Module module: moduleManager.getModuleList()) {
-            // modules.add(module.getModuleCode() + " " + module.getTitle() + " " + module.getDescription());
-            modules.add(module.getModuleCode() + " " + module.getTitle());
-        }
-        return new CommandResult(MESSAGE_SHOW_MODULES, true, modules);
+        ArrayList<Module> moduleList =
+                isExact ? ModuleManager.filterExact(moduleKeyWord) : ModuleManager.filter(moduleKeyWord);
+        return new CommandResult(MESSAGE_SHOW_LIST, DataType.MODULE, moduleList);
     }
 }

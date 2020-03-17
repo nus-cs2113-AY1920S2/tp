@@ -1,5 +1,7 @@
 package seedu.nuke.command;
 
+import seedu.nuke.common.DataType;
+
 import java.util.ArrayList;
 
 /**
@@ -7,40 +9,61 @@ import java.util.ArrayList;
  */
 public class CommandResult {
     private final String feedbackToUser;
-    private final boolean isShowTasks;
-    private final ArrayList<String> shownList;
+    private final DataType dataType;
+    private final ArrayList<?> shownList;
 
     /**
-     * construct a command result that only have one feedback.
-     * @param feedbackToUser execution feedback that should be shown to the user
+     * Constructs a command result that contains both feedback message and list to show.
+     *
+     * @param feedbackToUser
+     *  The feedback message to be shown to the user
+     * @param dataType
+     *  The data type of the list
+     * @param listToShow
+     *  The list to be shown to the user
+     */
+    public CommandResult(String feedbackToUser, DataType dataType, ArrayList<?> listToShow) {
+        this.feedbackToUser = feedbackToUser;
+        this.dataType = dataType;
+        this.shownList = listToShow;
+    }
+
+    /**
+     * Constructs a command result that contains the feedback message only.
+     * @param feedbackToUser
+     *  The feedback message to be shown to the user
      */
     public CommandResult(String feedbackToUser) {
-        this.feedbackToUser = feedbackToUser;
-        this.isShowTasks = false;
-        shownList = null;
+        this(feedbackToUser, DataType.NONE, null);
     }
 
     /**
-     * construct a command result that have feedback and lists of information that needs to be printed out.
-     * @param feedbackToUser the string of the result which will be printed to the user.
-     * @param isShowTasks if the command is to show tasks
-     * @param shownList the list of tasks to be shown to the user.
+     * Returns the feedback message to be shown to the user.
+     *
+     * @return
+     *  The feedback message to be shown to the user
      */
-    public CommandResult(String feedbackToUser, boolean isShowTasks, ArrayList<String> shownList) {
-        this.feedbackToUser = feedbackToUser;
-        this.isShowTasks = isShowTasks;
-        this.shownList = shownList;
-    }
-
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowTasks() {
-        return isShowTasks;
+    /**
+     * Returns the data type of the list to be shown to the user.
+     *
+     * @return
+     *  The data type of the list
+     */
+    public DataType getDataType() {
+        return dataType;
     }
 
-    public ArrayList<String> getShownList() {
+    /**
+     * Returns the list to be shown to the user
+     *
+     * @return
+     *  The list to be shown to the user
+     */
+    public ArrayList<?> getShownList() {
         return shownList;
     }
 }

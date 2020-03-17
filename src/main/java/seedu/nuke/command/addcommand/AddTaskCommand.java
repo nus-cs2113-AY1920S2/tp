@@ -3,6 +3,7 @@ package seedu.nuke.command.addCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.TaskCommand;
+import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 
@@ -22,7 +23,7 @@ public class AddTaskCommand extends TaskCommand {
     @Override
     public CommandResult execute() {
         Module module = (Module)Command.getCurrentDirectory();
-        moduleManager.addTaskToModule(module.getTaskManager(), taskToAdd);
+        ModuleManager.addTaskToModule(module.getTaskManager(), taskToAdd);
         //dataManager.addTask(taskToAdd);
         return new CommandResult(MESSAGE_TASK_ADDED);
     }

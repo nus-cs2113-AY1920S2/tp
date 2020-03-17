@@ -142,7 +142,7 @@ public class ModuleManager implements Iterable<Module> {
      * @param toAdd
      *  The module to be added
      */
-    public void add(Module toAdd) throws DuplicateModuleException, ModuleNotProvidedException {
+    public static void add(Module toAdd) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
         if (contains(toAdd)) {
             throw new DuplicateModuleException();

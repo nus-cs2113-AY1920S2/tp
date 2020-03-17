@@ -49,7 +49,7 @@ public class AddModuleCommand extends Command {
 
         Module toAdd = new Module(moduleCode);
         try {
-            moduleManager.add(toAdd);
+            ModuleManager.add(toAdd);
             logger.log(Level.INFO, String.format("Module %s was added into the module list.", moduleCode));
             assert toAdd.getModuleCode().equals(moduleCode) : "Incorrect last added module!";
             return new CommandResult(messageAddModuleSuccess(toAdd.getModuleCode(), toAdd.getTitle()));
