@@ -197,8 +197,6 @@ public class ModuleManager implements Iterable<Module> {
         allTasks.remove(taskToDelete);
     }
 
-    public class DuplicateModuleException extends DuplicateDataException {
-    }
 
     /**
      * get a module object according to moduleCode.
@@ -219,4 +217,6 @@ public class ModuleManager implements Iterable<Module> {
     public static Root getRoot() {
         return root;
     }
+
+    public static class DuplicateModuleException extends DuplicateDataException {}
 }

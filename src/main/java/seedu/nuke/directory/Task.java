@@ -38,8 +38,8 @@ public class Task extends Directory{
     /**
      * Constructs the task.
      *
-     * @param module
-     *  The parent module of the task
+     * @param category
+     *  The parent category of the task
      * @param description
      *  The description of the task
      * @param deadline
@@ -47,8 +47,8 @@ public class Task extends Directory{
      * @param priority
      *  The priority of the task
      */
-    public Task(Module module, String description, DateTime deadline, int priority) {
-        super(module);
+    public Task(Category category, String description, DateTime deadline, int priority) {
+        super(category);
         this.description = description;
         this.isDone = false;
         this.deadline = deadline;

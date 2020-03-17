@@ -1,0 +1,76 @@
+package seedu.nuke.directory;
+
+import seedu.nuke.data.TaskManager;
+
+public class Category extends Directory {
+    private String categoryName;
+    private int categoryPriority;
+    private TaskManager tasks;
+
+    public Category(Module parentModule, String categoryName, int categoryPriority) {
+        super(parentModule);
+        this.categoryName = categoryName;
+        this.categoryPriority = categoryPriority;
+        this.tasks = new TaskManager();
+    }
+
+    /**
+     * Returns the name of the category.
+     *
+     * @return
+     *  The name of the category
+     */
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    /**
+     * Returns the priority of the category.
+     *
+     * @return
+     *  The priority of the category
+     */
+    public int getCategoryPriority() {
+        return categoryPriority;
+    }
+
+    /**
+     * Returns the Task List of the category.
+     *
+     * @return
+     *  The Task List of the category
+     */
+    public TaskManager getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Edit the name of the category
+     *
+     * @param categoryName
+     *  The name of the category
+     */
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    /**
+     * Edit the priority of the category.
+     *
+     * @param categoryPriority
+     *  The priority of the category
+     */
+    public void setCategoryPriority(int categoryPriority) {
+        this.categoryPriority = categoryPriority;
+    }
+
+    /**
+     * Checks if one category has the same category name as another.
+     *
+     * @param category  The category to check
+     * @return  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
+     */
+    public boolean isSameCategory(Category category) {
+        return this.categoryName.equals(category.categoryName);
+    }
+}

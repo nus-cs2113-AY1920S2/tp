@@ -111,10 +111,29 @@ public class TaskManager {
         return taskList.size();
     }
 
+    /**
+     * Retrieves the File List of the category with the specified description
+     *
+     * @param description
+     *  The description of the task to retrieve the File List from
+     * @return
+     *  The File List of the found task
+     * @throws TaskNotFoundException
+     *  If the task with the specified description cannot be found in the Task List
+     */
     public TaskFileManager retrieve(String description) throws TaskNotFoundException {
         return getTask(description).getFiles();
     }
 
+    /**
+     * Filter for tasks in the Task List with description that contains the specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
     public ArrayList<Task> filter(String taskKeyword) {
         ArrayList<Task> filteredTaskList = new ArrayList<>();
         for (Task category : taskList) {
@@ -125,6 +144,15 @@ public class TaskManager {
         return filteredTaskList;
     }
 
+    /**
+     * Filter for tasks in the Task List with description that matches the <b>exact</b> specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
     public ArrayList<Task> filterExact(String taskKeyword) {
         // Returns all tasks in the Task List if no keyword is provided.
         if (taskKeyword.isEmpty()) {

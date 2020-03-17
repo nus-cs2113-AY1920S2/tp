@@ -1,7 +1,10 @@
 package seedu.nuke.directory;
 
-public class Root extends Directory{
+/**
+ * The Root of the Directory, i.e. the starting point of the Directory Tree.
+ */
+public abstract class Root extends Directory {
     public Root() {
-
+        super();
     }
 }
