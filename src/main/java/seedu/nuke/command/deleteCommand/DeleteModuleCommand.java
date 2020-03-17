@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.deleteCommand;
 
+import seedu.nuke.command.Command;
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 

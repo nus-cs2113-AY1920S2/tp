@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.deleteCommand;
 
+import seedu.nuke.command.CommandResult;
+import seedu.nuke.command.TaskCommand;
 import seedu.nuke.task.Task;
 
 import static seedu.nuke.util.Message.MESSAGE_TASK_REMOVED;

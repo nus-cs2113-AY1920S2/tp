@@ -1,21 +1,20 @@
 package seedu.nuke.parser;
 
 
-import seedu.nuke.command.AddModuleCommand;
-import seedu.nuke.command.AddTaskCommand;
+import seedu.nuke.command.addCommand.AddModuleCommand;
+import seedu.nuke.command.addCommand.AddTaskCommand;
 import seedu.nuke.command.ChangeModuleCommand;
-import seedu.nuke.command.CheckAllTasksDeadlineCommand;
-import seedu.nuke.command.CheckModuleTasksDeadlineCommand;
+import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.DeleteModuleCommand;
-import seedu.nuke.command.DeleteTaskCommand;
+import seedu.nuke.command.deleteCommand.DeleteModuleCommand;
+import seedu.nuke.command.deleteCommand.DeleteTaskCommand;
 import seedu.nuke.command.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.ListModuleCommand;
+import seedu.nuke.command.listCommand.ListModuleCommand;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.task.Task;
@@ -78,17 +77,17 @@ public class Parser {
         case DeleteModuleCommand.COMMAND_WORD:
             return prepareDeleteModuleCommand(parameters);
 
-        case ListModuleCommand.COMMAND_WORD:
-            return prepareListModuleCommand(parameters);
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case CheckAllTasksDeadlineCommand.COMMAND_WORD:
-            return new CheckAllTasksDeadlineCommand();
+        case ListModuleCommand.COMMAND_WORD:
+            return prepareListModuleCommand(parameters);
 
-        case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
-            return new CheckModuleTasksDeadlineCommand();
+        case ListAllTasksDeadlineCommand.COMMAND_WORD:
+            return new ListAllTasksDeadlineCommand();
+
+        case ListModuleTasksDeadlineCommand.COMMAND_WORD:
+            return new ListModuleTasksDeadlineCommand();
 
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
@@ -239,7 +238,6 @@ public class Parser {
                 return true;
             }
         }
-
         return false;
     }
 }

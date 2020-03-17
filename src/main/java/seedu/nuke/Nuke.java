@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class Nuke {
-    public ScreenShotManager screenShotManager; //?public
+    private ScreenShotManager screenShotManager;
     private CommandResult commandResult;
     private ModuleManager moduleManager;
     //private DataManager dataManager;

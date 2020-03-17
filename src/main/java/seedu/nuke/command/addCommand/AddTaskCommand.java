@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.addCommand;
 
+import seedu.nuke.command.CommandResult;
+import seedu.nuke.command.TaskCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.task.Task;
 import seedu.nuke.module.Module;
