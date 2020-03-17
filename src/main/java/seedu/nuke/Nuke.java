@@ -4,12 +4,8 @@ package seedu.nuke;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
-
-import seedu.nuke.data.DataManager;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.ScreenShot;
-import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.StorageManager;
 import seedu.nuke.directory.Root;
 import seedu.nuke.parser.Parser;
@@ -99,7 +95,7 @@ public class Nuke {
      * @param command the parsed Command object
      * @return commandResult that contains the execute output information
      */
-    private CommandResult executeCommand(Command command) {
+    public CommandResult executeCommand(Command command) {
         //load from current screen shot
         //readScreenShot();
         // supplies the data the command will operate on.
@@ -118,11 +114,19 @@ public class Nuke {
         return commandResult;
     }
 
-    private void execute(Command command) {
+    public void execute(Command command) {
         commandResult = command.execute();
     }
 
-    private void setCommandData(Command command) {
+    public void setCommandData(Command command) {
         command.setData(moduleManager);
+    }
+
+    public ModuleManager getModuleManager() {
+        return moduleManager;
+    }
+
+    public CommandResult getCommandResult() {
+        return commandResult;
     }
 }

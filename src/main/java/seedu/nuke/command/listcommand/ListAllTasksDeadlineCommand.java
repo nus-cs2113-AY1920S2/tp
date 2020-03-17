@@ -1,8 +1,6 @@
-package seedu.nuke.command.listCommand;
+package seedu.nuke.command.listcommand;
 
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.data.DataManager;
 
 import java.util.ArrayList;
 
@@ -27,7 +25,7 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
         if (moduleManager.countAllTasks() == EMPTY) {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
-        assert moduleManager.countAllTasks() == EMPTY : "make sure there are some tasks in the list";
+        assert moduleManager.countAllTasks() != EMPTY : "make sure there are some tasks in the list";
         deadlines = moduleManager.checkDeadline();
         return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, moduleManager.countAllTasks()),
                 true, deadlines);

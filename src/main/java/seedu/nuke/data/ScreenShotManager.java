@@ -5,6 +5,9 @@ import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 
+/**
+ * a screen shot manager that manages all scree shots and deals with operations such as save screen shots and undo.
+ */
 public class ScreenShotManager {
     private static ArrayList<ScreenShot> screenShotList = new ArrayList<>();
     private static int pointer = -1;
@@ -25,8 +28,12 @@ public class ScreenShotManager {
         return ScreenShotManager.pointer;
     }
 
-    public static ScreenShot getCurrentScreenShot(){
-        if (getCurrentPointer() < 0){
+    /**
+     * return a scree shot with certain index.
+     * @return a screen shot
+     */
+    public static ScreenShot getCurrentScreenShot() {
+        if (getCurrentPointer() < 0) {
             return screenShotList.get(0);
         }
         return screenShotList.get(getCurrentPointer());
@@ -36,27 +43,30 @@ public class ScreenShotManager {
         ScreenShotManager.pointer = pointer;
     }
 
-    public static void movePointerForward(){
-        ScreenShotManager.pointer ++;
+    public static void movePointerForward() {
+        ScreenShotManager.pointer++;
     }
 
-    public static void movePointerBackWard(){
-        if (ScreenShotManager.pointer > 0){
-            ScreenShotManager.pointer --;
+    /**
+     * change to another screen shot.
+     */
+    public static void movePointerBackWard() {
+        if (ScreenShotManager.pointer > 0) {
+            ScreenShotManager.pointer--;
         }
     }
 
-    public static void saveNewScreenShot (ScreenShot toAdd){
+    public static void saveNewScreenShot(ScreenShot toAdd) {
         movePointerForward();
         screenShotList.add(toAdd);
     }
 
-    public static void cutTailNodes(){
+    public static void cutTailNodes() {
         screenShotList = (ArrayList<ScreenShot>) screenShotList.subList(0, pointer);
     }
 
     /**
-     * save the screen shot
+     * save the screen shot.
      */
     public static ScreenShot takeNewScreenShot(ModuleManager moduleManager) {
         String jsonStrModuleList = StorageManager.saveModuleToString(moduleManager.getModuleList());
@@ -64,7 +74,7 @@ public class ScreenShotManager {
     }
 
     /**
-     * set module manager data according to screen shot manager data
+     * set module manager data according to screen shot manager data.
      */
     public static ArrayList<Module> readFromScreenShot(String jsonStr) {
         return (ArrayList<Module>) JSON.parseArray(jsonStr, Module.class);

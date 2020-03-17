@@ -1,10 +1,7 @@
 package seedu.nuke.data;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.alibaba.fastjson.JSON;
-import seedu.nuke.exception.NotFoundException;
-import seedu.nuke.module.DummyModule;
+import seedu.nuke.util.DummyModule;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +15,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * This class is to load all the modules that NUS offer, scraping from the nusmods,

@@ -1,32 +1,37 @@
 package seedu.nuke.parser;
 
 
-import seedu.nuke.command.addCommand.AddModuleCommand;
-import seedu.nuke.command.addCommand.AddTaskCommand;
 import seedu.nuke.command.ChangeDirectoryCommand;
-import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
-import seedu.nuke.command.listCommand.ListCommand;
-import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.addcommand.AddTagCommand;
+import seedu.nuke.command.deletecommand.DeleteCommand;
+import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listcommand.ListCommand;
+import seedu.nuke.command.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.deleteCommand.DeleteModuleCommand;
-import seedu.nuke.command.deleteCommand.DeleteTaskCommand;
-import seedu.nuke.command.EditDeadlineCommand;
+import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.listCommand.ListModuleCommand;
+import seedu.nuke.command.addcommand.AddModuleCommand;
+import seedu.nuke.command.addcommand.AddTaskCommand;
+import seedu.nuke.command.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.listcommand.ListModuleCommand;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Root;
+import seedu.nuke.directory.Task;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
-import seedu.nuke.directory.Task;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_GO_INTO_MODULE;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_PARAMETERS;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_PARAMETERS;
+
 
 public class Parser {
     /**
@@ -69,6 +74,10 @@ public class Parser {
 
         switch (commandWord) {
 
+        //todo check if in module
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommand(parameters);
+
         case EditDeadlineCommand.COMMAND_WORD:
             return prepareEditDeadlineCommand(parameters);
 
@@ -93,8 +102,8 @@ public class Parser {
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
 
-        case DeleteTaskCommand.COMMAND_WORD:
-            return prepareDeleteTaskCommand(parameters);
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDeleteCommand(parameters);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -105,37 +114,50 @@ public class Parser {
     }
 
     private Command prepareListCommand(String parameters) {
-       if (Command.getCurrentDirectory() instanceof Root){
+        if (parameters.trim().matches(ALL_FLAG)){
+            return new ListAllTasksDeadlineCommand();
+        }
+        if (Command.getCurrentDirectory() instanceof Root){
            return prepareListModuleCommand(parameters);
-       } else if (Command.getCurrentDirectory() instanceof Module){
+        } else if (Command.getCurrentDirectory() instanceof Module){
            return new ListModuleTasksDeadlineCommand();
-       }
-       return new ListAllTasksDeadlineCommand();
+        }
+        return new ListAllTasksDeadlineCommand();
     }
 
     private Command prepareEditDeadlineCommand(String parameters) {
         Task taskToEdit;
         DateTime deadline;
-        String [] temp = parameters.split("-d");
+        String[] temp = parameters.split("-d");
         Module dir = (Module) Command.getCurrentDirectory();
         String moduleCode = dir.getModuleCode();
         taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
         try {
             deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
             return new EditDeadlineCommand(taskToEdit, deadline);
-        } catch (DateTimeFormat.InvalidDateException | DateTimeFormat.InvalidTimeException | DateTimeFormat.InvalidDateTimeException e) {
+        } catch (DateTimeFormat.InvalidDateException | DateTimeFormat.InvalidTimeException
+                | DateTimeFormat.InvalidDateTimeException e) {
             return new IncorrectCommand("Invalid datetime format!\n");
         }
 
     }
 
-    private Command prepareDeleteTaskCommand(String parameters) {
-        //
+    private Command prepareDeleteCommand(String parameters) {
+        if (Command.getCurrentDirectory() instanceof Root) {
+            if (ModuleManager.contains(parameters)){
+                return new DeleteModuleCommand(parameters);
+            } else return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        } else if (Command.getCurrentDirectory() instanceof Module) {
+            if (((Module) Command.getCurrentDirectory()).getTaskManager().contains(parameters)) {
+                return new DeleteTaskCommand(parameters);
+            }
+        }
+        //should never reach
         return null;
     }
 
     private Command prepareChangeDirectoryCommand(String parameters, ModuleManager moduleManager) {
-        if (parameters.equals("..")){
+        if (parameters.equals("..")) {
             return new ChangeDirectoryCommand((ModuleManager.getRoot()));
         }
         if (moduleManager.getModuleWithCode(parameters) != null) {
@@ -147,7 +169,7 @@ public class Parser {
     private Command prepareAddTaskCommand(String parameters) {
         //todo
         //add a very simple task (for testing)
-        Module module = (Module)Command.getCurrentDirectory();
+        Module module = (Module) Command.getCurrentDirectory();
         if (module != null) {
             String moduleCode = module.getModuleCode();
             return new AddTaskCommand(new Task(ModuleManager.getModuleWithCode(moduleCode), parameters, moduleCode));
@@ -171,15 +193,15 @@ public class Parser {
     }
 
     private Command prepareAddModuleCommand(String parameters) {
-        final Pattern[] ADD_MODULE_FORMAT = AddModuleCommand.REGEX_FORMATS;
-        final int INVALID_PARAMETER_FORMATS_INDEX = ADD_MODULE_FORMAT.length - 1;
-        Matcher[] matchers = new Matcher[ADD_MODULE_FORMAT.length];
+        final Pattern[] addModuleFormat = AddModuleCommand.REGEX_FORMATS;
+        final int invalidParameterFormatsIndex = addModuleFormat.length - 1;
+        Matcher[] matchers = new Matcher[addModuleFormat.length];
 
-        if (isMissingCompulsoryParameters(ADD_MODULE_FORMAT, matchers, parameters)) {
+        if (isMissingCompulsoryParameters(addModuleFormat, matchers, parameters)) {
             return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
         }
 
-        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+        if (matchers[invalidParameterFormatsIndex].find()) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         }
 
@@ -189,15 +211,15 @@ public class Parser {
     }
 
     private Command prepareDeleteModuleCommand(String parameters) {
-        final Pattern[] DELETE_MODULE_FORMAT = DeleteModuleCommand.REGEX_FORMATS;
-        final int INVALID_PARAMETER_FORMATS_INDEX = DELETE_MODULE_FORMAT.length - 1;
-        Matcher[] matchers = new Matcher[DELETE_MODULE_FORMAT.length];
+        final Pattern[] deleteModuleFormat = DeleteModuleCommand.REGEX_FORMATS;
+        final int invalidParameterFormatsIndex = deleteModuleFormat.length - 1;
+        Matcher[] matchers = new Matcher[deleteModuleFormat.length];
 
-        if (isMissingCompulsoryParameters(DELETE_MODULE_FORMAT, matchers, parameters)) {
+        if (isMissingCompulsoryParameters(deleteModuleFormat, matchers, parameters)) {
             return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
         }
 
-        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+        if (matchers[invalidParameterFormatsIndex].find()) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         }
 
@@ -210,16 +232,21 @@ public class Parser {
         return new DeleteModuleCommand(moduleCode);
     }
 
+    /**
+     *
+     * @param parameters -a: list all tasks -CS1231 list tasks from specific module
+     * @return command
+     */
     private Command prepareListModuleCommand(String parameters) {
-        final Pattern[] LIST_MODULE_FORMAT = ListModuleCommand.REGEX_FORMATS;
-        final int INVALID_PARAMETER_FORMATS_INDEX = LIST_MODULE_FORMAT.length - 1;
-        Matcher[] matchers = new Matcher[LIST_MODULE_FORMAT.length];
+        final Pattern[] listModuleFormat = ListModuleCommand.REGEX_FORMATS;
+        final int invalidParameterFormatsIndex = listModuleFormat.length - 1;
+        Matcher[] matchers = new Matcher[listModuleFormat.length];
 
-        if (isMissingCompulsoryParameters(LIST_MODULE_FORMAT, matchers, parameters)) {
+        if (isMissingCompulsoryParameters(listModuleFormat, matchers, parameters)) {
             return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
         }
 
-        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+        if (matchers[invalidParameterFormatsIndex].find()) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         }
 

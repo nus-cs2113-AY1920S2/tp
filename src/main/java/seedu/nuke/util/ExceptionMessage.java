@@ -7,6 +7,8 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_MODULE_NOT_PROVIDED = "ALERT! The module is not provided by NUS currently.\n";
 
+    public static final String MESSAGE_TASK_NOT_FOUND = "ALERT! Task is not found.\n";
+
     public static final String MESSAGE_MISSING_MODULE_CODE = "ALERT! Module code is missing.\n";
 
     public static final String MESSAGE_EXCESS_PARAMETERS = "ALERT! Too many parameters.\n";

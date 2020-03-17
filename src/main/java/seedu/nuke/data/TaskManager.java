@@ -1,5 +1,6 @@
 package seedu.nuke.data;
 
+import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
@@ -93,6 +94,21 @@ public class TaskManager {
     public void delete(Task toDelete) {
         taskList.remove(toDelete);
     }
+
+    /**
+     * Deletes a <b>Task</b> with the specified <code>description/code> from the <b>Task List</b>.
+     *
+     * @param description The description of the <b>Task</b> to be deleted
+     * @throws TaskNotFoundException  If the task with the specified description is not found in the <b>Task List</b>
+     * @return  The deleted task
+     * @see Task
+     */
+    public Task delete(String description) throws TaskNotFoundException {
+        Task toDelete = getTask(description);
+        taskList.remove(toDelete);
+        return toDelete;
+    }
+
 
     /**
      * Clears all tasks from the task list.

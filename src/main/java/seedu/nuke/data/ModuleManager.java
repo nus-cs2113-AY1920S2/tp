@@ -77,7 +77,7 @@ public class ModuleManager implements Iterable<Module> {
      * @param moduleCode the module code to check if provided by NUS currently
      * @return true if NUS is providing the module currently
      */
-    public boolean contains(String moduleCode) {
+    public static boolean contains(String moduleCode) {
         for (Module p : moduleList) {
             if (p.getModuleCode().equals(moduleCode)) {
                 return true;
@@ -165,13 +165,14 @@ public class ModuleManager implements Iterable<Module> {
      * @see Module
      */
     public Module delete(String moduleCode) throws ModuleNotFoundException {
-        for (Module module : moduleList) {
-            if (module.getModuleCode().toUpperCase().equals(moduleCode)) {
-                moduleList.remove(module);
-                return module;
-            }
+        if (getModuleWithCode(moduleCode)!= null){
+            Module toDelete = getModuleWithCode(moduleCode);
+            allTasks.removeIf(task -> task.getModuleCode().toUpperCase().equals(moduleCode));
+            moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
+            return toDelete;
+        } else {
+            throw new ModuleNotFoundException("");
         }
-        throw new ModuleNotFoundException("");
     }
 
     @Override

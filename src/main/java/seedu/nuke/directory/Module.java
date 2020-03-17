@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Module extends Directory{
+public class Module extends Directory {
     private String moduleCode;
     private String title;
     private String description;
