@@ -113,12 +113,13 @@ public class ActivityList {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
-            String[] tags = new String[strings.size() - 3];
+            String[] tags;
 
             // if there are tags
-            if (!strings.get(3).equals("null")) {
+            if (strings.size() > 3) {
                 // remove square brackets surrounding tags
-                tags = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
+                // tags = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
+                tags = strings.get(3).split(" ");
             } else {
                 tags = null;
             }
