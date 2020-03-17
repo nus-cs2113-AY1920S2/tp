@@ -1,4 +1,4 @@
-package seedu.nuke.command.deleteCommand;
+package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
