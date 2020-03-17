@@ -54,7 +54,7 @@ public class CategoryManager {
      * @return
      *  The category with the specified name if found
      * @throws CategoryNotFoundException
-     *  If the category cannot be found in the Category List
+     *  If the category is not found in the Category List
      */
     public Category getCategory(String categoryName) throws CategoryNotFoundException {
         for (Category category : categoryList) {
@@ -128,7 +128,7 @@ public class CategoryManager {
      * @return
      *  The Task List of the found category
      * @throws CategoryNotFoundException
-     *  If the category with the specified name cannot be found in the Category List
+     *  If the category with the specified name is not found in the Category List
      */
     public TaskManager retrieve(String categoryName) throws CategoryNotFoundException {
         return getCategory(categoryName).getTasks();
@@ -154,7 +154,7 @@ public class CategoryManager {
     }
 
     /**
-     * Filter for categories in the Category List with name that matches the <b>exact</b> specified keyword.
+     * Filter for categories in the Category List with name that matches <b>exactly</b> the specified keyword.
      * Filtering is done in a case-insensitive manner.
      *
      * @param categoryKeyword

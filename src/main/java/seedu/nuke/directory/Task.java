@@ -60,10 +60,6 @@ public class Task extends Directory implements Tag {
         this.tags = null;
     }
 
-    public Task(Module module) {
-        super(module);
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }

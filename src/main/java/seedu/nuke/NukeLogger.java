@@ -2,7 +2,6 @@ package seedu.nuke;
 
 import seedu.nuke.command.addCommand.AddModuleCommand;
 
-import java.io.IOException;
 import java.util.logging.*;
 
 public class NukeLogger {

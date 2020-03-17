@@ -41,7 +41,7 @@ public class TaskManager {
      * @return
      *  The task with the specified description if found
      * @throws TaskNotFoundException
-     *  If the task cannot be found in the Task List
+     *  If the task is not found in the Task List
      */
     public Task getTask(String description) throws TaskNotFoundException {
         for (Task task : taskList) {
@@ -135,7 +135,7 @@ public class TaskManager {
      * @return
      *  The File List of the found task
      * @throws TaskNotFoundException
-     *  If the task with the specified description cannot be found in the Task List
+     *  If the task with the specified description is not found in the Task List
      */
     public TaskFileManager retrieve(String description) throws TaskNotFoundException {
         return getTask(description).getFiles();
@@ -161,7 +161,7 @@ public class TaskManager {
     }
 
     /**
-     * Filter for tasks in the Task List with description that matches the <b>exact</b> specified keyword.
+     * Filter for tasks in the Task List with description that matches <b>exactly</b> the specified keyword.
      * Filtering is done in a case-insensitive manner.
      *
      * @param taskKeyword

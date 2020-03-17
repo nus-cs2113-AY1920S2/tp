@@ -44,6 +44,16 @@ public class Message {
         return String.format("SUCCESS!! Module %s %s has been deleted.\n", moduleCode, title);
     }
 
+    public static String messageAddCategorySuccess(String categoryName) {
+        return String.format("SUCCESS!! Category %s is created.\n", categoryName);
+    }
+
+    public static String messageAddTaskSuccess(String taskDescription) {
+        return String.format("SUCCESS!! Task %s is created.\n", taskDescription);
+    }
+
     public static final String MESSAGE_UNDO_SUCCESSFUL = "Successfully undo!\n";
+
+
 
 }

@@ -1,17 +1,17 @@
 package seedu.nuke.ui;
 
-import seedu.nuke.command.addcommand.AddModuleCommand;
-import seedu.nuke.command.addcommand.AddTaskCommand;
+import seedu.nuke.command.addCommand.AddModuleCommand;
+import seedu.nuke.command.addCommand.AddTaskCommand;
 import seedu.nuke.command.ChangeDirectoryCommand;
-import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
-import seedu.nuke.command.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.deletecommand.DeleteModuleCommand;
-import seedu.nuke.command.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.deleteCommand.DeleteTaskCommand;
 import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.listcommand.ListModuleCommand;
+import seedu.nuke.command.listCommand.ListModuleCommand;
 
 import java.io.PrintStream;
 import java.util.ArrayList;

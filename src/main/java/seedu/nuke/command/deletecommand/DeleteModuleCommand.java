@@ -2,8 +2,6 @@ package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.data.ModuleManager;
-import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.directory.Module;
 
 import java.util.regex.Pattern;

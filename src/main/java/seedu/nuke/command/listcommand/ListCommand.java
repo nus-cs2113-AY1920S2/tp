@@ -1,4 +1,4 @@
-package seedu.nuke.command.listcommand;
+package seedu.nuke.command.listCommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;

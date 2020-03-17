@@ -7,6 +7,16 @@ public class Category extends Directory {
     private int categoryPriority;
     private TaskManager tasks;
 
+    /**
+     * Constructs the category.
+     *
+     * @param parentModule
+     *  The parent module of the category
+     * @param categoryName
+     *  The name of the category
+     * @param categoryPriority
+     *  The priority of the category
+     */
     public Category(Module parentModule, String categoryName, int categoryPriority) {
         super(parentModule);
         this.categoryName = categoryName;
@@ -65,10 +75,22 @@ public class Category extends Directory {
     }
 
     /**
+     * Edit the Task List of the category.
+     *
+     * @param tasks
+     *  The Task List of the category
+     */
+    public void setTasks(TaskManager tasks) {
+        this.tasks = tasks;
+    }
+
+    /**
      * Checks if one category has the same category name as another.
      *
-     * @param category  The category to check
-     * @return  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
+     * @param category
+     *  The category to check
+     * @return
+     *  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
      */
     public boolean isSameCategory(Category category) {
         return this.categoryName.equals(category.categoryName);
