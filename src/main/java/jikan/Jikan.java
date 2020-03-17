@@ -24,11 +24,12 @@ public class Jikan {
     /** Ui to handle printing. */
     private static Ui ui = new Ui();
 
+    /** Parser to parse commands. */
     private static Parser parser = new Parser();
-    
+
     /**
-     * Creates ActivityList and loads data from data file if the data file previously existed;
-     * otherwise, an empty task list is initialized.
+     * Creates ActivityList and loads data from data file if the data file previously existed.
+     * Otherwise, an empty task list is initialized.
      */
     public static void createActivityList() {
         try {

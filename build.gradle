@@ -5,7 +5,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'seedu.duke'
+group 'jikan'
 version '0.1.0'
 
 repositories {
@@ -21,11 +21,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "jikan.Jikan"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "jikan"
     archiveVersion = "0.0.1"
     archiveClassifier = null
     archiveAppendix = null
