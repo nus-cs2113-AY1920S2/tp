@@ -3,7 +3,7 @@ package seedu.nuke.parser;
 
 import seedu.nuke.command.addCommand.AddModuleCommand;
 import seedu.nuke.command.addCommand.AddTaskCommand;
-import seedu.nuke.command.ChangeModuleCommand;
+import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
 import seedu.nuke.command.listCommand.ListCommand;
 import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
@@ -18,6 +18,7 @@ import seedu.nuke.command.listCommand.ListModuleCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Root;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.directory.Task;
@@ -71,7 +72,7 @@ public class Parser {
         case EditDeadlineCommand.COMMAND_WORD:
             return prepareEditDeadlineCommand(parameters);
 
-        case ChangeModuleCommand.COMMAND_WORD:
+        case ChangeDirectoryCommand.COMMAND_WORD:
             return prepareChangeModuleCommand(parameters, moduleManager);
 
         case AddModuleCommand.COMMAND_WORD:
@@ -84,16 +85,10 @@ public class Parser {
             return new HelpCommand();
 
         case ListCommand.COMMAND_WORD:
-            return prepareListCommand();
-
-        case ListModuleCommand.COMMAND_WORD:
-            return prepareListModuleCommand(parameters);
+            return prepareListCommand(parameters);
 
         case ListAllTasksDeadlineCommand.COMMAND_WORD:
             return new ListAllTasksDeadlineCommand();
-
-        case ListModuleTasksDeadlineCommand.COMMAND_WORD:
-            return new ListModuleTasksDeadlineCommand();
 
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
@@ -109,8 +104,13 @@ public class Parser {
         }
     }
 
-    private Command prepareListCommand() {
-       return null;
+    private Command prepareListCommand(String parameters) {
+       if (Command.getCurrentDirectory() instanceof Root){
+           return prepareListModuleCommand(parameters);
+       } else if (Command.getCurrentDirectory() instanceof Module){
+           return new ListModuleTasksDeadlineCommand();
+       }
+       return new ListAllTasksDeadlineCommand();
     }
 
     private Command prepareEditDeadlineCommand(String parameters) {
@@ -136,7 +136,7 @@ public class Parser {
 
     private Command prepareChangeModuleCommand(String parameters, ModuleManager moduleManager) {
         if (moduleManager.getModuleWithCode(parameters) != null) {
-            return new ChangeModuleCommand(moduleManager.getModuleWithCode(parameters));
+            return new ChangeDirectoryCommand(moduleManager.getModuleWithCode(parameters));
         }
         return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
     }

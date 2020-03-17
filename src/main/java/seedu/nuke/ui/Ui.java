@@ -2,7 +2,7 @@ package seedu.nuke.ui;
 
 import seedu.nuke.command.addCommand.AddModuleCommand;
 import seedu.nuke.command.addCommand.AddTaskCommand;
-import seedu.nuke.command.ChangeModuleCommand;
+import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
 import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.CommandResult;
@@ -33,7 +33,7 @@ public class Ui {
         out = new PrintStream(System.out);
         commands.add(AddModuleCommand.MESSAGE_USAGE);
         commands.add(AddTaskCommand.MESSAGE_USAGE);
-        commands.add(ChangeModuleCommand.MESSAGE_USAGE);
+        commands.add(ChangeDirectoryCommand.MESSAGE_USAGE);
         commands.add(ListAllTasksDeadlineCommand.MESSAGE_USAGE);
         commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
         commands.add(DeleteModuleCommand.MESSAGE_USAGE);
