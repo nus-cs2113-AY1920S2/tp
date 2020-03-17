@@ -109,7 +109,7 @@ public class Parser {
     }
 
     private Command prepareUndoCommand() {
-        ScreenShotManager.unDo();
+        ScreenShotManager.movePointerBackWard();
         return new UndoCommand();
     }
 

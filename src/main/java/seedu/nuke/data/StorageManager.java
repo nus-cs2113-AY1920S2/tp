@@ -47,15 +47,9 @@ public class StorageManager {
         File file = new File(dataFileName);
         Long fileLength = file.length();
         byte[] fileContent = new byte[fileLength.intValue()];
-        try {
-            FileInputStream in = new FileInputStream(file);
-            in.read(fileContent);
-            in.close();
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException();
-        } catch (IOException e) {
-            throw new IOException();
-        }
+        FileInputStream in = new FileInputStream(file);
+        in.read(fileContent);
+        in.close();
         try {
             return new String(fileContent, encoding);
         } catch (UnsupportedEncodingException e) {
@@ -79,5 +73,9 @@ public class StorageManager {
         } catch (IOException e) {
             System.out.println("something wrong when writing to " + dataFileName);
         }
+    }
+
+    public static String saveModuleToString(ArrayList<Module> moduleList){
+        return JSON.toJSONString(moduleList);
     }
 }

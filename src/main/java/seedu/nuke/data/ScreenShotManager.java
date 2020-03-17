@@ -1,50 +1,74 @@
 package seedu.nuke.data;
 
+import com.alibaba.fastjson.JSON;
+import seedu.nuke.module.Module;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ScreenShotManager {
-    private static List<ScreenShot> screenShotList;
-    // initial index - 0
-    private static int currentPointer = 0;
+    private static ArrayList<ScreenShot> screenShotList = new ArrayList<>();
+    private static int pointer = -1;
 
     public ScreenShotManager() {
-        screenShotList = new LinkedList<>();
-        currentPointer = 0;
+
     }
 
-    public ScreenShotManager(List<ScreenShot> screenShotList, int currentPointer) {
-        screenShotList = screenShotList;
-        currentPointer = currentPointer;
+    public static ArrayList<ScreenShot> getScreenShotList() {
+        return ScreenShotManager.screenShotList;
     }
 
-    public static List<ScreenShot> getScreenShotList() {
-        return screenShotList;
-    }
-
-    public static void setScreenShotList(List<ScreenShot> screenShotList) {
-        screenShotList = screenShotList;
+    public static void setScreenShotList(ArrayList<ScreenShot> screenShotList) {
+        ScreenShotManager.screenShotList = screenShotList;
     }
 
     public static int getCurrentPointer() {
-        return currentPointer;
+        return ScreenShotManager.pointer;
     }
 
-    public void setCurrentPointer(int currentPointer) {
-        this.currentPointer = currentPointer;
+    public static ScreenShot getCurrentScreenShot(){
+        if (getCurrentPointer() < 0){
+            return screenShotList.get(0);
+        }
+        return screenShotList.get(getCurrentPointer());
     }
 
-    public static void unDo() {
-        if (currentPointer > 0){
-            currentPointer = currentPointer - 1;
+    public static void setCurrentPointer(int pointer) {
+        ScreenShotManager.pointer = pointer;
+    }
+
+    public static void movePointerForward(){
+        ScreenShotManager.pointer ++;
+    }
+
+    public static void movePointerBackWard(){
+        if (ScreenShotManager.pointer > 0){
+            ScreenShotManager.pointer --;
         }
     }
 
-    public static void setCurrentPointerForward(){
-        currentPointer++;
+    public static void saveNewScreenShot (ScreenShot toAdd){
+        movePointerForward();
+        screenShotList.add(toAdd);
     }
 
-    public static ScreenShot getCurrentScreenShot() {
-        return screenShotList.get(currentPointer);
+    public static void cutTailNodes(){
+        screenShotList = (ArrayList<ScreenShot>) screenShotList.subList(0, pointer);
+    }
+
+    /**
+     * save the screen shot
+     */
+    public static ScreenShot takeNewScreenShot(ModuleManager moduleManager) {
+        String jsonStrModuleList = StorageManager.saveModuleToString(moduleManager.getModuleList());
+        return new ScreenShot(jsonStrModuleList);
+    }
+
+    /**
+     * set module manager data according to screen shot manager data
+     */
+    public static ArrayList<Module> readFromScreenShot(String jsonStr) {
+        return (ArrayList<Module>) JSON.parseArray(jsonStr, Module.class);
     }
 }

@@ -15,9 +15,9 @@ import java.util.Iterator;
  * deals with operations that are related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private ArrayList<Module> modules;
-    private ArrayList<String> moduleCodes;
-    private HashMap<String, String> modulesMap;
+    private static ArrayList<Module> modules;
+    private static ArrayList<String> moduleCodes;
+    private static HashMap<String, String> modulesMap;
 
     public ModuleManager(HashMap<String, String> modulesMap) {
         this.modulesMap = modulesMap;
@@ -28,9 +28,9 @@ public class ModuleManager implements Iterable<Module> {
      * This mothod is to restore the list of modules when loading from the json data file.
      * @param modules an ArrayList of Module objects parsed from the json string in the data file
      */
-    public void setModules(ArrayList<Module> modules) {
-        this.moduleCodes = new ArrayList<>();
-        this.modules = modules;
+    public static void setModules(ArrayList<Module> modules) {
+        moduleCodes = new ArrayList<>();
+        modules = modules;
         for (Module module: modules) {
             moduleCodes.add(module.getModuleCode());
         }
@@ -40,7 +40,7 @@ public class ModuleManager implements Iterable<Module> {
      * method to return all the modules.
      * @return all modules
      */
-    public ArrayList<Module> getModuleList() {
+    public static ArrayList<Module> getModuleList() {
         return modules;
     }
     //public Module getAModule(String moduleCode) {
@@ -52,7 +52,7 @@ public class ModuleManager implements Iterable<Module> {
      * @param moduleCode the module code to check if provided by NUS currently
      * @return true if NUS is providing the module currently
      */
-    public boolean contains(String moduleCode) {
+    public static boolean contains(String moduleCode) {
         for (Module p : modules) {
             if (p.getModuleCode().equals(moduleCode)) {
                 return true;
@@ -66,7 +66,7 @@ public class ModuleManager implements Iterable<Module> {
      *
      * @param moduleCode the module code of the module to add
      */
-    public void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
+    public static void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
         if (moduleCodes.contains(moduleCode)) {
             throw new DuplicateModuleException();
@@ -82,7 +82,7 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * Clears all tasks in list.
      */
-    public void clear() {
+    public static void clear() {
         modules.clear();
     }
 
@@ -133,9 +133,6 @@ public class ModuleManager implements Iterable<Module> {
         return modules.size();
     }
 
-    public class DuplicateModuleException extends DuplicateDataException {
-    }
-
     /**
      * get a module object according to moduleCode.
      * @param moduleCode the moduleCode of the module
@@ -149,5 +146,8 @@ public class ModuleManager implements Iterable<Module> {
             }
         }
         return null;
+    }
+
+    public static class DuplicateModuleException extends DuplicateDataException {
     }
 }

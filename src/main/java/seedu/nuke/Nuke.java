@@ -1,19 +1,12 @@
 package seedu.nuke;
 
-import seedu.nuke.command.AddModuleCommand;
-import seedu.nuke.command.AddTaskCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.DeleteModuleCommand;
-import seedu.nuke.command.DeleteTaskCommand;
-import seedu.nuke.command.EditDeadlineCommand;
-import seedu.nuke.command.EditTaskCommand;
 import seedu.nuke.command.ExitCommand;
 
 import seedu.nuke.data.DataManager;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.ScreenShot;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.StorageManager;
 import seedu.nuke.parser.Parser;
@@ -29,8 +22,7 @@ public class Nuke {
     private ModuleManager moduleManager;
     private DataManager dataManager;
     private HashMap<String, String> modulesMap;
-    public ScreenShotManager screenShotManager; //?public
-    private ScreenShot currentScreenShot;
+    private ScreenShotManager screenShotManager = new ScreenShotManager();
     private Ui ui;
     private StorageManager storageManager;
 
@@ -45,9 +37,6 @@ public class Nuke {
         moduleManager = new ModuleManager(modulesMap);
         moduleManager.setModules(storageManager.load());
         dataManager = new DataManager(moduleManager);
-        screenShotManager = new ScreenShotManager();
-        currentScreenShot = new ScreenShot(moduleManager, dataManager);
-        screenShotManager.getScreenShotList().add(currentScreenShot);
     }
 
     /**
@@ -106,21 +95,28 @@ public class Nuke {
      * @return commandResult that contains the execute output information
      */
     private CommandResult executeCommand(Command command) {
-        try {
-            readFromScreenShot();
-            setCommandData(command);
-            if (command instanceof AddModuleCommand | command instanceof AddTaskCommand |
-                    command instanceof EditDeadlineCommand | command instanceof DeleteModuleCommand |
-                    command instanceof DeleteTaskCommand){
-                saveToScreenShot();
-                addScreenShotToScreenShotList();
-            }
-            execute(command);
-            System.out.println(ScreenShotManager.getCurrentPointer());
-            System.out.println("there are "+ dataManager.getAllTasks().size() +"tasks in the module");
-        } catch (Exception ignored) {
 
-        }
+//        ScreenShot toAdd = ScreenShotManager.takeNewScreenShot(moduleManager);
+//        /** save screen shot */
+//        ScreenShotManager.saveNewScreenShot(toAdd);
+//        /** get moduleListInJsonStr*/
+//        String moduleListInJsonStr = ScreenShotManager.getCurrentScreenShot().getModuleListInJsonStr();
+//        /** load module list from moduleListInJsonStr */
+//        moduleManager.setModules(ScreenShotManager.readFromScreenShot(moduleListInJsonStr));
+//        dataManager = new DataManager(moduleManager);
+        /** set command attribute*/
+        setCommandData(command);
+        /** if necessary command */
+//        if (command instanceof AddModuleCommand | command instanceof AddTaskCommand |
+//                command instanceof EditDeadlineCommand | command instanceof DeleteModuleCommand |
+//                command instanceof DeleteTaskCommand){
+//            /** take new screen shot of current module manager */
+//            toAdd = ScreenShotManager.takeNewScreenShot(moduleManager);
+//            /** save screen shot */
+//            ScreenShotManager.saveNewScreenShot(toAdd);
+//        }
+        execute(command);
+
         return commandResult;
     }
 
@@ -128,22 +124,11 @@ public class Nuke {
         commandResult = command.execute();
     }
 
-    private void addScreenShotToScreenShotList() {
-        ScreenShotManager.getScreenShotList().add(currentScreenShot);
-        ScreenShotManager.setCurrentPointerForward();
-    }
-
+    /**
+     * set command attributes from module manager and data manager
+     * @param command
+     */
     private void setCommandData(Command command) {
         command.setData(moduleManager, dataManager, screenShotManager);
-    }
-
-    private void saveToScreenShot() {
-        currentScreenShot.takeScreenShot(moduleManager, dataManager);
-    }
-
-    /**
-     * set module manager data according to screen shot manager data
-     */
-    private void readFromScreenShot() {
     }
 }
