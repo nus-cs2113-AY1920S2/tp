@@ -20,16 +20,16 @@ public class StorageHandlerTest {
         Storage storage = new Storage(filepath);
         storage.loadFile();
 
-        String line1 = "1. a";
-        String line2 = "2. b";
-        String line3 = "3. c";
+        String line1 = "a";
+        String line2 = "b";
+        String line3 = "c";
         String writtenString = "";
 
         storage.writeToFile(line1);
         storage.writeToFile(line2);
         storage.writeToFile(line3);
 
-        StorageHandler.removeLine(2, storage.dataFilePath);
+        StorageHandler.removeLine(1, storage);
 
         int i = 0;
         Scanner dataScanner = new Scanner(storage.dataFile);

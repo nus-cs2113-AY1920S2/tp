@@ -56,7 +56,11 @@ public class Parser {
                 parseAbort();
                 break;
             case "delete":
-                parseDelete(activityList);
+                try {
+                    parseDelete(activityList);
+                } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                    ui.printDivider("Invalid index number.");
+                }
                 break;
             default:
                 parseDefault();
@@ -130,6 +134,7 @@ public class Parser {
         }
     }
 
+    /** Deletes an activity from the activity list. */
     public void parseDelete(ActivityList activityList) {
         int index = Integer.parseInt(tokenizedInputs[1]) - 1;
         String line = "You have deleted " + activityList.get(index).getName();
