@@ -22,12 +22,12 @@ public class CheckAllTasksDeadlineCommand extends Command {
     @Override
     public CommandResult execute() {
         //get the large task list
-        if (dataManager.countAllTasks() == EMPTY) {
+        if (moduleManager.countAllTasks() == EMPTY) {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
-        //assert dataManager.countAllTasks() != EMPTY : "make sure there are some tasks in the list";
-        deadlines = dataManager.checkDeadline();
-        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, dataManager.countAllTasks()),
+        assert moduleManager.countAllTasks() == EMPTY : "make sure there are some tasks in the list";
+        deadlines = moduleManager.checkDeadline();
+        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, moduleManager.countAllTasks()),
                 true, deadlines);
     }
 }

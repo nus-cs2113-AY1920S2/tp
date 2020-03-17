@@ -16,8 +16,6 @@ public class UndoCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        //change to the screen one step before
-        targetScreenShot = screenShotManager.unDo();
         return new CommandResult(MESSAGE_UNDO_SUCCESSFUL);
     }
 }

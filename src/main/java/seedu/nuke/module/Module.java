@@ -91,4 +91,5 @@ public class Module {
     public boolean isSameModule(Module module) {
         return this.moduleCode.equals(module.moduleCode.toUpperCase());
     }
+
 }

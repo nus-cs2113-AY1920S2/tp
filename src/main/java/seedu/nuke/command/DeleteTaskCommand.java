@@ -20,7 +20,7 @@ public class DeleteTaskCommand extends TaskCommand {
         //add the task to the module's task manager
         currentModule.getTaskManager().removeTask(taskToDelete);
         //add the task to the data manager
-        dataManager.removeTask(taskToDelete);
+        moduleManager.removeTask(currentModule.getTaskManager(), taskToDelete);
         return new CommandResult(MESSAGE_TASK_REMOVED);
     }
 }

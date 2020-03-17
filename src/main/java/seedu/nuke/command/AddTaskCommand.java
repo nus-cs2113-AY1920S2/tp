@@ -20,8 +20,9 @@ public class AddTaskCommand extends TaskCommand {
     @Override
     public CommandResult execute() {
         //add the task to the module's task manager
-        currentModule.getTaskManager().addTask(taskToAdd);
-        dataManager.addTask(taskToAdd);
+        //currentModule.getTaskManager().addTask(taskToAdd);
+        moduleManager.addTaskToModule(currentModule.getTaskManager(), taskToAdd);
+        //dataManager.addTask(taskToAdd);
         return new CommandResult(MESSAGE_TASK_ADDED);
     }
 }
