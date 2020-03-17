@@ -23,6 +23,8 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_DELETE_ERROR = "ALERT! There was an error in the deletion.\n";
 
+    public static final String MESSAGE_LIST_NUMBER_NOT_FOUND = "List number not found! Deletion is aborted.\n";
+
     public static final String MESSAGE_EXCESS_PARAMETERS = "ALERT! Too many parameters.\n";
 
     public static final String MESSAGE_INPUT_LENGTH_EXCEEDED = "ALERT! Enter less than 100 characters.\n";

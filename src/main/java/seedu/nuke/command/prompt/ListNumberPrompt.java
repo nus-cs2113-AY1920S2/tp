@@ -11,6 +11,7 @@ import seedu.nuke.gui.io.Executor;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_LIST_NUMBER_NOT_FOUND;
 import static seedu.nuke.util.Message.*;
 
 public class ListNumberPrompt extends Command {
@@ -54,9 +55,9 @@ public class ListNumberPrompt extends Command {
 
             try {
                 return executePromptConfirmation();
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 Executor.terminatePrompt();
-                return new CommandResult(MESSAGE_INVALID_DELETE_INDICES);
+                return new CommandResult(MESSAGE_LIST_NUMBER_NOT_FOUND);
             }
         }
     }
