@@ -1,7 +1,9 @@
 package seedu.nuke.command.addCommand;
 
+import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.TaskCommand;
+import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 
 import static seedu.nuke.util.Message.MESSAGE_TASK_ADDED;
@@ -19,9 +21,8 @@ public class AddTaskCommand extends TaskCommand {
 
     @Override
     public CommandResult execute() {
-        //add the task to the module's task manager
-        //currentModule.getTaskManager().addTask(taskToAdd);
-        moduleManager.addTaskToModule(currentModule.getTaskManager(), taskToAdd);
+        Module module = (Module)Command.getCurrentDirectory();
+        moduleManager.addTaskToModule(module.getTaskManager(), taskToAdd);
         //dataManager.addTask(taskToAdd);
         return new CommandResult(MESSAGE_TASK_ADDED);
     }

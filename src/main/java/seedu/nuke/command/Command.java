@@ -1,12 +1,13 @@
 package seedu.nuke.command;
 
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 
 public abstract class Command {
     public static String COMMAND_WORD;
     protected ModuleManager moduleManager;
-    protected static Module currentModule;
+    protected static Directory currentDirectory;
 
     public abstract CommandResult execute();
 
@@ -22,11 +23,12 @@ public abstract class Command {
         this.moduleManager = moduleManager;
     }
 
-    public static Module getCurrentModule() {
-        return currentModule;
+    public static Directory getCurrentDirectory() {
+        return currentDirectory;
     }
 
-    public static void setCurrentModule(Module currentModule) {
-        Command.currentModule = currentModule;
+    public static void setCurrentDirectory(Module currentModule) {
+        Command.currentDirectory = currentModule;
     }
 }
+

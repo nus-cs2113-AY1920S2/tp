@@ -1,6 +1,8 @@
 package seedu.nuke.command.listCommand;
 
+import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.directory.Module;
 import seedu.nuke.exception.ModuleNotFoundException;
 
 import java.util.ArrayList;
@@ -27,15 +29,16 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
 
     @Override
     public CommandResult execute() {
-        if ((currentModule != null)){
-            if (currentModule.countTasks() == EMPTY) {
+        Module module = (Module) Command.getCurrentDirectory();
+        if ((module != null)){
+            if (module.countTasks() == EMPTY) {
                 return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
             }
 
-            assert currentModule.countTasks() != EMPTY : "make sure the list is not empty";
+            assert module.countTasks() != EMPTY : "make sure the list is not empty";
 
-            deadlines = currentModule.checkDeadline();
-            return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, currentModule.countTasks()),
+            deadlines = module.checkDeadline();
+            return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, module.countTasks()),
                     true, deadlines);
         } else {
             return new CommandResult(MESSAGE_GO_INTO_MODULE);

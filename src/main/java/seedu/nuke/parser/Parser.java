@@ -5,6 +5,7 @@ import seedu.nuke.command.addCommand.AddModuleCommand;
 import seedu.nuke.command.addCommand.AddTaskCommand;
 import seedu.nuke.command.ChangeModuleCommand;
 import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listCommand.ListCommand;
 import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.deleteCommand.DeleteModuleCommand;
@@ -15,6 +16,8 @@ import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.listCommand.ListModuleCommand;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.Module;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.directory.Task;
@@ -80,6 +83,9 @@ public class Parser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ListCommand.COMMAND_WORD:
+            return prepareListCommand();
+
         case ListModuleCommand.COMMAND_WORD:
             return prepareListModuleCommand(parameters);
 
@@ -103,11 +109,16 @@ public class Parser {
         }
     }
 
+    private Command prepareListCommand() {
+       return null;
+    }
+
     private Command prepareEditDeadlineCommand(String parameters) {
         Task taskToEdit;
         DateTime deadline;
         String [] temp = parameters.split("-d");
-        String moduleCode = Command.getCurrentModule().getModuleCode();
+        Module dir = (Module) Command.getCurrentDirectory();
+        String moduleCode = dir.getModuleCode();
         taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
         try {
             deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
@@ -133,8 +144,9 @@ public class Parser {
     private Command prepareAddTaskCommand(String parameters) {
         //todo
         //add a very simple task (for testing)
-        if (Command.getCurrentModule() != null) {
-            String moduleCode = Command.getCurrentModule().getModuleCode();
+        Module module = (Module)Command.getCurrentDirectory();
+        if (module != null) {
+            String moduleCode = module.getModuleCode();
             return new AddTaskCommand(new Task(ModuleManager.getModuleWithCode(moduleCode), parameters, moduleCode));
         } else {
             return new IncorrectCommand(MESSAGE_GO_INTO_MODULE);
