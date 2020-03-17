@@ -104,7 +104,7 @@ public class ActivityList {
             // if there are tags
             if (!strings.get(3).equals("null")) {
                 // remove square brackets surrounding tags
-                tags = strings.get(3).substring(1,strings.get(3).length() - 1).split(" ");
+                tags = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
             } else {
                 tags = null;
             }
