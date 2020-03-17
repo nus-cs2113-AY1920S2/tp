@@ -85,8 +85,10 @@ public class Activity {
         // Convert tags to a single space-separated
         String tagString = "";
 
-        for (int i = 0; i < this.tags.length; i++) {
-            tagString = tagString + this.tags[i] + " ";
+        if (this.tags != null) {
+            for (int i = 0; i < this.tags.length; i++) {
+                tagString = tagString + this.tags[i] + " ";
+            }
         }
 
         String dataLine = (this.name + "," + this.startTime + "," + this.endTime + "," + tagString);
