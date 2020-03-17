@@ -85,24 +85,23 @@ public class Parser {
     private static Command parseAddCommand(String content) {
         Matcher matcher = PATIENT_DATA_ARGS_FORMAT.matcher(content.trim());
         if (matcher.matches()) {
-            int phoneNum = Integer.parseInt(matcher.group("phone"));
+            int phoneNum = Integer.parseInt(matcher.group("phone").trim());
             return new AddCommand(
-                    matcher.group("name"),
-                    matcher.group("nric"),
+                    matcher.group("name").trim(),
+                    matcher.group("nric").trim(),
                     phoneNum,
-                    matcher.group("dob"),
-                    matcher.group("blood"), "", ""
+                    matcher.group("dob").trim(),
+                    matcher.group("blood").trim(), "", ""
                 );
-
         }
         matcher = PATIENT_ALLERGIES_ARGS_FORMAT.matcher((content.trim()));
         if (matcher.matches()) {
             return new AddCommand(
                     "",
-                    matcher.group("nric"),
+                    matcher.group("nric").trim(),
                     0,
                     "", "",
-                    matcher.group("allergies"), ""
+                    matcher.group("allergies").trim(), ""
             );
         }
         matcher = PATIENT_REMARKS_ARGS_FORMAT.matcher((content.trim()));
