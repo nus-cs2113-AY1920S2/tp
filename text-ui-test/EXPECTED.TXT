@@ -9,5 +9,5 @@ Hello from
 
 What is your name?
 Hello James Gosling. Welcome to your personal Professor Assistant Console.
-seedu.exception.DukeException: No parameters provided
+Unknown command category is provided
 Bye, see you again!
