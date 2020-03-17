@@ -81,7 +81,17 @@ public class Activity {
      * @return String representing the Task object in comma-separated data format.
      */
     public String toData() {
-        String dataLine = (this.name + "," + this.startTime + "," + this.endTime + "," + Arrays.toString(this.tags));
+
+        // Convert tags to a single space-separated
+        String tagString = "";
+
+        if (this.tags != null) {
+            for (int i = 0; i < this.tags.length; i++) {
+                tagString = tagString + this.tags[i] + " ";
+            }
+        }
+
+        String dataLine = (this.name + "," + this.startTime + "," + this.endTime + "," + tagString);
         return dataLine;
     }
 }
