@@ -1,4 +1,4 @@
-package seedu.nuke.commandTest;
+package seedu.nuke.commandtest;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Nuke;
@@ -10,6 +10,9 @@ import java.io.FileNotFoundException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
 
+/**
+ * Junit test class to test ListAllTasksDeadlineCommand.
+ */
 public class ListAllDeadlineTest {
 
     @Test
