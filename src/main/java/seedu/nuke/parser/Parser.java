@@ -8,7 +8,7 @@ import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
 import seedu.nuke.command.listCommand.ListCommand;
 import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.editcommand.EditDeadlineCommand;
+import seedu.nuke.command.editCommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
@@ -17,6 +17,9 @@ import seedu.nuke.command.addCommand.AddTaskCommand;
 import seedu.nuke.command.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.deleteCommand.DeleteTaskCommand;
 import seedu.nuke.command.listCommand.ListModuleCommand;
+import seedu.nuke.command.promptCommand.ConfirmationStatus;
+import seedu.nuke.command.promptCommand.DeleteConfirmationPrompt;
+import seedu.nuke.command.promptCommand.ListNumberPrompt;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Root;
@@ -24,8 +27,11 @@ import seedu.nuke.directory.Task;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static seedu.nuke.util.Message.MESSAGE_GO_INTO_MODULE;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -64,7 +70,7 @@ public class Parser {
      * @see seedu.nuke.ui.Ui
      * @see Command
      */
-    public Command parseCommand(String input, ModuleManager moduleManager) {
+    public Command parseCommand(String input) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
@@ -81,8 +87,8 @@ public class Parser {
         case EditDeadlineCommand.COMMAND_WORD:
             return prepareEditDeadlineCommand(parameters);
 
-        case ChangeDirectoryCommand.COMMAND_WORD:
-            return prepareChangeDirectoryCommand(parameters, moduleManager);
+//        case ChangeDirectoryCommand.COMMAND_WORD:
+//            return prepareChangeDirectoryCommand(parameters, moduleManager);
 
         case AddModuleCommand.COMMAND_WORD:
             return prepareAddModuleCommand(parameters);
@@ -102,8 +108,8 @@ public class Parser {
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
 
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDeleteCommand(parameters);
+//        case DeleteCommand.COMMAND_WORD:
+//            return prepareDeleteCommand(parameters);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -142,19 +148,19 @@ public class Parser {
 
     }
 
-    private Command prepareDeleteCommand(String parameters) {
-        if (Command.getCurrentDirectory() instanceof Root) {
-            if (ModuleManager.contains(parameters)){
-                return new DeleteModuleCommand(parameters);
-            } else return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        } else if (Command.getCurrentDirectory() instanceof Module) {
-            if (((Module) Command.getCurrentDirectory()).getTaskManager().contains(parameters)) {
-                return new DeleteTaskCommand(parameters);
-            }
-        }
-        //should never reach
-        return null;
-    }
+//    private Command prepareDeleteCommand(String parameters) {
+//        if (Command.getCurrentDirectory() instanceof Root) {
+//            if (ModuleManager.contains(parameters)){
+//                return new DeleteModuleCommand(parameters);
+//            } else return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+//        } else if (Command.getCurrentDirectory() instanceof Module) {
+//            if (((Module) Command.getCurrentDirectory()).getCategories().filter("").contains(parameters)) {
+//                return new DeleteTaskCommand(parameters);
+//            }
+//        }
+//        //should never reach
+//        return null;
+//    }
 
     private Command prepareChangeDirectoryCommand(String parameters, ModuleManager moduleManager) {
         if (parameters.equals("..")) {
@@ -224,12 +230,10 @@ public class Parser {
         }
 
         String moduleCode = matchers[0].group("identifier").trim();
-        /* To add later after updating my code - iceclementi
         String exactFlag = matchers[1].group("exact").trim();
         boolean isExact = !exactFlag.isEmpty();
-        */
 
-        return new DeleteModuleCommand(moduleCode);
+        return new DeleteModuleCommand(moduleCode, isExact);
     }
 
     /**
@@ -283,5 +287,43 @@ public class Parser {
             }
         }
         return false;
+    }
+
+    public Command parseInputAsConfirmation(String userInput) {
+        switch (userInput) {
+            case "yes":
+            case "y":
+                return new DeleteConfirmationPrompt(ConfirmationStatus.CONFIRM);
+
+            case "no":
+            case "n":
+                return new DeleteConfirmationPrompt(ConfirmationStatus.ABORT);
+
+            default:
+                return new DeleteConfirmationPrompt(ConfirmationStatus.WAIT);
+        }
+    }
+
+    public Command parseInputAsIndices(String input) {
+        final Matcher matcher = ListNumberPrompt.INDICES_FORMAT.matcher(input.trim());
+
+        if (!matcher.matches()) {
+            return new ListNumberPrompt(null);
+        }
+
+        String indicesString = matcher.group("indices");
+        String[] separatedIndicesString = indicesString.split(WHITESPACES);
+
+        // Convert String array to Integer ArrayList and removing duplicates
+        ArrayList<Integer> indices = Stream.of(separatedIndicesString)
+                .map(Integer::parseInt).distinct()
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        // Decrement each index by 1 due to 0-based indexing
+        for (int i = 0; i < indices.size(); i++) {
+            indices.set(i, indices.get(i)-1);
+        }
+
+        return new ListNumberPrompt(indices);
     }
 }

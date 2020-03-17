@@ -8,7 +8,7 @@ import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.deleteCommand.DeleteTaskCommand;
-import seedu.nuke.command.editcommand.EditDeadlineCommand;
+import seedu.nuke.command.editCommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.listCommand.ListModuleCommand;

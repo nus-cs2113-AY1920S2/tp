@@ -80,47 +80,15 @@ public class Nuke {
      */
     private void runCommandLoopUntilExitCommand() {
         do {
-            String userCommandText = ui.getInput();
+            String userInput = ui.getInput();
 
-            Command command = new Parser().parseCommand(userCommandText, moduleManager);
-            CommandResult result = executeCommand(command);
-            ui.showResult(result);
+            commandResult = Executor.executeCommand(userInput);
+            ui.showResult(commandResult);
 
         } while (!ExitCommand.isExit());
     }
 
-    /**
-     * initialize the taskManager system, execute command and save the list to the file.
-     *
-     * @param command the parsed Command object
-     * @return commandResult that contains the execute output information
-     */
-    public CommandResult executeCommand(Command command) {
-        //load from current screen shot
-        //readScreenShot();
-        // supplies the data the command will operate on.
-        // if there is no file to load or the file is empty, setData will initialize a new taskManager system
-        //update the module manager as well as the data manager
-        setCommandData(command);
-        //take the screen shot
-        //takeScreenShot();
-        //add screen shot
-        //addScreenShotToScreenShotList();
-        // Execute according to the command itself
-        execute(command);
-        // save the taskManager to a file
-        //moduleManager.getStorager().save(taskManager);
-        //StorageFile.saveJson(taskManager);
-        return commandResult;
-    }
 
-    public void execute(Command command) {
-        commandResult = command.execute();
-    }
-
-    public void setCommandData(Command command) {
-        command.setData(moduleManager);
-    }
 
     public ModuleManager getModuleManager() {
         return moduleManager;
