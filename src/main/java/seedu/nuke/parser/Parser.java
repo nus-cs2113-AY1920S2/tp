@@ -73,7 +73,7 @@ public class Parser {
             return prepareEditDeadlineCommand(parameters);
 
         case ChangeDirectoryCommand.COMMAND_WORD:
-            return prepareChangeModuleCommand(parameters, moduleManager);
+            return prepareChangeDirectoryCommand(parameters, moduleManager);
 
         case AddModuleCommand.COMMAND_WORD:
             return prepareAddModuleCommand(parameters);
@@ -134,7 +134,10 @@ public class Parser {
         return null;
     }
 
-    private Command prepareChangeModuleCommand(String parameters, ModuleManager moduleManager) {
+    private Command prepareChangeDirectoryCommand(String parameters, ModuleManager moduleManager) {
+        if (parameters.equals("..")){
+            return new ChangeDirectoryCommand((ModuleManager.getRoot()));
+        }
         if (moduleManager.getModuleWithCode(parameters) != null) {
             return new ChangeDirectoryCommand(moduleManager.getModuleWithCode(parameters));
         }

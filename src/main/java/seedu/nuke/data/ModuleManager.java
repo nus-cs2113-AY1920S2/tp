@@ -20,7 +20,7 @@ import java.util.Iterator;
  * deals with operations that are related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private Root root;
+    private static Root root;
     private static ArrayList<Module> moduleList;
     private ArrayList<String> moduleCodes;
     private ArrayList<Task> allTasks;
@@ -212,4 +212,7 @@ public class ModuleManager implements Iterable<Module> {
         return null;
     }
 
+    public static Root getRoot() {
+        return root;
+    }
 }
