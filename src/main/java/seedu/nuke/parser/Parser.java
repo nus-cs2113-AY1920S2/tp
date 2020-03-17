@@ -2,6 +2,10 @@ package seedu.nuke.parser;
 
 
 import seedu.nuke.command.ChangeDirectoryCommand;
+import seedu.nuke.command.deletecommand.DeleteCommand;
+import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listcommand.ListCommand;
+import seedu.nuke.command.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
@@ -11,10 +15,7 @@ import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
-import seedu.nuke.command.listcommand.ListCommand;
 import seedu.nuke.command.listcommand.ListModuleCommand;
-import seedu.nuke.command.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Root;
@@ -96,8 +97,8 @@ public class Parser {
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
 
-        case DeleteTaskCommand.COMMAND_WORD:
-            return prepareDeleteTaskCommand(parameters);
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDeleteCommand(parameters);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -108,10 +109,13 @@ public class Parser {
     }
 
     private Command prepareListCommand(String parameters) {
-        if (Command.getCurrentDirectory() instanceof Root) {
-            return prepareListModuleCommand(parameters);
-        } else if (Command.getCurrentDirectory() instanceof Module) {
-            return new ListModuleTasksDeadlineCommand();
+        if (parameters.trim().matches(ALL_FLAG)){
+            return new ListAllTasksDeadlineCommand();
+        }
+        if (Command.getCurrentDirectory() instanceof Root){
+           return prepareListModuleCommand(parameters);
+        } else if (Command.getCurrentDirectory() instanceof Module){
+           return new ListModuleTasksDeadlineCommand();
         }
         return new ListAllTasksDeadlineCommand();
     }
@@ -133,8 +137,17 @@ public class Parser {
 
     }
 
-    private Command prepareDeleteTaskCommand(String parameters) {
-        //
+    private Command prepareDeleteCommand(String parameters) {
+        if (Command.getCurrentDirectory() instanceof Root) {
+            if (ModuleManager.contains(parameters)){
+                return new DeleteModuleCommand(parameters);
+            } else return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        } else if (Command.getCurrentDirectory() instanceof Module) {
+            if (((Module) Command.getCurrentDirectory()).getTaskManager().contains(parameters)) {
+                return new DeleteTaskCommand(parameters);
+            }
+        }
+        //should never reach
         return null;
     }
 
@@ -214,6 +227,11 @@ public class Parser {
         return new DeleteModuleCommand(moduleCode);
     }
 
+    /**
+     *
+     * @param parameters -a: list all tasks -CS1231 list tasks from specific module
+     * @return command
+     */
     private Command prepareListModuleCommand(String parameters) {
         final Pattern[] listModuleFormat = ListModuleCommand.REGEX_FORMATS;
         final int invalidParameterFormatsIndex = listModuleFormat.length - 1;

@@ -1,5 +1,6 @@
 package seedu.nuke.data;
 
+import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import java.util.ArrayList;
 
@@ -38,6 +39,16 @@ public class TaskManager {
         this.allTasks.remove(toRemove);
     }
 
+    public Task delete(String parameter) {
+        for (Task task : allTasks) {
+            if (task.getModuleCode().equals(parameter)) {
+                allTasks.remove(task);
+                return task;
+            }
+        }
+        return null;
+    }
+
     /**
      * Parses the given arguments string as a single index number.
      * @return the task list
@@ -71,5 +82,28 @@ public class TaskManager {
         return other == this // short circuit if same object
                 || (other instanceof TaskManager // instanceof handles nulls
                 && this.allTasks.equals(((TaskManager) other).allTasks));
+    }
+
+    /**
+     * Checks if the list contains an equivalent task as the given description.
+     * @param description the module code to check if provided by NUS currently
+     * @return true if NUS is providing the module currently
+     */
+    public boolean contains(String description) {
+        for (Task t : allTasks) {
+            if (t.getDescription().equals(description)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Task findTask(String description) {
+        for (Task t : allTasks) {
+            if (t.getDescription().equals(description)) {
+                return t;
+            }
+        }
+        return null;
     }
 }

@@ -13,16 +13,17 @@ public class DeleteTaskCommand extends TaskCommand {
     public static final String COMMAND_WORD = "delt";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
 
-    private final Task taskToDelete;
+    private final String description;
 
-    public DeleteTaskCommand(Task task) {
-        this.taskToDelete = task;
+    public DeleteTaskCommand(String description) {
+        this.description = description;
     }
 
     @Override
     public CommandResult execute() {
         Module currentModule = (Module) Command.getCurrentDirectory();
-        currentModule.getTaskManager().removeTask(taskToDelete);
+        Task taskToDelete = currentModule.getTaskManager().findTask(description);
+        currentModule.getTaskManager().delete(description);
         //add the task to the data manager
         moduleManager.removeTask(currentModule.getTaskManager(), taskToDelete);
         return new CommandResult(MESSAGE_TASK_REMOVED);
