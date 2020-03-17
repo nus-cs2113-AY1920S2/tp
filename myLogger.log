@@ -1,0 +1,13 @@
+Mar 17, 2020 1:07:27 AM seedu.duke.Duke setupLogger
+SEVERE: File logger not working.
+java.io.IOException: couldn't read file
+	at seedu.duke.Duke.setupLogger(Duke.java:70)
+	at seedu.duke.Duke.run(Duke.java:40)
+	at seedu.duke.Duke.main(Duke.java:80)
+
+Mar 17, 2020 1:07:59 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 17, 2020 1:08:39 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
