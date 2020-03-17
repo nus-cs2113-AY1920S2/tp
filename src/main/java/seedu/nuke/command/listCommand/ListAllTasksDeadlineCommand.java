@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.listCommand;
 
+import seedu.nuke.command.Command;
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.DataManager;
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULLY_LIST;
 /**
  * sort all tasks of all modules according to deadline of task and print it out to the user.
  */
-public class CheckAllTasksDeadlineCommand extends Command {
+public class ListAllTasksDeadlineCommand extends ListCommand {
 
     private ArrayList<String> deadlines;
 

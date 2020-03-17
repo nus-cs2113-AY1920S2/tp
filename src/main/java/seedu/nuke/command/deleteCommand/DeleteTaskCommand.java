@@ -1,6 +1,10 @@
-package seedu.nuke.command;
+package seedu.nuke.command.deleteCommand;
 
-import seedu.nuke.task.Task;
+import seedu.nuke.command.Command;
+import seedu.nuke.command.CommandResult;
+import seedu.nuke.command.TaskCommand;
+import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
 
 import static seedu.nuke.util.Message.MESSAGE_TASK_REMOVED;
 
@@ -17,7 +21,7 @@ public class DeleteTaskCommand extends TaskCommand {
 
     @Override
     public CommandResult execute() {
-        //add the task to the module's task manager
+        Module currentModule = (Module) Command.getCurrentDirectory();
         currentModule.getTaskManager().removeTask(taskToDelete);
         //add the task to the data manager
         moduleManager.removeTask(currentModule.getTaskManager(), taskToDelete);

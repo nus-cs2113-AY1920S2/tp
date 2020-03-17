@@ -1,7 +1,7 @@
 package seedu.nuke.data;
 
-import seedu.nuke.module.Module;
-import seedu.nuke.task.Task;
+import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import java.util.Comparator;
  */
 public class DataManager {
 
-    private ArrayList<Task> allTasks;
+    private ArrayList<Task> allTasks = new ArrayList<>();
 
     /**
      * Constructor for DataManager class.

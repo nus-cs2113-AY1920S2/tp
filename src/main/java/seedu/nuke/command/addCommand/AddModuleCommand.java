@@ -1,8 +1,10 @@
-package seedu.nuke.command;
+package seedu.nuke.command.addCommand;
 
+import seedu.nuke.command.Command;
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotProvidedException;
-import seedu.nuke.module.Module;
+import seedu.nuke.directory.Module;
 
 import java.util.regex.Pattern;
 

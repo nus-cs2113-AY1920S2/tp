@@ -1,6 +1,6 @@
 package seedu.nuke.command;
 
-import seedu.nuke.module.Module;
+import seedu.nuke.directory.Module;
 
 import static seedu.nuke.util.Message.MESSAGE_MODULE_CHANGE_SUCCESSFUL;
 
@@ -17,7 +17,7 @@ public class ChangeModuleCommand extends Command {
     @Override
     public CommandResult execute() {
         //context switch
-        setCurrentModule(this.moduleToChange);
+        setCurrentDirectory(this.moduleToChange);
         return new CommandResult(MESSAGE_MODULE_CHANGE_SUCCESSFUL);
     }
 }

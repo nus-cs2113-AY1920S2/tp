@@ -1,20 +1,17 @@
 package seedu.nuke.ui;
 
-import seedu.nuke.command.AddModuleCommand;
-import seedu.nuke.command.AddTaskCommand;
+import seedu.nuke.command.addCommand.AddModuleCommand;
+import seedu.nuke.command.addCommand.AddTaskCommand;
 import seedu.nuke.command.ChangeModuleCommand;
-import seedu.nuke.command.CheckAllTasksDeadlineCommand;
-import seedu.nuke.command.CheckModuleTasksDeadlineCommand;
+import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.DeleteModuleCommand;
-import seedu.nuke.command.DeleteTaskCommand;
+import seedu.nuke.command.deleteCommand.DeleteModuleCommand;
+import seedu.nuke.command.deleteCommand.DeleteTaskCommand;
 import seedu.nuke.command.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.ListModuleCommand;
-import seedu.nuke.command.UndoCommand;
-import seedu.nuke.module.Module;
-import seedu.nuke.data.ModuleManager;
+import seedu.nuke.command.listCommand.ListModuleCommand;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -37,13 +34,13 @@ public class Ui {
         commands.add(AddModuleCommand.MESSAGE_USAGE);
         commands.add(AddTaskCommand.MESSAGE_USAGE);
         commands.add(ChangeModuleCommand.MESSAGE_USAGE);
-        commands.add(CheckAllTasksDeadlineCommand.MESSAGE_USAGE);
-        commands.add(CheckModuleTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(ListAllTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
         commands.add(DeleteModuleCommand.MESSAGE_USAGE);
         commands.add(DeleteTaskCommand.MESSAGE_USAGE);
         commands.add(EditDeadlineCommand.MESSAGE_DONE);
         commands.add(ListModuleCommand.MESSAGE_USAGE);
-        commands.add(UndoCommand.MESSAGE_USAGE);
+        //commands.add(UndoCommand.MESSAGE_USAGE);
         commands.add(HelpCommand.MESSAGE_USAGE);
         commands.add(ExitCommand.MESSAGE_USAGE);
     }

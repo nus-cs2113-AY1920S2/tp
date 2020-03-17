@@ -1,37 +1,22 @@
 package seedu.nuke.data;
 
-import seedu.nuke.data.DataManager;
-import seedu.nuke.data.ModuleManager;
+import com.alibaba.fastjson.JSON;
 
+import java.util.ArrayList;
 
 public class ScreenShot {
-    private ModuleManager moduleManager;
-    private DataManager dataManager;
+    private String moduleListInJsonStr;
 
-    public ScreenShot(ModuleManager moduleManager, DataManager dataManager) {
-        this.moduleManager = moduleManager;
-        this.dataManager = dataManager;
+    public ScreenShot(String moduleListInJsonStr) {
+        this.moduleListInJsonStr = moduleListInJsonStr;
     }
 
-    public ModuleManager getModuleManager() {
-        return moduleManager;
+    public String getModuleListInJsonStr() {
+        return moduleListInJsonStr;
     }
 
-    public void setModuleManager(ModuleManager moduleManager) {
-        this.moduleManager = moduleManager;
-    }
-
-    public DataManager getDataManager() {
-        return dataManager;
-    }
-
-    public void setDataManager(DataManager dataManager) {
-        this.dataManager = dataManager;
-    }
-
-    public void takeScreenShot(ModuleManager moduleManager, DataManager dataManager) {
-        this.moduleManager = moduleManager;
-        this.dataManager = dataManager;
+    public void setModuleListInJsonStr(String moduleListInJsonStr) {
+        this.moduleListInJsonStr = moduleListInJsonStr;
     }
 }
 

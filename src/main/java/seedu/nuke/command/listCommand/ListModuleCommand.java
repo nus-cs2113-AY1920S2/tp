@@ -1,6 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.listCommand;
 
-import seedu.nuke.module.Module;
+import seedu.nuke.command.CommandResult;
+import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -9,7 +10,7 @@ import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_MODULES;
 
-public class ListModuleCommand extends Command {
+public class ListModuleCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsm";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     public static final Pattern[] REGEX_FORMATS = {

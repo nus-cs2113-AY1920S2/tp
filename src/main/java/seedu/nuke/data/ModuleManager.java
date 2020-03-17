@@ -1,10 +1,12 @@
+
 package seedu.nuke.data;
 
+import seedu.nuke.directory.Root;
 import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.exception.ModuleNotFoundException;
-import seedu.nuke.module.Module;
-import seedu.nuke.task.Task;
+import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,13 +20,15 @@ import java.util.Iterator;
  * deals with operations that are related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private ArrayList<Module> moduleList;
+    private Root root;
+    private static ArrayList<Module> moduleList;
     private ArrayList<String> moduleCodes;
     private ArrayList<Task> allTasks;
     private HashMap<String, String> modulesMap;
 
-    public ModuleManager(HashMap<String, String> modulesMap) {
+    public ModuleManager(Root root, HashMap<String, String> modulesMap) {
         this.modulesMap = modulesMap;
+        this.root = root;
     }
 
     /**
@@ -90,7 +94,7 @@ public class ModuleManager implements Iterable<Module> {
         } else if (!modulesMap.containsKey(moduleCode)) {
             throw new ModuleNotProvidedException();
         } else {
-            Module toAdd = new Module(moduleCode, modulesMap.get(moduleCode), null);
+            Module toAdd = new Module(root, moduleCode, modulesMap.get(moduleCode), null);
             moduleList.add(toAdd);
             moduleCodes.add(moduleCode);
         }
@@ -197,7 +201,7 @@ public class ModuleManager implements Iterable<Module> {
      * @param moduleCode the moduleCode of the module
      * @return a module object that has the moduleCode
      */
-    public Module getModuleWithCode(String moduleCode) {
+    public static Module getModuleWithCode(String moduleCode) {
         for (Module module: moduleList
              ) {
             if (module.getModuleCode().equals(moduleCode)) {
@@ -207,4 +211,5 @@ public class ModuleManager implements Iterable<Module> {
         }
         return null;
     }
+
 }

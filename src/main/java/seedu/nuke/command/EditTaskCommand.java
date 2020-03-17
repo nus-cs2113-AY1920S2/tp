@@ -1,6 +1,6 @@
 package seedu.nuke.command;
 
-import seedu.nuke.task.Task;
+import seedu.nuke.directory.Task;
 
 /**
  * edit-type command.
