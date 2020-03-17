@@ -40,6 +40,7 @@ public class Nuke {
         storageManager = new StorageManager("data.json");
         moduleManager = new ModuleManager(root, modulesMap);
         moduleManager.setModuleList(storageManager.load());
+        Command.setCurrentDirectory(root);
     }
 
     /**

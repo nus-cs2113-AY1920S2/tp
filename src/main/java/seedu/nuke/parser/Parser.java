@@ -18,6 +18,7 @@ import seedu.nuke.command.listCommand.ListModuleCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Root;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
 import seedu.nuke.directory.Task;
@@ -84,16 +85,10 @@ public class Parser {
             return new HelpCommand();
 
         case ListCommand.COMMAND_WORD:
-            return prepareListCommand();
-
-        case ListModuleCommand.COMMAND_WORD:
-            return prepareListModuleCommand(parameters);
+            return prepareListCommand(parameters);
 
         case ListAllTasksDeadlineCommand.COMMAND_WORD:
             return new ListAllTasksDeadlineCommand();
-
-        case ListModuleTasksDeadlineCommand.COMMAND_WORD:
-            return new ListModuleTasksDeadlineCommand();
 
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
@@ -109,8 +104,13 @@ public class Parser {
         }
     }
 
-    private Command prepareListCommand() {
-       return null;
+    private Command prepareListCommand(String parameters) {
+       if (Command.getCurrentDirectory() instanceof Root){
+           return prepareListModuleCommand(parameters);
+       } else if (Command.getCurrentDirectory() instanceof Module){
+           return new ListModuleTasksDeadlineCommand();
+       }
+       return new ListAllTasksDeadlineCommand();
     }
 
     private Command prepareEditDeadlineCommand(String parameters) {

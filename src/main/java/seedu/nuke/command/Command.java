@@ -27,7 +27,7 @@ public abstract class Command {
         return currentDirectory;
     }
 
-    public static void setCurrentDirectory(Module currentModule) {
+    public static void setCurrentDirectory(Directory currentModule) {
         Command.currentDirectory = currentModule;
     }
 }
