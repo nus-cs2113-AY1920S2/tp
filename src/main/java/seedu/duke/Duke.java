@@ -56,6 +56,7 @@ public class Duke {
      * Main method.
      */
     public static void main(String[] args) {
+//        assert false : "dummy to fail";
         new Duke().run();
     }
 }
