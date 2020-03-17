@@ -17,6 +17,9 @@ public class ListModuleDeadlineTest {
     private Nuke nuke;
     private Command command;
 
+    /**
+     * constructor of this class.
+     */
     public ListModuleDeadlineTest() {
         try {
             nuke = new Nuke();
