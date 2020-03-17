@@ -27,8 +27,6 @@ public class CheckAllTasksDeadlineCommand extends Command {
         }
         assert moduleManager.countAllTasks() == EMPTY : "make sure there are some tasks in the list";
         deadlines = moduleManager.checkDeadline();
-        System.out.println(deadlines);
-        System.out.println("herere");
         return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, moduleManager.countAllTasks()),
                 true, deadlines);
     }
