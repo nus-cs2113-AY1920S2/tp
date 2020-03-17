@@ -13,7 +13,7 @@ public class TeamMemberList {
     private static ArrayList<TeamMember> teamMemberList;
 
 
-    public TeamMemberList(ArrayList<TeamMember> tl){
+    public TeamMemberList(ArrayList<TeamMember> tl) {
         this.teamMemberList = tl;
     }
 

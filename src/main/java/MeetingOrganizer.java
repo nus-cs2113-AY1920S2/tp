@@ -32,7 +32,7 @@ public class MeetingOrganizer {
         Integer endDay;
         TeamMember myMember;
         switch (userCommand) {
-            case "add": // add memberName startDay startTime endDay endTime (eg. add xizhi 2 02:00 3 14:00)
+        case "add": // add memberName startDay startTime endDay endTime (eg. add xizhi 2 02:00 3 14:00)
             myMember = new TeamMember(userInputWords[1]);
             String scheduleName = userInputWords[1]; //member name and schedule name are the same
             startDay = Integer.parseInt(userInputWords[2]);
@@ -50,7 +50,7 @@ public class MeetingOrganizer {
             ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
             for (int i = 1; i < userInputWords.length; i++) {
                 int memberNumber = Integer.parseInt(userInputWords[i]);
-                myMember = myTeamMemberList.getTeamMemberList().get(memberNumber-1);
+                myMember = myTeamMemberList.getTeamMemberList().get(memberNumber - 1);
                 myScheduleList.add(myMember);
 
                 System.out.println(myMember.getName() + " schedule: ");

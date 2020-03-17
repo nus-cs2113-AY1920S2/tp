@@ -75,9 +75,6 @@ public class TextUI {
         out.println("You have selected new scheduled meeting");
     }
 
-//    public static void meetingNameMsg() {
-//        out.println("What do you want to name your meeting?");
-//    }
 
     public static void meetingDetailsMsg() {
         out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>.");
