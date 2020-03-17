@@ -122,7 +122,11 @@ public class Nuke {
         command.setData(moduleManager);
     }
 
-    public ModuleManager getModuleManager() {return moduleManager;}
+    public ModuleManager getModuleManager() {
+        return moduleManager;
+    }
 
-    public CommandResult getCommandResult() {return commandResult;}
+    public CommandResult getCommandResult() {
+        return commandResult;
+    }
 }

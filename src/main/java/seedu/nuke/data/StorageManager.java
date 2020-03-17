@@ -1,6 +1,7 @@
 package seedu.nuke.data;
 
 import com.alibaba.fastjson.JSON;
+import seedu.nuke.directory.Module;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,8 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-
-import seedu.nuke.directory.Module;
 
 public class StorageManager {
     private String dataFileName;
@@ -74,7 +73,7 @@ public class StorageManager {
         }
     }
 
-    public static String saveModuleToString(ArrayList<Module> moduleList){
+    public static String saveModuleToString(ArrayList<Module> moduleList) {
         return JSON.toJSONString(moduleList);
     }
 }

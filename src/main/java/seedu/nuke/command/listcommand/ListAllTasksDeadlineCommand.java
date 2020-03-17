@@ -1,8 +1,6 @@
-package seedu.nuke.command.listCommand;
+package seedu.nuke.command.listcommand;
 
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.data.DataManager;
 
 import java.util.ArrayList;
 

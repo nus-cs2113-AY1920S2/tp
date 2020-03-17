@@ -3,7 +3,7 @@ package seedu.nuke.commandTest;
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Nuke;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
 
 import java.io.FileNotFoundException;
 

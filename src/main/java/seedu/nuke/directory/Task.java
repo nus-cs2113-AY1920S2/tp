@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
 
-public class Task extends Directory{
+public class Task extends Directory {
     protected String description;
     protected boolean isDone;
     protected int priority;

@@ -1,4 +1,4 @@
-package seedu.nuke.command.listCommand;
+package seedu.nuke.command.listcommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
@@ -7,7 +7,10 @@ import seedu.nuke.exception.ModuleNotFoundException;
 
 import java.util.ArrayList;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_GO_INTO_MODULE;
+import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
+import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULLY_LIST;
+
 
 /**
  * sort all tasks of one module according to deadline of task and print it out to the user.
@@ -30,7 +33,7 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
     @Override
     public CommandResult execute() {
         Module module = (Module) Command.getCurrentDirectory();
-        if ((module != null)){
+        if ((module != null)) {
             if (module.countTasks() == EMPTY) {
                 return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
             }
