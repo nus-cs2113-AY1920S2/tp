@@ -21,10 +21,14 @@ public class Duke {
      *   @param cards A list of card to be displayed.
      */
     public static void listCards(ArrayList<Card> cards) {
-        System.out.println("Here is the list of questions.");
-        for (int i = 0; i < cards.size(); i++) {
-            int j = i + 1;
-            System.out.println(j + ". " + cards.get(i).getQuestion());
+        if (cards.size() == 0) {
+            System.out.println("You haven't added anything yet.");
+        } else {
+            System.out.println("Here is the list of questions.");
+            for (int i = 0; i < cards.size(); i++) {
+                int j = i + 1;
+                System.out.println(j + ". " + cards.get(i).getQuestion());
+            }
         }
     }
 
@@ -52,6 +56,7 @@ public class Duke {
      * Main method.
      */
     public static void main(String[] args) {
+//        assert false : "dummy to fail";
         new Duke().run();
     }
 }
