@@ -4,6 +4,8 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.module.Module;
 
+import java.util.regex.Pattern;
+
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE_ADD;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_PROVIDED;
 import static seedu.nuke.util.Message.messageAddModuleSuccess;
@@ -17,6 +19,10 @@ import static seedu.nuke.util.Message.messageAddModuleSuccess;
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
+    public static final Pattern[] REGEX_FORMATS = {
+            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
+            Pattern.compile("(?<invalid>-.+)")
+    };
 
     private String moduleCode;
 

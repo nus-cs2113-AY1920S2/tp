@@ -3,12 +3,20 @@ package seedu.nuke.command;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
 
+import java.util.regex.Pattern;
+
+import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.messageDeleteModuleSuccess;
 
 public class DeleteModuleCommand extends Command {
     public static final String COMMAND_WORD = "delm";
     public static final String MESSAGE_USAGE = "delm <module code>";
+    public static final Pattern[] REGEX_FORMATS = {
+            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
+            Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:-(?:[^e].*|[e]\\S+)))")
+    };
 
     private String moduleCode;
 

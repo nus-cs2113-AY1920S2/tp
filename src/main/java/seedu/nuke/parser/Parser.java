@@ -37,8 +37,14 @@ public class Parser {
     public static final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
     public static final int COMMAND_WORD_INDEX = 0;
     public static final int PARAMETER_WORD_INDEX = 1;
-    private static final int MAX_INPUT_LENGTH = 100; // Maximum length of user input accepted
 
+    public static final String MODULE_CODE_PREFIX = "-m";
+    public static final String CATEGORY_NAME_PREFIX = "-c";
+    public static final String TASK_DESCRIPTION_PREFIX = "-t";
+    public static final String PRIORITY_PREFIX = "-p";
+    public static final String DEADLINE_PREFIX = "-d";
+    public static final String ALL_FLAG = "-a";
+    public static final String EXACT_FLAG = "-e";
 
     /**
      * Parses the input string read by the <b>UI</b> and converts the string into a specific <b>Command</b>, which is
