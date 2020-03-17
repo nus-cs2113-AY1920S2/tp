@@ -1,7 +1,6 @@
 package seedu.nuke.command;
 
 import seedu.nuke.directory.Directory;
-import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Root;
 
 import static seedu.nuke.util.Message.MESSAGE_MODULE_CHANGE_SUCCESSFUL;
@@ -21,7 +20,7 @@ public class ChangeDirectoryCommand extends Command {
     public CommandResult execute() {
         //context switch
         setCurrentDirectory(this.directoryToChange);
-        if (directoryToChange instanceof Root){
+        if (directoryToChange instanceof Root) {
             return new CommandResult(MESSAGE_ROOT_CHANGE_SUCCESSFUL);
         }
         return new CommandResult(MESSAGE_MODULE_CHANGE_SUCCESSFUL);

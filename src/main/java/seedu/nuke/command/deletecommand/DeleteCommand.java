@@ -1,10 +1,11 @@
-package seedu.nuke.command.listCommand;
+package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 
-public class ListCommand extends Command {
-    public static final String COMMAND_WORD = "ls";
+public class DeleteCommand extends Command {
+
+    public static final String COMMAND_WORD = "del";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     @Override
