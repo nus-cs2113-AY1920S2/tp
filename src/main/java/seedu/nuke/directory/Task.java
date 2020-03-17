@@ -1,5 +1,6 @@
 package seedu.nuke.directory;
 
+import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.format.DateTime;
 
 import java.util.ArrayList;
@@ -8,12 +9,12 @@ import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
 
 public class Task extends Directory{
-    protected String description;
-    protected boolean isDone;
-    protected int priority;
-    protected DateTime deadline;
-    protected ArrayList<String> files;
-    protected String moduleCode;
+    private String description;
+    private boolean isDone;
+    private int priority;
+    private DateTime deadline;
+    private TaskFileManager files;
+    private String moduleCode;
 
     public Task() {
     }
@@ -27,7 +28,7 @@ public class Task extends Directory{
     public Task(Module module, String description, String moduleCode) {
         super(module);
         this.description = description;
-        this.files = new ArrayList<>();
+        this.files = new TaskFileManager();
         this.deadline = null;
         this.priority = -1;
         this.isDone = false;
@@ -35,19 +36,24 @@ public class Task extends Directory{
     }
 
     /**
-     * constructor for the simplest task.
+     * Constructs the task.
      *
-     * @param description the description of the task
-     * @param dateTime the deadline of the task
-     * @param priority the priority of the task
+     * @param module
+     *  The parent module of the task
+     * @param description
+     *  The description of the task
+     * @param deadline
+     *  The deadline of the task
+     * @param priority
+     *  The priority of the task
      */
-    public Task(Module module, String description, DateTime dateTime, int priority) {
+    public Task(Module module, String description, DateTime deadline, int priority) {
         super(module);
         this.description = description;
-        this.files = new ArrayList<>();
-        this.deadline = dateTime;
-        this.priority = priority;
         this.isDone = false;
+        this.deadline = deadline;
+        this.priority = priority;
+        this.files = new TaskFileManager();
     }
 
     public Task(Module module) {
@@ -64,10 +70,6 @@ public class Task extends Directory{
 
     public void setPriority(int priority) {
         this.priority = priority;
-    }
-
-    public void setFiles(ArrayList<String> files) {
-        this.files = files;
     }
 
     public void setModuleCode(String moduleCode) {
@@ -137,25 +139,43 @@ public class Task extends Directory{
      *
      * @return an ArrayList of String representing the files which the task is associated with
      */
-    public ArrayList<String> getFiles() {
+    public TaskFileManager getFiles() {
         return files;
     }
 
     /**
-     * override the toString method for printing the task as a string.
-     *
-     * @return a string of the tasks information
+     * Adds a file into the File List of this task.
+     * @param fileName
+     *  The file name of the file to be added
+     * @param filePath
+     *  The path to the file to be added
      */
-    public String toString() {
-        StringBuilder printOut = new StringBuilder(getStatusIcon() + " " + getDescription() + " by " + getDeadline());
-        for (String file : files) {
-            printOut.append(" ").append(file);
-        }
-        return printOut.toString();
+    public void addFile(String fileName, String filePath) {
+        files.add(new TaskFile(fileName, filePath));
     }
 
-    public void addFile(String filePath) {
-        files.add(filePath);
+    /**
+     * Checks if one task has the same description as another.
+     *
+     * @param task
+     *  The task to check
+     * @return
+     *  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
+     */
+    public boolean isSameTask(Task task) {
+        return this.description.equals(task.description);
     }
+
+    /**
+     * Prints the task as a string.
+     *
+     * @return
+     *  The string that contains all the task information
+     */
+    @Override
+    public String toString() {
+        return String.format("%s %s by %s\n Files:\n%s", getStatusIcon(), getDescription(), getDeadline(), files);
+    }
+
 
 }

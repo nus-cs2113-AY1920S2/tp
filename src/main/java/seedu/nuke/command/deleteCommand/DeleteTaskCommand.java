@@ -22,7 +22,7 @@ public class DeleteTaskCommand extends TaskCommand {
     @Override
     public CommandResult execute() {
         Module currentModule = (Module) Command.getCurrentDirectory();
-        currentModule.getTaskManager().removeTask(taskToDelete);
+        currentModule.getTaskManager().delete(taskToDelete);
         //add the task to the data manager
         moduleManager.removeTask(currentModule.getTaskManager(), taskToDelete);
         return new CommandResult(MESSAGE_TASK_REMOVED);

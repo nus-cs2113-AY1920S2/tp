@@ -1,29 +1,32 @@
 package seedu.nuke.directory;
 
 public abstract class Directory {
-    private Directory father;
-    private Directory son;
+    private Directory parent;
 
+    /**
+     * Constructs the Directory without a parent
+     */
     public Directory() {
+        this.parent = null;
     }
 
-    public Directory(Directory father) {
-        this.father = father;
+    /**
+     * Constructs the Directory that has a parent
+     *
+     * @param parent
+     *  The parent of the class in the Directory
+     */
+    public Directory(Directory parent) {
+        this.parent = parent;
     }
 
-    public Directory getFather() {
-        return father;
-    }
-
-    public void setFather(Directory father) {
-        this.father = father;
-    }
-
-    public Directory getSon() {
-        return son;
-    }
-
-    public void setSon(Directory son) {
-        this.son = son;
+    /**
+     * Returns the parent of the class in the Directory
+     *
+     * @return
+     *  The parent of the class in the Directory
+     */
+    public Directory getParent() {
+        return parent;
     }
 }

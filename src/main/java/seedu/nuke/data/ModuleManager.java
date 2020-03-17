@@ -45,7 +45,7 @@ public class ModuleManager implements Iterable<Module> {
         this.moduleList = moduleList;
         for (Module module: moduleList) {
             moduleCodes.add(module.getModuleCode());
-            for (Task task: module.getTaskManager().getAllTasks()) {
+            for (Task task: module.getTaskManager().getTaskList()) {
                 allTasks.add(task);
             }
         }
@@ -187,13 +187,13 @@ public class ModuleManager implements Iterable<Module> {
         return moduleList.size();
     }
 
-    public void addTaskToModule(TaskManager taskManager, Task taskToAdd) {
-        taskManager.addTask(taskToAdd);
+    public void addTaskToModule(TaskManager taskManager, Task taskToAdd) throws TaskManager.DuplicateTaskException {
+        taskManager.add(taskToAdd);
         allTasks.add(taskToAdd);
     }
 
     public void removeTask(TaskManager taskManager, Task taskToDelete) {
-        taskManager.removeTask(taskToDelete);
+        taskManager.delete(taskToDelete);
         allTasks.remove(taskToDelete);
     }
 

@@ -76,7 +76,7 @@ public class Module extends Directory{
      */
     public ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
-        ArrayList<Task> tasks = taskManager.getAllTasks();
+        ArrayList<Task> tasks = taskManager.getTaskList();
         Collections.sort(tasks, new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
