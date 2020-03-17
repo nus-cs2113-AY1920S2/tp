@@ -75,6 +75,13 @@ public class Parser {
                     logger.makeInfoLog("Abort command failed as no activity was ongoing");
                 }
                 break;
+            case "delete":
+                try {
+                    parseDelete(activityList);
+                } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                    ui.printDivider("Invalid index number.");
+                }
+                break;
             default:
                 parseDefault();
                 break;
@@ -122,13 +129,13 @@ public class Parser {
                 if (activityName.equals("")) {
                     throw new EmptyNameException();
                 }
-                line = "Started " + activityName;
+                line = "Started: " + activityName;
             } else {
                 activityName = tokenizedInputs[1].substring(0, delimiter);
                 if (activityName.equals("")) {
                     throw new EmptyNameException();
                 }
-                line = "Started " + activityName;
+                line = "Started: " + activityName;
                 tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
             }
             startTime = LocalDateTime.now();
@@ -142,7 +149,7 @@ public class Parser {
         if (startTime == null) {
             throw new NoSuchActivityException();
         } else {
-            String line = "Ended " + activityName;
+            String line = "Ended: " + activityName;
             ui.printDivider(line);
             endTime = LocalDateTime.now();
             Activity newActivity = new Activity(activityName, startTime, endTime, tags);
@@ -152,5 +159,13 @@ public class Parser {
             tags = null;
         }
         logger.makeFineLog("Ended: " + activityName);
+    }
+
+    /** Deletes an activity from the activity list. */
+    public void parseDelete(ActivityList activityList) {
+        int index = Integer.parseInt(tokenizedInputs[1]) - 1;
+        String line = "You have deleted " + activityList.get(index).getName();
+        ui.printDivider(line);
+        activityList.delete(index);
     }
 }

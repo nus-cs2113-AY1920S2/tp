@@ -65,32 +65,4 @@ public class Ui {
         }
         System.out.println(DIVIDER);
     }
-
-
-    /*
-    public void printList(ActivityList activityList) {
-        System.out.println(DIVIDER);
-        System.out.println("Your completed activities:");
-        for (int i = 0; i < activityList.getSize(); i++) {
-            long durationInNanos = (activityList.get(i).getDuration()).toNanos();
-            String duration = String.format("%02d:%02d:%02d",
-                    TimeUnit.NANOSECONDS.toHours(durationInNanos),
-                    TimeUnit.NANOSECONDS.toMinutes(durationInNanos)
-                            - TimeUnit.HOURS.toMinutes(TimeUnit.NANOSECONDS.toHours(durationInNanos)),
-                    TimeUnit.NANOSECONDS.toSeconds(durationInNanos)
-                            - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(durationInNanos)));
-            System.out.print(i + 1 + ". " + activityList.get(i).getName() + " " + duration);
-            if (activityList.get(i).getTags() != null) {
-                if (!activityList.get(i).getTags()[0].equals("null")) {
-                    System.out.println(" " + Arrays.toString(activityList.get(i).getTags()));
-                } else {
-                    System.out.println();
-                }
-            } else {
-                System.out.print("\n");
-            }
-        }
-        System.out.println(DIVIDER);
-    }
-    */
 }

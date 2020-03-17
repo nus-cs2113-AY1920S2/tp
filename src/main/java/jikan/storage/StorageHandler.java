@@ -1,6 +1,9 @@
 package jikan.storage;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,14 +20,21 @@ public class StorageHandler {
      * Removes the line whose index matches lineNumber from file at dataFilePath.
      *
      * @param lineNumber Index of line to remove.
-     * @param dataFilePath Path to data file.
+     * @param storage Storage object which contains path to save file.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void removeLine(int lineNumber, String dataFilePath) throws IOException {
+    public static void removeLine(int lineNumber, Storage storage) throws IOException {
         // Read file into list of strings, where each string is a line in the file
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(dataFilePath), StandardCharsets.UTF_8));
-        int removedIndex = 0;
+        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(storage.dataFilePath),
+                StandardCharsets.UTF_8));
 
+        //int removedIndex = 0;
+
+        fileContent.remove(lineNumber);
+
+        saveNewList(fileContent, storage.dataFile);
+
+        /*
         // Remove line from fileContent list
         removedIndex = removeLineFromList(lineNumber, fileContent, removedIndex);
 
@@ -33,6 +43,26 @@ public class StorageHandler {
 
         // Update indexes of subsequent lines
         updateIndexes(fileContent, removedIndex, dataFilePath);
+
+         */
+    }
+
+    /**
+     * Saves a the updated activity list to the csv file.
+     *
+     * @param newList The list containing the updated data.
+     * @param dataFile The file to save to.
+     * @throws IOException If an error occurs while writing the new list to file.
+     */
+    public static void saveNewList(List<String> newList, File dataFile) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(dataFile);
+        PrintWriter printWriter = new PrintWriter(fileOutputStream);
+
+        for (String s : newList) {
+            printWriter.println(s);
+        }
+        printWriter.close();
+        fileOutputStream.close();
     }
 
     /**

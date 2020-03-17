@@ -1,6 +1,7 @@
 package jikan.activity;
 
 import jikan.storage.Storage;
+import jikan.storage.StorageHandler;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -69,6 +70,19 @@ public class ActivityList {
         }
     }
 
+    public void delete(int index) {
+        activities.remove(index);
+        deleteUpdateFile(index);
+    }
+
+    private void deleteUpdateFile(int index) {
+        try {
+            StorageHandler.removeLine(index, storage);
+        } catch (IOException e) {
+            System.out.println("Error while deleting task from data file.");
+        }
+    }
+
     public int getSize() {
         return activities.size();
     }
@@ -99,7 +113,7 @@ public class ActivityList {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
-            String[] tags;
+            String[] tags = new String[strings.size() - 3];
 
             // if there are tags
             if (!strings.get(3).equals("null")) {
@@ -108,7 +122,6 @@ public class ActivityList {
             } else {
                 tags = null;
             }
-
             // strings[0] = name, strings[1] = startDate, string[2] = endDate
             Activity e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),
                     LocalDateTime.parse(strings.get(2)), tags);
