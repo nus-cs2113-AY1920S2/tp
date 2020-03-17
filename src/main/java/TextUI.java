@@ -29,11 +29,13 @@ public class TextUI {
     public static void menuMsg() {
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
-        out.println("1) Schedule a new meeting.");
-        out.println("2) Edit a scheduled meeting."); //previous was delete
-        out.println("3) Delete a scheduled meeting.");
-        out.println("4) List all scheduled meetings.");
-        out.println("5) Exit application.");
+        out.println("Add a new contact.");
+        out.println("Contacts."); //previous was delete
+        out.println("Schedule a new meeting.");
+        out.println("Edit a scheduled meeting."); //previous was delete
+        out.println("Delete a scheduled meeting.");
+        out.println("List all scheduled meetings.");
+        out.println("Exit application.");
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
     }
@@ -48,7 +50,6 @@ public class TextUI {
 
 
     public static void printTimetable(Boolean[][] mySchedule) {
-        out.println("Here are your common free slots:\n");
         out.println("      SUN MON TUE WED THU FRI SAT");
 
         for (int i = 0; i < 24; ++i) {
@@ -74,12 +75,12 @@ public class TextUI {
         out.println("You have selected new scheduled meeting");
     }
 
-    public static void meetingNameMsg() {
-        out.println("What do you want to name your meeting?");
-    }
+//    public static void meetingNameMsg() {
+//        out.println("What do you want to name your meeting?");
+//    }
 
     public static void meetingDetailsMsg() {
-        out.println("Enter meeting details: <Start Day> <Start Time> <End Day> <End Time>.\nType \"exit\" to exit setting a meeting");
+        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>.");
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
@@ -172,6 +173,17 @@ public class TextUI {
 
     public static void showLoadingError() {
         System.out.println("There are no previous records of meetings, let's create a new one!");
+    }
+
+    public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList) {
+        System.out.println("____________________________________________________________\n"
+                + "Here are your contacts:");
+        int i = 0;
+        for (TeamMember t : teamMemberList) {
+            System.out.println("\t " + (i + 1) + " " + t.getName());
+            i++;
+        }
+        System.out.println("____________________________________________________________\n");
     }
 }
 
