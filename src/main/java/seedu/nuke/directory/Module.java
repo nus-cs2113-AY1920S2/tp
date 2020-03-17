@@ -1,13 +1,12 @@
-package seedu.nuke.module;
+package seedu.nuke.directory;
 
 import seedu.nuke.data.TaskManager;
-import seedu.nuke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Module {
+public class Module extends Directory{
     private String moduleCode;
     private String title;
     private String description;
@@ -16,13 +15,19 @@ public class Module {
     public Module() {
     }
 
+    public Module(Root root) {
+        super(root);
+    }
+
     /**
      * initialize a module with module code, title, and description.
+     * @param root the root
      * @param moduleCode the module code of the module
      * @param title the title of the module
      * @param description the description of the module
      */
-    public Module(String moduleCode, String title, String description) {
+    public Module(Root root, String moduleCode, String title, String description) {
+        super(root);
         this.moduleCode = moduleCode.toUpperCase();
         this.title = title;
         this.description = description;

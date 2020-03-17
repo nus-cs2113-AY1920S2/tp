@@ -11,6 +11,7 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShot;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.StorageManager;
+import seedu.nuke.directory.Root;
 import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
@@ -20,12 +21,10 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class Nuke {
-    private ScreenShotManager screenShotManager;
+    private Root root;
     private CommandResult commandResult;
     private ModuleManager moduleManager;
-    //private DataManager dataManager;
     private HashMap<String, String> modulesMap;
-    private ScreenShot currentScreenShot;
     private Ui ui;
     private StorageManager storageManager;
 
@@ -35,15 +34,12 @@ public class Nuke {
      * @throws FileNotFoundException if file cannot be found when loading jason file
      */
     public Nuke() throws FileNotFoundException {
+        root = new Root();
         ui = new Ui();
         modulesMap = ModuleLoader.load("moduleList.json");
         storageManager = new StorageManager("data.json");
-        moduleManager = new ModuleManager(modulesMap);
+        moduleManager = new ModuleManager(root, modulesMap);
         moduleManager.setModuleList(storageManager.load());
-        //dataManager = new DataManager(moduleManager);
-        screenShotManager = new ScreenShotManager();
-        //currentScreenShot = new ScreenShot(moduleManager, dataManager);
-        //screenShotManager.getScreenShotList().add(currentScreenShot);
     }
 
     /**

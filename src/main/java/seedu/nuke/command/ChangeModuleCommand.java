@@ -1,6 +1,6 @@
 package seedu.nuke.command;
 
-import seedu.nuke.module.Module;
+import seedu.nuke.directory.Module;
 
 import static seedu.nuke.util.Message.MESSAGE_MODULE_CHANGE_SUCCESSFUL;
 

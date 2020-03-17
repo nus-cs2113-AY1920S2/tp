@@ -1,7 +1,5 @@
 package seedu.nuke.command;
 
-import seedu.nuke.task.Task;
-
 import static seedu.nuke.util.Message.MESSAGE_EXIT;
 
 public class ExitCommand extends TaskCommand {

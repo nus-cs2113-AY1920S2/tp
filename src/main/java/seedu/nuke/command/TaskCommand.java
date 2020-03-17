@@ -1,7 +1,7 @@
 package seedu.nuke.command;
 
 import seedu.nuke.data.TaskManager;
-import seedu.nuke.task.Task;
+import seedu.nuke.directory.Task;
 
 /**
  * task level command inherits ModuleCommand class.

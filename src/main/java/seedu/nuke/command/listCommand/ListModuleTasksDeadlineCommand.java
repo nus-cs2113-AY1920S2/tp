@@ -1,9 +1,7 @@
 package seedu.nuke.command.listCommand;
 
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.exception.ModuleNotFoundException;
-import seedu.nuke.module.Module;
 
 import java.util.ArrayList;
 

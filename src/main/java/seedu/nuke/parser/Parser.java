@@ -17,7 +17,7 @@ import seedu.nuke.command.listCommand.ListModuleCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.format.DateTimeFormat;
-import seedu.nuke.task.Task;
+import seedu.nuke.directory.Task;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -107,7 +107,8 @@ public class Parser {
         Task taskToEdit;
         DateTime deadline;
         String [] temp = parameters.split("-d");
-        taskToEdit = new Task(temp[0].trim(), Command.getCurrentModule().getModuleCode());
+        String moduleCode = Command.getCurrentModule().getModuleCode();
+        taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
         try {
             deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
             return new EditDeadlineCommand(taskToEdit, deadline);
@@ -133,7 +134,8 @@ public class Parser {
         //todo
         //add a very simple task (for testing)
         if (Command.getCurrentModule() != null) {
-            return new AddTaskCommand(new Task(parameters, Command.getCurrentModule().getModuleCode()));
+            String moduleCode = Command.getCurrentModule().getModuleCode();
+            return new AddTaskCommand(new Task(ModuleManager.getModuleWithCode(moduleCode), parameters, moduleCode));
         } else {
             return new IncorrectCommand(MESSAGE_GO_INTO_MODULE);
         }

@@ -1,4 +1,4 @@
-package seedu.nuke.task;
+package seedu.nuke.directory;
 
 import seedu.nuke.format.DateTime;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
 
-public class Task {
+public class Task extends Directory{
     protected String description;
     protected boolean isDone;
     protected int priority;
@@ -15,6 +15,8 @@ public class Task {
     protected ArrayList<String> files;
     protected String moduleCode;
 
+    public Task() {
+    }
 
     /**
      * constructor for the simplest task.
@@ -22,7 +24,8 @@ public class Task {
      * @param description the description of the task
      * @param moduleCode the module code of the module which the task belongs to
      */
-    public Task(String description, String moduleCode) {
+    public Task(Module module, String description, String moduleCode) {
+        super(module);
         this.description = description;
         this.files = new ArrayList<>();
         this.deadline = null;
@@ -38,7 +41,8 @@ public class Task {
      * @param dateTime the deadline of the task
      * @param priority the priority of the task
      */
-    public Task(String description, DateTime dateTime, int priority) {
+    public Task(Module module, String description, DateTime dateTime, int priority) {
+        super(module);
         this.description = description;
         this.files = new ArrayList<>();
         this.deadline = dateTime;
@@ -46,8 +50,8 @@ public class Task {
         this.isDone = false;
     }
 
-    public Task() {
-
+    public Task(Module module) {
+        super(module);
     }
 
     public void setDescription(String description) {

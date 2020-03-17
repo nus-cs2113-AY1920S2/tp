@@ -1,9 +1,7 @@
 package seedu.nuke.command;
 
-import seedu.nuke.data.DataManager;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.ScreenShotManager;
-import seedu.nuke.module.Module;
+import seedu.nuke.directory.Module;
 
 public abstract class Command {
     public static String COMMAND_WORD;

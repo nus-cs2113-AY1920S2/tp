@@ -1,6 +1,6 @@
 package seedu.nuke.data;
 
-import seedu.nuke.task.Task;
+import seedu.nuke.directory.Task;
 import java.util.ArrayList;
 
 /**

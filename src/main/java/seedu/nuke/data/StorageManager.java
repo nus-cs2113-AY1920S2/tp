@@ -4,13 +4,12 @@ import com.alibaba.fastjson.JSON;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import seedu.nuke.module.Module;
+import seedu.nuke.directory.Module;
 
 public class StorageManager {
     private String dataFileName;

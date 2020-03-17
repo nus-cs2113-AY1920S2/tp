@@ -1,8 +1,7 @@
 package seedu.nuke.command.listCommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.listCommand.ListCommand;
-import seedu.nuke.module.Module;
+import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;

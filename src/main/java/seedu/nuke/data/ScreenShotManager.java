@@ -1,11 +1,9 @@
 package seedu.nuke.data;
 
 import com.alibaba.fastjson.JSON;
-import seedu.nuke.module.Module;
+import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class ScreenShotManager {
     private static ArrayList<ScreenShot> screenShotList = new ArrayList<>();
