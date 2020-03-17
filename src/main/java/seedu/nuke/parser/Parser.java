@@ -87,7 +87,7 @@ public class Parser {
             return new CheckAllTasksDeadlineCommand();
 
         case CheckModuleTasksDeadlineCommand.COMMAND_WORD:
-            return new CheckModuleTasksDeadlineCommand();
+            return prepareCheckModuleTasksDeadlineCommand();
 
         case AddTaskCommand.COMMAND_WORD:
             return prepareAddTaskCommand(parameters);
@@ -100,6 +100,14 @@ public class Parser {
 
         default:
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+    }
+
+    private Command prepareCheckModuleTasksDeadlineCommand() {
+        if (Command.getCurrentModule() != null) {
+            return new CheckModuleTasksDeadlineCommand();
+        } else {
+            return new IncorrectCommand(MESSAGE_GOINTOMODULE);
         }
     }
 
