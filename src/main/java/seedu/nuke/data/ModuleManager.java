@@ -1,11 +1,15 @@
+
 package seedu.nuke.data;
 
 import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.module.Module;
+import seedu.nuke.task.Task;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -15,24 +19,28 @@ import java.util.Iterator;
  * deals with operations that are related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private static ArrayList<Module> modules;
-    private static ArrayList<String> moduleCodes;
-    private static HashMap<String, String> modulesMap;
+    private ArrayList<Module> moduleList;
+    private ArrayList<String> moduleCodes;
+    private ArrayList<Task> allTasks;
+    private HashMap<String, String> modulesMap;
 
     public ModuleManager(HashMap<String, String> modulesMap) {
         this.modulesMap = modulesMap;
     }
 
-
     /**
      * This mothod is to restore the list of modules when loading from the json data file.
-     * @param modules an ArrayList of Module objects parsed from the json string in the data file
+     * @param moduleList an ArrayList of Module objects parsed from the json string in the data file
      */
-    public static void setModules(ArrayList<Module> modules) {
-        moduleCodes = new ArrayList<>();
-        modules = modules;
-        for (Module module: modules) {
+    public void setModuleList(ArrayList<Module> moduleList) {
+        this.moduleCodes = new ArrayList<>();
+        this.allTasks = new ArrayList<>();
+        this.moduleList = moduleList;
+        for (Module module: moduleList) {
             moduleCodes.add(module.getModuleCode());
+            for (Task task: module.getTaskManager().getAllTasks()) {
+                allTasks.add(task);
+            }
         }
     }
 
@@ -40,10 +48,20 @@ public class ModuleManager implements Iterable<Module> {
      * method to return all the modules.
      * @return all modules
      */
-    public static ArrayList<Module> getModuleList() {
-        return modules;
+    public ArrayList<Module> getModuleList() {
+        return moduleList;
     }
-    //public Module getAModule(String moduleCode) {
+
+    public ArrayList<Task> getAllTasks() {
+        return allTasks;
+    }
+
+    /**
+     * return total number of tasks in all modules.
+     */
+    public int countAllTasks() {
+        return allTasks.size();
+    }
 
     //}
 
@@ -52,8 +70,8 @@ public class ModuleManager implements Iterable<Module> {
      * @param moduleCode the module code to check if provided by NUS currently
      * @return true if NUS is providing the module currently
      */
-    public static boolean contains(String moduleCode) {
-        for (Module p : modules) {
+    public boolean contains(String moduleCode) {
+        for (Module p : moduleList) {
             if (p.getModuleCode().equals(moduleCode)) {
                 return true;
             }
@@ -66,7 +84,7 @@ public class ModuleManager implements Iterable<Module> {
      *
      * @param moduleCode the module code of the module to add
      */
-    public static void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
+    public void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
         if (moduleCodes.contains(moduleCode)) {
             throw new DuplicateModuleException();
@@ -74,20 +92,49 @@ public class ModuleManager implements Iterable<Module> {
             throw new ModuleNotProvidedException();
         } else {
             Module toAdd = new Module(moduleCode, modulesMap.get(moduleCode), null);
-            modules.add(toAdd);
+            moduleList.add(toAdd);
             moduleCodes.add(moduleCode);
         }
     }
 
     /**
+     * return an orders lists of all tasks of all modules.
+     * @return an ArrayList of String which represents the ordered list
+     */
+    public ArrayList<String> checkDeadline() {
+        ArrayList<String> deadlines = new ArrayList<>();
+        sortAllTasks();
+
+        for (Task task: allTasks) {
+            deadlines.add(String.format("%-30s", task.getDescription()) + " "
+                    + String.format("%-8s", task.getModuleCode()) + "   deadline: " + task.getDeadline());
+        }
+        return deadlines;
+    }
+
+    /**
+     * sort all tasks of all modules in ascending order of deadlines.
+     */
+    public void sortAllTasks() {
+        Collections.sort(allTasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2) {
+                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toString();
+                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toString();
+                return t1Deadline.compareToIgnoreCase(t2Deadline);
+            }
+        });
+    }
+
+    /**
      * Clears all tasks in list.
      */
-    public static void clear() {
-        modules.clear();
+    public void clear() {
+        moduleList.clear();
     }
 
     public Module getLastAddedModule() {
-        return modules.get(modules.size() - 1);
+        return moduleList.get(moduleList.size() - 1);
     }
 
     /**
@@ -96,7 +143,7 @@ public class ModuleManager implements Iterable<Module> {
      * @throws ModuleNotFoundException if the to-remove module does not exist
      */
     public void delete(Module toDelete) throws ModuleNotFoundException {
-        boolean isModuleFoundAndDeleted = modules.remove(toDelete);
+        boolean isModuleFoundAndDeleted = moduleList.remove(toDelete);
         if (!isModuleFoundAndDeleted) {
             throw new ModuleNotFoundException("");
         }
@@ -111,9 +158,9 @@ public class ModuleManager implements Iterable<Module> {
      * @see Module
      */
     public Module delete(String moduleCode) throws ModuleNotFoundException {
-        for (Module module : modules) {
+        for (Module module : moduleList) {
             if (module.getModuleCode().toUpperCase().equals(moduleCode)) {
-                modules.remove(module);
+                moduleList.remove(module);
                 return module;
             }
         }
@@ -122,7 +169,7 @@ public class ModuleManager implements Iterable<Module> {
 
     @Override
     public Iterator<Module> iterator() {
-        return modules.iterator();
+        return moduleList.iterator();
     }
 
     /**
@@ -130,7 +177,20 @@ public class ModuleManager implements Iterable<Module> {
      * @return the next-to-add task index
      */
     public int getNextTaskIndex() {
-        return modules.size();
+        return moduleList.size();
+    }
+
+    public void addTaskToModule(TaskManager taskManager, Task taskToAdd) {
+        taskManager.addTask(taskToAdd);
+        allTasks.add(taskToAdd);
+    }
+
+    public void removeTask(TaskManager taskManager, Task taskToDelete) {
+        taskManager.removeTask(taskToDelete);
+        allTasks.remove(taskToDelete);
+    }
+
+    public class DuplicateModuleException extends DuplicateDataException {
     }
 
     /**
@@ -139,15 +199,13 @@ public class ModuleManager implements Iterable<Module> {
      * @return a module object that has the moduleCode
      */
     public Module getModuleWithCode(String moduleCode) {
-        for (Module module: modules
+        for (Module module: moduleList
              ) {
             if (module.getModuleCode().equals(moduleCode)) {
+                assert module.getModuleCode().equals(moduleCode);
                 return module;
             }
         }
         return null;
-    }
-
-    public static class DuplicateModuleException extends DuplicateDataException {
     }
 }

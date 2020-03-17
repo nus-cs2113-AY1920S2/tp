@@ -1,3 +1,4 @@
+
 package seedu.nuke;
 
 import seedu.nuke.command.Command;
@@ -7,6 +8,7 @@ import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.DataManager;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.ScreenShot;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.StorageManager;
 import seedu.nuke.parser.Parser;
@@ -18,25 +20,30 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class Nuke {
+    public ScreenShotManager screenShotManager; //?public
     private CommandResult commandResult;
     private ModuleManager moduleManager;
-    private DataManager dataManager;
+    //private DataManager dataManager;
     private HashMap<String, String> modulesMap;
-    private ScreenShotManager screenShotManager = new ScreenShotManager();
+    private ScreenShot currentScreenShot;
     private Ui ui;
     private StorageManager storageManager;
 
     /**
      * constructor of nuke.
+     *
      * @throws FileNotFoundException if file cannot be found when loading jason file
      */
     public Nuke() throws FileNotFoundException {
         ui = new Ui();
-        modulesMap  = ModuleLoader.load("moduleList.json");
+        modulesMap = ModuleLoader.load("moduleList.json");
         storageManager = new StorageManager("data.json");
         moduleManager = new ModuleManager(modulesMap);
-        moduleManager.setModules(storageManager.load());
-        dataManager = new DataManager(moduleManager);
+        moduleManager.setModuleList(storageManager.load());
+        //dataManager = new DataManager(moduleManager);
+        screenShotManager = new ScreenShotManager();
+        //currentScreenShot = new ScreenShot(moduleManager, dataManager);
+        //screenShotManager.getScreenShotList().add(currentScreenShot);
     }
 
     /**
@@ -91,32 +98,26 @@ public class Nuke {
 
     /**
      * initialize the taskManager system, execute command and save the list to the file.
+     *
      * @param command the parsed Command object
      * @return commandResult that contains the execute output information
      */
     private CommandResult executeCommand(Command command) {
-
-//        ScreenShot toAdd = ScreenShotManager.takeNewScreenShot(moduleManager);
-//        /** save screen shot */
-//        ScreenShotManager.saveNewScreenShot(toAdd);
-//        /** get moduleListInJsonStr*/
-//        String moduleListInJsonStr = ScreenShotManager.getCurrentScreenShot().getModuleListInJsonStr();
-//        /** load module list from moduleListInJsonStr */
-//        moduleManager.setModules(ScreenShotManager.readFromScreenShot(moduleListInJsonStr));
-//        dataManager = new DataManager(moduleManager);
-        /** set command attribute*/
+        //load from current screen shot
+        //readScreenShot();
+        // supplies the data the command will operate on.
+        // if there is no file to load or the file is empty, setData will initialize a new taskManager system
+        //update the module manager as well as the data manager
         setCommandData(command);
-        /** if necessary command */
-//        if (command instanceof AddModuleCommand | command instanceof AddTaskCommand |
-//                command instanceof EditDeadlineCommand | command instanceof DeleteModuleCommand |
-//                command instanceof DeleteTaskCommand){
-//            /** take new screen shot of current module manager */
-//            toAdd = ScreenShotManager.takeNewScreenShot(moduleManager);
-//            /** save screen shot */
-//            ScreenShotManager.saveNewScreenShot(toAdd);
-//        }
+        //take the screen shot
+        //takeScreenShot();
+        //add screen shot
+        //addScreenShotToScreenShotList();
+        // Execute according to the command itself
         execute(command);
-
+        // save the taskManager to a file
+        //moduleManager.getStorager().save(taskManager);
+        //StorageFile.saveJson(taskManager);
         return commandResult;
     }
 
@@ -124,11 +125,7 @@ public class Nuke {
         commandResult = command.execute();
     }
 
-    /**
-     * set command attributes from module manager and data manager
-     * @param command
-     */
     private void setCommandData(Command command) {
-        command.setData(moduleManager, dataManager, screenShotManager);
+        command.setData(moduleManager);
     }
 }

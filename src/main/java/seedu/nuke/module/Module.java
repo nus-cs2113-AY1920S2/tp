@@ -1,5 +1,6 @@
 package seedu.nuke.module;
 
+import seedu.nuke.data.Directory;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.task.Task;
 
@@ -13,9 +14,6 @@ public class Module {
     private String description;
     private TaskManager taskManager;
 
-    public Module() {
-
-    }
 
     /**
      * initialize a module with module code, title, and description.
@@ -91,4 +89,5 @@ public class Module {
     public boolean isSameModule(Module module) {
         return this.moduleCode.equals(module.moduleCode.toUpperCase());
     }
+
 }

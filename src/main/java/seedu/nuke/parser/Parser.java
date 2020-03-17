@@ -14,7 +14,6 @@ import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.ListModuleCommand;
-import seedu.nuke.command.UndoCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.format.DateTime;
@@ -70,9 +69,6 @@ public class Parser {
         case EditDeadlineCommand.COMMAND_WORD:
             return prepareEditDeadlineCommand(parameters);
 
-        case UndoCommand.COMMAND_WORD:
-            return prepareUndoCommand();
-
         case ChangeModuleCommand.COMMAND_WORD:
             return prepareChangeModuleCommand(parameters, moduleManager);
 
@@ -106,11 +102,6 @@ public class Parser {
         default:
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
-    }
-
-    private Command prepareUndoCommand() {
-        ScreenShotManager.movePointerBackWard();
-        return new UndoCommand();
     }
 
     private Command prepareEditDeadlineCommand(String parameters) {

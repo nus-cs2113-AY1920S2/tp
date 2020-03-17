@@ -12,7 +12,6 @@ import seedu.nuke.command.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.ListModuleCommand;
-import seedu.nuke.command.UndoCommand;
 import seedu.nuke.module.Module;
 import seedu.nuke.data.ModuleManager;
 
@@ -43,7 +42,7 @@ public class Ui {
         commands.add(DeleteTaskCommand.MESSAGE_USAGE);
         commands.add(EditDeadlineCommand.MESSAGE_DONE);
         commands.add(ListModuleCommand.MESSAGE_USAGE);
-        commands.add(UndoCommand.MESSAGE_USAGE);
+        //commands.add(UndoCommand.MESSAGE_USAGE);
         commands.add(HelpCommand.MESSAGE_USAGE);
         commands.add(ExitCommand.MESSAGE_USAGE);
     }
