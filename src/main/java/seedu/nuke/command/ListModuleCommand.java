@@ -23,7 +23,8 @@ public class ListModuleCommand extends Command {
     public CommandResult execute() {
         ArrayList<String> modules = new ArrayList<>();
         for (Module module: moduleManager.getModuleList()) {
-            modules.add(module.getModuleCode() + " " + module.getTitle() + " " + module.getDescription());
+            // modules.add(module.getModuleCode() + " " + module.getTitle() + " " + module.getDescription());
+            modules.add(module.getModuleCode() + " " + module.getTitle());
         }
         return new CommandResult(MESSAGE_SHOW_MODULES, true, modules);
     }

@@ -27,7 +27,7 @@ public class AddModuleCommand extends Command {
     private String moduleCode;
 
     public AddModuleCommand(String moduleCode) {
-        this.moduleCode = moduleCode;
+        this.moduleCode = moduleCode.toUpperCase();
     }
 
     /**

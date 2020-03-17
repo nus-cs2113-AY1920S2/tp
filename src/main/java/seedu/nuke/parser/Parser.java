@@ -23,23 +23,21 @@ import seedu.nuke.task.Task;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.Message.MESSAGE_GOINTOMODULE;
-import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nuke.util.Message.*;
 
 public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
     public static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)", Pattern.DOTALL);
-    public static final String COMMAND_PARAMETER_SPLITTER = "\\s+";
+            Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
+    public static final String WHITESPACES = "\\s+";
     public static final String PARAMETER_SPLITTER = " ";
     public static final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
     public static final int COMMAND_WORD_INDEX = 0;
     public static final int PARAMETER_WORD_INDEX = 1;
 
     public static final String MODULE_CODE_PREFIX = "-m";
-    public static final String CATEGORY_NAME_PREFIX = "-c";
     public static final String TASK_DESCRIPTION_PREFIX = "-t";
     public static final String PRIORITY_PREFIX = "-p";
     public static final String DEADLINE_PREFIX = "-d";
@@ -61,10 +59,10 @@ public class Parser {
     public Command parseCommand(String input, ModuleManager moduleManager) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
-        String commandWord = getCommandAndParameter(input)[COMMAND_WORD_INDEX];
-        String parameters = getCommandAndParameter(input)[PARAMETER_WORD_INDEX];
+        String commandWord = matcher.group("commandWord").toLowerCase();
+        String parameters = matcher.group("parameters").trim();
 
         switch (commandWord) {
 
@@ -84,7 +82,7 @@ public class Parser {
             return prepareDeleteModuleCommand(parameters);
 
         case ListModuleCommand.COMMAND_WORD:
-            return new ListModuleCommand();
+            return prepareListModuleCommand(parameters);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -105,7 +103,7 @@ public class Parser {
             return new ExitCommand();
 
         default:
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
     }
 
@@ -116,14 +114,11 @@ public class Parser {
         taskToEdit = new Task(temp[0].trim(), Command.getCurrentModule().getModuleCode());
         try {
             deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
-        } catch (DateTimeFormat.InvalidDateException e) {
-            return null;
-        } catch (DateTimeFormat.InvalidDateTimeException e) {
-            return null;
-        } catch (DateTimeFormat.InvalidTimeException e) {
-            return null;
+            return new EditDeadlineCommand(taskToEdit, deadline);
+        } catch (DateTimeFormat.InvalidDateException | DateTimeFormat.InvalidTimeException | DateTimeFormat.InvalidDateTimeException e) {
+            return new IncorrectCommand("Invalid datetime format!\n");
         }
-        return new EditDeadlineCommand(taskToEdit, deadline);
+
     }
 
     private Command prepareDeleteTaskCommand(String parameters) {
@@ -144,7 +139,7 @@ public class Parser {
         if (Command.getCurrentModule() != null) {
             return new AddTaskCommand(new Task(parameters, Command.getCurrentModule().getModuleCode()));
         } else {
-            return new IncorrectCommand(MESSAGE_GOINTOMODULE);
+            return new IncorrectCommand(MESSAGE_GO_INTO_MODULE);
         }
     }
 
@@ -155,7 +150,7 @@ public class Parser {
      * @return array of String contains command and parameter
      */
     private String[] getCommandAndParameter(String input) {
-        String[] separatedInput = input.split(COMMAND_PARAMETER_SPLITTER, COMMAND_PARAMETER_MAXIMUM_LIMIT);
+        String[] separatedInput = input.split(WHITESPACES, COMMAND_PARAMETER_MAXIMUM_LIMIT);
         String commandWord = separatedInput[COMMAND_WORD_INDEX].toLowerCase();
         String parameters = (separatedInput.length == COMMAND_PARAMETER_MAXIMUM_LIMIT)
                 ? separatedInput[PARAMETER_WORD_INDEX].trim() : "";
@@ -163,27 +158,66 @@ public class Parser {
     }
 
     private Command prepareAddModuleCommand(String parameters) {
-        String moduleCode = parameters;
-        if (parameters.isEmpty()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
+        final Pattern[] ADD_MODULE_FORMAT = AddModuleCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = ADD_MODULE_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[ADD_MODULE_FORMAT.length];
+
+        if (isMissingCompulsoryParameters(ADD_MODULE_FORMAT, matchers, parameters)) {
+            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
         }
-        if (hasMultipleParameters(parameters)) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         }
+
+        String moduleCode = matchers[0].group("identifier").trim();
+
         return new AddModuleCommand(moduleCode);
     }
 
     private Command prepareDeleteModuleCommand(String parameters) {
-        String moduleCode = parameters;
-        if (parameters.isEmpty()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteModuleCommand.MESSAGE_USAGE));
+        final Pattern[] DELETE_MODULE_FORMAT = DeleteModuleCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = DELETE_MODULE_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[DELETE_MODULE_FORMAT.length];
+
+        if (isMissingCompulsoryParameters(DELETE_MODULE_FORMAT, matchers, parameters)) {
+            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
         }
-        if (hasMultipleParameters(parameters)) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteModuleCommand.MESSAGE_USAGE));
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         }
+
+        String moduleCode = matchers[0].group("identifier").trim();
+        /* To add later after updating my code - iceclementi
+        String exactFlag = matchers[1].group("exact").trim();
+        boolean isExact = !exactFlag.isEmpty();
+        */
+
         return new DeleteModuleCommand(moduleCode);
+    }
+
+    private Command prepareListModuleCommand(String parameters) {
+        final Pattern[] LIST_MODULE_FORMAT = ListModuleCommand.REGEX_FORMATS;
+        final int INVALID_PARAMETER_FORMATS_INDEX = LIST_MODULE_FORMAT.length - 1;
+        Matcher[] matchers = new Matcher[LIST_MODULE_FORMAT.length];
+
+        if (isMissingCompulsoryParameters(LIST_MODULE_FORMAT, matchers, parameters)) {
+            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
+        }
+
+        if (matchers[INVALID_PARAMETER_FORMATS_INDEX].find()) {
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+
+        /* To add later after updating my code - iceclementi
+        String moduleKeyword = matchers[0].group("identifier").trim();
+        String allFlag = matchers[1].group("all").trim();
+        String exactFlag = matchers[2].group("exact").trim();
+        boolean isExact = !exactFlag.isEmpty();
+        */
+
+        return new ListModuleCommand();
     }
 
     /**
@@ -194,5 +228,21 @@ public class Parser {
      */
     private boolean hasMultipleParameters(String parameters) {
         return parameters.contains(PARAMETER_SPLITTER);
+    }
+
+    private boolean isMissingCompulsoryParameters(Pattern[] formats, Matcher[] matchers, String parameters) {
+        // Match patterns
+        for (int i = 0; i < formats.length; ++i) {
+            matchers[i] = formats[i].matcher(parameters);
+        }
+
+        // Check if matches with each pattern except last pattern which checks for invalid parameters
+        for (int i = 0; i < formats.length - 1; ++i) {
+            if (!matchers[i].find()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
