@@ -16,6 +16,7 @@ public class ViewStudentResult extends Command {
     /**
      * Constructor for ViewAssignmentResultCommand. Takes String userInput
      * and parse it to get the student result list to be showed.
+     *
      * @param userInput A String to be parsed.
      */
     public ViewStudentResult(String userInput) {
@@ -30,23 +31,22 @@ public class ViewStudentResult extends Command {
      * from the Performance list, and print the list in the format of
      * [module][assignment]result.
      */
-    public void printStudentPerformanceList() {
+    public void printStudentPerformanceList() throws DukeException {
         int size = performances.size();
         if (size == 0) {
-            System.out.println("empty");
-        } else {
-            int i = 1;
-            for (Performance performance : performances) {
-                if (performance.studentName.equals(name)) {
-                    System.out.println(i + performance.formatForStudentList());
-                    i++;
-                }
+            throw new DukeException("The list is empty.");
+        }
+        int i = 1;
+        for (Performance performance : performances) {
+            if (performance.studentName.equals(name)) {
+                System.out.println(i + performance.formatForStudentList());
+                i++;
             }
         }
     }
 
     @Override
-    public void execute() {
+    public void execute() throws DukeException {
         printStudentPerformanceList();
     }
 }

@@ -109,9 +109,9 @@ public class Event {
 
     @Override
     public String toString() {
-        if (getDatetime() == "yyyy-MM-dd HHmm" && getVenue() == "") {
+        if (getDatetime().equals("yyyy-MM-dd HHmm") && getVenue().equals("")) {
             return "Event: " + getName();
-        } else if (getVenue() == "") {
+        } else if (getVenue().equals("")) {
             return "Event: " + getName() + ", time: " + getDatetime();
         }
         return "Event: " + getName() + ", time: " + getDatetime() + ", venue: " + getVenue();

@@ -1,6 +1,7 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
+import seedu.exception.DukeException;
 import seedu.parser.PerformanceParser;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
@@ -13,8 +14,9 @@ public class AddPerformance extends Command {
      * Constructor for AddPerformanceCommand. Takes String userInput
      * and parse it to get the Performance to be added.
      * @param commandParameters A String to be parsed.
+     * @throws DukeException throws DukeException when there is insufficient parameter
      */
-    public AddPerformance(String commandParameters) {
+    public AddPerformance(String commandParameters) throws DukeException {
         this.commandParameters = commandParameters;
         performance = new PerformanceParser().parsePerformance(commandParameters);
     }

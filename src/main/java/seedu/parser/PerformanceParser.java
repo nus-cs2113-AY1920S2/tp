@@ -1,5 +1,6 @@
 package seedu.parser;
 
+import seedu.exception.DukeException;
 import seedu.performance.Performance;
 import seedu.ui.UI;
 
@@ -12,12 +13,7 @@ public class PerformanceParser {
     public PerformanceParser() {
     }
 
-    public static String[] performanceDataToParse(String userInput) {
-        String[] instructions = userInput.split(" ",20);
-        return Arrays.copyOfRange(instructions, 1, instructions.length);
-    }
-
-    public Performance parsePerformance(String commandParameters) {
+    public Performance parsePerformance(String commandParameters) throws DukeException {
         String[] dataToRead = commandParameters.split(" ", 5);
         String eventName = "";
         String studentName = "";
@@ -49,16 +45,21 @@ public class PerformanceParser {
                 }
             }
         }
+        if (eventName.equals("") || studentName.equals("") || assignment.equals("")) {
+            throw new DukeException("Insufficient variables");
+        }
         Performance performance = new Performance(eventName, studentName, assignment);
         setResult(performance, r);
         return performance;
     }
     
     private void setResult(Performance performance, int r) {
-        if (r == 1) {
+        if (r == 0) {
+        } else if (r == 1) {
             performance.setGrade(grade);
         } else if (r == 2) {
             performance.setMark(mark);
-        } 
-    } 
+        }
+        assert false;
+    }
 }

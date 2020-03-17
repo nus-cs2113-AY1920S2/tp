@@ -1,6 +1,7 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
+import seedu.exception.DukeException;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
@@ -28,24 +29,23 @@ public class ViewAssignmentResult extends Command {
      * from the Performance list, and print the list in the format of
      * [module][student]result.
      */
-    public void printAssignmentPerformanceList() {
+    public void printAssignmentPerformanceList() throws DukeException {
         int size = performances.size();
         if (size == 0) {
-            UI.display("The list is empty.");
-        } else {
-            int i = 1;
-            UI.printListHeader("Index", "Module", "Assignment", "Result");
-            for (Performance performance : performances) {
-                if (performance.assignment.equals(assignment)) {
-                    UI.printListBody(i, performance.eventName, performance.assignment, performance.getResult());
-                    i++;
-                }
+            throw new DukeException("The list is empty.");
+        }
+        int i = 1;
+        UI.printListHeader("Index", "Module", "Assignment", "Result");
+        for (Performance performance : performances) {
+            if (performance.assignment.equals(assignment)) {
+                UI.printListBody(i, performance.eventName, performance.assignment, performance.getResult());
+                i++;
             }
         }
     }
 
     @Override
-    public void execute() {
+    public void execute() throws DukeException {
         printAssignmentPerformanceList();
     }
 }
