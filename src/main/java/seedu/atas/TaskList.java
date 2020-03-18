@@ -104,6 +104,20 @@ public class TaskList {
     }
 
     /**
+     * Getter for all events tasks.
+     * @return ArrayList object containing all events
+     */
+    public ArrayList<Task> getEventsArray() {
+        ArrayList<Task> eventList = new ArrayList<>();
+        for (Task task: tasks) {
+            if (task instanceof Event) {
+                eventList.add(task);
+            }
+        }
+        return eventList;
+    }
+
+    /**
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index

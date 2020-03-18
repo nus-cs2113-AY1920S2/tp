@@ -38,6 +38,7 @@ public class Messages {
             + "list incomplete assignments";
     public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear all";
     public static final String CLEAR_DONE_FORMAT_HELP = "Clear all completed tasks: clear done";
+    public static final String SEARCH_FORMAT_HELP = "Search for tasks: search [TASK NAME]";
     public static final String EXIT_FORMAT_HELP = "Exit ATAS: exit";
     public static final String HELP_FORMAT_MESSAGE =
             "Following is the list of commands available:" + System.lineSeparator()
@@ -53,6 +54,7 @@ public class Messages {
             + "10. " + CLEAR_FORMAT_HELP + System.lineSeparator()
             + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
             + "12. " + DELETE_FORMAT_HELP + System.lineSeparator()
+            + "13. " + SEARCH_FORMAT_HELP + System.lineSeparator()
             + "13. " + EXIT_FORMAT_HELP;
 
 
@@ -65,7 +67,7 @@ public class Messages {
     public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";
     public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
     public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
-
+    public static final String SEARCH_SUCCESS_MESSAGE = "There are a total of %d result(s) found";
     // Others
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
@@ -99,4 +101,8 @@ public class Messages {
     public static final String DELETE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Delete Command"
             + System.lineSeparator() + DELETE_FORMAT_HELP;
     public static final String CLEAR_INCORRECT_FORMAT_ERROR = "Invalid argument for Clear Command";
+    public static final String EMPTY_SEARCH_RESULTS_ERROR = "There are no matching tasks for the search query";
+    public static final String INVALID_SEARCH_FORMAT = "Invalid Search args";
+    public static final String SEARCH_INSUFFICIENT_ARGS = "Insufficient argument for Search Command"
+            + System.lineSeparator() + SEARCH_FORMAT_HELP;
 }
