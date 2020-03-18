@@ -5,8 +5,8 @@ import common.Messages;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.atas.TaskList;
+import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
 
@@ -32,17 +32,21 @@ public class ClearCommandTest {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        String dateOne = "13/03/2020 18:00";
-        String dateTwo = "01/01/2020 00:00";
-        LocalDateTime testDateTimeOne = LocalDateTime.parse(dateOne, dateTimeFormatter);
-        LocalDateTime testDateTimeTwo = LocalDateTime.parse(dateTwo, dateTimeFormatter);
+        String date1 = "13/03/2020 18:00";
+        String date2 = "13/03/2020 20:30";
+        String date3 = "01/01/2020 00:00";
+        String date4 = "01/01/2020 02:59";
+        LocalDateTime testDateTime1 = LocalDateTime.parse(date1, dateTimeFormatter);
+        LocalDateTime testDateTime2 = LocalDateTime.parse(date2, dateTimeFormatter);
+        LocalDateTime testDateTime3 = LocalDateTime.parse(date3, dateTimeFormatter);
+        LocalDateTime testDateTime4 = LocalDateTime.parse(date4, dateTimeFormatter);
 
-        Assignment testCaseOne = new Assignment("Assignment 3", "CS2102", testDateTimeOne, " ");
-        Assignment testCaseTwo = new Assignment("OP1", "CS2101", testDateTimeTwo, "15%");
+        Assignment testCaseOne = new Assignment("Assignment 3", "CS2102", testDateTime1, " ");
+        Assignment testCaseTwo = new Assignment("OP1", "CS2101", testDateTime3, "15%");
         Assignment testCaseThree = new Assignment(null,null,null,null);
-        Event testCaseFour = new Event("midterms", "MPSH1A", testDateTimeOne, " ");
-        Event testCaseFive = new Event("Countdown", "TimeSquare", testDateTimeTwo, "new year new me");
-        Event testCaseSix = new Event(null,null,null,null);
+        Event testCaseFour = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, " ");
+        Event testCaseFive = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
+        Event testCaseSix = new Event(null,null,null, null,null);
         filledTaskList.addTask(testCaseOne);
         filledTaskList.addTask(testCaseTwo);
         filledTaskList.addTask(testCaseThree);
