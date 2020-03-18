@@ -176,7 +176,7 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * sort all tasks of all modules in ascending order of deadlines.
      */
-    public void sortAllTasks() {
+    public static void sortAllTasks() {
         Collections.sort(getAllTasks(), new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {

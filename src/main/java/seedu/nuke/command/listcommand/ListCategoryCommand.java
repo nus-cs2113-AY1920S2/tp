@@ -12,7 +12,7 @@ import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListCategoryCommand extends ListCommand {
-    public static final String COMMAND_WORD = "lst";
+    public static final String COMMAND_WORD = "lsc";
     public static final String FORMAT = COMMAND_WORD;
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),

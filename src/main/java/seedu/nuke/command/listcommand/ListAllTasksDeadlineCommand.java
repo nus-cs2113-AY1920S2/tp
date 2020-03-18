@@ -16,7 +16,7 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
 
     private ArrayList<String> deadlines;
 
-    public static final String COMMAND_WORD = "lst";
+    public static final String COMMAND_WORD = "lsdt";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     public static final int EMPTY = 0;
 
