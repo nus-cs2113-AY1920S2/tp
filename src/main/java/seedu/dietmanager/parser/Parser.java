@@ -1,17 +1,17 @@
-package seedu.duke.parser;
+package seedu.dietmanager.parser;
 
-import seedu.duke.commands.Command;
-import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.ProfileCommand;
-import seedu.duke.commands.SetAgeCommand;
-import seedu.duke.commands.SetGenderCommand;
-import seedu.duke.commands.SetHeightCommand;
-import seedu.duke.commands.SetNameCommand;
-import seedu.duke.commands.SetProfileCommand;
-import seedu.duke.commands.SetWeightCommand;
-import seedu.duke.commands.SetWeightGoalCommand;
-import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.exceptions.InvalidFormatException;
+import seedu.dietmanager.commands.Command;
+import seedu.dietmanager.commands.ExitCommand;
+import seedu.dietmanager.commands.ProfileCommand;
+import seedu.dietmanager.commands.SetAgeCommand;
+import seedu.dietmanager.commands.SetGenderCommand;
+import seedu.dietmanager.commands.SetHeightCommand;
+import seedu.dietmanager.commands.SetNameCommand;
+import seedu.dietmanager.commands.SetProfileCommand;
+import seedu.dietmanager.commands.SetWeightCommand;
+import seedu.dietmanager.commands.SetWeightGoalCommand;
+import seedu.dietmanager.exceptions.InvalidCommandException;
+import seedu.dietmanager.exceptions.InvalidFormatException;
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.

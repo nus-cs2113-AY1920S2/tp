@@ -6,9 +6,9 @@
   <millis>1584376476067</millis>
   <nanos>59000</nanos>
   <sequence>0</sequence>
-  <logger>seedu.duke.InfoLogger</logger>
+  <logger>seedu.dietmanager.InfoLogger</logger>
   <level>INFO</level>
-  <class>seedu.duke.InfoLogger</class>
+  <class>seedu.dietmanager.InfoLogger</class>
   <method>logExecuteProgramme</method>
   <thread>1</thread>
   <message>Starting Diet Manager</message>
@@ -18,9 +18,9 @@
   <millis>1584376476142</millis>
   <nanos>856100</nanos>
   <sequence>1</sequence>
-  <logger>seedu.duke.InfoLogger</logger>
+  <logger>seedu.dietmanager.InfoLogger</logger>
   <level>INFO</level>
-  <class>seedu.duke.InfoLogger</class>
+  <class>seedu.dietmanager.InfoLogger</class>
   <method>logExitProgramme</method>
   <thread>1</thread>
   <message>Exiting Diet Manager</message>

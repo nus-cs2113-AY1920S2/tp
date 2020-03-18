@@ -1,4 +1,4 @@
-package seedu.duke.ui;
+package seedu.dietmanager.ui;
 
 import java.util.Scanner;
 
