@@ -5,11 +5,14 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.common.DataType;
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_LIST_NUMBER_NOT_FOUND;
 import static seedu.nuke.util.Message.*;
@@ -17,27 +20,38 @@ import static seedu.nuke.util.Message.*;
 public class ListNumberPrompt extends Command {
     public static final Pattern INDICES_FORMAT = Pattern.compile("(?<indices>(?:\\s*\\d+)+\\s*)");
 
+    private ArrayList<Directory> filteredList;
     private ArrayList<Integer> indices;
+    private DataType dataType;
 
     public ListNumberPrompt(ArrayList<Integer> indices) {
+        this.filteredList = Executor.getFilteredList();
         this.indices = indices;
+        this.dataType = Executor.getDataType();
     }
 
-    @SuppressWarnings("unchecked")
     private CommandResult executePromptConfirmation() {
-        DataType dataType = Executor.getDataType();
         switch (dataType) {
             case MODULE: {
-                ArrayList<Module> filteredList = (ArrayList<Module>) Executor.getFilteredList();
-                return new CommandResult(messageConfirmDeleteModule(filteredList, indices));
+                // Cast to Array List of modules
+                ArrayList<Module> filteredModules = filteredList.stream()
+                        .map(Module.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                return new CommandResult(messageConfirmDeleteModule(filteredModules, indices));
             }
             case CATEGORY: {
-                ArrayList<Category> filteredList = (ArrayList<Category>) Executor.getFilteredList();
-                return new CommandResult(messageConfirmDeleteCategory(filteredList, indices));
+                // Cast to Array List of categories
+                ArrayList<Category> filteredCategories = filteredList.stream()
+                        .map(Category.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                return new CommandResult(messageConfirmDeleteCategory(filteredCategories, indices));
             }
             case TASK: {
-                ArrayList<Task> filteredList = (ArrayList<Task>) Executor.getFilteredList();
-                return new CommandResult(messageConfirmDeleteTask(filteredList, indices));
+                // Cast to Array List of tasks
+                ArrayList<Task> filteredTasks = filteredList.stream()
+                        .map(Task.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                return new CommandResult(messageConfirmDeleteTask(filteredTasks, indices));
             }
             default:
                 return new CommandResult("Error in displaying list.");

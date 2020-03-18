@@ -54,22 +54,18 @@ public class DeleteModuleCommand extends DeleteCommand {
      */
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredModules) {
-        // Cast to Array List of Modules
-        ArrayList<Module> modules = filteredModules.stream()
-                .map(Module.class::cast)
-                .collect(Collectors.toCollection(ArrayList::new));
-        final int modulesCount = modules.size();
+        final int modulesCount = filteredModules.size();
         if (modulesCount == 0) {
             return new CommandResult(MESSAGE_NO_MODULES_FOUND);
         } else if (modulesCount == 1) {
             Executor.preparePromptConfirmation();
-            Executor.setFilteredList(modules, DataType.MODULE);
-            Module toDelete = (Module) modules.get(0);
+            Executor.setFilteredList(filteredModules, DataType.MODULE);
+            Module toDelete = (Module) filteredModules.get(0);
             return new CommandResult(messageConfirmDeleteModule(toDelete));
         } else {
             Executor.preparePromptIndices();
-            Executor.setFilteredList(modules, DataType.MODULE);
-            return new CommandResult(messagePromptDeleteModuleIndices(modules));
+            Executor.setFilteredList(filteredModules, DataType.MODULE);
+            return new CommandResult(messagePromptDeleteModuleIndices(filteredModules));
         }
     }
 

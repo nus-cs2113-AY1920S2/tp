@@ -71,22 +71,18 @@ public class DeleteTaskCommand extends DeleteCommand {
      */
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredTasks) {
-        // Cast to Array List of Categories
-        ArrayList<Task> tasks = filteredTasks.stream()
-                .map(Task.class::cast)
-                .collect(Collectors.toCollection(ArrayList::new));
-        final int tasksCount = tasks.size();
-        if (tasksCount == 0) {
+        final int TASK_COUNT = filteredTasks.size();
+        if (TASK_COUNT == 0) {
             return new CommandResult(MESSAGE_NO_TASKS_FOUND);
-        } else if (tasksCount == 1) {
+        } else if (TASK_COUNT == 1) {
             Executor.preparePromptConfirmation();
-            Executor.setFilteredList(tasks, DataType.TASK);
-            Task toDelete = (Task) tasks.get(0);
+            Executor.setFilteredList(filteredTasks, DataType.TASK);
+            Task toDelete = (Task) filteredTasks.get(0);
             return new CommandResult(messageConfirmDeleteTask(toDelete));
         } else {
             Executor.preparePromptIndices();
-            Executor.setFilteredList(tasks, DataType.TASK);
-            return new CommandResult(messagePromptDeleteTaskIndices(tasks));
+            Executor.setFilteredList(filteredTasks, DataType.TASK);
+            return new CommandResult(messagePromptDeleteTaskIndices(filteredTasks));
         }
     }
 

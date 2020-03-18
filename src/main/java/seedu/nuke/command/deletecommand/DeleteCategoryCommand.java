@@ -59,22 +59,18 @@ public class DeleteCategoryCommand extends DeleteCommand {
      */
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredCategories) {
-        // Cast to Array List of Categories
-        ArrayList<Category> categories = filteredCategories.stream()
-                .map(Category.class::cast)
-                .collect(Collectors.toCollection(ArrayList::new));
-        final int categoriesCount = categories.size();
-        if (categoriesCount == 0) {
+        final int CATEGORIES_COUNT = filteredCategories.size();
+        if (CATEGORIES_COUNT == 0) {
             return new CommandResult(MESSAGE_NO_CATEGORIES_FOUND);
-        } else if (categoriesCount == 1) {
+        } else if (CATEGORIES_COUNT == 1) {
             Executor.preparePromptConfirmation();
-            Executor.setFilteredList(categories, DataType.CATEGORY);
-            Category toDelete = (Category) categories.get(0);
+            Executor.setFilteredList(filteredCategories, DataType.CATEGORY);
+            Category toDelete = (Category) filteredCategories.get(0);
             return new CommandResult(messageConfirmDeleteCategory(toDelete));
         } else {
             Executor.preparePromptIndices();
-            Executor.setFilteredList(categories, DataType.CATEGORY);
-            return new CommandResult(messagePromptDeleteCategoryIndices(categories));
+            Executor.setFilteredList(filteredCategories, DataType.CATEGORY);
+            return new CommandResult(messagePromptDeleteCategoryIndices(filteredCategories));
         }
     }
 

@@ -6,18 +6,22 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.common.DataType;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static seedu.nuke.util.Message.*;
 
 public class DeleteConfirmationPrompt extends Command {
     private ConfirmationStatus confirmationStatus;
+    private DataType dataType;
 
     public DeleteConfirmationPrompt(ConfirmationStatus confirmationStatus) {
         this.confirmationStatus = confirmationStatus;
+        this.dataType = Executor.getDataType();
     }
 
     public void deleteSingleModule(Module toDelete) {
@@ -55,8 +59,7 @@ public class DeleteConfirmationPrompt extends Command {
         }
     }
 
-    private CommandResult executeSingleDelete(ArrayList<?> filteredList) {
-        DataType dataType = Executor.getDataType();
+    private CommandResult executeSingleDelete(ArrayList<Directory> filteredList) {
         switch (dataType) {
             case MODULE: {
                 Module toDelete = (Module) filteredList.get(0);
@@ -78,21 +81,31 @@ public class DeleteConfirmationPrompt extends Command {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private CommandResult executeMultipleDelete(ArrayList<?> filteredList) {
+    private CommandResult executeMultipleDelete(ArrayList<Directory> filteredList) {
         ArrayList<Integer> toDeleteIndices = Executor.getIndices();
-        DataType dataType = Executor.getDataType();
         switch (dataType) {
             case MODULE: {
-                deleteMultipleModules((ArrayList<Module>) filteredList, toDeleteIndices);
+                // Cast to Array List of modules
+                ArrayList<Module> filteredModules = filteredList.stream()
+                        .map(Module.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                deleteMultipleModules(filteredModules, toDeleteIndices);
                 return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS);
             }
             case CATEGORY: {
-                deleteMultipleCategories((ArrayList<Category>) filteredList, toDeleteIndices);
+                // Cast to Array List of categories
+                ArrayList<Category> filteredCategories = filteredList.stream()
+                        .map(Category.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                deleteMultipleCategories(filteredCategories, toDeleteIndices);
                 return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS);
             }
             case TASK: {
-                deleteMultipleTasks((ArrayList<Task>) filteredList, toDeleteIndices);
+                // Cast to Array List of tasks
+                ArrayList<Task> filteredTasks = filteredList.stream()
+                        .map(Task.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                deleteMultipleTasks(filteredTasks, toDeleteIndices);
                 return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
             }
             default:
@@ -105,7 +118,7 @@ public class DeleteConfirmationPrompt extends Command {
         switch (confirmationStatus) {
             case CONFIRM:
                 Executor.terminatePrompt();
-                ArrayList<?> filteredList = Executor.getFilteredList();
+                ArrayList<Directory> filteredList = Executor.getFilteredList();
                 if (filteredList.size() == 1) {
                     return executeSingleDelete(filteredList);
                 } else {

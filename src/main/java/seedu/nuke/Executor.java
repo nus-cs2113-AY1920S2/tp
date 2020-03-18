@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.promptCommand.PromptType;
 import seedu.nuke.common.DataType;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.parser.Parser;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class Executor {
     private static PromptType promptType = PromptType.NONE;
     private static String userMessage;
     private static DataType dataType = DataType.NONE;
-    private static ArrayList<?> filteredList;
+    private static ArrayList<Directory> filteredList;
     private static ArrayList<Integer> indices;
 
     public static void preparePromptIndices() {
@@ -40,11 +41,11 @@ public class Executor {
         return dataType;
     }
 
-    public static ArrayList<?> getFilteredList() {
+    public static ArrayList<Directory> getFilteredList() {
         return filteredList;
     }
 
-    public static void setFilteredList(ArrayList<?> filteredList, DataType dataType) {
+    public static void setFilteredList(ArrayList<Directory> filteredList, DataType dataType) {
         Executor.filteredList = filteredList;
         Executor.dataType = dataType;
     }

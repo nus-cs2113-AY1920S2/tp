@@ -1,10 +1,12 @@
 package seedu.nuke.util;
 
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Message {
     public static final String MESSAGE_LOGO = "      ___          ___          ___          ___     \n"
@@ -84,9 +86,12 @@ public class Message {
         return promptMessage.toString();
     }
 
-    public static String messagePromptDeleteModuleIndices(ArrayList<Module> filteredModules) {
+    public static String messagePromptDeleteModuleIndices(ArrayList<Directory> filteredModules) {
+        ArrayList<Module> modules = filteredModules.stream()
+                .map(Module.class::cast)
+                .collect(Collectors.toCollection(ArrayList::new));
         return "Multiple matching modules found.\n" +
-                ListCreator.createModuleListTable(filteredModules) +
+                ListCreator.createModuleListTable(modules) +
                 "\nEnter the list number(s) of the modules to delete.\n";
     }
 
@@ -104,9 +109,12 @@ public class Message {
         return promptMessage.toString();
     }
 
-    public static String messagePromptDeleteCategoryIndices(ArrayList<Category> filteredCategories) {
+    public static String messagePromptDeleteCategoryIndices(ArrayList<Directory> filteredCategories) {
+        ArrayList<Category> categories = filteredCategories.stream()
+                .map(Category.class::cast)
+                .collect(Collectors.toCollection(ArrayList::new));
         return "Multiple matching categories found.\n" +
-                ListCreator.createCategoryListTable(filteredCategories) +
+                ListCreator.createCategoryListTable(categories) +
                 "\nEnter the list number(s) of the categories to delete.\n";
     }
 
@@ -124,9 +132,12 @@ public class Message {
         return promptMessage.toString();
     }
 
-    public static String messagePromptDeleteTaskIndices(ArrayList<Task> filteredTasks) {
+    public static String messagePromptDeleteTaskIndices(ArrayList<Directory> filteredTasks) {
+        ArrayList<Task> tasks = filteredTasks.stream()
+                .map(Task.class::cast)
+                .collect(Collectors.toCollection(ArrayList::new));
         return "Multiple matching tasks found.\n" +
-                ListCreator.createTaskListTable(filteredTasks) +
+                ListCreator.createTaskListTable(tasks) +
                 "\nEnter the list number(s) of the tasks to delete.\n";
     }
 
