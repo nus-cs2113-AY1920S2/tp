@@ -6,6 +6,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
 import seedu.command.Bye;
 import seedu.command.CommandInterpreter;
 import seedu.command.Command;

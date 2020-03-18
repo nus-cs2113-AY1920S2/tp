@@ -73,6 +73,6 @@ public class Performance {
         } else if (isGrade) {
             return grade;
         }
-        return "No result updated";
+        return "No result";
     }
 }
