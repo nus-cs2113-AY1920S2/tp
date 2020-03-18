@@ -14,7 +14,7 @@ class AddCardCommandTest {
     @Test
     void addCardCommand_validCard_CorrectlyConstructed() {
         Card card = new Card("What does HTTP stand for?","HyperText Transfer Protocol");
-        addCardCommand = new AddCardCommand(card);
+        addCardCommand = new AddCardCommand(1,card);
         assertEquals(card.getQuestion(),addCardCommand.getCard().getQuestion());
         assertEquals(card.getAnswer(),addCardCommand.getCard().getAnswer());
     }
@@ -22,7 +22,7 @@ class AddCardCommandTest {
     @Test
     void execute_validCard_SuccessfullyAdded() {
         Card card = new Card("What does HTTP stand for?","HyperText Transfer Protocol");
-        addCardCommand = new AddCardCommand(card);
+        addCardCommand = new AddCardCommand(1,card);
 
         CardList resultCards = new CardList();
 

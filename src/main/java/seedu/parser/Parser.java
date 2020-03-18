@@ -69,16 +69,13 @@ public class Parser {
      * @return AddSubject Command.
      */
     private static Command prepareAddSubject(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments);
-
-        if (!arguments[1].contains(SUBJECT_ARG)) {
-            throw new EscException(AddSubjectCommand.MESSAGE_USAGE);
-        }
+        checkNumberOfArguments(arguments, AddSubjectCommand.MESSAGE_USAGE);
+        checkArgumentPrefixes(arguments[1], AddSubjectCommand.MESSAGE_USAGE, SUBJECT_ARG);
 
         String subjectName = arguments[1].replace(SUBJECT_ARG, "");
 
         if (subjectName.trim().isEmpty()) {
-            throw new EscException(AddSubjectCommand.MESSAGE_USAGE);
+            throw new EscException("A subject name is required.");
         }
 
         return new AddSubjectCommand(subjectName);
@@ -89,7 +86,7 @@ public class Parser {
      * @return AddCard Command.
      */
     private static Command prepareAddCard(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments);
+        checkNumberOfArguments(arguments, AddCardCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], AddCardCommand.MESSAGE_USAGE, SUBJECT_ARG, QUESTION_ARG, ANSWER_ARG);
 
         int subjectIndex = getSubjectIndex(arguments[1]);
@@ -106,7 +103,7 @@ public class Parser {
      * @return DeleteSubject Command.
      */
     private static Command prepareDeleteSubject(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments);
+        checkNumberOfArguments(arguments, DeleteSubjectCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], DeleteSubjectCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
 
@@ -118,7 +115,7 @@ public class Parser {
      * @return DeleteCard Command.
      */
     private static Command prepareDeleteCard(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments);
+        checkNumberOfArguments(arguments, DeleteCardCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], DeleteCardCommand.MESSAGE_USAGE, SUBJECT_ARG, CARD_ARG);
 
         int subjectIndex = getSubjectIndex(arguments[1]);
@@ -131,7 +128,7 @@ public class Parser {
      * @return ListCard Command.
      */
     private static Command prepareListCard(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments);
+        checkNumberOfArguments(arguments, ListCardCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], ListCardCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
 
@@ -143,7 +140,7 @@ public class Parser {
      * @return Quiz Command.
      */
     private static Command prepareQuiz(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments);
+        checkNumberOfArguments(arguments, QuizCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
 
@@ -155,7 +152,7 @@ public class Parser {
      * @return Quiz Command.
      */
     private static Command prepareScore(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments);
+        checkNumberOfArguments(arguments, ScoreCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], ScoreCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
 
@@ -164,10 +161,10 @@ public class Parser {
 
     private static int getSubjectIndex(String argument) throws EscException{
         String argWithoutPrefixes = argument.split(QUESTION_ARG)[0].split(CARD_ARG)[0];
-        String subjectIndexString = argWithoutPrefixes.replace(SUBJECT_ARG,"");
+        String subjectIndexString = argWithoutPrefixes.replace(SUBJECT_ARG,"").trim();
 
         if (subjectIndexString.trim().isEmpty()) {
-            throw new EscException("The subject index is required");
+            throw new EscException("The subject index is required.");
         }
 
         try {
@@ -178,8 +175,8 @@ public class Parser {
     }
 
     private static int getCardIndex(String argument) throws EscException{
-        String argWithoutPrefixes = argument.split(CARD_ARG)[0];
-        String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"");
+        String argWithoutPrefixes = argument.split(CARD_ARG)[1];
+        String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").trim();
 
         if (cardIndexString.trim().isEmpty()) {
             throw new EscException("The card index is required");
@@ -192,9 +189,9 @@ public class Parser {
         }
     }
 
-    private static void checkNumberOfArguments(String[] arguments) throws EscException {
+    private static void checkNumberOfArguments(String[] arguments, String errorMessage) throws EscException {
         if (arguments.length < 2) {
-            throw new EscException(DeleteCommand.MESSAGE_USAGE);
+            throw new EscException(errorMessage);
         }
     }
 
@@ -209,6 +206,11 @@ public class Parser {
     private static String[] getQuestionAndAnswer(String argument, String errorMessage) throws EscException {
         String secondaryArgs = argument.split(QUESTION_ARG)[1];
         String [] cardArgs = secondaryArgs.split(ANSWER_ARG);
+
+        if (cardArgs.length < 2){
+            throw new EscException(errorMessage);
+        }
+
         cardArgs[0] = cardArgs[0].trim();
         cardArgs[1] = cardArgs[1].trim();
 
