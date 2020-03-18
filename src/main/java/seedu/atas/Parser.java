@@ -39,7 +39,7 @@ public class Parser {
             "(?<taskType>[^/]+)"
             + "\\s+n/\\s*(?<eventName>[^/]+)"
             + "\\s+l/\\s*(?<location>[^/]+)"
-            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s+-\\s+d{4})"
+            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
             + "\\s+c/\\s*(?<comments>.+)$"
     );
 
@@ -145,11 +145,16 @@ public class Parser {
         LocalDateTime endDateTime;
         try {
             String startEndDateTime = matcher.group("dateTime");
-            String[] dateTimeTokens = startEndDateTime.split("\\s+", 3);
-            startDateTime = parseDate(dateTimeTokens[0] + " " + dateTimeTokens[1]);
-            endDateTime = parseDate(dateTimeTokens[0] + " " + dateTimeTokens[2]);
+            String[] dateTimeTokens = startEndDateTime.split("\\s+", 2);
+            String[] timeTokens = dateTimeTokens[1].split("-", 2);
+            startDateTime = parseDate(dateTimeTokens[0] + " " + timeTokens[0].trim());
+            endDateTime = parseDate(dateTimeTokens[0] + " " + timeTokens[1].trim());
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+            return new IncorrectCommand(Messages.START_END_DATE_INCORRECT_OR_INVALID_ERROR);
+        }
+
+        if (!endDateTime.isAfter(startDateTime)) {
+            return new IncorrectCommand(Messages.INCORRECT_START_END_TIME_ERROR);
         }
 
         String eventName = capitalize(matcher.group("eventName"));
