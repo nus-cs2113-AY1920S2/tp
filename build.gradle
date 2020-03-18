@@ -26,7 +26,7 @@ application {
 
 shadowJar {
     archiveBaseName = "duke"
-    archiveVersion = "0.0.1"
+    archiveVersion = "v1.0"
     archiveClassifier = null
     archiveAppendix = null
 }
@@ -37,4 +37,5 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }
