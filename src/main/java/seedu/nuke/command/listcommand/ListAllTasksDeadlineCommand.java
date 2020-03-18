@@ -29,7 +29,6 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
         }
         assert ModuleManager.countAllTasks() != EMPTY : "make sure there are some tasks in the list";
         deadlines = ModuleManager.checkDeadline();
-        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, ModuleManager.countAllTasks()),
-                DirectoryLevel.TASK, deadlines);
+        return new CommandResult(MESSAGE_TASK_SUCCESSFULLY_LIST(ModuleManager.countAllTasks()) + deadlines);
     }
 }

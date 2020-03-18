@@ -12,10 +12,14 @@ import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.listcommand.ListModuleCommand;
+import seedu.nuke.directory.*;
+import seedu.nuke.directory.Module;
+import seedu.nuke.util.ListCreator;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Ui {
     private static final String LS = System.lineSeparator();
@@ -46,26 +50,62 @@ public class Ui {
     }
 
     /**
+     * Shows the directory path to the user.
+     */
+    public void showDirectoryPath() {
+        out.println(String.format("%s : ", DirectoryTraverser.getFullPath()));
+    }
+
+    /**
      * Reads the user input from the command line.
      *
      * @return The input given by the user
      */
     public String getInput() {
+        showDirectoryPath();
         return in.nextLine().trim();
     }
 
     /**
      * Shows the result message after the command given by the user input is executed.
      * <br>
-     * Also, shows the <b>Task List</b> or <i>Search List</i> if indicated in <code>result</code>.
+     * Also, shows a list to the user if requested.
      *
-     * @param result The result after executing a command given by the user input
+     * @param result
+     *  The result after executing a command given by the user input
      */
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
-        if (result.isShowTasks()) {
-            printShownList(result.getShownList());
+
+        if ((result.getDirectoryLevel() == DirectoryLevel.NONE)) {
+            return;
         }
+
+        String listTableToShow;
+        switch (result.getDirectoryLevel()) {
+            case MODULE:
+                ArrayList<Module> moduleList = result.getShownList().stream()
+                        .map(Module.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                listTableToShow = ListCreator.createModuleListTable(moduleList);
+                break;
+            case CATEGORY:
+                ArrayList<Category> categoryList = result.getShownList().stream()
+                        .map(Category.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                listTableToShow = ListCreator.createCategoryListTable(categoryList);
+                break;
+            case TASK:
+                ArrayList<Task> taskList = result.getShownList().stream()
+                        .map(Task.class::cast)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                listTableToShow = ListCreator.createTaskListTable(taskList);
+                break;
+            default:
+                return;
+        }
+
+        out.println(listTableToShow);
     }
 
     /**

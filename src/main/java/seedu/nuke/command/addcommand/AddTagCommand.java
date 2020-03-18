@@ -3,6 +3,7 @@ package seedu.nuke.command.addcommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 
 import java.util.regex.Pattern;
@@ -26,7 +27,7 @@ public class AddTagCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        Task task = (Task) Directory.getCurrentLevel();
+        Task task = (Task) DirectoryTraverser.getCurrentDirectory();
         task.setTag(info);
         return new CommandResult(MESSAGE_TAG_ADDED);
     }

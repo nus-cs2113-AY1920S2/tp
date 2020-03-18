@@ -7,4 +7,9 @@ public class Root extends Directory {
     public Root() {
         super();
     }
+
+    @Override
+    public Directory getParent() {
+        return this.parent;
+    }
 }

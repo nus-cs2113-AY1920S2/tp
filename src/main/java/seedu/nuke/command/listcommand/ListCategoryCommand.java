@@ -37,6 +37,6 @@ public class ListCategoryCommand extends ListCommand {
         ArrayList<Category> categoryList =
                 isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword) :
                         ModuleManager.filter(moduleKeyWord, categoryKeyword);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, categoryList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, new ArrayList<>(categoryList));
     }
 }

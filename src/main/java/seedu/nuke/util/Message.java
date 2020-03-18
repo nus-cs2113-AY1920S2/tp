@@ -25,7 +25,9 @@ public class Message {
     public static final String MESSAGE_WELCOME_1 = "Welcome to NUKE";
     public static final String MESSAGE_WELCOME_2 = "What can I do for you?";
     public static final String MESSAGE_NO_TASK_IN_LIST = "There is no task in the list!\n";
-    public static final String MESSAGE_TASK_SUCCESSFULLY_LIST = "There are (is) %d task(s) in the list!";
+    public static String MESSAGE_TASK_SUCCESSFULLY_LIST(int taskCount) {
+        return String.format("There are (is) %d task(s) in the list!\n", taskCount);
+    }
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
     public static final String MESSAGE_INVALID_PARAMETERS = "Invalid parameters found!\n";
     public static final String MESSAGE_MISSING_PARAMETERS = "Alert! Some parameters are missing.\n";

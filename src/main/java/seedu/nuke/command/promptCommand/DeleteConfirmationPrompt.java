@@ -29,12 +29,12 @@ public class DeleteConfirmationPrompt extends Command {
     }
 
     public void deleteSingleCategory(Category toDelete) {
-        Module parentModule = (Module) toDelete.getParent();
+        Module parentModule = toDelete.getParent();
         parentModule.getCategories().delete(toDelete);
     }
 
     public void deleteSingleTask(Task toDelete) {
-        Category parentCategory = (Category) toDelete.getParent();
+        Category parentCategory = toDelete.getParent();
         parentCategory.getTasks().delete(toDelete);
     }
 

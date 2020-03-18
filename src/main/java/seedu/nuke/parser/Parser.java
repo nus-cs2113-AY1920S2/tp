@@ -15,6 +15,7 @@ import seedu.nuke.command.promptCommand.ConfirmationStatus;
 import seedu.nuke.command.promptCommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptCommand.ListNumberPrompt;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.util.DateTime;
@@ -116,8 +117,8 @@ public class Parser {
             case EditDeadlineCommand.COMMAND_WORD:
                 return prepareEditDeadlineCommand(parameters);
 
-    //        case ChangeDirectoryCommand.COMMAND_WORD:
-    //            return prepareChangeDirectoryCommand(parameters, moduleManager);
+            case ChangeDirectoryCommand.COMMAND_WORD:
+                return prepareChangeDirectoryCommand(parameters);
 
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
@@ -134,14 +135,13 @@ public class Parser {
         Task taskToEdit;
         DateTime deadline;
         String[] temp = parameters.split("-d");
-        Module dir = (Module) Command.getCurrentDirectory();
+        Module dir = (Module) DirectoryTraverser.getCurrentDirectory();
         String moduleCode = dir.getModuleCode();
         taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
         try {
             deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
             return new EditDeadlineCommand(taskToEdit, deadline);
-        } catch (DateTimeFormat.InvalidDateException | DateTimeFormat.InvalidTimeException
-                | DateTimeFormat.InvalidDateTimeException e) {
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
             return new IncorrectCommand("Invalid datetime format!\n");
         }
 
@@ -163,14 +163,20 @@ public class Parser {
 //        return null;
 //    }
 
-    private Command prepareChangeDirectoryCommand(String parameters, ModuleManager moduleManager) {
+    /**
+     * Prepares the command to change the current directory
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to change the current directory
+     */
+    private Command prepareChangeDirectoryCommand(String parameters) {
         if (parameters.equals("..")) {
-            return new ChangeDirectoryCommand((ModuleManager.getRoot()));
+            return new ChangeDirectoryCommand();
+        } else {
+            return new ChangeDirectoryCommand(parameters);
         }
-        if (moduleManager.getModuleWithCode(parameters) != null) {
-            return new ChangeDirectoryCommand(moduleManager.getModuleWithCode(parameters));
-        }
-        return new IncorrectCommand(MESSAGE_MODULE_NOT_FOUND);
     }
 
     /**

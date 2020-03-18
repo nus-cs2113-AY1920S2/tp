@@ -35,7 +35,6 @@ public class Nuke {
         storageManager = new StorageManager("data.json");
         moduleManager = new ModuleManager(root, modulesMap);
         moduleManager.setModuleList(storageManager.load());
-        Command.setCurrentDirectory(root);
     }
 
     /**
@@ -79,15 +78,13 @@ public class Nuke {
      */
     private void runCommandLoopUntilExitCommand() {
         do {
+
             String userInput = ui.getInput();
 
             commandResult = Executor.executeCommand(userInput);
             ui.showResult(commandResult);
-
         } while (!ExitCommand.isExit());
     }
-
-
 
     public ModuleManager getModuleManager() {
         return moduleManager;

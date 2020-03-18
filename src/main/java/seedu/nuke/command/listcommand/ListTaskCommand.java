@@ -40,6 +40,6 @@ public class ListTaskCommand extends ListCommand {
         ArrayList<Task> taskList =
                 isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword, taskKeyword) :
                         ModuleManager.filter(moduleKeyWord, categoryKeyword, taskKeyword);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.TASK, taskList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.TASK, new ArrayList<>(taskList));
     }
 }

@@ -1,5 +1,6 @@
 package seedu.nuke.command;
 
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class CommandResult {
     private final String feedbackToUser;
     private final DirectoryLevel directoryLevel;
-    private final ArrayList<?> shownList;
+    private final ArrayList<Directory> shownList;
 
     /**
      * Constructs a command result that contains both feedback message and list to show.
@@ -22,7 +23,7 @@ public class CommandResult {
      * @param listToShow
      *  The list to be shown to the user
      */
-    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<?> listToShow) {
+    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow) {
         this.feedbackToUser = feedbackToUser;
         this.directoryLevel = directoryLevel;
         this.shownList = listToShow;
@@ -48,10 +49,10 @@ public class CommandResult {
     }
 
     /**
-     * Returns the data type of the list to be shown to the user.
+     * Returns the level of the list to be shown to the user.
      *
      * @return
-     *  The data type of the list
+     *  The level of the list
      */
     public DirectoryLevel getDirectoryLevel() {
         return directoryLevel;
@@ -63,7 +64,7 @@ public class CommandResult {
      * @return
      *  The list to be shown to the user
      */
-    public ArrayList<?> getShownList() {
+    public ArrayList<Directory> getShownList() {
         return shownList;
     }
 }

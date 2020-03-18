@@ -33,6 +33,6 @@ public class ListModuleCommand extends ListCommand {
     public CommandResult execute() {
         ArrayList<Module> moduleList =
                 isExact ? ModuleManager.filterExact(moduleKeyWord) : ModuleManager.filter(moduleKeyWord);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, moduleList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, new ArrayList<>(moduleList));
     }
 }

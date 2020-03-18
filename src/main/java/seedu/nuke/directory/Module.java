@@ -33,15 +33,15 @@ public class Module extends Directory {
         this.categories = new CategoryManager(this);
     }
 
-//    /**
-//     * Constructs the module but with limited information
-//     *
-//     * @param moduleCode
-//     *  The module code of the module
-//     */
-//    public Module(String moduleCode) {
-//        this(null, moduleCode, null, "NIL");
-//    }
+    /**
+     * Constructs the module but with limited information
+     *
+     * @param moduleCode
+     *  The module code of the module
+     */
+    public Module(String moduleCode) {
+        this(null, moduleCode, null, "NIL");
+    }
 
     /**
      * Return the module code of the module.
