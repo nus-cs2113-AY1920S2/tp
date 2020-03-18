@@ -14,5 +14,6 @@ public class MessageBank {
     public static String WELCOME_MESSAGE = "Welcome to Diet Manager! How may I assist you today?";
     public static String INVALID_COMMAND_MESSAGE = "Sorry, the command you have entered is invalid.";
     public static String INVALID_FORMAT_MESSAGE = "Sorry, that is an invalid command format.";
+    public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
 
 }
