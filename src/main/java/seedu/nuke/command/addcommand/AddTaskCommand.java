@@ -25,7 +25,7 @@ import static seedu.nuke.util.Message.messageAddTaskSuccess;
  * @see Command
  * @see Task
  */
-public class AddTaskCommand extends TaskCommand {
+public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_WORD = "addt";
     public static final String FORMAT = COMMAND_WORD +
             " <task description> -m <module code> -c <category name> -d <deadline> -p <priority>";

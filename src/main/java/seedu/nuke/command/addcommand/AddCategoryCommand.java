@@ -22,7 +22,7 @@ import static seedu.nuke.util.Message.messageAddCategorySuccess;
  * @see Command
  * @see Category
  */
-public class AddCategoryCommand extends Command {
+public class AddCategoryCommand extends AddCommand {
     public static final String COMMAND_WORD = "addc";
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> -p <priority>";
     public static final Pattern[] REGEX_FORMATS = {

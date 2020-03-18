@@ -1,7 +1,7 @@
 package seedu.nuke.command.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 
@@ -37,6 +37,6 @@ public class ListCategoryCommand extends ListCommand {
         ArrayList<Category> categoryList =
                 isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword) :
                         ModuleManager.filter(moduleKeyWord, categoryKeyword);
-        return new CommandResult(MESSAGE_SHOW_LIST, DataType.CATEGORY, categoryList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, categoryList);
     }
 }

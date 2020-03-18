@@ -21,7 +21,7 @@ import static seedu.nuke.util.Message.messageAddModuleSuccess;
  * @see Command
  * @see Module
  */
-public class AddModuleCommand extends Command {
+public class AddModuleCommand extends AddCommand {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
     public static final Pattern[] REGEX_FORMATS = {

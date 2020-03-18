@@ -3,7 +3,7 @@ package seedu.nuke;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.promptCommand.PromptType;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.parser.Parser;
 
@@ -13,7 +13,7 @@ public class Executor {
     /* Variables to transit between parsing regular commands and prompts */
     private static PromptType promptType = PromptType.NONE;
     private static String userMessage;
-    private static DataType dataType = DataType.NONE;
+    private static DirectoryLevel directoryLevel = DirectoryLevel.NONE;
     private static ArrayList<Directory> filteredList;
     private static ArrayList<Integer> indices;
 
@@ -37,17 +37,17 @@ public class Executor {
         Executor.indices = indices;
     }
 
-    public static DataType getDataType() {
-        return dataType;
+    public static DirectoryLevel getDirectoryLevel() {
+        return directoryLevel;
     }
 
     public static ArrayList<Directory> getFilteredList() {
         return filteredList;
     }
 
-    public static void setFilteredList(ArrayList<Directory> filteredList, DataType dataType) {
+    public static void setFilteredList(ArrayList<Directory> filteredList, DirectoryLevel directoryLevel) {
         Executor.filteredList = filteredList;
-        Executor.dataType = dataType;
+        Executor.directoryLevel = directoryLevel;
     }
 
 

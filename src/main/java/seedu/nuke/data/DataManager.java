@@ -19,10 +19,7 @@ public class DataManager {
      * @param moduleManager the ModuleManager object for the module.
      */
     public DataManager(ModuleManager moduleManager) {
-        allTasks = new ArrayList<>();
-        for (Module module: moduleManager.getModuleList()) {
-            allTasks.addAll(module.getTaskManager().getTaskList());
-        }
+        allTasks = ModuleManager.getAllTasks();
     }
 
     public void setAllTasks(ArrayList<Task> allTasks) {

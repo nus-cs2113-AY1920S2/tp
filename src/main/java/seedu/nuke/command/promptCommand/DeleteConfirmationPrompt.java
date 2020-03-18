@@ -3,7 +3,7 @@ package seedu.nuke.command.promptCommand;
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Directory;
@@ -17,11 +17,11 @@ import static seedu.nuke.util.Message.*;
 
 public class DeleteConfirmationPrompt extends Command {
     private ConfirmationStatus confirmationStatus;
-    private DataType dataType;
+    private DirectoryLevel directoryLevel;
 
     public DeleteConfirmationPrompt(ConfirmationStatus confirmationStatus) {
         this.confirmationStatus = confirmationStatus;
-        this.dataType = Executor.getDataType();
+        this.directoryLevel = Executor.getDirectoryLevel();
     }
 
     public void deleteSingleModule(Module toDelete) {
@@ -60,7 +60,7 @@ public class DeleteConfirmationPrompt extends Command {
     }
 
     private CommandResult executeSingleDelete(ArrayList<Directory> filteredList) {
-        switch (dataType) {
+        switch (directoryLevel) {
             case MODULE: {
                 Module toDelete = (Module) filteredList.get(0);
                 deleteSingleModule(toDelete);
@@ -83,7 +83,7 @@ public class DeleteConfirmationPrompt extends Command {
 
     private CommandResult executeMultipleDelete(ArrayList<Directory> filteredList) {
         ArrayList<Integer> toDeleteIndices = Executor.getIndices();
-        switch (dataType) {
+        switch (directoryLevel) {
             case MODULE: {
                 // Cast to Array List of modules
                 ArrayList<Module> filteredModules = filteredList.stream()

@@ -2,9 +2,8 @@ package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.TaskManager;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Task;
 
@@ -13,7 +12,6 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.parser.Parser.ALL_FLAG;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
 import static seedu.nuke.util.Message.*;
 
 public class DeleteTaskCommand extends DeleteCommand {
@@ -75,12 +73,12 @@ public class DeleteTaskCommand extends DeleteCommand {
             return new CommandResult(MESSAGE_NO_TASKS_FOUND);
         } else if (TASK_COUNT == 1) {
             Executor.preparePromptConfirmation();
-            Executor.setFilteredList(filteredTasks, DataType.TASK);
+            Executor.setFilteredList(filteredTasks, DirectoryLevel.TASK);
             Task toDelete = (Task) filteredTasks.get(0);
             return new CommandResult(messageConfirmDeleteTask(toDelete));
         } else {
             Executor.preparePromptIndices();
-            Executor.setFilteredList(filteredTasks, DataType.TASK);
+            Executor.setFilteredList(filteredTasks, DirectoryLevel.TASK);
             return new CommandResult(messagePromptDeleteTaskIndices(filteredTasks));
         }
     }

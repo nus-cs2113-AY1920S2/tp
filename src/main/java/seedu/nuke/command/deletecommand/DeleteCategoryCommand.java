@@ -2,7 +2,7 @@ package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
@@ -10,7 +10,6 @@ import seedu.nuke.directory.Directory;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.Message.*;
@@ -64,12 +63,12 @@ public class DeleteCategoryCommand extends DeleteCommand {
             return new CommandResult(MESSAGE_NO_CATEGORIES_FOUND);
         } else if (CATEGORIES_COUNT == 1) {
             Executor.preparePromptConfirmation();
-            Executor.setFilteredList(filteredCategories, DataType.CATEGORY);
+            Executor.setFilteredList(filteredCategories, DirectoryLevel.CATEGORY);
             Category toDelete = (Category) filteredCategories.get(0);
             return new CommandResult(messageConfirmDeleteCategory(toDelete));
         } else {
             Executor.preparePromptIndices();
-            Executor.setFilteredList(filteredCategories, DataType.CATEGORY);
+            Executor.setFilteredList(filteredCategories, DirectoryLevel.CATEGORY);
             return new CommandResult(messagePromptDeleteCategoryIndices(filteredCategories));
         }
     }

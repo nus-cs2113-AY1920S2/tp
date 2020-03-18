@@ -1,14 +1,13 @@
 package seedu.nuke.command.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
@@ -34,6 +33,6 @@ public class ListModuleCommand extends ListCommand {
     public CommandResult execute() {
         ArrayList<Module> moduleList =
                 isExact ? ModuleManager.filterExact(moduleKeyWord) : ModuleManager.filter(moduleKeyWord);
-        return new CommandResult(MESSAGE_SHOW_LIST, DataType.MODULE, moduleList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, moduleList);
     }
 }

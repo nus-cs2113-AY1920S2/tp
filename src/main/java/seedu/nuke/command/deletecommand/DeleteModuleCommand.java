@@ -2,7 +2,7 @@ package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
@@ -58,12 +58,12 @@ public class DeleteModuleCommand extends DeleteCommand {
             return new CommandResult(MESSAGE_NO_MODULES_FOUND);
         } else if (modulesCount == 1) {
             Executor.preparePromptConfirmation();
-            Executor.setFilteredList(filteredModules, DataType.MODULE);
+            Executor.setFilteredList(filteredModules, DirectoryLevel.MODULE);
             Module toDelete = (Module) filteredModules.get(0);
             return new CommandResult(messageConfirmDeleteModule(toDelete));
         } else {
             Executor.preparePromptIndices();
-            Executor.setFilteredList(filteredModules, DataType.MODULE);
+            Executor.setFilteredList(filteredModules, DirectoryLevel.MODULE);
             return new CommandResult(messagePromptDeleteModuleIndices(filteredModules));
         }
     }

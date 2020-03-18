@@ -1,6 +1,6 @@
 package seedu.nuke.command;
 
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class CommandResult {
     private final String feedbackToUser;
-    private final DataType dataType;
+    private final DirectoryLevel directoryLevel;
     private final ArrayList<?> shownList;
 
     /**
@@ -17,14 +17,14 @@ public class CommandResult {
      *
      * @param feedbackToUser
      *  The feedback message to be shown to the user
-     * @param dataType
+     * @param directoryLevel
      *  The data type of the list
      * @param listToShow
      *  The list to be shown to the user
      */
-    public CommandResult(String feedbackToUser, DataType dataType, ArrayList<?> listToShow) {
+    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<?> listToShow) {
         this.feedbackToUser = feedbackToUser;
-        this.dataType = dataType;
+        this.directoryLevel = directoryLevel;
         this.shownList = listToShow;
     }
 
@@ -34,7 +34,7 @@ public class CommandResult {
      *  The feedback message to be shown to the user
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, DataType.NONE, null);
+        this(feedbackToUser, DirectoryLevel.NONE, null);
     }
 
     /**
@@ -53,8 +53,8 @@ public class CommandResult {
      * @return
      *  The data type of the list
      */
-    public DataType getDataType() {
-        return dataType;
+    public DirectoryLevel getDirectoryLevel() {
+        return directoryLevel;
     }
 
     /**

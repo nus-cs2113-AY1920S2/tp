@@ -3,7 +3,7 @@ package seedu.nuke.command.promptCommand;
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.common.DataType;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
@@ -21,16 +21,16 @@ public class ListNumberPrompt extends Command {
 
     private ArrayList<Directory> filteredList;
     private ArrayList<Integer> indices;
-    private DataType dataType;
+    private DirectoryLevel directoryLevel;
 
     public ListNumberPrompt(ArrayList<Integer> indices) {
         this.filteredList = Executor.getFilteredList();
         this.indices = indices;
-        this.dataType = Executor.getDataType();
+        this.directoryLevel = Executor.getDirectoryLevel();
     }
 
     private CommandResult executePromptConfirmation() {
-        switch (dataType) {
+        switch (directoryLevel) {
             case MODULE: {
                 // Cast to Array List of modules
                 ArrayList<Module> filteredModules = filteredList.stream()
