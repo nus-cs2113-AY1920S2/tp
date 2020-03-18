@@ -21,20 +21,33 @@ public class ListCommandTest {
 
     private static Ui ui;
 
-    private static LocalDateTime currDateTime = LocalDateTime.now();
-    private static LocalDateTime oneWeekDateTime = currDateTime.plusDays(7);
-    private static LocalDateTime afterCurrButSameDayDateTime = currDateTime.plusSeconds(30);
-    private static String beforeCurrDateTimeString = "13/02/20 1800";
-    private static String afterCurrDateTimeString = "01/01/21 0000";
+    private static LocalDateTime currDateTime1 = LocalDateTime.now();
+    private static LocalDateTime currDateTime2 = LocalDateTime.now().plusSeconds(60);
+    private static LocalDateTime oneWeekDateTime1 = currDateTime1.plusDays(7);
+    private static LocalDateTime oneWeekDateTime2 = currDateTime2.plusDays(7);
+    private static LocalDateTime afterCurrButSameDayDateTime1 = currDateTime1.plusSeconds(30);
+    private static LocalDateTime afterCurrButSameDayDateTime2 = currDateTime1.plusSeconds(300);
+    private static String beforeCurrDateTimeString1 = "13/02/20 1800";
+    private static String beforeCurrDateTimeString2 = "13/02/20 2030";
+    private static String afterCurrDateTimeString1 = "01/01/21 0000";
+    private static String afterCurrDateTimeString2 = "01/01/21 0259";
 
-    private static LocalDateTime beforeCurrDateTime =
-            LocalDateTime.parse(beforeCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
-    private static LocalDateTime afterCurrDateTime =
-            LocalDateTime.parse(afterCurrDateTimeString, Parser.INPUT_DATE_FORMAT);
-    private static String currDateTimeStringForPrint = currDateTime.format(Parser.PRINT_DATE_FORMAT);
-    private static String nextWeekDateTimeStringForPrint = oneWeekDateTime.format(Parser.PRINT_DATE_FORMAT);
-    private static String afterCurrButSameDayStringForPrint =
-            afterCurrButSameDayDateTime.format(Parser.PRINT_DATE_FORMAT);
+    private static LocalDateTime beforeCurrDateTime1 =
+            LocalDateTime.parse(beforeCurrDateTimeString1, Parser.INPUT_DATE_FORMAT);
+    private static LocalDateTime beforeCurrDateTime2 =
+            LocalDateTime.parse(beforeCurrDateTimeString2, Parser.INPUT_DATE_FORMAT);
+    private static LocalDateTime afterCurrDateTime1 =
+            LocalDateTime.parse(afterCurrDateTimeString1, Parser.INPUT_DATE_FORMAT);
+    private static LocalDateTime afterCurrDateTime2 =
+            LocalDateTime.parse(afterCurrDateTimeString2, Parser.INPUT_DATE_FORMAT);
+    private static String currDateTimeStringForPrint1 = currDateTime1.format(Parser.PRINT_DATE_FORMAT);
+    private static String currDateTimeStringForPrint2 = currDateTime2.format(Parser.PRINT_TIME_FORMAT);
+    private static String nextWeekDateTimeStringForPrint1 = oneWeekDateTime1.format(Parser.PRINT_DATE_FORMAT);
+    private static String nextWeekDateTimeStringForPrint2 = oneWeekDateTime2.format(Parser.PRINT_TIME_FORMAT);
+    private static String afterCurrButSameDayStringForPrint1 =
+            afterCurrButSameDayDateTime1.format(Parser.PRINT_DATE_FORMAT);
+    private static String afterCurrButSameDayStringForPrint2 =
+            afterCurrButSameDayDateTime2.format(Parser.PRINT_TIME_FORMAT);
 
 
     private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks:"
@@ -45,21 +58,23 @@ public class ListCommandTest {
             + "  2. [A][X] Quiz 1 (by: Fri 01 Jan 2021 00:00 | mod: CS2173)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%"
             + System.lineSeparator()
-            + "  3. [E][X] midterms (at: MPSH1A | Thu 13 Feb 2020 18:00)"
+            + "  3. [E][X] midterms (at: MPSH1A | Thu 13 Feb 2020 18:00 - 20:30)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-"
             + System.lineSeparator()
-            + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00)"
+            + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00 - 02:59)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
             + System.lineSeparator()
-            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint + ")"
+            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint1 + " - "
+            + afterCurrButSameDayStringForPrint2 + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-";
 
     private static String expectedOutputFromUpcomingEvent = "Here are the relevant tasks:"
             + System.lineSeparator()
-            + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00)"
+            + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00 - 02:59)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
             + System.lineSeparator()
-            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint + ")"
+            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint1 + " - "
+            + afterCurrButSameDayStringForPrint2 + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-";
 
     private static String expectedOutputFromIncompleteAssign = "Here are the relevant tasks:"
@@ -69,24 +84,27 @@ public class ListCommandTest {
 
     private static String expectedOutputFromListToday = "Here are the relevant tasks:"
             + System.lineSeparator()
-            + "  1. [A][X] Assignment 1 (by: " + currDateTimeStringForPrint + " | mod: CS2113)"
+            + "  1. [A][X] Assignment 1 (by: " + currDateTimeStringForPrint1 + " | mod: CS2113)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "Assignment 1 Notes"
             + System.lineSeparator()
-            + "  2. [E][X] Event 1 (at: Classroom | " + currDateTimeStringForPrint + ")"
+            + "  2. [E][X] Event 1 (at: Classroom | " + currDateTimeStringForPrint1 + " - "
+            + currDateTimeStringForPrint2 + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "Event 1 Notes";
 
     private static String expectedOutputFromListWeek = "Here are the relevant tasks:"
             + System.lineSeparator()
-            + "  1. [A][X] Assignment 1 (by: " + currDateTimeStringForPrint + " | mod: CS2113)"
+            + "  1. [A][X] Assignment 1 (by: " + currDateTimeStringForPrint1 + " | mod: CS2113)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "Assignment 1 Notes"
             + System.lineSeparator()
-            + "  2. [E][X] Event 1 (at: Classroom | " + currDateTimeStringForPrint + ")"
+            + "  2. [E][X] Event 1 (at: Classroom | " + currDateTimeStringForPrint1 + " - "
+            + currDateTimeStringForPrint2 + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "Event 1 Notes"
             + System.lineSeparator()
-            + "  3. [A][X] Assignment 2 (by: " + nextWeekDateTimeStringForPrint + " | mod: CS2113)"
+            + "  3. [A][X] Assignment 2 (by: " + nextWeekDateTimeStringForPrint1 + " | mod: CS2113)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "Assignment 2 Notes"
             + System.lineSeparator()
-            + "  4. [E][X] Event 2 (at: Classroom | " + nextWeekDateTimeStringForPrint + ")"
+            + "  4. [E][X] Event 2 (at: Classroom | " + nextWeekDateTimeStringForPrint1 + " - "
+            + nextWeekDateTimeStringForPrint2 + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "Event 2 Notes";
 
     /**
@@ -99,11 +117,13 @@ public class ListCommandTest {
         filledWeeklyTaskList = new TaskList();
         ui = new Ui();
 
-        Assignment assignBeforeCurrDateTime = new Assignment("Assignment 3", "CS2109", beforeCurrDateTime, "-");
-        Assignment assignAfterCurrDateTime = new Assignment("Quiz 1", "CS2173", afterCurrDateTime, "15%");
-        Event eventBeforeCurrDateTime = new Event("midterms", "MPSH1A", beforeCurrDateTime, "-");
-        Event eventAfterCurrDateTime = new Event("Countdown", "TimeSquare", afterCurrDateTime, "new year new me");
-        Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", afterCurrButSameDayDateTime, "-");
+        Assignment assignBeforeCurrDateTime = new Assignment("Assignment 3", "CS2109", beforeCurrDateTime1, "-");
+        Assignment assignAfterCurrDateTime = new Assignment("Quiz 1", "CS2173", afterCurrDateTime1, "15%");
+        Event eventBeforeCurrDateTime = new Event("midterms", "MPSH1A", beforeCurrDateTime1, beforeCurrDateTime2, "-");
+        Event eventAfterCurrDateTime = new Event("Countdown", "TimeSquare", afterCurrDateTime1,
+                afterCurrDateTime2, "new year new me");
+        Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", afterCurrButSameDayDateTime1,
+                afterCurrButSameDayDateTime2, "-");
 
         filledTasklist.addTask(assignBeforeCurrDateTime);
         filledTasklist.addTask(assignAfterCurrDateTime);
@@ -112,12 +132,12 @@ public class ListCommandTest {
         filledTasklist.addTask(eventOnSameDayAfterCurrTime);
         filledTasklist.markTaskAsDone(0);
 
-        Assignment currDateTimeAssignment = new Assignment("Assignment 1", "CS2113", currDateTime,
+        Assignment currDateTimeAssignment = new Assignment("Assignment 1", "CS2113", currDateTime1,
                 "Assignment 1 Notes");
-        Event currDateTimeEvent = new Event("Event 1", "Classroom", currDateTime, "Event 1 Notes");
-        Assignment nextWeekAssignment = new Assignment("Assignment 2", "CS2113", oneWeekDateTime,
+        Event currDateTimeEvent = new Event("Event 1", "Classroom", currDateTime1, currDateTime2, "Event 1 Notes");
+        Assignment nextWeekAssignment = new Assignment("Assignment 2", "CS2113", oneWeekDateTime1,
                 "Assignment 2 Notes");
-        Event nextWeekEvent = new Event("Event 2", "Classroom", oneWeekDateTime, "Event 2 Notes");
+        Event nextWeekEvent = new Event("Event 2", "Classroom", oneWeekDateTime1, oneWeekDateTime2, "Event 2 Notes");
         filledWeeklyTaskList.addTask(currDateTimeAssignment);
         filledWeeklyTaskList.addTask(currDateTimeEvent);
         filledWeeklyTaskList.addTask(nextWeekAssignment);

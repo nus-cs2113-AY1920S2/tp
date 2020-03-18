@@ -13,26 +13,30 @@ public class EventCommand extends Command {
 
     protected String eventName;
     protected String eventLocation;
-    protected LocalDateTime dateTime;
+    protected LocalDateTime startDateTime;
+    protected LocalDateTime endDateTime;
     protected String comments;
 
     /**
      * Constructs EventCommand with the supplied parameters.
      * @param eventName String containing name of event
      * @param eventLocation String containing location of event
-     * @param dateTime LocalDateTime containing date and time of event
+     * @param startDateTime LocalDateTime containing the starting date and time of event
+     * @param endDateTime LocalDateTime containing the ending date and time of event
      * @param comments String containing extra comments user might want to tag Event with
      */
-    public EventCommand(String eventName, String eventLocation, LocalDateTime dateTime, String comments) {
+    public EventCommand(String eventName, String eventLocation, LocalDateTime startDateTime,
+                        LocalDateTime endDateTime, String comments) {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
-        this.dateTime = dateTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.comments = comments;
     }
 
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
-        Task newEvent = new Event(eventName, eventLocation, dateTime, comments);
+        Task newEvent = new Event(eventName, eventLocation, startDateTime, endDateTime, comments);
         if (isRepeatTask(taskList, newEvent)) {
             return new CommandResult(Messages.REPEAT_TASK_ERROR);
         }

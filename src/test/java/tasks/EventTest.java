@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EventTest {
-    Event newEvent = new Event("project meeting", "NUS SOC", Parser.parseDate("20/03/20 0900"), "My Very Long Long "
-            + "Long Long Long Comment");
-    Event nullEvent = new Event(null,null,null,null);
+    Event newEvent = new Event("project meeting", "NUS SOC", Parser.parseDate("20/03/20 0900"),
+            Parser.parseDate("20/03/20 1100"), "My Very Long Long Long Long Long Comment");
+    Event nullEvent = new Event(null,null,null, null,null);
 
     @Test
     public void testGetLocation() {
@@ -26,6 +26,14 @@ public class EventTest {
     public void testGetDateAndTime() {
         LocalDateTime testDateAndTime = Parser.parseDate("20/03/20 0900");
         assertEquals(newEvent.getDateAndTime(), testDateAndTime);
+        assertNotEquals(newEvent.getDateAndTime(), null);
+        assertNull(nullEvent.getDateAndTime());
+    }
+
+    @Test
+    public void getEndDateAndTime_expectedUsage_success() {
+        LocalDateTime testDateAndTime = Parser.parseDate("20/03/20 1100");
+        assertEquals(newEvent.getEndDateAndTime(), testDateAndTime);
         assertNotEquals(newEvent.getDateAndTime(), null);
         assertNull(nullEvent.getDateAndTime());
     }
@@ -63,7 +71,7 @@ public class EventTest {
 
     @Test
     public void testToString() {
-        String printedString = "[E][X] project meeting (at: NUS SOC | Fri 20 Mar 2020 09:00)"
+        String printedString = "[E][X] project meeting (at: NUS SOC | Fri 20 Mar 2020 09:00 - 11:00)"
                 + System.lineSeparator() + Messages.COMMENTS_INDENT
                 + "My Very Long Long Long Long Long Comment";
         assertEquals(newEvent.toString(), printedString);
