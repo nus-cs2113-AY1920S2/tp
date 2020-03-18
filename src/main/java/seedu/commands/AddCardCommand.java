@@ -6,19 +6,22 @@ import seedu.cards.CardList;
 /**
  * Command Class for the AddCard command.
  */
-public class AddCardCommand extends Command {
+public class AddCardCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addcard";
 
-    public static final String MESSAGE_USAGE = "\tTo add card, type command:​ add q/[QUESTION] a/[ANSWER]";
+    public static final String MESSAGE_USAGE = "\tTo add card, type command:​addcard s/[SUBJECT INDEX] q/[QUESTION] a/[ANSWER]";
 
     private Card card;
+
+    private String subject;
 
     /**
      * Initialises the parameters for card creation.
      */
-    public AddCardCommand(Card card) {
+    public AddCardCommand(String subject, Card card) {
         this.card = card;
+        this.subject = subject;
     }
 
     /**

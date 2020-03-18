@@ -11,7 +11,7 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_USAGE = "\tTo quiz, type command:​quiz";
+    public static final String MESSAGE_USAGE = "\tTo quiz, type command:​quiz s/[SUBJECT INDEX]";
 
     /**
      * Chooses a random card and displays it's question and answer.

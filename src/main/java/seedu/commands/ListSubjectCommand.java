@@ -4,7 +4,7 @@ import seedu.cards.CardList;
 import seedu.duke.Duke;
 
 /**
- * Command Class for the AddCard command.
+ * Command Class for the ListSubject command.
  */
 public class ListSubjectCommand extends ListCommand {
 

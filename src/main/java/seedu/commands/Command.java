@@ -6,7 +6,7 @@ import seedu.exception.EscException;
 /**
  * Parent command class for the other commands.
  */
-public class Command {
+public abstract class Command {
 
     public static final String COMMAND_WORD = null;
 
@@ -15,9 +15,7 @@ public class Command {
     /**
      * Executes the command.
      */
-    public void execute(CardList cards) throws EscException {
-        throw new EscException("This method is to be implemented by child classes");
-    }
+    public abstract void execute(CardList cards) throws EscException;
 
     /** Check if it is an exit command.
      * @return true or false depending on whether it is an exit command.
