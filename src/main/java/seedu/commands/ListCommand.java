@@ -17,6 +17,6 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(CardList cards) {
-        Duke.listCards(cards.getCards());
+        assert true : "This method is to be implemented by child ListCommand classes";
     }
 }
