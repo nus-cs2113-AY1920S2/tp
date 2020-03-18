@@ -31,6 +31,10 @@ public class UI {
         System.out.println(MessageBank.WELCOME_MESSAGE);
     }
 
+    public void displayFileErrorMessaage() {
+        System.out.println(MessageBank.FILE_ERROR_MESSAGE);
+    }
+
     public void displayInvalidCommandMessage() {
         System.out.println(MessageBank.INVALID_COMMAND_MESSAGE);
     }
