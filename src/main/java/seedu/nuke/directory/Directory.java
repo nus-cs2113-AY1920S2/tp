@@ -13,7 +13,7 @@ public abstract class Directory {
     private static Stack<Directory> directoryStack = new Stack<>();
     private static final ArrayList<DataType> LEVEL_ORDER =
             new ArrayList<>(Arrays.asList(DataType.MODULE, DataType.CATEGORY, DataType.TASK, DataType.FILE));
-    private static ListIterator<DataType> currentLevel = LEVEL_ORDER.listIterator();
+    private static ListIterator<DataType> currentLevelType = LEVEL_ORDER.listIterator();
     private Directory parent;
 
     /**
@@ -44,6 +44,16 @@ public abstract class Directory {
     }
 
     /**
+     * Returns the current level of the directory.
+     *
+     * @return
+     *  The current level of the directory
+     */
+    public static Directory getCurrentLevel() {
+        return directoryStack.peek();
+    }
+
+    /**
      * Traverse one level up in the directory.
      *
      * @param nextLevel
@@ -54,11 +64,11 @@ public abstract class Directory {
      *  If the traversal will result in traversing out of the directory
      */
     public static DataType traverseUp(Directory nextLevel) throws TraverseDirectoryOutOfBoundsException {
-        if (!currentLevel.hasNext()) {
+        if (!currentLevelType.hasNext()) {
             throw new TraverseDirectoryOutOfBoundsException();
         }
         directoryStack.push(nextLevel);
-        return currentLevel.next();
+        return currentLevelType.next();
     }
 
     /**
@@ -70,10 +80,10 @@ public abstract class Directory {
      *  If the traversal will result in traversing out of the directory
      */
     public static DataType traverseDown() throws TraverseDirectoryOutOfBoundsException {
-        if (!currentLevel.hasPrevious()) {
+        if (!currentLevelType.hasPrevious()) {
             throw new TraverseDirectoryOutOfBoundsException();
         }
         directoryStack.pop();
-        return currentLevel.previous();
+        return currentLevelType.previous();
     }
 }

@@ -9,6 +9,12 @@ public abstract class Command {
 //    protected ModuleManager moduleManager;
     //protected static Directory currentDirectory;
 
+    /**
+     * Executes the command.
+     *
+     * @return
+     *  The result of the execution
+     */
     public abstract CommandResult execute();
 
 

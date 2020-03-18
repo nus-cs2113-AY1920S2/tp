@@ -31,7 +31,6 @@ public class ListModuleCommand extends ListCommand {
         this.isExact = isExact;
     }
 
-
     @Override
     public CommandResult execute() {
         ArrayList<Module> moduleList =
