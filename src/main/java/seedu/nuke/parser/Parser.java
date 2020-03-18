@@ -1,6 +1,5 @@
 package seedu.nuke.parser;
 
-
 import seedu.nuke.Executor;
 import seedu.nuke.command.*;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
@@ -17,7 +16,6 @@ import seedu.nuke.command.promptCommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptCommand.ListNumberPrompt;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Root;
 import seedu.nuke.directory.Task;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
@@ -74,47 +72,62 @@ public class Parser {
         String parameters = matcher.group("parameters").trim();
 
         switch (commandWord) {
+            case AddModuleCommand.COMMAND_WORD:
+                return prepareAddModuleCommand(parameters);
 
-        //todo check if in module
-        case AddTagCommand.COMMAND_WORD:
-            return new AddTagCommand(parameters);
+            case AddCategoryCommand.COMMAND_WORD:
+                return prepareAddCategoryCommand(parameters);
 
-        case EditDeadlineCommand.COMMAND_WORD:
-            return prepareEditDeadlineCommand(parameters);
+            case AddTaskCommand.COMMAND_WORD:
+                return prepareAddTaskCommand(parameters);
 
-//        case ChangeDirectoryCommand.COMMAND_WORD:
-//            return prepareChangeDirectoryCommand(parameters, moduleManager);
+            // todo check if in module
+            case AddTagCommand.COMMAND_WORD:
+                return new AddTagCommand(parameters);
 
-        case AddModuleCommand.COMMAND_WORD:
-            return prepareAddModuleCommand(parameters);
+            case DeleteModuleCommand.COMMAND_WORD:
+                return prepareDeleteModuleCommand(parameters);
 
-        case DeleteModuleCommand.COMMAND_WORD:
-            return prepareDeleteModuleCommand(parameters);
+            case DeleteCategoryCommand.COMMAND_WORD:
+                return prepareDeleteCategoryCommand(parameters);
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case DeleteTaskCommand.COMMAND_WORD:
+                return prepareDeleteTaskCommand(parameters);
 
-        case ListCommand.COMMAND_WORD:
-            return prepareListCommand(parameters);
+    //        case DeleteCommand.COMMAND_WORD:
+    //            return prepareDeleteCommand(parameters);
 
-        case ListAllTasksDeadlineCommand.COMMAND_WORD:
-            return new ListAllTasksDeadlineCommand();
+            case ListModuleCommand.COMMAND_WORD:
+                return prepareListModuleCommand(parameters);
 
-        case AddTaskCommand.COMMAND_WORD:
-            return prepareAddTaskCommand(parameters);
+            case ListCategoryCommand.COMMAND_WORD:
+                return prepareListCategoryCommand(parameters);
 
-//        case DeleteCommand.COMMAND_WORD:
-//            return prepareDeleteCommand(parameters);
+            case ListTaskCommand.COMMAND_WORD:
+                return prepareListTaskCommand(parameters);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ListAllTasksDeadlineCommand.COMMAND_WORD:
+                return new ListAllTasksDeadlineCommand();
 
-        default:
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
+    //        case ListCommand.COMMAND_WORD:
+    //            return prepareListCommand(parameters);
+
+            case EditDeadlineCommand.COMMAND_WORD:
+                return prepareEditDeadlineCommand(parameters);
+
+    //        case ChangeDirectoryCommand.COMMAND_WORD:
+    //            return prepareChangeDirectoryCommand(parameters, moduleManager);
+
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            default:
+                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
     }
-
-
 
     private Command prepareEditDeadlineCommand(String parameters) {
         Task taskToEdit;
