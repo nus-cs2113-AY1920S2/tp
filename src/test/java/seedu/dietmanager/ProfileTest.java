@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.dietmanager;
 
 import org.junit.jupiter.api.Test;
 

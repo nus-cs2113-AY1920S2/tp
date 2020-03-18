@@ -1,12 +1,12 @@
-package seedu.duke;
+package seedu.dietmanager;
 
-import seedu.duke.commands.Command;
-import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.exceptions.InvalidFormatException;
-import seedu.duke.parser.Parser;
-import seedu.duke.ui.UI;
+import seedu.dietmanager.commands.Command;
+import seedu.dietmanager.exceptions.InvalidCommandException;
+import seedu.dietmanager.exceptions.InvalidFormatException;
+import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.UI;
 
-public class Duke {
+public class DietManager {
 
     /**
      * Begins the application and creates the relevant objects required for the application to function.

@@ -1,4 +1,4 @@
-package seedu.duke.ui;
+package seedu.dietmanager.ui;
 
 public class MessageBank {
 

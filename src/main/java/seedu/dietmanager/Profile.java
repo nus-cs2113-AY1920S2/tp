@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.dietmanager;
 
 public class Profile {
     private String name;

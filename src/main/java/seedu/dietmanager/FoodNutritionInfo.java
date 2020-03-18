@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.dietmanager;
 
 import java.util.ArrayList;
 

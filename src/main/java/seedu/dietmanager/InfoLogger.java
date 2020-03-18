@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.dietmanager;
 
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
