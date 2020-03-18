@@ -75,31 +75,36 @@ _______________________________________________________________________
 _______________________________________________________________________
 > [Assignment 3] has been marked done!
 _______________________________________________________________________
+> All completed tasks have been removed
+_______________________________________________________________________
 > Here are the relevant tasks:
-  1. [A][/] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
-            notes: 5%
-  2. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+  1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
             notes: 15%
-  3. [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)
-            notes: 20%
-  4. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
-            notes: New year new me
-_______________________________________________________________________
-> [OP1] has been deleted!
-_______________________________________________________________________
-> Here are the relevant tasks:
-  1. [A][/] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
-            notes: 5%
   2. [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)
             notes: 20%
   3. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
             notes: New year new me
 _______________________________________________________________________
+> [Midterms] has been deleted!
+_______________________________________________________________________
 > Here are the relevant tasks:
-  3. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
+  1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+  2. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
             notes: New year new me
 _______________________________________________________________________
-> No tasks were found
+> Here are the relevant tasks:
+  2. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
+            notes: New year new me
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+_______________________________________________________________________
+> Here are the search results:
+1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+There are a total of 1 result(s) found
 _______________________________________________________________________
 > Please use a different name. Task already exists in list
 _______________________________________________________________________
