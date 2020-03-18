@@ -6,6 +6,8 @@ import seedu.atas.Parser;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.StringJoiner;
 
 public class Event extends Task {
     public static final String EVENT_ICON = "E";
@@ -86,5 +88,44 @@ public class Event extends Task {
                 + System.lineSeparator()
                 + Messages.COMMENTS_INDENT
                 + comments;
+    }
+
+    @Override
+    public String encodeTask() {
+        StringJoiner sj = new StringJoiner(STORAGE_DELIMITER);
+        sj.add(EVENT_ICON);
+        sj.add(isDone ? "true" : "false");
+        sj.add(name);
+        sj.add(location);
+        sj.add(startDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(endDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(comments);
+        return sj.toString();
+    }
+
+    /**
+     * Converts an encoded Event back to an Event object.
+     * @param encodedTask Event encoded using encodedTask()
+     * @return Event with the correct attributes set
+     * @throws DateTimeParseException if encoded startDateAndTime or endDateAndTime cannot be parsed
+     * @throws IndexOutOfBoundsException if encodedTask is not a String returned by calling encodeTask() on
+     *              an Event
+     */
+    public static Event decodeTask(String encodedTask)
+            throws DateTimeParseException, IndexOutOfBoundsException {
+        String[] tokens = encodedTask.split("\\" + STORAGE_DELIMITER);
+        assert tokens[0].equals(EVENT_ICON);
+        boolean isDone = Boolean.parseBoolean(tokens[1]);
+        String name = tokens[2];
+        String location = tokens[3];
+        LocalDateTime startDateAndTime = Parser.parseDate(tokens[4]);
+        LocalDateTime endDateAndTime = Parser.parseDate(tokens[5]);
+        String comments = tokens[6];
+        assert tokens.length == 7;
+        Event event = new Event(name, location, startDateAndTime, endDateAndTime, comments);
+        if (isDone) {
+            event.setDone();
+        }
+        return event;
     }
 }

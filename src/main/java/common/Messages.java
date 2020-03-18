@@ -83,6 +83,11 @@ public class Messages {
     public static final String REPEAT_TASK_ERROR = "Please use a different name. Task already exists in list";
     public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
     public static final String INCORRECT_START_END_TIME_ERROR = "The end time should come after the start time";
+    public static final String INCORRECT_STORAGE_FORMAT_ERROR = "The local save file is of an unknown format. "
+            + "Exit now using <Ctrl C> to manually fix the save file, "
+            + "or the save file will be overwritten with the new session data";
+    public static final String NO_SAVE_FILE_MESSAGE = "No existing save file found. A new save file will be created";
+    public static final String SAVE_FAILED_MESSAGE = "Oh no. Something went wrong while saving, please try again later";
 
     public static final String ASSIGN_INCORRECT_FORMAT_ERROR = "Incorrect format for Assignment Command"
             + System.lineSeparator() + ASSIGNMENT_FORMAT_HELP;
