@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public abstract class Task {
+    public static final String STORAGE_DELIMITER = "|";
+
     protected String name;
     protected boolean isDone;
     protected String comments;
@@ -71,4 +73,10 @@ public abstract class Task {
         Task task = (Task) addedTask;
         return name.equals(task.getName());
     }
+
+    /**
+     * Encodes a task for local storage.
+     * @return String that represents the encoded task
+     */
+    public abstract String encodeTask();
 }
