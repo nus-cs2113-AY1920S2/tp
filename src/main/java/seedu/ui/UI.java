@@ -10,8 +10,9 @@ public class UI {
     private static Scanner in;
     private static String userInput;
     private static String userName;
-    private final String COLUMN_OF_FOUR = ("| %-10d|  %-30s|  %-35s|  %-10s|%n");
-    private final String COLUMN_OF_THREE = ("| %-10d|  %-35s|  %-43s|%n");
+    private final String columnOfFour = ("| %-10d|  %-30s|  %-35s|  %-10s|%n");
+    private final String columnOfThree = ("| %-10d|  %-35s|  %-43s|%n");
+
     public UI() {
         in = new Scanner(System.in);
     }
@@ -120,19 +121,18 @@ public class UI {
      */
     public void printBodyOfFour(int index, String body1,
                                        String body2, String body3) {
-        System.out.printf(COLUMN_OF_FOUR, index, body1, body2, body3);
+        System.out.printf(columnOfFour, index, body1, body2, body3);
         printSplitOfFour();
     }
 
     public void printHeaderOfThree(String index, String header1, String header2) {
-        String headerFormat = ("| %-10d|  %-35s|  %-43s|%n");
         printSplit();
-        System.out.printf(headerFormat, index, header1, header2);
+        System.out.printf(columnOfThree, index, header1, header2);
         printSplitOfThree();
     }
 
     public void printBodyOfThree(String index, String body1, String body2) {
-        System.out.printf(COLUMN_OF_THREE, index, body1, body2);
+        System.out.printf(columnOfThree, index, body1, body2);
         printSplitOfFour();
     }
 
@@ -214,15 +214,15 @@ public class UI {
     }
 
     public Boolean getTypeOfAddPerformance() {
-        System.out.println("Would you like to import an existing student list? " +
-                "If yes, input 'yes'. ");
+        System.out.println("Would you like to import an existing student list? "
+                + "If yes, input 'yes'. ");
         String input = in.nextLine();
         return input.toLowerCase().equals("yes");
     }
 
     public String getEventName() {
-        System.out.println("Please key in the name of event that " +
-                "you wish to add the student's performance.");
+        System.out.println("Please key in the name of event that "
+                + "you wish to add the student's performance.");
         return in.nextLine();
     }
 }

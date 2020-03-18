@@ -10,7 +10,7 @@ public class PerformanceParser {
     public Performance parsePerformance(String commandParameters) throws DukeException {
         String[] dataToRead = commandParameters.split(" ", 5);
         String studentName = "";
-        String result ="";
+        String result = "";
         for (String s : dataToRead) {
             if (s != null) {
                 String[] data = s.split("/");

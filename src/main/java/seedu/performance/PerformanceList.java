@@ -67,7 +67,7 @@ public class PerformanceList {
                 return performance;
             }
         }
-        throw new DukeException("There is no record for "+ studentName + "'s performance.");
+        throw new DukeException("There is no record for " + studentName + "'s performance.");
     }
 
     public boolean isEmpty() {
