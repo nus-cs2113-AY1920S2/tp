@@ -33,7 +33,8 @@ public class Message {
     public static final String DIVIDER = "-".repeat(80);
 
     public static final String MESSAGE_SHOW_LIST = "Here are what you are looking for..\n";
-    public static final String MESSAGE_SHOW_MODULES = "Here are ALL your modules.\n";
+    public static final String MESSAGE_PRIORITY_NOT_IN_RANGE =
+            "Alert! Priority should be a number between 0 and 100 inclusive.\n";
 
 
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";

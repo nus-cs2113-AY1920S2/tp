@@ -32,18 +32,18 @@ public class AddTaskCommand extends TaskCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<categoryName>(?:" + CATEGORY_NAME_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<deadline>(?:" + DEADLINE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<priority>(?:" + PRIORITY_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<invalid>(?:-(?:[^mcdp].*|[mcdp]\\S+)))")
+            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<deadline>(?:\\s+" + DEADLINE_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<priority>(?:\\s+" + PRIORITY_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mcdp].*|[mcdp]\\S+))*)")
     };
 
     private String moduleCode;
     private String categoryName;
     private String description;
     private DateTime deadline;
-    private Integer priority;
+    private int priority;
     private Task taskToAdd;
 
     /**
@@ -68,6 +68,23 @@ public class AddTaskCommand extends TaskCommand {
         this.priority = priority;
     }
 
+    /**
+     * Constructs the command to add a task without a priority.
+     *
+     * @param moduleCode
+     *  The module code of the module that has the category to add the task
+     * @param categoryName
+     *  The name of the category to add the task
+     * @param description
+     *  The priority of the category
+     * @param deadline
+     *  The deadline of the task
+     */
+    public AddTaskCommand(String moduleCode, String categoryName, String description, DateTime deadline) {
+        // Dummy value for missing priority
+        this(moduleCode, categoryName, description, deadline, -1);
+    }
+
     public AddTaskCommand(Task task) {
         this.taskToAdd = task;
     }
@@ -86,7 +103,7 @@ public class AddTaskCommand extends TaskCommand {
 //        //dataManager.addTask(taskToAdd);
 //        return new CommandResult(MESSAGE_TASK_ADDED);
         try {
-            if (priority == null) {
+            if (priority < 0) {
                 priority = ModuleManager.getCategory(moduleCode, categoryName).getCategoryPriority();
             }
             Category parentCategory = ModuleManager.getCategory(moduleCode, categoryName);

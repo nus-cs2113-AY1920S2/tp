@@ -10,7 +10,6 @@ import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.parser.Parser.ALL_FLAG;
@@ -23,11 +22,11 @@ public class DeleteTaskCommand extends DeleteCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<categoryName>(?:" + CATEGORY_NAME_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:-(?:[^m].*|[m]\\S+)))")
+            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
+            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^m].*|[m]\\S+))*)")
     };
 
     private String moduleCode;

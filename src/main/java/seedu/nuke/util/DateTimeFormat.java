@@ -51,6 +51,9 @@ public class DateTimeFormat {
      */
     public static DateTime stringToDateTime(String datetime)
             throws InvalidDateTimeException, InvalidDateException, InvalidTimeException {
+        if (datetime.isBlank()) {
+            return null;
+        }
         String[] dateTimeData = datetime.split("\\s+");
 
         if (dateTimeData.length == 1) {
@@ -156,13 +159,13 @@ public class DateTimeFormat {
     /**
      * Signals that the <i>date</i> string given is in an invalid format.
      */
-    public static class InvalidDateException extends InvalidFormatException {
+    public static class InvalidDateException extends InvalidDateTimeException {
     }
 
     /**
      * Signals that the <i>time</i> string given is in an invalid format.
      */
-    public static class InvalidTimeException extends InvalidFormatException {
+    public static class InvalidTimeException extends InvalidDateTimeException {
     }
 }
 

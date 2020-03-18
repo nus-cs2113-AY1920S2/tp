@@ -17,9 +17,9 @@ public class ListModuleCommand extends ListCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
-            Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:-(?:[^ae].*|[ae]\\S+))*)")
+            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
+            // Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^ae].*|[ae]\\S+))*)")
     };
 
     private String moduleKeyWord;

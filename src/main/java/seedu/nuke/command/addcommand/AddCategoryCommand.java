@@ -29,7 +29,7 @@ public class AddCategoryCommand extends Command {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
             Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"),
             Pattern.compile("(?<priority>(?:" + PRIORITY_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<invalid>(?:-(?:[^mp].*|[mp]\\S+)))")
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mp].*|[mp]\\S+))*)")
     };
 
     private String moduleCode;
@@ -46,10 +46,22 @@ public class AddCategoryCommand extends Command {
      * @param categoryPriority
      *  The priority of the category
      */
-    public AddCategoryCommand(String moduleCode, String categoryName, Integer categoryPriority) {
+    public AddCategoryCommand(String moduleCode, String categoryName, int categoryPriority) {
         this.moduleCode = moduleCode;
         this.categoryName = categoryName;
-        this.categoryPriority = (categoryPriority != null) ? categoryPriority : 0;
+        this.categoryPriority = categoryPriority;
+    }
+
+    /**
+     * Constructs the command to add a category without a priority.
+     *
+     * @param moduleCode
+     *  The module code of the module to add the category
+     * @param categoryName
+     *  The name of the category
+     */
+    public AddCategoryCommand(String moduleCode, String categoryName) {
+        this(moduleCode, categoryName, 0);
     }
 
     /**

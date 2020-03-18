@@ -20,10 +20,10 @@ public class DeleteCategoryCommand extends DeleteCommand {
     public static final String FORMAT = COMMAND_WORD + " <category name>";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:-(?:[^m].*|[m]\\S+)))")
+            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
+            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^m].*|[m]\\S+))*)")
     };
 
     private String moduleCode;

@@ -16,10 +16,10 @@ public class ListCategoryCommand extends ListCommand {
     public static final String FORMAT = COMMAND_WORD;
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
-            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:-(?:[^ae].*|[ae]\\S+))*)")
+            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
+            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^ae].*|[ae]\\S+))*)")
     };
 
     private String moduleKeyWord;

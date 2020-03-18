@@ -19,9 +19,9 @@ public class DeleteModuleCommand extends DeleteCommand {
     public static final String MESSAGE_USAGE = "delm <module code>";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:-(?:[^e].*|[e]\\S+)))")
+            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
+            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^e].*|[e]\\S+))*)")
     };
 
     private String moduleCode;

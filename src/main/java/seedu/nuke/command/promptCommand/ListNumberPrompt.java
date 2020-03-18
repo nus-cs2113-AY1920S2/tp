@@ -9,7 +9,6 @@ import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -60,19 +59,14 @@ public class ListNumberPrompt extends Command {
 
     @Override
     public CommandResult execute() {
-        if (indices == null) {
-            Executor.terminatePrompt();
-            return new CommandResult(MESSAGE_INVALID_DELETE_INDICES);
-        } else {
-            Executor.preparePromptConfirmation();
-            Executor.setIndices(indices);
+        Executor.preparePromptConfirmation();
+        Executor.setIndices(indices);
 
-            try {
-                return executePromptConfirmation();
-            } catch (IndexOutOfBoundsException e) {
-                Executor.terminatePrompt();
-                return new CommandResult(MESSAGE_LIST_NUMBER_NOT_FOUND);
-            }
+        try {
+            return executePromptConfirmation();
+        } catch (IndexOutOfBoundsException e) {
+            Executor.terminatePrompt();
+            return new CommandResult(MESSAGE_LIST_NUMBER_NOT_FOUND);
         }
     }
 }
