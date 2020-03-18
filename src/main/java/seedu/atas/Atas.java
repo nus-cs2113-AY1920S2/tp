@@ -4,9 +4,13 @@ import command.Command;
 import command.CommandResult;
 import command.ExitCommand;
 import common.Messages;
+import exceptions.AtasException;
+
+import java.io.IOException;
 
 public class Atas {
     private Ui ui;
+    private Storage storage;
     private TaskList taskList;
 
     /**
@@ -14,7 +18,15 @@ public class Atas {
      */
     public Atas() {
         this.ui = new Ui();
+        this.storage = new Storage();
         this.taskList = new TaskList();
+        try {
+            this.taskList = storage.load();
+        } catch (AtasException e) {
+            ui.showToUser(e.toString());
+        } catch (IOException e) {
+            ui.showToUser(Messages.NO_SAVE_FILE_MESSAGE);
+        }
     }
 
     /**
@@ -34,7 +46,16 @@ public class Atas {
             Command command = Parser.parseCommand(input);
             CommandResult result = command.execute(taskList, ui);
             ui.showToUser(result.feedbackToUser);
+            trySaveTaskList();
             ui.showToUser(Messages.DIVIDER);
+        }
+    }
+
+    private void trySaveTaskList() {
+        try {
+            storage.save(taskList);
+        } catch (IOException e) {
+            ui.showToUser(Messages.SAVE_FAILED_MESSAGE);
         }
     }
 
