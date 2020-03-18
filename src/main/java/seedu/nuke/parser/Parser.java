@@ -26,6 +26,7 @@ import seedu.nuke.format.DateTimeFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_GO_INTO_MODULE;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_PARAMETERS;
@@ -158,7 +159,7 @@ public class Parser {
         if (moduleManager.getModuleWithCode(parameters) != null) {
             return new ChangeDirectoryCommand(moduleManager.getModuleWithCode(parameters));
         }
-        return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        return new IncorrectCommand(MESSAGE_MODULE_NOT_FOUND);
     }
 
     private Command prepareAddTaskCommand(String parameters) {
