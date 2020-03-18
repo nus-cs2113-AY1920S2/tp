@@ -173,7 +173,7 @@ public class Task extends Directory implements Tag {
 
     @Override
     public String getTag() {
-        if (this.tag != null){
+        if (this.tag != null) {
             return tag.toString();
         } else {
             return null;

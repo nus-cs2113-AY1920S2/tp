@@ -27,6 +27,7 @@ import seedu.nuke.format.DateTimeFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_GO_INTO_MODULE;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_PARAMETERS;
@@ -114,13 +115,12 @@ public class Parser {
     }
 
     private Command prepareListCommand(String parameters) {
-        if (parameters.trim().matches(ALL_FLAG)){
+        if (parameters.trim().matches(ALL_FLAG)) {
             return new ListAllTasksDeadlineCommand();
-        }
-        if (Command.getCurrentDirectory() instanceof Root){
-           return prepareListModuleCommand(parameters);
-        } else if (Command.getCurrentDirectory() instanceof Module){
-           return new ListModuleTasksDeadlineCommand();
+        } else if (Command.getCurrentDirectory() instanceof Root) {
+            return prepareListModuleCommand(parameters);
+        } else if (Command.getCurrentDirectory() instanceof Module) {
+            return new ListModuleTasksDeadlineCommand();
         }
         return new ListAllTasksDeadlineCommand();
     }
@@ -144,9 +144,11 @@ public class Parser {
 
     private Command prepareDeleteCommand(String parameters) {
         if (Command.getCurrentDirectory() instanceof Root) {
-            if (ModuleManager.contains(parameters)){
+            if (ModuleManager.contains(parameters)) {
                 return new DeleteModuleCommand(parameters);
-            } else return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            } else {
+                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            }
         } else if (Command.getCurrentDirectory() instanceof Module) {
             if (((Module) Command.getCurrentDirectory()).getTaskManager().contains(parameters)) {
                 return new DeleteTaskCommand(parameters);
@@ -163,7 +165,7 @@ public class Parser {
         if (moduleManager.getModuleWithCode(parameters) != null) {
             return new ChangeDirectoryCommand(moduleManager.getModuleWithCode(parameters));
         }
-        return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        return new IncorrectCommand(MESSAGE_MODULE_NOT_FOUND);
     }
 
     private Command prepareAddTaskCommand(String parameters) {
@@ -233,7 +235,7 @@ public class Parser {
     }
 
     /**
-     *
+     * Prepare a Command of the listModule type.
      * @param parameters -a: list all tasks -CS1231 list tasks from specific module
      * @return command
      */
