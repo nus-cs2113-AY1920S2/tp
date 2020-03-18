@@ -9,7 +9,6 @@ import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
