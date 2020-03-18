@@ -5,8 +5,8 @@ import common.Messages;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.atas.TaskList;
+import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
 

@@ -1,8 +1,8 @@
 package command;
 
 import common.Messages;
-import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.atas.TaskList;
+import seedu.atas.Ui;
 
 public class IncorrectCommand extends Command {
     public final String description;

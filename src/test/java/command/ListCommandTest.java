@@ -3,9 +3,9 @@ package command;
 import common.Messages;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Parser;
-import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.atas.Parser;
+import seedu.atas.TaskList;
+import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
 

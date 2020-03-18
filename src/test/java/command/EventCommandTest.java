@@ -3,9 +3,9 @@ package command;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.duke.Parser;
-import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.atas.Parser;
+import seedu.atas.TaskList;
+import seedu.atas.Ui;
 
 public class EventCommandTest {
     @Test

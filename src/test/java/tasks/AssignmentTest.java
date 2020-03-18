@@ -2,7 +2,7 @@ package tasks;
 
 import common.Messages;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Parser;
+import seedu.atas.Parser;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;

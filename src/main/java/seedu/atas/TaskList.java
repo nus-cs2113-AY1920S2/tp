@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.atas;
 
 import tasks.Task;
 import tasks.Assignment;
