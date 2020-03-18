@@ -1,4 +1,4 @@
-package seedu.nuke.command.editCommand;
+package seedu.nuke.command.editcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.format.DateTime;

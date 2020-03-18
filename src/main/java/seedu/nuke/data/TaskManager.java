@@ -1,6 +1,5 @@
 package seedu.nuke.data;
 
-import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
@@ -12,6 +11,8 @@ import java.util.ArrayList;
  */
 public class TaskManager {
     private ArrayList<Task> taskList;
+
+    private static final String NO_KEYWORD = "";
 
     /**
      * Initiates an empty Task List.
@@ -137,7 +138,7 @@ public class TaskManager {
      * @throws TaskNotFoundException
      *  If the task with the specified description is not found in the Task List
      */
-    public TaskFileManager retrieve(String description) throws TaskNotFoundException {
+    public TaskFileManager retrieveList(String description) throws TaskNotFoundException {
         return getTask(description).getFiles();
     }
 
@@ -171,7 +172,7 @@ public class TaskManager {
      */
     public ArrayList<Task> filterExact(String taskKeyword) {
         // Returns all tasks in the Task List if no keyword is provided.
-        if (taskKeyword.isEmpty()) {
+        if (taskKeyword.equals(NO_KEYWORD)) {
             return this.getTaskList();
         }
 

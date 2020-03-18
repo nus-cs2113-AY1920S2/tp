@@ -7,8 +7,6 @@ import seedu.nuke.directory.Task;
 import java.util.ArrayList;
 
 public class Message {
-    public static final String MESSAGE_DUPLICATE_MODULE_ADD = "ALERT! The module already existed\n";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "Alert! Module is not found\n";
     public static final String MESSAGE_LOGO = "      ___          ___          ___          ___     \n"
             + "     /__/\\        /__/\\        /__/|        /  /\\    \n"
             + "     \\  \\:\\       \\  \\:\\      |  |:|       /  /:/_   \n"

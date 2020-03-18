@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.*;
 
 public class DeleteModuleCommand extends Command {

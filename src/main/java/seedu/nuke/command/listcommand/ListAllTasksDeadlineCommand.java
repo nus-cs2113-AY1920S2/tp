@@ -1,6 +1,8 @@
-package seedu.nuke.command.listCommand;
+package seedu.nuke.command.listcommand;
 
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.common.DataType;
+import seedu.nuke.data.ModuleManager;
 
 import java.util.ArrayList;
 
@@ -22,12 +24,12 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
     @Override
     public CommandResult execute() {
         //get the large task list
-        if (moduleManager.countAllTasks() == EMPTY) {
+        if (ModuleManager.countAllTasks() == EMPTY) {
             return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
         }
-        assert moduleManager.countAllTasks() != EMPTY : "make sure there are some tasks in the list";
-        deadlines = moduleManager.checkDeadline();
-        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, moduleManager.countAllTasks()),
-                true, deadlines);
+        assert ModuleManager.countAllTasks() != EMPTY : "make sure there are some tasks in the list";
+        deadlines = ModuleManager.checkDeadline();
+        return new CommandResult(String.format(MESSAGE_TASK_SUCCESSFULLY_LIST, ModuleManager.countAllTasks()),
+                DataType.TASK, deadlines);
     }
 }

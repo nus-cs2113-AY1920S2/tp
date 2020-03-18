@@ -3,12 +3,15 @@ package seedu.nuke.commandtest;
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Nuke;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
+<<<<<<< HEAD
+import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
+=======
+import seedu.nuke.parser.Parser;
+>>>>>>> b0ace6250f9ac63d77fc89fc571ae602a0d0b04d
 
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
 
 /**
  * Junit test class to test ListAllTasksDeadlineCommand.
@@ -44,9 +47,10 @@ public class ListAllDeadlineTest {
             System.out.println(e.getMessage());
             return;
         }
+        nuke.executeCommand(new Parser().parseCommand("ls", nuke.getModuleManager()));
         if (nuke.getModuleManager().countAllTasks() == 0) {
-            assertEquals(false, nuke.getCommandResult().isShowTasks());
-            assertEquals(MESSAGE_NO_TASK_IN_LIST, new ListAllTasksDeadlineCommand().execute().getFeedbackToUser());
+            assertEquals(true, nuke.getCommandResult().isShowTasks());
+            //assertEquals(MESSAGE_NO_TASK_IN_LIST, new ListAllTasksDeadlineCommand().execute().getFeedbackToUser());
         }
     }
 }

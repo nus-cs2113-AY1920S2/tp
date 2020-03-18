@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class CategoryManager {
     private ArrayList<Category> categoryList;
 
+    private static final String NO_KEYWORD = "";
+
     /**
      * Constructs the Category Manager with initialised categories.
      *
@@ -130,7 +132,7 @@ public class CategoryManager {
      * @throws CategoryNotFoundException
      *  If the category with the specified name is not found in the Category List
      */
-    public TaskManager retrieve(String categoryName) throws CategoryNotFoundException {
+    public TaskManager retrieveList(String categoryName) throws CategoryNotFoundException {
         return getCategory(categoryName).getTasks();
     }
 
@@ -164,7 +166,7 @@ public class CategoryManager {
      */
     public ArrayList<Category> filterExact(String categoryKeyword) {
         // Returns all categories in the Category List if no keyword is provided.
-        if (categoryKeyword.isEmpty()) {
+        if (categoryKeyword.equals(NO_KEYWORD)) {
             return this.getCategoryList();
         }
 

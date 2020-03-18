@@ -1,6 +1,6 @@
 package seedu.nuke;
 
-import seedu.nuke.command.addCommand.AddModuleCommand;
+import seedu.nuke.command.addcommand.AddModuleCommand;
 
 import java.util.logging.*;
 

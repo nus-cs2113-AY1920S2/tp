@@ -1,4 +1,4 @@
-package seedu.nuke.command.listCommand;
+package seedu.nuke.command.listcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.common.DataType;
@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
-import static seedu.nuke.util.Message.MESSAGE_SHOW_MODULES;
 
 public class ListModuleCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsm";

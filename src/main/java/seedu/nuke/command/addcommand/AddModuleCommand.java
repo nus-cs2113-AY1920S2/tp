@@ -1,4 +1,4 @@
-package seedu.nuke.command.addCommand;
+package seedu.nuke.command.addcommand;
 
 import seedu.nuke.NukeLogger;
 import seedu.nuke.command.Command;

@@ -22,8 +22,10 @@ import java.util.Iterator;
 public class ModuleManager implements Iterable<Module> {
     private static Root root;
     private static ArrayList<Module> moduleList;
-    private static ArrayList<Task> allTasks;
+    // private static ArrayList<Task> allTasks;
     private static HashMap<String, String> modulesMap;
+
+    private static final String NO_KEYWORD = "";
 
     public ModuleManager(Root root, HashMap<String, String> modulesMap) {
         ModuleManager.modulesMap = modulesMap;
@@ -159,9 +161,10 @@ public class ModuleManager implements Iterable<Module> {
      * return an orders lists of all tasks of all modules.
      * @return an ArrayList of String which represents the ordered list
      */
-    public ArrayList<String> checkDeadline() {
+    public static ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
         sortAllTasks();
+        ArrayList<Task> allTasks = getAllTasks();
 
         for (Task task: allTasks) {
             deadlines.add(String.format("%-30s", task.getDescription()) + " "
@@ -174,7 +177,7 @@ public class ModuleManager implements Iterable<Module> {
      * sort all tasks of all modules in ascending order of deadlines.
      */
     public void sortAllTasks() {
-        Collections.sort(allTasks, new Comparator<Task>() {
+        Collections.sort(getAllTasks(), new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
                 String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toString();
@@ -209,9 +212,9 @@ public class ModuleManager implements Iterable<Module> {
      * @see Module
      */
     public Module delete(String moduleCode) throws ModuleNotFoundException {
-        if (getModuleWithCode(moduleCode)!= null){
+        if (getModuleWithCode(moduleCode) != null) {
             Module toDelete = getModuleWithCode(moduleCode);
-            allTasks.removeIf(task -> task.getModuleCode().toUpperCase().equals(moduleCode));
+            getAllTasks().removeIf(task -> task.getModuleCode().toUpperCase().equals(moduleCode));
             moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
             return toDelete;
         } else {
@@ -231,7 +234,7 @@ public class ModuleManager implements Iterable<Module> {
      * @throws ModuleNotFoundException
      *  If the module with the specified module code is not found in the Module List
      */
-    public static CategoryManager retrieve(String moduleCode) throws ModuleNotFoundException {
+    public static CategoryManager retrieveList(String moduleCode) throws ModuleNotFoundException {
         return getModule(moduleCode).getCategories();
     }
 
@@ -250,9 +253,9 @@ public class ModuleManager implements Iterable<Module> {
      * @throws CategoryManager.CategoryNotFoundException
      *  If the category with the specified name is not found in the Category List
      */
-    public static TaskManager retrieve(String moduleCode, String categoryName)
+    public static TaskManager retrieveList(String moduleCode, String categoryName)
             throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException {
-        return retrieve(moduleCode).retrieve(categoryName);
+        return retrieveList(moduleCode).retrieveList(categoryName);
     }
 
     /* Filters for data (module / task / category) that *contains* given keywords (i.e. not exact match)
@@ -337,7 +340,7 @@ public class ModuleManager implements Iterable<Module> {
      */
     public static ArrayList<Module> filterExact(String moduleKeyword) {
         // Returns all modules in the Module List if no keyword is provided.
-        if (moduleKeyword.isEmpty()) {
+        if (moduleKeyword.equals(NO_KEYWORD)) {
             return moduleList;
         }
 
@@ -395,20 +398,30 @@ public class ModuleManager implements Iterable<Module> {
         return filteredTaskList;
     }
 
+    /**
+     * Returns all the tasks across the entire Module List.
+     *
+     * @return
+     *  An Array List of all the tasks in the entire Module List
+     */
+    public static ArrayList<Task> getAllTasks() {
+        return filter(NO_KEYWORD, NO_KEYWORD, NO_KEYWORD);
+    }
+
     @Override
     public Iterator<Module> iterator() {
         return moduleList.iterator();
     }
 
-    public void addTaskToModule(TaskManager taskManager, Task taskToAdd) throws TaskManager.DuplicateTaskException {
-        taskManager.add(taskToAdd);
-        allTasks.add(taskToAdd);
-    }
-
-    public void removeTask(TaskManager taskManager, Task taskToDelete) {
-        taskManager.delete(taskToDelete);
-        allTasks.remove(taskToDelete);
-    }
+//    public void addTaskToModule(TaskManager taskManager, Task taskToAdd) throws TaskManager.DuplicateTaskException {
+//        taskManager.add(taskToAdd);
+//        allTasks.add(taskToAdd);
+//    }
+//
+//    public void removeTask(TaskManager taskManager, Task taskToDelete) {
+//        taskManager.delete(taskToDelete);
+//        allTasks.remove(taskToDelete);
+//    }
 
 
     /**
@@ -417,8 +430,7 @@ public class ModuleManager implements Iterable<Module> {
      * @return a module object that has the moduleCode
      */
     public static Module getModuleWithCode(String moduleCode) {
-        for (Module module: moduleList
-             ) {
+        for (Module module: moduleList) {
             if (module.getModuleCode().equals(moduleCode)) {
                 assert module.getModuleCode().equals(moduleCode);
                 return module;
@@ -430,9 +442,8 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * return total number of tasks in all modules.
      */
-    public int countAllTasks() {
-        final String NONE = "";
-        return filter(NONE, NONE, NONE).size();
+    public static int countAllTasks() {
+        return filter(NO_KEYWORD, NO_KEYWORD, NO_KEYWORD).size();
     }
 
     public static class ModuleNotFoundException extends DataNotFoundException {}

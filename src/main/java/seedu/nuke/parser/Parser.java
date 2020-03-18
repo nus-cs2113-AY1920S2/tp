@@ -2,21 +2,19 @@ package seedu.nuke.parser;
 
 
 import seedu.nuke.command.ChangeDirectoryCommand;
-import seedu.nuke.command.addCommand.AddTagCommand;
-import seedu.nuke.command.deletecommand.DeleteCommand;
-import seedu.nuke.command.listCommand.ListAllTasksDeadlineCommand;
-import seedu.nuke.command.listCommand.ListCommand;
-import seedu.nuke.command.listCommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.addcommand.AddTagCommand;
+import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.listcommand.ListCommand;
+import seedu.nuke.command.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.editCommand.EditDeadlineCommand;
+import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.addCommand.AddModuleCommand;
-import seedu.nuke.command.addCommand.AddTaskCommand;
+import seedu.nuke.command.addcommand.AddModuleCommand;
+import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.deletecommand.DeleteModuleCommand;
-import seedu.nuke.command.deleteCommand.DeleteTaskCommand;
-import seedu.nuke.command.listCommand.ListModuleCommand;
+import seedu.nuke.command.listcommand.ListModuleCommand;
 import seedu.nuke.command.promptCommand.ConfirmationStatus;
 import seedu.nuke.command.promptCommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptCommand.ListNumberPrompt;
@@ -33,6 +31,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_GO_INTO_MODULE;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_PARAMETERS;
@@ -120,13 +119,12 @@ public class Parser {
     }
 
     private Command prepareListCommand(String parameters) {
-        if (parameters.trim().matches(ALL_FLAG)){
+        if (parameters.trim().matches(ALL_FLAG)) {
             return new ListAllTasksDeadlineCommand();
-        }
-        if (Command.getCurrentDirectory() instanceof Root){
-           return prepareListModuleCommand(parameters);
-        } else if (Command.getCurrentDirectory() instanceof Module){
-           return new ListModuleTasksDeadlineCommand();
+        } else if (Command.getCurrentDirectory() instanceof Root) {
+            return prepareListModuleCommand(parameters);
+        } else if (Command.getCurrentDirectory() instanceof Module) {
+            return new ListModuleTasksDeadlineCommand();
         }
         return new ListAllTasksDeadlineCommand();
     }
@@ -150,11 +148,13 @@ public class Parser {
 
 //    private Command prepareDeleteCommand(String parameters) {
 //        if (Command.getCurrentDirectory() instanceof Root) {
-//            if (ModuleManager.contains(parameters)){
+//            if (ModuleManager.contains(parameters)) {
 //                return new DeleteModuleCommand(parameters);
-//            } else return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+//            } else {
+//                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+//            }
 //        } else if (Command.getCurrentDirectory() instanceof Module) {
-//            if (((Module) Command.getCurrentDirectory()).getCategories().filter("").contains(parameters)) {
+//            if (((Module) Command.getCurrentDirectory()).getTaskManager().contains(parameters)) {
 //                return new DeleteTaskCommand(parameters);
 //            }
 //        }
@@ -169,7 +169,7 @@ public class Parser {
         if (moduleManager.getModuleWithCode(parameters) != null) {
             return new ChangeDirectoryCommand(moduleManager.getModuleWithCode(parameters));
         }
-        return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        return new IncorrectCommand(MESSAGE_MODULE_NOT_FOUND);
     }
 
     private Command prepareAddTaskCommand(String parameters) {
@@ -237,7 +237,7 @@ public class Parser {
     }
 
     /**
-     *
+     * Prepare a Command of the listModule type.
      * @param parameters -a: list all tasks -CS1231 list tasks from specific module
      * @return command
      */
@@ -254,14 +254,12 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         }
 
-        /* To add later after updating my code - iceclementi
         String moduleKeyword = matchers[0].group("identifier").trim();
         String allFlag = matchers[1].group("all").trim();
         String exactFlag = matchers[2].group("exact").trim();
         boolean isExact = !exactFlag.isEmpty();
-        */
 
-        return new ListModuleCommand();
+        return new ListModuleCommand(moduleKeyword, isExact);
     }
 
     /**
