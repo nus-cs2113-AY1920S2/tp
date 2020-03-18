@@ -3,7 +3,7 @@ package seedu.commands;
 import seedu.cards.CardList;
 import seedu.exception.EscException;
 
-public class DeleteCardCommand {
+public class DeleteCardCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "deletecard";
 
@@ -19,16 +19,19 @@ public class DeleteCardCommand {
     }
 
     /**
+     * Returns the index of the subject to be deleted.
+     */
+    public int getSubjectIndexIndex() {
+        return subjectIndex;
+    }
+
+    /**
      * Returns the index of the card to be deleted.
      */
-    public int getIndex() {
-        return index;
+    public int getCardIndex() {
+        return cardIndex;
     }
 
     /** Removes a card from the application. */
-    public void execute(CardList cards) throws EscException {
-        //UI displays card before deletion
-        cards.removeCard(this.index);
-        //UI displays successful card deletion
-    }
+    public void execute(CardList cards) throws EscException { }
 }

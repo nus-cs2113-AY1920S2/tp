@@ -13,6 +13,12 @@ public class QuizCommand extends Command {
 
     public static final String MESSAGE_USAGE = "\tTo quiz, type command:​quiz s/[SUBJECT INDEX]";
 
+    private int subjectIndex;
+
+    public QuizCommand(int subjectIndex) {
+        this.subjectIndex = subjectIndex;
+    }
+
     /**
      * Chooses a random card and displays it's question and answer.
      */

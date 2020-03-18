@@ -14,14 +14,14 @@ public class AddCardCommand extends AddCommand {
 
     private Card card;
 
-    private String subject;
+    private int subjectIndex;
 
     /**
      * Initialises the parameters for card creation.
      */
-    public AddCardCommand(String subject, Card card) {
+    public AddCardCommand(int subjectIndex, Card card) {
         this.card = card;
-        this.subject = subject;
+        this.subjectIndex = subjectIndex;
     }
 
     /**

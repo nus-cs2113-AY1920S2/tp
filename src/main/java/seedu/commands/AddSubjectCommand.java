@@ -21,7 +21,5 @@ public class AddSubjectCommand extends AddCommand {
     /**
      * Adds a subject into the application.
      */
-    public void execute(CardList cards) {
-        cards.addCard(card);
-    }
+    public void execute(CardList cards) { }
 }
