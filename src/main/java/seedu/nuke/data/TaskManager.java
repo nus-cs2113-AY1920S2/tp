@@ -27,9 +27,11 @@ public class TaskManager {
      * @param toCheck the task to-check
      * @return true if the task exists
      */
+    /*
     public boolean contains(Task toCheck) {
         return false;
     }
+    */
 
     public void addTask(Task toAdd) {
         this.allTasks.add(toAdd);
@@ -39,6 +41,11 @@ public class TaskManager {
         this.allTasks.remove(toRemove);
     }
 
+    /**
+     * Try to delete a task within a module and return the deleted task.
+     * @param parameter the description of the task
+     * @return the deleted task
+     */
     public Task delete(String parameter) {
         for (Task task : allTasks) {
             if (task.getModuleCode().equals(parameter)) {
@@ -98,6 +105,11 @@ public class TaskManager {
         return false;
     }
 
+    /**
+     * find a task given the description of the task.
+     * @param description the description of the task
+     * @return a task of the given description or null if not found
+     */
     public Task findTask(String description) {
         for (Task t : allTasks) {
             if (t.getDescription().equals(description)) {

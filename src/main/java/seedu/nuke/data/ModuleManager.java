@@ -45,6 +45,7 @@ public class ModuleManager implements Iterable<Module> {
                 allTasks.add(task);
             }
         }
+        assert moduleList.size() == moduleCodes.size() : "moduleList size does not equal to moduleCodes size, check!";
     }
 
     /**
@@ -161,7 +162,7 @@ public class ModuleManager implements Iterable<Module> {
      * @see Module
      */
     public Module delete(String moduleCode) throws ModuleNotFoundException {
-        if (getModuleWithCode(moduleCode)!= null){
+        if (getModuleWithCode(moduleCode) != null) {
             Module toDelete = getModuleWithCode(moduleCode);
             allTasks.removeIf(task -> task.getModuleCode().toUpperCase().equals(moduleCode));
             moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
