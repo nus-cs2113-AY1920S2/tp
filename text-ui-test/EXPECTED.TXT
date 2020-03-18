@@ -1,3 +1,4 @@
+error when reading from data.json
 
       ___          ___          ___          ___     
      /__/\        /__/\        /__/|        /  /\    
@@ -18,7 +19,7 @@ What can I do for you?
 --------------------------------------------------------------------------------
 Invalid command format!
 help
-ALERT! The module already existed.
+SUCCESS!! Module CS3235 Computer Security has been added.
 
 ALERT! The module is not provided by NUS currently.
 
