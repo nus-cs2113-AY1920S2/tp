@@ -49,4 +49,18 @@ public class PerformanceList {
         }
         UI.deletePerformanceMessage(performance, hasDeleted);
     }
+
+    public void printList() {
+        int size = performanceList.size();
+        if (size == 0) {
+            UI.display("The list is empty.");
+        } else {
+            int i = 1;
+            UI.printListHeader("Index", "Module", "Assignment", "Result");
+            for (Performance performance : performanceList) {
+                UI.printListBody(i, performance.studentName, performance.assignment, performance.getResult());
+                i++;
+            }
+        }
+    }
 }

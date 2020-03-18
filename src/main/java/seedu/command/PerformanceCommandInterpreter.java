@@ -27,9 +27,9 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return new AddPerformance(commandParameters);
         case "delete":
             return new DeletePerformance(commandParameters);
-        case "view_student_result":
+        case "list:student":
             return new ViewStudentResult(commandParameters);
-        case "view_assignment_result":
+        case "list:assignment":
             return new ViewAssignmentResult(commandParameters);
         default:
             throw new DukeException("Performance: Unknown command.");

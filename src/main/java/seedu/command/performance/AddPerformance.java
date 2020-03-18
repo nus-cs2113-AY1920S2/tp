@@ -6,6 +6,8 @@ import seedu.parser.PerformanceParser;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 
+import java.util.ArrayList;
+
 public class AddPerformance extends Command {
     Performance performance;
     public String commandParameters;
@@ -30,6 +32,16 @@ public class AddPerformance extends Command {
         //TODO: change this list to the performance list under event input
         performanceList.addToList(performance, eventName);
     }
+
+    public void addToList(String eventName, String assignment, ArrayList<String> studentNameList) {
+        PerformanceList performanceList = new PerformanceList();
+        for (String studentName: studentNameList) {
+            performance = new Performance(studentName, eventName, assignment);
+            performance.setResultByList(studentName);
+            performanceList.addToList(performance, eventName);
+        }
+    }
+
 
     @Override
     public void execute() {

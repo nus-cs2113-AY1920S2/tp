@@ -23,7 +23,7 @@ public class ViewStudentResult extends Command {
         String[] instructions = userInput.split(" ", 2);
         name = instructions[1];
         performances = new PerformanceList().getPerformanceList();
-
+        //Todo: get the performance list by event
     }
 
     /**
