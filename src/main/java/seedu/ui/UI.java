@@ -176,4 +176,9 @@ public class UI {
         System.out.printf("No %s input. If you need help with "
                 + "the input format, please input help.\n", typeInput);
     }
+
+    public String getPerformanceParameter(String studentName) {
+        System.out.println("Please key in the result for student " + studentName);
+        return in.nextLine();
+    }
 }

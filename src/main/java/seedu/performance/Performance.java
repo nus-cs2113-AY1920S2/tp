@@ -1,15 +1,13 @@
 package seedu.performance;
 
-import java.io.Serializable;
+import seedu.ui.UI;
 
 public class Performance {
     public String eventName;
     public String studentName;
     public String assignment;
-    public String grade;
-    public int mark;
-    private static boolean isMark = false;
-    private static boolean isGrade = false;
+    public String result;
+    public Boolean hasResult;
 
     /**
      * Save the result of student base on a set of module, student and assignment,
@@ -39,14 +37,14 @@ public class Performance {
         return assignment;
     }
 
-    public void setMark(int mark) {
-        this.mark = mark;
-        isMark = true;
+    public void setResult(String result) {
+        this.result = result;
+        hasResult = true;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-        isGrade = true;
+    public void setResultByList(String studentName) {
+        String result = new UI().getPerformanceParameter(studentName);
+        setResult(result);
     }
 
     /**
@@ -67,11 +65,9 @@ public class Performance {
      * @return A serializable result, either grade in string or
      *         mark in integer.
      */
-    public Serializable getResult() {
-        if (isMark) {
-            return mark;
-        } else if (isGrade) {
-            return grade;
+    public String getResult() {
+        if (hasResult) {
+            return result;
         }
         return "No result";
     }
