@@ -10,6 +10,7 @@ import command.ListCommand;
 import command.HelpCommand;
 import command.ExitCommand;
 import command.ClearCommand;
+import command.SearchCommand;
 
 import common.Messages;
 
@@ -43,6 +44,13 @@ public class Parser {
             + "\\s+c/\\s*(?<comments>.+)$"
     );
 
+    //regex for search command
+    public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
+            "(?<search>[^/]+)"
+                    + "\\s+t/\\s*(?<taskType>[^/]+)"
+                    + "\\s+n/\\s*(?<name>[^/]+)"
+    );
+
     /**
      * Returns a Command object depending on the command input by the user.
      * @param fullCommand line input by the user, which represents a command
@@ -66,6 +74,8 @@ public class Parser {
             return prepareEventCommand(fullCommand);
         case ListCommand.LIST_COMMAND_WORD:
             return prepareListCommand(fullCommand);
+        case SearchCommand.SEARCH_COMMAND_WORD:
+            return prepareSearchCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
             return prepareExitCommand(fullCommand);
         default:
@@ -105,6 +115,16 @@ public class Parser {
         String moduleName = matcher.group("moduleName");
         String comments = capitalize(matcher.group("comments"));
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
+    }
+
+    private static Command prepareSearchCommand(String fullCommand) {
+        final Matcher matcher = SEARCH_PARAMETERS_FORMAT.matcher(fullCommand);
+        if (!matcher.matches()) {
+            return new IncorrectCommand(Messages.SEARCH_INSUFFICIENT_ARGS);
+        }
+        String taskType = matcher.group("taskType");
+        String taskName = matcher.group("name");
+        return new SearchCommand(taskName, taskType);
     }
 
     private static Command prepareDeleteCommand(String fullCommand) {
