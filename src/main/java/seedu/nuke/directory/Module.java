@@ -13,7 +13,6 @@ public class Module extends Directory {
     private String description;
     private CategoryManager categories;
 
-
     /**
      * Constructs the module
      *
@@ -34,15 +33,15 @@ public class Module extends Directory {
         this.categories = new CategoryManager(this);
     }
 
-    /**
-     * Constructs the module but with limited information
-     *
-     * @param moduleCode
-     *  The module code of the module
-     */
-    public Module(String moduleCode) {
-        this(null, moduleCode, null, "NIL");
-    }
+//    /**
+//     * Constructs the module but with limited information
+//     *
+//     * @param moduleCode
+//     *  The module code of the module
+//     */
+//    public Module(String moduleCode) {
+//        this(null, moduleCode, null, "NIL");
+//    }
 
     /**
      * Return the module code of the module.
@@ -82,6 +81,11 @@ public class Module extends Directory {
      */
     public CategoryManager getCategories() {
         return categories;
+    }
+
+    @Override
+    public Root getParent() {
+        return (Root) this.parent;
     }
 
     /**

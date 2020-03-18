@@ -1,6 +1,6 @@
 package seedu.nuke.directory;
 
-public class TaskFile {
+public class TaskFile extends Directory {
     private String fileName;
     private String filePath;
 
@@ -15,6 +15,11 @@ public class TaskFile {
 
     public String getFilePath() {
         return filePath;
+    }
+
+    @Override
+    public Task getParent() {
+        return (Task) this.parent;
     }
 
     public void setFileName(String fileName) {

@@ -143,6 +143,11 @@ public class Task extends Directory implements Tag {
         return files;
     }
 
+    @Override
+    public Category getParent() {
+        return (Category) this.parent;
+    }
+
     /**
      * Adds a file into the File List of this task.
      * @param fileName

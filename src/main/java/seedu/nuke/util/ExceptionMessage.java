@@ -36,4 +36,8 @@ public class ExceptionMessage {
     public static final String MESSAGE_DELETE_ERROR = "ALERT! There was an error in the deletion.\n";
 
     public static final String MESSAGE_LIST_NUMBER_NOT_FOUND = "List number not found! Deletion is aborted.\n";
+
+    public static final String MESSAGE_FAILED_DIRECTORY_TRAVERSAL = "Unable to traverse further.\n";
+
+    public static final String MESSAGE_DIRECTORY_NOT_FOUND = "Alert! The next directory could not be found.\n";
 }

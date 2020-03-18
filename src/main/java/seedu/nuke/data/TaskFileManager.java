@@ -12,6 +12,25 @@ public class TaskFileManager {
         fileList = new ArrayList<>();
     }
 
+    /**
+     * Finds a file with the specified file name in the File List.
+     *
+     * @param fileName
+     *  The file name of the task
+     * @return
+     *  The file with the specified file name if found
+     * @throws TaskFileNotFoundException
+     *  If the file is not found in the File List
+     */
+    public TaskFile getFile(String fileName) throws TaskFileNotFoundException {
+        for (TaskFile file : fileList) {
+            if (file.getFileName().equals(fileName)) {
+                return file;
+            }
+        }
+        throw new TaskFileNotFoundException();
+    }
+
     public void add(TaskFile toAdd) {
         fileList.add(toAdd);
     }

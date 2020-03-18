@@ -54,6 +54,11 @@ public class Category extends Directory {
         return tasks;
     }
 
+    @Override
+    public Module getParent() {
+        return (Module) this.parent;
+    }
+
     /**
      * Edit the name of the category
      *

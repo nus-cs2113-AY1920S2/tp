@@ -35,7 +35,7 @@ public class ListCreator {
      */
     public static void sortCategoryList(ArrayList<Category> toSort) {
         Comparator<Category> sortByModule =
-                Comparator.comparing(category -> ((Module)category.getParent()).getModuleCode());
+                Comparator.comparing(category -> category.getParent().getModuleCode());
         Comparator<Category> sortByCategory =
                 Comparator.comparing(Category::getCategoryName);
 
@@ -51,9 +51,9 @@ public class ListCreator {
      */
     public static void sortTaskList(ArrayList<Task> toSort) {
         Comparator<Task> sortByModule =
-                Comparator.comparing(task -> ((Module)task.getParent().getParent()).getModuleCode());
+                Comparator.comparing(task -> task.getParent().getParent().getModuleCode());
         Comparator<Task> sortByCategory =
-                Comparator.comparing(task -> ((Category)task.getParent()).getCategoryName());
+                Comparator.comparing(task -> task.getParent().getCategoryName());
         Comparator<Task> sortByTask =
                 Comparator.comparing(Task::getDescription);
 

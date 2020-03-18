@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.*;
@@ -60,7 +61,7 @@ public class Parser {
      * <b>Note</b>: The user input has to start with a certain keyword (i.e. <i>command word</i>), otherwise an
      * <i>Invalid Command Exception</i> will be thrown.
      *
-     * @param input The user input read by the <b>UI.java</b>
+     * @param input The user input read by the <b>UI</b>
      * @return The <b>corresponding</b> command to be executed
      * @see seedu.nuke.ui.Ui
      * @see Command
@@ -93,9 +94,6 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case ListCommand.COMMAND_WORD:
-            return prepareListCommand(parameters);
 
         case ListAllTasksDeadlineCommand.COMMAND_WORD:
             return new ListAllTasksDeadlineCommand();
@@ -518,6 +516,15 @@ public class Parser {
         return priority >= 0 && priority <= 100;
     }
 
+    /**
+     * Parses the input as a confirmation status to a confirmation prompt for the user, and prepares the
+     * corresponding command.
+     *
+     * @param userInput
+     *  The input given by the user
+     * @return
+     *  The command to be executed
+     */
     public Command parseInputAsConfirmation(String userInput) {
         switch (userInput) {
             case "yes":
@@ -533,6 +540,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the input as indices to prepare a command to utilise the parsed indices.
+     *
+     * @param input
+     *  The input string given by the user
+     * @return
+     *  The command to be executed
+     */
     public Command parseInputAsIndices(String input) {
         final Matcher matcher = ListNumberPrompt.INDICES_FORMAT.matcher(input.trim());
 
@@ -550,9 +565,8 @@ public class Parser {
                 .collect(Collectors.toCollection(ArrayList::new));
 
         // Decrement each index by 1 due to 0-based indexing
-        for (int i = 0; i < indices.size(); i++) {
-            indices.set(i, indices.get(i)-1);
-        }
+        IntStream.range(0, indices.size())
+                .forEach(currentValue -> indices.set(currentValue, indices.get(currentValue) - 1));
 
         return new ListNumberPrompt(indices);
     }

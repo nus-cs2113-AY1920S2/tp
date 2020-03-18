@@ -3,6 +3,7 @@ package seedu.nuke.data;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
+import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 
 import java.util.ArrayList;
@@ -179,6 +180,6 @@ public class CategoryManager {
         return filteredCategoryList;
     }
 
-    public static class CategoryNotFoundException extends Exception {}
+    public static class CategoryNotFoundException extends DataNotFoundException {}
     public static class DuplicateCategoryException extends DuplicateDataException {}
 }
