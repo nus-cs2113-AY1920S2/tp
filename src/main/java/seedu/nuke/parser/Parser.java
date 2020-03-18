@@ -2,12 +2,13 @@ package seedu.nuke.parser;
 
 
 import seedu.nuke.command.ChangeDirectoryCommand;
+import seedu.nuke.command.addcommand.AddTagCommand;
 import seedu.nuke.command.deletecommand.DeleteCommand;
 import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
 import seedu.nuke.command.listcommand.ListCommand;
 import seedu.nuke.command.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.EditDeadlineCommand;
+import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
@@ -73,6 +74,10 @@ public class Parser {
         String parameters = matcher.group("parameters").trim();
 
         switch (commandWord) {
+
+        //todo check if in module
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommand(parameters);
 
         case EditDeadlineCommand.COMMAND_WORD:
             return prepareEditDeadlineCommand(parameters);

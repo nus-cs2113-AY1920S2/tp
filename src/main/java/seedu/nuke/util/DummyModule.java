@@ -1,4 +1,4 @@
-package seedu.nuke.module;
+package seedu.nuke.util;
 
 import seedu.nuke.data.TaskManager;
 

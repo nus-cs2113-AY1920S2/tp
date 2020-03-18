@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.editcommand;
 
+import seedu.nuke.command.CommandResult;
+import seedu.nuke.command.editcommand.EditTaskCommand;
 import seedu.nuke.format.DateTime;
 import seedu.nuke.directory.Task;
 
