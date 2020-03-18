@@ -1,8 +1,8 @@
 package command;
 
 import common.Messages;
-import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.atas.TaskList;
+import seedu.atas.Ui;
 import tasks.Task;
 
 import java.util.ArrayList;
@@ -50,43 +50,13 @@ public class ClearCommand  extends Command {
     }
 
     /**
-     * Removes all completed tasks in 1 iteration of loop.
-     * @param tasks TaskList containing all the tasks
-     * @param deleted number of tasks that have already been deleted
-     * @return updated number of tasks that have been deleted
-     */
-    public int getDeleted(ArrayList<Task> tasks, int deleted) {
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getIsDone()) {
-                tasks.remove(i);
-                deleted++;
-            }
-        }
-        return deleted;
-    }
-
-    /**
-     * Deletes all completed tasks.
-     * @param taskList ArrayList containing all the tasks
-     * @return ArrayList containing the new taskList
-     */
-    public ArrayList<Task> deleteCompletedTask(TaskList taskList, ArrayList<Integer> doneIndex) {
-        ArrayList<Task> tasks = taskList.getTaskArray();
-        int deleted = 0;
-        while (deleted < doneIndex.size()) {
-            deleted = getDeleted(tasks,deleted);
-        }
-        return tasks;
-    }
-
-    /**
      * Get all the index of tasks that have been completed.
      * @param taskList list of tasks
      * @return ArrayList of index of completed tasks
      */
     public ArrayList<Integer> getCompletedIndex(TaskList taskList) {
         int count = 0;
-        ArrayList<Integer> doneIndex = new ArrayList<Integer>();
+        ArrayList<Integer> doneIndex = new ArrayList<>();
         for (Task task: taskList.getTaskArray()) {
             if (task.getIsDone()) {
                 doneIndex.add(count);
@@ -109,8 +79,7 @@ public class ClearCommand  extends Command {
         } else if (doneIndex.size() == 0) {
             return new CommandResult(Messages.EMPTY_DONE_CLEAR_ERROR);
         } else {
-            ArrayList<Task> tasks = deleteCompletedTask(taskList, doneIndex);
-            taskList.updateTaskList(tasks);
+            taskList.deleteAllDoneTask(doneIndex);
             assert taskList.getListSize() == originalTaskSize - doneIndex.size();
             return new CommandResult(Messages.CLEAR_DONE_SUCCESS_MESSAGE);
         }

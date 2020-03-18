@@ -5,7 +5,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'seedu.duke'
+group 'seedu.atas'
 version '0.1.0'
 
 repositories {
@@ -21,12 +21,12 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.atas.Atas"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveVersion = "0.0.1"
+    archiveBaseName = "atas"
+    archiveVersion = "2.0.0"
     archiveClassifier = null
     archiveAppendix = null
 }
@@ -37,4 +37,5 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }

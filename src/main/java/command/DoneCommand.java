@@ -1,8 +1,8 @@
 package command;
 
 import common.Messages;
-import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.atas.TaskList;
+import seedu.atas.Ui;
 import tasks.Task;
 
 public class DoneCommand extends Command {

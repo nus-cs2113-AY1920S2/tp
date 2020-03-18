@@ -22,8 +22,9 @@ public class Messages {
 
     // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
+    public static final String START_END_DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm - HHmm";
     public static final String EVENT_FORMAT_HELP = "Add Event: "
-            + "event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm] c/[COMMENTS]";
+            + "event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]";
     public static final String ASSIGNMENT_FORMAT_HELP = "Add Assignment: "
             + "assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]";
     public static final String DONE_FORMAT_HELP = "Mark Task as Done: done [TASK NUMBER]";
@@ -37,6 +38,7 @@ public class Messages {
             + "list incomplete assignments";
     public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear all";
     public static final String CLEAR_DONE_FORMAT_HELP = "Clear all completed tasks: clear done";
+    public static final String EXIT_FORMAT_HELP = "Exit ATAS: exit";
     public static final String HELP_FORMAT_MESSAGE =
             "Following is the list of commands available:" + System.lineSeparator()
             + "1.  Help Format: help" + System.lineSeparator()
@@ -50,7 +52,9 @@ public class Messages {
             + "9.  " + DONE_FORMAT_HELP + System.lineSeparator()
             + "10. " + CLEAR_FORMAT_HELP + System.lineSeparator()
             + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
-            + "12. " + DELETE_FORMAT_HELP;
+            + "12. " + DELETE_FORMAT_HELP + System.lineSeparator()
+            + "13. " + EXIT_FORMAT_HELP;
+
 
     // Command Print Messages
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
@@ -71,11 +75,14 @@ public class Messages {
     public static final String UNKNOWN_COMMAND_ERROR = "Unknown command entered";
     public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + DATE_FORMAT_HELP;
+    public static final String START_END_DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
+            + System.lineSeparator() + START_END_DATE_FORMAT_HELP;
     public static final String NUM_FORMAT_ERROR = "Please provide an integer as the command parameter";
     public static final String INVALID_ID_ERROR = "Please provide a valid task number from %1$s";
     public static final String COMPLETED_TASK_ERROR = "Task is already completed";
     public static final String REPEAT_TASK_ERROR = "Please use a different name. Task already exists in list";
     public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
+    public static final String INCORRECT_START_END_TIME_ERROR = "The end time should come after the start time";
 
     public static final String ASSIGN_INCORRECT_FORMAT_ERROR = "Incorrect format for Assignment Command"
             + System.lineSeparator() + ASSIGNMENT_FORMAT_HELP;

@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.atas;
 
 import command.AssignmentCommand;
 import command.Command;
@@ -91,7 +91,7 @@ public class ParserTest {
     @Test
     public void parseEventCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand(EventCommand.EVENT_COMMAND_WORD
-                + " n/name l/somewhere ah d/22/01/20 1800 c/comment");
+                + " n/name l/somewhere ah d/22/01/20 1800 - 2030 c/comment");
         assertTrue((parsedCommand instanceof EventCommand));
     }
 
@@ -101,17 +101,26 @@ public class ParserTest {
                 EventCommand.EVENT_COMMAND_WORD + " "
                         + "n/   long long name   "
                         + "l/   somewhere over the rainbow   "
-                        + "d/  22/01/20   1800  "
+                        + "d/  22/01/20   1800  -   2030   "
                         + "c/  comments with spaces   "
         );
         assertTrue((parsedCommand instanceof EventCommand));
     }
 
     @Test
-    public void parseEventCommand_missingParameters_returnIncorrectCommand() {
-        assertEquals(Parser.parseCommand(EventCommand.EVENT_COMMAND_WORD + " n/EVE l/LOC d/30/02/20 1111 c/")
+    public void parseEventCommand_missingComment_returnIncorrectCommand() {
+        assertEquals(Parser.parseCommand(EventCommand.EVENT_COMMAND_WORD
+                        + " n/EVE l/LOC d/30/02/20 1111 - 2222 c/")
                         .execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.EVENT_INCORRECT_FORMAT_ERROR));
+    }
+
+    @Test
+    public void parseEventCommand_startTimeAfterEndTime_returnIncorrectCommand() {
+        assertEquals(Parser.parseCommand(EventCommand.EVENT_COMMAND_WORD
+                        + " n/EVE l/LOC d/30/02/20 2222 - 1111 c/none")
+                        .execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.INCORRECT_START_END_TIME_ERROR));
     }
 
     /** Delete Command Tests. */

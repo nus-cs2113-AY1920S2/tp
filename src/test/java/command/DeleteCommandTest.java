@@ -1,7 +1,7 @@
 package command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.TaskList;
+import seedu.atas.TaskList;
 import tasks.Assignment;
 import tasks.Task;
 
