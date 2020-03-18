@@ -2,14 +2,11 @@ package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.Module;
 
-public class DeleteCommand extends Command {
+import java.util.ArrayList;
 
-    public static final String COMMAND_WORD = "del";
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
-
-    @Override
-    public CommandResult execute() {
-        return null;
-    }
+public abstract class DeleteCommand extends Command {
+    protected abstract CommandResult executeInitialDelete(ArrayList<Directory> filteredList);
 }

@@ -1,4 +1,4 @@
-package seedu.nuke.format;
+package seedu.nuke.util;
 
 import seedu.nuke.exception.InvalidFormatException;
 

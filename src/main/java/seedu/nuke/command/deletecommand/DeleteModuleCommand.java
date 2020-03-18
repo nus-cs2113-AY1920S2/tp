@@ -1,30 +1,41 @@
 package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.Executor;
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.common.DataType;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.util.Message.*;
 
-public class DeleteModuleCommand extends Command {
+public class DeleteModuleCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delm";
     public static final String MESSAGE_USAGE = "delm <module code>";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
             Pattern.compile("(?<exact>(?:" + EXACT_FLAG + ")?)"),
+            Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
             Pattern.compile("(?<invalid>(?:-(?:[^e].*|[e]\\S+)))")
     };
 
     private String moduleCode;
     private boolean isExact;
 
+    /**
+     * Constructs the command to delete a module.
+     *
+     * @param moduleCode
+     *  The module code of the module
+     * @param isExact
+     *  Checks if modules are to be filtered exactly
+     */
     public DeleteModuleCommand(String moduleCode, boolean isExact) {
         this.moduleCode = moduleCode;
         this.isExact = isExact;
@@ -41,19 +52,24 @@ public class DeleteModuleCommand extends Command {
      * @return
      *  The result of the execution
      */
-    private CommandResult executeInitialDelete(ArrayList<Module> filteredModules) {
-        final int filteredModulesCount = filteredModules.size();
-        if (filteredModulesCount == 0) {
+    @Override
+    protected CommandResult executeInitialDelete(ArrayList<Directory> filteredModules) {
+        // Cast to Array List of Modules
+        ArrayList<Module> modules = filteredModules.stream()
+                .map(Module.class::cast)
+                .collect(Collectors.toCollection(ArrayList::new));
+        final int modulesCount = modules.size();
+        if (modulesCount == 0) {
             return new CommandResult(MESSAGE_NO_MODULES_FOUND);
-        } else if (filteredModulesCount == 1) {
+        } else if (modulesCount == 1) {
             Executor.preparePromptConfirmation();
-            Executor.setFilteredList(filteredModules, DataType.MODULE);
-            Module toDelete = filteredModules.get(0);
+            Executor.setFilteredList(modules, DataType.MODULE);
+            Module toDelete = (Module) modules.get(0);
             return new CommandResult(messageConfirmDeleteModule(toDelete));
         } else {
             Executor.preparePromptIndices();
-            Executor.setFilteredList(filteredModules, DataType.MODULE);
-            return new CommandResult(messagePromptDeleteModuleIndices(filteredModules));
+            Executor.setFilteredList(modules, DataType.MODULE);
+            return new CommandResult(messagePromptDeleteModuleIndices(modules));
         }
     }
 
@@ -70,6 +86,6 @@ public class DeleteModuleCommand extends Command {
     public CommandResult execute() {
         ArrayList<Module> filteredModules =
                 isExact ? ModuleManager.filterExact(moduleCode) : ModuleManager.filter(moduleCode);
-        return executeInitialDelete(filteredModules);
+        return executeInitialDelete(new ArrayList<>(filteredModules));
     }
 }

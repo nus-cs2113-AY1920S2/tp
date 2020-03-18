@@ -22,8 +22,8 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Root;
 import seedu.nuke.directory.Task;
-import seedu.nuke.format.DateTime;
-import seedu.nuke.format.DateTimeFormat;
+import seedu.nuke.util.DateTime;
+import seedu.nuke.util.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -51,6 +51,7 @@ public class Parser {
     public static final int PARAMETER_WORD_INDEX = 1;
 
     public static final String MODULE_CODE_PREFIX = "-m";
+    public static final String CATEGORY_NAME_PREFIX = "-c";
     public static final String TASK_DESCRIPTION_PREFIX = "-t";
     public static final String PRIORITY_PREFIX = "-p";
     public static final String DEADLINE_PREFIX = "-d";

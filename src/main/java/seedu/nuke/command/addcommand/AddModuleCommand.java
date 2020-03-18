@@ -31,6 +31,12 @@ public class AddModuleCommand extends Command {
 
     private String moduleCode;
 
+    /**
+     * Constructs the command to add a module.
+     *
+     * @param moduleCode
+     *  The module code of the module
+     */
     public AddModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
     }

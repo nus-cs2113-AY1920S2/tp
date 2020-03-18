@@ -1,4 +1,4 @@
-package seedu.nuke.format;
+package seedu.nuke.util;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
