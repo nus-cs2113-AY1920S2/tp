@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.atas;
 
 import command.AssignmentCommand;
 import command.Command;
@@ -39,7 +39,7 @@ public class Parser {
             "(?<taskType>[^/]+)"
             + "\\s+n/\\s*(?<eventName>[^/]+)"
             + "\\s+l/\\s*(?<location>[^/]+)"
-            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
+            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
             + "\\s+c/\\s*(?<comments>.+)$"
     );
 
@@ -104,10 +104,6 @@ public class Parser {
         String assignmentName = capitalize(matcher.group("assignmentName"));
         String moduleName = matcher.group("moduleName");
         String comments = capitalize(matcher.group("comments"));
-        assert assignmentName.charAt(0) == matcher.group("assignmentName").toUpperCase().charAt(0)
-                && assignmentName.substring(1).equals(matcher.group("assignmentName").substring(1));;
-        assert comments.charAt(0) == matcher.group("comments").toUpperCase().charAt(0)
-                && comments.substring(1).equals(matcher.group("comments").substring(1));
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
@@ -145,21 +141,26 @@ public class Parser {
             return new IncorrectCommand(Messages.EVENT_INCORRECT_FORMAT_ERROR);
         }
 
-        LocalDateTime dateTime;
+        LocalDateTime startDateTime;
+        LocalDateTime endDateTime;
         try {
-            dateTime = parseDate(matcher.group("dateTime"));
+            String startEndDateTime = matcher.group("dateTime");
+            String[] dateTimeTokens = startEndDateTime.split("\\s+", 2);
+            String[] timeTokens = dateTimeTokens[1].split("-", 2);
+            startDateTime = parseDate(dateTimeTokens[0] + " " + timeTokens[0].trim());
+            endDateTime = parseDate(dateTimeTokens[0] + " " + timeTokens[1].trim());
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+            return new IncorrectCommand(Messages.START_END_DATE_INCORRECT_OR_INVALID_ERROR);
+        }
+
+        if (!endDateTime.isAfter(startDateTime)) {
+            return new IncorrectCommand(Messages.INCORRECT_START_END_TIME_ERROR);
         }
 
         String eventName = capitalize(matcher.group("eventName"));
         String location = matcher.group("location");
         String comments = capitalize(matcher.group("comments"));
-        assert eventName.charAt(0) == matcher.group("eventName").toUpperCase().charAt(0)
-                && eventName.substring(1).equals(matcher.group("eventName").substring(1));;
-        assert comments.charAt(0) == matcher.group("comments").toUpperCase().charAt(0)
-                && comments.substring(1).equals(matcher.group("comments").substring(1));
-        return new EventCommand(eventName, location, dateTime, comments);
+        return new EventCommand(eventName, location, startDateTime, endDateTime, comments);
     }
 
     private static Command prepareListCommand(String fullCommand) {
