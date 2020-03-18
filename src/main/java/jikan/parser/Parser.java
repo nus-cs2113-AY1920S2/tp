@@ -6,7 +6,7 @@ import jikan.activity.ActivityList;
 import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
-
+import java.util.ArrayList;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -25,7 +25,7 @@ public class Parser {
     protected String[] tokenizedInputs;
     String instruction;
     Log logger = new Log();
-
+    private ActivityList lastShownList = new ActivityList();
     /**
      * Parses user commands to relevant functions to carry out the commands.
      * @param scanner scanner object which reads user input
@@ -33,6 +33,8 @@ public class Parser {
      */
     public void parseUserCommands(Scanner scanner, ActivityList activityList) {
         logger.makeInfoLog("Starting to parse inputs.");
+        //lastShownList is initialised here to facilitate subsequent delete and edit commands referencing by index of this list.
+        lastShownList.activities.addAll(activityList.activities);
         while (true) {
             String userInput = scanner.nextLine();
             tokenizedInputs = userInput.split(" ", 2);
@@ -82,11 +84,49 @@ public class Parser {
                     ui.printDivider("Invalid index number.");
                 }
                 break;
+            case "find":
+                parseFind(activityList, lastShownList, tokenizedInputs[1]);
+                break;
+            case "filter":
+                parseFilter(activityList, lastShownList, tokenizedInputs[1]);
+                break;
             default:
                 parseDefault();
                 break;
             }
         }
+    }
+
+    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword) {
+        lastShownList.activities.clear();
+        for(Activity i : activityList.activities) {
+           if (i.getName().contains(keyword)) {
+               lastShownList.activities.add(i);
+           }
+        }
+        Ui.printResults(lastShownList);
+    }
+
+    private void parseFilter(ActivityList activityList, ActivityList lastShownList, String query) {
+        lastShownList.activities.clear();
+        String[] keywords = query.split(" ");
+
+        for(String keyword : keywords) {
+            for (Activity i : activityList.activities) {
+                String tagString = "";
+
+                if (i.getTags() != null) {
+                    //for (int j = 0; j < this.tags.length; j++) {
+                        //tagString = tagString + this.tags[j] + " ";
+                    //}
+                }
+
+                if (tagString.contains(keyword)) {
+                    lastShownList.activities.add(i);
+                }
+            }
+        }
+        Ui.printResults(lastShownList);
     }
 
     /** Method to parse user inputs that are not recognised. */
