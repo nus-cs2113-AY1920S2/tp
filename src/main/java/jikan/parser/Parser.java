@@ -3,6 +3,7 @@ package jikan.parser;
 import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyQueryException;
 import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
@@ -85,10 +86,18 @@ public class Parser {
                 }
                 break;
             case "find":
-                parseFind(activityList, lastShownList, tokenizedInputs[1]);
+                try {
+                    parseFind(activityList, lastShownList, tokenizedInputs[1]);
+                } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
+                    ui.printDivider("No keyword was given.");
+                }
                 break;
             case "filter":
-                parseFilter(activityList, lastShownList, tokenizedInputs[1]);
+                try {
+                    parseFilter(activityList, lastShownList, tokenizedInputs[1]);
+                } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
+                    ui.printDivider("No keyword was given.");
+                }
                 break;
             default:
                 parseDefault();
@@ -97,36 +106,55 @@ public class Parser {
         }
     }
 
-    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword) {
-        lastShownList.activities.clear();
-        for(Activity i : activityList.activities) {
-           if (i.getName().contains(keyword)) {
-               lastShownList.activities.add(i);
-           }
-        }
-        Ui.printResults(lastShownList);
-    }
-
-    private void parseFilter(ActivityList activityList, ActivityList lastShownList, String query) {
-        lastShownList.activities.clear();
-        String[] keywords = query.split(" ");
-
-        for(String keyword : keywords) {
+    /**
+     * Shows the user all past activities that has names which match the keyword queried by the user.
+     * @param activityList the activity list to search for matching activities
+     * @param lastShownList the activity list to populate with matching activities only
+     * @param keyword the keyword queried by the user
+     */
+    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword) throws EmptyQueryException{
+        if (keyword.length() < 1) {
+            throw new EmptyQueryException();
+        } else {
+            lastShownList.activities.clear();
             for (Activity i : activityList.activities) {
-                String tagString = "";
-
-                if (i.getTags() != null) {
-                    //for (int j = 0; j < this.tags.length; j++) {
-                        //tagString = tagString + this.tags[j] + " ";
-                    //}
-                }
-
-                if (tagString.contains(keyword)) {
+                if (i.getName().contains(keyword)) {
                     lastShownList.activities.add(i);
                 }
             }
+            Ui.printResults(lastShownList);
         }
-        Ui.printResults(lastShownList);
+    }
+
+    /**
+     * Shows the user all past activities that has tags which match the keywords queried by the user.
+     * @param activityList the activity list to search for matching activities
+     * @param lastShownList the activity list to populate with matching activities only
+     * @param query the keywords queried by the user
+     */
+    private void parseFilter(ActivityList activityList, ActivityList lastShownList, String query) throws EmptyQueryException {
+        if (query.length() < 1) {
+            throw new EmptyQueryException();
+        } else {
+            lastShownList.activities.clear();
+            String[] keywords = query.split(" ");
+
+            for (String keyword : keywords) {
+                for (Activity i : activityList.activities) {
+                    String tagString = "";
+
+                    if (i.getTags() != null) {
+                        for (int j = 0; j < i.getTags().length; j++) {
+                            tagString = tagString + i.getTags()[j] + " ";
+                        }
+                    }
+                    if (tagString.contains(keyword)) {
+                        lastShownList.activities.add(i);
+                    }
+                }
+            }
+            Ui.printResults(lastShownList);
+        }
     }
 
     /** Method to parse user inputs that are not recognised. */
