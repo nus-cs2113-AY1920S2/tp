@@ -1,7 +1,12 @@
 package seedu.event;
 
+import seedu.StudentList;
+import seedu.attendance.Attendance;
+import seedu.attendance.AttendanceList;
 import seedu.duke.Duke;
 import seedu.exception.DukeException;
+import seedu.performance.Performance;
+import seedu.performance.PerformanceList;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -11,8 +16,9 @@ public class Event {
     private String name;
     private DateTime datetime;
     private String venue;
-    private ArrayList<String> participantList;
-    private ArrayList<String> attendanceList;
+    //private ArrayList<StudentList> studentsList;
+    private AttendanceList attendanceList;
+    private PerformanceList performanceList;
 
     /**
      * Empty constructor. Sets name as "unnamed"
@@ -21,8 +27,8 @@ public class Event {
         setName("");
         setDatetime("");
         setVenue("");
-        this.participantList = new ArrayList<>();
-        this.attendanceList = new ArrayList<>();
+        this.attendanceList = new AttendanceList();
+        this.performanceList = new PerformanceList();
     }
 
     /**
@@ -105,6 +111,10 @@ public class Event {
      */
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public PerformanceList getPerformanceList() {
+        return performanceList;
     }
 
     @Override

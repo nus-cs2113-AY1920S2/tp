@@ -1,7 +1,6 @@
 package seedu.parser;
 
 import seedu.attendance.Attendance;
-import seedu.performance.Performance;
 import seedu.ui.UI;
 
 import java.util.Arrays;
