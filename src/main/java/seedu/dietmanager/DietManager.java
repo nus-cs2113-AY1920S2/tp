@@ -8,21 +8,22 @@ import seedu.dietmanager.ui.UI;
 
 public class DietManager {
 
+    private static InfoLogger infoLogger;
+    private static FoodNutritionInfo foodNutritionInfo;
+    private static Profile profile;
+    private static UI ui;
+    private static Storage storage;
+
     /**
      * Begins the application and creates the relevant objects required for the application to function.
      */
 
     public static void main(String[] args) {
+        initialiseApplication();
+        runApplication();
+    }
 
-        InfoLogger infoLogger = new InfoLogger();
-        FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
-        Profile profile = new Profile();
-        UI ui = new UI();
-        Storage storage = new Storage(ui, infoLogger);
-
-        //Conduct checks using assert
-        assert !ui.isExitStatus();
-        assert !profile.isProfileExist();
+    private static void runApplication() {
 
         infoLogger.logExecuteProgramme();
         ui.displayWelcomeMessage();
@@ -40,4 +41,20 @@ public class DietManager {
         }
         infoLogger.logExitProgramme();
     }
+
+    private static void initialiseApplication() {
+        infoLogger = new InfoLogger();
+        foodNutritionInfo = new FoodNutritionInfo();
+        profile = new Profile();
+        ui = new UI();
+        storage = new Storage(ui, infoLogger);
+
+        testAssertions();
+    }
+
+    private static void testAssertions() {
+        assert !ui.isExitStatus();
+        assert !profile.isProfileExist();
+    }
+
 }
