@@ -24,13 +24,13 @@ public class Ui {
     }
 
     /** Prints divider between user input and app feedback. */
-    public void printDivider(String line) {
+    public static void printDivider(String line) {
         System.out.println(DIVIDER);
         System.out.println(line);
         System.out.println(DIVIDER);
     }
 
-    private void printTableFormat(ActivityList activityList, int index, boolean gotTags) {
+    private static void printTableFormat(ActivityList activityList, int index, boolean gotTags) {
         long durationInNanos = (activityList.get(index).getDuration()).toNanos();
         String duration = String.format("%02d:%02d:%02d",
                 TimeUnit.NANOSECONDS.toHours(durationInNanos),
@@ -42,7 +42,7 @@ public class Ui {
             System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %-100s",
                     index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
                     activityList.get(index).getDate().toString(), "|",
-                    Arrays.toString(activityList.get(index).getTags())));
+                    activityList.get(index).getTags().toString()));
         } else {
             System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %s",
                     index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
@@ -50,14 +50,37 @@ public class Ui {
         }
     }
 
-    /** Prints all the activities in the list. */
-    public void printList(ActivityList activityList) {
+    /**
+     * Prints the results from a 'find' or 'filter' command.
+     * @param lastShownList the list of activities to print
+     */
+    public static void printResults(ActivityList lastShownList) {
+        if (lastShownList.activities.size() > 0) {
+            System.out.println(DIVIDER);
+            System.out.println("Here are the matching activities in your list:\n");
+            System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s",
+                    "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
+            for (int i = 0; i < lastShownList.getSize(); i++) {
+                if (lastShownList.get(i).getTags() != null && !lastShownList.get(i).getTags().isEmpty()) {
+                    printTableFormat(lastShownList, i, true);
+                } else {
+                    printTableFormat(lastShownList, i, false);
+                }
+            }
+            System.out.println(DIVIDER);
+        } else {
+            System.out.println("There are no activities matching that description.\n");
+        }
+    }
+
+    /** Prints all the activities in a list. */
+    public static void printList(ActivityList activityList) {
         System.out.println(DIVIDER);
         System.out.println("Your completed activities:");
         System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s",
                 "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
         for (int i = 0; i < activityList.getSize(); i++) {
-            if (activityList.get(i).getTags() != null && !activityList.get(i).getTags()[0].equals("null")) {
+            if (activityList.get(i).getTags() != null && !activityList.get(i).getTags().isEmpty()) {
                 printTableFormat(activityList, i, true);
             } else {
                 printTableFormat(activityList, i, false);

@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * Represents the list of activities.
@@ -113,15 +114,17 @@ public class ActivityList {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
-            String[] tags;
+            String[] tagStrings;
+            Set<String> tags = new HashSet<String>();
 
             // if there are tags
             if (strings.size() > 3) {
                 // remove square brackets surrounding tags
-                // tags = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
-                tags = strings.get(3).split(" ");
-            } else {
-                tags = null;
+                tagStrings = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
+                tagStrings = strings.get(3).split(" ");
+                for (String i : tagStrings) {
+                    tags.add(i);
+                }
             }
             // strings[0] = name, strings[1] = startDate, string[2] = endDate
             Activity e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),

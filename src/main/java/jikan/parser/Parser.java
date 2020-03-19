@@ -3,14 +3,14 @@ package jikan.parser;
 import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyQueryException;
 import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.util.logging.Level;
+import java.util.Set;
 
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
@@ -20,11 +20,12 @@ public class Parser {
     protected LocalDateTime startTime = null;
     protected LocalDateTime endTime = null;
     private String activityName = null;
-    private String[] tags = null;
+    private Set<String> tags = new HashSet<String>();
     private Ui ui = new Ui();
     protected String[] tokenizedInputs;
     String instruction;
     Log logger = new Log();
+    private ActivityList lastShownList = new ActivityList();
 
     /**
      * Parses user commands to relevant functions to carry out the commands.
@@ -33,6 +34,10 @@ public class Parser {
      */
     public void parseUserCommands(Scanner scanner, ActivityList activityList) {
         logger.makeInfoLog("Starting to parse inputs.");
+        /*lastShownList is initialised here to facilitate subsequent delete and edit commands
+        referencing by index of this list.
+         */
+        lastShownList.activities.addAll(activityList.activities);
         while (true) {
             String userInput = scanner.nextLine();
             tokenizedInputs = userInput.split(" ", 2);
@@ -82,9 +87,79 @@ public class Parser {
                     ui.printDivider("Invalid index number.");
                 }
                 break;
+            case "find":
+                try {
+                    parseFind(activityList, lastShownList, tokenizedInputs[1]);
+                } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
+                    ui.printDivider("No keyword was given.");
+                }
+                break;
+            case "filter":
+                try {
+                    parseFilter(activityList, lastShownList, tokenizedInputs[1]);
+                } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
+                    ui.printDivider("No keyword was given.");
+                }
+                break;
             default:
                 parseDefault();
                 break;
+            }
+        }
+    }
+
+    /**
+     * Shows the user all past activities that has names which match the keyword queried by the user.
+     * @param activityList the activity list to search for matching activities
+     * @param lastShownList the activity list to populate with matching activities only
+     * @param keyword the keyword queried by the user
+     */
+    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword)
+            throws EmptyQueryException {
+        if (keyword.length() < 1) {
+            throw new EmptyQueryException();
+        } else {
+            lastShownList.activities.clear();
+            for (Activity i : activityList.activities) {
+                if (i.getName().contains(keyword)) {
+                    lastShownList.activities.add(i);
+                }
+            }
+            Ui.printResults(lastShownList);
+        }
+    }
+
+    /**
+     * Shows the user all past activities that has tags which match the keywords queried by the user.
+     * @param activityList the activity list to search for matching activities
+     * @param lastShownList the activity list to populate with matching activities only
+     * @param query the keywords queried by the user
+     */
+    private void parseFilter(ActivityList activityList, ActivityList lastShownList, String query)
+            throws EmptyQueryException {
+        if (query.length() < 1) {
+            throw new EmptyQueryException();
+        } else {
+            lastShownList.activities.clear();
+            String[] keywords = query.split(" ");
+
+            for (String keyword : keywords) {
+                populateLastShownList(activityList, lastShownList, keyword);
+            }
+            Ui.printResults(lastShownList);
+        }
+    }
+
+    /**
+     * Populates the last shown list with activities that contain tags which match the given keyword.
+     * @param activityList the list of activity to search
+     * @param lastShownList the last shown list to populate
+     * @param keyword the keyword to match
+     */
+    private void populateLastShownList(ActivityList activityList, ActivityList lastShownList, String keyword) {
+        for (Activity i : activityList.activities) {
+            if (i.getTags().contains(keyword)) {
+                lastShownList.add(i);
             }
         }
     }
@@ -103,7 +178,7 @@ public class Parser {
         } else {
             logger.makeFineLog("Aborted " + activityName);
             startTime = null;
-            tags = null;
+            tags = new HashSet<String>();
             activityName = null;
             String line = "You have aborted the current activity!";
             ui.printDivider(line);
@@ -120,7 +195,7 @@ public class Parser {
             ui.printDivider(line);
         } else {
             // tags should be reset
-            assert tags == null;
+            assert tags.isEmpty();
 
             String line;
             int delimiter = tokenizedInputs[1].indexOf("/t");
@@ -136,12 +211,23 @@ public class Parser {
                     throw new EmptyNameException();
                 }
                 line = "Started: " + activityName;
-                tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
+                parseTags(delimiter);
             }
             startTime = LocalDateTime.now();
             ui.printDivider(line);
         }
         logger.makeFineLog("Started: " + activityName);
+    }
+
+    /**
+     * Inserts the tags into the activity object when it has ended.
+     * @param delimiter the index of the tag delimiter
+     */
+    private void parseTags(int delimiter) {
+        String[] tagString = tokenizedInputs[1].substring(delimiter + 3).split(" ");
+        for (String i :tagString) {
+            tags.add(i);
+        }
     }
 
     /** Method to parse the end activity command. */
@@ -156,7 +242,7 @@ public class Parser {
             activityList.add(newActivity);
             // reset activity info
             startTime = null;
-            tags = null;
+            tags = new HashSet<String>();
         }
         logger.makeFineLog("Ended: " + activityName);
     }
