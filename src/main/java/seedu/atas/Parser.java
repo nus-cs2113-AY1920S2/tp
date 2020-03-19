@@ -11,8 +11,12 @@ import command.HelpCommand;
 import command.ExitCommand;
 import command.ClearCommand;
 import command.SearchCommand;
+import command.EditCommand;
 
 import common.Messages;
+
+import tasks.Event;
+import tasks.Assignment;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -76,6 +80,8 @@ public class Parser {
             return prepareListCommand(fullCommand);
         case SearchCommand.SEARCH_COMMAND_WORD:
             return prepareSearchCommand(fullCommand);
+        case EditCommand.EDIT_COMMAND_WORD:
+            return prepareEditCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
             return prepareExitCommand(fullCommand);
         default:
@@ -212,7 +218,21 @@ public class Parser {
         return new HelpCommand();
     }
 
-    private static String capitalize(String str) {
+    private static Command prepareEditCommand(String fullCommand) {
+        String[] tokens = fullCommand.split("\\s+", 2);
+        int editIndex;
+        try {
+            editIndex = Integer.parseInt(tokens[1].trim()) - 1;
+        } catch (NumberFormatException e) {
+            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
+        } catch (IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.DONE_INSUFFICIENT_ARGS_ERROR);
+        }
+        return new EditCommand(editIndex);
+    }
+
+
+    public static String capitalize(String str) {
         if (str == null || str.isEmpty()) {
             return str;
         }

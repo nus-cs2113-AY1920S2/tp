@@ -68,6 +68,9 @@ public class Messages {
     public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
     public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
     public static final String SEARCH_SUCCESS_MESSAGE = "There are a total of %d result(s) found";
+    public static final String EDIT_SUCCESS_MESSAGE = "Task edited successfully:" + System.lineSeparator() + NEWLINE_INDENT
+            + "%s";
+    public static final String EDIT_PROMPT = "Please edit your chosen task";
     // Others
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";

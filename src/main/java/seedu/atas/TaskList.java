@@ -4,6 +4,7 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -156,6 +157,10 @@ public class TaskList {
         assert tasks.size() == size - 1;
     }
 
+    public void editTask(int editIndex, Task editedTask) throws IndexOutOfBoundsException {
+        tasks.set(editIndex, editedTask);
+    }
+
     /**
      * Deletes all the tasks in the list.
      */
@@ -174,4 +179,6 @@ public class TaskList {
             deleteTask(index);
         }
     }
+
+
 }
