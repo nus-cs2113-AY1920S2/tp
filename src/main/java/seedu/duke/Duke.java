@@ -22,6 +22,30 @@ public class Duke {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static final String DEFAULT_FILEPATH = "Logger.log";
     private static final String LOG_FILE_ERROR = "Logging to file unsuccessful";
+    private static final String SHOCO_LOGO =
+                       "\n      HELLO! I'm SHOCO. Your digital shopping list!"
+                    +  "\n                                         __"
+                    + "\n                                        /__\\"
+                    + "\n                                       /"
+                    + "\n        ______________________________/\n"
+                    + "       |     |     |     |    |      /\n"
+                    + "       |____ |____ |____ |____|_____/\n"
+                    + "       |     |     |     |    |    /\n"
+                    + "       |____ |____ |____ |____|___/\n"
+                    + "       |     |     |     |    |  /\n"
+                    + "       |____ |____ |____ |____|_/\n"
+                    + "       |____ |____ |____ |___ |/\n"
+                    + "                               \\"
+                    + "\n"
+                    + "                                \\"
+                    + "\n"
+                    + "                                /"
+                    + "\n"
+                    + "        _______________________/"
+                    + "\n          /\\              /\\"
+                    + "\n          \\/              \\/\n";
+
+
 
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -66,7 +90,7 @@ public class Duke {
      */
     private void start() {
         LOGGER.log(Level.INFO,"Application starting.");
-        System.out.println("HELLO! I'm SHOCO. Your digital shopping list!");
+        System.out.println(SHOCO_LOGO);
     }
 
     /** Prints the Goodbye message and exits. */
@@ -80,6 +104,7 @@ public class Duke {
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
+            System.out.println("\nEnter command:");
             String userCommandText = readCommand();
             command = new Parser().parseCommand(userCommandText);
             assert command != null : "Command should have been initialised";
