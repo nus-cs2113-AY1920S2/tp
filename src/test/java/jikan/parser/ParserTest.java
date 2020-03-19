@@ -1,6 +1,7 @@
 package jikan.parser;
 
 import jikan.activity.ActivityList;
+import jikan.exception.InvalidTimeFrameException;
 import jikan.ui.Ui;
 import jikan.exception.NoSuchActivityException;
 import jikan.storage.Storage;
@@ -18,7 +19,7 @@ class ParserTest {
     ActivityList activityList = new ActivityList();
 
     @Test
-    void parseEnd() throws NoSuchActivityException {
+    void parseEnd() throws NoSuchActivityException, InvalidTimeFrameException {
         try {
             parser.startTime = null;
             parser.parseEnd(activityList);
