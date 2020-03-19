@@ -114,15 +114,15 @@ public class ActivityList {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
-            String[] tagString;
+            String[] tagStrings;
             Set<String> tags = new HashSet<String>();
 
             // if there are tags
             if (strings.size() > 3) {
                 // remove square brackets surrounding tags
-                tagString = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
-                tagString = strings.get(3).split(" ");
-                for (String i : tagString) {
+                tagStrings = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
+                tagStrings = strings.get(3).split(" ");
+                for (String i : tagStrings) {
                     tags.add(i);
                 }
             }
