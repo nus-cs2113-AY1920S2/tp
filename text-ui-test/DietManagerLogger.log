@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-03-18T11:05:00.870139600Z</date>
-  <millis>1584529500870</millis>
-  <nanos>139600</nanos>
+  <date>2020-03-19T07:23:06.947567Z</date>
+  <millis>1584602586947</millis>
+  <nanos>567000</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.InfoLogger</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Starting Diet Manager</message>
 </record>
 <record>
-  <date>2020-03-18T11:05:00.931886Z</date>
-  <millis>1584529500931</millis>
-  <nanos>886000</nanos>
+  <date>2020-03-19T07:23:07.049295400Z</date>
+  <millis>1584602587049</millis>
+  <nanos>295400</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.InfoLogger</logger>
   <level>INFO</level>
