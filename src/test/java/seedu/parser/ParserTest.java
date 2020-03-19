@@ -49,13 +49,6 @@ class ParserTest {
     }
 
     @Test
-    void parse_quizQuery_QuizCommandReturned() throws Exception {
-        String quizQuery = "quiz s/1";
-        Command returnedCommand = parser.parse(quizQuery);
-        assertTrue(returnedCommand instanceof QuizCommand);
-    }
-
-    @Test
     void parse_exitQuery_ExitCommandReturned() throws Exception {
         String exitQuery = "exit";
         Command returnedCommand = parser.parse(exitQuery);
@@ -305,5 +298,103 @@ class ParserTest {
         assertTrue(returnedCommand instanceof ListCardCommand);
     }
 
-    //Quiz and Score Jtests
+    @Test
+    void parse_quizQueryWithInvalidArgs_exceptionThrown() {
+        expectedException = new EscException(QuizCommand.MESSAGE_USAGE);
+        String[] quizQueries = {
+                "quiz",
+                "quiz "};
+        for (String query : quizQueries) {
+            try {
+                parser.parse(query);
+                fail("Invalid query should have thrown an exception.\n");
+            } catch (Exception e) {
+                assertEquals(expectedException.getMessage(),e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    void parse_quizQueryWithoutSubjectIndex_exceptionThrown() {
+        expectedException = new EscException("The subject index is required.");
+        String[] quizQueries = {
+                "quiz s/"};
+        for (String query : quizQueries) {
+            try {
+                parser.parse(query);
+                fail("Invalid query should have thrown an exception.\n");
+            } catch (Exception e) {
+                assertEquals(expectedException.getMessage(),e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    void parse_quizQueryWithNonIntegerSubject_exceptionThrown() {
+        String quizQuery = "quiz s/something";
+        expectedException = new EscException("The subject index has to be an integer.");
+        try {
+            parser.parse(quizQuery);
+            fail("Empty query should have thrown an exception.");
+        } catch (Exception e) {
+            assertEquals(expectedException.getMessage(),e.getMessage());
+        }
+    }
+
+    @Test
+    void parse_quizQuery_QuizCommandReturned() throws Exception {
+        String quizQuery = "quiz s/1";
+        Command returnedCommand = parser.parse(quizQuery);
+        assertTrue(returnedCommand instanceof QuizCommand);
+    }
+
+    @Test
+    void parse_scoreQueryWithInvalidArgs_exceptionThrown() {
+        expectedException = new EscException(ScoreCommand.MESSAGE_USAGE);
+        String[] scoreQueries = {
+                "score",
+                "score "};
+        for (String query : scoreQueries) {
+            try {
+                parser.parse(query);
+                fail("Invalid query should have thrown an exception.\n");
+            } catch (Exception e) {
+                assertEquals(expectedException.getMessage(),e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    void parse_scoreQueryWithoutSubjectIndex_exceptionThrown() {
+        expectedException = new EscException("The subject index is required.");
+        String[] scoreQueries = {
+                "score s/"};
+        for (String query : scoreQueries) {
+            try {
+                parser.parse(query);
+                fail("Invalid query should have thrown an exception.\n");
+            } catch (Exception e) {
+                assertEquals(expectedException.getMessage(),e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    void parse_scoreQueryWithNonIntegerSubject_exceptionThrown() {
+        String scoreQuery = "score s/something";
+        expectedException = new EscException("The subject index has to be an integer.");
+        try {
+            parser.parse(scoreQuery);
+            fail("Empty query should have thrown an exception.");
+        } catch (Exception e) {
+            assertEquals(expectedException.getMessage(),e.getMessage());
+        }
+    }
+
+    @Test
+    void parse_scoreQuery_ScoreCommandReturned() throws Exception {
+        String scoreQuery = "score s/1";
+        Command returnedCommand = parser.parse(scoreQuery);
+        assertTrue(returnedCommand instanceof ScoreCommand);
+    }
 }

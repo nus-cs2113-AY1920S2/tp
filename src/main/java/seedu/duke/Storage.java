@@ -39,7 +39,6 @@ public class Storage {
                 FileInputStream fileRead = new FileInputStream(saveFile);
                 ObjectInputStream objRead = new ObjectInputStream(fileRead);
                 tempList = (ArrayList) objRead.readObject();
-
                 for (int i = 0; i < tempList.size(); i++) {
                     loadCards.add((Card) tempList.get(i));
                 }
