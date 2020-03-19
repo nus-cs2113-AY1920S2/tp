@@ -39,6 +39,8 @@ public class DietManager {
                 ui.displayInvalidCommandMessage();
             }
         }
+
+        ui.displayExitMessage();
         appLogger.logExitProgramme();
     }
 
