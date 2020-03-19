@@ -4,6 +4,7 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -104,6 +105,20 @@ public class TaskList {
     }
 
     /**
+     * Getter for all events tasks.
+     * @return ArrayList object containing all events
+     */
+    public ArrayList<Task> getEventsArray() {
+        ArrayList<Task> eventList = new ArrayList<>();
+        for (Task task: tasks) {
+            if (task instanceof Event) {
+                eventList.add(task);
+            }
+        }
+        return eventList;
+    }
+
+    /**
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
      * @return Task object with corresponding index
@@ -113,6 +128,20 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
+    /**
+     * Getter for all assignment tasks.
+     * @return ArrayList object containing all assignments
+     */
+    public ArrayList<Task> getAssignmentsArray() {
+        ArrayList<Task> assignmentList = new ArrayList<>();
+        for (Task task: tasks) {
+            if (task instanceof Assignment) {
+                assignmentList.add(task);
+            }
+        }
+        return assignmentList;
+    }
+    
     /**
      * Adds a task to TaskList.
      * @param task task object to be added
@@ -143,6 +172,17 @@ public class TaskList {
     }
 
     /**
+     * Edits task according to the index specified by user.
+     * Edited task replaces the index of the old task.
+     * @param editIndex Integer of index of task to be edited
+     * @param editedTask Edited task object to be replaced in ArrayList
+     * @throws IndexOutOfBoundsException Thrown when index is out of range of the current TaskList
+     */
+    public void editTask(int editIndex, Task editedTask) throws IndexOutOfBoundsException {
+        tasks.set(editIndex, editedTask);
+    }
+
+    /**
      * Deletes all the tasks in the list.
      */
     public void clearList() {
@@ -160,4 +200,6 @@ public class TaskList {
             deleteTask(index);
         }
     }
+
+
 }

@@ -24,6 +24,12 @@ application {
     mainClassName = "seedu.atas.Atas"
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'seedu.atas.Atas'
+    }
+}
+
 shadowJar {
     archiveBaseName = "atas"
     archiveVersion = "2.0.0"
