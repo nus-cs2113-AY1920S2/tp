@@ -18,6 +18,7 @@ public class DietManager {
         FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
         Profile profile = new Profile();
         UI ui = new UI();
+        Storage storage = new Storage(ui);
 
         //Conduct checks using assert
         assert !ui.isExitStatus();

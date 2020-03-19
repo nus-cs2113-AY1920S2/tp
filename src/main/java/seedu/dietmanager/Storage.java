@@ -138,7 +138,7 @@ public class Storage {
     public void rewriteProfileFile() {
         try {
             FileWriter myWriter = new FileWriter(PROFILE_FILE_PATH, false);
-            myWriter.write(" ");
+            myWriter.write("");
             myWriter.close();
         } catch (IOException e) {
             ui.displayFileErrorMessaage();
@@ -152,7 +152,7 @@ public class Storage {
     public void writeProfileFileLine() {
         try {
             BufferedWriter myWriter = new BufferedWriter(new FileWriter(PROFILE_FILE_PATH, true));
-            myWriter.write(" ");
+            myWriter.write("");
             myWriter.close();
         } catch (IOException e) {
             ui.displayFileErrorMessaage();
