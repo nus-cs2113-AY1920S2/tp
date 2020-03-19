@@ -4,10 +4,12 @@ import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyQueryException;
+import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -70,7 +72,12 @@ public class Parser {
                 }
                 break;
             case "list":
-                ui.printList(activityList);
+                try {
+                    parseList(activityList);
+                } catch (InvalidTimeDate e) {
+                    logger.makeInfoLog("Specified time range not valid");
+                    ui.printDivider("The time range specified is not valid.");
+                }
                 break;
             case "abort":
                 try {
@@ -253,5 +260,55 @@ public class Parser {
         String line = "You have deleted " + activityList.get(index).getName();
         ui.printDivider(line);
         activityList.delete(index);
+    }
+
+    /**
+     * Parse a list command. The user can specify either a single date or a specific time frame.
+     *
+     * @param activityList The activity list to search for matching activities.
+     */
+    private void parseList(ActivityList activityList) throws InvalidTimeFrameException {
+
+        // If no time frame is specified, print the entire list
+        if (tokenizedInputs.length == 1) {
+            lastShownList.activities.clear();
+            ui.printList(activityList);
+            lastShownList = activityList;
+            return;
+        }
+
+        // parse both formats (use optional section, delimited by [])
+        DateTimeFormatter parser = DateTimeFormatter.ofPattern("[dd/MM/yyyy][yyyy-MM-dd'T'HH:mm:ss]");
+
+        // Only one date is specified; return all entries with start date coinciding with that date
+        if (tokenizedInputs.length == 2) {
+
+            // Read from activityList
+            // Update lastShownList
+            // Clear lastShownList
+            lastShownList.activities.clear();
+            for (Activity i : activityList.activities) {
+                // If startTime is in the range, then activity
+                LocalDateTime startTime = i.getStartTime();
+                if (i.getName().contains(keyword)) {
+                    lastShownList.activities.add(i);
+                }
+            }
+        }
+    }
+
+    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword)
+            throws EmptyQueryException {
+        if (keyword.length() < 1) {
+            throw new EmptyQueryException();
+        } else {
+            lastShownList.activities.clear();
+            for (Activity i : activityList.activities) {
+                if (i.getName().contains(keyword)) {
+                    lastShownList.activities.add(i);
+                }
+            }
+            Ui.printResults(lastShownList);
+        }
     }
 }
