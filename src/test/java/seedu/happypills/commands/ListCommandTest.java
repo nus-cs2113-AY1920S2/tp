@@ -12,7 +12,7 @@ class ListCommandTest {
 
     private static PatientList filledPatientList;
     private static PatientList emptyPatientList;
-    public static final String DIVIDER = "    ===================================================";
+    public static final String DIVIDER = "    =====================================================";
     private static String expectedOutputFromEmptyList = "    There are no patients in the list.\n" + DIVIDER;
     private static String expectedOutputFromFilledList = "    Nyan | S1234Z\n" + "    Nadiah | S9988N\n"
             + "    Jan | S9888F\n" + DIVIDER;
