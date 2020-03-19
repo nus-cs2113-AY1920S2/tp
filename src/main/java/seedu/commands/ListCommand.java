@@ -17,6 +17,6 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(CardList cards) {
-        Duke.listCards(cards.getCards());
+        CardList.listCards(cards.getCards());
     }
 }
