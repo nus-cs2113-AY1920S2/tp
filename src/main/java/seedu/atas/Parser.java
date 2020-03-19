@@ -14,6 +14,7 @@ import command.SearchCommand;
 import command.EditCommand;
 
 import common.Messages;
+import exceptions.AtasException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

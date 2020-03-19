@@ -129,6 +129,20 @@ public class TaskList {
     }
 
     /**
+     * Getter for all assignment tasks.
+     * @return ArrayList object containing all assignments
+     */
+    public ArrayList<Task> getAssignmentsArray() {
+        ArrayList<Task> assignmentList = new ArrayList<>();
+        for (Task task: tasks) {
+            if (task instanceof Assignment) {
+                assignmentList.add(task);
+            }
+        }
+        return assignmentList;
+    }
+    
+    /**
      * Adds a task to TaskList.
      * @param task task object to be added
      */
