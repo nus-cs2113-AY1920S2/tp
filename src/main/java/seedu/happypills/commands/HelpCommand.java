@@ -38,7 +38,8 @@ public class HelpCommand extends Command {
         } else if (command.equalsIgnoreCase("exit")) {
             message = TextUi.printExitHelp();
         } else {
-            message = "    The command \"" + command + "\" does not exist. Please try again.\n + DIVIDER";
+            message = "    The command \"" + command + "\" does not exist. Please try again.\n"
+                    + TextUi.DIVIDER;
         }
         return message;
     }
