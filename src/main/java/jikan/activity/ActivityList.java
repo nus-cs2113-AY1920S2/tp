@@ -1,5 +1,6 @@
 package jikan.activity;
 
+import jikan.exception.InvalidTimeFrameException;
 import jikan.storage.Storage;
 import jikan.storage.StorageHandler;
 
@@ -127,8 +128,13 @@ public class ActivityList {
                 }
             }
             // strings[0] = name, strings[1] = startDate, string[2] = endDate
-            Activity e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),
-                    LocalDateTime.parse(strings.get(2)), tags);
+            Activity e = null;
+            try {
+                e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),
+                        LocalDateTime.parse(strings.get(2)), tags);
+            } catch (InvalidTimeFrameException ex) {
+                ex.printStackTrace();
+            }
             activities.add(e);
         }
     }

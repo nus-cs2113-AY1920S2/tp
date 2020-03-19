@@ -78,6 +78,20 @@ public class Activity {
     }
 
     /**
+     * Returns true if the Activity's date is within the date range specified (inclusive).
+     *
+     * @param startDate Start date of range
+     * @param endDate End date of range
+     * @return True if Activity is within date range; false otherwise
+     */
+    public boolean isWithinDateFrame(LocalDate startDate, LocalDate endDate) {
+        if (!this.date.isBefore(startDate) && !this.date.isAfter (endDate)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Converts the jikan.activity.Activity object to data representation to be stored in a data file.
      * File format:
      * name, startTime, endTime

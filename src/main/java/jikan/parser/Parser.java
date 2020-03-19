@@ -8,6 +8,8 @@ import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -69,12 +71,15 @@ public class Parser {
                 } catch (NoSuchActivityException e) {
                     logger.makeInfoLog("End command failed as no activity was ongoing");
                     ui.printDivider("You have not started any activity!");
+                } catch (InvalidTimeFrameException e) {
+                    logger.makeInfoLog("End date must be before start date");
+                    ui.printDivider("End date must be before start date.");
                 }
                 break;
             case "list":
                 try {
                     parseList(activityList);
-                } catch (InvalidTimeDate e) {
+                } catch (InvalidTimeFrameException e) {
                     logger.makeInfoLog("Specified time range not valid");
                     ui.printDivider("The time range specified is not valid.");
                 }
@@ -238,7 +243,7 @@ public class Parser {
     }
 
     /** Method to parse the end activity command. */
-    public void parseEnd(ActivityList activityList) throws NoSuchActivityException {
+    public void parseEnd(ActivityList activityList) throws NoSuchActivityException, InvalidTimeFrameException {
         if (startTime == null) {
             throw new NoSuchActivityException();
         } else {
@@ -277,38 +282,33 @@ public class Parser {
             return;
         }
 
-        // parse both formats (use optional section, delimited by [])
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("[dd/MM/yyyy][yyyy-MM-dd'T'HH:mm:ss]");
+        lastShownList.activities.clear();
+
+        // Parse either format
+        DateTimeFormatter parser = DateTimeFormatter.ofPattern("[dd/MM/yyyy][yyyy-MM-dd]");
+
+        LocalDate startDate = LocalDate.parse(tokenizedInputs[1], parser);
 
         // Only one date is specified; return all entries with start date coinciding with that date
         if (tokenizedInputs.length == 2) {
-
-            // Read from activityList
-            // Update lastShownList
-            // Clear lastShownList
-            lastShownList.activities.clear();
             for (Activity i : activityList.activities) {
-                // If startTime is in the range, then activity
-                LocalDateTime startTime = i.getStartTime();
-                if (i.getName().contains(keyword)) {
+                if (i.getDate().equals(startDate)) {
                     lastShownList.activities.add(i);
                 }
             }
-        }
-    }
-
-    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword)
-            throws EmptyQueryException {
-        if (keyword.length() < 1) {
-            throw new EmptyQueryException();
+            ui.printList(lastShownList);
+            // Both start and end dates are specified
+        } else if (tokenizedInputs.length == 3) {
+            LocalDate endDate = LocalDate.parse(tokenizedInputs[2], parser);
+            for (Activity i : activityList.activities) {
+                if (i.isWithinDateFrame(startDate, endDate)) {
+                    lastShownList.activities.add(i);
+                }
+            }
+            ui.printList(lastShownList);
         } else {
-            lastShownList.activities.clear();
-            for (Activity i : activityList.activities) {
-                if (i.getName().contains(keyword)) {
-                    lastShownList.activities.add(i);
-                }
-            }
-            Ui.printResults(lastShownList);
+            throw new InvalidTimeFrameException();
         }
+
     }
 }
