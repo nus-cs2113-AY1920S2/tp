@@ -85,7 +85,8 @@ public class Activity {
     public String toData() {
 
         // Convert tags to a single space-separated
-        String tagString = tagsToString(tagString);
+        String tagString = "";
+        tagString = tagsToString(tagString);
 
         String dataLine = (this.name + "," + this.startTime + "," + this.endTime + "," + tagString);
         return dataLine;

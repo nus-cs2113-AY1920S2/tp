@@ -43,7 +43,6 @@ public class Ui {
                     index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
                     activityList.get(index).getDate().toString(), "|",
                     activityList.get(index).getTags().toString()));
-                    //Arrays.toString(activityList.get(index).getTags())));
         } else {
             System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %s",
                     index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
@@ -51,6 +50,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the results from a 'find' or 'filter' command.
+     * @param lastShownList the list of activities to print
+     */
     public static void printResults(ActivityList lastShownList) {
         if (lastShownList.activities.size() > 0) {
             System.out.println(DIVIDER);

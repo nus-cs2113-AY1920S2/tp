@@ -26,6 +26,7 @@ public class Parser {
     String instruction;
     Log logger = new Log();
     private ActivityList lastShownList = new ActivityList();
+
     /**
      * Parses user commands to relevant functions to carry out the commands.
      * @param scanner scanner object which reads user input
@@ -33,7 +34,9 @@ public class Parser {
      */
     public void parseUserCommands(Scanner scanner, ActivityList activityList) {
         logger.makeInfoLog("Starting to parse inputs.");
-        //lastShownList is initialised here to facilitate subsequent delete and edit commands referencing by index of this list.
+        /*lastShownList is initialised here to facilitate subsequent delete and edit commands
+        referencing by index of this list.
+         */
         lastShownList.activities.addAll(activityList.activities);
         while (true) {
             String userInput = scanner.nextLine();
@@ -111,7 +114,8 @@ public class Parser {
      * @param lastShownList the activity list to populate with matching activities only
      * @param keyword the keyword queried by the user
      */
-    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword) throws EmptyQueryException{
+    private void parseFind(ActivityList activityList, ActivityList lastShownList, String keyword)
+            throws EmptyQueryException {
         if (keyword.length() < 1) {
             throw new EmptyQueryException();
         } else {
@@ -131,7 +135,8 @@ public class Parser {
      * @param lastShownList the activity list to populate with matching activities only
      * @param query the keywords queried by the user
      */
-    private void parseFilter(ActivityList activityList, ActivityList lastShownList, String query) throws EmptyQueryException {
+    private void parseFilter(ActivityList activityList, ActivityList lastShownList, String query)
+            throws EmptyQueryException {
         if (query.length() < 1) {
             throw new EmptyQueryException();
         } else {
@@ -146,14 +151,14 @@ public class Parser {
     }
 
     /**
-     * Populates the last shown list with activities that contain tags which match the given keyword
+     * Populates the last shown list with activities that contain tags which match the given keyword.
      * @param activityList the list of activity to search
      * @param lastShownList the last shown list to populate
      * @param keyword the keyword to match
      */
     private void populateLastShownList(ActivityList activityList, ActivityList lastShownList, String keyword) {
         for (Activity i : activityList.activities) {
-            if (i.getTags().contains(keyword)){
+            if (i.getTags().contains(keyword)) {
                 lastShownList.add(i);
             }
         }
