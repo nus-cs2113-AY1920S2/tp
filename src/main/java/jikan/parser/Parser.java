@@ -12,6 +12,7 @@ import jikan.Log;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -44,7 +45,7 @@ public class Parser {
         lastShownList.activities.addAll(activityList.activities);
         while (true) {
             String userInput = scanner.nextLine();
-            tokenizedInputs = userInput.split(" ", 2);
+            tokenizedInputs = userInput.split(" ", 3);
             instruction = tokenizedInputs[0];
 
             switch (instruction) {
@@ -82,6 +83,9 @@ public class Parser {
                 } catch (InvalidTimeFrameException e) {
                     logger.makeInfoLog("Specified time range not valid");
                     ui.printDivider("The time range specified is not valid.");
+                } catch (DateTimeParseException e) {
+                    logger.makeInfoLog("Specified time range was not in the valid format");
+                    ui.printDivider("Please input your dates as either yyyy-MM-dd or dd/MM/yyyy.");
                 }
                 break;
             case "abort":
@@ -272,13 +276,17 @@ public class Parser {
      *
      * @param activityList The activity list to search for matching activities.
      */
-    private void parseList(ActivityList activityList) throws InvalidTimeFrameException {
+    private void parseList(ActivityList activityList) throws InvalidTimeFrameException, DateTimeParseException {
 
         // If no time frame is specified, print the entire list
         if (tokenizedInputs.length == 1) {
             lastShownList.activities.clear();
             ui.printList(activityList);
-            lastShownList = activityList;
+
+            // Can't do lastShownList = activityList, otherwise we just copy
+            for (Activity i : activityList.activities) {
+                lastShownList.activities.add(i);
+            }
             return;
         }
 
@@ -286,7 +294,6 @@ public class Parser {
 
         // Parse either format
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("[dd/MM/yyyy][yyyy-MM-dd]");
-
         LocalDate startDate = LocalDate.parse(tokenizedInputs[1], parser);
 
         // Only one date is specified; return all entries with start date coinciding with that date
@@ -300,6 +307,11 @@ public class Parser {
             // Both start and end dates are specified
         } else if (tokenizedInputs.length == 3) {
             LocalDate endDate = LocalDate.parse(tokenizedInputs[2], parser);
+
+            if (endDate.isBefore(startDate)) {
+                throw new InvalidTimeFrameException();
+            }
+
             for (Activity i : activityList.activities) {
                 if (i.isWithinDateFrame(startDate, endDate)) {
                     lastShownList.activities.add(i);
