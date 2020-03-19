@@ -3,15 +3,21 @@ package seedu.nuke.directory;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.TaskManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Module extends Directory {
+public class Module extends Directory implements Serializable {
     private String moduleCode;
     private String title;
     private String description;
     private CategoryManager categories;
+
+    /**
+     * Default constructor for module
+     */
+    public Module() {}
 
     /**
      * Constructs the module

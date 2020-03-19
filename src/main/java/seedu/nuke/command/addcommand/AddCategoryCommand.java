@@ -27,9 +27,9 @@ public class AddCategoryCommand extends AddCommand {
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> -p <priority>";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:" + MODULE_CODE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<priority>(?:" + PRIORITY_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mp].*|[mp]\\S+))*)")
+            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
+            Pattern.compile("(?<priority>(?:\\s+" + PRIORITY_PREFIX + " [^-]+)?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mp].*|[mp]\\S+)))")
     };
 
     private String moduleCode;

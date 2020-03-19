@@ -114,8 +114,8 @@ public class Parser {
     //        case ListCommand.COMMAND_WORD:
     //            return prepareListCommand(parameters);
 
-            case EditDeadlineCommand.COMMAND_WORD:
-                return prepareEditDeadlineCommand(parameters);
+//            case EditDeadlineCommand.COMMAND_WORD:
+//                return prepareEditDeadlineCommand(parameters);
 
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
@@ -131,21 +131,21 @@ public class Parser {
         }
     }
 
-    private Command prepareEditDeadlineCommand(String parameters) {
-        Task taskToEdit;
-        DateTime deadline;
-        String[] temp = parameters.split("-d");
-        Module dir = (Module) DirectoryTraverser.getCurrentDirectory();
-        String moduleCode = dir.getModuleCode();
-        taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
-        try {
-            deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
-            return new EditDeadlineCommand(taskToEdit, deadline);
-        } catch (DateTimeFormat.InvalidDateTimeException e) {
-            return new IncorrectCommand("Invalid datetime format!\n");
-        }
-
-    }
+//    private Command prepareEditDeadlineCommand(String parameters) {
+//        Task taskToEdit;
+//        DateTime deadline;
+//        String[] temp = parameters.split("-d");
+//        Module dir = (Module) DirectoryTraverser.getCurrentDirectory();
+//        String moduleCode = dir.getModuleCode();
+//        taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
+//        try {
+//            deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
+//            return new EditDeadlineCommand(taskToEdit, deadline);
+//        } catch (DateTimeFormat.InvalidDateTimeException e) {
+//            return new IncorrectCommand("Invalid datetime format!\n");
+//        }
+//
+//    }
 
 //    private Command prepareDeleteCommand(String parameters) {
 //        if (Command.getCurrentDirectory() instanceof Root) {
@@ -243,9 +243,12 @@ public class Parser {
         }
 
         String categoryName = matchers[0].group("identifier").trim();
-        String moduleCode = matchers[1].group("moduleCode").trim();
-        String priority = matchers[2].group("priority").trim();
+        String moduleCode = matchers[1].group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String priority = matchers[2].group("priority")
+                .replace(PRIORITY_PREFIX, "").trim();
 
+        System.out.println(String.format("%s %s\n", moduleCode, categoryName));
         if (priority.isEmpty()) {
             return new AddCategoryCommand(moduleCode, categoryName);
         }
@@ -283,8 +286,10 @@ public class Parser {
         }
 
         String taskDescription = matchers[0].group("identifier").trim();
-        String moduleCode = matchers[1].group("moduleCode").trim();
-        String categoryName = matchers[2].group("categoryName").trim();
+        String moduleCode = matchers[1].group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryName = matchers[2].group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
         String deadline = matchers[3].group("deadline").trim();
         String priority = matchers[4].group("priority").trim();
 
@@ -502,8 +507,8 @@ public class Parser {
 
         String taskKeyword = matchers[0].group("identifier").trim();
         String moduleKeyword = matchers[1].group("moduleCode").trim();
-        String categoryKeyword = matchers[1].group("categoryName").trim();
-        String exactFlag = matchers[2].group("exact").trim();
+        String categoryKeyword = matchers[2].group("categoryName").trim();
+        String exactFlag = matchers[3].group("exact").trim();
         boolean isExact = !exactFlag.isEmpty();
 
         return new ListTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact);

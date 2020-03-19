@@ -17,9 +17,9 @@ public class ListCategoryCommand extends ListCommand {
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
             Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
             Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^ae].*|[ae]\\S+))*)")
+            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^ae].*|[ae]\\S+)))")
     };
 
     private String moduleKeyWord;

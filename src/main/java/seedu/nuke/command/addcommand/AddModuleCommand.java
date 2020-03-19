@@ -26,7 +26,7 @@ public class AddModuleCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<invalid>(?:\\s+-.*)*)")
+            Pattern.compile("(?<invalid>(?:\\s+-.*))")
     };
 
     private String moduleCode;

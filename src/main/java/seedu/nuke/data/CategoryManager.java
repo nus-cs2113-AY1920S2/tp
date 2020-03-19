@@ -13,6 +13,10 @@ public class CategoryManager {
 
     private static final String NO_KEYWORD = "";
 
+    public CategoryManager() {
+        categoryList = new ArrayList<>();
+    }
+
     /**
      * Constructs the Category Manager with initialised categories.
      *
@@ -42,12 +46,23 @@ public class CategoryManager {
     }
 
     /**
-     * Returns the entire Category List
+     * Returns the entire Category List.
+     *
      * @return
      *  The Category List
      */
     public ArrayList<Category> getCategoryList() {
         return categoryList;
+    }
+
+    /**
+     * Sets the entire Category List to a new list.
+     *
+     * @param categoryList
+     *  The new Category List to be set
+     */
+    public void setCategoryList(ArrayList<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 
     /**

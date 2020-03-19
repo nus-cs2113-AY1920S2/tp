@@ -1,13 +1,14 @@
-package seedu.nuke.data;
+package seedu.nuke.data.storage;
 
 import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
+import seedu.nuke.exception.CorruptedFileException;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class StorageManager {
@@ -31,12 +32,10 @@ public class StorageManager {
         String jsonStr;
         try {
             jsonStr = loadJsonStringFromFile(dataFileName);
-            ArrayList<Module> moduleList = (ArrayList<Module>) JSON.parseArray(jsonStr, Module.class);
-            return moduleList;
+            return (ArrayList<Module>) JSON.parseArray(jsonStr, Module.class);
         } catch (IOException e) {
-            System.out.println("error when reading from " + dataFileName);
-            ArrayList<Module> moduleList = new ArrayList<>();
-            return moduleList;
+            System.out.println("Error when reading from " + dataFileName);
+            return new ArrayList<>();
         }
     }
 
@@ -59,10 +58,9 @@ public class StorageManager {
 
     /**
      * Save the current ArrayList of Module objects into json file.
-     * @param moduleList an ArrayList of Module objects
      */
-    public void save(ArrayList<Module> moduleList) {
-        String jsonStr = JSON.toJSONString(moduleList);
+    public void save() {
+        String jsonStr = JSON.toJSONString(ModuleManager.getModuleList());
         try {
             FileWriter fw = new FileWriter(dataFileName);
             fw.write(jsonStr);
@@ -70,6 +68,34 @@ public class StorageManager {
             fw.close();
         } catch (IOException e) {
             System.out.println("something wrong when writing to " + dataFileName);
+        }
+    }
+
+    public void save2() {
+        try {
+            FileWriter fileWriter = new FileWriter(dataFileName);
+            fileWriter.write(new Encoder(ModuleManager.getModuleList()).encode());
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void load2() {
+        try {
+            FileReader fileReader = new FileReader(dataFileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            ArrayList<Module> moduleList = new Decoder(bufferedReader).decode();
+            ModuleManager.setModuleList(moduleList);
+            bufferedReader.close();
+            fileReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            ModuleManager.setModuleList(new ArrayList<>());
+        } catch (CorruptedFileException e) {
+            System.out.println("file is corrupted!\n");
+            ModuleManager.setModuleList(new ArrayList<>());
         }
     }
 

@@ -43,7 +43,8 @@ public class ChangeDirectoryCommand extends Command {
             } else {
                 DirectoryTraverser.traverseUp();
             }
-            return new CommandResult(MESSAGE_FAILED_DIRECTORY_TRAVERSAL);
+            // No feedback for successful traversal
+            return new CommandResult("");
         } catch (TraverseDirectoryOutOfBoundsException e) {
             return new CommandResult(MESSAGE_FAILED_DIRECTORY_TRAVERSAL);
         } catch (DataNotFoundException e) {

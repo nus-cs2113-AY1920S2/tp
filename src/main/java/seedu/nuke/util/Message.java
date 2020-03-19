@@ -34,7 +34,7 @@ public class Message {
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
     public static final String DIVIDER = "-".repeat(80);
 
-    public static final String MESSAGE_SHOW_LIST = "Here are what you are looking for..\n";
+    public static final String MESSAGE_SHOW_LIST = "Here are what you are looking for...\n";
     public static final String MESSAGE_PRIORITY_NOT_IN_RANGE =
             "Alert! Priority should be a number between 0 and 100 inclusive.\n";
 

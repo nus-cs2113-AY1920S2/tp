@@ -21,7 +21,7 @@ public class DeleteModuleCommand extends DeleteCommand {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
             Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
             Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^e].*|[e]\\S+))*)")
+            Pattern.compile("(?<invalid>(?:\\s+-(?:[^e].*|[e]\\S+)))")
     };
 
     private String moduleCode;

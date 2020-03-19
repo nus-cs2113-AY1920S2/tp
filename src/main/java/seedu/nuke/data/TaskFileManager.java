@@ -12,6 +12,10 @@ public class TaskFileManager {
         fileList = new ArrayList<>();
     }
 
+    public ArrayList<TaskFile> getFileList() {
+        return fileList;
+    }
+
     /**
      * Finds a file with the specified file name in the File List.
      *
@@ -29,6 +33,16 @@ public class TaskFileManager {
             }
         }
         throw new TaskFileNotFoundException();
+    }
+
+    /**
+     * Sets the entire File List to a new list.
+     *
+     * @param fileList
+     *  The new File List to be set
+     */
+    public void setFileList(ArrayList<TaskFile> fileList) {
+        this.fileList = fileList;
     }
 
     public void add(TaskFile toAdd) {

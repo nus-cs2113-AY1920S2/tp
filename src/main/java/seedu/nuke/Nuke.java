@@ -1,12 +1,11 @@
 
 package seedu.nuke;
 
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.StorageManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Root;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
@@ -32,9 +31,11 @@ public class Nuke {
         root = new Root();
         ui = new Ui();
         modulesMap = ModuleLoader.load("moduleList.json");
-        storageManager = new StorageManager("data.json");
+//        storageManager = new StorageManager("data.json");
+        storageManager = new StorageManager("save.txt");
         moduleManager = new ModuleManager(root, modulesMap);
-        moduleManager.setModuleList(storageManager.load());
+//        ModuleManager.setModuleList(storageManager.load());
+        storageManager.load2();
     }
 
     /**
@@ -53,7 +54,7 @@ public class Nuke {
     public void run() {
         welcomeUser();
         runCommandLoopUntilExitCommand();
-        storageManager.save(moduleManager.getModuleList());
+        storageManager.save2();
         //exit();
     }
 
@@ -83,6 +84,8 @@ public class Nuke {
 
             commandResult = Executor.executeCommand(userInput);
             ui.showResult(commandResult);
+//            storageManager.save();
+            storageManager.save2();
         } while (!ExitCommand.isExit());
     }
 

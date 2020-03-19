@@ -104,7 +104,7 @@ public class ListCreator {
 
         header.append(LIST_DIVIDER);
         header.append(String.format("%s%s%s%s%s\n",
-                centraliseText("ID", 4), SEPARATOR,
+                centraliseText("NO", 4), SEPARATOR,
                 centraliseText("MODULE CODE", 16), SEPARATOR,
                 centraliseText("MODULE TITLE", 58)
         ));
@@ -129,7 +129,7 @@ public class ListCreator {
 
         int id = 1;
         for (Category category : categoryList) {
-            String moduleCode = ((Module)category.getParent()).getModuleCode();
+            String moduleCode = category.getParent().getModuleCode();
             String categoryName = category.getCategoryName();
 
             categoryListTable.append(String.format("%s%s%s%s%s\n",
@@ -157,7 +157,7 @@ public class ListCreator {
 
         header.append(LIST_DIVIDER);
         header.append(String.format("%s%s%s%s%s\n",
-                centraliseText("ID", 4), SEPARATOR,
+                centraliseText("NO", 4), SEPARATOR,
                 centraliseText("MODULE", 16), SEPARATOR,
                 centraliseText("CATEGORY", 58)
         ));
@@ -182,8 +182,8 @@ public class ListCreator {
 
         int id = 1;
         for (Task task : taskList) {
-            String moduleCode = ((Module)task.getParent().getParent()).getModuleCode();
-            String categoryName = ((Category)task.getParent()).getCategoryName();
+            String moduleCode = task.getParent().getParent().getModuleCode();
+            String categoryName = task.getParent().getCategoryName();
             String taskDescription = task.getDescription();
             String deadline = (task.getDeadline() != null) ? task.getDeadline().toString() : "-NIL-";
 
@@ -192,7 +192,7 @@ public class ListCreator {
                     centraliseText(fitText(moduleCode, 10), 10), SEPARATOR,
                     centraliseText(fitText(categoryName, 18), 18), SEPARATOR,
                     centraliseText(fitText(taskDescription, 24), 24), SEPARATOR,
-                    centraliseText(fitText(deadline, 24), 24)
+                    centraliseText(fitText(deadline, 20), 20)
             ));
         }
 
@@ -214,7 +214,7 @@ public class ListCreator {
 
         header.append(LIST_DIVIDER);
         header.append(String.format("%s%s%s%s%s%s%s%s%s\n",
-                centraliseText("ID", 4), SEPARATOR,
+                centraliseText("NO", 4), SEPARATOR,
                 centraliseText("MODULE", 10), SEPARATOR,
                 centraliseText("CATEGORY", 18), SEPARATOR,
                 centraliseText("TASK", 24), SEPARATOR,

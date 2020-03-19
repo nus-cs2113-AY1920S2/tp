@@ -8,6 +8,11 @@ public class Category extends Directory {
     private TaskManager tasks;
 
     /**
+     * Default constructor for Category
+     */
+    public Category() {}
+
+    /**
      * Constructs the category.
      *
      * @param parentModule
@@ -23,6 +28,13 @@ public class Category extends Directory {
         this.categoryPriority = categoryPriority;
         this.tasks = new TaskManager();
     }
+
+//    public Category(Module parentModule, String categoryName, int categoryPriority, TaskManager tasks) {
+//        super(parentModule);
+//        this.categoryName = categoryName;
+//        this.categoryPriority = categoryPriority;
+//        this.tasks = tasks;
+//    }
 
     /**
      * Returns the name of the category.

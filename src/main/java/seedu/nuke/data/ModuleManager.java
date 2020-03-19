@@ -21,11 +21,15 @@ import java.util.Iterator;
  */
 public class ModuleManager implements Iterable<Module> {
     private static Root root;
-    private static ArrayList<Module> moduleList;
+    private static ArrayList<Module> moduleList = new ArrayList<>();
     // private static ArrayList<Task> allTasks;
     private static HashMap<String, String> modulesMap;
 
     private static final String NO_KEYWORD = "";
+
+    public ModuleManager() {
+        moduleList = new ArrayList<>();
+    }
 
     public ModuleManager(Root root, HashMap<String, String> modulesMap) {
         ModuleManager.modulesMap = modulesMap;
@@ -41,10 +45,12 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * This method is to restore the list of modules when loading from the json data file.
-     * @param moduleList an ArrayList of Module objects parsed from the json string in the data file
+     * Sets the entire Module List to a new list.
+     *
+     * @param moduleList
+     *  The new Module List to be set
      */
-    public void setModuleList(ArrayList<Module> moduleList) {
+    public static void setModuleList(ArrayList<Module> moduleList) {
         ModuleManager.moduleList = moduleList;
     }
 
@@ -52,7 +58,7 @@ public class ModuleManager implements Iterable<Module> {
      * method to return all the modules.
      * @return all modules
      */
-    public ArrayList<Module> getModuleList() {
+    public static ArrayList<Module> getModuleList() {
         return moduleList;
     }
 
@@ -68,7 +74,7 @@ public class ModuleManager implements Iterable<Module> {
      */
     public static Module getModule(String moduleCode) throws ModuleNotFoundException {
         for (Module module : moduleList) {
-            if (module.getModuleCode().equals(moduleCode.toUpperCase())) {
+            if (module.getModuleCode().equalsIgnoreCase(moduleCode)) {
                 return module;
             }
         }
@@ -168,7 +174,7 @@ public class ModuleManager implements Iterable<Module> {
 
         for (Task task: allTasks) {
             deadlines.add(String.format("%-30s", task.getDescription()) + " "
-                    + String.format("%-8s", task.getModuleCode()) + "   deadline: " + task.getDeadline());
+                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) + "   deadline: " + task.getDeadline());
         }
         return deadlines;
     }
@@ -214,7 +220,7 @@ public class ModuleManager implements Iterable<Module> {
     public Module delete(String moduleCode) throws ModuleNotFoundException {
         if (getModuleWithCode(moduleCode) != null) {
             Module toDelete = getModuleWithCode(moduleCode);
-            getAllTasks().removeIf(task -> task.getModuleCode().toUpperCase().equals(moduleCode));
+            getAllTasks().removeIf(task -> task.getParent().getParent().getModuleCode().toUpperCase().equals(moduleCode));
             moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
             return toDelete;
         } else {

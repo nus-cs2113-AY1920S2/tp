@@ -22,7 +22,8 @@ public class TaskManager {
     }
 
     /**
-     * Returns the entire Task List
+     * Returns the entire Task List.
+     *
      * @return
      *  The Task List
      */
@@ -30,6 +31,12 @@ public class TaskManager {
         return taskList;
     }
 
+    /**
+     * Sets the entire Task List to a new list.
+     *
+     * @param taskList
+     *  The new Task List to be set
+     */
     public void setTaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
