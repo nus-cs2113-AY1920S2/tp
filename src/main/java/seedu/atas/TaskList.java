@@ -4,6 +4,7 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -171,6 +172,17 @@ public class TaskList {
     }
 
     /**
+     * Edits task according to the index specified by user.
+     * Edited task replaces the index of the old task.
+     * @param editIndex Integer of index of task to be edited
+     * @param editedTask Edited task object to be replaced in ArrayList
+     * @throws IndexOutOfBoundsException Thrown when index is out of range of the current TaskList
+     */
+    public void editTask(int editIndex, Task editedTask) throws IndexOutOfBoundsException {
+        tasks.set(editIndex, editedTask);
+    }
+
+    /**
      * Deletes all the tasks in the list.
      */
     public void clearList() {
@@ -188,4 +200,6 @@ public class TaskList {
             deleteTask(index);
         }
     }
+
+
 }
