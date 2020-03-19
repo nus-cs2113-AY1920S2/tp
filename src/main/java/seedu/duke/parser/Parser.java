@@ -4,9 +4,10 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.ViewCommand;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.HelpCommand;
 import seedu.duke.command.MarkAsDoneCommand;
+import seedu.duke.command.ViewCommand;
 import seedu.duke.data.Person;
 import seedu.duke.exception.InputException;
 import seedu.duke.module.Module;
@@ -16,6 +17,7 @@ import seedu.duke.module.NewModule;
  * Parses user input.
  */
 public class Parser {
+
     /**
      * Parses user input into module.
      * @param fullCommand full user input command.
@@ -43,6 +45,8 @@ public class Parser {
         case MarkAsDoneCommand.COMMAND_WORD:
             assert taskType.equals("done");
             return processMarkAsDone(args);
+        case HelpCommand.COMMAND_WORD:
+            return processHelpCommand();
         default:
             throw new InputException("invalid command");
         }
@@ -50,18 +54,20 @@ public class Parser {
 
     private static MarkAsDoneCommand processMarkAsDone(String args) throws InputException {
         String[] moduleWords;
-        moduleWords = args.split(" s/");
+        moduleWords = args.split(" g/");
         if (moduleWords.length < 2) {
             throw new InputException("invalid 'done' command", "done n/NAME s/SEMESTER | done id/ID s/SEMESTER");
         }
         String module = moduleWords[0];
-        String semester = convertSemToStandardFormat(moduleWords[1]);
+        moduleWords = moduleWords[1].split(" c/");
+        String grade = moduleWords[0];
+        int credit = Integer.parseInt(moduleWords[1]);
         if (module.contains("n/")) {
             String moduleName = module.replace("n/","");
-            return new MarkAsDoneCommand(moduleName, semester);
+            return new MarkAsDoneCommand(moduleName, grade, credit);
         } else if (module.contains("id/")) {
             String moduleId = module.replace("id/","");
-            return new MarkAsDoneCommand(moduleId, semester);
+            return new MarkAsDoneCommand(moduleId, grade, credit);
         }
         return null;
     }
@@ -130,12 +136,18 @@ public class Parser {
         } else if (args.contains("id/")) {
             String moduleToBeViewed = args.replace("id/","");
             return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
+        } else if (args.contains("/cc")) {
+            return new ViewCommand(ViewCommand.VIEW_COMPLETED_CREDITS);
         }
         return new ViewCommand(ViewCommand.VIEW_AVAILABLE_MODULES);
     }
 
     private static ExitCommand processExitCommand() {
         return new ExitCommand();
+    }
+
+    private static HelpCommand processHelpCommand() {
+        return new HelpCommand();
     }
 
     private static String convertSemToStandardFormat(String semester) {

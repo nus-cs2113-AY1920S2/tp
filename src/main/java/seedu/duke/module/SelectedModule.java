@@ -1,7 +1,6 @@
 package seedu.duke.module;
 
 public class SelectedModule extends Module {
-    private double grade;
 
     /**
      * This is Module's constructor.

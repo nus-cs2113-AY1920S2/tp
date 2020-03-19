@@ -5,13 +5,16 @@ import seedu.duke.data.Person;
 public class Ui {
 
     private static final String LOGO =
-            " ____        _\n"
-            + "|  _ \\ _   _| | _____\n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+            "  __  __           _       _        __  __\n"
+            + " |  \\/  |         | |     | |      |  \\/  |\n"
+            + " | \\  / | ___   __| |_   _| | ___  | \\  / | __ _ _ __   __ _  __ _  ___ _ __\n"
+            + " | |\\/| |/ _ \\ / _` | | | | |/ _ \\ | |\\/| |/ _` | '_ \\ / _` |/ _` |/ _ \\ '__|\n"
+            + " | |  | | (_) | (_| | |_| | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ |\n"
+            + " |_|  |_|\\___/ \\__,_|\\__,_|_|\\___| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|\n"
+            + "                                                              __/ |\n"
+            + "                                                             |___/\n";
 
-    private static final String START_MESSAGE = "Hello from\n" + LOGO + "What can I do for you?";
+    private static final String START_MESSAGE = "Hello from\n" + LOGO;
 
     private static final String FAREWELL_MESSAGE = "bye!";
 
@@ -30,9 +33,22 @@ public class Ui {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    private static final String REQUIRED_INPUT_USER_NAME = "Please input your name:";
+    private static final String REQUIRED_INPUT_USER_NAME = "What is your name? Please enter it over here:";
 
-    private static final String REQUIRED_INPUT_USER_MATRIC_YEAR = "Please input your matric year:";
+    private static final String REQUIRED_INPUT_USER_MATRIC_YEAR = ", please input your matric year:";
+
+    private static final String HELP = "Here are the commands that I can do for you:\n"
+            + "1. \"help\" to look at all the commands that I can do\n"
+            + "2. \"view\" to see all modules we have in our module list\n"
+            + "3. \"add id/[module code] s/[1-8]\" to add a module to your personal module manager\n"
+            + "4. \"add id/[module code] n/[name of module]\" to add a module to the list of available modules\n"
+            + "5. \"done id/[module code] g/[grade] c/[credit]\" or \"done n/[name of module] g/[grade] c/[credit]\" "
+            + "to mark it as done\n"
+            + "6. \"view /mp\" to view your module plan\n"
+            + "7. \"view /dm\" to view all finished modules\n"
+            + "8. \"view /cc\" to view the number of modular credits u have completed";
+
+    private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
@@ -41,7 +57,7 @@ public class Ui {
     }
 
     public static void greetUser() {
-        showToUser(START_MESSAGE, Person.getName(), LINE_SEPARATOR);
+        showToUser(START_MESSAGE, LINE_SEPARATOR);
     }
 
     public static void greetFarewell() {
@@ -77,11 +93,18 @@ public class Ui {
     }
 
     public static void showInputUserMatricYearRequest() {
-        showToUser(REQUIRED_INPUT_USER_MATRIC_YEAR);
+        showToUser("Hello " + Person.getName() + REQUIRED_INPUT_USER_MATRIC_YEAR);
     }
 
     public static void showInputUserNameRequest() {
         showToUser(REQUIRED_INPUT_USER_NAME);
     }
 
+    public static void showHelpMessage() {
+        showToUser(HELP);
+    }
+
+    public static void showCompletedCredits() {
+        showToUser(VIEWED_CREDITS, Integer.toString(Person.getTotalModularCreditCompleted()));
+    }
 }

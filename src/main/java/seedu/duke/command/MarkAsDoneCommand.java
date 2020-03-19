@@ -1,29 +1,30 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.data.ModuleList;
+import seedu.duke.data.Person;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.exception.RuntimeException;
 import seedu.duke.module.Module;
 import seedu.duke.ui.Ui;
 
-import java.sql.SQLOutput;
-
 public class MarkAsDoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
-    private String semester;
+    private int credit;
     private String description;
+    private String grade;
 
     /**
      * marks the module in a semester in the selectedList as done.
      * @param description : name of the module or id of the module that the user wants to mark as done.
-     * @param semester : Semester that the user wants to mark as done.
+     * @param grade : grade of the module achieved by the user
+     * @param credit : credit of the module done by the user
      */
-    public MarkAsDoneCommand(String description, String semester) {
+    public MarkAsDoneCommand(String description, String grade, int credit) {
         super();
         this.description = description;
-        this.semester = semester;
+        this.grade = grade;
+        this.credit = credit;
     }
 
     @Override
@@ -38,6 +39,8 @@ public class MarkAsDoneCommand extends Command {
             for (Module module: sem) {
                 if (module.getName().equals(description) || module.getId().equals(description)) {
                     module.setAsDone();
+                    module.setGrade(grade);
+                    Person.addTotalModularCreditCompleted(credit);
                     return;
                 }
             }

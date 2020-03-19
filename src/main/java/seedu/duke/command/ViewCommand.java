@@ -7,6 +7,10 @@ import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
@@ -15,6 +19,7 @@ public class ViewCommand extends Command {
     public static final String VIEW_MODULE_PLAN = "mp";
     public static final String VIEW_SPECIFIC_MODULE = "sm";
     public static final String VIEW_AVAILABLE_MODULES = "am";
+    public static final String VIEW_COMPLETED_CREDITS = "cc";
     private String viewTaskType;
     private String moduleToBeViewed;
 
@@ -38,6 +43,9 @@ public class ViewCommand extends Command {
             break;
         case VIEW_AVAILABLE_MODULES:
             viewAvailableModules(availableModulesList);
+            break;
+        case VIEW_COMPLETED_CREDITS:
+            viewCompletedCredits();
             break;
         default:
             return;
@@ -92,4 +100,9 @@ public class ViewCommand extends Command {
         viewList.append(System.lineSeparator());
         Ui.showViewAvailableMessage(viewList.toString().trim());
     }
+
+    private void viewCompletedCredits() {
+        Ui.showCompletedCredits();
+    }
+
 }

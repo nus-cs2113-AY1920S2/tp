@@ -9,9 +9,9 @@ add id/IS4241 n/Social Media Network Analysis pre/CS1010 IS1103
 add id/IS4241 s/4
 add id/CS1231 n/Discrete Structures
 add id/CS2104 n/Programming Language Concepts pre/CS2030
-view
 add id/CS1231 s/3
 view /mp
-done id/CS2113 s/3
+done id/CS2113 g/B c/4
 view /dm
+view /cc
 bye
