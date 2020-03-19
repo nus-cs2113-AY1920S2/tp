@@ -85,7 +85,7 @@ public class Activity {
      * @return True if Activity is within date range; false otherwise
      */
     public boolean isWithinDateFrame(LocalDate startDate, LocalDate endDate) {
-        if (!this.date.isBefore(startDate) && !this.date.isAfter (endDate)) {
+        if (!this.date.isBefore(startDate) && !this.date.isAfter(endDate)) {
             return true;
         }
         return false;
