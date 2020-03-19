@@ -15,9 +15,6 @@ import command.EditCommand;
 
 import common.Messages;
 
-import tasks.Event;
-import tasks.Assignment;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -230,7 +227,6 @@ public class Parser {
         }
         return new EditCommand(editIndex);
     }
-
 
     public static String capitalize(String str) {
         if (str == null || str.isEmpty()) {
