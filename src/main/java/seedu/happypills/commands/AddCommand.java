@@ -20,15 +20,7 @@ public class AddCommand extends Command {
     protected String remarks;
     Logger logger = Logger.getLogger(HappyPills.class.getName());
     Level logLevel = Level.INFO;
-
-    /**
-     * Constructor for AddCommand Class.
-     * It creates a new AddCommand Object with the information provided.
-     *
-     * @param name        Contains the name of the patient.
-     * @param nric        Contains the nric of the patient.
-     * @param phoneNumber Contains the phone number of the patient.
-     */
+    
     /**
      * Constructor for AddCommand Class.
      * It creates a new AddCommand Object with the information provided.

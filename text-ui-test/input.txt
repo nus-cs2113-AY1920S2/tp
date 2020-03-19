@@ -1,0 +1,16 @@
+add
+list
+help
+help add
+add /ic s12345f /n kesin /p 999 /d 18june /b O+
+add /ic s12345f /a dust
+list
+edit s12345f /p918
+edit /rVegetarian
+edit s12345f /rVegetarian
+edit s12345f /aMeat
+get s12345f
+delete s12345f n
+delete s12345f y
+list
+add /ic s98765f /n nyan /p 911 /d 22Aug /b O+

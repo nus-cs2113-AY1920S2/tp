@@ -55,7 +55,7 @@ public class DeleteCommand extends Command {
      */
     private String deletePatient(Patient patient, PatientList patients) {
         patients.remove(patient);
-        String message = "      Patient " + patient.getName() + " || " + patient.getNric()
+        String message = "    Patient " + patient.getName() + " || " + patient.getNric()
                 + " has been deleted successfully.\n";
         return TextUi.prependDivider(message);
     }
@@ -82,7 +82,7 @@ public class DeleteCommand extends Command {
                 isConfirmed = true;
                 logger.log(logLevel, "patient is deleted");
             } else if (confirm.equalsIgnoreCase("n")) {
-                message = "    Patient is not deleted.\n";
+                message = TextUi.DIVIDER + "\n    Patient is not deleted.\n";
                 isConfirmed = true;
                 logger.log(logLevel, "patient is not deleted");
             } else {
