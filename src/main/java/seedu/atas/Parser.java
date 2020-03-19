@@ -228,6 +228,11 @@ public class Parser {
         return new EditCommand(editIndex);
     }
 
+    /**
+     * Capitalizes the first alphabet of a string.
+     * @param str String to be capitalized
+     * @return Capitalized string
+     */
     public static String capitalize(String str) {
         if (str == null || str.isEmpty()) {
             return str;
