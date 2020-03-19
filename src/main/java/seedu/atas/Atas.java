@@ -32,7 +32,7 @@ public class Atas {
     /**
      * Starts Duke Process.
      */
-    public void run() {
+    public void run() throws AtasException {
         ui.printWelcomeMessage();
         runLoop();
     }
@@ -40,7 +40,7 @@ public class Atas {
     /**
      * Run loop until exit command is received.
      */
-    public void runLoop() {
+    public void runLoop() throws AtasException {
         while (!ExitCommand.isExit()) {
             String input = ui.getUserInput();
             Command command = Parser.parseCommand(input);
@@ -51,7 +51,7 @@ public class Atas {
         }
     }
 
-    private void trySaveTaskList() {
+    private void trySaveTaskList() throws AtasException {
         try {
             storage.save(taskList);
         } catch (IOException e) {
@@ -62,7 +62,7 @@ public class Atas {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AtasException {
         new Atas().run();
     }
 }

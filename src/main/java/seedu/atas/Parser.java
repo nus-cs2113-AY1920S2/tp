@@ -13,6 +13,7 @@ import command.ClearCommand;
 import command.SearchCommand;
 
 import common.Messages;
+import exceptions.AtasException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
