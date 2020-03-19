@@ -2,51 +2,39 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-03-19T07:54:19.000553200Z</date>
-  <millis>1584604459000</millis>
-  <nanos>553200</nanos>
+  <date>2020-03-19T11:37:58.866884100Z</date>
+  <millis>1584617878866</millis>
+  <nanos>884100</nanos>
   <sequence>0</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
+  <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
+  <class>seedu.dietmanager.AppLogger</class>
   <method>writeInfoLog</method>
   <thread>1</thread>
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-03-19T07:54:19.097294500Z</date>
-  <millis>1584604459097</millis>
-  <nanos>294500</nanos>
+  <date>2020-03-19T11:37:58.952653500Z</date>
+  <millis>1584617878952</millis>
+  <nanos>653500</nanos>
   <sequence>1</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
+  <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
+  <class>seedu.dietmanager.AppLogger</class>
   <method>writeInfoLog</method>
   <thread>1</thread>
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-03-19T07:54:19.099288400Z</date>
-  <millis>1584604459099</millis>
-  <nanos>288400</nanos>
+  <date>2020-03-19T11:37:58.953651Z</date>
+  <millis>1584617878953</millis>
+  <nanos>651000</nanos>
   <sequence>2</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
+  <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
+  <class>seedu.dietmanager.AppLogger</class>
   <method>logExecuteProgramme</method>
   <thread>1</thread>
   <message>Starting Diet Manager</message>
-</record>
-<record>
-  <date>2020-03-19T07:54:45.644300500Z</date>
-  <millis>1584604485644</millis>
-  <nanos>300500</nanos>
-  <sequence>3</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
-  <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
-  <method>logExitProgramme</method>
-  <thread>1</thread>
-  <message>Exiting Diet Manager</message>
 </record>
 </log>

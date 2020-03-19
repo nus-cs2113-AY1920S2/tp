@@ -2,49 +2,49 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-03-19T07:55:52.889466300Z</date>
-  <millis>1584604552889</millis>
-  <nanos>466300</nanos>
+  <date>2020-03-19T11:37:25.221269200Z</date>
+  <millis>1584617845221</millis>
+  <nanos>269200</nanos>
   <sequence>0</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
+  <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
+  <class>seedu.dietmanager.AppLogger</class>
   <method>writeInfoLog</method>
   <thread>1</thread>
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-03-19T07:55:53.001167800Z</date>
-  <millis>1584604553001</millis>
-  <nanos>167800</nanos>
+  <date>2020-03-19T11:37:25.324992800Z</date>
+  <millis>1584617845324</millis>
+  <nanos>992800</nanos>
   <sequence>1</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
+  <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
+  <class>seedu.dietmanager.AppLogger</class>
   <method>writeInfoLog</method>
   <thread>1</thread>
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-03-19T07:55:53.003162200Z</date>
-  <millis>1584604553003</millis>
-  <nanos>162200</nanos>
+  <date>2020-03-19T11:37:25.326986900Z</date>
+  <millis>1584617845326</millis>
+  <nanos>986900</nanos>
   <sequence>2</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
+  <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
+  <class>seedu.dietmanager.AppLogger</class>
   <method>logExecuteProgramme</method>
   <thread>1</thread>
   <message>Starting Diet Manager</message>
 </record>
 <record>
-  <date>2020-03-19T07:55:53.011141100Z</date>
-  <millis>1584604553011</millis>
-  <nanos>141100</nanos>
+  <date>2020-03-19T11:37:25.334965500Z</date>
+  <millis>1584617845334</millis>
+  <nanos>965500</nanos>
   <sequence>3</sequence>
-  <logger>seedu.dietmanager.InfoLogger</logger>
+  <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.InfoLogger</class>
+  <class>seedu.dietmanager.AppLogger</class>
   <method>logExitProgramme</method>
   <thread>1</thread>
   <message>Exiting Diet Manager</message>
