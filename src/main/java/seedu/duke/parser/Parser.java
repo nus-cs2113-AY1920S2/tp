@@ -5,7 +5,7 @@ import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
-import seedu.duke.command.HelpTempCommand;
+import seedu.duke.command.HelpingCommand;
 import seedu.duke.command.MarkAsDoneCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.data.Person;
@@ -45,7 +45,7 @@ public class Parser {
         case MarkAsDoneCommand.COMMAND_WORD:
             assert taskType.equals("done");
             return processMarkAsDone(args);
-        case HelpTempCommand.COMMAND_WORD:
+        case HelpingCommand.COMMAND_WORD:
             return processHelpCommand();
         default:
             throw new InputException("invalid command");
@@ -146,8 +146,8 @@ public class Parser {
         return new ExitCommand();
     }
 
-    private static HelpTempCommand processHelpCommand() {
-        return new HelpTempCommand();
+    private static HelpingCommand processHelpCommand() {
+        return new HelpingCommand();
     }
 
     private static String convertSemToStandardFormat(String semester) {

@@ -4,7 +4,7 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.ui.Ui;
 
-public class HelpTempCommand extends Command {
+public class HelpingCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
