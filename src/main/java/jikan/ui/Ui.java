@@ -52,6 +52,7 @@ public class Ui {
 
     public static void printResults(ActivityList lastShownList) {
         if (lastShownList.activities.size() > 0) {
+            System.out.println(DIVIDER);
             System.out.println("Here are the matching activities in your list:\n");
             System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s",
                     "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
@@ -62,6 +63,7 @@ public class Ui {
                     printTableFormat(lastShownList, i, false);
                 }
             }
+            System.out.println(DIVIDER);
         } else {
             System.out.println("There are no activities matching that description.\n");
         }
