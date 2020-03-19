@@ -28,6 +28,15 @@ public class Ui {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
+    private static final String BOX_EDGE = "--------------------------------------------------------------------------"
+            + "----------------------------------------------";
+
+    private static final String BOX_HEADER = "| S/N |    ID    | Name                                                 "
+            + "         | Prerequisites                       |";
+
+    public static final String BOX_MARGIN = "|-----|----------|------------------------------------------------------"
+            + "---------|-------------------------------------|";
+
     private static void showToUser(String... messages) {
         for (String m: messages) {
             System.out.println(m);
@@ -55,7 +64,7 @@ public class Ui {
     }
 
     public static void showViewAvailableMessage(String viewList) {
-        showToUser(VIEWED_AVAILABLE_MODULE_MESSAGE, viewList, LINE_SEPARATOR);
+        showToUser(VIEWED_AVAILABLE_MODULE_MESSAGE, BOX_EDGE, BOX_HEADER, viewList, BOX_EDGE, LINE_SEPARATOR);
     }
 
     public static void showViewDoneMessage(String viewList) {

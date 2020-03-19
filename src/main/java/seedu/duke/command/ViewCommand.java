@@ -7,6 +7,9 @@ import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
@@ -85,10 +88,49 @@ public class ViewCommand extends Command {
         StringBuilder viewList = new StringBuilder();
         for (Module module : modulesList) {
             int index = modulesList.indexOf(module) + 1;
+            viewList
+                    .append(Ui.BOX_MARGIN)
+                    .append("\n")
+                    .append("|  ").append(String.format("%02d", index)).append(" | ")
+                    .append(module.getId());
+            String spaces = "";
+            for (int i = 0; i < (9 - module.getId().length()); ++i) {
+                viewList.append(" ");
+            }
+            viewList.append("| ").append(module.getName());
+            for (int i = 0; i < (62 - module.getName().length()); ++i) {
+                viewList.append(" ");
+            }
+            viewList.append("| ");
+            String output;
+            if (module.getPreRequisiteModules().size() == 0) {
+                output = "None";
+            } else if (module.getPreRequisiteModules().size() == 1) {
+                output = module.getPreRequisiteModules().get(0).getId();
+            } else {
+                List<String> preReqModules = new ArrayList<>();
+                for (Module preReqModule : module.getPreRequisiteModules()) {
+                    preReqModules.add(preReqModule.getId());
+                }
+                output = preReqModules.stream()
+                        .reduce((firstModule, secondModule) -> firstModule + ", " + secondModule)
+                        .get(); // hope this won't cause error
+            }
+            viewList.append(output);
+            for (int i = 0; i < (36 - output.length()); ++i) {
+                viewList.append(" ");
+            }
+            viewList.append("|\n");
+        }
+        /*
+        for (Module module : modulesList) {
+            int index = modulesList.indexOf(module) + 1;
             viewList.append(index).append(".")
                     .append(module.toString())
                     .append(System.lineSeparator());
         }
+
+         */
         viewList.append(System.lineSeparator());
         Ui.showViewAvailableMessage(viewList.toString().trim());
     }

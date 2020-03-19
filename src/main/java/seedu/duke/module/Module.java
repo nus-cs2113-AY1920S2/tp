@@ -81,4 +81,9 @@ public class Module {
     public boolean getDone() {
         return this.isDone;
     }
+
+    public ModuleList getPreRequisiteModules() {
+        return preRequisiteModules;
+    }
+
 }
