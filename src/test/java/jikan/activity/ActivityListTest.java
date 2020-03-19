@@ -1,5 +1,6 @@
 package jikan.activity;
 
+import jikan.exception.InvalidTimeFrameException;
 import jikan.storage.Storage;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ActivityListTest {
 
     @Test
-    void getIndex() {
+    void getIndex() throws InvalidTimeFrameException {
         ActivityList activities = new ActivityList();
         activities.storage = new Storage("data/activityList_test.txt");
         HashSet<String> tags = new HashSet<String>();
