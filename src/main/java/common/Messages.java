@@ -7,12 +7,12 @@ public class Messages {
     // Start up and Exit Print Messages
     public static final String LOGO =
             " _______        _______        _______        _______ \n"
-            + "|   _   |      |       |      |   _   |      |       |\n"
-            + "|  |_|  |      |_     _|      |  |_|  |      |  _____|\n"
-            + "|       |        |   |        |       |      | |_____ \n"
-            + "|       | ___    |   |   ___  |       | ___  |_____  |\n"
-            + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |\n"
-            + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|\n";
+                    + "|   _   |      |       |      |   _   |      |       |\n"
+                    + "|  |_|  |      |_     _|      |  |_|  |      |  _____|\n"
+                    + "|       |        |   |        |       |      | |_____ \n"
+                    + "|       | ___    |   |   ___  |       | ___  |_____  |\n"
+                    + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |\n"
+                    + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|\n";
     public static final String EXIT_MESSAGE = "Exiting A.T.A.S";
 
     // Common Print Messages
@@ -38,22 +38,24 @@ public class Messages {
             + "list incomplete assignments";
     public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear all";
     public static final String CLEAR_DONE_FORMAT_HELP = "Clear all completed tasks: clear done";
+    public static final String SEARCH_FORMAT_HELP = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
     public static final String EXIT_FORMAT_HELP = "Exit ATAS: exit";
     public static final String HELP_FORMAT_MESSAGE =
             "Following is the list of commands available:" + System.lineSeparator()
-            + "1.  Help Format: help" + System.lineSeparator()
-            + "2.  " + ASSIGNMENT_FORMAT_HELP + System.lineSeparator()
-            + "3.  " + EVENT_FORMAT_HELP + System.lineSeparator()
-            + "4.  " + LIST_TODAY_FORMAT_HELP + System.lineSeparator()
-            + "5.  " + LIST_WEEK_FORMAT_HELP + System.lineSeparator()
-            + "6.  " + LIST_FORMAT_HELP + System.lineSeparator()
-            + "7.  " + LIST_INCOMPLETE_ASSIGN_FORMAT_HELP + System.lineSeparator()
-            + "8.  " + LIST_UPCOMING_EVENT_FORMAT_HELP + System.lineSeparator()
-            + "9.  " + DONE_FORMAT_HELP + System.lineSeparator()
-            + "10. " + CLEAR_FORMAT_HELP + System.lineSeparator()
-            + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
-            + "12. " + DELETE_FORMAT_HELP + System.lineSeparator()
-            + "13. " + EXIT_FORMAT_HELP;
+                    + "1.  Help Format: help" + System.lineSeparator()
+                    + "2.  " + ASSIGNMENT_FORMAT_HELP + System.lineSeparator()
+                    + "3.  " + EVENT_FORMAT_HELP + System.lineSeparator()
+                    + "4.  " + LIST_TODAY_FORMAT_HELP + System.lineSeparator()
+                    + "5.  " + LIST_WEEK_FORMAT_HELP + System.lineSeparator()
+                    + "6.  " + LIST_FORMAT_HELP + System.lineSeparator()
+                    + "7.  " + LIST_INCOMPLETE_ASSIGN_FORMAT_HELP + System.lineSeparator()
+                    + "8.  " + LIST_UPCOMING_EVENT_FORMAT_HELP + System.lineSeparator()
+                    + "9.  " + DONE_FORMAT_HELP + System.lineSeparator()
+                    + "10. " + CLEAR_FORMAT_HELP + System.lineSeparator()
+                    + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
+                    + "12. " + DELETE_FORMAT_HELP + System.lineSeparator()
+                    + "13. " + SEARCH_FORMAT_HELP + System.lineSeparator()
+                    + "13. " + EXIT_FORMAT_HELP;
 
 
     // Command Print Messages
@@ -65,7 +67,10 @@ public class Messages {
     public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";
     public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
     public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
-
+    public static final String SEARCH_SUCCESS_MESSAGE = "There are a total of %d result(s) found";
+    public static final String EDIT_SUCCESS_MESSAGE = "Task edited successfully:" + System.lineSeparator()
+            + NEWLINE_INDENT + "%s";
+    public static final String EDIT_PROMPT = "Please edit your chosen task";
     // Others
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
@@ -83,6 +88,11 @@ public class Messages {
     public static final String REPEAT_TASK_ERROR = "Please use a different name. Task already exists in list";
     public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
     public static final String INCORRECT_START_END_TIME_ERROR = "The end time should come after the start time";
+    public static final String INCORRECT_STORAGE_FORMAT_ERROR = "The local save file is of an unknown format. "
+            + "Exit now using <Ctrl C> to manually fix the save file, "
+            + "or the save file will be overwritten with the new session data";
+    public static final String NO_SAVE_FILE_MESSAGE = "No existing save file found. A new save file will be created";
+    public static final String SAVE_FAILED_MESSAGE = "Oh no. Something went wrong while saving, please try again later";
 
     public static final String ASSIGN_INCORRECT_FORMAT_ERROR = "Incorrect format for Assignment Command"
             + System.lineSeparator() + ASSIGNMENT_FORMAT_HELP;
@@ -94,4 +104,8 @@ public class Messages {
     public static final String DELETE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Delete Command"
             + System.lineSeparator() + DELETE_FORMAT_HELP;
     public static final String CLEAR_INCORRECT_FORMAT_ERROR = "Invalid argument for Clear Command";
+    public static final String EMPTY_SEARCH_RESULTS_ERROR = "There are no matching tasks for the search query";
+    public static final String INVALID_SEARCH_FORMAT = "Invalid Argument for Search Command";
+    public static final String SEARCH_INSUFFICIENT_ARGS = "Insufficient argument for Search Command"
+            + System.lineSeparator() + SEARCH_FORMAT_HELP;
 }

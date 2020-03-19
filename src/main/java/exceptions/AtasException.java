@@ -12,6 +12,6 @@ public class AtasException extends Exception {
      */
     @Override
     public String toString() {
-        return "INVALID CMD ERROR: " + super.getMessage();
+        return "ERROR: " + super.getMessage();
     }
 }

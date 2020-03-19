@@ -10,8 +10,11 @@ import command.ListCommand;
 import command.HelpCommand;
 import command.ExitCommand;
 import command.ClearCommand;
+import command.SearchCommand;
+import command.EditCommand;
 
 import common.Messages;
+import exceptions.AtasException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -43,6 +46,13 @@ public class Parser {
             + "\\s+c/\\s*(?<comments>.+)$"
     );
 
+    //regex for search command
+    public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
+            "(?<search>[^/]+)"
+                    + "\\s+t/\\s*(?<taskType>[^/]+)"
+                    + "\\s+n/\\s*(?<name>[^/]+)"
+    );
+
     /**
      * Returns a Command object depending on the command input by the user.
      * @param fullCommand line input by the user, which represents a command
@@ -66,6 +76,10 @@ public class Parser {
             return prepareEventCommand(fullCommand);
         case ListCommand.LIST_COMMAND_WORD:
             return prepareListCommand(fullCommand);
+        case SearchCommand.SEARCH_COMMAND_WORD:
+            return prepareSearchCommand(fullCommand);
+        case EditCommand.EDIT_COMMAND_WORD:
+            return prepareEditCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
             return prepareExitCommand(fullCommand);
         default:
@@ -105,6 +119,16 @@ public class Parser {
         String moduleName = matcher.group("moduleName");
         String comments = capitalize(matcher.group("comments"));
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
+    }
+
+    private static Command prepareSearchCommand(String fullCommand) {
+        final Matcher matcher = SEARCH_PARAMETERS_FORMAT.matcher(fullCommand);
+        if (!matcher.matches()) {
+            return new IncorrectCommand(Messages.SEARCH_INSUFFICIENT_ARGS);
+        }
+        String taskType = matcher.group("taskType");
+        String taskName = matcher.group("name");
+        return new SearchCommand(taskName, taskType);
     }
 
     private static Command prepareDeleteCommand(String fullCommand) {
@@ -192,7 +216,25 @@ public class Parser {
         return new HelpCommand();
     }
 
-    private static String capitalize(String str) {
+    private static Command prepareEditCommand(String fullCommand) {
+        String[] tokens = fullCommand.split("\\s+", 2);
+        int editIndex;
+        try {
+            editIndex = Integer.parseInt(tokens[1].trim()) - 1;
+        } catch (NumberFormatException e) {
+            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
+        } catch (IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.DONE_INSUFFICIENT_ARGS_ERROR);
+        }
+        return new EditCommand(editIndex);
+    }
+
+    /**
+     * Capitalizes the first alphabet of a string.
+     * @param str String to be capitalized
+     * @return Capitalized string
+     */
+    public static String capitalize(String str) {
         if (str == null || str.isEmpty()) {
             return str;
         }
