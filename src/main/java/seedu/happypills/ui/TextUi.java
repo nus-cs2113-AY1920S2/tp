@@ -4,7 +4,7 @@ import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
 
 public class TextUi {
-    public static final String DIVIDER = "    ===================================================";
+    public static final String DIVIDER = "    =====================================================";
 
     /**
      * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
@@ -26,11 +26,11 @@ public class TextUi {
      */
     public static String getHelp() {
         String helpMessage = "    HappyPills Commands:\n"
-                + "      add NAME, NRIC, PHONE_NUMBER, DOB, BLOOD_TYPE, [ALLERGIES], [REMARKS]\n"
-                + "      list \n"
-                + "      get NRIC\n"
-                + "      edit phone/allergies/remarks EDITED_INPUT\n"
-                + "      delete NRIC\n"
+                + "      add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]\n"
+                + "      list\n"
+                + "      get [NRIC]\n"
+                + "      edit [NRIC] /p[PHONE_NUMBER] or /a[ALLERGIES] or /r[REMARKS]\n"
+                + "      delete [NRIC]\n"
                 + "      help\n"
                 + "      exit\n"
                 + "      For more detailed command instructions, enter help [COMMAND].\n";
@@ -99,13 +99,12 @@ public class TextUi {
      * @param patient The patient to be deleted.
      */
     public static void printDeleteConfirmation(Patient patient) {
-        System.out.println("    Are you sure you want to delete this patient: \n      "
+        System.out.println("    Are you sure you want to delete this patient:\n      "
                 + patient.getName()
                 + " || "
                 + patient.getNric()
-                + "? \n"
-                + DIVIDER
-                + "\n      (y/n)");
+                + "\n                                                   (Y/N)?\n"
+                + DIVIDER);
     }
 
     /**
@@ -115,7 +114,7 @@ public class TextUi {
      * @return The patient's updated records.
      */
     public static String printEditSuccess(Patient patient) {
-        String message = "    Patient details have been updated as follows: \n"
+        String message = "    Patient details have been updated as follows:\n"
                 + patient + DIVIDER;
         return message;
     }
@@ -179,8 +178,8 @@ public class TextUi {
         String message = "    To edit a patient's information, run the following command:\n"
                 + "    Note: patient details are within the parenthesis [ ]\n"
                 + "      edit [NRIC] /p[PHONE_NUMBER] to edit patient's phone number,\n"
-                + "      edit [NRIC] /p[ALLERGIES] to edit patient's allergies,\n"
-                + "      edit [NRIC] /p[REMARKS] to edit patient's remarks\"\n"
+                + "      edit [NRIC] /a[ALLERGIES] to edit patient's allergies,\n"
+                + "      edit [NRIC] /r[REMARKS] to edit patient's remarks\"\n"
                 + "    Do note that editing the patient's records will overwrite any previous information.\n"
                 + "    Adding of allergies or remarks can be done with the add command.\n"
                 + DIVIDER;
@@ -233,8 +232,8 @@ public class TextUi {
      * Displays Exit message.
      */
     public static void printExit() {
-        System.out.println("Thank you for using HappyPills! ^_^");
-        System.out.println("See you again!");
+        System.out.println("Thank you for using HappyPills! ^.^");
+        System.out.println("See you again!\n" + DIVIDER);
     }
 
     /**

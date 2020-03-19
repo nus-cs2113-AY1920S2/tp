@@ -10,6 +10,7 @@ import seedu.happypills.commands.HelpCommand;
 import seedu.happypills.commands.IncorrectCommand;
 import seedu.happypills.commands.ListCommand;
 import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.ui.TextUi;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -108,12 +109,12 @@ public class Parser {
         if (matcher.matches()) {
             return new AddCommand(
                     "",
-                    matcher.group("nric"),
+                    matcher.group("nric").trim(),
                     0,
                     "", "",
-                    "", matcher.group("remarks")
+                    "", matcher.group("remarks").trim()
             );
         }
-        return new IncorrectCommand("    Command is invalid. Please try again");
+        return new IncorrectCommand("    Command is invalid. Please try again.\n" + TextUi.DIVIDER);
     }
 }
