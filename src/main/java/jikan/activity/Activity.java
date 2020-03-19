@@ -1,5 +1,7 @@
 package jikan.activity;
 
+import jikan.exception.InvalidTimeFrameException;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,27 +28,19 @@ public class Activity {
      * @param tags activity tags
      * @param endTime the time that the activity ended
      */
-    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Set<String> tags) {
+    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Set<String> tags)
+            throws InvalidTimeFrameException {
+
+        if (endTime.isBefore(startTime)) {
+            throw new InvalidTimeFrameException();
+        }
+
         this.name = name.strip();
         this.startTime = startTime;
         this.tags = tags;
         this.endTime = endTime;
         this.duration = Duration.between(startTime, endTime);
         this.date = endTime.toLocalDate();
-    }
-
-    /**
-     * Constructor to create activity when endTime is previously known
-     * (i.e. when loading from jikan.storage)
-     *
-     * @param name Name of activity.
-     * @param startTime Time at which activity started.
-     * @param endTime Time at which activity ended.
-     */
-    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime) {
-        this.name = name;
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     /**
@@ -73,6 +67,28 @@ public class Activity {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * Returns true if the Activity's date is within the date range specified (inclusive).
+     *
+     * @param startDate Start date of range
+     * @param endDate End date of range
+     * @return True if Activity is within date range; false otherwise
+     */
+    public boolean isWithinDateFrame(LocalDate startDate, LocalDate endDate) {
+        if (!this.date.isBefore(startDate) && !this.date.isAfter(endDate)) {
+            return true;
+        }
+        return false;
     }
 
     /**
