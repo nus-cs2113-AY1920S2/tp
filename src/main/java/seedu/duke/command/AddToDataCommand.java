@@ -6,9 +6,8 @@ import seedu.duke.data.SelectedModulesList;
 import seedu.duke.module.Module;
 import seedu.duke.module.NewModule;
 
-public class AddToDataCommand extends Command {
+public class AddToDataCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "addtodata";
     private NewModule newModule;
 
     public AddToDataCommand(NewModule newModule) {

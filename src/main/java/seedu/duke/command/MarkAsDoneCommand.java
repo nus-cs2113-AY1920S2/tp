@@ -35,12 +35,10 @@ public class MarkAsDoneCommand extends Command {
 
     private void markAsDoneCommand(SelectedModulesList selectedModulesList) throws RuntimeException {
         for (SemModulesList sem: selectedModulesList) {
-            if (sem.getSem().equals(semester)) {
-                for (Module module: sem) {
-                    if (module.getName().equals(description) || module.getId().equals(description)) {
-                        module.setAsDone();
-                        return;
-                    }
+            for (Module module: sem) {
+                if (module.getName().equals(description) || module.getId().equals(description)) {
+                    module.setAsDone();
+                    return;
                 }
             }
         }
