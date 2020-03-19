@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class Storage {
 
-    private InfoLogger infoLogger;
+    private AppLogger appLogger;
     /**
      * The object containing the list containing all current tasks.
      */
@@ -59,9 +59,9 @@ public class Storage {
      * @param ui the object containing user interface functions.
      */
 
-    public Storage(UI ui, InfoLogger infoLogger) {
+    public Storage(UI ui, AppLogger appLogger) {
         this.ui = ui;
-        this.infoLogger = infoLogger;
+        this.appLogger = appLogger;
         this.loadDataDirectory();
         this.loadProfileFile();
         //this.loadFoodRecordFile();
@@ -76,13 +76,13 @@ public class Storage {
         if (!Files.exists(directoryPath)) {
             try {
                 Files.createDirectory(directoryPath);
-                infoLogger.writeInfoLog("New Directory created: " + directoryPath.getFileName().toString());
+                appLogger.writeInfoLog("New Directory created: " + directoryPath.getFileName().toString());
             } catch (IOException e) {
-                infoLogger.writeSevereLog("Error in creating new directory");
+                appLogger.writeSevereLog("Error in creating new directory");
                 ui.displayFileErrorMessage();
             }
         } else {
-            infoLogger.writeInfoLog("Existing Directory found: " + directoryPath.getFileName().toString());
+            appLogger.writeInfoLog("Existing Directory found: " + directoryPath.getFileName().toString());
         }
     }
 
@@ -95,15 +95,15 @@ public class Storage {
         try {
             File profileData = new File(PROFILE_FILE_PATH);
             if (profileData.createNewFile()) {
-                infoLogger.writeInfoLog("No existing Profile found, new file created: "
+                appLogger.writeInfoLog("No existing Profile found, new file created: "
                         + profileData.getName().toString());
             } else {
                 this.readProfileFile();
-                infoLogger.writeInfoLog("Existing Profile found: "
+                appLogger.writeInfoLog("Existing Profile found: "
                         + profileData.getName().toString());
             }
         } catch (IOException e) {
-            infoLogger.writeSevereLog("Error in Profile data file");
+            appLogger.writeSevereLog("Error in Profile data file");
             ui.displayFileErrorMessage();
         }
     }

@@ -8,7 +8,7 @@ import seedu.dietmanager.ui.UI;
 
 public class DietManager {
 
-    private static InfoLogger infoLogger;
+    private static AppLogger appLogger;
     private static FoodNutritionInfo foodNutritionInfo;
     private static Profile profile;
     private static UI ui;
@@ -25,7 +25,7 @@ public class DietManager {
 
     private static void runApplication() {
 
-        infoLogger.logExecuteProgramme();
+        appLogger.logExecuteProgramme();
         ui.displayWelcomeMessage();
 
         while (!ui.isExitStatus()) {
@@ -39,15 +39,15 @@ public class DietManager {
                 ui.displayInvalidCommandMessage();
             }
         }
-        infoLogger.logExitProgramme();
+        appLogger.logExitProgramme();
     }
 
     private static void initialiseApplication() {
-        infoLogger = new InfoLogger();
+        appLogger = new AppLogger();
         foodNutritionInfo = new FoodNutritionInfo();
         profile = new Profile();
         ui = new UI();
-        storage = new Storage(ui, infoLogger);
+        storage = new Storage(ui, appLogger);
 
         testAssertions();
     }

@@ -7,7 +7,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 
-public class InfoLogger {
+public class AppLogger {
 
     private static final String LOGGER_FILE_NAME = "DietManagerLogger.log";
     private final Logger logger;
@@ -16,8 +16,8 @@ public class InfoLogger {
      * Constructs the InfoLogger to record information when running the application.
      */
 
-    public InfoLogger() {
-        this.logger = Logger.getLogger(InfoLogger.class.getName());
+    public AppLogger() {
+        this.logger = Logger.getLogger(AppLogger.class.getName());
 
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
