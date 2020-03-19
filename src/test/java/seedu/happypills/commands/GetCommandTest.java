@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GetCommandTest {
 
     private static PatientList newPatientList;
-    public static final String DIVIDER = "    ===================================================";
+    public static final String DIVIDER = "    =====================================================";
 
     /**
      * Initialize hardcoded test cases for testing.
