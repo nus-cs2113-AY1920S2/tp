@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ActivityTest {
 
     HashSet<String> tags = new HashSet<String>();
+    //the tags is empty here as adding needs to be done in a method.
     Activity activity = new Activity("Activity", LocalDateTime.parse("2020-01-01T08:00:00"),
             LocalDateTime.parse("2020-01-01T10:00:00"), tags);
 
