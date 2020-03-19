@@ -21,6 +21,19 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(new NewModule("ES1103", "English for Academic Purposes", "ES1000"));
         availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals"));
         availableModulesList.add(new NewModule("CS2102", "Database Systems", "CS2030", "CS1231"));
+        availableModulesList.add(new NewModule("GEH1001", "Globalisation and New Media"));
+        availableModulesList.add(new NewModule("GEH1002", "Economic Issues in Dev World"));
+        availableModulesList.add(new NewModule("GEH1004", "Chinese Heritage: Hist & Lit"));
+        availableModulesList.add(new NewModule("GEQ1000", "Asking Questions"));
+        availableModulesList.add(new NewModule("GER1000", "Quantitative Reasoning"));
+        availableModulesList.add(new NewModule("GET1001", "Seeing the World Through Maps"));
+        availableModulesList.add(new NewModule("GET1002", "Bridging East and West: Exploring Chinese Communication"));
+        availableModulesList.add(new NewModule("GET1003", "Home"));
+        availableModulesList.add(new NewModule("GES1000", "Singapore Employment Law"));
+        availableModulesList.add(new NewModule("GES1002", "Global EC Dimensions of S'pore"));
+        availableModulesList.add((new NewModule("GES1003", "Changing Landscapes of Singapore")));
+
+
 
         for (Module module: availableModulesList) {
             super.add(module);

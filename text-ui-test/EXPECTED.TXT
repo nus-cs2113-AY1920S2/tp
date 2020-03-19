@@ -19,6 +19,17 @@ Okay! Here are your available modules in database:
 9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
 10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
 11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
+12.ID: GEH1001 Name: Globalisation and New Media | Prerequisites: null
+13.ID: GEH1002 Name: Economic Issues in Dev World | Prerequisites: null
+14.ID: GEH1004 Name: Chinese Heritage: Hist & Lit | Prerequisites: null
+15.ID: GEQ1000 Name: Asking Questions | Prerequisites: null
+16.ID: GER1000 Name: Quantitative Reasoning | Prerequisites: null
+17.ID: GET1001 Name: Seeing the World Through Maps | Prerequisites: null
+18.ID: GET1002 Name: Bridging East and West: Exploring Chinese Communication | Prerequisites: null
+19.ID: GET1003 Name: Home | Prerequisites: null
+20.ID: GES1000 Name: Singapore Employment Law | Prerequisites: null
+21.ID: GES1002 Name: Global EC Dimensions of S'pore | Prerequisites: null
+22.ID: GES1003 Name: Changing Landscapes of Singapore | Prerequisites: null
 
 
 Okay! I have added this module to your semester's module list:
@@ -57,8 +68,19 @@ Okay! Here are your available modules in database:
 9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
 10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
 11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
-12.ID: CS1231 Name: Discrete Structures | Prerequisites: null
-13.ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
+12.ID: GEH1001 Name: Globalisation and New Media | Prerequisites: null
+13.ID: GEH1002 Name: Economic Issues in Dev World | Prerequisites: null
+14.ID: GEH1004 Name: Chinese Heritage: Hist & Lit | Prerequisites: null
+15.ID: GEQ1000 Name: Asking Questions | Prerequisites: null
+16.ID: GER1000 Name: Quantitative Reasoning | Prerequisites: null
+17.ID: GET1001 Name: Seeing the World Through Maps | Prerequisites: null
+18.ID: GET1002 Name: Bridging East and West: Exploring Chinese Communication | Prerequisites: null
+19.ID: GET1003 Name: Home | Prerequisites: null
+20.ID: GES1000 Name: Singapore Employment Law | Prerequisites: null
+21.ID: GES1002 Name: Global EC Dimensions of S'pore | Prerequisites: null
+22.ID: GES1003 Name: Changing Landscapes of Singapore | Prerequisites: null
+23.ID: CS1231 Name: Discrete Structures | Prerequisites: null
+24.ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
 
 
 Okay! I have added this module to your semester's module list:
