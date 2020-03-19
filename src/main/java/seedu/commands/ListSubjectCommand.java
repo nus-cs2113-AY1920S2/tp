@@ -2,6 +2,7 @@ package seedu.commands;
 
 import seedu.cards.CardList;
 import seedu.duke.Duke;
+import seedu.subjects.SubjectList;
 
 /**
  * Command Class for the ListSubject command.
@@ -16,7 +17,7 @@ public class ListSubjectCommand extends ListCommand {
      * Lists the cards currently stored in the application.
      */
     @Override
-    public void execute(CardList cards) {
-        Duke.listCards(cards.getCards());
+    public void execute(SubjectList subjects, CardList cards) {
+        SubjectList.listSubjects(subjects.getSubjects());
     }
 }
