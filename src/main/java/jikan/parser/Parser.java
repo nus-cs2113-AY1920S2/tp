@@ -159,7 +159,7 @@ public class Parser {
     private void populateLastShownList(ActivityList activityList, ActivityList lastShownList, String keyword) {
         for (Activity i : activityList.activities) {
             if (i.getTags().contains(keyword)) {
-                lastShownList.add(i);
+                lastShownList.activities.add(i);
             }
         }
     }
