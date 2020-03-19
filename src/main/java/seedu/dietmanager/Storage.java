@@ -90,10 +90,10 @@ public class Storage {
         try {
             File profileData = new File(PROFILE_FILE_PATH);
             if (profileData.createNewFile()) {
-                System.out.println(profileData.getName());
+                System.out.println("Existing Profile found: " + profileData.getName());
             } else {
                 this.readProfileFile();
-                System.out.println(profileData.getName());
+                System.out.println("No existing Profile found, new file created: " + profileData.getName());
             }
         } catch (IOException e) {
             ui.displayFileErrorMessaage();
