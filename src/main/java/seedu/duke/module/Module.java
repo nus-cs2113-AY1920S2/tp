@@ -86,4 +86,16 @@ public class Module {
         return preRequisiteModules;
     }
 
+    public String getPreReqModulesID() {
+        String preReqModulesList = new String();
+        boolean hasNoPreReqModules = preRequisiteModules.size() == 0;
+        if (hasNoPreReqModules) {
+            preReqModulesList = ("None");
+        }
+        for (Module preReqModule : preRequisiteModules) {
+            preReqModulesList += preReqModule.getId() + " ";
+        }
+        return preReqModulesList;
+    }
+
 }
