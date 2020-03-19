@@ -42,7 +42,8 @@ public class Ui {
             System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %-100s",
                     index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
                     activityList.get(index).getDate().toString(), "|",
-                    Arrays.toString(activityList.get(index).getTags())));
+                    activityList.get(index).getTags().toString()));
+                    //Arrays.toString(activityList.get(index).getTags())));
         } else {
             System.out.println(String.format("%d %s %-25s %s %-10s %s %-10s %s %s",
                     index + 1, "|", activityList.get(index).getName(), "|", duration, "|",
@@ -57,7 +58,7 @@ public class Ui {
             System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s",
                     "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
             for (int i = 0; i < lastShownList.getSize(); i++) {
-                if (lastShownList.get(i).getTags() != null && !lastShownList.get(i).getTags()[0].equals("null")) {
+                if (lastShownList.get(i).getTags() != null && !lastShownList.get(i).getTags().isEmpty()) {
                     printTableFormat(lastShownList, i, true);
                 } else {
                     printTableFormat(lastShownList, i, false);
@@ -76,7 +77,7 @@ public class Ui {
         System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s",
                 "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
         for (int i = 0; i < activityList.getSize(); i++) {
-            if (activityList.get(i).getTags() != null && !activityList.get(i).getTags()[0].equals("null")) {
+            if (activityList.get(i).getTags() != null && !activityList.get(i).getTags().isEmpty()) {
                 printTableFormat(activityList, i, true);
             } else {
                 printTableFormat(activityList, i, false);

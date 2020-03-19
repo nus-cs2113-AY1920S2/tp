@@ -7,11 +7,10 @@ import jikan.exception.EmptyQueryException;
 import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
-import java.util.ArrayList;
-import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.util.logging.Level;
+import java.util.Set;
 
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
@@ -21,7 +20,7 @@ public class Parser {
     protected LocalDateTime startTime = null;
     protected LocalDateTime endTime = null;
     private String activityName = null;
-    private String[] tags = null;
+    private Set<String> tags = new HashSet<String>();
     private Ui ui = new Ui();
     protected String[] tokenizedInputs;
     String instruction;
@@ -140,20 +139,23 @@ public class Parser {
             String[] keywords = query.split(" ");
 
             for (String keyword : keywords) {
-                for (Activity i : activityList.activities) {
-                    String tagString = "";
-
-                    if (i.getTags() != null) {
-                        for (int j = 0; j < i.getTags().length; j++) {
-                            tagString = tagString + i.getTags()[j] + " ";
-                        }
-                    }
-                    if (tagString.contains(keyword)) {
-                        lastShownList.activities.add(i);
-                    }
-                }
+                populateLastShownList(activityList, lastShownList, keyword);
             }
             Ui.printResults(lastShownList);
+        }
+    }
+
+    /**
+     * Populates the last shown list with activities that contain tags which match the given keyword
+     * @param activityList the list of activity to search
+     * @param lastShownList the last shown list to populate
+     * @param keyword the keyword to match
+     */
+    private void populateLastShownList(ActivityList activityList, ActivityList lastShownList, String keyword) {
+        for (Activity i : activityList.activities) {
+            if (i.getTags().contains(keyword)){
+                lastShownList.add(i);
+            }
         }
     }
 
@@ -171,7 +173,7 @@ public class Parser {
         } else {
             logger.makeFineLog("Aborted " + activityName);
             startTime = null;
-            tags = null;
+            tags = new HashSet<String>();
             activityName = null;
             String line = "You have aborted the current activity!";
             ui.printDivider(line);
@@ -188,7 +190,7 @@ public class Parser {
             ui.printDivider(line);
         } else {
             // tags should be reset
-            assert tags == null;
+            assert tags.isEmpty();
 
             String line;
             int delimiter = tokenizedInputs[1].indexOf("/t");
@@ -204,12 +206,23 @@ public class Parser {
                     throw new EmptyNameException();
                 }
                 line = "Started: " + activityName;
-                tags = tokenizedInputs[1].substring(delimiter + 3).split(" ");
+                parseTags(delimiter);
             }
             startTime = LocalDateTime.now();
             ui.printDivider(line);
         }
         logger.makeFineLog("Started: " + activityName);
+    }
+
+    /**
+     * Inserts the tags into the activity object when it has ended.
+     * @param delimiter the index of the tag delimiter
+     */
+    private void parseTags(int delimiter) {
+        String[] tagString = tokenizedInputs[1].substring(delimiter + 3).split(" ");
+        for (String i :tagString) {
+            tags.add(i);
+        }
     }
 
     /** Method to parse the end activity command. */
@@ -224,7 +237,7 @@ public class Parser {
             activityList.add(newActivity);
             // reset activity info
             startTime = null;
-            tags = null;
+            tags = new HashSet<String>();
         }
         logger.makeFineLog("Ended: " + activityName);
     }

@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Represents an activity entry with a name and total time spent.
@@ -11,7 +13,7 @@ import java.util.Arrays;
 
 public class Activity {
     private String name;
-    private String[] tags;
+    private Set<String> tags;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Duration duration;
@@ -24,7 +26,7 @@ public class Activity {
      * @param tags activity tags
      * @param endTime the time that the activity ended
      */
-    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, String[] tags) {
+    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Set<String> tags) {
         this.name = name.strip();
         this.startTime = startTime;
         this.tags = tags;
@@ -65,7 +67,7 @@ public class Activity {
         return name;
     }
 
-    public String[] getTags() {
+    public Set<String> getTags() {
         return tags;
     }
 
@@ -83,15 +85,18 @@ public class Activity {
     public String toData() {
 
         // Convert tags to a single space-separated
-        String tagString = "";
-
-        if (this.tags != null) {
-            for (int i = 0; i < this.tags.length; i++) {
-                tagString = tagString + this.tags[i] + " ";
-            }
-        }
+        String tagString = tagsToString(tagString);
 
         String dataLine = (this.name + "," + this.startTime + "," + this.endTime + "," + tagString);
         return dataLine;
+    }
+
+    private String tagsToString(String tagString) {
+        Iterator i = this.tags.iterator();
+
+        while (i.hasNext()) {
+            tagString += i.next() + " ";
+        }
+        return tagString;
     }
 }
