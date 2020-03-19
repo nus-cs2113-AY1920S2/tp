@@ -8,9 +8,8 @@ import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
 
-public class AddToSemCommand extends Command {
+public class AddToSemCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "addtosem";
     private Module module;
     private SelectedModule selectedModule;
 
