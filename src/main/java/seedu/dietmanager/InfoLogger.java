@@ -51,6 +51,23 @@ public class InfoLogger {
         logger.addHandler(consoleHandler);
     }
 
+    public void writeFineLog(String message) {
+        this.logger.log(Level.FINE, message);
+    }
+
+    public void writeInfoLog(String message) {
+        this.logger.log(Level.INFO, message);
+    }
+
+    public void writeWarningLog(String message) {
+        this.logger.log(Level.WARNING, message);
+    }
+
+    public void writeSevereLog(String message) {
+        this.logger.log(Level.SEVERE, message);
+    }
+
+
     public void logExecuteProgramme() {
         this.logger.log(Level.INFO, "Starting Diet Manager");
     }

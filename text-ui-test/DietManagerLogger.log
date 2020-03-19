@@ -2,10 +2,34 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-03-19T07:23:06.947567Z</date>
-  <millis>1584602586947</millis>
-  <nanos>567000</nanos>
+  <date>2020-03-19T07:55:52.889466300Z</date>
+  <millis>1584604552889</millis>
+  <nanos>466300</nanos>
   <sequence>0</sequence>
+  <logger>seedu.dietmanager.InfoLogger</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.InfoLogger</class>
+  <method>writeInfoLog</method>
+  <thread>1</thread>
+  <message>Existing Directory found: data</message>
+</record>
+<record>
+  <date>2020-03-19T07:55:53.001167800Z</date>
+  <millis>1584604553001</millis>
+  <nanos>167800</nanos>
+  <sequence>1</sequence>
+  <logger>seedu.dietmanager.InfoLogger</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.InfoLogger</class>
+  <method>writeInfoLog</method>
+  <thread>1</thread>
+  <message>Existing Profile found: profile.txt</message>
+</record>
+<record>
+  <date>2020-03-19T07:55:53.003162200Z</date>
+  <millis>1584604553003</millis>
+  <nanos>162200</nanos>
+  <sequence>2</sequence>
   <logger>seedu.dietmanager.InfoLogger</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.InfoLogger</class>
@@ -14,10 +38,10 @@
   <message>Starting Diet Manager</message>
 </record>
 <record>
-  <date>2020-03-19T07:23:07.049295400Z</date>
-  <millis>1584602587049</millis>
-  <nanos>295400</nanos>
-  <sequence>1</sequence>
+  <date>2020-03-19T07:55:53.011141100Z</date>
+  <millis>1584604553011</millis>
+  <nanos>141100</nanos>
+  <sequence>3</sequence>
   <logger>seedu.dietmanager.InfoLogger</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.InfoLogger</class>

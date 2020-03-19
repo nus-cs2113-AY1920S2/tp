@@ -19,6 +19,7 @@ import java.util.Scanner;
 
 public class Storage {
 
+    private InfoLogger infoLogger;
     /**
      * The object containing the list containing all current tasks.
      */
@@ -58,8 +59,9 @@ public class Storage {
      * @param ui the object containing user interface functions.
      */
 
-    public Storage(UI ui) {
+    public Storage(UI ui, InfoLogger infoLogger) {
         this.ui = ui;
+        this.infoLogger = infoLogger;
         this.loadDataDirectory();
         this.loadProfileFile();
         //this.loadFoodRecordFile();
@@ -74,10 +76,13 @@ public class Storage {
         if (!Files.exists(directoryPath)) {
             try {
                 Files.createDirectory(directoryPath);
-                System.out.println(directoryPath.getFileName());
+                infoLogger.writeInfoLog("New Directory created: " + directoryPath.getFileName().toString());
             } catch (IOException e) {
-                e.printStackTrace();
+                infoLogger.writeSevereLog("Error in creating new directory");
+                ui.displayFileErrorMessage();
             }
+        } else {
+            infoLogger.writeInfoLog("Existing Directory found: " + directoryPath.getFileName().toString());
         }
     }
 
@@ -90,13 +95,16 @@ public class Storage {
         try {
             File profileData = new File(PROFILE_FILE_PATH);
             if (profileData.createNewFile()) {
-                System.out.println("Existing Profile found: " + profileData.getName());
+                infoLogger.writeInfoLog("No existing Profile found, new file created: "
+                        + profileData.getName().toString());
             } else {
                 this.readProfileFile();
-                System.out.println("No existing Profile found, new file created: " + profileData.getName());
+                infoLogger.writeInfoLog("Existing Profile found: "
+                        + profileData.getName().toString());
             }
         } catch (IOException e) {
-            ui.displayFileErrorMessaage();
+            infoLogger.writeSevereLog("Error in Profile data file");
+            ui.displayFileErrorMessage();
         }
     }
 
@@ -114,7 +122,7 @@ public class Storage {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            ui.displayFileErrorMessaage();
+            ui.displayFileErrorMessage();
         }
     }
 
@@ -127,7 +135,7 @@ public class Storage {
             PrintWriter pw = new PrintWriter(PROFILE_FILE_PATH);
             pw.close();
         } catch (FileNotFoundException e) {
-            ui.displayFileErrorMessaage();
+            ui.displayFileErrorMessage();
         }
     }
 
@@ -141,7 +149,7 @@ public class Storage {
             myWriter.write("");
             myWriter.close();
         } catch (IOException e) {
-            ui.displayFileErrorMessaage();
+            ui.displayFileErrorMessage();
         }
     }
 
@@ -155,7 +163,7 @@ public class Storage {
             myWriter.write("");
             myWriter.close();
         } catch (IOException e) {
-            ui.displayFileErrorMessaage();
+            ui.displayFileErrorMessage();
         }
     }
 
