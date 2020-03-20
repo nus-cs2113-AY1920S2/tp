@@ -30,4 +30,8 @@ public class MessageBank {
     public static String LUNCH_RECORD_MESSAGE = "You just record the lunch of: ";
     public static String DINNER_RECORD_MESSAGE = "You just record the dinner of: ";
     public static String MEAL_TYPE_ERROR = "You have given invalid meal type.";
+    public static String WEIGHT_UPDATE_MESSAGE = "Your weight changes has been stored. Current weight is: ";
+    public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
+    public static String DUMMY_MESSAGE = "No pain no gain! Continue striving on!";
+
 }

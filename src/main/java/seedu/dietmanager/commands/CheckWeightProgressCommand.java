@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 import java.util.ArrayList;
@@ -29,9 +30,18 @@ public class CheckWeightProgressCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         weightRecord = profile.getWeightProgress();
-        System.out.println(String.format("Here is your weight changes record:"));
+        ui.showCommandMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE); //Wil change this part later on
         for (double weight : weightRecord) {
             ui.showCommandMessage(String.valueOf(weight));
         }
+        saveResult(profile);
     }
+
+    @Override
+    public void saveResult(Profile profile) {
+        this.result = MessageBank.DUMMY_MESSAGE;
+        // I need to return an array of strings but currently results is a single String only. so i leave it
+        // till we gonna update it later. i just gonna return a dummy string so it doesnt print null
+    }
+
 }

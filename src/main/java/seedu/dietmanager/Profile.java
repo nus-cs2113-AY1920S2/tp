@@ -165,6 +165,7 @@ public class Profile {
     public void showDinnerDay(DailyFoodRecord record) {
         record.showDinner();
     }
+
     public ArrayList<Double> getWeightProgress() {
         return weightRecord;
     }

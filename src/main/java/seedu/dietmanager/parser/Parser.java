@@ -1,18 +1,31 @@
 package seedu.dietmanager.parser;
 
-import seedu.dietmanager.commands.*;
+import seedu.dietmanager.commands.CheckRecordCommand;
+import seedu.dietmanager.commands.CheckWeightProgressCommand;
+import seedu.dietmanager.commands.Command;
 import seedu.dietmanager.commands.Command;
 import seedu.dietmanager.commands.ExitCommand;
+import seedu.dietmanager.commands.ExitCommand;
 import seedu.dietmanager.commands.ProfileCommand;
+import seedu.dietmanager.commands.ProfileCommand;
+import seedu.dietmanager.commands.RecordMealCommand;
+import seedu.dietmanager.commands.SetAgeCommand;
 import seedu.dietmanager.commands.SetAgeCommand;
 import seedu.dietmanager.commands.SetGenderCommand;
+import seedu.dietmanager.commands.SetGenderCommand;
+import seedu.dietmanager.commands.SetHeightCommand;
 import seedu.dietmanager.commands.SetHeightCommand;
 import seedu.dietmanager.commands.SetNameCommand;
+import seedu.dietmanager.commands.SetNameCommand;
 import seedu.dietmanager.commands.SetProfileCommand;
+import seedu.dietmanager.commands.SetProfileCommand;
+import seedu.dietmanager.commands.SetWeightCommand;
 import seedu.dietmanager.commands.SetWeightCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.RecordMealCommand;
 import seedu.dietmanager.commands.CheckRecordCommand;
+import seedu.dietmanager.commands.SetWeightGoalCommand;
+import seedu.dietmanager.commands.WeightUpdateCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 
