@@ -3,6 +3,7 @@ package seedu.parser;
 import seedu.duke.Duke;
 import seedu.event.DateTime;
 import seedu.event.Event;
+import seedu.event.Seminar;
 import seedu.exception.DukeException;
 
 public class EventParser {
@@ -103,6 +104,16 @@ public class EventParser {
         return new Event(name, datetime, venue);
     }
 
+    public Seminar parseSeminar(String parameters) throws DukeException {
+        String[] tokens = parameters.split(" ");
+
+        splitByEventFlags(tokens);
+
+        String datetime = date + " " + time;
+
+        return new Seminar(name, datetime, venue);
+    }
+
     private void splitByEventFlags(String[] tokens) throws DukeException {
         String mostRecent = null;
         for (String token : tokens) {
@@ -144,7 +155,6 @@ public class EventParser {
                     if (mostRecent == null) {
                         throw new DukeException("parameter without flag");
                     }
-
                     append(mostRecent, token);
                 }
             }

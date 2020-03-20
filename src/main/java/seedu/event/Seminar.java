@@ -6,26 +6,17 @@ import java.security.InvalidParameterException;
 import java.time.Instant;
 
 public class Seminar extends Event {
-    private String name;
-    private DateTime datetime;
-    private String venue;
 
     public Seminar() throws DukeException {
-        //super();
-        setName("");
-        setDatetime("");
-        setVenue("");
+        super();
     }
 
     public Seminar(String name, String datetime, String venue) throws DukeException {
-        //super(name, datetime, venue);
-        setName(name);
-        setDatetime(datetime);
-        setVenue(venue);
+        super(name, datetime, venue);
     }
 
     @Override
-    public void setName(String name) throws InvalidParameterException {
+    public void setName(String name) throws DukeException {
         if (this.name == null || this.name.isEmpty()) {
             // if original name is empty or null
             if (name == null || name.isEmpty()) {
@@ -34,11 +25,25 @@ public class Seminar extends Event {
             } else {
                 this.name = name;
             }
+        } else {
+            // if original name is not empty and null
+            if (name == null || name.isEmpty()) {
+                // if new name is empty or null
+                throw new DukeException("Empty name");
+            } else {
+                // if new name is not empty and not null
+                this.name = name;
+            }
         }
     }
 
     @Override
     public String toString() {
-        return "Seminar: " + getName() + "at: " + getDatetime() + ", " + getVenue();
+        if (getDatetime().equals("yyyy-MM-dd HHmm") && getVenue().equals("")) {
+            return "Seminar: " + getName();
+        } else if (getVenue().equals("")) {
+            return "Seminar: " + getName() + ", time: " + getDatetime();
+        }
+        return "Seminar: " + getName() + ", time: " + getDatetime() + ", venue: " + getVenue();
     }
 }

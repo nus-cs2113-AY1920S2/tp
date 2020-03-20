@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.time.Instant;
 
 public class Event {
-    private String name;
-    private DateTime datetime;
-    private String venue;
+    protected String name;
+    protected DateTime datetime;
+    protected String venue;
     private ArrayList<String> participantList;
     private ArrayList<String> attendanceList;
 
@@ -80,7 +80,7 @@ public class Event {
      * @return the datetime of the event
      */
     public String getDatetime() {
-        return datetime.getDateTimeFormat();
+        return datetime.toString();
     }
 
     /**
@@ -109,9 +109,9 @@ public class Event {
 
     @Override
     public String toString() {
-        if (getDatetime() == "yyyy-MM-dd HHmm" && getVenue() == "") {
+        if (getDatetime().equals("yyyy-MM-dd HHmm") && getVenue().equals("")) {
             return "Event: " + getName();
-        } else if (getVenue() == "") {
+        } else if (getVenue().equals("")) {
             return "Event: " + getName() + ", time: " + getDatetime();
         }
         return "Event: " + getName() + ", time: " + getDatetime() + ", venue: " + getVenue();

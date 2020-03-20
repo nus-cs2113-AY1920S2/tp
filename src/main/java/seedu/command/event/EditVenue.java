@@ -3,6 +3,7 @@ package seedu.command.event;
 import seedu.command.Command;
 import seedu.event.Event;
 import seedu.event.EventList;
+import seedu.exception.DukeException;
 
 public class EditVenue extends Command {
     private Integer index;
@@ -16,7 +17,7 @@ public class EditVenue extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws DukeException {
         eventList.editVenue(index, venue);
         System.out.println(eventList.list.get(index));
     }

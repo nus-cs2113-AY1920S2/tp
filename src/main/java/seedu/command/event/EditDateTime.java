@@ -2,6 +2,7 @@ package seedu.command.event;
 
 import seedu.command.Command;
 import seedu.event.EventList;
+import seedu.exception.DukeException;
 
 public class EditDateTime extends Command {
     private Integer index;
@@ -16,7 +17,7 @@ public class EditDateTime extends Command {
 
 
     @Override
-    public void execute() {
+    public void execute() throws DukeException {
         eventList.editDatetime(index, datetime);
         System.out.println(eventList.list.get(index));
     }

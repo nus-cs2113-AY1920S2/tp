@@ -4,20 +4,16 @@ import seedu.command.Command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
-public class EditName extends Command {
-    private Integer index;
+/** Only list out seminar. */
+public class ListSeminar extends Command {
     private EventList eventList;
-    private String name;
 
-    public EditName(Integer index, String name, EventList eventList) {
-        this.index = index - 1;
-        this.name = name;
+    public ListSeminar(EventList eventList) {
         this.eventList = eventList;
     }
 
-
     @Override
     public void execute() throws DukeException {
-        eventList.editName(index, name);
+        eventList.listSeminar();
     }
 }
