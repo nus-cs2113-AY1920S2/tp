@@ -26,4 +26,8 @@ public class MessageBank {
     public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
     public static String PROFILE_NOT_FOUND_MESSAGE = "No existing profile found. To create a new profile, enter:\n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
+    public static String BREAKFAST_RECORD_MESSAGE = "You just record the breakfast of: ";
+    public static String LUNCH_RECORD_MESSAGE = "You just record the lunch of: ";
+    public static String DINNER_RECORD_MESSAGE = "You just record the dinner of: ";
+    public static String MEAL_TYPE_ERROR = "You have given invalid meal type.";
 }

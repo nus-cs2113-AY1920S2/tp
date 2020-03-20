@@ -26,6 +26,15 @@ public class Food {
         this.water = water;
     }
 
+    /**
+     * Constructs a Food instance simply with its name.
+     * @param foodName name of the food.
+     */
+
+    public Food(String foodName) {
+        this.foodName = foodName;
+    }
+
     public String getFoodName() {
         return foodName;
     }
