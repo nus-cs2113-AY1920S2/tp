@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Ui {
 
     private Scanner in = new Scanner(System.in);
-    private final String GREET_MESSAGE = "\n      HELLO! I'm SHOCO. Your digital shopping list!";
-    private final String SHOCO_LOGO =
+    private static final String GREET_MESSAGE = "\n      HELLO! I'm SHOCO. Your digital shopping list!";
+    private static final String SHOCO_LOGO =
               "\n                                         __"
             + "\n                                        /__\\"
             + "\n                                       /"
@@ -33,7 +33,7 @@ public class Ui {
      */
     public void greet() {
         System.out.print(GREET_MESSAGE);
-        System.out.print(SHOCO_LOGO);
+        System.out.println(SHOCO_LOGO);
     }
 
     /**

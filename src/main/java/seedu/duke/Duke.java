@@ -81,10 +81,16 @@ public class Duke {
         Command command;
         do {
             ui.printline("\nEnter command:");
-            String userCommandText = ui.readCommand();
-            command = new Parser().parseCommand(userCommandText);
+
+            String userInput = ui.readCommand();
+            assert !userInput.isEmpty() : "Input should not be empty";
+
+            command = new Parser().parseCommand(userInput);
             assert command != null : "Command should have been initialised";
+
             executeCommand(command);
+            assert command.feedbackToUser != null : "Result should have been initialised";
+
             ui.printline(command.feedbackToUser);
         } while (!command.isExit);
     }
@@ -99,7 +105,6 @@ public class Duke {
         try {
             command.setData(items,myBudget);
             command.execute();
-            assert command.feedbackToUser != null : "Result should have been initialised";
         } catch (Exception e) {
             ui.printline(e.getMessage());
             throw new RuntimeException(e);
