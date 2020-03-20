@@ -18,9 +18,10 @@ public class DateTime {
     public String getDateTimeFormat() {
         try {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            return localDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
+            return localDateTime.format(DateTimeFormatter.ofPattern("E, MMM dd yyyy HHmm"));
         } catch (DateTimeParseException e) {
-            return "yyyy-MM-dd HHmm";
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            return currentDateTime.format(DateTimeFormatter.ofPattern("E, MMM dd yyyy HHmm"));
         }
     }
 

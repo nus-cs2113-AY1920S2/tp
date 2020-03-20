@@ -1,0 +1,71 @@
+package seedu.parser;
+
+import seedu.duke.Duke;
+import seedu.exception.DukeException;
+
+public class CalendarParser {
+    private static int semester;
+
+    public CalendarParser() {
+    }
+
+    public static String[] parseDescription(String parameters) throws DukeException {
+        String[] tokens = parameters.split(" ");
+        if (tokens.length > 2 || tokens.length < 2){
+            throw new DukeException("Not complete");
+        }
+        return tokens;
+    }
+
+    public static int parseAcademicYear(String academicYear[], int year) throws DukeException {
+        int calendarYear;
+        if (academicYear.length > 2){
+            throw new DukeException("Please provide in the correct format: AY/19-20");
+        }
+        for (String yr : academicYear) {
+            if (yr.length() > 2) {
+                throw new DukeException("Please provide a valid year in this format: AY/19-20");
+            }
+        }
+        try{
+            if (year == 1){
+                calendarYear = Integer.parseInt(academicYear[0]);
+            } else {
+                calendarYear = Integer.parseInt(academicYear[1]);
+            }
+        } catch (NumberFormatException e){
+            throw new DukeException("Please provide an integer");
+        }
+        return calendarYear;
+    }
+
+
+    public static int getSemester(String description) throws DukeException {
+        String[] tokens = parseDescription(description);
+        if (tokens[0].substring(0,2).equals("s/")){
+            try {
+                if (tokens[0].substring(2).length() > 1){
+                    throw new DukeException("Please provide integer 1, 2 or 3");
+                }
+                semester = Integer.parseInt(tokens[0].substring(2));
+            } catch (NumberFormatException e){
+                throw new DukeException ("Please provide a integer");
+            }
+        } else {
+            throw new DukeException("unknown flag");
+        }
+        return semester;
+    }
+
+    public static int getYear(String description, int year) throws DukeException {
+        String[] tokens = parseDescription(description);
+        int calendarYear;
+        if(tokens[1].substring(0,3).equals("ay/")) {
+            String[] academicYear = tokens[1].substring(3).split("-");
+            calendarYear = parseAcademicYear(academicYear, year);
+        } else {
+            throw new DukeException("Unknown flag");
+        }
+        return calendarYear;
+    }
+}
