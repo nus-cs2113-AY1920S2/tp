@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetAgeCommand extends Command {
@@ -25,6 +26,11 @@ public class SetAgeCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         profile.setAge(this.age);
-        System.out.println(String.format("Your username has been changed to %d", profile.getAge()));
+        saveResult(profile);
+    }
+
+    @Override
+    public void saveResult(Profile profile) {
+        this.result = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
     }
 }

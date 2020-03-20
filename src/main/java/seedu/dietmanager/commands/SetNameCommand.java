@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetNameCommand extends Command {
@@ -25,6 +26,11 @@ public class SetNameCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         profile.setName(this.name);
-        System.out.println(String.format("Your username has been changed to %s", profile.getName()));
+        saveResult(profile);
+    }
+
+    @Override
+    public void saveResult(Profile profile) {
+        this.result = MessageBank.NAME_CHANGE_MESSAGE + profile.getName() + ".";
     }
 }

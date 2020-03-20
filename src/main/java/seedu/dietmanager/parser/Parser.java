@@ -10,6 +10,8 @@ import seedu.dietmanager.commands.SetNameCommand;
 import seedu.dietmanager.commands.SetProfileCommand;
 import seedu.dietmanager.commands.SetWeightCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
+import seedu.dietmanager.commands.RecordMealCommand;
+import seedu.dietmanager.commands.CheckRecordCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 
@@ -103,6 +105,12 @@ public class Parser {
             break;
         case"set-weight-goal":
             command = new SetWeightGoalCommand(commandPrompt, description);
+            break;
+        case "record-meal":
+            command = new RecordMealCommand(commandPrompt, description);
+            break;
+        case "check-meal":
+            command = new CheckRecordCommand(commandPrompt, description);
             break;
         case "exit":
             command = new ExitCommand(commandPrompt);
