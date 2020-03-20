@@ -27,6 +27,6 @@ public class ExitCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = MessageBank.EXIT_MESSAGE;
+        this.result = MessageBank.EXIT_COMMAMD_MESSAGE;
     }
 }

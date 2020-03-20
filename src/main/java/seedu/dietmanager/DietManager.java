@@ -41,6 +41,7 @@ public class DietManager {
             }
         }
 
+        ui.displayExitMessage();
         appLogger.logExitProgramme();
     }
 

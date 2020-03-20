@@ -32,7 +32,7 @@ public class UI {
     }
 
     public void displayExitMessage() {
-        System.out.println(MessageBank.EXIT_MESSAGE);
+        System.out.println(MessageBank.EXIT_APP_MESSAGE);
     }
 
     public void displayFileErrorMessage() {

@@ -15,7 +15,8 @@ public class MessageBank {
     public static String INVALID_COMMAND_MESSAGE = "Sorry, the command you have entered is invalid.";
     public static String INVALID_FORMAT_MESSAGE = "Sorry, that is an invalid command format.";
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
-    public static String EXIT_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
+    public static String EXIT_COMMAMD_MESSAGE = "Thank you and see you again soon!";
+    public static String EXIT_APP_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
     public static String NAME_CHANGE_MESSAGE = "Your username has been changed to ";
     public static String GENDER_CHANGE_MESSAGE = "Your gender has been changed to ";
     public static String HEIGHT_CHANGE_MESSAGE = "Your height has been changed to ";
