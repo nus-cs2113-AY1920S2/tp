@@ -1,28 +1,36 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
+import seedu.exception.DukeException;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
-import seedu.parser.PerformanceParser;
+import seedu.ui.UI;
 
 public class DeletePerformance extends Command {
-    Performance performance;
-    public String userInput;
+    PerformanceList performances;
+    String eventName;
+    UI ui;
 
     /**
-     * Constructor for DeletePerformanceCommand. Takes String userInput
-     * and parse it to get the Performance to be deleted.
-     * @param commandParameters A String to be parsed.
+     * Constructor for DeletePerformanceCommand. Takes in performance list and
+     * the name of event that the list is under.
+     * @param performances A PerformanceList of students.
+     * @param eventName    A String indicates the name of Event that the performance
+     *                     list belongs to.
      */
-    public DeletePerformance(String commandParameters) {
-        this.userInput = commandParameters;
-        performance = new PerformanceParser().parsePerformance(commandParameters);
+    public DeletePerformance(PerformanceList performances, String eventName) {
+        this.performances = performances;
+        this.eventName = eventName;
+        this.ui = new UI();
+    }
 
+    public Performance getPerformance() throws DukeException {
+        String studentName = ui.getStudentName("delete");
+        return performances.getPerformance(studentName);
     }
 
     @Override
-    public void execute() {
-        PerformanceList.deletePerformance(performance);
+    public void execute() throws DukeException {
+        performances.deletePerformance(getPerformance(), eventName);
     }
-
 }

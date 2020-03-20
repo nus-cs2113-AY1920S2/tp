@@ -6,12 +6,13 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
 import seedu.command.Bye;
 import seedu.command.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.ui.UI;
 import seedu.exception.DukeException;
+import seedu.ui.UI;
 
 public class Duke {
     public static final Logger logger = Logger.getLogger(Duke.class.getName());
