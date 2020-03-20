@@ -47,11 +47,11 @@ public class Duke {
     }
 
     public void run() {
-        UI.setUserName();
+        ui.setUserName();
         Command command = null;
 
         do {
-            UI.readUserInput();
+            ui.readUserInput();
             try {
                 command = interpreter.decideCommand(ui.getUserInput());
                 command.execute();

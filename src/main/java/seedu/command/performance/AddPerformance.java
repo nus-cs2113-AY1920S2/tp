@@ -36,25 +36,34 @@ public class AddPerformance extends Command {
         if (isByNameList) {
             ArrayList<String> studentNameList = new ArrayList<>();
             //todo: add a list of student list, and let user select a student list to be used.
+            if (studentNameList.isEmpty()) {
+                throw new DukeException("There is no existing student list.");
+            }
             for (String studentName: studentNameList) {
                 performances.addToList(new Performance(studentName,
                         ui.getResultOfStudent(studentName)), eventName);
             }
         } else {
-            performances.addToList(getPerformance(), eventName);
+            int studentNumber= 0;
+            String parameter = ui.getPerformanceParameter();
+            do {
+                performances.addToList(getPerformance(parameter), eventName);
+                parameter = ui.getStringInput();
+                studentNumber++;
+            } while (!parameter.equals("done"));
+            System.out.println("You have successfully added "
+                    + studentNumber + " result(s) to the performance list.");;
         }
     }
 
     /**
-     * If the user chooses to add performance manually, getPerformance()
-     * will prompt the user to input student name and result of
-     * student and returns a Performance based on input.
+     * It process the data input by student and returns
+     * a Performance base on the input.
      * @return A Performance of student
      * @throws DukeException throws DukeException when the user input
      *                       is insufficient or incorrect.
      */
-    private Performance getPerformance() throws DukeException {
-        String parameter = ui.getPerformanceParameter();
+    private Performance getPerformance(String parameter) throws DukeException {
         return new PerformanceParser().parsePerformance(parameter);
     }
 
