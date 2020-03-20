@@ -44,7 +44,7 @@ public class AddPerformance extends Command {
                         ui.getResultOfStudent(studentName)), eventName);
             }
         } else {
-            int studentNumber= 0;
+            int studentNumber = 0;
             String parameter = ui.getPerformanceParameter();
             do {
                 performances.addToList(getPerformance(parameter), eventName);

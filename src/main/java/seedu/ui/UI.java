@@ -45,6 +45,7 @@ public class UI {
     public String getStringInput() {
         return in.nextLine();
     }
+
     /**
      * Close the scanner.
      */
