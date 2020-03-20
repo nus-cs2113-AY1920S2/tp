@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetHeightCommand extends Command {
@@ -25,6 +26,11 @@ public class SetHeightCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         profile.setHeight(this.height);
-        System.out.println(String.format("Your height has been changed to %.2f", profile.getHeight()));
+        saveResult(profile);
+    }
+
+    @Override
+    public void saveResult(Profile profile) {
+        this.result = MessageBank.HEIGHT_CHANGE_MESSAGE + String.format("%.2f.",profile.getHeight());
     }
 }

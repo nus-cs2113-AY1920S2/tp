@@ -47,6 +47,10 @@ public class UI {
         System.out.println(MessageBank.INVALID_FORMAT_MESSAGE);
     }
 
+    public void showExecutionResult(String result) {
+        System.out.println(result);
+    }
+
     /**
      * Returns the exit status.
      * @return the exit status.

@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetGenderCommand extends Command {
@@ -25,6 +26,11 @@ public class SetGenderCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         profile.setGender(this.gender);
-        System.out.println(String.format("Your gender has been changed to %s", profile.getGender()));
+        saveResult(profile);
+    }
+
+    @Override
+    public void saveResult(Profile profile) {
+        this.result = MessageBank.GENDER_CHANGE_MESSAGE + profile.getGender() + ".";
     }
 }

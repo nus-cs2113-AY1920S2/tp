@@ -33,6 +33,7 @@ public class DietManager {
                 String userInput = ui.readInput();
                 Command command = Parser.parseInput(userInput);
                 command.execute(profile, ui);
+                ui.showExecutionResult(command.getResult());
             } catch (InvalidFormatException | NumberFormatException e) {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {
@@ -40,7 +41,6 @@ public class DietManager {
             }
         }
 
-        ui.displayExitMessage();
         appLogger.logExitProgramme();
     }
 

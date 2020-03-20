@@ -16,4 +16,13 @@ public class MessageBank {
     public static String INVALID_FORMAT_MESSAGE = "Sorry, that is an invalid command format.";
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
     public static String EXIT_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
+    public static String NAME_CHANGE_MESSAGE = "Your username has been changed to ";
+    public static String GENDER_CHANGE_MESSAGE = "Your gender has been changed to ";
+    public static String HEIGHT_CHANGE_MESSAGE = "Your height has been changed to ";
+    public static String AGE_CHANGE_MESSAGE = "Your age has been changed to ";
+    public static String WEIGHT_CHANGE_MESSAGE = "Your weight has been changed to ";
+    public static String WEIGHT_GOAL_CHANGE_MESSAGE = "Your weight goal has been changed to ";
+    public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
+    public static String PROFILE_NOT_FOUND_MESSAGE = "No existing profile found. To create a new profile, enter:\n"
+            + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 }
