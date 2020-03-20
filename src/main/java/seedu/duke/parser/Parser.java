@@ -429,7 +429,10 @@ public class Parser {
                     + "Please enter a keyword after FIND"
                     + System.lineSeparator()
                     + "Example: FIND apples");
+            LOGGER.log(Level.INFO,"(Find command) User did not supply keyword for FIND");
         } else {
+            assert arguments != null;
+            LOGGER.log(Level.INFO,"(Find command) User supplied keyword: " + arguments);
             newCommand = new FindCommand(arguments);
         }
     }

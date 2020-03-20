@@ -34,13 +34,17 @@ public class FindCommand extends Command {
         int size = items.getSize();
         for (int i = 0; i < size; i++) {
             Item unfilteredItem = items.getItem(i);
+            assert unfilteredItem != null;
             if (unfilteredItem.getDescription().contains(keyword)) {
                 filteredItems.add(unfilteredItem);
             }
         }
-        if (filteredItems.size() == 0) {
+        int filteredListSize = filteredItems.size();
+        LOGGER.log(Level.INFO,"(Find command) Matches found: " + filteredListSize);
+        if (filteredListSize == 0) {
             feedbackToUser = "Sorry, no results could be found!";
         } else {
+            assert filteredListSize != 0;
             feedbackToUser = "";
             System.out.println(FIND_MESSAGE);
             CommandLineTable st = new CommandLineTable();
@@ -54,6 +58,7 @@ public class FindCommand extends Command {
                 bulletNum++;
             }
             st.print();
+            LOGGER.log(Level.INFO,"(Find command) Results displayed successfully");
         }
 
     }
