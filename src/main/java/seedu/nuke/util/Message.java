@@ -29,10 +29,8 @@ public class Message {
         return String.format("There are (is) %d task(s) in the list!\n", taskCount);
     }
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
-    public static final String MESSAGE_INVALID_PARAMETERS = "Invalid parameters found!\n";
-    public static final String MESSAGE_MISSING_PARAMETERS = "Alert! Some parameters are missing.\n";
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
-    public static final String DIVIDER = "-".repeat(80);
+    public static final String DIVIDER = "-".repeat(100);
 
     public static final String MESSAGE_SHOW_LIST = "Here are what you are looking for...\n";
     public static final String MESSAGE_PRIORITY_NOT_IN_RANGE =

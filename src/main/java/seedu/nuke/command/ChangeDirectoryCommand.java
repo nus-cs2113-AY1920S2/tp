@@ -1,13 +1,8 @@
 package seedu.nuke.command;
 
-import seedu.nuke.data.CategoryManager;
-import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.TaskFileManager;
-import seedu.nuke.data.TaskManager;
 import seedu.nuke.directory.*;
-import seedu.nuke.directory.Module;
 import seedu.nuke.exception.DataNotFoundException;
-import seedu.nuke.exception.TraverseDirectoryOutOfBoundsException;
+import seedu.nuke.exception.DirectoryTraversalOutOfBoundsException;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DIRECTORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_FAILED_DIRECTORY_TRAVERSAL;
@@ -45,7 +40,7 @@ public class ChangeDirectoryCommand extends Command {
             }
             // No feedback for successful traversal
             return new CommandResult("");
-        } catch (TraverseDirectoryOutOfBoundsException e) {
+        } catch (DirectoryTraversalOutOfBoundsException e) {
             return new CommandResult(MESSAGE_FAILED_DIRECTORY_TRAVERSAL);
         } catch (DataNotFoundException e) {
             return new CommandResult(MESSAGE_DIRECTORY_NOT_FOUND);

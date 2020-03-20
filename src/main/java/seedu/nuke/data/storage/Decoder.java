@@ -30,12 +30,10 @@ public class Decoder {
     }
 
     public ArrayList<Module> decode() throws CorruptedFileException, IOException {
-        Root root = new Root();
-
-        return decodeModuleList(root);
+        return decodeModuleList();
     }
 
-    private ArrayList<Module> decodeModuleList(Root root)
+    private ArrayList<Module> decodeModuleList()
             throws CorruptedFileException, IOException {
         ArrayList<Module> decodedModuleList = new ArrayList<>();
         if (!reader.readLine().equals(BEGIN_MODULE_INDICATOR)) {
@@ -47,7 +45,7 @@ public class Decoder {
             if (currentLine.equals(END_MODULE_INDICATOR)) {
                 break;
             }
-            Module decodedModule = decodeModule(root, currentLine.split(Pattern.quote(DELIMITER)));
+            Module decodedModule = decodeModule(currentLine.split(Pattern.quote(DELIMITER)));
 
             decodedModuleList.add(decodedModule);
         }
@@ -113,12 +111,12 @@ public class Decoder {
         return decodedTaskFileList;
     }
 
-    private Module decodeModule(Root root, String[] moduleInformation)
+    private Module decodeModule(String[] moduleInformation)
             throws CorruptedFileException, IOException {
         String moduleCode = moduleInformation[0];
         String title = moduleInformation[1];
         String description = moduleInformation[2];
-        Module decodedModule = new Module(root, moduleCode, title, description);
+        Module decodedModule = new Module(moduleCode, title, description);
         decodedModule.getCategories().setCategoryList(decodeCategoryList(decodedModule));
 
         return decodedModule;

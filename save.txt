@@ -1,0 +1,23 @@
+--- MODULE ---
+CS1010 -|||- Programming Methodology -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+work -|||- N -|||- 21/03/2020 07:00AM -|||- 6
+--- FILE ---
+--- END FILE ---
+some work -|||- N -|||- 20/03/2020 03:00AM -|||- 30
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+--- END MODULE ---

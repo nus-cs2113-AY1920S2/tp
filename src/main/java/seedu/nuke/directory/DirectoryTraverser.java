@@ -2,7 +2,7 @@ package seedu.nuke.directory;
 
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.DataNotFoundException;
-import seedu.nuke.exception.TraverseDirectoryOutOfBoundsException;
+import seedu.nuke.exception.DirectoryTraversalOutOfBoundsException;
 
 import java.util.Stack;
 
@@ -40,12 +40,12 @@ public class DirectoryTraverser {
      *
      * @param nextLevel
      *  The next level of the directory
-     * @throws TraverseDirectoryOutOfBoundsException
+     * @throws DirectoryTraversalOutOfBoundsException
      *  If the traversal will result in traversing out of the directory
      */
-    public static void traverseDown(Directory nextLevel) throws TraverseDirectoryOutOfBoundsException {
+    public static void traverseDown(Directory nextLevel) throws DirectoryTraversalOutOfBoundsException {
         if (currentLevel >= MAXIMUM_LEVEL) {
-            throw new TraverseDirectoryOutOfBoundsException();
+            throw new DirectoryTraversalOutOfBoundsException();
         }
         currentLevel++;
         directoryStack.push(nextLevel);
@@ -54,12 +54,12 @@ public class DirectoryTraverser {
     /**
      * Traverse one level up in the directory.
      *
-     * @throws TraverseDirectoryOutOfBoundsException
+     * @throws DirectoryTraversalOutOfBoundsException
      *  If the traversal will result in traversing out of the directory
      */
-    public static void traverseUp() throws TraverseDirectoryOutOfBoundsException {
+    public static void traverseUp() throws DirectoryTraversalOutOfBoundsException {
         if (currentLevel <= MINIMUM_LEVEL) {
-            throw new TraverseDirectoryOutOfBoundsException();
+            throw new DirectoryTraversalOutOfBoundsException();
         }
         currentLevel--;
         directoryStack.pop();
@@ -74,11 +74,11 @@ public class DirectoryTraverser {
      *  The next directory if found
      * @throws DataNotFoundException
      *  If the next directory cannot be found
-     * @throws TraverseDirectoryOutOfBoundsException
+     * @throws DirectoryTraversalOutOfBoundsException
      *  If the traversal will result in traversing out of the directory
      */
     public static Directory findNextDirectory(String nextDirectoryName)
-            throws DataNotFoundException, TraverseDirectoryOutOfBoundsException {
+            throws DataNotFoundException, DirectoryTraversalOutOfBoundsException {
         switch (getCurrentDirectoryLevel()) {
             case ROOT:
                 return ModuleManager.getModule(nextDirectoryName);
@@ -89,7 +89,7 @@ public class DirectoryTraverser {
             case TASK:
                 return ((Task) getCurrentDirectory()).getFiles().getFile(nextDirectoryName);
             default:
-                throw new TraverseDirectoryOutOfBoundsException();
+                throw new DirectoryTraversalOutOfBoundsException();
         }
     }
 

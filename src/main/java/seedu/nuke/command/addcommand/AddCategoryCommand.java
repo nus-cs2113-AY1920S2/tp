@@ -6,13 +6,13 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.messageAddCategorySuccess;
 
 /**
@@ -58,6 +58,14 @@ public class AddCategoryCommand extends AddCommand {
         this.categoryPriority = categoryPriority;
     }
 
+    protected Module getParentDirectory() throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException {
+        if (moduleCode.isEmpty()) {
+            return getBaseModule();
+        } else {
+            return ModuleManager.getModule(moduleCode);
+        }
+    }
+
     /**
      * Constructs the command to add a category without a priority.
      *
@@ -80,14 +88,16 @@ public class AddCategoryCommand extends AddCommand {
     @Override
     public CommandResult execute() {
         try {
-            Module parentModule = ModuleManager.getModule(moduleCode);
+            Module parentModule = getParentDirectory();
             Category toAdd = new Category(parentModule, categoryName, categoryPriority);
-            ModuleManager.retrieveList(moduleCode).add(toAdd);
+            parentModule.getCategories().add(toAdd);
             return new CommandResult(messageAddCategorySuccess(categoryName));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         } catch (CategoryManager.DuplicateCategoryException e) {
             return new CommandResult(MESSAGE_DUPLICATE_CATEGORY);
+        } catch (IncorrectDirectoryLevelException e) {
+            return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 }

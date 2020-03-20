@@ -186,8 +186,8 @@ public class ModuleManager implements Iterable<Module> {
         Collections.sort(getAllTasks(), new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toString();
-                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toString();
+                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toShow();
+                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toShow();
                 return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });

@@ -161,14 +161,25 @@ public class DateTime {
 
     /**
      * Converts <b>Date Time</b> into its string representation, containing its <code>date</code> and
-     * <code>time</code> information.
+     * <code>time</code> information, and an indicator to show if the datetime has already passed.
+     *
+     * @return The string representation of <b>Date Time</b>
+     */
+    public String toShow() {
+        String toShow = dateToString() + " " + timeToString();
+        return (isDue()) ? toShow + " [OVER!!]" : toShow;
+    }
+
+
+    /**
+     * Converts <b>Date Time</b> into its string representation, containing its <code>date</code> and
+     * <code>time</code> information, and an indicator to show if the datetime has already passed.
      *
      * @return The string representation of <b>Date Time</b>
      */
     @Override
     public String toString() {
-        String toShow = dateToString() + " " + timeToString();
-        return (isDue()) ? toShow + " [OVER!!]" : toShow;
+        return getDate() + " " + timeToString();
     }
 
 }

@@ -9,6 +9,7 @@ import seedu.nuke.data.TaskManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.util.DateTime;
 
 import java.util.regex.Pattern;
@@ -96,8 +97,25 @@ public class AddTaskCommand extends AddCommand {
         this(moduleCode, categoryName, description, deadline, -1);
     }
 
-    public AddTaskCommand(Task task) {
-        this.taskToAdd = task;
+    protected Category getParentDirectory()
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
+            CategoryManager.CategoryNotFoundException {
+        if (moduleCode.isEmpty()) {
+            if (categoryName.isEmpty()) {
+                return getBaseCategory();
+            } else {
+                return getBaseModule().getCategories().getCategory(categoryName);
+            }
+        } else {
+            if (categoryName.isEmpty()) {
+                if (!getBaseModule().isSameModule(moduleCode)) {
+                    throw new IncorrectDirectoryLevelException();
+                }
+                return ModuleManager.getCategory(moduleCode, getBaseCategory().getCategoryName());
+            } else {
+                return ModuleManager.getCategory(moduleCode, categoryName);
+            }
+        }
     }
 
     /**
@@ -114,12 +132,12 @@ public class AddTaskCommand extends AddCommand {
 //        //dataManager.addTask(taskToAdd);
 //        return new CommandResult(MESSAGE_TASK_ADDED);
         try {
+            Category parentCategory = getParentDirectory();
             if (priority < 0) {
-                priority = ModuleManager.getCategory(moduleCode, categoryName).getCategoryPriority();
+                priority = parentCategory.getCategoryPriority();
             }
-            Category parentCategory = ModuleManager.getCategory(moduleCode, categoryName);
             Task toAdd = new Task(parentCategory, description, deadline, priority);
-            ModuleManager.retrieveList(moduleCode, categoryName).add(toAdd);
+            parentCategory.getTasks().add(toAdd);
             return new CommandResult(messageAddTaskSuccess(description));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
@@ -127,6 +145,8 @@ public class AddTaskCommand extends AddCommand {
             return new CommandResult(MESSAGE_CATEGORY_NOT_FOUND);
         } catch (TaskManager.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
+        } catch (IncorrectDirectoryLevelException e) {
+            return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 }

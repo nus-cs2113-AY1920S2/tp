@@ -4,6 +4,7 @@ import seedu.nuke.NukeLogger;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.Root;
 import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.directory.Module;
 
@@ -42,6 +43,10 @@ public class AddModuleCommand extends AddCommand {
      */
     public AddModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
+    }
+
+    protected Root getParentDirectory() {
+        return ModuleManager.getRoot();
     }
 
     /**
