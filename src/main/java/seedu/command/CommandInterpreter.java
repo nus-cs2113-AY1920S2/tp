@@ -46,7 +46,7 @@ public class CommandInterpreter {
      * @throws DukeException If the command is undefined.
      */
     public Command decideCommand(String userInput) throws DukeException {
-        Command command = null;
+        Command command;
 
         String commandCategory = getFirstWord(userInput);
         String commandDescription = "";
@@ -64,7 +64,8 @@ public class CommandInterpreter {
             command = eci.decideCommand(commandDescription);
             break;
         case "seminar":
-            //TODO
+            SeminarCommandInterpreter sci = new SeminarCommandInterpreter(eventList);
+            command = sci.decideCommand(commandDescription);
             break;
         case "attendance":
             AttendanceCommandInterpreter aci = new AttendanceCommandInterpreter(eventList);

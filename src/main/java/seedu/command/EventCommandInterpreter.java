@@ -1,6 +1,5 @@
 package seedu.command;
 
-//import seedu.command.event.*;
 import seedu.command.event.AddEvent;
 import seedu.command.event.EditDateTime;
 import seedu.command.event.EditName;

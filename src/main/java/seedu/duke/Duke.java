@@ -26,6 +26,7 @@ public class Duke {
 
         ui = new UI();
         eventList = new EventList();  //TODO: new Storage().load()
+
         interpreter = new CommandInterpreter(eventList);
     }
 

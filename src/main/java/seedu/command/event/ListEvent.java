@@ -14,11 +14,6 @@ public class ListEvent extends Command {
 
     @Override
     public void execute() throws DukeException {
-        if (eventList.getSize() == 0) {
-            throw new DukeException("List is empty");
-        }
-        for (int i = 0; i < eventList.getSize(); i++) {
-            System.out.println(i + 1 + ". " +  eventList.find(i));
-        }
+        eventList.listEvent();
     }
 }

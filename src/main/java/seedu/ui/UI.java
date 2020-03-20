@@ -2,7 +2,8 @@ package seedu.ui;
 
 import seedu.attendance.Attendance;
 import seedu.performance.Performance;
-
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -136,6 +137,41 @@ public class UI {
         printSplitOfFour();
     }
 
+    public static void printEventList(ArrayList<Event> list) {
+        System.out.println("Here are all the events in your list.");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + 1 + ". " +  list.get(i));
+        }
+    }
+
+    public static void printSeminarList(ArrayList<Event> list) {
+        System.out.println("Here are all the seminar events in your list.");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + 1 + ". " +  list.get(i));
+        }
+    }
+
+    public static void editEventMessage(String oldEvent, String newEvent, String eventType) {
+        System.out.printf("Your %s was edited from |%s| to |%s|.\n",
+                eventType, oldEvent, newEvent);
+    }
+
+    public static void editEventNameMessage(String oldName, String newName, String eventType) {
+        System.out.printf("Your %s name was changed from |%s| to |%s|.\n",
+                eventType, oldName, newName);
+
+    }
+
+    public static void editEventDateTimeMessage(String oldDateTime, String newDateTime, String eventType) {
+        System.out.printf("Your %s date and time was changed from |%s| to |%s|.\n",
+                eventType, oldDateTime, newDateTime);
+    }
+
+    public static void editEventVenueMessage(String oldVenue, String newVenue, String eventType) {
+        System.out.printf("Your %s venue was changed from |%s| to |%s|.\n",
+                eventType, oldVenue, newVenue);
+    }
+
     public static void addEventMessage(String eventType, String eventName) {
         System.out.printf("New %s: %s was added successfully to "
                 + "your Event list.\n", eventType, eventName);
@@ -155,6 +191,7 @@ public class UI {
         System.out.printf("%s: %s was deleted successfully from "
                 + "your Event list.\n", eventType, eventName);
     }
+
 
     /**
      * The message showed to the user after successful deletion of a attendance.

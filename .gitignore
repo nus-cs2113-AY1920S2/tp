@@ -13,4 +13,11 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.txt
+#log files
+*.1
+*.2
+*.3
+*.log
+*.lck
+
+/text-ui-test/ACTUAL.txtdebug.log 

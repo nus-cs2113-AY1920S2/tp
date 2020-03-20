@@ -13,12 +13,13 @@ import java.util.ArrayList;
 import java.time.Instant;
 
 public class Event {
-    private String name;
-    private DateTime datetime;
-    private String venue;
+    protected String name;
+    protected DateTime datetime;
+    protected String venue;
     //private ArrayList<StudentList> studentsList;
-    private AttendanceList attendanceList;
-    private PerformanceList performanceList;
+    protected AttendanceList attendanceList;
+    protected PerformanceList performanceList;
+
 
     /**
      * Empty constructor. Sets name as "unnamed"
@@ -86,7 +87,7 @@ public class Event {
      * @return the datetime of the event
      */
     public String getDatetime() {
-        return datetime.getDateTimeFormat();
+        return datetime.toString();
     }
 
     /**

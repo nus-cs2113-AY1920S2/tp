@@ -2,10 +2,7 @@ package seedu.event;
 
 import org.junit.jupiter.api.Test;
 import seedu.exception.DukeException;
-
-import java.security.InvalidParameterException;
 import java.time.Instant;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
