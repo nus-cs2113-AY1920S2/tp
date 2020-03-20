@@ -1,7 +1,7 @@
 package seedu.duke.commands;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.duke.data.Budget;
 import seedu.duke.data.Item;
 import seedu.duke.data.ShoppingList;
 
@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EditCommandTest {
 
     ShoppingList items = new ShoppingList();
+    Budget myBudget = new Budget();
     Command command = new Command();
 
     @Test
@@ -19,7 +20,7 @@ public class EditCommandTest {
         items.add(new Item("donut", 3.0));
         items.add(new Item("banana", 4.50));
         command = new EditCommand(1, "apples", null);
-        command.setData(items, null);
+        command.setData(items,myBudget);
         command.execute();
         String expectedFeedback =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(0).toString())
                 + String.format("\nNOTE: You have exceeded your budget by %.2f",items.getTotalCost());
@@ -34,7 +35,7 @@ public class EditCommandTest {
         items.add(new Item("donut", 3.0));
         items.add(new Item("banana", 4.50));
         command = new EditCommand(2, null, "3.5");
-        command.setData(items, null);
+        command.setData(items,myBudget);
         command.execute();
         String expectedFeedback1 =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(1).toString())
                 + String.format("\nNOTE: You have exceeded your budget by %.2f",items.getTotalCost());
@@ -48,7 +49,7 @@ public class EditCommandTest {
         items.add(new Item("donut", 3.0));
         items.add(new Item("banana", 4.50));
         command = new EditCommand(3, "banana", "5.00");
-        command.setData(items, null);
+        command.setData(items,myBudget);
         command.execute();
         String expectedFeedback2 =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(2).toString())
                 + String.format("\nNOTE: You have exceeded your budget by %.2f",items.getTotalCost());
@@ -62,7 +63,7 @@ public class EditCommandTest {
         items.add(new Item("donut", 3.0));
         items.add(new Item("banana", 4.50));
         command = new EditCommand(0, "banana", "5.00");
-        command.setData(items, null);
+        command.setData(items,myBudget);
         command.execute();
         String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_NOT_IN_LIST;
         assertEquals(expectedFeedback3, command.feedbackToUser);
@@ -75,7 +76,7 @@ public class EditCommandTest {
         items.add(new Item("donut", 3.0));
         items.add(new Item("banana", 4.50));
         command = new EditCommand(1, "banana", "QWERTY");
-        command.setData(items, null);
+        command.setData(items,myBudget);
         command.execute();
         String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT;
         assertEquals(expectedFeedback3, command.feedbackToUser);
