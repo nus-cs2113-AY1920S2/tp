@@ -11,17 +11,49 @@ Duke
 
 
 Okay! Here are your available modules in database:
-1.ID: CS1010 Name: Programming Methodology | Prerequisites: null
-2.ID: CS2030 Name: Programming Methodology II | Prerequisites: CS1010
-3.ID: CS2040 Name: Data Structures and Algorithms | Prerequisites: CS1010
-4.ID: CS2100 Name: Computer Organisation | Prerequisites: CS1010
-5.ID: CS2106 Name: Introduction to Operating Systems | Prerequisites: CS2100
-6.ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Prerequisites: CS2040
-7.ID: CS2105 Name: Introduction to Computer Networks | Prerequisites: CS2040
-8.ID: ES1000 Name: Foundation Academic English | Prerequisites: null
-9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
-10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
-11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
+------------------------------------------------------------------------------------------------------------------------
+| S/N |    ID    | Name                                                          | Prerequisites                       |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  01 | CS1010   | Programming Methodology                                       | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  02 | CS2030   | Programming Methodology II                                    | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  03 | CS2040   | Data Structures and Algorithms                                | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  04 | CS2100   | Computer Organisation                                         | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  05 | CS2106   | Introduction to Operating Systems                             | CS2100                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  06 | CS2113   | Software Engineering & Object-Oriented Programming            | CS2040                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  07 | CS2105   | Introduction to Computer Networks                             | CS2040                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  08 | CS2101   | Effective Communication for Computing Professionals           | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  09 | CS2102   | Database Systems                                              | CS2030                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  10 | GEH1001  | Globalisation and New Media                                   | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  11 | GEH1002  | Economic Issues in Dev World                                  | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  12 | GEH1004  | Chinese Heritage: Hist & Lit                                  | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  13 | GEQ1000  | Asking Questions                                              | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  14 | GER1000  | Quantitative Reasoning                                        | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  15 | GET1001  | Seeing the World Through Maps                                 | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  16 | GET1002  | Bridging East and West: Exploring Chinese Communication       | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  17 | GET1003  | Home                                                          | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  18 | GES1000  | Singapore Employment Law                                      | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  19 | GES1002  | Global EC Dimensions of S'pore                                | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  20 | GES1003  | Changing Landscapes of Singapore                              | None                                |
+------------------------------------------------------------------------------------------------------------------------
 
 
 Okay! I have added this module to your semester's module list:
@@ -57,20 +89,55 @@ ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
 
 
 Okay! Here are your available modules in database:
-1.ID: CS1010 Name: Programming Methodology | Prerequisites: null
-2.ID: CS2030 Name: Programming Methodology II | Prerequisites: CS1010
-3.ID: CS2040 Name: Data Structures and Algorithms | Prerequisites: CS1010
-4.ID: CS2100 Name: Computer Organisation | Prerequisites: CS1010
-5.ID: CS2106 Name: Introduction to Operating Systems | Prerequisites: CS2100
-6.ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Prerequisites: CS2040
-7.ID: CS2105 Name: Introduction to Computer Networks | Prerequisites: CS2040
-8.ID: ES1000 Name: Foundation Academic English | Prerequisites: null
-9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
-10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
-11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
-12.ID: IS4241 Name: Social Media Network Analysis | Prerequisites: CS1010
-13.ID: CS1231 Name: Discrete Structures | Prerequisites: null
-14.ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
+------------------------------------------------------------------------------------------------------------------------
+| S/N |    ID    | Name                                                          | Prerequisites                       |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  01 | CS1010   | Programming Methodology                                       | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  02 | CS2030   | Programming Methodology II                                    | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  03 | CS2040   | Data Structures and Algorithms                                | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  04 | CS2100   | Computer Organisation                                         | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  05 | CS2106   | Introduction to Operating Systems                             | CS2100                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  06 | CS2113   | Software Engineering & Object-Oriented Programming            | CS2040                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  07 | CS2105   | Introduction to Computer Networks                             | CS2040                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  08 | CS2101   | Effective Communication for Computing Professionals           | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  09 | CS2102   | Database Systems                                              | CS2030                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  10 | GEH1001  | Globalisation and New Media                                   | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  11 | GEH1002  | Economic Issues in Dev World                                  | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  12 | GEH1004  | Chinese Heritage: Hist & Lit                                  | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  13 | GEQ1000  | Asking Questions                                              | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  14 | GER1000  | Quantitative Reasoning                                        | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  15 | GET1001  | Seeing the World Through Maps                                 | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  16 | GET1002  | Bridging East and West: Exploring Chinese Communication       | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  17 | GET1003  | Home                                                          | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  18 | GES1000  | Singapore Employment Law                                      | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  19 | GES1002  | Global EC Dimensions of S'pore                                | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  20 | GES1003  | Changing Landscapes of Singapore                              | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  21 | IS4241   | Social Media Network Analysis                                 | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  22 | CS1231   | Discrete Structures                                           | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  23 | CS2104   | Programming Language Concepts                                 | CS2030                              |
+------------------------------------------------------------------------------------------------------------------------
 
 
 Okay! I have added this module to your semester's module list:
