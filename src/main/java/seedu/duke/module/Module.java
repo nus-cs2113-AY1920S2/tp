@@ -12,7 +12,58 @@ public class Module {
     protected boolean isNameValid;
     protected boolean isIdValid;
     protected boolean isDone;
+    protected String grade;
+    protected double cap;
+    protected int modularCredit;
 
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+        switch (grade) {
+        case "A+":
+        case "A":
+            this.cap = 5.0;
+            break;
+        case "A-":
+            this.cap = 4.5;
+            break;
+        case "B+":
+            this.cap = 4.0;
+            break;
+        case "B":
+            this.cap = 3.5;
+            break;
+        case "B-":
+            this.cap = 3.0;
+            break;
+        case "C+":
+            this.cap = 2.5;
+            break;
+        case "C":
+            this.cap = 2.0;
+            break;
+        case "D+":
+            this.cap = 1.5;
+            break;
+        case "D":
+            this.cap = 1.0;
+            break;
+        case "F":
+            this.cap = 0.0;
+            break;
+        case "CS":
+            this.cap = 0.0;
+            break;
+        case "CU":
+            this.cap = 0.0;
+            break;
+        default:
+            throw new IllegalStateException("Unexpected value: " + grade);
+        }
+    }
 
     /**
      * This is Module's constructor.
@@ -81,4 +132,21 @@ public class Module {
     public boolean getDone() {
         return this.isDone;
     }
+
+    public ModuleList getPreRequisiteModules() {
+        return preRequisiteModules;
+    }
+
+    public String getPreReqModulesID() {
+        String preReqModulesList = new String();
+        boolean hasNoPreReqModules = preRequisiteModules.size() == 0;
+        if (hasNoPreReqModules) {
+            preReqModulesList = ("None");
+        }
+        for (Module preReqModule : preRequisiteModules) {
+            preReqModulesList += preReqModule.getId() + " ";
+        }
+        return preReqModulesList;
+    }
+
 }

@@ -11,3 +11,16 @@ Please enter your command again!
 Mar 17, 2020 1:08:39 AM seedu.duke.Duke run
 WARNING: Input Error: invalid command
 Please enter your command again!
+Mar 19, 2020 6:22:52 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 19, 2020 6:23:09 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 19, 2020 6:23:50 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 19, 2020 7:27:57 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'done' command
+Please enter your command again! Format:
+done n/NAME s/SEMESTER | done id/ID s/SEMESTER

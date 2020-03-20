@@ -1,40 +1,94 @@
 Hello from
- ____        _
-|  _ \ _   _| | _____
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-What can I do for you?
+  __  __           _       _        __  __
+ |  \/  |         | |     | |      |  \/  |
+ | \  / | ___   __| |_   _| | ___  | \  / | __ _ _ __   __ _  __ _  ___ _ __
+ | |\/| |/ _ \ / _` | | | | |/ _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
+ | |  | | (_) | (_| | |_| | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ |
+ |_|  |_|\___/ \__,_|\__,_|_|\___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
+                                                              __/ |
+                                                             |___/
 
 
+
+What is your name? Please enter it over here:
+Hello Duke, please input your matric year:
+Here are the commands that I can do for you:
+1. "help" to look at all the commands that I can do
+2. "view" to see all modules we have in our module list
+3. "add id/[module code] s/[1-8]" to add a module to your personal module manager
+4. "add id/[module code] n/[name of module]" to add a module to the list of available modules
+5. "done id/[module code] g/[grade] c/[credit]" or "done n/[name of module] g/[grade] c/[credit]" to mark it as done
+6. "view /mp" to view your module plan
+7. "view /dm" to view all finished modules
+8. "view /cc" to view the number of modular credits u have completed
 Okay! Here are your available modules in database:
-1.ID: CS1010 Name: Programming Methodology | Prerequisites: null
-2.ID: CS2030 Name: Programming Methodology II | Prerequisites: CS1010
-3.ID: CS2040 Name: Data Structures and Algorithms | Prerequisites: CS1010
-4.ID: CS2100 Name: Computer Organisation | Prerequisites: CS1010
-5.ID: CS2106 Name: Introduction to Operating Systems | Prerequisites: CS2100
-6.ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Prerequisites: CS2040
-7.ID: CS2105 Name: Introduction to Computer Networks | Prerequisites: CS2040
-8.ID: ES1000 Name: Foundation Academic English | Prerequisites: null
-9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
-10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
-11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
+------------------------------------------------------------------------------------------------------------------------
+| S/N |    ID    | Name                                                          | Prerequisites                       |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  01 | CS1010   | Programming Methodology                                       | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  02 | CS2030   | Programming Methodology II                                    | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  03 | CS2040   | Data Structures and Algorithms                                | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  04 | CS2100   | Computer Organisation                                         | CS1010                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  05 | CS2106   | Introduction to Operating Systems                             | CS2100                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  06 | CS2113   | Software Engineering & Object-Oriented Programming            | CS2040                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  07 | CS2105   | Introduction to Computer Networks                             | CS2040                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  08 | CS2101   | Effective Communication for Computing Professionals           | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  09 | CS2102   | Database Systems                                              | CS2030                              |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  10 | GEH1001  | Globalisation and New Media                                   | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  11 | GEH1002  | Economic Issues in Dev World                                  | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  12 | GEH1004  | Chinese Heritage: Hist & Lit                                  | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  13 | GEQ1000  | Asking Questions                                              | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  14 | GER1000  | Quantitative Reasoning                                        | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  15 | GET1001  | Seeing the World Through Maps                                 | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  16 | GET1002  | Bridging East and West: Exploring Chinese Communication       | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  17 | GET1003  | Home                                                          | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  18 | GES1000  | Singapore Employment Law                                      | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  19 | GES1002  | Global EC Dimensions of S'pore                                | None                                |
+|-----|----------|---------------------------------------------------------------|-------------------------------------|
+|  20 | GES1003  | Changing Landscapes of Singapore                              | None                                |
+------------------------------------------------------------------------------------------------------------------------
 
 
 Okay! I have added this module to your semester's module list:
-ID: CS2113 | Sem: 19-20 Semester 2
+ID: CS2113 | Sem: 2018/2019 SEM2
 
 
 Okay! I have added this module to your semester's module list:
-Name: Software Engineering & Object-Oriented Programming | Sem: 19-20 Semester 2
+Name: Software Engineering & Object-Oriented Programming | Sem: 2018/2019 SEM2
 
 
 Okay! I have added this module to your semester's module list:
-ID: CS1010 | Sem: 19-20 Semester 1
+ID: CS1010 | Sem: 2018/2019 SEM1
 
 
 Okay! I have added this module to your semester's module list:
-ID: CS4241 | Sem: 19-20 Semester 2
+ID: IS4241 | Sem: 2018/2019 SEM2
+
+
+Okay! I have added this module to the available modules to choose from:
+ID: IS4241 Name: Social Media Network Analysis | Prerequisites: CS1010
+
+
+Okay! I have added this module to your semester's module list:
+ID: IS4241 | Sem: 2018/2019 SEM2
 
 
 Okay! I have added this module to the available modules to choose from:
@@ -45,44 +99,31 @@ Okay! I have added this module to the available modules to choose from:
 ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
 
 
-Okay! Here are your available modules in database:
-1.ID: CS1010 Name: Programming Methodology | Prerequisites: null
-2.ID: CS2030 Name: Programming Methodology II | Prerequisites: CS1010
-3.ID: CS2040 Name: Data Structures and Algorithms | Prerequisites: CS1010
-4.ID: CS2100 Name: Computer Organisation | Prerequisites: CS1010
-5.ID: CS2106 Name: Introduction to Operating Systems | Prerequisites: CS2100
-6.ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Prerequisites: CS2040
-7.ID: CS2105 Name: Introduction to Computer Networks | Prerequisites: CS2040
-8.ID: ES1000 Name: Foundation Academic English | Prerequisites: null
-9.ID: ES1103 Name: English for Academic Purposes | Prerequisites: ES1000
-10.ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
-11.ID: CS2102 Name: Database Systems | Prerequisites: CS2030
-12.ID: CS1231 Name: Discrete Structures | Prerequisites: null
-13.ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
-
-
 Okay! I have added this module to your semester's module list:
-ID: CS1231 | Sem: 19-20 Semester 2
+ID: CS1231 | Sem: 2018/2019 SEM1
 
 
 Okay! Here is your module plan:
-19-20 Semester 2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Sem: 19-20 Semester 2
-2.[✗] ID: CS4241 | Sem: 19-20 Semester 2
-3.[✗] ID: CS1231 Name: Discrete Structures | Sem: 19-20 Semester 2
+2018/2019 SEM2
+1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Sem: 2018/2019 SEM2
+2.[✗] ID: IS4241 | Sem: 2018/2019 SEM2
+3.[✗] ID: IS4241 Name: Social Media Network Analysis | Sem: 2018/2019 SEM2
 
-19-20 Semester 1
-1.[✗] ID: CS1010 Name: Programming Methodology | Sem: 19-20 Semester 1
+2018/2019 SEM1
+1.[✗] ID: CS1010 Name: Programming Methodology | Sem: 2018/2019 SEM1
+2.[✗] ID: CS1231 Name: Discrete Structures | Sem: 2018/2019 SEM1
 
 
 Okay, I've marked the module as done!
 
 
 Okay! Here are your completed modules:
-19-20 Semester 2
-1.[✓] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Sem: 19-20 Semester 2
+2018/2019 SEM2
+1.[✓] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Sem: 2018/2019 SEM2
 
-19-20 Semester 1
+2018/2019 SEM1
 
 
+You have completed this amount of credits:
+4
 bye!

@@ -11,6 +11,7 @@ import java.util.logging.SimpleFormatter;
 
 import seedu.duke.command.Command;
 import seedu.duke.data.AvailableModulesList;
+import seedu.duke.data.Person;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.exception.ModuleManagerException;
 import seedu.duke.parser.Parser;
@@ -38,10 +39,16 @@ public class Duke {
      */
     public void run() {
         setupLogger();
+        boolean isUserExist = false;            //Needs to store to "database" and load from database when runs.
+        Scanner in = new Scanner(System.in);
         Ui.greetUser();
+        if (!isUserExist) {
+            Person.createNewUser(in);
+            isUserExist = true;
+        }
+        Ui.showHelpMessage();
         String fullCommand;
         boolean isExit = false;
-        Scanner in = new Scanner(System.in);
         do {
             try {
                 fullCommand = in.nextLine();
