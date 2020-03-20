@@ -137,7 +137,7 @@ public class Parser {
                     "add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT "
                     + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
         }
-        semester = moduleDetails[0];
+        semester = convertSemToStandardFormat(moduleDetails[0]);
         int moduleCredit = Integer.parseInt(moduleDetails[1]);
         if (module.contains("id/")) {
             String moduleId = module.replace("id/","");
@@ -204,5 +204,13 @@ public class Parser {
 
     private static HelpingCommand processHelpCommand() {
         return new HelpingCommand();
+    }
+
+    private static String convertSemToStandardFormat(String semester) {
+        String standardSemFormat;
+        int year = Person.getMatricYear() + (Integer.parseInt(semester) - 1) / 2;
+        int sem = (Integer.parseInt(semester) + 1) % 2 + 1;
+        standardSemFormat = year + "/" + (year + 1) + " SEM" + sem;
+        return standardSemFormat;
     }
 }
