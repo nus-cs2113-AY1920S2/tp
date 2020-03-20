@@ -147,12 +147,13 @@ public class EventList {
         if (list.isEmpty()) {
             throw new DukeException("The event list is empty.");
         }
-        for (Event event: list) {
+        for (Event event : list) {
             if (event.getName().equals(eventName)) {
                 return event;
             }
         }
         throw new DukeException("Event is not found in the list.");
+    }
 
     /**
      * Lists all types of events.
