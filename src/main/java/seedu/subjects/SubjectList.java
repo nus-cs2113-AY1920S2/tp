@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 public class SubjectList {
     private ArrayList<Subject> subjects;
-    private ArrayList<Card> cards;
-    private CardList cardOperation;
+    private static CardList cardOperation;
 
     public SubjectList() {
         this.subjects = new ArrayList<Subject>();
@@ -82,5 +81,9 @@ public class SubjectList {
     }
     public int size() {
         return this.subjects.size();
+    }
+
+    public static void listCardsInSubject(Subject subject){
+        cardOperation.listCards(subject.cards);
     }
 }
