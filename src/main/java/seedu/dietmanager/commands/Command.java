@@ -19,6 +19,12 @@ public abstract class Command {
     protected String command;
 
     /**
+     * The last execution result of the command.
+     */
+
+    protected String result;
+
+    /**
      * Constructs the Command object.
      *
      * @param command the command prompt entered by the user.
@@ -37,6 +43,24 @@ public abstract class Command {
     public String getCommand() {
         return this.command;
     }
+
+    /**
+     * Returns the last execution result of the command.
+     *
+     * @return the last execution result of the command.
+     */
+
+    public String getResult() {
+        return this.result;
+    }
+
+    /**
+     * Abstract method to save execution result of the command.
+     *
+     * @param profile the profile that the command is dealing with.
+     */
+
+    public abstract void saveResult(Profile profile);
 
     /**
      * Abstract method to execute the Command.

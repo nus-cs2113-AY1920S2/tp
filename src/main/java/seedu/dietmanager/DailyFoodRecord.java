@@ -28,20 +28,7 @@ public class DailyFoodRecord {
      */
 
     public void setDate(String date) {
-        LocalDate standardTime = null;
-        boolean isStandardTime = false;
-        try {
-            standardTime = LocalDate.parse(date);
-            isStandardTime = true;
-        } catch (DateTimeParseException ignored) {
-            System.out.println("Invalid Date Format");
-        } finally {
-            if (isStandardTime) {
-                this.date = standardTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH));
-            } else {
-                this.date = date;
-            }
-        }
+        this.date = date;
     }
 
     /**
@@ -78,20 +65,48 @@ public class DailyFoodRecord {
      * Displays the Daily Breakfast Record.
      */
 
-    public void showBreakfast() {
+    public String showBreakfast() {
+        String message = "";
+        for (Food food : breakfast) {
+            message = message + food.getFoodName() + " ";
+        }
+        if (message.equals("")) {
+            message = "Oops, you have no record for this meal";
+        }
+        return message.trim();
     }
 
     /**
      * Displays the Daily Lunch Record.
      */
 
-    public void showLunch() {
+    public String showLunch() {
+        String message = "";
+        for (Food food : lunch) {
+            message = message + food.getFoodName() + " ";
+        }
+        if (message.equals("")) {
+            message = "Oops, you have no record for this meal";
+        }
+        return message.trim();
     }
 
     /**
      * Displays the Daily Dinner Record.
      */
 
-    public void showDinner() {
+    public String showDinner() {
+        String message = "";
+        for (Food food : dinner) {
+            message = message + food.getFoodName() + " ";
+        }
+        if (message.equals("")) {
+            message = "Oops, you have no record for this meal";
+        }
+        return message.trim();
+    }
+
+    public boolean isDate(String date) {
+        return this.date.equals(date);
     }
 }
