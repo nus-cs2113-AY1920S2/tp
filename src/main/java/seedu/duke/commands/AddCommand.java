@@ -44,10 +44,14 @@ public class AddCommand extends Command {
             if (myBudget != null) {
                 double remainder = myBudget.getRemainingBudget(items.getTotalCost());
                 if (remainder < 0) {
+                    LOGGER.log(Level.INFO,"(Add command) User exceeded budget by: " + (-1) * remainder);
                     feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
                 }
             } else {
+                assert myBudget == null;
                 if (items.getTotalCost() > 0) {
+                    LOGGER.log(Level.INFO,"(Add command) User has not added budget but has incurred total cost: "
+                            + items.getTotalCost());
                     feedbackToUser += String.format(EXCEED_WARNING,items.getTotalCost());
                 }
             }
