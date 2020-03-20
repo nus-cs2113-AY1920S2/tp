@@ -1,11 +1,15 @@
 package seedu.subjects;
 
+import seedu.cards.Card;
+import seedu.cards.CardList;
 import seedu.exception.EscException;
 
 import java.util.ArrayList;
 
 public class SubjectList {
     private ArrayList<Subject> subjects;
+    private ArrayList<Card> cards;
+    private CardList cardOperation;
 
     public SubjectList() {
         this.subjects = new ArrayList<Subject>();

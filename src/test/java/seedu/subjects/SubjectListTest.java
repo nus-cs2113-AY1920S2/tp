@@ -2,6 +2,7 @@ package seedu.subjects;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.cards.Card;
 import seedu.exception.EscException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,12 +14,14 @@ public class SubjectListTest {
     private Subject subject1;
     private Subject subject2;
     private EscException expectedException;
+    private Card card;
 
     @BeforeEach
     void setUp() {
         subjects = new SubjectList();
         subject1 = new Subject("TEST 1");
         subject2 = new Subject("TEST 2");
+        card = new Card("What does HTTP stand for?", "HyperText Transfer Protocol");
     }
 
     @Test
@@ -109,5 +112,13 @@ public class SubjectListTest {
 
         assertFalse(subjects.getSubjects().contains(subject2));
         assertEquals(0,subjects.getSubjects().size());
+    }
+    @Test
+    void addCardsToSubject() throws EscException {
+
+
+
+
+
     }
 }
