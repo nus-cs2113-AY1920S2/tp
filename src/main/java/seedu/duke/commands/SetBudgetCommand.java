@@ -10,6 +10,8 @@ public class SetBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "SET";
 
+    public static final String EXCEED_WARNING = "\nNOTE: You have exceeded your budget by %.2f";
+
     public static final String SET_BUDGET_MESSAGE = System.lineSeparator() + "Setting budget to ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the budget based on user input."
@@ -36,5 +38,11 @@ public class SetBudgetCommand extends Command {
         LOGGER.log(Level.INFO,"(Set budget) Budget amount: " + correctBudget + " did not fail assertions.");
         String feedback = SET_BUDGET_MESSAGE + "$" + correctBudget;
         feedbackToUser = feedback;
+        assert myBudget != null;
+        double remainder = myBudget.getRemainingBudget(items.getTotalCost());
+        if (remainder < 0) {
+            LOGGER.log(Level.INFO,"(Set budget) User exceeded budget by: " + (-1) * remainder);
+            feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
+        }
     }
 }
