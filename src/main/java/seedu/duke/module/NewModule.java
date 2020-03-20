@@ -34,7 +34,7 @@ public class NewModule extends Module {
         boolean hasPreReqModule = false;
         StringBuilder prereq = new StringBuilder(" | Prerequisites:");
         for (Module preReqModule : this.preRequisiteModules) {
-            prereq.append(" " + preReqModule.getId());
+            prereq.append(" ").append(preReqModule.getId());
             hasPreReqModule = true;
         }
         if (hasPreReqModule) {
