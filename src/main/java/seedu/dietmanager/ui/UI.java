@@ -79,4 +79,14 @@ public class UI {
         return sc.nextLine();
     }
 
+    /**
+     * Show messages from executing commands.
+     * @param message String fo message to be shown to user
+     */
+    public void showCommandMessage(String... message) {
+        for (String m : message) {
+            System.out.println(m);
+        }
+    }
+
 }
