@@ -53,17 +53,22 @@ public class UI {
      */
     public static void printHelp() {
         String helpMessage = "Here's a list of things you can do:\n"
-                + "\t> Create Category:     create n/[CATEGORYNAME]  e.g. create n/Biology.\n"
-                + "\t> List Category: ​     list category\n"
-                + "\t> Select Category: ​   select [INDEX] e.g. select 1\n"
-                + "\t> Delete Category: ​   delete category [INDEX] e.g. delete 1\n"
-                + "\t> Add New Card:​       add q/[QUESTION] a/[ANSWER] e.g. add q/Which year was NUS founded? a/1980\n"
-                + "\t> List all Cards: ​    list card\n"
-                + "\t> Delete a Card: ​     delete [INDEX] e.g. delete 1\n"
-                + "\t> Start Quiz: ​        quiz\n"
-                + "\t> View Answer: ​       answer [INDEX] e.g. answer 1\n"
-                + "\t> Help Page: ​         help\n"
-                + "\t> Exit the Program: ​  exit";
+                + "\taddsubject s/<SUBJECTNAME>                 Add a subject\n"
+                + "\tdeletesubject s/<INDEX>                    Delete a subject and all its cards\n"
+                + "\tlistsubject                                List all subjects\n"
+                + "\n"
+                + "\taddcard s/<INDEX> q/<QUESTION> a/<ANSWER>  Add a card into the specified subject\n"
+                + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified category\n"
+                + "\tlistcard s/<INDEX>                         List all cards in specified subject\n"
+                + "\n"
+                + "\tquiz s/<INDEX>                             Start a quiz from the specified subject\n"
+                + "\tscore s/<INDEX>                            Get previous scores of quizzes from specified subject\n"
+                + "\n"
+                + "\thelp                                       Displays the help page\n"
+                + "\texit                                       Exits the program";
+        //+ "\t> View Answer: ​       answer [INDEX] e.g. answer 1\n"
+        //+ "\tselect <INDEX> Select a subject by subject index\n";
+
         System.out.println(helpMessage);
     }
 
