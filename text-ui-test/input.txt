@@ -6,6 +6,8 @@ ADD i/apple p/
 ADD i/apple p/2.45
 ADD i/banana p/3.00
 ADD i/cherry p/5.60
+FIND apple
+FIND nothing
 SET
 SET b/ 8*wh12
 SET b/
