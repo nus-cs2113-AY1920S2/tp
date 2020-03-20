@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetWeightCommand extends Command {
@@ -25,6 +26,11 @@ public class SetWeightCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         profile.setWeight(this.weight);
-        System.out.println(String.format("Your Weight has been changed to %.2f", profile.getWeight()));
+        saveResult(profile);
+    }
+
+    @Override
+    public void saveResult(Profile profile) {
+        this.result = MessageBank.WEIGHT_CHANGE_MESSAGE + String.format("%.2f.",profile.getWeight());
     }
 }

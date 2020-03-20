@@ -32,7 +32,7 @@ public class UI {
     }
 
     public void displayExitMessage() {
-        System.out.println(MessageBank.EXIT_MESSAGE);
+        System.out.println(MessageBank.EXIT_APP_MESSAGE);
     }
 
     public void displayFileErrorMessage() {
@@ -45,6 +45,10 @@ public class UI {
 
     public void displayInvalidFormatMessage() {
         System.out.println(MessageBank.INVALID_FORMAT_MESSAGE);
+    }
+
+    public void showExecutionResult(String result) {
+        System.out.println(result);
     }
 
     /**

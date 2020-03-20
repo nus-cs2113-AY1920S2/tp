@@ -10,9 +10,11 @@ public class Profile {
     private double weight; //Wight in Kg
     private double weightGoal;
     private boolean profileExist;
+    private ArrayList<DailyFoodRecord> personalFoodRecord;
     private ArrayList<Double> weightRecord = new ArrayList<>();
 
     public Profile() {
+        this.personalFoodRecord = new ArrayList<>();
         this.profileExist = false;
     }
 
@@ -102,6 +104,67 @@ public class Profile {
         return weight / Math.pow(height / 100, 2);
     }
 
+    /**
+     * Returns a daily record of a certain date.
+     * @param date the date of the wanted record.
+     * @return a record of wanted date.
+     */
+
+    public DailyFoodRecord getRecordOfDay(String date) {
+        boolean recordExists = false;
+        DailyFoodRecord record = null;
+        for (DailyFoodRecord r : personalFoodRecord) {
+            if (r.isDate(date)) {
+                record = r;
+                recordExists = true;
+                break;
+            }
+        }
+        if (!recordExists) {
+            record = addNewRecord(date);
+        }
+        return record;
+    }
+
+    public DailyFoodRecord getRecordOfDay(int index) {
+        return personalFoodRecord.get(index);
+    }
+
+    /**
+     * Creates a new record of a certain date.
+     * @param date the date of the new record.
+     * @return a newly generated daily record.
+     */
+
+    public DailyFoodRecord addNewRecord(String date) {
+        DailyFoodRecord record = new DailyFoodRecord(date);
+        personalFoodRecord.add(record);
+        return record;
+    }
+
+    public int getNumOfRecordedDays() {
+        return personalFoodRecord.size();
+    }
+
+    public void setRecordOfDay(DailyFoodRecord record, String mealType, ArrayList<Food> foodList) {
+        record.recordMeals(mealType,foodList);
+    }
+
+    public void showRecordOfDay(DailyFoodRecord record) {
+        record.showDailyRecord();
+    }
+
+    public void showBreakfastOfDay(DailyFoodRecord record) {
+        record.showBreakfast();
+    }
+
+    public void showLunchOfDay(DailyFoodRecord record) {
+        record.showLunch();
+    }
+
+    public void showDinnerDay(DailyFoodRecord record) {
+        record.showDinner();
+    }
     public ArrayList<Double> getWeightProgress() {
         return weightRecord;
     }

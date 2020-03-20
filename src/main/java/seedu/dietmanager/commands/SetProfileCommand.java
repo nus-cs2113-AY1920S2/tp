@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetProfileCommand extends Command {
@@ -35,6 +36,11 @@ public class SetProfileCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         profile.setProfile(this.name, this.age, this.gender, this.height, this.weight, this.weightGoal);
-        System.out.println("Profile updated successfully!");
+        saveResult(profile);
+    }
+
+    @Override
+    public void saveResult(Profile profile) {
+        this.result = MessageBank.PROFILE_UPDATE_MESSAGE;
     }
 }
