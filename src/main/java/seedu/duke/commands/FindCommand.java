@@ -32,11 +32,15 @@ public class FindCommand extends Command {
     public void execute() {
         ArrayList<Item> filteredItems = new ArrayList<>();
         int size = items.getSize();
+        int matches = 0;
+        int[] indexArray = new int[size];
         for (int i = 0; i < size; i++) {
             Item unfilteredItem = items.getItem(i);
             assert unfilteredItem != null;
             if (unfilteredItem.getDescription().contains(keyword)) {
                 filteredItems.add(unfilteredItem);
+                indexArray[matches] = i + 1;
+                matches += 1;
             }
         }
         int filteredListSize = filteredItems.size();
@@ -50,12 +54,10 @@ public class FindCommand extends Command {
             CommandLineTable st = new CommandLineTable();
             st.setShowVerticalLines(true);
             st.setHeaders("Item", "Price");
-            int bulletNum = 1;
             for (int i = 0; i < filteredItems.size(); i++) {
-                String itemLine = bulletNum + ". [" + filteredItems.get(i).getStatusIcon()
+                String itemLine = indexArray[i] + ". [" + filteredItems.get(i).getStatusIcon()
                         + "] " + filteredItems.get(i).getDescription();
                 st.addRow(itemLine, String.format("$%.2f", filteredItems.get(i).getPrice()));
-                bulletNum++;
             }
             st.print();
             LOGGER.log(Level.INFO,"(Find command) Results displayed successfully");

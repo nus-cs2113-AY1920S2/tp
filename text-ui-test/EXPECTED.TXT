@@ -75,11 +75,11 @@ Enter command:
 
 Here are the matching items:
 
-+--------------+-------+
-| Item         | Price |
-+--------------+-------+
-| 1. [0] apple | $2.45 |
-+--------------+-------+
++---------------+-------+
+| Item          | Price |
++---------------+-------+
+| 3. [0] cherry | $5.60 |
++---------------+-------+
 
 
 Enter command:
@@ -253,6 +253,10 @@ DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
 || Example: DISPLAY
 
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
+
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
 || Example: DEL 1
@@ -326,6 +330,10 @@ EDIT: Edits the specified item in the list.
 DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
 || Example: DISPLAY
+
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
 
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
