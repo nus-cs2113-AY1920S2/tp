@@ -1,32 +1,32 @@
 package seedu.duke.module;
 
 public enum Grading {
-    APLUS("A+", 5.0),
-    A("A", 5.0),
-    AMINUS("A-", 4.5),
-    BPLUS("B+", 4.0),
-    B("B", 3.5),
-    BMINUS("B-", 3.0),
-    CPLUS("C+", 2.5),
-    C("C", 2.0),
-    DPLUS("D+", 1.5),
-    D("D", 1.0),
-    F("F", 0.0),
-    CS("PASS", 0.0),
-    CU("FAIL", 0.0);
+    APLUS("A+", 5.00),
+    A("A", 5.00),
+    AMINUS("A-", 4.50),
+    BPLUS("B+", 4.00),
+    B("B", 3.50),
+    BMINUS("B-", 3.00),
+    CPLUS("C+", 2.50),
+    C("C", 2.00),
+    DPLUS("D+", 1.50),
+    D("D", 1.00),
+    F("F", 0.00),
+    CS("PASS", 0.00),
+    CU("FAIL", 0.00);
 
     private String grade;
-    private float gradePoint;
+    private double gradePoint;
 
     public String getGrade() {
         return this.grade;
     }
 
-    public String getPoint() {
+    public double getPoint() {
         return this.gradePoint;
     }
 
-    Grading(String grade, float gradePoint) {
+    Grading(String grade, double gradePoint) {
         this.grade = grade;
         this.gradePoint = gradePoint;
     }

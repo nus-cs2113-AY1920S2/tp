@@ -9,6 +9,6 @@ class GradingTest {
     @Test
     void getGradeValue() {
         double gradeValue = 5.0;
-        assertEquals(gradeValue, Grading.A.getGradeValue());
+        assertEquals(gradeValue, Grading.A.getPoint());
     }
 }
