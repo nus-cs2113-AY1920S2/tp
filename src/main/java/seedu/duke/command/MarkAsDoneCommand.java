@@ -37,7 +37,7 @@ public class MarkAsDoneCommand extends Command {
                 if (module.getName().equals(description) || module.getId().equals(description)) {
                     module.setAsDone(grade);
                     if (grade != Grading.F && grade != Grading.CU) {
-                        Person.addTotalModularCreditCompleted(module.getModuleCredit());
+                        Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
                     return;
                 }

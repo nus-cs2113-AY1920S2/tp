@@ -8,15 +8,15 @@ public class Person {
     private static String name;
     private static int matricYear;
     private static double totalCap;
-    private static int totalModularCreditCompleted;
+    private static int totalModuleCreditCompleted;
 
 
-    public static int getTotalModularCreditCompleted() {
-        return totalModularCreditCompleted;
+    public static int getTotalModuleCreditCompleted() {
+        return totalModuleCreditCompleted;
     }
 
-    public static void addTotalModularCreditCompleted(int modularCredit) {
-        Person.totalModularCreditCompleted += modularCredit;
+    public static void addTotalModuleCreditCompleted(int modularCredit) {
+        Person.totalModuleCreditCompleted += modularCredit;
     }
 
     public Person(String name, int year) {
@@ -39,5 +39,13 @@ public class Person {
 
     public static int getMatricYear() {
         return matricYear;
+    }
+
+    public static void setTotalCap(double cap) {
+        totalCap = cap;
+    }
+
+    public static double getTotalCap() {
+        return totalCap;
     }
 }

@@ -186,11 +186,18 @@ Okay, I've marked the module as done!
 
 Okay! Here are your completed modules:
 2018/2019 SEM2
-1.[✓] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A+
+1.[✓] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
 
 
 You have completed this amount of credits:
 4
+
+
+Okay, I've marked the module as done!
+
+
+Your CAP:
+4.75
 
 
 bye!

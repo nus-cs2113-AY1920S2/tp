@@ -73,6 +73,10 @@ public class SelectedModule extends Module {
         return super.toString() + " | Sem: " + semester;
     }
 
+    public Grading getGrade() {
+        return this.grade;
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {
