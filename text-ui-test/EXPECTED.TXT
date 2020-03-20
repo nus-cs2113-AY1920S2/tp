@@ -73,6 +73,20 @@ NOTE: You have exceeded your budget by 11.05
 
 Enter command:
 
+Here are the matching items:
+
++---------------+-------+
+| Item          | Price |
++---------------+-------+
+| 3. [0] cherry | $5.60 |
++---------------+-------+
+
+
+Enter command:
+Sorry, no results could be found!
+
+Enter command:
+
 Please enter an amount for your budget
 Example: SET b/300
 
@@ -239,6 +253,10 @@ DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
 || Example: DISPLAY
 
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
+
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
 || Example: DEL 1
@@ -312,6 +330,10 @@ EDIT: Edits the specified item in the list.
 DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
 || Example: DISPLAY
+
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
 
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]

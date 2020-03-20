@@ -12,6 +12,10 @@ public class ShoppingList {
         return items;
     }
 
+    public int getSize() {
+        return items.size();
+    }
+
     /**
      * Prints a table representing the shopping list.
      */
