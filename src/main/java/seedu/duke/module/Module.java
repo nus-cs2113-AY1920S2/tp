@@ -58,7 +58,9 @@ public abstract class Module {
         return name;
     }
 
-    public String getId() { return this.id; }
+    public String getId() {
+        return this.id;
+    }
 
     public void updateName(String name) {
         this.name = name;
@@ -68,7 +70,9 @@ public abstract class Module {
         this.id = id;
     }
 
-    public int getModuleCredit() { return this.moduleCredit; }
+    public int getModuleCredit() {
+        return this.moduleCredit;
+    }
 
     public String getPreReqModulesID() {
         String preReqModulesList = "";

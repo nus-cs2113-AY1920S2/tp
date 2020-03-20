@@ -78,7 +78,8 @@ public class SelectedModule extends Module {
     @Override
     public String toString() {
         if (this.isDone) {
-            return this.getIcon() + " " + super.toString() + " | Sem: " + convertSemToStandardFormat(semester) + " | Grade: " + grade.getGrade();
+            return this.getIcon() + " " + super.toString() + " | Sem: " + convertSemToStandardFormat(semester)
+                    + " | Grade: " + grade.getGrade();
         } else {
             return this.getIcon() + " " + super.toString() + " | Sem: " + convertSemToStandardFormat(semester);
         }
