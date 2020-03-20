@@ -25,6 +25,12 @@ import static seedu.nuke.util.Message.messageAddCategorySuccess;
 public class AddCategoryCommand extends AddCommand {
     public static final String COMMAND_WORD = "addc";
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> -p <priority>";
+    public static final Pattern REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
+            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<invalid>(?:\\s+-.*)*)"
+    );
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
             Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
