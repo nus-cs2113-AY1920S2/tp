@@ -65,9 +65,15 @@ public class EditCommand extends Command {
 
             LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
             feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
-            double remainder = myBudget.getRemainingBudget(items.getTotalCost());
-            if (remainder < 0) {
-                feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
+            if (myBudget != null) {
+                double remainder = myBudget.getRemainingBudget(items.getTotalCost());
+                if (remainder < 0) {
+                    feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
+                }
+            } else {
+                if (items.getTotalCost() > 0) {
+                    feedbackToUser += String.format(EXCEED_WARNING,items.getTotalCost());
+                }
             }
 
         } catch (NullPointerException | IndexOutOfBoundsException e) {

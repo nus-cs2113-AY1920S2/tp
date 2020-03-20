@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddCommandTest {
 
-    private ShoppingList items = new ShoppingList();
+    ShoppingList items = new ShoppingList();
     Command command;
 
     @Test
@@ -30,7 +30,8 @@ public class AddCommandTest {
         command = new AddCommand("banana", 5.50);
         command.setData(items, null);
         command.execute();
-        String expectedFeedback = System.lineSeparator() + "Added this item: " + items.getItem(0);
+        String expectedFeedback = System.lineSeparator() + "Added this item: " + items.getItem(0)
+                + String.format("\nNOTE: You have exceeded your budget by %.2f",items.getTotalCost());
         assertEquals(expectedFeedback, command.feedbackToUser);
     }
 

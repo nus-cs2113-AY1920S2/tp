@@ -35,9 +35,15 @@ public class DeleteCommand extends Command {
             items.deleteItem(index);
             LOGGER.log(Level.INFO,"(Delete command) Item was removed from index: " + index);
             feedbackToUser = feedback;
-            double remainder = myBudget.getRemainingBudget(items.getTotalCost());
-            if (remainder < 0) {
-                feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
+            if (myBudget != null) {
+                double remainder = myBudget.getRemainingBudget(items.getTotalCost());
+                if (remainder < 0) {
+                    feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
+                }
+            } else {
+                if (items.getTotalCost() > 0) {
+                    feedbackToUser += String.format(EXCEED_WARNING,items.getTotalCost());
+                }
             }
         } catch (IndexOutOfBoundsException e) {
             LOGGER.log(Level.WARNING,"(Delete command) Invoked with invalid index: " + this.index);

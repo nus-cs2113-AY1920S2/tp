@@ -38,9 +38,15 @@ public class SetBudgetCommand extends Command {
         LOGGER.log(Level.INFO,"(Set budget) Budget amount: " + correctBudget + " did not fail assertions.");
         String feedback = SET_BUDGET_MESSAGE + "$" + correctBudget;
         feedbackToUser = feedback;
-        double remainder = myBudget.getRemainingBudget(items.getTotalCost());
-        if (remainder < 0) {
-            feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
+        if (myBudget != null) {
+            double remainder = myBudget.getRemainingBudget(items.getTotalCost());
+            if (remainder < 0) {
+                feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
+            }
+        } else {
+            if (items.getTotalCost() > 0) {
+                feedbackToUser += String.format(EXCEED_WARNING,items.getTotalCost());
+            }
         }
     }
 }
