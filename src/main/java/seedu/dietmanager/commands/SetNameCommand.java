@@ -1,9 +1,9 @@
-package seedu.duke.commands;
+package seedu.dietmanager.commands;
 
-import seedu.duke.Profile;
-import seedu.duke.exceptions.InvalidFormatException;
-import seedu.duke.parser.Parser;
-import seedu.duke.ui.UI;
+import seedu.dietmanager.Profile;
+import seedu.dietmanager.exceptions.InvalidFormatException;
+import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.ui.UI;
 
 public class SetNameCommand extends Command {
 

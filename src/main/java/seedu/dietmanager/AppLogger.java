@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.dietmanager;
 
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
@@ -7,7 +7,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 
-public class InfoLogger {
+public class AppLogger {
 
     private static final String LOGGER_FILE_NAME = "DietManagerLogger.log";
     private final Logger logger;
@@ -16,8 +16,8 @@ public class InfoLogger {
      * Constructs the InfoLogger to record information when running the application.
      */
 
-    public InfoLogger() {
-        this.logger = Logger.getLogger(InfoLogger.class.getName());
+    public AppLogger() {
+        this.logger = Logger.getLogger(AppLogger.class.getName());
 
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -50,6 +50,23 @@ public class InfoLogger {
         consoleHandler.setLevel(Level.INFO);
         logger.addHandler(consoleHandler);
     }
+
+    public void writeFineLog(String message) {
+        this.logger.log(Level.FINE, message);
+    }
+
+    public void writeInfoLog(String message) {
+        this.logger.log(Level.INFO, message);
+    }
+
+    public void writeWarningLog(String message) {
+        this.logger.log(Level.WARNING, message);
+    }
+
+    public void writeSevereLog(String message) {
+        this.logger.log(Level.SEVERE, message);
+    }
+
 
     public void logExecuteProgramme() {
         this.logger.log(Level.INFO, "Starting Diet Manager");

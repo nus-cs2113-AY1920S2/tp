@@ -5,7 +5,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'seedu.duke'
+group 'seedu.dietmanager'
 version '0.1.0'
 
 repositories {
@@ -21,12 +21,12 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.dietmanager.DietManager"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveVersion = "0.0.1"
+    archiveBaseName = "DietManager"
+    archiveVersion = "1.0.0"
     archiveClassifier = null
     archiveAppendix = null
 }
@@ -35,7 +35,7 @@ checkstyle {
     toolVersion = '8.23'
 }
 
-run{
+run {
     standardInput = System.in
     enableAssertions = true
 }

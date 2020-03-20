@@ -1,4 +1,4 @@
-package seedu.duke.ui;
+package seedu.dietmanager.ui;
 
 import java.util.Scanner;
 
@@ -29,6 +29,14 @@ public class UI {
     public void displayWelcomeMessage() {
         System.out.println(MessageBank.LOGO);
         System.out.println(MessageBank.WELCOME_MESSAGE);
+    }
+
+    public void displayExitMessage() {
+        System.out.println(MessageBank.EXIT_MESSAGE);
+    }
+
+    public void displayFileErrorMessage() {
+        System.out.println(MessageBank.FILE_ERROR_MESSAGE);
     }
 
     public void displayInvalidCommandMessage() {

@@ -1,9 +1,7 @@
-package seedu.duke.commands;
+package seedu.dietmanager.commands;
 
-import seedu.duke.Profile;
-import seedu.duke.exceptions.InvalidFormatException;
-import seedu.duke.parser.Parser;
-import seedu.duke.ui.UI;
+import seedu.dietmanager.Profile;
+import seedu.dietmanager.ui.UI;
 
 public class ExitCommand extends Command {
 
