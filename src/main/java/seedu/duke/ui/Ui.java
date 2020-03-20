@@ -62,7 +62,7 @@ public class Ui {
 
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
-    private static final String SHOW_CAP = "Your CAP: ";
+    private static final String SHOW_CAP = "Your CAP:";
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
