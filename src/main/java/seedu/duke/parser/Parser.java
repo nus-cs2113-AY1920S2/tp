@@ -13,6 +13,7 @@ import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.UnmarkCommand;
+import seedu.duke.commands.FindCommand;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +64,10 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             createListCommand(arguments);
+            break;
+
+        case FindCommand.COMMAND_WORD:
+            createFindCommand(arguments);
             break;
 
         case ClearCommand.COMMAND_WORD:
@@ -265,7 +270,6 @@ public class Parser {
      * Split args for Edit Command.
      */
     private String[] splitArgsForEditCommand(String arguments) throws NullPointerException {
-        String[] argsArray;
         String indexOfItem;
         String itemPrice = null;
         String itemDescription = null;
@@ -382,12 +386,14 @@ public class Parser {
                 throw new NumberFormatException();
             }
 
-        } if (itemQuantity != null) {
+        }
+
+        if (itemQuantity != null) {
             if (Integer.parseInt(itemQuantity) < 0.0) { //check for negative qty input
                 throw new NumberFormatException();
             }
         }
-        argsArray = new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
+        String[] argsArray = new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
         return argsArray;
     }
 
@@ -491,6 +497,20 @@ public class Parser {
      */
     private void createExitCommand() {
         newCommand = new ExitCommand();
+    }
+
+    private void createFindCommand(String arguments) {
+        if (arguments == null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter a keyword after FIND"
+                    + System.lineSeparator()
+                    + "Example: FIND apples");
+            LOGGER.log(Level.INFO,"(Find command) User did not supply keyword for FIND");
+        } else {
+            assert arguments != null;
+            LOGGER.log(Level.INFO,"(Find command) User supplied keyword: " + arguments);
+            newCommand = new FindCommand(arguments);
+        }
     }
 
 }

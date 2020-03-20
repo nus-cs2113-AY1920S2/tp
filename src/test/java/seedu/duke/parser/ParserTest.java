@@ -168,9 +168,9 @@ public class ParserTest {
                 + System.lineSeparator()
                 + " - Index of item must be a positive number."
                 + System.lineSeparator()
-                + " - Price of an item should be in numerical form."
+                + " - Price of an item should be in positive numerical form."
                 + System.lineSeparator()
-                + " - Quantity of an item should be in numerical form."
+                + " - Quantity of an item should be in positive numerical form."
                 + System.lineSeparator()
                 + " - At least 'i/' , 'p/' or 'q/' should be present."
                 + System.lineSeparator()
