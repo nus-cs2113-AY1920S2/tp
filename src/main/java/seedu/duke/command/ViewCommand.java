@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.data.ModuleList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
@@ -93,16 +92,47 @@ public class ViewCommand extends Command {
         StringBuilder viewList = new StringBuilder();
         for (Module module : modulesList) {
             int index = modulesList.indexOf(module) + 1;
-            viewList.append(index).append(".")
-                    .append(module.toString())
-                    .append(System.lineSeparator());
+            viewList.append(Ui.BOX_MARGIN)
+                    .append(System.lineSeparator())
+                    .append("|  ").append(String.format("%02d", index)).append(" | ");
+
+            viewList.append(module.getId());
+            alignId(viewList, module);
+
+            viewList.append(module.getName());
+            alignName(viewList, module);
+
+            viewList.append(module.getPreReqModulesID());
+            alignPreReqModules(viewList, module);
         }
+
         viewList.append(System.lineSeparator());
         Ui.showViewAvailableMessage(viewList.toString().trim());
     }
 
     private void viewCompletedCredits() {
         Ui.showCompletedCredits();
+    }
+
+    private void alignPreReqModules(StringBuilder viewList, Module module) {
+        int lengthOfPreReqModulesColumn = 36;
+        viewList.append(" ".repeat(Math.max(0,
+                (lengthOfPreReqModulesColumn - module.getPreReqModulesID().length()))));
+        viewList.append("|").append(System.lineSeparator());
+    }
+
+    private void alignName(StringBuilder viewList, Module module) {
+        int lengthOfNameColumn = 62;
+        viewList.append(" ".repeat(Math.max(0,
+                (lengthOfNameColumn - module.getName().length()))));
+        viewList.append("| ");
+    }
+
+    private void alignId(StringBuilder viewList, Module module) {
+        int lengthOfIDsColumn = 9;
+        viewList.append(" ".repeat(Math.max(0,
+                (lengthOfIDsColumn - module.getId().length()))));
+        viewList.append("| ");
     }
 
 }

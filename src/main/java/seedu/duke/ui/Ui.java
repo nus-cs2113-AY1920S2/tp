@@ -33,7 +33,20 @@ public class Ui {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
+
     private static final String REQUIRED_INPUT_USER_NAME = "What is your name? Please enter it over here:";
+
+    private static final String BOX_EDGE = "--------------------------------------------------------------------------"
+            + "----------------------------------------------";
+
+    private static final String BOX_HEADER = "| S/N |    ID    | Name                                                 "
+            + "         | Prerequisites                       |";
+
+    public static final String BOX_MARGIN = "|-----|----------|------------------------------------------------------"
+            + "---------|-------------------------------------|";
+
+    private static final String REQUIRED_INPUT_USER_NAME = "Please input your name:";
+
 
     private static final String REQUIRED_INPUT_USER_MATRIC_YEAR = ", please input your matric year:";
 
@@ -77,7 +90,7 @@ public class Ui {
     }
 
     public static void showViewAvailableMessage(String viewList) {
-        showToUser(VIEWED_AVAILABLE_MODULE_MESSAGE, viewList, LINE_SEPARATOR);
+        showToUser(VIEWED_AVAILABLE_MODULE_MESSAGE, BOX_EDGE, BOX_HEADER, viewList, BOX_EDGE, LINE_SEPARATOR);
     }
 
     public static void showViewDoneMessage(String viewList) {
