@@ -13,6 +13,7 @@ import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.UnmarkCommand;
+import seedu.duke.commands.FindCommand;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +64,10 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             createListCommand(arguments);
+            break;
+
+        case FindCommand.COMMAND_WORD:
+            createFindCommand(arguments);
             break;
 
         case ClearCommand.COMMAND_WORD:
@@ -416,6 +421,17 @@ public class Parser {
      */
     private void createExitCommand() {
         newCommand = new ExitCommand();
+    }
+
+    private void createFindCommand(String arguments) {
+        if (arguments == null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter a keyword after FIND"
+                    + System.lineSeparator()
+                    + "Example: FIND apples");
+        } else {
+            newCommand = new FindCommand(arguments);
+        }
     }
 
 }
