@@ -3,27 +3,20 @@ package seedu.nuke.directory;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.TaskManager;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Module extends Directory implements Serializable {
+public class Module extends Directory {
+    private static final Root root = new Root();
     private String moduleCode;
     private String title;
     private String description;
     private CategoryManager categories;
 
     /**
-     * Default constructor for module
-     */
-    public Module() {}
-
-    /**
      * Constructs the module
      *
-     * @param root
-     *  The root of the directory
      * @param moduleCode
      *  The module code of the module
      * @param title
@@ -31,7 +24,7 @@ public class Module extends Directory implements Serializable {
      * @param description
      *  The description of the module
      */
-    public Module(Root root, String moduleCode, String title, String description) {
+    public Module(String moduleCode, String title, String description) {
         super(root);
         this.moduleCode = moduleCode.toUpperCase();
         this.title = title;
@@ -46,7 +39,7 @@ public class Module extends Directory implements Serializable {
      *  The module code of the module
      */
     public Module(String moduleCode) {
-        this(null, moduleCode, null, "NIL");
+        this(moduleCode, "", "NIL");
     }
 
     /**
@@ -163,13 +156,13 @@ public class Module extends Directory implements Serializable {
     /**
      * Checks if one module has the same module code as another.
      *
-     * @param module
-     *  The module to check
+     * @param moduleCode
+     *  The module code to check
      * @return
      *  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
      */
-    public boolean isSameModule(Module module) {
-        return this.moduleCode.equalsIgnoreCase(module.moduleCode);
+    public boolean isSameModule(String moduleCode) {
+        return this.moduleCode.equalsIgnoreCase(moduleCode);
     }
 
 }

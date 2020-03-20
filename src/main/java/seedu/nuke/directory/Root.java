@@ -10,6 +10,6 @@ public class Root extends Directory {
 
     @Override
     public Directory getParent() {
-        return this.parent;
+        return null;
     }
 }

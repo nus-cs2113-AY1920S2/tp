@@ -104,12 +104,12 @@ public class Category extends Directory {
     /**
      * Checks if one category has the same category name as another.
      *
-     * @param category
-     *  The category to check
+     * @param categoryName
+     *  The category name to check
      * @return
      *  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
      */
-    public boolean isSameCategory(Category category) {
-        return this.categoryName.equals(category.categoryName);
+    public boolean isSameCategory(String categoryName) {
+        return this.categoryName.equals(categoryName);
     }
 }

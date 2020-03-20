@@ -149,6 +149,11 @@ public class Message {
 
     public static final String MESSAGE_UNDO_SUCCESSFUL = "Successfully undo!\n";
 
+    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "SUCCESS!! Module has been updated.\n";
+
+    public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! Category has been updated.\n";
+
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
 
 
 }

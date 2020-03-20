@@ -11,8 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE_ADD;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_PROVIDED;
+import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.messageAddModuleSuccess;
 
 /**
@@ -61,7 +60,7 @@ public class AddModuleCommand extends AddCommand {
             return new CommandResult(messageAddModuleSuccess(toAdd.getModuleCode(), toAdd.getTitle()));
         } catch (ModuleManager.DuplicateModuleException e) {
             logger.log(Level.WARNING, String.format("Duplicate module %s attempted to be added.", moduleCode));
-            return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);
+            return new CommandResult(MESSAGE_DUPLICATE_MODULE);
         } catch (ModuleNotProvidedException e) {
             logger.log(Level.WARNING, String.format("Unknown module %s attempted to be added.", moduleCode));
             assert !ModuleManager.getModulesMap().containsKey(moduleCode) : "Incorrect identifying of unprovided module!";

@@ -60,7 +60,7 @@ public class AddTaskCommand extends AddCommand {
      * @param priority
      *  The priority of the task
      */
-    public AddTaskCommand(String moduleCode, String categoryName, String description, DateTime deadline, Integer priority) {
+    public AddTaskCommand(String moduleCode, String categoryName, String description, DateTime deadline, int priority) {
         this.moduleCode = moduleCode;
         this.categoryName = categoryName;
         this.description = description;

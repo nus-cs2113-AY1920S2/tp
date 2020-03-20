@@ -1,7 +1,11 @@
 package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.Executor;
+import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.data.CategoryManager;
+import seedu.nuke.data.TaskManager;
+import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Directory;
@@ -14,6 +18,12 @@ import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.util.Message.*;
 
+/**
+ * <h3>Delete Task Command</h3>
+ * A <b>Command</b> to delete <b>Task(s)</b> from the <b>Task List</b>.
+ * @see Command
+ * @see Task
+ */
 public class DeleteTaskCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delt";
     public static final String FORMAT = COMMAND_WORD + " <category name>";
@@ -83,6 +93,15 @@ public class DeleteTaskCommand extends DeleteCommand {
         }
     }
 
+    /**
+     * Executes the <b>Delete Task Command</b> to delete <b>Task<(s)/b> with the <code>task description</code>
+     * from the <b>Task List</b>.
+     *
+     * @return The <b>Command Result</b> of the execution
+     * @see Task
+     * @see TaskManager
+     * @see CommandResult
+     */
     @Override
     public CommandResult execute() {
 //        try {

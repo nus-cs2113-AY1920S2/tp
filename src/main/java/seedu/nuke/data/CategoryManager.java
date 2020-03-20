@@ -5,6 +5,7 @@ import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
+import seedu.nuke.exception.ModuleNotProvidedException;
 
 import java.util.ArrayList;
 
@@ -84,15 +85,15 @@ public class CategoryManager {
     }
 
     /**
-     * Checks for duplicates of the specified category in the Category List.
-     * @param toCheck
-     *  The category to check
+     * Checks for duplicates of the same category name in the Category List.
+     * @param categoryName
+     *  The category name to check
      * @return
      *  <code>TRUE</code> if there exists a duplicate, and <code>FALSE</code> otherwise
      */
-    private boolean contains(Category toCheck) {
+    private boolean contains(String categoryName) {
         for (Category category : categoryList) {
-            if (category.isSameCategory(toCheck)) {
+            if (category.isSameCategory(categoryName)) {
                 return true;
             }
         }
@@ -106,7 +107,7 @@ public class CategoryManager {
      *  The category to be added
      */
     public void add(Category toAdd) throws DuplicateCategoryException {
-        if (contains(toAdd)) {
+        if (contains(toAdd.getCategoryName())) {
             throw new DuplicateCategoryException();
         } else {
             categoryList.add(toAdd);
@@ -136,6 +137,27 @@ public class CategoryManager {
         Category toDelete = getCategory(categoryName);
         categoryList.remove(toDelete);
         return toDelete;
+    }
+
+    /**
+     * Edits a category in the Category List.
+     *
+     * @param toEdit
+     *  The category to be edited
+     * @param newCategoryName
+     *  The new category name of the category
+     * @param newPriority
+     * The new priority of the category
+     * @throws DuplicateCategoryException
+     *  If there are duplicate categories with the same category name as the new category name in the Category List
+     */
+    public void edit(Category toEdit, String newCategoryName, int newPriority)
+            throws DuplicateCategoryException {
+        if (!toEdit.isSameCategory(newCategoryName) && contains(newCategoryName)) {
+            throw new DuplicateCategoryException();
+        }
+        toEdit.setCategoryName(newCategoryName);
+        toEdit.setCategoryPriority(newPriority);
     }
 
     /**

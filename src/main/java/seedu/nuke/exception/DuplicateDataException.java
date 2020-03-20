@@ -1,5 +1,5 @@
 package seedu.nuke.exception;
 
-public class DuplicateDataException extends Exception {
+public abstract class DuplicateDataException extends Exception {
 
 }

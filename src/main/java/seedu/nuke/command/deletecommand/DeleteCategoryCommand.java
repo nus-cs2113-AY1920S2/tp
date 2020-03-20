@@ -1,6 +1,7 @@
 package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.Executor;
+import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.CategoryManager;
@@ -14,6 +15,12 @@ import java.util.regex.Pattern;
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.Message.*;
 
+/**
+ * <h3>Delete Category Command</h3>
+ * A <b>Command</b> to delete <b>Category(s)</b> from the <b>Category List</b>.
+ * @see Command
+ * @see Category
+ */
 public class DeleteCategoryCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delc";
     public static final String FORMAT = COMMAND_WORD + " <category name>";
@@ -74,7 +81,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
     }
 
     /**
-     * Executes the <b>Delete Category Command</b> to delete a <b>Category</b> with the <code>category name</code>
+     * Executes the <b>Delete Category Command</b> to delete <b>Category(s)</b> with the <code>category name</code>
      * from the <b>Category List</b>.
      *
      * @return The <b>Command Result</b> of the execution

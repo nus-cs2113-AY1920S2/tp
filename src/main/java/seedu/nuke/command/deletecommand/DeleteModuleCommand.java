@@ -1,6 +1,7 @@
 package seedu.nuke.command.deletecommand;
 
 import seedu.nuke.Executor;
+import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
@@ -14,6 +15,12 @@ import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.util.Message.*;
 
+/**
+ * <h3>Delete Module Command</h3>
+ * A <b>Command</b> to delete <b>Module(s)</b> from the <b>Module List</b>.
+ * @see Command
+ * @see Module
+ */
 public class DeleteModuleCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delm";
     public static final String MESSAGE_USAGE = "delm <module code>";
@@ -69,7 +76,7 @@ public class DeleteModuleCommand extends DeleteCommand {
     }
 
     /**
-     * Executes the <b>Delete Module Command</b> to delete a <b>Module</b> with the <code>module code</code> from the
+     * Executes the <b>Delete Module Command</b> to delete <b>Module(s)</b> with the <code>module code</code> from the
      * <b>Module List</b>.
      *
      * @return The <b>Command Result</b> of the execution

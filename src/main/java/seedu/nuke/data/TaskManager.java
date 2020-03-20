@@ -1,8 +1,10 @@
 package seedu.nuke.data;
 
+import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
+import seedu.nuke.util.DateTime;
 
 import java.util.ArrayList;
 
@@ -61,16 +63,16 @@ public class TaskManager {
     }
 
     /**
-     * Checks for duplicates of the specified task in the Task List.
+     * Checks for duplicates of the same task description in the Task List.
      *
-     * @param toCheck
-     *  The task to check
+     * @param taskDescription
+     *  The task description to check
      * @return
      *  <code>TRUE</code> if there exists a duplicate, and <code>FALSE</code> otherwise
      */
-    private boolean contains(Task toCheck) {
+    private boolean contains(String taskDescription) {
         for (Task task : taskList) {
-            if (task.isSameTask(toCheck)) {
+            if (task.isSameTask(taskDescription)) {
                 return true;
             }
         }
@@ -86,7 +88,7 @@ public class TaskManager {
      *  If there exists a duplicate task in the Task List with the same task description
      */
     public void add(Task toAdd) throws DuplicateTaskException {
-        if (contains(toAdd)) {
+        if (contains(toAdd.getDescription())) {
             throw new DuplicateTaskException();
         } else {
             taskList.add(toAdd);
@@ -117,6 +119,29 @@ public class TaskManager {
         return toDelete;
     }
 
+    /**
+     * Edits a task in the Task List.
+     *
+     * @param toEdit
+     *  The task to be edited
+     * @param newTaskDescription
+     *  The new task description of the task
+     * @param newDeadline
+     *  The new deadline of the task
+     * @param newPriority
+     * The new priority of the task
+     * @throws DuplicateTaskException
+     *  If there are duplicate tasks with the same task description as the new task description in the Task List
+     */
+    public void edit(Task toEdit, String newTaskDescription, DateTime newDeadline, int newPriority)
+            throws DuplicateTaskException {
+        if (!toEdit.isSameTask(newTaskDescription) && contains(newTaskDescription)) {
+            throw new DuplicateTaskException();
+        }
+        toEdit.setDescription(newTaskDescription);
+        toEdit.setDeadline(newDeadline);
+        toEdit.setPriority(newPriority);
+    }
 
     /**
      * Clears all tasks from the task list.

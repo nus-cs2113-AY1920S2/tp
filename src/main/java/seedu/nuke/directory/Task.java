@@ -179,13 +179,13 @@ public class Task extends Directory implements Tag {
     /**
      * Checks if one task has the same description as another.
      *
-     * @param task
-     *  The task to check
+     * @param taskDescription
+     *  The task description to check
      * @return
      *  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
      */
-    public boolean isSameTask(Task task) {
-        return this.description.equals(task.description);
+    public boolean isSameTask(String taskDescription) {
+        return this.description.equals(taskDescription);
     }
 
 //    /**

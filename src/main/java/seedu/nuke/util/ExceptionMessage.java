@@ -1,7 +1,6 @@
 package seedu.nuke.util;
 
 public class ExceptionMessage {
-    public static final String MESSAGE_DUPLICATE_MODULE_ADD = "ALERT! The module already existed.\n";
 
     public static final String MESSAGE_MODULE_NOT_FOUND = "ALERT! Module is not found.\n";
 
