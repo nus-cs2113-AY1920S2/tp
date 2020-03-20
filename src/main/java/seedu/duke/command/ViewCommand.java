@@ -55,7 +55,7 @@ public class ViewCommand extends Command {
     private void viewModulePlan(SemesterList semesterList) {
         StringBuilder viewList = new StringBuilder();
         for (SemModulesList sem : semesterList) {
-            viewList.append(sem.getSemName()).append(System.lineSeparator());
+            viewList.append(sem.getSem()).append(System.lineSeparator());
             for (Module selectedModule : sem) {
                 int index = sem.indexOf(selectedModule) + 1;
                 viewList.append(index).append(".")
@@ -72,7 +72,7 @@ public class ViewCommand extends Command {
         for (SemModulesList sem : semesterList) {
             StringBuilder viewSemList = new StringBuilder();
             boolean haveCompletedModule = false;
-            viewSemList.append(sem.getSemName()).append(System.lineSeparator());
+            viewSemList.append(sem.getSem()).append(System.lineSeparator());
             int index = 1;
             for (SelectedModule selectedModule : sem) {
                 if (selectedModule.getDone()) {

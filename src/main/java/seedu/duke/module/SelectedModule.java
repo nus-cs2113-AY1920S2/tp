@@ -1,7 +1,5 @@
 package seedu.duke.module;
 
-import static seedu.duke.ui.SemesterConvertor.convertSemToStandardFormat;
-
 public class SelectedModule extends Module {
 
     protected boolean isDone;
@@ -72,16 +70,16 @@ public class SelectedModule extends Module {
     }
 
     public String announceAdded() {
-        return super.toString() + " | Sem: " + convertSemToStandardFormat(semester);
+        return super.toString() + " | Sem: " + semester;
     }
 
     @Override
     public String toString() {
         if (this.isDone) {
-            return this.getIcon() + " " + super.toString() + " | Sem: " + convertSemToStandardFormat(semester)
+            return this.getIcon() + " " + super.toString() + " | Sem: " + semester
                     + " | Grade: " + grade.getGrade();
         } else {
-            return this.getIcon() + " " + super.toString() + " | Sem: " + convertSemToStandardFormat(semester);
+            return this.getIcon() + " " + super.toString() + " | Sem: " + semester;
         }
     }
 }
