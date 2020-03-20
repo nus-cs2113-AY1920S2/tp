@@ -1,5 +1,7 @@
 package seedu.dietmanager;
 
+import java.util.ArrayList;
+
 public class Profile {
     private String name;
     private int age;
@@ -8,6 +10,7 @@ public class Profile {
     private double weight; //Wight in Kg
     private double weightGoal;
     private boolean profileExist;
+    private ArrayList<Double> weightRecord = new ArrayList<>();
 
     public Profile() {
         this.profileExist = false;
@@ -25,6 +28,7 @@ public class Profile {
         this.weight = weight;
         this.weightGoal = weightGoal;
         this.profileExist = true;
+        weightRecord.add(weight);
     }
 
     public void setName(String name) {
@@ -54,6 +58,11 @@ public class Profile {
 
     public void setWeightGoal(double weightGoal) {
         this.weightGoal = weightGoal;
+        this.profileExist = true;
+    }
+
+    public void addWeightProgress(double newWeight) {
+        weightRecord.add(newWeight);
         this.profileExist = true;
     }
 
@@ -91,6 +100,10 @@ public class Profile {
 
     public double getBmi() {
         return weight / Math.pow(height / 100, 2);
+    }
+
+    public ArrayList<Double> getWeightProgress() {
+        return weightRecord;
     }
 
 }

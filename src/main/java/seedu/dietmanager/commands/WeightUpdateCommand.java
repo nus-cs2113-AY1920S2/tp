@@ -5,10 +5,10 @@ import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
 import seedu.dietmanager.ui.UI;
 
-public class SetWeightCommand extends Command {
+public class WeightUpdateCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
-    private double weight;
+    private double weightUpdate;
 
     /**
      * Constructs the Command object.
@@ -16,15 +16,16 @@ public class SetWeightCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetWeightCommand(String command, String description) throws InvalidFormatException, NumberFormatException {
+    public WeightUpdateCommand(String command, String description)
+            throws InvalidFormatException, NumberFormatException {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.weight = Double.parseDouble(descriptionArray[0]);
+        this.weightUpdate = Double.parseDouble(descriptionArray[0]);
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        profile.setWeight(this.weight);
-        System.out.println(String.format("Your Weight has been changed to %.2f", profile.getWeight()));
+        profile.addWeightProgress(weightUpdate);
+        System.out.println(String.format("Your weight changes has been stored. Current weight is %.2f", weightUpdate));
     }
 }
