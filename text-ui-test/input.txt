@@ -14,4 +14,5 @@ add id/CS1231 s/3 mc/4
 view /mp
 done id/IS4241 g/A+
 view /dm
+view /cc
 bye

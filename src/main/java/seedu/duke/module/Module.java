@@ -12,6 +12,7 @@ public abstract class Module {
     protected boolean isIdValid;
     protected int moduleCredit;
 
+
     /**
      * This is Module's constructor.
      * @param type the type of module identifier.
@@ -68,4 +69,16 @@ public abstract class Module {
     }
 
     public int getModuleCredit() { return this.moduleCredit; }
+
+    public String getPreReqModulesID() {
+        String preReqModulesList = "";
+        boolean hasNoPreReqModules = preRequisiteModules.size() == 0;
+        if (hasNoPreReqModules) {
+            preReqModulesList = ("None");
+        }
+        for (Module preReqModule : preRequisiteModules) {
+            preReqModulesList += preReqModule.getId() + " ";
+        }
+        return preReqModulesList;
+    }
 }

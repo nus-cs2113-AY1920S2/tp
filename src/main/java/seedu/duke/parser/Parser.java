@@ -4,9 +4,10 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.ViewCommand;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.HelpingCommand;
 import seedu.duke.command.MarkAsDoneCommand;
+import seedu.duke.command.ViewCommand;
 import seedu.duke.data.Person;
 import seedu.duke.exception.InputException;
 import seedu.duke.module.Grading;
@@ -17,6 +18,7 @@ import seedu.duke.module.SelectedModule;
  * Parses user input.
  */
 public class Parser {
+
     /**
      * Parses user input into module.
      * @param fullCommand full user input command.
@@ -42,6 +44,8 @@ public class Parser {
             return processExitCommand();
         case MarkAsDoneCommand.COMMAND_WORD:
             return processMarkAsDone(args);
+        case HelpingCommand.COMMAND_WORD:
+            return processHelpCommand();
         default:
             throw new InputException("invalid command");
         }
@@ -188,11 +192,17 @@ public class Parser {
         } else if (args.contains("id/")) {
             String moduleToBeViewed = args.replace("id/","");
             return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
+        } else if (args.contains("/cc")) {
+            return new ViewCommand(ViewCommand.VIEW_COMPLETED_CREDITS);
         }
         return new ViewCommand(ViewCommand.VIEW_AVAILABLE_MODULES);
     }
 
     private static ExitCommand processExitCommand() {
         return new ExitCommand();
+    }
+
+    private static HelpingCommand processHelpCommand() {
+        return new HelpingCommand();
     }
 }

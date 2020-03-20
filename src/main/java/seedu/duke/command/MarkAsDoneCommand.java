@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemesterList;
+import seedu.duke.data.Person;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.exception.RuntimeException;
 import seedu.duke.module.Grading;
@@ -35,6 +36,9 @@ public class MarkAsDoneCommand extends Command {
             for (SelectedModule module: sem) {
                 if (module.getName().equals(description) || module.getId().equals(description)) {
                     module.setAsDone(grade);
+                    if(grade != Grading.F && grade != Grading.CU) {
+                        Person.addTotalModularCreditCompleted(module.getModuleCredit());
+                    }
                     return;
                 }
             }

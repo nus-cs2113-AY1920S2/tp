@@ -43,10 +43,12 @@ public class Duke {
         setupLogger();
         boolean isUserExist = false;            //Needs to store to "database" and load from database when runs.
         Scanner in = new Scanner(System.in);
+        Ui.greetUser();
         if (!isUserExist) {
             Person.createNewUser(in);
+            isUserExist = true;
         }
-        Ui.greetUser();
+        Ui.showHelpMessage();
         String fullCommand;
         boolean isExit = false;
         do {
