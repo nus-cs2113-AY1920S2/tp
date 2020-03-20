@@ -67,7 +67,7 @@ public class EditCommand extends Command {
             feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
             double remainder = myBudget.getRemainingBudget(items.getTotalCost());
             if (remainder < 0) {
-                feedbackToUser += String.format(EXCEED_WARNING,(-1)*remainder);
+                feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
             }
 
         } catch (NullPointerException | IndexOutOfBoundsException e) {

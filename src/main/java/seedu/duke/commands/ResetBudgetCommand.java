@@ -23,7 +23,7 @@ public class ResetBudgetCommand extends Command {
         feedbackToUser = SUCCESS_RESET_BUDGET;
         double remainder = myBudget.getRemainingBudget(items.getTotalCost());
         if (remainder < 0) {
-            feedbackToUser += String.format(EXCEED_WARNING,(-1)*remainder);
+            feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
         }
     }
 }

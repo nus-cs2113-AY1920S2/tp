@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
             feedbackToUser = feedback;
             double remainder = myBudget.getRemainingBudget(items.getTotalCost());
             if (remainder < 0) {
-                feedbackToUser += String.format(EXCEED_WARNING,(-1)*remainder);
+                feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
             }
         } catch (IndexOutOfBoundsException e) {
             LOGGER.log(Level.WARNING,"(Delete command) Invoked with invalid index: " + this.index);
