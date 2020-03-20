@@ -1,7 +1,30 @@
-HELLO! I'm SHOCO. Your digital shopping list!
+
+      HELLO! I'm SHOCO. Your digital shopping list!
+                                         __
+                                        /__\
+                                       /
+        ______________________________/
+       |     |     |     |    |      /
+       |____ |____ |____ |____|_____/
+       |     |     |     |    |    /
+       |____ |____ |____ |____|___/
+       |     |     |     |    |  /
+       |____ |____ |____ |____|_/
+       |____ |____ |____ |___ |/
+                               \
+                                \
+                                /
+        _______________________/
+          /\              /\
+          \/              \/
+
+
+Enter command:
 
 Error! Description of an item cannot be empty.
 Example: ADD 1 i/apple p/4.50
+
+Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Description of an item cannot be empty.
@@ -10,15 +33,12 @@ Oops! For that to be done properly, check if these are met:
 || Example: ADD i/apple p/2.50
 
 
+Enter command:
+
 Error! Description of an item cannot be empty.
 Example: ADD 1 i/apple p/4.50
 
-Oops! For that to be done properly, check if these are met:
- - Description of an item cannot be empty.
- - Price of an item has to be in numerical form.
- - At least 'i/' or 'p/' should be present.
-|| Example: ADD i/apple p/2.50
-
+Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Description of an item cannot be empty.
@@ -26,30 +46,65 @@ Oops! For that to be done properly, check if these are met:
  - At least 'i/' or 'p/' should be present.
 || Example: ADD i/apple p/2.50
 
+
+Enter command:
+
+Oops! For that to be done properly, check if these are met:
+ - Description of an item cannot be empty.
+ - Price of an item has to be in numerical form.
+ - At least 'i/' or 'p/' should be present.
+|| Example: ADD i/apple p/2.50
+
+
+Enter command:
 
 Added this item: [0] apple $2.45
+NOTE: You have exceeded your budget by 2.45
+
+Enter command:
 
 Added this item: [0] banana $3.00
+NOTE: You have exceeded your budget by 5.45
+
+Enter command:
 
 Added this item: [0] cherry $5.60
+NOTE: You have exceeded your budget by 11.05
+
+Enter command:
+
+Here are the matching items:
+
++---------------+-------+
+| Item          | Price |
++---------------+-------+
+| 3. [0] cherry | $5.60 |
++---------------+-------+
+
+
+Enter command:
+Sorry, no results could be found!
+
+Enter command:
 
 Please enter an amount for your budget
 Example: SET b/300
 
-Please enter an amount for your budget
-Example: SET b/300
+Enter command:
 
 Please enter an amount for your budget
 Example: SET b/300
+
+Enter command:
+
+Please enter an amount for your budget
+Example: SET b/300
+
+Enter command:
 
 Setting budget to $500.0
 
-Oops! For that to be done properly, check if these are met:
- - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
+Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
@@ -58,12 +113,7 @@ Oops! For that to be done properly, check if these are met:
  - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
 || Example: EDIT 2 i/apple p/2.50
 
-Oops! For that to be done properly, check if these are met:
- - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
+Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
@@ -72,16 +122,40 @@ Oops! For that to be done properly, check if these are met:
  - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
 || Example: EDIT 2 i/apple p/2.50
 
+Enter command:
+
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
  - Price of an item has to be in decimal form.
  - At least 'i/' or 'p/' should be present.
  - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
 || Example: EDIT 2 i/apple p/2.50
+
+Enter command:
+
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
+
+Enter command:
+
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item has to be in decimal form.
+ - At least 'i/' or 'p/' should be present.
+ - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
+|| Example: EDIT 2 i/apple p/2.50
+
+Enter command:
 
 OOPS! I couldn't process that because price has to be a number, silly!
 || Example: EDIT 2 i/apple p/2.00
 
+Enter command:
+
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
  - Price of an item has to be in decimal form.
@@ -89,45 +163,81 @@ Oops! For that to be done properly, check if these are met:
  - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
 || Example: EDIT 2 i/apple p/2.50
 
+Enter command:
+
 The item has been updated to: [0] apples $2.45
+
+Enter command:
 
 The item has been updated to: [0] apple $2.50
 
+Enter command:
+
 The item has been updated to: [0] bananas $6.50
 
+Enter command:
+
 The item has been updated to: [0] cherry $8.00
+
+Enter command:
 Please provide a single numerical index number!
+
+Enter command:
 
 Yes! I've marked this item as bought:
 [B] apple $2.50
 
 
+Enter command:
+
 Yes! I've marked this item as bought:
 [B] bananas $6.50
 
+
+Enter command:
 Please provide a single numerical index number!
+
+Enter command:
 
 Yes! I've unmarked this item as bought:
 [0] apple $2.50
 
+
+Enter command:
 Please provide a single numerical index number!
+
+Enter command:
 Please provide a single numerical index number!
+
+Enter command:
 Please provide a single numerical index number!
+
+Enter command:
 
 Please enter an index
 Example: DEL 3
 
-Please enter an index
-Example: DEL 3
+Enter command:
 
 Please enter an index
 Example: DEL 3
+
+Enter command:
+
+Please enter an index
+Example: DEL 3
+
+Enter command:
 
 Got it! I have removed the following item:
 [0] apple $2.50
 
+Enter command:
+
 Please enter an index
 Example: DEL 3
+
+Enter command:
 
 ADD: Adds an item to the list.
 || Parameters: ADD i/[DESCRIPTION] p/[PRICE]
@@ -138,6 +248,14 @@ EDIT: Edits the specified item in the list.
 || Example 1: EDIT 1 i/apple p/3.00
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/6.00
+
+DISPLAY: Lists all items in the list.
+|| Parameters: DISPLAY
+|| Example: DISPLAY
+
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
 
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
@@ -172,6 +290,8 @@ BYE: Exits the program.
 || Example: BYE
 
 
+
+Enter command:
 
 Here is your shopping list:
 
@@ -185,10 +305,17 @@ Total cost of items: 14.50
 Your remaining budget / total budget: 485.50 / 500.00
 
 
+Enter command:
+
 Budget has been reset to $0.00
+NOTE: You have exceeded your budget by 14.50
+
+Enter command:
 
 Your shopping list has been cleared.
 
+
+Enter command:
 
 ADD: Adds an item to the list.
 || Parameters: ADD i/[DESCRIPTION] p/[PRICE]
@@ -199,6 +326,14 @@ EDIT: Edits the specified item in the list.
 || Example 1: EDIT 1 i/apple p/3.00
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/6.00
+
+DISPLAY: Lists all items in the list.
+|| Parameters: DISPLAY
+|| Example: DISPLAY
+
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
 
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
@@ -233,6 +368,8 @@ BYE: Exits the program.
 || Example: BYE
 
 
+
+Enter command:
 
 Exiting SHOCO as requested ...
 BYE
