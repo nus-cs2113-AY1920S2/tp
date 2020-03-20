@@ -92,6 +92,7 @@ public class Parser {
 
     /**
      * Splits Command and Args from full input string.
+     *
      * @param userInput full input string.
      */
     private String[] splitCommandAndArgs(String userInput) {
@@ -232,26 +233,31 @@ public class Parser {
         int indexOfItem;
         String newItemPrice;  //newItemPrice is String type as it need not be present (allows null).
         String newItemDescription;
+        String newItemQuantity;
         try {
             String[] args = splitArgsForEditCommand(arguments);
             indexOfItem = Integer.parseInt(args[0]);
             newItemDescription = args[1];
             newItemPrice = args[2];
-            newCommand = new EditCommand(indexOfItem, newItemDescription, newItemPrice);
-        } catch (NumberFormatException | NullPointerException e) {
+            newItemQuantity = args[3];
+            newCommand = new EditCommand(indexOfItem, newItemDescription, newItemPrice, newItemQuantity);
+        } catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
             LOGGER.log(Level.WARNING, "(Edit command) Rejecting user command, invalid command format entered.");
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Oops! For that to be done properly, check if these are met:"
                     + System.lineSeparator()
                     + " - Index of item must be a positive number."
                     + System.lineSeparator()
-                    + " - Price of an item has to be in decimal form."
+                    + " - Price of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - At least 'i/' or 'p/' should be present."
+                    + " - Quantity of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present."
+                    + " - At least 'i/' , 'p/' or 'q/' should be present."
                     + System.lineSeparator()
-                    + "|| Example: EDIT 2 i/apple p/2.50");
+                    + " - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], "
+                    + "p/[NEW PRICE] or q/[QUANTITY] is present."
+                    + System.lineSeparator()
+                    + "|| Example: EDIT 2 i/apple p/2.50 q/5");
         }
     }
 
@@ -260,60 +266,128 @@ public class Parser {
      */
     private String[] splitArgsForEditCommand(String arguments) throws NullPointerException {
         String[] argsArray;
+        String indexOfItem;
+        String itemPrice = null;
+        String itemDescription = null;
+        String itemQuantity = null;
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
-        String indexOfItem;
-        String itemPrice;
-        String itemDescription;
+        String quantityDelimiter = "q/";
 
-        int buffer = 2;
-        int indexOfiPrefix;
-        int indexOfpPrefix;
         boolean descriptionPresent = arguments.contains(descriptionDelimiter);
         boolean pricePresent = arguments.contains(priceDelimiter);
+        boolean quantityPresent = arguments.contains(quantityDelimiter);
 
-        if (descriptionPresent && !pricePresent) { //e.g args: EDIT 2 i/apple
-            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
-            itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
-            if (itemDescription.equals("")) { //e.g args: EDIT 2 i/
-                throw new NullPointerException();
-            } else {
-                indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
-                argsArray = new String[]{indexOfItem, itemDescription, null};
-            }
-        } else if (pricePresent && !descriptionPresent) { //e.g args: EDIT 2 p/4.50
-            indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
-            itemPrice = arguments.substring(indexOfpPrefix + buffer).trim();
-            if (itemPrice.equals("")) { //e.g args: EDIT 2 p/
-                throw new NullPointerException();
-            }
-            indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
-            argsArray = new String[]{indexOfItem, null, itemPrice};
+        int indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
+        int indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
+        int indexOfqPrefix = arguments.trim().indexOf(quantityDelimiter);
 
-        } else if (descriptionPresent && pricePresent) { //e.g args: EDIT 2 i/.. p/..
-            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
-            indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
+        indexOfItem = arguments.split(" ")[0];
 
-            if (indexOfpPrefix < indexOfiPrefix) { //e.g args: EDIT 2 p/4.50 i/apple
-                indexOfItem = arguments.substring(0, indexOfpPrefix).trim();
-                itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
-                itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix).trim();
-            } else { //e.g args: EDIT 2 i/apple p/4.50
-                indexOfItem = arguments.substring(0, indexOfiPrefix).trim();
-                itemDescription = arguments.substring(indexOfiPrefix + buffer, indexOfpPrefix).trim();
-                itemPrice = arguments.substring(indexOfpPrefix + buffer).trim();
-            }
-            if (itemDescription.equals("") || itemPrice.equals("")) { //e.g args: EDIT 2 p/i/apple OR EDIT 2 p/4 i/
+        if (descriptionPresent | pricePresent | quantityPresent) {
+            String[] splitArgs = arguments.split("i/|p/|q/");
 
-                throw new NullPointerException();
+            if (descriptionPresent & !pricePresent & !quantityPresent) { // e.g args EDIT 1 i/apples
+                itemDescription = splitArgs[1].trim();
+                if (itemDescription.equals("")) {
+                    throw new NullPointerException();
+                }
+
+            } else if (pricePresent & !descriptionPresent & !quantityPresent) { // e.g args EDIT 1 p/2.50
+                itemPrice = splitArgs[1].trim();
+                if (itemPrice.equals("")) {
+                    throw new NullPointerException();
+                }
+
+            } else if (quantityPresent & !descriptionPresent & !pricePresent) { // e.g args EDIT 1 q/10
+                itemQuantity = splitArgs[1].trim();
+                if (itemQuantity.equals("")) {
+                    throw new NullPointerException();
+                }
+
+            } else if (descriptionPresent & pricePresent & !quantityPresent) { // e.g args EDIT 1 i/.. p/..
+                itemDescription = splitArgs[1].trim();
+                itemPrice = splitArgs[2].trim();
+
+                if (indexOfiPrefix > indexOfpPrefix) { // e.g args EDIT 1 p/.. i/..
+                    itemDescription = splitArgs[2].trim();
+                    itemPrice = splitArgs[1].trim();
+                }
+
+                if (itemDescription.equals("") | itemPrice.equals("")) {
+                    throw new NullPointerException();
+                }
+            } else if (descriptionPresent & quantityPresent & !pricePresent) {  // e.g args EDIT 1 i/.. q/..
+                itemDescription = splitArgs[1].trim();
+                itemQuantity = splitArgs[2].trim();
+
+                if (indexOfiPrefix > indexOfqPrefix) { // e.g args EDIT 1 q/.. i/..
+                    itemDescription = splitArgs[2].trim();
+                    itemQuantity = splitArgs[1].trim();
+                }
+                if (itemDescription.equals("") | itemQuantity.equals("")) {
+                    throw new NullPointerException();
+                }
+            } else if (pricePresent & quantityPresent & !descriptionPresent) { // e.g args EDIT 1 p/.. q/..
+                itemPrice = splitArgs[1].trim();
+                itemQuantity = splitArgs[2].trim();
+
+                if (indexOfpPrefix > indexOfqPrefix) { // e.g args EDIT 1 q/.. p/..
+                    itemPrice = splitArgs[2].trim();
+                    itemQuantity = splitArgs[1].trim();
+                }
+
+                if (itemPrice.equals("") | itemQuantity.equals("")) {
+                    throw new NullPointerException();
+                }
+            } else if (descriptionPresent & pricePresent & quantityPresent) { // e.g args EDIT 1 i/.. q/.. p/..
+                if ((indexOfiPrefix < indexOfpPrefix) & (indexOfiPrefix < indexOfqPrefix)) {
+                    itemDescription = splitArgs[1].trim();
+                    if (indexOfqPrefix < indexOfpPrefix) { // e.g args EDIT 1 i/apple q/6 p/3.50
+                        itemPrice = splitArgs[3].trim();
+                        itemQuantity = splitArgs[2].trim();
+                    } else { // e.g args EDIT 1 i/apple p/3.50  q/6
+                        itemPrice = splitArgs[2].trim();
+                        itemQuantity = splitArgs[3].trim();
+                    }
+                } else if ((indexOfpPrefix < indexOfqPrefix) & (indexOfpPrefix < indexOfiPrefix)) {
+                    itemPrice = splitArgs[1].trim();
+                    if (indexOfiPrefix < indexOfqPrefix) { // e.g args EDIT 1 p/3.50 i/apple q/6
+                        itemDescription = splitArgs[2].trim();
+                        itemQuantity = splitArgs[3].trim();
+                    } else { // e.g args EDIT 1 p/3.50 q/6 i/apple
+                        itemDescription = splitArgs[3].trim();
+                        itemQuantity = splitArgs[2].trim();
+                    }
+                } else if ((indexOfqPrefix < indexOfpPrefix) & (indexOfqPrefix < indexOfiPrefix)) {
+                    itemQuantity = splitArgs[1].trim();
+                    if (indexOfpPrefix < indexOfiPrefix) { // e.g args EDIT 1 q/6 p/3.50 i/apple
+                        itemDescription = splitArgs[3].trim();
+                        itemPrice = splitArgs[2].trim();
+
+                    } else { // e.g args EDIT 1 q/6 i/apple p/3.50
+                        itemDescription = splitArgs[2].trim();
+                        itemQuantity = splitArgs[3].trim();
+                    }
+                }
+                if (itemDescription.equals("") | itemPrice.equals("") | itemQuantity.equals("")) {
+                    throw new NullPointerException();
+                }
             }
-            argsArray = new String[]{indexOfItem, itemDescription, itemPrice};
-        } else {
-            argsArray = new String[]{null, null, null};
+        } else { // e.g args EDIT 1
+            throw new ArrayIndexOutOfBoundsException();
         }
-        if ((Integer.parseInt(argsArray[0]) < 0) | (argsArray[1] == null && argsArray[2] == null)) { //index < 0 or i/p/
-            throw new NullPointerException();
+        if (itemPrice != null) {
+            if (Double.parseDouble(itemPrice) < 0.0) { //check for negative price input
+                throw new NumberFormatException();
+            }
+
+        } if (itemQuantity != null) {
+            if (Integer.parseInt(itemQuantity) < 0.0) { //check for negative qty input
+                throw new NumberFormatException();
+            }
         }
+        argsArray = new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
         return argsArray;
     }
 
@@ -325,7 +399,8 @@ public class Parser {
             int index = Integer.parseInt(arguments);
             newCommand = new DeleteCommand(index);
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING,"(Delete command) Rejecting user command, user did not enter a number for index.");
+            LOGGER.log(Level.WARNING, "(Delete command) Rejecting user command, "
+                    + "user did not enter a number for index.");
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Please enter an index"
                     + System.lineSeparator()
@@ -368,7 +443,7 @@ public class Parser {
     private void createSetBudgetCommand(String arguments) {
         try {
             if (!arguments.contains("b/")) {
-                LOGGER.log(Level.WARNING,"(Set budget) Rejecting user command, no \"b/\" substring.");
+                LOGGER.log(Level.WARNING, "(Set budget) Rejecting user command, no \"b/\" substring.");
                 newCommand = new IncorrectCommand(System.lineSeparator()
                         + "Please enter the amount after the \"b/\" divider"
                         + System.lineSeparator()
@@ -380,7 +455,7 @@ public class Parser {
             }
 
         } catch (NumberFormatException | NullPointerException | StringIndexOutOfBoundsException e) {
-            LOGGER.log(Level.WARNING,"(Set budget) Rejecting user command, no number was specified for budget.");
+            LOGGER.log(Level.WARNING, "(Set budget) Rejecting user command, no number was specified for budget.");
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Please enter an amount for your budget"
                     + System.lineSeparator()

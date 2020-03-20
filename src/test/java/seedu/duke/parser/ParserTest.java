@@ -9,9 +9,6 @@ import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.MarkCommand;
-import seedu.duke.commands.UnmarkCommand;
-
 
 
 
@@ -74,7 +71,7 @@ public class ParserTest {
 
     @Test
     public void parse_deleteCommandNoArgs_errorMessage() {
-        final String[] inputs = { "DEL", "DEL " };
+        final String[] inputs = {"DEL", "DEL "};
         final String resultMessage = System.lineSeparator()
                 + "Please enter an index"
                 + System.lineSeparator()
@@ -84,7 +81,7 @@ public class ParserTest {
 
     @Test
     public void parse_deleteCommandArgsIsNotSingleNumber_errorMessage() {
-        final String[] inputs = { "DEL notAnumber ", "DEL 8*wh12", "DEL 1 2 3 4 5" };
+        final String[] inputs = {"DEL notAnumber ", "DEL 8*wh12", "DEL 1 2 3 4 5"};
         final String resultMessage = System.lineSeparator()
                 + "Please enter an index"
                 + System.lineSeparator()
@@ -94,14 +91,14 @@ public class ParserTest {
 
     @Test
     public void parse_markCommandNoArgs_errorMessage() {
-        final String[] inputs = { "MARK", "MARK " };
+        final String[] inputs = {"MARK", "MARK "};
         final String resultMessage = "Please provide a single numerical index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
     @Test
     public void parse_markCommandArgsIsNotSingleNumber_errorMessage() {
-        final String[] inputs = { "MARK notAnumber ", "MARK 8*wh12", "MARK 1 2 3 4 5" };
+        final String[] inputs = {"MARK notAnumber ", "MARK 8*wh12", "MARK 1 2 3 4 5"};
         final String resultMessage = "Please provide a single numerical index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
@@ -109,16 +106,15 @@ public class ParserTest {
 
     @Test
     public void parse_unMarkCommandNoArgs_errorMessage() {
-        final String[] inputs = { "UNMARK", "UNMARK " };
+        final String[] inputs = {"UNMARK", "UNMARK "};
         final String resultMessage = "Please provide a single numerical index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
 
-
     @Test
     public void parse_unMarkCommandArgsIsNotSingleNumber_errorMessage() {
-        final String[] inputs = { "UNMARK notAnumber ", "UNMARK 8*wh12", "UNMARK 1 2 3 4 5" };
+        final String[] inputs = {"UNMARK notAnumber ", "UNMARK 8*wh12", "UNMARK 1 2 3 4 5"};
         final String resultMessage = "Please provide a single numerical index number!";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
@@ -126,11 +122,11 @@ public class ParserTest {
 
     /*
      * Tests for add item command ==============================================================================
-    */
+     */
 
     @Test
     public void parse_addCommandNoDescription_errorMessage() {
-        final String[] inputs = { "ADD", "ADD ", "ADD p/2.50" };
+        final String[] inputs = {"ADD", "ADD ", "ADD p/2.50"};
         final String resultMessage = System.lineSeparator()
                 + "Error! Description of an item cannot be empty."
                 + "\nExample: ADD 1 i/apple p/4.50";
@@ -140,7 +136,7 @@ public class ParserTest {
 
     @Test
     public void parse_addCommandIncorrectPriceFormat_errorMessage() {
-        final String[] inputs = { "ADD i/apple p/8*wh12", "ADD i/apple p/ " };
+        final String[] inputs = {"ADD i/apple p/8*wh12", "ADD i/apple p/ "};
         final String resultMessage = System.lineSeparator()
                 + "Oops! For that to be done properly, check if these are met:"
                 + System.lineSeparator()
@@ -164,20 +160,24 @@ public class ParserTest {
 
     @Test
     public void parse_editCommandInvalidArgs_errorMessage() {
-        final String[] inputs = { "EDIT", "EDIT ", "EDIT wrong args format", "EDIT i/apple p/2.50", "EDIT 1 i/p/2.50",
-            "EDIT 1 i/apple p/", "EDIT 1 i/p/WERT", "EDIT 1 i/p/" };
+        final String[] inputs = {"EDIT", "EDIT ", "EDIT wrong args format", "EDIT i/apple p/2.50", "EDIT 1 i/p/2.50",
+            "EDIT 1 i/apple p/", "EDIT 1 i/p/WERT", "EDIT 1 i/p/", "EDIT 1 i/p/q/",
+            "EDIT 1 i/apple q/", "EDIT 1 p/q/", "EDIT 1 q/p/"};
         final String resultMessage = System.lineSeparator()
                 + "Oops! For that to be done properly, check if these are met:"
                 + System.lineSeparator()
                 + " - Index of item must be a positive number."
                 + System.lineSeparator()
-                + " - Price of an item has to be in decimal form."
+                + " - Price of an item should be in numerical form."
                 + System.lineSeparator()
-                + " - At least 'i/' or 'p/' should be present."
+                + " - Quantity of an item should be in numerical form."
                 + System.lineSeparator()
-                + " - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present."
+                + " - At least 'i/' , 'p/' or 'q/' should be present."
                 + System.lineSeparator()
-                + "|| Example: EDIT 2 i/apple p/2.50";
+                + " - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], "
+                + "p/[NEW PRICE] or q/[QUANTITY] is present."
+                + System.lineSeparator()
+                + "|| Example: EDIT 2 i/apple p/2.50 q/5";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
@@ -187,7 +187,7 @@ public class ParserTest {
 
     @Test
     public void parse_setBudgetCommandIncorrectFormat_errorMessage() {
-        final String[] inputs = { "SET", "SET ", "SET b/ 8*wh12", "SET b/" };
+        final String[] inputs = {"SET", "SET ", "SET b/ 8*wh12", "SET b/"};
         final String resultMessage = System.lineSeparator()
                 + "Please enter an amount for your budget"
                 + System.lineSeparator()
@@ -210,7 +210,7 @@ public class ParserTest {
     /**
      * Parses input and asserts the class/type of the returned command object.
      *
-     * @param input to be parsed
+     * @param input                to be parsed
      * @param expectedCommandClass expected class of returned command
      * @return the parsed command object
      */

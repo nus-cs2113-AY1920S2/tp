@@ -58,15 +58,15 @@ Oops! For that to be done properly, check if these are met:
 
 Enter command:
 
-Added this item: [0] apple $2.45
+Added this item: [0] apple $2.45 qty: 1
 
 Enter command:
 
-Added this item: [0] banana $3.00
+Added this item: [0] banana $3.00 qty: 1
 
 Enter command:
 
-Added this item: [0] cherry $5.60
+Added this item: [0] cherry $5.60 qty: 1
 
 Enter command:
 
@@ -91,76 +91,101 @@ Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
-
-Enter command:
-
-OOPS! I couldn't process that because price has to be a number, silly!
-|| Example: EDIT 2 i/apple p/2.00
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
 Oops! For that to be done properly, check if these are met:
  - Index of item must be a positive number.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
- - If 'i/' or 'p/' is present, ensure i/[NEW DESCRIPTION] or p/[NEW PRICE] is present.
-|| Example: EDIT 2 i/apple p/2.50
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
-The item has been updated to: [0] apples $2.45
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
-The item has been updated to: [0] apple $2.50
+Oops! For that to be done properly, check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - At least 'i/' , 'p/' or 'q/' should be present.
+ - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] is present.
+|| Example: EDIT 2 i/apple p/2.50 q/5
 
 Enter command:
 
-The item has been updated to: [0] bananas $6.50
+The item has been updated to: [0] apples $2.45 qty: 1
 
 Enter command:
 
-The item has been updated to: [0] cherry $8.00
+The item has been updated to: [0] apple $2.50 qty: 1
+
+Enter command:
+
+The item has been updated to: [0] apple $2.50 qty: 4
+
+Enter command:
+
+The item has been updated to: [0] bananas $6.50 qty: 6
+
+Enter command:
+
+The item has been updated to: [0] cherry $8.00 qty: 5
 
 Enter command:
 Please provide a single numerical index number!
@@ -168,13 +193,13 @@ Please provide a single numerical index number!
 Enter command:
 
 Yes! I've marked this item as bought:
-[B] apple $2.50
+[B] apple $2.50 qty: 4
 
 
 Enter command:
 
 Yes! I've marked this item as bought:
-[B] bananas $6.50
+[B] bananas $6.50 qty: 6
 
 
 Enter command:
@@ -183,7 +208,7 @@ Please provide a single numerical index number!
 Enter command:
 
 Yes! I've unmarked this item as bought:
-[0] apple $2.50
+[0] apple $2.50 qty: 4
 
 
 Enter command:
@@ -213,7 +238,7 @@ Example: DEL 3
 Enter command:
 
 Got it! I have removed the following item:
-[0] apple $2.50
+[0] apple $2.50 qty: 4
 
 Enter command:
 

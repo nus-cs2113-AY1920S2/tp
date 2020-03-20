@@ -18,13 +18,14 @@ public class EditCommand extends Command {
             + "The item has been updated to: %s";
     public static final String MESSAGE_FAILURE_NOT_IN_LIST = System.lineSeparator()
             + "OOPS! I don't have that item in the list yet. Try again? :D";
-    public static final String MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT = System.lineSeparator()
-            + "OOPS! I couldn't process that because price has to be a number"
-            + ", silly!" + System.lineSeparator() + "|| Example: EDIT 2 i/apple p/2.00";
+    public static final String MESSAGE_FAILURE_PRICE_OR_QUANTITY_INCORRECT_FORMAT = System.lineSeparator()
+            + "OOPS! I couldn't process that because price (possibly decimal) and quantity have to be a number"
+            + ", silly!" + System.lineSeparator() + "|| Example: EDIT 2 i/apple p/2.00 q/4";
 
     private int indexOfItem;
     private String newDescription;
     private String newPrice;
+    private String newQuantity;
 
     /**
      * Creates an EditCommand and initialises the item index,
@@ -34,12 +35,13 @@ public class EditCommand extends Command {
      * @param description new description of item to change
      * @param price       new price of item to change
      */
-    public EditCommand(int index, String description, String price) {
+    public EditCommand(int index, String description, String price, String quantity) {
         this.indexOfItem = index;
         this.newDescription = description;
         this.newPrice = price;
+        this.newQuantity = quantity;
         LOGGER.log(Level.INFO, "(Edit command) User entered index: " + indexOfItem
-                + " description: '" + newDescription + "' price: " + newPrice);
+                + " description: '" + newDescription + "' price: " + newPrice + "' quantity: " + newQuantity);
     }
 
     @Override
@@ -47,19 +49,19 @@ public class EditCommand extends Command {
         try {
             indexOfItem -= 1;
             Item item = items.getItem(indexOfItem);
-
-            if (newDescription == null && newPrice != null) { //only edit price
-                item.setPrice(Double.parseDouble(newPrice));
-                assert item.getPrice() == Double.parseDouble(newPrice);
-            } else if (newPrice == null && newDescription != null) { //only edit description
+            if (newDescription != null) {
                 item.setDescription(newDescription);
                 assert item.getDescription() == newDescription;
-
-            } else if (newPrice != null && newDescription != null) { //edit both price and description
-                item.setDescription(newDescription);
+            }
+            if (newPrice != null) {
                 item.setPrice(Double.parseDouble(newPrice));
-                assert item.getDescription() == newDescription;
+                assert Double.parseDouble(newPrice) >= 0.0;
                 assert item.getPrice() == Double.parseDouble(newPrice);
+            }
+            if (newQuantity != null) {
+                item.setQuantity(Integer.parseInt(newQuantity));
+                assert Integer.parseInt(newQuantity) >= 0;
+                assert item.getQuantity() == Integer.parseInt(newQuantity);
             }
 
             LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
@@ -69,9 +71,9 @@ public class EditCommand extends Command {
             LOGGER.log(Level.WARNING, "(Edit command)  Item to edit is not found in list");
             feedbackToUser = MESSAGE_FAILURE_NOT_IN_LIST;
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "(Edit command) Invoked with invalid price format: '"
+            LOGGER.log(Level.WARNING, "(Edit command) Invoked with invalid price/quantity format: '"
                     + this.newPrice + "'");
-            feedbackToUser = MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT;
+            feedbackToUser = MESSAGE_FAILURE_PRICE_OR_QUANTITY_INCORRECT_FORMAT;
         }
     }
 }

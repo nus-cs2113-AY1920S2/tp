@@ -21,7 +21,7 @@ public class EditCommandTest {
 
     @Test
     void testEdit_ItemDescriptionOnly_Success() {
-        command = new EditCommand(1, "apples", null);
+        command = new EditCommand(1, "apples", null, null);
         command.setData(items, null);
         command.execute();
         String expectedFeedback =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(0).toString());
@@ -31,7 +31,16 @@ public class EditCommandTest {
 
     @Test
     void testEdit_ItemPriceOnly_Success() {
-        command = new EditCommand(2, null, "3.5");
+        command = new EditCommand(2, null, "3.5", null);
+        command.setData(items, null);
+        command.execute();
+        String expectedFeedback1 =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(1).toString());
+        assertEquals(expectedFeedback1, command.feedbackToUser);
+    }
+
+    @Test
+    void testEdit_ItemQuantityOnly_Success() {
+        command = new EditCommand(2, null, null, "4");
         command.setData(items, null);
         command.execute();
         String expectedFeedback1 =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(1).toString());
@@ -40,7 +49,7 @@ public class EditCommandTest {
 
     @Test
     void testEdit_ItemPriceAndDescription_Success() {
-        command = new EditCommand(3, "banana", "5.00");
+        command = new EditCommand(3, "banana", "5.00",null);
         command.setData(items, null);
         command.execute();
         String expectedFeedback2 =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(2).toString());
@@ -49,7 +58,7 @@ public class EditCommandTest {
 
     @Test
     public void testEdit_ItemToEditNotInList_exceptionThrown() {
-        command = new EditCommand(0, "banana", "5.00");
+        command = new EditCommand(0, "banana", "5.00", "1");
         command.setData(items, null);
         command.execute();
         String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_NOT_IN_LIST;
@@ -58,10 +67,10 @@ public class EditCommandTest {
 
     @Test
     public void testEdit_ItemPriceIncorrectFormat_exceptionThrown() {
-        command = new EditCommand(1, "banana", "QWERTY");
+        command = new EditCommand(1, "banana", "QWERTY", "QWERTY");
         command.setData(items, null);
         command.execute();
-        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_PRICE_INCORRECT_FORMAT;
+        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_PRICE_OR_QUANTITY_INCORRECT_FORMAT;
         assertEquals(expectedFeedback3, command.feedbackToUser);
     }
 
