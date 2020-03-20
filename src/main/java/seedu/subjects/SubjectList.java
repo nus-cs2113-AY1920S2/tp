@@ -85,7 +85,7 @@ public class SubjectList {
         return this.subjects.size();
     }
 
-    public static void listCardsInSubject(Subject subject){
+    public static void listCardsInSubject(Subject subject) {
         cardOperation.listCards(subject.cards);
     }
 }
