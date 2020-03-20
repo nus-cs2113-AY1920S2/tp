@@ -11,6 +11,7 @@ public class Profile {
     private double weightGoal;
     private boolean profileExist;
     private ArrayList<DailyFoodRecord> personalFoodRecord;
+    private ArrayList<Double> weightRecord = new ArrayList<>();
 
     public Profile() {
         this.personalFoodRecord = new ArrayList<>();
@@ -29,6 +30,7 @@ public class Profile {
         this.weight = weight;
         this.weightGoal = weightGoal;
         this.profileExist = true;
+        weightRecord.add(weight);
     }
 
     public void setName(String name) {
@@ -58,6 +60,11 @@ public class Profile {
 
     public void setWeightGoal(double weightGoal) {
         this.weightGoal = weightGoal;
+        this.profileExist = true;
+    }
+
+    public void addWeightProgress(double newWeight) {
+        weightRecord.add(newWeight);
         this.profileExist = true;
     }
 
@@ -158,4 +165,9 @@ public class Profile {
     public void showDinnerDay(DailyFoodRecord record) {
         record.showDinner();
     }
+
+    public ArrayList<Double> getWeightProgress() {
+        return weightRecord;
+    }
+
 }
