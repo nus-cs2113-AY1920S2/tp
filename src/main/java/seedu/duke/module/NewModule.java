@@ -9,12 +9,10 @@ import seedu.duke.data.ModuleList;
  */
 
 public class NewModule extends Module {
-    public NewModule(String id, String name, String... preRequisiteModules) {
-        this.id = id;
-        this.name = name;
+
+    public NewModule(String id, String name, int moduleCredit, String... preRequisiteModules) {
+        super("Both", id, name, moduleCredit);
         this.preRequisiteModules = convertFromStringToModuleList(preRequisiteModules);
-        this.isIdValid = true;
-        this.isNameValid = true;
     }
 
     public static ModuleList convertFromStringToModuleList(String[] moduleIdentifiers) {
@@ -31,14 +29,16 @@ public class NewModule extends Module {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder(String.format("ID: %s Name: %s | Prerequisites:", id, name));
+        StringBuilder output = new StringBuilder(String.format("ID: %s Name: %s | Modular Credit: %d",
+                id, name, moduleCredit));
         boolean hasPreReqModule = false;
-        for (Module preReqModule : preRequisiteModules) {
-            output.append(" " + preReqModule.getId());
+        StringBuilder prereq = new StringBuilder(" | Prerequisites:");
+        for (Module preReqModule : this.preRequisiteModules) {
+            prereq.append(" " + preReqModule.getId());
             hasPreReqModule = true;
         }
-        if (!hasPreReqModule) {
-            output.append(" null");
+        if (hasPreReqModule) {
+            output.append(prereq);
         }
         return output.toString();
     }

@@ -1,45 +1,43 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.module.NewModule;
-import seedu.duke.module.SelectedModule;
-import seedu.duke.ui.Ui;
-import seedu.duke.data.SelectedModulesList;
+import seedu.duke.data.SemesterList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
+import seedu.duke.module.SelectedModule;
+import seedu.duke.ui.Ui;
 
 public class AddToSemCommand extends AddCommand {
 
-    private Module module;
     private SelectedModule selectedModule;
 
-    public AddToSemCommand(Module module) {
-        this.module = module;
-        this.selectedModule = new SelectedModule(module);
+    public AddToSemCommand(SelectedModule selectedModule) {
+        this.selectedModule = selectedModule;
         checkAvailableModulesList(selectedModule);
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
-        addModule(selectedModulesList);
-        Ui.showAddedToSemMessage(module.toString());
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
+        addModule(semesterList);
+        Ui.showAddedToSemMessage(selectedModule.announceAdded());
     }
 
-    private void addModule(SelectedModulesList moduleList) {
-        boolean isModuleExist = checkModuleExist(moduleList);
+    private void addModule(SemesterList semesterList) {
+        boolean isModuleExist = checkModuleExist(semesterList);
         if (isModuleExist) {
             return;
         }
 
-        for (SemModulesList sem: moduleList) {
+        for (SemModulesList sem: semesterList) {
             if (sem.getSem().equals(selectedModule.getSem())) {
                 sem.add(selectedModule);
                 return;
             }
         }
+
         SemModulesList sem = new SemModulesList(selectedModule.getSem());
         sem.add(selectedModule);
-        moduleList.add(sem);
+        semesterList.add(sem);
     }
 
     private void checkAvailableModulesList(SelectedModule selectedModule) {
@@ -47,14 +45,14 @@ public class AddToSemCommand extends AddCommand {
             boolean isSameName = availableModule.getName().equals(selectedModule.getName());
             boolean isSameId = availableModule.getId().equals(selectedModule.getId());
             if (isSameName || isSameId) {
-                selectedModule.setModuleConfig(availableModule);
+                this.selectedModule.setModuleConfig(availableModule);
             }
         }
     }
 
-    private boolean checkModuleExist(SelectedModulesList moduleList) {
-        for (SemModulesList sem: moduleList) {
-            if (sem.isInList(selectedModule.getName(), sem)) {
+    private boolean checkModuleExist(SemesterList semesterList) {
+        for (SemModulesList sem: semesterList) {
+            if (sem.isInList(selectedModule.getName()) || sem.isInList(selectedModule.getId())) {
                 return true;
             }
         }

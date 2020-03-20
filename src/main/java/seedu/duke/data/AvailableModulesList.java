@@ -9,18 +9,18 @@ public class AvailableModulesList extends ModuleList {
     public AvailableModulesList() {
         super();
         availableModulesList = new ModuleList();
-        availableModulesList.add(new NewModule("CS1010", "Programming Methodology"));
-        availableModulesList.add(new NewModule("CS2030", "Programming Methodology II", "CS1010"));
-        availableModulesList.add(new NewModule("CS2040", "Data Structures and Algorithms", "CS1010"));
-        availableModulesList.add(new NewModule("CS2100", "Computer Organisation", "CS1010"));
-        availableModulesList.add(new NewModule("CS2106", "Introduction to Operating Systems", "CS2100"));
+        availableModulesList.add(new NewModule("CS1010", "Programming Methodology", 4));
+        availableModulesList.add(new NewModule("CS2030", "Programming Methodology II",4, "CS1010"));
+        availableModulesList.add(new NewModule("CS2040", "Data Structures and Algorithms", 4,"CS1010"));
+        availableModulesList.add(new NewModule("CS2100", "Computer Organisation", 4, "CS1010"));
+        availableModulesList.add(new NewModule("CS2106", "Introduction to Operating Systems", 4,"CS2100"));
         availableModulesList.add(new NewModule("CS2113", "Software Engineering & Object-Oriented Programming",
-                "CS2040"));
-        availableModulesList.add(new NewModule("CS2105", "Introduction to Computer Networks", "CS2040"));
-        availableModulesList.add(new NewModule("ES1000", "Foundation Academic English"));
-        availableModulesList.add(new NewModule("ES1103", "English for Academic Purposes", "ES1000"));
-        availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals"));
-        availableModulesList.add(new NewModule("CS2102", "Database Systems", "CS2030", "CS1231"));
+                4,"CS2040"));
+        availableModulesList.add(new NewModule("CS2105", "Introduction to Computer Networks", 4, "CS2040"));
+        availableModulesList.add(new NewModule("ES1000", "Foundation Academic English",4));
+        availableModulesList.add(new NewModule("ES1103", "English for Academic Purposes", 4, "ES1000"));
+        availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals", 4));
+        availableModulesList.add(new NewModule("CS2102", "Database Systems",4,"CS2030", "CS1231"));
 
         for (Module module: availableModulesList) {
             super.add(module);
