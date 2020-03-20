@@ -45,7 +45,6 @@ public class Ui {
     public static final String BOX_MARGIN = "|-----|----------|------------------------------------------------------"
             + "---------|-------------------------------------|";
 
-    private static final String REQUIRED_INPUT_USER_NAME = "Please input your name:";
 
 
     private static final String REQUIRED_INPUT_USER_MATRIC_YEAR = ", please input your matric year:";
