@@ -4,10 +4,10 @@ import seedu.duke.commands.Command;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 import seedu.duke.parser.Parser;
+import seedu.duke.ui.Ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -18,7 +18,7 @@ public class Duke {
 
     private static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
-    private static Scanner in = new Scanner(System.in);
+    private static Ui ui = new Ui();
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static final String DEFAULT_FILEPATH = "Logger.log";
     private static final String LOG_FILE_ERROR = "Logging to file unsuccessful";
@@ -66,12 +66,12 @@ public class Duke {
      */
     private void start() {
         LOGGER.log(Level.INFO,"Application starting.");
-        System.out.println("HELLO! I'm SHOCO. Your digital shopping list!");
+        ui.greet();
     }
 
     /** Prints the Goodbye message and exits. */
     private void exit() {
-        System.out.println("BYE");
+        ui.bidFarewell();
         LOGGER.log(Level.INFO,"Application shutting down");
         System.exit(0);
     }
@@ -80,26 +80,19 @@ public class Duke {
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
-            String userCommandText = readCommand();
-            command = new Parser().parseCommand(userCommandText);
-            assert command != null : "Command should have been initialised";
-            executeCommand(command);
-            System.out.println(command.feedbackToUser);
-        } while (!command.isExit);
-    }
+            ui.printline("\nEnter command:");
 
-    /**
-     * Reads a non-empty input from the user.
-     *
-     * @return non-empty input
-     */
-    public String readCommand() {
-        String input = "";
-        while (input.isEmpty()) {
-            input = in.nextLine();
-            input = input.trim();
-        }
-        return input;
+            String userInput = ui.readCommand();
+            assert !userInput.isEmpty() : "Input should not be empty";
+
+            command = new Parser().parseCommand(userInput);
+            assert command != null : "Command should have been initialised";
+
+            executeCommand(command);
+            assert command.feedbackToUser != null : "Result should have been initialised";
+
+            ui.printline(command.feedbackToUser);
+        } while (!command.isExit);
     }
 
     /**
@@ -112,9 +105,8 @@ public class Duke {
         try {
             command.setData(items,myBudget);
             command.execute();
-            assert command.feedbackToUser != null : "Result should have been initialised";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ui.printline(e.getMessage());
             throw new RuntimeException(e);
         }
     }

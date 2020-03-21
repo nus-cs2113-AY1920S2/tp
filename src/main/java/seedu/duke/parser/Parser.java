@@ -13,6 +13,7 @@ import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.UnmarkCommand;
+import seedu.duke.commands.FindCommand;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +66,10 @@ public class Parser {
             createListCommand(arguments);
             break;
 
+        case FindCommand.COMMAND_WORD:
+            createFindCommand(arguments);
+            break;
+
         case ClearCommand.COMMAND_WORD:
             createClearCommand(arguments);
             break;
@@ -74,7 +79,7 @@ public class Parser {
             break;
 
         case ResetBudgetCommand.COMMAND_WORD:
-            createResetBudgetCommand();
+            createResetBudgetCommand(arguments);
             break;
 
         case ExitCommand.COMMAND_WORD:
@@ -193,10 +198,12 @@ public class Parser {
                 int index = Integer.parseInt(words[0]) - 1;
                 newCommand = new MarkCommand(index);
             } else {
+                LOGGER.log(Level.WARNING, "(Mark command) Rejecting user command, too many or no arguments.");
                 newCommand = new IncorrectCommand("Please provide a single numerical index number!");
             }
 
         } catch (NumberFormatException | NullPointerException e) {
+            LOGGER.log(Level.WARNING, "(Mark command) Rejecting user command, invalid command format entered.");
             newCommand = new IncorrectCommand("Please provide a single numerical index number!");
         }
     }
@@ -211,10 +218,14 @@ public class Parser {
                 int index = Integer.parseInt(words[0]) - 1;
                 newCommand = new UnmarkCommand(index);
             } else {
+                LOGGER.log(Level.WARNING,
+                        "(Unmark command) Rejecting user command, too many or no arguments.");
                 newCommand = new IncorrectCommand("Please provide a single numerical index number!");
             }
 
         } catch (NumberFormatException | NullPointerException e) {
+            LOGGER.log(Level.WARNING,
+                    "(Unmark command) Rejecting user command, invalid command format entered.");
             newCommand = new IncorrectCommand("Please provide a single numerical index number!");
         }
     }
@@ -385,8 +396,17 @@ public class Parser {
     /**
      * Initialises the ResetBudgetCommand.
      */
-    private void createResetBudgetCommand() {
-        newCommand = new ResetBudgetCommand();
+    private void createResetBudgetCommand(String arguments) {
+        if (arguments != null) {
+            LOGGER.log(Level.WARNING,
+                    "(Reset Budget command) Rejecting user command, should not have arguments.");
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To reset your budget, just input \"RES\".");
+        } else {
+            newCommand = new ResetBudgetCommand();
+        }
     }
 
     /**
@@ -401,6 +421,20 @@ public class Parser {
      */
     private void createExitCommand() {
         newCommand = new ExitCommand();
+    }
+
+    private void createFindCommand(String arguments) {
+        if (arguments == null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter a keyword after FIND"
+                    + System.lineSeparator()
+                    + "Example: FIND apples");
+            LOGGER.log(Level.INFO,"(Find command) User did not supply keyword for FIND");
+        } else {
+            assert arguments != null;
+            LOGGER.log(Level.INFO,"(Find command) User supplied keyword: " + arguments);
+            newCommand = new FindCommand(arguments);
+        }
     }
 
 }
