@@ -33,13 +33,6 @@ public class EditCategoryCommand extends EditCommand {
             "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<invalid>(?:\\s+-.*)*)"
     );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
-            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<priority>(?:\\s+" + PRIORITY_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mcp].*|[mcp]\\S+)))")
-    };
 
     private String oldCategoryName;
     private String moduleCode;

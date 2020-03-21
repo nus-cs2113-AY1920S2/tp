@@ -1,4 +1,4 @@
-package seedu.nuke.command.deletecommand;
+package seedu.nuke.command.filterCommand.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
@@ -24,6 +24,15 @@ import static seedu.nuke.util.Message.*;
 public class DeleteModuleCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delm";
     public static final String MESSAGE_USAGE = "delm <module code>";
+    public static final Pattern REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
+            "(?<optional>(?:\\s+-[ea])*)" +
+            "(?<invalid>(?:\\s+-.*)*)"
+    );
+    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
+            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)" +
+            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+    );
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
             Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
@@ -60,10 +69,10 @@ public class DeleteModuleCommand extends DeleteCommand {
      */
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredModules) {
-        final int modulesCount = filteredModules.size();
-        if (modulesCount == 0) {
+        final int MODULES_COUNT = filteredModules.size();
+        if (MODULES_COUNT == 0) {
             return new CommandResult(MESSAGE_NO_MODULES_FOUND);
-        } else if (modulesCount == 1) {
+        } else if (MODULES_COUNT == 1) {
             Executor.preparePromptConfirmation();
             Executor.setFilteredList(filteredModules, DirectoryLevel.MODULE);
             Module toDelete = (Module) filteredModules.get(0);
@@ -86,8 +95,7 @@ public class DeleteModuleCommand extends DeleteCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Module> filteredModules =
-                isExact ? ModuleManager.filterExact(moduleCode) : ModuleManager.filter(moduleCode);
-        return executeInitialDelete(new ArrayList<>(filteredModules));
+        ArrayList<Directory> filteredModules = createFilteredModuleList(moduleCode, isExact);
+        return executeInitialDelete(filteredModules);
     }
 }

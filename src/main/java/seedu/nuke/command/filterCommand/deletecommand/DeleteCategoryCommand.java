@@ -1,11 +1,9 @@
-package seedu.nuke.command.deletecommand;
+package seedu.nuke.command.filterCommand.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.DirectoryLevel;
-import seedu.nuke.data.CategoryManager;
-import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Directory;
 
@@ -24,6 +22,16 @@ import static seedu.nuke.util.Message.*;
 public class DeleteCategoryCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delc";
     public static final String FORMAT = COMMAND_WORD + " <category name>";
+    public static final Pattern REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
+            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<optional>(?:\\s+-[ea])*)" +
+            "(?<invalid>(?:\\s+-.*)*)"
+    );
+    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
+            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)" +
+            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+    );
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+))"),
             Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+)?)"),
@@ -35,6 +43,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
     private String moduleCode;
     private String categoryName;
     private boolean isExact;
+    private boolean isAll;
 
     /**
      * Constructs the command to delete a category.
@@ -45,11 +54,14 @@ public class DeleteCategoryCommand extends DeleteCommand {
      *  The name of the category
      * @param isExact
      *  Checks if categories are to be filtered exactly
+     * @param isAll
+     *  Checks if filtering is to be done across all modules
      */
-    public DeleteCategoryCommand(String moduleCode, String categoryName, boolean isExact) {
+    public DeleteCategoryCommand(String moduleCode, String categoryName, boolean isExact, boolean isAll) {
         this.moduleCode = moduleCode;
         this.categoryName = categoryName;
         this.isExact = isExact;
+        this.isAll = isAll;
     }
 
     /**
@@ -86,14 +98,11 @@ public class DeleteCategoryCommand extends DeleteCommand {
      *
      * @return The <b>Command Result</b> of the execution
      * @see Category
-     * @see CategoryManager
      * @see CommandResult
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Category> filteredCategories =
-                isExact ? ModuleManager.filterExact(moduleCode, categoryName) :
-                        ModuleManager.filter(moduleCode, categoryName);
-        return executeInitialDelete(new ArrayList<>(filteredCategories));
+        ArrayList<Directory> filteredCategories = createFilteredCategoryList(moduleCode, categoryName, isExact, isAll);
+        return executeInitialDelete(filteredCategories);
     }
 }

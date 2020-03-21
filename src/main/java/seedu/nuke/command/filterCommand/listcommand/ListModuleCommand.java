@@ -1,9 +1,8 @@
-package seedu.nuke.command.listcommand;
+package seedu.nuke.command.filterCommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
-import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
@@ -28,20 +27,29 @@ public class ListModuleCommand extends ListCommand {
     private String moduleKeyWord;
     private boolean isExact;
 
+    /**
+     * Constructs the command to list modules.
+     *
+     * @param moduleKeyWord
+     *  The keyword to filter the modules
+     * @param isExact
+     *  Checks if modules are to be filtered exactly
+     */
     public ListModuleCommand(String moduleKeyWord, boolean isExact) {
         this.moduleKeyWord = moduleKeyWord;
         this.isExact = isExact;
     }
 
-    protected ArrayList<Directory> createFilteredList() {
-        ArrayList<Module> filteredModuleList =
-                isExact ? ModuleManager.filterExact(moduleKeyWord) : ModuleManager.filter(moduleKeyWord);
-        return new ArrayList<>(filteredModuleList);
-    }
-
+    /**
+     * Executes the <b>List Module Command</b> to show a filtered list of modules.
+     *
+     * @return The <b>Command Result</b> of the execution
+     * @see Module
+     * @see CommandResult
+     */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredModuleList = createFilteredList();
+        ArrayList<Directory> filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
         return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, filteredModuleList);
     }
 }

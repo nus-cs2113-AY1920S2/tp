@@ -4,15 +4,15 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.*;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddTagCommand;
-import seedu.nuke.command.deletecommand.DeleteCategoryCommand;
-import seedu.nuke.command.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.filterCommand.deletecommand.DeleteCategoryCommand;
+import seedu.nuke.command.filterCommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.editcommand.EditCategoryCommand;
 import seedu.nuke.command.editcommand.EditModuleCommand;
 import seedu.nuke.command.editcommand.EditTaskCommand;
-import seedu.nuke.command.listcommand.*;
+import seedu.nuke.command.filterCommand.listcommand.*;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
-import seedu.nuke.command.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.filterCommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.promptCommand.ConfirmationStatus;
 import seedu.nuke.command.promptCommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptCommand.ListNumberPrompt;
@@ -22,7 +22,6 @@ import seedu.nuke.util.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -89,25 +88,25 @@ public class Parser {
                     return new AddTagCommand(parameters);
 
                 case DeleteModuleCommand.COMMAND_WORD:
-                    return prepareDeleteModuleCommand(parameters);
+                    return prepareDeleteAndListModuleCommand(parameters, true);
 
                 case DeleteCategoryCommand.COMMAND_WORD:
-                    return prepareDeleteCategoryCommand(parameters);
+                    return prepareDeleteAndListCategoryCommand(parameters, true);
 
                 case DeleteTaskCommand.COMMAND_WORD:
-                    return prepareDeleteTaskCommand(parameters);
+                    return prepareDeleteAndListTaskCommand(parameters, true);
 
                 //        case DeleteCommand.COMMAND_WORD:
                 //            return prepareDeleteCommand(parameters);
 
                 case ListModuleCommand.COMMAND_WORD:
-                    return prepareListModuleCommand(parameters);
+                    return prepareDeleteAndListModuleCommand(parameters, false);
 
                 case ListCategoryCommand.COMMAND_WORD:
-                    return prepareListCategoryCommand(parameters);
+                    return prepareDeleteAndListCategoryCommand(parameters, false);
 
                 case ListTaskCommand.COMMAND_WORD:
-                    return prepareListTaskCommand(parameters);
+                    return prepareDeleteAndListTaskCommand(parameters, false);
 
                 case ListAllTasksDeadlineCommand.COMMAND_WORD:
                     return new ListAllTasksDeadlineCommand();
@@ -319,93 +318,95 @@ public class Parser {
 //        }
 //    }
 
-    /**
-     * Prepares the command to delete module(s)
-     *
-     * @param parameters
-     *  The parameters given by the user
-     * @return
-     *  The command to delete module(s)
-     */
-    private Command prepareDeleteModuleCommand(String parameters) {
-        final Pattern[] deleteModuleFormat = DeleteModuleCommand.REGEX_FORMATS;
-        final int invalidParameterFormatsIndex = deleteModuleFormat.length - 1;
-        Matcher[] matchers = new Matcher[deleteModuleFormat.length];
+    /* Prepare Delete Commands */
 
-        if (isMissingCompulsoryParameters(deleteModuleFormat, matchers, parameters)) {
-            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-        }
-
-        if (matchers[invalidParameterFormatsIndex].find()) {
-            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-        }
-
-        String moduleCode = matchers[0].group("identifier").trim();
-        String exactFlag = matchers[1].group("exact").trim();
-        boolean isExact = !exactFlag.isEmpty();
-
-        return new DeleteModuleCommand(moduleCode, isExact);
-    }
-
-
-    /**
-     * Prepares the command to delete category/categories
-     *
-     * @param parameters
-     *  The parameters given by the user
-     * @return
-     *  The command to delete category/categories
-     */
-    private Command prepareDeleteCategoryCommand(String parameters) {
-        final Pattern[] deleteCategoryFormat = DeleteCategoryCommand.REGEX_FORMATS;
-        final int invalidParameterFormatsIndex = deleteCategoryFormat.length - 1;
-        Matcher[] matchers = new Matcher[deleteCategoryFormat.length];
-
-        if (isMissingCompulsoryParameters(deleteCategoryFormat, matchers, parameters)) {
-            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-        }
-
-        if (matchers[invalidParameterFormatsIndex].find()) {
-            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-        }
-
-        String categoryName = matchers[0].group("identifier").trim();
-        String moduleCode = matchers[1].group("moduleCode").trim();
-        String exactFlag = matchers[2].group("exact").trim();
-        boolean isExact = !exactFlag.isEmpty();
-
-        return new DeleteCategoryCommand(moduleCode, categoryName, isExact);
-    }
-
-    /**
-     * Prepares the command to delete task(s)
-     *
-     * @param parameters
-     *  The parameters given by the user
-     * @return
-     *  The command to delete task(s)
-     */
-    private Command prepareDeleteTaskCommand(String parameters) {
-        final Pattern[] deleteTaskFormat = DeleteTaskCommand.REGEX_FORMATS;
-        final int invalidParameterFormatsIndex = deleteTaskFormat.length - 1;
-        Matcher[] matchers = new Matcher[deleteTaskFormat.length];
-
-        if (isMissingCompulsoryParameters(deleteTaskFormat, matchers, parameters)) {
-            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-        }
-
-        if (matchers[invalidParameterFormatsIndex].find()) {
-            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-        }
-
-        String taskDescription = matchers[0].group("identifier").trim();
-        String moduleCode = matchers[1].group("moduleCode").trim();
-        String categoryName = matchers[1].group("categoryName").trim();
-        String exactFlag = matchers[2].group("exact").trim();
-        boolean isExact = !exactFlag.isEmpty();
-
-        return new DeleteTaskCommand(moduleCode, categoryName, taskDescription, isExact);
-    }
+//    /**
+//     * Prepares the command to delete module(s)
+//     *
+//     * @param parameters
+//     *  The parameters given by the user
+//     * @return
+//     *  The command to delete module(s)
+//     */
+//    private Command prepareDeleteModuleCommand(String parameters) {
+//        final Pattern[] deleteModuleFormat = DeleteModuleCommand.REGEX_FORMATS;
+//        final int invalidParameterFormatsIndex = deleteModuleFormat.length - 1;
+//        Matcher[] matchers = new Matcher[deleteModuleFormat.length];
+//
+//        if (isMissingCompulsoryParameters(deleteModuleFormat, matchers, parameters)) {
+//            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
+//        }
+//
+//        if (matchers[invalidParameterFormatsIndex].find()) {
+//            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+//        }
+//
+//        String moduleCode = matchers[0].group("identifier").trim();
+//        String exactFlag = matchers[1].group("exact").trim();
+//        boolean isExact = !exactFlag.isEmpty();
+//
+//        return new DeleteModuleCommand(moduleCode, isExact);
+//    }
+//
+//
+//    /**
+//     * Prepares the command to delete category/categories
+//     *
+//     * @param parameters
+//     *  The parameters given by the user
+//     * @return
+//     *  The command to delete category/categories
+//     */
+//    private Command prepareDeleteCategoryCommand(String parameters) {
+//        final Pattern[] deleteCategoryFormat = DeleteCategoryCommand.REGEX_FORMATS;
+//        final int invalidParameterFormatsIndex = deleteCategoryFormat.length - 1;
+//        Matcher[] matchers = new Matcher[deleteCategoryFormat.length];
+//
+//        if (isMissingCompulsoryParameters(deleteCategoryFormat, matchers, parameters)) {
+//            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
+//        }
+//
+//        if (matchers[invalidParameterFormatsIndex].find()) {
+//            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+//        }
+//
+//        String categoryName = matchers[0].group("identifier").trim();
+//        String moduleCode = matchers[1].group("moduleCode").trim();
+//        String exactFlag = matchers[2].group("exact").trim();
+//        boolean isExact = !exactFlag.isEmpty();
+//
+//        return new DeleteCategoryCommand(moduleCode, categoryName, isExact);
+//    }
+//
+//    /**
+//     * Prepares the command to delete task(s)
+//     *
+//     * @param parameters
+//     *  The parameters given by the user
+//     * @return
+//     *  The command to delete task(s)
+//     */
+//    private Command prepareDeleteTaskCommand(String parameters) {
+//        final Pattern[] deleteTaskFormat = DeleteTaskCommand.REGEX_FORMATS;
+//        final int invalidParameterFormatsIndex = deleteTaskFormat.length - 1;
+//        Matcher[] matchers = new Matcher[deleteTaskFormat.length];
+//
+//        if (isMissingCompulsoryParameters(deleteTaskFormat, matchers, parameters)) {
+//            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
+//        }
+//
+//        if (matchers[invalidParameterFormatsIndex].find()) {
+//            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+//        }
+//
+//        String taskDescription = matchers[0].group("identifier").trim();
+//        String moduleCode = matchers[1].group("moduleCode").trim();
+//        String categoryName = matchers[1].group("categoryName").trim();
+//        String exactFlag = matchers[2].group("exact").trim();
+//        boolean isExact = !exactFlag.isEmpty();
+//
+//        return new DeleteTaskCommand(moduleCode, categoryName, taskDescription, isExact);
+//    }
 
 //    private Command prepareListCommand(String parameters) {
 //        if (parameters.trim().matches(ALL_FLAG)) {
@@ -418,15 +419,17 @@ public class Parser {
 //        return new ListAllTasksDeadlineCommand();
 //    }
 
+    /* Prepare List Commands */
+
     /**
-     * Prepares the command to show filtered modules
+     * Prepares the command to delete modules or show filtered modules
      *
      * @param parameters
      *  The parameters given by the user
      * @return
-     *  The command to show filtered modules
+     *  The command to delete modules or show filtered modules
      */
-    private Command prepareListModuleCommand(String parameters)
+    private Command prepareDeleteAndListModuleCommand(String parameters, boolean isDelete)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         Matcher matcher = ListModuleCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, EXACT_FLAG, ALL_FLAG);
@@ -440,18 +443,22 @@ public class Parser {
         String exactFlag = optionalAttributes[0].trim();
         boolean isExact = !exactFlag.isEmpty();
 
-        return new ListModuleCommand(moduleKeyword, isExact);
+        if (isDelete) {
+            return new DeleteModuleCommand(moduleKeyword, isExact);
+        } else {
+            return new ListModuleCommand(moduleKeyword, isExact);
+        }
     }
 
     /**
-     * Prepares the command to show filtered categories
+     * Prepares the command to delete categories or show filtered categories
      *
      * @param parameters
      *  The parameters given by the user
      * @return
-     *  The command to show filtered categories
+     *  The command to delete categories or show filtered categories
      */
-    private Command prepareListCategoryCommand(String parameters)
+    private Command prepareDeleteAndListCategoryCommand(String parameters, boolean isDelete)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         Matcher matcher = ListCategoryCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, MODULE_CODE_PREFIX, EXACT_FLAG, ALL_FLAG);
@@ -469,18 +476,22 @@ public class Parser {
         String allFlag = optionalAttributes[1].trim();
         boolean isAll = !allFlag.isEmpty();
 
-        return new ListCategoryCommand(moduleKeyword, categoryKeyword, isExact, isAll);
+        if (isDelete) {
+            return new DeleteCategoryCommand(moduleKeyword, categoryKeyword, isExact, isAll);
+        } else {
+            return new ListCategoryCommand(moduleKeyword, categoryKeyword, isExact, isAll);
+        }
     }
 
     /**
-     * Prepares the command to show filtered tasks
+     * Prepares the command to delete tasks or show filtered tasks
      *
      * @param parameters
      *  The parameters given by the user
      * @return
-     *  The command to show filtered tasks
+     *  The command to delete tasks or show filtered tasks
      */
-    private Command prepareListTaskCommand(String parameters)
+    private Command prepareDeleteAndListTaskCommand(String parameters, boolean isDelete)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         Matcher matcher = ListTaskCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, EXACT_FLAG, ALL_FLAG);
@@ -500,8 +511,14 @@ public class Parser {
         String allFlag = optionalAttributes[1].trim();
         boolean isAll = !allFlag.isEmpty();
 
-        return new ListTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
+        if (isDelete) {
+            return new DeleteTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
+        } else {
+            return new ListTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
+        }
     }
+
+    /* Prepare Edit Commands */
 
     /**
      * Prepares the command to edit a module

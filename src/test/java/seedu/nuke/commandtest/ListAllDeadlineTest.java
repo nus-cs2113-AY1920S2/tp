@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.nuke.Nuke;
 import seedu.nuke.command.Command;
 <<<<<<< HEAD
-import seedu.nuke.command.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filterCommand.listcommand.ListAllTasksDeadlineCommand;
 =======
 import seedu.nuke.parser.Parser;
 >>>>>>> b0ace6250f9ac63d77fc89fc571ae602a0d0b04d

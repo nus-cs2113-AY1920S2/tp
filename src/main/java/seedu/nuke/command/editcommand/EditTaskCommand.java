@@ -39,15 +39,6 @@ public class EditTaskCommand extends EditCommand {
             "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
     );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
-            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<taskDescription>(?:\\s+" + TASK_DESCRIPTION_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<deadline>(?:\\s+" + DEADLINE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<priority>(?:\\s+" + PRIORITY_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mctdp].*|[mctdp]\\S+)))")
-    };
 
     private String oldTaskDescription;
     private String moduleCode;

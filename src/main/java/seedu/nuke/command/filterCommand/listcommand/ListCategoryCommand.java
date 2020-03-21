@@ -1,10 +1,7 @@
-package seedu.nuke.command.listcommand;
+package seedu.nuke.command.filterCommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.*;
-import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.Module;
-import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -31,6 +28,18 @@ public class ListCategoryCommand extends ListCommand {
     private boolean isExact;
     private boolean isAll;
 
+    /**
+     * Constructs the command to list categories.
+     *
+     * @param moduleKeyWord
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param isExact
+     *  Checks if categories are to be filtered exactly
+     * @param isAll
+     *  Checks whether to show <b>all</b> categories across modules
+     */
     public ListCategoryCommand(String moduleKeyWord, String categoryKeyword, boolean isExact, boolean isAll) {
         this.moduleKeyWord = moduleKeyWord;
         this.categoryKeyword = categoryKeyword;
@@ -38,30 +47,17 @@ public class ListCategoryCommand extends ListCommand {
         this.isAll = isAll;
     }
 
-
-    protected ArrayList<Directory> createFilteredList() {
-        ArrayList<Category> filteredCategoryList;
-        if (isAll || !moduleKeyWord.isEmpty()) {
-            filteredCategoryList = isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword) :
-                    ModuleManager.filter(moduleKeyWord, categoryKeyword);
-            return new ArrayList<>(filteredCategoryList);
-        }
-        try {
-            Module baseModule = DirectoryTraverser.getBaseModule();
-            filteredCategoryList = isExact ? baseModule.getCategories().filterExact(categoryKeyword) :
-                    baseModule.getCategories().filter(categoryKeyword);
-            return new ArrayList<>(filteredCategoryList);
-        } catch (IncorrectDirectoryLevelException e) {
-            // Current directory is too high to get module information, i.e. at root level
-            filteredCategoryList = isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword) :
-                    ModuleManager.filter(moduleKeyWord, categoryKeyword);
-            return new ArrayList<>(filteredCategoryList);
-        }
-    }
-
+    /**
+     * Executes the <b>List Category Command</b> to show a filtered list of modules.
+     *
+     * @return The <b>Command Result</b> of the execution
+     * @see Category
+     * @see CommandResult
+     */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredCategoryList = createFilteredList();
+        ArrayList<Directory> filteredCategoryList =
+                createFilteredCategoryList(moduleKeyWord, categoryKeyword, isExact, isAll);
         return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, filteredCategoryList);
     }
 }

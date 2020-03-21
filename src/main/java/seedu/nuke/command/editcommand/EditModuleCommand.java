@@ -30,11 +30,6 @@ public class EditModuleCommand extends EditCommand {
             "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<invalid>(?:\\s+-.*)*)"
     );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mp].*|[m]\\S+)))")
-    };
 
     private String oldModuleCode;
     private String newModuleCode;
