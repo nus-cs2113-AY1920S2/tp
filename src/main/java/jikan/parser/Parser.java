@@ -99,8 +99,8 @@ public class Parser {
             case "delete":
                 try {
                     parseDelete(activityList);
-                } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                    ui.printDivider("Invalid index number.");
+                } catch (NoSuchActivityException e) {
+                    ui.printDivider("No activity with this name exists!");
                 }
                 break;
             case "find":
@@ -118,7 +118,11 @@ public class Parser {
                 }
                 break;
             case "continue":
-                parseContinue(activityList);
+                try {
+                    parseContinue(activityList);
+                } catch (NoSuchActivityException e) {
+                    ui.printDivider("No activity with this name exists!");
+                }
                 break;
             default:
                 parseDefault();
@@ -127,6 +131,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks for ongoing activities and ask if user wants to save them
+     * before exiting the app.
+     *
+     * @param activityList List of activities.
+     * @param scanner To parse user input.
+     * @throws InvalidTimeFrameException precautionary measure for if endTime is greater than startTime.
+     */
     public void parseBye(ActivityList activityList, Scanner scanner) throws InvalidTimeFrameException {
         if (startTime != null) {
             String line = activityName + " is still running! If you exit now it will be aborted.\n" +
@@ -140,7 +152,12 @@ public class Parser {
         ui.exitFromApp();
     }
 
-    /** Method to parse the start activity command. */
+    /**
+     * Method to parse the start activity command.
+     *
+     * @param activityList List of activities.
+     * @param scanner To parse user input.
+     */
     public void parseStart(ActivityList activityList, Scanner scanner) throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
         // check if an activity has already been started
         if (startTime != null) {
@@ -153,10 +170,11 @@ public class Parser {
 
             String line;
             // check if there exists an activity with this name
-            if (activityList.findActivity(tokenizedInputs[1]) != -1) {
+            int index = activityList.findActivity(tokenizedInputs[1]);
+            if (index != -1) {
                 line = "There is already an activity with this name. Would you like to continue it?";
                 ui.printDivider(line);
-                continueActivity(activityList, scanner);
+                continueActivity(activityList, scanner, index);
             } else {
                 int delimiter = tokenizedInputs[1].indexOf("/t");
                 line = parseActivity(delimiter);
@@ -167,20 +185,29 @@ public class Parser {
         }
     }
 
-    private void continueActivity(ActivityList activityList, Scanner scanner) {
-        String line;
+    /**
+     * Received user input on whether or not to continue the activity.
+     *
+     * @param activityList List of activities.
+     * @param scanner Parse user input.
+     */
+    private void continueActivity(ActivityList activityList, Scanner scanner, int index) {
         String userInput = scanner.nextLine();
         if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
-            parseContinue(activityList);
+            activityName = activityList.get(index).getName();
+            startTime = LocalDateTime.now();
+            tags = activityList.get(index).getTags();
+            continuedIndex = index;
+            ui.printDivider(activityName + " was continued");
         } else {
-            line = "Okay then, what else can I do for you?";
-            ui.printDivider(line);
+            ui.printDivider("Okay then, what else can I do for you?");
         }
     }
 
     /**
-     * Inserts the tags into the activity object when it has ended.
-     * @param delimiter the index of the tag delimiter
+     * Parses the started activity for name and tags.
+     *
+     * @param delimiter The index of the tag delimiter.
      */
     private String parseActivity(int delimiter) throws EmptyNameException {
         if(delimiter == -1) {
@@ -275,11 +302,17 @@ public class Parser {
     }
 
     /** Deletes an activity from the activity list. */
-    public void parseDelete(ActivityList activityList) {
-        int index = Integer.parseInt(tokenizedInputs[1]) - 1;
-        String line = "You have deleted " + activityList.get(index).getName();
-        ui.printDivider(line);
-        activityList.delete(index);
+    public void parseDelete(ActivityList activityList) throws NoSuchActivityException {
+        //int index = Integer.parseInt(tokenizedInputs[1]) - 1;
+        int index = activityList.findActivity(tokenizedInputs[1]);
+        if (index != -1) {
+            // activity was found
+            String line = "You have deleted " + tokenizedInputs[1];
+            ui.printDivider(line);
+            activityList.delete(index);
+        } else {
+            throw new NoSuchActivityException();
+        }
     }
 
     /**
@@ -324,7 +357,11 @@ public class Parser {
         }
     }
 
-    public void parseContinue(ActivityList activityList) {
+    /**
+     * Continues an activity in the activityList.
+     * @param activityList To search for the activity and retrieve relevant details.
+     */
+    public void parseContinue(ActivityList activityList) throws NoSuchActivityException {
         int index = activityList.findActivity(tokenizedInputs[1]);
         if (index != -1) {
             // activity is found
@@ -335,8 +372,7 @@ public class Parser {
             String line = activityName + " was continued";
             ui.printDivider(line);
         } else {
-            // activity not found
-            System.out.println("No such activity is found!");
+            throw new NoSuchActivityException();
         }
     }
 
