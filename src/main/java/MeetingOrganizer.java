@@ -105,8 +105,7 @@ public class MeetingOrganizer {
             break;
         case "3":
             TextUI.deleteMeetingMsg();
-            Scanner scanner = new Scanner(System.in);
-            int index = Integer.parseInt(String.valueOf(scanner.next())) - 1;
+            int index = Integer.parseInt(String.valueOf(in.next())) - 1;
             try {
                 myMeetingList.delete(index);
             } catch (IndexOutOfBoundsException e) {
