@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -26,7 +27,7 @@ public class MeetingOrganizer {
     }
 
 
-    void botResponse(String[] userInputWords) throws MoException, DateTimeParseException, NumberFormatException {
+    void botResponse(String[] userInputWords, Scanner in) throws MoException, DateTimeParseException, NumberFormatException {
         String userCommand = userInputWords[0];
         Integer startDay;
         Integer endDay;
@@ -67,7 +68,6 @@ public class MeetingOrganizer {
             myScheduleHandler.printFreeTimings();
             TextUI.meetingDetailsMsg();
 
-            Scanner in = new Scanner(System.in);
             String userInput = in.nextLine();
             userInputWords = CliParser.splitWords(userInput);
 
@@ -101,8 +101,7 @@ public class MeetingOrganizer {
             break;
         case "3":
             TextUI.deleteMeetingMsg();
-            Scanner scanner = new Scanner(System.in);
-            int index = Integer.parseInt(String.valueOf(scanner.next())) - 1;
+            int index = Integer.parseInt(String.valueOf(in.next())) - 1;
             try {
                 myMeetingList.delete(index);
             } catch (IndexOutOfBoundsException e) {
@@ -132,7 +131,7 @@ public class MeetingOrganizer {
         while (!userInput.equals("exit")) {
             String[] userInputWords = CliParser.splitWords(userInput);
             try {
-                botResponse(userInputWords);
+                botResponse(userInputWords, in);
                 storage.updateListToDisk(myMeetingList.getMeetingList());
             } catch (MoException e) {
                 TextUI.errorMsg(e);
@@ -144,9 +143,8 @@ public class MeetingOrganizer {
                 TextUI.invalidNumberMsg();
                 TextUI.menuMsg();
             } finally {
-                Scanner in2 = new Scanner(System.in);
                 TextUI.menuMsg();
-                userInput = in2.nextLine();
+                userInput = in.nextLine();
             }
         }
         TextUI.exitMsg();
