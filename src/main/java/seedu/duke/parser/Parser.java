@@ -13,6 +13,7 @@ import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.UnmarkCommand;
+import seedu.duke.commands.FindCommand;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,21 +58,29 @@ public class Parser {
             createEditCommand(arguments);
             break;
 
+        //@@author kokjoon97
         case DeleteCommand.COMMAND_WORD:
             createDeleteCommand(arguments);
             break;
 
-        case ListCommand.COMMAND_WORD:
-            createListCommand(arguments);
-            break;
-
-        case ClearCommand.COMMAND_WORD:
-            createClearCommand(arguments);
+        case FindCommand.COMMAND_WORD:
+            createFindCommand(arguments);
             break;
 
         case SetBudgetCommand.COMMAND_WORD:
             createSetBudgetCommand(arguments);
             break;
+        //@@author
+
+        case ListCommand.COMMAND_WORD:
+            createListCommand(arguments);
+            break;
+
+
+        case ClearCommand.COMMAND_WORD:
+            createClearCommand(arguments);
+            break;
+
 
         case ResetBudgetCommand.COMMAND_WORD:
             createResetBudgetCommand(arguments);
@@ -317,6 +326,7 @@ public class Parser {
         return argsArray;
     }
 
+    //@@author kokjoon97
     /**
      * Initialises the DeleteCommand.
      */
@@ -333,6 +343,7 @@ public class Parser {
         }
 
     }
+    //@@author
 
     /**
      * Initialises the ListCommand.
@@ -362,6 +373,7 @@ public class Parser {
         }
     }
 
+    //@@author kokjoon97
     /**
      * Initialises the SetBudgetCommand.
      */
@@ -387,6 +399,7 @@ public class Parser {
                     + "Example: SET b/300");
         }
     }
+    //@@author
 
     /**
      * Initialises the ResetBudgetCommand.
@@ -418,4 +431,19 @@ public class Parser {
         newCommand = new ExitCommand();
     }
 
+    //@@author kokjoon97
+    private void createFindCommand(String arguments) {
+        if (arguments == null) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Please enter a keyword after FIND"
+                    + System.lineSeparator()
+                    + "Example: FIND apples");
+            LOGGER.log(Level.INFO,"(Find command) User did not supply keyword for FIND");
+        } else {
+            assert arguments != null;
+            LOGGER.log(Level.INFO,"(Find command) User supplied keyword: " + arguments);
+            newCommand = new FindCommand(arguments);
+        }
+    }
+    //@@author
 }

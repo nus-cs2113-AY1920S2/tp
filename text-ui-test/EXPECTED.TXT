@@ -59,14 +59,31 @@ Oops! For that to be done properly, check if these are met:
 Enter command:
 
 Added this item: [0] apple $2.45
+NOTE: You have exceeded your budget by 2.45
 
 Enter command:
 
 Added this item: [0] banana $3.00
+NOTE: You have exceeded your budget by 5.45
 
 Enter command:
 
 Added this item: [0] cherry $5.60
+NOTE: You have exceeded your budget by 11.05
+
+Enter command:
+
+Here are the matching items:
+
++---------------+-------+
+| Item          | Price |
++---------------+-------+
+| 3. [0] cherry | $5.60 |
++---------------+-------+
+
+
+Enter command:
+Sorry, no results could be found!
 
 Enter command:
 
@@ -236,6 +253,10 @@ DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
 || Example: DISPLAY
 
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
+
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]
 || Example: DEL 1
@@ -287,6 +308,7 @@ Your remaining budget / total budget: 485.50 / 500.00
 Enter command:
 
 Budget has been reset to $0.00
+NOTE: You have exceeded your budget by 14.50
 
 Enter command:
 
@@ -308,6 +330,10 @@ EDIT: Edits the specified item in the list.
 DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
 || Example: DISPLAY
+
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
 
 DEL: Deletes an item in the list.
 || Parameters: DEL [INDEX]

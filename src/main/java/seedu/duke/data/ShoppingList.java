@@ -12,6 +12,17 @@ public class ShoppingList {
         return items;
     }
 
+    //@@author kokjoon97
+    /**
+     * Returns the size of the items ArrayList.
+     *
+     * @return Size of the items ArrayList.
+     */
+    public int getSize() {
+        return items.size();
+    }
+    //@@author
+
     /**
      * Prints a table representing the shopping list.
      */
@@ -95,6 +106,7 @@ public class ShoppingList {
         return itemNotBought;
     }
 
+    //@@author kokjoon97
     /**
      * Removes an item at the specified index.
      *
@@ -104,6 +116,7 @@ public class ShoppingList {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }
+    //@@author
 
     /**
      * Adds item to list.
