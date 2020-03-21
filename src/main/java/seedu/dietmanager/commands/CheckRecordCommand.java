@@ -44,6 +44,7 @@ public class CheckRecordCommand extends Command {
             break;
         case "night":
             this.result = date + " Dinner: " + record.showDinner();
+            break;
         default:
             this.result = MessageBank.MEAL_TYPE_ERROR;
             break;
