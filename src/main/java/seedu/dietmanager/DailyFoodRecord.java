@@ -74,7 +74,7 @@ public class DailyFoodRecord {
             message = "Oops, you have no record for this meal";
             return message;
         }
-        return message.substring(0,message.length()-2);
+        return message.substring(0, message.length() - 2);
     }
 
     /**
@@ -90,7 +90,7 @@ public class DailyFoodRecord {
             message = "Oops, you have no record for this meal";
             return message;
         }
-        return message.substring(0,message.length()-2);
+        return message.substring(0, message.length() - 2);
     }
 
     /**
@@ -106,7 +106,7 @@ public class DailyFoodRecord {
             message = "Oops, you have no record for this meal";
             return message;
         }
-        return message.substring(0,message.length()-2);
+        return message.substring(0, message.length() - 2);
     }
 
     public boolean isDate(String date) {
