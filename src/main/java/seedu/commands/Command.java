@@ -2,6 +2,7 @@ package seedu.commands;
 
 import seedu.cards.CardList;
 import seedu.exception.EscException;
+import seedu.subjects.SubjectList;
 
 /**
  * Parent command class for the other commands.
@@ -15,7 +16,7 @@ public abstract class Command {
     /**
      * Executes the command.
      */
-    public abstract void execute(CardList cards) throws EscException;
+    public abstract void execute(SubjectList subjects) throws EscException;
 
     /** Check if it is an exit command.
      * @return true or false depending on whether it is an exit command.

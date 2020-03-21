@@ -1,7 +1,9 @@
 package seedu.commands;
 
 import seedu.cards.Card;
-import seedu.cards.CardList;
+import seedu.exception.EscException;
+import seedu.subjects.Subject;
+import seedu.subjects.SubjectList;
 
 /**
  * Command Class for the AddCard command.
@@ -34,7 +36,7 @@ public class AddCardCommand extends AddCommand {
     /**
      * Adds a card into the application.
      */
-    public void execute(CardList cards) {
-        cards.addCard(card);
+    public void execute(SubjectList subjectList) throws EscException {
+        Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
     }
 }

@@ -5,6 +5,7 @@ import seedu.subjects.Subject;
 import seedu.commands.Command;
 import seedu.exception.EscException;
 import seedu.parser.Parser;
+import seedu.subjects.SubjectList;
 
 public class Duke {
     /**
@@ -13,7 +14,7 @@ public class Duke {
     public static UI ui = new UI();
     private Storage storage = new Storage();
     private CardList cards;
-    private Subject subjects;
+    private SubjectList subjectList;
 
     /**
      * Reads the user's commands and executes them until the user issues the exit command.
@@ -24,9 +25,10 @@ public class Duke {
         while (!isExit) {
             try {
                 cards = new CardList(storage.loadCards());
+                subjectList = new SubjectList();
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(cards);
+                c.execute(subjectList);
                 storage.saveCards(cards.getCards());
                 isExit = c.isExit();
             } catch (EscException e) {

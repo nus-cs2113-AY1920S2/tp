@@ -2,6 +2,8 @@ package seedu.commands;
 
 import seedu.cards.Card;
 import seedu.cards.CardList;
+import seedu.subjects.Subject;
+import seedu.subjects.SubjectList;
 
 public class AddSubjectCommand extends AddCommand {
 
@@ -21,5 +23,8 @@ public class AddSubjectCommand extends AddCommand {
     /**
      * Adds a subject into the application.
      */
-    public void execute(CardList cards) { }
+    public void execute(SubjectList subjects) {
+        Subject newSubject = new Subject(this.name);
+        subjects.addSubject(newSubject);
+    }
 }

@@ -17,7 +17,7 @@ public class ListSubjectCommand extends ListCommand {
      * Lists the cards currently stored in the application.
      */
     @Override
-    public void execute(SubjectList subjects, CardList cards) {
-        SubjectList.listSubjects(subjects.getSubjects());
+    public void execute(SubjectList subjectList) {
+        SubjectList.listSubjects(subjectList.getSubjects());
     }
 }
