@@ -2,6 +2,8 @@ package seedu.commands;
 
 import seedu.cards.CardList;
 import seedu.exception.EscException;
+import seedu.subjects.Subject;
+import seedu.subjects.SubjectList;
 
 public class DeleteCardCommand extends DeleteCommand {
 
@@ -33,5 +35,10 @@ public class DeleteCardCommand extends DeleteCommand {
     }
 
     /** Removes a card from the application. */
-    public void execute(CardList cards) throws EscException { }
+    public void execute(SubjectList subjectList) throws EscException {
+        Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
+        CardList cardList = chosenSubject.getCardList();
+        cardList.removeCard(this.cardIndex);
+        //ui display result list
+    }
 }

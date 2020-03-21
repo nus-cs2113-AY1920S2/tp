@@ -2,6 +2,8 @@ package seedu.commands;
 
 import seedu.cards.CardList;
 import seedu.duke.Duke;
+import seedu.subjects.Subject;
+import seedu.subjects.SubjectList;
 
 public class ScoreCommand extends Command {
 
@@ -22,7 +24,8 @@ public class ScoreCommand extends Command {
      * View all the scores attained for a subject.
      */
     @Override
-    public void execute(CardList cards) {
-        Duke.listCards(cards.getCards());
+    public void execute(SubjectList subjectList) {
+
+        //Duke.listCards(cards.getCards());
     }
 }

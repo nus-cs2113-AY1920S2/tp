@@ -1,13 +1,13 @@
 package seedu.commands;
 
 import seedu.cards.Card;
+import seedu.cards.CardList;
 import seedu.exception.EscException;
 import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
 /**
  * Command Class for the AddCard command.
- * SubjectList has a CardList called cardOperation, please call the CardList from there.
  */
 public class AddCardCommand extends AddCommand {
 
@@ -39,5 +39,7 @@ public class AddCardCommand extends AddCommand {
      */
     public void execute(SubjectList subjectList) throws EscException {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
+        CardList cardList = chosenSubject.getCardList();
+        cardList.addCard(this.card);
     }
 }
