@@ -1,5 +1,7 @@
 package seedu.command;
 
+import seedu.calendar.AddFirstSemester;
+import seedu.calendar.AddSecondSemester;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 import seedu.parser.CalendarParser;
@@ -18,17 +20,15 @@ public class CalendarCommandInterpreter extends CommandInterpreter {
 
         switch (semester) {
         case 1:
-            System.out.println("jan - may");
+            command = new AddFirstSemester(eventList, year);
             break;
         case 2:
-            System.out.println("aug - dec");
+            command = new AddSecondSemester(eventList, year);
             break;
         default:
-            System.out.println("Wrong fk");
-            break;
+            throw new DukeException("Please give a valid semester number: s/1, s/2");
         }
         return command;
     }
-
 
 }

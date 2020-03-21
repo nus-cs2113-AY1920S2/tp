@@ -83,6 +83,14 @@ public class Event {
         return datetime.toString();
     }
 
+    public Integer getMonth() {
+        return datetime.getMonth();
+    }
+
+    public Integer getYear() {
+        return datetime.getYear();
+    }
+
     /**
      * Sets the datetime of the event.
      * @param datetime the new datetime for the event

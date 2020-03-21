@@ -39,17 +39,17 @@ class EventTest {
 
     @Test
     void getDatetime() throws DukeException {
-        Event event1 = new Event("1", "4", "3");
-        assertEquals("yyyy-MM-dd HHmm", event1.getDatetime());
+        //Event event1 = new Event("1", "4", "3");
+        //assertEquals("yyyy-MM-dd HHmm", event1.getDatetime());
         Event event2 = new Event("1", "2020-05-04 0130", "3");
-        assertEquals("May 04 2020 0130", event2.getDatetime());
+        assertEquals("Mon, May 04 2020 0130", event2.getDatetime());
     }
 
     @Test
     void setDatetime() throws DukeException {
         Event event1 = new Event();
         event1.setDatetime("2020-05-04 0130");
-        assertEquals("May 04 2020 0130", event1.getDatetime());
+        assertEquals("Mon, May 04 2020 0130", event1.getDatetime());
     }
 
     @Test

@@ -39,17 +39,17 @@ public class SeminarTest {
 
     @Test
     void getDatetime() throws DukeException {
-        Seminar seminar1 = new Seminar("1", "4", "3");
-        assertEquals("yyyy-MM-dd HHmm", seminar1.getDatetime());
+        //Seminar seminar1 = new Seminar("1", "4", "3");
+        //assertEquals("yyyy-MM-dd HHmm", seminar1.getDatetime());
         Seminar seminar2 = new Seminar("1", "2020-05-04 0130", "3");
-        assertEquals("May 04 2020 0130", seminar2.getDatetime());
+        assertEquals("Mon, May 04 2020 0130", seminar2.getDatetime());
     }
 
     @Test
     void setDatetime() throws DukeException {
         Seminar seminar1 = new Seminar();
         seminar1.setDatetime("2020-05-04 0130");
-        assertEquals("May 04 2020 0130", seminar1.getDatetime());
+        assertEquals("Mon, May 04 2020 0130", seminar1.getDatetime());
     }
 
     @Test

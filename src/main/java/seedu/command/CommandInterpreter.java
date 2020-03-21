@@ -80,6 +80,7 @@ public class CommandInterpreter {
         case "calendar":
             CalendarCommandInterpreter cci = new CalendarCommandInterpreter(eventList);
             command = cci.decideCommand(commandDescription);
+            break;
         default:
             assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
