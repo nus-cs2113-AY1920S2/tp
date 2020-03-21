@@ -28,33 +28,28 @@ public class Activity {
      * @param tags activity tags
      * @param endTime the time that the activity ended
      */
-    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Set<String> tags)
-            throws InvalidTimeFrameException {
+    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Duration duration,
+                    Set<String> tags) throws InvalidTimeFrameException {
 
         if (endTime.isBefore(startTime)) {
             throw new InvalidTimeFrameException();
         }
 
+
         this.name = name.strip();
         this.startTime = startTime;
         this.tags = tags;
         this.endTime = endTime;
-        this.duration = Duration.between(startTime, endTime);
+        this.duration = duration;
         this.date = endTime.toLocalDate();
-    }
-
-    /**
-     * Ends an ongoing activity and updates the total time spent on the activity.
-     * @param endTime date and time when the activity ended
-     * @return a confirmation message that the tracking of the activity has ended
-     */
-    public String endActivity(LocalDateTime endTime) {
-        this.endTime = endTime;
-        return ("You have ended " + this.name + " . Great job !\n");
     }
 
     public Duration getDuration() {
         return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 
     public String getName() {
@@ -75,6 +70,10 @@ public class Activity {
 
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     /**
@@ -104,7 +103,8 @@ public class Activity {
         String tagString = "";
         tagString = tagsToString(tagString);
 
-        String dataLine = (this.name + "," + this.startTime + "," + this.endTime + "," + tagString);
+        String dataLine = (this.name + "," + this.startTime + "," + this.endTime + ","
+                + this.duration.toString() + "," + tagString);
         return dataLine;
     }
 
