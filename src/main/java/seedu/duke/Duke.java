@@ -32,6 +32,7 @@ public class Duke {
         new Duke().run();
     }
 
+    //@@author kokjoon97
     /**
      * Sets up the logger to log to the console and a file.
      */
@@ -53,6 +54,7 @@ public class Duke {
             LOGGER.log(Level.SEVERE,LOG_FILE_ERROR);
         }
     }
+    //@@author
 
     /** Runs the program until termination.  */
     public void run() {

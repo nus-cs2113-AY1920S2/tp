@@ -21,12 +21,14 @@ public class ResetBudgetCommand extends Command {
         assert myBudget.getAmount() == 0 : "Budget should be zero";
         LOGGER.log(Level.INFO,"(Reset Budget command) Budget amount is set to zero: " + myBudget.getAmount());
         feedbackToUser = SUCCESS_RESET_BUDGET;
+        //@@author kokjoon97
         assert myBudget != null;
         double remainder = myBudget.getRemainingBudget(items.getTotalCost());
         if (remainder < 0) {
             LOGGER.log(Level.INFO,"(Reset Budget command) User exceeded budget by: " + (-1) * remainder);
             feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
         }
+        //@@author
 
     }
 }
