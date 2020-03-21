@@ -7,10 +7,6 @@ import java.time.Instant;
 
 public class Seminar extends Event {
 
-    public Seminar() throws DukeException {
-        super();
-    }
-
     public Seminar(String name, String datetime, String venue) throws DukeException {
         super(name, datetime, venue);
     }

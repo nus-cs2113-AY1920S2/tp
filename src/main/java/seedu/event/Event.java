@@ -13,18 +13,6 @@ public class Event {
     protected AttendanceList attendanceList;
     protected PerformanceList performanceList;
 
-
-    /**
-     * Empty constructor. Sets name as "unnamed"
-     */
-    public Event() throws DukeException {
-        setName("");
-        setDatetime("");
-        setVenue("");
-        this.attendanceList = new AttendanceList();
-        this.performanceList = new PerformanceList();
-    }
-
     /**
      * Constructor with name, datetime, venue provided.
      * @param name name of event
