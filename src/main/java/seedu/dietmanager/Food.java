@@ -41,6 +41,14 @@ public class Food {
         return calories;
     }
 
+    /**
+     * Check if the food has calories.
+     * @return True if food has calories, False otherwise.
+     */
+    public boolean hasCaloriesData() {
+        return calories.isPresent();
+    }
+
     public String toString() {
         return calories.map(value -> "Food: " + foodName + ", Calories: " + String.format("%.2f", value))
                 .orElseGet(() -> "Food: " + foodName + ", Calories: " + "No value found");

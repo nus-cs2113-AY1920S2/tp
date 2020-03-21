@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+import java.util.Optional;
 
 public class DailyFoodRecord {
     private String date;
@@ -108,5 +109,41 @@ public class DailyFoodRecord {
 
     public boolean isDate(String date) {
         return this.date.equals(date);
+    }
+
+    /**
+     * Provide a ArrayList of all the foods consumed in a day.
+     * @return ArrayList of all the foods consumed in a day
+     */
+    public ArrayList<Food> getDailyFood() {
+        ArrayList<Food> allDailyFood = new ArrayList<>();
+        allDailyFood.addAll(breakfast); //Changed to morning after merging
+        allDailyFood.addAll(lunch); //Change to afternoon after merging
+        allDailyFood.addAll(dinner); //Change to night after merging
+        return allDailyFood;
+    }
+
+    /**
+     * Calculate the total recorded calories for all the meals.
+     * @return Optional double of the calories intake if exist, anf Optional empty otherwise.
+     */
+    public Optional<Double> getDailyCalories() {
+        ArrayList<Food> allDailyFood = getDailyFood();
+        return allDailyFood.stream().map(food -> food.getCalories())
+                .filter(calories -> calories.isPresent())
+                .map(calories -> calories.get())
+                .reduce((first, second) -> first + second);
+    }
+
+    /**
+     * Check if the DailyFoodRecord has any Food with missing calories data.
+     * @return False if there exist food without calories, true otherwise.
+     */
+    public boolean isFoodCaloriesPresent() {
+        ArrayList<Food> allDailyFood = getDailyFood();
+        return allDailyFood.stream().filter(food -> !food.hasCaloriesData())
+                .map(calories -> false)
+                .reduce((first, second) -> first)
+                .orElse(true);
     }
 }
