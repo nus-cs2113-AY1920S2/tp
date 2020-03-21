@@ -5,6 +5,7 @@ import seedu.exception.DukeException;
 import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EventTest {
 
@@ -12,12 +13,12 @@ class EventTest {
     void getName() throws DukeException {
         Event event1 = new Event();
         long time = Instant.now().getEpochSecond();
-        String expectedName = "event_" + time;
-        // might throw error, if event1 and time are created at different seconds
-        //assertEquals(expectedName, event1.getName());
+
+        assertEquals("event_", event1.getName().substring(0, 6));
+        assertTrue(time - Long.parseLong(event1.getName().substring(6)) <= 1);
 
         Event event2 = new Event("1", "2", "3");
-        //assertEquals("1", event2.getName());
+        assertEquals("1", event2.getName());
     }
 
     @Test

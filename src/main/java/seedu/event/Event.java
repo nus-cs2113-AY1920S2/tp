@@ -1,15 +1,8 @@
 package seedu.event;
 
-import seedu.StudentList;
-import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
-import seedu.duke.Duke;
 import seedu.exception.DukeException;
-import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
-
-import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.time.Instant;
 
 public class Event {
@@ -39,10 +32,11 @@ public class Event {
      * @param venue venue of event
      */
     public Event(String name, String datetime, String venue) throws DukeException {
-        this();
         setName(name);
         setDatetime(datetime);
         setVenue(venue);
+        this.attendanceList = new AttendanceList();
+        this.performanceList = new PerformanceList();
     }
 
     /**
