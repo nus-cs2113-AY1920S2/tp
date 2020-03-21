@@ -7,6 +7,7 @@ import seedu.subjects.SubjectList;
 
 /**
  * Command Class for the AddCard command.
+ * SubjectList has a CardList called cardOperation, please call the CardList from there.
  */
 public class AddCardCommand extends AddCommand {
 
