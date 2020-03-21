@@ -96,10 +96,6 @@ public class TextUI {
         out.println("Here are all your meeting slots.");
     }
 
-    public static void membersMsg() {
-        out.println("How many members are there in your team?");
-    }
-
     public static void enterScheduleMsg(String memberName) {
         out.println("Enter schedule of member " + memberName + ": <Schedule Name> <Start Day> <Start Time> <End Day> <End Time>");
     }

@@ -145,7 +145,9 @@ public class MeetingOrganizer {
                 TextUI.menuMsg();
             } finally {
                 TextUI.menuMsg();
-                userInput = in.nextLine();
+                while (in.hasNext()) {
+                    userInput = in.nextLine();
+                }
             }
         }
         TextUI.exitMsg();
