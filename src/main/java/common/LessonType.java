@@ -1,5 +1,5 @@
 package common;
-import java.util.HashMap;
+
 import java.util.Map;
 
 /**
@@ -16,6 +16,6 @@ public class LessonType {
         Map.entry("Sectional Teaching", "SEC"),
         Map.entry("Seminar-style Module Class", "SEM"),
         Map.entry("Tutorial", "TUT"),
-        Map.entry("Tutorial Type 2","TUT2")
+        Map.entry("Tutorial Type 2", "TUT2")
     );
 }

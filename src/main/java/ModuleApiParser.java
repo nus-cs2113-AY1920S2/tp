@@ -12,8 +12,8 @@ import java.net.URL;
  * Returns one school module in JSONArray format. Data grabbed from the NUSMOD API: https://api.nusmods.com/v2/2019-2020/modules/MODULECODE.json
  */
 public class ModuleApiParser {
-    private String templateUrl = "https://api.nusmods.com/v2/2019-2020/modules/";
     String apiUrl;
+    private String templateUrl = "https://api.nusmods.com/v2/2019-2020/modules/";
 
     public ModuleApiParser(String moduleName) {
         apiUrl = templateUrl + moduleName + ".json";
@@ -26,7 +26,6 @@ public class ModuleApiParser {
         //Convert the input stream to a json element
         JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
         JsonObject rootObj = root.getAsJsonObject();
-//        System.out.println(rootObj.get("semesterData").getClass()); // Contains semester, class number, day, startTime, endTime, weeks, lessonType
         return (JsonArray) rootObj.get("semesterData");
     }
 }

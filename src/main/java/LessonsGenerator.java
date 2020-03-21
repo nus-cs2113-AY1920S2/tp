@@ -3,13 +3,10 @@ import com.google.common.collect.Multimap;
 import common.LessonType;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
- * myLessonDetails contains an ArrayList of lessons in the form:
- * startTime, endTime, day, weeks(delimited by ':')
+ * myLessonDetails contains an ArrayList of lessons in the form: startTime, endTime, day, weeks(delimited by ':').
  */
 public class LessonsGenerator {
     private TimetableParser myTimetableParser;
@@ -18,6 +15,18 @@ public class LessonsGenerator {
     public LessonsGenerator(String nusmodsLink) throws InvalidUrlException {
         this.myTimetableParser = new TimetableParser(nusmodsLink);
         this.myLessonsDetails = new ArrayList<>();
+    }
+
+    public static void main(String[] args) throws InvalidUrlException {
+        LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
+        mylesson.generate();
+        ArrayList<String[]> myLessonDetails = mylesson.getLessonDetails();
+        for (int i = 0; i < myLessonDetails.size(); i++) {
+            for (int j = 0; j < myLessonDetails.get(i).length; j++) {
+                System.out.print(myLessonDetails.get(i)[j] + " ");
+            }
+            System.out.print("\n");
+        }
     }
 
     public void generate() {
@@ -45,7 +54,8 @@ public class LessonsGenerator {
             for (int i = 0; i < classNumber.size(); i++) {
                 String lessonTypeLongFormat = lessonType.get(i);
                 String lessonTypeShortFormat = LessonType.lessonType.get(lessonTypeLongFormat);
-                allLessonMap.put(lessonTypeShortFormat + ":" + classNumber.get(i), new String[] {startTime.get(i), endTime.get(i), day.get(i), delimitedWeeks.get(i)});
+                allLessonMap.put(lessonTypeShortFormat + ":"
+                    + classNumber.get(i), new String[] {startTime.get(i), endTime.get(i), day.get(i), delimitedWeeks.get(i)});
             }
             lessonsChecker(allLessonMap, userModuleProfile);
         }
@@ -58,7 +68,7 @@ public class LessonsGenerator {
         for (String s : userModuleProfile) {
             if (allLessonMap.containsKey(s)) {
                 Collection<String[]> values = allLessonMap.get(s);
-                for (String[] elem: values) {
+                for (String[] elem : values) {
                     myLessonsDetails.add(elem);
                 }
             }
@@ -67,10 +77,9 @@ public class LessonsGenerator {
     }
 
     /**
-     * Refactor weeks into 1 single ArrayList from a 2d ArrayList delimited with ':'
-     *
-     * @param weeks
-     * @return weeks
+     * Refactor weeks into 1 single ArrayList from a 2d ArrayList delimited with ':'.
+     * @param weeks 2D ArrayList weeks: For eg, weeks.get(0) = weeks at classNo 0 = [1, 2, 3, 6, 13]
+     * @return weeks Delimited weeks indexed by each lessons.
      */
     private ArrayList<String> delimitWeeks(ArrayList<ArrayList<String>> weeks) {
         ArrayList<String> delimitedWeeks = new ArrayList<>();
@@ -87,16 +96,5 @@ public class LessonsGenerator {
 
     public ArrayList<String[]> getLessonDetails() {
         return this.myLessonsDetails;
-    }
-    public static void main(String[] args) throws InvalidUrlException {
-        LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
-        mylesson.generate();
-        ArrayList<String[]> myLessonDetails = mylesson.getLessonDetails();
-        for (int i=0; i<myLessonDetails.size(); i++) {
-            for (int j=0; j < myLessonDetails.get(i).length; j++) {
-                System.out.print(myLessonDetails.get(i)[j] + " ");
-            }
-            System.out.print("\n");
-        }
     }
 }
