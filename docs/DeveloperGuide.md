@@ -90,7 +90,8 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 - Likes to cook at home and requires help keeping track of complex grocery shopping lists and
 staying within budget
-- Prefers to use computer applications as opposed to mobile applications
+- Prefers to use command line interface applications as opposed to other kinds of applications or
+paper
 - Can type fast
 
 ### Value proposition
