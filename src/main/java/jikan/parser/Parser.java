@@ -58,7 +58,7 @@ public class Parser {
                 break;
             case "start":
                 try {
-                    parseStart(activityList);
+                    parseStart(activityList, scanner);
                 } catch (EmptyNameException e) {
                     logger.makeInfoLog("Activity started without task name");
                     ui.printDivider("Task name cannot be empty!");
@@ -208,7 +208,7 @@ public class Parser {
     }
 
     /** Method to parse the start activity command. */
-    public void parseStart(ActivityList activityList) throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
+    public void parseStart(ActivityList activityList, Scanner scanner) throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
@@ -221,13 +221,26 @@ public class Parser {
             String line;
             // check if there exists an activity with this name
             if (activityList.findActivity(tokenizedInputs[1]) != -1) {
-                line = "There is already an activity with this name.";
+                line = "There is already an activity with this name. Would you like to continue it?";
+                ui.printDivider(line);
+                continueActivity(activityList, scanner);
             } else {
                 int delimiter = tokenizedInputs[1].indexOf("/t");
                 line = parseActivity(delimiter);
                 startTime = LocalDateTime.now();
                 logger.makeFineLog("Started: " + activityName);
+                ui.printDivider(line);
             }
+        }
+    }
+
+    private void continueActivity(ActivityList activityList, Scanner scanner) {
+        String line;
+        String userInput = scanner.nextLine();
+        if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
+            parseContinue(activityList);
+        } else {
+            line = "Okay then, what else can I do for you?";
             ui.printDivider(line);
         }
     }
