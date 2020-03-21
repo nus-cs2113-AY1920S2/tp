@@ -13,7 +13,7 @@ public class AddCardCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addcard";
 
-    public static final String MESSAGE_USAGE = "\tTo add card, type command:​addcard s/[SUBJECT INDEX] q/[QUESTION] a/[ANSWER]";
+    public static final String MESSAGE_USAGE = "To add card, type command:​addcard s/[SUBJECT INDEX] q/[QUESTION] a/[ANSWER]";
 
     private Card card;
 

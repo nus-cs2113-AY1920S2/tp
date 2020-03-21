@@ -13,7 +13,7 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_USAGE = "\tTo quiz, type command:​quiz s/[SUBJECT INDEX]";
+    public static final String MESSAGE_USAGE = "To quiz, type command:​quiz s/[SUBJECT INDEX]";
 
     private int subjectIndex;
 

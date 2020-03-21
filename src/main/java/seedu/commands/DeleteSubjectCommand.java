@@ -8,7 +8,7 @@ public class DeleteSubjectCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "deletesubject";
 
-    public static final String MESSAGE_USAGE = "\tTo delete subject, type command: delete s/[SUBJECT INDEX]";
+    public static final String MESSAGE_USAGE = "To delete subject, type command: delete s/[SUBJECT INDEX]";
 
     private int subjectIndex;
 

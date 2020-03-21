@@ -9,7 +9,7 @@ public class AddSubjectCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addsubject";
 
-    public static final String MESSAGE_USAGE = "\tTo add subject, type command:​ add s/[SUBJECT NAME]";
+    public static final String MESSAGE_USAGE = "To add subject, type command:​ add s/[SUBJECT NAME]";
 
     private String name;
 
