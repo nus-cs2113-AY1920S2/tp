@@ -2,7 +2,6 @@ package seedu.calendar;
 
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.event.CalendarList;
 import seedu.exception.DukeException;
 
 public class AddFirstSemester extends Command {

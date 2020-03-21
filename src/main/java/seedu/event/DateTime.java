@@ -16,11 +16,19 @@ public class DateTime {
         this.dateTimeFormat = getDateTimeFormat();
     }
 
-
+    /**
+     * Formats datetime to the correct output for the user.
+     * @return The parsed string of date and time of the event.
+     */
     public String getDateTimeFormat() {
         return getDateTime().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy HHmm"));
     }
 
+    /**
+     * Parses datetime of pattern input by the user.
+     * If no input by the user, it takes the current datetime.
+     * @return Parsed datetime object
+     */
     public LocalDateTime getDateTime() {
         try {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
@@ -31,12 +39,20 @@ public class DateTime {
         }
     }
 
+    /**
+     * Gets the numerical value of the month of the event.
+     * @return The value of the month
+     */
     public Integer getMonth() {
         LocalDateTime localDateTime = getDateTime();
         int month = localDateTime.getMonthValue();
         return month;
     }
 
+    /**
+     * Gets the year of the event as a single or double digit number, referring to the current century.
+     * @return Year of the event.
+     */
     public Integer getYear() {
         LocalDateTime localDateTime = getDateTime();
         int year = localDateTime.getYear() - 2000;
