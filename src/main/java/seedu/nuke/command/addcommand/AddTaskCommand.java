@@ -7,16 +7,16 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.directory.Category;
-import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.util.DateTime;
 
 import java.util.regex.Pattern;
 
+import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
+import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.ExceptionMessage.*;
-import static seedu.nuke.util.Message.MESSAGE_TASK_ADDED;
 import static seedu.nuke.util.Message.messageAddTaskSuccess;
 
 /**
@@ -42,14 +42,6 @@ public class AddTaskCommand extends AddCommand {
             "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
     );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<deadline>(?:\\s+" + DEADLINE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<priority>(?:\\s+" + PRIORITY_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mcdp].*|[mcdp]\\S+)))")
-    };
 
     private String moduleCode;
     private String categoryName;
@@ -97,6 +89,18 @@ public class AddTaskCommand extends AddCommand {
         this(moduleCode, categoryName, description, deadline, -1);
     }
 
+    /**
+     * Returns the parent category level directory of the Directory to be added.
+     *
+     * @return
+     *  The parent category level directory of the Directory to be added
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the parent category level directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the category name is not found in the Module List
+     */
     protected Category getParentDirectory()
             throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
             CategoryManager.CategoryNotFoundException {

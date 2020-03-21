@@ -28,10 +28,6 @@ public class AddModuleCommand extends AddCommand {
             "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
             "(?<invalid>(?:\\s+-.*)*)"
     );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<invalid>(?:\\s+-.*))")
-    };
 
     private String moduleCode;
 
@@ -45,6 +41,12 @@ public class AddModuleCommand extends AddCommand {
         this.moduleCode = moduleCode.toUpperCase();
     }
 
+    /**
+     * Returns the parent root level directory of the Directory to be added.
+     *
+     * @return
+     *  The parent root level directory of the Directory to be added
+     */
     protected Root getParentDirectory() {
         return ModuleManager.getRoot();
     }

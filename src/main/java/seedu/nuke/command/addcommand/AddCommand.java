@@ -15,45 +15,22 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
  */
 public abstract class AddCommand extends Command {
 
-    protected abstract Directory getParentDirectory() throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException, CategoryManager.CategoryNotFoundException;
+    /**
+     * Returns the parent directory of the Directory to be added.
+     *
+     * @return
+     *  The parent directory of the Directory to be added
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the parent directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the category name is not found in the Module List
+     */
+    protected abstract Directory getParentDirectory()
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
+            CategoryManager.CategoryNotFoundException;
 
-    protected Module getBaseModule() throws IncorrectDirectoryLevelException {
-        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-            case MODULE:
-                return (Module) DirectoryTraverser.getCurrentDirectory();
-            case CATEGORY:
-                return (Module) DirectoryTraverser.getCurrentDirectory().getParent();
-            case TASK:
-                return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
-            case FILE:
-                return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent().getParent();
-            default:
-                throw new IncorrectDirectoryLevelException();
-        }
-    }
 
-    protected Category getBaseCategory() throws IncorrectDirectoryLevelException {
-        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-            case CATEGORY:
-                return (Category) DirectoryTraverser.getCurrentDirectory();
-            case TASK:
-                return (Category) DirectoryTraverser.getCurrentDirectory().getParent();
-            case FILE:
-                return (Category) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
-            default:
-                throw new IncorrectDirectoryLevelException();
-        }
-    }
-
-    protected Task getBaseTask() throws IncorrectDirectoryLevelException {
-        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-            case TASK:
-                return (Task) DirectoryTraverser.getCurrentDirectory();
-            case FILE:
-                return (Task) DirectoryTraverser.getCurrentDirectory().getParent();
-            default:
-                throw new IncorrectDirectoryLevelException();
-        }
-    }
 
 }

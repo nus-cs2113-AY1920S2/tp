@@ -3,6 +3,7 @@ package seedu.nuke.directory;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DirectoryTraversalOutOfBoundsException;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.Stack;
 
@@ -128,5 +129,69 @@ public class DirectoryTraverser {
         }
 
         return path.toString();
+    }
+
+
+    /**
+     * Returns the base module level directory of the current directory.
+     *
+     * @return
+     *  The base module level directory of the current directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the base module level directory
+     */
+    public static Module getBaseModule() throws IncorrectDirectoryLevelException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+            case MODULE:
+                return (Module) DirectoryTraverser.getCurrentDirectory();
+            case CATEGORY:
+                return (Module) DirectoryTraverser.getCurrentDirectory().getParent();
+            case TASK:
+                return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
+            case FILE:
+                return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent().getParent();
+            default:
+                throw new IncorrectDirectoryLevelException();
+        }
+    }
+
+    /**
+     * Returns the base category level directory of the current directory.
+     *
+     * @return
+     *  The base category level directory of the current directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the base category level directory
+     */
+    public static Category getBaseCategory() throws IncorrectDirectoryLevelException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+            case CATEGORY:
+                return (Category) DirectoryTraverser.getCurrentDirectory();
+            case TASK:
+                return (Category) DirectoryTraverser.getCurrentDirectory().getParent();
+            case FILE:
+                return (Category) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
+            default:
+                throw new IncorrectDirectoryLevelException();
+        }
+    }
+
+    /**
+     * Returns the base task level directory of the current directory.
+     *
+     * @return
+     *  The base task level directory of the current directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the base task level directory
+     */
+    public static Task getBaseTask() throws IncorrectDirectoryLevelException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+            case TASK:
+                return (Task) DirectoryTraverser.getCurrentDirectory();
+            case FILE:
+                return (Task) DirectoryTraverser.getCurrentDirectory().getParent();
+            default:
+                throw new IncorrectDirectoryLevelException();
+        }
     }
 }

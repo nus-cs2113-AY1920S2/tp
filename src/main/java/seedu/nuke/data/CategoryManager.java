@@ -194,6 +194,26 @@ public class CategoryManager {
     }
 
     /**
+     * Filter for categories in the Category List that contains the specified category keyword, then for tasks in
+     * the Task List of the filtered categories with description that contains the specified task keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     * The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
+    public ArrayList<Task> filter(String categoryKeyword, String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Category category : filter(categoryKeyword)) {
+            filteredTaskList.addAll(category.getTasks().filter(taskKeyword));
+        }
+        return filteredTaskList;
+    }
+
+    /**
      * Filter for categories in the Category List with name that matches <b>exactly</b> the specified keyword.
      * Filtering is done in a case-insensitive manner.
      *
@@ -215,6 +235,27 @@ public class CategoryManager {
             }
         }
         return filteredCategoryList;
+    }
+
+    /**
+     * Filter for categories in the Category List  with name that that matches <b>exactly</b> the specified category
+     * keyword, then for tasks in the Task List of the filtered categories with description that that matches
+     * <b>exactly</b> the specified task keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
+    public ArrayList<Task> filterExact(String categoryKeyword, String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Category category : filterExact(categoryKeyword)) {
+            filteredTaskList.addAll(category.getTasks().filterExact(taskKeyword));
+        }
+        return filteredTaskList;
     }
 
     public static class CategoryNotFoundException extends DataNotFoundException {}

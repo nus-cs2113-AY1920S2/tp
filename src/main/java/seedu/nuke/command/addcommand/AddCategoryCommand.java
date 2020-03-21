@@ -10,6 +10,7 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.regex.Pattern;
 
+import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.*;
@@ -31,12 +32,6 @@ public class AddCategoryCommand extends AddCommand {
             "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<invalid>(?:\\s+-.*)*)"
     );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
-            Pattern.compile("(?<priority>(?:\\s+" + PRIORITY_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^mp].*|[mp]\\S+)))")
-    };
 
     private String moduleCode;
     private String categoryName;
@@ -58,6 +53,16 @@ public class AddCategoryCommand extends AddCommand {
         this.categoryPriority = categoryPriority;
     }
 
+    /**
+     * Returns the parent module level directory of the Directory to be added.
+     *
+     * @return
+     *  The parent module level directory of the Directory to be added
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the parent module level directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     */
     protected Module getParentDirectory() throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException {
         if (moduleCode.isEmpty()) {
             return getBaseModule();
