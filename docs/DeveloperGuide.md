@@ -46,7 +46,7 @@ omitted in the sequence diagram to emphasise on the other classes:
   simply executes those commands as black boxes, without worrying about their internal details
 
 ### 2.2 Set budget feature
-#### 2.1.1 Current implementation
+#### 2.2.1 Current implementation
 
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
@@ -65,7 +65,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 ![alt text](images/SetBudget.png)
 
 
-#### 2.1.2 Design considerations
+#### 2.2.2 Design considerations
 
 ##### Aspect: Data structure to support the set budget feature
 
