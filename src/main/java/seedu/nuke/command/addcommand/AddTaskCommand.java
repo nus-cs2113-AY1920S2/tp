@@ -99,7 +99,7 @@ public class AddTaskCommand extends AddCommand {
      * @throws ModuleManager.ModuleNotFoundException
      *  If the module with the module code is not found in the Module List
      * @throws CategoryManager.CategoryNotFoundException
-     *  If the category with the category name is not found in the Module List
+     *  If the category with the category name is not found in the Category List
      */
     protected Category getParentDirectory()
             throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
@@ -115,7 +115,7 @@ public class AddTaskCommand extends AddCommand {
                 if (!getBaseModule().isSameModule(moduleCode)) {
                     throw new IncorrectDirectoryLevelException();
                 }
-                return ModuleManager.getCategory(moduleCode, getBaseCategory().getCategoryName());
+                return getBaseCategory();
             } else {
                 return ModuleManager.getCategory(moduleCode, categoryName);
             }

@@ -68,10 +68,11 @@ public class CategoryManager {
 
     /**
      * Finds a task with the specified category name in the Category List
+     *
      * @param categoryName
-     *  The name of the category
+     *  The name of the category to be found
      * @return
-     *  The category with the specified name if found
+     *  The found category with the specified name
      * @throws CategoryNotFoundException
      *  If the category is not found in the Category List
      */
@@ -82,6 +83,24 @@ public class CategoryManager {
             }
         }
         throw new CategoryNotFoundException();
+    }
+
+    /**
+     * Searches the Category List for the category with the specified category name, then searches the category's
+     * Task List for the task with the specified description.
+     *
+     * @param categoryName
+     *  The name of the category to be found
+     * @param taskDescription
+     *  The description of the task to be found
+     * @return
+     *  The found task with the specified description
+     * @throws CategoryNotFoundException
+     *  If the task is not found in the Task List
+     */
+    public Task getTask(String categoryName, String taskDescription)
+            throws CategoryNotFoundException, TaskManager.TaskNotFoundException {
+       return getCategory(categoryName).getTasks().getTask(taskDescription);
     }
 
     /**

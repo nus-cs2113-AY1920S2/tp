@@ -164,5 +164,4 @@ public class Module extends Directory {
     public boolean isSameModule(String moduleCode) {
         return this.moduleCode.equalsIgnoreCase(moduleCode);
     }
-
 }

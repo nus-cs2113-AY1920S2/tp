@@ -5,15 +5,15 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
-import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Task;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.util.DateTime;
 
 import java.util.regex.Pattern;
 
+import static seedu.nuke.directory.DirectoryTraverser.*;
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.ExceptionMessage.*;
-import static seedu.nuke.util.Message.MESSAGE_EDIT_CATEGORY_SUCCESS;
 import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
 
 /**
@@ -27,6 +27,18 @@ public class EditTaskCommand extends EditCommand {
     public static final String FORMAT = COMMAND_WORD +
             " <old task description> -m <module code> -c <category name>" +
             " -t <new task description> -d <new deadline> -p <new priority>";
+    public static final Pattern REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
+            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<taskDescription>(?:\\s+" + TASK_DESCRIPTION_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<optional>(?:\\s+-[dp](?:\\s+[^-\\s]\\S*)+)*)" +
+            "(?<invalid>(?:\\s+-.*)*)"
+    );
+    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
+            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+    );
     public static final Pattern[] REGEX_FORMATS = {
             Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
             Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+))"),
@@ -59,6 +71,74 @@ public class EditTaskCommand extends EditCommand {
         this(oldTaskDescription, moduleCode, categoryName, newTaskDescription, newDeadline, -1);
     }
 
+    private void fillAllAttributes(Task toEdit) {
+        moduleCode = toEdit.getParent().getParent().getModuleCode();
+        categoryName = toEdit.getParent().getCategoryName();
+        if (newTaskDescription.isEmpty()) {
+            newTaskDescription = toEdit.getDescription();
+        }
+        if (newDeadline == null) {
+            newDeadline = toEdit.getDeadline();
+        }
+        if (newPriority < 0) {
+            newPriority = toEdit.getPriority();
+        }
+    }
+
+    /**
+     * Returns the base category level directory of the current Directory.
+     *
+     * @return
+     *  The base category level directory of the current Directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the category level directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the category name is not found in the Category List
+     * @throws TaskManager.TaskNotFoundException
+     *  If teh task with the task description is not found in the Task List
+     */
+    protected Task getBaseTaskDirectory()
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
+            CategoryManager.CategoryNotFoundException, TaskManager.TaskNotFoundException {
+        if (moduleCode.isEmpty()) {
+            if (categoryName.isEmpty()) {
+                if (oldTaskDescription.isEmpty()) {
+                    return getBaseTask();
+                }
+                return getBaseCategory().getTasks().getTask(oldTaskDescription);
+            }
+            if (oldTaskDescription.isEmpty()) {
+                if (!getBaseCategory().isSameCategory(categoryName)) {
+                    throw new IncorrectDirectoryLevelException();
+                }
+                return getBaseTask();
+            }
+            return getBaseModule().getCategories().getTask(categoryName, oldTaskDescription);
+        }
+
+        if (categoryName.isEmpty()) {
+            if (!getBaseCategory().isSameCategory(categoryName)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            if (oldTaskDescription.isEmpty()) {
+                if (!getBaseTask().isSameTask(oldTaskDescription)) {
+                    throw new IncorrectDirectoryLevelException();
+                }
+                return getBaseTask();
+            }
+            return getBaseCategory().getTasks().getTask(oldTaskDescription);
+        }
+        if (oldTaskDescription.isEmpty()) {
+            if (!getBaseCategory().isSameCategory(categoryName) && !getBaseTask().isSameTask(oldTaskDescription)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            return getBaseTask();
+        }
+        return ModuleManager.getTask(moduleCode, categoryName, oldTaskDescription);
+    }
+
     /**
      * Executes an edit on the task.
      *
@@ -67,10 +147,8 @@ public class EditTaskCommand extends EditCommand {
     @Override
     protected CommandResult executeEdit() {
         try {
-            Task toEdit = ModuleManager.getTask(moduleCode, categoryName, oldTaskDescription);
-            if (newPriority < 0) {
-                newPriority = toEdit.getPriority();
-            }
+            Task toEdit = getBaseTaskDirectory();
+            fillAllAttributes(toEdit);
             ModuleManager.retrieveList(moduleCode, categoryName)
                     .edit(toEdit, newTaskDescription, newDeadline, newPriority);
             return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
@@ -82,6 +160,8 @@ public class EditTaskCommand extends EditCommand {
             return new CommandResult(MESSAGE_TASK_NOT_FOUND);
         } catch (TaskManager.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
+        } catch (IncorrectDirectoryLevelException e) {
+            return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 

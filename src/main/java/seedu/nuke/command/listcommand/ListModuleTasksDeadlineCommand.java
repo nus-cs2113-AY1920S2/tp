@@ -19,7 +19,7 @@ import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULLY_LIST;
  */
 public class ListModuleTasksDeadlineCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "lstm";
+    public static final String COMMAND_WORD = "lsmtd";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     public static final int EMPTY = 0;
 

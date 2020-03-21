@@ -63,14 +63,14 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * Searches the Module List for the module with the specified module code.
+     *  Finds a module with the specified module code in the Module List.
      *
      * @param moduleCode
      *  The module code of the module to be found
      * @return
      *  The found module with the specified module code
      * @throws ModuleNotFoundException
-     *  If the module is not found
+     *  If the module is not found in the Module List
      */
     public static Module getModule(String moduleCode) throws ModuleNotFoundException {
         for (Module module : moduleList) {

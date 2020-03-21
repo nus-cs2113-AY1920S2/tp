@@ -6,6 +6,9 @@ import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddTagCommand;
 import seedu.nuke.command.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.editcommand.EditCategoryCommand;
+import seedu.nuke.command.editcommand.EditModuleCommand;
+import seedu.nuke.command.editcommand.EditTaskCommand;
 import seedu.nuke.command.listcommand.*;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
@@ -108,6 +111,15 @@ public class Parser {
 
                 case ListAllTasksDeadlineCommand.COMMAND_WORD:
                     return new ListAllTasksDeadlineCommand();
+
+                case EditModuleCommand.COMMAND_WORD:
+                    return prepareEditModuleCommand(parameters);
+
+                case EditCategoryCommand.COMMAND_WORD:
+                    return prepareEditCategoryCommand(parameters);
+
+                case EditTaskCommand.COMMAND_WORD:
+                    return prepareEditTaskCommand(parameters);
 
                 //        case ListCommand.COMMAND_WORD:
                 //            return prepareListCommand(parameters);
@@ -492,13 +504,118 @@ public class Parser {
     }
 
     /**
-     * Checks if there is more than <b>one</b> parameter in the input.
+     * Prepares the command to edit a module
      *
-     * @param parameters The parameter(s) provided in the input
-     * @return <code>TRUE</code> if there is more than one parameter in the input, and <code>FALSE</code> otherwise
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to edit a module
      */
-    private boolean hasMultipleParameters(String parameters) {
-        return parameters.contains(PARAMETER_SPLITTER);
+    private Command prepareEditModuleCommand(String parameters)
+            throws InvalidParameterException, DuplicatePrefixException, InvalidPrefixException {
+        Matcher matcher = EditModuleCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_CODE_PREFIX);
+
+        String newModuleCode = matcher.group("identifier").trim();
+        String oldModuleCode = matcher.group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+
+        if (isNothingToEdit(newModuleCode)) {
+            return new IncorrectCommand(MESSAGE_NO_EDIT);
+        }
+
+        return new EditModuleCommand(oldModuleCode, newModuleCode);
+
+    }
+
+    /**
+     * Prepares the command to edit a category
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to edit a category
+     */
+    private Command prepareEditCategoryCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = EditCategoryCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, PRIORITY_PREFIX);
+
+        String newCategoryName = matcher.group("identifier").trim();
+        String moduleCode = matcher.group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String oldCategoryName = matcher.group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
+        String newPriority = matcher.group("priority")
+                .replace(PRIORITY_PREFIX, "").trim();
+
+        if (isNothingToEdit(newCategoryName, newPriority)) {
+            return new IncorrectCommand(MESSAGE_NO_EDIT);
+        }
+
+        if (newPriority.isEmpty()) {
+            return new EditCategoryCommand(oldCategoryName, moduleCode, newCategoryName);
+        }
+
+        try {
+            return new EditCategoryCommand(oldCategoryName, moduleCode, newCategoryName, parsePriority(newPriority));
+        } catch (NumberFormatException | InvalidPriorityException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
+        }
+    }
+
+    /**
+     * Prepares the command to edit a task
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to edit a task
+     */
+    private Command prepareEditTaskCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = EditTaskCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, TASK_DESCRIPTION_PREFIX,
+                DEADLINE_PREFIX, PRIORITY_PREFIX);
+
+        String newTaskDescription = matcher.group("identifier").trim();
+        String moduleCode = matcher.group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryName = matcher.group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
+        String oldTaskDescription = matcher.group("taskDescription")
+                .replace(TASK_DESCRIPTION_PREFIX, "").trim();
+
+        String optionalParameters = matcher.group("optional");
+        Matcher optionalMatcher = EditTaskCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        String[] optionalAttributes = getOptionalAttributes(optionalMatcher, "deadline", "priority");
+
+        String newDeadline = optionalAttributes[0]
+                .replace(DEADLINE_PREFIX, "").trim();
+        String newPriority = optionalAttributes[1]
+                .replace(PRIORITY_PREFIX, "").trim();
+
+        if (isNothingToEdit(newTaskDescription, newDeadline, newPriority)) {
+            return new IncorrectCommand(MESSAGE_NO_EDIT);
+        }
+
+        DateTime newDeadlineToSet;
+        try {
+            newDeadlineToSet = DateTimeFormat.stringToDateTime(newDeadline);
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_DEADLINE_FORMAT);
+        }
+
+        if (newPriority.isEmpty()) {
+            return new EditTaskCommand(oldTaskDescription, moduleCode, categoryName, newTaskDescription, newDeadlineToSet);
+        }
+
+        try {
+            return new EditTaskCommand(oldTaskDescription, moduleCode, categoryName, newTaskDescription,
+                    newDeadlineToSet, parsePriority(newPriority));
+        } catch (NumberFormatException | InvalidPriorityException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
+        }
     }
 
     private boolean isMissingCompulsoryParameters(Pattern[] formats, Matcher[] matchers, String parameters) {
@@ -563,6 +680,16 @@ public class Parser {
         }
         return optionalAttributes;
     }
+
+    private boolean isNothingToEdit(String... attributes) {
+        for (String attribute : attributes) {
+            if (!attribute.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     /**
      * Parses the input as a confirmation status to a confirmation prompt for the user, and prepares the

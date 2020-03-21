@@ -25,13 +25,6 @@ public class ListModuleCommand extends ListCommand {
             "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
     );
 
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+)?)"),
-            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
-            // Pattern.compile("(?<all>(?:" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^ae].*|[ae]\\S+)))")
-    };
-
     private String moduleKeyWord;
     private boolean isExact;
 

@@ -142,7 +142,7 @@ public class Message {
                 "\nEnter the list number(s) of the tasks to delete.\n";
     }
 
-    public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.";
+    public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.\n";
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
 
     public static final String MESSAGE_UNDO_SUCCESSFUL = "Successfully undo!\n";
@@ -152,6 +152,8 @@ public class Message {
     public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! Category has been updated.\n";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
+
+    public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
 
 
 }

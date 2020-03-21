@@ -47,9 +47,9 @@ public class TaskManager {
      * Finds a task with the specified task description in the Task List.
      *
      * @param description
-     *  The description of the task
+     *  The description of the task to be found
      * @return
-     *  The task with the specified description if found
+     *  The found task with the specified description
      * @throws TaskNotFoundException
      *  If the task is not found in the Task List
      */
