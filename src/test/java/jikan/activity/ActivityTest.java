@@ -3,6 +3,7 @@ package jikan.activity;
 import jikan.exception.InvalidTimeFrameException;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
@@ -16,8 +17,10 @@ class ActivityTest {
 
     {
         try {
-            activity = new Activity("Activity", LocalDateTime.parse("2020-01-01T08:00:00"),
-                    LocalDateTime.parse("2020-01-01T10:00:00"), tags);
+            LocalDateTime startTime = LocalDateTime.parse("2020-01-01T08:00:00");
+            LocalDateTime endTime =  LocalDateTime.parse("2020-01-01T10:00:00");
+            Duration duration = Duration.between(startTime, endTime);
+            activity = new Activity("Activity", startTime, endTime, duration, tags);
         } catch (InvalidTimeFrameException e) {
             e.printStackTrace();
         }

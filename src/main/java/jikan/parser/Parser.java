@@ -141,8 +141,8 @@ public class Parser {
      */
     public void parseBye(ActivityList activityList, Scanner scanner) throws InvalidTimeFrameException {
         if (startTime != null) {
-            String line = activityName + " is still running! If you exit now it will be aborted.\n" +
-                    "Would you like to end this activity to save it?";
+            String line = activityName + " is still running! If you exit now it will be aborted.\n"
+                    + "Would you like to end this activity to save it?";
             ui.printDivider(line);
             String userInput = scanner.nextLine();
             if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
@@ -158,7 +158,8 @@ public class Parser {
      * @param activityList List of activities.
      * @param scanner To parse user input.
      */
-    public void parseStart(ActivityList activityList, Scanner scanner) throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
+    public void parseStart(ActivityList activityList, Scanner scanner)
+            throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
@@ -210,7 +211,7 @@ public class Parser {
      * @param delimiter The index of the tag delimiter.
      */
     private String parseActivity(int delimiter) throws EmptyNameException {
-        if(delimiter == -1) {
+        if (delimiter == -1) {
             // no tags
             activityName = tokenizedInputs[1].strip();
             if (activityName.isEmpty()) {
@@ -420,7 +421,7 @@ public class Parser {
         }
     }
 
-    public void resetInfo() {
+    private void resetInfo() {
         startTime = null;
         activityName = null;
         tags = new HashSet<>();

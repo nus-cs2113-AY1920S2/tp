@@ -60,15 +60,26 @@ public class ActivityList {
         updateFile(dataLine);
     }
 
+    /**
+     * Updates the duration of an activity.
+     * @param duration The new duration.
+     * @param endTime Thew new end time.
+     * @param index Index of the activity to be updated.
+     */
     public void updateDuration(Duration duration, LocalDateTime endTime, int index) {
         activities.get(index).setDuration(duration);
         activities.get(index).setEndTime(endTime);
         fieldChangeUpdateFile();
     }
 
+    /**
+     * Searches for an activity in activityList by name.
+     * @param name Name of the activity to search for.
+     * @return Index of activity with that name.
+     */
     public int findActivity(String name) {
         for (int i = 0; i < activities.size(); i++) {
-            if(activities.get(i).getName().equals(name)) {
+            if (activities.get(i).getName().equals(name)) {
                 return i;
             }
         }
