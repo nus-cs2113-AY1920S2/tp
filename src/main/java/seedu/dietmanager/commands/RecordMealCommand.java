@@ -28,7 +28,7 @@ public class RecordMealCommand extends Command {
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
         this.date = descriptionArray[0];
         this.mealType = descriptionArray[1];
-        this.foodDescription = descriptionArray[2].split(" ");
+        this.foodDescription = descriptionArray[2].split("/");
     }
 
     @Override
@@ -36,7 +36,10 @@ public class RecordMealCommand extends Command {
         DailyFoodRecord record = profile.getRecordOfDay(date);
         ArrayList<Food> foodList = new ArrayList<>();
         for (String foodName : foodDescription) {
-            foodList.add(new Food(foodName));
+            foodName = foodName.trim();
+            if (!foodName.equals("")) {
+                foodList.add(new Food(foodName));
+            }
         }
         record.recordMeals(mealType,foodList);
         saveResult(profile);

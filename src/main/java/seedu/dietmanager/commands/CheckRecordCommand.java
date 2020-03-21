@@ -43,7 +43,7 @@ public class CheckRecordCommand extends Command {
             this.result = date + " Afternoon: " + record.showLunch();
             break;
         case "night":
-            this.result = date + " Dinner: " + record.showDinner();
+            this.result = date + " Night: " + record.showDinner();
             break;
         default:
             this.result = MessageBank.MEAL_TYPE_ERROR;
