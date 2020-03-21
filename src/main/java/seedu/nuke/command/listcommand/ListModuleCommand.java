@@ -16,7 +16,7 @@ public class ListModuleCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsm";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-      "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
+      "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
       "(?<optional>(?:\\s+-[ea])*)" +
       "(?<invalid>(?:\\s+-.*)*)"
     );

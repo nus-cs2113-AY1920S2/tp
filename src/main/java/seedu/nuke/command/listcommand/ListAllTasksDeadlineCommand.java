@@ -1,6 +1,7 @@
 package seedu.nuke.command.listcommand;
 
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.data.ModuleManager;
 
@@ -20,6 +21,10 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD;
     public static final int EMPTY = 0;
 
+    @Override
+    protected ArrayList<Directory> createFilteredList() {
+        return null;
+    }
 
     @Override
     public CommandResult execute() {

@@ -16,7 +16,7 @@ public class ListCategoryCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsc";
     public static final String FORMAT = COMMAND_WORD;
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
             "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<optional>(?:\\s+-[ea])*)" +
             "(?<invalid>(?:\\s+-.*)*)"

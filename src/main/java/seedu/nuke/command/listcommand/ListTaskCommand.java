@@ -16,7 +16,7 @@ public class ListTaskCommand extends ListCommand {
     public static final String COMMAND_WORD = "lst";
     public static final String FORMAT = COMMAND_WORD;
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
             "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
             "(?<optional>(?:\\s+-[ea])*)" +
@@ -49,38 +49,47 @@ public class ListTaskCommand extends ListCommand {
         this.isAll = isAll;
     }
 
+    private ArrayList<Task> filterAll() {
+        return isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword, taskKeyword) :
+                ModuleManager.filter(moduleKeyWord, categoryKeyword, taskKeyword);
+    }
+
+    private ArrayList<Task> filterFromModule() throws IncorrectDirectoryLevelException {
+        Module baseModule = DirectoryTraverser.getBaseModule();
+        return isExact ? baseModule.getCategories().filterExact(categoryKeyword, taskKeyword) :
+                baseModule.getCategories().filter(categoryKeyword, taskKeyword);
+    }
+
+    private ArrayList<Task> filterFromCategory() throws IncorrectDirectoryLevelException {
+        Category baseCategory = DirectoryTraverser.getBaseCategory();
+        return isExact ? baseCategory.getTasks().filterExact(taskKeyword) :
+                baseCategory.getTasks().filter(taskKeyword);
+    }
+
     protected ArrayList<Directory> createFilteredList() {
-        ArrayList<Task> filteredTaskList;
         if (isAll || !moduleKeyWord.isEmpty()) {
-            filteredTaskList = isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword, taskKeyword) :
-                    ModuleManager.filter(moduleKeyWord, categoryKeyword, taskKeyword);
-            return new ArrayList<>(filteredTaskList);
+            return new ArrayList<>(filterAll());
         }
 
         if (!categoryKeyword.isEmpty()) {
             try {
-                Module baseModule = DirectoryTraverser.getBaseModule();
-                filteredTaskList = isExact ? baseModule.getCategories().filterExact(categoryKeyword, taskKeyword) :
-                        baseModule.getCategories().filter(categoryKeyword, taskKeyword);
-                return new ArrayList<>(filteredTaskList);
+                return new ArrayList<>(filterFromModule());
             } catch (IncorrectDirectoryLevelException e) {
                 // Current directory is too high to get module information, i.e. at root level
-                filteredTaskList = isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword, taskKeyword) :
-                        ModuleManager.filter(moduleKeyWord, categoryKeyword, taskKeyword);
-                return new ArrayList<>(filteredTaskList);
+                return new ArrayList<>(filterAll());
             }
         }
 
         try {
-            Category baseCategory = DirectoryTraverser.getBaseCategory();
-            filteredTaskList = isExact ? baseCategory.getTasks().filterExact(taskKeyword) :
-                    baseCategory.getTasks().filter(taskKeyword);
-            return new ArrayList<>(filteredTaskList);
+            return new ArrayList<>(filterFromCategory());
         } catch (IncorrectDirectoryLevelException e) {
-            // Current directory is too high to get category information, i.e. at root or module level
-            filteredTaskList = isExact ? ModuleManager.filterExact(moduleKeyWord, categoryKeyword, taskKeyword) :
-                    ModuleManager.filter(moduleKeyWord, categoryKeyword, taskKeyword);
-            return new ArrayList<>(filteredTaskList);
+            try {
+                // Current directory is too high to get category information, i.e. at root / module level
+                return new ArrayList<>(filterFromModule());
+            } catch (IncorrectDirectoryLevelException f) {
+                // Current directory is too high to get module information, i.e. at root level
+                return new ArrayList<>(filterAll());
+            }
         }
     }
 

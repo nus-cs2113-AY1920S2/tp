@@ -20,4 +20,37 @@ some work -|||- N -|||- 20/03/2020 03:00AM -|||- 30
 --- END FILE ---
 --- END TASK ---
 --- END CATEGORY ---
+CS1231 -|||- Discrete Structures -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+due work -|||- N -|||- 21/03/2020 08:00PM -|||- 3
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+GEH1036 -|||- Living with Mathematics -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+--- END CATEGORY ---
 --- END MODULE ---

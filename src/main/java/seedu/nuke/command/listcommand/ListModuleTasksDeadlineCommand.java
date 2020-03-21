@@ -2,6 +2,7 @@ package seedu.nuke.command.listcommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
@@ -28,6 +29,11 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
      * Constructor method for CheckModuleTaskDeadlineCommand class.
      */
     public ListModuleTasksDeadlineCommand() {
+    }
+
+    @Override
+    protected ArrayList<Directory> createFilteredList() {
+        return null;
     }
 
     @Override

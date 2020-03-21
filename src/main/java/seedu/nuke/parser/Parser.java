@@ -68,7 +68,7 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
         String commandWord = matcher.group("commandWord").toLowerCase();
-        String parameters = matcher.group("parameters").trim();
+        String parameters = matcher.group("parameters");
 
         try {
             switch (commandWord) {
@@ -177,10 +177,10 @@ public class Parser {
      *  The command to change the current directory
      */
     private Command prepareChangeDirectoryCommand(String parameters) {
-        if (parameters.equals("..")) {
+        if (parameters.trim().equals("..")) {
             return new ChangeDirectoryCommand();
         } else {
-            return new ChangeDirectoryCommand(parameters);
+            return new ChangeDirectoryCommand(parameters.trim());
         }
     }
 
@@ -414,22 +414,18 @@ public class Parser {
      * @return
      *  The command to show filtered modules
      */
-    private Command prepareListModuleCommand(String parameters) {
-        final Pattern[] listModuleFormat = ListModuleCommand.REGEX_FORMATS;
-        final int invalidParameterFormatsIndex = listModuleFormat.length - 1;
-        Matcher[] matchers = new Matcher[listModuleFormat.length];
+    private Command prepareListModuleCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = ListModuleCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, EXACT_FLAG, ALL_FLAG);
 
-        if (isMissingCompulsoryParameters(listModuleFormat, matchers, parameters)) {
-            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-        }
+        String moduleKeyword = matcher.group("identifier").trim();
 
-        if (matchers[invalidParameterFormatsIndex].find()) {
-            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-        }
+        String optionalParameters = matcher.group("optional");
+        Matcher optionalMatcher = ListModuleCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        String[] optionalAttributes = getOptionalAttributes(optionalMatcher, "exact");
 
-        String moduleKeyword = matchers[0].group("identifier").trim();
-        String exactFlag = matchers[1].group("exact").trim();
-        // String allFlag = matchers[2].group("all").trim();
+        String exactFlag = optionalAttributes[0].trim();
         boolean isExact = !exactFlag.isEmpty();
 
         return new ListModuleCommand(moduleKeyword, isExact);
@@ -443,25 +439,25 @@ public class Parser {
      * @return
      *  The command to show filtered categories
      */
-    private Command prepareListCategoryCommand(String parameters) {
-        final Pattern[] listCategoryFormat = ListCategoryCommand.REGEX_FORMATS;
-        final int invalidParameterFormatsIndex = listCategoryFormat.length - 1;
-        Matcher[] matchers = new Matcher[listCategoryFormat.length];
+    private Command prepareListCategoryCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = ListCategoryCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_CODE_PREFIX, EXACT_FLAG, ALL_FLAG);
 
-        if (isMissingCompulsoryParameters(listCategoryFormat, matchers, parameters)) {
-            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-        }
+        String categoryKeyword = matcher.group("identifier").trim();
+        String moduleKeyword = matcher.group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
 
-        if (matchers[invalidParameterFormatsIndex].find()) {
-            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-        }
+        String optionalParameters = matcher.group("optional");
+        Matcher optionalMatcher = ListCategoryCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        String[] optionalAttributes = getOptionalAttributes(optionalMatcher, "exact", "all");
 
-        String categoryKeyword = matchers[0].group("identifier").trim();
-        String moduleKeyword = matchers[1].group("moduleCode").trim();
-        String exactFlag = matchers[2].group("exact").trim();
+        String exactFlag = optionalAttributes[0].trim();
         boolean isExact = !exactFlag.isEmpty();
+        String allFlag = optionalAttributes[1].trim();
+        boolean isAll = !allFlag.isEmpty();
 
-        return new ListCategoryCommand(moduleKeyword, categoryKeyword, isExact);
+        return new ListCategoryCommand(moduleKeyword, categoryKeyword, isExact, isAll);
     }
 
     /**
@@ -472,26 +468,27 @@ public class Parser {
      * @return
      *  The command to show filtered tasks
      */
-    private Command prepareListTaskCommand(String parameters) {
-        final Pattern[] listTaskFormat = ListTaskCommand.REGEX_FORMATS;
-        final int invalidParameterFormatsIndex = listTaskFormat.length - 1;
-        Matcher[] matchers = new Matcher[listTaskFormat.length];
+    private Command prepareListTaskCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = ListTaskCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, EXACT_FLAG, ALL_FLAG);
 
-        if (isMissingCompulsoryParameters(listTaskFormat, matchers, parameters)) {
-            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-        }
+        String taskKeyword = matcher.group("identifier").trim();
+        String moduleKeyword = matcher.group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryKeyword = matcher.group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
 
-        if (matchers[invalidParameterFormatsIndex].find()) {
-            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-        }
+        String optionalParameters = matcher.group("optional");
+        Matcher optionalMatcher = ListTaskCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        String[] optionalAttributes = getOptionalAttributes(optionalMatcher, "exact", "all");
 
-        String taskKeyword = matchers[0].group("identifier").trim();
-        String moduleKeyword = matchers[1].group("moduleCode").trim();
-        String categoryKeyword = matchers[2].group("categoryName").trim();
-        String exactFlag = matchers[3].group("exact").trim();
+        String exactFlag = optionalAttributes[0].trim();
         boolean isExact = !exactFlag.isEmpty();
+        String allFlag = optionalAttributes[1].trim();
+        boolean isAll = !allFlag.isEmpty();
 
-        return new ListTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact);
+        return new ListTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
     }
 
     /**
