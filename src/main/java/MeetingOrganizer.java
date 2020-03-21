@@ -144,10 +144,9 @@ public class MeetingOrganizer {
                 TextUI.invalidNumberMsg();
                 TextUI.menuMsg();
             } finally {
+                Scanner in2 = new Scanner(System.in);
                 TextUI.menuMsg();
-                while (in.hasNext()) {
-                    userInput = in.nextLine();
-                }
+                userInput = in2.nextLine();
             }
         }
         TextUI.exitMsg();
