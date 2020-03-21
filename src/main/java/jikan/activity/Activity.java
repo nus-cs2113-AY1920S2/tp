@@ -43,18 +43,12 @@ public class Activity {
         this.date = endTime.toLocalDate();
     }
 
-    /**
-     * Ends an ongoing activity and updates the total time spent on the activity.
-     * @param endTime date and time when the activity ended
-     * @return a confirmation message that the tracking of the activity has ended
-     */
-    public String endActivity(LocalDateTime endTime) {
-        this.endTime = endTime;
-        return ("You have ended " + this.name + " . Great job !\n");
-    }
-
     public Duration getDuration() {
         return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 
     public String getName() {

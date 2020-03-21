@@ -9,6 +9,7 @@ import jikan.exception.NoSuchActivityException;
 import jikan.ui.Ui;
 import jikan.Log;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +33,9 @@ public class Parser {
     Log logger = new Log();
     private ActivityList lastShownList = new ActivityList();
 
+    // flag to check if the current activity is a continued one
+    public int continuedIndex = -1;
+
     /**
      * Parses user commands to relevant functions to carry out the commands.
      * @param scanner scanner object which reads user input
@@ -45,7 +49,7 @@ public class Parser {
         lastShownList.activities.addAll(activityList.activities);
         while (true) {
             String userInput = scanner.nextLine();
-            tokenizedInputs = userInput.split(" ", 3);
+            tokenizedInputs = userInput.split(" ", 2);
             instruction = tokenizedInputs[0];
 
             switch (instruction) {
@@ -116,6 +120,9 @@ public class Parser {
                 } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
                     ui.printDivider("No keyword was given.");
                 }
+                break;
+            case "continue":
+                parseContinue(activityList);
                 break;
             default:
                 parseDefault();
@@ -250,6 +257,15 @@ public class Parser {
     public void parseEnd(ActivityList activityList) throws NoSuchActivityException, InvalidTimeFrameException {
         if (startTime == null) {
             throw new NoSuchActivityException();
+        } else if (continuedIndex != -1) {
+            String line = "Ended: " + activityName;
+            ui.printDivider(line);
+            endTime = LocalDateTime.now();
+            Duration duration = Duration.between(startTime, endTime);
+            Duration oldDuration = activityList.get(continuedIndex).getDuration();
+            Duration newDuration = duration.plus(oldDuration);
+            activityList.updateDuration(newDuration, continuedIndex);
+            continuedIndex = -1;
         } else {
             String line = "Ended: " + activityName;
             ui.printDivider(line);
@@ -269,6 +285,20 @@ public class Parser {
         String line = "You have deleted " + activityList.get(index).getName();
         ui.printDivider(line);
         activityList.delete(index);
+    }
+
+    public void parseContinue(ActivityList activityList) {
+        int index = activityList.findActivity(tokenizedInputs[1]);
+        if (index != -1) {
+            // activity is found
+            activityName = activityList.get(index).getName();
+            startTime = LocalDateTime.now();
+            tags = activityList.get(index).getTags();
+            continuedIndex = index;
+        } else {
+            // activity not found
+            System.out.println("No such activity is found!");
+        }
     }
 
     /**

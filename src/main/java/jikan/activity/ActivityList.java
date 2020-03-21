@@ -5,6 +5,7 @@ import jikan.storage.Storage;
 import jikan.storage.StorageHandler;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +58,19 @@ public class ActivityList {
         String dataLine = activity.toData();
 
         updateFile(dataLine);
+    }
+
+    public void updateDuration(Duration duration, int index) {
+        activities.get(index).setDuration(duration);
+    }
+
+    public int findActivity(String name) {
+        for (int i = 0; i < activities.size(); i++) {
+            if(activities.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
