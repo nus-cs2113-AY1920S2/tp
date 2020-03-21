@@ -3,10 +3,13 @@ package seedu.atas;
 import command.Command;
 import command.CommandResult;
 import command.ExitCommand;
+import command.ListCommand;
 import common.Messages;
 import exceptions.AtasException;
+import tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Atas {
     private Ui ui;
@@ -32,15 +35,16 @@ public class Atas {
     /**
      * Starts Duke Process.
      */
-    public void run() throws AtasException {
+    public void run() {
         ui.printWelcomeMessage();
+        showTodayTasksIfAny();
         runLoop();
     }
 
     /**
      * Run loop until exit command is received.
      */
-    public void runLoop() throws AtasException {
+    public void runLoop() {
         while (!ExitCommand.isExit()) {
             String input = ui.getUserInput();
             Command command = Parser.parseCommand(input);
@@ -51,7 +55,7 @@ public class Atas {
         }
     }
 
-    private void trySaveTaskList() throws AtasException {
+    private void trySaveTaskList() {
         try {
             storage.save(taskList);
         } catch (IOException e) {
@@ -59,10 +63,20 @@ public class Atas {
         }
     }
 
+    private void showTodayTasksIfAny() {
+        ArrayList<Task> todayTasks = taskList.getTasksByDays(0);
+        String todayTasksString = new ListCommand(null).showListTasks(taskList.getTaskArray(), todayTasks);
+        if (todayTasks.size() == 0) {
+            // show a message more suited for a welcome screen instead of the standard no tasks message
+            todayTasksString = Messages.NO_TASKS_TODAY_MESSAGE;
+        }
+        ui.showToUser(todayTasksString);
+    }
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) throws AtasException {
+    public static void main(String[] args) {
         new Atas().run();
     }
 }

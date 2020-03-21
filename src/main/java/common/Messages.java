@@ -19,6 +19,7 @@ public class Messages {
     public static final String DIVIDER = "_______________________________________________________________________";
     public static final String NEWLINE_INDENT = "     ";
     public static final String COMMENTS_INDENT = "            notes: ";
+    public static final String PROMPT_FOR_USER_INPUT = "> ";
 
     // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";

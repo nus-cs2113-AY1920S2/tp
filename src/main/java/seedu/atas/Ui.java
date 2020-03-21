@@ -25,7 +25,7 @@ public class Ui {
      * Prints welcome messages.
      */
     public void printWelcomeMessage() {
-        out.println("Hello from\n" + Messages.LOGO);
+        out.println(Messages.LOGO);
         out.println(Messages.HELP_FORMAT_MESSAGE);
         printDividerLine();
     }
@@ -35,7 +35,7 @@ public class Ui {
      * @return String of user input
      */
     public String getUserInput() {
-        out.print("> ");
+        out.print(Messages.PROMPT_FOR_USER_INPUT);
         return in.nextLine().trim();
     }
 
