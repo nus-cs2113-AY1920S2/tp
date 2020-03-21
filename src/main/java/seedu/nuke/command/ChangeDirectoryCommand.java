@@ -15,14 +15,29 @@ public class ChangeDirectoryCommand extends Command {
 
     private String nextDirectoryName;
 
+    /**
+     * Constructs the command to traverse down into the next directory with the given name.
+     *
+     * @param nextDirectoryName
+     *  The name of the next directory
+     */
     public ChangeDirectoryCommand(String nextDirectoryName) {
         this.nextDirectoryName = nextDirectoryName;
     }
 
+    /**
+     * Constructs the command to traverse up from the current directory.
+     */
     public ChangeDirectoryCommand() {
         this(null);
     }
 
+    /**
+     * Executes the Change Directory Command to traverse up or down the current Directory.
+     *
+     * @return
+     *  The Command result of the execution
+     */
     @Override
     public CommandResult execute() {
 //        //context switch

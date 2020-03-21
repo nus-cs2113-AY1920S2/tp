@@ -54,6 +54,18 @@ public class AddCategoryCommand extends AddCommand {
     }
 
     /**
+     * Constructs the command to add a category without a priority.
+     *
+     * @param moduleCode
+     *  The module code of the module to add the category
+     * @param categoryName
+     *  The name of the category
+     */
+    public AddCategoryCommand(String moduleCode, String categoryName) {
+        this(moduleCode, categoryName, 0);
+    }
+
+    /**
      * Returns the parent module level directory of the Directory to be added.
      *
      * @return
@@ -69,18 +81,6 @@ public class AddCategoryCommand extends AddCommand {
         } else {
             return ModuleManager.getModule(moduleCode);
         }
-    }
-
-    /**
-     * Constructs the command to add a category without a priority.
-     *
-     * @param moduleCode
-     *  The module code of the module to add the category
-     * @param categoryName
-     *  The name of the category
-     */
-    public AddCategoryCommand(String moduleCode, String categoryName) {
-        this(moduleCode, categoryName, 0);
     }
 
     /**

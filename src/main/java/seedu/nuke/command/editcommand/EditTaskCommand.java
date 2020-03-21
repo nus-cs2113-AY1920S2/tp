@@ -47,6 +47,22 @@ public class EditTaskCommand extends EditCommand {
     private DateTime newDeadline;
     private int newPriority;
 
+    /**
+     * Constructs the command to edit a task.
+     *
+     * @param oldTaskDescription
+     *  The description of the task to be edited
+     * @param moduleCode
+     *  The module code of the module containing the task to be edited
+     * @param categoryName
+     *  The name of the category containing the task to be edited
+     * @param newTaskDescription
+     *  The new description of the task if any
+     * @param newDeadline
+     *  The new deadline of the task if any
+     * @param newPriority
+     *  The new priority of the task if any
+     */
     public EditTaskCommand(String oldTaskDescription, String moduleCode, String categoryName,
                            String newTaskDescription, DateTime newDeadline, int newPriority) {
         this.oldTaskDescription = oldTaskDescription;
@@ -57,11 +73,31 @@ public class EditTaskCommand extends EditCommand {
         this.newPriority = newPriority;
     }
 
+    /**
+     * Constructs the command to edit a task without a priority.
+     *
+     * @param oldTaskDescription
+     *  The description of the task to be edited
+     * @param moduleCode
+     *  The module code of the module containing the task to be edited
+     * @param categoryName
+     *  The name of the category containing the task to be edited
+     * @param newTaskDescription
+     *  The new description of the task if any
+     * @param newDeadline
+     *  The new deadline of the task if any
+     */
     public EditTaskCommand(String oldTaskDescription, String moduleCode, String categoryName,
                            String newTaskDescription, DateTime newDeadline) {
         this(oldTaskDescription, moduleCode, categoryName, newTaskDescription, newDeadline, -1);
     }
 
+    /**
+     * Fills in all missing attributes needed to edit the task.
+     *
+     * @param toEdit
+     *  The task to be edited
+     */
     private void fillAllAttributes(Task toEdit) {
         moduleCode = toEdit.getParent().getParent().getModuleCode();
         categoryName = toEdit.getParent().getCategoryName();

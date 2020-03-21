@@ -8,11 +8,6 @@ public class Category extends Directory {
     private TaskManager tasks;
 
     /**
-     * Default constructor for Category
-     */
-    public Category() {}
-
-    /**
      * Constructs the category.
      *
      * @param parentModule

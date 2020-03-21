@@ -650,10 +650,28 @@ public class Parser {
         return false;
     }
 
+    /**
+     * Checks if the priority is between 0 and 100 inclusive.
+     *
+     * @param priority
+     *  The priority given by the user
+     * @return
+     *  <code>TRUE</code> if the priority is within range, or <code>FALSE</code> otherwise
+     */
     private boolean isPriorityWithinRange(int priority) {
         return priority >= 0 && priority <= 100;
     }
 
+    /**
+     * Parses a string as a priority.
+     *
+     * @param priorityString
+     *  The string representing the priority
+     * @return
+     *  The numeric priority of the string
+     * @throws InvalidPriorityException
+     *  If the priority is invalid as it is not within the expected range
+     */
     private int parsePriority(String priorityString) throws InvalidPriorityException {
         int priorityToSet = Integer.parseInt(priorityString);
         if (!isPriorityWithinRange(priorityToSet)) {
@@ -662,6 +680,22 @@ public class Parser {
         return priorityToSet;
     }
 
+    /**
+     * Validate the parameters given by the user for the respective command.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @param matcher
+     *  The matcher to match for attributes and check for validity
+     * @param parameterPrefixes
+     *  The prefixes used for the respective command
+     * @throws InvalidParameterException
+     *  If an invalid parameter is found in the parameters or the parameters do not match the expected format
+     * @throws DuplicatePrefixException
+     *  If a duplicate prefix is found in the parameters
+     * @throws InvalidPrefixException
+     *  If an invalid prefix is found in the parameters
+     */
     private void validateParameters(String parameters, Matcher matcher, String... parameterPrefixes)
             throws InvalidParameterException, DuplicatePrefixException, InvalidPrefixException {
         for (String prefix : parameterPrefixes) {
@@ -679,6 +713,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns any matched optional attributes that is to be used to prepare the respective command.
+     *
+     * @param matcher
+     *  The matcher to find the optional attributes
+     * @param groups
+     *  The name of the groups for the optional attributes
+     * @return
+     *  The list of found optional attributes
+     */
     private String[] getOptionalAttributes(Matcher matcher, String... groups) {
         // No need to find duplicate prefixes since already done so in validateParameters method
         String[] optionalAttributes  = new String[groups.length];
@@ -698,6 +742,14 @@ public class Parser {
         return optionalAttributes;
     }
 
+    /**
+     * Checks if there is anything to edit from the input given by the user.
+     *
+     * @param attributes
+     *  The attributes to be edited
+     * @return
+     *  <code>TRUE</code> if there is nothing to edit, or <code>FALSE</code> otherwise
+     */
     private boolean isNothingToEdit(String... attributes) {
         for (String attribute : attributes) {
             if (!attribute.isEmpty()) {

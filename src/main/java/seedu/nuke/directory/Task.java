@@ -18,12 +18,6 @@ public class Task extends Directory implements Tag {
     // private String moduleCode;
     private ArrayList<String> tags;
 
-    /**
-     * Default constructor for task
-     */
-    public Task() {
-
-    }
 
 //    /**
 //     * constructor for the simplest task.

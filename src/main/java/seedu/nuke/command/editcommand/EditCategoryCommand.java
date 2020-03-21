@@ -39,6 +39,18 @@ public class EditCategoryCommand extends EditCommand {
     private String newCategoryName;
     private int newPriority;
 
+    /**
+     * Constructs the command to edit a category.
+     *
+     * @param oldCategoryName
+     *  The name of the category to be edited
+     * @param moduleCode
+     *  The module code of the module containing the category to be edited
+     * @param newCategoryName
+     *  The new name of the category if any
+     * @param newPriority
+     *  The new priority of the category if any
+     */
     public EditCategoryCommand(String oldCategoryName, String moduleCode, String newCategoryName, int newPriority) {
         this.oldCategoryName = oldCategoryName;
         this.moduleCode = moduleCode;
@@ -46,10 +58,26 @@ public class EditCategoryCommand extends EditCommand {
         this.newPriority = newPriority;
     }
 
+    /**
+     * Constructs the command to edit a category without a priority.
+     *
+     * @param oldCategoryName
+     *  The name of the category to be edited
+     * @param moduleCode
+     *  The module code of the module containing the category to be edited
+     * @param newCategoryName
+     *  The new name of the category if any
+     */
     public EditCategoryCommand(String oldCategoryName, String moduleCode, String newCategoryName) {
         this(oldCategoryName, moduleCode, newCategoryName, -1);
     }
 
+    /**
+     * Fills in all missing attributes needed to edit the category.
+     *
+     * @param toEdit
+     *  The category to be edited
+     */
     private void fillAllAttributes(Category toEdit) {
         moduleCode = toEdit.getParent().getModuleCode();
         if (newCategoryName.isEmpty()) {

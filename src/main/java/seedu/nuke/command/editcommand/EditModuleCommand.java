@@ -34,6 +34,14 @@ public class EditModuleCommand extends EditCommand {
     private String oldModuleCode;
     private String newModuleCode;
 
+    /**
+     * Constructs the command to edit a module.
+     *
+     * @param oldModuleCode
+     *  The module code of the module to be edited
+     * @param newModuleCode
+     *  The new module code for the module if any
+     */
     public EditModuleCommand(String oldModuleCode, String newModuleCode) {
         this.oldModuleCode = oldModuleCode;
         this.newModuleCode = newModuleCode.toUpperCase();

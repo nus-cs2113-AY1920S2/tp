@@ -75,7 +75,7 @@ public class Nuke {
     }
 
     /**
-     * Method to run the command from the user's input until bye command is received.
+     * Method to run the command from the user's input until exit command is received.
      */
     private void runCommandLoopUntilExitCommand() {
         do {

@@ -23,12 +23,23 @@ public class ListNumberPrompt extends Command {
     private ArrayList<Integer> indices;
     private DirectoryLevel directoryLevel;
 
+    /**
+     * Constructs the command to process the indices received as input from the user
+     *
+     * @param indices
+     */
     public ListNumberPrompt(ArrayList<Integer> indices) {
         this.filteredList = Executor.getFilteredList();
         this.indices = indices;
         this.directoryLevel = Executor.getDirectoryLevel();
     }
 
+    /**
+     * Executes the prompt to confirm the deletion of directories
+     *
+     * @return
+     *  The Command result of the execution
+     */
     private CommandResult executePromptConfirmation() {
         switch (directoryLevel) {
             case MODULE: {
@@ -57,6 +68,12 @@ public class ListNumberPrompt extends Command {
         }
     }
 
+    /**
+     * Executes the intermediate step in the deletion of Directories.
+     *
+     * @return
+     *  The Command result of the execution
+     */
     @Override
     public CommandResult execute() {
         Executor.preparePromptConfirmation();
