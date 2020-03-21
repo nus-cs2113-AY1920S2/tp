@@ -7,8 +7,34 @@ import seedu.nuke.directory.Module;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+import static seedu.nuke.parser.Parser.*;
 
 public abstract class FilterCommand extends Command {
+    public static final Pattern MODULE_REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
+            "(?<optional>(?:\\s+-[ea])*)" +
+            "(?<invalid>(?:\\s+-.*)*)"
+    );
+    public static final Pattern CATEGORY_REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
+            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<optional>(?:\\s+-[ea])*)" +
+            "(?<invalid>(?:\\s+-.*)*)"
+    );
+    public static final Pattern TASK_REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
+            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
+            "(?<optional>(?:\\s+-[ea])*)" +
+            "(?<invalid>(?:\\s+-.*)*)"
+    );
+    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
+            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)" +
+            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+    );
+
 
     protected ArrayList<Directory> createFilteredModuleList(String moduleKeyword, boolean isExact) {
         ArrayList<Module> filteredModuleList =

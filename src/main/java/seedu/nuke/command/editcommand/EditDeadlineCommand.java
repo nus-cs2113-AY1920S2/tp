@@ -28,10 +28,11 @@ public class EditDeadlineCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        // todo find the target task
-        final Task toEdit = new Task();
-        // todo set the description
-        toEdit.setDeadline(deadline);
-        return new CommandResult(String.format(MESSAGE_DONE, toEdit.getDescription()));
+//        // todo find the target task
+//        final Task toEdit = new Task();
+//        // todo set the description
+//        toEdit.setDeadline(deadline);
+//        return new CommandResult(String.format(MESSAGE_DONE, toEdit.getDescription()));
+        return null;
     }
 }

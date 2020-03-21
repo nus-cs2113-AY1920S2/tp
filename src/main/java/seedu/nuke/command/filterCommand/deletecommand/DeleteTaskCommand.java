@@ -8,10 +8,7 @@ import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
-import static seedu.nuke.parser.Parser.*;
-import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.util.Message.*;
 
 /**
@@ -24,25 +21,6 @@ public class DeleteTaskCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delt";
     public static final String FORMAT = COMMAND_WORD + " <category name>";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
-    public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<optional>(?:\\s+-[ea])*)" +
-            "(?<invalid>(?:\\s+-.*)*)"
-    );
-    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)" +
-            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
-    );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + " [^-]+)?)"),
-            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^m].*|[m]\\S+))*)")
-    };
 
     private String moduleCode;
     private String categoryName;

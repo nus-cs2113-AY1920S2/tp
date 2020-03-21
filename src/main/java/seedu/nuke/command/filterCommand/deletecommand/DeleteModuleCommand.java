@@ -9,10 +9,7 @@ import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
-import static seedu.nuke.parser.Parser.ALL_FLAG;
-import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.util.Message.*;
 
 /**
@@ -24,21 +21,6 @@ import static seedu.nuke.util.Message.*;
 public class DeleteModuleCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delm";
     public static final String MESSAGE_USAGE = "delm <module code>";
-    public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<optional>(?:\\s+-[ea])*)" +
-            "(?<invalid>(?:\\s+-.*)*)"
-    );
-    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)" +
-            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
-    );
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"),
-            Pattern.compile("(?<all>(?:\\s+" + ALL_FLAG + ")?)"),
-            Pattern.compile("(?<invalid>(?:\\s+-(?:[^e].*|[e]\\S+)))")
-    };
 
     private String moduleCode;
     private boolean isExact;

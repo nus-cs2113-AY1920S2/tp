@@ -4,24 +4,12 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.*;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
-import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListCategoryCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsc";
     public static final String FORMAT = COMMAND_WORD;
-    public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<optional>(?:\\s+-[ea])*)" +
-            "(?<invalid>(?:\\s+-.*)*)"
-    );
-    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)" +
-            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
-    );
 
     private String moduleKeyWord;
     private String categoryKeyword;

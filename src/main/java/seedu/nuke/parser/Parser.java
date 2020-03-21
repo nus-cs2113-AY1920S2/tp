@@ -4,6 +4,7 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.*;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddTagCommand;
+import seedu.nuke.command.filterCommand.FilterCommand;
 import seedu.nuke.command.filterCommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filterCommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.editcommand.EditCategoryCommand;
@@ -431,13 +432,13 @@ public class Parser {
      */
     private Command prepareDeleteAndListModuleCommand(String parameters, boolean isDelete)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
-        Matcher matcher = ListModuleCommand.REGEX_FORMAT.matcher(parameters);
+        Matcher matcher = FilterCommand.MODULE_REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, EXACT_FLAG, ALL_FLAG);
 
         String moduleKeyword = matcher.group("identifier").trim();
 
         String optionalParameters = matcher.group("optional");
-        Matcher optionalMatcher = ListModuleCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        Matcher optionalMatcher = FilterCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
         String[] optionalAttributes = getOptionalAttributes(optionalMatcher, "exact");
 
         String exactFlag = optionalAttributes[0].trim();
@@ -460,7 +461,7 @@ public class Parser {
      */
     private Command prepareDeleteAndListCategoryCommand(String parameters, boolean isDelete)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
-        Matcher matcher = ListCategoryCommand.REGEX_FORMAT.matcher(parameters);
+        Matcher matcher = FilterCommand.CATEGORY_REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, MODULE_CODE_PREFIX, EXACT_FLAG, ALL_FLAG);
 
         String categoryKeyword = matcher.group("identifier").trim();
@@ -468,7 +469,7 @@ public class Parser {
                 .replace(MODULE_CODE_PREFIX, "").trim();
 
         String optionalParameters = matcher.group("optional");
-        Matcher optionalMatcher = ListCategoryCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        Matcher optionalMatcher = FilterCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
         String[] optionalAttributes = getOptionalAttributes(optionalMatcher, "exact", "all");
 
         String exactFlag = optionalAttributes[0].trim();
@@ -493,7 +494,7 @@ public class Parser {
      */
     private Command prepareDeleteAndListTaskCommand(String parameters, boolean isDelete)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
-        Matcher matcher = ListTaskCommand.REGEX_FORMAT.matcher(parameters);
+        Matcher matcher = FilterCommand.TASK_REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, EXACT_FLAG, ALL_FLAG);
 
         String taskKeyword = matcher.group("identifier").trim();
@@ -503,7 +504,7 @@ public class Parser {
                 .replace(CATEGORY_NAME_PREFIX, "").trim();
 
         String optionalParameters = matcher.group("optional");
-        Matcher optionalMatcher = ListTaskCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        Matcher optionalMatcher = FilterCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
         String[] optionalAttributes = getOptionalAttributes(optionalMatcher, "exact", "all");
 
         String exactFlag = optionalAttributes[0].trim();
