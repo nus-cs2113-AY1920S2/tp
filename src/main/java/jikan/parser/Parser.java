@@ -54,7 +54,8 @@ public class Parser {
 
             switch (instruction) {
             case "bye":
-                ui.exitFromApp();
+                //ui.exitFromApp();
+                parseBye(activityList, scanner);
                 break;
             case "start":
                 try {
@@ -207,6 +208,46 @@ public class Parser {
 
     }
 
+    public void parseBye(ActivityList activityList, Scanner scanner) {
+        if (startTime != null) {
+            String line = activityName + " is still running! If you exit now it will be aborted.\n" +
+                    "Would you like to end this activity to save it?";
+            ui.printDivider(line);
+            String userInput = scanner.nextLine();
+            if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
+                saveActivity(activityList);
+                ui.exitFromApp();
+            } else {
+                ui.exitFromApp();
+            }
+        } else {
+            ui.exitFromApp();
+        }
+    }
+
+    private void saveActivity(ActivityList activityList) {
+        if (continuedIndex != -1) {
+            String line = "Ended: " + activityName;
+            ui.printDivider(line);
+            endTime = LocalDateTime.now();
+            Duration duration = Duration.between(startTime, endTime);
+            Duration oldDuration = activityList.get(continuedIndex).getDuration();
+            Duration newDuration = duration.plus(oldDuration);
+            activityList.updateDuration(newDuration, endTime, continuedIndex);
+            continuedIndex = -1;
+            resetInfo();
+        } else {
+            String line = "Ended: " + activityName;
+            ui.printDivider(line);
+            endTime = LocalDateTime.now();
+            Duration duration = Duration.between(startTime, endTime);
+            Activity newActivity = new Activity(activityName, startTime, endTime, duration, tags);
+            activityList.add(newActivity);
+            // reset activity info
+            resetInfo();
+        }
+    }
+
     /** Method to parse the start activity command. */
     public void parseStart(ActivityList activityList, Scanner scanner) throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
         // check if an activity has already been started
@@ -273,25 +314,8 @@ public class Parser {
     public void parseEnd(ActivityList activityList) throws NoSuchActivityException, InvalidTimeFrameException {
         if (startTime == null) {
             throw new NoSuchActivityException();
-        } else if (continuedIndex != -1) {
-            String line = "Ended: " + activityName;
-            ui.printDivider(line);
-            endTime = LocalDateTime.now();
-            Duration duration = Duration.between(startTime, endTime);
-            Duration oldDuration = activityList.get(continuedIndex).getDuration();
-            Duration newDuration = duration.plus(oldDuration);
-            activityList.updateDuration(newDuration, endTime, continuedIndex);
-            continuedIndex = -1;
-            resetInfo();
         } else {
-            String line = "Ended: " + activityName;
-            ui.printDivider(line);
-            endTime = LocalDateTime.now();
-            Duration duration = Duration.between(startTime, endTime);
-            Activity newActivity = new Activity(activityName, startTime, endTime, duration, tags);
-            activityList.add(newActivity);
-            // reset activity info
-            resetInfo();
+            saveActivity(activityList);
         }
         logger.makeFineLog("Ended: " + activityName);
     }

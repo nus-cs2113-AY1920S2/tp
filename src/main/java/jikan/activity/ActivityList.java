@@ -153,14 +153,10 @@ public class ActivityList {
             }
             // strings[0] = name, strings[1] = startDate, string[2] = endDate
             Activity e = null;
-            try {
-                LocalDateTime startTime = LocalDateTime.parse(strings.get(1));
-                LocalDateTime endTime = LocalDateTime.parse(strings.get(2));
-                Duration duration = Duration.parse(strings.get(3));
-                e = new Activity(strings.get(0), startTime, endTime, duration, tags);
-            } catch (InvalidTimeFrameException ex) {
-                ex.printStackTrace();
-            }
+            LocalDateTime startTime = LocalDateTime.parse(strings.get(1));
+            LocalDateTime endTime = LocalDateTime.parse(strings.get(2));
+            Duration duration = Duration.parse(strings.get(3));
+            e = new Activity(strings.get(0), startTime, endTime, duration, tags);
             activities.add(e);
         }
     }
