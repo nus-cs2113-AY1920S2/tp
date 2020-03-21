@@ -60,9 +60,10 @@ public class ActivityList {
         updateFile(dataLine);
     }
 
-    public void updateDuration(Duration duration, int index) {
+    public void updateDuration(Duration duration, LocalDateTime endTime, int index) {
         activities.get(index).setDuration(duration);
-
+        activities.get(index).setEndTime(endTime);
+        fieldChangeUpdateFile();
     }
 
     public int findActivity(String name) {
@@ -95,6 +96,14 @@ public class ActivityList {
     private void deleteUpdateFile(int index) {
         try {
             StorageHandler.removeLine(index, storage);
+        } catch (IOException e) {
+            System.out.println("Error while deleting activity from data file.");
+        }
+    }
+
+    private void fieldChangeUpdateFile() {
+        try {
+            StorageHandler.updateField(activities, storage);
         } catch (IOException e) {
             System.out.println("Error while deleting activity from data file.");
         }
@@ -134,10 +143,10 @@ public class ActivityList {
             Set<String> tags = new HashSet<String>();
 
             // if there are tags
-            if (strings.size() > 3) {
+            if (strings.size() > 4) {
                 // remove square brackets surrounding tags
-                tagStrings = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
-                tagStrings = strings.get(3).split(" ");
+                tagStrings = strings.get(4).substring(0,strings.get(4).length() - 1).split(" ");
+                tagStrings = strings.get(4).split(" ");
                 for (String i : tagStrings) {
                     tags.add(i);
                 }
@@ -145,8 +154,10 @@ public class ActivityList {
             // strings[0] = name, strings[1] = startDate, string[2] = endDate
             Activity e = null;
             try {
-                e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),
-                        LocalDateTime.parse(strings.get(2)), tags);
+                LocalDateTime startTime = LocalDateTime.parse(strings.get(1));
+                LocalDateTime endTime = LocalDateTime.parse(strings.get(2));
+                Duration duration = Duration.parse(strings.get(3));
+                e = new Activity(strings.get(0), startTime, endTime, duration, tags);
             } catch (InvalidTimeFrameException ex) {
                 ex.printStackTrace();
             }

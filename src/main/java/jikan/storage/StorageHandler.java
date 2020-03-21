@@ -1,5 +1,8 @@
 package jikan.storage;
 
+import jikan.activity.Activity;
+import jikan.activity.ActivityList;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,6 +48,14 @@ public class StorageHandler {
         updateIndexes(fileContent, removedIndex, dataFilePath);
 
          */
+    }
+
+    public static void updateField(ArrayList<Activity> activities, Storage storage) throws IOException {
+        List<String> fileContent = new ArrayList<>();
+        for (Activity a : activities) {
+            fileContent.add(a.toData());
+        }
+        saveNewList(fileContent, storage.dataFile);
     }
 
     /**

@@ -267,14 +267,15 @@ public class Parser {
             Duration duration = Duration.between(startTime, endTime);
             Duration oldDuration = activityList.get(continuedIndex).getDuration();
             Duration newDuration = duration.plus(oldDuration);
-            activityList.updateDuration(newDuration, continuedIndex);
+            activityList.updateDuration(newDuration, endTime, continuedIndex);
             continuedIndex = -1;
             resetInfo();
         } else {
             String line = "Ended: " + activityName;
             ui.printDivider(line);
             endTime = LocalDateTime.now();
-            Activity newActivity = new Activity(activityName, startTime, endTime, tags);
+            Duration duration = Duration.between(startTime, endTime);
+            Activity newActivity = new Activity(activityName, startTime, endTime, duration, tags);
             activityList.add(newActivity);
             // reset activity info
             resetInfo();

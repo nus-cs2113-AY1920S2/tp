@@ -28,8 +28,8 @@ public class Activity {
      * @param tags activity tags
      * @param endTime the time that the activity ended
      */
-    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Set<String> tags)
-            throws InvalidTimeFrameException {
+    public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Duration duration,
+                    Set<String> tags) throws InvalidTimeFrameException {
 
         if (endTime.isBefore(startTime)) {
             throw new InvalidTimeFrameException();
@@ -39,7 +39,7 @@ public class Activity {
         this.startTime = startTime;
         this.tags = tags;
         this.endTime = endTime;
-        this.duration = Duration.between(startTime, endTime);
+        this.duration = duration;
         this.date = endTime.toLocalDate();
     }
 
@@ -71,6 +71,10 @@ public class Activity {
         return endTime;
     }
 
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
     /**
      * Returns true if the Activity's date is within the date range specified (inclusive).
      *
@@ -98,7 +102,8 @@ public class Activity {
         String tagString = "";
         tagString = tagsToString(tagString);
 
-        String dataLine = (this.name + "," + this.startTime + "," + this.endTime + "," + tagString);
+        String dataLine = (this.name + "," + this.startTime + "," + this.endTime + ","
+                + this.duration.toString() + "," + tagString);
         return dataLine;
     }
 
