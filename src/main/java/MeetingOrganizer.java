@@ -21,7 +21,8 @@ public class MeetingOrganizer {
         try {
             myScheduleList = new ArrayList<>();
             storage = new Storage("data/meeting_list.txt");
-            myMeetingList = new MeetingList(storage.loadListFromDisk());
+            myMeetingList = new MeetingList(storage.loadMeetingListFromDisk());
+            myScheduleList = storage.loadMemberListFromDisk();
         } catch (FileNotFoundException e) {
             TextUI.showLoadingError();
             myMeetingList = new MeetingList();
@@ -141,7 +142,8 @@ public class MeetingOrganizer {
         while (!userInput.equals("5")) {
             try {
                 botResponse(userInput);
-                storage.updateListToDisk(myMeetingList.getMeetingList());
+                storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
+
             } catch (MoException e) {
                 TextUI.errorMsg(e);
                 TextUI.menuMsg();
@@ -155,6 +157,7 @@ public class MeetingOrganizer {
                 userInput = in.nextLine();
             }
         }
+        storage.updateMemberListToDisk(myScheduleList);
         TextUI.exitMsg();
     }
   

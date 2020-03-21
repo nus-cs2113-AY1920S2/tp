@@ -122,5 +122,11 @@ public class TeamMember {
         return this.mySchedule;
     }
 
+    public String[][] getMyScheduleName() {
+        return this.myScheduleName;
+    }
 
+    public void setMyScheduleName(String[][] myScheduleName) {
+        this.myScheduleName = myScheduleName;
+    }
 }
