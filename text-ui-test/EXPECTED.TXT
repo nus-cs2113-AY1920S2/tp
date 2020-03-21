@@ -1,6 +1,5 @@
 No existing save file found. A new save file will be created
-Hello from
- _______        _______        _______        _______ 
+ _______        _______        _______        _______
 |   _   |      |       |      |   _   |      |       |
 |  |_|  |      |_     _|      |  |_|  |      |  _____|
 |       |        |   |        |       |      | |_____ 
