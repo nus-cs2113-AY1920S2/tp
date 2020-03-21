@@ -63,6 +63,8 @@ public class Messages {
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
             + "%s" + System.lineSeparator() + "Now you have %d task%s in the list!";
     public static final String EMPTY_TASKLIST_MESSAGE = "No tasks were found";
+    public static final String NO_TODAY_TASKS_MESSAGE = "You have no tasks for today!";
+    public static final String SHOW_TODAY_TASKS_MESSAGE = "Here are the tasks you have for today";
     public static final String SHOW_TASKLIST_MESSAGE = "Here are the relevant tasks:%s%s";
     public static final String DONE_SUCCESS_MESSAGE = "[%s] has been marked done!";
     public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";

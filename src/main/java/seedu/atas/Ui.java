@@ -26,7 +26,6 @@ public class Ui {
      */
     public void printWelcomeMessage() {
         out.println(Messages.LOGO);
-        out.println(Messages.HELP_FORMAT_MESSAGE);
         printDividerLine();
     }
 

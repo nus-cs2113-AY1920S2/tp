@@ -24,6 +24,7 @@ Following is the list of commands available:
 13. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
 13. Exit ATAS: exit
 _______________________________________________________________________
+You have no tasks for today!
 > Following is the list of commands available:
 1.  Help Format: help
 2.  Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]

@@ -66,9 +66,13 @@ public class Atas {
     private void showTodayTasksIfAny() {
         ArrayList<Task> todayTasks = taskList.getTasksByDays(0);
         String todayTasksString = new ListCommand(null).showListTasks(taskList.getTaskArray(), todayTasks);
+
+        // edit result to show a message more suited for a welcome screen
         if (todayTasks.size() == 0) {
-            // show a message more suited for a welcome screen instead of the standard no tasks message
-            todayTasksString = Messages.NO_TASKS_TODAY_MESSAGE;
+            todayTasksString = Messages.NO_TODAY_TASKS_MESSAGE;
+        } else {
+            todayTasksString = todayTasksString.substring(todayTasksString.indexOf(System.lineSeparator()));
+            todayTasksString = Messages.SHOW_TODAY_TASKS_MESSAGE + todayTasksString;
         }
         ui.showToUser(todayTasksString);
     }
