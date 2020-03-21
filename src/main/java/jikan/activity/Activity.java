@@ -29,7 +29,12 @@ public class Activity {
      * @param endTime the time that the activity ended
      */
     public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Duration duration,
-                    Set<String> tags) {
+                    Set<String> tags) throws InvalidTimeFrameException {
+
+        if (endTime.isBefore(startTime)) {
+            throw new InvalidTimeFrameException();
+        }
+
 
         this.name = name.strip();
         this.startTime = startTime;

@@ -127,6 +127,8 @@ public class ActivityList {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error: data file not found. Could not load into the current session's task list.");
+        } catch (InvalidTimeFrameException e) {
+            System.out.println("Error: Invalid time frame.");
         }
     }
 
@@ -135,7 +137,7 @@ public class ActivityList {
      *
      * @param s String to parse.
      */
-    private void parseDataLine(String s) {
+    private void parseDataLine(String s) throws InvalidTimeFrameException {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
