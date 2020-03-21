@@ -58,7 +58,7 @@ public class Parser {
                 break;
             case "start":
                 try {
-                    parseStart();
+                    parseStart(activityList);
                 } catch (EmptyNameException e) {
                     logger.makeInfoLog("Activity started without task name");
                     ui.printDivider("Task name cannot be empty!");
@@ -200,9 +200,7 @@ public class Parser {
             throw new NoSuchActivityException();
         } else {
             logger.makeFineLog("Aborted " + activityName);
-            startTime = null;
-            tags = new HashSet<String>();
-            activityName = null;
+            resetInfo();
             String line = "You have aborted the current activity!";
             ui.printDivider(line);
         }
@@ -210,7 +208,7 @@ public class Parser {
     }
 
     /** Method to parse the start activity command. */
-    public void parseStart() throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
+    public void parseStart(ActivityList activityList) throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
         // check if an activity has already been started
         if (startTime != null) {
             String line = activityName + " is ongoing!";
@@ -221,36 +219,41 @@ public class Parser {
             assert tags.isEmpty();
 
             String line;
-            int delimiter = tokenizedInputs[1].indexOf("/t");
-            if (delimiter == -1) {
-                activityName = tokenizedInputs[1];
-                if (activityName.equals("")) {
-                    throw new EmptyNameException();
-                }
-                line = "Started: " + activityName;
+            // check if there exists an activity with this name
+            if (activityList.findActivity(tokenizedInputs[1]) != -1) {
+                line = "There is already an activity with this name.";
             } else {
-                activityName = tokenizedInputs[1].substring(0, delimiter);
-                if (activityName.equals("")) {
-                    throw new EmptyNameException();
-                }
-                line = "Started: " + activityName;
-                parseTags(delimiter);
+                int delimiter = tokenizedInputs[1].indexOf("/t");
+                line = parseActivity(delimiter);
+                startTime = LocalDateTime.now();
+                logger.makeFineLog("Started: " + activityName);
             }
-            startTime = LocalDateTime.now();
             ui.printDivider(line);
         }
-        logger.makeFineLog("Started: " + activityName);
     }
 
     /**
      * Inserts the tags into the activity object when it has ended.
      * @param delimiter the index of the tag delimiter
      */
-    private void parseTags(int delimiter) {
-        String[] tagString = tokenizedInputs[1].substring(delimiter + 3).split(" ");
-        for (String i :tagString) {
-            tags.add(i);
+    private String parseActivity(int delimiter) throws EmptyNameException {
+        if(delimiter == -1) {
+            // no tags
+            activityName = tokenizedInputs[1];
+            if (activityName.isEmpty()) {
+                throw new EmptyNameException();
+            }
+        } else {
+            activityName = tokenizedInputs[1].substring(0, delimiter);
+            if (activityName.isEmpty()) {
+                throw new EmptyNameException();
+            }
+            String[] tagString = tokenizedInputs[1].substring(delimiter + 3).split(" ");
+            for (String i : tagString) {
+                tags.add(i);
+            }
         }
+        return "Started: " + activityName;
     }
 
     /** Method to parse the end activity command. */
@@ -266,6 +269,7 @@ public class Parser {
             Duration newDuration = duration.plus(oldDuration);
             activityList.updateDuration(newDuration, continuedIndex);
             continuedIndex = -1;
+            resetInfo();
         } else {
             String line = "Ended: " + activityName;
             ui.printDivider(line);
@@ -273,10 +277,15 @@ public class Parser {
             Activity newActivity = new Activity(activityName, startTime, endTime, tags);
             activityList.add(newActivity);
             // reset activity info
-            startTime = null;
-            tags = new HashSet<String>();
+            resetInfo();
         }
         logger.makeFineLog("Ended: " + activityName);
+    }
+
+    public void resetInfo() {
+        startTime = null;
+        activityName = null;
+        tags = new HashSet<>();
     }
 
     /** Deletes an activity from the activity list. */
@@ -295,6 +304,8 @@ public class Parser {
             startTime = LocalDateTime.now();
             tags = activityList.get(index).getTags();
             continuedIndex = index;
+            String line = activityName + " was continued";
+            ui.printDivider(line);
         } else {
             // activity not found
             System.out.println("No such activity is found!");

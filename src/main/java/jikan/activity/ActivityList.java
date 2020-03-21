@@ -62,6 +62,7 @@ public class ActivityList {
 
     public void updateDuration(Duration duration, int index) {
         activities.get(index).setDuration(duration);
+
     }
 
     public int findActivity(String name) {
@@ -95,7 +96,7 @@ public class ActivityList {
         try {
             StorageHandler.removeLine(index, storage);
         } catch (IOException e) {
-            System.out.println("Error while deleting task from data file.");
+            System.out.println("Error while deleting activity from data file.");
         }
     }
 
