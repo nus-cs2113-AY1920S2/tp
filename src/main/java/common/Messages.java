@@ -6,13 +6,20 @@ package common;
 public class Messages {
     // Start up and Exit Print Messages
     public static final String LOGO =
-            " _______        _______        _______        _______ \n"
-                    + "|   _   |      |       |      |   _   |      |       |\n"
-                    + "|  |_|  |      |_     _|      |  |_|  |      |  _____|\n"
-                    + "|       |        |   |        |       |      | |_____ \n"
-                    + "|       | ___    |   |   ___  |       | ___  |_____  |\n"
-                    + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |\n"
-                    + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|\n";
+            " _______        _______        _______        _______ "
+                    + System.lineSeparator()
+                    + "|   _   |      |       |      |   _   |      |       |"
+                    + System.lineSeparator()
+                    + "|  |_|  |      |_     _|      |  |_|  |      |  _____|"
+                    + System.lineSeparator()
+                    + "|       |        |   |        |       |      | |_____ "
+                    + System.lineSeparator()
+                    + "|       | ___    |   |   ___  |       | ___  |_____  |"
+                    + System.lineSeparator()
+                    + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |"
+                    + System.lineSeparator()
+                    + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|"
+                    + System.lineSeparator();
     public static final String EXIT_MESSAGE = "Exiting A.T.A.S";
 
     // Common Print Messages
