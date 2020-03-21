@@ -37,13 +37,13 @@ public class DailyFoodRecord {
 
     public void recordMeals(String mealType, ArrayList<Food> foodList) {
         switch (mealType) {
-        case "breakfast":
+        case "morning":
             breakfast.addAll(foodList);
             break;
-        case "lunch":
+        case "afternoon":
             lunch.addAll(foodList);
             break;
-        case "dinner":
+        case "night":
             dinner.addAll(foodList);
             break;
         default:
