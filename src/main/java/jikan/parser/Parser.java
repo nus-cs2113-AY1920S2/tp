@@ -122,6 +122,7 @@ public class Parser {
                     parseContinue(activityList);
                 } catch (NoSuchActivityException e) {
                     ui.printDivider("No activity with this name exists!");
+                    logger.makeInfoLog("Continue command failed as there was no such activity saved.");
                 }
                 break;
             default:
@@ -147,6 +148,7 @@ public class Parser {
             String userInput = scanner.nextLine();
             if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
                 saveActivity(activityList);
+                logger.makeInfoLog("Activity " + activityName + " was saved before app terminated.");
             }
         }
         ui.exitFromApp();
@@ -169,16 +171,14 @@ public class Parser {
             // tags should be reset
             assert tags.isEmpty();
 
-            String line;
             // check if there exists an activity with this name
             int index = activityList.findActivity(tokenizedInputs[1]);
             if (index != -1) {
-                line = "There is already an activity with this name. Would you like to continue it?";
-                ui.printDivider(line);
+                ui.printDivider("There is already an activity with this name. Would you like to continue it?");
                 continueActivity(activityList, scanner, index);
             } else {
                 int delimiter = tokenizedInputs[1].indexOf("/t");
-                line = parseActivity(delimiter);
+                String line = parseActivity(delimiter);
                 startTime = LocalDateTime.now();
                 logger.makeFineLog("Started: " + activityName);
                 ui.printDivider(line);
@@ -200,6 +200,7 @@ public class Parser {
             tags = activityList.get(index).getTags();
             continuedIndex = index;
             ui.printDivider(activityName + " was continued");
+            logger.makeFineLog(activityName + " was continued.");
         } else {
             ui.printDivider("Okay then, what else can I do for you?");
         }
@@ -372,6 +373,7 @@ public class Parser {
             continuedIndex = index;
             String line = activityName + " was continued";
             ui.printDivider(line);
+            logger.makeFineLog(activityName + " was continued.");
         } else {
             throw new NoSuchActivityException();
         }
