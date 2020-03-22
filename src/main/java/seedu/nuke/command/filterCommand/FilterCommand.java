@@ -1,40 +1,45 @@
-package seedu.nuke.command.filterCommand;
+package seedu.nuke.command.filtercommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.parser.Parser.*;
+import static seedu.nuke.parser.Parser.ALL_FLAG;
+import static seedu.nuke.parser.Parser.CATEGORY_NAME_PREFIX;
+import static seedu.nuke.parser.Parser.EXACT_FLAG;
+import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
 
 public abstract class FilterCommand extends Command {
     public static final Pattern MODULE_REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<optional>(?:\\s+-[ea])*)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
+            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
     public static final Pattern CATEGORY_REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<optional>(?:\\s+-[ea])*)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
     public static final Pattern TASK_REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<optional>(?:\\s+-[ea])*)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)" +
-            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
+            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
     );
-
 
     protected ArrayList<Directory> createFilteredModuleList(String moduleKeyword, boolean isExact) {
         ArrayList<Module> filteredModuleList =
@@ -42,8 +47,8 @@ public abstract class FilterCommand extends Command {
         return new ArrayList<>(filteredModuleList);
     }
 
-    protected ArrayList<Directory>
-    createFilteredCategoryList(String moduleKeyword, String categoryKeyword, boolean isExact, boolean isAll) {
+    protected ArrayList<Directory> createFilteredCategoryList(String moduleKeyword, String categoryKeyword,
+                                                              boolean isExact, boolean isAll) {
         ArrayList<Category> filteredCategoryList;
         if (isAll || !moduleKeyword.isEmpty()) {
             filteredCategoryList = isExact ? ModuleManager.filterExact(moduleKeyword, categoryKeyword) :
@@ -63,8 +68,8 @@ public abstract class FilterCommand extends Command {
         }
     }
 
-    protected ArrayList<Directory>
-    createFilteredTaskList(String moduleKeyword, String categoryKeyword, String taskKeyword, boolean isExact, boolean isAll) {
+    protected ArrayList<Directory> createFilteredTaskList(String moduleKeyword, String categoryKeyword,
+                                                          String taskKeyword, boolean isExact, boolean isAll) {
         if (isAll || !moduleKeyword.isEmpty()) {
             return new ArrayList<>(filterAll(moduleKeyword, categoryKeyword, taskKeyword, isExact));
         }
@@ -91,7 +96,8 @@ public abstract class FilterCommand extends Command {
         }
     }
 
-    private ArrayList<Task> filterAll(String moduleKeyword, String categoryKeyword, String taskKeyword, boolean isExact) {
+    private ArrayList<Task> filterAll(String moduleKeyword, String categoryKeyword, String taskKeyword,
+                                      boolean isExact) {
         return isExact ? ModuleManager.filterExact(moduleKeyword, categoryKeyword, taskKeyword) :
                 ModuleManager.filter(moduleKeyword, categoryKeyword, taskKeyword);
     }

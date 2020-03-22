@@ -57,7 +57,8 @@ public class DataManager {
 
         for (Task task: allTasks) {
             deadlines.add(String.format("%-30s", task.getDescription()) + " "
-                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) + "   deadline: " + task.getDeadline());
+                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) + "   deadline: "
+                    + task.getDeadline());
         }
         return deadlines;
     }

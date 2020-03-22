@@ -15,8 +15,14 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
 import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
-import static seedu.nuke.parser.Parser.*;
-import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.parser.Parser.CATEGORY_NAME_PREFIX;
+import static seedu.nuke.parser.Parser.DEADLINE_PREFIX;
+import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
+import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_TASK;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.messageAddTaskSuccess;
 
 /**
@@ -28,19 +34,19 @@ import static seedu.nuke.util.Message.messageAddTaskSuccess;
  */
 public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_WORD = "addt";
-    public static final String FORMAT = COMMAND_WORD +
-            " <task description> -m <module code> -c <category name> -d <deadline> -p <priority>";
+    public static final String FORMAT = COMMAND_WORD
+            + " <task description> -m <module code> -c <category name> -d <deadline> -p <priority>";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<optional>(?:\\s+-[dp](?:\\s+[^-\\s]\\S*)+)*)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<optional>(?:\\s+-[dp](?:\\s+[^-\\s]\\S*)+)*)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
     );
 
     private String moduleCode;
@@ -131,10 +137,10 @@ public class AddTaskCommand extends AddCommand {
      */
     @Override
     public CommandResult execute() {
-//        Module module = (Module)Command.getCurrentDirectory();
-//        ModuleManager.addTaskToModule(module.getTaskManager(), taskToAdd);
-//        //dataManager.addTask(taskToAdd);
-//        return new CommandResult(MESSAGE_TASK_ADDED);
+        //Module module = (Module)Command.getCurrentDirectory();
+        //ModuleManager.addTaskToModule(module.getTaskManager(), taskToAdd);
+        ////dataManager.addTask(taskToAdd);
+        //return new CommandResult(MESSAGE_TASK_ADDED);
         try {
             Category parentCategory = getParentDirectory();
             if (priority < 0) {

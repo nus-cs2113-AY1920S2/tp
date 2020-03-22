@@ -114,7 +114,7 @@ public class ModuleManager implements Iterable<Module> {
      *  The description of the task to be found
      * @return
      *  The found task with the specified description, with its parent category and module with the specified
-     *  module code and category name respectively
+     *      module code and category name respectively
      * @throws ModuleNotFoundException
      *  If the module is not found
      * @throws CategoryManager.CategoryNotFoundException
@@ -174,7 +174,8 @@ public class ModuleManager implements Iterable<Module> {
 
         for (Task task: allTasks) {
             deadlines.add(String.format("%-30s", task.getDescription()) + " "
-                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) + "   deadline: " + task.getDeadline());
+                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) + "   deadline: "
+                    + task.getDeadline());
         }
         return deadlines;
     }
@@ -221,7 +222,8 @@ public class ModuleManager implements Iterable<Module> {
     public Module delete(String moduleCode) throws ModuleNotFoundException {
         if (getModuleWithCode(moduleCode) != null) {
             Module toDelete = getModuleWithCode(moduleCode);
-            getAllTasks().removeIf(task -> task.getParent().getParent().getModuleCode().toUpperCase().equals(moduleCode));
+            getAllTasks().removeIf(task ->
+                    task.getParent().getParent().getModuleCode().toUpperCase().equals(moduleCode));
             moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
             return toDelete;
         } else {
@@ -241,7 +243,8 @@ public class ModuleManager implements Iterable<Module> {
      * @throws DuplicateModuleException
      *  If there are duplicate modules with the same module code as the new module code in the Module List
      */
-    public static void edit(Module toEdit, String newModuleCode) throws ModuleNotProvidedException, DuplicateModuleException {
+    public static void edit(Module toEdit, String newModuleCode)
+            throws ModuleNotProvidedException, DuplicateModuleException {
         if (!modulesMap.containsKey(newModuleCode)) {
             throw new ModuleNotProvidedException();
         }
@@ -256,7 +259,7 @@ public class ModuleManager implements Iterable<Module> {
     /* Retrieve a specific Data (Category / Task / File) List. Only 1 list is retrieved */
 
     /**
-     * Retrieves the Category List of the module with the specified module code
+     * Retrieves the Category List of the module with the specified module code.
      *
      * @param moduleCode
      *  The module code of the module to retrieve the Category List from
@@ -271,7 +274,7 @@ public class ModuleManager implements Iterable<Module> {
 
     /**
      * Retrieves the Task List of the category with the specified name and has its parent module with the
-     * specified module code
+     * specified module code.
      *
      * @param moduleCode
      *  The module code of the module containing the category to retrieve the Task List from
@@ -444,15 +447,15 @@ public class ModuleManager implements Iterable<Module> {
         return moduleList.iterator();
     }
 
-//    public void addTaskToModule(TaskManager taskManager, Task taskToAdd) throws TaskManager.DuplicateTaskException {
-//        taskManager.add(taskToAdd);
-//        allTasks.add(taskToAdd);
-//    }
-//
-//    public void removeTask(TaskManager taskManager, Task taskToDelete) {
-//        taskManager.delete(taskToDelete);
-//        allTasks.remove(taskToDelete);
-//    }
+    //public void addTaskToModule(TaskManager taskManager, Task taskToAdd) throws TaskManager.DuplicateTaskException {
+    //    taskManager.add(taskToAdd);
+    //    allTasks.add(taskToAdd);
+    //}
+    //
+    //public void removeTask(TaskManager taskManager, Task taskToDelete) {
+    //    taskManager.delete(taskToDelete);
+    //    allTasks.remove(taskToDelete);
+    //}
 
 
     /**
@@ -477,6 +480,9 @@ public class ModuleManager implements Iterable<Module> {
         return filter(NO_KEYWORD, NO_KEYWORD, NO_KEYWORD).size();
     }
 
-    public static class ModuleNotFoundException extends DataNotFoundException {}
-    public static class DuplicateModuleException extends DuplicateDataException {}
+    public static class ModuleNotFoundException extends DataNotFoundException {
+    }
+
+    public static class DuplicateModuleException extends DuplicateDataException {
+    }
 }

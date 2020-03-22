@@ -3,17 +3,20 @@ package seedu.nuke.ui;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.ChangeDirectoryCommand;
-import seedu.nuke.command.filterCommand.listcommand.ListAllTasksDeadlineCommand;
-import seedu.nuke.command.filterCommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.filterCommand.deletecommand.DeleteModuleCommand;
-import seedu.nuke.command.filterCommand.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.filterCommand.listcommand.ListModuleCommand;
-import seedu.nuke.directory.*;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
 import seedu.nuke.util.ListCreator;
 
 import java.io.PrintStream;
@@ -83,26 +86,30 @@ public class Ui {
 
         String listTableToShow;
         switch (result.getDirectoryLevel()) {
-            case MODULE:
-                ArrayList<Module> moduleList = result.getShownList().stream()
-                        .map(Module.class::cast)
-                        .collect(Collectors.toCollection(ArrayList::new));
-                listTableToShow = ListCreator.createModuleListTable(moduleList);
-                break;
-            case CATEGORY:
-                ArrayList<Category> categoryList = result.getShownList().stream()
-                        .map(Category.class::cast)
-                        .collect(Collectors.toCollection(ArrayList::new));
-                listTableToShow = ListCreator.createCategoryListTable(categoryList);
-                break;
-            case TASK:
-                ArrayList<Task> taskList = result.getShownList().stream()
-                        .map(Task.class::cast)
-                        .collect(Collectors.toCollection(ArrayList::new));
-                listTableToShow = ListCreator.createTaskListTable(taskList);
-                break;
-            default:
-                return;
+
+        case MODULE:
+            ArrayList<Module> moduleList = result.getShownList().stream()
+                    .map(Module.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            listTableToShow = ListCreator.createModuleListTable(moduleList);
+            break;
+
+        case CATEGORY:
+            ArrayList<Category> categoryList = result.getShownList().stream()
+                    .map(Category.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            listTableToShow = ListCreator.createCategoryListTable(categoryList);
+            break;
+
+        case TASK:
+            ArrayList<Task> taskList = result.getShownList().stream()
+                    .map(Task.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            listTableToShow = ListCreator.createTaskListTable(taskList);
+            break;
+
+        default:
+            return;
         }
 
         out.println(listTableToShow);
@@ -131,7 +138,6 @@ public class Ui {
         }
 
         System.out.println(divider + "\n");
-
     }
 
 }

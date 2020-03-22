@@ -7,7 +7,13 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.CorruptedFileException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -71,6 +77,9 @@ public class StorageManager {
         }
     }
 
+    /**
+     * Saves the Module List into a file.
+     */
     public void save2() {
         try {
             FileWriter fileWriter = new FileWriter(dataFileName);
@@ -82,6 +91,9 @@ public class StorageManager {
         }
     }
 
+    /**
+     * Loads the Module List from the saved file.
+     */
     public void load2() {
         try {
             FileReader fileReader = new FileReader(dataFileName);

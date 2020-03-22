@@ -1,4 +1,4 @@
-package seedu.nuke.command.filterCommand.listcommand;
+package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Directory;

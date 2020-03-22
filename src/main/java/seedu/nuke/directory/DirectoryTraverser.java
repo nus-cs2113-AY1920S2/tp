@@ -10,8 +10,9 @@ import java.util.Stack;
 public class DirectoryTraverser {
     private static Stack<Directory> directoryStack = new Stack<>();
     private static final DirectoryLevel[] DIRECTORY_LEVELS = {
-            DirectoryLevel.ROOT, DirectoryLevel.MODULE, DirectoryLevel.CATEGORY,
-            DirectoryLevel.TASK, DirectoryLevel.FILE};
+        DirectoryLevel.ROOT, DirectoryLevel.MODULE, DirectoryLevel.CATEGORY,
+        DirectoryLevel.TASK, DirectoryLevel.FILE
+    };
     private static int currentLevel = 0;
     private static final int MINIMUM_LEVEL = 0;
     private static final int MAXIMUM_LEVEL = 4;
@@ -67,7 +68,7 @@ public class DirectoryTraverser {
     }
 
     /**
-     * Finds the next directory to traverse down into
+     * Finds the next directory to traverse down into.
      *
      * @param nextDirectoryName
      *  The name of the next directory
@@ -81,16 +82,16 @@ public class DirectoryTraverser {
     public static Directory findNextDirectory(String nextDirectoryName)
             throws DataNotFoundException, DirectoryTraversalOutOfBoundsException {
         switch (getCurrentDirectoryLevel()) {
-            case ROOT:
-                return ModuleManager.getModule(nextDirectoryName);
-            case MODULE:
-                return ((Module) getCurrentDirectory()).getCategories().getCategory(nextDirectoryName);
-            case CATEGORY:
-                return ((Category) getCurrentDirectory()).getTasks().getTask(nextDirectoryName);
-            case TASK:
-                return ((Task) getCurrentDirectory()).getFiles().getFile(nextDirectoryName);
-            default:
-                throw new DirectoryTraversalOutOfBoundsException();
+        case ROOT:
+            return ModuleManager.getModule(nextDirectoryName);
+        case MODULE:
+            return ((Module) getCurrentDirectory()).getCategories().getCategory(nextDirectoryName);
+        case CATEGORY:
+            return ((Category) getCurrentDirectory()).getTasks().getTask(nextDirectoryName);
+        case TASK:
+            return ((Task) getCurrentDirectory()).getFiles().getFile(nextDirectoryName);
+        default:
+            throw new DirectoryTraversalOutOfBoundsException();
         }
     }
 
@@ -104,28 +105,28 @@ public class DirectoryTraverser {
         StringBuilder path = new StringBuilder("root");
 
         switch (getCurrentDirectoryLevel()) {
-            case MODULE:
-                Module currentModuleDirectory = (Module) getCurrentDirectory();
-                path.append(String.format(" / %s", currentModuleDirectory.getModuleCode()));
-                break;
+        case MODULE:
+            Module currentModuleDirectory = (Module) getCurrentDirectory();
+            path.append(String.format(" / %s", currentModuleDirectory.getModuleCode()));
+            break;
 
-            case CATEGORY:
-                Category currentCategoryDirectory = (Category) getCurrentDirectory();
-                path.append(String.format(" / %s / %s",
-                        currentCategoryDirectory.getParent().getModuleCode(),
-                        currentCategoryDirectory.getCategoryName()));
-                break;
+        case CATEGORY:
+            Category currentCategoryDirectory = (Category) getCurrentDirectory();
+            path.append(String.format(" / %s / %s",
+                    currentCategoryDirectory.getParent().getModuleCode(),
+                    currentCategoryDirectory.getCategoryName()));
+            break;
 
-            case TASK:
-                Task currentTaskDirectory = (Task) getCurrentDirectory();
-                path.append(String.format(" / %s / %s / %s",
-                        currentTaskDirectory.getParent().getParent().getModuleCode(),
-                        currentTaskDirectory.getParent().getCategoryName(),
-                        currentTaskDirectory.getDescription()));
-                break;
+        case TASK:
+            Task currentTaskDirectory = (Task) getCurrentDirectory();
+            path.append(String.format(" / %s / %s / %s",
+                    currentTaskDirectory.getParent().getParent().getModuleCode(),
+                    currentTaskDirectory.getParent().getCategoryName(),
+                    currentTaskDirectory.getDescription()));
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
 
         return path.toString();
@@ -142,16 +143,16 @@ public class DirectoryTraverser {
      */
     public static Module getBaseModule() throws IncorrectDirectoryLevelException {
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-            case MODULE:
-                return (Module) DirectoryTraverser.getCurrentDirectory();
-            case CATEGORY:
-                return (Module) DirectoryTraverser.getCurrentDirectory().getParent();
-            case TASK:
-                return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
-            case FILE:
-                return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent().getParent();
-            default:
-                throw new IncorrectDirectoryLevelException();
+        case MODULE:
+            return (Module) DirectoryTraverser.getCurrentDirectory();
+        case CATEGORY:
+            return (Module) DirectoryTraverser.getCurrentDirectory().getParent();
+        case TASK:
+            return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
+        case FILE:
+            return (Module) DirectoryTraverser.getCurrentDirectory().getParent().getParent().getParent();
+        default:
+            throw new IncorrectDirectoryLevelException();
         }
     }
 
@@ -165,14 +166,14 @@ public class DirectoryTraverser {
      */
     public static Category getBaseCategory() throws IncorrectDirectoryLevelException {
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-            case CATEGORY:
-                return (Category) DirectoryTraverser.getCurrentDirectory();
-            case TASK:
-                return (Category) DirectoryTraverser.getCurrentDirectory().getParent();
-            case FILE:
-                return (Category) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
-            default:
-                throw new IncorrectDirectoryLevelException();
+        case CATEGORY:
+            return (Category) DirectoryTraverser.getCurrentDirectory();
+        case TASK:
+            return (Category) DirectoryTraverser.getCurrentDirectory().getParent();
+        case FILE:
+            return (Category) DirectoryTraverser.getCurrentDirectory().getParent().getParent();
+        default:
+            throw new IncorrectDirectoryLevelException();
         }
     }
 
@@ -186,12 +187,12 @@ public class DirectoryTraverser {
      */
     public static Task getBaseTask() throws IncorrectDirectoryLevelException {
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-            case TASK:
-                return (Task) DirectoryTraverser.getCurrentDirectory();
-            case FILE:
-                return (Task) DirectoryTraverser.getCurrentDirectory().getParent();
-            default:
-                throw new IncorrectDirectoryLevelException();
+        case TASK:
+            return (Task) DirectoryTraverser.getCurrentDirectory();
+        case FILE:
+            return (Task) DirectoryTraverser.getCurrentDirectory().getParent();
+        default:
+            throw new IncorrectDirectoryLevelException();
         }
     }
 }

@@ -1,17 +1,26 @@
-package seedu.nuke.command.promptCommand;
+package seedu.nuke.command.promptcommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.*;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_ABORTED;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_MODULE_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_TASK_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_ILLEGAL_DELETE;
+import static seedu.nuke.util.Message.MESSAGE_PROMPT_FORMAT;
 
 public class DeleteConfirmationPrompt extends Command {
     private ConfirmationStatus confirmationStatus;
@@ -121,20 +130,24 @@ public class DeleteConfirmationPrompt extends Command {
      */
     private CommandResult executeSingleDelete(Directory toDelete) {
         switch (directoryLevel) {
-            case MODULE: {
-                deleteSingleModule(((Module) toDelete));
-                return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS);
-            }
-            case CATEGORY: {
-                deleteSingleCategory(((Category) toDelete));
-                return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS);
-            }
-            case TASK: {
-                deleteSingleTask(((Task) toDelete));
-                return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
-            }
-            default:
-                return new CommandResult("Error in single deletion.");
+
+        case MODULE: {
+            deleteSingleModule(((Module) toDelete));
+            return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS);
+        }
+
+        case CATEGORY: {
+            deleteSingleCategory(((Category) toDelete));
+            return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS);
+        }
+
+        case TASK: {
+            deleteSingleTask(((Task) toDelete));
+            return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
+        }
+
+        default:
+            return new CommandResult("Error in single deletion.");
         }
     }
 
@@ -149,32 +162,36 @@ public class DeleteConfirmationPrompt extends Command {
     private CommandResult executeMultipleDelete(ArrayList<Directory> filteredList) {
         ArrayList<Integer> toDeleteIndices = Executor.getIndices();
         switch (directoryLevel) {
-            case MODULE: {
-                // Cast to Array List of modules
-                ArrayList<Module> filteredModules = filteredList.stream()
-                        .map(Module.class::cast)
-                        .collect(Collectors.toCollection(ArrayList::new));
-                deleteMultipleModules(filteredModules, toDeleteIndices);
-                return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS);
-            }
-            case CATEGORY: {
-                // Cast to Array List of categories
-                ArrayList<Category> filteredCategories = filteredList.stream()
-                        .map(Category.class::cast)
-                        .collect(Collectors.toCollection(ArrayList::new));
-                deleteMultipleCategories(filteredCategories, toDeleteIndices);
-                return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS);
-            }
-            case TASK: {
-                // Cast to Array List of tasks
-                ArrayList<Task> filteredTasks = filteredList.stream()
-                        .map(Task.class::cast)
-                        .collect(Collectors.toCollection(ArrayList::new));
-                deleteMultipleTasks(filteredTasks, toDeleteIndices);
-                return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
-            }
-            default:
-                return new CommandResult("Error in multiple deletion.");
+
+        case MODULE: {
+            // Cast to Array List of modules
+            ArrayList<Module> filteredModules = filteredList.stream()
+                    .map(Module.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            deleteMultipleModules(filteredModules, toDeleteIndices);
+            return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS);
+        }
+
+        case CATEGORY: {
+            // Cast to Array List of categories
+            ArrayList<Category> filteredCategories = filteredList.stream()
+                    .map(Category.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            deleteMultipleCategories(filteredCategories, toDeleteIndices);
+            return new CommandResult(MESSAGE_DELETE_CATEGORY_SUCCESS);
+        }
+
+        case TASK: {
+            // Cast to Array List of tasks
+            ArrayList<Task> filteredTasks = filteredList.stream()
+                    .map(Task.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            deleteMultipleTasks(filteredTasks, toDeleteIndices);
+            return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
+        }
+
+        default:
+            return new CommandResult("Error in multiple deletion.");
         }
     }
 
@@ -188,7 +205,8 @@ public class DeleteConfirmationPrompt extends Command {
      * @throws IncorrectDirectoryLevelException
      *  If there is illegal access to a directory
      */
-    private boolean isCurrentDirectoryInList(ArrayList<Directory> filteredList) throws IncorrectDirectoryLevelException {
+    private boolean isCurrentDirectoryInList(ArrayList<Directory> filteredList)
+            throws IncorrectDirectoryLevelException {
         // Current directory is of a higher level than the directories to be deleted
         if (DirectoryTraverser.getCurrentDirectoryLevel().ordinal() > directoryLevel.ordinal()) {
             return false;
@@ -196,35 +214,35 @@ public class DeleteConfirmationPrompt extends Command {
         // Checks if current directory or parent directory is to be deleted
         switch (directoryLevel) {
 
-            case MODULE:
-                String baseModuleCode = DirectoryTraverser.getBaseModule().getModuleCode();
-                for (Directory module : filteredList) {
-                    if (((Module) module).isSameModule(baseModuleCode)) {
-                        return true;
-                    }
+        case MODULE:
+            String baseModuleCode = DirectoryTraverser.getBaseModule().getModuleCode();
+            for (Directory module : filteredList) {
+                if (((Module) module).isSameModule(baseModuleCode)) {
+                    return true;
                 }
-                return false;
+            }
+            return false;
 
-            case CATEGORY:
-                String baseCategoryName = DirectoryTraverser.getBaseCategory().getCategoryName();
-                for (Directory category : filteredList) {
-                    if (((Category) category).isSameCategory(baseCategoryName)) {
-                        return true;
-                    }
+        case CATEGORY:
+            String baseCategoryName = DirectoryTraverser.getBaseCategory().getCategoryName();
+            for (Directory category : filteredList) {
+                if (((Category) category).isSameCategory(baseCategoryName)) {
+                    return true;
                 }
-                return false;
+            }
+            return false;
 
-            case TASK:
-                String baseTaskDescription = DirectoryTraverser.getBaseTask().getDescription();
-                for (Directory task : filteredList) {
-                    if (((Task) task).isSameTask(baseTaskDescription)) {
-                        return true;
-                    }
+        case TASK:
+            String baseTaskDescription = DirectoryTraverser.getBaseTask().getDescription();
+            for (Directory task : filteredList) {
+                if (((Task) task).isSameTask(baseTaskDescription)) {
+                    return true;
                 }
-                return false;
+            }
+            return false;
 
-            default:
-                throw new IncorrectDirectoryLevelException();
+        default:
+            throw new IncorrectDirectoryLevelException();
         }
     }
 
@@ -237,26 +255,26 @@ public class DeleteConfirmationPrompt extends Command {
     @Override
     public CommandResult execute() {
         switch (confirmationStatus) {
-            case CONFIRM:
-                Executor.terminatePrompt();
-                ArrayList<Directory> filteredList = Executor.getFilteredList();
-                try {
-                    if (isCurrentDirectoryInList(filteredList)) {
-                        return new CommandResult(MESSAGE_ILLEGAL_DELETE);
-                    }
-                } catch (IncorrectDirectoryLevelException e) {
-                    return new CommandResult("Error in deletion.");
+        case CONFIRM:
+            Executor.terminatePrompt();
+            ArrayList<Directory> filteredList = Executor.getFilteredList();
+            try {
+                if (isCurrentDirectoryInList(filteredList)) {
+                    return new CommandResult(MESSAGE_ILLEGAL_DELETE);
                 }
-                if (filteredList.size() == 1) {
-                    return executeSingleDelete(filteredList.get(0));
-                } else {
-                    return executeMultipleDelete(filteredList);
-                }
-            case ABORT:
-                Executor.terminatePrompt();
-                return new CommandResult(MESSAGE_DELETE_ABORTED);
-            default:
-                return new CommandResult(MESSAGE_PROMPT_FORMAT);
+            } catch (IncorrectDirectoryLevelException e) {
+                return new CommandResult("Error in deletion.");
+            }
+            if (filteredList.size() == 1) {
+                return executeSingleDelete(filteredList.get(0));
+            } else {
+                return executeMultipleDelete(filteredList);
+            }
+        case ABORT:
+            Executor.terminatePrompt();
+            return new CommandResult(MESSAGE_DELETE_ABORTED);
+        default:
+            return new CommandResult(MESSAGE_PROMPT_FORMAT);
         }
     }
 }

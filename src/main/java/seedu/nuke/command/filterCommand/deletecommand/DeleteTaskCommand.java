@@ -1,4 +1,4 @@
-package seedu.nuke.command.filterCommand.deletecommand;
+package seedu.nuke.command.filtercommand.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
@@ -9,7 +9,9 @@ import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_NO_TASKS_FOUND;
+import static seedu.nuke.util.Message.messageConfirmDeleteTask;
+import static seedu.nuke.util.Message.messagePromptDeleteTaskIndices;
 
 /**
  * <h3>Delete Task Command</h3>
@@ -42,7 +44,8 @@ public class DeleteTaskCommand extends DeleteCommand {
      * @param isAll
      *  Checks if filtering is to be done across all modules and categories
      */
-    public DeleteTaskCommand(String moduleCode, String categoryName, String taskDescription, boolean isExact, boolean isAll) {
+    public DeleteTaskCommand(String moduleCode, String categoryName, String taskDescription,
+                             boolean isExact, boolean isAll) {
         this.moduleCode = moduleCode;
         this.categoryName = categoryName;
         this.taskDescription = taskDescription;
@@ -67,10 +70,10 @@ public class DeleteTaskCommand extends DeleteCommand {
      */
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredTasks) {
-        final int TASK_COUNT = filteredTasks.size();
-        if (TASK_COUNT == 0) {
+        final int taskCount = filteredTasks.size();
+        if (taskCount == 0) {
             return new CommandResult(MESSAGE_NO_TASKS_FOUND);
-        } else if (TASK_COUNT == 1) {
+        } else if (taskCount == 1) {
             Executor.preparePromptConfirmation();
             Executor.setFilteredList(filteredTasks, DirectoryLevel.TASK);
             Task toDelete = (Task) filteredTasks.get(0);
@@ -83,7 +86,7 @@ public class DeleteTaskCommand extends DeleteCommand {
     }
 
     /**
-     * Executes the <b>Delete Task Command</b> to delete <b>Task<(s)/b> with the <code>task description</code>
+     * Executes the <b>Delete Task Command</b> to delete <b>Task<(s)</b> with the <code>task description</code>
      * from the <b>Task List</b>.
      *
      * @return The <b>Command Result</b> of the execution
@@ -92,16 +95,16 @@ public class DeleteTaskCommand extends DeleteCommand {
      */
     @Override
     public CommandResult execute() {
-//        try {
-//            Module currentModule = (Module) Command.getCurrentDirectory();
-//            Task toDelete = currentModule.getTaskManager().delete(taskDescription);
-//
-//            //add the task to the data manager
-//            moduleManager.removeTask(currentModule.getTaskManager(), toDelete);
-//            return new CommandResult(MESSAGE_TASK_REMOVED);
-//        } catch (TaskManager.TaskNotFoundException e) {
-//            return new CommandResult(MESSAGE_TASK_NOT_FOUND);
-//        }
+        //try {
+        //    Module currentModule = (Module) Command.getCurrentDirectory();
+        //    Task toDelete = currentModule.getTaskManager().delete(taskDescription);
+        //
+        //    //add the task to the data manager
+        //    moduleManager.removeTask(currentModule.getTaskManager(), toDelete);
+        //    return new CommandResult(MESSAGE_TASK_REMOVED);
+        //} catch (TaskManager.TaskNotFoundException e) {
+        //    return new CommandResult(MESSAGE_TASK_NOT_FOUND);
+        //}
         ArrayList<Directory> filteredTasks =
                 createFilteredTaskList(moduleCode, categoryName, taskDescription, isExact, isAll);
         return executeInitialDelete(filteredTasks);

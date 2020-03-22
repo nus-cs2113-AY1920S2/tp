@@ -15,7 +15,7 @@ public class Module extends Directory {
     private CategoryManager categories;
 
     /**
-     * Constructs the module
+     * Constructs the module.
      *
      * @param moduleCode
      *  The module code of the module
@@ -33,7 +33,7 @@ public class Module extends Directory {
     }
 
     /**
-     * Constructs the module but with limited information
+     * Constructs the module but with limited information.
      *
      * @param moduleCode
      *  The module code of the module

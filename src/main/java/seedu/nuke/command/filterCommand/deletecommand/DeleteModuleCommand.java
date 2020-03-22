@@ -1,4 +1,4 @@
-package seedu.nuke.command.filterCommand.deletecommand;
+package seedu.nuke.command.filtercommand.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
@@ -10,7 +10,9 @@ import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_NO_MODULES_FOUND;
+import static seedu.nuke.util.Message.messageConfirmDeleteModule;
+import static seedu.nuke.util.Message.messagePromptDeleteModuleIndices;
 
 /**
  * <h3>Delete Module Command</h3>
@@ -51,10 +53,10 @@ public class DeleteModuleCommand extends DeleteCommand {
      */
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredModules) {
-        final int MODULES_COUNT = filteredModules.size();
-        if (MODULES_COUNT == 0) {
+        final int modulesCount = filteredModules.size();
+        if (modulesCount == 0) {
             return new CommandResult(MESSAGE_NO_MODULES_FOUND);
-        } else if (MODULES_COUNT == 1) {
+        } else if (modulesCount == 1) {
             Executor.preparePromptConfirmation();
             Executor.setFilteredList(filteredModules, DirectoryLevel.MODULE);
             Module toDelete = (Module) filteredModules.get(0);

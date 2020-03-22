@@ -1,7 +1,9 @@
-package seedu.nuke.command.filterCommand.listcommand;
+package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryLevel;
 
 import java.util.ArrayList;
 

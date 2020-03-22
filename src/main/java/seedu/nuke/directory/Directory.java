@@ -4,14 +4,14 @@ public abstract class Directory {
     protected Directory parent;
 
     /**
-     * Constructs the Directory without a parent
+     * Constructs the Directory without a parent.
      */
     public Directory() {
         this.parent = null;
     }
 
     /**
-     * Constructs the Directory that has a parent
+     * Constructs the Directory that has a parent.
      *
      * @param parent
      *  The parent of the class in the Directory
@@ -21,7 +21,7 @@ public abstract class Directory {
     }
 
     /**
-     * Returns the parent of the class in the Directory
+     * Returns the parent of the class in the Directory.
      *
      * @return
      *  The parent of the class in the Directory

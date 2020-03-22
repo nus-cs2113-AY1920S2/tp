@@ -4,7 +4,6 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Root;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.exception.ModuleNotProvidedException;
 
@@ -12,8 +11,10 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
-import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
-import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_PROVIDED;
 import static seedu.nuke.util.Message.MESSAGE_EDIT_MODULE_SUCCESS;
 
 /**
@@ -26,9 +27,9 @@ public class EditModuleCommand extends EditCommand {
     public static final String COMMAND_WORD = "edm";
     public static final String FORMAT = COMMAND_WORD + " <new module code> -m <old module code>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
 
     private String oldModuleCode;
@@ -48,7 +49,7 @@ public class EditModuleCommand extends EditCommand {
     }
 
     /**
-     * Returns the base module level directory of the current Directory
+     * Returns the base module level directory of the current Directory.
      *
      * @return
      *  The base module level directory of the current Directory

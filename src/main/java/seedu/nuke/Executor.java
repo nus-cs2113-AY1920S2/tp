@@ -2,7 +2,7 @@ package seedu.nuke;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.promptCommand.PromptType;
+import seedu.nuke.command.promptcommand.PromptType;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.parser.Parser;
@@ -102,17 +102,18 @@ public class Executor {
     public static CommandResult executeCommand(String userInput) {
         Command command;
         switch (promptType) {
-            case CONFIRMATION:
-                command = new Parser().parseInputAsConfirmation(userInput.toLowerCase());
-                break;
 
-            case INDICES:
-                command = new Parser().parseInputAsIndices(userInput);
-                break;
+        case CONFIRMATION:
+            command = new Parser().parseInputAsConfirmation(userInput.toLowerCase());
+            break;
 
-            default:
-                command = new Parser().parseCommand(userInput);
-                break;
+        case INDICES:
+            command = new Parser().parseInputAsIndices(userInput);
+            break;
+
+        default:
+            command = new Parser().parseCommand(userInput);
+            break;
         }
 
         //load from current screen shot
@@ -126,14 +127,18 @@ public class Executor {
         //add screen shot
         //addScreenShotToScreenShotList();
         // Execute according to the command itself
-        return command.execute();
+        return execute(command);
         // save the taskManager to a file
         //moduleManager.getStorager().save(taskManager);
         //StorageFile.saveJson(taskManager);
     }
 
+    public static CommandResult execute(Command command) {
+        return command.execute();
+    }
 
-//    public void setCommandData(Command command) {
-//        command.setData(moduleManager);
-//    }
+
+    //public void setCommandData(Command command) {
+    //    command.setData(moduleManager);
+    //}
 }

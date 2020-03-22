@@ -45,10 +45,22 @@ public class TaskFileManager {
         this.fileList = fileList;
     }
 
+    /**
+     * Add a file to the File List.
+     *
+     * @param toAdd
+     *  The file to be added
+     */
     public void add(TaskFile toAdd) {
         fileList.add(toAdd);
     }
 
+    /**
+     * Deletes the specified file from the File List.
+     *
+     * @param toDelete
+     *  The file to be deleted
+     */
     public void delete(TaskFile toDelete) throws TaskFileNotFoundException {
         boolean isFileFoundAndDeleted = fileList.remove(toDelete);
         if (!isFileFoundAndDeleted) {
@@ -56,16 +68,11 @@ public class TaskFileManager {
         }
     }
 
-    public void delete(String fileName) throws TaskFileNotFoundException {
-        for (TaskFile file : fileList) {
-            if (file.getFileName().equals(fileName)) {
-                fileList.remove(file);
-                return;
-            }
-        }
-        throw new TaskFileNotFoundException();
-    }
-
+    /**
+     * Returns a string representation of the File List.
+     * @return
+     *  The string representation of the File List
+     */
     @Override
     public String toString() {
         StringBuilder listToString = new StringBuilder();
@@ -76,5 +83,6 @@ public class TaskFileManager {
         return listToString.toString();
     }
 
-    public static class TaskFileNotFoundException extends DataNotFoundException {}
+    public static class TaskFileNotFoundException extends DataNotFoundException {
+    }
 }

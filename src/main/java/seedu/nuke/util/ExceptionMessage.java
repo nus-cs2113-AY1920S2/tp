@@ -41,8 +41,8 @@ public class ExceptionMessage {
     public static final String MESSAGE_DIRECTORY_NOT_FOUND = "Alert! The next directory could not be found.\n";
 
     public static final String MESSAGE_INCORRECT_DIRECTORY_LEVEL =
-            "Alert! Incorrect directory level to execute command.\n" +
-            "Either move to the appropriate directory level, or enter the full directory path.\n";
+            "Alert! Incorrect directory level to execute command.\n"
+            + "Either move to the appropriate directory level, or enter the full directory path.\n";
 
     public static final String MESSAGE_INVALID_PARAMETERS = "Alert! Invalid or missing parameters found!\n";
     public static final String MESSAGE_INVALID_PREFIX = "Alert! Invalid prefix(es) found!\n";

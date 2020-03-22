@@ -25,9 +25,11 @@ public class Message {
     public static final String MESSAGE_WELCOME_1 = "Welcome to NUKE";
     public static final String MESSAGE_WELCOME_2 = "What can I do for you?";
     public static final String MESSAGE_NO_TASK_IN_LIST = "There is no task in the list!\n";
-    public static String MESSAGE_TASK_SUCCESSFULLY_LIST(int taskCount) {
+
+    public static String messageTaskSuccessfullyList(int taskCount) {
         return String.format("There are (is) %d task(s) in the list!\n", taskCount);
     }
+
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
     public static final String DIVIDER = "-".repeat(100);
@@ -73,10 +75,21 @@ public class Message {
     public static final String MESSAGE_DELETE_ABORTED = "Deletion is aborted.\n";
 
     public static String messageConfirmDeleteModule(Module toDelete) {
-        return String.format("Confirm delete %s %s?\n", toDelete.getModuleCode() , toDelete.getTitle());
+        return String.format("Confirm delete %s %s?\n", toDelete.getModuleCode(), toDelete.getTitle());
     }
 
-    public static String messageConfirmDeleteModule(ArrayList<Module> filteredModules, ArrayList<Integer> toDeleteIndices) {
+    /**
+     * Creates the message to confirm deletion of multiple modules.
+     *
+     * @param filteredModules
+     *  The filtered list of modules
+     * @param toDeleteIndices
+     *  The indices of the modules to be deleted from the list
+     * @return
+     *  The message to confirm deletion of modules
+     */
+    public static String messageConfirmDeleteModule(ArrayList<Module> filteredModules,
+                                                    ArrayList<Integer> toDeleteIndices) {
         StringBuilder promptMessage = new StringBuilder();
         promptMessage.append("Confirm delete these modules?\n");
         for (int index : toDeleteIndices) {
@@ -87,42 +100,79 @@ public class Message {
         return promptMessage.toString();
     }
 
+    /**
+     * Creates the message to prompt user to enter the indices of the modules to be deleted from the list.
+     *
+     * @param filteredModules
+     *  The filtered list of modules to be deleted
+     * @return
+     *  The message to prompt the user to enter the indices
+     */
     public static String messagePromptDeleteModuleIndices(ArrayList<Directory> filteredModules) {
         ArrayList<Module> modules = filteredModules.stream()
                 .map(Module.class::cast)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching modules found.\n" +
-                ListCreator.createModuleListTable(modules) +
-                "\nEnter the list number(s) of the modules to delete.\n";
+        return "Multiple matching modules found.\n"
+                + ListCreator.createModuleListTable(modules)
+                + "\nEnter the list number(s) of the modules to delete.\n";
     }
 
     public static String messageConfirmDeleteCategory(Category toDelete) {
         return String.format("Confirm delete %s?\n", toDelete.getCategoryName());
     }
 
-    public static String messageConfirmDeleteCategory(ArrayList<Category> filteredCategory, ArrayList<Integer> toDeleteIndices) {
+    /**
+     * Creates the message to confirm deletion of multiple categories.
+     *
+     * @param filteredCategories
+     *  The filtered list of categories
+     * @param toDeleteIndices
+     *  The indices of the categories to be deleted from the list
+     * @return
+     *  The message to confirm deletion of categories
+     */
+    public static String messageConfirmDeleteCategory(ArrayList<Category> filteredCategories,
+                                                      ArrayList<Integer> toDeleteIndices) {
         StringBuilder promptMessage = new StringBuilder();
         promptMessage.append("Confirm delete these categories?\n");
         for (int index : toDeleteIndices) {
-            String toDeleteCategoryName = filteredCategory.get(index).getCategoryName();
+            String toDeleteCategoryName = filteredCategories.get(index).getCategoryName();
             promptMessage.append(String.format("%s\n", toDeleteCategoryName));
         }
         return promptMessage.toString();
     }
 
+    /**
+     * Creates the message to prompt user to enter the indices of the categories to be deleted from the list.
+     *
+     * @param filteredCategories
+     *  The filtered list of categories to be deleted
+     * @return
+     *  The message to prompt the user to enter the indices
+     */
     public static String messagePromptDeleteCategoryIndices(ArrayList<Directory> filteredCategories) {
         ArrayList<Category> categories = filteredCategories.stream()
                 .map(Category.class::cast)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching categories found.\n" +
-                ListCreator.createCategoryListTable(categories) +
-                "\nEnter the list number(s) of the categories to delete.\n";
+        return "Multiple matching categories found.\n"
+                + ListCreator.createCategoryListTable(categories)
+                + "\nEnter the list number(s) of the categories to delete.\n";
     }
 
     public static String messageConfirmDeleteTask(Task toDelete) {
         return String.format("Confirm delete %s?\n", toDelete.getDescription());
     }
 
+    /**
+     * Creates the message to confirm deletion of multiple tasks.
+     *
+     * @param filteredTasks
+     *  The filtered list of tasks
+     * @param toDeleteIndices
+     *  The indices of the tasks to be deleted from the list
+     * @return
+     *  The message to confirm deletion of tasks
+     */
     public static String messageConfirmDeleteTask(ArrayList<Task> filteredTasks, ArrayList<Integer> toDeleteIndices) {
         StringBuilder promptMessage = new StringBuilder();
         promptMessage.append("Confirm delete these tasks?\n");
@@ -133,13 +183,21 @@ public class Message {
         return promptMessage.toString();
     }
 
+    /**
+     * Creates the message to prompt user to enter the indices of the tasks to be deleted from the list.
+     *
+     * @param filteredTasks
+     *  The filtered list of tasks to be deleted
+     * @return
+     *  The message to prompt the user to enter the indices
+     */
     public static String messagePromptDeleteTaskIndices(ArrayList<Directory> filteredTasks) {
         ArrayList<Task> tasks = filteredTasks.stream()
                 .map(Task.class::cast)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching tasks found.\n" +
-                ListCreator.createTaskListTable(tasks) +
-                "\nEnter the list number(s) of the tasks to delete.\n";
+        return "Multiple matching tasks found.\n"
+                + ListCreator.createTaskListTable(tasks)
+                + "\nEnter the list number(s) of the tasks to delete.\n";
     }
 
     public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.\n";

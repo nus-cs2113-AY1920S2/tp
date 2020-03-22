@@ -1,13 +1,12 @@
-package seedu.nuke.command.filterCommand.listcommand;
+package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.Directory;
 import seedu.nuke.data.ModuleManager;
 
 import java.util.ArrayList;
 
 import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
-import static seedu.nuke.util.Message.MESSAGE_TASK_SUCCESSFULLY_LIST;
+import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 
 /**
  * sort all tasks of all modules according to deadline of task and print it out to the user.
@@ -28,6 +27,6 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
         }
         assert ModuleManager.countAllTasks() != EMPTY : "make sure there are some tasks in the list";
         deadlines = ModuleManager.checkDeadline();
-        return new CommandResult(MESSAGE_TASK_SUCCESSFULLY_LIST(ModuleManager.countAllTasks()) + deadlines);
+        return new CommandResult(messageTaskSuccessfullyList(ModuleManager.countAllTasks()) + deadlines);
     }
 }

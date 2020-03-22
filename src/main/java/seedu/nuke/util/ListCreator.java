@@ -16,11 +16,10 @@ public class ListCreator {
 
     /**
      * Sorts modules in a list by their module codes.
-     *
      * @param toSort
      *  The list of modules to be sorted
      */
-   public static void sortModuleList(ArrayList<Module> toSort) {
+    public static void sortModuleList(ArrayList<Module> toSort) {
         Comparator<Module> sortByModule =
                 Comparator.comparing(Module::getModuleCode);
 
@@ -61,7 +60,7 @@ public class ListCreator {
     }
 
     /**
-     * Creates a sorted module list table from a list of modules
+     * Creates a sorted module list table from a list of modules.
      *
      * @param moduleList
      *  The list of modules to be converted into a table
@@ -77,7 +76,7 @@ public class ListCreator {
         int id = 1;
         for (Module module : moduleList) {
             String moduleCode = module.getModuleCode();
-            String moduleTitle = (module.getTitle()!=null) ? module.getTitle() : "-NIL-";
+            String moduleTitle = (module.getTitle() != null) ? module.getTitle() : "-NIL-";
 
             moduleListTable.append(String.format("%s%s%s%s%s\n",
                     centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
@@ -94,7 +93,7 @@ public class ListCreator {
     }
 
     /**
-     * Creates the header of the module list table
+     * Creates the header of the module list table.
      *
      * @return
      *  The header of the module list table
@@ -114,7 +113,7 @@ public class ListCreator {
     }
 
     /**
-     * Creates a sorted category list table from a list of categories
+     * Creates a sorted category list table from a list of categories.
      *
      * @param categoryList
      *  The list of categories to be converted into a table
@@ -149,7 +148,7 @@ public class ListCreator {
     }
 
     /**
-     * Creates the header of the category list table
+     * Creates the header of the category list table.
      *
      * @return
      *  The header of the category list table
@@ -170,7 +169,7 @@ public class ListCreator {
     }
 
     /**
-     * Creates a sorted task list table from a list of tasks
+     * Creates a sorted task list table from a list of tasks.
      *
      * @param taskList
      *  The list of tasks to be converted into a table
@@ -209,7 +208,7 @@ public class ListCreator {
     }
 
     /**
-     * Creates the header of the task list table
+     * Creates the header of the task list table.
      *
      * @return
      *  The header of the task list table
@@ -272,6 +271,6 @@ public class ListCreator {
      */
     private static String fitText(String text, int segmentLength) {
         final String ELLIPSES = "...";
-        return (text.length() > segmentLength) ? (text.substring(0 , segmentLength-3) + ELLIPSES) : text;
+        return (text.length() > segmentLength) ? (text.substring(0, segmentLength - 3) + ELLIPSES) : text;
     }
 }

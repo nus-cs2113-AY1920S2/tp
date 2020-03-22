@@ -1,7 +1,9 @@
-package seedu.nuke.command.filterCommand.listcommand;
+package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,8 @@ public class ListTaskCommand extends ListCommand {
      * @param isAll
      *  Checks whether to show <b>all</b> tasks across modules and categories
      */
-    public ListTaskCommand(String moduleKeyWord, String categoryKeyword, String taskKeyword, boolean isExact, boolean isAll) {
+    public ListTaskCommand(String moduleKeyWord, String categoryKeyword, String taskKeyword,
+                           boolean isExact, boolean isAll) {
         this.moduleKeyWord = moduleKeyWord;
         this.categoryKeyword = categoryKeyword;
         this.taskKeyword = taskKeyword;

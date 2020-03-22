@@ -12,7 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_PROVIDED;
 import static seedu.nuke.util.Message.messageAddModuleSuccess;
 
 /**
@@ -25,8 +26,8 @@ public class AddModuleCommand extends AddCommand {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
 
     private String moduleCode;
@@ -74,7 +75,8 @@ public class AddModuleCommand extends AddCommand {
             return new CommandResult(MESSAGE_DUPLICATE_MODULE);
         } catch (ModuleNotProvidedException e) {
             logger.log(Level.WARNING, String.format("Unknown module %s attempted to be added.", moduleCode));
-            assert !ModuleManager.getModulesMap().containsKey(moduleCode) : "Incorrect identifying of unprovided module!";
+            assert !ModuleManager.getModulesMap().containsKey(moduleCode) :
+                    "Incorrect identifying of unprovided module!";
             return new CommandResult(MESSAGE_MODULE_NOT_PROVIDED);
         }
     }

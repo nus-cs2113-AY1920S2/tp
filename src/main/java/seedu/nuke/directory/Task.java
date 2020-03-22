@@ -19,22 +19,22 @@ public class Task extends Directory implements Tag {
     private ArrayList<String> tags;
 
 
-//    /**
-//     * constructor for the simplest task.
-//     *
-//     * @param description the description of the task
-//     * @param moduleCode the module code of the module which the task belongs to
-//     */
-//    public Task(Module module, String description, String moduleCode) {
-//        super(module);
-//        this.description = description;
-//        this.files = new TaskFileManager();
-//        this.deadline = null;
-//        this.priority = -1;
-//        this.isDone = false;
-//        this.moduleCode = moduleCode;
-//        this.tags = null;
-//    }
+    ///**
+    // * constructor for the simplest task.
+    // *
+    // * @param description the description of the task
+    // * @param moduleCode the module code of the module which the task belongs to
+    // */
+    //public Task(Module module, String description, String moduleCode) {
+    //    super(module);
+    //    this.description = description;
+    //    this.files = new TaskFileManager();
+    //    this.deadline = null;
+    //    this.priority = -1;
+    //    this.isDone = false;
+    //    this.moduleCode = moduleCode;
+    //    this.tags = null;
+    //}
 
 
     public ArrayList<String> getTags() {
@@ -83,22 +83,22 @@ public class Task extends Directory implements Tag {
         this.priority = priority;
     }
 
-//    public void setModuleCode(String moduleCode) {
-//        this.moduleCode = moduleCode;
-//    }
+    //public void setModuleCode(String moduleCode) {
+    //    this.moduleCode = moduleCode;
+    //}
 
     public boolean isDone() {
         return isDone;
     }
 
-//    /**
-//     * moduleCode getter method.
-//     *
-//     * @return the module code of the module which the task belongs to
-//     */
-//    public String getModuleCode() {
-//        return moduleCode;
-//    }
+    ///**
+    // * moduleCode getter method.
+    // *
+    // * @return the module code of the module which the task belongs to
+    // */
+    //public String getModuleCode() {
+    //    return moduleCode;
+    //}
 
     /**
      * description getter method.
@@ -136,14 +136,14 @@ public class Task extends Directory implements Tag {
         return priority;
     }
 
-//    /**
-//     * return an icon representing the status of the task.
-//     *
-//     * @return a String of the icon.
-//     */
-//    public String getStatusIcon() {
-//        return (isDone ? YES_ICON : NO_ICON);
-//    }
+    /**
+     * return an icon representing the status of the task.
+     *
+     * @return a String of the icon.
+     */
+    public String getStatusIcon() {
+        return (isDone ? YES_ICON : NO_ICON);
+    }
 
     /**
      * files getter method.
@@ -159,16 +159,16 @@ public class Task extends Directory implements Tag {
         return (Category) this.parent;
     }
 
-//    /**
-//     * Adds a file into the File List of this task.
-//     * @param fileName
-//     *  The file name of the file to be added
-//     * @param filePath
-//     *  The path to the file to be added
-//     */
-//    public void addFile(String fileName, String filePath) {
-//        files.add(new TaskFile(fileName, filePath));
-//    }
+    ///**
+    // * Adds a file into the File List of this task.
+    // * @param fileName
+    // *  The file name of the file to be added
+    // * @param filePath
+    // *  The path to the file to be added
+    // */
+    //public void addFile(String fileName, String filePath) {
+    //    files.add(new TaskFile(fileName, filePath));
+    //}
 
     /**
      * Checks if one task has the same description as another.
@@ -182,16 +182,16 @@ public class Task extends Directory implements Tag {
         return this.description.equals(taskDescription);
     }
 
-//    /**
-//     * Prints the task as a string.
-//     *
-//     * @return
-//     *  The string that contains all the task information
-//     */
-//    @Override
-//    public String toString() {
-//        return String.format("%s %s by %s\n Files:\n%s", getStatusIcon(), getDescription(), getDeadline(), files);
-//    }
+    /**
+     * Prints the task as a string.
+     *
+     * @return
+     *  The string that contains all the task information
+     */
+    @Override
+    public String toString() {
+        return String.format("%s %s by %s\n Files:\n%s", getStatusIcon(), getDescription(), getDeadline(), files);
+    }
 
     @Override
     public void setTag(String info) {

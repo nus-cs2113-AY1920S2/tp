@@ -11,9 +11,13 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
 import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
-import static seedu.nuke.parser.Parser.*;
+import static seedu.nuke.parser.Parser.CATEGORY_NAME_PREFIX;
+import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
-import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_EDIT_CATEGORY_SUCCESS;
 
 /**
@@ -24,14 +28,14 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_CATEGORY_SUCCESS;
  */
 public class EditCategoryCommand extends EditCommand {
     public static final String COMMAND_WORD = "edc";
-    public static final String FORMAT = COMMAND_WORD +
-            " <new category name> -m <module code> -c <old category name> -p <new priority>";
+    public static final String FORMAT = COMMAND_WORD
+            + " <new category name> -m <module code> -c <old category name> -p <new priority>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
 
     private String oldCategoryName;

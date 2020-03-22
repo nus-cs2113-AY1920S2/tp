@@ -24,12 +24,12 @@ public class Category extends Directory {
         this.tasks = new TaskManager();
     }
 
-//    public Category(Module parentModule, String categoryName, int categoryPriority, TaskManager tasks) {
-//        super(parentModule);
-//        this.categoryName = categoryName;
-//        this.categoryPriority = categoryPriority;
-//        this.tasks = tasks;
-//    }
+    //public Category(Module parentModule, String categoryName, int categoryPriority, TaskManager tasks) {
+    //    super(parentModule);
+    //    this.categoryName = categoryName;
+    //    this.categoryPriority = categoryPriority;
+    //    this.tasks = tasks;
+    //}
 
     /**
      * Returns the name of the category.
@@ -67,7 +67,7 @@ public class Category extends Directory {
     }
 
     /**
-     * Edit the name of the category
+     * Edit the name of the category.
      *
      * @param categoryName
      *  The name of the category

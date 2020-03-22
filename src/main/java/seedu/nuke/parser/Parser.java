@@ -1,22 +1,29 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
-import seedu.nuke.command.*;
+import seedu.nuke.command.ChangeDirectoryCommand;
+import seedu.nuke.command.Command;
+import seedu.nuke.command.ExitCommand;
+import seedu.nuke.command.HelpCommand;
+import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddTagCommand;
-import seedu.nuke.command.filterCommand.FilterCommand;
-import seedu.nuke.command.filterCommand.deletecommand.DeleteCategoryCommand;
-import seedu.nuke.command.filterCommand.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.filtercommand.FilterCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.editcommand.EditCategoryCommand;
 import seedu.nuke.command.editcommand.EditModuleCommand;
 import seedu.nuke.command.editcommand.EditTaskCommand;
-import seedu.nuke.command.filterCommand.listcommand.*;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
-import seedu.nuke.command.filterCommand.deletecommand.DeleteModuleCommand;
-import seedu.nuke.command.promptCommand.ConfirmationStatus;
-import seedu.nuke.command.promptCommand.DeleteConfirmationPrompt;
-import seedu.nuke.command.promptCommand.ListNumberPrompt;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
+import seedu.nuke.command.promptcommand.ConfirmationStatus;
+import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
+import seedu.nuke.command.promptcommand.ListNumberPrompt;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
@@ -29,8 +36,14 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static seedu.nuke.util.ExceptionMessage.*;
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DEADLINE_FORMAT;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PREFIX;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
+import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
 
 
 public class Parser {
@@ -75,69 +88,69 @@ public class Parser {
 
         try {
             switch (commandWord) {
-                case AddModuleCommand.COMMAND_WORD:
-                    return prepareAddModuleCommand(parameters);
+            case AddModuleCommand.COMMAND_WORD:
+                return prepareAddModuleCommand(parameters);
 
-                case AddCategoryCommand.COMMAND_WORD:
-                    return prepareAddCategoryCommand(parameters);
+            case AddCategoryCommand.COMMAND_WORD:
+                return prepareAddCategoryCommand(parameters);
 
-                case AddTaskCommand.COMMAND_WORD:
-                    return prepareAddTaskCommand(parameters);
+            case AddTaskCommand.COMMAND_WORD:
+                return prepareAddTaskCommand(parameters);
 
-                // todo check if in module
-                case AddTagCommand.COMMAND_WORD:
-                    return new AddTagCommand(parameters);
+            // todo check if in module
+            case AddTagCommand.COMMAND_WORD:
+                return new AddTagCommand(parameters);
 
-                case DeleteModuleCommand.COMMAND_WORD:
-                    return prepareDeleteAndListModuleCommand(parameters, true);
+            case DeleteModuleCommand.COMMAND_WORD:
+                return prepareDeleteAndListModuleCommand(parameters, true);
 
-                case DeleteCategoryCommand.COMMAND_WORD:
-                    return prepareDeleteAndListCategoryCommand(parameters, true);
+            case DeleteCategoryCommand.COMMAND_WORD:
+                return prepareDeleteAndListCategoryCommand(parameters, true);
 
-                case DeleteTaskCommand.COMMAND_WORD:
-                    return prepareDeleteAndListTaskCommand(parameters, true);
+            case DeleteTaskCommand.COMMAND_WORD:
+                return prepareDeleteAndListTaskCommand(parameters, true);
 
-                //        case DeleteCommand.COMMAND_WORD:
-                //            return prepareDeleteCommand(parameters);
+            //        case DeleteCommand.COMMAND_WORD:
+            //            return prepareDeleteCommand(parameters);
 
-                case ListModuleCommand.COMMAND_WORD:
-                    return prepareDeleteAndListModuleCommand(parameters, false);
+            case ListModuleCommand.COMMAND_WORD:
+                return prepareDeleteAndListModuleCommand(parameters, false);
 
-                case ListCategoryCommand.COMMAND_WORD:
-                    return prepareDeleteAndListCategoryCommand(parameters, false);
+            case ListCategoryCommand.COMMAND_WORD:
+                return prepareDeleteAndListCategoryCommand(parameters, false);
 
-                case ListTaskCommand.COMMAND_WORD:
-                    return prepareDeleteAndListTaskCommand(parameters, false);
+            case ListTaskCommand.COMMAND_WORD:
+                return prepareDeleteAndListTaskCommand(parameters, false);
 
-                case ListAllTasksDeadlineCommand.COMMAND_WORD:
-                    return new ListAllTasksDeadlineCommand();
+            case ListAllTasksDeadlineCommand.COMMAND_WORD:
+                return new ListAllTasksDeadlineCommand();
 
-                case EditModuleCommand.COMMAND_WORD:
-                    return prepareEditModuleCommand(parameters);
+            case EditModuleCommand.COMMAND_WORD:
+                return prepareEditModuleCommand(parameters);
 
-                case EditCategoryCommand.COMMAND_WORD:
-                    return prepareEditCategoryCommand(parameters);
+            case EditCategoryCommand.COMMAND_WORD:
+                return prepareEditCategoryCommand(parameters);
 
-                case EditTaskCommand.COMMAND_WORD:
-                    return prepareEditTaskCommand(parameters);
+            case EditTaskCommand.COMMAND_WORD:
+                return prepareEditTaskCommand(parameters);
 
-                //        case ListCommand.COMMAND_WORD:
-                //            return prepareListCommand(parameters);
+            //        case ListCommand.COMMAND_WORD:
+            //            return prepareListCommand(parameters);
 
-                //            case EditDeadlineCommand.COMMAND_WORD:
-                //                return prepareEditDeadlineCommand(parameters);
+            //            case EditDeadlineCommand.COMMAND_WORD:
+            //                return prepareEditDeadlineCommand(parameters);
 
-                case ChangeDirectoryCommand.COMMAND_WORD:
-                    return prepareChangeDirectoryCommand(parameters);
+            case ChangeDirectoryCommand.COMMAND_WORD:
+                return prepareChangeDirectoryCommand(parameters);
 
-                case HelpCommand.COMMAND_WORD:
-                    return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-                case ExitCommand.COMMAND_WORD:
-                    return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-                default:
-                    return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
+            default:
+                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
             }
         } catch (InvalidParameterException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
@@ -148,40 +161,41 @@ public class Parser {
         }
     }
 
-//    private Command prepareEditDeadlineCommand(String parameters) {
-//        Task taskToEdit;
-//        DateTime deadline;
-//        String[] temp = parameters.split("-d");
-//        Module dir = (Module) DirectoryTraverser.getCurrentDirectory();
-//        String moduleCode = dir.getModuleCode();
-//        taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
-//        try {
-//            deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
-//            return new EditDeadlineCommand(taskToEdit, deadline);
-//        } catch (DateTimeFormat.InvalidDateTimeException e) {
-//            return new IncorrectCommand("Invalid datetime format!\n");
-//        }
-//
-//    }
-
-//    private Command prepareDeleteCommand(String parameters) {
-//        if (Command.getCurrentDirectory() instanceof Root) {
-//            if (ModuleManager.contains(parameters)) {
-//                return new DeleteModuleCommand(parameters);
-//            } else {
-//                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-//            }
-//        } else if (Command.getCurrentDirectory() instanceof Module) {
-//            if (((Module) Command.getCurrentDirectory()).getTaskManager().contains(parameters)) {
-//                return new DeleteTaskCommand(parameters);
-//            }
-//        }
-//        //should never reach
-//        return null;
-//    }
+    //private Command prepareEditDeadlineCommand(String parameters) {
+    //    Task taskToEdit;
+    //    DateTime deadline;
+    //    String[] temp = parameters.split("-d");
+    //    Module dir = (Module) DirectoryTraverser.getCurrentDirectory();
+    //    String moduleCode = dir.getModuleCode();
+    //    taskToEdit = new Task(ModuleManager.getModuleWithCode(moduleCode), temp[0].trim(), moduleCode);
+    //    try {
+    //        deadline = DateTimeFormat.stringToDateTime(temp[1].trim());
+    //        return new EditDeadlineCommand(taskToEdit, deadline);
+    //    } catch (DateTimeFormat.InvalidDateTimeException e) {
+    //        return new IncorrectCommand("Invalid datetime format!\n");
+    //    }
+    //
+    //}
+    //
+    //private Command prepareDeleteCommand(String parameters) {
+    //    if (Command.getCurrentDirectory() instanceof Root) {
+    //        if (ModuleManager.contains(parameters)) {
+    //            return new DeleteModuleCommand(parameters);
+    //        } else {
+    //            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+    //        }
+    //    } else if (Command.getCurrentDirectory() instanceof Module) {
+    //        if (((Module) Command.getCurrentDirectory()).getTaskManager().contains(parameters)) {
+    //            return new DeleteTaskCommand(parameters);
+    //        }
+    //    }
+    //    //should never reach
+    //    return null;
+    //}
+    //
 
     /**
-     * Prepares the command to change the current directory
+     * Prepares the command to change the current directory.
      *
      * @param parameters
      *  The parameters given by the user
@@ -213,7 +227,7 @@ public class Parser {
     /* Prepare Add Commands */
 
     /**
-     * Prepares the command to add a module
+     * Prepares the command to add a module.
      *
      * @param parameters
      *  The parameters given by the user
@@ -231,7 +245,7 @@ public class Parser {
     }
 
     /**
-     * Prepares the command to add a category
+     * Prepares the command to add a category.
      *
      * @param parameters
      *  The parameters given by the user
@@ -261,7 +275,7 @@ public class Parser {
     }
 
     /**
-     * Prepares the command to add a task
+     * Prepares the command to add a task.
      *
      * @param parameters
      *  The parameters given by the user
@@ -301,129 +315,42 @@ public class Parser {
         }
 
         try {
-            return new AddTaskCommand(moduleCode, categoryName, taskDescription, deadlineToSet, parsePriority(priority));
+            return new AddTaskCommand(moduleCode, categoryName, taskDescription, deadlineToSet,
+                    parsePriority(priority));
         } catch (NumberFormatException | InvalidPriorityException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
         }
     }
 
-//    private Command prepareAddTaskCommand(String parameters) {
-//        //todo
-//        //add a very simple task (for testing)
-//        Module module = (Module) Command.getCurrentDirectory();
-//        if (module != null) {
-//            String moduleCode = module.getModuleCode();
-//            return new AddTaskCommand(new Task(ModuleManager.getModuleWithCode(moduleCode), parameters, moduleCode));
-//        } else {
-//            return new IncorrectCommand(MESSAGE_GO_INTO_MODULE);
-//        }
-//    }
+    //private Command prepareAddTaskCommand(String parameters) {
+    //    //todo
+    //    //add a very simple task (for testing)
+    //    Module module = (Module) Command.getCurrentDirectory();
+    //    if (module != null) {
+    //        String moduleCode = module.getModuleCode();
+    //        return new AddTaskCommand(new Task(ModuleManager.getModuleWithCode(moduleCode), parameters, moduleCode));
+    //    } else {
+    //        return new IncorrectCommand(MESSAGE_GO_INTO_MODULE);
+    //    }
+    //}
 
     /* Prepare Delete Commands */
 
-//    /**
-//     * Prepares the command to delete module(s)
-//     *
-//     * @param parameters
-//     *  The parameters given by the user
-//     * @return
-//     *  The command to delete module(s)
-//     */
-//    private Command prepareDeleteModuleCommand(String parameters) {
-//        final Pattern[] deleteModuleFormat = DeleteModuleCommand.REGEX_FORMATS;
-//        final int invalidParameterFormatsIndex = deleteModuleFormat.length - 1;
-//        Matcher[] matchers = new Matcher[deleteModuleFormat.length];
-//
-//        if (isMissingCompulsoryParameters(deleteModuleFormat, matchers, parameters)) {
-//            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-//        }
-//
-//        if (matchers[invalidParameterFormatsIndex].find()) {
-//            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-//        }
-//
-//        String moduleCode = matchers[0].group("identifier").trim();
-//        String exactFlag = matchers[1].group("exact").trim();
-//        boolean isExact = !exactFlag.isEmpty();
-//
-//        return new DeleteModuleCommand(moduleCode, isExact);
-//    }
-//
-//
-//    /**
-//     * Prepares the command to delete category/categories
-//     *
-//     * @param parameters
-//     *  The parameters given by the user
-//     * @return
-//     *  The command to delete category/categories
-//     */
-//    private Command prepareDeleteCategoryCommand(String parameters) {
-//        final Pattern[] deleteCategoryFormat = DeleteCategoryCommand.REGEX_FORMATS;
-//        final int invalidParameterFormatsIndex = deleteCategoryFormat.length - 1;
-//        Matcher[] matchers = new Matcher[deleteCategoryFormat.length];
-//
-//        if (isMissingCompulsoryParameters(deleteCategoryFormat, matchers, parameters)) {
-//            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-//        }
-//
-//        if (matchers[invalidParameterFormatsIndex].find()) {
-//            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-//        }
-//
-//        String categoryName = matchers[0].group("identifier").trim();
-//        String moduleCode = matchers[1].group("moduleCode").trim();
-//        String exactFlag = matchers[2].group("exact").trim();
-//        boolean isExact = !exactFlag.isEmpty();
-//
-//        return new DeleteCategoryCommand(moduleCode, categoryName, isExact);
-//    }
-//
-//    /**
-//     * Prepares the command to delete task(s)
-//     *
-//     * @param parameters
-//     *  The parameters given by the user
-//     * @return
-//     *  The command to delete task(s)
-//     */
-//    private Command prepareDeleteTaskCommand(String parameters) {
-//        final Pattern[] deleteTaskFormat = DeleteTaskCommand.REGEX_FORMATS;
-//        final int invalidParameterFormatsIndex = deleteTaskFormat.length - 1;
-//        Matcher[] matchers = new Matcher[deleteTaskFormat.length];
-//
-//        if (isMissingCompulsoryParameters(deleteTaskFormat, matchers, parameters)) {
-//            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
-//        }
-//
-//        if (matchers[invalidParameterFormatsIndex].find()) {
-//            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
-//        }
-//
-//        String taskDescription = matchers[0].group("identifier").trim();
-//        String moduleCode = matchers[1].group("moduleCode").trim();
-//        String categoryName = matchers[1].group("categoryName").trim();
-//        String exactFlag = matchers[2].group("exact").trim();
-//        boolean isExact = !exactFlag.isEmpty();
-//
-//        return new DeleteTaskCommand(moduleCode, categoryName, taskDescription, isExact);
-//    }
-
-//    private Command prepareListCommand(String parameters) {
-//        if (parameters.trim().matches(ALL_FLAG)) {
-//            return new ListAllTasksDeadlineCommand();
-//        } else if (Command.getCurrentDirectory() instanceof Root) {
-//            return prepareListModuleCommand(parameters);
-//        } else if (Command.getCurrentDirectory() instanceof Module) {
-//            return new ListModuleTasksDeadlineCommand();
-//        }
-//        return new ListAllTasksDeadlineCommand();
-//    }
+    //private Command prepareListCommand(String parameters) {
+    //    if (parameters.trim().matches(ALL_FLAG)) {
+    //        return new ListAllTasksDeadlineCommand();
+    //    } else if (Command.getCurrentDirectory() instanceof Root) {
+    //        return prepareListModuleCommand(parameters);
+    //    } else if (Command.getCurrentDirectory() instanceof Module) {
+    //        return new ListModuleTasksDeadlineCommand();
+    //    }
+    //    return new ListAllTasksDeadlineCommand();
+    //}
 
     /* Prepare List Commands */
 
     /**
-     * Prepares the command to delete modules or show filtered modules
+     * Prepares the command to delete modules or show filtered modules.
      *
      * @param parameters
      *  The parameters given by the user
@@ -452,7 +379,7 @@ public class Parser {
     }
 
     /**
-     * Prepares the command to delete categories or show filtered categories
+     * Prepares the command to delete categories or show filtered categories.
      *
      * @param parameters
      *  The parameters given by the user
@@ -485,7 +412,7 @@ public class Parser {
     }
 
     /**
-     * Prepares the command to delete tasks or show filtered tasks
+     * Prepares the command to delete tasks or show filtered tasks.
      *
      * @param parameters
      *  The parameters given by the user
@@ -522,7 +449,7 @@ public class Parser {
     /* Prepare Edit Commands */
 
     /**
-     * Prepares the command to edit a module
+     * Prepares the command to edit a module.
      *
      * @param parameters
      *  The parameters given by the user
@@ -547,7 +474,7 @@ public class Parser {
     }
 
     /**
-     * Prepares the command to edit a category
+     * Prepares the command to edit a category.
      *
      * @param parameters
      *  The parameters given by the user
@@ -583,7 +510,7 @@ public class Parser {
     }
 
     /**
-     * Prepares the command to edit a task
+     * Prepares the command to edit a task.
      *
      * @param parameters
      *  The parameters given by the user
@@ -625,7 +552,8 @@ public class Parser {
         }
 
         if (newPriority.isEmpty()) {
-            return new EditTaskCommand(oldTaskDescription, moduleCode, categoryName, newTaskDescription, newDeadlineToSet);
+            return new EditTaskCommand(oldTaskDescription, moduleCode, categoryName, newTaskDescription,
+                    newDeadlineToSet);
         }
 
         try {
@@ -701,7 +629,7 @@ public class Parser {
             throws InvalidParameterException, DuplicatePrefixException, InvalidPrefixException {
         for (String prefix : parameterPrefixes) {
             if (parameters.split(String.format(" %s", prefix)).length > 2) {
-               throw new DuplicatePrefixException();
+                throw new DuplicatePrefixException();
             }
         }
 
@@ -772,16 +700,16 @@ public class Parser {
      */
     public Command parseInputAsConfirmation(String userInput) {
         switch (userInput) {
-            case "yes":
-            case "y":
-                return new DeleteConfirmationPrompt(ConfirmationStatus.CONFIRM);
+        case "yes":
+        case "y":
+            return new DeleteConfirmationPrompt(ConfirmationStatus.CONFIRM);
 
-            case "no":
-            case "n":
-                return new DeleteConfirmationPrompt(ConfirmationStatus.ABORT);
+        case "no":
+        case "n":
+            return new DeleteConfirmationPrompt(ConfirmationStatus.ABORT);
 
-            default:
-                return new DeleteConfirmationPrompt(ConfirmationStatus.WAIT);
+        default:
+            return new DeleteConfirmationPrompt(ConfirmationStatus.WAIT);
         }
     }
 
@@ -816,8 +744,15 @@ public class Parser {
         return new ListNumberPrompt(indices);
     }
 
-    public static class InvalidParameterException extends InvalidFormatException {}
-    public static class InvalidPrefixException extends InvalidFormatException {}
-    public static class DuplicatePrefixException extends InvalidFormatException {}
-    public static class InvalidPriorityException extends InvalidFormatException {}
+    public static class InvalidParameterException extends InvalidFormatException {
+    }
+
+    public static class InvalidPrefixException extends InvalidFormatException {
+    }
+
+    public static class DuplicatePrefixException extends InvalidFormatException {
+    }
+
+    public static class InvalidPriorityException extends InvalidFormatException {
+    }
 }

@@ -1,8 +1,8 @@
-package seedu.nuke.command.filterCommand.deletecommand;
+package seedu.nuke.command.filtercommand.deletecommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.filterCommand.FilterCommand;
+import seedu.nuke.command.filtercommand.FilterCommand;
 import seedu.nuke.directory.Directory;
 
 import java.util.ArrayList;

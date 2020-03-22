@@ -7,13 +7,13 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
+import seedu.nuke.util.ExceptionMessage;
 
 import java.util.regex.Pattern;
 
 import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
-import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.Message.messageAddCategorySuccess;
 
 /**
@@ -27,10 +27,10 @@ public class AddCategoryCommand extends AddCommand {
     public static final String COMMAND_WORD = "addc";
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> -p <priority>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)" +
-            "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)" +
-            "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            + "(?<invalid>(?:\\s+-.*)*)"
     );
 
     private String moduleCode;
@@ -75,7 +75,8 @@ public class AddCategoryCommand extends AddCommand {
      * @throws ModuleManager.ModuleNotFoundException
      *  If the module with the module code is not found in the Module List
      */
-    protected Module getParentDirectory() throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException {
+    protected Module getParentDirectory()
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException {
         if (moduleCode.isEmpty()) {
             return getBaseModule();
         } else {
@@ -98,11 +99,11 @@ public class AddCategoryCommand extends AddCommand {
             parentModule.getCategories().add(toAdd);
             return new CommandResult(messageAddCategorySuccess(categoryName));
         } catch (ModuleManager.ModuleNotFoundException e) {
-            return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
+            return new CommandResult(ExceptionMessage.MESSAGE_MODULE_NOT_FOUND);
         } catch (CategoryManager.DuplicateCategoryException e) {
-            return new CommandResult(MESSAGE_DUPLICATE_CATEGORY);
+            return new CommandResult(ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY);
         } catch (IncorrectDirectoryLevelException e) {
-            return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+            return new CommandResult(ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 }

@@ -6,7 +6,7 @@ import seedu.nuke.directory.DirectoryLevel;
 import java.util.ArrayList;
 
 /**
- *construct the feedback to user String.
+ * construct the feedback to user String.
  */
 public class CommandResult {
     private final String feedbackToUser;
@@ -59,7 +59,7 @@ public class CommandResult {
     }
 
     /**
-     * Returns the list to be shown to the user
+     * Returns the list to be shown to the user.
      *
      * @return
      *  The list to be shown to the user

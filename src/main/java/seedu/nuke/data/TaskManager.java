@@ -106,11 +106,11 @@ public class TaskManager {
     }
 
     /**
-     * Deletes a <b>Task</b> with the specified <code>description/code> from the <b>Task List</b>.
+     * Deletes a <b>Task</b> with the specified <code>description</code> from the <b>Task List</b>.
      *
      * @param description The description of the <b>Task</b> to be deleted
-     * @throws TaskNotFoundException  If the task with the specified description is not found in the <b>Task List</b>
      * @return  The deleted task
+     * @throws TaskNotFoundException  If the task with the specified description is not found in the <b>Task List</b>
      * @see Task
      */
     public Task delete(String description) throws TaskNotFoundException {
@@ -161,7 +161,7 @@ public class TaskManager {
     }
 
     /**
-     * Retrieves the File List of the category with the specified description
+     * Retrieves the File List of the category with the specified description.
      *
      * @param description
      *  The description of the task to retrieve the File List from
@@ -229,6 +229,9 @@ public class TaskManager {
                 && this.taskList.equals(((TaskManager) other).taskList));
     }
 
-    public static class TaskNotFoundException extends DataNotFoundException {}
-    public static class DuplicateTaskException extends DuplicateDataException {}
+    public static class TaskNotFoundException extends DataNotFoundException {
+    }
+
+    public static class DuplicateTaskException extends DuplicateDataException {
+    }
 }

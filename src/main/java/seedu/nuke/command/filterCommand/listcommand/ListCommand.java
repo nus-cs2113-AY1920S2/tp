@@ -1,6 +1,6 @@
-package seedu.nuke.command.filterCommand.listcommand;
+package seedu.nuke.command.filtercommand.listcommand;
 
-import seedu.nuke.command.filterCommand.FilterCommand;
+import seedu.nuke.command.filtercommand.FilterCommand;
 
 public abstract class ListCommand extends FilterCommand {
 

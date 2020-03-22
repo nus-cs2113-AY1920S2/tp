@@ -25,6 +25,12 @@ public class Encoder {
         this.moduleList = moduleList;
     }
 
+    /**
+     * Encodes the Module List to be saved into a file.
+     *
+     * @return
+     *  The encoded Module List
+     */
     public String encode() {
         StringBuilder encodedList = new StringBuilder(BEGIN_MODULE_INDICATOR);
         for (Module module : moduleList) {

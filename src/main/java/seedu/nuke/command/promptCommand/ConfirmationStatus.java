@@ -1,4 +1,4 @@
-package seedu.nuke.command.promptCommand;
+package seedu.nuke.command.promptcommand;
 
 public enum ConfirmationStatus {
     CONFIRM,

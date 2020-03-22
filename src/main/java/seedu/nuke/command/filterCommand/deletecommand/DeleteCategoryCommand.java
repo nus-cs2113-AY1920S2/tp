@@ -1,4 +1,4 @@
-package seedu.nuke.command.filterCommand.deletecommand;
+package seedu.nuke.command.filtercommand.deletecommand;
 
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
@@ -9,7 +9,9 @@ import seedu.nuke.directory.Directory;
 
 import java.util.ArrayList;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_NO_CATEGORIES_FOUND;
+import static seedu.nuke.util.Message.messageConfirmDeleteCategory;
+import static seedu.nuke.util.Message.messagePromptDeleteCategoryIndices;
 
 /**
  * <h3>Delete Category Command</h3>
@@ -58,10 +60,10 @@ public class DeleteCategoryCommand extends DeleteCommand {
      */
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredCategories) {
-        final int CATEGORIES_COUNT = filteredCategories.size();
-        if (CATEGORIES_COUNT == 0) {
+        final int categoriesCount = filteredCategories.size();
+        if (categoriesCount == 0) {
             return new CommandResult(MESSAGE_NO_CATEGORIES_FOUND);
-        } else if (CATEGORIES_COUNT == 1) {
+        } else if (categoriesCount == 1) {
             Executor.preparePromptConfirmation();
             Executor.setFilteredList(filteredCategories, DirectoryLevel.CATEGORY);
             Category toDelete = (Category) filteredCategories.get(0);

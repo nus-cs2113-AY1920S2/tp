@@ -31,10 +31,10 @@ public class Nuke {
         root = new Root();
         ui = new Ui();
         modulesMap = ModuleLoader.load("moduleList.json");
-//        storageManager = new StorageManager("data.json");
+        //storageManager = new StorageManager("data.json");
         storageManager = new StorageManager("save.txt");
         moduleManager = new ModuleManager(root, modulesMap);
-//        ModuleManager.setModuleList(storageManager.load());
+        //ModuleManager.setModuleList(storageManager.load());
         storageManager.load2();
     }
 
@@ -84,7 +84,7 @@ public class Nuke {
 
             commandResult = Executor.executeCommand(userInput);
             ui.showResult(commandResult);
-//            storageManager.save();
+            //storageManager.save();
             storageManager.save2();
         } while (!ExitCommand.isExit());
     }

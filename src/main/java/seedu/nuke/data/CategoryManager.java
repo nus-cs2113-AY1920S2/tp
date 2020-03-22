@@ -67,7 +67,7 @@ public class CategoryManager {
     }
 
     /**
-     * Finds a task with the specified category name in the Category List
+     * Finds a task with the specified category name in the Category List.
      *
      * @param categoryName
      *  The name of the category to be found
@@ -100,7 +100,7 @@ public class CategoryManager {
      */
     public Task getTask(String categoryName, String taskDescription)
             throws CategoryNotFoundException, TaskManager.TaskNotFoundException {
-       return getCategory(categoryName).getTasks().getTask(taskDescription);
+        return getCategory(categoryName).getTasks().getTask(taskDescription);
     }
 
     /**
@@ -180,7 +180,7 @@ public class CategoryManager {
     }
 
     /**
-     * Retrieves the Task List of the category with the specified name
+     * Retrieves the Task List of the category with the specified name.
      *
      * @param categoryName
      *  The name of the category to retrieve the Task List from
@@ -277,6 +277,9 @@ public class CategoryManager {
         return filteredTaskList;
     }
 
-    public static class CategoryNotFoundException extends DataNotFoundException {}
-    public static class DuplicateCategoryException extends DuplicateDataException {}
+    public static class CategoryNotFoundException extends DataNotFoundException {
+    }
+
+    public static class DuplicateCategoryException extends DuplicateDataException {
+    }
 }
