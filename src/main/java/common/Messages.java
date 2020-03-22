@@ -6,19 +6,27 @@ package common;
 public class Messages {
     // Start up and Exit Print Messages
     public static final String LOGO =
-            " _______        _______        _______        _______ \n"
-                    + "|   _   |      |       |      |   _   |      |       |\n"
-                    + "|  |_|  |      |_     _|      |  |_|  |      |  _____|\n"
-                    + "|       |        |   |        |       |      | |_____ \n"
-                    + "|       | ___    |   |   ___  |       | ___  |_____  |\n"
-                    + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |\n"
-                    + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|\n";
+            " _______        _______        _______        _______ "
+                    + System.lineSeparator()
+                    + "|   _   |      |       |      |   _   |      |       |"
+                    + System.lineSeparator()
+                    + "|  |_|  |      |_     _|      |  |_|  |      |  _____|"
+                    + System.lineSeparator()
+                    + "|       |        |   |        |       |      | |_____ "
+                    + System.lineSeparator()
+                    + "|       | ___    |   |   ___  |       | ___  |_____  |"
+                    + System.lineSeparator()
+                    + "|   _   ||   |   |   |  |   | |   _   ||   |  _____| |"
+                    + System.lineSeparator()
+                    + "|__| |__||___|   |___|  |___| |__| |__||___| |_______|"
+                    + System.lineSeparator();
     public static final String EXIT_MESSAGE = "Exiting A.T.A.S";
 
     // Common Print Messages
     public static final String DIVIDER = "_______________________________________________________________________";
     public static final String NEWLINE_INDENT = "     ";
     public static final String COMMENTS_INDENT = "            notes: ";
+    public static final String PROMPT_FOR_USER_INPUT = "> ";
 
     // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
@@ -62,6 +70,8 @@ public class Messages {
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
             + "%s" + System.lineSeparator() + "Now you have %d task%s in the list!";
     public static final String EMPTY_TASKLIST_MESSAGE = "No tasks were found";
+    public static final String NO_TODAY_TASKS_MESSAGE = "You have no tasks for today!";
+    public static final String SHOW_TODAY_TASKS_MESSAGE = "Here are the tasks you have for today";
     public static final String SHOW_TASKLIST_MESSAGE = "Here are the relevant tasks:%s%s";
     public static final String DONE_SUCCESS_MESSAGE = "[%s] has been marked done!";
     public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";
