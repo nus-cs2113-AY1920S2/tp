@@ -1,1 +1,21 @@
 
+Mar 23, 2020 1:58:04 AM jikan.Log makeInfoLog
+INFO: Starting to parse inputs.
+Mar 23, 2020 1:58:04 AM jikan.Log makeInfoLog
+INFO: Could not start activity due to already ongoing activity.
+Mar 23, 2020 1:58:20 AM jikan.Log makeInfoLog
+INFO: Starting to parse inputs.
+Mar 23, 2020 1:58:20 AM jikan.Log makeInfoLog
+INFO: Could not start activity due to already ongoing activity.
+Mar 23, 2020 2:00:14 AM jikan.Log makeInfoLog
+INFO: Starting to parse inputs.
+Mar 23, 2020 2:00:14 AM jikan.Log makeInfoLog
+INFO: Could not start activity due to already ongoing activity.
+Mar 23, 2020 2:05:41 AM jikan.Log makeInfoLog
+INFO: Starting to parse inputs.
+Mar 23, 2020 2:05:41 AM jikan.Log makeInfoLog
+INFO: Could not start activity due to already ongoing activity.
+Mar 23, 2020 2:07:09 AM jikan.Log makeInfoLog
+INFO: Starting to parse inputs.
+Mar 23, 2020 2:07:10 AM jikan.Log makeInfoLog
+INFO: Could not start activity due to already ongoing activity.

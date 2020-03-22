@@ -23,25 +23,20 @@ public class ActivityList {
     public ArrayList<Activity> activities;
     public Storage storage; // Storage the list was loaded from
 
-    //int size;
-
     /**
      * Constructor for a new activity list.
      */
     public ActivityList() {
         this.activities = new ArrayList<>();
-        //this.size = activities.size();
     }
 
     /**
      * Loads activityList from data file.
-     *
-     * @param storage Storage to load from.
+     * @param dataFile the datafile to be read from.
      */
-    public ActivityList(Storage storage) {
+    public ActivityList(File dataFile) {
         this.activities = new ArrayList<>();
-        this.storage = storage;
-        populateTaskList(storage.dataFile);
+        populateTaskList(dataFile);
     }
 
     public Activity get(int i) {
@@ -54,9 +49,7 @@ public class ActivityList {
      */
     public void add(Activity activity) {
         activities.add(activity);
-
         String dataLine = activity.toData();
-
         updateFile(dataLine);
     }
 
@@ -163,14 +156,13 @@ public class ActivityList {
             // if there are tags
             if (strings.size() > 4) {
                 // remove square brackets surrounding tags
-                tagStrings = strings.get(4).substring(0,strings.get(4).length() - 1).split(" ");
                 tagStrings = strings.get(4).split(" ");
                 for (String i : tagStrings) {
                     tags.add(i);
                 }
             }
-            // strings[0] = name, strings[1] = startDate, string[2] = endDate
-            Activity e = null;
+
+            Activity e;
             LocalDateTime startTime = LocalDateTime.parse(strings.get(1));
             LocalDateTime endTime = LocalDateTime.parse(strings.get(2));
             Duration duration = Duration.parse(strings.get(3));

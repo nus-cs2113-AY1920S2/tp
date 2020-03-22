@@ -6,9 +6,11 @@ import jikan.activity.ActivityList;
 import jikan.exception.EmptyQueryException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NoSuchActivityException;
+import jikan.storage.StorageCleaner;
 import jikan.ui.Ui;
 import jikan.Log;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,6 +31,7 @@ public class Parser {
     private String activityName = null;
     private Set<String> tags = new HashSet<>();
     private Ui ui = new Ui();
+    private StorageCleaner cleaner;
     protected String[] tokenizedInputs;
     String instruction;
     Log logger = new Log();
@@ -42,8 +45,10 @@ public class Parser {
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
-    public void parseUserCommands(Scanner scanner, ActivityList activityList) throws InvalidTimeFrameException {
+    public void parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner)
+            throws InvalidTimeFrameException {
         logger.makeInfoLog("Starting to parse inputs.");
+        this.cleaner = cleaner;
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands
         referencing by index of this list.
          */
@@ -55,7 +60,6 @@ public class Parser {
 
             switch (instruction) {
             case "bye":
-                //ui.exitFromApp();
                 parseBye(activityList, scanner);
                 break;
             case "start":
@@ -125,6 +129,13 @@ public class Parser {
                     logger.makeInfoLog("Continue command failed as there was no such activity saved.");
                 }
                 break;
+            case "clean":
+                try {
+                    parseClean(tokenizedInputs[1]);
+                } catch (ArrayIndexOutOfBoundsException | IOException e) {
+                    ui.printDivider("No keyword was given.");
+                }
+                break;
             case "edit":
                 try {
                     parseEdit(activityList);
@@ -144,6 +155,20 @@ public class Parser {
                 break;
             }
         }
+    }
+
+    private void parseClean(String tokenizedInput) throws IOException {
+        String line;
+        if (tokenizedInput.equals("on")) {
+            cleaner.setStatus(true);
+            line = "Auto cleaning enabled";
+        } else if (tokenizedInput.equals("off")) {
+            cleaner.setStatus(false);
+            line = "Auto cleaning disabled";
+        } else {
+            line = "Invalid Command!";
+        }
+        ui.printDivider(line);
     }
 
     /**
