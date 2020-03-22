@@ -1,10 +1,10 @@
 package seedu.duke;
 
 import seedu.cards.CardList;
-import seedu.subjects.Subject;
 import seedu.commands.Command;
 import seedu.exception.EscException;
 import seedu.parser.Parser;
+import seedu.subjects.SubjectList;
 
 public class Duke {
     /**
@@ -13,7 +13,7 @@ public class Duke {
     public static UI ui = new UI();
     private Storage storage = new Storage();
     private CardList cards;
-    private Subject subjects;
+    private SubjectList subjectList = new SubjectList();
 
     /**
      * Reads the user's commands and executes them until the user issues the exit command.
@@ -23,11 +23,11 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             try {
-                cards = new CardList(storage.loadCards());
+                //cards = new CardList(storage.loadCards());
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(cards);
-                storage.saveCards(cards.getCards());
+                c.execute(subjectList);
+                //storage.saveCards(cards.getCards());
                 isExit = c.isExit();
             } catch (EscException e) {
                 System.out.println(e.getMessage());
