@@ -8,7 +8,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-- [Usage](#Usage)
+- [Usage](#usage)
 ## Quick Start
 **Installation**
 1. Ensure that you have `Java 11` or later installed in your computer 
@@ -29,8 +29,8 @@ Command | Description
 `delete [nric]` | Deletes a patient with the specified NRIC
 `exit` | Saves the data to a text file and exits the program
 
-##Usage
-###help
+## Usage
+### help
 Display a help message with all commands or specific commands with usage examples
 ##### Usage example:
 *For general help*  
@@ -74,7 +74,7 @@ help [Command]
 >     ===================================================
 >
 
-###List
+### List
 Display all the Patients in alphabetical order
 ##### Usage example:
 ```
@@ -87,7 +87,7 @@ list
 >         Bob | S9999999Z   
 >         ===================================================    
 
-###Add
+### Add
 Add a new patient with the specified parameters. User can also add allergies or remarks to existing users.
 ##### Usage example:
 *To add a new user*   
@@ -108,7 +108,7 @@ add /ic[NRIC] /r[REMARKS]
 - `add /icS9999999Z /rHad contact with COVID-19 Case200`
 > ***Expected output:***
 
-###Get
+### Get
 Retrieve details of the patient with the specified NRIC
 ##### Usage example:
 `get [nric]`
@@ -127,7 +127,7 @@ Retrieve details of the patient with the specified NRIC
 >             Remarks : Had contact with COVID-19 Case200
 >         ===================================================
 
-###Edit
+### Edit
 Edit information of the patient with the specified NRIC
 ##### Usage example:
 ```
@@ -143,7 +143,7 @@ Options:
 ###### Example:
 > ***Expected output:***
 
-###Delete
+### Delete
 Display all the Patients in alphabetical order
 ##### Usage example:
 ```
@@ -153,7 +153,7 @@ delete [nric]
 `delete S1234567A`
 > ***Expected output:***
 
-###Exit
+### Exit
 Saves the data to a text file and exits the program
 ##### Usage example:
 ```
