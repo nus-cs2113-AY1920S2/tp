@@ -1,5 +1,6 @@
 package seedu.nuke.util;
 
+import org.fusesource.jansi.Ansi;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
@@ -9,6 +10,13 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Message {
+
+    public static final Ansi.Color COLOR_ALERT = Ansi.Color.RED;
+    public static final Ansi.Color COLOR_OUTPUT = Ansi.Color.WHITE;
+    public static final Ansi.Color COLOR_ASK_CONFIRMATION = Ansi.Color.BLUE;
+    public static final Ansi.Color COLOR_FRAME = Ansi.Color.GREEN;
+
+
     public static final String MESSAGE_LOGO = "      ___          ___          ___          ___     \n"
             + "     /__/\\        /__/\\        /__/|        /  /\\    \n"
             + "     \\  \\:\\       \\  \\:\\      |  |:|       /  /:/_   \n"
