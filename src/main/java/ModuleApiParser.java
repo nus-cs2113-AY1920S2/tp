@@ -9,11 +9,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Returns one school module in JSONArray format. Data grabbed from the NUSMOD API: https://api.nusmods.com/v2/2019-2020/modules/MODULECODE.json
+ * Returns one school module in JSONArray format.
+ * Data grabbed from NUSMOD API: https://api.nusmods.com/v2/2019-2020/modules/MODULECODE.json
  */
 public class ModuleApiParser {
     String apiUrl;
-    private String templateUrl = "https://api.nusmods.com/v2/2019-2020/modules/";
+    private final String templateUrl = "https://api.nusmods.com/v2/2019-2020/modules/";
 
     public ModuleApiParser(String moduleName) {
         apiUrl = templateUrl + moduleName + ".json";

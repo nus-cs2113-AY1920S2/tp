@@ -9,7 +9,6 @@ import java.util.Map;
 public class TimetableParser {
     String nusmodsLink;
     String semester;
-    //Key-value pair: Key = module code, Value = LessonType:Class number <-- delimited by :
     Map<String, ArrayList<String>> modulesMap;
     ArrayList<String> modulesArr;
 
@@ -42,6 +41,12 @@ public class TimetableParser {
 
     }
 
+    /**
+     * Parses weblink into module information using hashMap as data structure.
+     * Also stores module information collected to be used by LessonGenerator class.
+     * @param unparsedModules raw weblink with module information.
+     * @return  Returns Key-value pair. Key = "moduleCode"-Value = ArrayList of "LessonType:Class number"
+     */
     private Map<String, ArrayList<String>> parseModules(String unparsedModules) {
         ArrayList<String> unparsed = new ArrayList<>(Arrays.asList(unparsedModules.split("&")));
         Map<String, ArrayList<String>> myModuleDetails = new HashMap<String, ArrayList<String>>();

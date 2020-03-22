@@ -3,6 +3,7 @@ package common;
 import java.util.Map;
 
 /**
+ * Maps the lessonType full name into its coded form to used by Nusmods link.
  * Referenced from https://github.com/raynoldng/nusmods-planner/blob/master/nusmodsplanner/definitions.py
  */
 public class LessonType {

@@ -49,7 +49,9 @@ public class LessonsGenerator {
             ArrayList<ArrayList<String>> weeks = myModuleHandler.getWeeks().get(semester);
 
             ArrayList<String> delimitedWeeks = delimitWeeks(weeks);
-            ArrayList<String> userModuleProfile = userLessons.get(module);
+
+            // Putting lesson information of a module into Key-Value(Array of fixed size 4) pair:
+            // ("lessonType:ClassNo") - (startTime endTime day weeks)
             Multimap<String, String[]> allLessonMap = ArrayListMultimap.create();
             for (int i = 0; i < classNumber.size(); i++) {
                 String lessonTypeLongFormat = lessonType.get(i);
@@ -57,13 +59,20 @@ public class LessonsGenerator {
                 allLessonMap.put(lessonTypeShortFormat + ":"
                     + classNumber.get(i), new String[] {startTime.get(i), endTime.get(i), day.get(i), delimitedWeeks.get(i)});
             }
+            ArrayList<String> userModuleProfile = userLessons.get(module);
             lessonsChecker(allLessonMap, userModuleProfile);
         }
     }
 
+    /**
+     * Checks if lessonType:classNo from userModuleProfile matches Multimap's info.
+     * @param allLessonMap All lesson information with key=lessonType:classNo.
+     * @param userModuleProfile ArrayList of lessonType:classNo that user has taken for a particular moduile.
+     * @return Returns the matched value pair containing an array(size 4) of startTime, endTime, day and weeks.
+     */
     private void lessonsChecker(Multimap<String, String[]> allLessonMap, ArrayList<String> userModuleProfile) {
-        System.out.println("USER " + userModuleProfile);
-        System.out.println("ALL: ");
+        //System.out.println("USER " + userModuleProfile);
+        //System.out.println("ALL: ");
 
         for (String s : userModuleProfile) {
             if (allLessonMap.containsKey(s)) {
