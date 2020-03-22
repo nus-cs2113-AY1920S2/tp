@@ -1,20 +1,18 @@
 package seedu.happypills.parser;
 
-import seedu.happypills.commands.Command;
 import seedu.happypills.commands.AddCommand;
 import seedu.happypills.commands.DeleteCommand;
 import seedu.happypills.commands.EditCommand;
 import seedu.happypills.commands.ExitCommand;
-import seedu.happypills.commands.GetCommand;
+import seedu.happypills.commands.Command;
 import seedu.happypills.commands.HelpCommand;
 import seedu.happypills.commands.IncorrectCommand;
 import seedu.happypills.commands.ListCommand;
+import seedu.happypills.commands.GetCommand;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Parses user input.
@@ -67,9 +65,9 @@ public class Parser {
 
     private static Command parseAddCommand(String content) {
         String[] details = content.substring(1).split(" /");
-        String[] parseInput = {"","","","","","","",""};
+        String[] parseInput = {"", "", "", "", "", "", "", ""};
 
-        for (String detail : details){
+        for (String detail : details) {
             if (detail.startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
                 parseInput[0] += detail.substring(2);
             } else if (detail.startsWith("n") && parseInput[1].equalsIgnoreCase("")) {
@@ -89,44 +87,44 @@ public class Parser {
             }
         }
 
-        while(parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
+        while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
                 || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")
-                || !isInteger(parseInput[2].trim())){
+                || !isInteger(parseInput[2].trim())) {
             System.out.println("Please input your missing detail as listed below");
-            if (parseInput[0].equalsIgnoreCase("")){
+            if (parseInput[0].equalsIgnoreCase("")) {
                 System.out.println("/ic[NRIC]");
             }
-            if (parseInput[1].equalsIgnoreCase("")){
+            if (parseInput[1].equalsIgnoreCase("")) {
                 System.out.println("/n[NAME]");
             }
-            if (parseInput[2].equalsIgnoreCase("") || !isInteger(parseInput[2].trim())){
+            if (parseInput[2].equalsIgnoreCase("") || !isInteger(parseInput[2].trim())) {
                 System.out.println("/p[PHONE] only number");
             }
-            if (parseInput[3].equalsIgnoreCase("")){
+            if (parseInput[3].equalsIgnoreCase("")) {
                 System.out.println("/d[DOB]");
             }
             String input = promptUser().trim();
-            if (input.equalsIgnoreCase("clear")){
+            if (input.equalsIgnoreCase("clear")) {
                 return new IncorrectCommand("stop");
             }
             String[] updates = input.substring(1).split(" /");
 
-            for (String update: updates) {
+            for (String update : updates) {
                 if (update.trim().startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
                     parseInput[0] = update.trim().substring(2);
-                }else if (update.trim().startsWith("n") && parseInput[1].equalsIgnoreCase("")) {
+                } else if (update.trim().startsWith("n") && parseInput[1].equalsIgnoreCase("")) {
                     parseInput[1] = update.trim().substring(1);
-                }else if (update.trim().startsWith("p") && (parseInput[2].equalsIgnoreCase("")
+                } else if (update.trim().startsWith("p") && (parseInput[2].equalsIgnoreCase("")
                         || !isInteger(parseInput[2].trim()))) {
                     parseInput[2] = update.trim().substring(1);
-                }else if (update.trim().startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
+                } else if (update.trim().startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
                     parseInput[3] = update.trim().substring(1);
                 }
             }
         }
 
-        return new AddCommand(parseInput[0].trim(),parseInput[1].trim(),Integer.parseInt(parseInput[2].trim()),
-                parseInput[3], parseInput[4],parseInput[5],parseInput[6]);
+        return new AddCommand(parseInput[0].trim(), parseInput[1].trim(), Integer.parseInt(parseInput[2].trim()),
+                parseInput[3], parseInput[4], parseInput[5], parseInput[6]);
     }
 
     private static String promptUser() {
@@ -136,12 +134,14 @@ public class Parser {
         return reInput;
     }
 
+    /**
+     * Check if the String can be converted to Integer.
+     */
     public static boolean isInteger(String input) {
         try {
-            Integer.parseInt( input );
+            Integer.parseInt(input);
             return true;
-        }
-        catch( Exception e ) {
+        } catch (Exception e) {
             return false;
         }
     }
