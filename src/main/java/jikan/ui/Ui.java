@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class Ui {
     public static final String GREETING = "Jikan";
 
-    public static final String DIVIDER = "-------------------------------------------";
+    public static final String DIVIDER = "-----------------------------------------------------------------";
 
     /** Prints the logo and greeting so users know the app is working. */
     public void printGreeting() {
