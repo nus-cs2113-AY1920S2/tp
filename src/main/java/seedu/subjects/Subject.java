@@ -1,6 +1,8 @@
 package seedu.subjects;
 
 import seedu.cards.CardList;
+import seedu.score.ScoreList;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
 public class Subject implements Serializable {
     private final String name;
     private CardList cardList = new CardList();
+    private ScoreList scoreList = new ScoreList();
 
     public Subject(String name) {
         this.name = name;
@@ -19,7 +22,11 @@ public class Subject implements Serializable {
     }
 
     public CardList getCardList() {
-        return this.cardList;
+        return cardList;
+    }
+
+    public ScoreList getScoreList() {
+        return this.scoreList;
     }
 
 }
