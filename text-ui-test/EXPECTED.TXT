@@ -372,4 +372,6 @@ BYE: Exits the program.
 Enter command:
 
 Exiting SHOCO as requested ...
+The system cannot find the path specified
+The system cannot find the path specified
 BYE
