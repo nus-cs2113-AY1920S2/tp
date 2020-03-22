@@ -65,12 +65,14 @@ public class EditCommand extends Command {
 
             LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
             feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
+            //@@author kokjoon97
             assert myBudget != null;
             double remainder = myBudget.getRemainingBudget(items.getTotalCost());
             if (remainder < 0) {
                 LOGGER.log(Level.INFO,"(Edit command) User exceeded budget by: " + (-1) * remainder);
                 feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
             }
+            //@@author
 
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             LOGGER.log(Level.WARNING, "(Edit command)  Item to edit is not found in list");

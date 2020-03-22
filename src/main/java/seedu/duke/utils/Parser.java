@@ -1,4 +1,4 @@
-package seedu.duke.parser;
+package seedu.duke.utils;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.AddCommand;
@@ -58,25 +58,29 @@ public class Parser {
             createEditCommand(arguments);
             break;
 
+        //@@author kokjoon97
         case DeleteCommand.COMMAND_WORD:
             createDeleteCommand(arguments);
-            break;
-
-        case ListCommand.COMMAND_WORD:
-            createListCommand(arguments);
             break;
 
         case FindCommand.COMMAND_WORD:
             createFindCommand(arguments);
             break;
 
+        case SetBudgetCommand.COMMAND_WORD:
+            createSetBudgetCommand(arguments);
+            break;
+        //@@author
+
+        case ListCommand.COMMAND_WORD:
+            createListCommand(arguments);
+            break;
+
+
         case ClearCommand.COMMAND_WORD:
             createClearCommand(arguments);
             break;
 
-        case SetBudgetCommand.COMMAND_WORD:
-            createSetBudgetCommand(arguments);
-            break;
 
         case ResetBudgetCommand.COMMAND_WORD:
             createResetBudgetCommand(arguments);
@@ -322,6 +326,7 @@ public class Parser {
         return argsArray;
     }
 
+    //@@author kokjoon97
     /**
      * Initialises the DeleteCommand.
      */
@@ -338,6 +343,7 @@ public class Parser {
         }
 
     }
+    //@@author
 
     /**
      * Initialises the ListCommand.
@@ -367,6 +373,7 @@ public class Parser {
         }
     }
 
+    //@@author kokjoon97
     /**
      * Initialises the SetBudgetCommand.
      */
@@ -392,6 +399,7 @@ public class Parser {
                     + "Example: SET b/300");
         }
     }
+    //@@author
 
     /**
      * Initialises the ResetBudgetCommand.
@@ -423,6 +431,7 @@ public class Parser {
         newCommand = new ExitCommand();
     }
 
+    //@@author kokjoon97
     private void createFindCommand(String arguments) {
         if (arguments == null) {
             newCommand = new IncorrectCommand(System.lineSeparator()
@@ -436,5 +445,5 @@ public class Parser {
             newCommand = new FindCommand(arguments);
         }
     }
-
+    //@@author
 }
