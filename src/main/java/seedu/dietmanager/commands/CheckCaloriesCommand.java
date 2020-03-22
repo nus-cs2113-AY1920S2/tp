@@ -14,7 +14,12 @@ public class CheckCaloriesCommand extends Command {
     private double caloriesRequired;
     boolean isValidCommand = true;
 
-
+    /**
+     * Constructs the Command object.
+     * @param command The command prompt entered by the user.
+     * @param description The description of the command.
+     * @throws InvalidFormatException If user input incorrect format for the command.
+     */
     public CheckCaloriesCommand(String command, String description) throws InvalidFormatException {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
@@ -24,27 +29,27 @@ public class CheckCaloriesCommand extends Command {
 
     @Override
     public void execute(Profile profile, UI ui) {
-        double BMR;
+        double basalMetabolicRate;
         switch (profile.getGender()) {
         case "Male":
-            BMR = 10 * profile.getWeight() + 6.25 * profile.getHeight() - 5 * profile.getAge() + 5;
+            basalMetabolicRate = 10 * profile.getWeight() + 6.25 * profile.getHeight() - 5 * profile.getAge() + 5;
             break;
         case "Female":
-            BMR = 10 * profile.getWeight() + 6.25 * profile.getHeight() - 5 * profile.getAge() - 161;
+            basalMetabolicRate = 10 * profile.getWeight() + 6.25 * profile.getHeight() - 5 * profile.getAge() - 161;
             break;
         default:
-            BMR = 0;
+            basalMetabolicRate = 0;
             isValidCommand = false;
         }
         switch (activityLevel) {
         case "low":
-            this.caloriesRequired = BMR * 1.375;
+            this.caloriesRequired = basalMetabolicRate * 1.375;
             break;
         case "moderate":
-            this.caloriesRequired = BMR * 1.55;
+            this.caloriesRequired = basalMetabolicRate * 1.55;
             break;
         case "high":
-            this.caloriesRequired = BMR * 1.725;
+            this.caloriesRequired = basalMetabolicRate * 1.725;
             break;
         default:
             isValidCommand = false;
@@ -56,9 +61,9 @@ public class CheckCaloriesCommand extends Command {
     public void saveResult(Profile profile) {
         DailyFoodRecord record = profile.getRecordOfDay(date);
         if (isValidCommand) {
-            this.result = String.format("Calories Intake and Requirement for %s:" , date) + System.lineSeparator()
+            this.result = String.format("Calories Intake and Requirement for %s:",date) + System.lineSeparator()
                     + record.showDailyCalories()
-                    + String.format("Calories requirement for %s activity level: " , activityLevel)
+                    + String.format("Calories requirement for %s activity level: ",activityLevel)
                     + String.format("%.2f", caloriesRequired) + "cal." + System.lineSeparator();
             if (record.getDailyCalories().isPresent()) {
                 double caloriesIntake = record.getDailyCalories().get();

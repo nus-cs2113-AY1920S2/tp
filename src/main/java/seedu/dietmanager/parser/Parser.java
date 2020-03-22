@@ -1,6 +1,5 @@
 package seedu.dietmanager.parser;
 
-import seedu.dietmanager.commands.*;
 import seedu.dietmanager.commands.Command;
 import seedu.dietmanager.commands.ExitCommand;
 import seedu.dietmanager.commands.ProfileCommand;
@@ -13,6 +12,9 @@ import seedu.dietmanager.commands.SetWeightCommand;
 import seedu.dietmanager.commands.RecordMealCommand;
 import seedu.dietmanager.commands.CheckRecordCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
+import seedu.dietmanager.commands.WeightUpdateCommand;
+import seedu.dietmanager.commands.CheckWeightProgressCommand;
+import seedu.dietmanager.commands.CheckCaloriesCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.exceptions.InvalidGenderException;
@@ -72,6 +74,12 @@ public class Parser {
         return descriptionArray;
     }
 
+    /**
+     * Validate the user input gender and parse it into the standard gender accepted.
+     * @param description User input gender.
+     * @return Gender in standard form.
+     * @throws InvalidGenderException If gender is not recognized by our system.
+     */
     public static String parseGender(String description) throws InvalidGenderException {
         String gender = description.trim().toLowerCase();
         if (!(gender.equals("male") || gender.equals("female"))) {

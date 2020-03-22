@@ -10,7 +10,7 @@ public class FoodNutritionInfo {
     private ArrayList<Food> foods = new ArrayList<>();
 
     /**
-     * Public constructor for FoodNutritionInfo of Food from our database
+     * Public constructor for FoodNutritionInfo of Food from our database.
      */
     public FoodNutritionInfo() {
         foods.add(new Food("Chicken", 1)); // Not accurate yet
@@ -21,6 +21,11 @@ public class FoodNutritionInfo {
         foods.add(new Food("Tea", 6)); // Not accurate yet
     }
 
+    /**
+     * Search for a food in the database.
+     * @param foodName The name of the food to be searched for.
+     * @return Optional Food that contains the food if exist, and is empty otherwise.
+     */
     public Optional<Food> findFood(String foodName) {
         Optional<Food> foodFound = Optional.empty();
         for (Food food : foods) {
@@ -31,6 +36,11 @@ public class FoodNutritionInfo {
         return foodFound;
     }
 
+    /**
+     * Search if a food exists in the database.
+     * @param foodName The name of the food to be searched for.
+     * @return True if food exist in database, false otherwise.
+     */
     public boolean isInDatabase(String foodName) {
         boolean isFoodFound = false;
         for (Food food : foods) {
@@ -41,6 +51,9 @@ public class FoodNutritionInfo {
         return isFoodFound;
     }
 
+    /**
+     * Print out all the food stored in our database.
+     */
     public void showFoodDatabase() {
         System.out.println(MessageBank.FOOD_DATABASE_MESSAGE);
         for (Food food : foods) {
