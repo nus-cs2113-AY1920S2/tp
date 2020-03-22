@@ -41,7 +41,7 @@ public class CardList {
         }
 
         try {
-            cards.remove(index - 1);
+            cards.remove(index);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The card item does not exist.");
         }
@@ -60,7 +60,7 @@ public class CardList {
         // assuming that our question index starts from 1 and not 0.
         Card card;
         try {
-            card = cards.get(index - 1);
+            card = cards.get(index);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The card item does not exist.");
         }

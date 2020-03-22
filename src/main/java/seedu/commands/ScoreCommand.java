@@ -12,13 +12,13 @@ public class ScoreCommand extends Command {
     public static final String MESSAGE_USAGE = "To view score history of a subject, "
             + "type command: score s/[SUBJECT INDEX]";
 
-    private int index;
+    private int subjectIndex;
 
     /**
      * Initialises the parameters for score command.
      */
-    public ScoreCommand(int index) {
-        this.index = index;
+    public ScoreCommand(int subjectIndex) {
+        this.subjectIndex = subjectIndex - 1;
     }
 
     /**

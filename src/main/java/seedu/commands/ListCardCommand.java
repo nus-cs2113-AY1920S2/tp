@@ -19,7 +19,7 @@ public class ListCardCommand extends ListCommand {
      * Initialises the parameter for list card.
      */
     public ListCardCommand(int subjectIndex) {
-        this.subjectIndex = subjectIndex;
+        this.subjectIndex = subjectIndex - 1;
     }
 
     /**
@@ -27,7 +27,7 @@ public class ListCardCommand extends ListCommand {
      */
     @Override
     public void execute(SubjectList subjectList) throws EscException {
-        Subject subject = subjectList.getSubject(this.subjectIndex);
-        subjectList.listCardsInSubject(subject);
+        Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
+        subjectList.listCardsInSubject(chosenSubject);
     }
 }

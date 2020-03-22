@@ -25,7 +25,7 @@ public class AddCardCommand extends AddCommand {
      */
     public AddCardCommand(int subjectIndex, Card card) {
         this.card = card;
-        this.subjectIndex = subjectIndex;
+        this.subjectIndex = subjectIndex - 1;
     }
 
     /**
@@ -33,6 +33,13 @@ public class AddCardCommand extends AddCommand {
      */
     public Card getCard() {
         return card;
+    }
+
+    /**
+     * Returns index of subject.
+     */
+    public int getSubjectIndex() {
+        return subjectIndex;
     }
 
     /**

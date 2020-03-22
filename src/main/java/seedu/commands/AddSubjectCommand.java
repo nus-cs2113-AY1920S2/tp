@@ -1,7 +1,5 @@
 package seedu.commands;
 
-import seedu.cards.Card;
-import seedu.cards.CardList;
 import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 

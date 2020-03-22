@@ -19,14 +19,14 @@ public class DeleteCardCommand extends DeleteCommand {
     private int cardIndex;
 
     public DeleteCardCommand(int subjectIndex, int cardIndex) {
-        this.subjectIndex = subjectIndex;
-        this.cardIndex = cardIndex;
+        this.subjectIndex = subjectIndex - 1;
+        this.cardIndex = cardIndex - 1;
     }
 
     /**
      * Returns the index of the subject to be deleted.
      */
-    public int getSubjectIndexIndex() {
+    public int getSubjectIndex() {
         return subjectIndex;
     }
 

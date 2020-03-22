@@ -1,9 +1,11 @@
 package seedu.commands;
 
-import seedu.cards.CardList;
 import seedu.exception.EscException;
 import seedu.subjects.SubjectList;
 
+/**
+ * Command class for the DeleteSubjectCommand.
+ */
 public class DeleteSubjectCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "deletesubject";
@@ -13,7 +15,7 @@ public class DeleteSubjectCommand extends DeleteCommand {
     private int subjectIndex;
 
     public DeleteSubjectCommand(int subjectIndex) {
-        this.subjectIndex = subjectIndex;
+        this.subjectIndex = subjectIndex - 1;
     }
 
     /**

@@ -3,7 +3,17 @@ package seedu.parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.commands.*;
+import seedu.commands.Command;
+import seedu.commands.AddSubjectCommand;
+import seedu.commands.AddCardCommand;
+import seedu.commands.DeleteCardCommand;
+import seedu.commands.DeleteSubjectCommand;
+import seedu.commands.ListCardCommand;
+import seedu.commands.ListSubjectCommand;
+import seedu.commands.ScoreCommand;
+import seedu.commands.QuizCommand;
+import seedu.commands.HelpCommand;
+import seedu.commands.ExitCommand;
 import seedu.exception.EscException;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -115,8 +125,8 @@ class ParserTest {
     void parse_addSubjectQueryWithNoArgs_exceptionThrown() {
         expectedException = new EscException(AddSubjectCommand.MESSAGE_USAGE);
         String[] addSubjectQueries = {
-                "addsubject",
-                "addsubject "};
+            "addsubject",
+            "addsubject "};
         for (String query : addSubjectQueries) {
             try {
                 parser.parse(query);
@@ -131,8 +141,8 @@ class ParserTest {
     void parse_addSubjectQueryWithInvalidArgs_exceptionThrown() {
         expectedException = new EscException("A subject name is required.");
         String[] addSubjectQueries = {
-                "addsubject s/",
-                "addsubject s/ "};
+            "addsubject s/",
+            "addsubject s/ "};
         for (String query : addSubjectQueries) {
             try {
                 parser.parse(query);
@@ -154,8 +164,8 @@ class ParserTest {
     void parse_deleteCardQueryWithInvalidArgs_exceptionThrown() {
         expectedException = new EscException(DeleteCardCommand.MESSAGE_USAGE);
         String[] deleteCardQueries = {
-                "deletecard",
-                "deletecard "};
+            "deletecard",
+            "deletecard "};
         for (String query : deleteCardQueries) {
             try {
                 parser.parse(query);
@@ -202,8 +212,8 @@ class ParserTest {
     void parse_deleteSubjectQueryWithInvalidArgs_exceptionThrown() {
         expectedException = new EscException(DeleteSubjectCommand.MESSAGE_USAGE);
         String[] deleteSubjectQueries = {
-                "deletesubject",
-                "deletesubject "};
+            "deletesubject",
+            "deletesubject "};
         for (String query : deleteSubjectQueries) {
             try {
                 parser.parse(query);
@@ -218,7 +228,7 @@ class ParserTest {
     void parse_deleteSubjectQueryWithoutSubjectIndex_exceptionThrown() {
         expectedException = new EscException("The subject index is required.");
         String[] deleteSubjectQueries = {
-                "deletesubject s/"};
+            "deletesubject s/"};
         for (String query : deleteSubjectQueries) {
             try {
                 parser.parse(query);
@@ -252,8 +262,8 @@ class ParserTest {
     void parse_listCardQueryWithInvalidArgs_exceptionThrown() {
         expectedException = new EscException(ListCardCommand.MESSAGE_USAGE);
         String[] listQueries = {
-                "listcard",
-                "listcard "};
+            "listcard",
+            "listcard "};
         for (String query : listQueries) {
             try {
                 parser.parse(query);
@@ -268,7 +278,7 @@ class ParserTest {
     void parse_listCardQueryWithoutSubjectIndex_exceptionThrown() {
         expectedException = new EscException("The subject index is required.");
         String[] listQueries = {
-                "listcard s/"};
+            "listcard s/"};
         for (String query : listQueries) {
             try {
                 parser.parse(query);
@@ -302,8 +312,8 @@ class ParserTest {
     void parse_quizQueryWithInvalidArgs_exceptionThrown() {
         expectedException = new EscException(QuizCommand.MESSAGE_USAGE);
         String[] quizQueries = {
-                "quiz",
-                "quiz "};
+            "quiz",
+            "quiz "};
         for (String query : quizQueries) {
             try {
                 parser.parse(query);
@@ -318,7 +328,7 @@ class ParserTest {
     void parse_quizQueryWithoutSubjectIndex_exceptionThrown() {
         expectedException = new EscException("The subject index is required.");
         String[] quizQueries = {
-                "quiz s/"};
+            "quiz s/"};
         for (String query : quizQueries) {
             try {
                 parser.parse(query);
@@ -352,8 +362,8 @@ class ParserTest {
     void parse_scoreQueryWithInvalidArgs_exceptionThrown() {
         expectedException = new EscException(ScoreCommand.MESSAGE_USAGE);
         String[] scoreQueries = {
-                "score",
-                "score "};
+            "score",
+            "score "};
         for (String query : scoreQueries) {
             try {
                 parser.parse(query);
@@ -368,7 +378,7 @@ class ParserTest {
     void parse_scoreQueryWithoutSubjectIndex_exceptionThrown() {
         expectedException = new EscException("The subject index is required.");
         String[] scoreQueries = {
-                "score s/"};
+            "score s/"};
         for (String query : scoreQueries) {
             try {
                 parser.parse(query);

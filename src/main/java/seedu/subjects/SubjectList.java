@@ -55,10 +55,9 @@ public class SubjectList {
             throw new EscException("The subject list is empty.");
         }
 
-        // assuming that our question index starts from 1 and not 0.
         Subject subject;
         try {
-            subject = subjects.get(index - 1);
+            subject = subjects.get(index);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The subject item does not exist.");
         }

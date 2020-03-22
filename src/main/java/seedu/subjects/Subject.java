@@ -1,10 +1,7 @@
 package seedu.subjects;
 
-import seedu.cards.Card;
 import seedu.cards.CardList;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Flashcard object used to store a question and its answer.

@@ -18,7 +18,7 @@ public class QuizCommand extends Command {
     private int subjectIndex;
 
     public QuizCommand(int subjectIndex) {
-        this.subjectIndex = subjectIndex;
+        this.subjectIndex = subjectIndex - 1;
     }
 
     /**

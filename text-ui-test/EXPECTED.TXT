@@ -8,7 +8,10 @@ Hello from
 
 ______________________
 Enter command: 
-[Command entered: add q/question a/answer]
+[Command entered: addsubject s/biology]
+______________________
+Enter command: 
+[Command entered: addcard s/1 q/question a/answer]
 ______________________
 Enter command: 
 [Command entered: exit]
