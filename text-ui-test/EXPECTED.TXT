@@ -1,4 +1,9 @@
-WELCOME!!!
+______  ______  _____ ______    ___  __  __ ______        __  _______  ______
+||    ||||      \       ||     / ||  ||  || ||    |      / || ||    ||   ||
+||    ||||       \      ||    /  ||  ||  || ||    |     /  || ||    ||   ||
+||__ /  ||___     \___  ||   /___||  ||  || ||__ /     /___|| ||    ||   ||
+||   \\ ||           \  ||  /    ||  ||  || ||   \\   /    || ||    ||   ||
+||    \\||____   _____\ || /     ||   \__/  ||    \\ /     Daily Report v2.0
 Input next command:
 The command has been successfully executed.
 Input next command:
@@ -97,9 +102,25 @@ Incorrect command
 The user's input given cannot be parsed into ingredient arguments.
 ============================================================================================================================
 Input next command:
+Ingredient rice successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient vege successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient greenie successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient toxic greens successfully added!
+The command has been successfully executed.
+Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [50][$0.50] tomato
+2. [11][$0.40] rice
+3. [10][$0.40] vege
+4. [1][$0.40] toxic greens
+5. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -116,6 +137,10 @@ Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [39][$0.50] tomato
+2. [11][$0.40] rice
+3. [10][$0.40] vege
+4. [1][$0.40] toxic greens
+5. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -150,8 +175,34 @@ The user's input given cannot be parsed into ingredient arguments.
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
+1. [11][$0.40] rice
+2. [10][$0.40] vege
+3. [1][$0.40] toxic greens
+4. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
+The command has been successfully executed.
+Input next command:
+Incorrect command
+============================================================================================================================
+Please enter an ingredient's name to be searched against the stock.
+============================================================================================================================
+Input next command:
+Here are the ingredients in the stock that matches the keyword:
+============================================================================================================================
+============================================================================================================================
+The command has been successfully executed.
+Input next command:
+Here are the ingredients in the stock that matches the keyword:
+============================================================================================================================
+1. [11][$0.40] rice
+============================================================================================================================
+The command has been successfully executed.
+Input next command:
+Here are the ingredients in the stock that matches the keyword:
+============================================================================================================================
+1. [1][$0.40] toxic greens
+============================================================================================================================
 The command has been successfully executed.
 Input next command:
 Reservation[0] has been added into the list
