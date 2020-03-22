@@ -35,7 +35,7 @@ public class MessageBank {
     public static String WEIGHT_UPDATE_MESSAGE = "Your weight changes has been stored. Current weight is: ";
     public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
     public static String DUMMY_MESSAGE = "No pain no gain! Continue striving on!";
-    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database.";
+    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
     public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid format.\n";
     public static String CALORIES_MESSAGE = "Total calculable calories intake for the entire day: ";
     public static String TIME_CALORIES_MESSAGE = "total calculable calories intake: ";

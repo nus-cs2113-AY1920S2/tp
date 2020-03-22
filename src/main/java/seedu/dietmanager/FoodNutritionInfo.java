@@ -54,11 +54,11 @@ public class FoodNutritionInfo {
     /**
      * Print out all the food stored in our database.
      */
-    public void showFoodDatabase() {
-        System.out.println(MessageBank.FOOD_DATABASE_MESSAGE);
+    public String showFoodDatabase() {
+        String foodDatabase = MessageBank.FOOD_DATABASE_MESSAGE;
         for (Food food : foods) {
-            System.out.println(food);
+            foodDatabase += food;
         }
-        System.out.println();
+        return foodDatabase;
     }
 }

@@ -15,6 +15,7 @@ import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.WeightUpdateCommand;
 import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.CheckCaloriesCommand;
+import seedu.dietmanager.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.exceptions.InvalidGenderException;
@@ -148,6 +149,9 @@ public class Parser {
             break;
         case "check-calories-intake":
             command = new CheckCaloriesCommand(commandPrompt, description);
+            break;
+        case "list-food-database":
+            command = new ListFoodDatabaseCommand(commandPrompt);
             break;
         default:
             throw new InvalidCommandException();
