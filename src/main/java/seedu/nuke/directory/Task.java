@@ -1,6 +1,7 @@
 package seedu.nuke.directory;
 
-import seedu.nuke.format.DateTime;
+import seedu.nuke.data.TaskFileManager;
+import seedu.nuke.util.DateTime;
 import seedu.nuke.tag.Tag;
 
 import java.util.ArrayList;
@@ -9,52 +10,65 @@ import static seedu.nuke.common.Constants.NO_ICON;
 import static seedu.nuke.common.Constants.YES_ICON;
 
 public class Task extends Directory implements Tag {
-    protected String description;
-    protected boolean isDone;
-    protected int priority;
-    protected DateTime deadline;
-    protected ArrayList<String> files;
-    protected String moduleCode;
-    private ArrayList<String> tag;
+    private String description;
+    private boolean isDone;
+    private int priority;
+    private DateTime deadline;
+    private TaskFileManager files;
+    // private String moduleCode;
+    private ArrayList<String> tags;
 
-    public Task() {
+
+    ///**
+    // * constructor for the simplest task.
+    // *
+    // * @param description the description of the task
+    // * @param moduleCode the module code of the module which the task belongs to
+    // */
+    //public Task(Module module, String description, String moduleCode) {
+    //    super(module);
+    //    this.description = description;
+    //    this.files = new TaskFileManager();
+    //    this.deadline = null;
+    //    this.priority = -1;
+    //    this.isDone = false;
+    //    this.moduleCode = moduleCode;
+    //    this.tags = null;
+    //}
+
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
     }
 
     /**
-     * constructor for the simplest task.
+     * Constructs the task.
      *
-     * @param description the description of the task
-     * @param moduleCode the module code of the module which the task belongs to
+     * @param category
+     *  The parent category of the task
+     * @param description
+     *  The description of the task
+     * @param deadline
+     *  The deadline of the task
+     * @param priority
+     *  The priority of the task
      */
-    public Task(Module module, String description, String moduleCode) {
-        super(module);
+    public Task(Category category, String description, DateTime deadline, int priority) {
+        super(category);
         this.description = description;
-        this.files = new ArrayList<>();
-        this.deadline = null;
-        this.priority = -1;
         this.isDone = false;
-        this.moduleCode = moduleCode;
-        this.tag = null;
-    }
-
-    /**
-     * constructor for the simplest task.
-     *
-     * @param description the description of the task
-     * @param dateTime the deadline of the task
-     * @param priority the priority of the task
-     */
-    public Task(Module module, String description, DateTime dateTime, int priority) {
-        super(module);
-        this.description = description;
-        this.files = new ArrayList<>();
-        this.deadline = dateTime;
+        this.deadline = deadline;
         this.priority = priority;
-        this.isDone = false;
+        this.files = new TaskFileManager();
+        this.tags = new ArrayList<>();
     }
 
-    public Task(Module module) {
-        super(module);
+    public void setFiles(TaskFileManager files) {
+        this.files = files;
     }
 
     public void setDescription(String description) {
@@ -69,26 +83,22 @@ public class Task extends Directory implements Tag {
         this.priority = priority;
     }
 
-    public void setFiles(ArrayList<String> files) {
-        this.files = files;
-    }
-
-    public void setModuleCode(String moduleCode) {
-        this.moduleCode = moduleCode;
-    }
+    //public void setModuleCode(String moduleCode) {
+    //    this.moduleCode = moduleCode;
+    //}
 
     public boolean isDone() {
         return isDone;
     }
 
-    /**
-     * moduleCode getter method.
-     *
-     * @return the module code of the module which the task belongs to
-     */
-    public String getModuleCode() {
-        return moduleCode;
-    }
+    ///**
+    // * moduleCode getter method.
+    // *
+    // * @return the module code of the module which the task belongs to
+    // */
+    //public String getModuleCode() {
+    //    return moduleCode;
+    //}
 
     /**
      * description getter method.
@@ -140,43 +150,61 @@ public class Task extends Directory implements Tag {
      *
      * @return an ArrayList of String representing the files which the task is associated with
      */
-    public ArrayList<String> getFiles() {
+    public TaskFileManager getFiles() {
         return files;
     }
 
-    /**
-     * override the toString method for printing the task as a string.
-     *
-     * @return a string of the tasks information
-     */
-    public String toString() {
-        StringBuilder printOut = new StringBuilder(getStatusIcon() + " " + getDescription() + " by " + getDeadline());
-        for (String file : files) {
-            printOut.append(" ").append(file);
-        }
-        return printOut.toString();
+    @Override
+    public Category getParent() {
+        return (Category) this.parent;
     }
 
-    public void addFile(String filePath) {
-        files.add(filePath);
+    ///**
+    // * Adds a file into the File List of this task.
+    // * @param fileName
+    // *  The file name of the file to be added
+    // * @param filePath
+    // *  The path to the file to be added
+    // */
+    //public void addFile(String fileName, String filePath) {
+    //    files.add(new TaskFile(fileName, filePath));
+    //}
+
+    /**
+     * Checks if one task has the same description as another.
+     *
+     * @param taskDescription
+     *  The task description to check
+     * @return
+     *  <code>TRUE</code> if they are the same, and <code>FALSE</code> otherwise
+     */
+    public boolean isSameTask(String taskDescription) {
+        return this.description.equals(taskDescription);
+    }
+
+    /**
+     * Prints the task as a string.
+     *
+     * @return
+     *  The string that contains all the task information
+     */
+    @Override
+    public String toString() {
+        return String.format("%s %s by %s\n Files:\n%s", getStatusIcon(), getDescription(), getDeadline(), files);
     }
 
     @Override
     public void setTag(String info) {
-        this.tag.add(info);
+        this.tags.add(info);
     }
 
     @Override
     public void removeTag() {
-        this.tag = null;
+        this.tags = null;
     }
 
     @Override
     public String getTag() {
-        if (this.tag != null) {
-            return tag.toString();
-        } else {
-            return null;
-        }
+        return this.tags != null ? tags.toString() : null;
     }
 }

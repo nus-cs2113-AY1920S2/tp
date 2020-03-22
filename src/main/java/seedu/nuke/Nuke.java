@@ -1,14 +1,12 @@
 
 package seedu.nuke;
 
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.StorageManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Root;
-import seedu.nuke.parser.Parser;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
 import seedu.nuke.util.Message;
@@ -33,10 +31,11 @@ public class Nuke {
         root = new Root();
         ui = new Ui();
         modulesMap = ModuleLoader.load("moduleList.json");
-        storageManager = new StorageManager("data.json");
+        //storageManager = new StorageManager("data.json");
+        storageManager = new StorageManager("save.txt");
         moduleManager = new ModuleManager(root, modulesMap);
-        moduleManager.setModuleList(storageManager.load());
-        Command.setCurrentDirectory(root);
+        //ModuleManager.setModuleList(storageManager.load());
+        storageManager.load2();
     }
 
     /**
@@ -55,7 +54,7 @@ public class Nuke {
     public void run() {
         welcomeUser();
         runCommandLoopUntilExitCommand();
-        storageManager.save(moduleManager.getModuleList());
+        storageManager.save2();
         //exit();
     }
 
@@ -76,50 +75,18 @@ public class Nuke {
     }
 
     /**
-     * Method to run the command from the user's input until bye command is received.
+     * Method to run the command from the user's input until exit command is received.
      */
     private void runCommandLoopUntilExitCommand() {
         do {
-            String userCommandText = ui.getInput();
 
-            Command command = new Parser().parseCommand(userCommandText, moduleManager);
-            CommandResult result = executeCommand(command);
-            ui.showResult(result);
+            String userInput = ui.getInput();
 
+            commandResult = Executor.executeCommand(userInput);
+            ui.showResult(commandResult);
+            //storageManager.save();
+            storageManager.save2();
         } while (!ExitCommand.isExit());
-    }
-
-    /**
-     * initialize the taskManager system, execute command and save the list to the file.
-     *
-     * @param command the parsed Command object
-     * @return commandResult that contains the execute output information
-     */
-    public CommandResult executeCommand(Command command) {
-        //load from current screen shot
-        //readScreenShot();
-        // supplies the data the command will operate on.
-        // if there is no file to load or the file is empty, setData will initialize a new taskManager system
-        //update the module manager as well as the data manager
-        setCommandData(command);
-        //take the screen shot
-        //takeScreenShot();
-        //add screen shot
-        //addScreenShotToScreenShotList();
-        // Execute according to the command itself
-        execute(command);
-        // save the taskManager to a file
-        //moduleManager.getStorager().save(taskManager);
-        //StorageFile.saveJson(taskManager);
-        return commandResult;
-    }
-
-    public void execute(Command command) {
-        commandResult = command.execute();
-    }
-
-    public void setCommandData(Command command) {
-        command.setData(moduleManager);
     }
 
     public ModuleManager getModuleManager() {

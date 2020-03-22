@@ -3,7 +3,7 @@ package seedu.nuke.commandtest;
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Nuke;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
 
 import java.io.FileNotFoundException;
 
@@ -21,13 +21,13 @@ public class ListModuleDeadlineTest {
      * constructor of this class.
      */
     public ListModuleDeadlineTest() {
-        try {
-            nuke = new Nuke();
-            command = new ListModuleTasksDeadlineCommand();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+        //try {
+        //        //    nuke = new Nuke();
+        //        //    command = new ListModuleTasksDeadlineCommand();
+        //        //} catch (FileNotFoundException e) {
+        //        //    System.out.println(e.getMessage());
+        //        //    return;
+        //        //}
     }
 
     @Test

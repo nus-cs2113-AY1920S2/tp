@@ -1,0 +1,35 @@
+--- MODULE ---
+CS1231 -|||- Discrete Structures -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+due work -|||- N -|||- 21/03/2020 08:00PM -|||- 3
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+CS2113 -|||- Software Engineering & Object-Oriented Programming -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Bigger Lab -|||- 6
+--- TASK ---
+Big Lab Work -|||- N -|||- 25/03/2020 06:00PM -|||- 7
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+--- END MODULE ---

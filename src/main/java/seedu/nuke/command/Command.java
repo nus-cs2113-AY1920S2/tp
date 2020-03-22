@@ -5,30 +5,37 @@ import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 
 public abstract class Command {
-    public static String COMMAND_WORD;
-    protected ModuleManager moduleManager;
-    protected static Directory currentDirectory;
-
-    public abstract CommandResult execute();
-
-    public String toString() {
-        return this.COMMAND_WORD;
-    }
+    // public static String COMMAND_WORD;
+    //protected ModuleManager moduleManager;
+    //protected static Directory currentDirectory;
 
     /**
-     * initialize some attributes of the command if needed.
-     * @param moduleManager current module manager that manages all modules.
+     * Executes the command.
+     *
+     * @return
+     *  The result of the execution
      */
-    public void setData(ModuleManager moduleManager) {
-        this.moduleManager = moduleManager;
-    }
+    public abstract CommandResult execute();
 
-    public static Directory getCurrentDirectory() {
-        return currentDirectory;
-    }
 
-    public static void setCurrentDirectory(Directory currentModule) {
-        Command.currentDirectory = currentModule;
-    }
+    //public String toString() {
+    //    return this.COMMAND_WORD;
+    //}
+    //
+    ///**
+    // * initialize some attributes of the command if needed.
+    // * @param moduleManager current module manager that manages all modules.
+    // */
+    //public void setData(ModuleManager moduleManager) {
+    //    this.moduleManager = moduleManager;
+    //}
+    //
+    //public static Directory getCurrentDirectory() {
+    //    return currentDirectory;
+    //}
+    //
+    //public static void setCurrentDirectory(Directory currentDirectory) {
+    //    Command.currentDirectory = currentDirectory;
+    //}
 }
 

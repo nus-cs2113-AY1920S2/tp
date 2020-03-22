@@ -1,82 +1,220 @@
 package seedu.nuke.data;
 
-import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Task;
+import seedu.nuke.exception.DataNotFoundException;
+import seedu.nuke.exception.DuplicateDataException;
+import seedu.nuke.util.DateTime;
+
 import java.util.ArrayList;
 
 /**
  * every module has a task manager to manage tasks within module.
  */
 public class TaskManager {
-    ArrayList<Task> allTasks = new ArrayList<>();
+    private ArrayList<Task> taskList;
+
+    private static final String NO_KEYWORD = "";
 
     /**
-     * Constructs empty task list.
+     * Initiates an empty Task List.
      */
     public TaskManager() {
-    }
-
-    public void setAllTasks(ArrayList<Task> allTasks) {
-        this.allTasks = allTasks;
+        taskList = new ArrayList<>();
     }
 
     /**
-     * todo add check same function
-     * todo handle toRemove does not exist exception
-     * Checks if the list contains an equivalent task as the given description.
-     * @param toCheck the task to-check
-     * @return true if the task exists
+     * Returns the entire Task List.
+     *
+     * @return
+     *  The Task List
      */
-    /*
-    public boolean contains(Task toCheck) {
-        return false;
-    }
-    */
-
-    public void addTask(Task toAdd) {
-        this.allTasks.add(toAdd);
-    }
-
-    public void removeTask(Task toRemove) {
-        this.allTasks.remove(toRemove);
+    public ArrayList<Task> getTaskList() {
+        return taskList;
     }
 
     /**
-     * Try to delete a task within a module and return the deleted task.
-     * @param parameter the description of the task
-     * @return the deleted task
+     * Sets the entire Task List to a new list.
+     *
+     * @param taskList
+     *  The new Task List to be set
      */
-    public Task delete(String parameter) {
-        for (Task task : allTasks) {
-            if (task.getModuleCode().equals(parameter)) {
-                allTasks.remove(task);
+    public void setTaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    /**
+     * Finds a task with the specified task description in the Task List.
+     *
+     * @param description
+     *  The description of the task to be found
+     * @return
+     *  The found task with the specified description
+     * @throws TaskNotFoundException
+     *  If the task is not found in the Task List
+     */
+    public Task getTask(String description) throws TaskNotFoundException {
+        for (Task task : taskList) {
+            if (task.getDescription().equals(description)) {
                 return task;
             }
         }
-        return null;
+        throw new TaskNotFoundException();
     }
 
     /**
-     * Parses the given arguments string as a single index number.
-     * @return the task list
+     * Checks for duplicates of the same task description in the Task List.
+     *
+     * @param taskDescription
+     *  The task description to check
+     * @return
+     *  <code>TRUE</code> if there exists a duplicate, and <code>FALSE</code> otherwise
      */
-    public ArrayList<Task> getAllTasks() {
-        return allTasks;
+    private boolean contains(String taskDescription) {
+        for (Task task : taskList) {
+            if (task.isSameTask(taskDescription)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
-     * clears all tasks from the task list.
-     * call by clear function
+     * Add a task to the Task List.
+     *
+     * @param toAdd
+     *  The task to be added
+     * @throws DuplicateTaskException
+     *  If there exists a duplicate task in the Task List with the same task description
+     */
+    public void add(Task toAdd) throws DuplicateTaskException {
+        if (contains(toAdd.getDescription())) {
+            throw new DuplicateTaskException();
+        } else {
+            taskList.add(toAdd);
+        }
+    }
+
+    /**
+     * Deletes the specified task from the Task List.
+     *
+     * @param toDelete
+     *  The task to be deleted
+     */
+    public void delete(Task toDelete) {
+        taskList.remove(toDelete);
+    }
+
+    /**
+     * Deletes a <b>Task</b> with the specified <code>description</code> from the <b>Task List</b>.
+     *
+     * @param description The description of the <b>Task</b> to be deleted
+     * @return  The deleted task
+     * @throws TaskNotFoundException  If the task with the specified description is not found in the <b>Task List</b>
+     * @see Task
+     */
+    public Task delete(String description) throws TaskNotFoundException {
+        Task toDelete = getTask(description);
+        taskList.remove(toDelete);
+        return toDelete;
+    }
+
+    /**
+     * Edits a task in the Task List.
+     *
+     * @param toEdit
+     *  The task to be edited
+     * @param newTaskDescription
+     *  The new task description of the task
+     * @param newDeadline
+     *  The new deadline of the task
+     * @param newPriority
+     * The new priority of the task
+     * @throws DuplicateTaskException
+     *  If there are duplicate tasks with the same task description as the new task description in the Task List
+     */
+    public void edit(Task toEdit, String newTaskDescription, DateTime newDeadline, int newPriority)
+            throws DuplicateTaskException {
+        if (!toEdit.isSameTask(newTaskDescription) && contains(newTaskDescription)) {
+            throw new DuplicateTaskException();
+        }
+        toEdit.setDescription(newTaskDescription);
+        toEdit.setDeadline(newDeadline);
+        toEdit.setPriority(newPriority);
+    }
+
+    /**
+     * Clears all tasks from the task list.
      */
     public void clear() {
-        allTasks.clear();
+        taskList.clear();
     }
 
     /**
-     * return total number of tasks in the task list.
+     * Counts the total number of tasks in the Task List.
+     *
+     * @return
+     *  The total number of tasks in the Task List
      */
     public int countTotalTasks() {
-        return allTasks.size();
+        return taskList.size();
+    }
+
+    /**
+     * Retrieves the File List of the category with the specified description.
+     *
+     * @param description
+     *  The description of the task to retrieve the File List from
+     * @return
+     *  The File List of the found task
+     * @throws TaskNotFoundException
+     *  If the task with the specified description is not found in the Task List
+     */
+    public TaskFileManager retrieveList(String description) throws TaskNotFoundException {
+        return getTask(description).getFiles();
+    }
+
+    /**
+     * Filter for tasks in the Task List with description that contains the specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
+    public ArrayList<Task> filter(String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Task category : taskList) {
+            if (category.getDescription().toLowerCase().contains(taskKeyword.toLowerCase())) {
+                filteredTaskList.add(category);
+            }
+        }
+        return filteredTaskList;
+    }
+
+    /**
+     * Filter for tasks in the Task List with description that matches <b>exactly</b> the specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
+    public ArrayList<Task> filterExact(String taskKeyword) {
+        // Returns all tasks in the Task List if no keyword is provided.
+        if (taskKeyword.equals(NO_KEYWORD)) {
+            return this.getTaskList();
+        }
+
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Task category : taskList) {
+            if (category.getDescription().toLowerCase().equals(taskKeyword.toLowerCase())) {
+                filteredTaskList.add(category);
+            }
+        }
+        return filteredTaskList;
     }
 
     /**
@@ -88,34 +226,12 @@ public class TaskManager {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskManager // instanceof handles nulls
-                && this.allTasks.equals(((TaskManager) other).allTasks));
+                && this.taskList.equals(((TaskManager) other).taskList));
     }
 
-    /**
-     * Checks if the list contains an equivalent task as the given description.
-     * @param description the module code to check if provided by NUS currently
-     * @return true if NUS is providing the module currently
-     */
-    public boolean contains(String description) {
-        for (Task t : allTasks) {
-            if (t.getDescription().equals(description)) {
-                return true;
-            }
-        }
-        return false;
+    public static class TaskNotFoundException extends DataNotFoundException {
     }
 
-    /**
-     * find a task given the description of the task.
-     * @param description the description of the task
-     * @return a task of the given description or null if not found
-     */
-    public Task findTask(String description) {
-        for (Task t : allTasks) {
-            if (t.getDescription().equals(description)) {
-                return t;
-            }
-        }
-        return null;
+    public static class DuplicateTaskException extends DuplicateDataException {
     }
 }

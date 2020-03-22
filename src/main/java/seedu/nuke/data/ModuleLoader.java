@@ -40,8 +40,8 @@ public class ModuleLoader {
 
     private static HashMap<String, String> convertToHashMap(List<DummyModule> moduleList) {
         HashMap<String, String> modulesMap = new HashMap<>();
-        for (DummyModule i : moduleList) {
-            modulesMap.put(i.getModuleCode(), i.getTitle());
+        for (DummyModule module : moduleList) {
+            modulesMap.put(module.getModuleCode(), module.getTitle());
         }
         return modulesMap;
     }

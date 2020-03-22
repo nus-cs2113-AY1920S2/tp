@@ -1,10 +1,11 @@
 
 package seedu.nuke.data;
 
+import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Root;
+import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
-import seedu.nuke.exception.ModuleNotFoundException;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 
@@ -15,68 +16,128 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * a manager that manages all modules.
- * have an arraylist that contains all modules
- * deals with operations that are related to modules
+ * A manager that manages all modules.
+ * Contains a Module List and performs operations related to modules
  */
 public class ModuleManager implements Iterable<Module> {
     private static Root root;
-    private static ArrayList<Module> moduleList;
-    private ArrayList<String> moduleCodes;
-    private ArrayList<Task> allTasks;
-    private HashMap<String, String> modulesMap;
+    private static ArrayList<Module> moduleList = new ArrayList<>();
+    // private static ArrayList<Task> allTasks;
+    private static HashMap<String, String> modulesMap;
+
+    private static final String NO_KEYWORD = "";
+
+    public ModuleManager() {
+        moduleList = new ArrayList<>();
+    }
 
     public ModuleManager(Root root, HashMap<String, String> modulesMap) {
-        this.modulesMap = modulesMap;
-        this.root = root;
+        ModuleManager.modulesMap = modulesMap;
+        ModuleManager.root = root;
+    }
+
+    public static Root getRoot() {
+        return root;
+    }
+
+    public static HashMap<String, String> getModulesMap() {
+        return modulesMap;
     }
 
     /**
-     * This mothod is to restore the list of modules when loading from the json data file.
-     * @param moduleList an ArrayList of Module objects parsed from the json string in the data file
+     * Sets the entire Module List to a new list.
+     *
+     * @param moduleList
+     *  The new Module List to be set
      */
-    public void setModuleList(ArrayList<Module> moduleList) {
-        this.moduleCodes = new ArrayList<>();
-        this.allTasks = new ArrayList<>();
-        this.moduleList = moduleList;
-        for (Module module: moduleList) {
-            moduleCodes.add(module.getModuleCode());
-            for (Task task: module.getTaskManager().getAllTasks()) {
-                allTasks.add(task);
-            }
-        }
-        assert moduleList.size() == moduleCodes.size() : "moduleList size does not equal to moduleCodes size, check!";
+    public static void setModuleList(ArrayList<Module> moduleList) {
+        ModuleManager.moduleList = moduleList;
     }
 
     /**
      * method to return all the modules.
      * @return all modules
      */
-    public ArrayList<Module> getModuleList() {
+    public static ArrayList<Module> getModuleList() {
         return moduleList;
     }
 
-    public ArrayList<Task> getAllTasks() {
-        return allTasks;
-    }
-
     /**
-     * return total number of tasks in all modules.
+     *  Finds a module with the specified module code in the Module List.
+     *
+     * @param moduleCode
+     *  The module code of the module to be found
+     * @return
+     *  The found module with the specified module code
+     * @throws ModuleNotFoundException
+     *  If the module is not found in the Module List
      */
-    public int countAllTasks() {
-        return allTasks.size();
+    public static Module getModule(String moduleCode) throws ModuleNotFoundException {
+        for (Module module : moduleList) {
+            if (module.getModuleCode().equalsIgnoreCase(moduleCode)) {
+                return module;
+            }
+        }
+        throw new ModuleNotFoundException();
     }
 
-    //}
+    /**
+     * Searches the Module List for the module with the specified module code, then searches the module's
+     * Category List for the category with the specified name.
+     *
+     * @param moduleCode
+     *  The module code of the module to be found
+     * @param categoryName
+     *  The name of the category to be found
+     * @return
+     *  The found category with the specified name, with its parent module with the specified module code
+     * @throws ModuleNotFoundException
+     *  If the module is not found
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category is not found
+     */
+    public static Category getCategory(String moduleCode, String categoryName)
+            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException {
+        return getModule(moduleCode).getCategories().getCategory(categoryName);
+    }
 
     /**
-     * Checks if the list contains an equivalent task as the given description.
-     * @param moduleCode the module code to check if provided by NUS currently
-     * @return true if NUS is providing the module currently
+     * Searches the Module List for the module with the specified module code, then searches the module's
+     * Category List for the category with the specified name, then searches the category's Task List for
+     * the task with the specified description.
+     *
+     * @param moduleCode
+     *  The module code of the module to be found
+     * @param categoryName
+     *  The name of the category to be found
+     * @param taskDescription
+     *  The description of the task to be found
+     * @return
+     *  The found task with the specified description, with its parent category and module with the specified
+     *      module code and category name respectively
+     * @throws ModuleNotFoundException
+     *  If the module is not found
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category is not found
+     * @throws TaskManager.TaskNotFoundException
+     *  If the task is not found
+     */
+    public static Task getTask(String moduleCode, String categoryName, String taskDescription)
+            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
+            TaskManager.TaskNotFoundException {
+        return getCategory(moduleCode, categoryName).getTasks().getTask(taskDescription);
+    }
+
+    /**
+     * Checks for duplicates of the same module code in the Module List.
+     * @param moduleCode
+     *  The module code to check
+     * @return
+     *  <code>TRUE</code> if there exists a duplicate, and <code>FALSE</code> otherwise
      */
     public static boolean contains(String moduleCode) {
-        for (Module p : moduleList) {
-            if (p.getModuleCode().equals(moduleCode)) {
+        for (Module module : moduleList) {
+            if (module.getModuleCode().equalsIgnoreCase(moduleCode)) {
                 return true;
             }
         }
@@ -84,20 +145,21 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * Add a module to the module List.
+     * Add a module to the Module List.
      *
-     * @param moduleCode the module code of the module to add
+     * @param toAdd
+     *  The module to be added
      */
-    public void add(String moduleCode) throws DuplicateModuleException, ModuleNotProvidedException {
+    public static void add(Module toAdd) throws DuplicateModuleException, ModuleNotProvidedException {
         //check duplicate
-        if (moduleCodes.contains(moduleCode)) {
+        if (contains(toAdd.getModuleCode())) {
             throw new DuplicateModuleException();
-        } else if (!modulesMap.containsKey(moduleCode)) {
+        } else if (!modulesMap.containsKey(toAdd.getModuleCode())) {
             throw new ModuleNotProvidedException();
         } else {
-            Module toAdd = new Module(root, moduleCode, modulesMap.get(moduleCode), null);
+            String moduleTitle = modulesMap.get(toAdd.getModuleCode());
+            toAdd.setTitle(moduleTitle);
             moduleList.add(toAdd);
-            moduleCodes.add(moduleCode);
         }
     }
 
@@ -105,13 +167,15 @@ public class ModuleManager implements Iterable<Module> {
      * return an orders lists of all tasks of all modules.
      * @return an ArrayList of String which represents the ordered list
      */
-    public ArrayList<String> checkDeadline() {
+    public static ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
         sortAllTasks();
+        ArrayList<Task> allTasks = getAllTasks();
 
         for (Task task: allTasks) {
             deadlines.add(String.format("%-30s", task.getDescription()) + " "
-                    + String.format("%-8s", task.getModuleCode()) + "   deadline: " + task.getDeadline());
+                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) + "   deadline: "
+                    + task.getDeadline());
         }
         return deadlines;
     }
@@ -119,12 +183,12 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * sort all tasks of all modules in ascending order of deadlines.
      */
-    public void sortAllTasks() {
-        Collections.sort(allTasks, new Comparator<Task>() {
+    public static void sortAllTasks() {
+        Collections.sort(getAllTasks(), new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toString();
-                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toString();
+                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toShow();
+                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toShow();
                 return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });
@@ -137,39 +201,245 @@ public class ModuleManager implements Iterable<Module> {
         moduleList.clear();
     }
 
-    public Module getLastAddedModule() {
-        return moduleList.get(moduleList.size() - 1);
-    }
-
     /**
-     * Remove a module to the list.
-     * @param toDelete the task to remove
-     * @throws ModuleNotFoundException if the to-remove module does not exist
+     * Delete a module to the Module List.
+     * @param toDelete
+     *  The module to be deleted
      */
-    public void delete(Module toDelete) throws ModuleNotFoundException {
-        boolean isModuleFoundAndDeleted = moduleList.remove(toDelete);
-        if (!isModuleFoundAndDeleted) {
-            throw new ModuleNotFoundException("");
-        }
+    public static void delete(Module toDelete) {
+        moduleList.remove(toDelete);
     }
 
     /**
      * Deletes a <b>Module</b> with <code>module code</code> in the <b>Module List</b>.
      *
-     * @param moduleCode    The module code of the <b>Module</b> to be deleted
+     * @param moduleCode
+     *  The module code of the <b>Module</b> to be deleted
      * @throws ModuleNotFoundException
-     * If the module with the specified module code is not found in the <b>Module List</b>
+     *  If the module with the specified module code is not found in the <b>Module List</b>
      * @see Module
      */
     public Module delete(String moduleCode) throws ModuleNotFoundException {
         if (getModuleWithCode(moduleCode) != null) {
             Module toDelete = getModuleWithCode(moduleCode);
-            allTasks.removeIf(task -> task.getModuleCode().toUpperCase().equals(moduleCode));
+            getAllTasks().removeIf(task ->
+                    task.getParent().getParent().getModuleCode().toUpperCase().equals(moduleCode));
             moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
             return toDelete;
         } else {
-            throw new ModuleNotFoundException("");
+            throw new ModuleNotFoundException();
         }
+    }
+
+    /**
+     * Edits a module in the Module List.
+     *
+     * @param toEdit
+     *  The module to be edited
+     * @param newModuleCode
+     *  The new module code of the module
+     * @throws ModuleNotProvidedException
+     *  If there is no module with the new module code offered by NUS
+     * @throws DuplicateModuleException
+     *  If there are duplicate modules with the same module code as the new module code in the Module List
+     */
+    public static void edit(Module toEdit, String newModuleCode)
+            throws ModuleNotProvidedException, DuplicateModuleException {
+        if (!modulesMap.containsKey(newModuleCode)) {
+            throw new ModuleNotProvidedException();
+        }
+        if (!toEdit.isSameModule(newModuleCode) && contains(newModuleCode)) {
+            throw new DuplicateModuleException();
+        }
+        String newTitle = modulesMap.get(newModuleCode);
+        toEdit.setModuleCode(newModuleCode);
+        toEdit.setTitle(newTitle);
+    }
+
+    /* Retrieve a specific Data (Category / Task / File) List. Only 1 list is retrieved */
+
+    /**
+     * Retrieves the Category List of the module with the specified module code.
+     *
+     * @param moduleCode
+     *  The module code of the module to retrieve the Category List from
+     * @return
+     *  The Category List of the found module
+     * @throws ModuleNotFoundException
+     *  If the module with the specified module code is not found in the Module List
+     */
+    public static CategoryManager retrieveList(String moduleCode) throws ModuleNotFoundException {
+        return getModule(moduleCode).getCategories();
+    }
+
+    /**
+     * Retrieves the Task List of the category with the specified name and has its parent module with the
+     * specified module code.
+     *
+     * @param moduleCode
+     *  The module code of the module containing the category to retrieve the Task List from
+     * @param categoryName
+     *  The name of the category to retrieve the Task List from
+     * @return
+     *  The Task List of the found category
+     * @throws ModuleNotFoundException
+     *  If the module with the specified module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the specified name is not found in the Category List
+     */
+    public static TaskManager retrieveList(String moduleCode, String categoryName)
+            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException {
+        return retrieveList(moduleCode).retrieveList(categoryName);
+    }
+
+    /* Filters for data (module / task / category) that *contains* given keywords (i.e. not exact match)
+     *  in a case-insensitive manner. There may be multiple data that matches. */
+
+    /**
+     * Filter for modules in the Module List with module code that contains the specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @return
+     *  The list of filtered modules
+     */
+    public static ArrayList<Module> filter(String moduleKeyword) {
+        ArrayList<Module> filteredModuleList = new ArrayList<>();
+        for (Module module : moduleList) {
+            if (module.getModuleCode().toLowerCase().contains(moduleKeyword.toLowerCase())) {
+                filteredModuleList.add(module);
+            }
+        }
+        return filteredModuleList;
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that contains the specified module keyword,
+     * then for categories in the Category List of the filtered modules with name that contains the specified
+     * category keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @return
+     *  The list of filtered categories
+     */
+    public static ArrayList<Category> filter(String moduleKeyword, String categoryKeyword) {
+        ArrayList<Category> filteredCategoryList = new ArrayList<>();
+        for (Module module : filter(moduleKeyword)) {
+            filteredCategoryList.addAll(module.getCategories().filter(categoryKeyword));
+        }
+        return filteredCategoryList;
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that contains the specified module keyword,
+     * then for categories in the Category List of the filtered modules with name that contains the specified
+     * category keyword, then for tasks in the Task List of the filtered categories with description that
+     * contains the specified task keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     * The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
+    public static ArrayList<Task> filter(String moduleKeyword, String categoryKeyword, String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Category category : filter(moduleKeyword, categoryKeyword)) {
+            filteredTaskList.addAll(category.getTasks().filter(taskKeyword));
+        }
+        return filteredTaskList;
+    }
+
+    /* Filters for data (module / task / category) that *matches exactly* the given keywords in a case-insensitive
+     *  manner. Empty keywords, however, will instead collect all instances of the data.
+     *  There may be multiple data that matches. */
+
+    /**
+     * Filter for modules in the Module List with module code that matches <b>exactly</b> the specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @return
+     *  The list of filtered modules
+     */
+    public static ArrayList<Module> filterExact(String moduleKeyword) {
+        // Returns all modules in the Module List if no keyword is provided.
+        if (moduleKeyword.equals(NO_KEYWORD)) {
+            return moduleList;
+        }
+
+        ArrayList<Module> filteredModuleList = new ArrayList<>();
+        for (Module module : moduleList) {
+            if (module.getModuleCode().toLowerCase().equals(moduleKeyword.toLowerCase())) {
+                filteredModuleList.add(module);
+            }
+        }
+        return filteredModuleList;
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that matches <b>exactly</b> the specified module
+     * keyword, then for categories in the Category List of the filtered modules with name that that matches
+     * <b>exactly</b> the specified category keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @return
+     *  The list of filtered categories
+     */
+    public static ArrayList<Category> filterExact(String moduleKeyword, String categoryKeyword) {
+        ArrayList<Category> filteredCategoryList = new ArrayList<>();
+        for (Module module : filterExact(moduleKeyword)) {
+            filteredCategoryList.addAll(module.getCategories().filterExact(categoryKeyword));
+        }
+        return filteredCategoryList;
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that matches <b>exactly</b> the specified module
+     * keyword, then for categories in the Category List of the filtered modules with name that that matches
+     * <b>exactly</b> the specified category keyword, then for tasks in the Task List of the filtered categories
+     * with description that that matches <b>exactly</b> the specified task keyword
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @return
+     *  The list of filtered tasks
+     */
+    public static ArrayList<Task> filterExact(String moduleKeyword, String categoryKeyword, String taskKeyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (Category category : filterExact(moduleKeyword, categoryKeyword)) {
+            filteredTaskList.addAll(category.getTasks().filterExact(taskKeyword));
+        }
+        return filteredTaskList;
+    }
+
+    /**
+     * Returns all the tasks across the entire Module List.
+     *
+     * @return
+     *  An Array List of all the tasks in the entire Module List
+     */
+    public static ArrayList<Task> getAllTasks() {
+        return filter(NO_KEYWORD, NO_KEYWORD, NO_KEYWORD);
     }
 
     @Override
@@ -177,26 +447,16 @@ public class ModuleManager implements Iterable<Module> {
         return moduleList.iterator();
     }
 
-    /**
-     * get the index of new-to-add task.
-     * @return the next-to-add task index
-     */
-    public int getNextTaskIndex() {
-        return moduleList.size();
-    }
+    //public void addTaskToModule(TaskManager taskManager, Task taskToAdd) throws TaskManager.DuplicateTaskException {
+    //    taskManager.add(taskToAdd);
+    //    allTasks.add(taskToAdd);
+    //}
+    //
+    //public void removeTask(TaskManager taskManager, Task taskToDelete) {
+    //    taskManager.delete(taskToDelete);
+    //    allTasks.remove(taskToDelete);
+    //}
 
-    public void addTaskToModule(TaskManager taskManager, Task taskToAdd) {
-        taskManager.addTask(taskToAdd);
-        allTasks.add(taskToAdd);
-    }
-
-    public void removeTask(TaskManager taskManager, Task taskToDelete) {
-        taskManager.removeTask(taskToDelete);
-        allTasks.remove(taskToDelete);
-    }
-
-    public class DuplicateModuleException extends DuplicateDataException {
-    }
 
     /**
      * get a module object according to moduleCode.
@@ -204,8 +464,7 @@ public class ModuleManager implements Iterable<Module> {
      * @return a module object that has the moduleCode
      */
     public static Module getModuleWithCode(String moduleCode) {
-        for (Module module: moduleList
-             ) {
+        for (Module module: moduleList) {
             if (module.getModuleCode().equals(moduleCode)) {
                 assert module.getModuleCode().equals(moduleCode);
                 return module;
@@ -214,7 +473,16 @@ public class ModuleManager implements Iterable<Module> {
         return null;
     }
 
-    public static Root getRoot() {
-        return root;
+    /**
+     * return total number of tasks in all modules.
+     */
+    public static int countAllTasks() {
+        return filter(NO_KEYWORD, NO_KEYWORD, NO_KEYWORD).size();
+    }
+
+    public static class ModuleNotFoundException extends DataNotFoundException {
+    }
+
+    public static class DuplicateModuleException extends DuplicateDataException {
     }
 }

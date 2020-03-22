@@ -1,46 +1,70 @@
 package seedu.nuke.command;
 
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryLevel;
+
 import java.util.ArrayList;
 
 /**
- *construct the feedback to user String.
+ * construct the feedback to user String.
  */
 public class CommandResult {
     private final String feedbackToUser;
-    private final boolean isShowTasks;
-    private final ArrayList<String> shownList;
+    private final DirectoryLevel directoryLevel;
+    private final ArrayList<Directory> shownList;
 
     /**
-     * construct a command result that only have one feedback.
-     * @param feedbackToUser execution feedback that should be shown to the user
+     * Constructs a command result that contains both feedback message and list to show.
+     *
+     * @param feedbackToUser
+     *  The feedback message to be shown to the user
+     * @param directoryLevel
+     *  The data type of the list
+     * @param listToShow
+     *  The list to be shown to the user
+     */
+    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow) {
+        this.feedbackToUser = feedbackToUser;
+        this.directoryLevel = directoryLevel;
+        this.shownList = listToShow;
+    }
+
+    /**
+     * Constructs a command result that contains the feedback message only.
+     * @param feedbackToUser
+     *  The feedback message to be shown to the user
      */
     public CommandResult(String feedbackToUser) {
-        this.feedbackToUser = feedbackToUser;
-        this.isShowTasks = false;
-        shownList = null;
+        this(feedbackToUser, DirectoryLevel.NONE, null);
     }
 
     /**
-     * construct a command result that have feedback and lists of information that needs to be printed out.
-     * @param feedbackToUser the string of the result which will be printed to the user.
-     * @param isShowTasks if the command is to show tasks
-     * @param shownList the list of tasks to be shown to the user.
+     * Returns the feedback message to be shown to the user.
+     *
+     * @return
+     *  The feedback message to be shown to the user
      */
-    public CommandResult(String feedbackToUser, boolean isShowTasks, ArrayList<String> shownList) {
-        this.feedbackToUser = feedbackToUser;
-        this.isShowTasks = isShowTasks;
-        this.shownList = shownList;
-    }
-
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowTasks() {
-        return isShowTasks;
+    /**
+     * Returns the level of the list to be shown to the user.
+     *
+     * @return
+     *  The level of the list
+     */
+    public DirectoryLevel getDirectoryLevel() {
+        return directoryLevel;
     }
 
-    public ArrayList<String> getShownList() {
+    /**
+     * Returns the list to be shown to the user.
+     *
+     * @return
+     *  The list to be shown to the user
+     */
+    public ArrayList<Directory> getShownList() {
         return shownList;
     }
 }

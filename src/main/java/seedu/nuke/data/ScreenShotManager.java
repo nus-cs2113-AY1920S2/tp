@@ -1,6 +1,7 @@
 package seedu.nuke.data;
 
 import com.alibaba.fastjson.JSON;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;

@@ -1,14 +1,18 @@
 package seedu.nuke.command.addcommand;
 
+import seedu.nuke.NukeLogger;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.Root;
 import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.directory.Module;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE_ADD;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_PROVIDED;
 import static seedu.nuke.util.Message.messageAddModuleSuccess;
 
@@ -18,18 +22,34 @@ import static seedu.nuke.util.Message.messageAddModuleSuccess;
  * @see Command
  * @see Module
  */
-public class AddModuleCommand extends Command {
+public class AddModuleCommand extends AddCommand {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
-    public static final Pattern[] REGEX_FORMATS = {
-            Pattern.compile("(?<identifier>^\\s*([^-]+))"),
-            Pattern.compile("(?<invalid>-.+)")
-    };
+    public static final Pattern REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)"
+            + "(?<invalid>(?:\\s+-.*)*)"
+    );
 
     private String moduleCode;
 
+    /**
+     * Constructs the command to add a module.
+     *
+     * @param moduleCode
+     *  The module code of the module
+     */
     public AddModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
+    }
+
+    /**
+     * Returns the parent root level directory of the Directory to be added.
+     *
+     * @return
+     *  The parent root level directory of the Directory to be added
+     */
+    protected Root getParentDirectory() {
+        return ModuleManager.getRoot();
     }
 
     /**
@@ -41,13 +61,22 @@ public class AddModuleCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        Logger logger = NukeLogger.getLogger();
+        logger.log(Level.INFO, "Add command is being executed.");
+
+        Module toAdd = new Module(moduleCode);
         try {
-            moduleManager.add(moduleCode);
-            Module addedModule = moduleManager.getLastAddedModule();
-            return new CommandResult(messageAddModuleSuccess(addedModule.getModuleCode(), addedModule.getTitle()));
+            ModuleManager.add(toAdd);
+            logger.log(Level.INFO, String.format("Module %s was added into the module list.", moduleCode));
+            assert toAdd.getModuleCode().equals(moduleCode) : "Incorrect last added module!";
+            return new CommandResult(messageAddModuleSuccess(toAdd.getModuleCode(), toAdd.getTitle()));
         } catch (ModuleManager.DuplicateModuleException e) {
-            return new CommandResult(MESSAGE_DUPLICATE_MODULE_ADD);
+            logger.log(Level.WARNING, String.format("Duplicate module %s attempted to be added.", moduleCode));
+            return new CommandResult(MESSAGE_DUPLICATE_MODULE);
         } catch (ModuleNotProvidedException e) {
+            logger.log(Level.WARNING, String.format("Unknown module %s attempted to be added.", moduleCode));
+            assert !ModuleManager.getModulesMap().containsKey(moduleCode) :
+                    "Incorrect identifying of unprovided module!";
             return new CommandResult(MESSAGE_MODULE_NOT_PROVIDED);
         }
     }
