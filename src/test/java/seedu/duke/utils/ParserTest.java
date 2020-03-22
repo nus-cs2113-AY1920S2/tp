@@ -1,4 +1,4 @@
-package seedu.duke.parser;
+package seedu.duke.utils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,6 @@ import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.ExitCommand;
-
-
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -159,12 +157,21 @@ public class ParserTest {
      */
 
     @Test
-    public void parse_editCommandInvalidArgs_errorMessage() {
-        final String[] inputs = {"EDIT", "EDIT ", "EDIT wrong args format", "EDIT i/apple p/2.50", "EDIT 1 i/p/2.50",
-            "EDIT 1 i/apple p/", "EDIT 1 i/p/WERT", "EDIT 1 i/p/", "EDIT 1 i/p/q/",
-            "EDIT 1 i/apple q/", "EDIT 1 p/q/", "EDIT 1 q/p/"};
+    public void parse_editCommandMissingParams_errorMessage() {
+        final String[] inputs = {"EDIT", "EDIT "};
         final String resultMessage = System.lineSeparator()
-                + "Oops! For that to be done properly, check if these are met:"
+                + "Invalid Command. Please provide a new description, price or quantity.";
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_editCommandInvalidArgs_errorMessage() {
+        final String[] inputs = {"EDIT wrong args format", "EDIT i/apple", "EDIT 1 i/", "EDIT 1 p/", "EDIT 1 q/",
+            "EDIT 1 i/p/q", "EDIT 1 i/p/", "EDIT 1 i/p/q", "EDIT 1 i/p/2.50", "EDIT 1 p/q/5", "EDIT 1 p/20/q/",
+            "EDIT 1 i/apple p/", "EDIT 1 i/apple p/WERT", "EDIT 1 i/apple p/23 q/QWERTY" };
+
+        final String resultMessage = System.lineSeparator()
+                + "Oops! Invalid Command. Check if these are met:"
                 + System.lineSeparator()
                 + " - Index of item must be a positive number."
                 + System.lineSeparator()
@@ -172,12 +179,12 @@ public class ParserTest {
                 + System.lineSeparator()
                 + " - Quantity of an item should be in positive numerical form."
                 + System.lineSeparator()
-                + " - At least 'i/' , 'p/' or 'q/' should be present."
+                + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
                 + System.lineSeparator()
-                + " - If 'i/' , 'p/' or 'q/' is present, ensure i/[NEW DESCRIPTION], "
-                + "p/[NEW PRICE] or q/[QUANTITY] is present."
+                + " - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], "
+                + "p/[NEW PRICE] or q/[QUANTITY] must be present."
                 + System.lineSeparator()
-                + "|| Example: EDIT 2 i/apple p/2.50 q/5";
+                + "|| Example: EDIT 2 i/lollipop p/2.50 q/5";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 

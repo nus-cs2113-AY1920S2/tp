@@ -12,27 +12,37 @@ public class ShoppingList {
         return items;
     }
 
+    //@@author kokjoon97
+    /**
+     * Returns the size of the items ArrayList.
+     *
+     * @return Size of the items ArrayList.
+     */
     public int getSize() {
         return items.size();
     }
+    //@@author
 
+    //@@author JLoh579
     /**
      * Prints a table representing the shopping list.
      */
     public void showTableOfItems() {
         CommandLineTable st = new CommandLineTable();
         st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
-        st.setHeaders("Item", "Price");//optional - if not used then there will be no header and horizontal lines
+        st.setHeaders("Item", "Price", "Qty");//optional - if not used then there will be no header and horizontal lines
         int bulletNum = 1;
         String itemLine;
         for (Item item : items) {
 
             itemLine = bulletNum + ". [" + item.getStatusIcon() + "] " + item.getDescription();
-            st.addRow(itemLine, String.format("$%.2f",item.getPrice()));
+            st.addRow(itemLine, String.format("$%.2f",item.getPrice()),String.valueOf(item.getQuantity()));
             bulletNum++;
         }
         st.print();
     }
+    //@@author
+
 
     /**
      * Calculates and returns the total cost of the items in the shopping list.
@@ -99,6 +109,7 @@ public class ShoppingList {
         return itemNotBought;
     }
 
+    //@@author kokjoon97
     /**
      * Removes an item at the specified index.
      *
@@ -108,6 +119,7 @@ public class ShoppingList {
         Item unwantedItem = items.get(index);
         items.remove(unwantedItem);
     }
+    //@@author
 
     /**
      * Adds item to list.

@@ -7,6 +7,7 @@ import seedu.duke.data.ShoppingList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author trishaangelica
 public class EditCommandTest {
 
     ShoppingList items = new ShoppingList();
@@ -97,9 +98,23 @@ public class EditCommandTest {
         command = new EditCommand(1, "banana", "QWERTY","3");
         command.setData(items,myBudget);
         command.execute();
-        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_PRICE_OR_QUANTITY_INCORRECT_FORMAT;
+        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT;
         assertEquals(expectedFeedback3, command.feedbackToUser);
     }
 
+    @Test
+    public void testEdit_ItemQuantityIncorrectFormat_exceptionThrown() {
+        command.setData(items, null);
+        items.clearList();
+        items.add(new Item("apple", 2.0,1));
+        items.add(new Item("donut", 3.0,1));
+        items.add(new Item("banana", 4.50,1));
+        command = new EditCommand(1, "banana", "3","QWERTY");
+        command.setData(items,myBudget);
+        command.execute();
+        String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT;
+        assertEquals(expectedFeedback3, command.feedbackToUser);
+    }
 
 }
+//@@author
