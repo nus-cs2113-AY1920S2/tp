@@ -38,6 +38,8 @@ public class DietManager {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {
                 ui.displayInvalidCommandMessage();
+            } catch (IndexOutOfBoundsException e) {
+                ui.displayIndexOutOfBoundMessage();
             }
         }
 

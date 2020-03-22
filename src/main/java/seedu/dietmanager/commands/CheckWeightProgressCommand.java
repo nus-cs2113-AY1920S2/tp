@@ -8,11 +8,18 @@ import seedu.dietmanager.ui.UI;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.abs;
+
 public class CheckWeightProgressCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private String profileName;
     private ArrayList<Double> weightRecord = new ArrayList<>();
+    private ArrayList<String> weightRecordDays = new ArrayList<>();
+    private double initialWeight;
+    private double currentWeight;
+    private double weightDifference;
+
 
     /**
      * Constructs the Command object.
@@ -30,18 +37,27 @@ public class CheckWeightProgressCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         weightRecord = profile.getWeightProgress();
+        weightRecordDays = profile.getWeightProgressDays();
         ui.showCommandMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE); //Wil change this part later on
-        for (double weight : weightRecord) {
-            ui.showCommandMessage(String.valueOf(weight));
+        for (int i = 0; i < weightRecord.size(); i++) {
+            ui.showCommandMessage(i + 1 + ". " + weightRecord.get(i) + "kg " + weightRecordDays.get(i));
         }
+
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = MessageBank.DUMMY_MESSAGE;
-        // I need to return an array of strings but currently results is a single String only. so i leave it
-        // till we gonna update it later. i just gonna return a dummy string so it doesnt print null
+        initialWeight = weightRecord.get(0);
+        currentWeight = weightRecord.get(weightRecord.size() - 1);
+        weightDifference = initialWeight - currentWeight;
+        if (weightDifference > 0) {
+            this.result = String.format(MessageBank.WEIGHT_LOSS_MESSAGE, weightDifference);
+        } else if (weightDifference == 0) {
+            this.result = MessageBank.WEIGHT_NO_CHANGE_MESSAGE;
+        } else {
+            this.result = String.format(MessageBank.WEIGHT_GAIN_MESSAGE, abs(weightDifference));
+        }
     }
 
 }

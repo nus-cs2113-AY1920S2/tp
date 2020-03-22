@@ -1,33 +1,22 @@
 package seedu.dietmanager.parser;
 
+import seedu.dietmanager.commands.Command;
+import seedu.dietmanager.commands.ExitCommand;
+import seedu.dietmanager.commands.ProfileCommand;
+import seedu.dietmanager.commands.SetAgeCommand;
+import seedu.dietmanager.commands.SetGenderCommand;
+import seedu.dietmanager.commands.SetHeightCommand;
+import seedu.dietmanager.commands.SetNameCommand;
+import seedu.dietmanager.commands.SetProfileCommand;
+import seedu.dietmanager.commands.SetWeightCommand;
+import seedu.dietmanager.commands.RecordMealCommand;
 import seedu.dietmanager.commands.CheckRecordCommand;
+import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.CheckWeightProgressCommand;
-import seedu.dietmanager.commands.Command;
-import seedu.dietmanager.commands.Command;
-import seedu.dietmanager.commands.ExitCommand;
-import seedu.dietmanager.commands.ExitCommand;
-import seedu.dietmanager.commands.ProfileCommand;
-import seedu.dietmanager.commands.ProfileCommand;
-import seedu.dietmanager.commands.RecordMealCommand;
-import seedu.dietmanager.commands.SetAgeCommand;
-import seedu.dietmanager.commands.SetAgeCommand;
-import seedu.dietmanager.commands.SetGenderCommand;
-import seedu.dietmanager.commands.SetGenderCommand;
-import seedu.dietmanager.commands.SetHeightCommand;
-import seedu.dietmanager.commands.SetHeightCommand;
-import seedu.dietmanager.commands.SetNameCommand;
-import seedu.dietmanager.commands.SetNameCommand;
-import seedu.dietmanager.commands.SetProfileCommand;
-import seedu.dietmanager.commands.SetProfileCommand;
-import seedu.dietmanager.commands.SetWeightCommand;
-import seedu.dietmanager.commands.SetWeightCommand;
-import seedu.dietmanager.commands.SetWeightGoalCommand;
-import seedu.dietmanager.commands.RecordMealCommand;
-import seedu.dietmanager.commands.CheckRecordCommand;
-import seedu.dietmanager.commands.SetWeightGoalCommand;
-import seedu.dietmanager.commands.WeightUpdateCommand;
+import seedu.dietmanager.commands.DeleteWeightCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
+
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.
@@ -129,11 +118,11 @@ public class Parser {
         case "exit":
             command = new ExitCommand(commandPrompt);
             break;
-        case "update-weight":
-            command = new WeightUpdateCommand(commandPrompt, description);
-            break;
         case "check-weight-progress":
             command = new CheckWeightProgressCommand(commandPrompt, description);
+            break;
+        case "delete-weight":
+            command = new DeleteWeightCommand(commandPrompt, description);
             break;
         default:
             throw new InvalidCommandException();
