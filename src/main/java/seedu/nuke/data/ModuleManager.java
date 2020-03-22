@@ -1,4 +1,3 @@
-
 package seedu.nuke.data;
 
 import seedu.nuke.directory.Category;

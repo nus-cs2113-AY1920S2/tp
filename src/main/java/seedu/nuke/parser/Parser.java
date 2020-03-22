@@ -470,7 +470,6 @@ public class Parser {
         }
 
         return new EditModuleCommand(oldModuleCode, newModuleCode);
-
     }
 
     /**
@@ -562,21 +561,6 @@ public class Parser {
         } catch (NumberFormatException | InvalidPriorityException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
         }
-    }
-
-    private boolean isMissingCompulsoryParameters(Pattern[] formats, Matcher[] matchers, String parameters) {
-        // Match patterns
-        for (int i = 0; i < formats.length; ++i) {
-            matchers[i] = formats[i].matcher(parameters);
-        }
-
-        // Check if matches with each pattern except last pattern which checks for invalid parameters
-        for (int i = 0; i < formats.length - 1; ++i) {
-            if (!matchers[i].find()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

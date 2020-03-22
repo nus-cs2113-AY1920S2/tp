@@ -222,6 +222,4 @@ public class Message {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
 
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
-
-
 }

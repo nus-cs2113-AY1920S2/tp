@@ -1,4 +1,3 @@
-
 package seedu.nuke;
 
 import seedu.nuke.command.CommandResult;
@@ -25,7 +24,7 @@ public class Nuke {
     /**
      * constructor of nuke.
      *
-     * @throws FileNotFoundException if file cannot be found when loading jason file
+     * @throws FileNotFoundException if file cannot be found when loading jSon file
      */
     public Nuke() throws FileNotFoundException {
         root = new Root();
