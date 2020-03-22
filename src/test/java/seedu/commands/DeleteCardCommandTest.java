@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.cards.Card;
 import seedu.exception.EscException;
-import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
 import static org.junit.jupiter.api.Assertions.fail;

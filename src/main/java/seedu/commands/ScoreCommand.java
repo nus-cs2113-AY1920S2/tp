@@ -3,7 +3,7 @@ package seedu.commands;
 import seedu.subjects.SubjectList;
 
 /**
- * Command class for the ScoreCommand
+ * Command class for the ScoreCommand.
  */
 public class ScoreCommand extends Command {
 

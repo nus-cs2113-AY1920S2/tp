@@ -23,11 +23,18 @@ public class ListCardCommand extends ListCommand {
     }
 
     /**
+     * Returns the subject index.
+     */
+    public int getSubjectIndex() {
+        return subjectIndex;
+    }
+
+    /**
      * Lists the cards currently stored in the application.
      */
     @Override
     public void execute(SubjectList subjectList) throws EscException {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
-        subjectList.listCardsInSubject(chosenSubject);
+        chosenSubject.getCardList().listCards();
     }
 }

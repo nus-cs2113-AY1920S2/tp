@@ -1,14 +1,11 @@
 package seedu.subjects;
 
-import seedu.cards.Card;
-import seedu.cards.CardList;
 import seedu.exception.EscException;
 
 import java.util.ArrayList;
 
 public class SubjectList {
     private ArrayList<Subject> subjects;
-    private static CardList cardOperation;
 
     public SubjectList() {
         this.subjects = new ArrayList<Subject>();
@@ -82,9 +79,5 @@ public class SubjectList {
 
     public int size() {
         return this.subjects.size();
-    }
-
-    public void listCardsInSubject(Subject subject) {
-        cardOperation.listCards(subject.getCardList().getCards());
     }
 }

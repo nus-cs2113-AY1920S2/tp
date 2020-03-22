@@ -1,6 +1,5 @@
 package seedu.cards;
 
-import seedu.duke.Storage;
 import seedu.exception.EscException;
 
 import java.util.ArrayList;
@@ -69,9 +68,8 @@ public class CardList {
 
     /**
      *  Lists all the cards in the list.
-     *   @param cards A list of card to be displayed.
      */
-    public static void listCards(ArrayList<Card> cards) {
+    public void listCards() {
         if (cards.size() == 0) {
             System.out.println("You haven't added anything yet.");
         } else {

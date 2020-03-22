@@ -3,7 +3,6 @@ package seedu.commands;
 import org.junit.jupiter.api.Test;
 import seedu.cards.Card;
 import seedu.exception.EscException;
-import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,9 +44,8 @@ class AddCardCommandTest {
         addCardCommand = new AddCardCommand(subjectIndex, card);
 
         SubjectList subjectList = new SubjectList();
-        Subject subject = new Subject("Biology");
-        subjectList.addSubject(subject);
-
+        AddSubjectCommand addSubjectCommand = new AddSubjectCommand("Biology");
+        addSubjectCommand.execute(subjectList);
         addCardCommand.execute(subjectList);
 
         assertTrue(subjectList.getSubject(subjectIndex - 1).getCardList().getCards().contains(card));
