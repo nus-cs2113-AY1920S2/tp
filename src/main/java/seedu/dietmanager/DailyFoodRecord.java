@@ -37,13 +37,13 @@ public class DailyFoodRecord {
 
     public void recordMeals(String mealType, ArrayList<Food> foodList) {
         switch (mealType) {
-        case "breakfast":
+        case "morning":
             breakfast.addAll(foodList);
             break;
-        case "lunch":
+        case "afternoon":
             lunch.addAll(foodList);
             break;
-        case "dinner":
+        case "night":
             dinner.addAll(foodList);
             break;
         default:
@@ -68,12 +68,13 @@ public class DailyFoodRecord {
     public String showBreakfast() {
         String message = "";
         for (Food food : breakfast) {
-            message = message + food.getFoodName() + " ";
+            message = message + food.getFoodName() + ", ";
         }
         if (message.equals("")) {
             message = "Oops, you have no record for this meal";
+            return message;
         }
-        return message.trim();
+        return message.substring(0, message.length() - 2);
     }
 
     /**
@@ -83,12 +84,13 @@ public class DailyFoodRecord {
     public String showLunch() {
         String message = "";
         for (Food food : lunch) {
-            message = message + food.getFoodName() + " ";
+            message = message + food.getFoodName() + ", ";
         }
         if (message.equals("")) {
             message = "Oops, you have no record for this meal";
+            return message;
         }
-        return message.trim();
+        return message.substring(0, message.length() - 2);
     }
 
     /**
@@ -98,12 +100,13 @@ public class DailyFoodRecord {
     public String showDinner() {
         String message = "";
         for (Food food : dinner) {
-            message = message + food.getFoodName() + " ";
+            message = message + food.getFoodName() + ", ";
         }
         if (message.equals("")) {
             message = "Oops, you have no record for this meal";
+            return message;
         }
-        return message.trim();
+        return message.substring(0, message.length() - 2);
     }
 
     public boolean isDate(String date) {
