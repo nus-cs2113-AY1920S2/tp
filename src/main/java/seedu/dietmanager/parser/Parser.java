@@ -1,33 +1,21 @@
 package seedu.dietmanager.parser;
 
-import seedu.dietmanager.commands.CheckRecordCommand;
-import seedu.dietmanager.commands.CheckWeightProgressCommand;
-import seedu.dietmanager.commands.Command;
+import seedu.dietmanager.commands.*;
 import seedu.dietmanager.commands.Command;
 import seedu.dietmanager.commands.ExitCommand;
-import seedu.dietmanager.commands.ExitCommand;
 import seedu.dietmanager.commands.ProfileCommand;
-import seedu.dietmanager.commands.ProfileCommand;
-import seedu.dietmanager.commands.RecordMealCommand;
-import seedu.dietmanager.commands.SetAgeCommand;
 import seedu.dietmanager.commands.SetAgeCommand;
 import seedu.dietmanager.commands.SetGenderCommand;
-import seedu.dietmanager.commands.SetGenderCommand;
-import seedu.dietmanager.commands.SetHeightCommand;
 import seedu.dietmanager.commands.SetHeightCommand;
 import seedu.dietmanager.commands.SetNameCommand;
-import seedu.dietmanager.commands.SetNameCommand;
-import seedu.dietmanager.commands.SetProfileCommand;
 import seedu.dietmanager.commands.SetProfileCommand;
 import seedu.dietmanager.commands.SetWeightCommand;
-import seedu.dietmanager.commands.SetWeightCommand;
-import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.RecordMealCommand;
 import seedu.dietmanager.commands.CheckRecordCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
-import seedu.dietmanager.commands.WeightUpdateCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
+import seedu.dietmanager.exceptions.InvalidGenderException;
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.
@@ -84,6 +72,14 @@ public class Parser {
         return descriptionArray;
     }
 
+    public static String parseGender(String description) throws InvalidGenderException {
+        String gender = description.trim();
+        if (!(gender.equals("Male") || gender.equals("Female"))) {
+            throw new InvalidGenderException();
+        }
+        return gender;
+    }
+
     /**
      * Analyses the user input and generates the relevant command.
      * @param input the user input.
@@ -92,7 +88,8 @@ public class Parser {
      * @throws InvalidFormatException   if format for command is wrong.
      */
 
-    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException {
+    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException,
+            InvalidGenderException {
         prepareInput(input);
         Command command;
         switch (commandPrompt) {
@@ -134,6 +131,9 @@ public class Parser {
             break;
         case "check-weight-progress":
             command = new CheckWeightProgressCommand(commandPrompt, description);
+            break;
+        case "Check-calories-intake":
+            command = new CheckCaloriesCommand(commandPrompt, description);
             break;
         default:
             throw new InvalidCommandException();
