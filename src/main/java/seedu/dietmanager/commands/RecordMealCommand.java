@@ -30,7 +30,7 @@ public class RecordMealCommand extends Command {
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
         this.date = descriptionArray[0];
         this.mealType = descriptionArray[1];
-        this.foodDescription = descriptionArray[2].split("/");
+        this.foodDescription = descriptionArray[2].trim().split("/");
         this.isValidFoodFormat = true;
     }
 
@@ -43,6 +43,9 @@ public class RecordMealCommand extends Command {
         int foodCalories;
         FoodNutritionInfo foodInfo = new FoodNutritionInfo();
         for (String singleFoodDescription : foodDescription) {
+            if (singleFoodDescription.equals("")) {
+                continue;
+            }
             foodDescriptionSplit = singleFoodDescription.trim().split(" -- ");
             switch (foodDescriptionSplit.length) {
             case 1:
