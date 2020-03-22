@@ -138,7 +138,7 @@ public class Parser {
         case "check-weight-progress":
             command = new CheckWeightProgressCommand(commandPrompt, description);
             break;
-        case "Check-calories-intake":
+        case "check-calories-intake":
             command = new CheckCaloriesCommand(commandPrompt, description);
             break;
         default:

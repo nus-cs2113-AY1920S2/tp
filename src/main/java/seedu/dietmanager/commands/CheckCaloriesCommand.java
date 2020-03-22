@@ -19,7 +19,7 @@ public class CheckCaloriesCommand extends Command {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
         this.date = descriptionArray[0];
-        this.activityLevel = descriptionArray[2];
+        this.activityLevel = descriptionArray[1];
     }
 
     @Override
@@ -56,9 +56,27 @@ public class CheckCaloriesCommand extends Command {
     public void saveResult(Profile profile) {
         DailyFoodRecord record = profile.getRecordOfDay(date);
         if (isValidCommand) {
-            this.result = String.format("Calories for %s:",date) + System.lineSeparator()
+            this.result = String.format("These are your calories intake for %s:" , date) + System.lineSeparator()
                     + record.showDailyCalories("breakfast") + record.showDailyCalories("lunch")
-                    + record.showDailyCalories("dinner") + record.showDailyCalories();
+                    + record.showDailyCalories("dinner") + record.showDailyCalories()
+                    + System.lineSeparator()
+                    + String.format("Calories requirement for %s activity level on %s: " , activityLevel, date)
+                    + String.format("%.2f", caloriesRequired) + "cal." + System.lineSeparator();
+            if (record.getDailyCalories().isPresent()) {
+                double caloriesIntake = record.getDailyCalories().get();
+                if (profile.getWeight() < profile.getWeightGoal() && caloriesIntake >= caloriesRequired) {
+                    this.result = this.result + MessageBank.SUFFICIENT_CALORIES_MESSAGE;
+                }
+                if (profile.getWeight() < profile.getWeightGoal() && caloriesIntake < caloriesRequired) {
+                    this.result = this.result + MessageBank.INSUFFICIENT_CALORIES_MESSAGE;
+                }
+                if (profile.getWeight() >= profile.getWeightGoal() && caloriesIntake > caloriesRequired) {
+                    this.result = this.result + MessageBank.EXCESS_CALORIES_MESSAGE;
+                }
+                if (profile.getWeight() >= profile.getWeightGoal() && caloriesIntake <= caloriesRequired) {
+                    this.result = this.result + MessageBank.SUFFICIENT_CALORIES_MESSAGE;
+                }
+            }
         } else {
             this.result = MessageBank.INVALID_CALORIES_REQUIREMENT_ERROR;
         }

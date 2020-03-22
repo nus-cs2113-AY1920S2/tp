@@ -74,9 +74,9 @@ public class DailyFoodRecord {
             message = message + food.toString();
         }
         if (message.equals("")) {
-            message = "Oops, you have no record for this meal.";
+            message = "Oops, you have no record for this meal.\n";
         }
-        return message.trim();
+        return message;
     }
 
     /**
@@ -89,9 +89,9 @@ public class DailyFoodRecord {
             message = message + food.toString();
         }
         if (message.equals("")) {
-            message = "Oops, you have no record for this meal.";
+            message = "Oops, you have no record for this meal.\n";
         }
-        return message.trim();
+        return message;
     }
 
     /**
@@ -104,9 +104,9 @@ public class DailyFoodRecord {
             message = message + food.toString();
         }
         if (message.equals("")) {
-            message = "Oops, you have no record for this meal.";
+            message = "Oops, you have no record for this meal.\n";
         }
-        return message.trim();
+        return message;
     }
 
     public boolean isDate(String date) {
@@ -196,7 +196,7 @@ public class DailyFoodRecord {
      */
     public String showDailyCalories() {
         return getDailyCalories()
-                .map(calories -> MessageBank.CALORIES_MESSAGE + calories + "cal.\n")
+                .map(calories -> MessageBank.CALORIES_MESSAGE + String.format("%.2f", calories) + "cal.\n")
                 .map(result -> (isCaloriesPresent()) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
                 .orElse(MessageBank.NO_CALORIES_MESSAGE);
     }
@@ -207,8 +207,8 @@ public class DailyFoodRecord {
      */
     public String showDailyCalories(String timeFrame) {
         return getDailyCalories(timeFrame)
-                .map(calories -> "In " + timeFrame + " , " + MessageBank.TIME_CALORIES_MESSAGE + calories + "cal.\n")
-                .map(result -> isCaloriesPresent(timeFrame) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
-                .orElse("In " + timeFrame + " , " + MessageBank.NO_TIME_CALORIES_MESSAGE);
+                .map(calories -> "For " + timeFrame + " , " + MessageBank.TIME_CALORIES_MESSAGE
+                        + String.format("%.2f", calories) + "cal.\n")
+                .orElse("For " + timeFrame + " , " + MessageBank.NO_TIME_CALORIES_MESSAGE);
     }
 }

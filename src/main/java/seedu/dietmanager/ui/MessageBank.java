@@ -42,4 +42,7 @@ public class MessageBank {
     public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.\n";
     public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.\n";
     public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.\n";
+    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories\n";
+    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories\n";
+    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories\n";
 }
