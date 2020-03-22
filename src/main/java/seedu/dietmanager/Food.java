@@ -50,7 +50,7 @@ public class Food {
     }
 
     public String toString() {
-        return calories.map(value -> "Food: " + foodName + ", Calories: " + String.format("%.2f", value))
-                .orElseGet(() -> "Food: " + foodName + ", Calories: " + "No value found");
+        return calories.map(value -> "Food: " + foodName + ", Calories: " + String.format("%.2f", value) + "\n")
+                .orElseGet(() -> "Food: " + foodName + ", Calories: " + "No value found\n");
     }
 }

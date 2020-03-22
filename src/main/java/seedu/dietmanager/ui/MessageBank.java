@@ -35,5 +35,7 @@ public class MessageBank {
     public static String DUMMY_MESSAGE = "No pain no gain! Continue striving on!";
     public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database.";
     public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid format.\n";
-
+    public static String CALCULABLE_CALORIES_MESSAGE = "Total calculable calories intake: ";
+    public static String MISSING_CALORIES_MESSAGE = "There are foods without calculable calories.\n";
+    public static String NO_CALCULABLE_CALORIES_MESSAGE = "There are no calculable calories data.\n";
 }

@@ -1,5 +1,7 @@
 package seedu.dietmanager;
 
+import seedu.dietmanager.ui.MessageBank;
+
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -69,10 +71,10 @@ public class DailyFoodRecord {
     public String showBreakfast() {
         String message = "";
         for (Food food : breakfast) {
-            message = message + food.getFoodName() + " ";
+            message = message + food.toString();
         }
         if (message.equals("")) {
-            message = "Oops, you have no record for this meal";
+            message = "Oops, you have no record for this meal.";
         }
         return message.trim();
     }
@@ -84,10 +86,10 @@ public class DailyFoodRecord {
     public String showLunch() {
         String message = "";
         for (Food food : lunch) {
-            message = message + food.getFoodName() + " ";
+            message = message + food.toString();
         }
         if (message.equals("")) {
-            message = "Oops, you have no record for this meal";
+            message = "Oops, you have no record for this meal.";
         }
         return message.trim();
     }
@@ -99,10 +101,10 @@ public class DailyFoodRecord {
     public String showDinner() {
         String message = "";
         for (Food food : dinner) {
-            message = message + food.getFoodName() + " ";
+            message = message + food.toString();
         }
         if (message.equals("")) {
-            message = "Oops, you have no record for this meal";
+            message = "Oops, you have no record for this meal.";
         }
         return message.trim();
     }
@@ -129,12 +131,12 @@ public class DailyFoodRecord {
      */
     public ArrayList<Food> getDailyFood(String timeFrame) {
         switch (timeFrame) {
-        case "morning":
-            return breakfast;
-        case "afternoon":
-            return lunch;
-        case "night":
-            return dinner;
+        case "breakfast": //Changed to morning after merging
+            return breakfast; //Changed to morning after merging
+        case "lunch": //Changed to afternoon after merging
+            return lunch; //Changed to afternoon after merging
+        case "dinner": //Changed to night after merging
+            return dinner; //Changed to night after merging
         default:
             return new ArrayList<>();
         }
@@ -146,10 +148,10 @@ public class DailyFoodRecord {
      */
     public Optional<Double> getDailyCalories() {
         ArrayList<Food> allDailyFood = getDailyFood();
-        return allDailyFood.stream().map(food -> food.getCalories())
-                .filter(calories -> calories.isPresent())
-                .map(calories -> calories.get())
-                .reduce((first, second) -> first + second);
+        return allDailyFood.stream().filter(Food::hasCaloriesData)
+                .map(Food::getCalories)
+                .map(Optional::get)
+                .reduce(Double::sum);
     }
 
     /**
@@ -158,10 +160,10 @@ public class DailyFoodRecord {
      */
     public Optional<Double> getDailyCalories(String timeFrame) {
         ArrayList<Food> foodInTimeFrame = getDailyFood(timeFrame);
-        return foodInTimeFrame.stream().map(food -> food.getCalories())
-                .filter(calories -> calories.isPresent())
-                .map(calories -> calories.get())
-                .reduce((first, second) -> first + second);
+        return foodInTimeFrame.stream().filter(Food::hasCaloriesData)
+                .map(Food::getCalories)
+                .map(Optional::get)
+                .reduce(Double::sum);
     }
 
     /**
@@ -171,7 +173,7 @@ public class DailyFoodRecord {
     public boolean isAllFoodCaloriesPresent() {
         ArrayList<Food> allDailyFood = getDailyFood();
         return allDailyFood.stream().filter(food -> !food.hasCaloriesData())
-                .map(calories -> false)
+                .map(food -> false)
                 .reduce((first, second) -> first)
                 .orElse(true);
     }
@@ -183,8 +185,30 @@ public class DailyFoodRecord {
     public boolean isAllFoodCaloriesPresent(String timeFrame) {
         ArrayList<Food> allDailyFood = getDailyFood(timeFrame);
         return allDailyFood.stream().filter(food -> !food.hasCaloriesData())
-                .map(calories -> false)
+                .map(food -> false)
                 .reduce((first, second) -> first)
                 .orElse(true);
+    }
+
+    /**
+     * Express the calculable calories intake for all the meals as a String.
+     * @return String representation of the calculable calories.
+     */
+    public String showDailyCalories() {
+        return getDailyCalories()
+                .map(calories -> MessageBank.CALCULABLE_CALORIES_MESSAGE + calories + "cal.\n")
+                .map(result -> (isAllFoodCaloriesPresent()) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
+                .orElse(MessageBank.NO_CALCULABLE_CALORIES_MESSAGE);
+    }
+
+    /**
+     * Express the calculable calories intake for meals within a time frame of the day as a String.
+     * @return String representation of the calculable calories within a time frame.
+     */
+    public String showDailyCalories(String timeFrame) {
+        return getDailyCalories(timeFrame)
+                .map(calories -> MessageBank.CALCULABLE_CALORIES_MESSAGE + calories + "cal.\n")
+                .map(result -> (isAllFoodCaloriesPresent()) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
+                .orElse(MessageBank.NO_CALCULABLE_CALORIES_MESSAGE);
     }
 }
