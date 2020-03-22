@@ -73,9 +73,15 @@ public class Parser {
     }
 
     public static String parseGender(String description) throws InvalidGenderException {
-        String gender = description.trim();
-        if (!(gender.equals("Male") || gender.equals("Female"))) {
+        String gender = description.trim().toLowerCase();
+        if (!(gender.equals("male") || gender.equals("female"))) {
             throw new InvalidGenderException();
+        }
+        if (gender.equals("male")) {
+            gender = "Male";
+        }
+        if (gender.equals("female")) {
+            gender = "Female";
         }
         return gender;
     }
