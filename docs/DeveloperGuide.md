@@ -79,7 +79,8 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 ## Glossary
 
-Mainstream OS
+*Mainstream OS*
+
 Windows, Linux, Unix, OS-X
 
 ## Instructions for Manual Testing
