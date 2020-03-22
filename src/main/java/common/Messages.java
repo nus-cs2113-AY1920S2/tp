@@ -1,6 +1,7 @@
 package common;
 
 import command.AssignmentCommand;
+import command.CalendarCommand;
 import command.DeleteCommand;
 import command.DoneCommand;
 import command.EventCommand;
@@ -97,4 +98,7 @@ public class Messages {
     public static final String INVALID_REPEAT_ERROR = "Please choose a valid index.";
     public static final String INVALID_EVENT_REPEAT_ERROR = "Please choose an event.";
     public static final String REPEAT_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Repeat Command";
+    public static final String CALENDAR_INCORRECT_FORMAT_ERROR = "Incorrect format for Calendar Command"
+            + System.lineSeparator() + CalendarCommand.COMMAND_USAGE;
+
 }

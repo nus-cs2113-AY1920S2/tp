@@ -25,6 +25,7 @@ public class HelpCommand extends Command {
                 + convertIndexToString() + ClearCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + RepeatCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + SearchCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + CalendarCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + ExitCommand.COMMAND_USAGE + System.lineSeparator();
     }
 

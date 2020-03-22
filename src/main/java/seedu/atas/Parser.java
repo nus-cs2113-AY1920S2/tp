@@ -13,8 +13,11 @@ import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
 import command.SearchCommand;
+import command.EditCommand;
+import command.CalendarCommand;
 import common.Messages;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -26,6 +29,7 @@ public class Parser {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy HHmm");
     public static final DateTimeFormatter PRINT_DATE_FORMAT = DateTimeFormatter.ofPattern("EEE dd MMM yyyy HH':'mm");
     public static final DateTimeFormatter PRINT_TIME_FORMAT = DateTimeFormatter.ofPattern("HH':'mm");
+    public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
 
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
@@ -49,11 +53,16 @@ public class Parser {
     public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
             "(?<search>[^/]+)"
                     + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<name>[^/]+)"
-    );
+                    + "\\s+n/\\s*(?<name>[^/]+)");
+
+    //regex for calendar command
+    public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
+            "(?<calendar>[^/]+)"
+                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
 
     /**
      * Returns a Command object depending on the command input by the user.
+     *
      * @param fullCommand line input by the user, which represents a command
      * @return Command depending on user input, with the appropriate arguments set
      */
@@ -81,6 +90,8 @@ public class Parser {
             return prepareEditCommand(fullCommand);
         case RepeatCommand.REPEAT_COMMAND_WORD:
             return prepareRepeatCommand(fullCommand);
+        case CalendarCommand.CALENDAR_COMMAND_WORD:
+            return prepareCalendarCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
             return prepareExitCommand(fullCommand);
         default:
@@ -90,9 +101,10 @@ public class Parser {
 
     /**
      * Returns a LocalDateTime object based on an input String with the format INPUT_DATE_FORMAT.
+     *
      * @param dateTimeString String representing a date with the format dd/MM/yy HHmm
      * @return LocalDateTime representing the date and time specified in dateTimeString
-     * @throws DateTimeParseException if dateTimeString does not follow INPUT_DATE_FORMAT
+     * @throws DateTimeParseException    if dateTimeString does not follow INPUT_DATE_FORMAT
      * @throws IndexOutOfBoundsException if dateTimeString does not follow INPUT_DATE_FORMAT
      */
     public static LocalDateTime parseDate(String dateTimeString)
@@ -200,7 +212,7 @@ public class Parser {
 
     private static Command prepareClearCommand(String fullCommand) {
         String[] tokens = fullCommand.trim().split("\\s+", 2);
-        if (tokens.length  == 1) {
+        if (tokens.length == 1) {
             return new ClearCommand(null);
         }
         assert tokens.length == 2;
@@ -246,6 +258,22 @@ public class Parser {
             return new IncorrectCommand(Messages.REPEAT_INSUFFICIENT_ARGS_ERROR);
         }
         return new RepeatCommand(eventIndex, numOfPeriod, typeOfPeriod);
+    }
+
+    private static Command prepareCalendarCommand(String fullCommand) {
+        final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);
+        if (!matcher.matches()) {
+            return new IncorrectCommand(Messages.CALENDAR_INCORRECT_FORMAT_ERROR);
+        }
+
+        LocalDate date;
+        try {
+            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_ONLY_FORMAT);
+        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+        }
+
+        return new CalendarCommand(date);
     }
 
     /**
