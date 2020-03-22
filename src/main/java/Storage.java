@@ -8,8 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Storage {
@@ -52,14 +50,14 @@ public class Storage {
         }
     }
 
-    public void updateMemberListToDisk(ArrayList<TeamMember> myScheduleList) {
+    public void updateMemberListToDisk(ArrayList<TeamMember> myTeamMemberList) {
         try {
             Files.createDirectory(Paths.get("data"));
         } catch (IOException ignored) { //ignored as the error would mean the directory exists, thus no action needed
         }
 
         //create separate text file for every member containing their schedules
-        for (TeamMember member : myScheduleList) {
+        for (TeamMember member : myTeamMemberList) {
             String memberPath = "data/" + member.getName() + "_schedule.txt";
             try {
                 Files.createFile(Paths.get(memberPath));
@@ -72,12 +70,12 @@ public class Storage {
                 for (int i = 0; i < 7; i++) {
                     for (int j = 0; j < 48; j++) {
                         try {
-                            fw.write((schedule[i][j] == null) ? schedule[i][j] : "null" + " ");
+                            fw.write(schedule[i][j] + " ");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        fw.write(System.lineSeparator());
                     }
+                    fw.write(System.lineSeparator());
                 }
                 fw.close();
             } catch (IOException e) {
@@ -109,26 +107,28 @@ public class Storage {
         ArrayList<TeamMember> list = new ArrayList<>();
 
         Path path = Paths.get("data");
-        try (DirectoryStream<Path> ds = Files.newDirectoryStream(path, "*_schedule.log")) {
-            Iterator<Path> iterator = ds.iterator();
-            while (iterator.hasNext()) {
-                Scanner reader = new Scanner((File) iterator);
-                TeamMember member = new TeamMember(iterator.toString().replaceFirst("_schedule\\.log",""));
-                String[][] myScheduleName = new String[7][48];
-                int i = 0;
-                int j = 0;
-                while (reader.hasNext()) {
-                    if (j >= 48) {
-                        i++;
-                        j = 0;
+
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
+            for (Path entry : stream) {
+                if (entry.toString().contains("_schedule.txt")) {
+                    String memberName = entry.toString().replaceAll("data\\\\|_schedule.txt","");
+                    TeamMember member = new TeamMember(memberName);
+                    String[][] myScheduleName = new String[7][48];
+                    int i = 0;
+                    int j = 0;
+                    Scanner reader = new Scanner(entry);
+                    while (reader.hasNext()) {
+                        if (j >= 48) {
+                            i++;
+                            j = 0;
+                        }
+                        myScheduleName[i][j] = reader.next();
+                        j++;
                     }
-                    String data = reader.next();
-                    myScheduleName[i][j] = (data == "null") ? null : data;
-                    j++;
+                    member.setMyScheduleName(myScheduleName);
+                    member.setMyScheduleFromScheduleName();
+                    list.add(member);
                 }
-                member.setMyScheduleName(myScheduleName);
-                list.add(member);
-                iterator.next();
             }
         } catch (IOException e) {
             e.printStackTrace();
