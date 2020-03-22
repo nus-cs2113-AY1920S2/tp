@@ -3,12 +3,14 @@ package seedu.atas;
 import command.Command;
 import command.CommandResult;
 import command.ExitCommand;
+import command.ListCommand;
 import common.Messages;
 import exceptions.AtasException;
 import tasks.Event;
 import tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Atas {
     private Ui ui;
@@ -37,6 +39,7 @@ public class Atas {
      */
     public void run() {
         ui.printWelcomeMessage();
+        showTodayTasksIfAny();
         runLoop();
     }
 
@@ -69,6 +72,21 @@ public class Atas {
             }
         }
     }
+
+    private void showTodayTasksIfAny() {
+        ArrayList<Task> todayTasks = taskList.getTasksByDays(0);
+        String todayTasksString = new ListCommand(null).showListTasks(taskList.getTaskArray(), todayTasks);
+
+        // edit result to show a message more suited for a welcome screen
+        if (todayTasks.size() == 0) {
+            todayTasksString = Messages.NO_TODAY_TASKS_MESSAGE;
+        } else {
+            todayTasksString = todayTasksString.substring(todayTasksString.indexOf(System.lineSeparator()));
+            todayTasksString = Messages.SHOW_TODAY_TASKS_MESSAGE + todayTasksString;
+        }
+        ui.showToUser(todayTasksString);
+    }
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
