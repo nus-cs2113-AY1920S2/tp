@@ -1,21 +1,21 @@
 package seedu.atas;
 
 import command.AssignmentCommand;
+import command.ClearCommand;
 import command.Command;
 import command.DeleteCommand;
 import command.DoneCommand;
+import command.EditCommand;
 import command.EventCommand;
+import command.ExitCommand;
+import command.HelpCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
-import command.HelpCommand;
-import command.ExitCommand;
-import command.ClearCommand;
+import command.RepeatCommand;
 import command.SearchCommand;
 import command.EditCommand;
 import command.CalendarCommand;
-
 import common.Messages;
-import exceptions.AtasException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -53,17 +53,16 @@ public class Parser {
     public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
             "(?<search>[^/]+)"
                     + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<name>[^/]+)"
-    );
+                    + "\\s+n/\\s*(?<name>[^/]+)");
 
     //regex for calendar command
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
             "(?<calendar>[^/]+)"
-                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})"
-    );
+                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
 
     /**
      * Returns a Command object depending on the command input by the user.
+     *
      * @param fullCommand line input by the user, which represents a command
      * @return Command depending on user input, with the appropriate arguments set
      */
@@ -89,6 +88,8 @@ public class Parser {
             return prepareSearchCommand(fullCommand);
         case EditCommand.EDIT_COMMAND_WORD:
             return prepareEditCommand(fullCommand);
+        case RepeatCommand.REPEAT_COMMAND_WORD:
+            return prepareRepeatCommand(fullCommand);
         case CalendarCommand.CALENDAR_COMMAND_WORD:
             return prepareCalendarCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
@@ -100,9 +101,10 @@ public class Parser {
 
     /**
      * Returns a LocalDateTime object based on an input String with the format INPUT_DATE_FORMAT.
+     *
      * @param dateTimeString String representing a date with the format dd/MM/yy HHmm
      * @return LocalDateTime representing the date and time specified in dateTimeString
-     * @throws DateTimeParseException if dateTimeString does not follow INPUT_DATE_FORMAT
+     * @throws DateTimeParseException    if dateTimeString does not follow INPUT_DATE_FORMAT
      * @throws IndexOutOfBoundsException if dateTimeString does not follow INPUT_DATE_FORMAT
      */
     public static LocalDateTime parseDate(String dateTimeString)
@@ -205,12 +207,12 @@ public class Parser {
             return new ListCommand(null);
         }
         assert tokens.length == 2;
-        return new ListCommand(tokens[1]);
+        return new ListCommand(tokens[1].trim());
     }
 
     private static Command prepareClearCommand(String fullCommand) {
         String[] tokens = fullCommand.trim().split("\\s+", 2);
-        if (tokens.length  == 1) {
+        if (tokens.length == 1) {
             return new ClearCommand(null);
         }
         assert tokens.length == 2;
@@ -240,6 +242,23 @@ public class Parser {
         return new EditCommand(editIndex);
     }
 
+    private static Command prepareRepeatCommand(String fullCommand) {
+        String[] tokens = fullCommand.split("\\s+");
+        assert tokens.length == 3;
+        int eventIndex;
+        int numOfPeriod;
+        String typeOfPeriod;
+        try {
+            eventIndex = Integer.parseInt(tokens[1].trim()) - 1;
+            numOfPeriod = Integer.parseInt(String.valueOf(tokens[2].trim().charAt(0)));
+            typeOfPeriod = String.valueOf(tokens[2].trim().charAt(1));
+        } catch (NumberFormatException e) {
+            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
+        } catch (IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.REPEAT_INSUFFICIENT_ARGS_ERROR);
+        }
+        return new RepeatCommand(eventIndex, numOfPeriod, typeOfPeriod);
+    }
 
     private static Command prepareCalendarCommand(String fullCommand) {
         final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);

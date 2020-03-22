@@ -2,7 +2,9 @@ package command;
 
 import common.Messages;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
@@ -13,6 +15,12 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test in alphanumeric order instead of random order to ensure that
+ * testing function "repeatingEvent_filledList_allTaskListMsg"
+ * is the last to run and will not affect the other hard coded test cases.
+ */
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class ListCommandTest {
 
     private static TaskList filledTasklist;
@@ -107,6 +115,24 @@ public class ListCommandTest {
             + nextWeekDateTimeStringForPrint2 + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "Event 2 Notes";
 
+    private static String expectedOutputFromFilledTasklistForRepeating = "Here are the relevant tasks:"
+            + System.lineSeparator()
+            + "  1. [A][/] Assignment 3 (by: Thu 13 Feb 2020 18:00 | mod: CS2109)"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "-"
+            + System.lineSeparator()
+            + "  2. [A][X] Quiz 1 (by: Fri 01 Jan 2021 00:00 | mod: CS2173)"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%"
+            + System.lineSeparator()
+            + "  3. [E][X] midterms (at: MPSH1A | Thu 13 Aug 2020 18:00 - 20:30)"
+            + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "6M") + "-"
+            + System.lineSeparator()
+            + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00 - 02:59)"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
+            + System.lineSeparator()
+            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint1 + " - "
+            + afterCurrButSameDayStringForPrint2 + ")"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "-";
+
     /**
      * Initialize hardcoded test cases for testing.
      */
@@ -172,12 +198,21 @@ public class ListCommandTest {
     @Test
     public void printList_filledWeeklyList_todayTasks() {
         assertEquals(expectedOutputFromListToday,
-                new ListCommand("today").execute(filledWeeklyTaskList,ui).feedbackToUser);
+                new ListCommand("today").execute(filledWeeklyTaskList, ui).feedbackToUser);
     }
 
     @Test
     public void printList_filledWeeklyList_weeklyTasks() {
         assertEquals(expectedOutputFromListWeek,
-                new ListCommand("week").execute(filledWeeklyTaskList,ui).feedbackToUser);
+                new ListCommand("week").execute(filledWeeklyTaskList, ui).feedbackToUser);
+    }
+
+    @Test
+    public void repeatingEvent_filledList_allTaskListMsg() {
+        RepeatCommand testRepeatCommand = new RepeatCommand(2, 6, "M");
+        testRepeatCommand.execute(filledTasklist, ui);
+        ((Event) filledTasklist.getTask(2)).updateDateAndTime();
+        assertEquals(expectedOutputFromFilledTasklistForRepeating,
+                new ListCommand("").execute(filledTasklist, ui).feedbackToUser);
     }
 }

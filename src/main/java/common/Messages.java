@@ -1,5 +1,12 @@
 package common;
 
+import command.AssignmentCommand;
+import command.CalendarCommand;
+import command.DeleteCommand;
+import command.DoneCommand;
+import command.EventCommand;
+import command.SearchCommand;
+
 /**
  * Container for all default messages printed to user.
  */
@@ -26,47 +33,12 @@ public class Messages {
     public static final String DIVIDER = "_______________________________________________________________________";
     public static final String NEWLINE_INDENT = "     ";
     public static final String COMMENTS_INDENT = "            notes: ";
+    public static final String REPEAT_EVENT_WITH_COMMENTS_INDENT = "      [%s]  notes: ";
     public static final String PROMPT_FOR_USER_INPUT = "> ";
 
     // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
     public static final String START_END_DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm - HHmm";
-    public static final String EVENT_FORMAT_HELP = "Add Event: "
-            + "event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]";
-    public static final String ASSIGNMENT_FORMAT_HELP = "Add Assignment: "
-            + "assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]";
-    public static final String DONE_FORMAT_HELP = "Mark Task as Done: done [TASK NUMBER]";
-    public static final String DELETE_FORMAT_HELP = "Delete a Task: delete [TASK NUMBER]";
-    public static final String LIST_FORMAT_HELP = "List All Tasks: list";
-    public static final String LIST_TODAY_FORMAT_HELP = "List Today's Tasks: list today";
-    public static final String LIST_WEEK_FORMAT_HELP = "List This Week's Tasks: list week";
-    public static final String LIST_UPCOMING_EVENT_FORMAT_HELP = "List Upcoming Events: "
-            + "list upcoming events";
-    public static final String LIST_INCOMPLETE_ASSIGN_FORMAT_HELP = "List Incomplete Assignments: "
-            + "list incomplete assignments";
-    public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear all";
-    public static final String CLEAR_DONE_FORMAT_HELP = "Clear all completed tasks: clear done";
-    public static final String SEARCH_FORMAT_HELP = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
-    public static final String CALENDAR_FORMAT_HELP = "Get a Calendar view: calendar d/[dd/MM/yy]";
-    public static final String EXIT_FORMAT_HELP = "Exit ATAS: exit";
-    public static final String HELP_FORMAT_MESSAGE =
-            "Following is the list of commands available:" + System.lineSeparator()
-                    + "1.  Help Format: help" + System.lineSeparator()
-                    + "2.  " + ASSIGNMENT_FORMAT_HELP + System.lineSeparator()
-                    + "3.  " + EVENT_FORMAT_HELP + System.lineSeparator()
-                    + "4.  " + LIST_TODAY_FORMAT_HELP + System.lineSeparator()
-                    + "5.  " + LIST_WEEK_FORMAT_HELP + System.lineSeparator()
-                    + "6.  " + LIST_FORMAT_HELP + System.lineSeparator()
-                    + "7.  " + LIST_INCOMPLETE_ASSIGN_FORMAT_HELP + System.lineSeparator()
-                    + "8.  " + LIST_UPCOMING_EVENT_FORMAT_HELP + System.lineSeparator()
-                    + "9.  " + DONE_FORMAT_HELP + System.lineSeparator()
-                    + "10. " + CLEAR_FORMAT_HELP + System.lineSeparator()
-                    + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
-                    + "12. " + DELETE_FORMAT_HELP + System.lineSeparator()
-                    + "13. " + SEARCH_FORMAT_HELP + System.lineSeparator()
-                    + "14. " + CALENDAR_FORMAT_HELP + System.lineSeparator()
-                    + "15. " + EXIT_FORMAT_HELP;
-
 
     // Command Print Messages
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
@@ -81,8 +53,11 @@ public class Messages {
     public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
     public static final String SEARCH_SUCCESS_MESSAGE = "Here are the search results:";
     public static final String EDIT_SUCCESS_MESSAGE = "Task edited successfully:" + System.lineSeparator()
-            + NEWLINE_INDENT + "%s";
-    public static final String EDIT_PROMPT = "Please edit your chosen task";
+            + NEWLINE_INDENT + "%s.";
+    public static final String ADD_REPEATING_SUCCESS_MESSAGE = "[%s] will repeat every %d %s%s.";
+    public static final String REMOVE_REPEATING_SUCCESS_MESSAGE = "[%s] will no longer repeat.";
+    public static final String EDIT_PROMPT = "Please edit your chosen task.";
+
     // Others
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
@@ -107,19 +82,23 @@ public class Messages {
     public static final String SAVE_FAILED_MESSAGE = "Oh no. Something went wrong while saving, please try again later";
 
     public static final String ASSIGN_INCORRECT_FORMAT_ERROR = "Incorrect format for Assignment Command"
-            + System.lineSeparator() + ASSIGNMENT_FORMAT_HELP;
+            + System.lineSeparator() + AssignmentCommand.COMMAND_USAGE;
     public static final String EVENT_INCORRECT_FORMAT_ERROR = "Incorrect format for Event Command"
-            + System.lineSeparator() + EVENT_FORMAT_HELP;
+            + System.lineSeparator() + EventCommand.COMMAND_USAGE;
     public static final String LIST_INCORRECT_FORMAT_ERROR = "Invalid argument for List Command";
     public static final String DONE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Done Command"
-            + System.lineSeparator() + DONE_FORMAT_HELP;
+            + System.lineSeparator() + DoneCommand.COMMAND_USAGE;
     public static final String DELETE_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Delete Command"
-            + System.lineSeparator() + DELETE_FORMAT_HELP;
+            + System.lineSeparator() + DeleteCommand.COMMAND_USAGE;
     public static final String CLEAR_INCORRECT_FORMAT_ERROR = "Invalid argument for Clear Command";
     public static final String EMPTY_SEARCH_RESULTS_ERROR = "There are no matching tasks for the search query";
     public static final String INVALID_SEARCH_FORMAT = "Invalid Argument for Search Command";
     public static final String SEARCH_INSUFFICIENT_ARGS = "Insufficient argument for Search Command"
-            + System.lineSeparator() + SEARCH_FORMAT_HELP;
+            + System.lineSeparator() + SearchCommand.COMMAND_USAGE;
+    public static final String INVALID_REPEAT_ERROR = "Please choose a valid index.";
+    public static final String INVALID_EVENT_REPEAT_ERROR = "Please choose an event.";
+    public static final String REPEAT_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Repeat Command";
     public static final String CALENDAR_INCORRECT_FORMAT_ERROR = "Incorrect format for Calendar Command"
-            + System.lineSeparator() + CALENDAR_FORMAT_HELP;
+            + System.lineSeparator() + CalendarCommand.COMMAND_USAGE;
+
 }

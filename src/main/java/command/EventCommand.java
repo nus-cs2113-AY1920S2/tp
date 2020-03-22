@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 
 public class EventCommand extends Command {
     public static final String EVENT_COMMAND_WORD = "event";
+    public static final String COMMAND_USAGE = "Add Event: "
+            + "event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]";
 
     protected String eventName;
     protected String eventLocation;

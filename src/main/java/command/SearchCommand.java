@@ -9,11 +9,13 @@ import java.util.ArrayList;
 
 public class SearchCommand extends Command {
     public static final String SEARCH_COMMAND_WORD = "search";
-    protected String taskType;
-    protected String searchParam;
+    public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
+
     protected static final String allTasks = "all";
     protected static final String eventTasks = "event";
     protected static final String assignmentTasks = "assignment";
+    protected String taskType;
+    protected String searchParam;
 
     public SearchCommand(String searchParam, String taskType) {
         this.searchParam = searchParam.toLowerCase();
@@ -98,15 +100,14 @@ public class SearchCommand extends Command {
         if (results.size() == 0) {
             return (Messages.EMPTY_SEARCH_RESULTS_ERROR);
         } else {
-            String resultsString = searchList(results);
-            return (String.format(resultsString));
+            return (searchList(results));
         }
     }
 
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         if (taskList.getListSize() == 0) {
-            return new CommandResult(String.format(Messages.EMPTY_TASKLIST_MESSAGE));
+            return new CommandResult(Messages.EMPTY_TASKLIST_MESSAGE);
         }
         switch (taskType) {
         case allTasks:
@@ -119,7 +120,7 @@ public class SearchCommand extends Command {
             ArrayList<Task> assignmentResults = getSearchQueryAssignments(taskList);
             return new CommandResult(resultsList(assignmentResults));
         default:
-            return new CommandResult(String.format(Messages.INVALID_SEARCH_FORMAT));
+            return new CommandResult(Messages.INVALID_SEARCH_FORMAT);
         }
     }
 }
