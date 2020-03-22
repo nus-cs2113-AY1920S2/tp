@@ -1,15 +1,16 @@
 package seedu.commands;
 
-import seedu.cards.CardList;
-import seedu.duke.Duke;
-import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
+/**
+ * Command class for the ScoreCommand
+ */
 public class ScoreCommand extends Command {
 
     public static final String COMMAND_WORD = "score";
 
-    public static final String MESSAGE_USAGE = "To view score history of a subject, type command: score s/[SUBJECT INDEX]";
+    public static final String MESSAGE_USAGE = "To view score history of a subject, "
+            + "type command: score s/[SUBJECT INDEX]";
 
     private int index;
 

@@ -41,7 +41,7 @@ public class CardList {
         }
 
         try {
-            cards.remove(index);
+            cards.remove(index - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The card item does not exist.");
         }

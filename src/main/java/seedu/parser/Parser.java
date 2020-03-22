@@ -1,7 +1,17 @@
 package seedu.parser;
 
 import seedu.cards.Card;
-import seedu.commands.*;
+import seedu.commands.Command;
+import seedu.commands.AddSubjectCommand;
+import seedu.commands.AddCardCommand;
+import seedu.commands.DeleteCardCommand;
+import seedu.commands.DeleteSubjectCommand;
+import seedu.commands.ListCardCommand;
+import seedu.commands.ListSubjectCommand;
+import seedu.commands.ScoreCommand;
+import seedu.commands.QuizCommand;
+import seedu.commands.HelpCommand;
+import seedu.commands.ExitCommand;
 import seedu.exception.EscException;
 
 /**
@@ -159,7 +169,12 @@ public class Parser {
         return new ScoreCommand(subjectIndex);
     }
 
-    private static int getSubjectIndex(String argument) throws EscException{
+    /**
+     * Returns the subject index from the user input.
+     * @return the subject index integer.
+     * @throws EscException if the subject index is absent or non-integer.
+     */
+    private static int getSubjectIndex(String argument) throws EscException {
         String argWithoutPrefixes = argument.split(QUESTION_ARG)[0].split(CARD_ARG)[0];
         String subjectIndexString = argWithoutPrefixes.replace(SUBJECT_ARG,"").trim();
 
@@ -174,7 +189,12 @@ public class Parser {
         }
     }
 
-    private static int getCardIndex(String argument) throws EscException{
+    /**
+     * Returns the card index from the user input.
+     * @return the card index integer.
+     * @throws EscException if the card index is absent or non-integer.
+     */
+    private static int getCardIndex(String argument) throws EscException {
         String argWithoutPrefixes = argument.split(CARD_ARG)[1];
         String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").trim();
 
@@ -189,13 +209,22 @@ public class Parser {
         }
     }
 
+    /**
+     * Ensure that the number of arguments in the user input is valid.
+     * @throws EscException if the user input contains the wrong number of inputs.
+     */
     private static void checkNumberOfArguments(String[] arguments, String errorMessage) throws EscException {
         if (arguments.length < 2) {
             throw new EscException(errorMessage);
         }
     }
 
-    private static void checkArgumentPrefixes(String argument, String errorMessage, String ...prefixes) throws EscException {
+    /**
+     * Checks that the user input has the required prefixes.
+     * @throws EscException if there are missing prefixes.
+     */
+    private static void checkArgumentPrefixes(String argument, String errorMessage, String...prefixes)
+            throws EscException {
         for (String p : prefixes) {
             if (!argument.contains(p)) {
                 throw new EscException(errorMessage);
@@ -203,11 +232,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the question and answer from the user input.
+     * @return String array containing the question and the answer.
+     * @throws EscException if the user input is missing the question or answer.
+     */
     private static String[] getQuestionAndAnswer(String argument, String errorMessage) throws EscException {
         String secondaryArgs = argument.split(QUESTION_ARG)[1];
         String [] cardArgs = secondaryArgs.split(ANSWER_ARG);
 
-        if (cardArgs.length < 2){
+        if (cardArgs.length < 2) {
             throw new EscException(errorMessage);
         }
 

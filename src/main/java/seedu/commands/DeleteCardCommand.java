@@ -5,6 +5,9 @@ import seedu.exception.EscException;
 import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
+/**
+ * Command Class for the DeleteCard command.
+ */
 public class DeleteCardCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "deletecard";
