@@ -67,7 +67,7 @@ public class Duke {
         } while (isNotBye(command));
     }
 
-    private boolean isNotBye(Command command) {
+    boolean isNotBye(Command command) {
         return !(command instanceof Bye);
     }
 

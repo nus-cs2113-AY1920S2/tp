@@ -1,6 +1,6 @@
 package seedu.event;
 
-import seedu.exception.DukeException;
+import seedu.ui.UI;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,6 +20,7 @@ public class DateTime {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             return localDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
         } catch (DateTimeParseException e) {
+            UI.display("Unknown DateTime format provided. DateTime is set to yyyy-MM-dd HHmm.");
             return "yyyy-MM-dd HHmm";
         }
     }
