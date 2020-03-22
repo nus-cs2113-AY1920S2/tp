@@ -13,6 +13,7 @@ import seedu.nuke.parser.Parser;
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
 
 /**
  * Junit test class to test ListAllTasksDeadlineCommand.
@@ -22,14 +23,14 @@ public class ListAllDeadlineTest {
     @Test
     public void testTasksCounting() {
         Nuke nuke;
-        Command command;
-        try {
-            nuke = new Nuke();
-            command = new ListAllTasksDeadlineCommand();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+        //try {
+        //    nuke = new Nuke();
+        //    command = new ListAllTasksDeadlineCommand();
+        //} catch (FileNotFoundException e) {
+        //    System.out.println(e.getMessage());
+        //    return;
+        //}
+        Command command = new ListAllTasksDeadlineCommand();
         CommandResult result = Executor.execute(command);
         if (result.getDirectoryLevel() == DirectoryLevel.TASK) {
             assertEquals(ModuleManager.countAllTasks(), result.getShownList().size());
@@ -42,16 +43,16 @@ public class ListAllDeadlineTest {
     @Test
     public void testEmptyTaskList() {
         Nuke nuke;
-        try {
-            nuke = new Nuke();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+        //try {
+        //    nuke = new Nuke();
+        //} catch (FileNotFoundException e) {
+        //    System.out.println(e.getMessage());
+        //    return;
+        //}
         Command command = new Parser().parseCommand(ListAllTasksDeadlineCommand.COMMAND_WORD);
         CommandResult result = Executor.execute(command);
         if (ModuleManager.countAllTasks() == 0) {
-            assertEquals(0, result.getShownList().size());
+            assertEquals(MESSAGE_NO_TASK_IN_LIST, result.getFeedbackToUser());
             //assertEquals(MESSAGE_NO_TASK_IN_LIST, new ListAllTasksDeadlineCommand().execute().getFeedbackToUser());
         }
     }

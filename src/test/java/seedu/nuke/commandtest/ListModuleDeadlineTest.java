@@ -21,13 +21,13 @@ public class ListModuleDeadlineTest {
      * constructor of this class.
      */
     public ListModuleDeadlineTest() {
-        try {
-            nuke = new Nuke();
-            command = new ListModuleTasksDeadlineCommand();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+        //try {
+        //        //    nuke = new Nuke();
+        //        //    command = new ListModuleTasksDeadlineCommand();
+        //        //} catch (FileNotFoundException e) {
+        //        //    System.out.println(e.getMessage());
+        //        //    return;
+        //        //}
     }
 
     @Test
