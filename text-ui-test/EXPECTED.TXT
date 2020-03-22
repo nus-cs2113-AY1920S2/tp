@@ -38,7 +38,8 @@ _______________________________________________________________________
 11. Clear all completed tasks: clear done
 12. Delete a Task: delete [TASK NUMBER]
 13. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
-13. Exit ATAS: exit
+14. Get a Calendar view: calendar d/[dd/MM/yy]
+15. Exit ATAS: exit
 _______________________________________________________________________
 > Oh no. Incorrect format for Assignment Command
 Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
