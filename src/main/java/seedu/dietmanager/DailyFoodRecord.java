@@ -207,8 +207,8 @@ public class DailyFoodRecord {
      */
     public String showDailyCalories(String timeFrame) {
         return getDailyCalories(timeFrame)
-                .map(calories -> "For " + timeFrame + " , " + MessageBank.TIME_CALORIES_MESSAGE
+                .map(calories -> "For " + timeFrame + ", " + MessageBank.TIME_CALORIES_MESSAGE
                         + String.format("%.2f", calories) + "cal.\n")
-                .orElse("For " + timeFrame + " , " + MessageBank.NO_TIME_CALORIES_MESSAGE);
+                .orElse("For " + timeFrame + ", " + MessageBank.NO_TIME_CALORIES_MESSAGE);
     }
 }

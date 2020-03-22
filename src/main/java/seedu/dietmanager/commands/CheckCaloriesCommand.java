@@ -56,11 +56,9 @@ public class CheckCaloriesCommand extends Command {
     public void saveResult(Profile profile) {
         DailyFoodRecord record = profile.getRecordOfDay(date);
         if (isValidCommand) {
-            this.result = String.format("These are your calories intake for %s:" , date) + System.lineSeparator()
-                    + record.showDailyCalories("breakfast") + record.showDailyCalories("lunch")
-                    + record.showDailyCalories("dinner") + record.showDailyCalories()
-                    + System.lineSeparator()
-                    + String.format("Calories requirement for %s activity level on %s: " , activityLevel, date)
+            this.result = String.format("Calories Intake and Requirement for %s:" , date) + System.lineSeparator()
+                    + record.showDailyCalories()
+                    + String.format("Calories requirement for %s activity level: " , activityLevel)
                     + String.format("%.2f", caloriesRequired) + "cal." + System.lineSeparator();
             if (record.getDailyCalories().isPresent()) {
                 double caloriesIntake = record.getDailyCalories().get();
