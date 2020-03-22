@@ -1,4 +1,4 @@
-package seedu.duke.parser;
+package seedu.duke.utils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,10 +9,6 @@ import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.MarkCommand;
-import seedu.duke.commands.UnmarkCommand;
-
-
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -3,7 +3,7 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
-import seedu.duke.parser.Parser;
+import seedu.duke.utils.Parser;
 import seedu.duke.ui.Ui;
 
 import java.io.File;
