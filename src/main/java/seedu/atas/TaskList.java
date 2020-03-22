@@ -4,11 +4,9 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -201,5 +199,22 @@ public class TaskList {
         }
     }
 
+    /**
+     * Getter for tasks that falls within the provided time period.
+     * @param startOfRange LocalDate representing start of time period
+     * @param endOfRange LocalDate representing end of time period
+     * @return ArrayList of tasks that falls withing time period
+     */
+    public ArrayList<Task> getTasksByRange(LocalDate startOfRange, LocalDate endOfRange) {
+        ArrayList<Task> taskArrayList = new ArrayList<>();
 
+        for (Task task : tasks) {
+            LocalDate taskDate = task.getDate();
+            assert taskArrayList.size() <= tasks.size();
+            if (startOfRange.compareTo(taskDate) <= 0 && endOfRange.compareTo(taskDate) >= 0) {
+                taskArrayList.add(task);
+            }
+        }
+        return taskArrayList;
+    }
 }

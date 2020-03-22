@@ -12,10 +12,12 @@ import command.ExitCommand;
 import command.ClearCommand;
 import command.SearchCommand;
 import command.EditCommand;
+import command.CalendarCommand;
 
 import common.Messages;
 import exceptions.AtasException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -27,6 +29,7 @@ public class Parser {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy HHmm");
     public static final DateTimeFormatter PRINT_DATE_FORMAT = DateTimeFormatter.ofPattern("EEE dd MMM yyyy HH':'mm");
     public static final DateTimeFormatter PRINT_TIME_FORMAT = DateTimeFormatter.ofPattern("HH':'mm");
+    public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
 
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
@@ -51,6 +54,12 @@ public class Parser {
             "(?<search>[^/]+)"
                     + "\\s+t/\\s*(?<taskType>[^/]+)"
                     + "\\s+n/\\s*(?<name>[^/]+)"
+    );
+
+    //regex for calendar command
+    public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
+            "(?<calendar>[^/]+)"
+                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})"
     );
 
     /**
@@ -80,6 +89,8 @@ public class Parser {
             return prepareSearchCommand(fullCommand);
         case EditCommand.EDIT_COMMAND_WORD:
             return prepareEditCommand(fullCommand);
+        case CalendarCommand.CALENDAR_COMMAND_WORD:
+            return prepareCalendarCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
             return prepareExitCommand(fullCommand);
         default:
@@ -227,6 +238,23 @@ public class Parser {
             return new IncorrectCommand(Messages.DONE_INSUFFICIENT_ARGS_ERROR);
         }
         return new EditCommand(editIndex);
+    }
+
+
+    private static Command prepareCalendarCommand(String fullCommand) {
+        final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);
+        if (!matcher.matches()) {
+            return new IncorrectCommand(Messages.CALENDAR_INCORRECT_FORMAT_ERROR);
+        }
+
+        LocalDate date;
+        try {
+            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_ONLY_FORMAT);
+        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+        }
+
+        return new CalendarCommand(date);
     }
 
     /**
