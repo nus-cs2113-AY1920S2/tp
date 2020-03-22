@@ -143,9 +143,11 @@ public class MeetingOrganizer {
         TextUI.introMsg();
         Scanner in = new Scanner(System.in);
         TextUI.menuMsg();
-        String userInput = in.nextLine();
-
-        while (!userInput.equals("exit")) {
+        while (in.hasNextLine()) {
+            String userInput = in.nextLine();
+            if (userInput.equals("exit")) {
+                break;
+            }
             String[] userInputWords = CliParser.splitWords(userInput);
             try {
                 botResponse(userInputWords, in);
@@ -161,7 +163,6 @@ public class MeetingOrganizer {
                 TextUI.menuMsg();
             } finally {
                 TextUI.menuMsg();
-                userInput = in.nextLine();
             }
         }
         TextUI.exitMsg();
