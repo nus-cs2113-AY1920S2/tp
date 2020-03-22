@@ -249,7 +249,7 @@ EDIT: Edits the specified item in the list.
 || Example 1: EDIT 1 i/apple p/3.00 q/4
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/3.00
-|| Example 3: EDIT 1 q/4
+|| Example 4: EDIT 1 q/4
 
 DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
@@ -328,7 +328,7 @@ EDIT: Edits the specified item in the list.
 || Example 1: EDIT 1 i/apple p/3.00 q/4
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/3.00
-|| Example 3: EDIT 1 q/4
+|| Example 4: EDIT 1 q/4
 
 DISPLAY: Lists all items in the list.
 || Parameters: DISPLAY
