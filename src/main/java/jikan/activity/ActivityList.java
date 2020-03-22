@@ -99,6 +99,11 @@ public class ActivityList {
         }
     }
 
+    public void updateName(int index, String newName) {
+        activities.get(index).setName(newName);
+        fieldChangeUpdateFile();
+    }
+
     public void delete(int index) {
         activities.remove(index);
         deleteUpdateFile(index);

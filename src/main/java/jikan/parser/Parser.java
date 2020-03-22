@@ -125,6 +125,20 @@ public class Parser {
                     logger.makeInfoLog("Continue command failed as there was no such activity saved.");
                 }
                 break;
+            case "edit":
+                try {
+                    parseEdit(activityList);
+                } catch (NoSuchActivityException e) {
+                    ui.printDivider("No activity with this name exists!");
+                    logger.makeInfoLog("Edit command failed as there was no such activity saved.");
+                } catch (ArrayIndexOutOfBoundsException | EmptyNameException e) {
+                    ui.printDivider("Activity name cannot be empty!");
+                    logger.makeInfoLog("Edit command failed as there was no existing activity name provided.");
+                } catch (StringIndexOutOfBoundsException e) {
+                    ui.printDivider("New activity name not provided!");
+                    logger.makeInfoLog("Edit command failed as there was no new activity name provided.");
+                }
+                break;
             default:
                 parseDefault();
                 break;
@@ -377,6 +391,28 @@ public class Parser {
         } else {
             throw new NoSuchActivityException();
         }
+    }
+
+    /**
+     * Edits the detail of an activity in the activityList.
+     * @param activityList the activity list containing the activity to edit.
+     */
+    public void parseEdit(ActivityList activityList) throws EmptyNameException, NoSuchActivityException {
+        int delimiter = tokenizedInputs[1].indexOf("/e");
+        activityName = tokenizedInputs[1].substring(0, delimiter).strip();
+        if (activityName.isEmpty()) {
+            throw new EmptyNameException();
+        }
+        int index = activityList.findActivity(activityName);
+        String newName = tokenizedInputs[1].substring(delimiter + 3);
+        if (index != -1) {
+            activityList.updateName(index,newName);
+            ui.printDivider("Activity named " + activityName + " has been updated to " + newName);
+        } else {
+            // activity is not found
+            throw new NoSuchActivityException();
+        }
+        logger.makeFineLog("Activity name has been updated!");
     }
 
     /** Method to parse user inputs that are not recognised. */
