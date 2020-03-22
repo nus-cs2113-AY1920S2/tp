@@ -42,9 +42,10 @@ public class TimetableParser {
     }
 
     /**
-     * Parses weblink into module information using hashMap as data structure.
+     * Parses website link into module information using hashMap as data structure.
      * Also stores module information collected to be used by LessonGenerator class.
-     * @param unparsedModules raw weblink with module information.
+     *
+     * @param unparsedModules Raw website link with module information.
      * @return  Returns Key-value pair. Key = "moduleCode"-Value = ArrayList of "LessonType:Class number"
      */
     private Map<String, ArrayList<String>> parseModules(String unparsedModules) {

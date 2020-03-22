@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Each module information is an ArrayList(size: 2. Because 2 semester) of ArrayList except member "weeks"
+ * Each module information is an ArrayList(size: 2. Because 2 semester) of ArrayList except member "weeks".
  * Semester 1                       : Semester 2
  * ArrayList of available classes   : ArrayList of available classes
  * <br>
