@@ -8,6 +8,15 @@ import tasks.Task;
 
 public class RepeatCommand extends Command {
     public static final String REPEAT_COMMAND_WORD = "repeat";
+    private static final String REPEAT_EVENT_COMMAND_USAGE = "Make event recur: repeat [EVENT INDEX] "
+            + "[NUM OF PERIOD] [TYPE OF PERIOD]";
+    private static final String NO_REPEAT_EVENT_COMMAND_USAGE = "Stop event recur: repeat [EVENT INDEX] "
+            + "0 D";
+    public static final String COMMAND_USAGE =
+            "Repeat commands that are available: (Available Periods are: D, W, M, Y)" + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + REPEAT_EVENT_COMMAND_USAGE + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + NO_REPEAT_EVENT_COMMAND_USAGE;
+
     private int eventIndex;
     private int numOfPeriod;
     private String typeOfPeriod;

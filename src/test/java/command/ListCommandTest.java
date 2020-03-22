@@ -131,7 +131,7 @@ public class ListCommandTest {
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%"
             + System.lineSeparator()
             + "  3. [E][X] midterms (at: MPSH1A | Thu 13 Aug 2020 18:00 - 20:30)"
-            + System.lineSeparator() + String.format(Messages.REPEATS_COMMENTS_INDENT, "6M") + "-"
+            + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "6M") + "-"
             + System.lineSeparator()
             + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00 - 02:59)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"

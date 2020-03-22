@@ -9,11 +9,13 @@ import java.util.ArrayList;
 
 public class SearchCommand extends Command {
     public static final String SEARCH_COMMAND_WORD = "search";
-    protected String taskType;
-    protected String searchParam;
+    public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
+
     protected static final String allTasks = "all";
     protected static final String eventTasks = "event";
     protected static final String assignmentTasks = "assignment";
+    protected String taskType;
+    protected String searchParam;
 
     public SearchCommand(String searchParam, String taskType) {
         this.searchParam = searchParam.toLowerCase();

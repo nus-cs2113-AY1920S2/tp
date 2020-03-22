@@ -1,11 +1,32 @@
 package command;
 
-import common.Messages;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 
 public class HelpCommand extends Command {
     public static final String HELP_COMMAND_WORD = "help";
+    public static final String COMMAND_USAGE = "Help Format: help";
+    private static int counter = 1;
+
+    private String convertIndexToString() {
+        String indexToString = String.format("%3d. ", counter);
+        counter += 1;
+        return indexToString;
+    }
+
+    private String getAllCommandUsage() {
+        return "Following is the list of commands available:" + System.lineSeparator()
+                + convertIndexToString() + COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + AssignmentCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + EventCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + ListCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + DoneCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + DeleteCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + ClearCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + RepeatCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + SearchCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + ExitCommand.COMMAND_USAGE + System.lineSeparator();
+    }
 
     /**
      * Prints to user the help message.
@@ -15,6 +36,6 @@ public class HelpCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
-        return new CommandResult(Messages.HELP_FORMAT_MESSAGE);
+        return new CommandResult(getAllCommandUsage());
     }
 }

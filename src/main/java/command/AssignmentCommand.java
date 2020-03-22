@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 
 public class AssignmentCommand extends Command {
     public static final String ASSIGNMENT_COMMAND_WORD = "assignment";
+    public static final String COMMAND_USAGE = "Add Assignment: "
+            + "assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]";
 
     protected String assignmentName;
     protected String moduleName;

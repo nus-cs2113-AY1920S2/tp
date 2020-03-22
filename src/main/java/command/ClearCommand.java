@@ -7,8 +7,14 @@ import tasks.Task;
 
 import java.util.ArrayList;
 
-public class ClearCommand  extends Command {
+public class ClearCommand extends Command {
     public static final String CLEAR_COMMAND_WORD = "clear";
+    private static final String CLEAR_ALL_COMMAND_USAGE = "Clear All Tasks: clear all";
+    private static final String CLEAR_DONE_COMMAND_USAGE = "Clear All Completed Tasks: clear done";
+    public static final String COMMAND_USAGE = "Clear commands that are available:" + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + CLEAR_ALL_COMMAND_USAGE + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + CLEAR_DONE_COMMAND_USAGE;
+
     private static final String ALL_CLEAR_COMMAND = "";
     protected final String clearAllParam  = "all";
     protected final String clearDoneParam = "done";

@@ -183,7 +183,7 @@ public class Event extends Task {
     private String repeatToStringAndComment() {
         if (isRepeat) {
             String repeatString = String.valueOf(numOfPeriod) + typeOfPeriod;
-            return String.format(Messages.REPEATS_COMMENTS_INDENT, repeatString);
+            return String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, repeatString);
         } else {
             return Messages.COMMENTS_INDENT;
         }
