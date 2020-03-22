@@ -43,11 +43,15 @@ public class Seminar extends Event {
 
     @Override
     public String toString() {
-        if (getDatetime().equals("yyyy-MM-dd HHmm") && getVenue().equals("")) {
-            return "Seminar: " + getName();
-        } else if (getVenue().equals("")) {
-            return "Seminar: " + getName() + ", time: " + getDatetime();
+        String output = "Seminar: " + getName();
+
+        if (!getDatetime().equals("yyyy-MM-dd HHmm")) {
+            output += (", time: " + getDatetime());
         }
-        return "Seminar: " + getName() + ", time: " + getDatetime() + ", venue: " + getVenue();
+        if (!getVenue().equals("")) {
+            output += (", venue: " + getVenue());
+        }
+
+        return output;
     }
 }

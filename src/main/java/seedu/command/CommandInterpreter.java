@@ -75,6 +75,12 @@ public class CommandInterpreter {
             PerformanceCommandInterpreter pci = new PerformanceCommandInterpreter(eventList);
             command = pci.decideCommand(commandDescription);
             break;
+        case "student":
+            StudentCommandInterpreter ssci = new StudentCommandInterpreter(eventList);
+            command = ssci.decideCommand(commandDescription);
+            break;
+        case "help":
+            return new Help();
         default:
             assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
@@ -82,7 +88,6 @@ public class CommandInterpreter {
                     : "accepted command category is not further interpreted!";
             throw new DukeException("Unknown command category is provided");
         }
-
         if (command == null) {
             throw new DukeException("Duke is null.");
         }

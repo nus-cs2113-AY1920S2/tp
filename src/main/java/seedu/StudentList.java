@@ -2,9 +2,10 @@ package seedu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class StudentList {
-    public static ArrayList<String> studentList;
+    public ArrayList<String> studentList;
     public String listName;
     public String studentName;
 
@@ -21,11 +22,22 @@ public class StudentList {
         return studentList;
     }
 
+    public String getListName() {
+        return listName;
+    }
+
+
     public void sortAscending() {
         Collections.sort(studentList);
     }
 
     public void showList() {
-        System.out.println(studentList);
+        System.out.println(listName);
+        int index = 1;
+        for (String name : studentList) {
+            System.out.print(index + ". ");
+            System.out.println(name);
+            index++;
+        }
     }
 }
