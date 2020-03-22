@@ -57,7 +57,7 @@ public class CalendarCommand extends Command {
     }
 
     /**
-     * Executes the specific command.
+     * Executes the Calendar command.
      *
      * @param taskList TaskList object that handles adding Task
      * @param ui       Ui object that interacts with user
@@ -69,6 +69,12 @@ public class CalendarCommand extends Command {
         return new CommandResult(calendarView);
     }
 
+    /**
+     * Build and return the calendar view in String format.
+     * @param dateTime date provided to base calendar view on
+     * @param taskList TaskList object that handles tasks operations
+     * @return String object that contains the calendar view
+     */
     private String buildMonthCalendar(LocalDate dateTime, TaskList taskList) {
         Calendar calendar = Calendar.getInstance();
         calibrateCalendar(dateTime, calendar);
@@ -93,6 +99,11 @@ public class CalendarCommand extends Command {
         return calendarView.toString();
     }
 
+    /**
+     * Sets the calendar to the given date.
+     * @param dateTime user specified date to base calendar on
+     * @param calendar Calendar object that calendar view is based of on
+     */
     private void calibrateCalendar(LocalDate dateTime, Calendar calendar) {
         int givenDay = dateTime.getDayOfMonth();
         int givenMonth = dateTime.getMonthValue();
@@ -106,6 +117,12 @@ public class CalendarCommand extends Command {
         calendar.set(Calendar.DAY_OF_MONTH, 1);
     }
 
+    /**
+     * Gets an ArrayList of Tasks that falls within the given date.
+     * @param dateTime dateTime object given by user
+     * @param taskList TaskList object that handles tasks operations
+     * @return ArrayList of tasks that falls within given date
+     */
     private ArrayList<Task> getTasksByYearMonth(LocalDate dateTime, TaskList taskList) {
         YearMonth yearMonth = YearMonth.from(dateTime);
         LocalDate endOfMonth = yearMonth.atEndOfMonth();
@@ -113,6 +130,13 @@ public class CalendarCommand extends Command {
         return taskList.getTasksByRange(startOfMonth, endOfMonth);
     }
 
+    /**
+     * Formats and appends the calendar body to calendarView.
+     * @param startingDayOfWeek the starting day of the first week of given month
+     * @param daysInMonth maximum number of days in the given month
+     * @param monthlyTaskList ArrayList of tasks that falls within the given month
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
     private void addCalendarBody(int startingDayOfWeek, int daysInMonth,
                                  ArrayList<Task> monthlyTaskList, StringBuilder calendarView) {
         for (int calendarRow = 0; calendarRow <= MAX_CALENDAR_ROWS; calendarRow++) {
@@ -161,6 +185,12 @@ public class CalendarCommand extends Command {
         calendarView.append(System.lineSeparator());
     }
 
+    /**
+     * Appends and formats Tasks to the calendarView.
+     * @param monthlyTaskList ArrayList of tasks that falls within the given month
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     * @param task task that is being appended to calendarView
+     */
     private void addTaskToCalendar(ArrayList<Task> monthlyTaskList, StringBuilder calendarView, Task task) {
         final int taskListSize = monthlyTaskList.size();
         String taskDetails = task.getTime().format(Parser.PRINT_TIME_FORMAT) + task.getName();
@@ -178,19 +208,36 @@ public class CalendarCommand extends Command {
         calendarView.append(PAD.repeat(CONTENT_WIDTH - taskDetails.length())).append(BORDER);
     }
 
+    /**
+     * Appends a starting border to the Calendar.
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
     private void addCalendarStartBorder(StringBuilder calendarView) {
         calendarView.append(STARTING_BORDER);
     }
 
+    /**
+     * Appends a horizontal border for the calendarView.
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
     private void addCalendarBorder(StringBuilder calendarView) {
         calendarView.append(BORDER.repeat(MAX_CALENDAR_BOX_WIDTH * DAYS_IN_WEEK + 1))
                 .append(System.lineSeparator());
     }
 
+    /**
+     * Appends an empty calendar slot to the calendarView.
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
     private void addEmptyCalendarBody(StringBuilder calendarView) {
         calendarView.append(PAD.repeat(EMPTY_BOX_PADDING)).append(BORDER);
     }
 
+    /**
+     * Appends and formats the date to add to calendarView.
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     * @param currentDayRepresented day of month to append to calendarView
+     */
     private void addCalendarDate(StringBuilder calendarView, int currentDayRepresented) {
         calendarView.append(PAD.repeat(DATE_PADDING_WIDTH)).append(ANSI_CYAN)
                 .append(currentDayRepresented).append(ANSI_RESET);
@@ -202,6 +249,10 @@ public class CalendarCommand extends Command {
         }
     }
 
+    /**
+     * Appends a legend for the calendar.
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
     private void addCalendarLegend(StringBuilder calendarView) {
         String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         addCalendarBorder(calendarView);
@@ -214,6 +265,11 @@ public class CalendarCommand extends Command {
         addCalendarNewLine(calendarView);
     }
 
+    /**
+     * Appends a title to the calendar.
+     * @param calendar Calendar object that calendar view is based of on
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
     private void addCalendarTitle(Calendar calendar, StringBuilder calendarView) {
         calendarView.append(ANSI_RED + "Assignments are represented in red" + ANSI_RESET)
                 .append(System.lineSeparator());
