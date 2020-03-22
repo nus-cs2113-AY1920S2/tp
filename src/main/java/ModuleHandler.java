@@ -4,14 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Each member is an array(fixed size 2) of ArrayList except member "weeks"
+ * Each module information is an ArrayList(size: 2. Because 2 semester) of ArrayList except member "weeks"
  * Semester 1                       : Semester 2
  * ArrayList of available classes   : ArrayList of available classes
- * "weeks" is an array(fixed size 2) of a 2d ArrayList:
- * Semester 1                       :
- * For each available lesson: we have an array of weeks the lesson would have.
- * Example: week[0].get(0) = [1, 3, 4, 5]:
- * Semester 1, class index 0 has lessons in week 1, 3, 4, 5.
+ * <br>
+ * Indexes of the ArrayList matches. For eg, classNumber.get(semester).get(0) belongs to lessonType.get(semester).get(0)
+ * held on day.get(semester).get(0) at startTime.get(semester).get(0) and endTime.get(semester).get(0)
+ * <br>
+ * "weeks" is an ArrayList(size: 2. Because 2 semester) of a 2d ArrayList:
+ * <br>
+ * Eg: week[0].get(2) = [1, 3, 4, 5] corresponds to:
+ * Semester 1, class 2 has lessons in week 1, 3, 4, 5.
  */
 public class ModuleHandler {
     JsonArray semesterData;
@@ -41,7 +44,7 @@ public class ModuleHandler {
         }
     }
 
-    public static void main(String[] args) throws InvalidUrlException {
+    public static void main(String[] args) {
         ModuleHandler myModuleHandler = new ModuleHandler("CG1111");
         myModuleHandler.generateModule();
 
@@ -52,6 +55,11 @@ public class ModuleHandler {
         System.out.println(myModuleHandler.getWeeks());
     }
 
+    // TODO split code into smaller methods.
+
+    /**
+     * Generate an ArrayList of module information- classNumber, lessonType, startTime, endTime, day, weeks.
+     */
     public void generateModule() {
         ModuleApiParser myModuleApiParser = new ModuleApiParser(moduleName);
         try {
@@ -71,7 +79,7 @@ public class ModuleHandler {
             JsonArray timetable = (JsonArray) semesterDataObj.get("timetable");
             for (int k = 0; k < timetable.size(); k++) { // For each classes
                 JsonObject lesson = timetable.get(k).getAsJsonObject();
-                // function replaceAll trims the quotes left behind by json parsing via regex
+                // replaceAll() trims the quotes left behind by json parsing via regex
                 this.classNumber.get(semester).add(lesson.get("classNo").toString().replaceAll("^.|.$", ""));
                 this.lessonType.get(semester).add(lesson.get("lessonType").toString().replaceAll("^.|.$", ""));
                 this.startTime.get(semester).add(lesson.get("startTime").toString().replaceAll("^.|.$", ""));
