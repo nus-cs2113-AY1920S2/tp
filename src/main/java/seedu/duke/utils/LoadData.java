@@ -10,8 +10,8 @@ import java.io.BufferedReader;
 import java.lang.reflect.Type;
 
 public class LoadData {
-    private static final String SHOPPING_LIST_FILENAME = "src/main/java/seedu/duke/shoppinglist.json";
-    private static final String BUDGET_FILENAME = "src/main/java/seedu/duke/budget.json";
+    private static final String SHOPPING_LIST_FILENAME = "shoppinglist.json";
+    private static final String BUDGET_FILENAME = "budget.json";
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     /**

@@ -6,8 +6,8 @@ import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 
 public class WriteData {
-    private static final String SHOPPING_LIST_FILENAME = "src/main/java/seedu/duke/shoppinglist.json";
-    private static final String BUDGET_FILENAME = "src/main/java/seedu/duke/budget.json";
+    private static final String SHOPPING_LIST_FILENAME = "shoppinglist.json";
+    private static final String BUDGET_FILENAME = "budget.json";
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public void writeShoppingList(ShoppingList shoppingList) {
