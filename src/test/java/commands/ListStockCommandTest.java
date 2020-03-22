@@ -67,7 +67,7 @@ class ListStockCommandTest {
     }
     
     /**
-     * Utility functions ===========================================================================
+     * Utility functions ===========================================================================.
      */  
     private String createListIngredientOutputCopy() {
         String outputMessage = "";
@@ -108,15 +108,15 @@ class ListStockCommandTest {
         Collections.sort(tempList, 
                 new Comparator<Entry<String, Pair<Integer, Double>>>() {
             
-            @Override
-            public int compare(Entry<String, Pair<Integer, Double>> firstEntry, 
-                    Entry<String, Pair<Integer, Double>> secondEntry) {
-                
-                int firstEntryQuantity = firstEntry.getValue().first();
-                int secondEntryQuantity = secondEntry.getValue().first();
-                return secondEntryQuantity - firstEntryQuantity;
-            }
-        });      
+                @Override
+                public int compare(Entry<String, Pair<Integer, Double>> firstEntry, 
+                        Entry<String, Pair<Integer, Double>> secondEntry) {
+                    
+                    int firstEntryQuantity = firstEntry.getValue().first();
+                    int secondEntryQuantity = secondEntry.getValue().first();
+                    return secondEntryQuantity - firstEntryQuantity;
+                }
+            });      
         
         int ingredientCounter = 1;
         
