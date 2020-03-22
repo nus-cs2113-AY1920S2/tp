@@ -27,8 +27,8 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
      */
     public Command decideCommand(String commandDescription) throws DukeException {
         String commandType = getFirstWord(commandDescription);
-        String commandParameters = getSubsequentWords(commandDescription);
-        performances = getPerformances();
+        eventName = ui.getEventName(); // to know under which event the user want to edit the performance
+        performances = getPerformances(eventName); //performance list to be edited
         switch (commandType) {
         case "add":
             return new AddPerformance(performances, eventName);
@@ -41,8 +41,14 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
         }
     }
 
-    private PerformanceList getPerformances() throws DukeException {
-        eventName = ui.getEventName();
+
+    /**
+     * This get the performance list under the event input by user.
+     * @return The PerformanceList under specific event.
+     * @throws DukeException Throws DukeException when the event is
+     *                       not found in the EventList.
+     */
+    private PerformanceList getPerformances(String eventName) throws DukeException {
         return eventList.getEvent(eventName).getPerformanceList();
     }
 }
