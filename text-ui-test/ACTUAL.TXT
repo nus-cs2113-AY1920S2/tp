@@ -1,0 +1,13 @@
+Hello from
+
+ ______       ____           ______
+|   __  \    /    \      /     ___|
+|  |__| |   /  /\  \     |   /
+|   ____/  /   _    \    |   |
+|  |      /  /    \  \   |   \____
+|__|     /__/      \__\  \________|
+
+What is your name?
+Hello James Gosling. Welcome to your personal Professor Assistant Console.
+Unknown command category is provided
+Bye, see you again!

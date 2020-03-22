@@ -131,4 +131,8 @@ public class Event {
 
         return output;
     }
+
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
+    }
 }

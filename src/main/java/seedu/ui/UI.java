@@ -153,6 +153,7 @@ public class UI {
         printSplitOfThree();
     }
 
+
     public static void printEventList(ArrayList<Event> list) {
         System.out.println("Here are all the events in your list.");
         for (int i = 0; i < list.size(); i++) {
@@ -208,24 +209,6 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
-
-    /**
-     * The message showed to the user after successful deletion of a attendance.
-     *
-     * @param attendance The Attendance deleted.
-     */
-    public static void deleteAttendanceMessage(Attendance attendance, boolean hasDeleted) {
-        if (hasDeleted) {
-            String studentName = attendance.getStudent();
-            String eventName = attendance.getEvent();
-            System.out.printf("Attendance of %s has been taken successfully"
-                    + " under event %s.\n", studentName, eventName);
-        } else {
-            System.out.printf("There is no %s's attendance record in the list\n",
-                    attendance.getStudent());
-        }
-    }
-
     /**
      * The message showed to the user after successful deletion of a performance.
      *
@@ -278,6 +261,17 @@ public class UI {
     public String getEventName() {
         System.out.println("Please key in the name of event that "
                 + "you wish to make change to its student's performance.");
+        return in.nextLine();
+    }
+
+    public String getEventNameForAttendance() {
+        System.out.println("Please key in the name of event.");
+        return in.nextLine();
+    }
+
+    public String getAttendancePerimeter() {
+        System.out.println("Please key in student name and result in the following format:");
+        System.out.println("n/Student_Name p/Is_Present");
         return in.nextLine();
     }
 
