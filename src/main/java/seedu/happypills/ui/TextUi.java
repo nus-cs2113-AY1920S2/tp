@@ -2,6 +2,9 @@ package seedu.happypills.ui;
 
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
+
+import java.util.Map;
 
 public class TextUi {
     public static final String DIVIDER = "    =====================================================";
@@ -11,10 +14,13 @@ public class TextUi {
      * @param patients A patient list with all existing patients
      * @return a message to be displayed to user
      */
-    public static String getList(PatientList patients) {
+    public static String getList(PatientMap patients) {
         String message = "";
-        for (Patient patient : patients) {
-            message += "    " + patient.getName() + " | " + patient.getNric() + "\n";
+        for (Map.Entry patient : patients.entrySet()) {
+            String nric = (String)patient.getKey();
+            Patient p = (Patient)patient.getValue();
+            String name = p.getName();
+            message += "    " + name + " | " + nric + "\n";
         }
         message += DIVIDER;
         return message;
@@ -84,10 +90,9 @@ public class TextUi {
      * format an add patient success message for user verification.
      * Includes a specified string, patient details and a divider.
      * @param patient patient object added to patientList
-     * @param patientNum index of the patient object in the patientList
      * @return a string message to be displayed to the user for successful addCommand executed
      */
-    public static String getPatient(Patient patient, int patientNum) {
+    public static String getPatient(Patient patient) {
         String message;
         message = "    Got it! I've added this patient:\n" + patient + DIVIDER;
         return message;

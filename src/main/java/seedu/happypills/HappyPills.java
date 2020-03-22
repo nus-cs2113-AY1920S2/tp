@@ -2,6 +2,7 @@ package seedu.happypills;
 
 import seedu.happypills.commands.Command;
 import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.parser.Parser;
 import seedu.happypills.storage.Storage;
@@ -22,6 +23,7 @@ import java.util.Scanner;
 public class HappyPills {
     private TextUi ui;
     private PatientList patients;
+    private PatientMap tests;
     private static final Logger logger = Logger.getLogger(HappyPills.class.getName());
     private static final String DATA_FILEPATH = "data/data.txt";
 
@@ -37,6 +39,7 @@ public class HappyPills {
         } catch (FileNotFoundException e) {
             logger.info("No patient data file was found.");
             patients = new PatientList();
+            tests = new PatientMap();
         }
     }
 
@@ -74,7 +77,7 @@ public class HappyPills {
             System.out.println(TextUi.DIVIDER);
             try {
                 Command c = Parser.parse(fullCommand);
-                String message = c.execute(patients);
+                String message = c.execute(tests);
                 if (!message.isEmpty()) {
                     System.out.println(message);
                 }

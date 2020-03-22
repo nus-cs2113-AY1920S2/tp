@@ -17,15 +17,6 @@ public class Patient {
     protected String allergies = null;
     protected String remarks = null;
 
-
-    /**
-     * Constructor for Task Class.
-     * It creates a new task with the description provided by the user.
-     * It also sets isDone to false as it is a newly created task.
-     *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
-     */
     /**
      * Constructor for Task Class.
      * It creates a new task with the description provided by the user.
@@ -50,12 +41,6 @@ public class Patient {
         this.remarks = remarks;
     }
 
-    /**
-
-     *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
-     */
     /**
      * Constructor for Task Class.
      * It creates a new task with the description provided by the user.

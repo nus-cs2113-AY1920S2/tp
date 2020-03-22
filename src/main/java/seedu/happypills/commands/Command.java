@@ -1,6 +1,7 @@
 package seedu.happypills.commands;
 
 import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 
 /**
@@ -29,7 +30,7 @@ public abstract class Command {
      * @return null
      * @throws HappyPillsException If issues are found during execution of command.
      */
-    public String execute(PatientList patients) throws HappyPillsException {
+    public String execute(PatientMap patients) throws HappyPillsException {
         return null;
     }
 
