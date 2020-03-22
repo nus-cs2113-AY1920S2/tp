@@ -29,6 +29,11 @@ public class MeetingOrganizer {
         }
     }
 
+    public static void main(String[] args) throws InvalidUrlException {
+        new MeetingOrganizer().run();
+        //new MeetingOrganizer().generateIndividualLesson("");
+
+    }
 
     void botResponse(String userInput) throws MoException, DateTimeParseException, NumberFormatException {
         Scanner in = new Scanner(System.in);
@@ -99,21 +104,19 @@ public class MeetingOrganizer {
         }
     }
 
-
     private void setMembersSchedule(Scanner in) {
         TextUI.membersMsg();
+
         //TODO handle exception if user doesn't input integer or input too many members.
         Integer membersN = Integer.parseInt(in.nextLine());
-
         for (int i = 0; i < membersN; ++i) {
-            TeamMember member = new TeamMember(String.valueOf(i)); //TODO change to member's name.
             String addBlocksSuccessOrNot = "";
+            TeamMember member = new TeamMember(String.valueOf(i)); //TODO change to member's name.
             do {
                 System.out.println(addBlocksSuccessOrNot);
                 TextUI.enterScheduleMsg(String.valueOf(i + 1));
-                String input = in.nextLine(); // eg. LessonA 1 19:00 2 12:30
+                String input = in.nextLine();
                 String[] scheduleDetails = input.split(" ", 5);
-
                 String scheduleName = scheduleDetails[0];
                 Integer startDay = Integer.parseInt(scheduleDetails[1]);
                 String startTime = scheduleDetails[2];
@@ -127,6 +130,19 @@ public class MeetingOrganizer {
         myMasterSchedule = myScheduleHandler.getMasterSchedule();
         TextUI.printTimetable(myMasterSchedule);
         myScheduleHandler.printFreeTimings();
+    }
+
+    public void generateIndividualLesson(String webLink) throws InvalidUrlException {
+        LessonsGenerator myLessonGenerator = new LessonsGenerator(webLink);
+        myLessonGenerator.generate();
+        ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
+
+        for (int k = 0; k < myLessonDetails.size(); k++) {
+            for (int j = 0; j < myLessonDetails.get(k).length; j++) {
+                System.out.print(myLessonDetails.get(k)[j] + " ");
+            }
+            System.out.print("\n");
+        }
     }
 
     /**
@@ -159,10 +175,6 @@ public class MeetingOrganizer {
         }
         storage.updateMemberListToDisk(myScheduleList);
         TextUI.exitMsg();
-    }
-  
-    public static void main(String[] args) {
-        new MeetingOrganizer().run();
     }
 
 }
