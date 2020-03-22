@@ -35,4 +35,18 @@ public class SemModulesList extends ModuleList {
         return false;
     }
 
+    /**
+     * To retrieve a module from the modules in that semester from the Id or the Name of the module.
+     * Assumes that the user knows that the module already exists in the list of modules.
+     * @param moduleIdentifier Id or Name of module.
+     * @return Module that corresponds to the modules identifier inputted.
+     */
+    public Module getModule(String moduleIdentifier) {
+        for (Module module : this) {
+            if (module.getId().equals(moduleIdentifier) || module.getName().equals(moduleIdentifier)) {
+                return module;
+            }
+        }
+        return null;
+    }
 }

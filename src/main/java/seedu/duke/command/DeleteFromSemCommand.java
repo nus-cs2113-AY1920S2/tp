@@ -4,6 +4,7 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.ui.Ui;
+import seedu.duke.module.Module;
 
 public class DeleteFromSemCommand extends DeleteCommand {
 
@@ -28,7 +29,15 @@ public class DeleteFromSemCommand extends DeleteCommand {
         if (!isModuleInSem) {
             Ui.showError(String.format("Module %s not found in Semester %s", moduleIdentifier, semester));
         } else {
-            // need to actually delete teh module!!!
+            Module module;
+            for (SemModulesList semModulesList : selectedModulesList) {
+                if (semester.equals(semModulesList.getSem())) {
+                    module = semModulesList.getModule(moduleIdentifier);
+                    semModulesList.remove(module);
+                    break;
+                }
+            }
+
             Ui.showDeleteFromSemMessage(String.format("Module %s has been deleted from semester %s",
                     moduleIdentifier, semester));
         }

@@ -16,6 +16,7 @@ view /dm
 view /cc
 find cS
 delete id/IS4241 s/4
+view /mp
 delete n/Singapore Employment Law
 delete id/CS1010
 view
