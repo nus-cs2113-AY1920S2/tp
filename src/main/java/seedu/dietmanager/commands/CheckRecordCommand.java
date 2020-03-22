@@ -38,18 +38,19 @@ public class CheckRecordCommand extends Command {
         switch (mealType) {
         case "breakfast":
             this.result = String.format("Your breakfast for %s:",date) + System.lineSeparator()
-                    + record.showBreakfast();
+                    + record.showBreakfast() + record.showDailyCalories(mealType);
             break;
         case "lunch":
-            this.result = String.format("Your lunch for %s:",date) + System.lineSeparator() + record.showLunch();
+            this.result = String.format("Your lunch for %s:",date) + System.lineSeparator()
+                    + record.showLunch() + record.showDailyCalories(mealType);
             break;
         case "dinner":
-            this.result = String.format("Your dinner for %s:",date) + System.lineSeparator() + record.showDinner();
+            this.result = String.format("Your dinner for %s:",date) + System.lineSeparator()
+                    + record.showDinner() + record.showDailyCalories(mealType);
             break;
         default:
             this.result = MessageBank.MEAL_TYPE_ERROR;
             break;
         }
-        this.result = this.result + ".";
     }
 }

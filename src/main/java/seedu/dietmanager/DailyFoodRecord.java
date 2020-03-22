@@ -170,7 +170,7 @@ public class DailyFoodRecord {
      * Check if the DailyFoodRecord has any Food with missing calories data.
      * @return False if there exist food without calories, true otherwise.
      */
-    public boolean isAllFoodCaloriesPresent() {
+    public boolean isCaloriesPresent() {
         ArrayList<Food> allDailyFood = getDailyFood();
         return allDailyFood.stream().filter(food -> !food.hasCaloriesData())
                 .map(food -> false)
@@ -182,7 +182,7 @@ public class DailyFoodRecord {
      * Check if the DailyFoodRecord has any Food in a specific time frame of a day with missing calories data.
      * @return False if there exist food without calories, true otherwise.
      */
-    public boolean isAllFoodCaloriesPresent(String timeFrame) {
+    public boolean isCaloriesPresent(String timeFrame) {
         ArrayList<Food> allDailyFood = getDailyFood(timeFrame);
         return allDailyFood.stream().filter(food -> !food.hasCaloriesData())
                 .map(food -> false)
@@ -196,9 +196,9 @@ public class DailyFoodRecord {
      */
     public String showDailyCalories() {
         return getDailyCalories()
-                .map(calories -> MessageBank.CALCULABLE_CALORIES_MESSAGE + calories + "cal.\n")
-                .map(result -> (isAllFoodCaloriesPresent()) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
-                .orElse(MessageBank.NO_CALCULABLE_CALORIES_MESSAGE);
+                .map(calories -> MessageBank.CALORIES_MESSAGE + calories + "cal.\n")
+                .map(result -> (isCaloriesPresent()) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
+                .orElse(MessageBank.NO_CALORIES_MESSAGE);
     }
 
     /**
@@ -207,8 +207,8 @@ public class DailyFoodRecord {
      */
     public String showDailyCalories(String timeFrame) {
         return getDailyCalories(timeFrame)
-                .map(calories -> MessageBank.CALCULABLE_CALORIES_MESSAGE + calories + "cal.\n")
-                .map(result -> (isAllFoodCaloriesPresent()) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
-                .orElse(MessageBank.NO_CALCULABLE_CALORIES_MESSAGE);
+                .map(calories -> "In " + timeFrame + " , " + MessageBank.TIME_CALORIES_MESSAGE + calories + "cal.\n")
+                .map(result -> isCaloriesPresent(timeFrame) ? result : (result + MessageBank.MISSING_CALORIES_MESSAGE))
+                .orElse("In " + timeFrame + " , " + MessageBank.NO_TIME_CALORIES_MESSAGE);
     }
 }
