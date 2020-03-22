@@ -1,5 +1,7 @@
 package seedu.dietmanager;
 
+import seedu.dietmanager.ui.MessageBank;
+
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -29,7 +31,7 @@ public class FoodNutritionInfo {
         return foodFound;
     }
 
-    public boolean isInFoodDatabase(String foodName) {
+    public boolean isInDatabase(String foodName) {
         boolean isFoodFound = false;
         for (Food food : foods) {
             if (food.getFoodName().equals(foodName)) {
@@ -40,7 +42,7 @@ public class FoodNutritionInfo {
     }
 
     public void showFoodDatabase() {
-        System.out.println("These are the foods stored in our database.");
+        System.out.println(MessageBank.FOOD_DATABASE_MESSAGE);
         for (Food food : foods) {
             System.out.println(food);
         }
