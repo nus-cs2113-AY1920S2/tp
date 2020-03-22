@@ -55,7 +55,6 @@ public class Parser {
 
             switch (instruction) {
             case "bye":
-                //ui.exitFromApp();
                 parseBye(activityList, scanner);
                 break;
             case "start":
