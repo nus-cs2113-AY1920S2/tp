@@ -120,11 +120,15 @@ public class Event {
 
     @Override
     public String toString() {
-        if (getDatetime().equals("yyyy-MM-dd HHmm") && getVenue().equals("")) {
-            return "Event: " + getName();
-        } else if (getVenue().equals("")) {
-            return "Event: " + getName() + ", time: " + getDatetime();
+        String output = "Event: " + getName();
+
+        if (!getDatetime().equals("yyyy-MM-dd HHmm")) {
+            output += (", time: " + getDatetime());
         }
-        return "Event: " + getName() + ", time: " + getDatetime() + ", venue: " + getVenue();
+        if (!getVenue().equals("")) {
+            output += (", venue: " + getVenue());
+        }
+
+        return output;
     }
 }
