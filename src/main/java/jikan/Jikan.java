@@ -1,6 +1,7 @@
 package jikan;
 
 import jikan.activity.ActivityList;
+import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
 import jikan.ui.Ui;
@@ -48,7 +49,7 @@ public class Jikan {
     /**
      * Main entry-point for the Jikan application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidTimeFrameException {
         ui.printGreeting();
         Scanner in = new Scanner(System.in);
         storage = new Storage(DATA_FILE_PATH);

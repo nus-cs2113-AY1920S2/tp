@@ -1,8 +1,16 @@
-start studying
-end studying
-start exercising
-abort exercising
-start
+start activity one /t tag tag1 tag2
 end
+start activity two /t tag2
+start activity 3
+end
+continue activity one
 abort
+start activity two
+y
+end
+start activity three /t tag tag1
+end
+start four /t tag
+end
 bye
+
