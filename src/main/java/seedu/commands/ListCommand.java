@@ -1,22 +1,19 @@
 package seedu.commands;
 
 import seedu.cards.CardList;
-import seedu.duke.Duke;
+import seedu.exception.EscException;
+import seedu.subjects.SubjectList;
 
 /**
  * Command class for the List command.
  */
 public class ListCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
-
-    public static final String MESSAGE_USAGE = "To list cards, type command: list";
-
     /**
-     * Lists the cards currently stored in the application.
+     * Executes the command.
      */
     @Override
-    public void execute(CardList cards) {
-        CardList.listCards(cards.getCards());
+    public void execute(SubjectList subjectList) throws EscException {
+        assert false : "This method is to be implemented by child ListCommand classes";
     }
 }

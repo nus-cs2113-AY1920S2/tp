@@ -1,6 +1,5 @@
 package seedu.cards;
 
-import seedu.duke.Storage;
 import seedu.exception.EscException;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class CardList {
         // assuming that our question index starts from 1 and not 0.
         Card card;
         try {
-            card = cards.get(index - 1);
+            card = cards.get(index);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The card item does not exist.");
         }
@@ -69,9 +68,8 @@ public class CardList {
 
     /**
      *  Lists all the cards in the list.
-     *   @param cards A list of card to be displayed.
      */
-    public static void listCards(ArrayList<Card> cards) {
+    public void listCards() {
         if (cards.size() == 0) {
             System.out.println("You haven't added anything yet.");
         } else {

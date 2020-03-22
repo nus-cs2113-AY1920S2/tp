@@ -61,8 +61,8 @@ public class SubjectListTest {
     void getSubject_SuccessfullyExecuted() throws EscException {
         subjects.addSubject(subject1);
         subjects.addSubject(subject2);
-        assertEquals(subjects.getSubject(1), subject1);
-        assertEquals(subjects.getSubject(2), subject2);
+        assertEquals(subjects.getSubject(0), subject1);
+        assertEquals(subjects.getSubject(1), subject2);
     }
 
     @Test

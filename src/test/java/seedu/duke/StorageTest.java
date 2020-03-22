@@ -93,7 +93,7 @@ class StorageTest {
         assertEquals(loadCards.size(),cardList.getCards().size());
 
         for (int i = 0; i < loadCards.size(); i++) {
-            Card expectedCard = cardList.getCard(i + 1);
+            Card expectedCard = cardList.getCard(i);
             Card actualCard = loadCards.get(i);
             assertEquals(expectedCard.getQuestion(),actualCard.getQuestion());
             assertEquals(expectedCard.getAnswer(),actualCard.getAnswer());

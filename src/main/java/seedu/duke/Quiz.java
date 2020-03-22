@@ -3,7 +3,6 @@ package seedu.duke;
 import seedu.cards.Card;
 import seedu.cards.CardList;
 import seedu.exception.EscException;
-import seedu.duke.UI;
 
 import java.util.Random;
 
@@ -32,7 +31,7 @@ public class Quiz {
         Card retrievedCard;
         try {
             int randomInt = generateRandomInt(size);
-            retrievedCard = cardlist.getCard(randomInt + 1);
+            retrievedCard = cardlist.getCard(randomInt);
         } catch (EscException e) {
             throw e;
         }
