@@ -24,7 +24,7 @@ public class FoodNutritionInfo {
     public Optional<Food> findFood(String foodName) {
         Optional<Food> foodFound = Optional.empty();
         for (Food food : foods) {
-            if (food.getFoodName().equals(foodName)) {
+            if (food.getFoodName().toLowerCase().equals(foodName.toLowerCase())) {
                 foodFound = Optional.of(food);
             }
         }
