@@ -6,6 +6,7 @@
     + [3.1. Add:](#add) `add`
     + [3.2. Delete:](#delete) `delete`
     + [3.3. List:](#list) `list`
+    + [3.4. Search:](#search) `search`
 * [4. Command Summary](#command-summary)
 
 <a name="introduction"></a>
@@ -71,11 +72,18 @@ Delete menu items, ingredients and reservations.
 <a name="list"></a>
 
 ### List
-List items in the menu, ingredients and reservations.
+List items in the menu, stock and reservations.
 
 * List menu : `list dish`
-* List ingredients : `list stock`
+* List stock : `list stock`
 * List reservation : `list reservation`
+
+<a name="search"></a>
+
+### Search
+Search items in the menu, stock and reservations.
+
+* Search stock : `search stock; KEYWORD`
 
 <a name="command-summary"></a>
 
