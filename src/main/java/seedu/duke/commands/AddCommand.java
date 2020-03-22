@@ -41,12 +41,14 @@ public class AddCommand extends Command {
             assert add.getDescription() != null : "(Add Command): Item must not be null.";
             LOGGER.log(Level.INFO, "(Add command)  Added item: " + add);
             feedbackToUser = String.format(SUCCESS_ACK,add);
+            //@@author kokjoon97
             assert myBudget != null;
             double remainder = myBudget.getRemainingBudget(items.getTotalCost());
             if (remainder < 0) {
                 LOGGER.log(Level.INFO,"(Add command) User exceeded budget by: " + (-1) * remainder);
                 feedbackToUser += String.format(EXCEED_WARNING,(-1) * remainder);
             }
+            //@@author
         } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             feedbackToUser = String.format(FAILURE_ACK);
