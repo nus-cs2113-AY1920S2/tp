@@ -7,9 +7,11 @@ import seedu.nuke.util.DateTimeFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static org.fusesource.jansi.Ansi.ansi;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.nuke.ui.TextUi.SYSTEM_COLOR_ALERT;
 
 class DateTimeTest {
 
@@ -78,18 +80,21 @@ class DateTimeTest {
     @Test
     void testToString() {
         DateTime today = new DateTime(LocalDate.now(), LocalTime.now());
-        assertEquals("today " + today.getTime() + " [OVER!!]", today.toShow());
+        assertEquals("today " + today.getTime()
+                + ansi().bold().fg(SYSTEM_COLOR_ALERT).a(" [OVER!!]").reset(), today.toShow());
 
         DateTime tomorrow = new DateTime(LocalDate.now().plusDays(1), LocalTime.now());
         assertEquals("tomorrow " + tomorrow.getTime(), tomorrow.toShow());
 
         DateTime yesterday = new DateTime(LocalDate.now().minusDays(1), LocalTime.now());
-        assertEquals(yesterday.getDate() + " " + yesterday.getTime() + " [OVER!!]", yesterday.toShow());
+        assertEquals(yesterday.getDate() + " " + yesterday.getTime()
+                + ansi().bold().fg(SYSTEM_COLOR_ALERT).a(" [OVER!!]").reset(), yesterday.toShow());
 
         DateTime weekAfter = new DateTime(LocalDate.now().plusWeeks(1), LocalTime.now());
         assertEquals(weekAfter.getDate() + " " + weekAfter.getTime(), weekAfter.toShow());
 
         DateTime weekBefore = new DateTime(LocalDate.now().minusWeeks(1), LocalTime.now());
-        assertEquals(weekBefore.getDate() + " " + weekBefore.getTime() + " [OVER!!]", weekBefore.toShow());
+        assertEquals(weekBefore.getDate() + " " + weekBefore.getTime()
+                + ansi().bold().fg(SYSTEM_COLOR_ALERT).a(" [OVER!!]").reset(), weekBefore.toShow());
     }
 }

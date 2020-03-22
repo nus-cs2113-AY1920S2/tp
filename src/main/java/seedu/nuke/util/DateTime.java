@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import static org.fusesource.jansi.Ansi.ansi;
+import static seedu.nuke.ui.TextUi.SYSTEM_COLOR_ALERT;
+
 
 /**
  * <h3>Date Time</h3>
@@ -167,7 +170,7 @@ public class DateTime {
      */
     public String toShow() {
         String toShow = dateToString() + " " + timeToString();
-        return (isDue()) ? toShow + " [OVER!!]" : toShow;
+        return (isDue()) ? toShow + ansi().bold().fg(SYSTEM_COLOR_ALERT).a(" [OVER!!]").reset() : toShow;
     }
 
 
