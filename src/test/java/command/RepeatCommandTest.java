@@ -19,6 +19,9 @@ public class RepeatCommandTest {
     private static TaskList testTaskList;
     private static Ui testUi;
 
+    /**
+     *  Initializing tasklisk, ui and event to be added and tested for all test cases.
+     */
     @BeforeEach
     public void setup() {
         testTaskList = new TaskList();
@@ -101,7 +104,8 @@ public class RepeatCommandTest {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "Y");
         testRepeatCommand.execute(testTaskList, testUi);
         assertEquals(testEvent.getIsRepeat(), true);
-        testEvent.setNoRepeat();
+        RepeatCommand testNoRepeatCommand = new RepeatCommand(0, 0, "Y");
+        testNoRepeatCommand.execute(testTaskList, testUi);
         assertEquals(testEvent.getIsRepeat(), false);
     }
 }

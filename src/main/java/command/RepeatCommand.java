@@ -8,12 +8,17 @@ import tasks.Task;
 
 public class RepeatCommand extends Command {
     public static final String REPEAT_COMMAND_WORD = "repeat";
-
     private int eventIndex;
     private int numOfPeriod;
     private String typeOfPeriod;
 
-    public RepeatCommand (int eventIndex, int numOfPeriod, String typeOfPeriod) {
+    /**
+     * Construct a RepeatCommand class to initialize eventIndex, numOfPeriod and typeOfPeriod.
+     * @param eventIndex index of the event that is being changed
+     * @param numOfPeriod number of period before event repeats
+     * @param typeOfPeriod type of period which event repeats - could be daily, weekly, monthly or yearly
+     */
+    public RepeatCommand(int eventIndex, int numOfPeriod, String typeOfPeriod) {
         this.eventIndex = eventIndex;
         this.numOfPeriod = numOfPeriod;
         this.typeOfPeriod = typeOfPeriod;

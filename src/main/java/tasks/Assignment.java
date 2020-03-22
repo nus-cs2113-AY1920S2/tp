@@ -60,6 +60,12 @@ public class Assignment extends Task {
     }
 
     @Override
+    public boolean equals(Object addedTask) {
+        return super.equals(addedTask)
+                && this.getModule().equals(((Assignment) addedTask).getModule());
+    }
+
+    @Override
     public String encodeTask() {
         StringJoiner sj = new StringJoiner(STORAGE_DELIMITER);
         sj.add(ASSIGNMENT_ICON);

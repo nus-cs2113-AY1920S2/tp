@@ -99,12 +99,20 @@ public class Event extends Task {
         return isRepeat;
     }
 
+    /**
+     * Set event as repeating event.
+     * @param numOfPeriod number of periods before event repeats
+     * @param typeOfPeriod type of period which event repeats - could be daily, weekly, monthly or yearly
+     */
     public void setRepeat(int numOfPeriod, String typeOfPeriod) {
         this.isRepeat = true;
         this.numOfPeriod = numOfPeriod;
         this.typeOfPeriod = typeOfPeriod;
     }
 
+    /**
+     * Set event to not repeating anymore.
+     */
     public void setNoRepeat() {
         this.isRepeat = false;
         this.numOfPeriod = 0;
