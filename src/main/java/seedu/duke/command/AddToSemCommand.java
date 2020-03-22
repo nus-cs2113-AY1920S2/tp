@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.module.NewModule;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.SelectedModulesList;
@@ -54,7 +53,7 @@ public class AddToSemCommand extends AddCommand {
 
     private boolean checkModuleExist(SelectedModulesList moduleList) {
         for (SemModulesList sem: moduleList) {
-            if (sem.isInList(selectedModule.getName(), sem)) {
+            if (sem.isModuleNameInList(selectedModule.getName())) {
                 return true;
             }
         }

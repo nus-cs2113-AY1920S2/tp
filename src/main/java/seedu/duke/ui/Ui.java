@@ -33,8 +33,12 @@ public class Ui {
 
     private static final String FIND_MESSAGE = "Okay, this is the list of related modules:";
 
-    private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String DELETE_FROM_SEM_MESSAGE
+            = "Okay, this module has been deleted from the corresponding semester";
+    private static final String DELETE_FROM_AVAILABLE_MESSAGE
+            = "Okay, this module has been deleted from the list of available modules";
 
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
     private static final String REQUIRED_INPUT_USER_NAME = "What is your name? Please enter it over here:";
 
@@ -106,8 +110,16 @@ public class Ui {
         showToUser(FIND_MESSAGE, viewList,  LINE_SEPARATOR);
     }
 
+    public static void showDeleteFromSemMessage(String output) {
+        showToUser(DELETE_FROM_SEM_MESSAGE, output, LINE_SEPARATOR);
+    }
+
+    public static void showDeleteFromAvailableMessage(String output) {
+        showToUser(DELETE_FROM_AVAILABLE_MESSAGE, output, LINE_SEPARATOR);
+    }
+
     public static void showError(String errorMessage) {
-        showToUser(errorMessage);
+        showToUser(errorMessage, LINE_SEPARATOR);
     }
 
     public static void showInputUserMatricYearRequest() {

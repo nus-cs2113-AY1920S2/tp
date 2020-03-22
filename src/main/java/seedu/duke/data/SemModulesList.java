@@ -16,11 +16,19 @@ public class SemModulesList extends ModuleList {
     /**
      * Checks if the moduleName is in the semModulesList.
      * @param moduleName : name of the module to check in the ModulesList.
-     * @param semModulesList : ModulesList to check if the moduleName is in.
      */
-    public boolean isInList(String moduleName, SemModulesList semModulesList) {
-        for (Module module: semModulesList) {
+    public boolean isModuleNameInList(String moduleName) {
+        for (Module module: this) {
             if (module.getName().equals(moduleName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isModuleIdInList(String moduleId) {
+        for (Module module: this) {
+            if (module.getId().equals(moduleId)) {
                 return true;
             }
         }

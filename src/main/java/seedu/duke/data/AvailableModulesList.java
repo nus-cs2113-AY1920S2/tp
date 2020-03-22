@@ -17,8 +17,6 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(new NewModule("CS2113", "Software Engineering & Object-Oriented Programming",
                 "CS2040"));
         availableModulesList.add(new NewModule("CS2105", "Introduction to Computer Networks", "CS2040"));
-        //availableModulesList.add(new NewModule("ES1000", "Foundation Academic English"));
-        //availableModulesList.add(new NewModule("ES1103", "English for Academic Purposes", "ES1000"));
         availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals"));
         availableModulesList.add(new NewModule("CS2102", "Database Systems", "CS2030", "CS1231"));
         availableModulesList.add(new NewModule("GEH1001", "Globalisation and New Media"));
@@ -31,7 +29,7 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(new NewModule("GET1003", "Home"));
         availableModulesList.add(new NewModule("GES1000", "Singapore Employment Law"));
         availableModulesList.add(new NewModule("GES1002", "Global EC Dimensions of S'pore"));
-        availableModulesList.add((new NewModule("GES1003", "Changing Landscapes of Singapore")));
+        availableModulesList.add(new NewModule("GES1003", "Changing Landscapes of Singapore"));
 
 
 
@@ -44,5 +42,38 @@ public class AvailableModulesList extends ModuleList {
     public boolean add(Module module) {
         availableModulesList.add(module);
         return super.add(module);
+    }
+
+    public boolean isModuleIdInList(String id) {
+        for (Module module : availableModulesList) {
+            if (module.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isModuleNameInList(String name) {
+        for (Module module : availableModulesList) {
+            if (module.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * To retrieve a module from the list of available modules from the Id or the Name of the module.
+     * Assumes that the user knows that the module already exists in the list of modules.
+     * @param moduleIdentifier Id or Name of module.
+     * @return Module that corresponds to the modules identifier inputted.
+     */
+    public Module getModule(String moduleIdentifier) {
+        for (Module module : availableModulesList) {
+            if (moduleIdentifier.equals(module.getId()) || moduleIdentifier.equals(module.getName())) {
+                return module;
+            }
+        }
+        return null;
     }
 }
