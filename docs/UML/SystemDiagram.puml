@@ -1,0 +1,72 @@
+@startuml
+!include sysstyle.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor ARROW
+skinparam linetype ortho
+
+Class Command COMMAND
+Class PatientCommand COMMAND
+Class MedicalCommand COMMAND
+Class AppointmentCommand COMMAND
+Class CommandResult COMMAND
+Class Parser PARSER
+Class Main MAIN
+Class PatientList PATIENT
+Class Patient PATIENT
+Class Name PATIENT
+Class NRIC PATIENT
+Class DOB PATIENT
+Class Phone PATIENT
+Class BloodType PATIENT
+Class Storage STORAGE
+Class TextUi TEXTUI
+Class AppointmentList APPOINTMENT
+Class Appointment APPOINTMENT
+Class Time APPOINTMENT
+Class ApptDate APPOINTMENT
+Class Reason APPOINTMENT
+Class MedicalList MEDICAL
+Class Medical MEDICAL
+Class Symptoms MEDICAL
+Class Prescription MEDICAL
+Class VisitDate MEDICAL
+Class Allergies MEDICAL
+
+PatientCommand --> Command
+MedicalCommand --> Command
+AppointmentCommand --> Command
+
+Parser ..> Command
+
+Main ..> CommandResult
+Main ..> Parser
+Main --> Storage
+Main --> TextUi
+
+Command ..> PatientList
+Command ..> CommandResult
+
+AppointmentCommand ..> AppointmentList
+AppointmentList o--> Appointment
+Patient --> Appointment
+Appointment *--> Time
+Appointment *--> ApptDate
+Appointment *--> Reason
+
+MedicalCommand ..> MedicalList
+MedicalList o--> Medical
+Patient --> Medical
+Medical *--> VisitDate
+Medical *--> Symptoms
+Medical *--> Prescription
+Medical *--> Allergies
+
+
+Main --> PatientList
+PatientList o--> Patient
+Patient *--> Name
+Patient *--> NRIC
+Patient *--> Phone
+Patient *--> DOB
+Patient *--> BloodType
+@enduml

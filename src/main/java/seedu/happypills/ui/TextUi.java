@@ -108,6 +108,35 @@ public class TextUi {
     }
 
     /**
+     * Displays confirmation message for deleting patients.
+     *
+     * @param patient The patient to be deleted.
+     */
+    public static void printDeleteConfirmationAgain(Patient patient) {
+        System.out.println("    Please try again."
+                + "    Are you sure you want to delete this patient:\n      "
+                + patient.getName()
+                + " || "
+                + patient.getNric()
+                + "\n                                                   (Y/N)?\n"
+                + DIVIDER);
+    }
+
+    /**
+     * Displays message that patient is not deleted.
+     *
+     * @return display message.
+     */
+    public static String printNotDeleted() {
+        return DIVIDER + "\n    Patient is not deleted.\n";
+    }
+
+    public static String printIncorrectCommand(String command) {
+        return "    The command \"" + command + "\" does not exist. Please try again.\n"
+                + DIVIDER;
+    }
+
+    /**
      * Display updated patient's records.
      *
      * @param patient The patient whose records were updated.
@@ -254,5 +283,30 @@ public class TextUi {
      */
     public static String prependDivider(String s) {
         return DIVIDER + "\n" + s;
+    }
+
+    /**
+     * Display message that a patient already exists in the program.
+     *
+     * @param nric NRIC of existing patient.
+     * @return display message.
+     */
+    public static String patientExists(String nric) {
+        return "    Patient " + nric + " already exists in the program.";
+    }
+
+    public static String patientNotExist(String nric) {
+        return "The patient you are looking for cannot be found";
+    }
+
+    /**
+     * Display message that patient is successfully deleted.
+     *
+     * @param patient Patient to be deleted.
+     * @return display message.
+     */
+    public static String deletePatient(Patient patient) {
+        return "    Patient " + patient.getName() + " || " + patient.getNric()
+            + " has been deleted successfully.\n";
     }
 }

@@ -105,10 +105,11 @@ public class AddCommand extends Command {
             }
         } else {
             if (isInList(patients)) {
-                System.out.println("    Patient already exists in the program.");
+                message = TextUi.patientExists(nric);
+            } else {
+                patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
+                message = TextUi.getPatient(patients.get(patientNum), patientNum);
             }
-            patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
-            message = TextUi.getPatient(patients.get(patientNum), patientNum);
         }
         logger.log(logLevel, "end of addCommand");
         return message;
