@@ -15,11 +15,11 @@ import static seedu.nuke.ui.TextUi.SYSTEM_COLOR_ALERT;
 
 class DateTimeTest {
 
+    DateTime dateTime = new DateTime(DateTimeFormat.stringToDate("08082020"), DateTimeFormat.stringToTime("4:38PM"));
+
     DateTimeTest() throws DateTimeFormat.InvalidTimeException, DateTimeFormat.InvalidDateException {
 
     }
-
-    DateTime dateTime = new DateTime(DateTimeFormat.stringToDate("08082020"), DateTimeFormat.stringToTime("4:38PM"));
 
     @Test
     void getDate() {
@@ -81,20 +81,20 @@ class DateTimeTest {
     void testToString() {
         DateTime today = new DateTime(LocalDate.now(), LocalTime.now());
         assertEquals("today " + today.getTime()
-                + ansi().bold().fg(SYSTEM_COLOR_ALERT).a(" [OVER!!]").reset(), today.toShow());
+                + " [OVER!!]", today.toShow());
 
         DateTime tomorrow = new DateTime(LocalDate.now().plusDays(1), LocalTime.now());
         assertEquals("tomorrow " + tomorrow.getTime(), tomorrow.toShow());
 
         DateTime yesterday = new DateTime(LocalDate.now().minusDays(1), LocalTime.now());
         assertEquals(yesterday.getDate() + " " + yesterday.getTime()
-                + ansi().bold().fg(SYSTEM_COLOR_ALERT).a(" [OVER!!]").reset(), yesterday.toShow());
+                + " [OVER!!]", yesterday.toShow());
 
         DateTime weekAfter = new DateTime(LocalDate.now().plusWeeks(1), LocalTime.now());
         assertEquals(weekAfter.getDate() + " " + weekAfter.getTime(), weekAfter.toShow());
 
         DateTime weekBefore = new DateTime(LocalDate.now().minusWeeks(1), LocalTime.now());
         assertEquals(weekBefore.getDate() + " " + weekBefore.getTime()
-                + ansi().bold().fg(SYSTEM_COLOR_ALERT).a(" [OVER!!]").reset(), weekBefore.toShow());
+                + " [OVER!!]", weekBefore.toShow());
     }
 }
