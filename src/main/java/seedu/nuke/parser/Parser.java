@@ -50,13 +50,13 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    private final Pattern BASIC_COMMAND_FORMAT =
+    private static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
-    private final String WHITESPACES = "\\s+";
-    private final String PARAMETER_SPLITTER = " ";
-    private final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
-    private final int COMMAND_WORD_INDEX = 0;
-    private final int PARAMETER_WORD_INDEX = 1;
+    private static final String WHITESPACES = "\\s+";
+    private static final String PARAMETER_SPLITTER = " ";
+    private static final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
+    private static final int COMMAND_WORD_INDEX = 0;
+    private static final int PARAMETER_WORD_INDEX = 1;
 
     public static final String MODULE_CODE_PREFIX = "-m";
     public static final String CATEGORY_NAME_PREFIX = "-c";

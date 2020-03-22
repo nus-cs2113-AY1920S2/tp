@@ -270,7 +270,7 @@ public class ListCreator {
      *  The fitted text
      */
     private static String fitText(String text, int segmentLength) {
-        final String ELLIPSES = "...";
-        return (text.length() > segmentLength) ? (text.substring(0, segmentLength - 3) + ELLIPSES) : text;
+        String ellipses = "...";
+        return (text.length() > segmentLength) ? (text.substring(0, segmentLength - 3) + ellipses) : text;
     }
 }
