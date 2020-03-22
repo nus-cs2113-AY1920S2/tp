@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//@@JLoh579
 public class Storage {
+    /*
     private String fileName;
     boolean fileExists = true;
     Command command;
@@ -98,6 +100,9 @@ public class Storage {
         fw.write(json);
         fw.flush();
         fw.close();
-    }
 
+
+    }
+*/
 }
+//@@
