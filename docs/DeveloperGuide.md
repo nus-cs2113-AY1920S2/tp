@@ -85,6 +85,50 @@ omitted in the sequence diagram to emphasise on the other classes:
   simply executes those commands as black boxes, without worrying about their internal details
 
 
+### 2.3 Edit feature
+#### 2.3.1 Current implementation
+
+The edit feature is implemented using an <code>EditCommand</code> class. This class extends from the main
+<code>Command</code> class. The <code>item</code> object to be edited is identified by the index number provided 
+in the user input. In addition to the index no. , the user input **must also contain at least one** of these parameters: 
+*description*, *price*, *quantity*.
+
+Process of object creation:
+1. First, <code>Duke</code> class receives user input from the <code>Ui</code> class. 
+2. Next, a <code>Parser</code> object is created to call its <code>parseCommand</code> method.
+    * The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
+3. Then, the <code>Duke</code> class calls the <code>execute</code> method of the <code>EditCommand</code> object.
+4. In the <code>execute</code> function, the <code>item</code> to be edited (based on the specified index of the 
+user input) 
+is called from the <code>ShoppingList</code> object.The original description/price/quantity of the item is overwritten 
+with the new values from the user input.
+5. Finally, the <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
+
+The following sequence diagram below shows how the edit feature works. The details of the updating of the item's values
+have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
+![alt text](images/EditFeature.png)
+
+
+![alt text](images/EditFeature_SD.png)
+
+#### 2.3.2 Design considerations
+
+##### Aspect: Data structure to support the edit feature
+
+- Alternative 1 (current choice): Only parameters present in user input are treated as values to update.
+  - Pros: User has the flexibility to choose which item variables he/she wishes to update.
+  
+  - Cons: Might significantly increase the code base as there is a need to check for the 
+  presence of the variable in user input.
+
+
+- Alternative 2: Require all values to be updated
+
+  - Pros: Will have lesser code to deal with having no additional parsing of input string needed.
+  
+  - Cons: Less user flexibility, user must input all parameters even if he/she does not want to update certain
+  variables.
+
 ## Appendix A: Product Scope
 ### Target user profile
 
@@ -106,9 +150,11 @@ shopping lists and also providing helpful features like budget tracking
 |--------|----------|---------------|------------------|
 |v1.0|organised home cook|be able to edit my budget|change my budget when I need to|
 |v1.0|organised home cook|delete items from the list|manage my list|
+|v1.0|organised home cook|have a useful "help" list that I can refer to|find instructions for various commands|
 |v1.0|frugal home cook|add a budget|so that I know how much I have to spend|
 |v2.0|frugal home cook|be notified when I cross my budget|remove some items from my list|
 |v2.0|practical home cook|be able to search for items on my list|find things easily in a long list|
+|v2.0|practical home cook|be able to edit the items in my lists|update the items on my list accordingly|
 
 ## Appendix C: Non-Functional Requirements
 
