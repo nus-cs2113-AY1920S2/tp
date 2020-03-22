@@ -49,14 +49,7 @@ What can I do for you today, doctor?
         Remarks :
     =====================================================
     =====================================================
-    Patient details have been updated as follows:
-        Name : kesin
-        NRIC : s12345f
-        Phone Number : 999
-        DOB : 18june
-        Blood Type : O+
-        Allergies :dust
-        Remarks :
+    Patient is already in the list. Please use help command.
     =====================================================
     =====================================================
     kesin | s12345f
@@ -68,7 +61,7 @@ What can I do for you today, doctor?
         Phone Number : 918
         DOB : 18june
         Blood Type : O+
-        Allergies :dust
+        Allergies :
         Remarks :
     =====================================================
     =====================================================
@@ -81,7 +74,7 @@ What can I do for you today, doctor?
         Phone Number : 918
         DOB : 18june
         Blood Type : O+
-        Allergies :dust
+        Allergies :
         Remarks :Vegetarian
     =====================================================
     =====================================================
