@@ -39,6 +39,7 @@ public class Messages {
     public static final String CLEAR_FORMAT_HELP = "Clear all tasks: clear all";
     public static final String CLEAR_DONE_FORMAT_HELP = "Clear all completed tasks: clear done";
     public static final String SEARCH_FORMAT_HELP = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
+    public static final String CALENDAR_FORMAT_HELP = "Get a Calendar view: calendar d/[dd/MM/yy]";
     public static final String EXIT_FORMAT_HELP = "Exit ATAS: exit";
     public static final String HELP_FORMAT_MESSAGE =
             "Following is the list of commands available:" + System.lineSeparator()
@@ -55,7 +56,8 @@ public class Messages {
                     + "11. " + CLEAR_DONE_FORMAT_HELP + System.lineSeparator()
                     + "12. " + DELETE_FORMAT_HELP + System.lineSeparator()
                     + "13. " + SEARCH_FORMAT_HELP + System.lineSeparator()
-                    + "13. " + EXIT_FORMAT_HELP;
+                    + "14. " + CALENDAR_FORMAT_HELP + System.lineSeparator()
+                    + "15. " + EXIT_FORMAT_HELP;
 
 
     // Command Print Messages
@@ -108,4 +110,6 @@ public class Messages {
     public static final String INVALID_SEARCH_FORMAT = "Invalid Argument for Search Command";
     public static final String SEARCH_INSUFFICIENT_ARGS = "Insufficient argument for Search Command"
             + System.lineSeparator() + SEARCH_FORMAT_HELP;
+    public static final String CALENDAR_INCORRECT_FORMAT_ERROR = "Incorrect format for Calendar Command"
+            + System.lineSeparator() + CALENDAR_FORMAT_HELP;
 }
