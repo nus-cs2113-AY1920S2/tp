@@ -19,6 +19,7 @@ public class Messages {
     public static final String DIVIDER = "_______________________________________________________________________";
     public static final String NEWLINE_INDENT = "     ";
     public static final String COMMENTS_INDENT = "            notes: ";
+    public static final String REPEATS_COMMENTS_INDENT = "      [%s]  notes: ";
 
     // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
@@ -65,12 +66,16 @@ public class Messages {
     public static final String SHOW_TASKLIST_MESSAGE = "Here are the relevant tasks:%s%s";
     public static final String DONE_SUCCESS_MESSAGE = "[%s] has been marked done!";
     public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";
-    public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
-    public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
-    public static final String SEARCH_SUCCESS_MESSAGE = "There are a total of %d result(s) found";
+    public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted.";
+    public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed.";
+    public static final String SEARCH_SUCCESS_MESSAGE = "There are a total of %d result(s) found.";
     public static final String EDIT_SUCCESS_MESSAGE = "Task edited successfully:" + System.lineSeparator()
-            + NEWLINE_INDENT + "%s";
-    public static final String EDIT_PROMPT = "Please edit your chosen task";
+            + NEWLINE_INDENT + "%s.";
+    public static final String ADD_REPEATING_SUCCESS_MESSAGE = "[%s] will repeat every %d %s%s.";
+    public static final String REMOVE_REPEATING_SUCCESS_MESSAGE = "[%s] will no longer repeat.";
+    public static final String EDIT_PROMPT = "Please edit your chosen task.";
+
+
     // Others
     public static final String NO_TASKS_MSG = "You have no tasks at the moment";
     public static final String RANGE_OF_VALID_TASK_INDEX_MSG = "1 to %1$s";
@@ -108,4 +113,7 @@ public class Messages {
     public static final String INVALID_SEARCH_FORMAT = "Invalid Argument for Search Command";
     public static final String SEARCH_INSUFFICIENT_ARGS = "Insufficient argument for Search Command"
             + System.lineSeparator() + SEARCH_FORMAT_HELP;
+    public static final String INVALID_REPEAT_ERROR = "Please choose a valid index.";
+    public static final String INVALID_EVENT_REPEAT_ERROR = "Please choose an event.";
+    public static final String REPEAT_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Repeat Command";
 }

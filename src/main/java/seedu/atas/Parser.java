@@ -1,17 +1,6 @@
 package seedu.atas;
 
-import command.AssignmentCommand;
-import command.Command;
-import command.DeleteCommand;
-import command.DoneCommand;
-import command.EventCommand;
-import command.IncorrectCommand;
-import command.ListCommand;
-import command.HelpCommand;
-import command.ExitCommand;
-import command.ClearCommand;
-import command.SearchCommand;
-import command.EditCommand;
+import command.*;
 
 import common.Messages;
 import exceptions.AtasException;
@@ -80,6 +69,8 @@ public class Parser {
             return prepareSearchCommand(fullCommand);
         case EditCommand.EDIT_COMMAND_WORD:
             return prepareEditCommand(fullCommand);
+        case RepeatCommand.REPEAT_COMMAND_WORD:
+            return prepareRepeatCommand(fullCommand);
         case ExitCommand.EXIT_COMMAND_WORD:
             return prepareExitCommand(fullCommand);
         default:
@@ -194,7 +185,7 @@ public class Parser {
             return new ListCommand(null);
         }
         assert tokens.length == 2;
-        return new ListCommand(tokens[1]);
+        return new ListCommand(tokens[1].trim());
     }
 
     private static Command prepareClearCommand(String fullCommand) {
@@ -227,6 +218,24 @@ public class Parser {
             return new IncorrectCommand(Messages.DONE_INSUFFICIENT_ARGS_ERROR);
         }
         return new EditCommand(editIndex);
+    }
+
+    private static Command prepareRepeatCommand(String fullCommand) {
+        String[] tokens = fullCommand.split("\\s+");
+        assert tokens.length == 3;
+        int eventIndex;
+        int numOfPeriod;
+        String typeOfPeriod;
+        try {
+            eventIndex = Integer.parseInt(tokens[1].trim()) - 1;
+            numOfPeriod = Integer.parseInt(String.valueOf(tokens[2].trim().charAt(0)));
+            typeOfPeriod = String.valueOf(tokens[2].trim().charAt(1));
+        } catch (NumberFormatException e) {
+            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
+        } catch (IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.REPEAT_INSUFFICIENT_ARGS_ERROR);
+        }
+        return new RepeatCommand(eventIndex, numOfPeriod, typeOfPeriod);
     }
 
     /**

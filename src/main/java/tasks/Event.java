@@ -11,9 +11,21 @@ import java.util.StringJoiner;
 
 public class Event extends Task {
     public static final String EVENT_ICON = "E";
+    public static final String DAILY_ICON = "D";
+    public static final String WEEKLY_ICON = "W";
+    public static final String MONTHLY_ICON = "M";
+    public static final String YEARLY_ICON = "Y";
+    public static final String REPEAT_DAY_KEYWORD = "daily";
+    public static final String REPEAT_WEEK_KEYWORD = "weekly";
+    public static final String REPEAT_MONTH_KEYWORD = "monthly";
+    public static final String REPEAT_YEAR_KEYWORD = "yearly";
+
     protected String location;
     protected LocalDateTime startDateAndTime;
     protected LocalDateTime endDateAndTime;
+    protected boolean isRepeat;
+    protected int numOfPeriod;
+    protected String typeOfPeriod;
 
     /**
      * Event object constructor.
@@ -29,6 +41,7 @@ public class Event extends Task {
         this.location = location;
         this.startDateAndTime = startDateTime;
         this.endDateAndTime = endDateTime;
+        this.isRepeat = false;
     }
 
     public String getLocation() {
@@ -74,6 +87,100 @@ public class Event extends Task {
         return endDateAndTime.toLocalTime();
     }
 
+    public int getNumOfPeriod() {
+        return numOfPeriod;
+    }
+
+    public String getTypeOfPeriod() {
+        return typeOfPeriod;
+    }
+
+    public boolean getIsRepeat() {
+        return isRepeat;
+    }
+
+    public void setRepeat(int numOfPeriod, String typeOfPeriod) {
+        this.isRepeat = true;
+        this.numOfPeriod = numOfPeriod;
+        this.typeOfPeriod = typeOfPeriod;
+    }
+
+    public void setNoRepeat() {
+        this.isRepeat = false;
+        this.numOfPeriod = 0;
+        this.typeOfPeriod = "";
+    }
+
+    /**
+     * Update date of event to the next upcoming date (after today) if the recurring event
+     * has already occurred.
+     */
+    public void updateDateAndTime() {
+        if (this.isRepeat) {
+            switch (typeOfPeriod) {
+            case (DAILY_ICON):
+                updateDateByDays(numOfPeriod);
+                break;
+            case (WEEKLY_ICON):
+                updateDateByDays(numOfPeriod * 7);
+                break;
+            case (MONTHLY_ICON):
+                updateDateByMonth(numOfPeriod);
+                break;
+            case (YEARLY_ICON):
+                updateDateByYear(numOfPeriod);
+                break;
+            default:
+                assert false;
+            }
+        }
+    }
+
+    /**
+     * Update date of event if it is a daily recurring event.
+     * @param numOfPeriod num of days before it recurs
+     */
+    private void updateDateByDays(int numOfPeriod) {
+        LocalDateTime currDateTime = LocalDateTime.now();
+        do {
+            startDateAndTime = startDateAndTime.plusDays(numOfPeriod);
+            endDateAndTime = endDateAndTime.plusDays(numOfPeriod);
+        } while (startDateAndTime.compareTo(currDateTime) < 0);
+    }
+
+    /**
+     * Update date of event if it is a monthly recurring event.
+     * @param numOfPeriod num of months before it recurs
+     */
+    private void updateDateByMonth(int numOfPeriod) {
+        LocalDateTime currDateTime = LocalDateTime.now();
+        do {
+            startDateAndTime = startDateAndTime.plusMonths(numOfPeriod);
+            endDateAndTime = endDateAndTime.plusMonths(numOfPeriod);
+        } while (startDateAndTime.compareTo(currDateTime) < 0);
+    }
+
+    /**
+     * Update date of event if it is a yearly recurring event.
+     * @param numOfPeriod num of years before it recurs
+     */
+    private void updateDateByYear(int numOfPeriod) {
+        LocalDateTime currDateTime = LocalDateTime.now();
+        do {
+            startDateAndTime = startDateAndTime.plusYears(numOfPeriod);
+            endDateAndTime = endDateAndTime.plusYears(numOfPeriod);
+        } while (startDateAndTime.compareTo(currDateTime) < 0);
+    }
+
+    private String repeatToStringAndComment() {
+        if (isRepeat) {
+            String repeatString = String.valueOf(numOfPeriod) + typeOfPeriod;
+            return String.format(Messages.REPEATS_COMMENTS_INDENT, repeatString);
+        } else {
+            return Messages.COMMENTS_INDENT;
+        }
+    }
+
     @Override
     public String toString() {
         return "[" + EVENT_ICON + "]"
@@ -86,7 +193,7 @@ public class Event extends Task {
                 + endDateAndTime.format(Parser.PRINT_TIME_FORMAT)
                 + ")"
                 + System.lineSeparator()
-                + Messages.COMMENTS_INDENT
+                + repeatToStringAndComment()
                 + comments;
     }
 
@@ -99,6 +206,8 @@ public class Event extends Task {
         sj.add(location);
         sj.add(startDateAndTime.format(Parser.INPUT_DATE_FORMAT));
         sj.add(endDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(Integer.toString(numOfPeriod));
+        sj.add(typeOfPeriod);
         sj.add(comments);
         return sj.toString();
     }
@@ -120,9 +229,12 @@ public class Event extends Task {
         String location = tokens[3];
         LocalDateTime startDateAndTime = Parser.parseDate(tokens[4]);
         LocalDateTime endDateAndTime = Parser.parseDate(tokens[5]);
-        String comments = tokens[6];
-        assert tokens.length == 7;
+        int numOfPeriod = Integer.parseInt(tokens[6]);
+        String typeOfPeriod = tokens[7];
+        String comments = tokens[8];
+        assert tokens.length == 9;
         Event event = new Event(name, location, startDateAndTime, endDateAndTime, comments);
+        event.setRepeat(numOfPeriod, typeOfPeriod);
         if (isDone) {
             event.setDone();
         }

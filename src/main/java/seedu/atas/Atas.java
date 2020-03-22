@@ -5,6 +5,8 @@ import command.CommandResult;
 import command.ExitCommand;
 import common.Messages;
 import exceptions.AtasException;
+import tasks.Event;
+import tasks.Task;
 
 import java.io.IOException;
 
@@ -22,6 +24,7 @@ public class Atas {
         this.taskList = new TaskList();
         try {
             this.taskList = storage.load();
+            updateEventDate(taskList);
         } catch (AtasException e) {
             ui.showToUser(e.toString());
         } catch (IOException e) {
@@ -32,7 +35,7 @@ public class Atas {
     /**
      * Starts Duke Process.
      */
-    public void run() throws AtasException {
+    public void run() {
         ui.printWelcomeMessage();
         runLoop();
     }
@@ -40,7 +43,7 @@ public class Atas {
     /**
      * Run loop until exit command is received.
      */
-    public void runLoop() throws AtasException {
+    public void runLoop() {
         while (!ExitCommand.isExit()) {
             String input = ui.getUserInput();
             Command command = Parser.parseCommand(input);
@@ -51,7 +54,7 @@ public class Atas {
         }
     }
 
-    private void trySaveTaskList() throws AtasException {
+    private void trySaveTaskList() {
         try {
             storage.save(taskList);
         } catch (IOException e) {
@@ -59,10 +62,17 @@ public class Atas {
         }
     }
 
+    private void updateEventDate(TaskList taskList) {
+        for (Task task : taskList.getTaskArray()) {
+            if (task instanceof Event) {
+                ((Event) task).updateDateAndTime();
+            }
+        }
+    }
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) throws AtasException {
+    public static void main(String[] args) {
         new Atas().run();
     }
 }
