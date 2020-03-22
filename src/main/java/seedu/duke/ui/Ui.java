@@ -31,6 +31,8 @@ public class Ui {
 
     private static final String DONE_MESSAGE = "Okay, I've marked the module as done!";
 
+    private static final String FIND_MESSAGE = "Okay, this is the list of related modules:";
+
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
 
@@ -100,6 +102,10 @@ public class Ui {
         showToUser(DONE_MESSAGE, LINE_SEPARATOR);
     }
 
+    public static void showFindMessage(String viewList) {
+        showToUser(FIND_MESSAGE, viewList,  LINE_SEPARATOR);
+    }
+
     public static void showError(String errorMessage) {
         showToUser(errorMessage);
     }
@@ -117,6 +123,6 @@ public class Ui {
     }
 
     public static void showCompletedCredits() {
-        showToUser(VIEWED_CREDITS, Integer.toString(Person.getTotalModularCreditCompleted()));
+        showToUser(VIEWED_CREDITS, Integer.toString(Person.getTotalModularCreditCompleted()), LINE_SEPARATOR);
     }
 }
