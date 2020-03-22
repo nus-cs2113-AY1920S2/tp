@@ -12,6 +12,7 @@ import seedu.happypills.commands.ListCommand;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,25 +20,6 @@ import java.util.regex.Pattern;
  * Parses user input.
  */
 public class Parser {
-
-    public static final Pattern PATIENT_DATA_ARGS_FORMAT =
-            Pattern.compile("/ic(?<nric>[^/]+)"
-                    + " /n(?<name>[^/]+)"
-                    + " /p(?<phone>[^/]+)"
-                    + " /d(?<dob>[^/]+)"
-                    + " /b(?<blood>[^/]+)"
-                    + "(?<tagArguments>(?: t/[^/]+)*)");
-
-    public static final Pattern PATIENT_ALLERGIES_ARGS_FORMAT =
-            Pattern.compile("/ic(?<nric>[^/]+)"
-                    + " /a(?<allergies>[^/]+)"
-                    + "(?<tagArguments>(?: t/[^/]+)*)");
-
-    public static final Pattern PATIENT_REMARKS_ARGS_FORMAT =
-            Pattern.compile("/ic(?<nric>[^/]+)"
-                    + " /r(?<remarks>[^/]+)"
-                    + "(?<tagArguments>(?: t/[^/]+)*)");
-
     /**
      * Parses user input into command for execution.
      *
@@ -84,37 +66,83 @@ public class Parser {
     }
 
     private static Command parseAddCommand(String content) {
-        Matcher matcher = PATIENT_DATA_ARGS_FORMAT.matcher(content.trim());
-        if (matcher.matches()) {
-            int phoneNum = Integer.parseInt(matcher.group("phone").trim());
-            return new AddCommand(
-                    matcher.group("name").trim(),
-                    matcher.group("nric").trim(),
-                    phoneNum,
-                    matcher.group("dob").trim(),
-                    matcher.group("blood").trim(), "", ""
-                );
+        String[] details = content.substring(1).split(" /");
+        String[] parseInput = {"","","","","","","",""};
+
+        for (String detail : details){
+            if (detail.startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
+                parseInput[0] += detail.substring(2);
+            } else if (detail.startsWith("n") && parseInput[1].equalsIgnoreCase("")) {
+                parseInput[1] += detail.substring(1);
+            } else if (detail.startsWith("p") && parseInput[2].equalsIgnoreCase("")) {
+                parseInput[2] += detail.substring(1);
+            } else if (detail.startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
+                parseInput[3] += detail.substring(1);
+            } else if (detail.startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
+                parseInput[4] += detail.substring(1);
+            } else if (detail.startsWith("a") && parseInput[5].equalsIgnoreCase("")) {
+                parseInput[5] += detail.substring(1);
+            } else if (detail.startsWith("r") && parseInput[6].equalsIgnoreCase("")) {
+                parseInput[6] += detail.substring(1);
+            } else {
+                System.out.println(":P");
+            }
         }
-        matcher = PATIENT_ALLERGIES_ARGS_FORMAT.matcher((content.trim()));
-        if (matcher.matches()) {
-            return new AddCommand(
-                    "",
-                    matcher.group("nric").trim(),
-                    0,
-                    "", "",
-                    matcher.group("allergies").trim(), ""
-            );
+
+        while(parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
+                || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")
+                || !isInteger(parseInput[2].trim())){
+            System.out.println("Please input your missing detail as listed below");
+            if (parseInput[0].equalsIgnoreCase("")){
+                System.out.println("/ic[NRIC]");
+            }
+            if (parseInput[1].equalsIgnoreCase("")){
+                System.out.println("/n[NAME]");
+            }
+            if (parseInput[2].equalsIgnoreCase("") || !isInteger(parseInput[2].trim())){
+                System.out.println("/p[PHONE] only number");
+            }
+            if (parseInput[3].equalsIgnoreCase("")){
+                System.out.println("/d[DOB]");
+            }
+            String input = promptUser().trim();
+            if (input.equalsIgnoreCase("clear")){
+                return new IncorrectCommand("stop");
+            }
+            String[] updates = input.substring(1).split(" /");
+
+            for (String update: updates) {
+                if (update.trim().startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
+                    parseInput[0] = update.trim().substring(2);
+                }else if (update.trim().startsWith("n") && parseInput[1].equalsIgnoreCase("")) {
+                    parseInput[1] = update.trim().substring(1);
+                }else if (update.trim().startsWith("p") && (parseInput[2].equalsIgnoreCase("")
+                        || !isInteger(parseInput[2].trim()))) {
+                    parseInput[2] = update.trim().substring(1);
+                }else if (update.trim().startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
+                    parseInput[3] = update.trim().substring(1);
+                }
+            }
         }
-        matcher = PATIENT_REMARKS_ARGS_FORMAT.matcher((content.trim()));
-        if (matcher.matches()) {
-            return new AddCommand(
-                    "",
-                    matcher.group("nric").trim(),
-                    0,
-                    "", "",
-                    "", matcher.group("remarks").trim()
-            );
+
+        return new AddCommand(parseInput[0].trim(),parseInput[1].trim(),Integer.parseInt(parseInput[2].trim()),
+                parseInput[3], parseInput[4],parseInput[5],parseInput[6]);
+    }
+
+    private static String promptUser() {
+        System.out.println(TextUi.DIVIDER);
+        Scanner in = new Scanner(System.in);
+        String reInput = in.nextLine();
+        return reInput;
+    }
+
+    public static boolean isInteger(String input) {
+        try {
+            Integer.parseInt( input );
+            return true;
         }
-        return new IncorrectCommand("    Command is invalid. Please try again.\n" + TextUi.DIVIDER);
+        catch( Exception e ) {
+            return false;
+        }
     }
 }
