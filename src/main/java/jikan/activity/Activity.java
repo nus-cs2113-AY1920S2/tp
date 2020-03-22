@@ -56,6 +56,10 @@ public class Activity {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name.strip();
+    }
+
     public Set<String> getTags() {
         return tags;
     }

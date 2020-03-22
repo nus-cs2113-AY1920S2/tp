@@ -1,7 +1,6 @@
 package jikan.ui;
 
 import jikan.activity.ActivityList;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class Ui {

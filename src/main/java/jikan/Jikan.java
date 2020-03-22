@@ -37,12 +37,12 @@ public class Jikan {
      */
     public static void main(String[] args) throws InvalidTimeFrameException, IOException {
         ui.printGreeting();
-        Scanner in = new Scanner(System.in);
         storage = new Storage(DATA_FILE_PATH);
         cleaner = new StorageCleaner(storage);
         cleaner.autoClean();
         activityList = storage.createActivityList();
         activityList.storage = storage;
+        Scanner in = new Scanner(System.in);
         parser.parseUserCommands(in, activityList, cleaner);
     }
 }

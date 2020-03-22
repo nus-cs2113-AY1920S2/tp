@@ -32,8 +32,7 @@ public class ActivityList {
 
     /**
      * Loads activityList from data file.
-     *
-     * @param storage Storage to load from.
+     * @param dataFile the datafile to be read from.
      */
     public ActivityList(File dataFile) {
         this.activities = new ArrayList<>();
@@ -91,6 +90,11 @@ public class ActivityList {
         } catch (IOException e) {
             System.out.println("Error saving task to data file.");
         }
+    }
+
+    public void updateName(int index, String newName) {
+        activities.get(index).setName(newName);
+        fieldChangeUpdateFile();
     }
 
     public void delete(int index) {
