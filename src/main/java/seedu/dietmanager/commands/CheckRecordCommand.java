@@ -37,16 +37,13 @@ public class CheckRecordCommand extends Command {
         DailyFoodRecord record = profile.getRecordOfDay(date);
         switch (mealType) {
         case "breakfast":
-            this.result = String.format("Your breakfast for %s:",date) + System.lineSeparator()
-                    + record.showBreakfast() + record.showDailyCalories(mealType);
+            this.result = date + " Morning: " + record.showBreakfast() + record.showDailyCalories(mealType);
             break;
         case "lunch":
-            this.result = String.format("Your lunch for %s:",date) + System.lineSeparator()
-                    + record.showLunch() + record.showDailyCalories(mealType);
+            this.result = date + " Afternoon: " + record.showLunch() + record.showDailyCalories(mealType);
             break;
         case "dinner":
-            this.result = String.format("Your dinner for %s:",date) + System.lineSeparator()
-                    + record.showDinner() + record.showDailyCalories(mealType);
+            this.result = date + " Night: " + record.showDinner() + record.showDailyCalories(mealType);
             break;
         default:
             this.result = MessageBank.MEAL_TYPE_ERROR;

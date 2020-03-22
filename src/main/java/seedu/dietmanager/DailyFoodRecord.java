@@ -40,13 +40,13 @@ public class DailyFoodRecord {
 
     public void recordMeals(String mealType, ArrayList<Food> foodList) {
         switch (mealType) {
-        case "breakfast":
+        case "morning":
             breakfast.addAll(foodList);
             break;
-        case "lunch":
+        case "afternoon":
             lunch.addAll(foodList);
             break;
-        case "dinner":
+        case "night":
             dinner.addAll(foodList);
             break;
         default:
@@ -119,9 +119,9 @@ public class DailyFoodRecord {
      */
     public ArrayList<Food> getDailyFood() {
         ArrayList<Food> allDailyFood = new ArrayList<>();
-        allDailyFood.addAll(breakfast); //Changed to morning after merging
-        allDailyFood.addAll(lunch); //Change to afternoon after merging
-        allDailyFood.addAll(dinner); //Change to night after merging
+        allDailyFood.addAll(breakfast);
+        allDailyFood.addAll(lunch);
+        allDailyFood.addAll(dinner);
         return allDailyFood;
     }
 
@@ -131,12 +131,12 @@ public class DailyFoodRecord {
      */
     public ArrayList<Food> getDailyFood(String timeFrame) {
         switch (timeFrame) {
-        case "breakfast": //Changed to morning after merging
-            return breakfast; //Changed to morning after merging
-        case "lunch": //Changed to afternoon after merging
-            return lunch; //Changed to afternoon after merging
-        case "dinner": //Changed to night after merging
-            return dinner; //Changed to night after merging
+        case "morning":
+            return breakfast;
+        case "afternoon":
+            return lunch;
+        case "night":
+            return dinner;
         default:
             return new ArrayList<>();
         }

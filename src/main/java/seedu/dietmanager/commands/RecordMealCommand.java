@@ -52,7 +52,7 @@ public class RecordMealCommand extends Command {
                 foodName = foodDescriptionSplit[0].trim();
                 Food food;
                 if (foodInfo.isInDatabase(foodName)) {
-                    food = foodInfo.findFood(foodName).get(); //Check if food exist in database
+                    food = foodInfo.findFood(foodName).get();
                 } else {
                     food = new Food(foodName);
                 }
@@ -80,13 +80,13 @@ public class RecordMealCommand extends Command {
     public void saveResult(Profile profile) {
         boolean isValidType = true;
         switch (mealType) {
-        case "breakfast":
+        case "morning":
             this.result = MessageBank.BREAKFAST_RECORD_MESSAGE;
             break;
-        case "lunch":
+        case "afternoon":
             this.result = MessageBank.LUNCH_RECORD_MESSAGE;
             break;
-        case "dinner":
+        case "night":
             this.result = MessageBank.DINNER_RECORD_MESSAGE;
             break;
         default:
