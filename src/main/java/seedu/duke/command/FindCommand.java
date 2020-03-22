@@ -24,7 +24,8 @@ public class FindCommand extends Command {
         ModuleList listOfSelectedModulesToDisplay = new ModuleList();
         for (SemModulesList semModulesList : selectedModulesList) {
             for (Module module : semModulesList) {
-                if (module.getName().toLowerCase().contains(keyword) || module.getId().toLowerCase().contains(keyword)) {
+                if (module.getName().toLowerCase().contains(keyword)
+                        || module.getId().toLowerCase().contains(keyword)) {
                     listOfSelectedModulesToDisplay.add(module);
                 }
             }
