@@ -113,7 +113,7 @@ public class TextUi {
      * @param patient The patient to be deleted.
      */
     public static void printDeleteConfirmationAgain(Patient patient) {
-        System.out.println( "    Please try again."
+        System.out.println("    Please try again."
                 + "    Are you sure you want to delete this patient:\n      "
                 + patient.getName()
                 + " || "
@@ -296,8 +296,7 @@ public class TextUi {
     }
 
     public static String patientNotExist(String nric) {
-        return "    No patient with NRIC " + nric + " can be found in the program. \n"
-                + "    Please try again.";
+        return "The patient you are looking for cannot be found";
     }
 
     /**
@@ -308,6 +307,6 @@ public class TextUi {
      */
     public static String deletePatient(Patient patient) {
         return "    Patient " + patient.getName() + " || " + patient.getNric()
-        + " has been deleted successfully.\n";
+            + " has been deleted successfully.\n";
     }
 }

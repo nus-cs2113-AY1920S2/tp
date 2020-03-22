@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+skinparam linetype ortho
+
+package Logic {
+
+package Parser {
+Interface Parser <<Interface>>
+Class PatientCommandParser
+Class AppointmentParser
+Class MedicalParser
+}
+
+package Command {
+Class PatientCommand
+Class AppointmentCommand
+Class MedicalCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+}
+
+Interface Logic <<Interface>>
+Class LogicManager
+}
+
+package Model{
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .up.|> Logic
+
+PatientCommandParser .down.> PatientCommand : creates >
+AppointmentParser .down.> AppointmentCommand : creates >
+MedicalParser .down.> MedicalCommand : creates >
+
+
+PatientCommandParser ..up|> Parser
+AppointmentParser ..up|> Parser
+MedicalParser ..up|> Parser
+LogicManager .right.> Command : executes >
+
+LogicManager --> Model
+Command .right.> Model
+
+Logic ..> CommandResult
+LogicManager .down.> CommandResult
+Command .up.> CommandResult
+PatientCommand .up.|> Command
+AppointmentCommand .up.|> Command
+MedicalCommand .up.|> Command
+CommandResult -[hidden]-> Parser
+@enduml
