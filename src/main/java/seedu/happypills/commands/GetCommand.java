@@ -25,7 +25,7 @@ public class GetCommand extends Command {
                 return TextUi.getPatientSuccessMessage(patient);
             }
         }
-        return "The patient you are looking for cannot be found";
+        return TextUi.patientNotExist(patientNric);
     }
 
 }
