@@ -124,8 +124,25 @@ public class DailyFoodRecord {
     }
 
     /**
+     * Provide a ArrayList of the foods consumed in a specific time frame of a day.
+     * @return ArrayList of all the foods consumed in a day
+     */
+    public ArrayList<Food> getDailyFood(String timeFrame) {
+        switch (timeFrame) {
+        case "morning":
+            return breakfast;
+        case "afternoon":
+            return lunch;
+        case "night":
+            return dinner;
+        default:
+            return new ArrayList<>();
+        }
+    }
+
+    /**
      * Calculate the total recorded calories for all the meals.
-     * @return Optional double of the calories intake if exist, anf Optional empty otherwise.
+     * @return Optional double of the calories intake if exist, and Optional empty otherwise.
      */
     public Optional<Double> getDailyCalories() {
         ArrayList<Food> allDailyFood = getDailyFood();
@@ -136,11 +153,35 @@ public class DailyFoodRecord {
     }
 
     /**
+     * Calculate the total recorded calories for meals in a specific time frame of a day .
+     * @return Optional double of the calories intake if exist, and Optional empty otherwise.
+     */
+    public Optional<Double> getDailyCalories(String timeFrame) {
+        ArrayList<Food> foodInTimeFrame = getDailyFood(timeFrame);
+        return foodInTimeFrame.stream().map(food -> food.getCalories())
+                .filter(calories -> calories.isPresent())
+                .map(calories -> calories.get())
+                .reduce((first, second) -> first + second);
+    }
+
+    /**
      * Check if the DailyFoodRecord has any Food with missing calories data.
      * @return False if there exist food without calories, true otherwise.
      */
-    public boolean isFoodCaloriesPresent() {
+    public boolean isAllFoodCaloriesPresent() {
         ArrayList<Food> allDailyFood = getDailyFood();
+        return allDailyFood.stream().filter(food -> !food.hasCaloriesData())
+                .map(calories -> false)
+                .reduce((first, second) -> first)
+                .orElse(true);
+    }
+
+    /**
+     * Check if the DailyFoodRecord has any Food in a specific time frame of a day with missing calories data.
+     * @return False if there exist food without calories, true otherwise.
+     */
+    public boolean isAllFoodCaloriesPresent(String timeFrame) {
+        ArrayList<Food> allDailyFood = getDailyFood(timeFrame);
         return allDailyFood.stream().filter(food -> !food.hasCaloriesData())
                 .map(calories -> false)
                 .reduce((first, second) -> first)
