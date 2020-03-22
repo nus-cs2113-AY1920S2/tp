@@ -5,4 +5,13 @@ There are no previous records of meetings, let's create a new one!
           /    Y    \  ___/\  ___/|  | |  |   |  \/ /_/  > /    |    \  | \/ /_/  > __ \|   |  \  |/    /\  ___/|  | \/          
           \____|__  /\___  >\___  >__| |__|___|  /\___  /  \_______  /__ |  \___  (____  /___|  /__/_____ \\___  >__|             
                   \/     \/     \/             \//_____/           \/     /_____/     \/     \/         \/    \/                 
-How many members are there in your team?
+________________________________________________________________________________________________________________________________
+Add a new contact.
+Contacts.
+Schedule a new meeting.
+Edit a scheduled meeting.
+Delete a scheduled meeting.
+List all scheduled meetings.
+Exit application.
+________________________________________________________________________________________________________________________________
+Thank you for using MeetingOrganizer, goodbye!
