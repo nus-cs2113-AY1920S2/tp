@@ -30,12 +30,15 @@ public class TextUI {
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
         out.println("Add a new contact.");
-        out.println("Contacts."); //previous was delete
+        out.println("Contacts.");
         out.println("Schedule a new meeting.");
         out.println("Edit a scheduled meeting."); //previous was delete
         out.println("Delete a scheduled meeting.");
         out.println("List all scheduled meetings.");
+        out.println("Delete members");
         out.println("Exit application.");
+        out.print(System.lineSeparator());
+        out.println("Insert new members by following: <Name of new member> <NUSMODS Link>");
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
     }
@@ -170,13 +173,17 @@ public class TextUI {
 
     public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList) {
         System.out.println("____________________________________________________________\n"
-                + "Here are your contacts:");
+                + "Here are your stored contacts:");
         int i = 0;
         for (TeamMember t : teamMemberList) {
-            System.out.println("\t " + (i + 1) + " " + t.getName());
+            System.out.println("\t " + (i + 1) + ") " + t.getName());
             i++;
         }
         System.out.println("____________________________________________________________\n");
+    }
+
+    public static void showAddedMember(String memberName) {
+        out.println("Added " + memberName);
     }
 }
 

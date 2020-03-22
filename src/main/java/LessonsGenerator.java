@@ -17,7 +17,10 @@ public class LessonsGenerator {
         this.myLessonsDetails = new ArrayList<>();
     }
 
+
+    //main method for easy in-class behaviour testing
     public static void main(String[] args) throws InvalidUrlException {
+        //observe behaviour by substituting field in LessonsGenerator() with other NUSMODS link
         LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
         mylesson.generate();
         ArrayList<String[]> myLessonDetails = mylesson.getLessonDetails();
@@ -28,6 +31,7 @@ public class LessonsGenerator {
             System.out.print("\n");
         }
     }
+
 
     public void generate() {
         myTimetableParser.parse();
@@ -66,9 +70,10 @@ public class LessonsGenerator {
 
     /**
      * Checks if lessonType:classNo from userModuleProfile matches Multimap's info.
+     *
      * @param allLessonMap All lesson information with key=lessonType:classNo.
-     * @param userModuleProfile ArrayList of lessonType:classNo that user has taken for a particular moduile.
-     * @return Returns the matched value pair containing an array(size 4) of startTime, endTime, day and weeks.
+     * @param userModuleProfile ArrayList of lessonType:classNo that user has taken for a particular module.
+     * @return Matched value pair containing an array(size 4) of startTime, endTime, day and weeks.
      */
     private void lessonsChecker(Multimap<String, String[]> allLessonMap, ArrayList<String> userModuleProfile) {
         //System.out.println("USER " + userModuleProfile);
@@ -87,8 +92,9 @@ public class LessonsGenerator {
 
     /**
      * Refactor weeks into 1 single ArrayList from a 2d ArrayList delimited with ':'.
-     * @param weeks 2D ArrayList weeks: For eg, weeks.get(0) = weeks at classNo 0 = [1, 2, 3, 6, 13]
-     * @return weeks Delimited weeks indexed by each lessons.
+     *
+     * @param weeks 2D ArrayList weeks: For eg, weeks.get(0) = weeks at classNo 0 = [1, 2, 3, 6, 13].
+     * @return Weeks Delimited weeks indexed by each lessons.
      */
     private ArrayList<String> delimitWeeks(ArrayList<ArrayList<String>> weeks) {
         ArrayList<String> delimitedWeeks = new ArrayList<>();

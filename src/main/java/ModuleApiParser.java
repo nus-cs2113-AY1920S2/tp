@@ -10,7 +10,7 @@ import java.net.URL;
 
 /**
  * Returns one school module in JSONArray format.
- * Data grabbed from NUSMOD API: https://api.nusmods.com/v2/2019-2020/modules/MODULECODE.json
+ * Data grabbed from NUSMODS API: https://api.nusmods.com/v2/2019-2020/modules/MODULECODE.json
  */
 public class ModuleApiParser {
     String apiUrl;

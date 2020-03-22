@@ -15,38 +15,89 @@ public class MeetingOrganizer {
     public MeetingOrganizer() {
         //declare objects here
         myMeetingList = new MeetingList();
-        myTeamMemberList = new TeamMemberList(new ArrayList<TeamMember>());
         try {
             storage = new Storage("data/meeting_list.txt");
-            myMeetingList = new MeetingList(storage.loadListFromDisk());
+            myMeetingList = new MeetingList(storage.loadMeetingListFromDisk());
+            myTeamMemberList = new TeamMemberList(storage.loadMemberListFromDisk());
+            TextUI.introMsg();
+            TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
         } catch (FileNotFoundException e) {
+            TextUI.introMsg();
             TextUI.showLoadingError();
             myMeetingList = new MeetingList();
+            myTeamMemberList = new TeamMemberList(new ArrayList<>());
         }
     }
 
-    public static void main(String[] args) throws InvalidUrlException {
+    public static void main(String[] args) {
         new MeetingOrganizer().run();
-        //new MeetingOrganizer().generateIndividualLesson("");
-
     }
 
     void botResponse(String[] userInputWords, Scanner in) throws MoException, DateTimeParseException, NumberFormatException {
+        Integer startDay = null;
+        Integer endDay = null;
+        TeamMember member;
+
         String userCommand = userInputWords[0];
-        Integer startDay;
-        Integer endDay;
-        TeamMember myMember;
+
+        //To adapt user input of format <name> <NUSMODS link> to fit into the following switch statements to allow
+        // for both link and manual input.
+        if (userInputWords.length == 2 && userInputWords[1].contains("https")) {
+            userCommand = "add using link";
+        }
+
         switch (userCommand) {
+        case "add using link":
+            member = new TeamMember(userInputWords[0]);
+            String name = userInputWords[0];
+            LessonsGenerator myLessonGenerator;
+            try {
+                myLessonGenerator = new LessonsGenerator(userInputWords[1]);
+                myLessonGenerator.generate();
+                ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
+                for (int k = 0; k < myLessonDetails.size(); k++) {
+                    String startTimeString = null;
+                    String endTimeString = null;
+                    for (int j = 0; j < myLessonDetails.get(k).length; j++) {
+                        switch (j) {
+                        case 0:
+                            startTimeString = myLessonDetails.get(k)[j].substring(0,2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                            break;
+                        case 1:
+                            endTimeString = myLessonDetails.get(k)[j].substring(0,2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                            break;
+                        case 2:
+                            startDay = getNumberFromDay(myLessonDetails.get(k)[j]);
+                            endDay = startDay;
+                            break;
+                        case 3:
+                            //future improvement: since myLessonDetails.get(k)[3] contains data on the
+                            // week number that this class occurs on, add capability of schedule to reflect
+                            // schedule of the current week.
+                            break;
+                        default:
+                            //data only has four sections from api
+                            break;
+                        }
+                    }
+                    member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString);
+                }
+                myTeamMemberList.add(member);
+                TextUI.showAddedMember(member.getName());
+            } catch (InvalidUrlException e) {
+                System.out.println(e.getMessage());
+            }
+            break;
         case "add": // add memberName startDay startTime endDay endTime (eg. add xizhi 2 02:00 3 14:00)
-            myMember = new TeamMember(userInputWords[1]);
-            String scheduleName = userInputWords[1]; //member name and schedule name are the same
+            member = new TeamMember(userInputWords[1]);
+            String memberName = userInputWords[1]; //member name and schedule name are the same
             startDay = Integer.parseInt(userInputWords[2]);
             String startTimeString = userInputWords[3];
             endDay = Integer.parseInt(userInputWords[4]);
             String endTimeString = userInputWords[5];
-            myMember.addBusyBlocks(scheduleName, startDay, startTimeString, endDay, endTimeString);
+            member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString);
 
-            myTeamMemberList.add(myMember);
+            myTeamMemberList.add(member);
             break;
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
@@ -55,11 +106,11 @@ public class MeetingOrganizer {
             ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
             for (int i = 1; i < userInputWords.length; i++) {
                 int memberNumber = Integer.parseInt(userInputWords[i]);
-                myMember = myTeamMemberList.getTeamMemberList().get(memberNumber - 1);
-                myScheduleList.add(myMember);
+                member = myTeamMemberList.getTeamMemberList().get(memberNumber - 1);
+                myScheduleList.add(member);
 
-                System.out.println(myMember.getName() + " schedule: ");
-                TextUI.printTimetable(myMember.getSchedule());
+                System.out.println(member.getName() + " schedule: ");
+                TextUI.printTimetable(member.getSchedule());
             }
 
             ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
@@ -97,7 +148,6 @@ public class MeetingOrganizer {
             } catch (MoException e) {
                 System.out.println(e.getMessage() + ", try again.");
             }
-            TextUI.menuMsg();
             break;
         case "2":
             TextUI.editMeetingMsg();
@@ -110,7 +160,6 @@ public class MeetingOrganizer {
                 myMeetingList.delete(index);
             } catch (IndexOutOfBoundsException e) {
                 TextUI.displayInvalidDeleteTarget();
-                TextUI.menuMsg();
             }
             break;
         case "4": //list all current meeting slots
@@ -122,25 +171,60 @@ public class MeetingOrganizer {
         }
     }
 
-
-    public void generateIndividualLesson(String webLink) throws InvalidUrlException {
-        LessonsGenerator myLessonGenerator = new LessonsGenerator(webLink);
-        myLessonGenerator.generate();
-        ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
-
-        for (int k = 0; k < myLessonDetails.size(); k++) {
-            for (int j = 0; j < myLessonDetails.get(k).length; j++) {
-                System.out.print(myLessonDetails.get(k)[j] + " ");
-            }
-            System.out.print("\n");
+    private Integer getNumberFromDay(String day) {
+        int dayInNumber;
+        switch (day) {
+        case "Monday":
+            dayInNumber = 1;
+            break;
+        case "Tuesday":
+            dayInNumber = 2;
+            break;
+        case "Wednesday":
+            dayInNumber = 3;
+            break;
+        case "Thursday":
+            dayInNumber = 4;
+            break;
+        case "Friday":
+            dayInNumber = 5;
+            break;
+        case "Saturday":
+            dayInNumber = 6;
+            break;
+        case "Sunday":
+            dayInNumber = 0;
+            break;
+        default:
+            dayInNumber = Integer.parseInt(null);
+            break;
         }
+        return dayInNumber;
+    }
+
+    //function for testing purposes
+    public void testPrinterToSeeBehaviourOfApiClassesOutput(String nusmodsLink) {
+        LessonsGenerator myLessonGenerator;
+        try {
+            myLessonGenerator = new LessonsGenerator(nusmodsLink);
+            myLessonGenerator.generate();
+            ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
+            for (int k = 0; k < myLessonDetails.size(); k++) {
+                for (int j = 0; j < myLessonDetails.get(k).length; j++) {
+                    System.out.print(myLessonDetails.get(k)[j] + " ");
+                }
+                System.out.print("\n");
+            }
+        } catch (InvalidUrlException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     /**
      * Main entry-point for the application.
      */
     public void run() {
-        TextUI.introMsg();
         Scanner in = new Scanner(System.in);
         TextUI.menuMsg();
         while (in.hasNextLine()) {
@@ -148,23 +232,22 @@ public class MeetingOrganizer {
             if (userInput.equals("exit")) {
                 break;
             }
+
             String[] userInputWords = CliParser.splitWords(userInput);
             try {
                 botResponse(userInputWords, in);
-                storage.updateListToDisk(myMeetingList.getMeetingList());
+                storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
             } catch (MoException e) {
                 TextUI.errorMsg(e);
-                TextUI.menuMsg();
             } catch (DateTimeParseException e) {
                 TextUI.timeOutOfRangeMsg();
-                TextUI.menuMsg();
             } catch (NumberFormatException e) {
                 TextUI.invalidNumberMsg();
-                TextUI.menuMsg();
             } finally {
                 TextUI.menuMsg();
             }
         }
+        storage.updateMemberListToDisk(myTeamMemberList.getTeamMemberList());
         TextUI.exitMsg();
     }
 
