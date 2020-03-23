@@ -61,7 +61,8 @@ Some example commands to try:
 
 Refer to [“Features”](#Features) for details of each command.
 
-## 4.0 SAMPLE FORMAT Insert Header here `Insert format here`
+## 4. Features 
+### 4.0 SAMPLE FORMAT Insert Header here `Insert format here`
 Insert Description here
 
 Format:
@@ -76,8 +77,8 @@ Examples:
 
     Insert example here
 
-## 4. Feature - Event Tracker
-### 4.1 Adding new event: event  `-Event add`
+### 4.1 Feature - Event Tracker
+#### 4.1.1 Adding new event: event  `-Event add`
 Adds a new event to the event list.
 
 Format:
@@ -92,8 +93,8 @@ Examples:
 
     Insert Example here
 
-
-### 4.2 Adding students’ attendance to event: attendance `attendance add`
+### 4.2 Attendance Tracker
+#### 4.2.1 Adding students’ attendance to event: attendance `attendance add`
 Mark a student’s or students’ attendance in the attendance sheet.
 Input “yes” or “no” for  p/PRESENT. You may not need to state  p/PRESENT, by default it would be a “yes”.  
 You can take multiple students’ attendance at a time, separate the names using “|”.
@@ -113,9 +114,8 @@ Examples:
 
 
 
-## 5 Feature - Performance Tracker
-
-### 5.1 Adding students’ performance: performance `performance add`
+### 4.3 Feature - Performance Tracker
+#### 4.3.1 Adding students’ performance: performance `performance add`
 Add a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console. 
 
@@ -143,7 +143,7 @@ The following will show a success example of using a current name list to add pe
     PAC: Please key in the result for student (student2 name)
     ...
 
-### 5.2 Deleting students’ performance: performance `performance delete`
+#### 4.3.2 Deleting students’ performance: performance `performance delete`
 Delete a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console. 
 
@@ -160,7 +160,7 @@ Step by step guide:
     user: name
     PAC: The result of student (name) has been deleted successfully under event name.
 
-### 5.3 Viewing students’ performance: performance `performance list`
+#### 4.3.3 Viewing students’ performance: performance `performance list`
 View the list of students' result under a certain event.  
 This is a step by step command and you may follow the instructions given by the console. 
 
@@ -180,8 +180,8 @@ Step by step guide:
     | 1         |  XX                                 |  A                                          |
     |___________|_____________________________________|_____________________________________________|
 
-## 6 - Import Student List
-### 6.1 Creating a student list `student add`
+### 4.4 - Import Student List
+#### 4.4.1 Creating a student list `student add`
 Creates a student list and adds it to the collection of student list 
 that can be used for adding attendance and performance
 
