@@ -49,7 +49,6 @@ public class Parser {
     String instruction;
     static Log logger = new Log();
     public static ActivityList lastShownList = new ActivityList();
-
     // flag to check if the current activity is a continued one
     public static int continuedIndex = -1;
 

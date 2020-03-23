@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.Jikan;
 import jikan.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.InvalidTimeFrameException;
@@ -9,12 +10,13 @@ import jikan.ui.Ui;
 import java.util.Scanner;
 
 
+
 /**
  * Terminates the program.
  */
 public class ByeCommand extends Command {
 
-    private Scanner scanner = new Scanner(System.in);
+    //private Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor to create a new exit command.
@@ -26,7 +28,7 @@ public class ByeCommand extends Command {
     public void executeCommand(ActivityList activityList) {
 
         try {
-            Parser.parseBye(activityList, scanner);
+            Parser.parseBye(activityList, Jikan.in);
         } catch (InvalidTimeFrameException e) {
             Log.makeInfoLog("End date must be before start date");
             Ui.printDivider("End date must be before start date.");
