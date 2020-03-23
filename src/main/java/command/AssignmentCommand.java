@@ -9,7 +9,7 @@ import tasks.Task;
 import java.time.LocalDateTime;
 
 public class AssignmentCommand extends Command {
-    public static final String ASSIGNMENT_COMMAND_WORD = "assignment";
+    public static final String COMMAND_WORD = "assignment";
     public static final String COMMAND_USAGE = "Add Assignment: "
             + "assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]";
 
@@ -42,7 +42,7 @@ public class AssignmentCommand extends Command {
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newAssignment = new Assignment(assignmentName, moduleName, deadline, comments);
         if (isRepeatTask(taskList, newAssignment)) {
-            return new CommandResult(Messages.REPEAT_TASK_ERROR);
+            return new CommandResult(Messages.SAME_TASK_ERROR);
         }
         taskList.addTask(newAssignment);
         int listSize = taskList.getListSize();

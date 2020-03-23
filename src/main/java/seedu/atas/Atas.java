@@ -82,7 +82,7 @@ public class Atas {
             todayTasksString = Messages.NO_TODAY_TASKS_MESSAGE;
         } else {
             todayTasksString = todayTasksString.substring(todayTasksString.indexOf(System.lineSeparator()));
-            todayTasksString = Messages.SHOW_TODAY_TASKS_MESSAGE + todayTasksString;
+            todayTasksString = Messages.LIST_TODAY_TASKS_MESSAGE + todayTasksString;
         }
         ui.showToUser(todayTasksString);
     }

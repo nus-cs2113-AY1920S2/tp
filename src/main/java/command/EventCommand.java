@@ -9,7 +9,7 @@ import tasks.Task;
 import java.time.LocalDateTime;
 
 public class EventCommand extends Command {
-    public static final String EVENT_COMMAND_WORD = "event";
+    public static final String COMMAND_WORD = "event";
     public static final String COMMAND_USAGE = "Add Event: "
             + "event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]";
 
@@ -40,7 +40,7 @@ public class EventCommand extends Command {
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newEvent = new Event(eventName, eventLocation, startDateTime, endDateTime, comments);
         if (isRepeatTask(taskList, newEvent)) {
-            return new CommandResult(Messages.REPEAT_TASK_ERROR);
+            return new CommandResult(Messages.SAME_TASK_ERROR);
         }
         taskList.addTask(newEvent);
         int listSize = taskList.getListSize();
