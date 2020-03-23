@@ -153,7 +153,7 @@ public class Parser {
         checkNumberOfArguments(arguments, QuizCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
-        if (arguments.length == 2) {
+        if (arguments[1].split(" ").length == 2) {
             int numToQuiz = getNumberToQuiz(arguments[1]);
             return new QuizCommand(subjectIndex, numToQuiz);
         } else {

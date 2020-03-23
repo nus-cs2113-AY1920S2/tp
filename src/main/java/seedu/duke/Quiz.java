@@ -47,7 +47,6 @@ public class Quiz {
      * @throws EscException when chosen subject has no questions.
      */
     public static void quizQuestion(Subject subject, int numToQuiz) throws EscException {
-        System.out.println(numToQuiz);
         HashSet<Card> set = new HashSet<>();
         CardList cards = subject.getCardList();
         if (cards.size() == 0) {
