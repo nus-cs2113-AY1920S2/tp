@@ -65,7 +65,7 @@ Refer to [“Features”](#Features) for details of each command.
 ## Features 
 
 ### 4.1 Event
-#### 4.1.1 Adding new event: `event add`
+#### 4.1.1 Add new event: `event add`
 Add a new event to the event list. 
 
 Format: `event add n/NAME [t/TIME d/DATE] [v/VENUE]`
@@ -172,7 +172,7 @@ Expected outcome:
     Your Event was edited from |Event: lunch with colleague, time: Mar 23 2020 1800, venue: Marina Bay Sands| to |Event: lunch by myself, venue: home|.
 
 ### 4.2 Attendance
-#### 4.2.1 Adding students’ attendance to event: attendance `attendance add`
+#### 4.2.1 Add students’ attendance to event: attendance `attendance add`
 Mark a student’s or students’ attendance in the attendance sheet.
 Input “yes” or “no” for  p/PRESENT. You may not need to state  p/PRESENT, by default it would be a “yes”.  
 You can take multiple students’ attendance at a time, separate the names using “|”.
@@ -188,7 +188,7 @@ Examples:
     Insert Example here
 
 ### 4.3 Performance
-#### 4.3.1 Adding students’ performance: performance `performance add`
+#### 4.3.1 Add students’ performance: performance `performance add`
 Add a student’s grade or mark to the grade list. 
 Grade refers to an alphabetical grade while mark refers to a numerical mark given to the student. 
 Only one of g/GRADE m/MARK should be provided. 
@@ -205,7 +205,7 @@ Examples:
 
 
 ### 4.4 Student
-#### 4.4.1 Creating a student list `student add`
+#### 4.4.1 Create a student list `student add`
 Creates a student list and adds it to the collection of student list 
 that can be used for adding attendance and performance
 
