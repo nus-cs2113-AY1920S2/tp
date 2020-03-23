@@ -13,9 +13,9 @@ public class DisplayTable extends UI {
 
     public void printBodyOfThree(int index, String body1, String body2) {
         String columnOfThree = ("| %-10d|  %-50s|  %-28s|%n");
-        String body1_modified = extractLength(body1, 50);
-        String body2_modified = extractLength(body2, 25);
-        System.out.printf(columnOfThree, index, body1_modified, body2_modified);
+        String modifiedBody1 = extractLength(body1, 50);
+        String modifiedBody2 = extractLength(body2, 25);
+        System.out.printf(columnOfThree, index, modifiedBody1, modifiedBody2);
         printSplitOfThree();
     }
 
@@ -26,6 +26,7 @@ public class DisplayTable extends UI {
         }
         return string.substring(0, length - 4) + "...";
     }
+
     /**
      * This prints the horizontal split for a 4 columns table.
      */

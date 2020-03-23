@@ -69,6 +69,14 @@ public class PerformanceList {
         }
         return string.substring(0, length - 4) + "...";
     }
+
+    /**
+     * This method compares the input String student name with Performance.studentName
+     * and returns the Performance when the two Strings are equal.
+     * @param studentName A String input to be compared.
+     * @return The Performance with studentName matches input String.
+     * @throws DukeException Throws
+     */
     public Performance getPerformance(String studentName) throws DukeException {
         if (isEmpty()) {
             throw new DukeException("No performance list under this event");

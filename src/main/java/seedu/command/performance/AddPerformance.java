@@ -56,12 +56,6 @@ public class AddPerformance extends Command {
         }
         System.out.println("You have successfully added "
                 + studentNumber + " result(s) to the performance list.");
-//        do {
-//            performances.addToList(getPerformance(parameter), eventName);
-//            parameter = ui.getStringInput();
-//            studentNumber++;
-//        } while (!parameter.equals("done"));
-//
     }
 
     /**
