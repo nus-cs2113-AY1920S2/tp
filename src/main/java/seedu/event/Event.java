@@ -13,18 +13,6 @@ public class Event {
     protected AttendanceList attendanceList;
     protected PerformanceList performanceList;
 
-
-    /**
-     * Empty constructor. Sets name as "unnamed"
-     */
-    public Event() throws DukeException {
-        setName("");
-        setDatetime("");
-        setVenue("");
-        this.attendanceList = new AttendanceList();
-        this.performanceList = new PerformanceList();
-    }
-
     /**
      * Constructor with name, datetime, venue provided.
      * @param name name of event
@@ -32,10 +20,11 @@ public class Event {
      * @param venue venue of event
      */
     public Event(String name, String datetime, String venue) throws DukeException {
-        this();
         setName(name);
         setDatetime(datetime);
         setVenue(venue);
+        this.attendanceList = new AttendanceList();
+        this.performanceList = new PerformanceList();
     }
 
     /**
@@ -84,6 +73,22 @@ public class Event {
     }
 
     /**
+     * Returns month of the event as an integer value, from 1 to 12.
+     * @return Numerical value of month of the event.
+     */
+    public Integer getMonth() {
+        return datetime.getMonth();
+    }
+
+    /**
+     * Returns year of the event as an integer value.
+     * @return Numerical value of the year of the event.
+     */
+    public Integer getYear() {
+        return datetime.getYear();
+    }
+
+    /**
      * Sets the datetime of the event.
      * @param datetime the new datetime for the event
      */
@@ -123,5 +128,9 @@ public class Event {
         }
 
         return output;
+    }
+
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
     }
 }

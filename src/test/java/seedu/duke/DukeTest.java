@@ -1,12 +1,15 @@
 package seedu.duke;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+import seedu.command.Bye;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class DukeTest {
+    Duke duke = new Duke();
+
     @Test
-    public void sampleTest() {
-        assertTrue(true);
+    void checkBye() {
+        assertFalse(duke.isNotBye(new Bye()));
     }
 }

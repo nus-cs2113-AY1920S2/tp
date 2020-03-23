@@ -7,14 +7,18 @@ import java.time.Instant;
 
 public class Seminar extends Event {
 
-    public Seminar() throws DukeException {
-        super();
-    }
-
     public Seminar(String name, String datetime, String venue) throws DukeException {
         super(name, datetime, venue);
     }
 
+    /**
+     * Sets the name of the seminar. If the specified name is empty or {@code null},
+     * and the original name is also empty or {@code null},
+     * the name will take the form: seminar_(secondsSinceEpoch)
+     * @param name the new name for the seminar
+     * @throws DukeException when trying to overwrite a non-empty
+     *      and non-null name with an empty or null name
+     */
     @Override
     public void setName(String name) throws DukeException {
         if (this.name == null || this.name.isEmpty()) {

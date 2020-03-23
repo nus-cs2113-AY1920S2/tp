@@ -1,11 +1,6 @@
 # Developer Guide
 cover page
 ## Table of Contents
-
-## Introduction
-### Purpose
-This document describes the architecture and software design for the Professor Assistant Console, PAC.
-
 ### Target user profile
 Our target audiences are professors who need help organizing their personal work schedule and need more time.
 The professors are pressed for time and they require a simple software to organize their monthly events
@@ -45,7 +40,26 @@ PAC. The following groups are in particular the intended audience of the documen
 
 ## Feature Design and Implementation 
 ### Event
+![event](images/event.png "Class diagram of Event component")
+
 *Class diagram of the Event component*
+
+1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
+1. Once determined, the relevant information (e.g. index, name, time, date, venue) are extracted by 
+`EventParser`.
+1. Then, the relevant class that corresponds to the command is created, with the information extracted 
+from the previous step passed into it. It modifies `Event` or `EventList`.
+1. These commands are then returned to `Duke.run()` to `execute()`. 
+
+Note that:
+* `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
+and `time`, which corresponds to `d/` and `t/` flag respectively.
+* `editDate` or `editTime` commands are not available. Only `editDateTime` is available to change the 
+`date` and/or `time` of an `Event` object.
+* `delete(Event)` method is currently not in use, but can be used to implement delete by event name, 
+either by complete match, or fuzzy match.
+* Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar control flow. 
+
 ### Attendance Tracker
 *Class diagram of the Attendance component*
 ### Performance Tracker
@@ -85,7 +99,7 @@ PAC. The following groups are in particular the intended audience of the documen
 
 ## Glossary
 
-* *glossary item* - Definition
+* *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
 
 ## Instructions for Manual Testing
 

@@ -1,9 +1,11 @@
 package seedu.command;
 
+import seedu.attendance.AttendanceList;
 import seedu.command.attendance.AddAttendance;
-import seedu.command.attendance.DeleteAttendance;
+import seedu.command.attendance.ListAttendance;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
+import seedu.ui.UI;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -13,10 +15,16 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 
 public class AttendanceCommandInterpreter extends CommandInterpreter {
+
+    AttendanceList attendances;
+    String eventName;
+    UI ui;
+
     private static final Logger logger = Logger.getLogger(AttendanceCommandInterpreter.class.getName());
 
     public AttendanceCommandInterpreter(EventList eventList) {
         super(eventList);
+        this.ui = new UI();
     }
 
     public static void setupLogger() throws DukeException {
@@ -50,16 +58,21 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
         logger.fine("My Second Log");
 
         String commandType = getFirstWord(commandDescription);
-        String commandParameters = getSubsequentWords(commandDescription);
+        eventName = ui.getEventNameForAttendance();
+        attendances = getAttendance(eventName);
         assert commandType == "" : "UnknownType";
         assert commandType == "" : "UnknownParameter";
         switch (commandType) {
         case "add":
-            return new AddAttendance(commandParameters);
-        case "delete":
-            return new DeleteAttendance(commandParameters);
+            return new AddAttendance(attendances, eventName);
+        case "list":
+            return new ListAttendance(attendances);
         default:
             throw new DukeException("Attendance: Unknown command.");
         }
+    }
+
+    private AttendanceList getAttendance(String eventName) throws DukeException {
+        return eventList.getEvent(eventName).getAttendanceList();
     }
 }

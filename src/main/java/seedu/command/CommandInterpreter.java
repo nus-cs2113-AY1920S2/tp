@@ -3,6 +3,8 @@ package seedu.command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
+import java.util.Calendar;
+
 public class CommandInterpreter {
     protected EventList eventList;
 
@@ -75,16 +77,23 @@ public class CommandInterpreter {
             PerformanceCommandInterpreter pci = new PerformanceCommandInterpreter(eventList);
             command = pci.decideCommand(commandDescription);
             break;
+        case "student":
+            StudentCommandInterpreter ssci = new StudentCommandInterpreter(eventList);
+            command = ssci.decideCommand(commandDescription);
+            break;
         case "help":
             return new Help();
+        case "calendar":
+            CalendarCommandInterpreter cci = new CalendarCommandInterpreter(eventList);
+            command = cci.decideCommand(commandDescription);
+            break;
         default:
             assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
-                    && !commandCategory.equals("performance"))
+                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar"))
                     : "accepted command category is not further interpreted!";
             throw new DukeException("Unknown command category is provided");
         }
-
         if (command == null) {
             throw new DukeException("Duke is null.");
         }
