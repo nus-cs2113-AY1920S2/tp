@@ -18,13 +18,13 @@ Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a
 Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; tomato`, which will display the following result in the image. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77285807-d9d6f580-6d0c-11ea-8716-b4cb55877662.PNG)">
+  <img src="https://user-images.githubusercontent.com/59989652/77285807-d9d6f580-6d0c-11ea-8716-b4cb55877662.PNG">
 </p>
 
 The following sequence diagram shows how the search operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77295796-858a4080-6d21-11ea-8d4f-f942d2312927.png)">
+  <img src="https://user-images.githubusercontent.com/59989652/77295796-858a4080-6d21-11ea-8d4f-f942d2312927.png">
 </p>
 
 #### 1.1.2 Design Considerations
