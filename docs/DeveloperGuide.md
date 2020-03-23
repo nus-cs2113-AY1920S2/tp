@@ -27,7 +27,7 @@ with the specified index.
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/DeleteFeat.png)
+![alt text](images/Delete.png)
 
 #### 2.1.2 Design considerations
 
@@ -152,10 +152,10 @@ The following sequence diagram below shows how the Mark feature (Diagram 1) and 
 Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
 
 ######Diagram 1:
-![alt text](images/MarkFeat.png)
+![alt text](images/Mark.png)
 
 ######Diagram 2:
-![alt text](images/UnmarkFeat.png)
+![alt text](images/Unmark.png)
 
 #### 2.4.2 Design Considerations
 
@@ -191,7 +191,7 @@ which makes another call to the <code>resetBudget</code> function of the <code>B
 The following sequence diagram below shows how the reset budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/ResetBudget.png)
+![alt text](images/Reset_Budget.png)
 
 
 #### 2.5.2 Design considerations
