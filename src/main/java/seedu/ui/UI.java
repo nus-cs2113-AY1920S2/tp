@@ -209,6 +209,14 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
+    public static void printCalendar(ArrayList<Event> list, int semesterOneYear, int semesterTwoYear, int semester) {
+        System.out.printf("Events of Semester %d of AY %d/%d\n",
+                semester, semesterOneYear, semesterTwoYear);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + 1 + ". " +  list.get(i));
+        }
+    }
+
     /**
      * The message showed to the user after successful deletion of a performance.
      *

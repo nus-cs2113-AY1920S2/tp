@@ -73,6 +73,22 @@ public class Event {
     }
 
     /**
+     * Returns month of the event as an integer value, from 1 to 12.
+     * @return Numerical value of month of the event.
+     */
+    public Integer getMonth() {
+        return datetime.getMonth();
+    }
+
+    /**
+     * Returns year of the event as an integer value.
+     * @return Numerical value of the year of the event.
+     */
+    public Integer getYear() {
+        return datetime.getYear();
+    }
+
+    /**
      * Sets the datetime of the event.
      * @param datetime the new datetime for the event
      */
