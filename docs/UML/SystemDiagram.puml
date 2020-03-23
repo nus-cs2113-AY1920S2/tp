@@ -32,9 +32,9 @@ Class Prescription MEDICAL
 Class VisitDate MEDICAL
 Class Allergies MEDICAL
 
-PatientCommand --> Command
-MedicalCommand --> Command
-AppointmentCommand --> Command
+PatientCommand --|> Command
+MedicalCommand --|> Command
+AppointmentCommand --|> Command
 
 Parser ..> Command
 
