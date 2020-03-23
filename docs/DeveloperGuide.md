@@ -151,10 +151,12 @@ method of the <code>shoppingList</code> object with the specified index.
 The following sequence diagram below shows how the Mark feature (Diagram 1) and Unmark feature (Diagram 2) works.
 Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
 
-######Diagram 1:
+Diagram 1:
+
 ![alt text](images/Mark.png)
 
-######Diagram 2:
+Diagram 2:
+
 ![alt text](images/Unmark.png)
 
 #### 2.4.2 Design Considerations
