@@ -175,6 +175,45 @@ and <code>UnmarkCommand</code>
   - Cons: Code becomes harder to navigate and understand since the command is all handled under one class, thus makes
   having to edit the mark and unmark feature difficult.
   
+### 2.5 Reset budget feature
+#### 2.5.1 Current implementation
+
+The reset budget feature is implemented using a <code>ResetBudgetCommand</code> class which extends the main
+<code>Command</code> class with a variable representing the budget amount.
+
+The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
+<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
+<code>ResetBudgetCommand</code> object based on that user input.
+
+The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ResetBudgetCommand</code> object
+which makes another call to the <code>resetBudget</code> function of the <code>Budget</code> object 
+with the amount specified by the user for the budget.
+
+The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
+omitted in the sequence diagram to emphasise on the other classes:
+
+![alt text](images/ResetBudget.png)
+
+
+#### 2.2.2 Design considerations
+
+##### Aspect: Data structure to support the set budget feature
+
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ResetBudgetCommand</code>
+ 
+  - Pros: Easy to add the reset budget feature without having to change the logic of the code much as each command
+  object is treated as a black box
+  
+  - Cons: Might significantly increase the code base with another class being added
+
+
+- Alternative 2: Implement reset budget feature in the <code>Duke</code> or <code>Parser</code> class
+
+  - Pros: Will have lesser code to deal with as a new function is simply created in the <code>Duke</code> class
+  
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
+  simply executes those commands as black boxes, without worrying about their internal details
+  
 ## Appendix A: Product Scope
 ### Target user profile
 

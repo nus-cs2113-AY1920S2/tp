@@ -46,6 +46,7 @@ public class Parser {
             createAddCommand(arguments);
             break;
 
+        //@@author Shannonwje
         case MarkCommand.COMMAND_WORD:
             createMarkCommand(arguments);
             break;
@@ -53,6 +54,7 @@ public class Parser {
         case UnmarkCommand.COMMAND_WORD:
             createUnmarkCommand(arguments);
             break;
+        //@@author
 
         case EditCommand.COMMAND_WORD:
             createEditCommand(arguments);
@@ -81,10 +83,11 @@ public class Parser {
             createClearCommand(arguments);
             break;
 
-
+        //@@author Shannonwje
         case ResetBudgetCommand.COMMAND_WORD:
             createResetBudgetCommand(arguments);
             break;
+         //@@author
 
         case ExitCommand.COMMAND_WORD:
             createExitCommand();
@@ -192,6 +195,7 @@ public class Parser {
         return argsArray;
     }
 
+    //@@author Shannonwje
     /**
      * Initialises the MarkCommand.
      */
@@ -233,6 +237,7 @@ public class Parser {
             newCommand = new IncorrectCommand("Please provide a single numerical index number!");
         }
     }
+    //@@author
 
     /**
      * Initialises the EditCommand.
@@ -401,6 +406,7 @@ public class Parser {
     }
     //@@author
 
+    //@@author Shannonwje
     /**
      * Initialises the ResetBudgetCommand.
      */
@@ -416,6 +422,7 @@ public class Parser {
             newCommand = new ResetBudgetCommand();
         }
     }
+    //@@author
 
     /**
      * Initialises the HelpCommand.
