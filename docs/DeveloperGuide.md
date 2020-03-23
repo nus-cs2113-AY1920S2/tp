@@ -1,8 +1,21 @@
 # Developer Guide
 
+* [1. Design & Implementation](#design-implementation)
+    + [1.1. [Proposed] Search stock feature](#search-stock)
+    + [1.2. [Proposed] List stock in descending quantities](#list-stock)
+* [2. Product Scope](#product-scope)
+* [3. User Stories](#user-stories)
+* [4. Non-Functional Requirements](#nonfunctional-requirement)
+* [5. Glossary](#glossary)
+
+
+<a name="design-implementation"></a>
+
 ## 1. Design & Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+<a name="search-stock"></a>
 
 ### 1.1 [Proposed] Search stock feature
 #### 1.1.1 Proposed implementation
@@ -46,6 +59,8 @@ The following sequence diagram shows how the search operation works:
 + Pros: We do not need to create a new `List` to display the relevant results.
 + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. These, compared to `List`, is much less straightforward.
 
+<a name="list-stock"></a>
+
 ### 1.2 [Proposed] List stock ingredients in descending quantity
 #### 1.2.1 Proposed implementation
 
@@ -66,7 +81,7 @@ Step 3. The user can now view the current `stock` to see what ingredients are th
 The following class diagram shows how the listing operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77316340-36093c00-6d44-11ea-9ee7-2f120b74364c.png">
+  <img src="https://user-images.githubusercontent.com/59989652/77317533-54703700-6d46-11ea-8fa7-1085ce028f55.png">
 </p>
 
 * 1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
@@ -96,6 +111,7 @@ The following class diagram shows how the listing operation works:
 + Pros: We do not need to create a new `List` to display the relevant results.
 + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. Sorting it, however, as compared to `List`, is much less straightforward.
 
+<a name="product-scope"></a>
 
 ## 2. Product Scope
 ### Target user profile
@@ -106,6 +122,8 @@ The following class diagram shows how the listing operation works:
 
 {Describe the value proposition: what problem does it solve?}
 
+<a name="user-stories"></a>
+
 ## 3. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
@@ -113,9 +131,13 @@ The following class diagram shows how the listing operation works:
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 
+<a name="nonfunctional-requirement"></a>
+
 ## 4. Non-Functional Requirements
 
 {Give non-functional requirements}
+
+<a name="glossary"></a>
 
 ## Glossary
 
