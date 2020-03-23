@@ -35,7 +35,6 @@ public class EditCommand extends Command {
     private Patient findPatient(PatientList patients) {
         for (Patient patient : patients) {
             if (patient.getNric().equalsIgnoreCase(nric)) {
-                logger.log(logLevel, "patient to be edited is found");
                 return patient;
             }
         }

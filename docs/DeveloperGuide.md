@@ -18,11 +18,16 @@ By: `CS2113T-T12-2` Since: `2020`
       - 4.1.2. Implementation
       
       - 4.1.3. Design Considerations
-
     
-    4.2. 
+    4.2. Appointment Scheduling
     
+      - 4.2.1. Description
+      
+      - 4.2.2. Implementation 
+      
+      - 4.2.3. Design Consideration 
     
+    4.3.    
 5. [Documentation](#documentation)
 6. [Testing](#testing)
 7. [DevOps](#devops)
@@ -37,6 +42,63 @@ By: `CS2113T-T12-2` Since: `2020`
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+###4.2. Appointment Scheduling 
+    
+####4.2.1 Description
+
+Users are able to schedule appointments made by their patients on the program, ensuring that the 
+appointments do not clash and are within the opening hours of the clinic. 
+
+####4.2.2 Implementation 
+   
+Users can manage their appointment schedule using these commands:
+   
+   - `add appt d/[DATE] t/[TIME] ic/[NRIC] r/[REASON]`
+   
+     - The appointment object takes in the date and time of the appointment as well as the patient appointment is 
+     scheduled for and the reason for the appointment. This appointment must be tied to a patient that exists 
+     within the program. The program will display the appointment ID that is assigned to the appointment should 
+     the adding of appointment be successful.
+     
+   - `find appt [NRIC]`
+   
+     - Users can easily find all the appointments tied to a certain patient within the program. This command will 
+     list down all the details of the appointment, along with the appointment ID that was assigned to the appointment 
+     when it was created. 
+     
+   - `edit [APPT ID] d/[NEW DATE] t/[NEW TIME] r/[NEW REASON]`
+   
+     - If the user made a mistake while adding an appointment, it is possible to edit the appointment details via 
+     the ID of the appointment.
+     
+     - Users are able to update the date, time and reason of the existing appointment but the parameters must be 
+     used in the given order. 
+     
+   - `done [APPT ID]`
+   
+     - An appointment can be marked as done after the patient has showed up for the appointment.
+     
+   - `list appt [START DATE] - [END DATE]` 
+   
+     - Users can list all the appointments that has been scheduled within the program.
+     
+     - [OPTIONAL] Users can include the range of dates of the appointments that is to be listed down.
+
+####4.2.3 Design Consideration
+   
+*Aspect: Storing of Appointment Schedule*
+   
+   - **Alternative 1: Use of ArrayList of Appointments**
+   
+Pros: 
+
+Cons: 
+   
+   - **Alternative 2: Use of ArrayList of Appointment Date/Time and Hashmap of Appointments**  
+
+Pros:
+
+Cons:
 
 ## Appendix A: Product Scope
 
