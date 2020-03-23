@@ -57,7 +57,9 @@ public class AddCommand extends Command {
         String message = "";
 
         patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
+        assert !patients.containsKey(nric) : "New nric added";
         message = TextUi.getPatient(patients.get(nric));
+        assert patients.containsKey(nric) : "nric added successfully";
         logger.log(logLevel, "end of addCommand");
         return message;
     }
