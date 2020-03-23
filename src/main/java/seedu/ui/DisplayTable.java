@@ -5,18 +5,27 @@ import java.util.stream.Stream;
 public class DisplayTable extends UI {
 
     public void printHeaderOfThree(String index, String header1, String header2) {
-        String columnOfThree = ("| %-10s|  %-35s|  %-43s|%n");
+        String columnOfThree = ("| %-10s|  %-50s|  %-28s|%n");
         printSplit();
         System.out.printf(columnOfThree, index, header1, header2);
         printSplitOfThree();
     }
 
     public void printBodyOfThree(int index, String body1, String body2) {
-        String columnOfThree = ("| %-10d|  %-35s|  %-43s|%n");
-        System.out.printf(columnOfThree, index, body1, body2);
+        String columnOfThree = ("| %-10d|  %-50s|  %-28s|%n");
+        String body1_modified = extractLength(body1, 50);
+        String body2_modified = extractLength(body2, 25);
+        System.out.printf(columnOfThree, index, body1_modified, body2_modified);
         printSplitOfThree();
     }
 
+    private String extractLength(String string, int length) {
+        int lengthString = string.length();
+        if (lengthString < length) {
+            return string;
+        }
+        return string.substring(0, length - 4) + "...";
+    }
     /**
      * This prints the horizontal split for a 4 columns table.
      */
@@ -36,9 +45,9 @@ public class DisplayTable extends UI {
         System.out.print("|");
         Stream.generate(() -> "_").limit(11).forEach(System.out::print);
         System.out.print("|");
-        Stream.generate(() -> "_").limit(37).forEach(System.out::print);
+        Stream.generate(() -> "_").limit(52).forEach(System.out::print);
         System.out.print("|");
-        Stream.generate(() -> "_").limit(45).forEach(System.out::print);
+        Stream.generate(() -> "_").limit(30).forEach(System.out::print);
         System.out.print("|\n");
     }
 

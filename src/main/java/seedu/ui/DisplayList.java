@@ -51,7 +51,7 @@ public class DisplayList extends UI {
     }
 
     public int getStudentListIndex() {
-        assert !studentListCollection.isEmpty();
+        assert !studentListCollection.isEmpty() : "studentListCollection should be empty.";
         int index = 1;
         for (StudentList studentList: studentListCollection) {
             System.out.println(index + ". " + studentList.getListName());

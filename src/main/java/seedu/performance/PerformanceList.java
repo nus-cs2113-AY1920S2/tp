@@ -62,6 +62,13 @@ public class PerformanceList {
         }
     }
 
+    private String extractLength(String string, int length) {
+        int lengthString = string.length();
+        if (lengthString < length) {
+            return string;
+        }
+        return string.substring(0, length - 4) + "...";
+    }
     public Performance getPerformance(String studentName) throws DukeException {
         if (isEmpty()) {
             throw new DukeException("No performance list under this event");

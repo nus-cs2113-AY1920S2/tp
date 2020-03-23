@@ -140,7 +140,7 @@ public class UI {
         return in.nextLine();
     }
 
-    public Boolean getTypeOfAddPerformance() {
+    public static Boolean getTypeOfAddPerformance() {
         System.out.println("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         String input = in.nextLine();

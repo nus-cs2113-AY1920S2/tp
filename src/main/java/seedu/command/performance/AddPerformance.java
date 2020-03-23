@@ -23,7 +23,7 @@ public class AddPerformance extends Command {
      * and parse it to get the Performance to be added.
      */
     public AddPerformance(PerformanceList performances, String eventName) {
-        this.isByNameList = ui.getTypeOfAddPerformance();
+        this.isByNameList = UI.getTypeOfAddPerformance();
         this.performances = performances;
         this.eventName = eventName;
         this.ui = new UI();
