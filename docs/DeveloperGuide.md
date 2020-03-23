@@ -72,14 +72,14 @@ The commands introduced in this feature include : `add`, `edit`, `list`, `delete
 The commands are implemented with HashMap and use NRIC as key and the Patient class as value.
 The patient list feature is facilitated by PatientMap class which implements the following operations: 
 
-    - PatientMap #add(Patient patient) —  This command adds the patient object into the patient list using the patient’s nric as key.
+    - PatientMap #add(Patient patient) — This command adds the patient object into the patient list using the patient’s nric as key.
 
     - PatientMap #remove(String nric) — This command removes the patient object from the existing patient list. 
 
     - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
 
 The activity diagram below summarises the process of executing an `add` command.
-![Add Activity Diagram]()
+![Add Activity Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddCommandActivityDiagram.png)
 
 #### 4.2.3 Design Consideration
 
@@ -179,7 +179,10 @@ Value proposition: Note taking application built for doctors to manage notes fas
 |v1.0|Doctor|have a quick overview of a list of all patients|check for their detailed information.|
 |v1.0|Doctor|retrieve my patient's detailed information|check for his/her allergies and provide a more accurate diagnosis|
 |v1.0|Doctor|edit a particular patient's information|the most up-to-date details in our patient records|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v2.0|Doctor|?|?|
+|v2.0|Doctor|?|?|
+|v2.0|Doctor|?|?|
+|v2.0|Doctor|?|?|
 
 ## Non-Functional Requirements
 
