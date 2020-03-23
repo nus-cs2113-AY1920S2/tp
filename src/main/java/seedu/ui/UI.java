@@ -114,7 +114,8 @@ public class UI {
      *
      * @param performance The Performance deleted.
      */
-    public void deletePerformanceMessage(Performance performance, String eventName, boolean hasDeleted) throws DukeException {
+    public void deletePerformanceMessage(Performance performance, String eventName,
+                                         boolean hasDeleted) throws DukeException {
         if (!hasDeleted) {
             throw new DukeException("Performance not found in list");
         }
