@@ -27,6 +27,6 @@ public class QuizCommand extends Command {
     @Override
     public void execute(SubjectList subjectList) throws EscException {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
-        Quiz.quizQuestion(chosenSubject.getCardList());
+        Quiz.quizQuestion(chosenSubject);
     }
 }
