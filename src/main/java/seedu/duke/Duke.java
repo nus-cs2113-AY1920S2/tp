@@ -65,6 +65,8 @@ public class Duke {
                 System.out.println(m.getMessage());
             }
         } while (isNotBye(command));
+
+        ui.close();
     }
 
     private boolean isNotBye(Command command) {

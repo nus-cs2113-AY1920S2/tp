@@ -1,22 +1,18 @@
 package seedu.ui;
 
 import seedu.StudentList;
-import seedu.attendance.Attendance;
 import seedu.event.Event;
 import seedu.exception.DukeException;
 import seedu.performance.Performance;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static seedu.duke.Duke.studentListCollection;
 
 public class UI {
-    private static Scanner in;
-    private static String userInput;
+    private Scanner in;
+    private String userInput;
     private static String userName;
     private final String columnOfFour = ("| %-10d|  %-30s|  %-35s|  %-10s|%n");
     private final String columnOfThree = ("| %-10d|  %-35s|  %-43s|%n");
@@ -53,7 +49,7 @@ public class UI {
     /**
      * Close the scanner.
      */
-    public static void close() {
+    public void close() {
         in.close();
     }
 
