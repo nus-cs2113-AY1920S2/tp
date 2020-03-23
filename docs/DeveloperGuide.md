@@ -61,14 +61,14 @@ By: `CS2113T-T12-2` Since: `2020`
 
 
 
-###4.2. Appointment Scheduling 
+### 4.2. Appointment Scheduling 
     
-####4.2.1 Description
+#### 4.2.1 Description
 
 Users are able to schedule appointments made by their patients on the program, ensuring that the 
 appointments do not clash and are within the opening hours of the clinic. 
 
-####4.2.2 Implementation 
+#### 4.2.2 Implementation 
    
 Users can manage their appointment schedule using these commands:
    
@@ -103,7 +103,7 @@ Users can manage their appointment schedule using these commands:
      
      - [OPTIONAL] Users can include the range of dates of the appointments that is to be listed down.
 
-####4.2.3 Design Consideration
+#### 4.2.3 Design Consideration
    
 *Aspect: Storing of Appointment Schedule*
    
