@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class ByeCommand extends Command {
 
-    private Scanner scanner = new Scanner(System.in);;
+    private Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor to create a new exit command.
