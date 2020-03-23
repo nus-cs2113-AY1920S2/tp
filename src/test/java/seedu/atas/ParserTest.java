@@ -10,6 +10,7 @@ import command.HelpCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
+import command.CalendarCommand;
 import common.Messages;
 
 import java.time.LocalDateTime;
@@ -225,5 +226,28 @@ public class ParserTest {
     public void parseExitCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand(ExitCommand.COMMAND_WORD);
         assertTrue(parsedCommand instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCalendarCommand_expectedInput_success() {
+        Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/01/01/20");
+        assertTrue(parsedCommand instanceof  CalendarCommand);
+    }
+
+    @Test
+    public void parseCalendarCommand_failureMessage() {
+        Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD);
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_FORMAT_ERROR,
+                        Parser.capitalize(CalendarCommand.COMMAND_WORD), CalendarCommand.COMMAND_USAGE)));
+    }
+
+    @Test
+    public void parseCalendarCommand_DateIncorrect() {
+        Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/00/00/00");
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DATE_INCORRECT_OR_INVALID_ERROR));
     }
 }
