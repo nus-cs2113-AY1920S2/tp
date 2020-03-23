@@ -15,7 +15,7 @@
 
 ### Architecture
 
-![ArchitectureDiagram](/images/Architecture.png)
+![ArchitectureDiagram](/docs/images/Architecture.png)
 
 The Architecture Diagram given above explains the high-level design of the Diet Manager Application.
 
