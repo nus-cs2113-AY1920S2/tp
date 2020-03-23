@@ -42,9 +42,9 @@
 <br>  
   
 # Introduction  
-This **Nuke** application is a simple yet powerful task management system that is dedicated to providing **NUS students** efficient organisation of _modules_ and _tasks_.<br>
-You will be interacting with the application via the command line. With the **Nuke** application, you will be able to perform various operations to manage your _modules_ and _tasks_ such as adding, deleting and listing your  _modules_ and _tasks_. You may also add additional properties to your _tasks_ such as _files_, _deadlines_, and _priorities_.<br>
-**Nuke** facilitates users by automatically sorting user-added _tasks_ and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>
+This **Nuke** application is a simple yet powerful task management system that is dedicated to providing **NUS students** efficient organisation of _modules_ and _tasks_.<br>  
+You will be interacting with the application via the command line. With the **Nuke** application, you will be able to perform various operations to manage your _modules_ and _tasks_ such as adding, deleting and listing your  _modules_ and _tasks_. You may also add additional properties to your _tasks_ such as _files_, _deadlines_, and _priorities_.<br>  
+**Nuke** facilitates users by automatically sorting user-added _tasks_ and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>  
 If you are an **NUS student** and have not tried out **Nuke** yet...  
 What are you waiting for? Give **Nuke** a shot, and you will see how amazing it is!  
     
@@ -88,10 +88,11 @@ The **Task** Directory is the **last** level of the Directory Tree. Each _task_ 
 #### <u>Other Notes</u>
 The **Nuke** application adheres to this Directory Tree structure strictly. It is important to note that you can only add a directory into a directory which is **_exactly_ one level lower**. For example, you can only add a _task_ into the **Category** directory, and not directly into the **Module** directory.<br>
 Normally, you would need to enter the full _directory path_ in order to add and delete _modules_, _categories_, _tasks_ and _files_. To make the process more efficient, **Nuke** enables you to traverse about the various directories via the [Change Directory](#6-change-directory) command so that you can add and delete the corresponding items directly without having to enter the full _directory path_.
+
 <br>
 
 ## Command Format  
-In this User Guide, the format for each feature _(command)_ will usually be of this form:
+In this User Guide, the format for each feature _(command)_ will usually be of this form:  
 `CommandWord <attribute0> -Prefix1 <attribute1> ... [ -Prefix2 <attribute2> ... ]`
 
 ### Command Word
