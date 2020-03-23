@@ -47,7 +47,7 @@ public class EventList {
      * @param index the index of the element to be removed
      */
     public void delete(int index) throws DukeException {
-        if (index <= 0) {
+        if (index < 0) {
             throw new DukeException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
@@ -69,7 +69,7 @@ public class EventList {
      * @throws DukeException If list is empty.
      */
     public Event find(int index) throws DukeException {
-        if (index <= 0) {
+        if (index < 0) {
             throw new DukeException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
