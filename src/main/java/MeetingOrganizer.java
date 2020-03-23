@@ -92,7 +92,7 @@ public class MeetingOrganizer {
                 }
                 myTeamMemberList.add(member);
                 TextUI.showAddedMember(member.getName());
-            } catch (InvalidUrlException e) {
+            } catch (InvalidUrlException | UnformattedModuleException | FileNotFoundException e) {
                 System.out.println(e.getMessage());
             }
             break;
@@ -119,7 +119,7 @@ public class MeetingOrganizer {
             }
 
             //Automatically add main user's timetable into scheduler.
-            if (!myScheduleList.contains(mainUser)) {
+            if (mainUser != null && !myScheduleList.contains(mainUser)) {
                 myScheduleList.add(mainUser);
             }
             ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
@@ -209,25 +209,6 @@ public class MeetingOrganizer {
             break;
         }
         return dayInNumber;
-    }
-
-    //function for testing purposes
-    public void testPrinterToSeeBehaviourOfApiClassesOutput(String nusmodsLink) {
-        LessonsGenerator myLessonGenerator;
-        try {
-            myLessonGenerator = new LessonsGenerator(nusmodsLink);
-            myLessonGenerator.generate();
-            ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
-            for (int k = 0; k < myLessonDetails.size(); k++) {
-                for (int j = 0; j < myLessonDetails.get(k).length; j++) {
-                    System.out.print(myLessonDetails.get(k)[j] + " ");
-                }
-                System.out.print("\n");
-            }
-        } catch (InvalidUrlException e) {
-            System.out.println(e.getMessage());
-        }
-
     }
 
     /**
