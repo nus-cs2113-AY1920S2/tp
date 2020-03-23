@@ -3,6 +3,8 @@ package seedu.duke.command;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SelectedModulesList;
+import seedu.duke.data.SemModulesList;
+import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 import seedu.duke.module.Module;
 import seedu.duke.module.NewModule;
@@ -28,6 +30,7 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
             Ui.showError(String.format("Module %s not found in available modules", moduleIdentifier));
             return;
         }
+
         Module moduleChosen = availableModulesList.getModule(moduleIdentifier);
         boolean isPreReq = checkIfIsPreReq(moduleChosen, availableModulesList);
         if (isPreReq) {
@@ -38,6 +41,16 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
         availableModulesList.remove(moduleChosen); // why did this work????
         Ui.showDeleteFromAvailableMessage(moduleChosen.toString());
 
+        boolean isInModulePlan = checkIfInModulePlan(moduleChosen.getId(), selectedModulesList);
+        if (isInModulePlan) {
+            for (SemModulesList sem : selectedModulesList) {
+                if (sem.isModuleIdInList(moduleChosen.getId())) {
+                    sem.deleteModule(moduleIdentifier);
+                    Ui.showDeleteFromAvailableFollowUpMessage(moduleChosen.toString());
+                    break;
+                }
+            }
+        }
     }
 
     public boolean checkIfModuleAvailable(AvailableModulesList availableModulesList) {
@@ -55,6 +68,15 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
                         return true;
                     }
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean checkIfInModulePlan(String moduleId, SelectedModulesList selectedModulesList) {
+        for (SemModulesList sem : selectedModulesList) {
+            if (sem.isModuleIdInList(moduleId)) {
+                return true;
             }
         }
         return false;

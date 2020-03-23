@@ -10,6 +10,7 @@ add id/IS4241 s/4
 add id/CS1231 n/Discrete Structures
 add id/CS2104 n/Programming Language Concepts pre/CS2030
 add id/CS1231 s/3
+add id/GET1002 s/2
 view /mp
 done id/CS2113 g/B c/4
 view /dm
@@ -19,5 +20,7 @@ delete id/IS4241 s/4
 view /mp
 delete n/Singapore Employment Law
 delete id/CS1010
+delete id/GET1002
 view
+view /mp
 bye

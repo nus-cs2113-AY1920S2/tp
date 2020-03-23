@@ -1,6 +1,7 @@
 package seedu.duke.data;
 
 import seedu.duke.module.Module;
+import seedu.duke.module.SelectedModule;
 
 public class SemModulesList extends ModuleList {
     private String semName;
@@ -48,5 +49,14 @@ public class SemModulesList extends ModuleList {
             }
         }
         return null;
+    }
+
+    public void deleteModule(String moduleIdentifier) {
+        for (Module module : this) {
+            if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
+                this.remove(module);
+                break;
+            }
+        }
     }
 }

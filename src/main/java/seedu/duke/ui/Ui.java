@@ -38,6 +38,9 @@ public class Ui {
     private static final String DELETE_FROM_AVAILABLE_MESSAGE
             = "Okay, this module has been deleted from the list of available modules";
 
+    private static final String DELETE_FROM_AVAILABLE_FOLLOW_UP_MESSAGE
+            = "Since the following module was found in your module plan, it will be deleted from your module plan too!";
+
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     private static final String REQUIRED_INPUT_USER_NAME = "What is your name? Please enter it over here:";
@@ -116,6 +119,10 @@ public class Ui {
 
     public static void showDeleteFromAvailableMessage(String output) {
         showToUser(DELETE_FROM_AVAILABLE_MESSAGE, output, LINE_SEPARATOR);
+    }
+
+    public static void showDeleteFromAvailableFollowUpMessage(String module) {
+        showToUser(DELETE_FROM_AVAILABLE_FOLLOW_UP_MESSAGE, module, LINE_SEPARATOR);
     }
 
     public static void showError(String errorMessage) {
