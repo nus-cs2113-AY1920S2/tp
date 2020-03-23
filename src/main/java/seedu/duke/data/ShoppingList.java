@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ShoppingList {
 
-    private static ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
     public ArrayList<Item> getList() {
         return items;
