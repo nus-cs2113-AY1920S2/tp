@@ -1,9 +1,7 @@
 package seedu.happypills.commands;
 
-import org.w3c.dom.Text;
 import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
-import seedu.happypills.data.PatientList;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
@@ -21,20 +19,6 @@ public class DeleteCommand extends Command {
         this.nric = nric;
     }
 
-    /**
-     * Retrieve the patient from the NRIC of the Delete command.
-     *
-     * @param patients Contains the list of patients to be searched.
-     */
-    private Patient findPatient(PatientList patients) {
-        for (Patient patient : patients) {
-            if (patient.getNric().equalsIgnoreCase(nric)) {
-                logger.log(logLevel, "patient to be deleted is found");
-                return patient;
-            }
-        }
-        return null;
-    }
 
     /**
      * Retrieve the patient's confirmation.

@@ -1,7 +1,8 @@
 package seedu.happypills.storage;
 
 import seedu.happypills.data.Patient;
-import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
+import seedu.happypills.exception.HappyPillsException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,10 +46,10 @@ public class Storage {
      * @return patientList of all patients found in the file.
      * @throws FileNotFoundException if the file specified by directory/filename does not exist.
      */
-    public static PatientList loadFromFile(String filePath) throws FileNotFoundException {
+    public static PatientMap loadFromFile(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
-        PatientList storedPatients = new PatientList();
+        PatientMap storedPatients = new PatientMap();
 
         while (s.hasNext()) {
             String stringInput = s.nextLine();
@@ -63,11 +64,15 @@ public class Storage {
      * @param savedString a single string with all the data required for a patient.
      * @param storedPatients a list which the patient details retrieved should be added into.
      */
-    private static void parseFileContent(String savedString, PatientList storedPatients) {
+    private static void parseFileContent(String savedString, PatientMap storedPatients) {
         String[] dataString = savedString.split("[|]", 7);
         Patient tempPatient = new Patient(dataString[0], dataString[1],
                 Integer.parseInt(dataString[2]), dataString[3], dataString[4],
                 dataString[5], dataString[6]);
-        storedPatients.add(tempPatient);
+        try {
+            storedPatients.add(tempPatient);
+        } catch (HappyPillsException e) {
+            e.printStackTrace();
+        }
     }
 }

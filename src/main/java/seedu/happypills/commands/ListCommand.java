@@ -1,7 +1,6 @@
 package seedu.happypills.commands;
 
 import seedu.happypills.HappyPills;
-import seedu.happypills.data.PatientList;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.ui.TextUi;
 

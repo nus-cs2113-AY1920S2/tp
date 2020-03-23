@@ -113,8 +113,8 @@ public class Patient {
                 + "        Phone Number : " + this.phoneNumber + "\n"
                 + "        DOB : " + this.dateOfBirth + "\n"
                 + "        Blood Type : " + this.bloodType + "\n"
-                + "        Allergies :" + this.allergies + "\n"
-                + "        Remarks :" + this.remarks + "\n";
+                + "        Allergies : " + this.allergies + "\n"
+                + "        Remarks : " + this.remarks + "\n";
         return text;
     }
 
