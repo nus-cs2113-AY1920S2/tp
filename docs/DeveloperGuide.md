@@ -235,10 +235,14 @@ shopping lists and also providing helpful features like budget tracking
 |v1.0|organised home cook|be able to edit my budget|change my budget when I need to|
 |v1.0|organised home cook|delete items from the list|manage my list|
 |v1.0|organised home cook|have a useful "help" list that I can refer to|find instructions for various commands|
-|v1.0|frugal home cook|add a budget|so that I know how much I have to spend|
+|v1.0|frugal home cook|add a budget|so that I know how much I have to spend| 
+|v1.0|organised home cook|mark things as bought|keep track of my grocery progress|
+|v1.0|frugal home cook|be able to clear my budget|set a new budget|
 |v2.0|frugal home cook|be notified when I cross my budget|remove some items from my list|
 |v2.0|practical home cook|be able to search for items on my list|find things easily in a long list|
 |v2.0|practical home cook|be able to edit the items in my lists|update the items on my list accordingly|
+|v2.0|organised home cook|save my list|have a local copy of my list|
+|v2.0|organised home cook|load my saved list|add on to my existing list|
 
 ## Appendix C: Non-Functional Requirements
 
