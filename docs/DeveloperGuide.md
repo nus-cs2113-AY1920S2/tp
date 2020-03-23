@@ -60,7 +60,7 @@ quick access to the information in either a list or a calendar view.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
 
 ## Instructions for Manual Testing
 
