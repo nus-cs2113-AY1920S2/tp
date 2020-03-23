@@ -20,6 +20,9 @@ public class TeamMemberList {
         this.teamMemberList.add(t);
     }
 
+    public void set(int index, TeamMember member) {
+        this.teamMemberList.set(index, member);
+    }
 
     public ArrayList<TeamMember> getTeamMemberList() {
 

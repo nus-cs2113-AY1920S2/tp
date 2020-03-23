@@ -87,7 +87,7 @@ public class TeamMember {
     public void deleteBusyBlocks(String meetingName) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
-                if (myScheduleName[i][j].equals(meetingName)) {
+                if (myScheduleName[i][j] != null && myScheduleName[i][j].equals(meetingName)) {
                     mySchedule[i][j] = MYSCHEDULEFREE;
                     myScheduleName[i][j] = null;
 

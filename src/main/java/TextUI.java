@@ -82,7 +82,7 @@ public class TextUI {
 
 
     public static void meetingDetailsMsg() {
-        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>.");
+        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>. Type \"exit\" to go back to menu.");
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {

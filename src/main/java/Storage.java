@@ -111,7 +111,8 @@ public class Storage {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
             for (Path entry : stream) {
                 if (entry.toString().contains("_schedule.txt")) {
-                    String memberName = entry.toString().replaceAll("data\\\\|_schedule.txt","");
+                    String memberName = entry.toString().substring(5);
+                    memberName = memberName.replaceAll("_schedule.txt", "");
                     TeamMember member = new TeamMember(memberName);
                     String[][] myScheduleName = new String[7][48];
                     int i = 0;

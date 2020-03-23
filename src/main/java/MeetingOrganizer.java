@@ -21,7 +21,9 @@ public class MeetingOrganizer {
             myTeamMemberList = new TeamMemberList(storage.loadMemberListFromDisk());
             TextUI.introMsg();
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
-            mainUser = myTeamMemberList.getTeamMemberList().get(0);
+            if (myTeamMemberList.getSize() > 0) {
+                mainUser = myTeamMemberList.getTeamMemberList().get(0);
+            }
         } catch (FileNotFoundException e) {
             TextUI.introMsg();
             TextUI.showLoadingError();
@@ -129,6 +131,9 @@ public class MeetingOrganizer {
             TextUI.meetingDetailsMsg();
 
             String userInput = in.nextLine();
+            if (userInput.equals("exit")) {
+                break;
+            }
             userInputWords = CliParser.splitWords(userInput);
 
             String meetingName = userInputWords[0];
@@ -151,7 +156,7 @@ public class MeetingOrganizer {
                 System.out.println(e.getMessage() + ", try again.");
             }
             // Replace main user's timetable with updated meeting blocks into TeamMemberList for storage purposes.
-            myTeamMemberList.getTeamMemberList().set(0, mainUser);
+            myTeamMemberList.set(0, mainUser);
             break;
         case "delete":
             int index = Integer.parseInt(userInputWords[1]) - 1;
@@ -160,7 +165,7 @@ public class MeetingOrganizer {
                 String meetingNameToDelete = meetingToDelete.getMeetingName();
                 mainUser.deleteBusyBlocks(meetingNameToDelete);
                 myMeetingList.delete(index);
-                myTeamMemberList.getTeamMemberList().set(0, mainUser);
+                myTeamMemberList.set(0, mainUser);
             } catch (IndexOutOfBoundsException e) {
                 TextUI.displayInvalidDeleteTarget();
             }
