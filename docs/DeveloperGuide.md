@@ -16,7 +16,7 @@ By: `CS2113T-T12-2` Since: `2020`
     
 4. [Implementation](#implementation)
 
-    4.1. User Prompting feature
+    4.1. Add Patient's Information
           
       - 4.1.1. Description
       
@@ -32,7 +32,7 @@ By: `CS2113T-T12-2` Since: `2020`
       
       - 4.2.3. Design Consideration 
     
-    4.3.    
+    4.3. 
 5. [Documentation](#documentation)
 6. [Testing](#testing)
 7. [DevOps](#devops)
@@ -57,8 +57,42 @@ By: `CS2113T-T12-2` Since: `2020`
 
 ## 4. Implementation
 
-    
+### 4.1. Add Patient's Information
 
+#### 4.1.1 Description
+
+Users are able to store patients’ information on the program, 
+ensuring that the patients’ information can be accessed easily with the NRIC as a unique identifier.
+
+#### 4.1.2 Implementation
+
+This feature was implemented to allow users to add patient’s information when using HappyPills.
+
+The commands introduced in this feature include : `add`, `edit`, `list`, `delete`, `get`. 
+The commands are implemented with HashMap and use NRIC as key and the Patient class as value.
+The patient list feature is facilitated by PatientMap class which implements the following operations: 
+
+    - PatientMap #add(Patient patient) —  This command adds the patient object into the patient list using the patient’s nric as key.
+
+    - PatientMap #remove(String nric) — This command removes the patient object from the existing patient list. 
+
+    - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
+
+The activity diagram below summarises the process of executing an `add` command.
+![Add Activity Diagram]()
+
+#### 4.2.3 Design Consideration
+
+##### Aspect: Data Structure of the Patient List
+
+        Alternative 1 (current choice): Hash Map
+          Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
+          Cons: Implementation is harder and may result in bugs if not implemented accurately.
+            
+        Alternative 2: Array List
+          Pros: This would be easier to implement and retrieve the information.
+          Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+                This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 
 ### 4.2. Appointment Scheduling 
@@ -127,7 +161,7 @@ Our product is targeted at users who:
    
    - want to keep patients' information organised
    
-   - prefere desktop apps over other types
+   - prefer desktop apps over other types
    
    - can type fast
    

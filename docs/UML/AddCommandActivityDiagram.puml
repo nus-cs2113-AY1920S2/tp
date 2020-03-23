@@ -1,0 +1,13 @@
+@startuml
+(*)  --> "Add input command"
+If "add command parsed successfully" then
+--> [Yes] "Executes add command"
+--> "Patient information is added"
+--> "Patient list is updated
+        with the new patient"
+-->(*)
+else
+--> [No] "Throws Exception"
+Endif
+-->(*)
+@enduml
