@@ -1,15 +1,8 @@
 package seedu.event;
 
-import seedu.StudentList;
-import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
-import seedu.duke.Duke;
 import seedu.exception.DukeException;
-import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
-
-import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.time.Instant;
 
 public class Event {
@@ -20,18 +13,6 @@ public class Event {
     protected AttendanceList attendanceList;
     protected PerformanceList performanceList;
 
-
-    /**
-     * Empty constructor. Sets name as "unnamed"
-     */
-    public Event() throws DukeException {
-        setName("");
-        setDatetime("");
-        setVenue("");
-        this.attendanceList = new AttendanceList();
-        this.performanceList = new PerformanceList();
-    }
-
     /**
      * Constructor with name, datetime, venue provided.
      * @param name name of event
@@ -39,10 +20,11 @@ public class Event {
      * @param venue venue of event
      */
     public Event(String name, String datetime, String venue) throws DukeException {
-        this();
         setName(name);
         setDatetime(datetime);
         setVenue(venue);
+        this.attendanceList = new AttendanceList();
+        this.performanceList = new PerformanceList();
     }
 
     /**
@@ -88,6 +70,22 @@ public class Event {
      */
     public String getDatetime() {
         return datetime.toString();
+    }
+
+    /**
+     * Returns month of the event as an integer value, from 1 to 12.
+     * @return Numerical value of month of the event.
+     */
+    public Integer getMonth() {
+        return datetime.getMonth();
+    }
+
+    /**
+     * Returns year of the event as an integer value.
+     * @return Numerical value of the year of the event.
+     */
+    public Integer getYear() {
+        return datetime.getYear();
     }
 
     /**
