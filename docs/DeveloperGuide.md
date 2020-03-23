@@ -27,7 +27,7 @@ with the specified index.
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/DeleteFeature.png)
+![alt text](images/DeleteFeat.png)
 
 #### 2.1.2 Design considerations
 
@@ -152,10 +152,10 @@ The following sequence diagram below shows how the Mark feature (Diagram 1) and 
 Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
 
 ######Diagram 1:
-![alt text](images/MarkFeature.png)
+![alt text](images/MarkFeat.png)
 
 ######Diagram 2:
-![alt text](images/UnmarkFeature.png)
+![alt text](images/UnmarkFeat.png)
 
 #### 2.4.2 Design Considerations
 
