@@ -1,69 +1,56 @@
 package seedu.dietmanager;
 
+import java.util.Optional;
+
 public class Food {
-    String foodName;
-    private double carbohydrates;
-    private double fats;
-    private double fiber;
-    private double minerals;
-    private double proteins;
-    private double vitamins;
-    private double water;
+    private String foodName;
+    private Optional<Double> calories;
 
     /**
-     * Constructs the Food Object and its relevant nutirtional information.
+     * Public constructor for Food with the food name and calories value.
+     * @param foodName Name of the food.
+     * @param calories Amount of calories the food has.
      */
-
-    public Food(String foodName, double carbohydrates, double fats, double fiber, double minerals,
-                double proteins, double vitamins, double water) {
+    public Food(String foodName, double calories) {
         this.foodName = foodName;
-        this.carbohydrates = carbohydrates;
-        this.fats = fats;
-        this.fiber = fiber;
-        this.minerals = minerals;
-        this.proteins = proteins;
-        this.vitamins = vitamins;
-        this.water = water;
+        this.calories = Optional.of(calories);
     }
 
     /**
-     * Constructs a Food instance simply with its name.
-     * @param foodName name of the food.
+     * Public constructor for Food with the food name.
+     * @param foodName Name of the food.
      */
-
     public Food(String foodName) {
         this.foodName = foodName;
+        this.calories = Optional.empty();
     }
 
+    /**
+     * Getter for food name.
+     * @return Name of the food.
+     */
     public String getFoodName() {
         return foodName;
     }
 
-    public double getCarbohydrates() {
-        return carbohydrates;
+    /**
+     * Getter for the calories of the food.
+     * @return Amount of calories the food has
+     */
+    public Optional<Double> getCalories() {
+        return calories;
     }
 
-    public double getFats() {
-        return fats;
+    /**
+     * Check if the food has calories.
+     * @return True if food has calories, False otherwise.
+     */
+    public boolean hasCaloriesData() {
+        return calories.isPresent();
     }
 
-    public double getFiber() {
-        return fiber;
-    }
-
-    public double getMinerals() {
-        return minerals;
-    }
-
-    public double getProteins() {
-        return proteins;
-    }
-
-    public double getVitamins() {
-        return vitamins;
-    }
-
-    public double getWater() {
-        return water;
+    public String toString() {
+        return calories.map(value -> "Food: " + foodName + ", Calories: " + String.format("%.2f", value) + "cal\n")
+                .orElseGet(() -> "Food: " + foodName + ", Calories: " + "No value found.\n");
     }
 }

@@ -1,33 +1,24 @@
 package seedu.dietmanager.parser;
 
-import seedu.dietmanager.commands.CheckRecordCommand;
-import seedu.dietmanager.commands.CheckWeightProgressCommand;
-import seedu.dietmanager.commands.Command;
 import seedu.dietmanager.commands.Command;
 import seedu.dietmanager.commands.ExitCommand;
-import seedu.dietmanager.commands.ExitCommand;
 import seedu.dietmanager.commands.ProfileCommand;
-import seedu.dietmanager.commands.ProfileCommand;
-import seedu.dietmanager.commands.RecordMealCommand;
-import seedu.dietmanager.commands.SetAgeCommand;
 import seedu.dietmanager.commands.SetAgeCommand;
 import seedu.dietmanager.commands.SetGenderCommand;
-import seedu.dietmanager.commands.SetGenderCommand;
-import seedu.dietmanager.commands.SetHeightCommand;
 import seedu.dietmanager.commands.SetHeightCommand;
 import seedu.dietmanager.commands.SetNameCommand;
-import seedu.dietmanager.commands.SetNameCommand;
-import seedu.dietmanager.commands.SetProfileCommand;
 import seedu.dietmanager.commands.SetProfileCommand;
 import seedu.dietmanager.commands.SetWeightCommand;
-import seedu.dietmanager.commands.SetWeightCommand;
-import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.RecordMealCommand;
 import seedu.dietmanager.commands.CheckRecordCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.WeightUpdateCommand;
+import seedu.dietmanager.commands.CheckWeightProgressCommand;
+import seedu.dietmanager.commands.CheckCaloriesCommand;
+import seedu.dietmanager.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
+import seedu.dietmanager.exceptions.InvalidGenderException;
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.
@@ -85,6 +76,26 @@ public class Parser {
     }
 
     /**
+     * Validate the user input gender and parse it into the standard gender accepted.
+     * @param description User input gender.
+     * @return Gender in standard form.
+     * @throws InvalidGenderException If gender is not recognized by our system.
+     */
+    public static String parseGender(String description) throws InvalidGenderException {
+        String gender = description.trim().toLowerCase();
+        if (!(gender.equals("male") || gender.equals("female"))) {
+            throw new InvalidGenderException();
+        }
+        if (gender.equals("male")) {
+            gender = "Male";
+        }
+        if (gender.equals("female")) {
+            gender = "Female";
+        }
+        return gender;
+    }
+
+    /**
      * Analyses the user input and generates the relevant command.
      * @param input the user input.
      * @return the command generated from the user input.
@@ -92,7 +103,8 @@ public class Parser {
      * @throws InvalidFormatException   if format for command is wrong.
      */
 
-    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException {
+    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException,
+            InvalidGenderException {
         prepareInput(input);
         Command command;
         switch (commandPrompt) {
@@ -134,6 +146,12 @@ public class Parser {
             break;
         case "check-weight-progress":
             command = new CheckWeightProgressCommand(commandPrompt, description);
+            break;
+        case "check-calories-intake":
+            command = new CheckCaloriesCommand(commandPrompt, description);
+            break;
+        case "list-food-database":
+            command = new ListFoodDatabaseCommand(commandPrompt);
             break;
         default:
             throw new InvalidCommandException();

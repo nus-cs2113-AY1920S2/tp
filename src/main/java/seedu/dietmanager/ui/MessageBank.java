@@ -14,6 +14,7 @@ public class MessageBank {
     public static String WELCOME_MESSAGE = "Welcome to Diet Manager! How may I assist you today?";
     public static String INVALID_COMMAND_MESSAGE = "Sorry, the command you have entered is invalid.";
     public static String INVALID_FORMAT_MESSAGE = "Sorry, that is an invalid command format.";
+    public static String INVALID_GENDER_MESSAGE = "Sorry, that is an invalid gender.";
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
     public static String EXIT_COMMAMD_MESSAGE = "Thank you and see you again soon!";
     public static String EXIT_APP_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
@@ -34,5 +35,15 @@ public class MessageBank {
     public static String WEIGHT_UPDATE_MESSAGE = "Your weight changes has been stored. Current weight is: ";
     public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
     public static String DUMMY_MESSAGE = "No pain no gain! Continue striving on!";
-
+    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
+    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid format.\n";
+    public static String CALORIES_MESSAGE = "Total calculable calories intake for the entire day: ";
+    public static String TIME_CALORIES_MESSAGE = "total calculable calories intake: ";
+    public static String MISSING_CALORIES_MESSAGE = "NOTE: There are foods without calculable calories.\n";
+    public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.\n";
+    public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.\n";
+    public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.\n";
+    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories\n";
+    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories\n";
+    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories\n";
 }

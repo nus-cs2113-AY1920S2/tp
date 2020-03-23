@@ -2,6 +2,7 @@ package seedu.dietmanager.commands;
 
 import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
+import seedu.dietmanager.exceptions.InvalidGenderException;
 import seedu.dietmanager.parser.Parser;
 import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
@@ -22,12 +23,13 @@ public class SetProfileCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetProfileCommand(String command, String description) throws InvalidFormatException, NumberFormatException {
+    public SetProfileCommand(String command, String description) throws InvalidFormatException,
+            NumberFormatException, InvalidGenderException {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
         this.name = descriptionArray[0];
         this.age = Integer.parseInt(descriptionArray[1]);
-        this.gender = descriptionArray[2];
+        this.gender = Parser.parseGender(descriptionArray[2]);
         this.height = Double.parseDouble(descriptionArray[3]);
         this.weight = Double.parseDouble(descriptionArray[4]);
         this.weightGoal = Double.parseDouble(descriptionArray[5]);
