@@ -34,6 +34,8 @@ public class Jikan {
     /** CLeaner to delete entries in data.csv when it gets too long */
     private static StorageCleaner cleaner;
 
+    public static final Scanner in = new Scanner(System.in);
+
     /**
      * Main entry-point for the Jikan application.
      */
@@ -44,7 +46,8 @@ public class Jikan {
         cleaner.autoClean();
         activityList = storage.createActivityList();
         activityList.storage = storage;
-        Scanner in = new Scanner(System.in);
+        //public static final Scanner in = new Scanner(System.in);
+
         while (true) {
             Command command = parser.parseUserCommands(in,activityList,cleaner);
             if (command == null) {

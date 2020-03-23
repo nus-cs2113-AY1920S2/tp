@@ -49,7 +49,6 @@ public class Parser {
     String instruction;
     static Log logger = new Log();
     public static ActivityList lastShownList = new ActivityList();
-
     // flag to check if the current activity is a continued one
     public static int continuedIndex = -1;
 
@@ -192,21 +191,16 @@ public class Parser {
      * @param scanner Parse user input.
      */
     private static void continueActivity(ActivityList activityList, Scanner scanner, int index) {
-        String userInput;
-        while (scanner.hasNext()) {
-            userInput = scanner.nextLine();
-            if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
-                activityName = activityList.get(index).getName();
-                startTime = LocalDateTime.now();
-                tags = activityList.get(index).getTags();
-                continuedIndex = index;
-                ui.printDivider(activityName + " was continued");
-                logger.makeFineLog(activityName + " was continued.");
-                break;
-            } else {
-                ui.printDivider("Okay then, what else can I do for you?");
-                break;
-            }
+        String userInput = scanner.nextLine();
+        if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
+            activityName = activityList.get(index).getName();
+            startTime = LocalDateTime.now();
+            tags = activityList.get(index).getTags();
+            continuedIndex = index;
+            ui.printDivider(activityName + " was continued");
+            logger.makeFineLog(activityName + " was continued.");
+        } else {
+            ui.printDivider("Okay then, what else can I do for you?");
         }
     }
 
