@@ -186,16 +186,15 @@ The <code>Duke</code> class first receives user input from the <code>Ui</code> c
 <code>ResetBudgetCommand</code> object based on that user input.
 
 The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ResetBudgetCommand</code> object
-which makes another call to the <code>resetBudget</code> function of the <code>Budget</code> object 
-with the amount specified by the user for the budget.
+which makes another call to the <code>resetBudget</code> function of the <code>Budget</code> object.
 
-The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
+The following sequence diagram below shows how the reset budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/ResetBudget.png)
 
 
-#### 2.2.2 Design considerations
+#### 2.5.2 Design considerations
 
 ##### Aspect: Data structure to support the set budget feature
 
