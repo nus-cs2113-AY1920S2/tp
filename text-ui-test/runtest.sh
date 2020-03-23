@@ -19,3 +19,5 @@ else
     echo "Test failed!"
     exit 1
 fi
+
+rm ACTUAL.TXT Duke.log
