@@ -50,7 +50,7 @@ public class CalendarCommand extends Command {
     private static final int CONTENT_WIDTH = MAX_CALENDAR_BOX_WIDTH - 1;
 
     public static final String CALENDAR_COMMAND_WORD = "calendar";
-    public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/yy]";
+    public static final String COMMAND_USAGE = "Get a Calendar view: calendar m/[MONTH] y/[YEAR]";
 
     private LocalDate date;
 

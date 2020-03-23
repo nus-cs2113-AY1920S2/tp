@@ -53,12 +53,20 @@ public class Parser {
     public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
             "(?<search>[^/]+)"
                     + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<name>[^/]+)");
+                    + "\\s+n/\\s*(?<name>[^/]+)"
+    );
 
-    //regex for calendar command
+//    //regex for calendar command
+//    public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
+//            "(?<calendar>[^/]+)"
+//                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})"
+//    );
+
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
             "(?<calendar>[^/]+)"
-                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
+                    + "\\s+m/\\s*(?<month>[^/]+)"
+                    + "\\s+y/\\s*(?<year>[^/]+)"
+    );
 
     /**
      * Returns a Command object depending on the command input by the user.
@@ -260,22 +268,38 @@ public class Parser {
         return new RepeatCommand(eventIndex, numOfPeriod, typeOfPeriod);
     }
 
+//    private static Command prepareCalendarCommand(String fullCommand) {
+//        final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);
+//        if (!matcher.matches()) {
+//            return new IncorrectCommand(Messages.CALENDAR_INCORRECT_FORMAT_ERROR);
+//        }
+//
+//        LocalDate date;
+//        try {
+//            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_ONLY_FORMAT);
+//        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+//            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+//        }
+//
+//        return new CalendarCommand(date);
+//    }
+
     private static Command prepareCalendarCommand(String fullCommand) {
         final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
             return new IncorrectCommand(Messages.CALENDAR_INCORRECT_FORMAT_ERROR);
         }
-
+        String month = matcher.group("month");
+        String year = matcher.group("year");
+        String stringDate = "01/" + month + "/" + year;
         LocalDate date;
         try {
-            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_ONLY_FORMAT);
-        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+            date = LocalDate.parse(stringDate, INPUT_DATE_ONLY_FORMAT);
+        } catch (DateTimeParseException | NumberFormatException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
-
         return new CalendarCommand(date);
     }
-
     /**
      * Capitalizes the first alphabet of a string.
      * @param str String to be capitalized

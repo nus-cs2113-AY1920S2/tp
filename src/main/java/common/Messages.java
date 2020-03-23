@@ -66,7 +66,7 @@ public class Messages {
     public static final String INCORRECT_COMMAND_ERROR = "Oh no. %s";
     public static final String UNKNOWN_COMMAND_ERROR = "Unknown command entered";
     public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
-            + System.lineSeparator() + DATE_FORMAT_HELP;
+            + System.lineSeparator() + CalendarCommand.COMMAND_USAGE;
     public static final String START_END_DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + START_END_DATE_FORMAT_HELP;
     public static final String NUM_FORMAT_ERROR = "Please provide an integer as the command parameter";

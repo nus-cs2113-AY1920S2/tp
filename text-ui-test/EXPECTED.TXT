@@ -28,7 +28,7 @@ You have no tasks for today!
      Make event recur: repeat [EVENT INDEX] [NUM OF PERIOD] [TYPE OF PERIOD]
      Stop event recur: repeat [EVENT INDEX] 0 D
   9. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
- 10. Get a Calendar view: calendar d/[dd/MM/yy]
+ 10. Get a Calendar view: calendar m/[MONTH] y/[YEAR]
  11. Exit ATAS: exit
 
 _______________________________________________________________________
