@@ -59,8 +59,8 @@ public class CardListTest {
     void getCard_SuccessfullyExecuted() throws EscException {
         cards.addCard(flashcard1);
         cards.addCard(flashcard2);
-        assertEquals(cards.getCard(1), flashcard1);
-        assertEquals(cards.getCard(2), flashcard2);
+        assertEquals(cards.getCard(0), flashcard1);
+        assertEquals(cards.getCard(1), flashcard2);
     }
 
     @Test

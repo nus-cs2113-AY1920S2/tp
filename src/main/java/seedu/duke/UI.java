@@ -49,6 +49,21 @@ public class UI {
     }
 
     /**
+     * Requests the user to indicate if his answer was right or wrong.
+     * @return User marking
+     */
+    public static String checkCorrectness() {
+        showLine();
+        System.out.println("Please indicate if your answer is correct (Y/N):");
+        String userInput = in.nextLine();
+        while (!userInput.equals("Y") && !userInput.equals("N")) {
+            System.out.println("Please enter only (Y/N):");
+            userInput = in.nextLine();
+        }
+        return userInput;
+    }
+
+    /**
      *  Prints a list of commands used in the programme.
      */
     public static void printHelp() {

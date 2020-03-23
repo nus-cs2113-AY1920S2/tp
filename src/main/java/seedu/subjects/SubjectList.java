@@ -1,14 +1,11 @@
 package seedu.subjects;
 
-import seedu.cards.Card;
-import seedu.cards.CardList;
 import seedu.exception.EscException;
 
 import java.util.ArrayList;
 
 public class SubjectList {
     private ArrayList<Subject> subjects;
-    private static CardList cardOperation;
 
     public SubjectList() {
         this.subjects = new ArrayList<Subject>();
@@ -55,10 +52,9 @@ public class SubjectList {
             throw new EscException("The subject list is empty.");
         }
 
-        // assuming that our question index starts from 1 and not 0.
         Subject subject;
         try {
-            subject = subjects.get(index - 1);
+            subject = subjects.get(index);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The subject item does not exist.");
         }
@@ -83,9 +79,5 @@ public class SubjectList {
 
     public int size() {
         return this.subjects.size();
-    }
-
-    public static void listCardsInSubject(Subject subject) {
-        cardOperation.listCards(subject.cards);
     }
 }
