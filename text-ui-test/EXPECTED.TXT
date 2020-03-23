@@ -10,21 +10,27 @@ No existing save file found. A new save file will be created
 _______________________________________________________________________
 You have no tasks for today!
 > Following is the list of commands available:
-1.  Help Format: help
-2.  Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
-3.  Add Event: event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]
-4.  List Today's Tasks: list today
-5.  List This Week's Tasks: list week
-6.  List All Tasks: list
-7.  List Incomplete Assignments: list incomplete assignments
-8.  List Upcoming Events: list upcoming events
-9.  Mark Task as Done: done [TASK NUMBER]
-10. Clear all tasks: clear all
-11. Clear all completed tasks: clear done
-12. Delete a Task: delete [TASK NUMBER]
-13. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
-14. Get a Calendar view: calendar d/[dd/MM/yy]
-15. Exit ATAS: exit
+  1. Help Format: help
+  2. Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
+  3. Add Event: event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]
+  4. List commands that are available:
+     List All Tasks: list
+     List Today's Tasks: list today
+     List This Week's Tasks: list week
+     List Upcoming Events: list upcoming events
+     List Incomplete Assignments: list incomplete assignments
+  5. Mark Task as Done: done [TASK NUMBER]
+  6. Delete a Task: delete [TASK NUMBER]
+  7. Clear commands that are available:
+     Clear All Tasks: clear all
+     Clear All Completed Tasks: clear done
+  8. Repeat commands that are available: (Available Periods are: D, W, M, Y)
+     Make event recur: repeat [EVENT INDEX] [NUM OF PERIOD] [TYPE OF PERIOD]
+     Stop event recur: repeat [EVENT INDEX] 0 D
+  9. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
+ 10. Get a Calendar view: calendar d/[dd/MM/yy]
+ 11. Exit ATAS: exit
+
 _______________________________________________________________________
 > Oh no. Incorrect format for Assignment Command
 Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
@@ -87,4 +93,16 @@ _______________________________________________________________________
   1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
             notes: 15%
 _______________________________________________________________________
-> 
+> Here are the search results:
+  1.[A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+
+_______________________________________________________________________
+> Please use a different name. Task already exists in list
+_______________________________________________________________________
+> All tasks have been deleted
+_______________________________________________________________________
+> No tasks were found
+_______________________________________________________________________
+> Exiting A.T.A.S
+_______________________________________________________________________

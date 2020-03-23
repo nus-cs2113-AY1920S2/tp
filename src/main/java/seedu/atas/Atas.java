@@ -6,6 +6,7 @@ import command.ExitCommand;
 import command.ListCommand;
 import common.Messages;
 import exceptions.AtasException;
+import tasks.Event;
 import tasks.Task;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class Atas {
         this.taskList = new TaskList();
         try {
             this.taskList = storage.load();
+            updateEventDate(taskList);
         } catch (AtasException e) {
             ui.showToUser(e.toString());
         } catch (IOException e) {
@@ -60,6 +62,14 @@ public class Atas {
             storage.save(taskList);
         } catch (IOException e) {
             ui.showToUser(Messages.SAVE_FAILED_MESSAGE);
+        }
+    }
+
+    private void updateEventDate(TaskList taskList) {
+        for (Task task : taskList.getTaskArray()) {
+            if (task instanceof Event) {
+                ((Event) task).updateDateAndTime();
+            }
         }
     }
 

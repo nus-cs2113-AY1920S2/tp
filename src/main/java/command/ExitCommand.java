@@ -6,6 +6,8 @@ import seedu.atas.Ui;
 
 public class ExitCommand extends Command {
     public static final String EXIT_COMMAND_WORD = "exit";
+    public static final String COMMAND_USAGE = "Exit ATAS: exit";
+
     private static boolean isExit = false;
 
     /**

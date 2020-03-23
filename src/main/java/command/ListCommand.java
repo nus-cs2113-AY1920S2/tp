@@ -10,6 +10,19 @@ import java.util.ArrayList;
 public class ListCommand extends Command {
     public static final String LIST_COMMAND_WORD = "list";
 
+    private static final String LIST_ALL_COMMAND_USAGE = "List All Tasks: list";
+    public static final String LIST_TODAY_COMMAND_USAGE = "List Today's Tasks: list today";
+    private static final String LIST_WEEK_COMMAND_USAGE = "List This Week's Tasks: list week";
+    private static final String LIST_UPCOMING_EVENT_COMMAND_USAGE = "List Upcoming Events: list upcoming events";
+    private static final String LIST_INCOMPLETE_ASSIGN_COMMAND_USAGE = "List Incomplete Assignments: "
+            + "list incomplete assignments";
+    public static final String COMMAND_USAGE = "List commands that are available:" + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + LIST_ALL_COMMAND_USAGE + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + LIST_TODAY_COMMAND_USAGE + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + LIST_WEEK_COMMAND_USAGE + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + LIST_UPCOMING_EVENT_COMMAND_USAGE + System.lineSeparator()
+            + Messages.NEWLINE_INDENT + LIST_INCOMPLETE_ASSIGN_COMMAND_USAGE;
+
     private final String listParam;
     private static final String ALL_TASK_COMMAND = "";
     private static final String TODAY_COMMAND = "today";
