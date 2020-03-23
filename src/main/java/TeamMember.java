@@ -22,7 +22,7 @@ public class TeamMember {
         this.mySchedule = new Boolean[7][48];
         this.myScheduleName = new String[7][48];
         for (int i = 0; i < 7; i++) {
-            Arrays.fill(mySchedule[i], MYSCHEDULEFREE); // fill every 48 index of the 7 days with 0 initially
+            Arrays.fill(mySchedule[i], MYSCHEDULEFREE);
             Arrays.fill(myScheduleName[i], null);
 
         }
@@ -87,7 +87,7 @@ public class TeamMember {
     public void deleteBusyBlocks(String meetingName) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
-                if (myScheduleName[i][j].equals(meetingName)) {
+                if (myScheduleName[i][j] != null && myScheduleName[i][j].equals(meetingName)) {
                     mySchedule[i][j] = MYSCHEDULEFREE;
                     myScheduleName[i][j] = null;
 

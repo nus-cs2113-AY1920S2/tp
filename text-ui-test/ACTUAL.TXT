@@ -1,0 +1,18 @@
+  ___        _____                 __  .__                 ________                            .__                       ___     
+ / _ \_/\   /     \   ____   _____/  |_|__| ____    ____   \_____  \_______  _________    ____ |__|_______ ___________  / _ \_/\ 
+ \/ \___/  /  \ /  \_/ __ \_/ __ \   __\  |/    \  / ___\   /   |   \_  __ \/ ___\__  \  /    \|  \___   // __ \_  __ \ \/ \___/ 
+          /    Y    \  ___/\  ___/|  | |  |   |  \/ /_/  > /    |    \  | \/ /_/  > __ \|   |  \  |/    /\  ___/|  | \/          
+          \____|__  /\___  >\___  >__| |__|___|  /\___  /  \_______  /__ |  \___  (____  /___|  /__/_____ \\___  >__|             
+                  \/     \/     \/             \//_____/           \/     /_____/     \/     \/         \/    \/                 
+There are no previous records of meetings, let's create a new one!
+________________________________________________________________________________________________________________________________
+[add] Add a new contact manually.
+[contacts] List all contacts.
+[schedule] Schedule a new meeting.
+[delete] Delete a scheduled meeting.
+[meetings] List all scheduled meetings.
+[exit] Exit application.
+
+Insert your own timetable by following: <name of new member> <nusmods link>
+________________________________________________________________________________________________________________________________
+Thank you for using MeetingOrganizer, goodbye!

@@ -11,6 +11,7 @@ public class MeetingOrganizer {
     public static Storage storage;
     private MeetingList myMeetingList;
     private TeamMemberList myTeamMemberList;
+    private TeamMember mainUser;
 
     public MeetingOrganizer() {
         //declare objects here
@@ -21,6 +22,9 @@ public class MeetingOrganizer {
             myTeamMemberList = new TeamMemberList(storage.loadMemberListFromDisk());
             TextUI.introMsg();
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
+            if (myTeamMemberList.getSize() > 0) {
+                mainUser = myTeamMemberList.getTeamMemberList().get(0);
+            }
         } catch (FileNotFoundException e) {
             TextUI.introMsg();
             TextUI.showLoadingError();
@@ -42,6 +46,7 @@ public class MeetingOrganizer {
 
         //To adapt user input of format <name> <NUSMODS link> to fit into the following switch statements to allow
         // for both link and manual input.
+        // TODO member's name can only be 1 word at the moment.
         if (userInputWords.length == 2 && userInputWords[1].contains("https")) {
             userCommand = "add using link";
         }
@@ -82,13 +87,16 @@ public class MeetingOrganizer {
                     }
                     member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString);
                 }
+                if (myTeamMemberList.getSize() == 0) {
+                    mainUser = member;
+                }
                 myTeamMemberList.add(member);
                 TextUI.showAddedMember(member.getName());
             } catch (InvalidUrlException e) {
                 System.out.println(e.getMessage());
             }
             break;
-        case "add": // add memberName startDay startTime endDay endTime (eg. add xizhi 2 02:00 3 14:00)
+        case "add": // add blockOutReason/memberName startDay startTime endDay endTime (eg. add tuition 2 22:00 2 23:00)
             member = new TeamMember(userInputWords[1]);
             String memberName = userInputWords[1]; //member name and schedule name are the same
             startDay = Integer.parseInt(userInputWords[2]);
@@ -106,24 +114,27 @@ public class MeetingOrganizer {
             ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
             for (int i = 1; i < userInputWords.length; i++) {
                 int memberNumber = Integer.parseInt(userInputWords[i]);
-                member = myTeamMemberList.getTeamMemberList().get(memberNumber - 1);
+                member = myTeamMemberList.getTeamMemberList().get(memberNumber);
                 myScheduleList.add(member);
-
-                System.out.println(member.getName() + " schedule: ");
-                TextUI.printTimetable(member.getSchedule());
             }
 
+            //Automatically add main user's timetable into scheduler.
+            if (!myScheduleList.contains(mainUser)) {
+                myScheduleList.add(mainUser);
+            }
             ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
 
-            Boolean[][] myMasterSchedule = new Boolean[7][48];
+            Boolean[][] myMasterSchedule;
             myMasterSchedule = myScheduleHandler.getMasterSchedule();
-            System.out.println("master schedule BEFORE:");
+            System.out.println("Combined Schedule of selected team member/s.");
             TextUI.printTimetable(myMasterSchedule);
 
-            myScheduleHandler.printFreeTimings();
             TextUI.meetingDetailsMsg();
 
             String userInput = in.nextLine();
+            if (userInput.equals("exit")) {
+                break;
+            }
             userInputWords = CliParser.splitWords(userInput);
 
             String meetingName = userInputWords[0];
@@ -134,35 +145,33 @@ public class MeetingOrganizer {
 
             try {
                 if (myScheduleHandler.isValidMeeting(startDay, startTime, endDay, endTime)) {
-                    myMeetingList.add(new Meeting(meetingName, startDay, startTime, endDay, endTime));
-                    myScheduleHandler.updateMasterSchedule(startDay, startTime, endDay, endTime);
-                    myMasterSchedule = myScheduleHandler.getMasterSchedule();
-
-                    System.out.println("master schedule AFTER:");
-                    TextUI.printTimetable(myMasterSchedule);
-
+                    Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime);
+                    myMeetingList.add(myMeeting);
+                    myScheduleHandler.updateMasterSchedule(myMeeting, "add");
+                    mainUser.addBusyBlocks(meetingName, startDay, userInputWords[2], endDay, userInputWords[4]);
                     TextUI.meetingListSizeMsg(myMeetingList);
                 } else {
-                    System.out.println("schedule is blocked at that timeslot");
+                    System.out.println("Schedule is blocked at that timeslot");
                 }
             } catch (MoException e) {
                 System.out.println(e.getMessage() + ", try again.");
             }
+            // Replace main user's timetable with updated meeting blocks into TeamMemberList for storage purposes.
+            myTeamMemberList.set(0, mainUser);
             break;
-        case "2":
-            TextUI.editMeetingMsg();
-
-            break;
-        case "3":
-            TextUI.deleteMeetingMsg();
-            int index = Integer.parseInt(String.valueOf(in.next())) - 1;
+        case "delete":
+            int index = Integer.parseInt(userInputWords[1]) - 1;
             try {
+                Meeting meetingToDelete = myMeetingList.getMeetingList().get(index);
+                String meetingNameToDelete = meetingToDelete.getMeetingName();
+                mainUser.deleteBusyBlocks(meetingNameToDelete);
                 myMeetingList.delete(index);
+                myTeamMemberList.set(0, mainUser);
             } catch (IndexOutOfBoundsException e) {
                 TextUI.displayInvalidDeleteTarget();
             }
             break;
-        case "4": //list all current meeting slots
+        case "meetings": //list all current meeting slots
             TextUI.listMeetings();
             myMeetingList.show();
             break;
@@ -226,7 +235,7 @@ public class MeetingOrganizer {
      */
     public void run() {
         Scanner in = new Scanner(System.in);
-        TextUI.menuMsg();
+        TextUI.menuMsg(myTeamMemberList.getSize());
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
             if (userInput.equals("exit")) {
@@ -244,7 +253,7 @@ public class MeetingOrganizer {
             } catch (NumberFormatException e) {
                 TextUI.invalidNumberMsg();
             } finally {
-                TextUI.menuMsg();
+                TextUI.menuMsg(myTeamMemberList.getSize());
             }
         }
         storage.updateMemberListToDisk(myTeamMemberList.getTeamMemberList());

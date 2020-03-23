@@ -26,19 +26,21 @@ public class TextUI {
         out.println(logo);
     }
 
-    public static void menuMsg() {
+    public static void menuMsg(int memberList) {
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
-        out.println("Add a new contact.");
-        out.println("Contacts.");
-        out.println("Schedule a new meeting.");
-        out.println("Edit a scheduled meeting."); //previous was delete
-        out.println("Delete a scheduled meeting.");
-        out.println("List all scheduled meetings.");
-        out.println("Delete members");
-        out.println("Exit application.");
+        out.println("[add] Add a new contact manually.");
+        out.println("[contacts] List all contacts.");
+        out.println("[schedule] Schedule a new meeting.");
+        out.println("[delete] Delete a scheduled meeting.");
+        out.println("[meetings] List all scheduled meetings.");
+        out.println("[exit] Exit application.");
         out.print(System.lineSeparator());
-        out.println("Insert new members by following: <Name of new member> <NUSMODS Link>");
+        if (memberList > 0) {
+            out.println("Insert your member's timetable by following: <name of new member> <nusmods link>");
+        } else {
+            out.println("Insert your own timetable by following: <name of new member> <nusmods link>");
+        }
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
     }
@@ -80,7 +82,8 @@ public class TextUI {
 
 
     public static void meetingDetailsMsg() {
-        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>.");
+        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
+                + "Type \"exit\" to go back to menu.");
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
@@ -116,8 +119,9 @@ public class TextUI {
         for (int i = 0; i < meetingList.size(); i++) {
             String startDay = getDayFromNumber(meetingList.get(i).getStartDay());
             String endDay = getDayFromNumber(meetingList.get(i).getEndDay());
+            String meetingName = meetingList.get(i).getMeetingName();
             System.out.println((i + 1) + ". " + startDay + " " + meetingList.get(i).getStartTime()
-                    + " to " + endDay + " " + meetingList.get(i).getEndTime());
+                    + " to " + endDay + " " + meetingList.get(i).getEndTime() + "(" + meetingName + ")");
         }
     }
 
@@ -176,7 +180,11 @@ public class TextUI {
                 + "Here are your stored contacts:");
         int i = 0;
         for (TeamMember t : teamMemberList) {
-            System.out.println("\t " + (i + 1) + ") " + t.getName());
+            if (i == 0) {
+                System.out.println("\t Main user: " + t.getName());
+            } else {
+                System.out.println("\t " + i + ") " + t.getName());
+            }
             i++;
         }
         System.out.println("____________________________________________________________\n");

@@ -6,15 +6,13 @@
                   \/     \/     \/             \//_____/           \/     /_____/     \/     \/         \/    \/                 
 There are no previous records of meetings, let's create a new one!
 ________________________________________________________________________________________________________________________________
-Add a new contact.
-Contacts.
-Schedule a new meeting.
-Edit a scheduled meeting.
-Delete a scheduled meeting.
-List all scheduled meetings.
-Delete members
-Exit application.
+[add] Add a new contact manually.
+[contacts] List all contacts.
+[schedule] Schedule a new meeting.
+[delete] Delete a scheduled meeting.
+[meetings] List all scheduled meetings.
+[exit] Exit application.
 
-Insert new members by following: <Name of new member> <NUSMODS Link>
+Insert your own timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
 Thank you for using MeetingOrganizer, goodbye!
