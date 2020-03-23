@@ -1,6 +1,6 @@
-import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
-import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_INVALID_MEETING;
+import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 
 
 import java.time.LocalTime;
@@ -30,60 +30,6 @@ public class ScheduleHandler {
         updateFreeBlocks();
     }
 
-    public Boolean[][] getMasterSchedule() {
-        return masterSchedule;
-    }
-
-    private void fillMasterSchedule(Boolean[][] s) {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 48; j++) {
-                if (s[i][j]) {
-                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
-                }
-            }
-        }
-    }
-
-    private void updateFreeBlocks() {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 48; j++) {
-                if (masterSchedule[i][j] == MYSCHEDULEFREE) {
-                    boolean change = false;
-                    boolean end = false;
-                    final int startDay = i;
-                    final int startBlock = j;
-                    while (masterSchedule[i][j] == MYSCHEDULEFREE) {
-                        if (change) {
-                            change = false;
-                        }
-                        if (i == 6 && j == 47) {
-                            end = true;
-                            break;
-                        }
-                        if (j == 47) {
-                            change = true;
-                            j = 0;
-                            i++;
-                        }
-                        j++;
-                    }
-                    int endDay = i;
-                    int endBlock = j - 1;
-                    if (change) {
-                        endBlock = 47;
-                    }
-                    if (end) {
-                        endBlock = 47;
-                        endDay = 0;
-                    }
-                    ArrayList<Integer> freeSlot = makeSlot(startDay, startBlock, endDay, endBlock);
-                    this.freeBlocks.add(freeSlot);
-                }
-            }
-        }
-        correctFirstAndLastSlotContinuation();
-    }
-
     public static ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock) {
         ArrayList<Integer> freeSlot = new ArrayList<Integer>();
         freeSlot.add(startDay);
@@ -91,36 +37,6 @@ public class ScheduleHandler {
         freeSlot.add(endDay);
         freeSlot.add(endBlock);
         return freeSlot;
-    }
-
-    private void correctFirstAndLastSlotContinuation() {
-        int size = this.freeBlocks.size();
-        if (size > 1) {
-            Boolean isSunday = this.freeBlocks.get(0).get(0).equals(this.freeBlocks.get(size - 1).get(2));
-            Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0) && this.freeBlocks.get(size - 1).get(3).equals(47);
-            Boolean isSundayMidnightOverlap = isSunday && isMidnight;
-            if (isSundayMidnightOverlap) {
-                Integer newStartDay = this.freeBlocks.get(size - 1).get(0);
-                Integer newStartBlock = this.freeBlocks.get(size - 1).get(1);
-                Integer newEndDay = this.freeBlocks.get(0).get(2);
-                Integer newEndBlock = this.freeBlocks.get(0).get(3);
-                ArrayList<Integer> newFreeSlot = makeSlot(newStartDay, newStartBlock, newEndDay, newEndBlock);
-                this.freeBlocks.set(0,newFreeSlot);
-                this.freeBlocks.remove(size - 1);
-            }
-        }
-    }
-
-
-    public void printFreeTimings() {
-        System.out.println("Here are your free slots:");
-        for (int i = 0; i < this.freeBlocks.size(); i++) {
-            String startDay = getDayFromNumber(this.freeBlocks.get(i).get(0).intValue());
-            LocalTime startTime = getTimeFromBlock(this.freeBlocks.get(i).get(1).intValue(), "START");
-            String endDay = getDayFromNumber(this.freeBlocks.get(i).get(2).intValue());
-            LocalTime endTime = getTimeFromBlock(this.freeBlocks.get(i).get(3).intValue(), "END");
-            System.out.println(startDay + " " + startTime + " to " + endDay + " " + endTime);
-        }
     }
 
     public static String getDayFromNumber(int dayNum) {
@@ -182,6 +98,89 @@ public class ScheduleHandler {
 
         LocalTime myTime = LocalTime.of(hourTime, minuteTime);
         return myTime;
+    }
+
+    public Boolean[][] getMasterSchedule() {
+        return masterSchedule;
+    }
+
+    private void fillMasterSchedule(Boolean[][] s) {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 48; j++) {
+                if (s[i][j]) {
+                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
+                }
+            }
+        }
+    }
+
+    private void updateFreeBlocks() {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 48; j++) {
+                if (masterSchedule[i][j] == MYSCHEDULEFREE) {
+                    boolean change = false;
+                    boolean end = false;
+                    final int startDay = i;
+                    final int startBlock = j;
+                    while (masterSchedule[i][j] == MYSCHEDULEFREE) {
+                        if (change) {
+                            change = false;
+                        }
+                        if (i == 6 && j == 47) {
+                            end = true;
+                            break;
+                        }
+                        if (j == 47) {
+                            change = true;
+                            j = 0;
+                            i++;
+                        }
+                        j++;
+                    }
+                    int endDay = i;
+                    int endBlock = j - 1;
+                    if (change) {
+                        endBlock = 47;
+                    }
+                    if (end) {
+                        endBlock = 47;
+                        endDay = 0;
+                    }
+                    ArrayList<Integer> freeSlot = makeSlot(startDay, startBlock, endDay, endBlock);
+                    this.freeBlocks.add(freeSlot);
+                }
+            }
+        }
+        correctFirstAndLastSlotContinuation();
+    }
+
+    private void correctFirstAndLastSlotContinuation() {
+        int size = this.freeBlocks.size();
+        if (size > 1) {
+            Boolean isSunday = this.freeBlocks.get(0).get(0).equals(this.freeBlocks.get(size - 1).get(2));
+            Boolean isMidnight = this.freeBlocks.get(0).get(1).equals(0) && this.freeBlocks.get(size - 1).get(3).equals(47);
+            Boolean isSundayMidnightOverlap = isSunday && isMidnight;
+            if (isSundayMidnightOverlap) {
+                Integer newStartDay = this.freeBlocks.get(size - 1).get(0);
+                Integer newStartBlock = this.freeBlocks.get(size - 1).get(1);
+                Integer newEndDay = this.freeBlocks.get(0).get(2);
+                Integer newEndBlock = this.freeBlocks.get(0).get(3);
+                ArrayList<Integer> newFreeSlot = makeSlot(newStartDay, newStartBlock, newEndDay, newEndBlock);
+                this.freeBlocks.set(0, newFreeSlot);
+                this.freeBlocks.remove(size - 1);
+            }
+        }
+    }
+
+    public void printFreeTimings() {
+        System.out.println("Here are your free slots:");
+        for (int i = 0; i < this.freeBlocks.size(); i++) {
+            String startDay = getDayFromNumber(this.freeBlocks.get(i).get(0).intValue());
+            LocalTime startTime = getTimeFromBlock(this.freeBlocks.get(i).get(1).intValue(), "START");
+            String endDay = getDayFromNumber(this.freeBlocks.get(i).get(2).intValue());
+            LocalTime endTime = getTimeFromBlock(this.freeBlocks.get(i).get(3).intValue(), "END");
+            System.out.println(startDay + " " + startTime + " to " + endDay + " " + endTime);
+        }
     }
 
     public ArrayList<ArrayList<Integer>> getFreeBlocks() {
@@ -345,7 +344,7 @@ public class ScheduleHandler {
     public void updateMasterSchedule(Meeting myMeeting, String addOrDelete) throws MoException {
         Boolean toAddorDelete = null;
         if (addOrDelete == "add") {
-           toAddorDelete = MYSCHEDULEBLOCKED;
+            toAddorDelete = MYSCHEDULEBLOCKED;
         } else {
             toAddorDelete = MYSCHEDULEFREE;
         }

@@ -12,6 +12,7 @@ public class MeetingOrganizer {
     private MeetingList myMeetingList;
     private TeamMemberList myTeamMemberList;
     private TeamMember mainUser;
+
     public MeetingOrganizer() {
         //declare objects here
         myMeetingList = new MeetingList();

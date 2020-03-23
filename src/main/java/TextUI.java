@@ -82,7 +82,8 @@ public class TextUI {
 
 
     public static void meetingDetailsMsg() {
-        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>. Type \"exit\" to go back to menu.");
+        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
+                + "Type \"exit\" to go back to menu.");
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
@@ -179,7 +180,7 @@ public class TextUI {
                 + "Here are your stored contacts:");
         int i = 0;
         for (TeamMember t : teamMemberList) {
-            if (i==0) {
+            if (i == 0) {
                 System.out.println("\t Main user: " + t.getName());
             } else {
                 System.out.println("\t " + i + ") " + t.getName());
