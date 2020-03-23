@@ -32,7 +32,7 @@ public class Nuke {
         modulesMap = ModuleLoader.load("moduleList.json");
         //storageManager = new StorageManager("data.json");
         storageManager = new StorageManager("save.txt");
-        moduleManager = new ModuleManager(root, modulesMap);
+        moduleManager = ModuleManager.getInstance(root, modulesMap);
         //ModuleManager.setModuleList(storageManager.load());
         storageManager.load2();
     }

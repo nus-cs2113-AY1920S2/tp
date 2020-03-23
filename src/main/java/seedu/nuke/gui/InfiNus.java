@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class InfiNus extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -22,10 +22,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("V \u2022 NUS");
+        stage.setTitle("INFI \u2022 NUS");
         stage.getIcons().add(new Image("images/venus_icon.png"));
-        stage.setMinWidth(1000);
-        stage.setMinHeight(600);
+        stage.setMinWidth(1200);
+        stage.setMinHeight(700);
 
         FXMLLoader sceneLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent mainRoot = sceneLoader.load();

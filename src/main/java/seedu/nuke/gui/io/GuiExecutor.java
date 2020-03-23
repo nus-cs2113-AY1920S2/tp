@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import seedu.nuke.command.Command;
+import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.promptcommand.PromptType;
@@ -14,82 +14,24 @@ import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
-import seedu.nuke.gui.controller.MainController;
 import seedu.nuke.gui.ui.TextUI;
-import seedu.nuke.parser.Parser;
 import seedu.nuke.util.ListCreator;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static seedu.nuke.util.Message.MESSAGE_PROMPT_FORMAT;
 
-public class Executor {
-    /* Variables to transit between parsing regular commands and prompts */
-    private static PromptType promptType = PromptType.NONE;
-    private static String userMessage;
-    private static DataType dataType = DataType.NONE;
-    private static ArrayList<?> filteredList;
-    private static ArrayList<Integer> indices;
-
+public class GuiExecutor {
     private TextField console;
     private TextFlow consoleScreen;
 
-    public Executor(TextField console, TextFlow consoleScreen) {
+    public GuiExecutor(TextField console, TextFlow consoleScreen) {
         this.console = console;
         this.consoleScreen = consoleScreen;
     }
 
-    public static void preparePromptIndices() {
-        promptType = PromptType.INDICES;
-    }
-
-    public static void preparePromptConfirmation() {
-        promptType = PromptType.CONFIRMATION;
-    }
-
-    public static void terminatePrompt() {
-        promptType = PromptType.NONE;
-    }
-
-    public static ArrayList<Integer> getIndices() {
-        return indices;
-    }
-
-    public static void setIndices(ArrayList<Integer> indices) {
-        Executor.indices = indices;
-    }
-
-    public static DataType getDataType() {
-        return dataType;
-    }
-
-    public static ArrayList<?> getFilteredList() {
-        return filteredList;
-    }
-
-    public static void setFilteredList(ArrayList<?> filteredList, DataType dataType) {
-        Executor.filteredList = filteredList;
-        Executor.dataType = dataType;
-    }
-
     public void executeAction(String userInput) {
-        Command command;
-        switch (promptType) {
-            case CONFIRMATION:
-                command = new Parser().parseInputAsConfirmation(userInput.toLowerCase());
-                break;
-
-            case INDICES:
-                command = new Parser().parseInputAsIndices(userInput);
-                break;
-
-            default:
-                command = new Parser().parseCommand(userInput);
-                break;
-        }
-
-        CommandResult result = command.execute();
+        CommandResult result = Executor.executeCommand(userInput);
         displayResult(result);
 
         if (ExitCommand.isExit()) {
