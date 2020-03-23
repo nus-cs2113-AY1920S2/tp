@@ -1,13 +1,9 @@
 package seedu.event;
 
-import seedu.duke.Duke;
 import seedu.exception.DukeException;
-import seedu.performance.Performance;
-import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
-
 
 public class EventList {
     public ArrayList<Event> list;
@@ -73,6 +69,9 @@ public class EventList {
      * @throws DukeException If list is empty.
      */
     public Event find(int index) throws DukeException {
+        if (index <= 0) {
+            throw new DukeException("Invalid index, must start from 1.");
+        }
         if (index >= list.size()) {
             throw new DukeException("Index not found.");
         }
@@ -179,7 +178,7 @@ public class EventList {
      */
     public void listSeminar() throws DukeException {
         if (list.isEmpty()) {
-            throw new DukeException("List is empty");
+            throw new DukeException("The event list is empty.");
         }
         ArrayList<Event> seminarList = new ArrayList<>();
         for (Event item : list) {
