@@ -34,34 +34,31 @@ public class Parser {
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<taskType>[^/]+)"
-            + "\\s+n/\\s*(?<assignmentName>[^/]+)"
-            + "\\s+m/\\s*(?<moduleName>[^/]+)"
-            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-            + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+n/\\s*(?<assignmentName>[^/]+)"
+                    + "\\s+m/\\s*(?<moduleName>[^/]+)"
+                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
+                    + "\\s+c/\\s*(?<comments>.+)$"
     );
 
     // regex for an add event command
     public static final Pattern EVENT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<taskType>[^/]+)"
-            + "\\s+n/\\s*(?<eventName>[^/]+)"
-            + "\\s+l/\\s*(?<location>[^/]+)"
-            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
-            + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+n/\\s*(?<eventName>[^/]+)"
+                    + "\\s+l/\\s*(?<location>[^/]+)"
+                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
+                    + "\\s+c/\\s*(?<comments>.+)$"
     );
 
     //regex for search command
     public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
             "(?<search>[^/]+)"
                     + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<name>[^/]+)"
-    );
+                    + "\\s+n/\\s*(?<name>[^/]+)");
 
     //regex for calendar command
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
             "(?<calendar>[^/]+)"
-                    + "\\s+m/\\s*(?<month>[^/]+)"
-                    + "\\s+y/\\s*(?<year>[^/]+)"
-    );
+                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
 
     /**
      * Returns a Command object depending on the command input by the user.
@@ -268,15 +265,14 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(Messages.CALENDAR_INCORRECT_FORMAT_ERROR);
         }
-        String month = matcher.group("month");
-        String year = matcher.group("year");
-        String stringDate = "01/" + month + "/" + year;
+
         LocalDate date;
         try {
-            date = LocalDate.parse(stringDate, INPUT_DATE_ONLY_FORMAT);
-        } catch (DateTimeParseException | NumberFormatException | IndexOutOfBoundsException e) {
+            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_ONLY_FORMAT);
+        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
+
         return new CalendarCommand(date);
     }
 
