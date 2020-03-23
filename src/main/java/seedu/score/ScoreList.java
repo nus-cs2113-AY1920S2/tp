@@ -29,4 +29,16 @@ public class ScoreList {
         return avgScore;
     }
 
+    /**
+     * Prints out all the past score history for selected subject.
+     * @return Past score history.
+     */
+    public String listScores() {
+        String msg;
+        int counter = 1;
+        for (double score : scores) {
+            msg +=
+        }
+    }
+
 }
