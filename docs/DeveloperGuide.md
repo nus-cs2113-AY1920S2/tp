@@ -6,6 +6,15 @@
 ## 2. Implementation
 This section will describe how the main features of the application are implemented.
 
+### 2.2 Mark and Unmark feature
+#### 2.2.1 Current Implementation
+
+The mark and unmark feature is implemented using the <code>MarkCommand</code> and <code>UnmarkCommand</code> class
+which extends the main <code>Command</code> class with an index representing that of the item to be marked or
+unmarked as bought in the list
+
+
+
 ### 2.1 Delete feature
 #### 2.1.1 Current implementation
 
