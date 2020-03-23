@@ -4,9 +4,8 @@ import seedu.attendance.Attendance;
 import seedu.exception.DukeException;
 import seedu.ui.UI;
 
-import java.util.Arrays;
-
 public class AttendanceParser {
+    private UI ui = new UI();
 
     public Attendance parseAttendance(String commandParameters) throws DukeException {
         String[] dataToRead = commandParameters.split(" ", 5);
@@ -24,7 +23,7 @@ public class AttendanceParser {
                     isPresent = data[1];
                     break;
                 default:
-                    UI.printWrongInput(s);
+                    ui.printWrongInput(s);
                 }
             }
         }

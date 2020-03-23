@@ -1,8 +1,7 @@
 package seedu.event;
 
 import seedu.exception.DukeException;
-import seedu.performance.Performance;
-import seedu.performance.PerformanceList;
+import seedu.ui.DisplayList;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
@@ -10,12 +9,16 @@ import java.util.ArrayList;
 
 public class EventList {
     public ArrayList<Event> list;
+    private DisplayList displayList;
+    private UI ui;
 
     /**
      * Empty constructor. Creates an empty list.
      */
     public EventList() {
         this.list = new ArrayList<>();
+        this.displayList = new DisplayList();
+        this.ui = new UI();
     }
 
     /**
@@ -25,9 +28,9 @@ public class EventList {
     public void add(Event event) {
         list.add(event);
         if (event instanceof Seminar) {
-            UI.addEventMessage("Seminar", event.getName());
+            ui.addEventMessage("Seminar", event.getName());
         } else {
-            UI.addEventMessage("Event", event.getName());
+            ui.addEventMessage("Event", event.getName());
         }
     }
 
@@ -54,9 +57,9 @@ public class EventList {
             throw new DukeException("Index not found.");
         }
         if (list.get(index) instanceof Seminar) {
-            UI.deleteEventMessage("Seminar", list.get(index).getName());
+            ui.deleteEventMessage("Seminar", list.get(index).getName());
         } else {
-            UI.deleteEventMessage("Event", list.get(index).getName());
+            ui.deleteEventMessage("Event", list.get(index).getName());
         }
         list.remove(index);
     }
@@ -82,9 +85,9 @@ public class EventList {
     public void editName(int index, String name) throws DukeException {
         Event event = this.find(index);
         if (event instanceof Seminar) {
-            UI.editEventNameMessage(event.getName(), name, "Seminar");
+            ui.editEventNameMessage(event.getName(), name, "Seminar");
         } else {
-            UI.editEventNameMessage(event.getName(), name, "Event");
+            ui.editEventNameMessage(event.getName(), name, "Event");
         }
         event.setName(name);
     }
@@ -97,9 +100,9 @@ public class EventList {
     public void editDatetime(int index, String datetime) throws DukeException {
         Event event = this.find(index);
         if (event instanceof Seminar) {
-            UI.editEventDateTimeMessage(event.getDatetime(), datetime, "Seminar");
+            ui.editEventDateTimeMessage(event.getDatetime(), datetime, "Seminar");
         } else {
-            UI.editEventDateTimeMessage(event.getDatetime(), datetime, "Event");
+            ui.editEventDateTimeMessage(event.getDatetime(), datetime, "Event");
         }
         event.setDatetime(datetime);
     }
@@ -112,9 +115,9 @@ public class EventList {
     public void editVenue(int index, String venue) throws DukeException {
         Event event = this.find(index);
         if (event instanceof Seminar) {
-            UI.editEventVenueMessage(event.getVenue(), venue, "Seminar");
+            ui.editEventVenueMessage(event.getVenue(), venue, "Seminar");
         } else {
-            UI.editEventVenueMessage(event.getVenue(), venue, "Event");
+            ui.editEventVenueMessage(event.getVenue(), venue, "Event");
         }
         event.setVenue(venue);
     }
@@ -131,9 +134,9 @@ public class EventList {
             throw new DukeException("Index not found.");
         }
         if (event instanceof Seminar) {
-            UI.editEventMessage(list.get(index).toString(), event.toString(), "Seminar");
+            ui.editEventMessage(list.get(index).toString(), event.toString(), "Seminar");
         } else {
-            UI.editEventMessage(list.get(index).toString(), event.toString(), "Event");
+            ui.editEventMessage(list.get(index).toString(), event.toString(), "Event");
         }
         list.remove(index);
         list.add(index, event);
@@ -164,7 +167,7 @@ public class EventList {
         if (list.isEmpty()) {
             throw new DukeException("The event list is empty.");
         }
-        UI.printEventList(list);
+        displayList.printEventList(list);
     }
 
     /**
@@ -182,6 +185,6 @@ public class EventList {
                 seminarList.add(item);
             }
         }
-        UI.printSeminarList(seminarList);
+        displayList.printSeminarList(seminarList);
     }
 }

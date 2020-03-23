@@ -10,10 +10,12 @@ import java.time.format.DateTimeParseException;
 public class DateTime {
     private String dateTime;
     private String dateTimeFormat;
+    private UI ui;
 
     public DateTime(String arguments) {
         this.dateTime = arguments;
         this.dateTimeFormat = getDateTimeFormat();
+        this.ui = new UI();
     }
 
     /**
@@ -34,7 +36,7 @@ public class DateTime {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             return localDateTime;
         } catch (DateTimeParseException e) {
-            UI.display("Unknown DateTime format provided. DateTime is set to local time in the format: "
+            ui.display("Unknown DateTime format provided. DateTime is set to local time in the format: "
                     + "yyyy-MM-dd HHmm.");
             LocalDateTime currentDateTime = LocalDateTime.now();
             return currentDateTime;

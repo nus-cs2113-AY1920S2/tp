@@ -1,22 +1,22 @@
-package seedu.command;
+package seedu.command.interpreter;
 
-
+import seedu.command.Command;
+import seedu.command.event.AddEvent;
 import seedu.command.event.EditDateTime;
 import seedu.command.event.EditName;
-import seedu.command.event.ListSeminar;
-import seedu.command.event.AddEvent;
 import seedu.command.event.EditVenue;
 import seedu.command.event.EditEvent;
 import seedu.command.event.DeleteEvent;
-import seedu.event.Seminar;
+import seedu.command.event.ListEvent;
 import seedu.exception.DukeException;
+import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.parser.EventParser;
 
-public class SeminarCommandInterpreter extends CommandInterpreter {
+public class EventCommandInterpreter extends CommandInterpreter {
     protected EventParser eventParser;
 
-    public SeminarCommandInterpreter(EventList eventList) {
+    public EventCommandInterpreter(EventList eventList) {
         super(eventList);
         this.eventParser = new EventParser();
     }
@@ -24,7 +24,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
     @Override
     public Command decideCommand(String commandDescription) throws DukeException {
         Command command = null;
-        Seminar seminar;
+        Event event;
         int index;
         String name;
         String datetime;
@@ -36,8 +36,8 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
         assert commandType == " " : "Event: Command is null";
         switch (commandType) {
         case "add":
-            seminar = eventParser.parseSeminar(commandParameters);
-            command = new AddEvent(seminar, this.eventList);
+            event = eventParser.parseEvent(commandParameters);
+            command = new AddEvent(event, this.eventList);
             break;
         case "editname":
             index = eventParser.parseIndex(commandParameters);
@@ -56,15 +56,15 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editevent":
             index = eventParser.parseIndex(commandParameters);
-            seminar = eventParser.parseSeminar(commandParameters);
-            command = new EditEvent(index, seminar, this.eventList);
+            event = eventParser.parseEvent(commandParameters);
+            command = new EditEvent(index, event, this.eventList);
             break;
         case "delete":
             index = eventParser.parseIndex(commandParameters);
             command = new DeleteEvent(index, this.eventList);
             break;
         case "list":
-            command = new ListSeminar(this.eventList);
+            command = new ListEvent(this.eventList);
             break;
         default:
             throw new DukeException("Event: Unknown command");

@@ -1,6 +1,7 @@
 package seedu.performance;
 
 import seedu.exception.DukeException;
+import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
@@ -9,9 +10,11 @@ import java.util.List;
 public class PerformanceList {
     public static ArrayList<Performance> performanceList;
     UI ui;
+    DisplayTable displayTable;
 
     public PerformanceList() {
         this.ui = new UI();
+        this.displayTable = new DisplayTable();
         performanceList = new ArrayList<>();
     }
 
@@ -21,7 +24,7 @@ public class PerformanceList {
 
     public void addToList(Performance performance, String eventName) {
         performanceList.add(performance);
-        UI.addPerformanceMessage(performance.studentName, eventName);
+        ui.addPerformanceMessage(performance.studentName, eventName);
     }
 
     /**
@@ -52,9 +55,9 @@ public class PerformanceList {
             throw new DukeException("No performance list under this event");
         }
         int i = 1;
-        ui.printHeaderOfThree("index", "Name of Student", "Result");
+        displayTable.printHeaderOfThree("index", "Name of Student", "Result");
         for (Performance performance : performanceList) {
-            ui.printBodyOfThree(i, performance.studentName, performance.getResult());
+            displayTable.printBodyOfThree(i, performance.studentName, performance.getResult());
             i++;
         }
     }

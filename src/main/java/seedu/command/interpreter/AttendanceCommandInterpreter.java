@@ -1,6 +1,7 @@
-package seedu.command;
+package seedu.command.interpreter;
 
 import seedu.attendance.AttendanceList;
+import seedu.command.Command;
 import seedu.command.attendance.AddAttendance;
 import seedu.command.attendance.ListAttendance;
 import seedu.event.EventList;
