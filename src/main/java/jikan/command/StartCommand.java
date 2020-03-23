@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class StartCommand extends Command {
 
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor to create a new start command.
