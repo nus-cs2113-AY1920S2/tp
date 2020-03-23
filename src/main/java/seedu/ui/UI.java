@@ -1,7 +1,6 @@
 package seedu.ui;
 
 import seedu.attendance.Attendance;
-import seedu.event.Event;
 import seedu.performance.Performance;
 
 import java.io.Serializable;
