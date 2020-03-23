@@ -50,4 +50,12 @@ public class DisplayList extends UI {
         }
     }
 
+    public int getStudentListIndex() {
+        assert !studentListCollection.isEmpty();
+        int index = 1;
+        for (StudentList studentList: studentListCollection) {
+            System.out.println(index + ". " + studentList.getListName());
+        }
+        return Integer.parseInt(getUserInput());
+    }
 }
