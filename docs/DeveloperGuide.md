@@ -30,10 +30,12 @@ quick access to the information in either a list or a calendar view.
 |v1.0|professor|add new performance list|create new performance list to be added to events|
 |v1.0|professor|delete existing performance list|delete unnecessary performance list|
 |v1.0|professor|add date and time to my events|organize my events|
+|v1.0|professor|add venue to my events|locate events|
 |v1.0|professor|edit my events|update my existing events|
 |v2.0|professor|create a student list|link existing student list to performance list or attendance list|
 |v2.0|professor|Create repeatable events without having the need to manually add in|easily create occurring events|
 |v2.0|professor|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v2.0|professor|view calendar of all my events|to see a overview of them|
 
 ## Non-Functional Requirements
 

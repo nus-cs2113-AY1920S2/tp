@@ -21,7 +21,7 @@ public class CalendarParser {
     public static int parseAcademicYear(String[] academicYear, int year) throws DukeException {
         int calendarYear;
         for (String yr : academicYear) {
-            if (yr.length() > 2 || yr.length() < 1) {
+            if (yr.length() > 2 || yr.length() < 1 ) {
                 throw new DukeException("Please provide a valid year in this format: ay/19-20");
             }
         }
@@ -62,6 +62,8 @@ public class CalendarParser {
             String[] academicYear = tokens[1].substring(3).split("-");
             if (academicYear.length != 2) {
                 throw new DukeException("Please provide two numbers for ay, eg. ay/18-19");
+            } else if (Integer.parseInt(academicYear[1]) - Integer.parseInt(academicYear[0]) != 1) {
+                throw new DukeException("Please provide a valid ay, eg. ay/18-19");
             }
             calendarYear = parseAcademicYear(academicYear, year);
         } else {
