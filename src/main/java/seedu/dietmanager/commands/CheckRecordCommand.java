@@ -36,19 +36,18 @@ public class CheckRecordCommand extends Command {
     public void saveResult(Profile profile) {
         DailyFoodRecord record = profile.getRecordOfDay(date);
         switch (mealType) {
-        case "morning":
-            this.result = date + " Morning: " + record.showBreakfast();
+        case "breakfast":
+            this.result = date + " Morning: " + record.showBreakfast() + record.showDailyCalories(mealType);
             break;
-        case "afternoon":
-            this.result = date + " Afternoon: " + record.showLunch();
+        case "lunch":
+            this.result = date + " Afternoon: " + record.showLunch() + record.showDailyCalories(mealType);
             break;
-        case "night":
-            this.result = date + " Night: " + record.showDinner();
+        case "dinner":
+            this.result = date + " Night: " + record.showDinner() + record.showDailyCalories(mealType);
             break;
         default:
             this.result = MessageBank.MEAL_TYPE_ERROR;
             break;
         }
-        this.result = this.result + ".";
     }
 }

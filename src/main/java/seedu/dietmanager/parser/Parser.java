@@ -14,8 +14,13 @@ import seedu.dietmanager.commands.CheckRecordCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.DeleteWeightCommand;
+import seedu.dietmanager.commands.WeightUpdateCommand;
+import seedu.dietmanager.commands.CheckWeightProgressCommand;
+import seedu.dietmanager.commands.CheckCaloriesCommand;
+import seedu.dietmanager.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
+import seedu.dietmanager.exceptions.InvalidGenderException;
 
 
 /**
@@ -74,6 +79,26 @@ public class Parser {
     }
 
     /**
+     * Validate the user input gender and parse it into the standard gender accepted.
+     * @param description User input gender.
+     * @return Gender in standard form.
+     * @throws InvalidGenderException If gender is not recognized by our system.
+     */
+    public static String parseGender(String description) throws InvalidGenderException {
+        String gender = description.trim().toLowerCase();
+        if (!(gender.equals("male") || gender.equals("female"))) {
+            throw new InvalidGenderException();
+        }
+        if (gender.equals("male")) {
+            gender = "Male";
+        }
+        if (gender.equals("female")) {
+            gender = "Female";
+        }
+        return gender;
+    }
+
+    /**
      * Analyses the user input and generates the relevant command.
      * @param input the user input.
      * @return the command generated from the user input.
@@ -81,7 +106,8 @@ public class Parser {
      * @throws InvalidFormatException   if format for command is wrong.
      */
 
-    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException {
+    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException,
+            InvalidGenderException {
         prepareInput(input);
         Command command;
         switch (commandPrompt) {
@@ -120,6 +146,12 @@ public class Parser {
             break;
         case "check-weight-progress":
             command = new CheckWeightProgressCommand(commandPrompt, description);
+            break;
+        case "check-calories-intake":
+            command = new CheckCaloriesCommand(commandPrompt, description);
+            break;
+        case "list-food-database":
+            command = new ListFoodDatabaseCommand(commandPrompt);
             break;
         case "delete-weight":
             command = new DeleteWeightCommand(commandPrompt, description);

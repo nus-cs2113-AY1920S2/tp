@@ -3,6 +3,7 @@ package seedu.dietmanager;
 import seedu.dietmanager.commands.Command;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
+import seedu.dietmanager.exceptions.InvalidGenderException;
 import seedu.dietmanager.parser.Parser;
 import seedu.dietmanager.ui.UI;
 
@@ -38,6 +39,8 @@ public class DietManager {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {
                 ui.displayInvalidCommandMessage();
+            } catch (InvalidGenderException e) {
+                ui.displayInvalidGenderMessage();
             } catch (IndexOutOfBoundsException e) {
                 ui.displayIndexOutOfBoundMessage();
             }
