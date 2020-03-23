@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.nuke.gui.io.GuiExecutor;
+import seedu.nuke.gui.io.GuiParser;
 import seedu.nuke.gui.ui.TextUI;
 
 import java.net.URL;
@@ -78,7 +79,7 @@ public class MainController implements Initializable {
         default:
             String currentUserInput = console.getText();
             consoleMask.getChildren().clear();
-            consoleMask.getChildren().add(TextUI.createText(currentUserInput, Color.DARKGREY));
+            consoleMask.getChildren().add(TextUI.createText(currentUserInput, new GuiParser().parseCommandWord(currentUserInput)));
             break;
         }
     }

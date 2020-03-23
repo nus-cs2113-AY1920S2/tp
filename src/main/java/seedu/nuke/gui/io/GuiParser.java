@@ -1,4 +1,5 @@
 package seedu.nuke.gui.io;
+import javafx.scene.paint.Color;
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddModuleCommand;
@@ -43,17 +44,46 @@ public class GuiParser {
 
 
     /**
-     * Parses the input string from the GUI console.
+     * Parses the command word in the input string from the GUI console.
      *
      * @param input
      *  The user input read by the <b>GUI</b>
      */
-    public void parseCommandWord(String input) {
+    public Color parseCommandWord(String input) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
+            return Color.CRIMSON;
         }
         String commandWord = matcher.group("commandWord").toLowerCase();
-        String parameters = matcher.group("parameters");
+        // String parameters = matcher.group("parameters");
 
+        if (!isPartOfCommandWord(commandWord)) {
+            return Color.CRIMSON;
+        }
+
+        if (isMatchingCommandWord(commandWord)) {
+            return Color.GREEN;
+        } else {
+            return Color.DARKGRAY;
+        }
+
+    }
+
+    private boolean isPartOfCommandWord(String givenCommandWord) {
+        for (String commandWord : COMMAND_WORDS) {
+            if (commandWord.contains(givenCommandWord)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isMatchingCommandWord(String givenCommandWord) {
+        for (String commandWord : COMMAND_WORDS) {
+            if (commandWord.equals(givenCommandWord)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
