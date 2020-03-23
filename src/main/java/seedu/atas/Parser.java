@@ -59,7 +59,7 @@ public class Parser {
     public static final Pattern REPEAT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<repeat>[^/]+)"
                     + "\\s+id/\\s*(?<eventIndex>\\d+)"
-                    + "\\s+p/(?<numOfPeriod>\\d+)" + "(?<typeOfPeriod>[dwmy])?");
+                    + "\\s+p/\\s*(?<numOfPeriod>\\d+)" + "(?<typeOfPeriod>[dwmy])?");
 
     //regex for calendar command
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
@@ -280,6 +280,8 @@ public class Parser {
             }
             return new RepeatCommand(eventIndex, numOfPeriod, typeOfPeriod);
         } catch (NumberFormatException e) {
+            //Error will be caught by Matcher from the regex above
+            assert false;
             return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         }
     }
