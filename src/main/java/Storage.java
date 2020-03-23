@@ -39,7 +39,7 @@ public class Storage {
             meetingList.forEach((n) -> {
                 try {
                     fw.write(n.getMeetingName() + " " + n.getStartDay() + " " + n.getStartTime() + " " + n.getEndDay()
-                            + " " + n.getEndTime() + System.lineSeparator());
+                        + " " + n.getEndTime() + System.lineSeparator());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -96,7 +96,7 @@ public class Storage {
         while (reader.hasNext()) {
             String[] data = reader.nextLine().split(" ");
             Meeting entry = new Meeting(data[0], Integer.parseInt(data[1]),
-                    LocalTime.parse(data[2]), Integer.parseInt(data[3]), LocalTime.parse(data[4]));
+                LocalTime.parse(data[2]), Integer.parseInt(data[3]), LocalTime.parse(data[4]));
             list.add(entry);
         }
         return list;

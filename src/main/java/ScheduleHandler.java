@@ -342,7 +342,17 @@ public class ScheduleHandler {
         return true;
     }
 
-    public void updateMasterSchedule(Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
+    public void updateMasterSchedule(Meeting myMeeting, String addOrDelete) throws MoException {
+        Boolean toAddorDelete = null;
+        if (addOrDelete == "add") {
+           toAddorDelete = MYSCHEDULEBLOCKED;
+        } else {
+            toAddorDelete = MYSCHEDULEFREE;
+        }
+        LocalTime endTime = myMeeting.getEndTime();
+        Integer endDay = myMeeting.getEndDay();
+        LocalTime startTime = myMeeting.getStartTime();
+        Integer startDay = myMeeting.getStartDay();
 
         Integer startBlock = getBlocksFromStartTime(startTime);
         Integer endBlock = -1;
@@ -359,30 +369,30 @@ public class ScheduleHandler {
 
         if (startDay.equals(endDay)) {
             if (startBlock.equals(endBlock)) {
-                masterSchedule[startDay][startBlock] = MYSCHEDULEBLOCKED;
+                masterSchedule[startDay][startBlock] = toAddorDelete;
             } else if (startBlock < endBlock) {
                 for (int i = startBlock; i <= endBlock; ++i) {
-                    masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
+                    masterSchedule[startDay][i] = toAddorDelete;
                 }
             } else if (startBlock > endBlock) {
                 for (int i = startBlock; i <= 47; ++i) {
-                    masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
+                    masterSchedule[startDay][i] = toAddorDelete;
                 }
 
                 for (int i = startDay + 1; i <= 6; ++i) {
                     for (int j = 0; j <= 47; ++j) {
-                        masterSchedule[i][j] = MYSCHEDULEBLOCKED;
+                        masterSchedule[i][j] = toAddorDelete;
                     }
                 }
 
                 for (int i = 0; i <= endDay - 1; ++i) {
                     for (int j = 0; j <= 47; ++j) {
-                        masterSchedule[i][j] = MYSCHEDULEBLOCKED;
+                        masterSchedule[i][j] = toAddorDelete;
                     }
                 }
 
                 for (int i = 0; i <= endBlock; ++i) {
-                    masterSchedule[endDay][i] = MYSCHEDULEBLOCKED;
+                    masterSchedule[endDay][i] = toAddorDelete;
                 }
 
             }
@@ -390,39 +400,39 @@ public class ScheduleHandler {
 
         if (startDay < endDay) {
             for (int i = startBlock; i <= 47; ++i) {
-                masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
+                masterSchedule[startDay][i] = toAddorDelete;
             }
             for (int i = startDay + 1; i <= endDay - 1; ++i) {
                 for (int j = 0; j < 48; ++j) {
-                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
+                    masterSchedule[i][j] = toAddorDelete;
                 }
             }
 
             for (int i = 0; i <= endBlock; ++i) {
-                masterSchedule[endDay][i] = MYSCHEDULEBLOCKED;
+                masterSchedule[endDay][i] = toAddorDelete;
             }
 
         }
 
         if (startDay > endDay) {
             for (int i = startBlock; i <= 47; ++i) {
-                masterSchedule[startDay][i] = MYSCHEDULEBLOCKED;
+                masterSchedule[startDay][i] = toAddorDelete;
             }
 
             for (int i = startDay + 1; i <= 6; ++i) {
                 for (int j = 0; j <= 47; ++j) {
-                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
+                    masterSchedule[i][j] = toAddorDelete;
                 }
             }
 
             for (int i = 0; i <= endDay - 1; ++i) {
                 for (int j = 0; j <= 47; ++j) {
-                    masterSchedule[i][j] = MYSCHEDULEBLOCKED;
+                    masterSchedule[i][j] = toAddorDelete;
                 }
             }
 
             for (int i = 0; i <= endBlock; ++i) {
-                masterSchedule[endDay][i] = MYSCHEDULEBLOCKED;
+                masterSchedule[endDay][i] = toAddorDelete;
             }
         }
 
