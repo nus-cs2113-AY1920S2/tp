@@ -5,6 +5,7 @@ import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddCommandTest {
     @Test
@@ -20,5 +21,6 @@ class AddCommandTest {
             e.printStackTrace();
         }
         assertEquals(1,patients.size());
+        assertTrue(patients.containsKey("S0618"));
     }
 }

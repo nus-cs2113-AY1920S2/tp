@@ -55,11 +55,10 @@ public class AddCommand extends Command {
     @Override
     public String execute(PatientMap patients) throws HappyPillsException {
         String message = "";
-
+        assert !patients.containsKey(nric) : "New nric can be added";
         patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
-        assert !patients.containsKey(nric) : "New nric added";
-        message = TextUi.getPatient(patients.get(nric));
         assert patients.containsKey(nric) : "nric added successfully";
+        message = TextUi.getPatient(patients.get(nric));
         logger.log(logLevel, "end of addCommand");
         return message;
     }
