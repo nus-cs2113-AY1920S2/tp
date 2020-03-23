@@ -11,7 +11,7 @@ public class CalendarParser {
 
     public static String[] parseDescription(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-        if (tokens.length > 2 || tokens.length < 2) {
+        if (tokens.length != 2) {
             throw new DukeException("Please provide the semester and the academic year in this format: "
                     + "s/1 ay/19-20");
         }
