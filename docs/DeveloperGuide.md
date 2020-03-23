@@ -6,6 +6,9 @@
 ## 2. Implementation
 This section will describe how the main features of the application are implemented.
 
+
+  
+  
 ### 2.1 Delete feature
 #### 2.1.1 Current implementation
 
@@ -24,7 +27,7 @@ with the specified index.
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/DeleteFeature.png)
+![alt text](images/Delete.png)
 
 #### 2.1.2 Design considerations
 
@@ -62,7 +65,7 @@ with the amount specified by the user for the budget.
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/SetBudget.png)
+![alt text](images/Set2.png)
 
 
 #### 2.2.2 Design considerations
@@ -128,7 +131,90 @@ have been omitted from the diagram. Those details are shown in a separate sequen
   
   - Cons: Less user flexibility, user must input all parameters even if he/she does not want to update certain
   variables.
+  
+  
+### 2.4 Mark and Unmark feature
+#### 2.4.1 Current Implementation
 
+The mark and unmark feature is implemented using the <code>MarkCommand</code> and <code>UnmarkCommand</code> class
+which extends the main <code>Command</code> class with an index representing that of the item to be marked or
+unmarked as bought in the list.
+
+The process of object creation:
+1. The <code>Duke</code> class first receives user input from the <code>Ui</code>
+2. The <code>Duke</code> class then creates a <code>Parser</code> object and calls its <code>parseCommand</code> method
+to instantiate a <code>MarkCommand</code> or <code>UnmarkCommand</code> object based on the user input
+3. The <code>Duke</code> class then calls the <code>execute</code> method of the <code>MarkCommand</code> or 
+<code>UnmarkCommand</code> command object. This calls the <code>markAsBought</code> or <code>unmarkAsBought</code>
+method of the <code>shoppingList</code> object with the specified index.
+
+The following sequence diagram below shows how the Mark feature (Diagram 1) and Unmark feature (Diagram 2) works.
+Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
+
+Diagram 1:
+
+![alt text](images/Mark.png)
+
+Diagram 2:
+
+![alt text](images/Unmark.png)
+
+#### 2.4.2 Design Considerations
+
+##### Aspect: Data structure to support the Mark and Unmark Feature
+
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>MarkCommand</code>
+and <code>UnmarkCommand</code>
+  - Pros: Easy to edit and add the mark and unmark feature without having to change the logic of the code in
+  multiple files
+  
+  - Cons: Might significantly increase the code base with another class being added
+  
+- Alternative 2: Implement the mark and unmark feature in either the <code>Duke</code> or <code>Parser</code> class
+  - Pros: Will have lesser code and classes to deal with, without having to create a whole new object to execute
+  the command.
+  
+  - Cons: Code becomes harder to navigate and understand since the command is all handled under one class, thus makes
+  having to edit the mark and unmark feature difficult.
+  
+### 2.5 Reset budget feature
+#### 2.5.1 Current implementation
+
+The reset budget feature is implemented using a <code>ResetBudgetCommand</code> class which extends the main
+<code>Command</code> class with a variable representing the budget amount.
+
+The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
+<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
+<code>ResetBudgetCommand</code> object based on that user input.
+
+The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ResetBudgetCommand</code> object
+which makes another call to the <code>resetBudget</code> function of the <code>Budget</code> object.
+
+The following sequence diagram below shows how the reset budget feature works. Note the <code>Ui</code> class is
+omitted in the sequence diagram to emphasise on the other classes:
+
+![alt text](images/Reset_Budget.png)
+
+
+#### 2.5.2 Design considerations
+
+##### Aspect: Data structure to support the set budget feature
+
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ResetBudgetCommand</code>
+ 
+  - Pros: Easy to add the reset budget feature without having to change the logic of the code much as each command
+  object is treated as a black box
+  
+  - Cons: Might significantly increase the code base with another class being added
+
+
+- Alternative 2: Implement reset budget feature in the <code>Duke</code> or <code>Parser</code> class
+
+  - Pros: Will have lesser code to deal with as a new function is simply created in the <code>Duke</code> class
+  
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
+  simply executes those commands as black boxes, without worrying about their internal details
+  
 ## Appendix A: Product Scope
 ### Target user profile
 
@@ -151,10 +237,14 @@ shopping lists and also providing helpful features like budget tracking
 |v1.0|organised home cook|be able to edit my budget|change my budget when I need to|
 |v1.0|organised home cook|delete items from the list|manage my list|
 |v1.0|organised home cook|have a useful "help" list that I can refer to|find instructions for various commands|
-|v1.0|frugal home cook|add a budget|so that I know how much I have to spend|
+|v1.0|frugal home cook|add a budget|so that I know how much I have to spend| 
+|v1.0|organised home cook|mark things as bought|keep track of my grocery progress|
+|v1.0|frugal home cook|be able to clear my budget|set a new budget|
 |v2.0|frugal home cook|be notified when I cross my budget|remove some items from my list|
 |v2.0|practical home cook|be able to search for items on my list|find things easily in a long list|
 |v2.0|practical home cook|be able to edit the items in my lists|update the items on my list accordingly|
+|v2.0|organised home cook|save my list|have a local copy of my list|
+|v2.0|organised home cook|load my saved list|add on to my existing list|
 
 ## Appendix C: Non-Functional Requirements
 
