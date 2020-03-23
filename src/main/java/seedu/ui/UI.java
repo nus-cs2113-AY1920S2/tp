@@ -46,7 +46,7 @@ public class UI {
         in.close();
     }
 
-    public void display(String message) {
+    public static void display(String message) {
         System.out.println(message);
     }
 
