@@ -1,5 +1,6 @@
 package seedu.event;
 
+import seedu.duke.Duke;
 import seedu.exception.DukeException;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
@@ -50,9 +51,13 @@ public class EventList {
      * @param index the index of the element to be removed
      */
     public void delete(int index) throws DukeException {
+        if (index <= 0) {
+            throw new DukeException("Invalid index, must start from 1.");
+        }
         if (index >= list.size()) {
             throw new DukeException("Index not found.");
         }
+
         if (list.get(index) instanceof Seminar) {
             UI.deleteEventMessage("Seminar", list.get(index).getName());
         } else {
