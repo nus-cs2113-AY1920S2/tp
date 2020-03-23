@@ -26,8 +26,8 @@ public class StartCommand extends Command {
         try {
             Parser.parseStart(activityList, scanner);
         } catch (EmptyNameException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-            Log.makeInfoLog("Activity started without task name");
-            Ui.printDivider("Task name cannot be empty!");
+            Log.makeInfoLog("Activity started without activity name");
+            Ui.printDivider("Activity name cannot be empty!");
         }
     }
 
