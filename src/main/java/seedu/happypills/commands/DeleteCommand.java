@@ -4,6 +4,7 @@ import org.w3c.dom.Text;
 import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
@@ -53,8 +54,8 @@ public class DeleteCommand extends Command {
      * @param patients The patient list within the program.
      * @return Message to inform the user that the patient has been deleted.
      */
-    private String deletePatient(Patient patient, PatientList patients) {
-        patients.remove(patient);
+    private String deletePatient(Patient patient, PatientMap patients) {
+        patients.remove(nric);
         String message = TextUi.deletePatient(patient);
         return TextUi.prependDivider(message);
     }
@@ -66,31 +67,34 @@ public class DeleteCommand extends Command {
      * @return The message to confirm deletion of patient or to confirm that the patient has not be deleted.
      * @throws HappyPillsException Throws an exception if patient does not exist.
      */
-    public String execute(PatientList patients) throws HappyPillsException {
-        Patient delPatient = findPatient(patients);
-        if (delPatient == null) {
+    public String execute(PatientMap patients) throws HappyPillsException {
+
+        if (patients.containsKey(nric)) {
+            Patient patient = patients.get(nric);
+            TextUi.printDeleteConfirmation(patient);
+            String message = "";
+            String confirm = getPatientConfirmation();
+            boolean isConfirmed = false;
+            while (!isConfirmed) {
+                if (confirm.equalsIgnoreCase("y")) {
+                    message = deletePatient(patient, patients);
+                    isConfirmed = true;
+                    logger.log(logLevel, "patient is deleted");
+                } else if (confirm.equalsIgnoreCase("n")) {
+                    message = TextUi.printNotDeleted();
+                    isConfirmed = true;
+                    logger.log(logLevel, "patient is not deleted");
+                } else {
+                    TextUi.printDeleteConfirmationAgain(patient);
+                    confirm = getPatientConfirmation();
+                }
+            }
+            assert isConfirmed : "Delete is not confirmed.";
+            message = TextUi.appendDivider(message);
+            return message;
+
+        } else {
             throw new HappyPillsException("    Patient does not exist. Please try again.");
         }
-        TextUi.printDeleteConfirmation(delPatient);
-        String message = "";
-        String confirm = getPatientConfirmation();
-        boolean isConfirmed = false;
-        while (!isConfirmed) {
-            if (confirm.equalsIgnoreCase("y")) {
-                message = deletePatient(delPatient, patients);
-                isConfirmed = true;
-                logger.log(logLevel, "patient is deleted");
-            } else if (confirm.equalsIgnoreCase("n")) {
-                message = TextUi.printNotDeleted();
-                isConfirmed = true;
-                logger.log(logLevel, "patient is not deleted");
-            } else {
-                TextUi.printDeleteConfirmationAgain(delPatient);
-                confirm = getPatientConfirmation();
-            }
-        }
-        assert isConfirmed : "Delete is not confirmed.";
-        message = TextUi.appendDivider(message);
-        return message;
     }
 }

@@ -40,70 +40,25 @@ What can I do for you today, doctor?
     =====================================================
     =====================================================
     Got it! I've added this patient:
-        Name : kesin
-        NRIC : s12345f
+        Name : s12345f
+        NRIC : kesin
         Phone Number : 999
-        DOB : 18june
-        Blood Type : O+
+        DOB :  18june
+        Blood Type :  O+
         Allergies :
         Remarks :
     =====================================================
     =====================================================
-    Patient details have been updated as follows:
-        Name : kesin
-        NRIC : s12345f
-        Phone Number : 999
-        DOB : 18june
-        Blood Type : O+
-        Allergies :dust
-        Remarks :
+    s12345f | kesin
     =====================================================
     =====================================================
-    kesin | s12345f
-    =====================================================
-    =====================================================
-    Patient details have been updated as follows:
-        Name : kesin
-        NRIC : s12345f
-        Phone Number : 918
-        DOB : 18june
-        Blood Type : O+
-        Allergies :dust
-        Remarks :
+    Patient not found. Please try again.
     =====================================================
     =====================================================
     Please input your patient's details correctly.
     =====================================================
     =====================================================
-    Patient details have been updated as follows:
-        Name : kesin
-        NRIC : s12345f
-        Phone Number : 918
-        DOB : 18june
-        Blood Type : O+
-        Allergies :dust
-        Remarks :Vegetarian
-    =====================================================
-    =====================================================
-    Patient details have been updated as follows:
-        Name : kesin
-        NRIC : s12345f
-        Phone Number : 918
-        DOB : 18june
-        Blood Type : O+
-        Allergies :Meat
-        Remarks :Vegetarian
-    =====================================================
-    =====================================================
-    Here are the patient's details:
-        Name : kesin
-        NRIC : s12345f
-        Phone Number : 918
-        DOB : 18june
-        Blood Type : O+
-        Allergies :Meat
-        Remarks :Vegetarian
-    =====================================================
+The patient you are looking for cannot be found
     =====================================================
     Patient does not exist. Please try again.
     =====================================================
@@ -111,15 +66,15 @@ What can I do for you today, doctor?
     Patient does not exist. Please try again.
     =====================================================
     =====================================================
-    kesin | s12345f
+    s12345f | kesin
     =====================================================
     =====================================================
     Got it! I've added this patient:
-        Name : nyan
-        NRIC : s98765f
+        Name : s98765f
+        NRIC : nyan
         Phone Number : 911
-        DOB : 22Aug
-        Blood Type : O+
+        DOB :  22Aug
+        Blood Type :  O+
         Allergies :
         Remarks :
     =====================================================

@@ -3,6 +3,7 @@ package seedu.happypills.commands;
 import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
@@ -32,13 +33,13 @@ public class EditCommand extends Command {
      *
      * @param patients Contains the list of patients to be searched.
      */
-    private Patient findPatient(PatientList patients) {
-        for (Patient patient : patients) {
-            if (patient.getNric().equalsIgnoreCase(nric)) {
-                return patient;
-            }
+    private Patient findPatient(PatientMap patients) {
+        if (patients.containsKey(nric)) {
+            logger.log(logLevel, "patient to be edited is found");
+            return patients.get(nric);
+        } else {
+            return null;
         }
-        return null;
     }
 
     /**
@@ -86,7 +87,7 @@ public class EditCommand extends Command {
      * @throws HappyPillsException Throws an exception if the edit field is not valid.
      */
     @Override
-    public String execute(PatientList patients) throws HappyPillsException {
+    public String execute(PatientMap patients) throws HappyPillsException {
         if (newContent.length() < 2) {
             throw new HappyPillsException("    Content is invalid. Please try again");
         }
@@ -107,7 +108,7 @@ public class EditCommand extends Command {
             output = editAllergies(editPatient, content);
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
-            + "    enter \"help edit\"");
+            + "\n    enter \"help edit\"");
         }
         assert output.length() > 0 : "output message is invalid";
         return output;

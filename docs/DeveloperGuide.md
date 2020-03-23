@@ -9,6 +9,11 @@ By: `CS2113T-T12-2` Since: `2020`
 1. [Introduction](#introduction)
 2. [Setting up](#setting-up)
 3. [Design](#design)
+
+    3.1. Architecture
+    
+    
+    
 4. [Implementation](#implementation)
 
     4.1. User Prompting feature
@@ -31,16 +36,30 @@ By: `CS2113T-T12-2` Since: `2020`
 5. [Documentation](#documentation)
 6. [Testing](#testing)
 7. [DevOps](#devops)
+
 [Appendix A: Product Scope](#)
+
 [Appendix B: User Stories](#)
 
+[Appendix C: Non Functional Requirements](#)
+
+[Appendix E: Glossary](#)
+
+[Appendix F: Instructions for Manual Testing](#)
 
 
+## 1. Introduction
 
 
-## Design & Implementation
+## 2. Setting Up
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+## 3. Design 
+
+## 4. Implementation
+
+    
+
+
 
 ###4.2. Appointment Scheduling 
     

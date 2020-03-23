@@ -2,7 +2,10 @@ package seedu.happypills.commands;
 
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
 import seedu.happypills.ui.TextUi;
+
+import java.util.Map;
 
 public class GetCommand extends Command {
     protected String patientNric;
@@ -18,14 +21,13 @@ public class GetCommand extends Command {
     }
 
     @Override
-    public String execute(PatientList patients) {
+    public String execute(PatientMap patients) {
         assert !patientNric.isEmpty() : "No NRIC was provided";
-        for (Patient patient : patients) {
-            if (patient.getNric().equalsIgnoreCase(patientNric)) {
-                return TextUi.getPatientSuccessMessage(patient);
-            }
+        if (patients.containsKey(patientNric)) {
+            return TextUi.getPatientSuccessMessage(patients.get(patientNric));
+        } else {
+            return TextUi.patientNotExist(patientNric);
         }
-        return TextUi.patientNotExist(patientNric);
     }
 
 }
