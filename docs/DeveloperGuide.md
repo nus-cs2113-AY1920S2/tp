@@ -6,15 +6,9 @@
 ## 2. Implementation
 This section will describe how the main features of the application are implemented.
 
-### 2.2 Mark and Unmark feature
-#### 2.2.1 Current Implementation
 
-The mark and unmark feature is implemented using the <code>MarkCommand</code> and <code>UnmarkCommand</code> class
-which extends the main <code>Command</code> class with an index representing that of the item to be marked or
-unmarked as bought in the list
-
-
-
+  
+  
 ### 2.1 Delete feature
 #### 2.1.1 Current implementation
 
@@ -137,7 +131,50 @@ have been omitted from the diagram. Those details are shown in a separate sequen
   
   - Cons: Less user flexibility, user must input all parameters even if he/she does not want to update certain
   variables.
+  
+  
+### 2.4 Mark and Unmark feature
+#### 2.4.1 Current Implementation
 
+The mark and unmark feature is implemented using the <code>MarkCommand</code> and <code>UnmarkCommand</code> class
+which extends the main <code>Command</code> class with an index representing that of the item to be marked or
+unmarked as bought in the list.
+
+The process of object creation:
+1. The <code>Duke</code> class first receives user input from the <code>Ui</code>
+2. The <code>Duke</code> class then creates a <code>Parser</code> object and calls its <code>parseCommand</code> method
+to instantiate a <code>MarkCommand</code> or <code>UnmarkCommand</code> object based on the user input
+3. The <code>Duke</code> class then calls the <code>execute</code> method of the <code>MarkCommand</code> or 
+<code>UnmarkCommand</code> command object. This calls the <code>markAsBought</code> or <code>unmarkAsBought</code>
+method of the <code>shoppingList</code> object with the specified index.
+
+The following sequence diagram below shows how the Mark feature (Diagram 1) and Unmark feature (Diagram 2) works.
+Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
+
+######Diagram 1:
+![alt text](images/MarkFeature.png)
+
+######Diagram 2:
+![alt text](images/UnmarkFeature.png)
+
+#### 2.4.2 Design Considerations
+
+##### Aspect: Data structure to support the Mark and Unmark Feature
+
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>MarkCommand</code>
+and <code>UnmarkCommand</code>
+  - Pros: Easy to edit and add the mark and unmark feature without having to change the logic of the code in
+  multiple files
+  
+  - Cons: Might significantly increase the code base with another class being added
+  
+- Alternative 2: Implement the mark and unmark feature in either the <code>Duke</code> or <code>Parser</code> class
+  - Pros: Will have lesser code and classes to deal with, without having to create a whole new object to execute
+  the command.
+  
+  - Cons: Code becomes harder to navigate and understand since the command is all handled under one class, thus makes
+  having to edit the mark and unmark feature difficult.
+  
 ## Appendix A: Product Scope
 ### Target user profile
 
