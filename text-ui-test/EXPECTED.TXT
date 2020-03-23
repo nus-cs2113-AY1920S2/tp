@@ -14,23 +14,22 @@ You have no tasks for today!
   2. Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
   3. Add Event: event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]
   4. List commands that are available:
-     List All Tasks: list
-     List Today's Tasks: list today
-     List This Week's Tasks: list week
-     List Upcoming Events: list upcoming events
-     List Incomplete Assignments: list incomplete assignments
+     - List All Tasks: list
+     - List Today's Tasks: list today
+     - List This Week's Tasks: list week
+     - List Upcoming Events: list upcoming events
+     - List Incomplete Assignments: list incomplete assignments
   5. Mark Task as Done: done [TASK NUMBER]
   6. Delete a Task: delete [TASK NUMBER]
   7. Clear commands that are available:
-     Clear All Tasks: clear all
-     Clear All Completed Tasks: clear done
-  8. Repeat commands that are available: (Available Periods are: D, W, M, Y)
-     Make event recur: repeat [EVENT INDEX] [NUM OF PERIOD] [TYPE OF PERIOD]
-     Stop event recur: repeat [EVENT INDEX] 0 D
+     - Clear All Tasks: clear all
+     - Clear All Completed Tasks: clear done
+  8. Repeat commands that are available: (Available Periods are: d, w, m, y)
+     - Make event recur: repeat id/[EVENT INDEX] p/[NUM OF PERIOD][TYPE OF PERIOD]
+     - Stop event recur: repeat id/[EVENT INDEX] p/0
   9. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
  10. Get a Calendar view: calendar m/[MONTH] y/[YEAR]
  11. Exit ATAS: exit
-
 _______________________________________________________________________
 > Oh no. Incorrect format for Assignment Command
 Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]

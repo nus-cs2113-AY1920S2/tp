@@ -4,6 +4,7 @@ import common.Messages;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
@@ -113,7 +114,8 @@ public class SearchTest {
     @Test
     public void testSearchExecuteInvalidSearchFormat() {
         assertEquals(new SearchCommand("test", "abcd").execute(filledTaskList, ui).feedbackToUser,
-                Messages.INVALID_SEARCH_FORMAT);
+                String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                        Parser.capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE));
     }
 
     @Test

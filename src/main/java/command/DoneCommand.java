@@ -6,7 +6,7 @@ import seedu.atas.Ui;
 import tasks.Task;
 
 public class DoneCommand extends Command {
-    public static final String DONE_COMMAND_WORD = "done";
+    public static final String COMMAND_WORD = "done";
     public static final String COMMAND_USAGE = "Mark Task as Done: done [TASK NUMBER]";
 
     protected int doneIndex;

@@ -1,6 +1,7 @@
 package command;
 
 import common.Messages;
+import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
@@ -8,13 +9,13 @@ import tasks.Task;
 import java.util.ArrayList;
 
 public class ListCommand extends Command {
-    public static final String LIST_COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "list";
 
-    private static final String LIST_ALL_COMMAND_USAGE = "List All Tasks: list";
-    public static final String LIST_TODAY_COMMAND_USAGE = "List Today's Tasks: list today";
-    private static final String LIST_WEEK_COMMAND_USAGE = "List This Week's Tasks: list week";
-    private static final String LIST_UPCOMING_EVENT_COMMAND_USAGE = "List Upcoming Events: list upcoming events";
-    private static final String LIST_INCOMPLETE_ASSIGN_COMMAND_USAGE = "List Incomplete Assignments: "
+    private static final String LIST_ALL_COMMAND_USAGE = "- List All Tasks: list";
+    public static final String LIST_TODAY_COMMAND_USAGE = "- List Today's Tasks: list today";
+    private static final String LIST_WEEK_COMMAND_USAGE = "- List This Week's Tasks: list week";
+    private static final String LIST_UPCOMING_EVENT_COMMAND_USAGE = "- List Upcoming Events: list upcoming events";
+    private static final String LIST_INCOMPLETE_ASSIGN_COMMAND_USAGE = "- List Incomplete Assignments: "
             + "list incomplete assignments";
     public static final String COMMAND_USAGE = "List commands that are available:" + System.lineSeparator()
             + Messages.NEWLINE_INDENT + LIST_ALL_COMMAND_USAGE + System.lineSeparator()
@@ -54,7 +55,8 @@ public class ListCommand extends Command {
         case (ALL_TASK_COMMAND):
             return new CommandResult(showListTasks(allTaskList, taskList.getTaskArray()));
         default:
-            return new CommandResult(Messages.LIST_INCORRECT_FORMAT_ERROR);
+            return new CommandResult(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    Parser.capitalize(COMMAND_WORD), COMMAND_USAGE));
         }
     }
 
@@ -69,7 +71,7 @@ public class ListCommand extends Command {
             return (Messages.EMPTY_TASKLIST_MESSAGE);
         }
         String stringFromArrayList = stringTaskList(allTaskList, taskList);
-        return (String.format(Messages.SHOW_TASKLIST_MESSAGE, System.lineSeparator(), stringFromArrayList));
+        return (String.format(Messages.LIST_TASKLIST_MESSAGE, System.lineSeparator(), stringFromArrayList));
     }
 
     /**

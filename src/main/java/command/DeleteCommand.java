@@ -6,7 +6,7 @@ import seedu.atas.Ui;
 import tasks.Task;
 
 public class DeleteCommand extends Command {
-    public static final String DELETE_COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_USAGE = "Delete a Task: delete [TASK NUMBER]";
     protected int deleteIndex;
 

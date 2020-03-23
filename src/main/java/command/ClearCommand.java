@@ -1,6 +1,7 @@
 package command;
 
 import common.Messages;
+import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
@@ -8,9 +9,9 @@ import tasks.Task;
 import java.util.ArrayList;
 
 public class ClearCommand extends Command {
-    public static final String CLEAR_COMMAND_WORD = "clear";
-    private static final String CLEAR_ALL_COMMAND_USAGE = "Clear All Tasks: clear all";
-    private static final String CLEAR_DONE_COMMAND_USAGE = "Clear All Completed Tasks: clear done";
+    public static final String COMMAND_WORD = "clear";
+    private static final String CLEAR_ALL_COMMAND_USAGE = "- Clear All Tasks: clear all";
+    private static final String CLEAR_DONE_COMMAND_USAGE = "- Clear All Completed Tasks: clear done";
     public static final String COMMAND_USAGE = "Clear commands that are available:" + System.lineSeparator()
             + Messages.NEWLINE_INDENT + CLEAR_ALL_COMMAND_USAGE + System.lineSeparator()
             + Messages.NEWLINE_INDENT + CLEAR_DONE_COMMAND_USAGE;
@@ -36,7 +37,8 @@ public class ClearCommand extends Command {
         case (clearDoneParam):
             return clearDone(taskList);
         default:
-            return new CommandResult(Messages.CLEAR_INCORRECT_FORMAT_ERROR);
+            return new CommandResult(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    Parser.capitalize(COMMAND_WORD), COMMAND_USAGE));
         }
     }
 
