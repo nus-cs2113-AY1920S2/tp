@@ -1,6 +1,8 @@
 package seedu.event;
 
 import seedu.exception.DukeException;
+import seedu.performance.Performance;
+import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
@@ -141,14 +143,26 @@ public class EventList {
         return list.size();
     }
 
+    public Event getEvent(String eventName) throws DukeException {
+        if (list.isEmpty()) {
+            throw new DukeException("The event list is empty.");
+        }
+        for (Event event : list) {
+            if (event.getName().equals(eventName)) {
+                return event;
+            }
+        }
+        throw new DukeException("Event is not found in the list.");
+    }
+
     /**
      * Lists all types of events.
      *
      * @throws DukeException If list is empty.
      */
     public void listEvent() throws DukeException {
-        if (list.size() == 0) {
-            throw new DukeException("List is empty");
+        if (list.isEmpty()) {
+            throw new DukeException("The event list is empty.");
         }
         UI.printEventList(list);
     }
@@ -159,7 +173,7 @@ public class EventList {
      * @throws DukeException If list is empty.
      */
     public void listSeminar() throws DukeException {
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             throw new DukeException("List is empty");
         }
         ArrayList<Event> seminarList = new ArrayList<>();

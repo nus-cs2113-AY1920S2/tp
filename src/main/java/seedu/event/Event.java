@@ -1,29 +1,17 @@
 package seedu.event;
 
-import seedu.duke.Duke;
+import seedu.attendance.AttendanceList;
 import seedu.exception.DukeException;
-
-import java.security.InvalidParameterException;
-import java.util.ArrayList;
+import seedu.performance.PerformanceList;
 import java.time.Instant;
 
 public class Event {
     protected String name;
     protected DateTime datetime;
     protected String venue;
-    private ArrayList<String> participantList;
-    private ArrayList<String> attendanceList;
-
-    /**
-     * Empty constructor. Sets name as "unnamed"
-     */
-    public Event() throws DukeException {
-        setName("");
-        setDatetime("");
-        setVenue("");
-        this.participantList = new ArrayList<>();
-        this.attendanceList = new ArrayList<>();
-    }
+    //private ArrayList<StudentList> studentsList;
+    protected AttendanceList attendanceList;
+    protected PerformanceList performanceList;
 
     /**
      * Constructor with name, datetime, venue provided.
@@ -32,10 +20,11 @@ public class Event {
      * @param venue venue of event
      */
     public Event(String name, String datetime, String venue) throws DukeException {
-        this();
         setName(name);
         setDatetime(datetime);
         setVenue(venue);
+        this.attendanceList = new AttendanceList();
+        this.performanceList = new PerformanceList();
     }
 
     /**
@@ -123,13 +112,25 @@ public class Event {
         this.venue = venue;
     }
 
+    public PerformanceList getPerformanceList() {
+        return performanceList;
+    }
+
     @Override
     public String toString() {
-        if (getDatetime().equals("yyyy-MM-dd HHmm") && getVenue().equals("")) {
-            return "Event: " + getName();
-        } else if (getVenue().equals("")) {
-            return "Event: " + getName() + ", time: " + getDatetime();
+        String output = "Event: " + getName();
+
+        if (!getDatetime().equals("yyyy-MM-dd HHmm")) {
+            output += (", time: " + getDatetime());
         }
-        return "Event: " + getName() + ", time: " + getDatetime() + ", venue: " + getVenue();
+        if (!getVenue().equals("")) {
+            output += (", venue: " + getVenue());
+        }
+
+        return output;
+    }
+
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
     }
 }
