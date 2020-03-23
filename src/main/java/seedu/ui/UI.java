@@ -226,7 +226,7 @@ public class UI {
     public void deletePerformanceMessage(Performance performance, String eventName, boolean hasDeleted) {
         if (hasDeleted) {
             String studentName = performance.getStudent();
-            System.out.printf("The result of student %s has been added "
+            System.out.printf("The result of student %s has been deleted "
                     + "successfully under event %s.\n", studentName, eventName);
         } else {
             System.out.printf("There is no record of %s's result in the list\n",
@@ -256,7 +256,7 @@ public class UI {
     }
 
     public String getStudentName(String typeCommand) {
-        System.out.printf("Please key in the name of student that you want to %s", typeCommand);
+        System.out.printf("Please key in the name of student that you wish to %s \n", typeCommand);
         return in.nextLine();
     }
 
@@ -269,7 +269,7 @@ public class UI {
 
     public String getEventName() {
         System.out.println("Please key in the name of event that "
-                + "you wish to make change to its student's performance.");
+                + "you wish to access to its student's performance.");
         return in.nextLine();
     }
 

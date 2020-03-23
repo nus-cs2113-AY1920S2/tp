@@ -61,10 +61,7 @@ Some example commands to try:
 
 Refer to [“Features”](#Features) for details of each command.
 
-##
-## Features 
-
-### 4.0 SAMPLE FORMAT Insert Header here `Insert format here`
+## 4.0 SAMPLE FORMAT Insert Header here `Insert format here`
 Insert Description here
 
 Format:
@@ -79,7 +76,7 @@ Examples:
 
     Insert example here
 
-
+## 4. Feature - Event Tracker
 ### 4.1 Adding new event: event  `-Event add`
 Adds a new event to the event list.
 
@@ -116,26 +113,75 @@ Examples:
 
 
 
-### 4.3 Adding students’ performance: performance `performance add`
-Add a student’s grade or mark to the grade list. 
-Grade refers to an alphabetical grade while mark refers to a numerical mark given to the student. 
-Only one of g/GRADE m/MARK should be provided. 
+## 5 Feature - Performance Tracker
 
-Format:
-
-`Insert format here`
+### 5.1 Adding students’ performance: performance `performance add`
+Add a student’s result to the performance list.  
+This is a step by step command and you may follow the instructions given by the console. 
 
 Command: 
 
     performance add
     
-Examples: 
+Step by step guide: 
 
-    Insert example here
+    user: performance add
+    PAC: Please key in the name of event that you wish to access to its student's performance. 
+    user: event
+If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
+the alternative provided by PAC: record using a current name list. Do note that you have to have an existing name list 
+before you are using this short cut.  
+The following will show a success example of using a current name list to add performance. 
 
+    PAC: Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    user: yes
+    PAC: Please choose the name list you wish to use. (shows a list of list names)
+    user: 1
+    PAC: Please key in the result for student (student1 name)
+    user: A
+    PAC: The result of student (student name) has been added successfully under event (event name)
+    PAC: Please key in the result for student (student2 name)
+    ...
 
+### 5.2 Deleting students’ performance: performance `performance delete`
+Delete a student’s result to the performance list.  
+This is a step by step command and you may follow the instructions given by the console. 
 
-### 4.4 Creating a student list `student add`
+Command: 
+
+    performance delete
+    
+Step by step guide: 
+
+    user: performance delete
+    PAC: Please key in the name of event that you wish to access to its student's performance. 
+    user: event
+    PAC: Please key in the name of student that you wish to delete his/her performance 
+    user: name
+    PAC: The result of student (name) has been deleted successfully under event name.
+
+### 5.3 Viewing students’ performance: performance `performance list`
+View the list of students' result under a certain event.  
+This is a step by step command and you may follow the instructions given by the console. 
+
+Command: 
+
+    performance list
+    
+Step by step guide: 
+
+    user: performance delete
+    PAC: Please key in the name of event that you wish to access to its student's performance.
+    user: event
+    PAC: (example of Table format list is shown below)
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                    |  Result                                     |
+    |___________|_____________________________________|_____________________________________________|
+    | 1         |  XX                                 |  A                                          |
+    |___________|_____________________________________|_____________________________________________|
+
+## 6 - Import Student List
+### 6.1 Creating a student list `student add`
 Creates a student list and adds it to the collection of student list 
 that can be used for adding attendance and performance
 
@@ -153,7 +199,17 @@ Examples:
     
 
 
-
+## Possible Console Messages and Reasons:  
+If event list is empty    
+        
+    PAC: The event list is empty
+If event is not found in the list
+           
+    PAC: Event is not found in the list.
+If students' name list is empty
+        
+    There is no existing student list.
+           
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 

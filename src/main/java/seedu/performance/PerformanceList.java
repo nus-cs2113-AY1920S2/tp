@@ -41,6 +41,7 @@ public class PerformanceList {
                     && performance.getStudent().equals(p.getStudent())) {
                 performanceList.remove(p);
                 hasDeleted = true;
+                break;
             }
         }
         ui.deletePerformanceMessage(performance, eventName, hasDeleted);
