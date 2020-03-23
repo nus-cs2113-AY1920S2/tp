@@ -1,6 +1,8 @@
 package jikan;
 
 import jikan.activity.ActivityList;
+import jikan.command.ByeCommand;
+import jikan.command.Command;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
@@ -43,6 +45,16 @@ public class Jikan {
         activityList = storage.createActivityList();
         activityList.storage = storage;
         Scanner in = new Scanner(System.in);
-        parser.parseUserCommands(in, activityList, cleaner);
+        while (true) {
+            Command command = parser.parseUserCommands(in,activityList,cleaner);
+            if (command == null) {
+                continue;
+            }
+            if (ByeCommand.isExit(command)) {
+                command.executeCommand(activityList);
+                break;
+            }
+            command.executeCommand(activityList);
+        }
     }
 }

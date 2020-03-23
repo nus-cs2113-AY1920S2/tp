@@ -15,7 +15,7 @@ public class Ui {
     }
 
     /** Prints exit message and exits the app. */
-    public void exitFromApp() {
+    public static void exitFromApp() {
         System.out.println(DIVIDER);
         System.out.println(" Bye! See you again.");
         System.out.println(DIVIDER);
@@ -23,7 +23,7 @@ public class Ui {
     }
 
     /** Prints divider between user input and app feedback. */
-    public void printDivider(String line) {
+    public static void printDivider(String line) {
         System.out.println(DIVIDER);
         System.out.println(line);
         System.out.println(DIVIDER);
