@@ -34,7 +34,8 @@ public class DateTime {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             return localDateTime;
         } catch (DateTimeParseException e) {
-            UI.display("Unknown DateTime format provided. DateTime is set to local time in the format: yyyy-MM-dd HHmm.");
+            UI.display("Unknown DateTime format provided. DateTime is set to local time in the format: "
+                    + "yyyy-MM-dd HHmm.");
             LocalDateTime currentDateTime = LocalDateTime.now();
             return currentDateTime;
         }
