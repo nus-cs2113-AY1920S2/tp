@@ -189,48 +189,52 @@ public class UI {
         System.out.println("What is the name of your list?");
         return in.nextLine();
     }
-
+    
     public void printGetHelp() {
-        System.out.println("Hello " + userName + ", please refer to the "
-                + "format below to use this app.");
-        System.out.println("To track any list, input:\n  type_of_list list");
-        printEventHelp();
-        printPerformanceHelp();
-        printAttendanceHelp();
+        System.out.println("Hello " + userName + ", please select the type of "
+                + "command that you wish to get the format for.");
+        System.out.println("1. Event");
+        System.out.println("2. Attendance");
+        System.out.println("3. Performance");
+        System.out.println("4. Student List");
+        System.out.println("To track any list, input: type_of_list list");
     }
-
-    private void printEventHelp() {
+    
+    public void printEventHelp() {
         System.out.print("To add an event, use the following format:\n  "
                 + "Event add n/Event_name v/Venue_name d/yyyy-MM-dd. "
                 + "You may also replace 'Event' with one of the following type:"
-                + "\n  - Seminar\n  - Exam\n  - Tutorial\n");
+                + "\n  - Seminar\n  - Exam\n  - Tutorial\n\n");
         System.out.print("To edit an event, use the following format:\n  "
                 + "Event editDateTime i/index_of_Event, or\n  "
                 + "Event editName i/index_of_Event, or\n  "
                 + "Event editVenue i/index_of_Event, or\n  "
-                + "Event editEvent (please edit these lines)\n");
+                + "Event editEvent (please edit these lines)\n\n");
         System.out.print("To edit an event, use the following format:\n  "
                 + "Event editDateTime i/index_of_Event, or\n  "
                 + "Event editName i/index_of_Event, or\n  "
                 + "Event editVenue i/index_of_Event, or\n  "
-                + "Event editEvent (please edit these lines)\n");
+                + "Event editEvent (please edit these lines)\n\n");
     }
 
-    private void printPerformanceHelp() {
+    public void printPerformanceHelp() {
         System.out.print("To add students' performance under an event, input:\n  "
                 + "performance add (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
         System.out.print("To delete a student's performance under an event, input:\n  "
                 + "Performance delete (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
     }
 
-    private void printAttendanceHelp() {
+    public void printAttendanceHelp() {
         System.out.print("To add students' attendance under an event, input:\n  "
                 + "attendance add (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
         System.out.print("To delete a student's performance under an event, input:\n  "
                 + "attendance delete (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
+    }
+
+    public void printStudentListHelp() {
     }
 }
