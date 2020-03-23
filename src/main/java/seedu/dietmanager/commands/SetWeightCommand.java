@@ -8,8 +8,9 @@ import seedu.dietmanager.ui.UI;
 
 public class SetWeightCommand extends Command {
 
-    private static final int ARGUMENTS_REQUIRED = 1;
+    private static final int ARGUMENTS_REQUIRED = 2;
     private double weight;
+    private String day;
 
     /**
      * Constructs the Command object.
@@ -21,11 +22,13 @@ public class SetWeightCommand extends Command {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
         this.weight = Double.parseDouble(descriptionArray[0]);
+        this.day = descriptionArray[1];
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        profile.setWeight(this.weight);
+        //profile.setWeight(this.weight);
+        profile.addWeightProgress(weight, day);
         saveResult(profile);
     }
 

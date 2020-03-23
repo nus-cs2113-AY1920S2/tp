@@ -7,11 +7,12 @@ public class Profile {
     private int age;
     private String gender;
     private double height; //Height in meter
-    private double weight; //Wight in Kg
+    //private double weight; //Weight in Kg
     private double weightGoal;
     private boolean profileExist;
     private ArrayList<DailyFoodRecord> personalFoodRecord;
     private ArrayList<Double> weightRecord = new ArrayList<>();
+    private ArrayList<String> weightRecordDays = new ArrayList<>();
 
     public Profile() {
         this.personalFoodRecord = new ArrayList<>();
@@ -21,13 +22,12 @@ public class Profile {
     /**
      * Sets the User Profile with the relevant information required.
      */
-
     public void setProfile(String name, int age, String gender, double height, double weight, double weightGoal) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.height = height;
-        this.weight = weight;
+        //this.weight = weight;
         this.weightGoal = weightGoal;
         this.profileExist = true;
         weightRecord.add(weight);
@@ -53,18 +53,18 @@ public class Profile {
         this.profileExist = true;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-        this.profileExist = true;
-    }
-
     public void setWeightGoal(double weightGoal) {
         this.weightGoal = weightGoal;
         this.profileExist = true;
     }
 
-    public void addWeightProgress(double newWeight) {
+    /** Method to add weight into list.
+     * @param newWeight Weight to be added into list
+     * @param day String containing the day of the weight to be stored
+     */
+    public void addWeightProgress(Double newWeight, String day) {
         weightRecord.add(newWeight);
+        weightRecordDays.add(day);
         this.profileExist = true;
     }
 
@@ -81,7 +81,7 @@ public class Profile {
     }
 
     public double getWeight() {
-        return weight;
+        return weightRecord.get(weightRecord.size() - 1);
     }
 
     public double getWeightGoal() {
@@ -98,10 +98,6 @@ public class Profile {
 
     public String getName() {
         return name;
-    }
-
-    public double getBmi() {
-        return weight / Math.pow(height / 100, 2);
     }
 
     /**
@@ -170,4 +166,7 @@ public class Profile {
         return weightRecord;
     }
 
+    public ArrayList<String> getWeightProgressDays() {
+        return weightRecordDays;
+    }
 }

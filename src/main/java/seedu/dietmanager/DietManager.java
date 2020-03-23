@@ -41,6 +41,8 @@ public class DietManager {
                 ui.displayInvalidCommandMessage();
             } catch (InvalidGenderException e) {
                 ui.displayInvalidGenderMessage();
+            } catch (IndexOutOfBoundsException e) {
+                ui.displayIndexOutOfBoundMessage();
             }
         }
 

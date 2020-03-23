@@ -39,14 +39,6 @@ class ProfileTest {
     }
 
     @Test
-    void setWeight() {
-        Profile profile = new Profile();
-        profile.setProfile("John Doe",20, "Male", 180, 80, 75);
-        profile.setWeight(60);
-        assertEquals(60, profile.getWeight());
-    }
-
-    @Test
     void setWeightGoal() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
@@ -109,12 +101,5 @@ class ProfileTest {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals("John Doe", profile.getName());
-    }
-
-    @Test
-    void getBmi() {
-        Profile profile = new Profile();
-        profile.setProfile("John Doe",20, "Male", 180, 80, 75);
-        assertEquals(80 / (1.80 * 1.80), profile.getBmi());
     }
 }

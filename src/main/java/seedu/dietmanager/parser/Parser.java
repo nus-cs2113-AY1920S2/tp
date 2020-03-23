@@ -12,6 +12,8 @@ import seedu.dietmanager.commands.SetWeightCommand;
 import seedu.dietmanager.commands.RecordMealCommand;
 import seedu.dietmanager.commands.CheckRecordCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
+import seedu.dietmanager.commands.CheckWeightProgressCommand;
+import seedu.dietmanager.commands.DeleteWeightCommand;
 import seedu.dietmanager.commands.WeightUpdateCommand;
 import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.CheckCaloriesCommand;
@@ -19,6 +21,7 @@ import seedu.dietmanager.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.exceptions.InvalidGenderException;
+
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.
@@ -141,9 +144,6 @@ public class Parser {
         case "exit":
             command = new ExitCommand(commandPrompt);
             break;
-        case "update-weight":
-            command = new WeightUpdateCommand(commandPrompt, description);
-            break;
         case "check-weight-progress":
             command = new CheckWeightProgressCommand(commandPrompt, description);
             break;
@@ -152,6 +152,9 @@ public class Parser {
             break;
         case "list-food-database":
             command = new ListFoodDatabaseCommand(commandPrompt);
+            break;
+        case "delete-weight":
+            command = new DeleteWeightCommand(commandPrompt, description);
             break;
         default:
             throw new InvalidCommandException();
