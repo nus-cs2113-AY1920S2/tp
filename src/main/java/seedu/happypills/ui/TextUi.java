@@ -1,7 +1,6 @@
 package seedu.happypills.ui;
 
 import seedu.happypills.data.Patient;
-import seedu.happypills.data.PatientList;
 import seedu.happypills.data.PatientMap;
 
 import java.util.Map;
