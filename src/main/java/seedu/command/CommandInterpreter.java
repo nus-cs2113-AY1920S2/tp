@@ -1,15 +1,14 @@
 package seedu.command;
 
-import seedu.parser.Parser;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
+import java.util.Calendar;
+
 public class CommandInterpreter {
-    protected Parser parser;
     protected EventList eventList;
 
     public CommandInterpreter(EventList eventList) {
-        this.parser = new Parser();
         this.eventList = eventList;
     }
 
@@ -34,41 +33,67 @@ public class CommandInterpreter {
     protected String getSubsequentWords(String userInput) throws DukeException {
         int startIndexOfSpace = userInput.trim().indexOf(" ");
 
-        if (startIndexOfSpace == -1) {
+        /*if (startIndexOfSpace == -1) {
             throw new DukeException("No parameters provided");
-        }
+        }*/
 
         int startIndexOfParameter = startIndexOfSpace + 1;
         return userInput.substring(startIndexOfParameter);
     }
 
     /**
-     * Execute the command from userInput.
+     * Decide the command from userInput.
      *
      * @param userInput The userInput from the Ui.
      * @throws DukeException If the command is undefined.
      */
     public Command decideCommand(String userInput) throws DukeException {
-        Command command = null;
+        Command command;
 
         String commandCategory = getFirstWord(userInput);
-        String commandDescription = getSubsequentWords(userInput);
+        String commandDescription = "";
+        // only look for 2nd to last words if commandCategory requires.
+        if (!commandCategory.equals("bye")) {
+            commandDescription = getSubsequentWords(userInput);
+        }
+
         switch (commandCategory) {
+        case "bye":
+            command = new Bye();
+            break;
         case "event":
             EventCommandInterpreter eci = new EventCommandInterpreter(eventList);
             command = eci.decideCommand(commandDescription);
             break;
+        case "seminar":
+            SeminarCommandInterpreter sci = new SeminarCommandInterpreter(eventList);
+            command = sci.decideCommand(commandDescription);
+            break;
         case "attendance":
-            //TODO AttendanceCommandInterpreter
+            AttendanceCommandInterpreter aci = new AttendanceCommandInterpreter(eventList);
+            command = aci.decideCommand(commandDescription);
             break;
         case "performance":
             PerformanceCommandInterpreter pci = new PerformanceCommandInterpreter(eventList);
             command = pci.decideCommand(commandDescription);
             break;
+        case "student":
+            StudentCommandInterpreter ssci = new StudentCommandInterpreter(eventList);
+            command = ssci.decideCommand(commandDescription);
+            break;
+        case "help":
+            return new Help();
+        case "calendar":
+            CalendarCommandInterpreter cci = new CalendarCommandInterpreter(eventList);
+            command = cci.decideCommand(commandDescription);
+            break;
         default:
-            throw new DukeException("Unknown command type.");
+            assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
+                    && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
+                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar"))
+                    : "accepted command category is not further interpreted!";
+            throw new DukeException("Unknown command category is provided");
         }
-
         if (command == null) {
             throw new DukeException("Duke is null.");
         }

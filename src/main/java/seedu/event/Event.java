@@ -1,26 +1,17 @@
 package seedu.event;
 
-import java.security.InvalidParameterException;
-import java.util.ArrayList;
+import seedu.attendance.AttendanceList;
+import seedu.exception.DukeException;
+import seedu.performance.PerformanceList;
+
 import java.time.Instant;
 
 public class Event {
-    private String name;
-    private DateTime datetime;
-    private String venue;
-    private ArrayList<String> participantList;
-    private ArrayList<String> attendanceList;
-
-    /**
-     * Empty constructor. Sets name as "unnamed"
-     */
-    public Event() {
-        setName("");
-        setDatetime("");
-        setVenue("");
-        this.participantList = new ArrayList<>();
-        this.attendanceList = new ArrayList<>();
-    }
+    protected String name;
+    protected DateTime datetime;
+    protected String venue;
+    protected AttendanceList attendanceList;
+    protected PerformanceList performanceList;
 
     /**
      * Constructor with name, datetime, venue provided.
@@ -28,11 +19,12 @@ public class Event {
      * @param datetime datetime of event
      * @param venue venue of event
      */
-    public Event(String name, String datetime, String venue) {
-        this();
+    public Event(String name, String datetime, String venue) throws DukeException {
         setName(name);
         setDatetime(datetime);
         setVenue(venue);
+        this.attendanceList = new AttendanceList();
+        this.performanceList = new PerformanceList();
     }
 
     /**
@@ -48,10 +40,10 @@ public class Event {
      * and the original name is also empty or {@code null},
      * the name will take the form: event_(secondsSinceEpoch)
      * @param name the new name for the event
-     * @throws InvalidParameterException when trying to overwrite a non-empty
+     * @throws DukeException when trying to overwrite a non-empty
      *      and non-null name with an empty or null name
      */
-    public void setName(String name) throws InvalidParameterException {
+    public void setName(String name) throws DukeException {
         if (this.name == null || this.name.isEmpty()) {
             // if original name is empty or null
             if (name == null || name.isEmpty()) {
@@ -64,7 +56,7 @@ public class Event {
             // if original name is not empty and null
             if (name == null || name.isEmpty()) {
                 // if new name is empty or null
-                throw new InvalidParameterException("Empty name");
+                throw new DukeException("Empty name");
             } else {
                 // if new name is not empty and not null
                 this.name = name;
@@ -77,7 +69,23 @@ public class Event {
      * @return the datetime of the event
      */
     public String getDatetime() {
-        return datetime.getDateTimeFormat();
+        return datetime.toString();
+    }
+
+    /**
+     * Returns month of the event as an integer value, from 1 to 12.
+     * @return Numerical value of month of the event.
+     */
+    public Integer getMonth() {
+        return datetime.getMonth();
+    }
+
+    /**
+     * Returns year of the event as an integer value.
+     * @return Numerical value of the year of the event.
+     */
+    public Integer getYear() {
+        return datetime.getYear();
     }
 
     /**
@@ -104,7 +112,25 @@ public class Event {
         this.venue = venue;
     }
 
+    public PerformanceList getPerformanceList() {
+        return performanceList;
+    }
+
+    @Override
     public String toString() {
-        return "[E] + " + getName() + getDatetime() + getVenue();
+        String output = "Event: " + getName();
+
+        if (!getDatetime().equals("yyyy-MM-dd HHmm")) {
+            output += (", time: " + getDatetime());
+        }
+        if (!getVenue().equals("")) {
+            output += (", venue: " + getVenue());
+        }
+
+        return output;
+    }
+
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
     }
 }

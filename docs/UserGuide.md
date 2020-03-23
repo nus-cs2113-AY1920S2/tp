@@ -1,9 +1,8 @@
 # User Guide
 
 ## Professor Assistant Console (PAC)
-![alt text][https://github.com/AY1920S2-CS2113T-T12-4/docs/images/PAC.png "PAC ver1"]
 
-![alt text][https://github.com/benchan911/tp/blob/Benjamin-UserGuide/docs/images/PAC.png "PAC ver1"]
+![alt text](images/PAC.png "PAC ver1")
 
 ## 1. Introduction
 
@@ -55,69 +54,237 @@ You can type any command, then press **Enter** to execute it.
 e.g. typing help then pressing **Enter** will open the help window.
 
 Some example commands to try:
-* `listEvent:`			List all events
-* `addEvent n/CS1010:` 	Add an event named “CS1010”
-* `deleteEvent 2:`		Delete 2nd item shown in the list
-* `exit:`				Exits the app
+* `event list`			List all events
+* `event add n/CS1010` 	Add an event named “CS1010”
+* `student add`         Create a new student list
+* `bye`				    Exits the app
 
 Refer to [“Features”](#Features) for details of each command.
 
-##
-## Features 
+## 4. Features 
+### 4.0 SAMPLE FORMAT Insert Header here `Insert format here`
+Insert Description here
 
-### 4.1 Adding new event: event  `-Event add`
-Adds a new event to the event list.
+Format:
 
-If the event has time/date/venue, use the following commands respectively. 
-If the date input does not specify the year, it is by default the current year. 
-If the event is a repeatable event, you may add one of the following command:
+`Insert format here`
 
-1. Use r/FREQ[/TIME], when FREQ is “Day”, TIME is in 24hr format.
-1. Use r/FREQ[/DAY], where FREQ is “Week”, DAY is “Monday”, “Friday”, etc. 
-1. Use r/FREQ, where FREQ is “Year”.
+Command: 
 
-Commands: 
-
-`Event add n/EVENTNAME [t/EVENTTIME] [d/EVENTDATE] [v/EVENTVENUE] [r/FREQ[/TIME or /DAY]]`
-
+    Insert command here
+    
 Examples: 
 
-`Event add n/Event1 t/2.30pm d/6Jun`
+    Insert example here
 
-`Event add n/Event2 t/5.30pm r/Week/Monday`
+### 4.1 Event
+#### 4.1.1 Add new event: `event add`
+Add a new event to the event list. 
 
-### 4.2 Adding students’ attendance to event: attendance `-Attendance add`
+Format: `event add n/NAME [t/TIME d/DATE] [v/VENUE]`
+
+* Name and venue accepts input with spaces.
+* Date and Time must either be provided together, or not provided at all. 
+* Flags can be arranged in any order.
+ 
+Examples: 
+
+    event add n/dinner with collegue
+    event add n/World Cup d/2022-11-21 t/0000
+    event add n/soccer match v/Kallang d/2020-01-23 t/1900
+    
+Expected outcome:
+
+    New Event: dinner with collegue was added successfully to your Event list.
+    New Event: World Cup was added successfully to your Event list.
+    New Event: soccer match was added successfully to your Event list.
+
+#### 4.1.2 List all events: `event list`
+List all events.
+
+Format: `event list`
+
+Expected outcome:
+
+    Here are all the events in your list.
+    1. Event: dinner with collegue
+    2. Event: World Cup, time: Nov 21 2022 0000
+    3. Event: soccer match, time: Jan 23 2020 1900, venue: Kallang
+
+#### 4.1.3 Delete event: `event delete`
+Delete an existing event from the event list.
+
+Format: `event delete i/INDEX`
+
+Examples:
+
+    event delete i/3
+    event delete i/4
+    
+Expected outcome:
+
+    Event: soccer match was deleted successfully from your Event list.
+    Index not found
+    
+#### 4.1.4 Edit event name: `event editName`
+Change the name of an existing event.
+
+
+Format: `event editname i/INDEX n/NEW_NAME`
+* alphabet cases for the command is not important
+
+Examples:
+
+    event editname i/1 n/lunch with colleague
+    
+Expected outcome:
+
+    Your Event name was changed from |dinner with collegue| to |lunch with colleague|.
+    
+#### 4.1.5 Edit event datetime: `event editDateTime`
+Change the date and time of an existing event.
+
+Format: `event editdatetime i/INDEX d/NEW_DATE t/NEW_TIME`
+* alphabet cases for the command is not important
+
+Examples:
+
+    event editdatetime i/1 d/2020-03-23 t/1200
+    
+Expected outcome:
+
+    Your Event date and time was changed from |yyyy-MM-dd HHmm| to |2020-03-23 1200|.
+    Event: lunch with colleague, time: Mar 23 2020 1200
+    
+#### 4.1.6 Edit event venue: `event editVenue`
+Change the venue of an existing event.
+
+Format: `event editvenue i/INDEX v/NEW_VENUE`
+* alphabet cases for the command is not important
+
+Examples:
+
+    event editvenue i/1 v/Marina Bay Sands
+    
+Expected outcome:
+
+    Your Event venue was changed from || to |Marina Bay Sands|.
+    Event: lunch with colleague, time: Mar 23 2020 1200, venue: Marina Bay Sands
+
+#### 4.1.7 Edit event: `event editEvent`
+Change an existing event.
+
+Format: `event editevent i/INDEX n/NEW_NAME [t/NEW_TIME d/NEW_DATE] [v/NEW_VENUE]`
+* alphabet cases for the command is not important
+
+Examples:
+
+    event editevent i/1 n/lunch by myself v/home
+    
+Expected outcome:
+
+    Your Event was edited from |Event: lunch with colleague, time: Mar 23 2020 1800, venue: Marina Bay Sands| to |Event: lunch by myself, venue: home|.
+
+### 4.2 Attendance
+#### 4.2.1 Add students’ attendance to event: attendance `attendance add`
 Mark a student’s or students’ attendance in the attendance sheet.
 Input “yes” or “no” for  p/PRESENT. You may not need to state  p/PRESENT, by default it would be a “yes”.  
 You can take multiple students’ attendance at a time, separate the names using “|”.
 
+Format: `attendance add`
+    
+Examples: 
+    
+    Insert Example here
+
+### 4.3 Feature - Performance
+#### 4.3.1 Add students’ performance: performance `performance add`
+Add a student’s result to the performance list.  
+This is a step by step command and you may follow the instructions given by the console. 
+
+Format: `performance add`
+    
+Step by step guide: 
+
+    user: performance add
+    PAC: Please key in the name of event that you wish to access to its student's performance. 
+    user: event
+If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
+the alternative provided by PAC: record using a current name list. Do note that you have to have an existing name list 
+before you are using this short cut.  
+The following will show a success example of using a current name list to add performance. 
+
+    PAC: Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    user: yes
+    PAC: Please choose the name list you wish to use. (shows a list of list names)
+    user: 1
+    PAC: Please key in the result for student (student1 name)
+    user: A
+    PAC: The result of student (student name) has been added successfully under event (event name)
+    PAC: Please key in the result for student (student2 name)
+    ...
+
+#### 4.3.2 Deleting students’ performance: performance `performance delete`
+Delete a student’s result to the performance list.  
+This is a step by step command and you may follow the instructions given by the console.  
+
+Format: `performance delete`
+    
+Step by step guide: 
+
+    user: performance delete
+    PAC: Please key in the name of event that you wish to access to its student's performance. 
+    user: event
+    PAC: Please key in the name of student that you wish to delete his/her performance 
+    user: name
+    PAC: The result of student (name) has been deleted successfully under event name.
+
+#### 4.3.3 View students’ performance: performance `performance list`
+View the list of students' result under a certain event.  
+This is a step by step command and you may follow the instructions given by the console. 
+
+Format: `performance list`
+    
+Step by step guide: 
+
+    user: performance delete
+    PAC: Please key in the name of event that you wish to access to its student's performance.
+    user: event
+    PAC: (example of Table format list is shown below)
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                    |  Result                                     |
+    |___________|_____________________________________|_____________________________________________|
+    | 1         |  XX                                 |  A                                          |
+    |___________|_____________________________________|_____________________________________________|
+
+### 4.4 Student
+#### 4.4.1 Create a student list `student add`
+
+Creates a student list and adds it to the collection of student list 
+that can be used for adding attendance and performance
+
+Format: `Insert format here`
+
 Command: 
 
-`Attendance add c/CLASS p/PRESENT n/STUDENT_NAME`
-
+    student add
+    
 Examples: 
 
-`Attendance add c/CS2113T_Tut1 n/John|Mary|...`
+    Insert example here
+    
 
-`Attendance add c/CS2113T_Tut1 p/no n/Alice`
-
-### 4.3 Adding students’ performance: performance `-Performance add`
-Add a student’s grade or mark to the grade list. 
-Grade refers to an alphabetical grade while mark refers to a numerical mark given to the student. 
-Only one of g/GRADE m/MARK should be provided. 
-
-Command: 
-
-`Performance add a/Assignment n/STUDENT_NAME [g/GRADE or m/MARK]`
-
-Examples: 
-
-`Performance add a/CS2113T_Assignment1 n/John g/A`
-
-`Performance add a/CS2113T_Assignment2 n/John m/70`
-
-
-
+## Possible Console Messages and Reasons:  
+If event list is empty    
+        
+    PAC: The event list is empty
+If event is not found in the list
+           
+    PAC: Event is not found in the list.
+If students' name list is empty
+        
+    There is no existing student list.
+           
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
