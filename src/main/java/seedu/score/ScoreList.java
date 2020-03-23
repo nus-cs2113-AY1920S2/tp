@@ -1,5 +1,7 @@
 package seedu.score;
 
+import seedu.exception.EscException;
+
 import java.util.ArrayList;
 
 /**
@@ -31,14 +33,19 @@ public class ScoreList {
 
     /**
      * Prints out all the past score history for selected subject.
-     * @return Past score history.
      */
-    public String listScores() {
+    public void listScores() throws EscException {
+        if (scores.isEmpty()) {
+            throw new EscException("No test history yet.");
+        }
+        System.out.println("Past test history:");
         String msg;
         int counter = 1;
         for (double score : scores) {
-            msg +=
+            System.out.println(counter + ") " + score);
+            counter++;
         }
+        System.out.println("Average Score: " + getAvg());
     }
 
 }

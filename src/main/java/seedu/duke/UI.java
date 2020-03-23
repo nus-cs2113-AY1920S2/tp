@@ -56,9 +56,11 @@ public class UI {
         showLine();
         System.out.println("Please indicate if your answer is correct (Y/N):");
         String userInput = in.nextLine();
+        userInput = userInput.toUpperCase();
         while (!userInput.equals("Y") && !userInput.equals("N")) {
             System.out.println("Please enter only (Y/N):");
             userInput = in.nextLine();
+            userInput = userInput.toUpperCase();
         }
         return userInput;
     }

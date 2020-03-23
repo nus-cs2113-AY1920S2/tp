@@ -29,5 +29,7 @@ public class ScoreCommand extends Command {
     @Override
     public void execute(SubjectList subjectList) throws EscException {
         Subject subject = subjectList.getSubject(subjectIndex);
+        subject.showScores();;
     }
+
 }
