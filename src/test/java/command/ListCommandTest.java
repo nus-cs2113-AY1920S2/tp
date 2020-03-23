@@ -15,6 +15,13 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//TODO ADD FOR REPEAT TASKS inside here.
+//TODO test encode/decode?
+//TODO add to HELP command
+
+//TODO clean up HELP command messages
+//TODO clean up the 2 functions too
+
 /**
  * Test in alphanumeric order instead of random order to ensure that
  * testing function "repeatingEvent_filledList_allTaskListMsg"
