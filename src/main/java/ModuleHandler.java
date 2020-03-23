@@ -1,7 +1,19 @@
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Each module information is an ArrayList(size: 2. Because 2 semester) of ArrayList except member "weeks".
@@ -25,8 +37,9 @@ public class ModuleHandler {
     private ArrayList<ArrayList<String>> day; // one day per classNumber
     private ArrayList<ArrayList<ArrayList<String>>> weeks;
     private String moduleName;
+    private Set<String> unformattedModules;
 
-    public ModuleHandler(String moduleName) {
+    public ModuleHandler(String moduleName) throws FileNotFoundException {
         this.moduleName = moduleName;
         this.classNumber = new ArrayList<>();
         this.startTime = new ArrayList<>();
@@ -42,17 +55,35 @@ public class ModuleHandler {
             this.day.add(new ArrayList<>());
             this.weeks.add(new ArrayList<>());
         }
+        this.unformattedModules = new HashSet<>();
+        Scanner reader = new Scanner(new File("UnformattedModules"));
+        while (reader.hasNext()) {
+            String data = reader.nextLine();
+            unformattedModules.add(data);
+        }
     }
 
-    public static void main(String[] args) {
-        ModuleHandler myModuleHandler = new ModuleHandler("CG1111");
-        myModuleHandler.generateModule();
+    public static void main(String[] args) throws IOException {
 
-        System.out.println(myModuleHandler.getClassNumber());
-        System.out.println(myModuleHandler.getStartTime());
-        System.out.println(myModuleHandler.getEndTime());
-        System.out.println(myModuleHandler.getLessonType());
-        System.out.println(myModuleHandler.getWeeks());
+        //Filtering out unformatted modules into a file.
+        FileWriter fw = new FileWriter("UnformattedModules", true);
+        URL url = new URL("https://api.nusmods.com/v2/2019-2020/moduleList.json");
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.connect();
+        //Convert the input stream to a json element
+        JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
+        JsonArray rootObj = root.getAsJsonArray();
+        for (int i = 0; i < rootObj.size(); i++) {
+            JsonObject module = rootObj.get(i).getAsJsonObject();
+            String moduleCode = module.get("moduleCode").toString().replaceAll("^.|.$", "");
+            try {
+                ModuleHandler myModuleHandler = new ModuleHandler(moduleCode);
+                myModuleHandler.generateModule();
+            } catch (Exception e) {
+                fw.write(moduleCode + "\n");
+            }
+        }
+        fw.close();
     }
 
     // TODO split code into smaller methods.
@@ -60,7 +91,7 @@ public class ModuleHandler {
     /**
      * Generate an ArrayList of module information- classNumber, lessonType, startTime, endTime, day, weeks.
      */
-    public void generateModule() {
+    public void generateModule() throws UnformattedModuleException {
         ModuleApiParser myModuleApiParser = new ModuleApiParser(moduleName);
         try {
             semesterData = myModuleApiParser.parse();
@@ -69,6 +100,7 @@ public class ModuleHandler {
         }
 
         //TODO SET UP FAKE DATA HERE IF UNABLE TO ACCESS API
+        checkModule();
         for (int i = 0; i < semesterData.size(); i++) {
             JsonObject semesterDataObj = semesterData.get(i).getAsJsonObject();
             // get semester number from json
@@ -92,6 +124,14 @@ public class ModuleHandler {
                 }
                 this.weeks.get(semester).add(weeksData);
             }
+
+        }
+    }
+
+    private void checkModule() throws UnformattedModuleException {
+        if (unformattedModules.contains(moduleName)) {
+            throw new UnformattedModuleException("OH NO! " + moduleName + "'s format parsed from NUSMOD API is out-dated."
+                + " Please remove it from your timetable and manually add the time-slots.");
         }
     }
 

@@ -1,6 +1,17 @@
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import common.LessonType;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -19,7 +30,7 @@ public class LessonsGenerator {
 
 
     //main method for easy in-class behaviour testing
-    public static void main(String[] args) throws InvalidUrlException {
+    public static void main(String[] args) throws InvalidUrlException, IOException, UnformattedModuleException {
         //observe behaviour by substituting field in LessonsGenerator() with other NUSMODS link
         LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
         mylesson.generate();
@@ -33,7 +44,7 @@ public class LessonsGenerator {
     }
 
 
-    public void generate() {
+    public void generate() throws FileNotFoundException, UnformattedModuleException {
         myTimetableParser.parse();
         //Key-value pair: Key = module code, Value = LessonType:Class number(delimited by :)
         Map<String, ArrayList<String>> userLessons = myTimetableParser.getModulesMap();
