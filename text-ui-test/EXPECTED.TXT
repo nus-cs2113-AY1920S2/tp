@@ -10,4 +10,12 @@ Hello from
 What is your name?
 Hello James Gosling. Welcome to your personal Professor Assistant Console.
 Unknown command category is provided
+New Event: dinner with colleague was added successfully to your Event list.
+New Event: World Cup was added successfully to your Event list.
+New Event: soccer match was added successfully to your Event list.
+Here are all the events in your list.
+1. Event: dinner with colleague
+2. Event: World Cup, time: Nov 21 2022 0000
+3. Event: soccer match, time: Jan 23 2020 1900, venue: Kallang
+Event: soccer match was deleted successfully from your Event list.
 Bye, see you again!
