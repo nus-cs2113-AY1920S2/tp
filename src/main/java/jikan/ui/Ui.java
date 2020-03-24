@@ -1,13 +1,12 @@
 package jikan.ui;
 
 import jikan.activity.ActivityList;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class Ui {
     public static final String GREETING = "Jikan";
 
-    public static final String DIVIDER = "-------------------------------------------";
+    public static final String DIVIDER = "-----------------------------------------------------------------";
 
     /** Prints the logo and greeting so users know the app is working. */
     public void printGreeting() {
@@ -16,7 +15,7 @@ public class Ui {
     }
 
     /** Prints exit message and exits the app. */
-    public void exitFromApp() {
+    public static void exitFromApp() {
         System.out.println(DIVIDER);
         System.out.println(" Bye! See you again.");
         System.out.println(DIVIDER);

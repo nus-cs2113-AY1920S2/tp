@@ -1,9 +1,11 @@
 package jikan.activity;
 
+import jikan.exception.InvalidTimeFrameException;
 import jikan.storage.Storage;
 import jikan.storage.StorageHandler;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,25 +23,20 @@ public class ActivityList {
     public ArrayList<Activity> activities;
     public Storage storage; // Storage the list was loaded from
 
-    //int size;
-
     /**
      * Constructor for a new activity list.
      */
     public ActivityList() {
         this.activities = new ArrayList<>();
-        //this.size = activities.size();
     }
 
     /**
      * Loads activityList from data file.
-     *
-     * @param storage Storage to load from.
+     * @param dataFile the datafile to be read from.
      */
-    public ActivityList(Storage storage) {
+    public ActivityList(File dataFile) {
         this.activities = new ArrayList<>();
-        this.storage = storage;
-        populateTaskList(storage.dataFile);
+        populateTaskList(dataFile);
     }
 
     public Activity get(int i) {
@@ -52,10 +49,34 @@ public class ActivityList {
      */
     public void add(Activity activity) {
         activities.add(activity);
-
         String dataLine = activity.toData();
-
         updateFile(dataLine);
+    }
+
+    /**
+     * Updates the duration of an activity.
+     * @param duration The new duration.
+     * @param endTime Thew new end time.
+     * @param index Index of the activity to be updated.
+     */
+    public void updateDuration(Duration duration, LocalDateTime endTime, int index) {
+        activities.get(index).setDuration(duration);
+        activities.get(index).setEndTime(endTime);
+        fieldChangeUpdateFile();
+    }
+
+    /**
+     * Searches for an activity in activityList by name.
+     * @param name Name of the activity to search for.
+     * @return Index of activity with that name.
+     */
+    public int findActivity(String name) {
+        for (int i = 0; i < activities.size(); i++) {
+            if (activities.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -71,6 +92,11 @@ public class ActivityList {
         }
     }
 
+    public void updateName(int index, String newName) {
+        activities.get(index).setName(newName);
+        fieldChangeUpdateFile();
+    }
+
     public void delete(int index) {
         activities.remove(index);
         deleteUpdateFile(index);
@@ -80,7 +106,15 @@ public class ActivityList {
         try {
             StorageHandler.removeLine(index, storage);
         } catch (IOException e) {
-            System.out.println("Error while deleting task from data file.");
+            System.out.println("Error while deleting activity from data file.");
+        }
+    }
+
+    private void fieldChangeUpdateFile() {
+        try {
+            StorageHandler.updateField(activities, storage);
+        } catch (IOException e) {
+            System.out.println("Error while deleting activity from data file.");
         }
     }
 
@@ -102,6 +136,8 @@ public class ActivityList {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error: data file not found. Could not load into the current session's task list.");
+        } catch (InvalidTimeFrameException e) {
+            System.out.println("Error: Invalid time frame.");
         }
     }
 
@@ -110,7 +146,7 @@ public class ActivityList {
      *
      * @param s String to parse.
      */
-    private void parseDataLine(String s) {
+    private void parseDataLine(String s) throws InvalidTimeFrameException {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
@@ -118,17 +154,19 @@ public class ActivityList {
             Set<String> tags = new HashSet<String>();
 
             // if there are tags
-            if (strings.size() > 3) {
+            if (strings.size() > 4) {
                 // remove square brackets surrounding tags
-                tagStrings = strings.get(3).substring(0,strings.get(3).length() - 1).split(" ");
-                tagStrings = strings.get(3).split(" ");
+                tagStrings = strings.get(4).split(" ");
                 for (String i : tagStrings) {
                     tags.add(i);
                 }
             }
-            // strings[0] = name, strings[1] = startDate, string[2] = endDate
-            Activity e = new Activity(strings.get(0), LocalDateTime.parse(strings.get(1)),
-                    LocalDateTime.parse(strings.get(2)), tags);
+
+            Activity e;
+            LocalDateTime startTime = LocalDateTime.parse(strings.get(1));
+            LocalDateTime endTime = LocalDateTime.parse(strings.get(2));
+            Duration duration = Duration.parse(strings.get(3));
+            e = new Activity(strings.get(0), startTime, endTime, duration, tags);
             activities.add(e);
         }
     }

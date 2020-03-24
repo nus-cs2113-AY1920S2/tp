@@ -1,5 +1,8 @@
 package jikan.storage;
 
+import jikan.activity.Activity;
+import jikan.activity.ActivityList;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,6 +48,20 @@ public class StorageHandler {
         updateIndexes(fileContent, removedIndex, dataFilePath);
 
          */
+    }
+
+    /**
+     * Saves the updated activity list to a list of strings to write to the save file.
+     * @param activities New activity list.
+     * @param storage Storage object to obtain file path.
+     * @throws IOException If an error occurs while writing the new list to file.
+     */
+    public static void updateField(ArrayList<Activity> activities, Storage storage) throws IOException {
+        List<String> fileContent = new ArrayList<>();
+        for (Activity a : activities) {
+            fileContent.add(a.toData());
+        }
+        saveNewList(fileContent, storage.dataFile);
     }
 
     /**

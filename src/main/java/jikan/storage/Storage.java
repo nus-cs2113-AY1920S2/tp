@@ -1,5 +1,7 @@
 package jikan.storage;
 
+import jikan.activity.ActivityList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +16,8 @@ public class Storage {
 
     /** File object for current data file. */
     public File dataFile;
+
+    public ActivityList activityList;
 
     /**
      * Constructs a Storage object for the input file path.
@@ -61,4 +65,24 @@ public class Storage {
         dataFile.getParentFile().mkdirs(); // Create data directory (does nothing if directory already exists)
         dataFile.createNewFile();
     }
+
+
+    /**
+     * Creates ActivityList and loads data from data file if the data file previously existed.
+     * Otherwise, an empty task list is initialized.
+     * @return an ActivityList object containing a list of activities provided by the data file.
+     */
+    public ActivityList createActivityList() {
+        try {
+            if (loadFile()) {
+                activityList = new ActivityList(dataFile);
+            } else {
+                activityList = new ActivityList();
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading/creating data file.");
+        }
+        return activityList;
+    }
+
 }

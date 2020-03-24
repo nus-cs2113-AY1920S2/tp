@@ -1,8 +1,12 @@
 package jikan;
 
 import jikan.activity.ActivityList;
+import jikan.command.ByeCommand;
+import jikan.command.Command;
+import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
+import jikan.storage.StorageCleaner;
 import jikan.ui.Ui;
 
 import java.io.IOException;
@@ -27,32 +31,33 @@ public class Jikan {
     /** Parser to parse commands. */
     private static Parser parser = new Parser();
 
-    /**
-     * Creates ActivityList and loads data from data file if the data file previously existed.
-     * Otherwise, an empty task list is initialized.
-     */
-    public static void createActivityList() {
-        try {
-            if (storage.loadFile()) {
-                activityList = new ActivityList(storage);
-            } else {
-                activityList = new ActivityList();
-                activityList.storage = storage;
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading/creating data file.");
-        }
-    }
+    /** CLeaner to delete entries in data.csv when it gets too long */
+    private static StorageCleaner cleaner;
 
-  
+    public static final Scanner in = new Scanner(System.in);
+
     /**
      * Main entry-point for the Jikan application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidTimeFrameException, IOException {
         ui.printGreeting();
-        Scanner in = new Scanner(System.in);
         storage = new Storage(DATA_FILE_PATH);
-        createActivityList();
-        parser.parseUserCommands(in, activityList);
+        cleaner = new StorageCleaner(storage);
+        cleaner.autoClean();
+        activityList = storage.createActivityList();
+        activityList.storage = storage;
+        //public static final Scanner in = new Scanner(System.in);
+
+        while (true) {
+            Command command = parser.parseUserCommands(in,activityList,cleaner);
+            if (command == null) {
+                continue;
+            }
+            if (ByeCommand.isExit(command)) {
+                command.executeCommand(activityList);
+                break;
+            }
+            command.executeCommand(activityList);
+        }
     }
 }
