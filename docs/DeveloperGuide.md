@@ -37,7 +37,7 @@ Step 3. The user can now search against the current `stock` to see if an ingredi
 The following sequence diagram shows how the search operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77295796-858a4080-6d21-11ea-8d4f-f942d2312927.png">
+  <img src="https://user-images.githubusercontent.com/59989652/77437099-36c2d080-6e1f-11ea-8241-9000a65e3bb6.png">
 </p>
 
 #### 1.1.2 Design Considerations
