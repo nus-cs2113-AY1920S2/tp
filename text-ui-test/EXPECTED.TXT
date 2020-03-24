@@ -174,7 +174,7 @@ Oops! Invalid Command. Check if these are met:
 
 Enter command:
 
-OOPS! I already have an item with that name. Perhaps try another description? :D
+The item has been updated to: [0] apple $5.60 qty: 2
 
 Enter command:
 
@@ -200,7 +200,7 @@ Yes! I've marked this item as bought:
 Enter command:
 
 Yes! I've marked this item as bought:
-[B] cherry $5.60 qty: 2
+[B] apple $5.60 qty: 2
 
 
 Enter command:
@@ -305,11 +305,11 @@ Enter command:
 
 Here is your shopping list:
 
-+---------------+-------+-----+
-| Item          | Price | Qty |
-+---------------+-------+-----+
-| 1. [B] cherry | $5.60 | 2   |
-+---------------+-------+-----+
++--------------+-------+-----+
+| Item         | Price | Qty |
++--------------+-------+-----+
+| 1. [B] apple | $5.60 | 2   |
++--------------+-------+-----+
 Total cost of items: 5.60
 Your remaining budget / total budget: 494.40 / 500.00
 
