@@ -49,27 +49,8 @@ public class CalendarCommand extends Command {
     private static final int EMPTY_BOX_PADDING = MAX_CALENDAR_BOX_WIDTH - 1;
     private static final int CONTENT_WIDTH = MAX_CALENDAR_BOX_WIDTH - 1;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public static final String COMMAND_WORD = "calendar";
     public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/YY]";
-=======
-<<<<<<< HEAD
-    public static final String COMMAND_WORD = "calendar";
-    public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/YY]";
-=======
-    public static final String CALENDAR_COMMAND_WORD = "calendar";
-    public static final String COMMAND_USAGE = "Get a Calendar view: calendar m/[MONTH] y/[YEAR]";
->>>>>>> branch-calendar
->>>>>>> branch-Assertions
-=======
-    public static final String CALENDAR_COMMAND_WORD = "calendar";
-    public static final String COMMAND_USAGE = "Get a Calendar view: calendar m/[MONTH] y/[YEAR]";
-=======
-    public static final String COMMAND_WORD = "calendar";
-    public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/YY]";
->>>>>>> c241c3246c58cfb6bf522da355e49e74b8cc32a9
->>>>>>> branch-calendar
 
     private LocalDate date;
 
@@ -290,12 +271,6 @@ public class CalendarCommand extends Command {
         calendarView.append(ANSI_YELLOW).append(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()))
                 .append(ANSI_RESET).append(System.lineSeparator());
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-}
-=======
->>>>>>> branch-calendar
 
     /**
      * Appends a horizontal border for the calendarView.
@@ -306,10 +281,3 @@ public class CalendarCommand extends Command {
                 .append(System.lineSeparator());
     }
 }
-<<<<<<< HEAD
-=======
-}
->>>>>>> branch-calendar
-=======
->>>>>>> c241c3246c58cfb6bf522da355e49e74b8cc32a9
->>>>>>> branch-calendar
