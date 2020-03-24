@@ -24,7 +24,64 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-### Storage feature
+### 3.1 Automated Storage Cleanup feature
+
+#### 3.1.1 Current Implementation
+
+The storage cleanup mechanism is stored internally as a StorageCleaner java class. The StorageCleaner class has an association with the Storage class and thus it is able to access and edit the datafile which contains the list of activities. 
+
+Additionally, when the StorageCleaner class is first initialised, it will create two files namely a status file and a data file in the “recycled” folder under the “data” folder. The status file keeps track of the activation status of the storage cleaner while the data file serves as a recycle bin for deleted data. 
+
+Moreover, the class also implements the following operations:
+
+`StorageCleaner#initialiseCleaner - Loads up the status file to decide whether to activate/deactivate the automated cleaner.`
+
+`StorageCleaner#setStatus - Gives the user the freedom to activate/de-activate the cleaner using commands during application runtime.`
+
+`StorageCleaner#autoClean - This operation is called whenever the application is executed. Storage cleaning will only be done if the cleaner is activated.`
+
+Given below is the example scenario of how the operations work.
+
+##### initialiseCleaner
+
+Step 1. Loads up the status file for reading. If the status file is not found, create a new status file and write the character ‘0’ to the first line of the status file.
+
+Step 2. Read the first line of the status file, if a character ‘0’ is found, deactivate the automated cleanup. Else if a character ‘1’ is found, activate the automated cleanup.
+
+![image_info](./pictures/FlowchartinitCleaner.png)
+
+##### setStatus
+
+Step 1. Read the boolean parameter ‘status’.
+
+Step 2a. If ‘status’ is equal to true, activate the automated cleanup and write the character ‘1’ to the first line of the status file. (overwrite any existing value at the first line).
+
+Step 2b. If ‘status’ is equal to false, deactivate the automated cleanup and write the character ‘0’ to the first line of the status file.
+
+![image_info](./pictures/FlowchartsetStatus.png)
+
+##### autoClean
+
+Step 1. Check activation status of StorageCleaner through the class level attribute boolean toClean.
+
+Step 2a. If the attribute toClean is equal to false, return the operation and give control back to the caller.
+
+Step 2b. If the attribute toClean is equal to true, access the storage data file and remove some of the activities starting from the oldest. Put these deleted activities into the data file under the ‘recycled’ folder.
+
+![image_info](./pictures/SDautoClean.png)
+
+#### 3.1.2 Additional Implementation (proposed)
+
+`StorageCleaner#setDeleteQuota - Allows the user to manipulate how much activity is deleted when auto cleanup is activated. Currently only delete the oldest 3 activities.`
+
+`StorageCleaner#setTimeFrame - Set a particular time frame for auto cleanup to activate. (i.e auto cleanup after every 2 weeks etc).`
+
+`StorageCleaner#initialiseLogCleaner - Gives the storage cleaner an added functionality of being able to clear log files too.`
+
+
+
+
+### 3.2 Storage feature
 The Storage class represents the back-end of Jikan, handling the creation, saving and loading of data. 
 Jikan uses a `.csv` file to store its data, formatted in the following way:
 
@@ -41,7 +98,7 @@ Storage provides the following functions:
 Loading a pre-existing data file via `loadFile`. If a data file already exists for the provided data file path, the function will return `true`; if the specified data file did not previously exist, this function will call the `createDataFile` method and returns `false`. The return value is useful so that the application knows whether or not this is the first session with a specific data file or if data already exists.
 - Creating an ActivityList via `createActivityList`. This function calls `loadFile()` to check whether the file already existed or not; if the data file previously existed, it will construct an ActivityList object by passing the data from the data file to it, and return this populated ActivityList object; if the data file did not previously exist, it will return an empty activityList object.
 
-### Storage handler
+### 3.3 Storage handler
 The StorageHandler class functions as a support to the main Storage class, allowing the Jikan application to manipulate the stored data file. Its main provided functions are:
 - Removing an entry from the data file via `removeLine`. This function takes in the number of the line to remove.
 - Replacing an entry in the data file via `replaceLine`. This function takes in the number of the line to replace, along with the String object that needs to be written to the data file in place of the replaced line.
