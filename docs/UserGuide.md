@@ -18,6 +18,17 @@ user interfaces.
 
 ## Features 
 
+#### Command Format
+* Words in UPPER_CASE are the parameters to be supplied by the user 
+  * e.g. in `ADD i/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `ADD i/apple`.
+
+* Items in square brackets are *optional*. 
+  * e.g `EDIT 1 [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]` can be used as `EDIT 1 i/apple p/4.00` or as `EDIT 1 i/apple`.
+
+
+&nbsp;
+
+
 ### Adding an item: `ADD`
 {add your details here}
 
@@ -26,13 +37,14 @@ user interfaces.
 ### Editing an item: `EDIT`
 Edits the specified item in the shopping list.
 
-Format: `EDIT [index] i/[description] p/[price] q/[quantity]`
+Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 
-* Edits the item at the specified `[index]`. The `[index]` refers to the index number shown in the displayed shopping list.
-* The `[index]` and `[quantity]` must be a **positive integer**. *e.g 1, 2, 3 ..*
-* The `[price]` must be in **numerical** form (decimal form accepted).
+* Edits the item at the specified `[INDEX]`. The `[INDEX]` refers to the index number 
+shown in the displayed shopping list.
+* The `[INDEX]` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+* The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of three parameters (description/price/quantity) must be present.
-* i/, p/, q/ delimeters must be in **alphabetical** order.
+* i/, p/, q/ delimiters must be in **alphabetical** order.
 
 Example of usage: 
 
@@ -50,10 +62,10 @@ Example of usage:
 ### Deleting an item: `DEL`
 Removes an item from the list at the specified index.
 
-Format: `DEL [index]`
+Format: `DEL INDEX`
 
-* The `[index]` should be an integer.
-* The `[index]` should not be out of bounds of the shopping list.  
+* The `INDEX` should be an integer.
+* The `INDEX` should not be out of bounds of the shopping list.  
 
 Example of usage: 
 
@@ -79,9 +91,9 @@ Example of usage:
 ### Setting a budget: `SET`
 Sets a budget for the user.
 
-Format: `SET b/[amount]`
+Format: `SET b/AMOUNT`
 
-* The `[amount]` can be any double that is between 0 to 5000.
+* The `AMOUNT` can be any double that is between 0 to 5000.
 * The `b/` substring should be present in the command.  
 
 Example of usage: 
@@ -93,10 +105,10 @@ Example of usage:
 ### Finding an item: `FIND`
 Filters the shopping list according to a keyword specified by the user.
 
-Format: `FIND [keyword]`
+Format: `FIND KEYWORD`
 
-* The `[keyword]` can be any character or string.
-* The `[keyword]` field should not be left empty.  
+* The `KEYWORD` can be any character or string.
+* The `KEYWORD` field should not be left empty.  
 
 Example of usage: 
 
@@ -122,8 +134,9 @@ Format: `HELP`
 
 ## Command Summary
 
-* Edit item `EDIT [index] i/[description] p/[price] q/[quantity]`
-* Delete item `DEL [index]`
-* Set budget `SET b/[amount]`
-* Find item `FIND [keyword]`
+
+* Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
+* Delete item `DEL INDEX`
+* Set budget `SET b/AMOUNT`
+* Find item `FIND KEYWORD`
 * Viewing help `HELP`
