@@ -94,7 +94,7 @@ Format: `event list`
 Expected outcome:
 
     Here are all the events in your list.
-    1. Event: dinner with collegue
+    1. Event: dinner with collegue, time: (current date and time of your computer)
     2. Event: World Cup, time: Nov 21 2022 0000
     3. Event: soccer match, time: Jan 23 2020 1900, venue: Kallang
 
@@ -218,6 +218,26 @@ Command:
 Examples: 
 
     Insert example here
+    
+    
+### 4.5 Calendar 
+#### 4.3.1 Add students’ performance: performance `performance add`
+#### 4.5.1 View events under a particular time : `calendar s/2 ay/19-20`  
+View existing events under a particular semester and academic year.
+Semester refers to a numerical number, 1 or 2 while academic year refers 
+to any 2 consecutive years with a hyphen separating them. 
+
+
+Format: `calendar s/SEMESTER ay/ACADEMIC_YEAR `
+
+Command: 
+
+    calendar s/2 ay/19-20
+    
+Examples: 
+
+    Events of Semester 2 of AY 19/20
+    1. Event: work, time: Tue, Mar 24 2020 1436 
     
 ## FAQ
 

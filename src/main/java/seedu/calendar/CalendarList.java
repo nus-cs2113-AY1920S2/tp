@@ -63,7 +63,7 @@ public class CalendarList {
             throw new DukeException("Unable to find any events for this time period.");
         }
         yearList = academicYearEvents(semesterList, yearList, year);
-        UI.printCalendar(yearList, year, year - 1,  2);
+        UI.printCalendar(yearList, year - 1, year,  2);
     }
 
     /**
