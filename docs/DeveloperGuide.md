@@ -103,6 +103,46 @@ The StorageHandler class functions as a support to the main Storage class, allow
 - Removing an entry from the data file via `removeLine`. This function takes in the number of the line to remove.
 - Replacing an entry in the data file via `replaceLine`. This function takes in the number of the line to replace, along with the String object that needs to be written to the data file in place of the replaced line.
 
+### 3.5 Continue Feature
+The continue feature allows the user to continue a previously ended activity.
+
+#### 3.5.1 Current Implementation
+![Continue command sequence diagram](https://i.imgur.com/MuaxFts.png)
+
+**Continuing an activity:**
+When the user enters the command to continue an activity, a *ContinueCommand* object is created in *Parser*. The method *executeCommand()* of the *ContinueCommand* object is then called and does the following:
+
+ 1. Checks if the given activity name exists in the activityList by calling *findActivity()* (if it doesn’t an exception is thrown, omitted in the sequence diagram above)
+ 2. Gets the *name* and *tags* of the activity to be continued and saves it to a public static variable of *Parser* object
+ 3. Gets the current time and saves it to a public static variable of *Parser* object
+ 
+ **Ending a continued activity:**
+ ![End command sequence diagram](https://i.imgur.com/soaCCXk.png)
+
+When the user wants to end the continued activity, an *EndCommand* object is created in *Parser.* The method *executeCommand()* of the *ContinueCommand* object is then called and it in turn executes the *saveActivity()* method of the *ActivityList* class. The continued activity is then saved by executing the following:
+
+ 1. Gets the current time and saves it to a public static variable of *Parser* object
+2.  Calculates the elapsed time using *between()* method of *Duration* class
+3.  Adds the elapsed time with the previous duration of the activity to get the *newDuration* using *plus()* method of Duration class
+4.  Calls the *updateDuration()* method, which updates the *duration* attribute of the continued activity in the *activityList* as well as the data.csv file
+
+#### 3.5.2 Design Considerations
+
+**Execution:**
+ - Continue by activity name (current implementation)
+ **Cons:** Activity names have to be unique.
+ **Pros:** More versatile, resistant to changes in the activity list
+ - Continue by activity index
+ **Cons:** need to add an additional index field to the Activity class, 
+ index is not fixed, changes when an activity is deleted
+ **Pros:** Can reuse activity names.
+ 
+Although the current implementation of the continue feature disallows users to have multiple activities with the same name, we felt that the versatility of this choice outweighed the cons. Firstly because if the activityList got too big, it would be hard for the user to get the index of the task he/she wanted to continue. Also, the index would constantly be changing when changes are made to the list.
+
+#### 3.5.3 Additional Features
+As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
+![decision flowchart](https://i.imgur.com/mCCPuun.png)
+
 
 ## 4. Appendix
 ### Product Scope
