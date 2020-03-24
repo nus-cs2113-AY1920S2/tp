@@ -15,4 +15,5 @@ view /mp
 done id/IS4241 g/A+
 view /dm
 view /cc
+find cS
 bye

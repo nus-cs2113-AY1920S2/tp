@@ -1,10 +1,11 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.AddCommand;
-import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.AddToSemCommand;
+import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.FindCommand;
 import seedu.duke.command.HelpingCommand;
 import seedu.duke.command.MarkAsDoneCommand;
 import seedu.duke.command.ViewCommand;
@@ -46,6 +47,8 @@ public class Parser {
             return processMarkAsDone(args);
         case HelpingCommand.COMMAND_WORD:
             return processHelpCommand();
+        case FindCommand.COMMAND_WORD:
+            return processFindCommand(args);
         default:
             throw new InputException("invalid command");
         }
@@ -205,4 +208,19 @@ public class Parser {
     private static HelpingCommand processHelpCommand() {
         return new HelpingCommand();
     }
+
+
+    private static FindCommand processFindCommand(String args) {
+        return new FindCommand(args);
+    }
+
+    private static String convertSemToStandardFormat(String semester) {
+        String standardSemFormat;
+        int year = Person.getMatricYear() + (Integer.parseInt(semester) - 1) / 2;
+        int sem = (Integer.parseInt(semester) + 1) % 2 + 1;
+        standardSemFormat = year + "/" + (year + 1) + " SEM" + sem;
+        return standardSemFormat;
+    }
+
+
 }
