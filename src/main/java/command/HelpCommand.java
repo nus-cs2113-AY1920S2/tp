@@ -28,6 +28,7 @@ public class HelpCommand extends Command {
                 + convertIndexToString() + EventCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + ListCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + DoneCommand.COMMAND_USAGE + System.lineSeparator()
+                + convertIndexToString() + EditCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + DeleteCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + ClearCommand.COMMAND_USAGE + System.lineSeparator()
                 + convertIndexToString() + RepeatCommand.COMMAND_USAGE + System.lineSeparator()

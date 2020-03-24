@@ -19,6 +19,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
     public static final String ASSIGNMENT_COMMAND = "assignment";
     public static final String EVENT_COMMAND = "event";
+    public static final String COMMAND_USAGE = "Edit Task: edit [TASK NUMBER]";
 
     //Regex for Assignment Command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
