@@ -9,6 +9,7 @@ import commands.InvalidStockCommandException;
 import commands.ListReservationCommand;
 import commands.ListStockCommand;
 import commands.QuitCommand;
+import commands.SearchStockCommand;
 import commands.VoidReservationCommand;
 
 import menu.Menu;
@@ -93,6 +94,19 @@ public class CommandParser {
                 // List reservation.
                 new ListReservationCommand().execute(reservations);
                 successfulCommand();
+            } else {
+                errorCommand();
+            }
+        } else if (splitCommands[0].equals("search")) {
+            if (splitCommands[1].equals("stock")) {
+                // Search stock.
+                try {
+                    new SearchStockCommand(commands[1]).execute(stock);
+                    successfulCommand();
+                } catch (InvalidStockCommandException e) {                    
+                    errorCommand();
+                    printErrorMessage(e.getMessage());
+                }
             } else {
                 errorCommand();
             }
