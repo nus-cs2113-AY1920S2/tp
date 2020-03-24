@@ -20,16 +20,17 @@ You have no tasks for today!
      - List Upcoming Events: list upcoming events
      - List Incomplete Assignments: list incomplete assignments
   5. Mark Task as Done: done [TASK NUMBER]
-  6. Delete a Task: delete [TASK NUMBER]
-  7. Clear commands that are available:
+  6. Edit Task: edit [TASK NUMBER]
+  7. Delete a Task: delete [TASK NUMBER]
+  8. Clear commands that are available:
      - Clear All Tasks: clear all
      - Clear All Completed Tasks: clear done
-  8. Repeat commands that are available: (Available Periods are: d, w, m, y)
+  9. Repeat commands that are available: (Available Periods are: d, w, m, y)
      - Make event recur: repeat id/[EVENT INDEX] p/[NUM OF PERIOD][TYPE OF PERIOD]
      - Stop event recur: repeat id/[EVENT INDEX] p/0
-  9. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
- 10. Get a Calendar view: calendar d/[dd/MM/yy]
- 11. Exit ATAS: exit
+ 10. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
+ 11. Get a Calendar view: calendar d/[dd/MM/yy]
+ 12. Exit ATAS: exit
 _______________________________________________________________________
 > Oh no. Incorrect format for Assignment Command
 Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
