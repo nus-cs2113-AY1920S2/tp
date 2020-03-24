@@ -35,7 +35,7 @@ semester list and then add this module to the new list.
 user
 
 The following sequence diagram shows how the `Add to Semester` operation works:
-![Sequence Diagram of Add to Semester](docs/UML img folder/Sequence Diagram of Add to Semester.png)
+![Sequence Diagram of Add to Semester](https://raw.githubusercontent.com/RenzoTsai/tp/master/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
 
 
 
