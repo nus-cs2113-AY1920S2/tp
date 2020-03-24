@@ -31,6 +31,26 @@ user interfaces.
 
 ### Adding an item: `ADD`
 {add your details here}
+Add the specified item in the shopping list.
+
+Format: `ADD [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
+
+* The `[DESCRIPTION]` must exist.
+* The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+* The `[PRICE]` must be in **numerical** form (decimal form accepted).
+* At least one of two parameters (price/quantity) must be present.
+* i/, p/, q/ delimiters must be in **alphabetical** order.
+
+Example of usage: 
+
+1. `ADD i/potato p/5.00 q/3`
+    * Add the description, price and quantity of this item in the shopping list
+    
+2. `ADD i/potato chips p/5.00`  **OR**  `ADD i/potato chips q/2`
+    * Add the description and price /  description and quantity /  of the item in the shopping list
+    
+3. `ADD i/potato chips` 
+    * Add only description of the item in the shopping list
 
 ***
 
