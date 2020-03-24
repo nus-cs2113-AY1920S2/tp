@@ -41,7 +41,7 @@ public class GuiParser {
             EditModuleCommand.COMMAND_WORD, EditCategoryCommand.COMMAND_WORD, EditTaskCommand.COMMAND_WORD,
             ChangeDirectoryCommand.COMMAND_WORD
     };
-
+    
 
     /**
      * Parses the command word in the input string from the GUI console.

@@ -5,9 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import seedu.nuke.gui.component.AutoCompleteTextField;
 import seedu.nuke.gui.io.GuiExecutor;
 import seedu.nuke.gui.io.GuiParser;
 import seedu.nuke.gui.ui.TextUI;
@@ -30,6 +32,11 @@ public class MainController implements Initializable {
 
     @FXML
     private ScrollPane consoleScreenScrollPane;
+
+    @FXML
+    private VBox consoleBox;
+
+    private AutoCompleteTextField autoCompleteTextField;
 
     public TextField getConsole() {
         return console;
@@ -54,8 +61,10 @@ public class MainController implements Initializable {
         Text logo = TextUI.createText(MESSAGE_LOGO, Color.MAGENTA);
         Text welcomeMessage = TextUI.createText(String.format("%s\n%s\n\n", MESSAGE_WELCOME_1, MESSAGE_WELCOME_2), Color.BLUE);
         Text divider = TextUI.createText(DIVIDER + "\n");
-
         consoleScreen.getChildren().addAll(logo, divider, welcomeMessage);
+
+        autoCompleteTextField = new AutoCompleteTextField();
+        consoleBox.getChildren().add(autoCompleteTextField);
     }
 
     public void submitInput() {
