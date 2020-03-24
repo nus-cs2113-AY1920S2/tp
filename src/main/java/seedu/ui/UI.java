@@ -101,7 +101,7 @@ public class UI {
 
     public void addPerformanceMessage(String studentName, String taskName) {
         System.out.printf("The result of student %s has been added "
-                + "successfully under event %s.\n", studentName, taskName);
+                + "successfully under event %s.\n\n", studentName, taskName);
     }
 
     public void deleteEventMessage(String eventType, String eventName) {
