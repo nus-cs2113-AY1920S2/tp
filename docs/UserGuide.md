@@ -1,5 +1,26 @@
 # SHOCO v1.0 - User Guide
 
+&nbsp;
+
+* **[1. Introduction](#introduction)**
+* **[2. Quick Start](#quick-start)**
+* **[3. Features](#features)**
+  * [3.1 Adding an item: `ADD`](#adding-an-item-add)
+  * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
+  * [3.3 Deleting an item: `Delete`](#deleting-an-item-del)
+  * [3.4 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
+  * [3.5 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
+  * [3.6 Listing all items: `DISPLAY`](#listing-all-items-display)
+  * [3.7 Setting a budget: `SET`](#setting-a-budget-set)
+  * [3.8 Finding an item: `FIND`](#finding-an-item-find)
+  * [3.9 Viewing help: `HELP`](#viewing-help-help)
+  * [3.10 Exiting the Program: `BYE`](#exiting-the-program-bye)
+* **4. [FAQ](#faq)**
+* **5. [Command Summary](#command-summary)**
+
+
+&nbsp;
+
 ## Introduction
 
 SHOCO is a command-line interface (CLI) application that allows users to 
@@ -9,12 +30,17 @@ user interfaces.
 
 &nbsp;
 
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
 
 &nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 
 ## Features 
 
@@ -28,6 +54,7 @@ user interfaces.
 
 &nbsp;
 
+***
 
 ### Adding an item: `ADD`
 {add your details here}
@@ -52,6 +79,10 @@ Example of usage:
 3. `ADD i/potato chips` 
     * Add only description of the item in the shopping list
 
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide"> &#129053; back to top</a></b>
+
 ***
 
 ### Editing an item: `EDIT`
@@ -72,10 +103,15 @@ Example of usage:
     * Edits the description, price and quantity of the 3rd item in the shopping list
     
 2. `EDIT 3 i/potato chips p/5.00`  **OR**  `EDIT 3 i/potato chips q/2`  **OR**  `EDIT 3 p/5.00 q/2`
-    * Edits the description and price /  description and quantity /  price and quantity of the 3rd item in the shopping list
+    * Edits the description and price /  description and quantity /  price and quantity of the 
+    3rd item in the shopping list
     
 3. `EDIT 3 i/potato chips` **OR** `EDIT 3 p/5.00` **OR** `EDIT 3 q/2`
     * Edits only description / only price / only quantity of the 3rd item in the shopping list
+    
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -91,20 +127,42 @@ Example of usage:
 
 `DEL 3`
 
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 ***
 
 ### Marking an item as bought: `MARK`
 {add your details here}
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
 ### Un-marking a marked item: `UNMARK`
 {add your details here}
 
+
+
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 ***
 
 ### Listing all items: `DISPLAY`
 {add your details here}
+
+
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -120,6 +178,10 @@ Example of usage:
 
 `SET b/3.00`
 
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 ***
 
 ### Finding an item: `FIND`
@@ -134,11 +196,32 @@ Example of usage:
 
 `FIND apple`
 
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 ***
 
 ### Viewing help: `HELP`
 
 Format: `HELP`
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
+
+***
+
+
+### Exiting the program: `BYE`
+Exits the program.
+
+Format: `BYE`
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -146,17 +229,27 @@ Format: `HELP`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer?
 
-**A**: Well, write the User Guide in active voice anyway.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
+that contains the data of your previous SHOCO shopping list.
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 
 &nbsp;
 
 ## Command Summary
-
 
 * Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Delete item `DEL INDEX`
 * Set budget `SET b/AMOUNT`
 * Find item `FIND KEYWORD`
 * Viewing help `HELP`
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+

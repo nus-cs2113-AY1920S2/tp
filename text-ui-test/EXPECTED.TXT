@@ -67,13 +67,18 @@ Oops! Invalid Command. Check if these are met:
 
 Enter command:
 
+Added this item: [0] apple $2.45 qty: 1
+NOTE: You have exceeded your budget by 2.45
+
+Enter command:
+
 Added this item: [0] banana $3.00 qty: 3
-NOTE: You have exceeded your budget by 3.00
+NOTE: You have exceeded your budget by 5.45
 
 Enter command:
 
 Added this item: [0] cherry $5.60 qty: 2
-NOTE: You have exceeded your budget by 8.60
+NOTE: You have exceeded your budget by 11.05
 
 Enter command:
 
@@ -82,7 +87,7 @@ Here are the matching items:
 +---------------+-------+-----+
 | Item          | Price | Qty |
 +---------------+-------+-----+
-| 2. [0] cherry | $5.60 | 2   |
+| 3. [0] cherry | $5.60 | 2   |
 +---------------+-------+-----+
 
 
@@ -174,7 +179,7 @@ Oops! Invalid Command. Check if these are met:
 
 Enter command:
 
-The item has been updated to: [0] apple $5.60 qty: 2
+OOPS! I already have an item with that name. Perhaps try another description? :D
 
 Enter command:
 
@@ -200,7 +205,7 @@ Yes! I've marked this item as bought:
 Enter command:
 
 Yes! I've marked this item as bought:
-[B] apple $5.60 qty: 2
+[B] banana $3.00 qty: 3
 
 
 Enter command:
@@ -305,19 +310,20 @@ Enter command:
 
 Here is your shopping list:
 
-+--------------+-------+-----+
-| Item         | Price | Qty |
-+--------------+-------+-----+
-| 1. [B] apple | $5.60 | 2   |
-+--------------+-------+-----+
-Total cost of items: 5.60
-Your remaining budget / total budget: 494.40 / 500.00
++---------------+-------+-----+
+| Item          | Price | Qty |
++---------------+-------+-----+
+| 1. [B] banana | $3.00 | 3   |
+| 2. [0] cherry | $5.60 | 2   |
++---------------+-------+-----+
+Total cost of items: 8.60
+Your remaining budget / total budget: 491.40 / 500.00
 
 
 Enter command:
 
 Budget has been reset to $0.00
-NOTE: You have exceeded your budget by 5.60
+NOTE: You have exceeded your budget by 8.60
 
 Enter command:
 
