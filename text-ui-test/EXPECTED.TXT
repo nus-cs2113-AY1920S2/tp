@@ -193,27 +193,27 @@ You have completed this amount of credits:
 4
 
 
-
 Okay, this is the list of related modules:
 
 List of selected modules:
-[✓] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Sem: 2018/2019 SEM2
-[✗] ID: CS1010 Name: Programming Methodology | Sem: 2018/2019 SEM1
-[✗] ID: CS1231 Name: Discrete Structures | Sem: 2018/2019 SEM1
+[✗] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1
+[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
+[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
 
 List of available modules
-ID: CS1010 Name: Programming Methodology | Prerequisites: null
-ID: CS2030 Name: Programming Methodology II | Prerequisites: CS1010
-ID: CS2040 Name: Data Structures and Algorithms | Prerequisites: CS1010
-ID: CS2100 Name: Computer Organisation | Prerequisites: CS1010
-ID: CS2106 Name: Introduction to Operating Systems | Prerequisites: CS2100
-ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Prerequisites: CS2040
-ID: CS2105 Name: Introduction to Computer Networks | Prerequisites: CS2040
-ID: CS2101 Name: Effective Communication for Computing Professionals | Prerequisites: null
-ID: CS2102 Name: Database Systems | Prerequisites: CS2030
-ID: CS1231 Name: Discrete Structures | Prerequisites: null
-ID: CS2104 Name: Programming Language Concepts | Prerequisites: CS2030
-
+ID: CS1010 Name: Programming Methodology | Modular Credit: 4
+ID: CS2030 Name: Programming Methodology II | Modular Credit: 4 | Prerequisites: CS1010
+ID: CS2040 Name: Data Structures and Algorithms | Modular Credit: 4 | Prerequisites: CS1010
+ID: CS2100 Name: Computer Organisation | Modular Credit: 4 | Prerequisites: CS1010
+ID: CS2106 Name: Introduction to Operating Systems | Modular Credit: 4 | Prerequisites: CS2100
+ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Modular Credit: 4 | Prerequisites: CS2040
+ID: CS2105 Name: Introduction to Computer Networks | Modular Credit: 4 | Prerequisites: CS2040
+ID: CS2101 Name: Effective Communication for Computing Professionals | Modular Credit: 4
+ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030
+ID: CS2101 Name: Effective Communication for Computing Professionals | Modular Credit: 4
+ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030
+ID: CS1231 Name: Discrete Structures | Modular Credit: 4
+ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
 
 
 

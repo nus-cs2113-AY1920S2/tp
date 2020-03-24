@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -13,7 +12,6 @@ import java.util.logging.SimpleFormatter;
 import seedu.duke.command.Command;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.Person;
-import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
 import seedu.duke.exception.ModuleManagerException;
 import seedu.duke.parser.Parser;
