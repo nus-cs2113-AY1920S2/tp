@@ -85,8 +85,11 @@ public class Messages {
     public static final String SAVE_FAILED_MESSAGE = "Oh no. Something went wrong while saving, please try again later";
     public static final String EMPTY_SEARCH_RESULTS_ERROR = "There are no matching tasks for the search query";
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
+=======
+>>>>>>> branch-calendar
     public static final String INVALID_SEARCH_FORMAT = "Invalid Argument for Search Command";
     public static final String SEARCH_INSUFFICIENT_ARGS = "Insufficient argument for Search Command"
             + System.lineSeparator() + SearchCommand.COMMAND_USAGE;
@@ -97,4 +100,10 @@ public class Messages {
             + System.lineSeparator() + CalendarCommand.COMMAND_USAGE;
 
 }
+<<<<<<< HEAD
+>>>>>>> branch-calendar
+=======
+=======
+}
+>>>>>>> c241c3246c58cfb6bf522da355e49e74b8cc32a9
 >>>>>>> branch-calendar
