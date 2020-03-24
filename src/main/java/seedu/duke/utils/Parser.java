@@ -141,10 +141,8 @@ public class Parser {
                     int itemQuantityInInteger = Integer.parseInt(addCommandArgs[2]);
                     newCommand = new AddCommand(itemDescription, 0.0, itemQuantityInInteger);
                 } else if (itemPrice != null && itemQuantity == null) {
-                    itemQuantity = "1";
-                    int itemQuantityInInteger = Integer.parseInt(itemQuantity);
                     double itemPriceInDouble = Double.parseDouble(addCommandArgs[1]);
-                    newCommand = new AddCommand(itemDescription, itemPriceInDouble, itemQuantityInInteger);
+                    newCommand = new AddCommand(itemDescription, itemPriceInDouble,1);
                 } else if (itemPrice == null && itemQuantity == null) {
                     newCommand = new AddCommand(itemDescription, 0.0, 1);
                 } else {
