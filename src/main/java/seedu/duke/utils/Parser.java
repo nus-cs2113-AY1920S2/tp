@@ -53,6 +53,7 @@ public class Parser {
             createAddCommand(arguments);
             break;
 
+        //@@author Shannonwje
         case MarkCommand.COMMAND_WORD:
             createMarkCommand(arguments);
             break;
@@ -60,6 +61,7 @@ public class Parser {
         case UnmarkCommand.COMMAND_WORD:
             createUnmarkCommand(arguments);
             break;
+        //@@author
 
         //@@author trishaangelica
         case EditCommand.COMMAND_WORD:
@@ -90,10 +92,11 @@ public class Parser {
             createClearCommand(arguments);
             break;
 
-
+        //@@author Shannonwje
         case ResetBudgetCommand.COMMAND_WORD:
             createResetBudgetCommand(arguments);
             break;
+        //@@author
 
         case ExitCommand.COMMAND_WORD:
             createExitCommand();
@@ -101,7 +104,7 @@ public class Parser {
 
         //@@author trishaangelica
         case HelpCommand.COMMAND_WORD: //fall through
-        // @@author
+            // @@author
 
         default:
             createHelpCommand();
@@ -204,6 +207,7 @@ public class Parser {
         return argsArray;
     }
 
+    //@@author Shannonwje
     /**
      * Initialises the MarkCommand.
      */
@@ -245,6 +249,7 @@ public class Parser {
             newCommand = new IncorrectCommand("Please provide a single numerical index number!");
         }
     }
+    //@@author
 
     //@@author trishaangelica
     /**
@@ -279,7 +284,7 @@ public class Parser {
     /**
      * Split arguments for Edit Command.
      */
-    private String[] splitArgsForEditCommand(String arguments,Matcher matcher) throws NullPointerException {
+    private String[] splitArgsForEditCommand(String arguments, Matcher matcher) throws NullPointerException {
         String indexOfItem;
         String itemDescription = null;
         String itemPrice = null;
@@ -298,7 +303,7 @@ public class Parser {
         if (quantityPresent) {
             itemQuantity = matcher.group("quantityArgs").trim().split("q/")[1];
         }
-        return new String[]{indexOfItem,itemDescription,itemPrice,itemQuantity};
+        return new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
     }
     //@@author
 
@@ -379,6 +384,7 @@ public class Parser {
     }
     //@@author
 
+    //@@author Shannonwje
     /**
      * Initialises the ResetBudgetCommand.
      */
@@ -394,6 +400,7 @@ public class Parser {
             newCommand = new ResetBudgetCommand();
         }
     }
+    //@@author
 
     /**
      * Initialises the HelpCommand.
@@ -416,10 +423,10 @@ public class Parser {
                     + "Please enter a keyword after FIND"
                     + System.lineSeparator()
                     + "Example: FIND apples");
-            LOGGER.log(Level.INFO,"(Find command) User did not supply keyword for FIND");
+            LOGGER.log(Level.INFO, "(Find command) User did not supply keyword for FIND");
         } else {
             assert arguments != null;
-            LOGGER.log(Level.INFO,"(Find command) User supplied keyword: " + arguments);
+            LOGGER.log(Level.INFO, "(Find command) User supplied keyword: " + arguments);
             newCommand = new FindCommand(arguments);
         }
     }

@@ -66,7 +66,7 @@ public class EditCommandTest {
         items.add(new Item("apple", 2.0,1));
         items.add(new Item("donut", 3.0,1));
         items.add(new Item("banana", 4.50,1));
-        command = new EditCommand(3, "banana", "5.00","1");
+        command = new EditCommand(3, "cherry", "5.00","1");
         command.setData(items,myBudget);
         command.execute();
         String expectedFeedback2 =  String.format(EditCommand.MESSAGE_SUCCESS, items.getList().get(2).toString())
@@ -95,7 +95,7 @@ public class EditCommandTest {
         items.add(new Item("apple", 2.0,1));
         items.add(new Item("donut", 3.0,1));
         items.add(new Item("banana", 4.50,1));
-        command = new EditCommand(1, "banana", "QWERTY","3");
+        command = new EditCommand(1, "cherry", "QWERTY","3");
         command.setData(items,myBudget);
         command.execute();
         String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT;
@@ -109,11 +109,28 @@ public class EditCommandTest {
         items.add(new Item("apple", 2.0,1));
         items.add(new Item("donut", 3.0,1));
         items.add(new Item("banana", 4.50,1));
-        command = new EditCommand(1, "banana", "3","QWERTY");
+        command = new EditCommand(1, "lollipop", "3","QWERTY");
         command.setData(items,myBudget);
         command.execute();
         String expectedFeedback3 = EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT;
         assertEquals(expectedFeedback3, command.feedbackToUser);
+    }
+
+    @Test
+    void testEdit_ItemDuplicateDescription_FailureMessage() {
+
+        command = new EditCommand(3, "banana", "5.00",null);
+        items.clearList();
+        items.add(new Item("apple", 2.0,1));
+        items.add(new Item("donut", 3.0,1));
+        items.add(new Item("banana", 4.50,1));
+        command = new EditCommand(3, "banana", "5.00","1");
+        command.setData(items,myBudget);
+        command.execute();
+        String expectedFeedback2 =  String.format(EditCommand.MESSAGE_FAILURE_DUPLICATE_DESCRIPTION,
+                items.getList().get(2).toString())
+                + String.format("\nNOTE: You have exceeded your budget by %.2f",items.getTotalCost());
+        assertEquals(expectedFeedback2, command.feedbackToUser);
     }
 
 }
