@@ -12,11 +12,13 @@
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
 <big style="color: green">  **Design** [&#10149;](#design)  </big>  
 <big style="color: green"> **Implementation** [&#10149;](#implementation)  </big>  
+&nbsp; &nbsp; &nbsp; &nbsp; 1. Add Feature [&#10149;](#1-add-feature)   
+&nbsp; &nbsp; &nbsp; &nbsp; 2. Delete Feature [&#10149;](#2-delete-feature)   
 <big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>  
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; User Stories [&#10149;](#user-stories)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Non-Functional Requirements [&#10149;](#non-functional-requirements)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Glossary [&#10149;](#glossary)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Manual Testing [&#10149;](#manual-testing)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Manual Testing [&#10149;](#manual-testing)    
 
 <br>  
   
@@ -148,14 +150,16 @@ Total tasks: 5
 	```
 	SUCCESS!! Task(s) have been deleted.
 	```
-	Deletion process ends.
+	Deletion process ends.  
 
 <br>
+
 Below is a *sequence diagram* to illustrate the above example scenario.  
 ```
 	// To do Sequence diagram here
 ```
 
+<br><br>
 
 ### 3. ...
 ```
@@ -183,7 +187,7 @@ Below is a *sequence diagram* to illustrate the above example scenario.
 	// To be done.
 ```
 
-### **Testing**  
+### **Manual Testing**  
 ```
 	// To be done.
 ```
