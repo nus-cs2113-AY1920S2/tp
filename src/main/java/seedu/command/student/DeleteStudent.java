@@ -3,14 +3,12 @@ package seedu.command.student;
 import seedu.command.Command;
 import seedu.exception.DukeException;
 import seedu.ui.DisplayList;
-import seedu.ui.UI;
 
 import static seedu.duke.Duke.studentListCollection;
 
 public class DeleteStudent extends Command {
 
     protected int index;
-    private UI ui = new UI();
     private DisplayList displayList = new DisplayList();
 
     public DeleteStudent(int index) {

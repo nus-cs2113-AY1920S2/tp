@@ -46,9 +46,10 @@ public class DisplayList extends UI {
     public int getStudentListIndex() {
         assert !studentListCollection.isEmpty() : "studentListCollection should be empty.";
         int index = 1;
+        display("Please choose one of the following list.");
         for (StudentList studentList: studentListCollection) {
             System.out.println(index + ". " + studentList.getListName());
         }
-        return Integer.parseInt(getUserInput());
+        return Integer.parseInt(getStringInput());
     }
 }
