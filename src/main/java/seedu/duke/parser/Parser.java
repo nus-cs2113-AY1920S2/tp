@@ -1,10 +1,16 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.AddCommand;
-import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.AddToDataCommand;
+import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.Command;
+<<<<<<< HEAD
 import seedu.duke.command.CalculateCapCommand;
+=======
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.DeleteFromSemCommand;
+import seedu.duke.command.DeleteFromAvailableCommand;
+>>>>>>> 40d5e126c09b4119163d780b44ede239e567a6fd
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.FindCommand;
 import seedu.duke.command.HelpingCommand;
@@ -50,8 +56,13 @@ public class Parser {
             return processHelpCommand();
         case FindCommand.COMMAND_WORD:
             return processFindCommand(args);
+<<<<<<< HEAD
         case CalculateCapCommand.COMMAND_WORD:
             return processCalculateCapCommand();
+=======
+        case DeleteCommand.COMMAND_WORD:
+            return processDeleteCommand(args);
+>>>>>>> 40d5e126c09b4119163d780b44ede239e567a6fd
         default:
             throw new InputException("invalid command");
         }
@@ -182,7 +193,11 @@ public class Parser {
         }
         String[] preRequisiteModules;
         preRequisiteModules = moduleWords[1].split(" ");
+<<<<<<< HEAD
         return new AddToDataCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
+=======
+        return new AddToDataCommand((new NewModule(moduleId, moduleName, preRequisiteModules)));
+>>>>>>> 40d5e126c09b4119163d780b44ede239e567a6fd
     }
 
     private static ViewCommand processViewCommand(String args) {
@@ -216,8 +231,48 @@ public class Parser {
         return new FindCommand(args);
     }
 
+<<<<<<< HEAD
     private static CalculateCapCommand processCalculateCapCommand() {
         return new CalculateCapCommand();
+=======
+    private static DeleteCommand processDeleteCommand(String args) throws InputException {
+        if (args.contains("s/")) {
+            return processDeleteFromSemCommand(args);
+        } else {
+            return processDeleteFromAvailableCommand(args);
+        }
+    }
+
+    private static DeleteFromSemCommand processDeleteFromSemCommand(String args) throws InputException {
+        String[] moduleWords = args.split(" s/");
+        if (args.contains("id/")) {
+            String moduleId = moduleWords[0].replace("id/", "");
+            String semester = convertSemToStandardFormat(moduleWords[1]);
+            return new DeleteFromSemCommand(moduleId, semester, "id");
+        } else if (args.contains("n/")) {
+            String moduleName = moduleWords[0].replace("n/", "");
+            String semester = convertSemToStandardFormat(moduleWords[1]);
+            return new DeleteFromSemCommand(moduleName, semester, "name");
+        }
+        throw new InputException("invalid 'delete' command to delete from Selected Modules",
+                "delete id/ID s/SEM OR delete n/NAME s/SEM");
+    }
+
+    private static DeleteFromAvailableCommand processDeleteFromAvailableCommand(String args) throws InputException {
+        String[] moduleWords = args.split("/", 2);
+        if (moduleWords.length != 2) {
+            throw new InputException("invalid 'delete' command to delete from Available Modules",
+                    "delete id/ID OR delete n/NAME");
+        }
+        String moduleIdentifier = moduleWords[1].strip();
+        if (moduleWords[0].equals("id")) {
+            return new DeleteFromAvailableCommand(moduleIdentifier, "id");
+        } else if (moduleWords[0].equals("n")) {
+            return new DeleteFromAvailableCommand(moduleIdentifier, "name");
+        }
+        throw new InputException("invalid 'delete' command to delete from Available Modules",
+                "delete id/ID OR delete n/NAME");
+>>>>>>> 40d5e126c09b4119163d780b44ede239e567a6fd
     }
 
     private static String convertSemToStandardFormat(String semester) {
@@ -227,6 +282,9 @@ public class Parser {
         standardSemFormat = year + "/" + (year + 1) + " SEM" + sem;
         return standardSemFormat;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 40d5e126c09b4119163d780b44ede239e567a6fd
 }
