@@ -57,6 +57,7 @@ public class StartCommand extends Command {
             Ui.printDivider("Activity name cannot be empty!");
         }
     }
+
     /**
      * Received user input on whether or not to continue the activity.
      *

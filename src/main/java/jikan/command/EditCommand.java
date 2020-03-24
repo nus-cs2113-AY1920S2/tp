@@ -25,10 +25,10 @@ public class EditCommand extends Command {
             // Parser.parseEdit(activityList);
             int delimiter = parameters.indexOf("/e");
             Parser.activityName = parameters.substring(0, delimiter).strip();
-            if ( Parser.activityName.isEmpty()) {
+            if (Parser.activityName.isEmpty()) {
                 throw new EmptyNameException();
             }
-            int index = activityList.findActivity( Parser.activityName);
+            int index = activityList.findActivity(Parser.activityName);
             String newName = parameters.substring(delimiter + 3);
             if (index != -1) {
                 activityList.updateName(index,newName);

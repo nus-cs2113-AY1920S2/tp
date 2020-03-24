@@ -124,6 +124,11 @@ public class ActivityList {
         return activities.size();
     }
 
+    /**
+     * Saves a new activity to the list of activities.
+     * @param activityList list to save to
+     * @throws InvalidTimeFrameException if start time is before end time
+     */
     public void saveActivity(ActivityList activityList) throws InvalidTimeFrameException {
         if (Parser.continuedIndex != -1) {
             Ui.printDivider("Ended: " + Parser.activityName);
@@ -138,7 +143,8 @@ public class ActivityList {
             Ui.printDivider("Ended: " + Parser.activityName);
             Parser.endTime = LocalDateTime.now();
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
-            Activity newActivity = new Activity(Parser.activityName, Parser.startTime, Parser.endTime, duration, Parser.tags);
+            Activity newActivity = new Activity(Parser.activityName, Parser.startTime,
+                    Parser.endTime, duration, Parser.tags);
             activityList.add(newActivity);
             // reset activity info
             Parser.resetInfo();

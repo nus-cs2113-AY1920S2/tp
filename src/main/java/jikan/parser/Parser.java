@@ -73,7 +73,7 @@ public class Parser {
         switch (instruction) {
         case "bye":
             command = new ByeCommand(null);
-        break;
+            break;
         case "start":
             command = new StartCommand(tokenizedInputs[1], scanner);
             break;
@@ -99,7 +99,7 @@ public class Parser {
             command = new EditCommand(tokenizedInputs[1]);
             break;
         case "clean":
-            command = new CleanCommand(tokenizedInputs[1]);
+            command = new CleanCommand(tokenizedInputs[1], cleaner);
             break;
         case "continue":
             command = new ContinueCommand(tokenizedInputs[1]);
@@ -109,104 +109,6 @@ public class Parser {
             break;
         }
         return command;
-    }
-
-    /**
-     * Method to enable or disable cleaning of log files.
-     * @param tokenizedInput user input of 'on' or 'off'
-     * @throws IOException if input is incorrect.
-     */
-    public static void parseClean(String tokenizedInput) throws IOException {
-        String line;
-        if (tokenizedInput.equals("on")) {
-            cleaner.setStatus(true);
-            assert cleaner.toClean;
-            line = "Auto cleaning enabled";
-            Log.makeInfoLog("User has turned on automated cleaning");
-        } else if (tokenizedInput.equals("off")) {
-            cleaner.setStatus(false);
-            assert !cleaner.toClean;
-            line = "Auto cleaning disabled";
-            Log.makeInfoLog("User has turned off automated cleaning");
-        } else {
-            line = "Invalid Command!";
-        }
-        Ui.printDivider(line);
-    }
-
-    /**
-     * Method to parse the start activity command.
-     *
-     * @param activityList List of activities.
-     * @param scanner To parse user input.
-     */
-    public static void parseStart(ActivityList activityList, Scanner scanner)
-            throws ArrayIndexOutOfBoundsException, EmptyNameException, NullPointerException {
-        // check if an activity has already been started
-        if (startTime != null) {
-            String line = activityName + " is ongoing!";
-            Log.makeInfoLog("Could not start activity due to already ongoing activity.");
-            Ui.printDivider(line);
-        } else {
-            // tags should be reset
-            assert tags.isEmpty();
-
-            // check if there exists an activity with this name
-            int index = activityList.findActivity(tokenizedInputs[1]);
-            if (index != -1) {
-                Ui.printDivider("There is already an activity with this name. Would you like to continue it?");
-                continueActivity(activityList, scanner, index);
-            } else {
-                int delimiter = tokenizedInputs[1].indexOf("/t");
-                String line = parseActivity(delimiter);
-                startTime = LocalDateTime.now();
-                Log.makeFineLog("Started: " + activityName);
-                Ui.printDivider(line);
-            }
-        }
-    }
-
-    /**
-     * Received user input on whether or not to continue the activity.
-     *
-     * @param activityList List of activities.
-     * @param scanner Parse user input.
-     */
-    private static void continueActivity(ActivityList activityList, Scanner scanner, int index) {
-        String userInput = scanner.nextLine();
-        if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
-            activityName = activityList.get(index).getName();
-            startTime = LocalDateTime.now();
-            tags = activityList.get(index).getTags();
-            continuedIndex = index;
-            Ui.printDivider(activityName + " was continued");
-            Log.makeFineLog(activityName + " was continued.");
-        } else {
-            Ui.printDivider("Okay then, what else can I do for you?");
-        }
-    }
-
-    /**
-     * Parses the started activity for name and tags.
-     *
-     * @param delimiter The index of the tag delimiter.
-     */
-    private static String parseActivity(int delimiter) throws EmptyNameException {
-        if (delimiter == -1) {
-            // no tags
-            activityName = tokenizedInputs[1].strip();
-            if (activityName.isEmpty()) {
-                throw new EmptyNameException();
-            }
-        } else {
-            activityName = tokenizedInputs[1].substring(0, delimiter).strip();
-            if (activityName.isEmpty()) {
-                throw new EmptyNameException();
-            }
-            String[] tagString = tokenizedInputs[1].substring(delimiter + 3).split(" ");
-            tags.addAll(Arrays.asList(tagString));
-        }
-        return "Started: " + activityName;
     }
 
     /**
@@ -268,6 +170,9 @@ public class Parser {
     }
 
 
+    /**
+     * Resets parameters, called when an activity is ended or aborted.
+     */
     public static void resetInfo() {
         startTime = null;
         activityName = null;

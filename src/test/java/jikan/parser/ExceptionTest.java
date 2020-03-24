@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 class ExceptionTest {
 
+    /*
+
     Scanner scanner = new Scanner(System.in);
     ActivityList activityList = new ActivityList();
 
@@ -36,7 +38,7 @@ class ExceptionTest {
 
     }
 
-
+     */
 }
 
 
