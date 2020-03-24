@@ -42,14 +42,13 @@
 <br>  
   
 # Introduction  
-This **Nuke** application is a simple yet powerful task management system that is dedicated to providing **NUS students** efficient organisation of _modules_ and _tasks_.<br>
-You will be interacting with the application via the command line. With the **Nuke** application, you will be able to perform various operations to manage your _modules_ and _tasks_ such as adding, deleting and listing your  _modules_ and _tasks_. You may also add additional properties to your _tasks_ such as _files_, _deadlines_, and _priorities_.<br>
-**Nuke** facilitates users by automatically sorting user-added _tasks_ and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>
+This **Nuke** application is a simple yet powerful task management system that is dedicated to providing **NUS students** efficient organisation of _modules_ and _tasks_.<br>  
+You will be interacting with the application via the command line. With the **Nuke** application, you will be able to perform various operations to manage your _modules_ and _tasks_ such as adding, deleting and listing your  _modules_ and _tasks_. You may also add additional properties to your _tasks_ such as _files_, _deadlines_, and _priorities_.<br>  
+**Nuke** facilitates users by automatically sorting user-added _tasks_ and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>  
 If you are an **NUS student** and have not tried out **Nuke** yet...  
 What are you waiting for? Give **Nuke** a shot, and you will see how amazing it is!  
     
-  
-
+<br>
 
 # General Usage  
 This section will explain the fundamental structure of the **Nuke** application, and important guidelines to follow to ensure smooth usage of the application.  
@@ -88,10 +87,11 @@ The **Task** Directory is the **last** level of the Directory Tree. Each _task_ 
 #### <u>Other Notes</u>
 The **Nuke** application adheres to this Directory Tree structure strictly. It is important to note that you can only add a directory into a directory which is **_exactly_ one level lower**. For example, you can only add a _task_ into the **Category** directory, and not directly into the **Module** directory.<br>
 Normally, you would need to enter the full _directory path_ in order to add and delete _modules_, _categories_, _tasks_ and _files_. To make the process more efficient, **Nuke** enables you to traverse about the various directories via the [Change Directory](#6-change-directory) command so that you can add and delete the corresponding items directly without having to enter the full _directory path_.
+
 <br>
 
 ## Command Format  
-In this User Guide, the format for each feature _(command)_ will usually be of this form:
+In this User Guide, the format for each feature _(command)_ will usually be of this form:  
 `CommandWord <attribute0> -Prefix1 <attribute1> ... [ -Prefix2 <attribute2> ... ]`
 
 ### Command Word
@@ -109,7 +109,7 @@ Some **attributes** and **prefixes** are _optional_ and the command can still ex
 <br>
 
 ## Command Prefixes  
-On many occasions, you may be required to enter more information to describe the commands you give to **Nuke**. For example, when adding a _task_, you may need to specify the _module_ and _category_ to add the _task_ into. You may also want to include additional attributes such as the _deadline_ and _priority_. All these information can only be recognised by **Nuke** if they are preceded by the correct **prefix**.<br>
+On many occasions, you may be required to enter more information to describe the commands you give to **Nuke**. For example, when adding a _task_, you may need to specify the _module_ and _category_ to add the _task_ into. You may also want to include additional attributes such as the _deadline_ and _priority_. All these information can only be recognised by **Nuke** if they are preceded by the correct **prefix**.<br>  
 All **command prefixes** in **Nuke** begins with a `-` and followed by a **letter**. Below is the exhaustive list of **command prefixes** and general information that should follow after. 
 
 #### <u>Command Prefix Table</u>  
@@ -159,8 +159,8 @@ Adds a _category_ into your **Category List**. The **Category List** contains al
 - `category name` -- The _name_ of the   _category_
 - `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
 - `priority` -- A number indicating the  _priority_ of the _category_
-> **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.
-> **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the category. If the `priority` is not given, then it will be set to **0**.
+> **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.  
+> **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the category. If the `priority` is not given, then it will be set to **0**.  
   
 #### Example Usage    
 ```
@@ -184,9 +184,9 @@ Adds a _task_ into your **Task List**. The **Task List** contains all your added
 - `category name` -- The _name_ of the   _category_
 - `deadline` -- The _deadline_ of the _task_
 - `priority` -- A number indicating the  _priority_ of the _category_
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.
-> **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the task. If the `priority` is not given, then it will be set to the same _priority_ as it's _category_.
-> **Note**: The `deadline` provided consists of both a _date_ and a _time_. The `deadline` provided must adhere to the set of accepted [Date Time formats](#date-time-formats).  
+> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
+> **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the task. If the `priority` is not given, then it will be set to the same _priority_ as it's _category_.  
+> **Note**: The `deadline` provided consists of both a _date_ and a _time_. The `deadline` provided must adhere to the set of accepted [Date Time formats](#date-time-formats).   
   
 #### Example Usage    
 ```
@@ -443,7 +443,8 @@ Traverse up and down the Directory Tree from your current directory.<br>
 ```
 	// To do
 ```
-  
+<br><br>
+
 # Miscellaneous Information  
   
 ## Help  
@@ -499,6 +500,7 @@ An **exhaustive** list of the standard *date* formats is given below for your re
  dd-MM-yy, d-MM-yy, dd-M-yy, d-M-yy,  
  dd-MM, d-MM, dd-M, d-M, ddMMyyyy, ddMMyy
  ```  
+> **Info**: `d` represents the **day** of the date. `M` represents the **month** of the date. `y` represents the **year** of the date.  
   
 ### Time Formats  
 The **Nuke** program accepts most time formats that are represented with **numbers**, **delimiter symbols** and <u>optional</u> **am-pm markers**.    
@@ -515,7 +517,12 @@ An **exhaustive** list of the *time* formats is given below for your reference.
  H.mma, H.mm, hmma, Hmma, Hmm, 
  ha, Ha, H
  ```  
+ > **Info**: `H` and `h` represents the **hour** for the 24-h and 12-h time format respectively. `m` represents the **minute**. `a` represents the **am-pm markers**.  
+
+<br><br>
 
 # Command Summary
+
+<br><br>
 
 # FAQ
