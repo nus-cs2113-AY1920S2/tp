@@ -186,7 +186,7 @@ Okay, I've marked the module as done!
 
 Okay! Here are your completed modules:
 2018/2019 SEM2
-1.[✓] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A+
+1.[✓] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
 
 
 You have completed this amount of credits:
@@ -215,6 +215,13 @@ ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030
 ID: CS1231 Name: Discrete Structures | Modular Credit: 4
 ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
 
+
+
+Okay, I've marked the module as done!
+
+
+Your CAP:
+4.75
 
 
 bye!

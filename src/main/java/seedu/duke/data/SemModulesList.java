@@ -4,24 +4,18 @@ import seedu.duke.module.SelectedModule;
 
 import java.util.ArrayList;
 
-import static seedu.duke.ui.SemesterConvertor.convertSemToStandardFormat;
 
 public class SemModulesList extends ArrayList<SelectedModule> {
     private String semester;
-    private String semName;
 
     public SemModulesList(String semester) {
         this.semester = semester;
-        this.semName = convertSemToStandardFormat(semester);
     }
 
     public String getSem() {
         return semester;
     }
 
-    public String getSemName() {
-        return semName;
-    }
 
     /**
      * Checks if the moduleIdentifier is in the semModulesList.
