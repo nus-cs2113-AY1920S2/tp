@@ -49,8 +49,13 @@ public class CalendarCommand extends Command {
     private static final int EMPTY_BOX_PADDING = MAX_CALENDAR_BOX_WIDTH - 1;
     private static final int CONTENT_WIDTH = MAX_CALENDAR_BOX_WIDTH - 1;
 
+<<<<<<< HEAD
     public static final String COMMAND_WORD = "calendar";
     public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/YY]";
+=======
+    public static final String CALENDAR_COMMAND_WORD = "calendar";
+    public static final String COMMAND_USAGE = "Get a Calendar view: calendar m/[MONTH] y/[YEAR]";
+>>>>>>> branch-calendar
 
     private LocalDate date;
 
@@ -271,6 +276,7 @@ public class CalendarCommand extends Command {
         calendarView.append(ANSI_YELLOW).append(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()))
                 .append(ANSI_RESET).append(System.lineSeparator());
     }
+<<<<<<< HEAD
 
     /**
      * Appends a horizontal border for the calendarView.
@@ -281,3 +287,6 @@ public class CalendarCommand extends Command {
                 .append(System.lineSeparator());
     }
 }
+=======
+}
+>>>>>>> branch-calendar
