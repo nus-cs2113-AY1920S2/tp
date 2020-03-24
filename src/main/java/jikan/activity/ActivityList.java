@@ -1,8 +1,10 @@
 package jikan.activity;
 
 import jikan.exception.InvalidTimeFrameException;
+import jikan.parser.Parser;
 import jikan.storage.Storage;
 import jikan.storage.StorageHandler;
+import jikan.ui.Ui;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -114,12 +116,33 @@ public class ActivityList {
         try {
             StorageHandler.updateField(activities, storage);
         } catch (IOException e) {
-            System.out.println("Error while deleting activity from data file.");
+            System.out.println("Error while updating activity from data file.");
         }
     }
 
     public int getSize() {
         return activities.size();
+    }
+
+    public void saveActivity(ActivityList activityList) throws InvalidTimeFrameException {
+        if (Parser.continuedIndex != -1) {
+            Ui.printDivider("Ended: " + Parser.activityName);
+            Parser.endTime = LocalDateTime.now();
+            Duration duration = Duration.between(Parser.startTime, Parser.endTime);
+            Duration oldDuration = activityList.get(Parser.continuedIndex).getDuration();
+            Duration newDuration = duration.plus(oldDuration);
+            activityList.updateDuration(newDuration, Parser.endTime, Parser.continuedIndex);
+            Parser.continuedIndex = -1;
+            Parser.resetInfo();
+        } else {
+            Ui.printDivider("Ended: " + Parser.activityName);
+            Parser.endTime = LocalDateTime.now();
+            Duration duration = Duration.between(Parser.startTime, Parser.endTime);
+            Activity newActivity = new Activity(Parser.activityName, Parser.startTime, Parser.endTime, duration, Parser.tags);
+            activityList.add(newActivity);
+            // reset activity info
+            Parser.resetInfo();
+        }
     }
 
 

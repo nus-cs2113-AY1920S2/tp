@@ -16,7 +16,8 @@ public class CleanCommand extends Command {
     /**
      * Constructor to create a new clean command.
      */
-    public CleanCommand() {
+    public CleanCommand(String parameters) {
+        super(parameters);
     }
 
     @Override

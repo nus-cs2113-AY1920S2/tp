@@ -58,7 +58,7 @@ public class Log {
      * Creates a long entry at FINE level.
      * @param message the FINE message to be logged
      */
-    public void makeFineLog(String message) {
+    public static void makeFineLog(String message) {
         logger.log(Level.FINE, message);
     }
 

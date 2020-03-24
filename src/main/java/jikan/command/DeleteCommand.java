@@ -13,13 +13,21 @@ public class DeleteCommand extends Command {
     /**
      * Constructor to create a new delete command.
      */
-    public DeleteCommand() {
+    public DeleteCommand(String parameters) {
+        super(parameters);
     }
 
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            Parser.parseDelete(activityList);
+            int index = activityList.findActivity(parameters);
+            if (index != -1) {
+                // activity was found
+                Ui.printDivider("You have deleted " + parameters);
+                activityList.delete(index);
+            } else {
+                throw new NoSuchActivityException();
+            }
         } catch (NoSuchActivityException e) {
             Ui.printDivider("No activity with this name exists!");
         }
