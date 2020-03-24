@@ -150,6 +150,7 @@ public class UI {
         String userInput = getTypeOfAddPerformance();
         return userInput.equals("yes");
     }
+
     public String getEventName() {
         System.out.println("Please key in the name of event that "
                 + "you wish to access to its student's performance.");
