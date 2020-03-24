@@ -24,10 +24,11 @@ As long as you need to keep track of upcoming events or class, you are our audie
 ## 2. Setting Up
 
 ### 2.1 Requirements 
-1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or above installed in your Computer.
-1.  Download the latest .jar. from [here](http://link.to/duke).
+1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
+or above installed in your Computer.
+1.  Download the latest PAC.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
 1.  Copy the file to the folder you want to use as the home folder for this application.
-1.  Type `java -jar pac.jar` to start the application.
+1.  Type `java -jar PAC.jar` to start the application.
     <INSERT SCREENSHOT>
 1.  You should see this screen if everything is successful.
 
@@ -187,15 +188,44 @@ Expected outcome:
 
 ### 4.2 Attendance
 #### 4.2.1 Add students’ attendance to event: attendance `attendance add`
-Mark a student’s or students’ attendance in the attendance sheet.
-Input “yes” or “no” for  p/PRESENT. You may not need to state  p/PRESENT, by default it would be a “yes”.  
-You can take multiple students’ attendance at a time, separate the names using “|”.
+Add a student’s attendance to the performance list.  
+This is a step by step command and you may follow the instructions given by the console. 
+You may wish to use an existing list found in StudentListCollection.
 
 Format: `attendance add`
     
-Examples: 
+Step by step guide: 
+
+    performance add
+    > Please key in the name of event that you wish to access to its student's performance. 
+    event
     
-    Insert Example here
+If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
+the alternative provided by PAC: record using an existing name list located under StudentListCollection. 
+Do note that you need to have an existing name list before you are using this shortcut.  
+The following will show a success example of using an existing name list to add attendance. 
+
+    > Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    yes
+    > Please choose the name list you wish to use by its index. (shows a list of list names)
+    1    
+    > Please key in the attendance status for student (student1 name) [Y/N]
+    Y
+    > (student name) is (attendance status) for event (event name)
+    ...
+
+The following will show a success example of creating a new attendance list.
+
+    > Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    no
+    >
+    >Please key in student name and result in the following format: n/Student_Name p/Is_Present
+    n/John Doe p/Y
+    > Please key in the attendance status for student (student1 name) [Y/N]
+    Y
+    > (student name) is (attendance status) for event (event name)
+    ...
+
 
 ### 4.3 Feature - Performance
 #### 4.3.1 Add students’ performance: performance `performance add`

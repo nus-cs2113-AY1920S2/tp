@@ -62,6 +62,16 @@ either by complete match, or fuzzy match.
 
 ### Attendance Tracker
 *Class diagram of the Attendance component*
+1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
+1. Once determined, the relevant class that corresponds to the type of command is created.
+1. Then, the class will execute base on its function. It modifies `AttendanceList`.
+1. These commands are then returned to `Duke.run()` to `execute()`. 
+
+Note that:
+* `attendance add` command requires a line-by-line insertion of the student attendance data. 
+The user is given an option to either use an existing list stored under StudentListCollection or
+create a new attendance list. `n/` and `p/` flags are used to insert new attendance.
+
 ### Performance Tracker
 *Class diagram of the Performance component*
 ### Student List Collection
@@ -69,7 +79,7 @@ either by complete match, or fuzzy match.
 
 
 ## Design & Implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}	### Event component
+{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ### Overall Design & Implementation
 ### Event Design & Implementation
 ### Attendance Design & Implementation
@@ -91,7 +101,7 @@ either by complete match, or fuzzy match.
 |v1.0|professor|edit my events|update my existing events|
 |v2.0|professor|create a student list|link existing student list to performance list or attendance list|
 |v2.0|professor|Create repeatable events without having the need to manually add in|easily create occurring events|
-|v2.0|professor|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v2.0|professor|find an event by name|locate an event without having to go through the entire list|
 
 ## Non-Functional Requirements
 
