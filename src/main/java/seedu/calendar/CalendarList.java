@@ -5,6 +5,7 @@ import seedu.event.EventList;
 import seedu.exception.DukeException;
 import seedu.ui.UI;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CalendarList {
 
@@ -21,12 +22,19 @@ public class CalendarList {
     public static void getFirstSemester(EventList eventList, Integer year) throws DukeException {
         ArrayList<Event> semesterList = new ArrayList<>();
         ArrayList<Event> yearList = new ArrayList<>();
+        ArrayList<ArrayList<Event>> monthList = new ArrayList<>(6);
+        String[] headerMonthDescription = new String[6];
+        for (int k = 0; k < 6; k++) {
+            monthList.add(new ArrayList<>());
+        }
+
         semesterList = getSemesterOneEvents(eventList, semesterList);
         if (semesterList.size() == 0) {
             throw new DukeException("Unable to find any events for this time period.");
         }
         yearList = academicYearEvents(semesterList, yearList, year);
-        UI.printCalendar(yearList, year, year + 1, 1);
+        monthList = separateMonths(yearList, monthList);
+        UI.printCalendar(monthList, year, year + 1, 1);
     }
 
     /**
@@ -41,7 +49,7 @@ public class CalendarList {
             throws DukeException {
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
-            if (event.getMonth() > 7 && event.getMonth() < 13) {
+            if (event.getMonth() > 6 && event.getMonth() < 13) {
                 list.add(event);
             }
         }
@@ -63,7 +71,7 @@ public class CalendarList {
             throw new DukeException("Unable to find any events for this time period.");
         }
         yearList = academicYearEvents(semesterList, yearList, year);
-        UI.printCalendar(yearList, year - 1, year,  2);
+        //UI.printCalendar(yearList, year - 1, year,  2);
     }
 
     /**
@@ -78,7 +86,7 @@ public class CalendarList {
             throws DukeException {
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
-            if (event.getMonth() > 0 && event.getMonth() < 8) {
+            if (event.getMonth() > 0 && event.getMonth() < 7) {
                 list.add(event);
             }
         }
@@ -103,5 +111,43 @@ public class CalendarList {
         }
         return yearList;
     }
+
+    private static ArrayList<ArrayList<Event>> separateMonths(ArrayList<Event> yearList, ArrayList<ArrayList<Event>> monthList)
+            throws DukeException {
+        for (int i = 0; i < yearList.size(); i++) {
+            Event event = yearList.get(i);
+            int month = event.getMonth();
+            switch (month) {
+            case 1:
+            case 7:
+                monthList.get(0).add(event);
+                break;
+            case 2:
+            case 8:
+                monthList.get(1).add(event);
+                break;
+            case 3:
+            case 9:
+                monthList.get(2).add(event);
+                break;
+            case 4:
+            case 10:
+                monthList.get(3).add(event);
+                break;
+            case 5:
+            case 11:
+                monthList.get(4).add(event);
+                break;
+            case 6:
+            case 12:
+                monthList.get(5).add(event);
+                break;
+            default:
+                throw new DukeException("Month not found");
+            }
+        }
+        return monthList;
+    }
+
 
 }

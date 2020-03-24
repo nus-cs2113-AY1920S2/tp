@@ -148,11 +148,46 @@ public class UI {
         printSplitOfThree();
     }
 
+    public static void printBorderOfCalendar() {
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
+        System.out.print("|\n");
+    }
+
+    public static void printBodyOfSix(ArrayList<String> description) {
+        String columnOfSix = ("| %-10s| %-10s| %-10s| %-10s| %-10s| %-10s|%n");
+        System.out.printf(columnOfSix, description.get(0), description.get(1), description.get(2), description.get(3),
+                description.get(4), description.get(5));
+        printBorderOfCalendar();
+    }
+
+    public static void printCalendarHorizontalLine() {
+        Stream.generate(() -> " _").limit(1).forEach(System.out::print);
+        Stream.generate(() -> "_").limit(70).forEach(System.out::print);
+        System.out.println(" ");
+    }
+
+    public static void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
+        printCalendarHorizontalLine();
+        String line = "SEMESTER " + semester + " AY " + semesterOneYear + "/" + semesterTwoYear;
+        System.out.printf(" %40s %n", line);
+        printCalendarHorizontalLine();
+    }
+
     public void printBodyOfThree(int index, String body1, String body2) {
         System.out.printf(columnOfThree, index, body1, body2);
         printSplitOfThree();
     }
-
 
     public static void printEventList(ArrayList<Event> list) {
         System.out.println("Here are all the events in your list.");
@@ -209,12 +244,54 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
-    public static void printCalendar(ArrayList<Event> list, int semesterOneYear, int semesterTwoYear, int semester) {
-        System.out.printf("Events of Semester %d of AY %d/%d\n",
-                semester, semesterOneYear, semesterTwoYear);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " +  list.get(i));
+
+    public static void printCalendar(ArrayList<ArrayList<Event>> list, int semesterOneYear, int semesterTwoYear,
+                                     int semester) {
+        printCalendarHeading(semesterOneYear, semesterTwoYear, semester);
+        printCalendarMonthsHeading(semester);
+        printMonths(list);
+    }
+    public static void printCalendarMonthsHeading(int semester) {
+        ArrayList<String> months = new ArrayList<>();
+        if (semester == 1) {
+            months.add(0, "JUL");
+            months.add(1, "AUG");
+            months.add(2, "SEP");
+            months.add(3, "OCT");
+            months.add(4, "NOV");
+            months.add(5, "DEC");
+        } else {
+            months.add(0, "JAN");
+            months.add(1, "FEB");
+            months.add(2, "MAR");
+            months.add(3, "APR");
+            months.add(4, "MAY");
+            months.add(5, "JUN");
         }
+        printBodyOfSix(months);
+    }
+
+    public static void printMonths(ArrayList<ArrayList<Event>> list) {
+        int maxNumberOfEvents = 0;
+        ArrayList<String> headerMonthDescription = new ArrayList<>(12);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).size() > maxNumberOfEvents) {
+                maxNumberOfEvents = list.get(i).size();
+            }
+        }
+
+        for (int h = 0; h < 12; h++) {
+            headerMonthDescription.add(" ");
+        }
+
+            for (int j = 0; j < list.size(); j++) {
+                for (int k = 0; k < list.get(j).size(); k++) {
+                    if (list.get(j).get(k) != null) {
+                        headerMonthDescription.add(j, list.get(j).get(k).getName());
+                    }
+                }
+                printBodyOfSix(headerMonthDescription);
+            }
     }
 
     /**
