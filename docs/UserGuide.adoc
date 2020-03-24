@@ -1,0 +1,117 @@
+= A.T.A.S (Amazing Task and Assignment System) User Guide
+:site-section: UserGuide
+:toc:
+:toclevels: 4
+:toc-title: Contents
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
+
+By: `Team M16-1` Since: `Jan 2020` License: `MIT`
+
+== Introduction
+
+=== What is *ATAS*?
+*ATAS* (Amazing Task and Assignment System) is a cross platform Command Line Interface (CLI) program that allows you to track your
+assignments and events. *ATAS* is catered for students who want to maximise their productivity and cultivate
+effective time management habits through a desktop application. *ATAS* is optimised for users who prefer to work with
+the CLI.
+
+=== What are the functions of *ATAS*?
+Besides being able to store your assignment and event details in a text file, *ATAS* allows you to view your assignment
+deadlines and event dates in a user-friendly calendar format. You can also list down events that are upcoming and assignments
+that are due in the following week. Furthermore, *ATAS* displays the assignment and event details in an easy-to-read format
+so that you would not miss out any important details at one glance.
+
+=== How does *ATAS* solve the problem of our target audience?
+University students often have piles of assignments and events that are difficult to manage and track efficiently.
+*ATAS* allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time
+logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due to
+manage their time wisely and allocate sufficient time to complete these tasks.
+
+=== What is this guide for?
+This guide aims to the educate you on how to use *ATAS* by providing examples and step-by-step instructions on all its features.
+The features can be found in <<Features>> section.
+
+Interested in cultivating a habit of time management and plan your time more effectively? Head on to <<Quick Start>> to
+get started! Become a more *ATAS* version of yourself today!
+
+== Quick Start
+
+=== Setting up
+. Ensure you have Java 11 or above installed on your computer
+.. For *Windows* Users:
+... Download the latest release of *ATAS* here.
+... Open a `cmd` (Command Prompt) window.
+... Navigate to the folder containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
+
+.. For *Mac* Users:
+... Download the latest release of *ATAS* here.
+... Open up `Terminal`
+... Navigate to the directory containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
+
+=== Sample Commands
+. To use *ATAS*, simply type a valid command into the terminal and press kbd:[Enter] to run the command. +
+e.g. Typing `help` command and pressing kbd:[Enter] will list the commands present
+. Some example commands you can try to get familiar with *ATAS*:
+* `help`: Lists the commands that *ATAS* supports.
+* `assignment n/Assignment One m/CS2113T d/01/01/20 1200 c/Important Assignment`: Adds an assignment called *Assignment
+one* for the module *CS2113T*. This assignment is due on *01/01/2020 1600* and the comments for this assignment is that
+it is an *Important Assignment*.
+* `exit`: Exits *ATAS*.
+
+A summary of all the features available in *ATAS* can be found in <<Commands Summary>>.
+Refer to <<Features>> for the detailed instruction of the various commands of *ATAS*.
+
+== Commands Summary
+=== List of available *ATAS* commands
+. *Help*: `help` +
+* Lists all the commands available in *ATAS*.
+. *Exit*: `exit` +
+* Exits *ATAS*.
+. *Adding Assignments*: `assignment n/ASSIGNMENT NAME m/MODULE d/ DD/MM/YY HHmm c/COMMENTS`
+* e.g. `assignment n/Assignment One m/CS2113T d/01/01/20 1200 c/None`
+. *Adding Events*: `event n/EVENT NAME l/LOCATION d/ DD/MM/YY HHmm - HHmm c/COMMENTS`
+* e.g. `event n/Meeting l/Classroom d/01/01/20 1200 - 1400 c/None`
+. *List Tasks*
+.. *List All Tasks*: `list`
+.. *List Today's Tasks*: `list today`
+.. *List This Week's Tasks*: `list week`
+.. *List Upcoming Events*: `list upcoming events`
+.. *List Incomplete Assignments*: `list incomplete assignments`
+. *Mark a task as done*: `done INDEX`
+* e.g. `done 1`
+. *Edit Task*: `edit INDEX`
+* e.g. `edit 1`
+. *Delete Task*: `delete INDEX`
+* e.g. `delete 1`
+. *Clear Tasks*
+.. *Clear All Tasks*: `clear all`
+.. *Clear All Completed Tasks*: `clear done`
+. *Set tasks to repeat*: `repeat id/EVENT INDEX p/[NUM OF PERIOD][TYPE OF PERIOD]`
+* Available Period: Day [d], Week [w], Month [m], Year [y]
+* e.g. `repeat id/1 p/3d`
+. *Unset repeating tasks*: `repeat id/EVENT INDEX p/0`
+* e.g. `repeat id/1 p/0`
+. *Search for Tasks* (Available Task Type: assignment, event)
+.. *Search By Name*: `search t/TASK TYPE n/TASK NAME`
+* e.g. `search t/assignment n/Assignment one`
+.. *Search By Date*: `search t/TASK TYPE n/TASK NAME d/DD/MM/YY
+* e.g. `search t/assignment n/Assignment one d/01/01/20`
+. *Calendar View*: `calendar d/DD/MM/YY`
+* e.g. `calendar d/01/01/20`
+
+
+
+
+
+
