@@ -30,12 +30,17 @@ user interfaces.
 
 &nbsp;
 
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
 
 &nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 
 ## Features 
 
@@ -49,9 +54,30 @@ user interfaces.
 
 &nbsp;
 
+***
 
 ### Adding an item: `ADD`
 {add your details here}
+Add the specified item in the shopping list.
+
+Format: `ADD [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
+
+* The `[DESCRIPTION]` must exist.
+* The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+* The `[PRICE]` must be in **numerical** form (decimal form accepted).
+* At least one of two parameters (price/quantity) must be present.
+* i/, p/, q/ delimiters must be in **alphabetical** order.
+
+Example of usage: 
+
+1. `ADD i/potato p/5.00 q/3`
+    * Add the description, price and quantity of this item in the shopping list
+    
+2. `ADD i/potato chips p/5.00`  **OR**  `ADD i/potato chips q/2`
+    * Add the description and price /  description and quantity /  of the item in the shopping list
+    
+3. `ADD i/potato chips` 
+    * Add only description of the item in the shopping list
 
 &nbsp;
 
@@ -184,7 +210,7 @@ Format: `HELP`
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
-***
+
 ***
 
 

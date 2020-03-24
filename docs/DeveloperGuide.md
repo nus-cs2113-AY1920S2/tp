@@ -47,6 +47,7 @@ This section will describe how the main features of the application are implemen
   the user wants to record down twice without any elaboration).
 
 
+
 - Alternative 2: Require user to provide all three values to successfully add the item into 
                  the list.
 
@@ -80,7 +81,9 @@ The following sequence diagram below shows how the edit feature works. The detai
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
 ![alt text](images/EditFeature.png)
+
 ![alt text](images/EditFeature_SD.jpg)
+
 
 
 
