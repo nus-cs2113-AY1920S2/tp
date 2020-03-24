@@ -6,9 +6,9 @@
                   \/     \/     \/             \//_____/           \/     /_____/     \/     \/         \/    \/                 
 There are no previous records of meetings, let's create a new one!
 ________________________________________________________________________________________________________________________________
-[add] Add a new contact manually.
 [contacts] List all contacts.
-[display] Display combined schedule of you and your selected contacts.
+[display] Display combined timetable of you and your selected contacts.
+[edit] Edit contacts' timetable.
 [schedule] Schedule a new meeting.
 [delete] Delete a scheduled meeting.
 [meetings] List all scheduled meetings.

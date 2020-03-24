@@ -41,6 +41,7 @@ public class MeetingOrganizer {
         Integer startDay = null;
         Integer endDay = null;
         TeamMember member;
+        int memberNumber;
 
         String userCommand = userInputWords[0];
 
@@ -96,16 +97,20 @@ public class MeetingOrganizer {
                 System.out.println(e.getMessage());
             }
             break;
-        case "add": // add blockOutReason/memberName startDay startTime endDay endTime (eg. add tuition 2 22:00 2 23:00)
-            member = new TeamMember(userInputWords[1]);
-            String memberName = userInputWords[1]; //member name and schedule name are the same
-            startDay = Integer.parseInt(userInputWords[2]);
-            String startTimeString = userInputWords[3];
-            endDay = Integer.parseInt(userInputWords[4]);
-            String endTimeString = userInputWords[5];
-            member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString);
+        case "edit": // edit <Member Number> <busy/free> <startDay> <startTime> <endDay> <endTime> (eg. edit 0 busy 2 22:00 2 23:00)
+            memberNumber = Integer.parseInt(userInputWords[1]);
+            member = myTeamMemberList.getTeamMemberList().get(memberNumber);
+            String memberName = member.getName();
+            startDay = Integer.parseInt(userInputWords[3]);
+            String startTimeString = userInputWords[4];
+            endDay = Integer.parseInt(userInputWords[5]);
+            String endTimeString = userInputWords[6];
 
-            myTeamMemberList.add(member);
+            if (userInputWords[2].equals("busy")) {
+                member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString);
+            } else if (userInputWords[2].equals("free")) {
+                member.addFreeBlocks(memberName, startDay, startTimeString, endDay, endTimeString);
+            }
             break;
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
@@ -113,14 +118,14 @@ public class MeetingOrganizer {
         case "display": // display OR display <Member Number 1> <Member Number 2> (eg. display 1 3)
             if (userInputWords.length > 1) {
                 ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
+                for (int i = 1; i < userInputWords.length; i++) {
+                    memberNumber = Integer.parseInt(userInputWords[i]);
+                    member = myTeamMemberList.getTeamMemberList().get(memberNumber);
+                    myScheduleList.add(member);
+                }
                 //Automatically add main user's timetable into scheduler.
                 if (mainUser != null && !myScheduleList.contains(mainUser)) {
                     myScheduleList.add(mainUser);
-                }
-                for (int i = 1; i < userInputWords.length; i++) {
-                    int memberNumber = Integer.parseInt(userInputWords[i]);
-                    member = myTeamMemberList.getTeamMemberList().get(memberNumber);
-                    myScheduleList.add(member);
                 }
                 ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
                 Boolean[][] myMasterSchedule;
@@ -134,7 +139,6 @@ public class MeetingOrganizer {
 
             break;
         case "schedule": //schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time> (eg. schedule meeting 3 17:00 3 19:00)
-
             String meetingName = userInputWords[1];
             startDay = Integer.parseInt(userInputWords[2]);
             LocalTime startTime = LocalTime.parse(userInputWords[3]);

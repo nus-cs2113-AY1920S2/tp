@@ -28,7 +28,16 @@ public class TeamMember {
         }
     }
 
-    public String addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime) {
+    public void addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime) {
+        editBlocks(MYSCHEDULEBLOCKED, meetingName, startDay, startTime, endDay, endTime);
+    }
+
+    public void addFreeBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime) {
+        editBlocks(MYSCHEDULEFREE, meetingName, startDay, startTime, endDay, endTime);
+    }
+
+    public String editBlocks(Boolean blockedorfree, String meetingName, Integer startDay,
+                             String startTime, Integer endDay, String endTime) {
         LocalTime localTimeStart;
         LocalTime localTimeEnd;
         try {
@@ -52,28 +61,34 @@ public class TeamMember {
             return MESSAGE_STARTENDDAY_OUT_OF_RANGE;
         }
 
+        Boolean myScheduleStatus = blockedorfree;
+        String myScheduleNameStatus = "null";
+        if (blockedorfree == MYSCHEDULEBLOCKED) {
+            myScheduleNameStatus = meetingName;
+        }
+
         if (!startDay.equals(endDay)) {
             int startDayCopy = startDay; // prevent modifying param arguments
             for (int i = startBlock; i < 48; i++) {
-                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                myScheduleName[startDayCopy][i] = meetingName;
+                mySchedule[startDayCopy][i] = myScheduleStatus;
+                myScheduleName[startDayCopy][i] = myScheduleNameStatus;
             }
             startDayCopy++;
             while (startDayCopy != endDay) {
                 for (int i = 0; i < 48; i++) {
-                    mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                    myScheduleName[startDayCopy][i] = meetingName;
+                    mySchedule[startDayCopy][i] = myScheduleStatus;
+                    myScheduleName[startDayCopy][i] = myScheduleNameStatus;
                 }
                 startDayCopy++;
             }
             for (int i = 0; i < endBlock; i++) {
-                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                myScheduleName[startDayCopy][i] = meetingName;
+                mySchedule[startDayCopy][i] = myScheduleStatus;
+                myScheduleName[startDayCopy][i] = myScheduleNameStatus;
             }
         } else {
             for (int i = startBlock; i < endBlock; i++) {
-                mySchedule[startDay][i] = MYSCHEDULEBLOCKED;
-                myScheduleName[startDay][i] = meetingName;
+                mySchedule[startDay][i] = myScheduleStatus;
+                myScheduleName[startDay][i] = myScheduleNameStatus;
             }
         }
         return "SUCCESS";
