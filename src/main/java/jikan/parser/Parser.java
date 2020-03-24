@@ -47,7 +47,7 @@ public class Parser {
     private static StorageCleaner cleaner;
     public static String[] tokenizedInputs;
     String instruction;
-    static Log logger = new Log();
+    private static Log logger = new Log();
     public static ActivityList lastShownList = new ActivityList();
     // flag to check if the current activity is a continued one
     public static int continuedIndex = -1;
@@ -57,8 +57,7 @@ public class Parser {
      * @param scanner scanner object which reads user input
      * @param activityList the list of activities
      */
-    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner)
-            throws InvalidTimeFrameException {
+    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) {
         logger.makeInfoLog("Starting to parse inputs.");
         this.cleaner = cleaner;
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands
@@ -120,10 +119,14 @@ public class Parser {
         String line;
         if (tokenizedInput.equals("on")) {
             cleaner.setStatus(true);
+            assert cleaner.toClean;
             line = "Auto cleaning enabled";
+            logger.makeInfoLog("User has turned on automated cleaning");
         } else if (tokenizedInput.equals("off")) {
             cleaner.setStatus(false);
+            assert !cleaner.toClean;
             line = "Auto cleaning disabled";
+            logger.makeInfoLog("User has turned off automated cleaning");
         } else {
             line = "Invalid Command!";
         }
