@@ -19,6 +19,7 @@ EDIT 1 i/p/q/
 EDIT 1 i/lollipops i/lollipop
 EDIT 1 p/QWERT
 EDIT 1 p/2 i/banana
+EDIT 2 i/apple
 EDIT 1 i/lollipops p/2.50 q/5
 EDIT 1 p/1
 EDIT 1 q/4
