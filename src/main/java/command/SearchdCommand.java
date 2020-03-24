@@ -12,12 +12,21 @@ import java.util.ArrayList;
 public class SearchdCommand extends Command {
     public static final String COMMAND_WORD = "searchd";
 <<<<<<< HEAD
+<<<<<<< HEAD
     public static final String COMMAND_USAGE = "Search for tasks according to date: "
             + "search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
 =======
     public static final String COMMAND_USAGE = "Search for tasks according to date: " +
             "search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
 >>>>>>> upstream/branch-clear
+=======
+    public static final String COMMAND_USAGE = "Search for tasks according to date: " +
+            "search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
+=======
+    public static final String COMMAND_USAGE = "Search for tasks according to date: "
+            + "search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
+>>>>>>> c241c3246c58cfb6bf522da355e49e74b8cc32a9
+>>>>>>> branch-clear
 
     protected static final String allTasks = "all";
     protected static final String eventTasks = "event";
@@ -27,6 +36,11 @@ public class SearchdCommand extends Command {
     protected LocalDate date;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    public SearchdCommand (String taskType, String searchParam, LocalDate date) {
+=======
+>>>>>>> branch-clear
     /**
      * Constructs a Searchd command with the parameters supplied.
      * @param taskType types of tasks user is searching for
@@ -34,9 +48,13 @@ public class SearchdCommand extends Command {
      * @param date date that user wants to look for
      */
     public SearchdCommand(String taskType, String searchParam, LocalDate date) {
+<<<<<<< HEAD
 =======
     public SearchdCommand (String taskType, String searchParam, LocalDate date) {
 >>>>>>> upstream/branch-clear
+=======
+>>>>>>> c241c3246c58cfb6bf522da355e49e74b8cc32a9
+>>>>>>> branch-clear
         this.searchParam = searchParam.toLowerCase();
         this.taskType = taskType;
         this.date = date;
