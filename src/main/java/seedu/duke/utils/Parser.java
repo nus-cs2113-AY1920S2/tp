@@ -25,10 +25,6 @@ public class Parser {
 
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static Command newCommand;
-    private static final Pattern ADD_ITEM_ARGS_FORMAT =
-            Pattern.compile("(?<descriptionArgs>(?:i/[a-zA-Z\\d\\s]+)|)"
-                    + "(?<priceArgs>(?:p/[\\d*.?\\d* ]+|))"
-                    + "(?<quantityArgs>(?:q/[\\d\\n]+)|)$");
     private static final Pattern ITEM_ARGS_FORMAT =
             Pattern.compile("^(?<index>[\\d\\s]+)"
                     + "(?<descriptionArgs>(?:i/[a-zA-Z\\d\\s]+)|)"
@@ -153,9 +149,39 @@ public class Parser {
                             + "p/[PRICE] or q/[QUANTITY] must be present."
                             + System.lineSeparator()
                             + "|| Example: ADD i/apples p/9.90 q/9");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! Invalid Command. Check if these are met:"
+                            + System.lineSeparator()
+                            + " - Price of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - Quantity of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                            + System.lineSeparator()
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
                 }
             } else if (prices == null && quantity == null) {
-                newCommand = new AddCommand(description,0.0,1);
+                try {
+                    newCommand = new AddCommand(description,0.0,1);
+                } catch (IndexOutOfBoundsException e) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! Invalid Command. Check if these are met:"
+                            + System.lineSeparator()
+                            + " - Price of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - Quantity of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                            + System.lineSeparator()
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
+                }
             } else {
                 try {
                     double price = Double.parseDouble(prices);
