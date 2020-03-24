@@ -25,6 +25,10 @@ public class Parser {
 
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static Command newCommand;
+    private static final Pattern ADD_ITEM_ARGS_FORMAT =
+            Pattern.compile("(?<descriptionArgs>(?:i/[a-zA-Z\\d\\s]+)|)"
+                    + "(?<priceArgs>(?:p/[\\d*.?\\d* ]+|))"
+                    + "(?<quantityArgs>(?:q/[\\d\\n]+)|)$");
     private static final Pattern ITEM_ARGS_FORMAT =
             Pattern.compile("^(?<index>[\\d\\s]+)"
                     + "(?<descriptionArgs>(?:i/[a-zA-Z\\d\\s]+)|)"
@@ -121,87 +125,91 @@ public class Parser {
 
     private void createAddCommand(String arguments) {
         try {
-            String[] args = splitArgsForAddCommand(arguments);
-            String description;
-            String prices;
-            description = args[0];
-            prices = args[1];
 
-            if (prices == null) {
-                newCommand = new AddCommand(description, 0.0);
+            final Matcher matcher = ADD_ITEM_ARGS_FORMAT.matcher(arguments.trim());
+            // Validate args string format
+            if (!matcher.matches()) {
+                LOGGER.log(Level.WARNING, "(Add command) Rejecting user command, invalid command format");
+                newCommand = new IncorrectCommand(AddCommand.FAILURE_ACK_3);
             } else {
-                try {
-                    double price = Double.parseDouble(prices);
-                    newCommand = new AddCommand(description, price);
-                } catch (NumberFormatException nfe) {
-                    newCommand = new IncorrectCommand(System.lineSeparator()
-                            + "Oops! For that to be done properly, check if these are met:"
-                            + System.lineSeparator()
-                            + " - Description of an item cannot be empty."
-                            + System.lineSeparator()
-                            + " - Price of an item has to be in numerical form."
-                            + System.lineSeparator()
-                            + " - At least 'i/' or 'p/' should be present."
-                            + System.lineSeparator()
-                            + "|| Example: ADD i/apple p/2.50"
-                            + System.lineSeparator());
+                String[] addCommandArgs = splitArgsForAddCommand(arguments, matcher);
+                //{description, price, quantity}
+                String itemDescription = addCommandArgs[0];
+                String itemPrice = addCommandArgs[1];
+                String itemQuantity = addCommandArgs[2];
+                if (itemPrice == null && itemQuantity != null) {
+                    int itemQuantityInInteger = Integer.parseInt(addCommandArgs[2]);
+                    newCommand = new AddCommand(itemDescription, 0.0, itemQuantityInInteger);
+                } else if (itemPrice != null && itemQuantity == null) {
+                    itemQuantity = "1";
+                    int itemQuantityInInteger = Integer.parseInt(itemQuantity);
+                    double itemPriceInDouble = Double.parseDouble(addCommandArgs[1]);
+                    newCommand = new AddCommand(itemDescription, itemPriceInDouble, itemQuantityInInteger);
+                } else if (itemPrice == null && itemQuantity == null) {
+                    newCommand = new AddCommand(itemDescription, 0.0, 1);
+                } else {
+                    try {
+                        double itemPriceInDouble = Double.parseDouble(addCommandArgs[1]);
+                        int itemQuantityInInteger = Integer.parseInt(addCommandArgs[2]);
+                        newCommand = new AddCommand(itemDescription, itemPriceInDouble, itemQuantityInInteger);
+                    } catch (NumberFormatException nfe) {
+                        newCommand = new IncorrectCommand(System.lineSeparator()
+                                + "Oops! For that to be done properly, check if these are met:"
+                                + System.lineSeparator()
+                                + " - Description of an item cannot be empty."
+                                + System.lineSeparator()
+                                + " - Price of an item has to be in numerical form."
+                                + System.lineSeparator()
+                                + " - At least 'i/' or 'p/' should be present."
+                                + System.lineSeparator()
+                                + "|| Example: ADD i/apple p/2.50"
+                                + System.lineSeparator());
+                    }
+
                 }
             }
         } catch (NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Error! Description of an item cannot be empty."
-                    + "\nExample: ADD 1 i/apple p/4.50");
+                    + "\nExample: ADD 1 i/apple p/4.50 q/9.90");
         } catch (ArrayIndexOutOfBoundsException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Oops! For that to be done properly, check if these are met:"
+                    + "Oops! Invalid Command. Check if these are met:"
                     + System.lineSeparator()
-                    + " - Description of an item cannot be empty."
+                    + " - Price of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - Price of an item has to be in decimal form."
+                    + " - Quantity of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - At least 'i/' or 'p/' should be present."
+                    + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
                     + System.lineSeparator()
-                    + "|| Example: ADD i/apple p/2.50"
-                    + System.lineSeparator());
+                    + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                    + "p/[PRICE] or q/[QUANTITY] must be present."
+                    + System.lineSeparator()
+                    + "|| Example: ADD 2 i/apples p/9.90 q/9");
         }
     }
 
-    private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
-        String[] argsArray = new String[]{};
-        String descriptionDelimiter = "i/";
-        String priceDelimiter = "p/";
-        String itemPrice;
-        String itemDescription;
+    private String[] splitArgsForAddCommand(String arguments, Matcher matcher) throws NullPointerException {
 
-        int buffer = 2;
-        int indexOfiPrefix;
-        int indexOfpPrefix;
-        boolean descriptionPresent = arguments.contains(descriptionDelimiter);
-        boolean pricePresent = arguments.contains(priceDelimiter);
+        String itemDescription = null;
+        String itemPrice = null;
+        String itemQuantity = null;
+        final boolean descriptionPresent = arguments.contains("i/");
+        final boolean pricePresent = arguments.contains("p/");
+        final boolean quantityPresent = arguments.contains("q/");
 
-        if (descriptionPresent && !pricePresent) { //eg args: ADD i/apple
-            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
-            itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
-            argsArray = new String[]{itemDescription, null};
-        } else if (descriptionPresent && pricePresent) {
-            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
-            indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
-            if (indexOfpPrefix < indexOfiPrefix) { //e.g args: ADD p/4.50 i/apple
-                itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
-                itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix).trim();
-            } else { //e.g args: ADD i/apple p/4.50
-                itemDescription = arguments.substring(indexOfiPrefix + buffer, indexOfpPrefix).trim();
-                itemPrice = arguments.substring(indexOfpPrefix + buffer).trim();
-            }
-            argsArray = new String[]{itemDescription, itemPrice};
-        } else if (!descriptionPresent && pricePresent) { //ADD p/3.50
-            argsArray = new String[]{null, null};
+        if (descriptionPresent) { //group: i/...; split: [i/, ...]
+            itemDescription = matcher.group("descriptionArgs").trim().split("i/")[1];
         }
-
-        if (argsArray[0] == null && argsArray[1] == null) {
-            throw new NullPointerException();
+        if (pricePresent) {
+            itemPrice = matcher.group("priceArgs").trim().split("p/")[1];
         }
-        return argsArray;
+        if (quantityPresent) {
+            itemQuantity = matcher.group("quantityArgs").trim().split("q/")[1];
+        }
+        return new String[]{itemDescription,itemPrice,itemQuantity};
+
+
     }
 
     /**

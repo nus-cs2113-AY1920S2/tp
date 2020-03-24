@@ -124,10 +124,20 @@ public class ParserTest {
 
     @Test
     public void parse_addCommandNoDescription_errorMessage() {
-        final String[] inputs = {"ADD", "ADD ", "ADD p/2.50"};
+        final String[] inputs = {"ADD i/ p/0.0 q/1", "ADD i/ p/2.5 q/1", "ADD i/ p/2.50 q/2"};
         final String resultMessage = System.lineSeparator()
-                + "Error! Description of an item cannot be empty."
-                + "\nExample: ADD 1 i/apple p/4.50";
+                + "Oops! Invalid Command. Check if these are met:"
+                + System.lineSeparator()
+                + " - Price of an item should be in positive numerical form."
+                + System.lineSeparator()
+                + " - Quantity of an item should be in positive numerical form."
+                + System.lineSeparator()
+                + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                + System.lineSeparator()
+                + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                + "p/[PRICE] or q/[QUANTITY] must be present."
+                + System.lineSeparator()
+                + "|| Example: ADD 2 i/apples p/9.90 q/9";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
@@ -136,16 +146,18 @@ public class ParserTest {
     public void parse_addCommandIncorrectPriceFormat_errorMessage() {
         final String[] inputs = {"ADD i/apple p/8*wh12", "ADD i/apple p/ "};
         final String resultMessage = System.lineSeparator()
-                + "Oops! For that to be done properly, check if these are met:"
+                + "Oops! Invalid Command. Check if these are met:"
                 + System.lineSeparator()
-                + " - Description of an item cannot be empty."
+                + " - Price of an item should be in positive numerical form."
                 + System.lineSeparator()
-                + " - Price of an item has to be in numerical form."
+                + " - Quantity of an item should be in positive numerical form."
                 + System.lineSeparator()
-                + " - At least 'i/' or 'p/' should be present."
+                + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
                 + System.lineSeparator()
-                + "|| Example: ADD i/apple p/2.50"
-                + System.lineSeparator();
+                + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                + "p/[PRICE] or q/[QUANTITY] must be present."
+                + System.lineSeparator()
+                + "|| Example: ADD 2 i/apples p/9.90 q/9";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 

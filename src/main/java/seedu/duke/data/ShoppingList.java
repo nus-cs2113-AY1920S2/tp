@@ -3,6 +3,7 @@ package seedu.duke.data;
 import seedu.duke.ui.CommandLineTable;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class ShoppingList {
 
@@ -13,6 +14,7 @@ public class ShoppingList {
     }
 
     //@@author kokjoon97
+
     /**
      * Returns the size of the items ArrayList.
      *
@@ -24,6 +26,7 @@ public class ShoppingList {
     //@@author
 
     //@@author JLoh579
+
     /**
      * Prints a table representing the shopping list.
      */
@@ -36,7 +39,7 @@ public class ShoppingList {
         for (Item item : items) {
 
             itemLine = bulletNum + ". [" + item.getStatusIcon() + "] " + item.getDescription();
-            st.addRow(itemLine, String.format("$%.2f",item.getPrice()),String.valueOf(item.getQuantity()));
+            st.addRow(itemLine, String.format("$%.2f", item.getPrice()), String.valueOf(item.getQuantity()));
             bulletNum++;
         }
         st.print();
@@ -67,6 +70,7 @@ public class ShoppingList {
 
     /**
      * Marks item in index as bought.
+     *
      * @param index index of item to mark
      * @return item that is marked
      */
@@ -94,6 +98,7 @@ public class ShoppingList {
 
     /**
      * Unmarks item in index as bought.
+     *
      * @param index index of item to unmark
      * @return item that is unmarked
      */
@@ -110,6 +115,7 @@ public class ShoppingList {
     }
 
     //@@author kokjoon97
+
     /**
      * Removes an item at the specified index.
      *
@@ -132,7 +138,6 @@ public class ShoppingList {
         if (item.getDescription() == null) {
             throw new NullPointerException();
         }
+
     }
-
-
 }
