@@ -105,7 +105,7 @@ Refer to <<Features>> for the detailed instruction of the various commands of *A
 . *Search for Tasks* (Available Task Type: assignment, event)
 .. *Search By Name*: `search t/TASK TYPE n/TASK NAME`
 * e.g. `search t/assignment n/Assignment one`
-.. *Search By Date*: `search t/TASK TYPE n/TASK NAME d/DD/MM/YY
+.. *Search By Date*: `search t/TASK TYPE n/TASK NAME d/DD/MM/YY`
 * e.g. `search t/assignment n/Assignment one d/01/01/20`
 . *Calendar View*: `calendar d/DD/MM/YY`
 * e.g. `calendar d/01/01/20`
