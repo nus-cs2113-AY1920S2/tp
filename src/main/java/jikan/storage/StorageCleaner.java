@@ -53,6 +53,7 @@ public class StorageCleaner {
                 Scanner sc = new Scanner(status);
                 String status = sc.nextLine();
                 int value = Integer.parseInt(status);
+                assert value == 0 || value == 1;
                 if (value == 1) {
                     this.toClean = true;
                 } else {
@@ -165,6 +166,5 @@ public class StorageCleaner {
             }
             liveDataWriter.close();
         }
-
     }
 }
