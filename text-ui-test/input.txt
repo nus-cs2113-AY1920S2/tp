@@ -12,8 +12,10 @@ add id/CS2104 n/Programming Language Concepts mc/4 pre/CS2030
 view
 add id/CS1231 s/3 mc/4
 view /mp
-done id/IS4241 g/A+
+done id/IS4241 g/A-
 view /dm
 view /cc
 find cS
+done id/CS1010 g/A+
+CAP
 bye
