@@ -84,4 +84,17 @@ public class Messages {
     public static final String NO_SAVE_FILE_MESSAGE = "No existing save file found. A new save file will be created";
     public static final String SAVE_FAILED_MESSAGE = "Oh no. Something went wrong while saving, please try again later";
     public static final String EMPTY_SEARCH_RESULTS_ERROR = "There are no matching tasks for the search query";
+<<<<<<< HEAD
 }
+=======
+    public static final String INVALID_SEARCH_FORMAT = "Invalid Argument for Search Command";
+    public static final String SEARCH_INSUFFICIENT_ARGS = "Insufficient argument for Search Command"
+            + System.lineSeparator() + SearchCommand.COMMAND_USAGE;
+    public static final String INVALID_REPEAT_ERROR = "Please choose a valid index.";
+    public static final String INVALID_EVENT_REPEAT_ERROR = "Please choose an event.";
+    public static final String REPEAT_INSUFFICIENT_ARGS_ERROR = "Insufficient arguments for Repeat Command";
+    public static final String CALENDAR_INCORRECT_FORMAT_ERROR = "Incorrect format for Calendar Command"
+            + System.lineSeparator() + CalendarCommand.COMMAND_USAGE;
+
+}
+>>>>>>> branch-calendar
