@@ -31,7 +31,7 @@ public class TextUI {
                 + "______________________________________________________________________");
         out.println("[add] Add a new contact manually.");
         out.println("[contacts] List all contacts.");
-        out.println("[display] Display combined schedule of you and your selected contacts");
+        out.println("[display] Display combined schedule of you and your selected contacts.");
         out.println("[schedule] Schedule a new meeting.");
         out.println("[delete] Delete a scheduled meeting.");
         out.println("[meetings] List all scheduled meetings.");
