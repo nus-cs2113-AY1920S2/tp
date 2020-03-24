@@ -13,7 +13,7 @@ import tasks.Event;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class SearchTest {
+public class SearchCommandTest {
     private static TaskList filledTaskList;
     private static TaskList emptyTaskList;
     private static Ui ui;
@@ -22,7 +22,7 @@ public class SearchTest {
     /**
      * Initialize hard-coded test cases.
      */
-    public SearchTest() {
+    public SearchCommandTest() {
         emptyTaskList = new TaskList();
         filledTaskList = new TaskList();
         ui = new Ui();
