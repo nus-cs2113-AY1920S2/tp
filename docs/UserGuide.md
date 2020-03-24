@@ -55,7 +55,7 @@ user interfaces.
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide"> &#129053; back to top</a></b>
 
 ***
 
@@ -85,7 +85,7 @@ Example of usage:
     
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -104,7 +104,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -113,7 +113,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -125,7 +125,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -136,7 +136,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -154,7 +154,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -172,7 +172,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -182,7 +182,7 @@ Format: `HELP`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 ***
@@ -195,7 +195,7 @@ Format: `BYE`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -203,14 +203,14 @@ Format: `BYE`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
 that contains the data of your previous SHOCO shopping list.
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -225,5 +225,5 @@ that contains the data of your previous SHOCO shopping list.
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">? back to top</a></b>
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
