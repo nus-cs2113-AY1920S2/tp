@@ -35,7 +35,7 @@ public class Atas {
     }
 
     /**
-     * Starts Duke Process.
+     * Starts Atas Process.
      */
     public void run() {
         ui.printWelcomeMessage();
@@ -82,13 +82,13 @@ public class Atas {
             todayTasksString = Messages.NO_TODAY_TASKS_MESSAGE;
         } else {
             todayTasksString = todayTasksString.substring(todayTasksString.indexOf(System.lineSeparator()));
-            todayTasksString = Messages.SHOW_TODAY_TASKS_MESSAGE + todayTasksString;
+            todayTasksString = Messages.LIST_TODAY_TASKS_MESSAGE + todayTasksString;
         }
         ui.showToUser(todayTasksString);
     }
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the seedu.atas.Atas application.
      */
     public static void main(String[] args) {
         new Atas().run();

@@ -1,5 +1,6 @@
 package tasks;
 
+import command.RepeatCommand;
 import common.Messages;
 import seedu.atas.Parser;
 
@@ -11,14 +12,6 @@ import java.util.StringJoiner;
 
 public class Event extends Task {
     public static final String EVENT_ICON = "E";
-    public static final String DAILY_ICON = "D";
-    public static final String WEEKLY_ICON = "W";
-    public static final String MONTHLY_ICON = "M";
-    public static final String YEARLY_ICON = "Y";
-    public static final String REPEAT_DAY_KEYWORD = "daily";
-    public static final String REPEAT_WEEK_KEYWORD = "weekly";
-    public static final String REPEAT_MONTH_KEYWORD = "monthly";
-    public static final String REPEAT_YEAR_KEYWORD = "yearly";
 
     protected String location;
     protected LocalDateTime startDateAndTime;
@@ -126,16 +119,16 @@ public class Event extends Task {
     public void updateDateAndTime() {
         if (this.isRepeat) {
             switch (typeOfPeriod) {
-            case (DAILY_ICON):
+            case (RepeatCommand.DAILY_ICON):
                 updateDateByDays(numOfPeriod);
                 break;
-            case (WEEKLY_ICON):
+            case (RepeatCommand.WEEKLY_ICON):
                 updateDateByDays(numOfPeriod * 7);
                 break;
-            case (MONTHLY_ICON):
+            case (RepeatCommand.MONTHLY_ICON):
                 updateDateByMonth(numOfPeriod);
                 break;
-            case (YEARLY_ICON):
+            case (RepeatCommand.YEARLY_ICON):
                 updateDateByYear(numOfPeriod);
                 break;
             default:
@@ -214,6 +207,7 @@ public class Event extends Task {
         sj.add(location);
         sj.add(startDateAndTime.format(Parser.INPUT_DATE_FORMAT));
         sj.add(endDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(isRepeat ? "true" : "false");
         sj.add(Integer.toString(numOfPeriod));
         sj.add(typeOfPeriod);
         sj.add(comments);
@@ -237,12 +231,15 @@ public class Event extends Task {
         String location = tokens[3];
         LocalDateTime startDateAndTime = Parser.parseDate(tokens[4]);
         LocalDateTime endDateAndTime = Parser.parseDate(tokens[5]);
-        int numOfPeriod = Integer.parseInt(tokens[6]);
-        String typeOfPeriod = tokens[7];
-        String comments = tokens[8];
-        assert tokens.length == 9;
+        boolean isRepeat = Boolean.parseBoolean(tokens[6]);
+        int numOfPeriod = Integer.parseInt(tokens[7]);
+        String typeOfPeriod = tokens[8];
+        String comments = tokens[9];
+        assert tokens.length == 10;
         Event event = new Event(name, location, startDateAndTime, endDateAndTime, comments);
-        event.setRepeat(numOfPeriod, typeOfPeriod);
+        if (isRepeat) {
+            event.setRepeat(numOfPeriod, typeOfPeriod);
+        }
         if (isDone) {
             event.setDone();
         }

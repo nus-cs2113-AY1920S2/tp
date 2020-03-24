@@ -6,21 +6,31 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class SearchCommand extends Command {
-    public static final String COMMAND_WORD = "search";
-    public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
+public class SearchdCommand extends Command {
+    public static final String COMMAND_WORD = "searchd";
+    public static final String COMMAND_USAGE = "Search for tasks according to date: "
+            + "search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
 
     protected static final String allTasks = "all";
     protected static final String eventTasks = "event";
     protected static final String assignmentTasks = "assignment";
     protected String taskType;
     protected String searchParam;
+    protected LocalDate date;
 
-    public SearchCommand(String searchParam, String taskType) {
+    /**
+     * Constructs a Searchd command with the parameters supplied.
+     * @param taskType types of tasks user is searching for
+     * @param searchParam query that user wants to find
+     * @param date date that user wants to look for
+     */
+    public SearchdCommand(String taskType, String searchParam, LocalDate date) {
         this.searchParam = searchParam.toLowerCase();
         this.taskType = taskType;
+        this.date = date;
     }
 
     /**
@@ -28,11 +38,11 @@ public class SearchCommand extends Command {
      * @param taskList taskList object containing all the tasks
      * @return arrayList of all tasks that match the search query
      */
-    private ArrayList<Task> getSearchQueryAllTasks(TaskList taskList) {
+    private ArrayList<Task> getSearchQueryAllTasks(TaskList taskList, LocalDate date) {
         ArrayList<Task> tasks = taskList.getTaskArray();
         ArrayList<Task> results = new ArrayList<>();
         for (Task task: tasks) {
-            if (task.getName().toLowerCase().contains(searchParam)) {
+            if (task.getName().toLowerCase().contains(searchParam) && task.getDate().equals(date)) {
                 results.add(task);
             }
         }
@@ -44,12 +54,12 @@ public class SearchCommand extends Command {
      * @param taskList taskList object containing all the tasks
      * @return ArrayList of all event objects that matches the search query
      */
-    private ArrayList<Task> getSearchQueryEvents(TaskList taskList) {
+    private ArrayList<Task> getSearchQueryEvents(TaskList taskList, LocalDate date) {
         ArrayList<Task> events = taskList.getEventsArray();
         assert events.size() == taskList.getEventsArray().size();
         ArrayList<Task> results = new ArrayList<>();
         for (Task event: events) {
-            if (event.getName().toLowerCase().contains(searchParam)) {
+            if (event.getName().toLowerCase().contains(searchParam) && event.getDate().equals(date)) {
                 results.add(event);
             }
         }
@@ -61,12 +71,12 @@ public class SearchCommand extends Command {
      * @param taskList taskList objects containing all assignment tasks
      * @return ArrayList of all assignment object that matches the search query
      */
-    private ArrayList<Task> getSearchQueryAssignments(TaskList taskList) {
+    private ArrayList<Task> getSearchQueryAssignments(TaskList taskList, LocalDate date) {
         ArrayList<Task> assignments = taskList.getAssignmentsArray();
         ArrayList<Task> results = new ArrayList<>();
         assert assignments.size() == taskList.getAssignmentsArray().size();
         for (Task assignment: assignments) {
-            if (assignment.getName().toLowerCase().contains(searchParam)) {
+            if (assignment.getName().toLowerCase().contains(searchParam) && assignment.getDate().equals(date)) {
                 results.add(assignment);
             }
         }
@@ -112,13 +122,13 @@ public class SearchCommand extends Command {
         }
         switch (taskType) {
         case allTasks:
-            ArrayList<Task> results = getSearchQueryAllTasks(taskList);
+            ArrayList<Task> results = getSearchQueryAllTasks(taskList, date);
             return new CommandResult(resultsList(results));
         case eventTasks:
-            ArrayList<Task> eventResults = getSearchQueryEvents(taskList);
+            ArrayList<Task> eventResults = getSearchQueryEvents(taskList, date);
             return new CommandResult(resultsList(eventResults));
         case assignmentTasks:
-            ArrayList<Task> assignmentResults = getSearchQueryAssignments(taskList);
+            ArrayList<Task> assignmentResults = getSearchQueryAssignments(taskList, date);
             return new CommandResult(resultsList(assignmentResults));
         default:
             return new CommandResult(String.format(Messages.INCORRECT_ARGUMENT_ERROR,

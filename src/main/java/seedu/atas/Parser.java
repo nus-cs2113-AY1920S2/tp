@@ -13,6 +13,7 @@ import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
 import command.SearchCommand;
+import command.SearchdCommand;
 import command.EditCommand;
 import command.CalendarCommand;
 import common.Messages;
@@ -56,6 +57,19 @@ public class Parser {
                     + "\\s+n/\\s*(?<name>[^/]+)"
     );
 
+    //regex for Searchd command
+    public static final Pattern SEARCHD_PARAMETERS_FORMAT = Pattern.compile(
+            "(?<search>[^/]+)"
+                    + "\\s+t/\\s*(?<taskType>[^/]+)"
+                    + "\\s+n/\\s*(?<taskName>[^/]+)"
+                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2})");
+
+    //regex for repeat command
+    public static final Pattern REPEAT_PARAMETERS_FORMAT = Pattern.compile(
+            "(?<repeat>[^/]+)"
+                    + "\\s+id/\\s*(?<eventIndex>\\d+)"
+                    + "\\s+p/\\s*(?<numOfPeriod>\\d+)" + "(?<typeOfPeriod>[dwmy])?");
+
     //regex for calendar command
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
             "(?<calendar>[^/]+)"
@@ -73,29 +87,31 @@ public class Parser {
         String commandType = fullCommand.split("\\s+", 2)[0].trim().toLowerCase();
 
         switch (commandType) {
-        case HelpCommand.HELP_COMMAND_WORD:
+        case HelpCommand.COMMAND_WORD:
             return prepareHelpCommand(fullCommand);
-        case AssignmentCommand.ASSIGNMENT_COMMAND_WORD:
+        case AssignmentCommand.COMMAND_WORD:
             return prepareAssignmentCommand(fullCommand);
-        case DeleteCommand.DELETE_COMMAND_WORD:
+        case DeleteCommand.COMMAND_WORD:
             return prepareDeleteCommand(fullCommand);
-        case ClearCommand.CLEAR_COMMAND_WORD:
+        case ClearCommand.COMMAND_WORD:
             return prepareClearCommand(fullCommand);
-        case DoneCommand.DONE_COMMAND_WORD:
+        case DoneCommand.COMMAND_WORD:
             return prepareDoneCommand(fullCommand);
-        case EventCommand.EVENT_COMMAND_WORD:
+        case EventCommand.COMMAND_WORD:
             return prepareEventCommand(fullCommand);
-        case ListCommand.LIST_COMMAND_WORD:
+        case ListCommand.COMMAND_WORD:
             return prepareListCommand(fullCommand);
-        case SearchCommand.SEARCH_COMMAND_WORD:
+        case SearchCommand.COMMAND_WORD:
             return prepareSearchCommand(fullCommand);
-        case EditCommand.EDIT_COMMAND_WORD:
+        case SearchdCommand.COMMAND_WORD:
+            return prepareSearchdCommand(fullCommand);
+        case EditCommand.COMMAND_WORD:
             return prepareEditCommand(fullCommand);
-        case RepeatCommand.REPEAT_COMMAND_WORD:
+        case RepeatCommand.COMMAND_WORD:
             return prepareRepeatCommand(fullCommand);
-        case CalendarCommand.CALENDAR_COMMAND_WORD:
+        case CalendarCommand.COMMAND_WORD:
             return prepareCalendarCommand(fullCommand);
-        case ExitCommand.EXIT_COMMAND_WORD:
+        case ExitCommand.COMMAND_WORD:
             return prepareExitCommand(fullCommand);
         default:
             return new IncorrectCommand(Messages.UNKNOWN_COMMAND_ERROR);
@@ -121,7 +137,8 @@ public class Parser {
     private static Command prepareAssignmentCommand(String fullCommand) {
         final Matcher matcher = ASSIGNMENT_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
-            return new IncorrectCommand(Messages.ASSIGN_INCORRECT_FORMAT_ERROR);
+            return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    capitalize(AssignmentCommand.COMMAND_WORD), AssignmentCommand.COMMAND_USAGE));
         }
 
         LocalDateTime dateTime;
@@ -140,11 +157,30 @@ public class Parser {
     private static Command prepareSearchCommand(String fullCommand) {
         final Matcher matcher = SEARCH_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
-            return new IncorrectCommand(Messages.SEARCH_INSUFFICIENT_ARGS);
+            return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE));
         }
         String taskType = matcher.group("taskType");
         String taskName = matcher.group("name");
         return new SearchCommand(taskName, taskType);
+    }
+
+    private static Command prepareSearchdCommand(String fullCommand) {
+        final Matcher matcher = SEARCHD_PARAMETERS_FORMAT.matcher(fullCommand);
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    capitalize(SearchdCommand.COMMAND_WORD), SearchdCommand.COMMAND_USAGE));
+        }
+        String taskType = matcher.group("taskType");
+        String taskName = matcher.group("taskName");
+        String stringDate = matcher.group("dateTime");
+        LocalDate date;
+        try {
+            date = LocalDate.parse(stringDate, INPUT_DATE_ONLY_FORMAT);
+            return new SearchdCommand(taskType, taskName, date);
+        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+        }
     }
 
     private static Command prepareDeleteCommand(String fullCommand) {
@@ -156,7 +192,8 @@ public class Parser {
         } catch (NumberFormatException e) {
             return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DELETE_INSUFFICIENT_ARGS_ERROR);
+            return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    capitalize(DeleteCommand.COMMAND_WORD), DeleteCommand.COMMAND_USAGE));
         }
         return new DeleteCommand(deleteIndex);
     }
@@ -170,7 +207,8 @@ public class Parser {
         } catch (NumberFormatException e) {
             return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DONE_INSUFFICIENT_ARGS_ERROR);
+            return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    capitalize(DoneCommand.COMMAND_WORD), DoneCommand.COMMAND_USAGE));
         }
         return new DoneCommand(doneIndex);
     }
@@ -178,7 +216,8 @@ public class Parser {
     private static Command prepareEventCommand(String fullCommand) {
         final Matcher matcher = EVENT_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
-            return new IncorrectCommand(Messages.EVENT_INCORRECT_FORMAT_ERROR);
+            return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    Parser.capitalize(EventCommand.COMMAND_WORD), EventCommand.COMMAND_USAGE));
         }
 
         LocalDateTime startDateTime;
@@ -223,13 +262,23 @@ public class Parser {
     }
 
     private static Command prepareExitCommand(String fullCommand) {
-        assert fullCommand.trim().equals(ExitCommand.EXIT_COMMAND_WORD);
-        return new ExitCommand();
+        assert fullCommand.trim().equals(ExitCommand.COMMAND_WORD);
+        if (fullCommand.equals(ExitCommand.COMMAND_WORD)) {
+            return new ExitCommand();
+        } else {
+            return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    capitalize(ExitCommand.COMMAND_WORD), ExitCommand.COMMAND_USAGE));
+        }
     }
 
     private static Command prepareHelpCommand(String fullCommand) {
-        assert fullCommand.trim().equals(HelpCommand.HELP_COMMAND_WORD);
-        return new HelpCommand();
+        assert fullCommand.trim().equals(HelpCommand.COMMAND_WORD);
+        if (fullCommand.equals(HelpCommand.COMMAND_WORD)) {
+            return new HelpCommand();
+        } else {
+            return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    capitalize(HelpCommand.COMMAND_WORD), HelpCommand.COMMAND_USAGE));
+        }
     }
 
     private static Command prepareEditCommand(String fullCommand) {
@@ -240,33 +289,39 @@ public class Parser {
         } catch (NumberFormatException e) {
             return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DONE_INSUFFICIENT_ARGS_ERROR);
+            return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    capitalize(DoneCommand.COMMAND_WORD), DoneCommand.COMMAND_USAGE));
         }
         return new EditCommand(editIndex);
     }
 
     private static Command prepareRepeatCommand(String fullCommand) {
-        String[] tokens = fullCommand.split("\\s+");
-        assert tokens.length == 3;
-        int eventIndex;
-        int numOfPeriod;
-        String typeOfPeriod;
-        try {
-            eventIndex = Integer.parseInt(tokens[1].trim()) - 1;
-            numOfPeriod = Integer.parseInt(String.valueOf(tokens[2].trim().charAt(0)));
-            typeOfPeriod = String.valueOf(tokens[2].trim().charAt(1));
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
-        } catch (IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.REPEAT_INSUFFICIENT_ARGS_ERROR);
+        final Matcher matcher = REPEAT_PARAMETERS_FORMAT.matcher(fullCommand);
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    capitalize(RepeatCommand.COMMAND_WORD), RepeatCommand.COMMAND_USAGE));
         }
-        return new RepeatCommand(eventIndex, numOfPeriod, typeOfPeriod);
+        try {
+            int eventIndex = Integer.parseInt(matcher.group("eventIndex")) - 1;
+            int numOfPeriod = Integer.parseInt(matcher.group("numOfPeriod"));
+            String typeOfPeriod = matcher.group("typeOfPeriod");
+            if (numOfPeriod != 0 && typeOfPeriod == null) {
+                return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                        capitalize(RepeatCommand.COMMAND_WORD), RepeatCommand.COMMAND_USAGE));
+            }
+            return new RepeatCommand(eventIndex, numOfPeriod, typeOfPeriod);
+        } catch (NumberFormatException e) {
+            //Error will be caught by Matcher from the regex above
+            assert false;
+            return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
+        }
     }
 
     private static Command prepareCalendarCommand(String fullCommand) {
         final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
-            return new IncorrectCommand(Messages.CALENDAR_INCORRECT_FORMAT_ERROR);
+            return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    capitalize(CalendarCommand.COMMAND_WORD), CalendarCommand.COMMAND_USAGE));
         }
         String month = matcher.group("month");
         String year = matcher.group("year");
