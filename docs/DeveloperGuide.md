@@ -10,7 +10,7 @@ This section will describe how the main features of the application are implemen
  #### 2.1.1 Current implementation
  
  The add feature is implemented using an <code>AddCommand</code> class. This class extends from the main
- <code>Command</code> class. The user input **must contain at least description** out of these parameters: 
+ <code>Command</code> class. The user input **must contain at least a description** out of these parameters: 
  *description*, *price*, *quantity*. User can choose not to input price or quantity as the price will set to 
  default which is 0.0 if the user did not input any value for price. On the other hand, quantity will set to 
  default which is 1 if the user did not input any value for quantity. 
@@ -47,7 +47,8 @@ This section will describe how the main features of the application are implemen
   the user wants to record down twice without any elaboration).
 
 
-- Alternative 2: Require user to provide all three values to successsfully add the item into 
+
+- Alternative 2: Require user to provide all three values to successfully add the item into 
                  the list.
 
   - Pros: User will have a neat and unity Shopping list, less deal with parameter (because users are
@@ -80,9 +81,10 @@ The following sequence diagram below shows how the edit feature works. The detai
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
 ![alt text](images/EditFeature.png)
-<p align="center">
- <img src="images/EditFeature_SD.jpg">
-</p>
+
+![alt text](images/EditFeature_SD.jpg)
+
+
 
 
 #### 2.2.2 Design considerations
@@ -97,10 +99,10 @@ have been omitted from the diagram. Those details are shown in a separate sequen
     presence of the variable in user input.
  
  
-- Alternative 2: Require all values of an <cod>item</code> object to be updated
+- Alternative 2: Require all values of an <code>item</code> object to be updated
   - Pros: Will have less code to deal with having no additional parsing of input string needed.
   
-  - Cons: Less user flexibility, user must input all parameters even if he/she does not want to update certain
+  - Cons: Less user flexibility; user must input all parameters even if he/she does not want to update certain
   variables.
 
   &nbsp;
