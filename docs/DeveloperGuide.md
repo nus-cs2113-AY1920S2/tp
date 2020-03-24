@@ -27,7 +27,7 @@ with the specified index.
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/DeleteFinal.png)
+![alt text](images/DeleteFeatureFinal.png)
 
 #### 2.1.2 Design considerations
 
