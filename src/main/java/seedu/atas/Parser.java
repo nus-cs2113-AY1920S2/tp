@@ -13,6 +13,7 @@ import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
 import command.SearchCommand;
+import command.SearchdCommand;
 import command.EditCommand;
 import command.CalendarCommand;
 import common.Messages;
@@ -55,6 +56,13 @@ public class Parser {
                     + "\\s+t/\\s*(?<taskType>[^/]+)"
                     + "\\s+n/\\s*(?<name>[^/]+)");
 
+    //regex for Searchd command
+    public static final Pattern SEARCHD_PARAMETERS_FORMAT = Pattern.compile(
+            "(?<search>[^/]+)"
+                    + "\\s+t/\\s*(?<taskType>[^/]+)"
+                    + "\\s+n/\\s*(?<taskName>[^/]+)"
+                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2})");
+
     //regex for repeat command
     public static final Pattern REPEAT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<repeat>[^/]+)"
@@ -92,6 +100,8 @@ public class Parser {
             return prepareListCommand(fullCommand);
         case SearchCommand.COMMAND_WORD:
             return prepareSearchCommand(fullCommand);
+        case SearchdCommand.COMMAND_WORD:
+            return prepareSearchdCommand(fullCommand);
         case EditCommand.COMMAND_WORD:
             return prepareEditCommand(fullCommand);
         case RepeatCommand.COMMAND_WORD:
@@ -150,6 +160,24 @@ public class Parser {
         String taskType = matcher.group("taskType");
         String taskName = matcher.group("name");
         return new SearchCommand(taskName, taskType);
+    }
+
+    private static Command prepareSearchdCommand(String fullCommand) {
+        final Matcher matcher = SEARCHD_PARAMETERS_FORMAT.matcher(fullCommand);
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    capitalize(SearchdCommand.COMMAND_WORD), SearchdCommand.COMMAND_USAGE));
+        }
+        String taskType = matcher.group("taskType");
+        String taskName = matcher.group("taskName");
+        String stringDate = matcher.group("dateTime");
+        LocalDate date;
+        try {
+            date = LocalDate.parse(stringDate, INPUT_DATE_ONLY_FORMAT);
+            return new SearchdCommand(taskType, taskName, date);
+        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+        }
     }
 
     private static Command prepareDeleteCommand(String fullCommand) {
