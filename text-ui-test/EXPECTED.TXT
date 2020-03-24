@@ -33,11 +33,10 @@ Oops! Invalid Command. Check if these are met:
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
-
 Enter command:
 
 Error! Description of an item cannot be empty.
-Example: ADD i/apple p/4.50 q/2
+Example: ADD i/apple p/4.50 q/9.90
 
 Enter command:
 
@@ -48,30 +47,33 @@ Oops! Invalid Command. Check if these are met:
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
+Enter command:
+
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - 'i/', 'p/' and 'q/' must be in alphabetical order.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Oops! For that to be done properly, check if these are met:
- - Description of an item cannot be empty.
- - Price of an item has to be in numerical form.
- - At least 'i/' or 'p/' should be present.
-|| Example: ADD i/apple p/2.50
-
-
-Enter command:
-
-Added this item: [0] apple $2.45 qty: 1
-NOTE: You have exceeded your budget by 2.45
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - 'i/', 'p/' and 'q/' must be in alphabetical order.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Added this item: [0] banana $3.00 qty: 1
-NOTE: You have exceeded your budget by 5.45
+Added this item: [0] banana $3.00 qty: 3
+NOTE: You have exceeded your budget by 3.00
 
 Enter command:
 
-Added this item: [0] cherry $5.60 qty: 1
-NOTE: You have exceeded your budget by 11.05
+Added this item: [0] cherry $5.60 qty: 2
+NOTE: You have exceeded your budget by 8.60
 
 Enter command:
 
@@ -80,7 +82,7 @@ Here are the matching items:
 +---------------+-------+-----+
 | Item          | Price | Qty |
 +---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 1   |
+| 2. [0] cherry | $5.60 | 2   |
 +---------------+-------+-----+
 
 
@@ -194,7 +196,7 @@ Yes! I've marked this item as bought:
 Enter command:
 
 Yes! I've marked this item as bought:
-[B] banana $3.00 qty: 1
+[B] cherry $5.60 qty: 2
 
 
 Enter command:
@@ -244,7 +246,7 @@ Enter command:
 
 ADD: Adds an item to the list.
 || Parameters: ADD i/[DESCRIPTION] p/[PRICE]
-|| Example: ADD i/apple p/3.00
+|| Example: ADD i/apple p/3.00 q/2
 
 EDIT: Edits the specified item in the list.
 || Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]
@@ -302,17 +304,16 @@ Here is your shopping list:
 +---------------+-------+-----+
 | Item          | Price | Qty |
 +---------------+-------+-----+
-| 1. [B] banana | $3.00 | 1   |
-| 2. [0] cherry | $5.60 | 1   |
+| 1. [B] cherry | $5.60 | 2   |
 +---------------+-------+-----+
-Total cost of items: 8.60
-Your remaining budget / total budget: 491.40 / 500.00
+Total cost of items: 5.60
+Your remaining budget / total budget: 494.40 / 500.00
 
 
 Enter command:
 
 Budget has been reset to $0.00
-NOTE: You have exceeded your budget by 8.60
+NOTE: You have exceeded your budget by 5.60
 
 Enter command:
 
@@ -323,7 +324,7 @@ Enter command:
 
 ADD: Adds an item to the list.
 || Parameters: ADD i/[DESCRIPTION] p/[PRICE]
-|| Example: ADD i/apple p/3.00
+|| Example: ADD i/apple p/3.00 q/2
 
 EDIT: Edits the specified item in the list.
 || Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]

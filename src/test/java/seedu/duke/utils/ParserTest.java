@@ -124,20 +124,10 @@ public class ParserTest {
 
     @Test
     public void parse_addCommandNoDescription_errorMessage() {
-        final String[] inputs = {"ADD i/ p/0.0 q/1", "ADD i/ p/2.5 q/1", "ADD i/ p/2.50 q/2"};
+        final String[] inputs = {"ADD p/0.0 q/1", "ADD p/2.5 q/1", "ADD p/2.50 q/2"};
         final String resultMessage = System.lineSeparator()
-                + "Oops! Invalid Command. Check if these are met:"
-                + System.lineSeparator()
-                + " - Price of an item should be in positive numerical form."
-                + System.lineSeparator()
-                + " - Quantity of an item should be in positive numerical form."
-                + System.lineSeparator()
-                + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
-                + System.lineSeparator()
-                + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
-                + "p/[PRICE] or q/[QUANTITY] must be present."
-                + System.lineSeparator()
-                + "|| Example: ADD i/apples p/9.90 q/9";
+                + "Error! Description of an item cannot be empty."
+                + "\nExample: ADD i/apple p/4.50 q/9.90";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
