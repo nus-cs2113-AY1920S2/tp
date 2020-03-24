@@ -56,6 +56,7 @@ This section will describe how the main features of the application are implemen
   - Cons: Less user flexibility, user must input all parameters even if he/she does not want to provide certain
   variables such as price and quantity, which will result unsuccessful adding items into the list. 
  
+  &nbsp;
 
 ### 2.2 Edit feature
 #### 2.2.1 Current implementation
@@ -79,8 +80,10 @@ The following sequence diagram below shows how the edit feature works. The detai
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
 ![alt text](images/EditFeature.png)
+<p align="center">
+ <img src="images/EditFeature_SD.jpg">
+</p>
 
-![alt text](images/EditFeature_SD.jpg)
 
 #### 2.2.2 Design considerations
 
