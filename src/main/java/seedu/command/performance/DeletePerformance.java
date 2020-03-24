@@ -1,7 +1,6 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.event.Event;
 import seedu.exception.DukeException;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;

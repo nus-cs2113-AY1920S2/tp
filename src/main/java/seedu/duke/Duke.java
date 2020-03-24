@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 import seedu.StudentList;
 import seedu.command.Bye;
-import seedu.command.CommandInterpreter;
+import seedu.command.interpreter.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;

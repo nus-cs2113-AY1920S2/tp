@@ -1,7 +1,8 @@
-package seedu.command;
+package seedu.command.interpreter;
 
 import seedu.calendar.AddFirstSemester;
 import seedu.calendar.AddSecondSemester;
+import seedu.command.Command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 import seedu.parser.CalendarParser;

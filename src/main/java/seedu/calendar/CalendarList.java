@@ -3,12 +3,14 @@ package seedu.calendar;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
-import seedu.ui.UI;
+import seedu.ui.DisplayList;
 import java.util.ArrayList;
 
 public class CalendarList {
+    private static DisplayList displayList;
 
     public CalendarList() {
+        displayList = new DisplayList();
     }
 
     /**
@@ -26,7 +28,7 @@ public class CalendarList {
             throw new DukeException("Unable to find any events for this time period.");
         }
         yearList = academicYearEvents(semesterList, yearList, year);
-        UI.printCalendar(yearList, year, year + 1, 1);
+        displayList.printCalendar(yearList, year, year + 1, 1);
     }
 
     /**
@@ -63,7 +65,7 @@ public class CalendarList {
             throw new DukeException("Unable to find any events for this time period.");
         }
         yearList = academicYearEvents(semesterList, yearList, year);
-        UI.printCalendar(yearList, year, year - 1,  2);
+        displayList.printCalendar(yearList, year, year - 1,  2);
     }
 
     /**

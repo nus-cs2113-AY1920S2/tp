@@ -2,7 +2,6 @@ package seedu;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class StudentList {
     public ArrayList<String> studentList;

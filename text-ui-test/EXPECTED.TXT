@@ -8,7 +8,7 @@ Hello from
 |__|     /__/      \__\  \________|
 
 What is your name?
-Hello James Gosling. Welcome to your personal Professor Assistant Console.
+Hello James Gosling. Welcome to your personal Professor Assistant Console. If you need assistant with command format, input 'help'.
 Unknown command category is provided
 New Event: dinner with colleague was added successfully to your Event list.
 New Event: World Cup was added successfully to your Event list.
