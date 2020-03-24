@@ -19,10 +19,12 @@
      * Run the tests and ensure they all pass.
 
 ## 2. Design
+![image_info](./pictures/ClassDiagram.png)
+_Fig 2.1. Class diagram of the Jikan program_
 
 ## 3. Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+This section describes some noteworthy details on how certain features are implemented.
 
 ### 3.1 Automated Storage Cleanup feature
 
@@ -103,6 +105,29 @@ The StorageHandler class functions as a support to the main Storage class, allow
 - Removing an entry from the data file via `removeLine`. This function takes in the number of the line to remove.
 - Replacing an entry in the data file via `replaceLine`. This function takes in the number of the line to replace, along with the String object that needs to be written to the data file in place of the replaced line.
 
+### 3.5 Edit feature
+The edit feature allows the user to make changes to activities that have been saved in the activity list. This is to allow the user to rectify any mistakes that may have been made during the initial recording of the activity. 
+
+#### 3.5.1 Current Implementation
+The following sequence diagram shows how the edit feature works.
+![image_info](./pictures/EditSequenceDiagram.png)
+The current implementation of the edit feature allows the user to edit only the name parameter of the activity. When the user wants to edit an activity using the edit command, the Parser creates a new EditCommand object. The executeCommand() method of the EditCommand object is called and the specified parameters are updated accordingly.
+
+The order of method calls to edit the activity details is as follows if the specified activity exists (meaning index != -1) else an exception is thrown:
+1. The updateName() method of the ActivityList class is called, with the user-specified parameters of the activity index and new activity name
+2. The get() method is self-invoked by the ActivityList class to obtain the activity at the given index 
+3. The setName() method of the Activity class is called to edit the activity name to the user-specified name
+4. The activity with the updated name is returned to the activityList  
+
+#### 3.5.2 Additional Implementations
+The current implementation of the edit feature only allows the user to edit the activity name. Hence, additional implementations of the edit feature should allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
+
+This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
+
+#### 3.5.3 Design Considerations
+By letting the user edit the name and tags of the activity, it will allow them to correct any mistakes made during the data entry. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
+
+However, by allowing the user to edit the start date and time, there may be potential inaccuracies in the actual activity recording. This is due to the fact that the time recorded in the program is based on the LocalDateTime. By introducing user input, the dates and time may be recorded incorrectly, defeating the purpose of the time tracking program. 
 
 ## 4. Appendix
 ### Product Scope
