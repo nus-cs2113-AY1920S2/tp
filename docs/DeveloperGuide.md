@@ -1,6 +1,6 @@
 # Developer Guide
 
-##1. Setting Up
+## 1. Setting Up
    * Prerequisites
      * JDK 11 or above
      * IntelliJ IDE
