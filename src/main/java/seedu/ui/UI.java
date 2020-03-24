@@ -140,13 +140,16 @@ public class UI {
         return in.nextLine();
     }
 
-    public static Boolean getTypeOfAddPerformance() {
+    public String getTypeOfAddPerformance() {
         System.out.println("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
-        String input = in.nextLine();
-        return input.toLowerCase().equals("yes");
+        return getStringInput();
     }
 
+    public boolean isImportList() {
+        String userInput = getTypeOfAddPerformance();
+        return userInput.equals("yes");
+    }
     public String getEventName() {
         System.out.println("Please key in the name of event that "
                 + "you wish to access to its student's performance.");

@@ -62,14 +62,6 @@ public class PerformanceList {
         }
     }
 
-    private String extractLength(String string, int length) {
-        int lengthString = string.length();
-        if (lengthString < length) {
-            return string;
-        }
-        return string.substring(0, length - 4) + "...";
-    }
-
     /**
      * This method compares the input String student name with Performance.studentName
      * and returns the Performance when the two Strings are equal.

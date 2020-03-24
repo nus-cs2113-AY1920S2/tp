@@ -14,7 +14,6 @@ import static seedu.duke.Duke.studentListCollection;
 public class AddPerformance extends Command {
     private UI ui;
     private DisplayList displayList;
-    boolean isByNameList;
     PerformanceList performances;
     String eventName;
 
@@ -23,7 +22,6 @@ public class AddPerformance extends Command {
      * and parse it to get the Performance to be added.
      */
     public AddPerformance(PerformanceList performances, String eventName) {
-        this.isByNameList = UI.getTypeOfAddPerformance();
         this.performances = performances;
         this.eventName = eventName;
         this.ui = new UI();
@@ -38,6 +36,7 @@ public class AddPerformance extends Command {
      * of student.
      */
     public void addToList() throws DukeException {
+        boolean isByNameList = ui.isImportList();
         if (isByNameList) {
             addByList();
         }
