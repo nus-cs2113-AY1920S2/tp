@@ -144,7 +144,7 @@ public class ParserTest {
 
     @Test
     public void parse_addCommandIncorrectPriceFormat_errorMessage() {
-        final String[] inputs = {"ADD i/apple p/8*wh12", "ADD i/apple p/ "};
+        final String[] inputs = {"ADD i/apple p/8*wh12 q/2", "ADD i/apple p/ q/2"};
         final String resultMessage = System.lineSeparator()
                 + "Oops! Invalid Command. Check if these are met:"
                 + System.lineSeparator()

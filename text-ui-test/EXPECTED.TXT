@@ -22,29 +22,31 @@
 Enter command:
 
 Error! Description of an item cannot be empty.
-Example: ADD 1 i/apple p/4.50
+Example: ADD i/apple p/4.50 q/9.90
 
 Enter command:
 
-Oops! For that to be done properly, check if these are met:
- - Description of an item cannot be empty.
- - Price of an item has to be in decimal form.
- - At least 'i/' or 'p/' should be present.
-|| Example: ADD i/apple p/2.50
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - 'i/', 'p/' and 'q/' must be in alphabetical order.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 
 Enter command:
 
 Error! Description of an item cannot be empty.
-Example: ADD 1 i/apple p/4.50
+Example: ADD i/apple p/4.50 q/2
 
 Enter command:
 
-Oops! For that to be done properly, check if these are met:
- - Description of an item cannot be empty.
- - Price of an item has to be in numerical form.
- - At least 'i/' or 'p/' should be present.
-|| Example: ADD i/apple p/2.50
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - 'i/', 'p/' and 'q/' must be in alphabetical order.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 
 Enter command:
