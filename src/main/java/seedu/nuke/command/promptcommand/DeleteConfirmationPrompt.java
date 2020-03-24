@@ -42,8 +42,6 @@ public class DeleteConfirmationPrompt extends Command {
      *
      * @param toDelete
      *  The module to be deleted
-     * @return
-     *  The Command result of the execution
      */
     private void deleteSingleModule(Module toDelete) {
         ModuleManager.delete(toDelete);
@@ -54,8 +52,6 @@ public class DeleteConfirmationPrompt extends Command {
      *
      * @param toDelete
      *  The category to be deleted
-     * @return
-     *  The Command result of the execution
      */
     private void deleteSingleCategory(Category toDelete) {
         Module parentModule = toDelete.getParent();
@@ -67,8 +63,6 @@ public class DeleteConfirmationPrompt extends Command {
      *
      * @param toDelete
      *  The task to be deleted
-     * @return
-     *  The Command result of the execution
      */
     private void deleteSingleTask(Task toDelete) {
         Category parentCategory = toDelete.getParent();
