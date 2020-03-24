@@ -7,11 +7,13 @@ import jikan.activity.ActivityList;
  * Represents an executable command.
  */
 public class Command {
+    protected String parameters;
 
     /**
      * Constructor to create a new command.
      */
-    public Command() {
+    public Command(String parameters) {
+        this.parameters = parameters;
     }
 
     /**

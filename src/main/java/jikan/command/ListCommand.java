@@ -1,11 +1,15 @@
 package jikan.command;
 
 import jikan.Log;
+import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.ui.Ui;
 import jikan.parser.Parser;
 
 import jikan.exception.InvalidTimeFrameException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -16,7 +20,8 @@ public class ListCommand extends Command {
     /**
      * Constructor to create a new list command.
      */
-    public ListCommand() {
+    public ListCommand(String parameters) {
+        super(parameters);
     }
 
     @Override

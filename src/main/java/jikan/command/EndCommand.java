@@ -20,13 +20,20 @@ public class EndCommand extends Command {
     /**
      * Constructor to create a new end command.
      */
-    public EndCommand() {
+    public EndCommand(String parameters) {
+        super(parameters);
     }
 
+    /** Method to parse the end activity command. */
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            Parser.parseEnd(activityList);
+            // Parser.parseEnd(activityList);
+            if (Parser.startTime == null) {
+                throw new NoSuchActivityException();
+            } else {
+                activityList.saveActivity(activityList);
+            }
         } catch (NoSuchActivityException e) {
             Log.makeInfoLog("End command failed as no activity was ongoing");
             Ui.printDivider("You have not started any activity!");
