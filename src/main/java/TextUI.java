@@ -29,9 +29,9 @@ public class TextUI {
     public static void menuMsg(int memberList) {
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
-        out.println("[add] Add a new contact manually.");
         out.println("[contacts] List all contacts.");
-        out.println("[display] Display combined schedule of you and your selected contacts.");
+        out.println("[display] Display combined timetable of you and your selected contacts.");
+        out.println("[edit] Edit contacts' timetable.");
         out.println("[schedule] Schedule a new meeting.");
         out.println("[delete] Delete a scheduled meeting.");
         out.println("[meetings] List all scheduled meetings.");
