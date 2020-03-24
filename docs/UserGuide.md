@@ -87,6 +87,18 @@ Search items in the menu, stock and reservations.
 
 <a name="command-summary"></a>
 
+### Sales
+Add daily sales and calculate profit
+
+#### Sell item : sell item
+* Format: `sell dish; d/DISH; q/QUANTITY;`
+* Example: `sell dish; pasta; q/10;`
+
+#### Generate Profit : calculate profit
+* Format: `profit`
+
+#### Find most popular dish : popular
+* Format: `popular`
 ## Command Summary
 
 * Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
