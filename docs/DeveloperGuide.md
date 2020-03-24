@@ -62,14 +62,14 @@ Refer to the guide [here](#) to set up.
 
 ### **User Stories**  
 
-Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 |Priority |As a ... |I want to ... |So that I can...|
 |---|---|---|---|
 |`* * *` |new user |see usage instructions |learn about existing features and how can I use them |
-|`* * *` |student |add modules/tasks |I can have track on tasks of different modules |
-|`* * *` |student |delete modules/tasks |remove modules and tasks I do not need to keep on track anymore |
-|`* * *` |student |edit modules/tasks |I can correct or change some attributes
+|`* * *` |student |add modules\tasks |I can have track on tasks of different modules |
+|`* * *` |student |delete modules\tasks |remove modules and tasks I do not need to keep on track anymore |
+|`* * *` |student |edit modules\tasks |I can correct or change some attributes
 |`* * *` |student |constansly check the deadline of tasks in ascending order |I can get tasks done on time |
 |`* * *` |student |receive a reminder of urgent tasks |I know which tasks should be done first |
 |`* * *` |student |sort my tasks in terms of certain criteria |I can view my tasks of highest priorites |
