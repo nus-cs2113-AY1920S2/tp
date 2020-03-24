@@ -127,82 +127,207 @@ public class Parser {
             String[] args = splitArgsForAddCommand(arguments);
             String description;
             String prices;
+            String quantity;
             description = args[0];
             prices = args[1];
-
-            if (prices == null) {
-                newCommand = new AddCommand(description, 0.0);
+            quantity = args[2];
+            if (prices == null && quantity != null) {
+                int quantityInInteger = Integer.getInteger(quantity);
+                newCommand = new AddCommand(description, 0.0, quantityInInteger);
+            } else if (prices != null && quantity == null) {
+                try {
+                    double price = Double.parseDouble(prices);
+                    newCommand = new AddCommand(description, price,1);
+                } catch (NumberFormatException nfe) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! Invalid Command. Check if these are met:"
+                            + System.lineSeparator()
+                            + " - Price of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - Quantity of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                            + System.lineSeparator()
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! Invalid Command. Check if these are met:"
+                            + System.lineSeparator()
+                            + " - Price of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - Quantity of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                            + System.lineSeparator()
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
+                }
+            } else if (prices == null && quantity == null) {
+                try {
+                    newCommand = new AddCommand(description,0.0,1);
+                } catch (StringIndexOutOfBoundsException e) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! Invalid Command. Check if these are met:"
+                            + System.lineSeparator()
+                            + " - Price of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - Quantity of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                            + System.lineSeparator()
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
+                }
             } else {
                 try {
                     double price = Double.parseDouble(prices);
-                    newCommand = new AddCommand(description, price);
+                    int quantityInInteger = Integer.parseInt(quantity);
+                    newCommand = new AddCommand(description, price,quantityInInteger);
                 } catch (NumberFormatException nfe) {
                     newCommand = new IncorrectCommand(System.lineSeparator()
-                            + "Oops! For that to be done properly, check if these are met:"
+                            + "Oops! Invalid Command. Check if these are met:"
                             + System.lineSeparator()
-                            + " - Description of an item cannot be empty."
+                            + " - Price of an item should be in positive numerical form."
                             + System.lineSeparator()
-                            + " - Price of an item has to be in numerical form."
+                            + " - Quantity of an item should be in positive numerical form."
                             + System.lineSeparator()
-                            + " - At least 'i/' or 'p/' should be present."
+                            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
                             + System.lineSeparator()
-                            + "|| Example: ADD i/apple p/2.50"
-                            + System.lineSeparator());
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
                 }
             }
         } catch (NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Error! Description of an item cannot be empty."
-                    + "\nExample: ADD 1 i/apple p/4.50");
+                    + "\nExample: ADD i/apple p/4.50 q/9.90");
         } catch (ArrayIndexOutOfBoundsException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Oops! For that to be done properly, check if these are met:"
+                    + "Oops! Invalid Command. Check if these are met:"
                     + System.lineSeparator()
-                    + " - Description of an item cannot be empty."
+                    + " - Price of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - Price of an item has to be in decimal form."
+                    + " - Quantity of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - At least 'i/' or 'p/' should be present."
+                    + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
                     + System.lineSeparator()
-                    + "|| Example: ADD i/apple p/2.50"
-                    + System.lineSeparator());
+                    + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                    + "p/[PRICE] or q/[QUANTITY] must be present."
+                    + System.lineSeparator()
+                    + "|| Example: ADD i/apples p/9.90 q/9");
         }
     }
 
     private String[] splitArgsForAddCommand(String arguments) throws NullPointerException {
+
         String[] argsArray = new String[]{};
         String descriptionDelimiter = "i/";
         String priceDelimiter = "p/";
+        String quantityDelimiter = "q/";
         String itemPrice;
         String itemDescription;
+        String itemQuantity;
 
         int buffer = 2;
         int indexOfiPrefix;
         int indexOfpPrefix;
+        int indexOfqPrefix;
         boolean descriptionPresent = arguments.contains(descriptionDelimiter);
         boolean pricePresent = arguments.contains(priceDelimiter);
+        boolean quantityPresent = arguments.contains(quantityDelimiter);
 
-        if (descriptionPresent && !pricePresent) { //eg args: ADD i/apple
-            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
-            itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
-            argsArray = new String[]{itemDescription, null};
-        } else if (descriptionPresent && pricePresent) {
-            indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
-            indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
-            if (indexOfpPrefix < indexOfiPrefix) { //e.g args: ADD p/4.50 i/apple
+        try {
+            if (descriptionPresent && !pricePresent && !quantityPresent) { //eg args: ADD i/apple
+                indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
                 itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
-                itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix).trim();
-            } else { //e.g args: ADD i/apple p/4.50
-                itemDescription = arguments.substring(indexOfiPrefix + buffer, indexOfpPrefix).trim();
-                itemPrice = arguments.substring(indexOfpPrefix + buffer).trim();
+                argsArray = new String[]{itemDescription, null, null};
+            } else if (descriptionPresent && pricePresent && !quantityPresent) {
+                indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
+                indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
+                if (indexOfpPrefix < indexOfiPrefix) { //e.g args: ADD p/4.50 i/apple
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix).trim();
+                } else { //e.g args: ADD i/apple p/4.50
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer, indexOfpPrefix).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer).trim();
+                }
+                argsArray = new String[]{itemDescription, itemPrice, null};
+            } else if (descriptionPresent && !pricePresent && quantityPresent) {
+                indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
+                indexOfqPrefix = arguments.trim().indexOf(quantityDelimiter);
+                if (indexOfqPrefix < indexOfiPrefix) { //e.g args: ADD q/1 i/apple
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer, indexOfiPrefix).trim();
+                } else { //e.g args: ADD i/apple q/1
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer, indexOfqPrefix).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer).trim();
+                }
+                argsArray = new String[]{itemDescription, null, itemQuantity};
+            } else if (descriptionPresent && pricePresent && quantityPresent) {
+                indexOfiPrefix = arguments.trim().indexOf(descriptionDelimiter);
+                indexOfpPrefix = arguments.trim().indexOf(priceDelimiter);
+                indexOfqPrefix = arguments.trim().indexOf(quantityDelimiter);
+                if (indexOfqPrefix < indexOfpPrefix && indexOfpPrefix < indexOfiPrefix) {
+                    //e.g args: ADD q/2 p/4.50 i/apple
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer, indexOfpPrefix).trim();
+                } else if (indexOfpPrefix < indexOfqPrefix && indexOfqPrefix < indexOfiPrefix) {
+                    //e.g args: ADD p/2.5 q/4 i/apple
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfqPrefix).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer, indexOfiPrefix).trim();
+                } else if (indexOfpPrefix < indexOfiPrefix && indexOfiPrefix < indexOfqPrefix) {
+                    //e.g args: ADD p/2.5 i/apple q/4
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer,indexOfqPrefix).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfiPrefix).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer).trim();
+                } else if (indexOfqPrefix < indexOfiPrefix && indexOfiPrefix < indexOfpPrefix) {
+                    //e.g args: ADD q/2 i/apple p/4.50
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer,indexOfpPrefix).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer, indexOfiPrefix).trim();
+                } else if (indexOfiPrefix < indexOfqPrefix && indexOfqPrefix < indexOfpPrefix) {
+                    //e.g args: ADD i/apple q/4 p/2.5
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer,indexOfqPrefix).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer, indexOfpPrefix).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer).trim();
+                } else { //e.g args: ADD i/apple p/4.50 q/2
+                    itemDescription = arguments.substring(indexOfiPrefix + buffer, indexOfpPrefix).trim();
+                    itemPrice = arguments.substring(indexOfpPrefix + buffer, indexOfqPrefix).trim();
+                    itemQuantity = arguments.substring(indexOfqPrefix + buffer).trim();
+                }
+                argsArray = new String[]{itemDescription, itemPrice, itemQuantity};
+            } else if (!descriptionPresent && pricePresent || quantityPresent) { //ADD p/3.50
+                argsArray = new String[]{null, null, null};
             }
-            argsArray = new String[]{itemDescription, itemPrice};
-        } else if (!descriptionPresent && pricePresent) { //ADD p/3.50
-            argsArray = new String[]{null, null};
-        }
 
-        if (argsArray[0] == null && argsArray[1] == null) {
-            throw new NullPointerException();
+            if (argsArray[0] == null && argsArray[1] == null && argsArray[2] == null) {
+                throw new NullPointerException();
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Oops! Invalid Command. Check if these are met:"
+                    + System.lineSeparator()
+                    + " - Price of an item should be in positive numerical form."
+                    + System.lineSeparator()
+                    + " - Quantity of an item should be in positive numerical form."
+                    + System.lineSeparator()
+                    + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                    + System.lineSeparator()
+                    + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                    + "p/[PRICE] or q/[QUANTITY] must be present."
+                    + System.lineSeparator()
+                    + "|| Example: ADD i/apples p/9.90 q/9");
         }
         return argsArray;
     }

@@ -3,6 +3,7 @@ package seedu.duke.data;
 import seedu.duke.ui.CommandLineTable;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class ShoppingList {
 
