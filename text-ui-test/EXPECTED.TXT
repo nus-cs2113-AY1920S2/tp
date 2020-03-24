@@ -1,3 +1,4 @@
+No existing save file found. A new save file will be created
  _______        _______        _______        _______ 
 |   _   |      |       |      |   _   |      |       |
 |  |_|  |      |_     _|      |  |_|  |      |  _____|
@@ -28,8 +29,9 @@ You have no tasks for today!
      - Make event recur: repeat id/[EVENT INDEX] p/[NUM OF PERIOD][TYPE OF PERIOD]
      - Stop event recur: repeat id/[EVENT INDEX] p/0
  10. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
- 11. Get a Calendar view: calendar d/[dd/MM/yy]
- 12. Exit ATAS: exit
+ 11. Search for tasks according to date: search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]
+ 12. Get a Calendar view: calendar d/[dd/MM/YY]
+ 13. Exit ATAS: exit
 _______________________________________________________________________
 > Oh no. Incorrect format for Assignment Command
 Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
