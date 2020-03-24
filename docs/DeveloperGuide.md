@@ -22,6 +22,7 @@
 ![image_info](./pictures/ClassDiagram.png)
 _Fig 2.1. Class diagram of the Jikan program_
 
+
 ## 3. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -128,6 +129,48 @@ This will require the implementation of more update methods in the ActivityList 
 By letting the user edit the name and tags of the activity, it will allow them to correct any mistakes made during the data entry. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
 
 However, by allowing the user to edit the start date and time, there may be potential inaccuracies in the actual activity recording. This is due to the fact that the time recorded in the program is based on the LocalDateTime. By introducing user input, the dates and time may be recorded incorrectly, defeating the purpose of the time tracking program. 
+
+### 3.6 Continue Feature
+The continue feature allows the user to continue a previously ended activity.
+
+#### 3.6.1 Current Implementation
+![Continue command sequence diagram](https://i.imgur.com/MuaxFts.png)
+
+**Continuing an activity:**
+
+When the user enters the command to continue an activity, a *ContinueCommand* object is created in *Parser*. The method *executeCommand()* of the *ContinueCommand* object is then called and does the following:
+
+ 1. Checks if the given activity name exists in the activityList by calling *findActivity()* (if it doesn’t an exception is thrown, omitted in the sequence diagram above)
+ 2. Gets the *name* and *tags* of the activity to be continued and saves it to a public static variable of *Parser* object
+ 3. Gets the current time and saves it to a public static variable of *Parser* object
+ 
+ ![End command sequence diagram](https://i.imgur.com/soaCCXk.png)
+
+ **Ending a continued activity:**
+ 
+When the user wants to end the continued activity, an *EndCommand* object is created in *Parser.* The method *executeCommand()* of the *ContinueCommand* object is then called and it in turn executes the *saveActivity()* method of the *ActivityList* class. The continued activity is then saved by executing the following:
+
+ 1. Gets the current time and saves it to a public static variable of *Parser* object
+2.  Calculates the elapsed time using *between()* method of *Duration* class
+3.  Adds the elapsed time with the previous duration of the activity to get the *newDuration* using *plus()* method of Duration class
+4.  Calls the *updateDuration()* method, which updates the *duration* attribute of the continued activity in the *activityList* as well as the data.csv file
+
+#### 3.6.2 Design Considerations
+
+**Execution:**
+ - Continue by activity name (current implementation)
+ **Cons:** Activity names have to be unique.
+ **Pros:** More versatile, resistant to changes in the activity list
+ - Continue by activity index
+ **Cons:** need to add an additional index field to the Activity class, 
+ index is not fixed, changes when an activity is deleted
+ **Pros:** Can reuse activity names.
+ 
+Although the current implementation of the continue feature disallows users to have multiple activities with the same name, we felt that the versatility of this choice outweighed the cons. Firstly because if the activityList got too big, it would be hard for the user to get the index of the task he/she wanted to continue. Also, the index would constantly be changing when changes are made to the list.
+
+#### 3.6.3 Additional Features
+As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
+![decision flowchart](https://i.imgur.com/mCCPuun.png)
 
 ## 4. Appendix
 ### Product Scope
