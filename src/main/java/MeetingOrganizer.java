@@ -110,24 +110,28 @@ public class MeetingOrganizer {
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
             break;
-        case "display": // display memberNumber1 memberNumber2 (eg. display 1 3)
-            ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
-            for (int i = 1; i < userInputWords.length; i++) {
-                int memberNumber = Integer.parseInt(userInputWords[i]);
-                member = myTeamMemberList.getTeamMemberList().get(memberNumber);
-                myScheduleList.add(member);
+        case "display": // display OR display <Member Number 1> <Member Number 2> (eg. display 1 3)
+            if (userInputWords.length > 1) {
+                ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
+                //Automatically add main user's timetable into scheduler.
+                if (mainUser != null && !myScheduleList.contains(mainUser)) {
+                    myScheduleList.add(mainUser);
+                }
+                for (int i = 1; i < userInputWords.length; i++) {
+                    int memberNumber = Integer.parseInt(userInputWords[i]);
+                    member = myTeamMemberList.getTeamMemberList().get(memberNumber);
+                    myScheduleList.add(member);
+                }
+                ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
+                Boolean[][] myMasterSchedule;
+                myMasterSchedule = myScheduleHandler.getMasterSchedule();
+                System.out.println("Combined timetable of you and your selected team member/s:");
+                TextUI.printTimetable(myMasterSchedule);
+            } else {
+                System.out.println("Your timetable:");
+                TextUI.printTimetable(mainUser.getSchedule());
             }
 
-            //Automatically add main user's timetable into scheduler.
-            if (mainUser != null && !myScheduleList.contains(mainUser)) {
-                myScheduleList.add(mainUser);
-            }
-            ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
-
-            Boolean[][] myMasterSchedule;
-            myMasterSchedule = myScheduleHandler.getMasterSchedule();
-            System.out.println("Combined Schedule of you and your selected team member/s.");
-            TextUI.printTimetable(myMasterSchedule);
             break;
         case "schedule": //schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time> (eg. schedule meeting 3 17:00 3 19:00)
 
