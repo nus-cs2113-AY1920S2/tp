@@ -6,8 +6,9 @@
 ### Implementation
 
 #### `Add to Semester` feature 
-The `Add to Semester` mechanism is facilitated by `AddtoSemCommand`. It allows `ModuleManager` to assign a module to a
-semester by adding the module to a `SemModulesList`, it implements the following operations:
+The `Add to Semester` mechanism is facilitated by `AddtoSemCommand` which extends from `Command`. 
+It allows `ModuleManager` to assign a module to a semester by adding the module to a 
+`SemModulesList`, it implements the following operations:
 
 Given below is an example how the `Add to Semester` behaves at each step.
 
@@ -22,16 +23,19 @@ and then `Parser` returns a `AddToSemCommand`. `AddToSemCommand` then calls `Com
 `(AddToSemCommand#excuted(SemesterList semesterList, AvailableModulesList availableModulesList))`
 
 ##### Step 3:
-`AddToSemCommand#excuted()` then calls `AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected 
-module is already in the selected module list (which is`semesterList`). If it is not in the list. 
-`AddToSemCommand#excuted()` will check whether there is a semester list whose name is the module's semester name. If 
-the semester list exist, the module will be added to the list. If not, `AddToSemCommand#excuted()` will create a new 
+`AddToSemCommand#excuted()` then calls self method `AddToSemCommand#addModule()`.`AddToSemCommand#addModule()`
+ then calls `AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected 
+module is already in the selected module list (which is`semesterList`). If the module is not in the list, 
+`AddToSemCommand#addModule()` will check whether there is a semester list whose name is the module's semester name. If 
+the semester list exist, the module will be added to the list. If not, `AddToSemCommand#addModule()` will create a new 
 semester list and then add this module to the new list.
 
+#### Step 4:
+`AddToSemCommand#excuted()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to show the result to the 
+user
 
-
-
-
+The following sequence diagram shows how the `Add to Semester` operation works:
+![Sequence Diagram of Add to Semester](docs/UML img folder/Sequence Diagram of Add to Semester.png)
 
 
 

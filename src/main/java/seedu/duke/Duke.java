@@ -71,8 +71,7 @@ public class Duke {
         try {
             FileHandler fileHandler = new FileHandler("myLogger.log", true);
             fileHandler.setFormatter(new SimpleFormatter());
-            fileHandler.setLevel(Level.FINE);
-            logr.addHandler(fileHandler);
+            fileHandler.setLevel(Level.FINE);logr.addHandler(fileHandler);
         } catch (IOException e) {
             logr.log(Level.SEVERE, "File logger not working.", e);
         }
