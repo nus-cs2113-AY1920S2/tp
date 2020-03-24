@@ -19,6 +19,8 @@ public class EditCommand extends Command {
             + System.lineSeparator() + "|| Example 4: EDIT 1 q/4" + System.lineSeparator();
     public static final String MESSAGE_SUCCESS = System.lineSeparator()
             + "The item has been updated to: %s";
+    public static final String MESSAGE_FAILURE_DUPLICATE_DESCRIPTION = System.lineSeparator()
+            + "OOPS! I already have an item with that name. Perhaps try another description? :D";
     public static final String MESSAGE_FAILURE_NOT_IN_LIST = System.lineSeparator()
             + "OOPS! I don't have that item in the list yet. Try again? :D";
     public static final String MESSAGE_FAILURE_INCORRECT_FORMAT = System.lineSeparator()
@@ -62,25 +64,35 @@ public class EditCommand extends Command {
     @Override
     public void execute() {
         try {
+            boolean duplicateDescription = false;
             indexOfItem -= 1;
             Item item = items.getItem(indexOfItem);
+
             if (newDescription != null) {
-                item.setDescription(newDescription);
-                assert item.getDescription() == newDescription;
+                duplicateDescription = items.isSameItemDescription(newDescription);
+                if (duplicateDescription) {
+                    feedbackToUser = String.format(MESSAGE_FAILURE_DUPLICATE_DESCRIPTION, item.toString());
+                } else {
+                    item.setDescription(newDescription);
+                    assert item.getDescription().equals(newDescription);
+                }
             }
-            if (newPrice != null) {
+
+            if (newPrice != null && !duplicateDescription) {
                 item.setPrice(Double.parseDouble(newPrice));
                 assert Double.parseDouble(newPrice) >= 0.0;
                 assert item.getPrice() == Double.parseDouble(newPrice);
             }
-            if (newQuantity != null) {
+            if (newQuantity != null && !duplicateDescription) {
                 item.setQuantity(Integer.parseInt(newQuantity));
                 assert Integer.parseInt(newQuantity) >= 0;
                 assert item.getQuantity() == Integer.parseInt(newQuantity);
             }
+            if (!duplicateDescription) {
+                LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
+                feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
+            }
 
-            LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
-            feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
             //@@author kokjoon97
             assert myBudget != null;
             double remainder = myBudget.getRemainingBudget(items.getTotalCost());
