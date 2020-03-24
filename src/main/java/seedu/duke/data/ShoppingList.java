@@ -138,6 +138,20 @@ public class ShoppingList {
         if (item.getDescription() == null) {
             throw new NullPointerException();
         }
+    }
 
+    /**
+     * Returns true if an equivalent item exists in the address book.
+     */
+    public boolean isSameItemDescription(String descriptionToCheck) {
+        boolean result = false;
+        for (Item i : items) {
+            if (i.getDescription().equals(descriptionToCheck)) {
+                result = true;
+            }
+
+        }
+        return result;
     }
 }
+
