@@ -80,15 +80,7 @@ ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Cre
 
 
 Okay! I have added this module to your semester's module list:
-ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
-
-
-Okay! I have added this module to your semester's module list:
 ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1
-
-
-Okay! I have added this module to your semester's module list:
-ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2
 
 
 Okay! I have added this module to the available modules to choose from:
@@ -178,7 +170,7 @@ Okay! Here is your module plan:
 
 2018/2019 SEM2
 1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
-2.[✗] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2
+2.[✗] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2
 
 
 Okay, I've marked the module as done!
@@ -186,7 +178,7 @@ Okay, I've marked the module as done!
 
 Okay! Here are your completed modules:
 2018/2019 SEM2
-1.[✓] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
+1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
 
 
 You have completed this amount of credits:
