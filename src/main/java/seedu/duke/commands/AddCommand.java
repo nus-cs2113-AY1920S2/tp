@@ -15,7 +15,7 @@ public class AddCommand extends Command {
             + System.lineSeparator() + "|| Example: ADD i/apple p/3.00" + System.lineSeparator();
     public static final String FAILURE_ACK = System.lineSeparator()
             + "Error! Description of an item cannot be empty."
-            + "\nExample: ADD 1 i/apple p/4.50";
+            + "\nExample: ADD 1 i/apple p/4.50 q/2";
     public static final String FAILURE_ACK_2 = System.lineSeparator()
             + "Error! price should follow this format"
             + "\nExample: p/4.50";
