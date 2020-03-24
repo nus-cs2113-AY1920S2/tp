@@ -162,7 +162,7 @@ public class Parser {
                                 + System.lineSeparator()
                                 + " - At least 'i/' or 'p/' should be present."
                                 + System.lineSeparator()
-                                + "|| Example: ADD i/apple p/2.50"
+                                + "|| Example: ADD i/apple p/2.50 q/2"
                                 + System.lineSeparator());
                     }
 
@@ -171,7 +171,7 @@ public class Parser {
         } catch (NullPointerException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Error! Description of an item cannot be empty."
-                    + "\nExample: ADD 1 i/apple p/4.50 q/9.90");
+                    + "\nExample: ADD i/apple p/4.50 q/9.90");
         } catch (ArrayIndexOutOfBoundsException e) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Oops! Invalid Command. Check if these are met:"
@@ -185,7 +185,7 @@ public class Parser {
                     + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                     + "p/[PRICE] or q/[QUANTITY] must be present."
                     + System.lineSeparator()
-                    + "|| Example: ADD 2 i/apples p/9.90 q/9");
+                    + "|| Example: ADD i/apples p/9.90 q/9");
         }
     }
 

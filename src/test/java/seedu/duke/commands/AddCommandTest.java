@@ -43,7 +43,7 @@ public class AddCommandTest {
         command.execute();
         String expectedFeedback3 = System.lineSeparator()
                 + "Error! Description of an item cannot be empty."
-                + "\nExample: ADD 1 i/apple p/4.50 q/2";
+                + "\nExample: ADD i/apple p/4.50 q/2";
         assertEquals(expectedFeedback3, command.feedbackToUser);
 
     }

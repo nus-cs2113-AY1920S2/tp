@@ -15,7 +15,7 @@ public class AddCommand extends Command {
             + System.lineSeparator() + "|| Example: ADD i/apple p/3.00" + System.lineSeparator();
     public static final String FAILURE_ACK = System.lineSeparator()
             + "Error! Description of an item cannot be empty."
-            + "\nExample: ADD 1 i/apple p/4.50 q/2";
+            + "\nExample: ADD i/apple p/4.50 q/2";
     public static final String FAILURE_ACK_2 = System.lineSeparator()
             + "Error! price should follow this format"
             + "\nExample: p/4.50";
@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
             + "p/[PRICE] or q/[QUANTITY] must be present."
             + System.lineSeparator()
-            + "|| Example: ADD 2 i/apples p/9.90 q/9";
+            + "|| Example: ADD i/apples p/9.90 q/9";
     public static final String FAILURE_ACK_4 = System.lineSeparator()
             + "Oops! It already exists"
             + System.lineSeparator()

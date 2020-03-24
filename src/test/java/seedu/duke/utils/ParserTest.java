@@ -137,7 +137,7 @@ public class ParserTest {
                 + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                 + "p/[PRICE] or q/[QUANTITY] must be present."
                 + System.lineSeparator()
-                + "|| Example: ADD 2 i/apples p/9.90 q/9";
+                + "|| Example: ADD i/apples p/9.90 q/9";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
@@ -157,7 +157,7 @@ public class ParserTest {
                 + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                 + "p/[PRICE] or q/[QUANTITY] must be present."
                 + System.lineSeparator()
-                + "|| Example: ADD 2 i/apples p/9.90 q/9";
+                + "|| Example: ADD i/apples p/9.90 q/9";
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
