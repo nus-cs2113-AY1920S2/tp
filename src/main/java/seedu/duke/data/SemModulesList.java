@@ -1,30 +1,38 @@
 package seedu.duke.data;
 
-import seedu.duke.module.Module;
+import seedu.duke.module.SelectedModule;
 
-public class SemModulesList extends ModuleList {
+import java.util.ArrayList;
+
+import static seedu.duke.ui.SemesterConvertor.convertSemToStandardFormat;
+
+public class SemModulesList extends ArrayList<SelectedModule> {
+    private String semester;
     private String semName;
 
-    public SemModulesList(String semName) {
-        this.semName = semName;
+    public SemModulesList(String semester) {
+        this.semester = semester;
+        this.semName = convertSemToStandardFormat(semester);
     }
 
     public String getSem() {
+        return semester;
+    }
+
+    public String getSemName() {
         return semName;
     }
 
     /**
-     * Checks if the moduleName is in the semModulesList.
-     * @param moduleName : name of the module to check in the ModulesList.
-     * @param semModulesList : ModulesList to check if the moduleName is in.
+     * Checks if the moduleIdentifier is in the semModulesList.
+     * @param moduleIdentifier : name of the module to check in the ModulesList.
      */
-    public boolean isInList(String moduleName, SemModulesList semModulesList) {
-        for (Module module: semModulesList) {
-            if (module.getName().equals(moduleName)) {
+    public boolean isInList(String moduleIdentifier) {
+        for (SelectedModule module: this) {
+            if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
                 return true;
             }
         }
         return false;
     }
-
 }

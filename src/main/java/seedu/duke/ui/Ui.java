@@ -39,13 +39,13 @@ public class Ui {
     private static final String REQUIRED_INPUT_USER_NAME = "What is your name? Please enter it over here:";
 
     private static final String BOX_EDGE = "--------------------------------------------------------------------------"
-            + "----------------------------------------------";
+            + "--------------------------------------------------";
 
     private static final String BOX_HEADER = "| S/N |    ID    | Name                                                 "
-            + "         | Prerequisites                       |";
+            + "         | Module Credit | Prerequisites           |";
 
     public static final String BOX_MARGIN = "|-----|----------|------------------------------------------------------"
-            + "---------|-------------------------------------|";
+            + "---------|---------------|-------------------------|";
 
 
 

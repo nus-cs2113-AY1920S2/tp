@@ -1,14 +1,11 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
+import seedu.duke.data.SemesterList;
 import seedu.duke.module.Module;
+import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class ViewCommand extends Command {
 
@@ -32,13 +29,13 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
         switch (viewTaskType) {
         case VIEW_MODULE_PLAN:
-            viewModulePlan(selectedModulesList);
+            viewModulePlan(semesterList);
             break;
         case VIEW_DONE_MODULES:
-            viewDoneModules(selectedModulesList);
+            viewDoneModules(semesterList);
             break;
         case VIEW_AVAILABLE_MODULES:
             viewAvailableModules(availableModulesList);
@@ -47,19 +44,19 @@ public class ViewCommand extends Command {
             viewCompletedCredits();
             break;
         default:
-            return;
         }
     }
 
     /**
      * Prints the user's module plan.
-     * @param moduleList user's module list.
+     *
+     * @param semesterList user's module list.
      */
-    private void viewModulePlan(SelectedModulesList moduleList) {
+    private void viewModulePlan(SemesterList semesterList) {
         StringBuilder viewList = new StringBuilder();
-        for (SemModulesList sem: moduleList) {
-            viewList.append(sem.getSem()).append(System.lineSeparator());
-            for (Module selectedModule: sem) {
+        for (SemModulesList sem : semesterList) {
+            viewList.append(sem.getSemName()).append(System.lineSeparator());
+            for (Module selectedModule : sem) {
                 int index = sem.indexOf(selectedModule) + 1;
                 viewList.append(index).append(".")
                         .append(selectedModule.toString())
@@ -70,20 +67,25 @@ public class ViewCommand extends Command {
         Ui.showViewMessage(viewList.toString().trim());
     }
 
-    private void viewDoneModules(SelectedModulesList moduleList) {
+    private void viewDoneModules(SemesterList semesterList) {
         StringBuilder viewList = new StringBuilder();
-        for (SemModulesList sem: moduleList) {
-            viewList.append(sem.getSem()).append(System.lineSeparator());
-            for (Module selectedModule: sem) {
-                int index = sem.indexOf(selectedModule) + 1;
+        for (SemModulesList sem : semesterList) {
+            StringBuilder viewSemList = new StringBuilder();
+            boolean haveCompletedModule = false;
+            viewSemList.append(sem.getSemName()).append(System.lineSeparator());
+            int index = 1;
+            for (SelectedModule selectedModule : sem) {
                 if (selectedModule.getDone()) {
-                    viewList.append(index).append(".")
+                    haveCompletedModule = true;
+                    viewSemList.append(index).append(".")
                             .append(selectedModule.toString())
                             .append(System.lineSeparator());
-
+                    index++;
                 }
             }
-            viewList.append(System.lineSeparator());
+            if (haveCompletedModule) {
+                viewList.append(viewSemList.toString()).append(System.lineSeparator());
+            }
         }
         Ui.showViewDoneMessage(viewList.toString().trim());
     }
@@ -102,6 +104,9 @@ public class ViewCommand extends Command {
             viewList.append(module.getName());
             alignName(viewList, module);
 
+            viewList.append(module.getModuleCredit());
+            alignModuleCredit(viewList, module);
+
             viewList.append(module.getPreReqModulesID());
             alignPreReqModules(viewList, module);
         }
@@ -115,10 +120,16 @@ public class ViewCommand extends Command {
     }
 
     private void alignPreReqModules(StringBuilder viewList, Module module) {
-        int lengthOfPreReqModulesColumn = 36;
+        int lengthOfPreReqModulesColumn = 24;
         viewList.append(" ".repeat(Math.max(0,
                 (lengthOfPreReqModulesColumn - module.getPreReqModulesID().length()))));
         viewList.append("|").append(System.lineSeparator());
+    }
+
+    private void alignModuleCredit(StringBuilder viewList, Module module) {
+        int lengthOfCreditColumn = 14;
+        viewList.append(" ".repeat(lengthOfCreditColumn - 1));
+        viewList.append("| ");
     }
 
     private void alignName(StringBuilder viewList, Module module) {

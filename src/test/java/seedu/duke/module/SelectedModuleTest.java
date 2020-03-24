@@ -8,9 +8,9 @@ public class SelectedModuleTest {
 
     @Test
     public void testMarkAsDone() {
-        Module module = new Module("id", "CS1010", "19/20 Sem2");
-        assertEquals("[✗]", module.getIcon());
-        module.setAsDone();
-        assertEquals("[✓]", module.getIcon());
+        SelectedModule selectedModule = new SelectedModule("id", "CS1010", "19/20 Sem2", 4);
+        assertEquals("[✗]", selectedModule.getIcon());
+        selectedModule.setAsDone(Grading.APLUS);
+        assertEquals("[✓]", selectedModule.getIcon());
     }
 }
