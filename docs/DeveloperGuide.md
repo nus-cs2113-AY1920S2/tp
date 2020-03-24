@@ -67,21 +67,13 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...|
 |---|---|---|---|
 |`* * *` |new user |see usage instructions |learn about existing features and how can I use them |
-
 |`* * *` |student |add modules/tasks |I can have track on tasks of different modules |
-
 |`* * *` |student |delete modules/tasks |remove modules and tasks I do not need to keep on track anymore |
-
 |`* * *` |student |edit modules/tasks |I can correct or change some attributes
-
 |`* * *` |student |constansly check the deadline of tasks in ascending order |I can get tasks done on time |
-
 |`* * *` |student |receive a reminder of urgent tasks |I know which tasks should be done first |
-
 |`* * *` |student |sort my tasks in terms of certain criteria |I can view my tasks of highest priorites |
-
 |`* * *` |student |add tags to tasks |I can filter and view tasks with respect to certain tags|
-
 |`* *` |student |receive a reminder of expired tasks |I know I passed the deadline |
 
 _{More to be added}_
