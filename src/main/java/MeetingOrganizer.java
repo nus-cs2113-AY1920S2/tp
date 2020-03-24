@@ -110,7 +110,7 @@ public class MeetingOrganizer {
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
             break;
-        case "display": // schedule memberNumber1 memberNumber2 (eg. display 1 3)
+        case "display": // display memberNumber1 memberNumber2 (eg. display 1 3)
             ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
             for (int i = 1; i < userInputWords.length; i++) {
                 int memberNumber = Integer.parseInt(userInputWords[i]);
@@ -138,7 +138,7 @@ public class MeetingOrganizer {
             LocalTime endTime = LocalTime.parse(userInputWords[5]);
 
             try {
-                if (ScheduleHandler.isValidMeeting(startDay, startTime, endDay, endTime)) {
+                if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime)) {
                     Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime);
                     myMeetingList.add(myMeeting);
                     mainUser.addBusyBlocks(meetingName, startDay, userInputWords[3], endDay, userInputWords[5]);
