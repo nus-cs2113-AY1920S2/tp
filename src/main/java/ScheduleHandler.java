@@ -14,9 +14,9 @@ import java.util.Arrays;
 public class ScheduleHandler {
     private static final Boolean MYSCHEDULEBLOCKED = true;
     private static final Boolean MYSCHEDULEFREE = false;
-    private Boolean[][] masterSchedule = new Boolean[7][48];
+    private static Boolean[][] masterSchedule = new Boolean[7][48];
     // ArrayList of free slots in Integer type {startDay, startBlock, endDay, endBlock}
-    private ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
+    private static ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
 
 
     public ScheduleHandler(ArrayList<TeamMember> teamMemberList) {
@@ -187,7 +187,7 @@ public class ScheduleHandler {
         return this.freeBlocks;
     }
 
-    private Integer getBlocksFromStartTime(LocalTime startTime) throws MoException {
+    public static Integer getBlocksFromStartTime(LocalTime startTime) throws MoException {
         int minuteBlocks = -1;
         int hourBlocks = -1;
         switch (startTime.getMinute()) {
@@ -204,7 +204,7 @@ public class ScheduleHandler {
         return minuteBlocks + hourBlocks;
     }
 
-    private Integer getBlocksFromEndTime(LocalTime endTime) throws MoException {
+    public static Integer getBlocksFromEndTime(LocalTime endTime) throws MoException {
         int minuteBlocks = -1;
         int hourBlocks = -1;
         switch (endTime.getMinute()) {
@@ -221,7 +221,7 @@ public class ScheduleHandler {
         return minuteBlocks + hourBlocks - 1;
     }
 
-    public boolean isValidMeeting(Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
+    public static boolean isValidMeeting(Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
         if (!(startDay >= 0 && startDay <= 6) || !(endDay >= 0 && endDay <= 6)) {
             throw new MoException(MESSAGE_STARTENDDAY_OUT_OF_RANGE);
         }
