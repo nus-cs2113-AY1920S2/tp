@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class EditCommand extends Command {
 
-    public static final String EDIT_COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit";
     public static final String ASSIGNMENT_COMMAND = "assignment";
     public static final String EVENT_COMMAND = "event";
 
@@ -94,7 +94,8 @@ public class EditCommand extends Command {
     public Assignment editAssignment(String userInput, Ui ui) {
         final Matcher matcher = ASSIGNMENT_PARAMETERS_FORMAT.matcher(userInput);
         if (!matcher.matches()) {
-            ui.showToUser(Messages.ASSIGN_INCORRECT_FORMAT_ERROR);
+            ui.showToUser(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    Parser.capitalize(AssignmentCommand.COMMAND_WORD), AssignmentCommand.COMMAND_USAGE));
         }
 
         LocalDateTime dateTime = null;
@@ -120,7 +121,8 @@ public class EditCommand extends Command {
     public Event editEvent(String userInput, Ui ui) {
         final Matcher matcher = EVENT_PARAMETERS_FORMAT.matcher(userInput);
         if (!matcher.matches()) {
-            ui.showToUser(Messages.EVENT_INCORRECT_FORMAT_ERROR);
+            ui.showToUser(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                    Parser.capitalize(EventCommand.COMMAND_WORD), EventCommand.COMMAND_USAGE));
         }
 
         LocalDateTime startDateTime = null;
@@ -145,7 +147,4 @@ public class EditCommand extends Command {
 
         return new Event(eventName, location, startDateTime, endDateTime, comments);
     }
-
-
-
 }

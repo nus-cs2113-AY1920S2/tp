@@ -1,6 +1,7 @@
 package command;
 
 import common.Messages;
+import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
@@ -8,7 +9,7 @@ import tasks.Task;
 import java.util.ArrayList;
 
 public class SearchCommand extends Command {
-    public static final String SEARCH_COMMAND_WORD = "search";
+    public static final String COMMAND_WORD = "search";
     public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
 
     protected static final String allTasks = "all";
@@ -120,7 +121,8 @@ public class SearchCommand extends Command {
             ArrayList<Task> assignmentResults = getSearchQueryAssignments(taskList);
             return new CommandResult(resultsList(assignmentResults));
         default:
-            return new CommandResult(Messages.INVALID_SEARCH_FORMAT);
+            return new CommandResult(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                    Parser.capitalize(COMMAND_WORD), COMMAND_USAGE));
         }
     }
 }

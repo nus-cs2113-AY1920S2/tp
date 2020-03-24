@@ -124,7 +124,7 @@ public class ListCommandTest {
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%"
             + System.lineSeparator()
             + "  3. [E][X] midterms (at: MPSH1A | Thu 13 Aug 2020 18:00 - 20:30)"
-            + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "6M") + "-"
+            + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "6m") + "-"
             + System.lineSeparator()
             + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00 - 02:59)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
@@ -178,6 +178,12 @@ public class ListCommandTest {
     }
 
     @Test
+    public void printList_invalidArgs_errorMsg() {
+        assertEquals("Invalid arguments for List Command" + System.lineSeparator() + ListCommand.COMMAND_USAGE,
+                new ListCommand("everything i want").execute(filledTasklist, ui).feedbackToUser);
+    }
+
+    @Test
     public void printList_filledList_incompleteAssignOnly() {
         assertEquals(expectedOutputFromIncompleteAssign,
                 new ListCommand("incomplete assignments").execute(filledTasklist, ui).feedbackToUser);
@@ -209,7 +215,7 @@ public class ListCommandTest {
 
     @Test
     public void repeatingEvent_filledList_allTaskListMsg() {
-        RepeatCommand testRepeatCommand = new RepeatCommand(2, 6, "M");
+        RepeatCommand testRepeatCommand = new RepeatCommand(2, 6, "m");
         testRepeatCommand.execute(filledTasklist, ui);
         ((Event) filledTasklist.getTask(2)).updateDateAndTime();
         assertEquals(expectedOutputFromFilledTasklistForRepeating,
