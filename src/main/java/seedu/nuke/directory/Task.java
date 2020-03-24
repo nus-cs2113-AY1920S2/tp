@@ -194,8 +194,11 @@ public class Task extends Directory implements Tag {
     }
 
     @Override
-    public void setTag(String info) {
-        this.tags.add(info);
+    public void setTag(String...infos) {
+        for(String info: infos) {
+            this.tags.add(info);
+        }
+
     }
 
     @Override
