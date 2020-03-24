@@ -7,8 +7,8 @@ import seedu.performance.Performance;
 import java.util.Scanner;
 
 public class UI {
-    private static Scanner in;
-    private static String userInput;
+    private Scanner in;
+    private String userInput;
     private static String userName;
 
 
@@ -42,7 +42,7 @@ public class UI {
     /**
      * Close the scanner.
      */
-    public static void close() {
+    public void close() {
         in.close();
     }
 

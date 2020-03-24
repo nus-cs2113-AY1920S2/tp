@@ -3,9 +3,12 @@ package seedu.attendance;
 import seedu.exception.DukeException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
-
 import java.util.ArrayList;
 
+
+/**
+ * Class representing attendance list of student's attendance status.
+ */
 public class AttendanceList {
 
     public static ArrayList<Attendance> attendanceList;
