@@ -1,6 +1,26 @@
 # Developer Guide
 
-## Design & Implementation
+##1. Setting Up
+   * Prerequisites
+     * JDK 11 or above
+     * IntelliJ IDE
+   * Setting up the project in your computer
+     * Fork this repo, and clone the fork to your computer
+     * Open IntelliJ (if you are not in the welcome screen, click File > Close Project to close the existing project dialog first)
+     * Set up the correct JDK version for Gradle
+     * Click Configure > Project Defaults > Project Structure
+     * Click New…​ and find the directory of the JDK
+     * Click Import Project
+     * Locate the build.gradle file and select it. Click OK
+     * Click Open as Project
+     * Click OK to accept the default settings.
+   * Verifying the setup
+     * Run the jikan.jikan and try a few commands
+     * Run the tests and ensure they all pass.
+
+## 2. Design
+
+## 3. Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
@@ -27,31 +47,42 @@ The StorageHandler class functions as a support to the main Storage class, allow
 - Replacing an entry in the data file via `replaceLine`. This function takes in the number of the line to replace, along with the String object that needs to be written to the data file in place of the replaced line.
 
 
+## 4. Appendix
+### Product Scope
+#### Target user profile
 
-## Product Scope
-### Target user profile
+* Students with time management issues/poor time management skills.
+* Users who are reasonably comfortable using CLI apps.
 
-{Describe the target user profile}
+#### Value proposition
 
-### Value proposition
+Allow users to record their daily activities and track their time usage in a user-friendly manner. 
 
-{Describe the value proposition: what problem does it solve?}
-
-## User Stories
+### User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|start a new activity|track the time spent on the activity|
+|v1.0|user|end an activity|track the total time i spent on the activity|
+|v1.0|user|abort an activity|record a different activity|
+|v1.0|user|store the completed activities in a list|analyse how I spent my time|
+|v2.0|user|delete an activity|remove activities that I do not want to track|
+|v2.0|user|search by activity name|view similar activities|
+|v2.0|user|filter activities by tags|view activities of the same category|
+|v2.0|user|view the activities by date|see how much time I have spent on different activities|
+|v2.0|user|continue my activities at another time|do other things between activities|
+|v2.0|user|edit past activities|keep a more accurate record of activities|
+|v2.0|user|automate the deletion of old activities|keep a more concise log of activities|
 
-## Non-Functional Requirements
+
+### Non-Functional Requirements
 
 {Give non-functional requirements}
 
-## Glossary
+### Glossary
 
 * *glossary item* - Definition
 
-## Instructions for Manual Testing
+### Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
