@@ -1,0 +1,22 @@
+= A.T.A.S (Amazing Task and Assignment System) User Guide
+:site-section: UserGuide
+:toc:
+:toclevels: 4
+:toc-title: Table of Contents
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
+
+By: `Team M16-1` Since: `Jan 2020` License: `MIT`
+
+== Introduction
+
+=== What is *A.T.A.S*?
+ATAS (Amazing Task and Assignment System)
