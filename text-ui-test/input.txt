@@ -3,7 +3,6 @@ ADD wrong args format
 ADD p/2.50
 ADD i/apple p/8*wh12
 ADD i/apple p/
-ADD i/apple p/2.45 q/
 ADD i/banana p/3.00 q/3
 ADD i/cherry p/5.60 q/2
 FIND cherry
