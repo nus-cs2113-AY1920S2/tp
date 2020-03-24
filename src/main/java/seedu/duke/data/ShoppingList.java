@@ -146,7 +146,7 @@ public class ShoppingList {
         boolean result = false;
         for (Item i : items) {
             if (i.getDescription().equals(descriptionToCheck)) {
-                result= true;
+                result = true;
             }
 
         }

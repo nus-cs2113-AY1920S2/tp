@@ -88,7 +88,7 @@ public class EditCommand extends Command {
                 assert Integer.parseInt(newQuantity) >= 0;
                 assert item.getQuantity() == Integer.parseInt(newQuantity);
             }
-            if(!duplicateDescription) {
+            if (!duplicateDescription) {
                 LOGGER.log(Level.INFO, "(Edit command)  Item has been updated to: " + item.toString());
                 feedbackToUser = String.format(MESSAGE_SUCCESS, item.toString());
             }
