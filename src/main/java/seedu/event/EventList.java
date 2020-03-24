@@ -167,7 +167,7 @@ public class EventList {
         if (list.isEmpty()) {
             throw new DukeException("The event list is empty.");
         }
-        displayList.printEventList(list);
+        displayList.printEventList(list, "event");
     }
 
     /**
@@ -185,6 +185,6 @@ public class EventList {
                 seminarList.add(item);
             }
         }
-        displayList.printSeminarList(seminarList);
+        displayList.printEventList(seminarList, "seminar");
     }
 }

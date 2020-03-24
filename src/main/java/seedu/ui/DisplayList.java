@@ -9,15 +9,8 @@ import java.util.ArrayList;
 import static seedu.duke.Duke.studentListCollection;
 
 public class DisplayList extends UI {
-    public void printEventList(ArrayList<Event> list) {
-        System.out.println("Here are all the events in your list.");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
-        }
-    }
-
-    public void printSeminarList(ArrayList<Event> list) {
-        System.out.println("Here are all the seminar events in your list.");
+    public void printEventList(ArrayList<Event> list, String type) {
+        System.out.println("Here are all the " + type + "s in your list.");
         for (int i = 0; i < list.size(); i++) {
             System.out.println(i + 1 + ". " + list.get(i));
         }
