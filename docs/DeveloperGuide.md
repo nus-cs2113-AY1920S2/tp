@@ -27,7 +27,7 @@ with the specified index.
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Delete.png)
+![alt text](images/DeleteFinal.png)
 
 #### 2.1.2 Design considerations
 
@@ -65,7 +65,7 @@ with the amount specified by the user for the budget.
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Set.png)
+![alt text](images/SetFinal.png)
 
 
 #### 2.2.2 Design considerations
