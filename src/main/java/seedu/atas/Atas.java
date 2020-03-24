@@ -35,7 +35,7 @@ public class Atas {
     }
 
     /**
-     * Starts Duke Process.
+     * Starts Atas Process.
      */
     public void run() {
         ui.printWelcomeMessage();
@@ -88,7 +88,7 @@ public class Atas {
     }
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the seedu.atas.Atas application.
      */
     public static void main(String[] args) {
         new Atas().run();
