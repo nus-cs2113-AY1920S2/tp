@@ -110,7 +110,7 @@ public class MeetingOrganizer {
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
             break;
-        case "schedule": // schedule memberNumber1 memberNumber2 (eg. schedule 1 3)
+        case "display": // schedule memberNumber1 memberNumber2 (eg. display 1 3)
             ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
             for (int i = 1; i < userInputWords.length; i++) {
                 int memberNumber = Integer.parseInt(userInputWords[i]);
@@ -126,29 +126,22 @@ public class MeetingOrganizer {
 
             Boolean[][] myMasterSchedule;
             myMasterSchedule = myScheduleHandler.getMasterSchedule();
-            System.out.println("Combined Schedule of selected team member/s.");
+            System.out.println("Combined Schedule of you and your selected team member/s.");
             TextUI.printTimetable(myMasterSchedule);
+            break;
+        case "schedule": //schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time> (eg. schedule meeting 3 17:00 3 19:00)
 
-            TextUI.meetingDetailsMsg();
-
-            String userInput = in.nextLine();
-            if (userInput.equals("exit")) {
-                break;
-            }
-            userInputWords = CliParser.splitWords(userInput);
-
-            String meetingName = userInputWords[0];
-            startDay = Integer.parseInt(userInputWords[1]);
-            LocalTime startTime = LocalTime.parse(userInputWords[2]);
-            endDay = Integer.parseInt(userInputWords[3]);
-            LocalTime endTime = LocalTime.parse(userInputWords[4]);
+            String meetingName = userInputWords[1];
+            startDay = Integer.parseInt(userInputWords[2]);
+            LocalTime startTime = LocalTime.parse(userInputWords[3]);
+            endDay = Integer.parseInt(userInputWords[4]);
+            LocalTime endTime = LocalTime.parse(userInputWords[5]);
 
             try {
-                if (myScheduleHandler.isValidMeeting(startDay, startTime, endDay, endTime)) {
+                if (ScheduleHandler.isValidMeeting(startDay, startTime, endDay, endTime)) {
                     Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime);
                     myMeetingList.add(myMeeting);
-                    myScheduleHandler.updateMasterSchedule(myMeeting, "add");
-                    mainUser.addBusyBlocks(meetingName, startDay, userInputWords[2], endDay, userInputWords[4]);
+                    mainUser.addBusyBlocks(meetingName, startDay, userInputWords[3], endDay, userInputWords[5]);
                     TextUI.meetingListSizeMsg(myMeetingList);
                 } else {
                     System.out.println("Schedule is blocked at that timeslot");

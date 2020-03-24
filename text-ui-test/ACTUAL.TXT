@@ -8,6 +8,7 @@ There are no previous records of meetings, let's create a new one!
 ________________________________________________________________________________________________________________________________
 [add] Add a new contact manually.
 [contacts] List all contacts.
+[display] Display combined schedule of you and your selected contacts.
 [schedule] Schedule a new meeting.
 [delete] Delete a scheduled meeting.
 [meetings] List all scheduled meetings.
