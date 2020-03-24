@@ -30,12 +30,17 @@ user interfaces.
 
 &nbsp;
 
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
 
 &nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
 
 ## Features 
 
@@ -49,6 +54,7 @@ user interfaces.
 
 &nbsp;
 
+***
 
 ### Adding an item: `ADD`
 {add your details here}
@@ -184,7 +190,7 @@ Format: `HELP`
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
-***
+
 ***
 
 
