@@ -29,6 +29,15 @@ The components involved are given below:
 
 `Profile`: Stores and records the user's profile information
 
+### Logic component
+
+The `Logic` component is responsible for:
+* Arranging the whole workflow
+* Deciding how functional components interact with each other. 
+
+The Logic consists of the following class:
+* DietManager-Arranges the main workflow of the program.
+
 ### UI component
 
 The `UI` component is responsible for:
@@ -80,6 +89,32 @@ The Food consists of the following classes:
 ## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### 1. [Proposed] Record Meal Feature
+#### 1.1 Proposed implementation
+The record feature is facilitated by `RecordMealCommand`. It extends `Command` and overrides `execute()` and `saveResults()`
+
+Given below is an example usage scenario and how the record mechanism behaves at each step.
+
+Step 1.  The `ui` object gets user input and sends it to the `parser`. The `parser` then parses the original input into a standard `command`
+and returns it. The command type is decided by the `commandPrompt`. The `RecordMealCommand` has `record-meal` as its commandPrompt. 
+During the process a new`RecordMealCommand` object will be generated and returned to the `Logic` component.
+
+![Step1. Generate command](/docs/images/Record_step1.png)
+
+Step 2.  The `Logic` composition calls the `execute()` method of the `RecordMealCommand` object. 
+
+During the process of execution, the command object will generate a `ArrayList<Food> foodList`, which maintains all `Food` items listed in the user input. 
+If a certain kind of `Food` can be found in the database of `FoodNuritionInfo`, then this food item will be fetched from the database. 
+Else a new food object will be generated simply with `foodName` without all the nutrition info.
+
+During execution, the command object will try to get a `record` object of the class `DailyFoodRecord`. The date of record specified by the user. 
+If no record of that day is found in profile, it will automatically generate a new record of that day. Then with `foodList` and `record`, can call 
+the method `record.recordMeals()`.
+
+{To be finished by Chenghao}
+
+
+
 
 ## Product Scope
 ### Target user profile
