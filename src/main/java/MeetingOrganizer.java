@@ -66,6 +66,13 @@ public class MeetingOrganizer {
 
         switch (userCommand) {
         case "add using link":
+            int checkerForRepeatedName = 0;
+            checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream().mapToInt(person -> check(person, userInputWords[0])).sum();
+            if (checkerForRepeatedName == 1) {
+                TextUI.showRepeatedPerson(userInputWords[0]);
+                break;
+            }
+
             member = new TeamMember(userInputWords[0]);
             String name = userInputWords[0];
             LessonsGenerator myLessonGenerator;
