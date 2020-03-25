@@ -70,7 +70,7 @@ public class SearchCommandTest {
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
-        searchString.append("  2.[E][X] mid (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
+        searchString.append("  3.[E][X] mid (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
