@@ -91,12 +91,13 @@ The prompt to request for the list number(s) of the item(s) to delete from the f
 <br>
 Below are the class-diagrams for the involved classes:  
 
-![Delete Command Class Diagram](images/Delete Command Class Diagram.png)
-<span style="color:#73c742"><small><i>Figure <b>Delete Command Class Diagram</b></i></small></span>
+![Delete Command Class Diagram](images/Delete_Command_Class_Diagram.png)
+<span style="color: green"><small><i>Figure <b>Delete Command Class Diagram</b></i></small></span>
 
-```
-	// To Prompt Class diagrams here 
-```
+<br>  
+
+![Prompt Command Class Diagram](images/Prompt_Class_Diagram.png)
+<span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>
 
 #### Example Usage  
 The deletion process for *modules*, *categories* and *tasks* are similar. In this example, the deletion process for *tasks* will be illustrated as a series of steps.  <br>
