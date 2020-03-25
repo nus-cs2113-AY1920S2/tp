@@ -279,7 +279,8 @@ might not feel intuitive.
 
 * Format: `calendar d/[DD/MM/YY]`
 * Expected outcome:
-// add image here
+
+image::calendar.png[calendar.png]
 
 == Commands Summary
 === List of available *ATAS* commands
