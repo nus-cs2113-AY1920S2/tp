@@ -59,10 +59,10 @@ This section will describe how the main features of the application are implemen
  1. First, <code>Duke</code> class receives user input from the <code>Ui</code> class. 
  2. Next, a <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
- 3. Then, the <code>Duke</code> class calls the <code>execute</code> method of the <code>AddCommand</code> object.
+ 3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>AddCommand</code> object.
  4. In the <code>execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> object, using items.add().
  5. In the SD, the AddCommand will add <code>item</code> if the description is provided and one / both price and quantity is provided. 
- 6. Finally, the <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
+ 6. Last but not least, the <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
  
  The following sequence diagram below shows how the add feature works. The details of the adding item's values
  are shown in a separate sequence diagram below:
@@ -75,8 +75,8 @@ This section will describe how the main features of the application are implemen
 
 ##### Aspect: Data structure to support the add feature
 
-- Alternative 1 (current choice): User must provided at least a description for item, Duplicates are
-                                  not allowed in the list
+- Alternative 1 (current choice): User must provided a description for item, Duplicates are
+                                  not allowed in the list. 
   - Pros: User has minimal potential to see unreasonable list in the Shopping List. For 
   example, having a item that has only price and quantity but without description and also
   a list that one item is recorded multiple times in the list.
@@ -93,7 +93,7 @@ This section will describe how the main features of the application are implemen
   - Pros: User will have a neat and unity Shopping list, less deal with parameter (because users are
   forced to give all three variables).
   
-  - Cons: Less user flexibility, user must input all parameters even if he/she does not want to provide certain
+  - Cons: User flexibility will decrease, because user must input all parameters even if he/she does not want to provide certain
   variables such as price and quantity, which will result unsuccessful adding items into the list. 
  
 
