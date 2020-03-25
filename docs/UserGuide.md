@@ -6,6 +6,7 @@
     + [3.1. Add:](#add) `add`
     + [3.2. Delete:](#delete) `delete`
     + [3.3. List:](#list) `list`
+    + [3.4. Search:](#search) `search`
 * [4. Command Summary](#command-summary)
 
 <a name="introduction"></a>
@@ -48,7 +49,7 @@ Add menu items, ingredients, and reservations.
 * Example: `add stock; i/tomato; q/10; p/$0.50;`
 #### Add reservation into list: add reservation 
 * Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
-* Example: `add reservation; r/12;`
+* Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
 
 *The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be an integer.*
 
@@ -71,11 +72,18 @@ Delete menu items, ingredients and reservations.
 <a name="list"></a>
 
 ### List
-List items in the menu, ingredients and reservations.
+List items in the menu, stock and reservations.
 
-* List menu : `list menu`
-* List ingredients : `list ingredient`
+* List menu : `list dish`
+* List stock : `list stock`
 * List reservation : `list reservation`
+
+<a name="search"></a>
+
+### Search
+Search items in the menu, stock and reservations.
+
+* Search stock : `search stock; KEYWORD`
 
 <a name="command-summary"></a>
 
