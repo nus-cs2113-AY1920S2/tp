@@ -33,8 +33,8 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
 
         String commandType = getFirstWord(commandDescription);
         String commandParameters = getSubsequentWords(commandDescription);
-        assert commandType == " " : "Event: Unknown command";
-        assert commandType == " " : "Event: Command is null";
+        assert commandType.isBlank() : "Seminar: Unknown command";
+
         switch (commandType) {
         case "add":
             seminar = eventParser.parseSeminar(commandParameters);
@@ -68,11 +68,11 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             command = new ListSeminar(this.eventList);
             break;
         default:
-            throw new DukeException("Event: Unknown command");
+            throw new DukeException("Seminar: Unknown command");
         }
 
         if (command == null) {
-            throw new DukeException("Event: Command is null");
+            throw new DukeException("Seminar: Command is null");
         }
         return command;
     }
