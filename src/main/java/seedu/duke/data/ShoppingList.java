@@ -3,6 +3,7 @@ package seedu.duke.data;
 import seedu.duke.ui.CommandLineTable;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class ShoppingList {
 
@@ -54,10 +55,9 @@ public class ShoppingList {
     public double getTotalCost() {
         double totalCost = 0.0;
         for (Item item : items) {
-            totalCost += item.getPrice();
+            totalCost += item.getPrice() * item.getQuantity();
         }
         return totalCost;
-
     }
 
     /**
