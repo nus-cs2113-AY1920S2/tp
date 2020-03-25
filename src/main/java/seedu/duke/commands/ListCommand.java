@@ -12,11 +12,13 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "DISPLAY";
 
-    public static final String LIST_MESSAGE = System.lineSeparator() + "Here is your shopping list:\n";
+    public static final String LIST_MESSAGE = "Your shopping list:";
 
-    public static final String TOTAL_COST_MESSAGE = "Total cost of items: %.2f\n";
+    public static final String TOTAL_COST_MESSAGE = "Cost of items:    $%.2f";
 
-    public static final String BUDGET_MESSAGE = "Your remaining budget / total budget: %.2f / %.2f";
+    public static final String BUDGET_MESSAGE = "Budget:           $%.2f";
+
+    public static final String REMAINING_BUDGET_MESSAGE = "Remaining budget: $%.2f";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all items in the list."
             + System.lineSeparator() + "|| Parameters: DISPLAY"
@@ -27,11 +29,16 @@ public class ListCommand extends Command {
 
         // Prepare info for printing
         double totalCost = items.getTotalCost();
-        String budgetDetails = String.format(TOTAL_COST_MESSAGE, totalCost)
-                + String.format(BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost), myBudget.getAmount());
+        String budgetDetails =
+                System.lineSeparator()
+                + String.format(BUDGET_MESSAGE, myBudget.getAmount())
+                + System.lineSeparator()
+                + String.format(TOTAL_COST_MESSAGE, totalCost)
+                + System.lineSeparator()
+                + String.format(REMAINING_BUDGET_MESSAGE, myBudget.getRemainingBudget(totalCost));
 
         // Printing gets done here
-        System.out.println(LIST_MESSAGE);
+        System.out.println(System.lineSeparator() + LIST_MESSAGE + System.lineSeparator());
         items.showTableOfItems();
         System.out.println(budgetDetails);
 

@@ -73,12 +73,12 @@ NOTE: You have exceeded your budget by 2.45
 Enter command:
 
 Added this item: [0] banana $3.00 qty: 3
-NOTE: You have exceeded your budget by 5.45
+NOTE: You have exceeded your budget by 11.45
 
 Enter command:
 
 Added this item: [0] cherry $5.60 qty: 2
-NOTE: You have exceeded your budget by 11.05
+NOTE: You have exceeded your budget by 22.65
 
 Enter command:
 
@@ -308,7 +308,7 @@ BYE: Exits the program.
 
 Enter command:
 
-Here is your shopping list:
+Your shopping list:
 
 +---------------+-------+-----+
 | Item          | Price | Qty |
@@ -316,14 +316,16 @@ Here is your shopping list:
 | 1. [B] banana | $3.00 | 3   |
 | 2. [0] cherry | $5.60 | 2   |
 +---------------+-------+-----+
-Total cost of items: 8.60
-Your remaining budget / total budget: 491.40 / 500.00
+
+Budget:           $500.00
+Cost of items:    $20.20
+Remaining budget: $479.80
 
 
 Enter command:
 
 Budget has been reset to $0.00
-NOTE: You have exceeded your budget by 8.60
+NOTE: You have exceeded your budget by 20.20
 
 Enter command:
 
