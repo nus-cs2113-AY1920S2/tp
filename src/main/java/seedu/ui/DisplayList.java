@@ -16,14 +16,6 @@ public class DisplayList extends UI {
         }
     }
 
-    public void printCalendar(ArrayList<Event> list, int semesterOneYear, int semesterTwoYear, int semester) {
-        System.out.printf("Events of Semester %d of AY %d/%d\n",
-                semester, semesterOneYear, semesterTwoYear);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " +  list.get(i));
-        }
-    }
-
     public void printStudentList(StudentList studentList, String listName) {
         System.out.println("Student List created, named : " + listName);
         studentList.showList();

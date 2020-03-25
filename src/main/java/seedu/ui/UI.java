@@ -113,6 +113,7 @@ public class UI {
         System.out.printf("%s: %s was deleted successfully from "
                 + "your Event list.\n", eventType, eventName);
     }
+
     public static void printBorderOfCalendar() {
         System.out.print("|");
         Stream.generate(() -> "_").limit(11).forEach(System.out::print);
