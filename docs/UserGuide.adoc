@@ -142,6 +142,51 @@ also be reflected in the stored list. +
 (You can think of this as repeating the task every 0 days and hence not repeating!)
 * Example: `repeat id/1 p/0` will cause task of index 1 to stop repeating.
 
+=== Mark Done: *`done`*
+You can mark *completed* tasks as done in your existing list. +
+Format: `mark INDEX`
+
+* `INDEX` represent the unique index of a specific task to be deleted.
+
+[TIP]
+Users can issue a `list` command to find the index of specific tasks
+
+Examples: `done 4`
+
+image::Done.PNG[DONE]
+Figure X. Output of `done` command
+
+Marks the 4th task in the list of tasks as done
+
+=== List Tasks: *`List`*
+==== List week
+* You can list all tasks for the next 7 days +
+* Format: `list week`
+
+image::listweek.PNG[List Week]
+Figure X.Output of `list week` command
+
+Displays all the tasks for the next 7 days
+
+==== List Upcoming Events
+* You can list all upcoming events
+* Format: `list upcoming events`
+
+image::listevent.PNG[List Upcoming Events]
+Figure X.Output of `list upcoming events`
+
+Displays all upcoming events
+
+==== List Incomplete Assignments
+* You can list all incomplete assignments. Assignments that have been marked as done will not be displayed.
+* Format: `list incomplete assignments`
+
+
+image::listassignment.PNG[List Incomplete Assignments]
+Figure X.Output of `list incomplete assignments`
+
+Displays all incomplete assignments
+
 == Commands Summary
 === List of available *ATAS* commands
 . *Help*: `help`
