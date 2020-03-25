@@ -1,4 +1,4 @@
-package apisystem;
+package modulelogic;
 
 import exception.InvalidUrlException;
 import exception.UnformattedModuleException;
@@ -75,11 +75,10 @@ public class LessonsGenerator {
     }
 
     /**
-     * Checks if lessonType:classNo from userModuleProfile matches Multimap's info.
-     *
+     * Checks if lessonType:classNo from userModuleProfile matches Multimap's info and if it does,
+     * adds a matched value pair containing an array(size 4) of startTime, endTime, day and weeks into mylessonsDetails.
      * @param allLessonMap All lesson information with key=lessonType:classNo.
      * @param userModuleProfile ArrayList of lessonType:classNo that user has taken for a particular module.
-     * @return Matched value pair containing an array(size 4) of startTime, endTime, day and weeks.
      */
     private void lessonsChecker(Multimap<String, String[]> allLessonMap, ArrayList<String> userModuleProfile) {
         //System.out.println("USER " + userModuleProfile);

@@ -1,4 +1,4 @@
-import apisystem.LessonsGenerator;
+import modulelogic.LessonsGenerator;
 import exception.InvalidUrlException;
 import exception.MoException;
 import exception.UnformattedModuleException;
