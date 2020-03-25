@@ -1,3 +1,6 @@
+package meeting;
+
+import ui.TextUI;
 import java.util.ArrayList;
 
 /**

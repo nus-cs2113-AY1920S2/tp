@@ -1,6 +1,9 @@
+package modulelogic;
+
 import static common.Messages.MESSAGE_INVALID_NUDMOSLINK;
 
 
+import exception.InvalidUrlException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +26,7 @@ public class TimetableParser {
 
     //main method for easy in-class behaviour testing
     public static void main(String[] args) throws InvalidUrlException {
-        //observe behaviour by substituting field in LessonsGenerator() with other NUSMODS link
+        //observe behaviour by substituting field in BackendAPI.LessonsGenerator() with other NUSMODS link
         TimetableParser myTimetableParser = new TimetableParser("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
         myTimetableParser.parse();
         System.out.println(myTimetableParser.getSemester());
@@ -33,9 +36,11 @@ public class TimetableParser {
 
 
     public void parse() {
+        assert nusmodsLink.contains("share?");
         int strippedIndex = this.nusmodsLink.indexOf("share?");
         String unparsedSemester = this.nusmodsLink.substring(0, strippedIndex);
         String unparsedModules = this.nusmodsLink.substring(strippedIndex + 6);
+        assert nusmodsLink.contains("sem-1") || nusmodsLink.contains("sem-2");
         if (unparsedSemester.contains("1")) {
             this.semester = "1";
         } else {
@@ -53,10 +58,12 @@ public class TimetableParser {
      * @return  Returns Key-value pair. Key = "moduleCode"-Value = ArrayList of "LessonType:Class number"
      */
     private Map<String, ArrayList<String>> parseModules(String unparsedModules) {
+        assert  unparsedModules != null;
         ArrayList<String> unparsed = new ArrayList<>(Arrays.asList(unparsedModules.split("&")));
         Map<String, ArrayList<String>> myModuleDetails = new HashMap<String, ArrayList<String>>();
 
         for (String elem : unparsed) {
+            assert elem != null;
             int tempIndex = elem.indexOf("=");
             String module = elem.substring(0, tempIndex);
             String unparsedLessonTypeAndClass = elem.substring(tempIndex + 1);

@@ -1,6 +1,12 @@
+package modulelogic;
+
+import exception.InvalidUrlException;
+import exception.UnformattedModuleException;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import common.LessonType;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -19,8 +25,8 @@ public class LessonsGenerator {
 
 
     //main method for easy in-class behaviour testing
-    public static void main(String[] args) throws InvalidUrlException {
-        //observe behaviour by substituting field in LessonsGenerator() with other NUSMODS link
+    public static void main(String[] args) throws InvalidUrlException, IOException, UnformattedModuleException {
+        //observe behaviour by substituting field in BackendAPI.LessonsGenerator() with other NUSMODS link
         LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
         mylesson.generate();
         ArrayList<String[]> myLessonDetails = mylesson.getLessonDetails();
@@ -33,7 +39,7 @@ public class LessonsGenerator {
     }
 
 
-    public void generate() {
+    public void generate() throws FileNotFoundException, UnformattedModuleException {
         myTimetableParser.parse();
         //Key-value pair: Key = module code, Value = LessonType:Class number(delimited by :)
         Map<String, ArrayList<String>> userLessons = myTimetableParser.getModulesMap();
@@ -69,11 +75,10 @@ public class LessonsGenerator {
     }
 
     /**
-     * Checks if lessonType:classNo from userModuleProfile matches Multimap's info.
-     *
+     * Checks if lessonType:classNo from userModuleProfile matches Multimap's info and if it does,
+     * adds a matched value pair containing an array(size 4) of startTime, endTime, day and weeks into mylessonsDetails.
      * @param allLessonMap All lesson information with key=lessonType:classNo.
      * @param userModuleProfile ArrayList of lessonType:classNo that user has taken for a particular module.
-     * @return Matched value pair containing an array(size 4) of startTime, endTime, day and weeks.
      */
     private void lessonsChecker(Multimap<String, String[]> allLessonMap, ArrayList<String> userModuleProfile) {
         //System.out.println("USER " + userModuleProfile);

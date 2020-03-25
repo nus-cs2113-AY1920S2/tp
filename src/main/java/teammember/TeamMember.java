@@ -1,10 +1,13 @@
-import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
+package teammember;
 
+import exception.MoException;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 
 /**
  * TESTING SUMMARY DOC.
@@ -22,13 +25,22 @@ public class TeamMember {
         this.mySchedule = new Boolean[7][48];
         this.myScheduleName = new String[7][48];
         for (int i = 0; i < 7; i++) {
-            Arrays.fill(mySchedule[i], MYSCHEDULEFREE); // fill every 48 index of the 7 days with 0 initially
+            Arrays.fill(mySchedule[i], MYSCHEDULEFREE);
             Arrays.fill(myScheduleName[i], null);
 
         }
     }
 
-    public String addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime) {
+    public void addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime) {
+        editBlocks(MYSCHEDULEBLOCKED, meetingName, startDay, startTime, endDay, endTime);
+    }
+
+    public void addFreeBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime) {
+        editBlocks(MYSCHEDULEFREE, meetingName, startDay, startTime, endDay, endTime);
+    }
+
+    public String editBlocks(Boolean blockedorfree, String meetingName, Integer startDay,
+                             String startTime, Integer endDay, String endTime) {
         LocalTime localTimeStart;
         LocalTime localTimeEnd;
         try {
@@ -52,28 +64,34 @@ public class TeamMember {
             return MESSAGE_STARTENDDAY_OUT_OF_RANGE;
         }
 
+        Boolean myScheduleStatus = blockedorfree;
+        String myScheduleNameStatus = "null";
+        if (blockedorfree == MYSCHEDULEBLOCKED) {
+            myScheduleNameStatus = meetingName;
+        }
+
         if (!startDay.equals(endDay)) {
             int startDayCopy = startDay; // prevent modifying param arguments
             for (int i = startBlock; i < 48; i++) {
-                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                myScheduleName[startDayCopy][i] = meetingName;
+                mySchedule[startDayCopy][i] = myScheduleStatus;
+                myScheduleName[startDayCopy][i] = myScheduleNameStatus;
             }
             startDayCopy++;
             while (startDayCopy != endDay) {
                 for (int i = 0; i < 48; i++) {
-                    mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                    myScheduleName[startDayCopy][i] = meetingName;
+                    mySchedule[startDayCopy][i] = myScheduleStatus;
+                    myScheduleName[startDayCopy][i] = myScheduleNameStatus;
                 }
                 startDayCopy++;
             }
             for (int i = 0; i < endBlock; i++) {
-                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                myScheduleName[startDayCopy][i] = meetingName;
+                mySchedule[startDayCopy][i] = myScheduleStatus;
+                myScheduleName[startDayCopy][i] = myScheduleNameStatus;
             }
         } else {
             for (int i = startBlock; i < endBlock; i++) {
-                mySchedule[startDay][i] = MYSCHEDULEBLOCKED;
-                myScheduleName[startDay][i] = meetingName;
+                mySchedule[startDay][i] = myScheduleStatus;
+                myScheduleName[startDay][i] = myScheduleNameStatus;
             }
         }
         return "SUCCESS";
@@ -87,7 +105,7 @@ public class TeamMember {
     public void deleteBusyBlocks(String meetingName) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 48; j++) {
-                if (myScheduleName[i][j].equals(meetingName)) {
+                if (myScheduleName[i][j] != null && myScheduleName[i][j].equals(meetingName)) {
                     mySchedule[i][j] = MYSCHEDULEFREE;
                     myScheduleName[i][j] = null;
 
@@ -141,4 +159,5 @@ public class TeamMember {
             }
         }
     }
+
 }

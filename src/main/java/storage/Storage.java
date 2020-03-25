@@ -1,3 +1,7 @@
+package storage;
+
+import meeting.Meeting;
+import teammember.TeamMember;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -39,7 +43,7 @@ public class Storage {
             meetingList.forEach((n) -> {
                 try {
                     fw.write(n.getMeetingName() + " " + n.getStartDay() + " " + n.getStartTime() + " " + n.getEndDay()
-                            + " " + n.getEndTime() + System.lineSeparator());
+                        + " " + n.getEndTime() + System.lineSeparator());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -96,7 +100,7 @@ public class Storage {
         while (reader.hasNext()) {
             String[] data = reader.nextLine().split(" ");
             Meeting entry = new Meeting(data[0], Integer.parseInt(data[1]),
-                    LocalTime.parse(data[2]), Integer.parseInt(data[3]), LocalTime.parse(data[4]));
+                LocalTime.parse(data[2]), Integer.parseInt(data[3]), LocalTime.parse(data[4]));
             list.add(entry);
         }
         return list;
@@ -111,7 +115,8 @@ public class Storage {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
             for (Path entry : stream) {
                 if (entry.toString().contains("_schedule.txt")) {
-                    String memberName = entry.toString().replaceAll("data\\\\|_schedule.txt","");
+                    String memberName = entry.toString().substring(5);
+                    memberName = memberName.replaceAll("_schedule.txt", "");
                     TeamMember member = new TeamMember(memberName);
                     String[][] myScheduleName = new String[7][48];
                     int i = 0;

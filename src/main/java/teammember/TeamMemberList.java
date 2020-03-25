@@ -1,3 +1,5 @@
+package teammember;
+
 import java.util.ArrayList;
 
 /**
@@ -10,8 +12,7 @@ import java.util.ArrayList;
 
 public class TeamMemberList {
 
-    private static ArrayList<TeamMember> teamMemberList;
-
+    private ArrayList<TeamMember> teamMemberList;
 
     public TeamMemberList(ArrayList<TeamMember> tl) {
         this.teamMemberList = tl;
@@ -21,9 +22,16 @@ public class TeamMemberList {
         this.teamMemberList.add(t);
     }
 
+    public void set(int index, TeamMember member) {
+        this.teamMemberList.set(index, member);
+    }
 
     public ArrayList<TeamMember> getTeamMemberList() {
 
         return this.teamMemberList;
+    }
+
+    public int getSize() {
+        return this.getTeamMemberList().size();
     }
 }
