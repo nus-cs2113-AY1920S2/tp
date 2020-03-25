@@ -53,7 +53,6 @@ user interfaces.
 * Items in square brackets are *optional*. 
   * e.g `EDIT 1 [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]` can be used as `EDIT 1 i/apple p/4.00` or as `EDIT 1 i/apple`.
 
-
 &nbsp;
 
 ***
@@ -129,7 +128,6 @@ Example of usage:
 
 `DEL 3`
 
-
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -177,7 +175,6 @@ Example of the usage:
 
 `UNMARK 3`
 
-
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -217,10 +214,6 @@ Example of usage:
 Resets te budget to be 0.00 for the user.
 
 Format: `RES`
-
-Example of usage: 
-
-`RES`
 
 &nbsp;
 
