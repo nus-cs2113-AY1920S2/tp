@@ -20,18 +20,18 @@ import java.util.HashMap;
 public class InfiNus extends Application {
 
     public static void main(String[] args) throws FileNotFoundException {
-        Root root = new Root();
-        Ui ui = new Ui();
-        HashMap<String, String> modulesMap = ModuleLoader.load("moduleList.json");
-        StorageManager storageManager = new StorageManager("save.txt");
-        ModuleManager moduleManager = ModuleManager.getInstance(root, modulesMap);
-        storageManager.load2();
         launch(args);
     }
 
     @Override
     public void init() throws Exception {
         // Load modules and tasks
+        Root root = new Root();
+        Ui ui = new Ui();
+        HashMap<String, String> modulesMap = ModuleLoader.load("moduleList.json");
+        StorageManager storageManager = new StorageManager("save.txt");
+        ModuleManager moduleManager = ModuleManager.getInstance(root, modulesMap);
+        storageManager.load2();
     }
 
     @Override

@@ -193,11 +193,6 @@
                                         <Insets top="2.0" />
                                     </padding>
                                 </Separator>
-                        <TextFlow fx:id="consoleMask" prefHeight="29.0" prefWidth="935.0" style="-fx-background-color: aliceblue; -fx-border-color: lightgrey; -fx-border-radius: 3;">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </TextFlow>
                             </children>
                         </VBox>
                     </children>

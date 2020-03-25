@@ -2,6 +2,7 @@ package seedu.nuke.gui.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -25,9 +26,6 @@ public class MainController implements Initializable {
     private TextField console;
 
     @FXML
-    private TextFlow consoleMask;
-
-    @FXML
     private TextFlow consoleScreen;
 
     @FXML
@@ -36,41 +34,60 @@ public class MainController implements Initializable {
     @FXML
     private VBox consoleBox;
 
+    private TextFlow consoleMask;
     private AutoCompleteTextField autoCompleteTextField;
-
-    public TextField getConsole() {
-        return console;
-    }
-
-    public TextFlow getConsoleScreen() {
-        return consoleScreen;
-    }
-
-    public ScrollPane getConsoleScreenScrollPane() {
-        return consoleScreenScrollPane;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         consoleScreen.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt");
-        consoleMask.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-background-color: aliceblue;"
-                + "-fx-border-color: lightgrey; -fx-border-radius: 3");
-        // Auto scroll-down
-        consoleScreenScrollPane.vvalueProperty().bind(consoleScreen.heightProperty());
-
         Text logo = TextUI.createText(MESSAGE_LOGO, Color.MAGENTA);
         Text welcomeMessage = TextUI.createText(String.format("%s\n%s\n\n", MESSAGE_WELCOME_1, MESSAGE_WELCOME_2), Color.BLUE);
         Text divider = TextUI.createText(DIVIDER + "\n");
         consoleScreen.getChildren().addAll(logo, divider, welcomeMessage);
+        // Auto scroll-down
+        consoleScreenScrollPane.vvalueProperty().bind(consoleScreen.heightProperty());
+
+        consoleMask = new TextFlow();
+        consoleMask.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-background-color: aliceblue;"
+                + "-fx-border-color: lightgrey; -fx-border-radius: 3");
+        consoleMask.setMinHeight(30);
+        consoleMask.setPadding(new Insets(5));
 
         autoCompleteTextField = new AutoCompleteTextField();
-        consoleBox.getChildren().add(autoCompleteTextField);
+        autoCompleteTextField.setMinHeight(30);
+        autoCompleteTextField.setPadding(new Insets(5));
+        autoCompleteTextField.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-background-color: white;"
+                + "-fx-border-color: lightgrey; -fx-border-radius: 3");
+        autoCompleteTextField.setOnKeyTyped(this::onType);
+        consoleBox.getChildren().addAll(autoCompleteTextField, consoleMask);
     }
 
     public void submitInput() {
         String userInput = console.getText().trim();
         new GuiExecutor(console, consoleScreen).executeAction(userInput);
         console.clear();
+    }
+
+    @FXML
+    private void onType(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()) {
+        case UP:
+            keyEvent.consume();
+            System.out.println("View last command.");
+            break;
+        case DOWN:
+            System.out.println("View earlier command.");
+            break;
+        case TAB:
+            System.out.println("Auto-complete here.");
+            break;
+        default:
+            String currentUserInput = autoCompleteTextField.getText();
+            consoleMask.getChildren().clear();
+            consoleMask.getChildren().add(TextUI.createText(currentUserInput,
+                    new GuiParser().parseCommandWord(currentUserInput)));
+            break;
+        }
     }
 
     public void onEnterKey(KeyEvent keyEvent) {
