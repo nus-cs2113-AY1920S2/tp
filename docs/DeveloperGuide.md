@@ -99,6 +99,7 @@ Below are the class-diagrams for the involved classes:
 ![Prompt Command Class Diagram](images/Prompt_Class_Diagram.png)
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>
 
+
 #### Example Usage  
 The deletion process for *modules*, *categories* and *tasks* are similar. In this example, the deletion process for *tasks* will be illustrated as a series of steps.  <br>
 James is a user and wants to delete some of his *tasks* with *description* "work". Assume that he has the current Task List:  
