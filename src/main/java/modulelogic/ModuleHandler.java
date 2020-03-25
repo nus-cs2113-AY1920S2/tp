@@ -1,4 +1,4 @@
-package apisystem;
+package modulelogic;
 
 import exception.UnformattedModuleException;
 import com.google.gson.JsonArray;
@@ -50,7 +50,7 @@ public class ModuleHandler {
         this.lessonType = new ArrayList<>();
         this.weeks = new ArrayList<>();
         this.day = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++) { // number of semesters
             this.classNumber.add(new ArrayList<>());
             this.startTime.add(new ArrayList<>());
             this.endTime.add(new ArrayList<>());
@@ -68,7 +68,7 @@ public class ModuleHandler {
 
     public static void main(String[] args) throws IOException {
 
-        //Filtering out unformatted modules into a file.
+        // RUN THIS TO FILTER UNFORMATTED MODULES INTO /UnformmattedModules file
         FileWriter fw = new FileWriter("UnformattedModules", true);
         URL url = new URL("https://api.nusmods.com/v2/2019-2020/moduleList.json");
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
@@ -103,7 +103,8 @@ public class ModuleHandler {
         }
 
         //TODO SET UP FAKE DATA HERE IF UNABLE TO ACCESS API
-        checkModule();
+        assert semesterData != null;
+        checkModuleFormat();
         for (int i = 0; i < semesterData.size(); i++) {
             JsonObject semesterDataObj = semesterData.get(i).getAsJsonObject();
             // get semester number from json
@@ -120,18 +121,24 @@ public class ModuleHandler {
                 this.startTime.get(semester).add(lesson.get("startTime").toString().replaceAll("^.|.$", ""));
                 this.endTime.get(semester).add(lesson.get("endTime").toString().replaceAll("^.|.$", ""));
                 this.day.get(semester).add(lesson.get("day").toString().replaceAll("^.|.$", ""));
+                assert classNumber != null;
+                assert lessonType != null;
+                assert startTime != null;
+                assert endTime != null;
+                assert day != null;
                 JsonArray weeksJsonArray = (JsonArray) lesson.get("weeks");
                 ArrayList<String> weeksData = new ArrayList<>();
                 for (int j = 0; j < weeksJsonArray.size(); j++) {
                     weeksData.add(weeksJsonArray.get(j).toString());
                 }
                 this.weeks.get(semester).add(weeksData);
+                assert weeks != null;
             }
 
         }
     }
 
-    private void checkModule() throws UnformattedModuleException {
+    private void checkModuleFormat() throws UnformattedModuleException {
         if (unformattedModules.contains(moduleName)) {
             throw new UnformattedModuleException("OH NO! " + moduleName + "'s format parsed from NUSMOD API is out-dated."
                 + " Please remove it from your timetable and manually add the time-slots.");

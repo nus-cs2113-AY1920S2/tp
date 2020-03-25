@@ -62,7 +62,7 @@ public class Storage {
 
         //create separate text file for every member containing their schedules
         for (TeamMember member : myTeamMemberList) {
-            String memberPath = "data/" + member.getName() + "_schedule.txt";
+            String memberPath = "data/" + ((member.isMainUser()) ? member.getName() + "_main" : member.getName()) + "_schedule.txt";
             try {
                 Files.createFile(Paths.get(memberPath));
             } catch (IOException ignored) { //ignored as the error would mean the file exists, thus no action needed
@@ -116,7 +116,7 @@ public class Storage {
             for (Path entry : stream) {
                 if (entry.toString().contains("_schedule.txt")) {
                     String memberName = entry.toString().substring(5);
-                    memberName = memberName.replaceAll("_schedule.txt", "");
+                    memberName = memberName.replaceAll("_schedule\\.txt", "");
                     TeamMember member = new TeamMember(memberName);
                     String[][] myScheduleName = new String[7][48];
                     int i = 0;

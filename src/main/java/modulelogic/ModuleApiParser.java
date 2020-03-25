@@ -1,4 +1,4 @@
-package apisystem;
+package modulelogic;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -29,6 +29,7 @@ public class ModuleApiParser {
         //Convert the input stream to a json element
         JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
         JsonObject rootObj = root.getAsJsonObject();
+        assert  rootObj != null;
         return (JsonArray) rootObj.get("semesterData");
     }
 }

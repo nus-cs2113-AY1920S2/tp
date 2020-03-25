@@ -1,4 +1,4 @@
-import apisystem.LessonsGenerator;
+import modulelogic.LessonsGenerator;
 import exception.InvalidUrlException;
 import exception.MoException;
 import exception.UnformattedModuleException;
@@ -33,10 +33,10 @@ public class MeetingOrganizer {
             myMeetingList = new MeetingList(storage.loadMeetingListFromDisk());
             myTeamMemberList = new TeamMemberList(storage.loadMemberListFromDisk());
             TextUI.introMsg();
-            TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
             if (myTeamMemberList.getSize() > 0) {
-                mainUser = myTeamMemberList.getTeamMemberList().get(0);
+                myTeamMemberList.getTeamMemberList().forEach(member -> mainUser = member.isMainUser() ? member : null);
             }
+            TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList(),mainUser.getName());
         } catch (FileNotFoundException e) {
             TextUI.introMsg();
             TextUI.showLoadingError();
@@ -66,6 +66,14 @@ public class MeetingOrganizer {
 
         switch (userCommand) {
         case "add using link":
+            int checkerForRepeatedName = 0;
+            checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream()
+                    .mapToInt(person -> check(person, userInputWords[0])).sum();
+            if (checkerForRepeatedName == 1) {
+                TextUI.showRepeatedPerson(userInputWords[0]);
+                break;
+            }
+
             member = new TeamMember(userInputWords[0]);
             String name = userInputWords[0];
             LessonsGenerator myLessonGenerator;
@@ -102,6 +110,7 @@ public class MeetingOrganizer {
                 }
                 if (myTeamMemberList.getSize() == 0) {
                     mainUser = member;
+                    member.setMainUser();
                 }
                 myTeamMemberList.add(member);
                 TextUI.showAddedMember(member.getName());
@@ -125,7 +134,7 @@ public class MeetingOrganizer {
             }
             break;
         case "contacts":  // contacts
-            TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList());
+            TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList(), mainUser.getName());
             break;
         case "display": // display OR display <Member Number 1> <Member Number 2> (eg. display 1 3)
             if (userInputWords.length > 1) {
@@ -190,6 +199,14 @@ public class MeetingOrganizer {
             break;
         default:
             throw new MoException("Unknown command, please try again.");
+        }
+    }
+
+    private int check(TeamMember person, String name) {
+        if (person.getName().equals(name)) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 

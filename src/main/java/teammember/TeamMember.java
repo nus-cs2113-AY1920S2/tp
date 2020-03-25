@@ -19,8 +19,13 @@ public class TeamMember {
     private String memberName;
     private Boolean[][] mySchedule; //String[7][48]; 7 days, separated into 30mins within 24 hours period.
     private String[][] myScheduleName;
+    private boolean isMainUser = false;
 
     public TeamMember(String name) {
+        if (name.contains("_main")) {
+            isMainUser = true;
+            name = name.replace("_main","");
+        }
         this.memberName = name;
         this.mySchedule = new Boolean[7][48];
         this.myScheduleName = new String[7][48];
@@ -160,4 +165,11 @@ public class TeamMember {
         }
     }
 
+    public void setMainUser() {
+        this.isMainUser = true;
+    }
+
+    public boolean isMainUser() {
+        return isMainUser;
+    }
 }
