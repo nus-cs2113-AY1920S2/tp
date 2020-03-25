@@ -1,8 +1,8 @@
 # **Nuke Developer Guide** <small>v1.5</small>  
 
 By: `CS2113T-T13-2`      Since: `Feb 2020`    
+[Go to Webpage](https://ay1920s2-cs2113t-t13-2.github.io/tp/DeveloperGuide.html)
 
-<br>
 
 ## **Table of Contents**  
 
