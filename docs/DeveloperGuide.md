@@ -53,5 +53,24 @@ The product aims to provide students with more convient way of doing revision. B
 * *glossary item* - Definition
 
 ## Instructions for Manual Testing
+<br />1. Running Tests
+<br />There are two ways to run tests.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+<br />Method 1: Using IntelliJ JUnit test runner
+
+<br />To run all tests, right-click on the src/test/java folder and choose Run 'All Tests'
+
+<br />Method 2: Using Gradle
+
+<br />Open a console and run the command gradlew clean test (Mac/Linux: ./gradlew clean test)
+
+<br />See UsingGradle.adoc for more info on how to run tests using Gradle.
+
+<br />2. Types of tests
+<br />We have three types of tests:
+
+<br />Unit tests targeting the lowest level methods/classes.
+<br />e.g. seedu.cards.CardTest
+
+<br />Integration tests that are checking the integration of multiple code units (those code units are assumed to be working).
+<br />e.g. seedu.cards.CardListTest
