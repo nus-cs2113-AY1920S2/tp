@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
+import seedu.duke.data.SemesterList;
 import seedu.duke.ui.Ui;
 import seedu.duke.module.Module;
 
@@ -24,7 +24,7 @@ public class DeleteFromSemCommand extends DeleteCommand {
         this.type = type;
     }
 
-    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
+    public void execute(SemesterList selectedModulesList, AvailableModulesList availableModulesList) {
         boolean isModuleInSem = checkModuleExistInCorrectSem(selectedModulesList);
         if (!isModuleInSem) {
             Ui.showError(String.format("Module %s not found in Semester %s", moduleIdentifier, semester));
@@ -43,7 +43,7 @@ public class DeleteFromSemCommand extends DeleteCommand {
         }
     }
 
-    private boolean checkModuleExistInCorrectSem(SelectedModulesList moduleList) {
+    private boolean checkModuleExistInCorrectSem(SemesterList moduleList) {
         for (SemModulesList sem: moduleList) {
             if (type.equals("id")) {
                 if (sem.getSem().equals(semester) && sem.isModuleIdInList(moduleIdentifier)) {
@@ -51,7 +51,7 @@ public class DeleteFromSemCommand extends DeleteCommand {
                 }
             }
             if (type.equals("name")) {
-                if (sem.getSem().equals(semester) && sem.isModuleNameInList(moduleIdentifier)) {
+                if (sem.getSem().equals(semester) && sem.isInList(moduleIdentifier)) {
                     return true;
                 }
             }
