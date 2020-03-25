@@ -1,9 +1,10 @@
-package seedu.command;
+package seedu.command.interpreter;
 
+import seedu.command.Bye;
+import seedu.command.Command;
+import seedu.command.Help;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
-
-import java.util.Calendar;
 
 public class CommandInterpreter {
     protected EventList eventList;

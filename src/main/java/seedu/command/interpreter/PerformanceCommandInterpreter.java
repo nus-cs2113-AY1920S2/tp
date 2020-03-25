@@ -1,5 +1,6 @@
-package seedu.command;
+package seedu.command.interpreter;
 
+import seedu.command.Command;
 import seedu.command.performance.AddPerformance;
 import seedu.command.performance.DeletePerformance;
 import seedu.command.performance.ListStudentPerformance;

@@ -1,5 +1,6 @@
-package seedu.command;
+package seedu.command.interpreter;
 
+import seedu.command.Command;
 import seedu.command.event.AddEvent;
 import seedu.command.event.EditDateTime;
 import seedu.command.event.EditName;
@@ -31,8 +32,8 @@ public class EventCommandInterpreter extends CommandInterpreter {
 
         String commandType = getFirstWord(commandDescription);
         String commandParameters = getSubsequentWords(commandDescription);
-        assert commandType == " " : "Event: Unknown command";
-        assert commandType == " " : "Event: Command is null";
+        assert commandType.isBlank() : "Event: Unknown command";
+
         switch (commandType) {
         case "add":
             event = eventParser.parseEvent(commandParameters);

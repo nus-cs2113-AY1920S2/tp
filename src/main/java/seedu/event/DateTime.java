@@ -11,10 +11,12 @@ public class DateTime {
     private String dateTime;
     private String dateTimeFormat;
     private boolean isAutoSet = false;
+    private UI ui;
 
     public DateTime(String arguments) {
         this.dateTime = arguments;
         this.dateTimeFormat = getDateTimeFormat();
+        this.ui = new UI();
     }
 
     /**

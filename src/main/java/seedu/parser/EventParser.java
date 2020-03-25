@@ -1,7 +1,5 @@
 package seedu.parser;
 
-import seedu.duke.Duke;
-import seedu.event.DateTime;
 import seedu.event.Event;
 import seedu.event.Seminar;
 import seedu.exception.DukeException;
@@ -44,7 +42,7 @@ public class EventParser {
         }
 
         if (index < 0) {
-            throw new DukeException("index not found");
+            throw new DukeException("Index not found.");
         }
         return index;
     }
@@ -55,9 +53,9 @@ public class EventParser {
      * @param parameters Input String by user in the format: i/[INDEX] n/[EVENTNAME]
      * @return Name of event as a string.
      */
-    public String parseEventName(String parameters) {
+    public String parseEventName(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-        String name = tokens[1].substring(2);
+        splitByEventFlags(tokens);
         return name;
     }
 
@@ -67,10 +65,9 @@ public class EventParser {
      * @param parameters Input String by user in the format: i/[INDEX] d/[EVENTDATE] t/[EVENTTIME]
      * @return Date and time of the event as a string.
      */
-    public String parseEventDateTime(String parameters) {
+    public String parseEventDateTime(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-        String date = tokens[1].substring(2);
-        String time = tokens[2].substring(2);
+        splitByEventFlags(tokens);
         String datetime = date + " " + time;
         return datetime;
     }
@@ -81,9 +78,9 @@ public class EventParser {
      * @param parameters Input String by user in the format: i/[INDEX] v/[EVENTVENUE]
      * @return Venue of the event as a String
      */
-    public String parseVenue(String parameters) {
+    public String parseVenue(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-        String venue = tokens[1].substring(2);
+        splitByEventFlags(tokens);
         return venue;
     }
 
@@ -124,7 +121,7 @@ public class EventParser {
                     append(mostRecent, token);
                 }
             } else {
-                switch (token.substring(0, 2)) {
+                switch (token.substring(0, 2).toLowerCase()) {
                 case "n/":
                     ensureNotDuplicateFlag(name, "duplicate name flag");
                     name += token.substring(2);

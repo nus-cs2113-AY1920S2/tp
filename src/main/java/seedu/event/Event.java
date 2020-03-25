@@ -3,13 +3,13 @@ package seedu.event;
 import seedu.attendance.AttendanceList;
 import seedu.exception.DukeException;
 import seedu.performance.PerformanceList;
+
 import java.time.Instant;
 
 public class Event {
     protected String name;
     protected DateTime datetime;
     protected String venue;
-    //private ArrayList<StudentList> studentsList;
     protected AttendanceList attendanceList;
     protected PerformanceList performanceList;
 

@@ -1,10 +1,10 @@
-package seedu.command;
+package seedu.command.interpreter;
 
 import seedu.StudentList;
+import seedu.command.Command;
 import seedu.command.student.AddStudent;
 import seedu.command.student.DeleteStudent;
 import seedu.command.student.ListStudent;
-import seedu.duke.Duke;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 import seedu.ui.UI;

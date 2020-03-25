@@ -1,25 +1,19 @@
 package seedu.ui;
 
 import seedu.StudentList;
-import seedu.attendance.Attendance;
-import seedu.event.Event;
 import seedu.exception.DukeException;
 import seedu.performance.Performance;
-import java.io.Serializable;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static seedu.duke.Duke.studentListCollection;
 
 public class UI {
-    private static Scanner in;
-    private static String userInput;
+    private Scanner in;
+    private String userInput;
     private static String userName;
-    private final String columnOfFour = ("| %-10d|  %-30s|  %-35s|  %-10s|%n");
-    private final String columnOfThree = ("| %-10d|  %-35s|  %-43s|%n");
 
 
     public UI() {
@@ -53,7 +47,7 @@ public class UI {
     /**
      * Close the scanner.
      */
-    public static void close() {
+    public void close() {
         in.close();
     }
 
@@ -76,78 +70,49 @@ public class UI {
         display("What is your name?");
         userName = in.nextLine();
         display("Hello " + userName + ". Welcome to your "
-                + "personal Professor Assistant Console.");
+                + "personal Professor Assistant Console. If you need "
+                + "assistant with command format, input 'help'.");
     }
 
-    /**
-     * This prints the horizontal split for a 4 columns table.
-     */
-    public static void printSplitOfFour() {
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(32).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(37).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(12).forEach(System.out::print);
-        System.out.print("|\n");
+    public void editEventMessage(String oldEvent, String newEvent, String eventType) {
+        System.out.printf("Your %s was edited from |%s| to |%s|.\n",
+                eventType, oldEvent, newEvent);
     }
 
-    public static void printSplitOfThree() {
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(37).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(45).forEach(System.out::print);
-        System.out.print("|\n");
+    public void editEventNameMessage(String oldName, String newName, String eventType) {
+        System.out.printf("Your %s name was changed from |%s| to |%s|.\n",
+                eventType, oldName, newName);
     }
 
-    public static void printSplit() {
-        Stream.generate(() -> "_").limit(97).forEach(System.out::print);
-        System.out.print("\n");
+    public void editEventDateTimeMessage(String oldDateTime, String newDateTime, String eventType) {
+        System.out.printf("Your %s date and time was changed from |%s| to |%s|.\n",
+                eventType, oldDateTime, newDateTime);
     }
 
-    /**
-     * This prints the headers, index, header1, header2, and header 3
-     * in order respectively.
-     *
-     * @param index   A String printed at row 1 column 1.
-     * @param header1 A String printed at row 1 column 2.
-     * @param header2 A String printed at row 1 column 3.
-     * @param header3 A String printed at row 1 column 4.
-     */
-    public static void printHeaderOfFour(int index, String header1,
-                                         String header2, String header3) {
-        String headerFormat = ("| %-10s|  %-30s|  %-35s|  %-10s|%n");
-        printSplit();
-        System.out.printf(headerFormat, index, header1, header2, header3);
-        printSplitOfFour();
+    public static void editEventVenueMessage(String oldVenue, String newVenue, String eventType) {
+        System.out.printf("Your %s venue was changed from |%s| to |%s|.\n",
+                eventType, oldVenue, newVenue);
     }
 
-    /**
-     * This prints the headers, index, body1, body2, and body3
-     * in order respectively.
-     *
-     * @param index A String printed at column 1.
-     * @param body1 A String printed at column 2.
-     * @param body2 A String printed at column 3.
-     * @param body3 A String printed at column 4.
-     */
-    public void printBodyOfFour(int index, String body1,
-                                String body2, String body3) {
-        System.out.printf(columnOfFour, index, body1, body2, body3);
-        printSplitOfFour();
+    public void addEventMessage(String eventType, String eventName) {
+        System.out.printf("New %s: %s was added successfully to "
+                + "your Event list.\n", eventType, eventName);
     }
 
-    public void printHeaderOfThree(String index, String header1, String header2) {
-        String columnOfThree = ("| %-10s|  %-35s|  %-43s|%n");
-        printSplit();
-        System.out.printf(columnOfThree, index, header1, header2);
-        printSplitOfThree();
+    public void addAttendanceMessage(String studentName, String eventName) {
+        System.out.printf("Attendance of %s has been taken successfully"
+                + " under event %s.\n", studentName, eventName);
     }
 
+    public void addPerformanceMessage(String studentName, String taskName) {
+        System.out.printf("The result of student %s has been added "
+                + "successfully under event %s.\n\n", studentName, taskName);
+    }
+
+    public void deleteEventMessage(String eventType, String eventName) {
+        System.out.printf("%s: %s was deleted successfully from "
+                + "your Event list.\n", eventType, eventName);
+    }
     public static void printBorderOfCalendar() {
         System.out.print("|");
         Stream.generate(() -> "_").limit(11).forEach(System.out::print);
@@ -164,11 +129,11 @@ public class UI {
         System.out.print("|\n");
     }
 
-    public static void printBodyOfSix(ArrayList<String> description) {
-        String columnOfSix = ("| %-10s| %-10s| %-10s| %-10s| %-10s| %-10s|%n");
-        System.out.printf(columnOfSix, description.get(0), description.get(1), description.get(2), description.get(3),
-                description.get(4), description.get(5));
-        printBorderOfCalendar();
+    public static void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
+        printCalendarHorizontalLine();
+        String line = "SEMESTER " + semester + " AY " + semesterOneYear + "/" + semesterTwoYear;
+        System.out.printf(" %40s %n", line);
+        printCalendarHorizontalLine();
     }
 
     public static void printCalendarHorizontalLine() {
@@ -177,71 +142,11 @@ public class UI {
         System.out.println(" ");
     }
 
-    public static void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
-        printCalendarHorizontalLine();
-        String line = "SEMESTER " + semester + " AY " + semesterOneYear + "/" + semesterTwoYear;
-        System.out.printf(" %40s %n", line);
-        printCalendarHorizontalLine();
-    }
-
-    public void printBodyOfThree(int index, String body1, String body2) {
-        System.out.printf(columnOfThree, index, body1, body2);
-        printSplitOfThree();
-    }
-
-    public static void printEventList(ArrayList<Event> list) {
-        System.out.println("Here are all the events in your list.");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
-        }
-    }
-
-    public static void printSeminarList(ArrayList<Event> list) {
-        System.out.println("Here are all the seminar events in your list.");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
-        }
-    }
-
-    public static void editEventMessage(String oldEvent, String newEvent, String eventType) {
-        System.out.printf("Your %s was edited from |%s| to |%s|.\n",
-                eventType, oldEvent, newEvent);
-    }
-
-    public static void editEventNameMessage(String oldName, String newName, String eventType) {
-        System.out.printf("Your %s name was changed from |%s| to |%s|.\n",
-                eventType, oldName, newName);
-
-    }
-
-    public static void editEventDateTimeMessage(String oldDateTime, String newDateTime, String eventType) {
-        System.out.printf("Your %s date and time was changed from |%s| to |%s|.\n",
-                eventType, oldDateTime, newDateTime);
-    }
-
-    public static void editEventVenueMessage(String oldVenue, String newVenue, String eventType) {
-        System.out.printf("Your %s venue was changed from |%s| to |%s|.\n",
-                eventType, oldVenue, newVenue);
-    }
-
-    public static void addEventMessage(String eventType, String eventName) {
-        System.out.printf("New %s: %s was added successfully to "
-                + "your Event list.\n", eventType, eventName);
-    }
-
-    public static void addAttendanceMessage(String studentName, String eventName) {
-        System.out.printf("Attendance of %s has been taken successfully"
-                + " under event %s.\n", studentName, eventName);
-    }
-
-    public static void addPerformanceMessage(String studentName, String taskName) {
-        System.out.printf("The result of student %s has been added "
-                + "successfully under event %s.\n", studentName, taskName);
-    }
-
-    public static void deleteEventMessage(String eventType, String eventName) {
-        System.out.printf("%s: %s was deleted successfully from "
-                + "your Event list.\n", eventType, eventName);
+    public static void printBodyOfSix(ArrayList<String> description) {
+        String columnOfSix = ("| %-10s| %-10s| %-10s| %-10s| %-10s| %-10s|%n");
+        System.out.printf(columnOfSix, description.get(0), description.get(1), description.get(2), description.get(3),
+                description.get(4), description.get(5));
+        printBorderOfCalendar();
     }
 
 
@@ -276,25 +181,14 @@ public class UI {
      *
      * @param performance The Performance deleted.
      */
-    public void deletePerformanceMessage(Performance performance, String eventName, boolean hasDeleted) {
-        if (hasDeleted) {
-            String studentName = performance.getStudent();
-            System.out.printf("The result of student %s has been added "
-                    + "successfully under event %s.\n", studentName, eventName);
-        } else {
-            System.out.printf("There is no record of %s's result in the list\n",
-                    performance.getStudent());
+    public void deletePerformanceMessage(Performance performance, String eventName,
+                                         boolean hasDeleted) throws DukeException {
+        if (!hasDeleted) {
+            throw new DukeException("Performance not found in list");
         }
-    }
-
-    public static void printWrongInput(String typeInput) {
-        System.out.printf("Wrong %s input. If you need help with "
-                + "the input format, please input help.\n", typeInput);
-    }
-
-    public static void printInsufficientInput(String typeInput) {
-        System.out.printf("No %s input. If you need help with "
-                + "the input format, please input help.\n", typeInput);
+        String studentName = performance.getStudent();
+        System.out.printf("The result of student %s has been deleted "
+                + "successfully under event %s.\n", studentName, eventName);
     }
 
     public String getResultOfStudent(String studentName) {
@@ -309,20 +203,24 @@ public class UI {
     }
 
     public String getStudentName(String typeCommand) {
-        System.out.printf("Please key in the name of student that you want to %s", typeCommand);
+        System.out.printf("Please key in the name of student that you wish to %s \n", typeCommand);
         return in.nextLine();
     }
 
-    public Boolean getTypeOfAddPerformance() {
+    public String getTypeOfAddPerformance() {
         System.out.println("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
-        String input = in.nextLine();
-        return input.toLowerCase().equals("yes");
+        return getStringInput();
+    }
+
+    public boolean isImportList() {
+        String userInput = getTypeOfAddPerformance();
+        return userInput.equals("yes");
     }
 
     public String getEventName() {
         System.out.println("Please key in the name of event that "
-                + "you wish to make change to its student's performance.");
+                + "you wish to access to its student's performance.");
         return in.nextLine();
     }
 
@@ -337,9 +235,14 @@ public class UI {
         return in.nextLine();
     }
 
-    public void displayStudentList(StudentList studentList, String listName) {
-        System.out.println("Student List created, named : " + listName);
-        studentList.showList();
+    public void printWrongInput(String typeInput) {
+        System.out.printf("Wrong %s input. If you need help with "
+                + "the input format, please input help.\n", typeInput);
+    }
+
+    public void printInsufficientInput(String typeInput) {
+        System.out.printf("No %s input. If you need help with "
+                + "the input format, please input help.\n", typeInput);
     }
 
     public void addStudent(StudentList studentList) {
@@ -359,61 +262,51 @@ public class UI {
         return in.nextLine();
     }
 
-    public void displayStudentListCollection() throws DukeException {
-        int index = 1;
-        try {
-            for (StudentList studentList : studentListCollection) {
-                System.out.print("[" + index + "] ");
-                studentList.showList();
-                System.out.println("--------------");
-                index++;
-            }
-        } catch (Exception e) {
-            throw new DukeException(e.getMessage());
-        }
-    }
-
     public void printGetHelp() {
-        System.out.println("Hello " + userName + ", please refer to the "
-                + "format below to use this app.");
-        System.out.println("To track any list, input:\n  type_of_list list");
-        printEventHelp();
-        printPerformanceHelp();
-        printAttendanceHelp();
+        System.out.println("Hello " + userName + ", please select the type of "
+                + "command that you wish to get the format for.");
+        System.out.println("1. Event");
+        System.out.println("2. Attendance");
+        System.out.println("3. Performance");
+        System.out.println("4. Student List");
+        System.out.println("To track any list, input: type_of_list list");
     }
 
-    private void printEventHelp() {
+    public void printEventHelp() {
         System.out.print("To add an event, use the following format:\n  "
                 + "Event add n/Event_name v/Venue_name d/yyyy-MM-dd. "
                 + "You may also replace 'Event' with one of the following type:"
-                + "\n  - Seminar\n  - Exam\n  - Tutorial\n");
+                + "\n  - Seminar\n  - Exam\n  - Tutorial\n\n");
         System.out.print("To edit an event, use the following format:\n  "
                 + "Event editDateTime i/index_of_Event, or\n  "
                 + "Event editName i/index_of_Event, or\n  "
                 + "Event editVenue i/index_of_Event, or\n  "
-                + "Event editEvent (please edit these lines)\n");
+                + "Event editEvent (please edit these lines)\n\n");
         System.out.print("To edit an event, use the following format:\n  "
                 + "Event editDateTime i/index_of_Event, or\n  "
                 + "Event editName i/index_of_Event, or\n  "
                 + "Event editVenue i/index_of_Event, or\n  "
-                + "Event editEvent (please edit these lines)\n");
+                + "Event editEvent (please edit these lines)\n\n");
     }
 
-    private void printPerformanceHelp() {
+    public void printPerformanceHelp() {
         System.out.print("To add students' performance under an event, input:\n  "
                 + "performance add (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
         System.out.print("To delete a student's performance under an event, input:\n  "
                 + "Performance delete (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
     }
 
-    private void printAttendanceHelp() {
+    public void printAttendanceHelp() {
         System.out.print("To add students' attendance under an event, input:\n  "
                 + "attendance add (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
         System.out.print("To delete a student's performance under an event, input:\n  "
                 + "attendance delete (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n");
+                + "current event list) and follow step by step instructions.\n\n");
+    }
+
+    public void printStudentListHelp() {
     }
 }

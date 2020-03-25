@@ -1,7 +1,6 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.event.Event;
 import seedu.exception.DukeException;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
@@ -25,8 +24,9 @@ public class DeletePerformance extends Command {
     }
 
     private Performance getPerformance() throws DukeException {
-        String studentName = ui.getStudentName("delete");
-        return performances.getPerformance(studentName);
+        String studentName = ui.getStudentName("delete his/her performance");
+        Performance performance = performances.getPerformance(studentName);
+        return performance;
     }
 
     private void deleteFromList() throws DukeException {

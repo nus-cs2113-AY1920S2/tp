@@ -1,18 +1,14 @@
 package seedu.command.student;
 
-import seedu.StudentList;
 import seedu.command.Command;
 import seedu.exception.DukeException;
-import seedu.ui.UI;
-
-import static seedu.duke.Duke.studentListCollection;
+import seedu.ui.DisplayList;
 
 public class ListStudent extends Command {
-
-    UI ui = new UI();
+    private DisplayList displayList = new DisplayList();
 
     @Override
     public void execute() throws DukeException {
-        ui.displayStudentListCollection();
+        displayList.printStudentListCollection();
     }
 }
