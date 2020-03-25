@@ -76,19 +76,20 @@ Refer to <<Features>> for the detailed instruction of the various commands of *A
 ====
 *Command Format*
 
-* Words in UPPER_CASE and contained in [square brackets] are parameters to be supplied by the user. +
-   Example: In assignment, `n/[NAME]`, `[NAME]` is an input given by user and users can type in the command as assignment `n/user
-   guide draft`.
+* Words in UPPER_CASE and wrapped in [square brackets] are parameters to be supplied by the user. +
+   Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used as `assignment n/user guide draft`.
 
-* Index that is requested for many parameters is simply a number given to identify the task within the list. This number index is the
-value stated beside the task and will be consistent for all commands that print out a list of tasks.
+* The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is
+shown on the left of each task whenever a `list` command is used.
 
-* Date and time supplied by the user must be in the form DD/MM/YY hhmm, each taking up 2 digits. The time must also be in 24hours format. +
-Example: In assignment,  `... t/[DD/MM/YY HHmm] ...` the command provided for time must be `... t/01/10/20 0259 ...` to symbolise 1st Oct
-2020 2:59 AM.
+* Dates supplied by the user must follow the format `DD/MM/YY`. +
+Example: 01/03/20 represents the date 1st March 2020
 
-* The order of the parameters are fixed as given. +
-Example: In assignment, using `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the comments section is in
+* Times supplied by the user must follow the 24h format `HHmm`.
+Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm
+
+* The parameters of a command cannot be reordered. +
+Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in
 the wrong position.
 ====
 
@@ -96,15 +97,11 @@ the wrong position.
 An assignment is a task that you have to complete by a certain deadline, for a particular module. +
 You can add an assignment to *ATAS*, containing various details.
 
-Format: `assignment n/NAME m/MODULE d/DATE TIME c/COMMENTS`
+Format: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`
 
 * `NAME` is the name of your assignment.
 * `MODULE` is the module that your assignment is for.
 * `DATE TIME` is the deadline of your assignment. +
-** `DATE` follows the format `DD/MM/YY`
-*** e.g. 25/03/20 represents the date 25th March 2020
-** `TIME` uses the 24h format `HHmm`
-*** e.g. 2359 represents the time 11:59pm
 * `COMMENTS` will be any other notes relevant to your `assignment`.
 
 [NOTE]
@@ -124,15 +121,11 @@ Now you have 1 task in the list!
 An event is a task that you plan to do at a particular date and time. +
 You can add an event to *ATAS*, containing various details.
 
-Format: `event n/NAME l/LOCATION d/DATE START_TIME - END_TIME c/COMMENTS`
+Format: `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMMENTS]`
 
 * `NAME` is the name of your event.
 * `LOCATION` is where your event will take place.
 * `DATE START_TIME - END_TIME` is the date and time when your event will take place +
-** `DATE` follows the format `DD/MM/YY`
-*** e.g. 25/03/20 represents the date 25th March 2020
-** `START_TIME` and `END_TIME` use the 24h format `HHmm`
-*** e.g. 2359 represents the time 11:59pm
 * `COMMENTS` will be any other notes relevant to your `event`
 
 [NOTE]
@@ -193,7 +186,7 @@ Here are the relevant tasks:
 === Edit Tasks: *`edit`*
 You can edit tasks in your existing list if there are any changes.
 
-Format: `edit INDEX`
+Format: `edit [INDEX]`
 
 * `INDEX` represents the unique index of a specific task to be edited.
 
@@ -206,7 +199,7 @@ Example:
 
 === Delete Tasks: *`delete`*
 You can delete unwanted tasks in your existing list.
-Format: `delete INDEX`
+Format: `delete [INDEX]`
 
 * `INDEX` represent the unique index of a specific task to be deleted.
 
