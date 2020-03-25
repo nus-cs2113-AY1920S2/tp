@@ -87,7 +87,7 @@ The `AddCommand` will first try to call the static method `add` in `ModuleManage
 
 Below are the class-diagram for the involved classes:
 
-![image-20200326014336120](.\images\Add_Module_Command_Class_Diagram.png)
+![image-20200326014336120](/images/Add_Module_Command_Class_Diagram.png)
 
 <span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
 
