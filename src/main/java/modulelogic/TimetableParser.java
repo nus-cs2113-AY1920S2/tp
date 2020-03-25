@@ -1,4 +1,4 @@
-package apisystem;
+package modulelogic;
 
 import static common.Messages.MESSAGE_INVALID_NUDMOSLINK;
 
@@ -36,9 +36,11 @@ public class TimetableParser {
 
 
     public void parse() {
+        assert nusmodsLink.contains("share?");
         int strippedIndex = this.nusmodsLink.indexOf("share?");
         String unparsedSemester = this.nusmodsLink.substring(0, strippedIndex);
         String unparsedModules = this.nusmodsLink.substring(strippedIndex + 6);
+        assert nusmodsLink.contains("sem-1") || nusmodsLink.contains("sem-2");
         if (unparsedSemester.contains("1")) {
             this.semester = "1";
         } else {
@@ -56,10 +58,12 @@ public class TimetableParser {
      * @return  Returns Key-value pair. Key = "moduleCode"-Value = ArrayList of "LessonType:Class number"
      */
     private Map<String, ArrayList<String>> parseModules(String unparsedModules) {
+        assert  unparsedModules != null;
         ArrayList<String> unparsed = new ArrayList<>(Arrays.asList(unparsedModules.split("&")));
         Map<String, ArrayList<String>> myModuleDetails = new HashMap<String, ArrayList<String>>();
 
         for (String elem : unparsed) {
+            assert elem != null;
             int tempIndex = elem.indexOf("=");
             String module = elem.substring(0, tempIndex);
             String unparsedLessonTypeAndClass = elem.substring(tempIndex + 1);
