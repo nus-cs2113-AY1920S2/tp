@@ -7,15 +7,16 @@
 * **[3. Features](#features)**
   * [3.1 Adding an item: `ADD`](#adding-an-item-add)
   * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
-  * [3.3 Deleting an item: `DELETE`](#deleting-an-item-del)
+  * [3.3 Deleting an item: `DEL`](#deleting-an-item-del)
   * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
   * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
   * [3.7 Display list and budget details: `DISPLAY`](#display-list-and-budget-details-display)
   * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
-  * [3.9 Finding an item: `FIND`](#finding-an-item-find)
-  * [3.10 Viewing help: `HELP`](#viewing-help-help)
-  * [3.11 Exiting the Program: `BYE`](#exiting-the-program-bye)
+  * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
+  * [3.10 Finding an item: `FIND`](#finding-an-item-find)
+  * [3.11 Viewing help: `HELP`](#viewing-help-help)
+  * [3.12 Exiting the Program: `BYE`](#exiting-the-program-bye)
 * **[4. FAQ](#faq)**
 * **[5. Command Summary](#command-summary)**
 
@@ -52,7 +53,6 @@ user interfaces.
 * Items in square brackets are *optional*. 
   * e.g `EDIT 1 [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]` can be used as `EDIT 1 i/apple p/4.00` or as `EDIT 1 i/apple`.
 
-
 &nbsp;
 
 ***
@@ -61,9 +61,9 @@ user interfaces.
 {add your details here}
 Add the specified item in the shopping list.
 
-Format: `ADD [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
+Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 
-* The `[DESCRIPTION]` must exist.
+* The `DESCRIPTION` must exist.
 * The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of two parameters (price/quantity) must be present.
@@ -91,9 +91,9 @@ Edits the specified item in the shopping list.
 
 Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 
-* Edits the item at the specified `[INDEX]`. The `[INDEX]` refers to the index number 
+* Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list.
-* The `[INDEX]` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+* The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of three parameters (description/price/quantity) must be present.
 * i/, p/, q/ delimiters must be in **alphabetical** order.
@@ -128,7 +128,6 @@ Example of usage:
 
 `DEL 3`
 
-
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -147,7 +146,16 @@ Format: `CLEAR`
 ***
 
 ### Marking an item as bought: `MARK`
-{add your details here}
+Marks an item from the list at the specified index as bought.
+
+Format: `MARK INDEX`
+
+* The `INDEX` should be an integer.
+* The `INDEX` should not be out of bounds of the shopping list.
+
+Example of the usage: 
+
+`MARK 5`
 
 &nbsp;
 
@@ -156,10 +164,16 @@ Format: `CLEAR`
 ***
 
 ### Un-marking a marked item: `UNMARK`
-{add your details here}
+Un-marks a marked-as-bought item from the list at the specified index.
 
+Format: `UNMARK INDEX`
 
+* The `INDEX` should be an integer
+* The `INDEX` should not be out of bounds of the shopping list.
 
+Example of the usage:
+
+`UNMARK 3`
 
 &nbsp;
 
@@ -189,6 +203,17 @@ Format: `SET b/AMOUNT`
 Example of usage: 
 
 `SET b/3.00`
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
+***
+
+### Resetting a budget: `RES`
+Resets te budget to be 0.00 for the user.
+
+Format: `RES`
 
 &nbsp;
 
@@ -256,11 +281,15 @@ that contains the data of your previous SHOCO shopping list.
 
 ## Command Summary
 
+* Add item `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Delete item `DEL INDEX`
 * Clear list `CLEAR`
+* Mark item `MARK INDEX`
+* Un-mark item `UNMARK INDEX`
 * Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
+* Reset Budget `RES`
 * Find item `FIND KEYWORD`
 * View help `HELP`
 * Exit program `BYE`
