@@ -1,5 +1,6 @@
 package seedu.atas;
 
+import command.RepeatCommand;
 import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
@@ -211,10 +212,111 @@ public class TaskList {
         for (Task task : tasks) {
             LocalDate taskDate = task.getDate();
             assert taskArrayList.size() <= tasks.size();
-            if (startOfRange.compareTo(taskDate) <= 0 && endOfRange.compareTo(taskDate) >= 0) {
+
+            if (isWithinRange(startOfRange, endOfRange, taskDate)) {
                 taskArrayList.add(task);
+                continue;
+            }
+
+            // Add repeat Events that is before startOfRange but will spillover to provided time period
+            if (task instanceof Event && ((Event) task).getIsRepeat() && startOfRange.compareTo(taskDate) >= 0) {
+                addFirstRepeatedEventWithinRange(startOfRange, endOfRange, task, taskDate, taskArrayList);
             }
         }
         return taskArrayList;
+    }
+
+    /**
+     * Adds the first instance of the repeated event that falls within given time period if exists.
+     * @param startOfRange LocalDate representing start of time period
+     * @param endOfRange LocalDate representing end of time period
+     * @param task repeating Event to be checked
+     * @param taskDate Event date
+     */
+    private void addFirstRepeatedEventWithinRange(LocalDate startOfRange, LocalDate endOfRange,
+                                               Task task, LocalDate taskDate, ArrayList<Task> taskArrayList) {
+        Event event = (Event) task;
+        int numOfPeriod = event.getNumOfPeriod();
+        String typeOfPeriod = event.getTypeOfPeriod();
+
+        switch (typeOfPeriod) {
+        case RepeatCommand.YEARLY_ICON:
+            for (int timesRepeated = 1; taskDate.plusYears(numOfPeriod * timesRepeated)
+                    .compareTo(endOfRange) <= 0; timesRepeated++) {
+                if (isWithinRange(startOfRange, endOfRange,
+                        taskDate.plusYears(numOfPeriod * timesRepeated))) {
+                    Event yearlyEventToAdd = new Event(event.getName(),
+                            event.getLocation(),
+                            event.getDateAndTime().plusYears(timesRepeated * numOfPeriod),
+                            event.getEndDateAndTime().plusYears(timesRepeated * numOfPeriod),
+                            event.getComments());
+                    yearlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    taskArrayList.add(yearlyEventToAdd);
+                    break;
+                }
+            }
+            break;
+        case RepeatCommand.MONTHLY_ICON:
+            for (int timesRepeated = 1; taskDate.plusMonths(numOfPeriod * timesRepeated)
+                    .compareTo(endOfRange) <= 0; timesRepeated++) {
+                if (isWithinRange(startOfRange, endOfRange,
+                        taskDate.plusMonths(numOfPeriod * timesRepeated))) {
+                    Event monthlyEventToAdd = new Event(event.getName(),
+                            event.getLocation(),
+                            event.getDateAndTime().plusMonths(timesRepeated * numOfPeriod),
+                            event.getEndDateAndTime().plusMonths(timesRepeated * numOfPeriod),
+                            event.getComments());
+                    monthlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    taskArrayList.add(monthlyEventToAdd);
+                    break;
+                }
+            }
+            break;
+        case RepeatCommand.WEEKLY_ICON:
+            for (int timesRepeated = 1; taskDate.plusWeeks(numOfPeriod * timesRepeated)
+                    .compareTo(endOfRange) <= 0; timesRepeated++) {
+                if (isWithinRange(startOfRange, endOfRange,
+                        taskDate.plusWeeks(numOfPeriod * timesRepeated))) {
+                    Event weeklyEventToAdd = new Event(event.getName(),
+                            event.getLocation(),
+                            event.getDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
+                            event.getEndDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
+                            event.getComments());
+                    weeklyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    taskArrayList.add(weeklyEventToAdd);
+                    break;
+                }
+            }
+            break;
+        case RepeatCommand.DAILY_ICON:
+            for (int timesRepeated = 1; taskDate.plusDays(numOfPeriod * timesRepeated)
+                 .compareTo(endOfRange) <= 0; timesRepeated++) {
+                if (isWithinRange(startOfRange, endOfRange,
+                        taskDate.plusDays(numOfPeriod * timesRepeated))) {
+                    Event dailyEventToAdd = new Event(event.getName(),
+                            event.getLocation(),
+                            event.getDateAndTime().plusDays(timesRepeated * numOfPeriod),
+                            event.getEndDateAndTime().plusDays(timesRepeated * numOfPeriod),
+                            event.getComments());
+                    dailyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    taskArrayList.add(dailyEventToAdd);
+                    break;
+                }
+            }
+            break;
+        default:
+            assert false;
+        }
+    }
+
+    /**
+     * Checks if taskDate is within the range of time period provided.
+     * @param startOfRange LocalDate representing start of time period
+     * @param endOfRange LocalDate representing end of time period
+     * @param taskDate LocalDate to be checked against the time period
+     * @return true if taskDate is within the time period, false if otherwise
+     */
+    private boolean isWithinRange(LocalDate startOfRange, LocalDate endOfRange, LocalDate taskDate) {
+        return startOfRange.compareTo(taskDate) <= 0 && endOfRange.compareTo(taskDate) >= 0;
     }
 }
