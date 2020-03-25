@@ -13,7 +13,9 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
+import seedu.nuke.gui.component.AutoCompleteTextField;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,6 +36,12 @@ public class GuiParser {
     public static final String ALL_FLAG = "-a";
     public static final String EXACT_FLAG = "-e";
 
+    private AutoCompleteTextField textField;
+
+    public GuiParser(AutoCompleteTextField textField) {
+        this.textField = textField;
+    }
+
     private static final String[] COMMAND_WORDS = {
             AddModuleCommand.COMMAND_WORD, AddCategoryCommand.COMMAND_WORD, AddTaskCommand.COMMAND_WORD,
             DeleteModuleCommand.COMMAND_WORD, DeleteCategoryCommand.COMMAND_WORD, DeleteTaskCommand.COMMAND_WORD,
@@ -50,12 +58,20 @@ public class GuiParser {
      *  The user input read by the <b>GUI</b>
      */
     public Color parseCommandWord(String input) {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input);
         if (!matcher.matches()) {
             return Color.CRIMSON;
         }
-        String commandWord = matcher.group("commandWord").toLowerCase();
-        // String parameters = matcher.group("parameters");
+        String commandWord = matcher.group("commandWord").toLowerCase().trim();
+        String parameters = matcher.group("parameters");
+
+        if (parameters.isEmpty()) {
+            textField.getEntries().clear();
+            textField.getEntries().addAll(Arrays.asList(COMMAND_WORDS));
+        } else {
+            textField.getEntries().clear();
+            textField.getEntriesPopup().hide();
+        }
 
         if (!isPartOfCommandWord(commandWord)) {
             return Color.CRIMSON;

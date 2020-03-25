@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.PopupWindow;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,16 +26,20 @@ public class AutoCompleteTextField extends TextField {
         super();
         this.entries = new TreeSet<>();
         this.entriesPopup = new ContextMenu();
-
+        entriesPopup.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-border-color: lightgrey; -fx-border-radius: 3");
         setListener();
+    }
+
+    public ContextMenu getEntriesPopup() {
+        return entriesPopup;
     }
 
     private void setListener() {
         //Add "suggestions" by changing text
         textProperty().addListener((observable, oldValue, newValue) -> {
-            String enteredText = getText();
+            String enteredText = getText().trim();
             // Hide suggestions if there in no input
-            if (enteredText == null || enteredText.isBlank()) {
+            if (enteredText.isBlank()) {
                 entriesPopup.hide();
             } else {
                 // Filters suggestions in case-insensitive manner
@@ -44,9 +49,9 @@ public class AutoCompleteTextField extends TextField {
                 // Show suggestions if present
                 if (!filteredEntries.isEmpty()) {
                     // Create popup
+                    int y = (filteredEntries.size())*12;
                     populatePopup(filteredEntries, enteredText);
                     //if (!entriesPopup.isShowing()) {
-                    int y = (filteredEntries.size())*10;
                     entriesPopup.show(AutoCompleteTextField.this, Side.TOP, 0, -y); //position of popup
                     //}
                     // Hide popup if no suggestions
@@ -66,21 +71,21 @@ public class AutoCompleteTextField extends TextField {
     /**
      * Populate the entry set with the given search results. Display is limited to 10 entries, for performance.
      *
-     * @param searchResult The set of matching strings.
+     * @param suggestions The set of matching strings.
      */
-    private void populatePopup(List<String> searchResult, String searchReauest) {
+    private void populatePopup(List<String> suggestions, String searchResult) {
         //List of "suggestions"
         List<CustomMenuItem> menuItems = new LinkedList<>();
         //List size - 10 or founded suggestions count
         int maxEntries = 10;
-        int count = Math.min(searchResult.size(), maxEntries);
+        int count = Math.min(suggestions.size(), maxEntries);
         //Build list as set of labels
         for (int i = 0; i < count; i++) {
-            final String result = searchResult.get(i);
+            final String result = suggestions.get(i);
             //label with graphic (text flow) to highlight founded subtext in suggestions
             Label entryLabel = new Label();
-            entryLabel.setGraphic(buildTextFlow(result, searchReauest));
-            entryLabel.setPrefHeight(10);  //don't sure why it's changed with "graphic"
+            entryLabel.setGraphic(buildTextFlow(result, searchResult));
+            entryLabel.setPrefHeight(12);  //don't sure why it's changed with "graphic"
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             menuItems.add(item);
 
@@ -109,9 +114,9 @@ public class AutoCompleteTextField extends TextField {
         int filterIndex = text.toLowerCase().indexOf(filter.toLowerCase());
         Text textBefore = new Text(text.substring(0, filterIndex));
         Text textAfter = new Text(text.substring(filterIndex + filter.length()));
-        Text textFilter = new Text(text.substring(filterIndex,  filterIndex + filter.length())); //instead of "filter" to keep all "case sensitive"
-        textFilter.setFill(Color.ORANGE);
-        textFilter.setFont(Font.font("Helvetica", FontWeight.BOLD, 12));
+        Text textFilter = new Text(text.substring(filterIndex,  filterIndex + filter.length()));
+        textFilter.setFill(Color.GREEN);
+        textFilter.setStyle("-fx-font-weight: bold");
         return new TextFlow(textBefore, textFilter, textAfter);
     }
 }

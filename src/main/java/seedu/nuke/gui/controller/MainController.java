@@ -85,7 +85,7 @@ public class MainController implements Initializable {
             String currentUserInput = autoCompleteTextField.getText();
             consoleMask.getChildren().clear();
             consoleMask.getChildren().add(TextUI.createText(currentUserInput,
-                    new GuiParser().parseCommandWord(currentUserInput)));
+                    new GuiParser(autoCompleteTextField).parseCommandWord(currentUserInput)));
             break;
         }
     }
@@ -105,7 +105,7 @@ public class MainController implements Initializable {
         default:
             String currentUserInput = console.getText();
             consoleMask.getChildren().clear();
-            consoleMask.getChildren().add(TextUI.createText(currentUserInput, new GuiParser().parseCommandWord(currentUserInput)));
+            consoleMask.getChildren().add(TextUI.createText(currentUserInput, new GuiParser(autoCompleteTextField).parseCommandWord(currentUserInput)));
             break;
         }
     }
