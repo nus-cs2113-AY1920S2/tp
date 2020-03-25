@@ -106,10 +106,10 @@ The StorageHandler class functions as a support to the main Storage class, allow
 - Removing an entry from the data file via `removeLine`. This function takes in the number of the line to remove.
 - Replacing an entry in the data file via `replaceLine`. This function takes in the number of the line to replace, along with the String object that needs to be written to the data file in place of the replaced line.
 
-### 3.5 Edit feature
+### 3.4 Edit feature
 The edit feature allows the user to make changes to activities that have been saved in the activity list. This is to allow the user to rectify any mistakes that may have been made during the initial recording of the activity. 
 
-#### 3.5.1 Current Implementation
+#### 3.4.1 Current Implementation
 The following sequence diagram shows how the edit feature works.
 ![image_info](./pictures/EditSequenceDiagram.png)
 The current implementation of the edit feature allows the user to edit only the name parameter of the activity. When the user wants to edit an activity using the edit command, the Parser creates a new EditCommand object. The executeCommand() method of the EditCommand object is called and the specified parameters are updated accordingly.
@@ -120,20 +120,20 @@ The order of method calls to edit the activity details is as follows if the spec
 3. The setName() method of the Activity class is called to edit the activity name to the user-specified name
 4. The activity with the updated name is returned to the activityList  
 
-#### 3.5.2 Additional Implementations
+#### 3.4.2 Additional Implementations
 The current implementation of the edit feature only allows the user to edit the activity name. Hence, additional implementations of the edit feature should allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
 
 This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
 
-#### 3.5.3 Design Considerations
+#### 3.4.3 Design Considerations
 By letting the user edit the name and tags of the activity, it will allow them to correct any mistakes made during the data entry. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
 
 However, by allowing the user to edit the start date and time, there may be potential inaccuracies in the actual activity recording. This is due to the fact that the time recorded in the program is based on the LocalDateTime. By introducing user input, the dates and time may be recorded incorrectly, defeating the purpose of the time tracking program. 
 
-### 3.6 Continue Feature
+### 3.5 Continue Feature
 The continue feature allows the user to continue a previously ended activity.
 
-#### 3.6.1 Current Implementation
+#### 3.5.1 Current Implementation
 ![Continue command sequence diagram](https://i.imgur.com/MuaxFts.png)
 
 **Continuing an activity:**
@@ -155,7 +155,7 @@ When the user wants to end the continued activity, an *EndCommand* object is cre
 3.  Adds the elapsed time with the previous duration of the activity to get the *newDuration* using *plus()* method of Duration class
 4.  Calls the *updateDuration()* method, which updates the *duration* attribute of the continued activity in the *activityList* as well as the data.csv file
 
-#### 3.6.2 Design Considerations
+#### 3.5.2 Design Considerations
 
 **Execution:**
  - Continue by activity name (current implementation)
@@ -168,7 +168,7 @@ When the user wants to end the continued activity, an *EndCommand* object is cre
  
 Although the current implementation of the continue feature disallows users to have multiple activities with the same name, we felt that the versatility of this choice outweighed the cons. Firstly because if the activityList got too big, it would be hard for the user to get the index of the task he/she wanted to continue. Also, the index would constantly be changing when changes are made to the list.
 
-#### 3.6.3 Additional Features
+#### 3.5.3 Additional Features
 As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
 ![decision flowchart](https://i.imgur.com/mCCPuun.png)
 
