@@ -23,15 +23,12 @@ public class CalendarList {
         ArrayList<Event> semesterList;
         ArrayList<Event> yearList;
         ArrayList<ArrayList<String>> monthList;
-
         semesterList = getSemesterOneEvents(eventList);
-
-        if (semesterList.isEmpty()) {
-            throw new DukeException("Unable to find any events for this time period.");
-        }
-
         yearList = getAcademicYearEvents(semesterList, year);
         monthList = getMonthEvents(yearList);
+        if (yearList.isEmpty()) {
+            throw new DukeException("Unable to find any events for this time period.");
+        }
         UI.printCalendar(monthList, year, year + 1, 1);
         printMonths(monthList);
     }
@@ -67,15 +64,12 @@ public class CalendarList {
         ArrayList<Event> semesterList;
         ArrayList<Event> yearList;
         ArrayList<ArrayList<String>> monthList;
-
         semesterList = getSemesterTwoEvents(eventList);
-
-        if (semesterList.isEmpty()) {
-            throw new DukeException("Unable to find any events for this time period.");
-        }
-
         yearList = getAcademicYearEvents(semesterList, year);
         monthList = getMonthEvents(yearList);
+        if (yearList.isEmpty()) {
+            throw new DukeException("Unable to find any events for this time period.");
+        }
         UI.printCalendar(monthList, year - 1, year, 2);
         printMonths(monthList);
     }
@@ -120,7 +114,7 @@ public class CalendarList {
             throws DukeException {
 
         ArrayList<ArrayList<String>> monthList = new ArrayList<>(NO_OF_MONTHS);
-        for (int k = 0; k < NO_OF_MONTHS ; k++) {
+        for (int k = 0; k < NO_OF_MONTHS; k++) {
             monthList.add(new ArrayList<>());
         }
         for (Event event : yearList) {

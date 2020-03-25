@@ -20,7 +20,7 @@ public class CalendarParser {
     public static int parseAcademicYear(String[] academicYear, int year) throws DukeException {
         int calendarYear;
         for (String yr : academicYear) {
-            if (yr.length() > 2 || yr.length() < 1 ) {
+            if (yr.length() > 2 || yr.length() < 1) {
                 throw new DukeException("Please provide a valid year in this format: ay/19-20");
             }
         }

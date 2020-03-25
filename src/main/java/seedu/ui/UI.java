@@ -250,6 +250,7 @@ public class UI {
         printCalendarHeading(semesterOneYear, semesterTwoYear, semester);
         printCalendarMonthsHeading(semester);
     }
+
     public static void printCalendarMonthsHeading(int semester) {
         ArrayList<String> months = new ArrayList<>();
         if (semester == 1) {

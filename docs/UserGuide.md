@@ -228,7 +228,7 @@ Semester refers to a numerical number, 1 or 2 while academic year refers
 to any 2 consecutive years with a hyphen separating them. 
 
 
-Format: `calendar s/SEMESTER ay/ACADEMIC_YEAR `
+Format: `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO `
 
 Command: 
 
@@ -236,8 +236,15 @@ Command:
     
 Examples: 
 
-    Events of Semester 2 of AY 19/20
-    1. Event: work, time: Tue, Mar 24 2020 1436 
+     _______________________________________________________________________ 
+                          SEMESTER 1 AY 19/20 
+     _______________________________________________________________________ 
+    | JUL       | AUG       | SEP       | OCT       | NOV       | DEC       |
+    |___________|___________|___________|___________|___________|___________|
+    |           | talk      | slideshow |           |           |           |
+    |___________|___________|___________|___________|___________|___________|
+    |           | interview |           |           |           |           |
+    |___________|___________|___________|___________|___________|___________| 
     
 ## FAQ
 
@@ -250,3 +257,4 @@ Examples:
 {Give a 'cheat sheet' of commands here}
 
 * Add to-do `todo n/TODO_NAME d/DEADLINE`
+* View calendar `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
