@@ -91,7 +91,8 @@ The prompt to request for the list number(s) of the item(s) to delete from the f
 <br>
 Below are the class-diagrams for the involved classes:  
 
-![Delete Command Class Diagram](images/Delete Command Class Diagram.png)
+![Delete Command Class Diagram](images/Delete Command Class Diagram.png)  
+
 <span style="color:#73c742"><small><i>Figure <b>Delete Command Class Diagram</b></i></small></span>
 
 ```
