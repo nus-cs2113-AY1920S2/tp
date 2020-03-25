@@ -82,8 +82,6 @@ Step 2b. If the attribute toClean is equal to true, access the storage data file
 `StorageCleaner#initialiseLogCleaner - Gives the storage cleaner an added functionality of being able to clear log files too.`
 
 
-
-
 ### 3.2 Storage feature
 The Storage class represents the back-end of Jikan, handling the creation, saving and loading of data. 
 Jikan uses a `.csv` file to store its data, formatted in the following way:
@@ -172,6 +170,39 @@ Although the current implementation of the continue feature disallows users to h
 As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
 ![decision flowchart](https://i.imgur.com/mCCPuun.png)
 
+### 3.6 Find Feature
+This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
+
+#### 3.6.1 Current Implementation
+* This feature is called by the user when the “find” command is entered into the command line. The string following the command is the keyword to match activity names to.
+* The Parser will create a FindCommand object.
+* The FindCommand will invoke its own executeCommand() method.
+    * The Parser's lastShownList will be cleared.
+    * Then it will loop through activityList to find activities with names that contain the keyword.
+    * If one is found, it will be added to lastShownList.
+    * printResults() of the Ui will be called:
+        * If lastShownList is not empty, it will print the matching activities.
+        * Else, it will respond to the user that there are no tasks which match the given keyword.
+
+
+![find seq diagram](https://imgur.com/9tZrPS7.png)
+### 3.7 Filter Feature
+This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
+
+#### 3.7.1 Current Implementation
+* This feature is called by the user when the “filter” command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
+* The Parser will create a FilterCommand object.
+* The FindCommand will invoke its own executeCommand() method.
+* The Parser's lastShownList will be cleared.
+* For each keyword:
+    * Then it will loop through activityList to find activities with tags that contain the keyword.
+    * If one is found, it will be added to lastShownList.
+    * printResults() method of the Ui will be called
+        * If lastShownList is not empty, it will print the matching activities.
+        * Else, it will respond to the user that there are no tasks which match the given keyword.
+
+
+![filter seq diagram](https://imgur.com/P8LH1hW.png)
 ## 4. Appendix
 ### Product Scope
 #### Target user profile
