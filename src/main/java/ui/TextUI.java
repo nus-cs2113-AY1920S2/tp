@@ -181,23 +181,26 @@ public class TextUI {
         System.out.println("There are no previous records of meetings, let's create a new one!");
     }
 
-    public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList) {
+    public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList, String mainUser) {
         System.out.println("____________________________________________________________\n"
                 + "Here are your stored contacts:");
-        int i = 0;
-        for (TeamMember t : teamMemberList) {
-            if (i == 0) {
-                System.out.println("\t Main user: " + t.getName());
-            } else {
-                System.out.println("\t " + i + ") " + t.getName());
+        int i = 1;
+        System.out.println("\t Main user: " + mainUser);
+        for (TeamMember teamMember : teamMemberList) {
+            if (!teamMember.getName().equals(mainUser)) {
+                out.println("\t " + i + ") " + teamMember.getName());
+                i++;
             }
-            i++;
         }
         System.out.println("____________________________________________________________\n");
     }
 
     public static void showAddedMember(String memberName) {
         out.println("Added " + memberName);
+    }
+
+    public static void showRepeatedPerson(String userInputWord) {
+        out.println(userInputWord + " already exists!");
     }
 }
 
