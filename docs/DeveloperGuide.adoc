@@ -1,0 +1,17 @@
+= A.T.A.S (Amazing Task and Assignment System) Developer Guide
+:site-section: UserGuide
+:toc:
+:toclevels: 4
+:toc-title: Contents
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
+
+By: `Team M16-1` Since: `Jan 2020` License: `MIT`
