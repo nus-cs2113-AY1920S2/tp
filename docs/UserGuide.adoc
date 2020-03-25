@@ -233,6 +233,54 @@ also be reflected in the stored list. +
 (You can think of this as repeating the task every 0 days and hence not repeating!)
 * Example: `repeat id/1 p/0` will cause task of index 1 to stop repeating.
 
+=== Search Tasks: *`search`*
+==== Search by Name
+You can search for tasks in the list by specifying the type and name of task you might be searching for.
+
+* Format: `search t/[TASK TYPE] n/[TASK NAME]`
+
+Example:
+
+`search t/event n/te`
+
+Expected outcome:
+```
+Here are the search results:
+  1.[E][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
+      [3d]  notes: Test
+  2.[E][X] Test2 (at: test2 | Wed 03 Jun 2020 13:00 - 14:00)
+      [1w]  notes: Test2
+  3.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+      [1m]  notes: Test3
+  4.[E][X] Test4 (at: test4 | Wed 29 Apr 2020 11:00 - 12:00)
+      [1m]  notes: Test4
+```
+
+==== Search by Name and Date
+You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for.
+
+* Format: `search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
+
+Example:
+
+`searchd t/event n/te d/01/05/20`
+
+Expected outcome:
+```
+Here are the search results:
+  1.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+      [1m]  notes: Test3
+```
+
+=== Calendar view: *`Calendar`*
+You can obtain an calendar overview of all tasks you might have in the specified date. The feature also takes into
+consideration repeating events that you might have set. This allows you to plan your time accordingly since the list
+might not feel intuitive.
+
+* Format: `calendar d/[DD/MM/YY]`
+* Expected outcome:
+// add image here
+
 == Commands Summary
 === List of available *ATAS* commands
 . *Help*: `help`
