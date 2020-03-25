@@ -237,7 +237,7 @@ Command:
 Examples: 
 
      _______________________________________________________________________ 
-                          SEMESTER 1 AY 19/20 
+                          SEMESTER 2 AY 19/20 
      _______________________________________________________________________ 
     | JUL       | AUG       | SEP       | OCT       | NOV       | DEC       |
     |___________|___________|___________|___________|___________|___________|
@@ -256,5 +256,10 @@ Examples:
 
 {Give a 'cheat sheet' of commands here}
 
-* Add to-do `todo n/TODO_NAME d/DEADLINE`
+* Add event `event add n/NAME d/DATE t/TIME v/VENUE`
+* list events `event list`
+* Edit name of existing event `event editname i/INDEX n/NAME`
+* Edit date and time of existing event `event editdatetime i/INDEX d/DATE t/TIME`
+* Edit venue of existing event `event editvenue i/INDEX v/VENUE`
+* Delete event `event delete i/INDEX`
 * View calendar `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
