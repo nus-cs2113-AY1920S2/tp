@@ -74,6 +74,104 @@ Refer to <<Features>> for the detailed instruction of the various commands of *A
 
 == Features
 
+=== Add Assignments: *`assignment`*
+An assignment is a task that you have to complete by a certain deadline, for a particular module. +
+You can add an assignment to *ATAS*, containing various details.
+
+Format: `assignment n/NAME m/MODULE d/DATE TIME c/COMMENTS`
+
+* `NAME` is the name of your assignment.
+* `MODULE` is the module that your assignment is for.
+* `DATE TIME` is the deadline of your assignment. +
+** `DATE` follows the format `DD/MM/YY`
+*** e.g. 25/03/20 represents the date 25th March 2020
+** `TIME` uses the 24h format `HHmm`
+*** e.g. 2359 represents the time 11:59pm
+* `COMMENTS` will be any other notes relevant to your `assignment`.
+
+[NOTE]
+The new `assignment` added cannot have both the same `NAME` and `MODULE` as another existing `assignment`.
+
+Example: `assignment n/Final Reflection Draft m/GEQ1000 d/01/04/20 2359 c/Last chance to get feedback!`
+
+Expected Outcome:
+```
+Added task:
+     [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+Now you have 1 task in the list!
+```
+
+=== Add Events: *`event`*
+An event is a task that you plan to do at a particular date and time. +
+You can add an event to *ATAS*, containing various details.
+
+Format: `event n/NAME l/LOCATION d/DATE START_TIME - END_TIME c/COMMENTS`
+
+* `NAME` is the name of your event.
+* `LOCATION` is where your event will take place.
+* `DATE START_TIME - END_TIME` is the date and time when your event will take place +
+** `DATE` follows the format `DD/MM/YY`
+*** e.g. 25/03/20 represents the date 25th March 2020
+** `START_TIME` and `END_TIME` use the 24h format `HHmm`
+*** e.g. 2359 represents the time 11:59pm
+* `COMMENTS` will be any other notes relevant to your `event`
+
+[NOTE]
+The new `event` added cannot have the same `NAME` as another existing `event`
+
+Example: `event n/Lecture l/NUS LT19 d/25/03/20 0800 - 1000 c/Remember to bring a jacket`
+
+Expected Outcome:
+```
+Added task:
+     [E][X] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00)
+            notes: Remember to bring a jacket
+Now you have 1 task in the list!
+```
+
+=== List Tasks: `list`
+You can view the tasks that you have stored in *ATAS*. +
+Various keywords can be used to only show the tasks you are interested in.
+
+==== List all tasks: `list`
+You can view all tasks stored in *ATAS* at once.
+
+Format: `list`
+
+Expected Outcome:
+```
+Here are the relevant tasks:
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+  2. [E][X] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00)
+            notes: Remember to bring a jacket
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: Look for internship
+  7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
+            notes: Have to check the exam venue and duration again
+```
+
+==== List today's tasks: `list today`
+You can view only the tasks you have today.
+
+Format: `list today`
+
+Expected Outcome (Assuming today's date is 27th March 2020):
+```
+Here are the relevant tasks:
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+```
+
 === Edit Tasks: *`edit`*
 You can edit tasks in your existing list if there are any changes.
 
