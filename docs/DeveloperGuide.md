@@ -1,16 +1,18 @@
 # Developer Guide
-* [1. Introduction](#1-introduction)
- * [2. Implementation](#2-implementation)
-    + [2.1 Add feature](#21-add-feature)
-    + [2.2 Edit feature](#22-edit-feature)
-    + [2.3 Delete feature](#23-delete-feature)
-    + [2.4 Mark and Unmark feature](#24-mark-and-unmark-feature)
-    + [2.5 Display feature](#25-display-feature)
-    + [2.6 Clear list feature](#26-clear-list-feature)
-    + [2.7 Set budget feature](#27-set-budget-feature)
-    + [2.8 Reset budget feature](#28-reset-budget-feature)
-    + [2.9 View help feature](#29-view-help-feature)
-    + [2.10 Exit program feature](#210-exit-program-feature)
+&nbsp; [1. Introduction](#1-introduction) 
+ <details> 
+    <summary><a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#2-implementation">  &nbsp; 2. Implementation</a> </summary><p> &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#21-add-feature">2.1 Add feature</a><br> &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#22-edit-feature">2.2 Edit feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#23-delete-feature">2.3 Delete feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#24-mark-and-unmark-feature">2.4 Mark and Unmark feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#25-display-feature">2.5 Display feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#26-clear-list-feature">2.6 Clear list feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#27-set-budget-feature">2.7 Set budget feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#28-reset-budget-feature">2.8 Reset budget feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#29-view-help-feature">2.9 View help feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#210-exit-program-feature">2.10 Exit program feature</a></details>
+       
  * [Appendix A: Product Scope](#appendix-a-product-scope)
  * [Appendix B: User Stories](#appendix-b-user-stories)
  * [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
@@ -29,8 +31,17 @@ Currently, this documentation is for the first public release of the application
 This document describes the software architecture and design for the implementation
 of SHOCO and is tailored for the developers, designers, and software testers of SHOCO.
 
+&nbsp;
+
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+&nbsp;
+
 ## 2. Implementation
 This section will describe how the main features of the application are implemented.
+&nbsp;
+
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+&nbsp;
 
 ### 2.1 Add feature
  #### 2.1.1 Current implementation
