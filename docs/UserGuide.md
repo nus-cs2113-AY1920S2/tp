@@ -51,7 +51,7 @@ Professors, teachers, etc.
     
 As long as you need to keep track of upcoming events or class, you are our audience.
 
-##2. Setting Up
+## 2. Setting Up
 
 ### 2.1. Requirements 
 1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
