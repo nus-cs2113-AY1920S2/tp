@@ -245,11 +245,10 @@ public class UI {
     }
 
 
-    public static void printCalendar(ArrayList<ArrayList<Event>> list, int semesterOneYear, int semesterTwoYear,
+    public static void printCalendar(ArrayList<ArrayList<String>> list, int semesterOneYear, int semesterTwoYear,
                                      int semester) {
         printCalendarHeading(semesterOneYear, semesterTwoYear, semester);
         printCalendarMonthsHeading(semester);
-        printMonths(list);
     }
     public static void printCalendarMonthsHeading(int semester) {
         ArrayList<String> months = new ArrayList<>();
@@ -269,29 +268,6 @@ public class UI {
             months.add(5, "JUN");
         }
         printBodyOfSix(months);
-    }
-
-    public static void printMonths(ArrayList<ArrayList<Event>> list) {
-        int maxNumberOfEvents = 0;
-        ArrayList<String> headerMonthDescription = new ArrayList<>(12);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).size() > maxNumberOfEvents) {
-                maxNumberOfEvents = list.get(i).size();
-            }
-        }
-
-        for (int h = 0; h < 12; h++) {
-            headerMonthDescription.add(" ");
-        }
-
-            for (int j = 0; j < list.size(); j++) {
-                for (int k = 0; k < list.get(j).size(); k++) {
-                    if (list.get(j).get(k) != null) {
-                        headerMonthDescription.add(j, list.get(j).get(k).getName());
-                    }
-                }
-                printBodyOfSix(headerMonthDescription);
-            }
     }
 
     /**

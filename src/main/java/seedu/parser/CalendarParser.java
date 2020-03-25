@@ -4,7 +4,6 @@ import seedu.duke.Duke;
 import seedu.exception.DukeException;
 
 public class CalendarParser {
-    private static int semester;
 
     public CalendarParser() {
     }
@@ -40,6 +39,7 @@ public class CalendarParser {
 
     public static int getSemester(String description) throws DukeException {
         String[] tokens = parseDescription(description);
+        int semester;
         if (tokens[0].substring(0,2).equals("s/")) {
             try {
                 if (tokens[0].substring(2).length() > 1) {
@@ -60,10 +60,14 @@ public class CalendarParser {
         int calendarYear;
         if (tokens[1].substring(0,3).equals("ay/")) {
             String[] academicYear = tokens[1].substring(3).split("-");
-            if (academicYear.length != 2) {
+            try {
+                if (academicYear.length != 2) {
+                    throw new DukeException("Please provide two numbers for ay, eg. ay/18-19");
+                } else if (Integer.parseInt(academicYear[1]) - Integer.parseInt(academicYear[0]) != 1) {
+                    throw new DukeException("Please provide a valid ay, eg. ay/18-19");
+                }
+            } catch (NumberFormatException e) {
                 throw new DukeException("Please provide two numbers for ay, eg. ay/18-19");
-            } else if (Integer.parseInt(academicYear[1]) - Integer.parseInt(academicYear[0]) != 1) {
-                throw new DukeException("Please provide a valid ay, eg. ay/18-19");
             }
             calendarYear = parseAcademicYear(academicYear, year);
         } else {

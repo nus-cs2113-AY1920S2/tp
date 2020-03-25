@@ -15,6 +15,6 @@ public class AddFirstSemester extends Command {
 
     @Override
     public void execute() throws DukeException {
-        CalendarList.getFirstSemester(eventList, year);
+        CalendarList.showFirstSemester(eventList, year);
     }
 }
