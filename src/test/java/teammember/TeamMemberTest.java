@@ -1,4 +1,4 @@
-// CHECKSTYLE:OFF
+package teammember;// CHECKSTYLE:OFF
 
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
@@ -6,6 +6,7 @@ import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+import teammember.TeamMember;
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

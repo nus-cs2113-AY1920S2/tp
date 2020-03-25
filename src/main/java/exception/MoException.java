@@ -1,3 +1,5 @@
+package exception;
+
 /**
  * TESTING SUMMARY DOC.
  */

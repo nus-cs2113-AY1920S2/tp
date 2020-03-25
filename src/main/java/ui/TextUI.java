@@ -1,8 +1,13 @@
+package ui;
+
 import static common.Messages.MESSAGE_INVALID_NUMBER;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static java.lang.System.out;
 
-import java.time.LocalTime;
+import exception.MoException;
+import meeting.Meeting;
+import meeting.MeetingList;
+import teammember.TeamMember;
 import java.util.ArrayList;
 
 /**
@@ -83,7 +88,7 @@ public class TextUI {
 
 
     public static void meetingDetailsMsg() {
-        out.println("Enter meeting details: <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
+        out.println("Enter meeting details: <Meeting.Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
                 + "Type \"exit\" to go back to menu.");
     }
 

@@ -1,3 +1,5 @@
+package meeting;
+
 import java.time.LocalTime;
 
 /**

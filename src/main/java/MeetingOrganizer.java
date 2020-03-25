@@ -1,8 +1,20 @@
+import apisystem.LessonsGenerator;
+import exception.InvalidUrlException;
+import exception.MoException;
+import exception.UnformattedModuleException;
+import inputparser.CliParser;
 import java.io.FileNotFoundException;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import meeting.Meeting;
+import meeting.MeetingList;
+import storage.Storage;
+import teammember.ScheduleHandler;
+import teammember.TeamMember;
+import teammember.TeamMemberList;
+import ui.TextUI;
 
 /**
  * TESTING SUMMARY DOC.
@@ -67,10 +79,10 @@ public class MeetingOrganizer {
                     for (int j = 0; j < myLessonDetails.get(k).length; j++) {
                         switch (j) {
                         case 0:
-                            startTimeString = myLessonDetails.get(k)[j].substring(0,2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                            startTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
                             break;
                         case 1:
-                            endTimeString = myLessonDetails.get(k)[j].substring(0,2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                            endTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
                             break;
                         case 2:
                             startDay = getNumberFromDay(myLessonDetails.get(k)[j]);
@@ -157,7 +169,7 @@ public class MeetingOrganizer {
             } catch (MoException e) {
                 System.out.println(e.getMessage() + ", try again.");
             }
-            // Replace main user's timetable with updated meeting blocks into TeamMemberList for storage purposes.
+            // Replace main user's timetable with updated meeting blocks into TeamMember.TeamMemberList for storage purposes.
             myTeamMemberList.set(0, mainUser);
             break;
         case "delete":
