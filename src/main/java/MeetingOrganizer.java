@@ -1,3 +1,12 @@
+import apisystem.LessonsGenerator;
+import inputparser.CliParser;
+import exception.InvalidUrlException;
+import exception.MoException;
+import exception.UnformattedModuleException;
+import meeting.Meeting;
+import storage.Storage;
+import teammember.TeamMember;
+import ui.TextUI;
 import java.io.FileNotFoundException;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -138,7 +147,7 @@ public class MeetingOrganizer {
             }
 
             break;
-        case "schedule": //schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time> (eg. schedule meeting 3 17:00 3 19:00)
+        case "schedule": //schedule <Meeting.Meeting Name> <Start Day> <Start Time> <End Day> <End Time> (eg. schedule meeting 3 17:00 3 19:00)
             String meetingName = userInputWords[1];
             startDay = Integer.parseInt(userInputWords[2]);
             LocalTime startTime = LocalTime.parse(userInputWords[3]);
@@ -157,7 +166,7 @@ public class MeetingOrganizer {
             } catch (MoException e) {
                 System.out.println(e.getMessage() + ", try again.");
             }
-            // Replace main user's timetable with updated meeting blocks into TeamMemberList for storage purposes.
+            // Replace main user's timetable with updated meeting blocks into TeamMember.TeamMemberList for storage purposes.
             myTeamMemberList.set(0, mainUser);
             break;
         case "delete":

@@ -1,8 +1,12 @@
+package teammember;
+
 import static common.Messages.MESSAGE_INVALID_MEETING;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 
 
+import exception.MoException;
+import meeting.Meeting;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;

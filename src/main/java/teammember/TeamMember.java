@@ -1,3 +1,6 @@
+package teammember;
+
+import exception.MoException;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
