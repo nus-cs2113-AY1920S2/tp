@@ -2,38 +2,38 @@
 
 ## Professor Assistant Console (PAC)
 
-![alt text](images/PAC.png "PAC ver1")
+![alt text](images/PAC.png "PAC ver1")  
 
-##Content Page
-1. [Introduction](##1.-Introduction)  
-1.1. [What is PAC?](###1.1.-What-is-PAC?)  
-1.2. [Who are our audience?](###1.2.-Who-are-our-audience?)
-2. [Setting Up](##2.-Setting-Up)  
-2.1. [Requirements](###2.1.-Requirements)   
-2.2. [Startup using Command Line](###2.2.-Startup-using-Command-Line)  
-2.3. [Startup using JAR](###2.3.-Startup-using-JAR)   
-3. [Quick Start](##3.-Quick-Start)  
-3.1. [Using PAC](###3.1.-Using-PAC)
-4. [Features](##4.-Features)  
-4.1. [Event](###4.1-Event)  
-4.1.1. [Add New Event](###4.1.1.-Add-new-event)  
-4.1.2. [View Events](####-4.1.2.-List-all-events)  
-4.1.3. [Delete Existing Event](####-4.1.3.-Delete-event)      
-4.1.4. [Edit Event -name](####-4.1.4.-Edit-event-name)      
-4.1.5. [Edit Event -datetime](####-4.1.5.-Edit-event-datetime)      
-4.1.6. [Edit Event -venue](####-4.1.6.-Edit-event-venue)  
-4.1.7. [Edit Event](####-4.1.7.-Edit-event)  
-4.2. [Attendance](###-4.2.-Attendance)  
-4.2.1. [Add New Attendance](####4.2.1.-Add-student-attendance)  
-4.2.2. [Delete Attendance](####4.2.2.-Delete-student-attendance)   
-4.3.1. [Add New Performance](####4.3.1.-Add-student-performance)  
-4.3.2. [Delete Current Performance](####4.3.2.-Delete-student-performance)   
-4.3.3. [View Performance List](####4.3.3.-View-student-performance)  
-4.4. [Student List](###-4.4.-Student)  
-4.4.1. [Add New Student List](####4.4.1.-Create-a-student-list)  
-5. [Possible Console Messages and Reasons](##5.-Possible-Console-Messages-and-Reasons)           
-6. [FAQ](6.-FAQ)  
-7. [Command Summary](7.-Command-Summary)  
+##Content Page  
+1. [Introduction](#1-introduction)  
+1.1. [What is PAC?](#11-what-is-pac)  
+1.2. [Who are our audience?](#12-who-are-our-audience)
+2. [Setting Up](#2-setting-up)  
+2.1. [Requirements](#21-requirements)   
+2.2. [Startup using Command Line](#22-startup-using-command-line)  
+2.3. [Startup using JAR](#23-startup-using-jar)   
+3. [Quick Start](#3-quick-start)  
+3.1. [Using PAC](#31-using-pac)
+4. [Features](#4-features)  
+4.1. [Event](#41-event)  
+4.1.1. [Add New Event](#411-add-new-event)  
+4.1.2. [View Event List](#412-list-events)  
+4.1.3. [Delete Existing Event](#413-delete-event)      
+4.1.4. [Edit Event -name](#414-edit-event-name)      
+4.1.5. [Edit Event -datetime](#415-edit-event-datetime)      
+4.1.6. [Edit Event -venue](#416-edit-event-venue)  
+4.1.7. [Edit Event](#417-edit-event)  
+4.2. [Attendance](#42-attendance)  
+4.2.1. [Add New Attendance](#421-add-attendance)  
+4.3. [Performance](#43-performance)
+4.3.1. [Add New Performance](#431-add-performance)  
+4.3.2. [Delete Current Performance](#432-delete-performance)   
+4.3.3. [View Performance List](#433-view-performance-list)  
+4.4. [Student List](#44-student)  
+4.4.1. [Add New Student List](#441-add-new-student-list)  
+5. [Possible Console Messages and Reasons](#5-possible-console-messages-and-reasons)           
+6. [FAQ](#6-faq)  
+7. [Command Summary](#7-command-summary)  
   
 ## 1. Introduction
 
@@ -51,7 +51,6 @@ Professors, teachers, etc.
     
 As long as you need to keep track of upcoming events or class, you are our audience.
 
-##
 ##2. Setting Up
 
 ### 2.1. Requirements 
@@ -243,7 +242,7 @@ The following will show a success example of creating a new attendance list.
     ...
 
 
-### 4.3. Feature - Performance
+### 4.3. Performance
 #### 4.3.1. Add Performance
 Add a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console. 
@@ -304,7 +303,7 @@ Step by step guide:
     |___________|_____________________________________|_____________________________________________|
 
 ### 4.4. Student
-#### 4.4.1. Create a student list
+#### 4.4.1. Add New Student List
 
 Creates a student list and adds it to the collection of student list 
 that can be used for adding attendance and performance
