@@ -24,8 +24,7 @@ PAC. The following groups are in particular the intended audience of the documen
 |                   |                       | 
 
 ## Architecture
-This section presents the architecture of PAC. It explains the main components for PAC
-to work and flow of work. 
+This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
 ### Overall Architecture
 *Overall Class diagram*
@@ -46,7 +45,8 @@ of PAC.
 | EventParser | EventCommandInterpreter  | 
 | CalenderParser | EventCommandInterpreter | 
 | AttendanceParser | Step-by-step command at Attendance-related command classes |
-| PerformanceParser | Step-by-step command at performance-related command classes |
+| PerformanceParser | Step-by-step command at performance-related command classes |  
+
 A Parser class is created when a user input contains data to be stored or used in certain features.    
 
 ### Storage
