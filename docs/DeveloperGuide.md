@@ -45,8 +45,8 @@ The product aims to provide students with more convient way of doing revision. B
 |v2.0|user|view my test history|see how I performed|
 
 ## Non-Functional Requirements
-1.The product should be able to run on any platform that has JDK11
-2.The product should be able to hold up to 1000 cards
+<br />1.The product should be able to run on any platform that has JDK11
+<br />2.The product should be able to hold up to 1000 cards
 
 ## Glossary
 
