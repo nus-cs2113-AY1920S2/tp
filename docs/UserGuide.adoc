@@ -48,18 +48,18 @@ get started! Become a more *ATAS* version of yourself today!
 === Setting up
 . Ensure you have Java 11 or above installed on your computer
 .. For *Windows* Users:
-... Download the latest release of *ATAS* here.
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
 ... Open a `cmd` (Command Prompt) window.
 ... Navigate to the folder containing downloaded jar file.
 ... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
 
 .. For *Mac* Users:
-... Download the latest release of *ATAS* here.
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
 ... Open up `Terminal`
 ... Navigate to the directory containing downloaded jar file.
 ... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
 
-=== Sample Commands
+=== Usage
 . To use *ATAS*, simply type a valid command into the terminal and press kbd:[Enter] to run the command. +
 e.g. Typing `help` command and pressing kbd:[Enter] will list the commands present
 . Some example commands you can try to get familiar with *ATAS*:
@@ -74,13 +74,13 @@ Refer to <<Features>> for the detailed instruction of the various commands of *A
 
 == Commands Summary
 === List of available *ATAS* commands
-. *Help*: `help` +
-* Lists all the commands available in *ATAS*.
-. *Exit*: `exit` +
-* Exits *ATAS*.
-. *Adding Assignments*: `assignment n/ASSIGNMENT NAME m/MODULE d/ DD/MM/YY HHmm c/COMMENTS`
+. *Help*: `help`
+. *Exit*: `exit`
+. *Adding Assignments*: +
+`assignment n/[ASSIGNMENT NAME] m/[MODULE] d/[DD/MM/YY HHmm] c/[COMMENTS]`
 * e.g. `assignment n/Assignment One m/CS2113T d/01/01/20 1200 c/None`
-. *Adding Events*: `event n/EVENT NAME l/LOCATION d/ DD/MM/YY HHmm - HHmm c/COMMENTS`
+. *Adding Events*: +
+`event n/[EVENT NAME] l/[LOCATION] d/[DD/MM/YY HHmm - HHmm] c/[COMMENTS]`
 * e.g. `event n/Meeting l/Classroom d/01/01/20 1200 - 1400 c/None`
 . *List Tasks*
 .. *List All Tasks*: `list`
@@ -88,26 +88,26 @@ Refer to <<Features>> for the detailed instruction of the various commands of *A
 .. *List This Week's Tasks*: `list week`
 .. *List Upcoming Events*: `list upcoming events`
 .. *List Incomplete Assignments*: `list incomplete assignments`
-. *Mark a task as done*: `done INDEX`
+. *Mark a task as done*: `done [INDEX]`
 * e.g. `done 1`
-. *Edit Task*: `edit INDEX`
+. *Edit Task*: `edit [INDEX]`
 * e.g. `edit 1`
-. *Delete Task*: `delete INDEX`
+. *Delete Task*: `delete [INDEX]`
 * e.g. `delete 1`
 . *Clear Tasks*
 .. *Clear All Tasks*: `clear all`
 .. *Clear All Completed Tasks*: `clear done`
-. *Set tasks to repeat*: `repeat id/EVENT INDEX p/[NUM OF PERIOD][TYPE OF PERIOD]`
+. *Set tasks to repeat*: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
 * Available Period: Day [d], Week [w], Month [m], Year [y]
 * e.g. `repeat id/1 p/3d`
-. *Unset repeating tasks*: `repeat id/EVENT INDEX p/0`
+. *Unset repeating tasks*: `repeat id/[INDEX] p/0`
 * e.g. `repeat id/1 p/0`
 . *Search for Tasks* (Available Task Type: assignment, event)
-.. *Search By Name*: `search t/TASK TYPE n/TASK NAME`
+.. *Search By Name*: `search t/[TASK TYPE] n/[TASK NAME]`
 * e.g. `search t/assignment n/Assignment one`
-.. *Search By Date*: `search t/TASK TYPE n/TASK NAME d/DD/MM/YY`
+.. *Search By Date*: `search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
 * e.g. `search t/assignment n/Assignment one d/01/01/20`
-. *Calendar View*: `calendar d/DD/MM/YY`
+. *Calendar View*: `calendar d/[DD/MM/YY]`
 * e.g. `calendar d/01/01/20`
 
 
