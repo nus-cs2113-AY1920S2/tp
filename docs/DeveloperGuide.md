@@ -87,10 +87,9 @@ The `AddCommand` will first try to call the static method `add` in `ModuleManage
 
 Below are the class-diagram for the involved classes:
 
-```
-	// To Do Class diagrams here 
-	// Not sure whether to put at the start or end of this section
-```
+![image-20200326014336120](D:\tp\docs\images\Add_Module_Command_Class_Diagram.png)
+
+<span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
 
 #### Example Usage
 
@@ -112,7 +111,7 @@ Total modules: 3
 
 1. James will simply enter the command `addm cs3235`
 
-   After the input is parsed as an **add task** and executed, the `AddModuleCommand#execute()` will call `ModuleManager#add()` to add the module cs3235. In the `ModuleManager#add()` method, it will call `ModuleManager#contains()` to check if the module cs3235 exists in the `ArrayList` named `moduleList` , then it will check if the module code "cs3235" is a key in the `HashMap` named `modulesMap`, after all, it will instantiate an `Module` object with the module code "CS3235" and respective title "Computer Security", and add the object into the `modulesMap`.
+   After the input is parsed as an **add module task** and executed, the `AddModuleCommand#execute()` will call `ModuleManager#add()` to add the module cs3235. In the `ModuleManager#add()` method, it will call `ModuleManager#contains()` to check if the module cs3235 exists in the `ArrayList` named `moduleList` , then it will check if the module code "cs3235" is a key in the `HashMap` named `modulesMap`, after all, it will instantiate an `Module` object with the module code "CS3235" and respective title "Computer Security", then add the object into the `moduleList`.
 
 2. James receive the following feedback:
 
@@ -146,6 +145,98 @@ Below is a *sequence diagram* to illustrate the above example scenario.
 ```
 
 
+
+#### 1.2. Add category/task feature
+
+Since add category and add task feature are implemented in a similar pattern, they can be explained together.
+
+The add category/task enable the user to add category/task/tag into Category/Task/Tag List.(One to one correspondence, which means the user can only add category to Category List, task to Task List).
+
+When the user first request to execute the **add** command*(assuming the command format given is valid)* to add a category/task by providing its name, the application will parse the input after `addm` /`addc` command word as the name for category/task. From here, there are **three** possible outcomes:
+
+1. The specified upper parent directory does not exist. -- No category/task will be added.
+2. The name of the specified category/task already exist. -- No category/task will be added.
+3. The specified upper parent directory exist and the name of the specified category/task does not exist. -- The specified category/task will be added.
+
+#### Feature Implementation
+
+This feature is facilitated by the `AddCategoryCommand` and `AddTaskCommand` class which add the corresponding category or task respectively.
+
+The above-stated two classes overrides the `execute()` method which extends from the abstract `AddCommand` class which extends from the abstract `Command` class. The `execute()` method's role is to execute the adding category/task operation and do necessary checks.
+
+The `AddCategoryCommand` and `AddTaskCommand` will first call the `getParentDirectory()` method to get the parent directory, then it will instantiate a `Category`/`Task` object and try to call `add` method in their respective parent directory class to add the new object, exception will be thrown according to the following rules:
+
+1. `ModuleNotFoundException` will be thrown if the specified module code does not exists in the `ArrayList` of Module when adding a new category or task.
+2. `CategoryNotFoundException` will be thrown if the specified category name does not exists in the `ArrayList` of Category in `CategoryManager` in `Module` when adding a new task.
+3. `IncorrectDirectoryLevelException` will be thrown if the user is performing the`addc`/`addt` command in the wrong directory without specifying their full parent directories.(For example, when user trying to execute `addc` in a `Root`/`Task` directory, or trying to execute `addt`  in a `Root`/`Module` directory)
+4. `DuplicateTaskException`/`DuplicateCategoryException` will be thrown if the name of the category/task already exist in the current directory.
+
+Below are the class-diagram for the involved classes:
+
+```
+to-do: add the class-diagram
+```
+
+#### Example Usage
+
+The addition process for *category* and *task* are similar. In this example, the addition process for *category* will be illustrated as a series of steps.
+
+James is a user and wants to add a *category* named  "misc" under the *module* cs3235. Assume that he has the current Module List and current Category List in the module cs3235:
+
+```
+root :
+lsm
+Here are what you are looking for...
+
++--------------------------------------------------------------------------------------------------+
+ NO |  MODULE CODE   |                                 MODULE TITLE                       
++--------------------------------------------------------------------------------------------------+
+ 1  |     CS1231     |                             Discrete Structures                    
+ 2  |     CS2100     |                            Computer Organisation                   
+ 3  |     CS2113     |              Software Engineering & Object-Oriented Programming    
+ 4  |     CS3235     |                              Computer Security                     
++--------------------------------------------------------------------------------------------------+
+Total modules: 4
++--------------------------------------------------------------------------------------------------+
+
+root :
+lsc -m cs3235
+Here are what you are looking for...
+
++--------------------------------------------------------------------------------------------------+
+ NO |     MODULE     |                                CATEGORY                                | PTY
++--------------------------------------------------------------------------------------------------+
+ 1  |     CS3235     |                               Assignment                               |  4
+ 2  |     CS3235     |                                  Lab                                   |  3
+ 3  |     CS3235     |                                Lecture                                 |  1
+ 4  |     CS3235     |                                Tutorial                                |  2
++--------------------------------------------------------------------------------------------------+
+Total categories: 5
++--------------------------------------------------------------------------------------------------+
+```
+
+1. James has two choices:
+
+   1. enter `cd cs3235` to enter the module directory then enter `addc misc` to add the category.
+   2. enter `addc misc -m cs3235` to add the category at the root directory.
+
+   Suppose James use the first method, after the second input, the input is parsed as an **add task** command and executed, the `AddCategoryCommand#execute()` will call ``AddCategoryCommand#getParentDirectory()` to get the current parent directory, then it will instantiate an `Category` object with the name "misc". After which `CategoryManager#add()` will be called to add the new object. In the `CategoryManager#add()` method, it will call `CategoryManager#contains()` method to check if the current parent directory contains the category with name "misc", finally add the object into the `ArrayList` of `categoryList`.
+
+2. James receive the following feedback:
+
+   ```
+   root :
+   addc misc
+   SUCCESS!! Category misc is created.
+   ```
+
+
+
+Below is a *sequence diagram* to illustrate the above example scenario.  
+
+```
+to-do: add the sequence diagram
+```
 
 
 
