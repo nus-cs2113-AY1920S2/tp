@@ -197,20 +197,87 @@ having to edit the mark and unmark feature difficult.
     
   &nbsp;
       
- ### 2.5 Listing all items feature
- #### 2.5.1 Current implementation
+### 2.5 Display feature
+#### 2.5.1 Current implementation
+
+The display feature is implemented using a <code>ListCommand</code> class which extends the <code>Command</code> class. 
+ 
+The <code>Duke</code> class first receives user input from the <code>Ui</code> object before it creates a 
+<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
+<code>ListCommand</code> object based on that user input.
+
+The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ListCommand</code> object.
+This method makes a call to the <code>getTotalCost</code> method of the <code>ShoppingList</code> object to find the 
+cost of the items. It then calls the <code>getAmount</code> and <code>getRemainingBudget</code> methods of the 
+<code>Budget</code> object to find the current budget and the remaining budget. The results are then printed to console.
+
+The following sequence diagrams below show how the display feature works. Note the <code>Ui</code> class is
+omitted to emphasise the other classes:
+
+![alt text](images/ListFeature.png)
+
+![alt text](images/ListFeature_SD.png)
+
+#### 2.5.2 Design considerations
+##### Aspect: Data structure to support the display feature
+
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ListCommand</code>
+ 
+  - Pros: Easy to add the display feature without having to change the logic of the code much as each command object
+  is treated as a black box
+  
+  - Cons: Might significantly increase the code base with another class being added
 
 
- #### 2.5.2 Design considerations
+- Alternative 2: Implement display feature in the <code>Duke</code> class
 
-##### Aspect: Data structure to support the set budget feature
-
-
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  
+  - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
+  harder to navigate and understand. 
 
   &nbsp;
-      
-### 2.6 Set budget feature
+  
+### 2.6 Clear list feature
 #### 2.6.1 Current implementation
+The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
+class. 
+
+The <code>Duke</code> class first receives user input from the <code>Ui</code> object before it creates a 
+<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
+<code>ClearCommand</code> object based on that user input.
+
+The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ClearCommand</code> object which 
+makes another call to the <code>clearList</code> method of the <code>ShoppingList</code> object.
+
+The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
+omitted to emphasise the other classes:
+  
+![alt text](images/ClearFeature.png)
+  
+#### 2.6.2 Design considerations
+  
+##### Aspect: Data structure to support the clear list feature
+  
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ClearCommand</code>
+ 
+  - Pros: Easy to add the clear list feature without having to change the logic of the code much as each command object
+  is treated as a black box
+  
+  - Cons: Might significantly increase the code base with another class being added
+
+
+- Alternative 2: Implement clear list feature in the <code>Duke</code> class
+
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  
+  - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
+  harder to navigate and understand. 
+  
+    &nbsp;
+      
+### 2.7 Set budget feature
+#### 2.7.1 Current implementation
 
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
@@ -229,7 +296,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 ![alt text](images/SetBudget.png)
 
 
-#### 2.6.2 Design considerations
+#### 2.7.2 Design considerations
 
 ##### Aspect: Data structure to support the set budget feature
 
@@ -251,8 +318,8 @@ omitted in the sequence diagram to emphasise on the other classes:
  
   &nbsp;
       
-### 2.7 Reset budget feature
-#### 2.7.1 Current implementation
+### 2.8 Reset budget feature
+#### 2.8.1 Current implementation
 
 The reset budget feature is implemented using a <code>ResetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
@@ -270,7 +337,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 ![alt text](images/Reset_Budget.png)
 
 
-#### 2.7.2 Design considerations
+#### 2.8.2 Design considerations
 
 ##### Aspect: Data structure to support the reset budget feature
 
@@ -292,8 +359,8 @@ omitted in the sequence diagram to emphasise on the other classes:
   &nbsp;
       
  
-### 2.8 View help feature
-#### 2.8.1 Current implementation
+### 2.9 View help feature
+#### 2.9.1 Current implementation
 
 The help feature is implemented using a <code>HelpCommand</code> class which extends the main
 <code>Command</code> class. The <code>HelpCommand</code> class shows the program usage instructions to the user.
@@ -311,7 +378,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/HelpFeature.png)
 
-#### 2.8.2 Design considerations
+#### 2.9.2 Design considerations
 
 ##### Aspect: Data structure to support the help feature
 
@@ -332,8 +399,8 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   &nbsp;
     
-### 2.9 Exit program feature
-#### 2.9.1 Current implementation
+### 2.10 Exit program feature
+#### 2.10.1 Current implementation
 
 The program termination feature is implemented using a <code>ExitCommand</code> class which extends the main
 <code>Command</code> class. The <code>ExitCommand</code> class terminates the program when instantiated.
@@ -350,7 +417,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/ExitFeature.png)
 
-#### 2.9.2 Design considerations
+#### 2.10.2 Design considerations
 
 ##### Aspect: Data structure to support the exit feature
 
@@ -368,6 +435,7 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
+  
 ## Appendix A: Product Scope
 ### Target user profile
 
@@ -393,17 +461,25 @@ shopping lists and also providing helpful features like budget tracking
 |v1.0|frugal home cook|add a budget|so that I know how much I have to spend| 
 |v1.0|organised home cook|mark things as bought|keep track of my grocery progress|
 |v1.0|frugal home cook|be able to clear my budget|set a new budget|
+|v1.0|frugal home cook|be able to see the total value of the items in my shopping list|know that I am within budget|
+|v1.0|frugal home cook|see the remaining budget that I have left|avoid exceeding my budget|
+|v1.0|practical home cook|be able to clear all items from the list with one command|easily start off with a clean slate|
+|v1.0|practical home cook|see all items on my list|see at a glance what I have planned to buy|
+|v1.0|frugal home cook|see my budget|know if I'm within or out of my budget|
+|v1.0|frugal home cook|calculate my remaining budget|see how much I have left to spend|
 |v2.0|frugal home cook|be notified when I cross my budget|remove some items from my list|
 |v2.0|practical home cook|be able to search for items on my list|find things easily in a long list|
 |v2.0|practical home cook|be able to edit the items in my lists|update the items on my list accordingly|
 |v2.0|organised home cook|save my list|have a local copy of my list|
 |v2.0|organised home cook|load my saved list|add on to my existing list|
+|v2.0|frugal home cook|see the remaining budget update according to the quantity of items|see how much I spend based on 
+how much I buy|
 
 ## Appendix C: Non-Functional Requirements
 
 1. Should work on any OS that has Java 11 or later installed.
 2. Should respond to any user commands within 2 seconds.
-3. Should be easy to use for people who have never used a command line interface before.
+3. Should be easy to use for even for people who have never used a command line interface before.
 
 ## Appendix D: Glossary
 
