@@ -46,7 +46,14 @@ the semester and the user's module information according to the timetable link p
  Finally, ```LessonsGenerator``` collates the returned data structure from both ```ModuleHandler```(looped for as many modules the user takes) and ```TimetableParser```, calling```.lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
  <br>
  The information from ```LessonsGenerator``` would then be included in the schedule of a particular ```TeamMember```.
-
+#### Design Considerations
+##### Aspect: Fetching of module information
+* Alternative 1(current choice): Instantiate a ```ModuleHandler``` every time there's a request for a module information.
+Pros: The classes are intuitively separated and data structures returned is understandable.
+Cons: Program runs slower for every extra timetable or extra modules taken since its a new instantiation of a ```ModuleHandler```.
+* Alternative 2: Instantiate ```ModuleHandler``` once for every user. 
+Pros: Takes up less memory and setup time for every timetable provided compared to alternative 1.
+Cons: The data structure returned by ```ModuleHandler``` would be complicated and confusing for new developers.
 
 
 
