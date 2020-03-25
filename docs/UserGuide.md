@@ -7,17 +7,18 @@
 * **[3. Features](#features)**
   * [3.1 Adding an item: `ADD`](#adding-an-item-add)
   * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
-  * [3.3 Deleting an item: `DEL`](#deleting-an-item-del)
-  * [3.4 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
-  * [3.5 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
-  * [3.6 Listing all items: `DISPLAY`](#listing-all-items-display)
-  * [3.7 Setting a budget: `SET`](#setting-a-budget-set)
-  * [3.8 Resetting a budget: `RES`](#resetting-a-budget-res)
-  * [3.9 Finding an item: `FIND`](#finding-an-item-find)
-  * [3.10 Viewing help: `HELP`](#viewing-help-help)
-  * [3.11 Exiting the Program: `BYE`](#exiting-the-program-bye)
-* **4. [FAQ](#faq)**
-* **5. [Command Summary](#command-summary)**
+  * [3.3 Deleting an item: `DELETE`](#deleting-an-item-del)
+  * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
+  * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
+  * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
+  * [3.7 Display list and budget details: `DISPLAY`](#display-list-and-budget-details-display)
+  * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
+  * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
+  * [3.10 Finding an item: `FIND`](#finding-an-item-find)
+  * [3.11 Viewing help: `HELP`](#viewing-help-help)
+  * [3.12 Exiting the Program: `BYE`](#exiting-the-program-bye)
+* **[4. FAQ](#faq)**
+* **[5. Command Summary](#command-summary)**
 
 
 &nbsp;
@@ -135,6 +136,17 @@ Example of usage:
 
 ***
 
+### Clearing the list: `CLEAR`
+Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
+
+Format: `CLEAR`
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
+***
+
 ### Marking an item as bought: `MARK`
 Marks an item from the list at the specified index as bought.
 
@@ -172,10 +184,10 @@ Example of the usage:
 
 ***
 
-### Listing all items: `DISPLAY`
-{add your details here}
+### Display list and budget details: `DISPLAY`
+Shows the shopping list, budget, cost of the items and the remaining budget.
 
-
+Format: `DISPLAY` 
 
 &nbsp;
 
@@ -235,6 +247,7 @@ Example of usage:
 ***
 
 ### Viewing help: `HELP`
+Shows the available commands and how they are to be used.
 
 Format: `HELP`
 
@@ -263,7 +276,7 @@ Format: `BYE`
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
+**A**: Install the app in the other computer and replace the empty data file it creates with the file 
 that contains the data of your previous SHOCO shopping list.
 
 &nbsp;
@@ -278,14 +291,15 @@ that contains the data of your previous SHOCO shopping list.
 * Add item `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Delete item `DEL INDEX`
+* Clear list `CLEAR`
 * Mark item `MARK INDEX`
 * Un-mark item `UNMARK INDEX`
-* Display list `DISPLAY`
+* Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
 * Reset Budget `RES`
 * Find item `FIND KEYWORD`
 * View help `HELP`
-* Exit application `BYE`
+* Exit program `BYE`
 
 &nbsp;
 
