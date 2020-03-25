@@ -7,7 +7,7 @@
 * **[3. Features](#features)**
   * [3.1 Adding an item: `ADD`](#adding-an-item-add)
   * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
-  * [3.3 Deleting an item: `DELETE`](#deleting-an-item-del)
+  * [3.3 Deleting an item: `DEL`](#deleting-an-item-del)
   * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
   * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
