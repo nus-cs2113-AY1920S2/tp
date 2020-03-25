@@ -23,7 +23,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Manual Testing [&#10149;](#manual-testing)    
 
 <br>  
-  
+
 ## **Introduction**  
 
 ### **Purpose**  
@@ -31,6 +31,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 This document describes the structure and software design decisions for the <b>Nuke</b> application. The <b>Nuke</b> application is a simple yet powerful task management application that is dedicated to providing <b>NUS students</b> efficient organisation of <i>modules</i> and <i>tasks</i>.  
 </span>
     
+
 ### **Scope**  
 <span style="text-align: justify">
 This document will cover the structure and software design decisions for the implementation of <b>Nuke</b>. The intended audience for this document are developers, designers and software testers of <b>Nuke</b> <i>or</i> other similar task management application.
@@ -62,13 +63,97 @@ Refer to the guide [here](#) to set up.
 This section will describe the significant details on how certain features in <b>Nuke</b> are being implemented.  
 
 ### 1. Add Feature
+#### Overview
+The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
-<br>
+#### 1.1. Add module feature
+
+The add module feature enable the user to add modules into the Module List.
+
+When the user first requests to execute the `addm` command(*assuming the command format given is valid*) to add a module by providing its name, the application will parse the input after `addm`  command word as the module code. From here, there are **three** possible outcomes:
+
+1. The module specified by the user is not provided by NUS -- No module will added.
+2. The module specified by the user is already added -- No module will be added.
+3. The module specified by the user is provided by NUS and have not been added -- Module will be added.
+
+#### Feature Implementation
+
+This feature is facilitated by the `AddModuleCommand` class which add the modules specified by the user. It overrides the `execute()` method which extends from the abstract `AddCommand` class which extends from the abstract `Command` class.   The `execute()` method's role is to execute the adding module operation and do necessary checks .
+
+The `AddCommand` will first try to call the static method `add` in `ModuleManager`  class, which will try to add the module specified by the user, exception will thrown according the following rules:
+
+1. `DuplicateModuleException` will be thrown if the module specified by the user is contained in the `ArrayList` named `moduleList` in `ModuleManager` class.
+2. `ModuleNotProvidedException` will be thrown if the module code specified by the user is not contained in the `HashMap` named `modulesMap` in `ModuleManager` class.
+
+Below are the class-diagram for the involved classes:
+
+```
+	// To Do Class diagrams here 
+	// Not sure whether to put at the start or end of this section
+```
+
+#### Example Usage
+
+The addition of modules will be illustrated as follows.
+
+James is a user and wants to add the module with the module code of "CS3235". Assume that he has the current modules:
+
+```
++--------------------------------------------------------------------------------------------------+
+ NO |  MODULE CODE   |                                 MODULE TITLE
++--------------------------------------------------------------------------------------------------+
+ 1  |     CS1231     |                             Discrete Structures
+ 2  |     CS2100     |                            Computer Organisation
+ 3  |     CS2113     |              Software Engineering & Object-Oriented Programming
++--------------------------------------------------------------------------------------------------+
+Total modules: 3
++--------------------------------------------------------------------------------------------------+
+```
+
+1. James will simply enter the command `addm cs3235`
+
+   After the input is parsed as an **add task** and executed, the `AddModuleCommand#execute()` will call `ModuleManager#add()` to add the module cs3235. In the `ModuleManager#add()` method, it will call `ModuleManager#contains()` to check if the module cs3235 exists in the `ArrayList` named `moduleList` , then it will check if the module code "cs3235" is a key in the `HashMap` named `modulesMap`, after all, it will instantiate an `Module` object with the module code "CS3235" and respective title "Computer Security", and add the object into the `modulesMap`.
+
+2. James receive the following feedback:
+
+   ```
+   root :
+   addm cs3235
+   SUCCESS!! Module CS3235 Computer Security has been added.
+   
+   root :
+   lsm
+   Here are what you are looking for...
+   
+   +--------------------------------------------------------------------------------------------------+
+    NO |  MODULE CODE   |                                 MODULE TITLE
+   +--------------------------------------------------------------------------------------------------+
+    1  |     CS1231     |                             Discrete Structures
+    2  |     CS2100     |                            Computer Organisation
+    3  |     CS2113     |              Software Engineering & Object-Oriented Programming
+    4  |     CS3235     |                              Computer Security
+   +--------------------------------------------------------------------------------------------------+
+   Total modules: 4
+   +--------------------------------------------------------------------------------------------------+
+   ```
+
+
+
+Below is a *sequence diagram* to illustrate the above example scenario.  
+
+```
+	// To do Sequence diagram here
+```
+
+
+
+
 
 ### 2. Delete Feature  
 #### Overview  
 The **delete** feature deletes *modules*, *categories* and *tasks* from the Module, Category and Task List respectively.   
 When the user first requests to execute the **delete** command *(assuming the command format given is valid)* to delete a directory by providing its name, the application will first filter for matching directory names. From here, there are **three** possible outcomes:  
+
 1. There are **no** matches --  Nothing is deleted.
 2. There is **one** match -- A prompt will be given to the user to confirm the deletion.
 3. There are **multiple** matches -- The list of matches will be shown to the user, and the user chooses which ones to delete. A further prompt will be given to confirm the deletion(s).
@@ -99,6 +184,7 @@ Below are the class-diagrams for the involved classes:
 #### Example Usage  
 The deletion process for *modules*, *categories* and *tasks* are similar. In this example, the deletion process for *tasks* will be illustrated as a series of steps.  <br>
 James is a user and wants to delete some of his *tasks* with *description* "work". Assume that he has the current Task List:  
+
 ```
 +--------------------------------------------------------------------------------------------------+
  NO |  MODULE  |       CATEGORY       |          TASK          |           DEADLINE           | PTY 
@@ -112,7 +198,7 @@ James is a user and wants to delete some of his *tasks* with *description* "work
 Total tasks: 5
 +--------------------------------------------------------------------------------------------------+
 
-```   
+```
 
 1. James will first enter the command to delete *tasks*:  
 	`delt work -a`  
@@ -132,7 +218,7 @@ Total tasks: 5
 	+--------------------------------------------------------------------------------------------------+
 
 	Enter the list number(s) of the tasks to delete.
-	```  
+	```
 	He proceeds to enter list numbers `2 3` as he has already completed both *tasks*.  
 	After the list numbers are parsed, it will call `ListNumberPrompt#execute()`, which will prepare the prompt for the delete confirmation, and then calls `ListNumberPrompt#executePromptConfirmation()`.
 
@@ -141,7 +227,7 @@ Total tasks: 5
 	Confirm delete these tasks?
 	tutorial worksheet 10
 	Big Lab Work
-	```  
+	```
 	He enters `y` to confirm the deletion.
 	`DeleteConfirmationPrompt#execute()` will be called, which then calls `DeleteConfirmationPrompt#executeMultipleDelete(filteredList)` to delete James' selected *tasks* from his Task List.
 
