@@ -472,8 +472,7 @@ shopping lists and also providing helpful features like budget tracking
 |v2.0|practical home cook|be able to edit the items in my lists|update the items on my list accordingly|
 |v2.0|organised home cook|save my list|have a local copy of my list|
 |v2.0|organised home cook|load my saved list|add on to my existing list|
-|v2.0|frugal home cook|see the remaining budget update according to the quantity of items|see how much I spend based on 
-how much I buy|
+|v2.0|frugal home cook|see the remaining budget update based on the quantity of items|see how much I spend based on how much I buy|
 
 ## Appendix C: Non-Functional Requirements
 
