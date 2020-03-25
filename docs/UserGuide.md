@@ -4,9 +4,40 @@
 
 ![alt text](images/PAC.png "PAC ver1")
 
+##Content Page
+1. [Introduction](##1.-Introduction)  
+1.1. [What is PAC?](###1.1.-What-is-PAC?)  
+1.2. [Who are our audience?](###1.2.-Who-are-our-audience?)
+2. [Setting Up](##2.-Setting-Up)  
+2.1. [Requirements](###2.1.-Requirements)   
+2.2. [Startup using Command Line](###2.2.-Startup-using-Command-Line)  
+2.3. [Startup using JAR](###2.3.-Startup-using-JAR)   
+3. [Quick Start](##3.-Quick-Start)  
+3.1. [Using PAC](###3.1.-Using-PAC)
+4. [Features](##4.-Features)  
+4.1. [Event](###4.1-Event)  
+4.1.1. [Add New Event](###4.1.1.-Add-new-event)  
+4.1.2. [View Events](####-4.1.2.-List-all-events)  
+4.1.3. [Delete Existing Event](####-4.1.3.-Delete-event)      
+4.1.4. [Edit Event -name](####-4.1.4.-Edit-event-name)      
+4.1.5. [Edit Event -datetime](####-4.1.5.-Edit-event-datetime)      
+4.1.6. [Edit Event -venue](####-4.1.6.-Edit-event-venue)  
+4.1.7. [Edit Event](####-4.1.7.-Edit-event)  
+4.2. [Attendance](###-4.2.-Attendance)  
+4.2.1. [Add New Attendance](####4.2.1.-Add-student-attendance)  
+4.2.2. [Delete Attendance](####4.2.2.-Delete-student-attendance)   
+4.3.1. [Add New Performance](####4.3.1.-Add-student-performance)  
+4.3.2. [Delete Current Performance](####4.3.2.-Delete-student-performance)   
+4.3.3. [View Performance List](####4.3.3.-View-student-performance)  
+4.4. [Student List](###-4.4.-Student)  
+4.4.1. [Add New Student List](####4.4.1.-Create-a-student-list)  
+5. [Possible Console Messages and Reasons](##5.-Possible-Console-Messages-and-Reasons)           
+6. [FAQ](6.-FAQ)  
+7. [Command Summary](7.-Command-Summary)  
+  
 ## 1. Introduction
 
-### 1.1 What is PAC?
+### 1.1. What is PAC?
 
 PAC is a professor assistant console which helps you keep track of your 
 upcoming events. PAC also allows you to add in attendance to keep track 
@@ -14,16 +45,16 @@ of your students and their grades. Being a simple Command Line Interface
 (CLI) application, PAC ensures its usability and suitability regardless 
 of your expertise level.
 
-### 1.2 Who are our audience?
+### 1.2. Who are our audience?
 
 Professors, teachers, etc.
     
 As long as you need to keep track of upcoming events or class, you are our audience.
 
 ##
-## 2. Setting Up
+##2. Setting Up
 
-### 2.1 Requirements 
+### 2.1. Requirements 
 1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
 or above installed in your Computer.
 1.  Download the latest PAC.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
@@ -49,7 +80,7 @@ or above installed in your Computer.
 ##
 ## 3. Quick Start
 
-### 3.1 Using PAC
+### 3.1. Using PAC
 You can type any command, then press **Enter** to execute it.
 	
 e.g. typing help then pressing **Enter** will open the help window.
@@ -63,23 +94,8 @@ Some example commands to try:
 Refer to [“Features”](#Features) for details of each command.
 
 ## 4. Features 
-### 4.0 SAMPLE FORMAT Insert Header here `Insert format here`
-Insert Description here
-
-Format:
-
-`Insert format here`
-
-Command: 
-
-    Insert command here
-    
-Examples: 
-
-    Insert example here
-
-### 4.1 Event
-#### 4.1.1 Add new event: `event add`
+### 4.1. Event
+#### 4.1.1. Add New Event
 Add a new event to the event list. 
 
 Format: `event add n/NAME [t/TIME d/DATE] [v/VENUE]`
@@ -100,7 +116,7 @@ Expected outcome:
     New Event: World Cup was added successfully to your Event list.
     New Event: soccer match was added successfully to your Event list.
 
-#### 4.1.2 List all events: `event list`
+#### 4.1.2. List Events
 List all events.
 
 Format: `event list`
@@ -112,7 +128,7 @@ Expected outcome:
     2. Event: World Cup, time: Nov 21 2022 0000
     3. Event: soccer match, time: Jan 23 2020 1900, venue: Kallang
 
-#### 4.1.3 Delete event: `event delete`
+#### 4.1.3. Delete Event
 Delete an existing event from the event list.
 
 Format: `event delete i/INDEX`
@@ -127,7 +143,7 @@ Expected outcome:
     Event: soccer match was deleted successfully from your Event list.
     Index not found
     
-#### 4.1.4 Edit event name: `event editName`
+#### 4.1.4. Edit Event Name
 Change the name of an existing event.
 
 
@@ -142,7 +158,7 @@ Expected outcome:
 
     Your Event name was changed from |dinner with collegue| to |lunch with colleague|.
     
-#### 4.1.5 Edit event datetime: `event editDateTime`
+#### 4.1.5. Edit Event Datetime
 Change the date and time of an existing event.
 
 Format: `event editdatetime i/INDEX d/NEW_DATE t/NEW_TIME`
@@ -157,7 +173,7 @@ Expected outcome:
     Your Event date and time was changed from |yyyy-MM-dd HHmm| to |2020-03-23 1200|.
     Event: lunch with colleague, time: Mar 23 2020 1200
     
-#### 4.1.6 Edit event venue: `event editVenue`
+#### 4.1.6. Edit Event Venue
 Change the venue of an existing event.
 
 Format: `event editvenue i/INDEX v/NEW_VENUE`
@@ -172,7 +188,7 @@ Expected outcome:
     Your Event venue was changed from || to |Marina Bay Sands|.
     Event: lunch with colleague, time: Mar 23 2020 1200, venue: Marina Bay Sands
 
-#### 4.1.7 Edit event: `event editEvent`
+#### 4.1.7. Edit Event
 Change an existing event.
 
 Format: `event editevent i/INDEX n/NEW_NAME [t/NEW_TIME d/NEW_DATE] [v/NEW_VENUE]`
@@ -186,9 +202,9 @@ Expected outcome:
 
     Your Event was edited from |Event: lunch with colleague, time: Mar 23 2020 1800, venue: Marina Bay Sands| to |Event: lunch by myself, venue: home|.
 
-### 4.2 Attendance
-#### 4.2.1 Add students’ attendance to event: attendance `attendance add`
-Add a student’s attendance to the performance list.  
+### 4.2. Attendance
+#### 4.2.1. Add Attendance
+Add a student’s attendance to the attendance list.  
 This is a step by step command and you may follow the instructions given by the console. 
 You may wish to use an existing list found in StudentListCollection.
 
@@ -227,8 +243,8 @@ The following will show a success example of creating a new attendance list.
     ...
 
 
-### 4.3 Feature - Performance
-#### 4.3.1 Add students’ performance: performance `performance add`
+### 4.3. Feature - Performance
+#### 4.3.1. Add Performance
 Add a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console. 
 
@@ -254,7 +270,7 @@ The following will show a success example of using a current name list to add pe
     PAC: Please key in the result for student (student2 name)
     ...
 
-#### 4.3.2 Deleting students’ performance: performance `performance delete`
+#### 4.3.2. Delete Performance
 Delete a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console.  
 
@@ -269,7 +285,7 @@ Step by step guide:
     user: name
     PAC: The result of student (name) has been deleted successfully under event name.
 
-#### 4.3.3 View students’ performance: performance `performance list`
+#### 4.3.3. View Performance List
 View the list of students' result under a certain event.  
 This is a step by step command and you may follow the instructions given by the console. 
 
@@ -287,8 +303,8 @@ Step by step guide:
     | 1         |  XX                                 |  A                                          |
     |___________|_____________________________________|_____________________________________________|
 
-### 4.4 Student
-#### 4.4.1 Create a student list `student add`
+### 4.4. Student
+#### 4.4.1. Create a student list
 
 Creates a student list and adds it to the collection of student list 
 that can be used for adding attendance and performance
@@ -304,7 +320,7 @@ Examples:
     Insert example here
     
 
-## Possible Console Messages and Reasons:  
+## 5. Possible Console Messages and Reasons:  
 If event list is empty    
         
     PAC: The event list is empty
@@ -315,13 +331,13 @@ If students' name list is empty
         
     There is no existing student list.
            
-## FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Well, write the User Guide in active voice anyway.
 
-## Command Summary
+## 7. Command Summary
 
 {Give a 'cheat sheet' of commands here}
 
