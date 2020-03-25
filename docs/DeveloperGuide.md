@@ -185,7 +185,7 @@ This command accepts a keyword and searches the activity list for activities wit
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
 
-![find seq diagram](https://imgur.com/kgBKjHg.png)
+![find seq diagram](https://imgur.com/Icg5rdB.png)
 ### 3.7 Filter Feature
 This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
 
@@ -202,7 +202,7 @@ This feature accepts multiple space-separated keywords to search for activities 
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
 
-![filter seq diagram](https://imgur.com/HehxN3H.png)
+![filter seq diagram](https://imgur.com/hybT3R9.png)
 ## 4. Appendix
 ### Product Scope
 #### Target user profile
