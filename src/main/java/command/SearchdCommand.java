@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class SearchdCommand extends Command {
     public static final String COMMAND_WORD = "searchd";
-    public static final String COMMAND_USAGE = "Search for tasks according to date: " +
-            "search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
+    public static final String COMMAND_USAGE = "Search for tasks according to date: "
+            + "search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
 
     protected static final String allTasks = "all";
     protected static final String eventTasks = "event";
@@ -21,7 +21,13 @@ public class SearchdCommand extends Command {
     protected String searchParam;
     protected LocalDate date;
 
-    public SearchdCommand (String taskType, String searchParam, LocalDate date) {
+    /**
+     * Constructs a Searchd command with the parameters supplied.
+     * @param taskType types of tasks user is searching for
+     * @param searchParam query that user wants to find
+     * @param date date that user wants to look for
+     */
+    public SearchdCommand(String taskType, String searchParam, LocalDate date) {
         this.searchParam = searchParam.toLowerCase();
         this.taskType = taskType;
         this.date = date;
