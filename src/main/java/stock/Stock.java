@@ -1,7 +1,12 @@
 package stock;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import ingredient.Ingredient;
 import ingredient.IngredientNotFoundException;
@@ -97,14 +102,68 @@ public class Stock {
     }
     
     /**
+     * Search the current stock against a given keyword and lists all ingredients
+     * that contains the keyword.
+     */
+    public void searchStock(String keyword) {
+        System.out.println("Here are the ingredients in the stock that matches the keyword:");
+        System.out.println("============================================================"
+                + "================================================================");
+        
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet());
+        
+        int ingredientCounter = 1;
+
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            
+            if (ingredientName.contains(keyword)) {
+                int quantity = ingredient.getValue().first();
+                double price = ingredient.getValue().second();
+                System.out.println(ingredientCounter 
+                        + ". "
+                        + "[" 
+                        + quantity 
+                        + "]"
+                        + "[$" 
+                        + String.format("%.2f", price) 
+                        + "]"
+                        + " " 
+                        + ingredientName);
+           
+                ingredientCounter++;
+            } else {
+                continue;
+            }
+        }
+        
+        System.out.println("============================================================"
+                + "================================================================"); 
+        
+    }
+    
+    /**
      * A utility function to print the stock to help to parse the price into 2 decimal places
-     * to display as dollars appropriately.
-     * 
+     * to display as dollars appropriately. Prints ingredients in descending quantity within 
+     * the stock.
      */
     private void printStock() {
-        int ingredientCounter = 1;
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet());
         
-        for (Map.Entry<String, Pair<Integer, Double>> ingredient : stock.entrySet()) {
+        Collections.sort(tempList, new Comparator<Entry<String, Pair<Integer, Double>>>() {
+            @Override
+            public int compare(Entry<String, Pair<Integer, Double>> firstEntry, 
+                    Entry<String, Pair<Integer, Double>> secondEntry) {
+                
+                int firstEntryQuantity = firstEntry.getValue().first();
+                int secondEntryQuantity = secondEntry.getValue().first();
+                return secondEntryQuantity - firstEntryQuantity;
+            }
+        });      
+        
+        int ingredientCounter = 1;
+
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
             String ingredientName = ingredient.getKey();
             int quantity = ingredient.getValue().first();
             double price = ingredient.getValue().second();
