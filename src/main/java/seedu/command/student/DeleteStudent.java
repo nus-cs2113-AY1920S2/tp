@@ -2,14 +2,14 @@ package seedu.command.student;
 
 import seedu.command.Command;
 import seedu.exception.DukeException;
-import seedu.ui.UI;
+import seedu.ui.DisplayList;
 
 import static seedu.duke.Duke.studentListCollection;
 
 public class DeleteStudent extends Command {
 
     protected int index;
-    protected UI ui = new UI();
+    private DisplayList displayList = new DisplayList();
 
     public DeleteStudent(int index) {
         this.index = index;
@@ -23,6 +23,6 @@ public class DeleteStudent extends Command {
             throw new DukeException(e.getMessage());
         }
         System.out.println("Updated Collection:");
-        ui.displayStudentListCollection();
+        displayList.printStudentListCollection();
     }
 }

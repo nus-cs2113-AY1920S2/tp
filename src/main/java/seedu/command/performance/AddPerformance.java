@@ -1,17 +1,19 @@
 package seedu.command.performance;
 
+import seedu.StudentList;
 import seedu.command.Command;
 import seedu.exception.DukeException;
 import seedu.parser.PerformanceParser;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
+import seedu.ui.DisplayList;
 import seedu.ui.UI;
 
-import java.util.ArrayList;
+import static seedu.duke.Duke.studentListCollection;
 
 public class AddPerformance extends Command {
-    static UI ui = new UI();
-    boolean isByNameList;
+    private UI ui;
+    private DisplayList displayList;
     PerformanceList performances;
     String eventName;
 
@@ -20,9 +22,10 @@ public class AddPerformance extends Command {
      * and parse it to get the Performance to be added.
      */
     public AddPerformance(PerformanceList performances, String eventName) {
-        this.isByNameList = ui.getTypeOfAddPerformance();
         this.performances = performances;
         this.eventName = eventName;
+        this.ui = new UI();
+        this.displayList = new DisplayList();
     }
 
     /**
@@ -33,26 +36,53 @@ public class AddPerformance extends Command {
      * of student.
      */
     public void addToList() throws DukeException {
+        boolean isByNameList = ui.isImportList();
         if (isByNameList) {
-            ArrayList<String> studentNameList = new ArrayList<>();
-            //todo: add a list of student list, and let user select a student list to be used.
-            if (studentNameList.isEmpty()) {
-                throw new DukeException("There is no existing student list.");
-            }
-            for (String studentName: studentNameList) {
-                performances.addToList(new Performance(studentName,
-                        ui.getResultOfStudent(studentName)), eventName);
-            }
-        } else {
-            int studentNumber = 0;
-            String parameter = ui.getPerformanceParameter();
-            do {
-                performances.addToList(getPerformance(parameter), eventName);
-                parameter = ui.getStringInput();
-                studentNumber++;
-            } while (!parameter.equals("done"));
-            System.out.println("You have successfully added "
-                    + studentNumber + " result(s) to the performance list.");;
+            addByList();
+        }
+        if (!isByNameList) {
+            addManually();
+        }
+    }
+
+    private void addManually() throws DukeException {
+        int studentNumber = 0;
+        String parameter = ui.getPerformanceParameter();
+        while (!parameter.equals("done")) {
+            performances.addToList(getPerformance(parameter), eventName);
+            studentNumber++;
+            parameter = ui.getStringInput();
+        }
+        System.out.println("You have successfully added "
+                + studentNumber + " result(s) to the performance list.");
+    }
+
+    /**
+     * This method get the user to select the index of student list to import
+     * and return the list.
+     * @return The student list selected by user.
+     * @throws DukeException Throws DukeException when there is no student list
+     *                       exist in the student list collection.
+     */
+    private StudentList getList() throws DukeException {
+        if (studentListCollection.isEmpty()) {
+            throw new DukeException("There is no existing student list.");
+        }
+        int listIndex = displayList.getStudentListIndex();
+        return studentListCollection.get(listIndex - 1);
+    }
+
+    /**
+     * This method get the user to input student's performance one by one
+     * with the student list imported.
+     * @throws DukeException Throws DukeException when there is no student list
+     *      *                       exist in the student list collection.
+     */
+    private void addByList() throws DukeException {
+        StudentList studentList = getList();
+        for (String studentName : studentList.getStudentList()) {
+            performances.addToList(new Performance(studentName,
+                    ui.getResultOfStudent(studentName)), eventName);
         }
     }
 
