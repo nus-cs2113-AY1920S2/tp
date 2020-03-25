@@ -73,6 +73,24 @@ A summary of all the features available in *ATAS* can be found in <<Commands Sum
 Refer to <<Features>> for the detailed instruction of the various commands of *ATAS*.
 
 == Features
+====
+*Command Format*
+
+* Words in UPPER_CASE and contained in [square brackets] are parameters to be supplied by the user. +
+   Example: In assignment, `n/[NAME]`, `[NAME]` is an input given by user and users can type in the command as assignment `n/user
+   guide draft`.
+
+* Index that is requested for many parameters is simply a number given to identify the task within the list. This number index is the
+value stated beside the task and will be consistent for all commands that print out a list of tasks.
+
+* Date and time supplied by the user must be in the form DD/MM/YY hhmm, each taking up 2 digits. The time must also be in 24hours format. +
+Example: In assignment,  `... t/[DD/MM/YY HHmm] ...` the command provided for time must be `... t/01/10/20 0259 ...` to symbolise 1st Oct
+2020 2:59 AM.
+
+* The order of the parameters are fixed as given. +
+Example: In assignment, using `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the comments section is in
+the wrong position.
+====
 
 === Add Assignments: *`assignment`*
 An assignment is a task that you have to complete by a certain deadline, for a particular module. +
@@ -201,13 +219,26 @@ Example:
 
 === Clear Tasks: *`clear`*
 ==== Clear All Tasks
-You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared.
-Format: `clear all`
+* You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared. +
+* Format: `clear all`
 
 ==== Clear All Done Tasks
-You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
-also be reflected in the stored list.
-Format: `clear done`
+* You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
+also be reflected in the stored list. +
+* Format: `clear done`
+
+=== Repeating Event
+==== *Set an event to repeat*
+* Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
+* Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
+* Available Period: Day [d], Week [w], Month [m], Year [y]
+* Example: `repeat id/1 p/3d` will repeat task of index 1 (which has to be an event) every 3 days.
+
+==== *Unset repeating event*: `repeat`
+* Stop a repeating event from continuing to repeat.
+* Format: `repeat id/[INDEX] p/0` +
+(You can think of this as repeating the task every 0 days and hence not repeating!)
+* Example: `repeat id/1 p/0` will cause task of index 1 to stop repeating.
 
 == Commands Summary
 === List of available *ATAS* commands
