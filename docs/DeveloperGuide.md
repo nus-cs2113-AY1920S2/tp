@@ -1,7 +1,10 @@
 # Developer Guide
-&nbsp; [1. Introduction](#1-introduction) 
+&nbsp; &nbsp; [1. Introduction](#1-introduction) 
  <details> 
-    <summary><a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#2-implementation">  &nbsp; 2. Implementation</a> </summary><p> &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+    <summary>
+     <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#2-implementation">2. Implementation</a>
+ </summary>
+ &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#21-add-feature">2.1 Add feature</a><br> &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#22-edit-feature">2.2 Edit feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#23-delete-feature">2.3 Delete feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
