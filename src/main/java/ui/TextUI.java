@@ -187,7 +187,7 @@ public class TextUI {
         int i = 1;
         System.out.println("\t Main user: " + mainUser);
         for (TeamMember teamMember : teamMemberList) {
-            if (!teamMember.getName().equals(mainUser)){
+            if (!teamMember.getName().equals(mainUser)) {
                 out.println("\t " + i + ") " + teamMember.getName());
                 i++;
             }

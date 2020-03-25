@@ -34,7 +34,7 @@ public class MeetingOrganizer {
             myTeamMemberList = new TeamMemberList(storage.loadMemberListFromDisk());
             TextUI.introMsg();
             if (myTeamMemberList.getSize() > 0) {
-                myTeamMemberList.getTeamMemberList().forEach(member -> mainUser = member.isMainUser()? member : null);
+                myTeamMemberList.getTeamMemberList().forEach(member -> mainUser = member.isMainUser() ? member : null);
             }
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList(),mainUser.getName());
         } catch (FileNotFoundException e) {
@@ -67,7 +67,8 @@ public class MeetingOrganizer {
         switch (userCommand) {
         case "add using link":
             int checkerForRepeatedName = 0;
-            checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream().mapToInt(person -> check(person, userInputWords[0])).sum();
+            checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream()
+                    .mapToInt(person -> check(person, userInputWords[0])).sum();
             if (checkerForRepeatedName == 1) {
                 TextUI.showRepeatedPerson(userInputWords[0]);
                 break;

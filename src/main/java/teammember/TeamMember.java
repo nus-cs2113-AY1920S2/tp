@@ -22,7 +22,7 @@ public class TeamMember {
     private boolean isMainUser = false;
 
     public TeamMember(String name) {
-        if (name.contains("_main")){
+        if (name.contains("_main")) {
             isMainUser = true;
             name = name.replace("_main","");
         }
