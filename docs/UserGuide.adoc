@@ -72,6 +72,45 @@ it is an *Important Assignment*.
 A summary of all the features available in *ATAS* can be found in <<Commands Summary>>.
 Refer to <<Features>> for the detailed instruction of the various commands of *ATAS*.
 
+== Features
+
+=== Edit Tasks: *`edit`*
+You can edit tasks in your existing list if there are any changes.
+
+Format: `edit INDEX`
+
+* `INDEX` represents the unique index of a specific task to be edited.
+
+[TIP]
+Users can issue a `list` command to find the index of specific tasks
+
+Example:
+
+* `edit 1`
+
+=== Delete Tasks: *`delete`*
+You can delete unwanted tasks in your existing list.
+Format: `delete INDEX`
+
+* `INDEX` represent the unique index of a specific task to be deleted.
+
+[TIP]
+Users can issue a `list` command to find the index of specific tasks
+
+Example:
+
+* `delete 1`
+
+=== Clear Tasks: *`clear`*
+==== Clear All Tasks
+You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared.
+Format: `clear all`
+
+==== Clear All Done Tasks
+You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
+also be reflected in the stored list.
+Format: `clear done`
+
 == Commands Summary
 === List of available *ATAS* commands
 . *Help*: `help`
