@@ -7,14 +7,15 @@
 * **[3. Features](#features)**
   * [3.1 Adding an item: `ADD`](#adding-an-item-add)
   * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
-  * [3.3 Deleting an item: `Delete`](#deleting-an-item-del)
+  * [3.3 Deleting an item: `DEL`](#deleting-an-item-del)
   * [3.4 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.5 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
   * [3.6 Listing all items: `DISPLAY`](#listing-all-items-display)
   * [3.7 Setting a budget: `SET`](#setting-a-budget-set)
-  * [3.8 Finding an item: `FIND`](#finding-an-item-find)
-  * [3.9 Viewing help: `HELP`](#viewing-help-help)
-  * [3.10 Exiting the Program: `BYE`](#exiting-the-program-bye)
+  * [3.8 Resetting a budget: `RES`](#resetting-a-budget-res)
+  * [3.9 Finding an item: `FIND`](#finding-an-item-find)
+  * [3.10 Viewing help: `HELP`](#viewing-help-help)
+  * [3.11 Exiting the Program: `BYE`](#exiting-the-program-bye)
 * **4. [FAQ](#faq)**
 * **5. [Command Summary](#command-summary)**
 
@@ -60,9 +61,9 @@ user interfaces.
 {add your details here}
 Add the specified item in the shopping list.
 
-Format: `ADD [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
+Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 
-* The `[DESCRIPTION]` must exist.
+* The `DESCRIPTION` must exist.
 * The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of two parameters (price/quantity) must be present.
@@ -90,9 +91,9 @@ Edits the specified item in the shopping list.
 
 Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 
-* Edits the item at the specified `[INDEX]`. The `[INDEX]` refers to the index number 
+* Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list.
-* The `[INDEX]` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+* The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of three parameters (description/price/quantity) must be present.
 * i/, p/, q/ delimiters must be in **alphabetical** order.
@@ -135,7 +136,16 @@ Example of usage:
 ***
 
 ### Marking an item as bought: `MARK`
-{add your details here}
+Marks an item from the list at the specified index as bought.
+
+Format: `MARK INDEX`
+
+* The `INDEX` should be an integer.
+* The `INDEX` should not be out of bounds of the shopping list.
+
+Example of the usage: 
+
+`MARK 5`
 
 &nbsp;
 
@@ -144,9 +154,16 @@ Example of usage:
 ***
 
 ### Un-marking a marked item: `UNMARK`
-{add your details here}
+Un-marks a marked-as-bought item from the list at the specified index.
 
+Format: `UNMARK INDEX`
 
+* The `INDEX` should be an integer
+* The `INDEX` should not be out of bounds of the shopping list.
+
+Example of the usage:
+
+`UNMARK 3`
 
 
 &nbsp;
@@ -177,6 +194,21 @@ Format: `SET b/AMOUNT`
 Example of usage: 
 
 `SET b/3.00`
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
+***
+
+### Resetting a budget: `RES`
+Resets te budget to be 0.00 for the user.
+
+Format: `RES`
+
+Example of usage: 
+
+`RES`
 
 &nbsp;
 
@@ -243,11 +275,17 @@ that contains the data of your previous SHOCO shopping list.
 
 ## Command Summary
 
+* Add item `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Delete item `DEL INDEX`
+* Mark item `MARK INDEX`
+* Un-mark item `UNMARK INDEX`
+* Display list `DISPLAY`
 * Set budget `SET b/AMOUNT`
+* Reset Budget `RES`
 * Find item `FIND KEYWORD`
-* Viewing help `HELP`
+* View help `HELP`
+* Exit application `BYE`
 
 &nbsp;
 
