@@ -68,13 +68,14 @@ Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of two parameters (price/quantity) must be present.
 * i/, p/, q/ delimiters must be in **alphabetical** order.
-
+* note that you can rearrange the delimiters (more will shown in the example.)
 Example of usage: 
 
-1. `ADD i/potato p/5.00 q/3`
+1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
     * Add the description, price and quantity of this item in the shopping list
     
-2. `ADD i/potato chips p/5.00`  **OR**  `ADD i/potato chips q/2`
+2. `ADD i/potato chips p/5.00`  **OR**  `ADD i/potato chips q/2` **OR** `ADD p/5.00 i/potato chips` 
+   **OR** `ADD q/5 i/potato chips`
     * Add the description and price /  description and quantity /  of the item in the shopping list
     
 3. `ADD i/potato chips` 
