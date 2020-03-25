@@ -20,6 +20,7 @@ public class SearchdCommand extends Command {
     protected String taskType;
     protected String searchParam;
     protected LocalDate date;
+    protected ArrayList<Integer> storeIndex;
 
     /**
      * Constructs a Searchd command with the parameters supplied.
@@ -31,6 +32,7 @@ public class SearchdCommand extends Command {
         this.searchParam = searchParam.toLowerCase();
         this.taskType = taskType;
         this.date = date;
+        storeIndex = new ArrayList<>();
     }
 
     /**
@@ -41,10 +43,13 @@ public class SearchdCommand extends Command {
     private ArrayList<Task> getSearchQueryAllTasks(TaskList taskList, LocalDate date) {
         ArrayList<Task> tasks = taskList.getTaskArray();
         ArrayList<Task> results = new ArrayList<>();
+        int index = 1;
         for (Task task: tasks) {
             if (task.getName().toLowerCase().contains(searchParam) && task.getDate().equals(date)) {
                 results.add(task);
+                storeIndex.add(index);
             }
+            index++;
         }
         return results;
     }
@@ -58,10 +63,13 @@ public class SearchdCommand extends Command {
         ArrayList<Task> events = taskList.getEventsArray();
         assert events.size() == taskList.getEventsArray().size();
         ArrayList<Task> results = new ArrayList<>();
+        int index = 1;
         for (Task event: events) {
             if (event.getName().toLowerCase().contains(searchParam) && event.getDate().equals(date)) {
                 results.add(event);
+                storeIndex.add(index);
             }
+            index++;
         }
         return results;
     }
@@ -75,10 +83,13 @@ public class SearchdCommand extends Command {
         ArrayList<Task> assignments = taskList.getAssignmentsArray();
         ArrayList<Task> results = new ArrayList<>();
         assert assignments.size() == taskList.getAssignmentsArray().size();
+        int index = 1;
         for (Task assignment: assignments) {
             if (assignment.getName().toLowerCase().contains(searchParam) && assignment.getDate().equals(date)) {
                 results.add(assignment);
+                storeIndex.add(index);
             }
+            index++;
         }
         return results;
     }

@@ -15,12 +15,19 @@ public class SearchCommand extends Command {
     protected static final String allTasks = "all";
     protected static final String eventTasks = "event";
     protected static final String assignmentTasks = "assignment";
+    protected ArrayList<Integer> storeIndex;
     protected String taskType;
     protected String searchParam;
 
+    /**
+     * Constructor for search command.
+     * @param searchParam search query that has to be searched
+     * @param taskType type of task to search through
+     */
     public SearchCommand(String searchParam, String taskType) {
         this.searchParam = searchParam.toLowerCase();
         this.taskType = taskType;
+        storeIndex = new ArrayList<>();
     }
 
     /**
@@ -31,10 +38,13 @@ public class SearchCommand extends Command {
     private ArrayList<Task> getSearchQueryAllTasks(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTaskArray();
         ArrayList<Task> results = new ArrayList<>();
+        int index = 1;
         for (Task task: tasks) {
             if (task.getName().toLowerCase().contains(searchParam)) {
                 results.add(task);
+                storeIndex.add(index);
             }
+            index++;
         }
         return results;
     }
@@ -48,10 +58,13 @@ public class SearchCommand extends Command {
         ArrayList<Task> events = taskList.getEventsArray();
         assert events.size() == taskList.getEventsArray().size();
         ArrayList<Task> results = new ArrayList<>();
+        int index = 1;
         for (Task event: events) {
             if (event.getName().toLowerCase().contains(searchParam)) {
                 results.add(event);
+                storeIndex.add(index);
             }
+            index++;
         }
         return results;
     }
@@ -64,11 +77,14 @@ public class SearchCommand extends Command {
     private ArrayList<Task> getSearchQueryAssignments(TaskList taskList) {
         ArrayList<Task> assignments = taskList.getAssignmentsArray();
         ArrayList<Task> results = new ArrayList<>();
+        int index = 1;
         assert assignments.size() == taskList.getAssignmentsArray().size();
         for (Task assignment: assignments) {
             if (assignment.getName().toLowerCase().contains(searchParam)) {
                 results.add(assignment);
+                storeIndex.add(index);
             }
+            index++;
         }
         return results;
     }
@@ -80,12 +96,12 @@ public class SearchCommand extends Command {
      */
     private String searchList(ArrayList<Task> results) {
         assert results.size() > 0;
-        int position = 1;
+        int position = 0;
         StringBuilder searchString = new StringBuilder();
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
         for (Task task: results) {
-            searchString.append(String.format("%3d.%s", position, task.toString()));
+            searchString.append(String.format("%3d.%s", storeIndex.get(position), task.toString()));
             searchString.append(System.lineSeparator());
             position++;
         }
