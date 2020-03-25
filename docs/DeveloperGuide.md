@@ -1,7 +1,10 @@
 # Developer Guide
 &nbsp; [1. Introduction](#1-introduction) 
  <details> 
-    <summary><a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#2-implementation">  &nbsp; 2. Implementation</a> </summary><p> &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+    <summary>
+     <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#2-implementation">  &nbsp; 2. Implementation</a>
+ </summary>
+  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#21-add-feature">2.1 Add feature</a><br> &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#22-edit-feature">2.2 Edit feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#23-delete-feature">2.3 Delete feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
@@ -11,7 +14,8 @@
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#27-set-budget-feature">2.7 Set budget feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#28-reset-budget-feature">2.8 Reset budget feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
        <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#29-view-help-feature">2.9 View help feature</a><br>&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
-       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#210-exit-program-feature">2.10 Exit program feature</a></details>
+       <a href="https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#210-exit-program-feature">2.10 Exit program feature</a>
+</details>
        
  * [Appendix A: Product Scope](#appendix-a-product-scope)
  * [Appendix B: User Stories](#appendix-b-user-stories)
