@@ -1,13 +1,48 @@
 # Developer Guide
+* [1. Introduction](#1-introduction)
+* [2. Implementation](#2-implementation)
+    + [2.1 Add feature](#21-add-feature)
+    + [2.2 Edit feature](#22-edit-feature)
+    + [2.3 Delete feature](#23-delete-feature)
+    + [2.4 Mark and Unmark feature](#24-mark-and-unmark-feature)
+    + [2.5 Display feature](#25-display-feature)
+    + [2.6 Clear list feature](#26-clear-list-feature)
+    + [2.7 Set budget feature](#27-set-budget-feature)
+    + [2.8 Reset budget feature](#28-reset-budget-feature)
+    + [2.9 View help feature](#29-view-help-feature)
+    + [2.10 Exit program feature](#210-exit-program-feature)
+ * [Appendix A: Product Scope](#appendix-a-product-scope)
+ * [Appendix B: User Stories](#appendix-b-user-stories)
+ * [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+ * [Appendix D: Glossary](#appendix-d-glossary)
+ * [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
+ 
 
-## 1. Design 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+## 1. Introduction 
+
+### Purpose
+This document describes the software architecture and design of the SHOCO application. \
+This document will evolve throughout the design and implementation of each SHOCO release. 
+Currently, this documentation is for the first public release of the application, SHOCO v1.0.
+
+### Scope
+This document describes the software architecture and design for the implementation
+of SHOCO and is tailored for the developers, designers, and software testers of SHOCO.
+
+&nbsp;
+
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+&nbsp;
 
 ## 2. Implementation
 This section will describe how the main features of the application are implemented.
+&nbsp;
+
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+&nbsp;
 
 ### 2.1 Add feature
- #### 2.1.1 Current implementation
+#### 2.1.1 Current implementation
  
  The add feature is implemented using an <code>AddCommand</code> class. This class extends from the main
  <code>Command</code> class. The user input **must contain at least a description** out of these parameters: 
@@ -19,10 +54,10 @@ This section will describe how the main features of the application are implemen
  1. First, <code>Duke</code> class receives user input from the <code>Ui</code> class. 
  2. Next, a <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
- 3. Then, the <code>Duke</code> class calls the <code>execute</code> method of the <code>AddCommand</code> object.
+ 3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>AddCommand</code> object.
  4. In the <code>execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> object, using items.add().
  5. In the SD, the AddCommand will add <code>item</code> if the description is provided and one / both price and quantity is provided. 
- 6. Finally, the <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
+ 6. Last but not least, the <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
  
  The following sequence diagram below shows how the add feature works. The details of the adding item's values
  are shown in a separate sequence diagram below:
@@ -35,8 +70,8 @@ This section will describe how the main features of the application are implemen
 
 ##### Aspect: Data structure to support the add feature
 
-- Alternative 1 (current choice): User must provided at least a description for item, Duplicates are
-                                  not allowed in the list
+- Alternative 1 (current choice): User must provided a description for item, Duplicates are
+                                  not allowed in the list. 
   - Pros: User has minimal potential to see unreasonable list in the Shopping List. For 
   example, having a item that has only price and quantity but without description and also
   a list that one item is recorded multiple times in the list.
@@ -47,17 +82,20 @@ This section will describe how the main features of the application are implemen
   the user wants to record down twice without any elaboration).
 
 
-
 - Alternative 2: Require user to provide all three values to successfully add the item into 
                  the list.
 
   - Pros: User will have a neat and unity Shopping list, less deal with parameter (because users are
   forced to give all three variables).
   
-  - Cons: Less user flexibility, user must input all parameters even if he/she does not want to provide certain
+  - Cons: User flexibility will decrease, because user must input all parameters even if he/she does not want to provide certain
   variables such as price and quantity, which will result unsuccessful adding items into the list. 
  
-  &nbsp;
+
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
 
 ### 2.2 Edit feature
 #### 2.2.1 Current implementation
@@ -85,8 +123,6 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 ![alt text](images/EditFeature_SD.jpg)
 
 
-
-
 #### 2.2.2 Design considerations
 
 ##### Aspect: Data structure to support the edit feature
@@ -105,7 +141,10 @@ have been omitted from the diagram. Those details are shown in a separate sequen
   - Cons: Less user flexibility; user must input all parameters even if he/she does not want to update certain
   variables.
 
-  &nbsp;
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
       
 ### 2.3 Delete feature
 #### 2.3.1 Current implementation
@@ -147,8 +186,11 @@ omitted in the sequence diagram to emphasise on the other classes:
     simply executes those commands as black boxes, without worrying about their internal details
   
   
-  &nbsp;
-      
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ### 2.4 Mark and Unmark feature
 #### 2.4.1 Current Implementation
   
@@ -195,8 +237,11 @@ Diagram 2:
     - Cons: Code becomes harder to navigate and understand since the command is all handled under one class, thus makes
 having to edit the mark and unmark feature difficult.
     
-  &nbsp;
-      
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ### 2.5 Display feature
 #### 2.5.1 Current implementation
 
@@ -236,8 +281,11 @@ omitted to emphasise the other classes:
   - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
   harder to navigate and understand. 
 
-  &nbsp;
-  
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ### 2.6 Clear list feature
 #### 2.6.1 Current implementation
 The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
@@ -274,8 +322,11 @@ omitted to emphasise the other classes:
   - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
   harder to navigate and understand. 
   
-    &nbsp;
-      
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ### 2.7 Set budget feature
 #### 2.7.1 Current implementation
 
@@ -316,8 +367,11 @@ omitted in the sequence diagram to emphasise on the other classes:
   simply executes those commands as black boxes, without worrying about their internal details
 
  
-  &nbsp;
-      
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ### 2.8 Reset budget feature
 #### 2.8.1 Current implementation
 
@@ -356,8 +410,10 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
   
-  &nbsp;
-      
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;      
  
 ### 2.9 View help feature
 #### 2.9.1 Current implementation
@@ -397,8 +453,11 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
   
-  &nbsp;
-    
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ### 2.10 Exit program feature
 #### 2.10.1 Current implementation
 
@@ -436,6 +495,11 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
   
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+  
 ## Appendix A: Product Scope
 ### Target user profile
 
@@ -450,6 +514,10 @@ paper
 - Make grocery shopping a breeze by offering greater flexibility in managing
 shopping lists and also providing helpful features like budget tracking
 
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
 
 ## Appendix B: User Stories
 
@@ -474,17 +542,37 @@ shopping lists and also providing helpful features like budget tracking
 |v2.0|organised home cook|load my saved list|add on to my existing list|
 |v2.0|frugal home cook|see the remaining budget update based on the quantity of items|see how much I spend based on how much I buy|
 
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ## Appendix C: Non-Functional Requirements
 
 1. Should work on any OS that has Java 11 or later installed.
 2. Should respond to any user commands within 2 seconds.
 3. Should be easy to use for even for people who have never used a command line interface before.
 
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ## Appendix D: Glossary
 
 * *glossary item* - Definition
 
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
 ## Appendix E: Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
 
