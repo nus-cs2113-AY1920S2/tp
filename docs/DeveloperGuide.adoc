@@ -52,6 +52,7 @@ image::storage.PNG[Storage Class Diagram]
 === CommandResult Component
 
 == Implementation
+=== Delete Command
 This section will detail how some noteworthy features are implemented.
 
 === Calendar
