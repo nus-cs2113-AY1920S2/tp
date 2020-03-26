@@ -133,7 +133,8 @@ This string will be printed by calling `showToUser` method in the `Ui` class. Th
 `trySaveTaskList` method from `Storage` class.
 
 * The following sequence diagram summarizes how repeat command operation works: +
-image:RepeatCommand_UML.png:[Sequence Diagram for Repeat Command]
+
+image::RepeatCommand_UML.png[Repeat Command Sequence Diagram]
 
 ==== Impact on Event dates
 * With the implementation in mind, every time the app is launched, after `load` method in `Storage` class is called, the app will call a
