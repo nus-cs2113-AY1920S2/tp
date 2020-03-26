@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Meeting Organizer is your friendly chatbot that helps you find free time between are you friends, using just the NUSMODS link to your schedule.
+{Give product intro here}
+
 
 ## Quick Start
 
