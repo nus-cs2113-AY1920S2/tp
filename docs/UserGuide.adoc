@@ -69,11 +69,11 @@ one* for the module *CS2113T*. This assignment is due on *01/01/2020 1600* and t
 it is an *Important Assignment*.
 * `exit`: Exits *ATAS*.
 
-A summary of all the features available in *ATAS* can be found in <<Commands Summary>>.
+A summary of all the features available in *ATAS* can be found in <<Commands Summary>>. +
 Refer to <<Features>> for the detailed instruction of the various commands of *ATAS*.
 
 == Features
-====
+
 *Command Format*
 
 * Words in UPPER_CASE and wrapped in [square brackets] are parameters to be supplied by the user. +
@@ -91,7 +91,11 @@ Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm
 * The parameters of a command cannot be reordered. +
 Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in
 the wrong position.
-====
+
+[NOTE]
+Don't worry if all of these seems overwhelming. +
+There are plenty of examples provided to aid your understanding and learning of *ATAS* command
+
 
 === Add Assignments: *`assignment`*
 An assignment is a task that you have to complete by a certain deadline, for a particular module. +
@@ -141,11 +145,11 @@ Added task:
 Now you have 1 task in the list!
 ```
 
-=== List Tasks: `list`
+=== List Tasks: *`list`*
 You can view the tasks that you have stored in *ATAS*. +
 Various keywords can be used to only show the tasks you are interested in.
 
-==== List all tasks: `list`
+==== List all tasks: *`list`*
 You can view all tasks stored in *ATAS* at once.
 
 Format: `list`
@@ -188,7 +192,7 @@ You can view all the tasks for the next 7 days
 
 Format: `list week`
 
-Expected Outcome(Assuming today's date is 27 March 2020):
+Expected Outcome (Assuming today's date is 27 March 2020):
 
 ```
 Here are the relevant tasks:
@@ -241,40 +245,37 @@ You can edit tasks in your existing list if there are any changes.
 
 Format: `edit [INDEX]`
 
-* `INDEX` represents the unique index of a specific task to be edited.
-
 [TIP]
-Users can issue a `list` command to find the index of specific tasks
+Users can issue a `list` command to find the index of specific tasks. +
+Refer to <<List Tasks: *`list`*>> for usage of the `list` commands.
 
-Example:
+Example: `edit 1`
 
-* `edit 1`
+After issuing the `edit` command, you can input the changes you want to make by entering in the `assignment` or `events`
+command. +
+Refer to <<Add Assignments: *`assignment`*>> or <<Add Events: *`event`*>> for usage of the commands.
 
 === Delete Tasks: *`delete`*
 You can delete unwanted tasks in your existing list.
+
 Format: `delete [INDEX]`
 
-* `INDEX` represent the unique index of a specific task to be deleted.
-
 [TIP]
-Users can issue a `list` command to find the index of specific tasks
+Users can issue a `list` command to find the index of specific tasks. +
+Refer to <<List Tasks: *`list`*>> for usage of the `list` commands.
 
-Example:
-
-* `delete 1`
+Example: `delete 1`
 
 === Mark Done: *`done`*
 You can mark a completed task as done in your existing list.
+
 Format: `done [INDEX]`
 
-* `INDEX` represent the unique index of a specific task to be deleted.
-
 [TIP]
-Users can issue a `list` command to find the index of specific tasks
+Users can issue a `list` command to find the index of specific tasks. +
+Refer to <<List Tasks: *`list`*>> for usage of the `list` commands.
 
-Example:
-
-*`done 1`*
+Example: `done 1`
 
 Expected outcome:
 ```
@@ -283,36 +284,53 @@ Expected outcome:
 
 === Clear Tasks: *`clear`*
 ==== Clear All Tasks
-* You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared. +
-* Format: `clear all`
+You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared.
+
+Format: `clear all`
 
 ==== Clear All Done Tasks
-* You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
-also be reflected in the stored list. +
-* Format: `clear done`
+You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
+also be reflected in the stored list.
 
-=== Repeating Event
-==== *Set an event to repeat*
-* Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
-* Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
-* Available Period: Day [d], Week [w], Month [m], Year [y]
-* Example: `repeat id/1 p/3d` will repeat task of index 1 (which has to be an event) every 3 days.
+Format: `clear done`
 
-==== *Unset repeating event*: `repeat`
-* Stop a repeating event from continuing to repeat.
-* Format: `repeat id/[INDEX] p/0` +
-(You can think of this as repeating the task every 0 days and hence not repeating!)
-* Example: `repeat id/1 p/0` will cause task of index 1 to stop repeating.
+=== Repeating Events: *`repeat`*
+==== Set an event to repeat
+Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
+
+Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
+
+[NOTE]
+Available Period: Day [d], Week [w], Month [m], Year [y]
+
+Example: `repeat id/1 p/3d` +
+This command will repeat task of index 1 every 3 days.
+
+[NOTE]
+Index of task specified has to be an *event* task.
+
+==== Unset repeating event
+Stop a repeating event from continuing to repeat.
+
+Format: `repeat id/[INDEX] p/0`
+
+[TIP]
+You can think of this as repeating the task every 0 days and hence not repeating!
+
+Example: `repeat id/1 p/0` +
+This command will cause task of index 1 to stop repeating.
 
 === Search Tasks: *`search`*
 ==== Search by Name
 You can search for tasks in the list by specifying the type and name of task you might be searching for.
 
-* Format: `search t/[TASK TYPE] n/[TASK NAME]`
+[TIP]
+You do not need to key in the full name of the task. *ATAS* recognises partial words and would try to match it to the
+actual name.
 
-Example:
+Format: `search t/[TASK TYPE] n/[TASK NAME]`
 
-`search t/event n/te`
+Example: `search t/event n/te`
 
 Expected outcome:
 ```
@@ -330,11 +348,13 @@ Here are the search results:
 ==== Search by Name and Date
 You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for.
 
-* Format: `search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
+[TIP]
+You do not need to key in the full name of the task. *ATAS* recognises partial words and would try to match it to the
+actual name.
 
-Example:
+Format: `searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
 
-`searchd t/event n/te d/01/05/20`
+Example: `searchd t/event n/te d/01/05/20`
 
 Expected outcome:
 ```
@@ -343,13 +363,14 @@ Here are the search results:
       [1m]  notes: Test3
 ```
 
-=== Calendar view: *`Calendar`*
-You can obtain an calendar overview of all tasks you might have in the specified date. The feature also takes into
-consideration repeating events that you might have set. This allows you to plan your time accordingly since the list
-might not feel intuitive.
+=== Calendar view: *`calendar`*
+You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into
+consideration repeating events that you might have set. This allows for an intuitive way to plan for your free time as you
+can see your free slots at a glance.
 
-* Format: `calendar d/[DD/MM/YY]`
-* Expected outcome:
+Format: `calendar d/[DD/MM/YY]`
+
+Expected outcome:
 
 image::calendar.png[calendar.png]
 
