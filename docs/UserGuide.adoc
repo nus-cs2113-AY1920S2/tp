@@ -191,11 +191,17 @@ Format: `list week`
 Expected Outcome(Assuming today's date is 27 March 2020):
 
 ```
-Here are the relevant tasks:
+> Here are the relevant tasks:
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
   3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
             notes: Follow submission instructions
-  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+  4. [E][/] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
             notes: Zoom meeting
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: Look for internship
 ```
 
 === Edit Tasks: *`edit`*
