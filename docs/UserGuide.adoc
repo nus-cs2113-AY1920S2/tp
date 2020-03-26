@@ -296,13 +296,21 @@ also be reflected in the stored list. +
 * Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
 * Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
 * Available Period: Day [d], Week [w], Month [m], Year [y]
-* Example: `repeat id/1 p/3d` will repeat task of index 1 (which has to be an event) every 3 days.
+* Example: `repeat id/4 p/3d` will repeat task of index 4 (which has to be an event) every 3 days. +
+* Expected outcome:
+```
+ [Learn Japanese] will repeat every 3 days.
+```
 
 ==== *Unset repeating event*: `repeat`
 * Stop a repeating event from continuing to repeat.
 * Format: `repeat id/[INDEX] p/0` +
 (You can think of this as repeating the task every 0 days and hence not repeating!)
-* Example: `repeat id/1 p/0` will cause task of index 1 to stop repeating.
+* Example: `repeat id/4 p/0` will cause task of index 4 to stop repeating.
+* Expected outcome:
+```
+[Learn Japanese] will no longer repeat.
+```
 
 === Search Tasks: *`search`*
 ==== Search by Name
