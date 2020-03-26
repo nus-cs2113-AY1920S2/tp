@@ -241,7 +241,7 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-3. Should be able to hold up to 1000??? patients' information without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 1000 patients' information without a noticeable sluggishness in performance for typical usage.
 
 4. Should be able to display large amount of inforamtion quickly. 
 
@@ -254,4 +254,4 @@ Windows, Linux, Unix, OS-X
 
 ## Instructions for Manual Testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
