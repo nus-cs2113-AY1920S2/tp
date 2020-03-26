@@ -147,7 +147,7 @@ is a repeating event and its date is in the past.
 We feel that given the context of University Students, it makes little sense for most assignments to repeat. However, it makes sense for
  events to repeat since many events actually occur on a regular basis.
 ** Alternative considered: +
-. Allowing all tasks to be repeatable.
+1. Allowing all tasks to be repeatable.
 *** Pros: Allow more flexibility for the user to set which tasks they want to repeat, regardless of task type.
 *** Cons: Memory wastage as additional variables are set for repeating tasks and in the case of minimal assignments requiring to be
 repeated, these spaces are wasted.
@@ -157,7 +157,7 @@ repeated, these spaces are wasted.
 It provides great flexibility in allowing an event to repeat for any specified frequency. For example, some classes occur every 2 weeks.
 Some events may happen every 10 days or any x amount of period.
 ** Alternative considered:
-. Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
+1. Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
 *** Pros: It would simply usability and implementation since there will only be 4 options to choose from.
 *** Cons: It would reduce the usability for the 2 examples provided above as users would not be able to make events repeat every 2 weeks
 or 10 days, forcing them to have to manually type in the same event for as many times as it will occur if they wish to still keep track
@@ -168,7 +168,7 @@ of that event.
 It allows the repeated events to be removed or to stop repeating with ease as it remains a single entity and not multiple events,
 improving the user's usability.
 ** Alternative considered:
-. Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
+1. Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
 *** Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
 *** Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the tasklist of
 the user and increase the file size of the local storage that stores the tasklist.
