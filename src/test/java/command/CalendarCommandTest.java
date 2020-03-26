@@ -12,6 +12,7 @@ import tasks.Task;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -103,6 +104,9 @@ public class CalendarCommandTest {
         testLocalDate2 = LocalDate.parse(testDate2, INPUT_DATE_ONLY_FORMAT);
         testCalendarCommand = new CalendarCommand(testLocalDate);
 
+        // set to repeat every 14 days in the month of Jan 2020, will only see it thrice in month of Jan
+        // inclusive of the original event
+        testCaseFour.setRepeat(14, RepeatCommand.DAILY_ICON);
         testTaskList.addTask(testCaseOne);
         testTaskList.addTask(testCaseTwo);
         testTaskList.addTask(testCaseThree);
@@ -120,11 +124,11 @@ public class CalendarCommandTest {
     @Test
     public void testGetTaskByYearMonth() {
         ArrayList<Task> resultList = testCalendarCommand.getTasksByYearMonth(testLocalDate, testTaskList);
-        assertTrue(resultList.size() == 2);
+        assertEquals(2, resultList.size());
         ArrayList<Task> resultList1 = testCalendarCommand.getTasksByYearMonth(testLocalDate1, testTaskList);
-        assertTrue(resultList1.size() == 2);
+        assertEquals(3, resultList1.size());
         ArrayList<Task> resultList2 = testCalendarCommand.getTasksByYearMonth(testLocalDate2, testTaskList);
-        assertTrue(resultList2.size() == 0);
+        assertEquals(1, resultList2.size());
     }
 
     @Test
@@ -213,5 +217,28 @@ public class CalendarCommandTest {
         testString += ANSI_YELLOW + dayFormat + ANSI_RESET + System.lineSeparator();
 
         assertEquals(testBuilder.toString(), testString);
+    }
+
+    @Test
+    public void testDuplicateRepeatEvents() {
+        ArrayList<Task> resultList = testCalendarCommand.getTasksByYearMonth(testLocalDate, testTaskList);
+        ArrayList<Task> resultTaskList = testCalendarCommand
+                .duplicateRepeatEvents(YearMonth.from(testLocalDate).atEndOfMonth(), resultList);
+        assertTrue(resultTaskList.size() > resultList.size());
+        assertEquals(resultTaskList.size(), resultList.size()
+                + testLocalDate.until(YearMonth.from(testLocalDate).atEndOfMonth()).getDays() / 14);
+    }
+
+    @Test
+    public void testAddRepeatEvent() {
+        ArrayList<Task> resultList = testCalendarCommand.getTasksByYearMonth(testLocalDate, testTaskList);
+        LocalDate endOfMonth = YearMonth.from(testLocalDate).atEndOfMonth();
+        ArrayList<Task> finalTaskList = new ArrayList<>();
+        for (Task task : resultList) {
+            if (task instanceof Event && ((Event) task).getIsRepeat() && ((Event)task).equals(testCaseFour)) {
+                testCalendarCommand.addRepeatEvents(endOfMonth, finalTaskList, testCaseFour);
+            }
+        }
+        assertEquals(finalTaskList.size(), testLocalDate.until(endOfMonth).getDays() / 14);
     }
 }

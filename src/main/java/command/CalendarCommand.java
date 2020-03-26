@@ -4,6 +4,7 @@ import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
+import tasks.Event;
 import tasks.Task;
 
 import java.text.SimpleDateFormat;
@@ -81,17 +82,18 @@ public class CalendarCommand extends Command {
         Calendar calendar = Calendar.getInstance();
         calibrateCalendar(dateTime, calendar);
 
-        int year       = calendar.get(Calendar.YEAR);
-        int month      = calendar.get(Calendar.MONTH); // Jan = 0, dec = 11
+        // Get calendar parameters
+        final int year       = calendar.get(Calendar.YEAR);
+        final int month      = calendar.get(Calendar.MONTH); // Jan = 0, dec = 11
         assert month == (dateTime.getMonthValue() - 1);
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         assert dayOfMonth == 1;
-        int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // get day of week {1 = sunday, 7 = saturday}
-        int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-        int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
-        int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // maximum no. days in given month
+        final int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // get day of week {1 = sunday, 7 = saturday}
+        final int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+        final int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
+        final int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // maximum no. days in given month
 
-        ArrayList<Task> monthlyTaskList = getTasksByYearMonth(dateTime, taskList);
+        ArrayList<Task> monthlyTaskList = duplicateRepeatEvents(dateTime, getTasksByYearMonth(dateTime, taskList));
 
         StringBuilder calendarView = new StringBuilder();
         addCalendarTitle(calendar, calendarView);
@@ -129,7 +131,69 @@ public class CalendarCommand extends Command {
         YearMonth yearMonth = YearMonth.from(dateTime);
         LocalDate endOfMonth = yearMonth.atEndOfMonth();
         LocalDate startOfMonth = yearMonth.atDay(1);
+
         return taskList.getTasksByRange(startOfMonth, endOfMonth);
+    }
+
+    /**
+     * Add repeating Events to resultTaskList as a separate event for easier implementation of calendar.
+     * @param dateTime LocalDate that is given
+     * @param unrepeatedTaskList ArrayList of Tasks that contains task from TaskList
+     * @return ArrayList of Tasks that contains duplicated tasks of repeat events
+     */
+    public ArrayList<Task> duplicateRepeatEvents(LocalDate dateTime, ArrayList<Task> unrepeatedTaskList) {
+        ArrayList<Task> resultTaskList = new ArrayList<>();
+        YearMonth yearMonth = YearMonth.from(dateTime);
+        LocalDate endOfMonth = yearMonth.atEndOfMonth();
+
+        for (Task task : unrepeatedTaskList) {
+            resultTaskList.add(task);
+            if (task instanceof Event && ((Event) task).getIsRepeat()) {
+                addRepeatEvents(endOfMonth, resultTaskList, (Event) task);
+            }
+        }
+        return resultTaskList;
+    }
+
+    /**
+     * Add repeating Event as separate Event to resultTaskList.
+     * @param endOfMonth LocalDate that represents the last day of the month
+     * @param resultTaskList ArrayList of Task that contains duplicated tasks of repeat events
+     * @param event Event to repeat and add to resultTaskList
+     */
+    public void addRepeatEvents(LocalDate endOfMonth, ArrayList<Task> resultTaskList, Event event) {
+        int numOfPeriod = event.getNumOfPeriod();
+        String typeOfPeriod = event.getTypeOfPeriod();
+        LocalDate eventDate = event.getDateAndTime().toLocalDate();
+        int daysToAdd = 0;
+
+        switch (typeOfPeriod) {
+        case RepeatCommand.DAILY_ICON:
+            daysToAdd = numOfPeriod;
+            for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
+                 timesRepeated++) {
+                resultTaskList.add(new Event(event.getName(), event.getLocation(),
+                        event.getDateAndTime().plusDays(daysToAdd  * timesRepeated),
+                        event.getEndDateAndTime().plusDays(daysToAdd * timesRepeated),
+                        event.getComments()));
+            }
+            break;
+        case RepeatCommand.WEEKLY_ICON:
+            daysToAdd = numOfPeriod * DAYS_IN_WEEK;
+            for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
+                 timesRepeated++) {
+                resultTaskList.add(new Event(event.getName(), event.getLocation(),
+                        event.getDateAndTime().plusDays(daysToAdd * timesRepeated),
+                        event.getEndDateAndTime().plusDays(daysToAdd * timesRepeated),
+                        event.getComments()));
+            }
+            break;
+        case RepeatCommand.MONTHLY_ICON:
+        case RepeatCommand.YEARLY_ICON:
+            break;
+        default:
+            assert false;
+        }
     }
 
     /**
@@ -183,6 +247,10 @@ public class CalendarCommand extends Command {
         }
     }
 
+    /**
+     * Add a newline to calendar view.
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
     public void addCalendarNewLine(StringBuilder calendarView) {
         calendarView.append(System.lineSeparator());
     }

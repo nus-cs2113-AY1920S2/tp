@@ -76,26 +76,170 @@ Refer to <<Features>> for the detailed instruction of the various commands of *A
 ====
 *Command Format*
 
-* Words in UPPER_CASE and contained in [square brackets] are parameters to be supplied by the user. +
-   Example: In assignment, `n/[NAME]`, `[NAME]` is an input given by user and users can type in the command as assignment `n/user
-   guide draft`.
+* Words in UPPER_CASE and wrapped in [square brackets] are parameters to be supplied by the user. +
+   Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used as `assignment n/user guide draft`.
 
-* Index that is requested for many parameters is simply a number given to identify the task within the list. This number index is the
-value stated beside the task and will be consistent for all commands that print out a list of tasks.
+* The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is
+shown on the left of each task whenever a `list` command is used.
 
-* Date and time supplied by the user must be in the form DD/MM/YY hhmm, each taking up 2 digits. The time must also be in 24hours format. +
-Example: In assignment,  `... t/[DD/MM/YY HHmm] ...` the command provided for time must be `... t/01/10/20 0259 ...` to symbolise 1st Oct
-2020 2:59 AM.
+* Dates supplied by the user must follow the format `DD/MM/YY`. +
+Example: 01/03/20 represents the date 1st March 2020
 
-* The order of the parameters are fixed as given. +
-Example: In assignment, using `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the comments section is in
+* Times supplied by the user must follow the 24h format `HHmm`.
+Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm
+
+* The parameters of a command cannot be reordered. +
+Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in
 the wrong position.
 ====
+
+=== Add Assignments: *`assignment`*
+An assignment is a task that you have to complete by a certain deadline, for a particular module. +
+You can add an assignment to *ATAS*, containing various details.
+
+Format: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`
+
+* `NAME` is the name of your assignment.
+* `MODULE` is the module that your assignment is for.
+* `DATE TIME` is the deadline of your assignment. +
+* `COMMENTS` will be any other notes relevant to your `assignment`.
+
+[NOTE]
+The new `assignment` added cannot have both the same `NAME` and `MODULE` as another existing `assignment`.
+
+Example: `assignment n/Final Reflection Draft m/GEQ1000 d/01/04/20 2359 c/Last chance to get feedback!`
+
+Expected Outcome:
+```
+Added task:
+     [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+Now you have 1 task in the list!
+```
+
+=== Add Events: *`event`*
+An event is a task that you plan to do at a particular date and time. +
+You can add an event to *ATAS*, containing various details.
+
+Format: `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMMENTS]`
+
+* `NAME` is the name of your event.
+* `LOCATION` is where your event will take place.
+* `DATE START_TIME - END_TIME` is the date and time when your event will take place +
+* `COMMENTS` will be any other notes relevant to your `event`
+
+[NOTE]
+The new `event` added cannot have the same `NAME` as another existing `event`
+
+Example: `event n/Lecture l/NUS LT19 d/25/03/20 0800 - 1000 c/Remember to bring a jacket`
+
+Expected Outcome:
+```
+Added task:
+     [E][X] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00)
+            notes: Remember to bring a jacket
+Now you have 1 task in the list!
+```
+
+=== List Tasks: `list`
+You can view the tasks that you have stored in *ATAS*. +
+Various keywords can be used to only show the tasks you are interested in.
+
+==== List all tasks: `list`
+You can view all tasks stored in *ATAS* at once.
+
+Format: `list`
+
+Expected Outcome:
+```
+Here are the relevant tasks:
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+  2. [E][X] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00)
+            notes: Remember to bring a jacket
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: Look for internship
+  7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
+            notes: Have to check the exam venue and duration again
+```
+
+==== List today's tasks: *`list today`*
+You can view only the tasks you have today.
+
+Format: `list today`
+
+Expected Outcome (Assuming today's date is 27th March 2020):
+```
+Here are the relevant tasks:
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+```
+
+==== List weekly tasks: *`list week`*
+You can view all the tasks for the next 7 days
+
+Format: `list week`
+
+Expected Outcome(Assuming today's date is 27 March 2020):
+
+```
+Here are the relevant tasks:
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][/] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: Look for internship
+```
+
+=== List upcoming events: *`list upcoming events`*
+You can view all your *upcoming events* from the list of tasks.
+
+Format: `list upcoming events`
+
+Expected outcome:
+
+```
+Here are the relevant tasks:
+  4. [E][/] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: Look for internship
+  7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
+            notes: Have to check the exam venue and duration again
+```
+
+=== List Incomplete Assignments: *`list incomplete assignments`*
+You can view all your *incomplete assignments* from the list of tasks.
+
+Format: `list incomplete assignments`
+
+Expected outcome:
+
+```
+Here are the relevant tasks:
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+```
 
 === Edit Tasks: *`edit`*
 You can edit tasks in your existing list if there are any changes.
 
-Format: `edit INDEX`
+Format: `edit [INDEX]`
 
 * `INDEX` represents the unique index of a specific task to be edited.
 
@@ -108,7 +252,7 @@ Example:
 
 === Delete Tasks: *`delete`*
 You can delete unwanted tasks in your existing list.
-Format: `delete INDEX`
+Format: `delete [INDEX]`
 
 * `INDEX` represent the unique index of a specific task to be deleted.
 
@@ -118,6 +262,24 @@ Users can issue a `list` command to find the index of specific tasks
 Example:
 
 * `delete 1`
+
+=== Mark Done: *`done`*
+You can mark a completed task as done in your existing list.
+Format: `done [INDEX]`
+
+* `INDEX` represent the unique index of a specific task to be deleted.
+
+[TIP]
+Users can issue a `list` command to find the index of specific tasks
+
+Example:
+
+*`done 1`*
+
+Expected outcome:
+```
+[Final Reflection Draft] has been marked done!
+```
 
 === Clear Tasks: *`clear`*
 ==== Clear All Tasks
@@ -141,6 +303,55 @@ also be reflected in the stored list. +
 * Format: `repeat id/[INDEX] p/0` +
 (You can think of this as repeating the task every 0 days and hence not repeating!)
 * Example: `repeat id/1 p/0` will cause task of index 1 to stop repeating.
+
+=== Search Tasks: *`search`*
+==== Search by Name
+You can search for tasks in the list by specifying the type and name of task you might be searching for.
+
+* Format: `search t/[TASK TYPE] n/[TASK NAME]`
+
+Example:
+
+`search t/event n/te`
+
+Expected outcome:
+```
+Here are the search results:
+  1.[E][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
+      [3d]  notes: Test
+  2.[E][X] Test2 (at: test2 | Wed 03 Jun 2020 13:00 - 14:00)
+      [1w]  notes: Test2
+  3.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+      [1m]  notes: Test3
+  4.[E][X] Test4 (at: test4 | Wed 29 Apr 2020 11:00 - 12:00)
+      [1m]  notes: Test4
+```
+
+==== Search by Name and Date
+You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for.
+
+* Format: `search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
+
+Example:
+
+`searchd t/event n/te d/01/05/20`
+
+Expected outcome:
+```
+Here are the search results:
+  1.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+      [1m]  notes: Test3
+```
+
+=== Calendar view: *`Calendar`*
+You can obtain an calendar overview of all tasks you might have in the specified date. The feature also takes into
+consideration repeating events that you might have set. This allows you to plan your time accordingly since the list
+might not feel intuitive.
+
+* Format: `calendar d/[DD/MM/YY]`
+* Expected outcome:
+
+image::calendar.png[calendar.png]
 
 == Commands Summary
 === List of available *ATAS* commands
