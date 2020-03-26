@@ -23,8 +23,8 @@ This section will give a high-level overview of how various components in ATAS f
 The following sections will explain each component in greater detail.
 
 === Atas Component
-The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command +
-image:images/Atas help command sequence diagram v2.PNG[Component interactions for help command] +
+The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command
+image::Atas help command sequence diagram v2.PNG[Component interactions for help command]
 
 The Atas Class contains the main logic for ATAS. +
 1. Atas uses the UI class to read user input. +
@@ -37,12 +37,12 @@ The Atas Class contains the main logic for ATAS. +
 === UI Component
 
 === Parser Component
-image:images/parser class diagram v1.PNG[Parser Class Diagram] +
+image::parser class diagram v1.PNG[Parser Class Diagram]
 1. The Atas class uses the Parser class' static parseCommand() method to parse user commands. +
 2. The Parser class' parseCommand() method then returns the appropriate Command object depending on the user input.
 
 === Storage Component
-image:images/storage class diagram v1.PNG[Storage Class Diagram] +
+image::storage.PNG[Storage Class Diagram]
 1. A Storage object is created by the Atas class to handle the loading and saving of task data.
 2. The load() method is used to read saved data from a local file into the current session of ATAS.
 3. The save() method writes the current state of ATAS into the local save file using the Task.encodeTask() method.
