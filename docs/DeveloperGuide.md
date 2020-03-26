@@ -42,7 +42,7 @@ This section will describe how the main features of the application are implemen
 &nbsp;
 
 
-
+<!-- @@author jiajuinphoon -->
 ### 2.1 Add feature
 #### 2.1.1 Current implementation
  
@@ -92,8 +92,7 @@ This section will describe how the main features of the application are implemen
   
   - Cons: User flexibility will decrease, because user must input all parameters even if he/she does not want to provide certain
   variables such as price and quantity, which will result unsuccessful adding items into the list. 
- 
- 
+ <!-- @@author -->
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
