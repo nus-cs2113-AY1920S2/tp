@@ -54,7 +54,7 @@ image::storage.PNG[Storage Class Diagram]
 == Implementation
 This section will detail how some noteworthy features are implemented.
 
-=== Delete Command
+=== Delete Task Feature
 
 Current Implementation: +
 
@@ -91,7 +91,7 @@ the `execute` method of the `DeleteCommand` class
 ** Cons: Increased coupling amongst classes, which makes it harder for testing.
 ** Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a
 case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also
-allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner
+allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
 
 === Repeat event feature
 ==== Current Implementation
