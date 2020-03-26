@@ -52,6 +52,21 @@ image::storage.PNG[Storage Class Diagram]
 
 === CommandResult Component
 
+== Setting Up
+
+. Ensure you have Java 11 or above installed on your computer
+.. For *Windows* Users:
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
+... Open a `cmd` (Command Prompt) window.
+... Navigate to the folder containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
+
+.. For *Mac* Users:
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
+... Open up `Terminal`
+... Navigate to the directory containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
+
 == Implementation
 This section will detail how some noteworthy features are implemented.
 
@@ -244,4 +259,9 @@ Therefore, the `set` method of `ArrayList` is used to replace the edited task wi
 
 ** Alternatives Considered: +
 Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However,
-this is not chosen as it is not intuitive for the user's task index to shift after editing the task. 
+this is not chosen as it is not intuitive for the user's task index to shift after editing the task.
+
+== Testing
+=== Using IntelliJ JUnit Tests
+* To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
+* For individual tests, you can right-click on the test *package*, *class* or a single test and choose `Run 'TEST'`
