@@ -263,6 +263,24 @@ Example:
 
 * `delete 1`
 
+=== Mark Done: *`done `*
+You can mark a completed task as done in your existing list.
+Format: `done [INDEX]`
+
+* `INDEX` represent the unique index of a specific task to be deleted.
+
+[TIP]
+Users can issue a `list` command to find the index of specific tasks
+
+Example:
+
+*`done 1`*
+
+Expected outcome:
+```
+[Final Reflection Draft] has been marked done!
+```
+
 === Clear Tasks: *`clear`*
 ==== Clear All Tasks
 * You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared. +
