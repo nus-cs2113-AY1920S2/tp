@@ -66,9 +66,9 @@ specifies the index of task that the user wants to delete.
 . The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command
 provided. It will obtain information to get `delete index`.
 
-[Warning]
-If there is a *IndexOutOfBoundsException* or *NumberFormatException*, a new `IncorrectCommand` class will be created
-to print to error message
+
+[WARNING]
+Customised `MissingArgumentException` and `InvalidArgumentException` will be thrown if the user enters invalid commands.
 
 . A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
 `DeleteCommand` will then be called.
