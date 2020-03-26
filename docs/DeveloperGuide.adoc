@@ -68,7 +68,8 @@ provided. It will obtain information to get `delete index`.
 
 
 [WARNING]
-Customised `MissingArgumentException` and `InvalidArgumentException` will be thrown if the user enters invalid commands.
+If there is an `IndexOutOfBoundsException` or `NumberFormatException`, a new `IncorrectCommand` class will be created
+to print the error messages.
 
 . A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
 `DeleteCommand` will then be called.
