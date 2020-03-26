@@ -3,17 +3,21 @@ package seedu.duke.data;
 import seedu.duke.module.Module;
 import seedu.duke.module.SelectedModule;
 
-public class SemModulesList extends ModuleList {
-    private String semName;
+import java.util.ArrayList;
 
-    public SemModulesList(String semName) {
-        this.semName = semName;
+
+public class SemModulesList extends ArrayList<SelectedModule> {
+    private String semester;
+
+    public SemModulesList(String semester) {
+        this.semester = semester;
     }
 
     public String getSem() {
-        return semName;
+        return semester;
     }
 
+// SORRY THIS PART DAMN MESSY I WILL TIDY IT UP, BUT I THINK PULL ALREADY THEN EASIER TO EDIT
     /**
      * Checks if the moduleName is in the semModulesList.
      * @param moduleName : name of the module to check in the ModulesList.
@@ -21,6 +25,14 @@ public class SemModulesList extends ModuleList {
     public boolean isModuleNameInList(String moduleName) {
         for (Module module: this) {
             if (module.getName().equals(moduleName)) {
+  /*
+     * Checks if the moduleIdentifier is in the semModulesList.
+     * @param moduleIdentifier : name of the module to check in the ModulesList.
+     
+    public boolean isInList(String moduleIdentifier) {
+        for (SelectedModule module: this) {
+            if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
+              */
                 return true;
             }
         }

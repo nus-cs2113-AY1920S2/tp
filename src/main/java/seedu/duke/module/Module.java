@@ -2,79 +2,27 @@ package seedu.duke.module;
 
 import seedu.duke.data.ModuleList;
 
-public class Module {
+public abstract class Module {
     protected String name;
     protected String id;
-    protected String semester;
     protected String description;
     protected Boolean isSUable;
     protected ModuleList preRequisiteModules;
     protected boolean isNameValid;
     protected boolean isIdValid;
-    protected boolean isDone;
-    protected String grade;
-    protected double cap;
-    protected int modularCredit;
+    protected int moduleCredit;
 
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-        switch (grade) {
-        case "A+":
-        case "A":
-            this.cap = 5.0;
-            break;
-        case "A-":
-            this.cap = 4.5;
-            break;
-        case "B+":
-            this.cap = 4.0;
-            break;
-        case "B":
-            this.cap = 3.5;
-            break;
-        case "B-":
-            this.cap = 3.0;
-            break;
-        case "C+":
-            this.cap = 2.5;
-            break;
-        case "C":
-            this.cap = 2.0;
-            break;
-        case "D+":
-            this.cap = 1.5;
-            break;
-        case "D":
-            this.cap = 1.0;
-            break;
-        case "F":
-            this.cap = 0.0;
-            break;
-        case "CS":
-            this.cap = 0.0;
-            break;
-        case "CU":
-            this.cap = 0.0;
-            break;
-        default:
-            throw new IllegalStateException("Unexpected value: " + grade);
-        }
-    }
 
     /**
      * This is Module's constructor.
      * @param type the type of module identifier.
      * @param moduleIdentifier the identifier which can be either module's name or module's id.
-     * @param semester the module's semester.
+     * @param moduleCredit     the module's amount of module credit awarded
      */
-    public Module(String type, String moduleIdentifier, String semester) {
+    public Module(String type, String moduleIdentifier, int moduleCredit) {
+        this.moduleCredit = moduleCredit;
         this.isNameValid = type.equals("name");
         this.isIdValid = type.equals("id");
-        this.semester = semester;
         if (isNameValid) {
             this.name = moduleIdentifier;
             this.id = "unnamed";
@@ -82,11 +30,14 @@ public class Module {
             this.id = moduleIdentifier;
             this.name = "unnamed";
         }
-        this.isDone = false;
     }
 
-    protected Module(){
-
+    public Module(String type, String moduleId, String moduleName, int moduleCredit) {
+        this.moduleCredit = moduleCredit;
+        this.isNameValid = true;
+        this.isIdValid = true;
+        this.name = moduleName;
+        this.id = moduleId;
     }
 
     @Override
@@ -99,46 +50,32 @@ public class Module {
         } else if (isIdValid) {
             returnString = "ID: " + id;
         }
-        return returnString + " | Sem: " + semester;
+        return returnString + " | Module Credit: " + moduleCredit;
     }
 
-    public String getSem() {
-        return semester;
-    }
 
     public String getName() {
         return name;
-    }
-
-    public void setAsDone() {
-        this.isDone = true;
     }
 
     public String getId() {
         return this.id;
     }
 
-    /**
-     * Returns the icon [✓] when this module is done, and returns [✗] if the module is not done.
-     */
-    public String getIcon() {
-        if (this.isDone) {
-            return "[✓]";
-        } else {
-            return "[✗]";
-        }
+    public void updateName(String name) {
+        this.name = name;
     }
 
-    public boolean getDone() {
-        return this.isDone;
+    public void updateId(String id) {
+        this.id = id;
     }
 
-    public ModuleList getPreRequisiteModules() {
-        return preRequisiteModules;
+    public int getModuleCredit() {
+        return this.moduleCredit;
     }
 
     public String getPreReqModulesID() {
-        String preReqModulesList = new String();
+        String preReqModulesList = "";
         boolean hasNoPreReqModules = preRequisiteModules.size() == 0;
         if (hasNoPreReqModules) {
             preReqModulesList = ("None");
@@ -148,5 +85,4 @@ public class Module {
         }
         return preReqModulesList;
     }
-
 }

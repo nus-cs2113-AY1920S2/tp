@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.ModuleList;
-import seedu.duke.data.SelectedModulesList;
+import seedu.duke.data.SemesterList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
 import seedu.duke.ui.Ui;
@@ -15,12 +15,12 @@ public class FindCommand extends Command {
         this.keyword = keyword.toLowerCase();
     }
 
-    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
-        String result = generateResult(selectedModulesList, availableModulesList);
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
+        String result = generateResult(semesterList, availableModulesList);
         Ui.showFindMessage(result);
     }
 
-    private String generateResult(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
+    private String generateResult(SemesterList selectedModulesList, AvailableModulesList availableModulesList) {
         ModuleList listOfSelectedModulesToDisplay = new ModuleList();
         for (SemModulesList semModulesList : selectedModulesList) {
             for (Module module : semModulesList) {

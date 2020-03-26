@@ -12,7 +12,7 @@ import java.util.logging.SimpleFormatter;
 import seedu.duke.command.Command;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.Person;
-import seedu.duke.data.SelectedModulesList;
+import seedu.duke.data.SemesterList;
 import seedu.duke.exception.ModuleManagerException;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
@@ -21,7 +21,7 @@ import seedu.duke.ui.Ui;
 public class Duke {
 
     private static AvailableModulesList availableModulesList;
-    private static SelectedModulesList selectedModulesList;
+    private static SemesterList semesterList;
     private static Ui ui;
     private static final Logger logr = Logger.getLogger("Duke");
 
@@ -31,7 +31,7 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         availableModulesList = new AvailableModulesList();
-        selectedModulesList = new SelectedModulesList();
+        semesterList = new SemesterList();
     }
 
     /**
@@ -53,7 +53,7 @@ public class Duke {
             try {
                 fullCommand = in.nextLine();
                 Command command = Parser.parse(fullCommand);
-                command.execute(selectedModulesList, availableModulesList);
+                command.execute(semesterList, availableModulesList);
                 isExit = command.isExit();
             } catch (ModuleManagerException e) {
                 logr.log(Level.WARNING, e.getMessage());
