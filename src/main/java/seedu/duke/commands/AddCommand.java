@@ -4,7 +4,7 @@ import seedu.duke.data.Item;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+//@@author jiajuinphoon
 public class AddCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static final String COMMAND_WORD = "ADD";
@@ -95,3 +95,4 @@ public class AddCommand extends Command {
 
     }
 }
+//@@author

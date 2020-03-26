@@ -48,10 +48,11 @@ public class Parser {
         }
 
         switch (commandWord) {
-
+        //@@author jiajuinphoon
         case AddCommand.COMMAND_WORD:
             createAddCommand(arguments);
             break;
+        //author
 
         //@@author Shannonwje
         case MarkCommand.COMMAND_WORD:
@@ -121,7 +122,7 @@ public class Parser {
     private String[] splitCommandAndArgs(String userInput) {
         return userInput.trim().split(" ", 2);
     }
-
+    //@@author jiajuinphoon
     private void createAddCommand(String arguments) {
         try {
             String[] args = splitArgsForAddCommand(arguments);
@@ -330,7 +331,7 @@ public class Parser {
                     + "|| Example: ADD i/apples p/9.90 q/9");
         }
         return argsArray;
-    }
+    } //@@author
 
     //@@author Shannonwje
     /**
