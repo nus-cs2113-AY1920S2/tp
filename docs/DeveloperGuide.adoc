@@ -80,10 +80,18 @@ message indicating an empty task list
 `TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will
 initialize a new `CommandResult` class that prints out the success message for task deletion.
 
-* The following sequence diagram summarizes how repeat command operation works: +
+** The following sequence diagram summarizes how repeat command operation works: +
 
 image::delete.png[delete task]
 
+==== Design Considerations
+* Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within
+the `execute` method of the `DeleteCommand` class
+** Pros: Easier implementation for other classes that requires the same use.
+** Cons: Increased coupling amongst classes, which makes it harder for testing.
+** Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a
+case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also
+allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner
 
 === Repeat event feature
 ==== Current Implementation
