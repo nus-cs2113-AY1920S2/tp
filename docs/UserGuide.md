@@ -162,18 +162,9 @@ exit
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
 
-**A**: Well, write the User Guide in active voice anyway.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add to-do `todo n/TODO_NAME d/DEADLINE`
 
 
-Useful links:
-* [User Guide](UserGuide.md)
-* [Developer Guide](UserGuide.md)
-* [About Us](AboutUs.md)
