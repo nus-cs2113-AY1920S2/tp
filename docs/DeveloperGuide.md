@@ -41,6 +41,8 @@ This section will describe how the main features of the application are implemen
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 &nbsp;
 
+
+<!-- @@author jiajuinphoon -->
 ### 2.1 Add feature
 #### 2.1.1 Current implementation
  
@@ -65,6 +67,7 @@ This section will describe how the main features of the application are implemen
  ![alt text](images/AddFeature.png)
  
  ![alt text](images/AddFeature_SD.png)
+
  
 #### 2.1.2 Design considerations
 
@@ -81,7 +84,6 @@ This section will describe how the main features of the application are implemen
   scenario (eg: user wants to have duplicates because the item is for different occasion and 
   the user wants to record down twice without any elaboration).
 
-
 - Alternative 2: Require user to provide all three values to successfully add the item into 
                  the list.
 
@@ -90,8 +92,7 @@ This section will describe how the main features of the application are implemen
   
   - Cons: User flexibility will decrease, because user must input all parameters even if he/she does not want to provide certain
   variables such as price and quantity, which will result unsuccessful adding items into the list. 
- 
-
+ <!-- @@author -->
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
