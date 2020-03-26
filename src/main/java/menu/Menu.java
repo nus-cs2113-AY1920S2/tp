@@ -21,21 +21,6 @@ public class Menu {
     }
 
     /**
-     * Prints out dishes from hashmap
-     * @param hm hashmap to print from
-     */
-    public void printDishes() {
-        for (String name: dishMap.keySet()) {
-            String ingredientList = "";
-            for (String str: dishMap.get(name).getIngredients()) {
-                ingredientList += str + ", ";
-            }
-            ingredientList = ingredientList.substring(0, ingredientList.length() - 2);
-            System.out.println("Name: " + name + "; Ingredients: " + ingredientList);
-        }
-    }
-
-    /**
      * Return's dishMap hashmap.
      * @return dishmap hashmap
      */

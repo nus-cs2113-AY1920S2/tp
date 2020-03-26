@@ -76,7 +76,7 @@ public class CommandParser {
         } else if (splitCommands[0].equals("list")) {
             if (splitCommands[1].equals("dish")) {
                 // List dish.
-                menu.printDishes();
+                ListDishCommand.printDishes();
                 successfulCommand();
             } else if (splitCommands[1].equals("stock")) {
                 // List stock.
