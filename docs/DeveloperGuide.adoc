@@ -80,14 +80,10 @@ message indicating an empty task list
 `TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will
 initialize a new `CommandResult` class that prints out the success message for task deletion.
 
-Design Considerations: +
-1. Loop through the TaskList to get the task at the specified index and delete from the index +
-2. Use `remove` method to delete the task at a specified index +
+* The following sequence diagram summarizes how repeat command operation works: +
 
-We implemented the 2nd option for deleting of tasks. This is because:
+image::delete.png[delete task]
 
-* Both methods have similar time and space complexities, but the 2nd method is much easier to implement as compared
-to the 1st method
 
 === Repeat event feature
 ==== Current Implementation
