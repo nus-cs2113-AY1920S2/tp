@@ -59,7 +59,7 @@ image::delete.png[Delete Command sequence diagram]
 The Parser Class will call `prepareDeleteCommand` method and processes the delete index once it detects a `delete` command.
 
 [WARNING]
-* If an IndexOutOfBoundsException or NumberFormatException is detected, the Parser class will create a new `IncorrectCommand` class
+* If an `IndexOutOfBoundsException` or `NumberFormatException is detected`, the Parser class will create a new `IncorrectCommand` class
 to display the corresponding error messages
 
 *Step 2.* +
@@ -86,15 +86,12 @@ The Parser Class will call `prepareDeleteCommand` method and process the `task t
 `SearchCommand` class will check the `task type` and calls their respective methods. In each of the respective methods, an ArrayList is used
 to store the original index of the results.
 
-[WARNING]
-If `task type` is *all*, `SearchCommand` class will call the `getSearchQueryAllTasks` method and returns an ArrayList of the results.
+*If `task type` is *all*, `SearchCommand` class will call the `getSearchQueryAllTasks` method and returns an ArrayList of the results.
 
-[Warning]
-if `task type` is *event*, `SearchCommand` class will call the `getSearchQueryEvents` method and returns an ArrayList of the results.
+*if `task type` is *event*, `SearchCommand` class will call the `getSearchQueryEvents` method and returns an ArrayList of the results.
 This section will detail how some noteworthy features are implemented.
 
-[Warning]
-if `task type` is *assignment*, `SearchCommand` class will call the `getSearchQueryAssignments` and returns an ArrayList of all the results.
+*if `task type` is *assignment*, `SearchCommand` class will call the `getSearchQueryAssignments` and returns an ArrayList of all the results.
 
 *Step 4.* +
 `SearchCommand` class calls the `searchList` method to format the results of the search query into a String format
