@@ -8,20 +8,17 @@ import java.util.HashMap;
 public class SearchDishCommand extends Menu {
 
     /**
-     * A hashmap containing dishes with matching names
-     */
-    private HashMap<String, Dish> matchingDishes = new HashMap<String, Dish>();
-
-    /**
      * Searches menu for dish names containing keyword
      * @param keyword keyword to search for
      */
-    public void searchDish(String keyword) {
+    public static HashMap<String, Dish> searchDish(String keyword) {
+         HashMap<String, Dish> matchingDishes = new HashMap<String, Dish>();
         for (String name: Menu.getDishMap().keySet()) {
             if (name.contains(keyword)) {
                 matchingDishes.put(name, Menu.getDishMap().get(name));
             }
         }
+        return matchingDishes;
     }
 
 }

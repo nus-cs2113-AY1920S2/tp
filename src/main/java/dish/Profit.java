@@ -39,7 +39,7 @@ public class Profit {
      */
     public Profit(Dish d) throws NegativeProfitException, IngredientMissingException, EmptyStockException {
         dish = d;
-        cost = totalCost(d);
+        cost = (double) Math.round(totalCost(d) * 100) / 100;
         price = d.getPrice();
         if (price - cost > 0) {
             profit = price - cost;
