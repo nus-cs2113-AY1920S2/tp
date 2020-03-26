@@ -41,6 +41,7 @@ This section will describe how the main features of the application are implemen
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 &nbsp;
 
+
 ### 2.1 Add feature
 #### 2.1.1 Current implementation
  
@@ -65,6 +66,7 @@ This section will describe how the main features of the application are implemen
  ![alt text](images/AddFeature.png)
  
  ![alt text](images/AddFeature_SD.png)
+
  
 #### 2.1.2 Design considerations
 
@@ -80,7 +82,6 @@ This section will describe how the main features of the application are implemen
   presence of the variable in user input to avoid duplication, not human friendly in certain 
   scenario (eg: user wants to have duplicates because the item is for different occasion and 
   the user wants to record down twice without any elaboration).
-
 
 - Alternative 2: Require user to provide all three values to successfully add the item into 
                  the list.
