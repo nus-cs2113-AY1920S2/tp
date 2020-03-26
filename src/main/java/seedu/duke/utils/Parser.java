@@ -123,6 +123,7 @@ public class Parser {
         return userInput.trim().split(" ", 2);
     }
     //@@author jiajuinphoon
+
     private void createAddCommand(String arguments) {
         try {
             String[] args = splitArgsForAddCommand(arguments);
