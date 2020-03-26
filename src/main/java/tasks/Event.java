@@ -109,14 +109,14 @@ public class Event extends Task {
     public void setNoRepeat() {
         this.isRepeat = false;
         this.numOfPeriod = 0;
-        this.typeOfPeriod = "";
+        this.typeOfPeriod = null;
     }
 
     /**
      * Update date of event to the next upcoming date (after today) if the recurring event
      * has already occurred.
      */
-    public void updateDateAndTime() {
+    public void updateDate() {
         if (this.isRepeat) {
             switch (typeOfPeriod) {
             case (RepeatCommand.DAILY_ICON):
