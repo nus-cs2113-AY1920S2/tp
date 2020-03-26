@@ -263,7 +263,7 @@ Example:
 
 * `delete 1`
 
-=== Mark Done: *`done `*
+=== Mark Done: *`done`*
 You can mark a completed task as done in your existing list.
 Format: `done [INDEX]`
 
