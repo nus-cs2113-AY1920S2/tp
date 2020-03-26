@@ -89,7 +89,7 @@ If there is an `IndexOutOfBoundsException` or `NumberFormatException`, a new `In
 to print the error messages.
 
 *Step 2* +
-*A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
+* A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
 `DeleteCommand` will then be called.
 * `execute` command will then do 2 things :
 . If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
