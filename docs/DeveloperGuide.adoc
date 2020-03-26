@@ -24,7 +24,7 @@ The following sections will explain each component in greater detail.
 
 === Atas Component
 The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command +
-image::Atas help command sequence diagram v2.PNG[Component interactions for help command] 
+image::Atas help command sequence diagram v2.PNG[Component interactions for help command]
 
 The Atas Class contains the main logic for ATAS. +
 1. Atas uses the UI class to read user input. +
