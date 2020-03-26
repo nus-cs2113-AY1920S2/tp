@@ -302,7 +302,13 @@ image::calendar2.png[]
 The `CalendarCommand` class extends `Command` with methods to implement the necessary pre-processing to display an overview of tasks in the given date.
 The following sequence diagram outlines an example execution of `CalendarCommand` when it is called and the interaction it has with the relevant components.
 
+.Interaction of CalendarCommand and the various major components
 image::calendar-diagram.png[]
+
+In particular, the below diagram shows the explicit execution flow that `CalendarCommand` takes.
+
+.Explicit execution flow of CalendarCommand
+image::addMonthlyCalendar.png[]
 
 The following outlines the step by step execution of the above sequence diagram.
 

@@ -232,6 +232,7 @@ public class TaskList {
      * @param endOfRange LocalDate representing end of time period
      * @param task repeating Event to be checked
      * @param taskDate Event date
+     * @param taskArrayList ArrayList of Task that is to be returned
      */
     private void addFirstRepeatedEventWithinRange(LocalDate startOfRange, LocalDate endOfRange,
                                                Task task, LocalDate taskDate, ArrayList<Task> taskArrayList) {
