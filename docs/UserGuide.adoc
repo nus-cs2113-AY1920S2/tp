@@ -183,6 +183,21 @@ Here are the relevant tasks:
             notes: Zoom meeting
 ```
 
+==== List weekly tasks: `list week`
+You can view all the tasks for the next 7 days
+
+Format: `list week`
+
+Expected Outcome(Assuming today's date is 27 March 2020):
+
+```
+Here are the relevant tasks:
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+```
+
 === Edit Tasks: *`edit`*
 You can edit tasks in your existing list if there are any changes.
 
