@@ -75,7 +75,8 @@ public class Messages {
     public static final String COMPLETED_TASK_ERROR = "Task is already completed";
     public static final String SAME_TASK_ERROR = "Please use a different name. Task already exists in list";
     public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
-    public static final String REPEAT_ASSIGN_ERROR = "Please choose an event.";
+    public static final String REPEAT_ASSIGN_ERROR = "%s is not an event. Please choose an event.";
+    public static final String REPEAT_NOT_SET_ERROR = "%s is not set to repeat.";
     //Saving Error Messages
     public static final String INCORRECT_START_END_TIME_ERROR = "The end time should come after the start time";
     public static final String INCORRECT_STORAGE_FORMAT_ERROR = "The local save file is of an unknown format. "

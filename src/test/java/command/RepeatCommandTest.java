@@ -35,7 +35,7 @@ public class RepeatCommandTest {
     //whatIsBeingTested_descriptionOfTestInputs_expectedOutcome
     @Test
     public void nonRecurringEvent_updateDateTime_failure() {
-        testEvent.updateDateAndTime();
+        testEvent.updateDate();
         assertNotEquals(testEvent.getIsRepeat(), true);
     }
 
@@ -45,14 +45,15 @@ public class RepeatCommandTest {
                  "testing");
         testTaskList.addTask(testAssign);
         RepeatCommand testRepeatCommand = new RepeatCommand(1, 1, "d");
-        assertEquals(testRepeatCommand.execute(testTaskList, testUi).feedbackToUser, "Please choose an event.");
+        assertEquals(testRepeatCommand.execute(testTaskList, testUi).feedbackToUser,
+                "Daily Work is not an event. Please choose an event.");
     }
 
     @Test
     public void numOfPeriod_getNumOfPeriod_success() {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "d");
         testRepeatCommand.execute(testTaskList, testUi);
-        testEvent.updateDateAndTime();
+        testEvent.updateDate();
         assertEquals(testEvent.getNumOfPeriod(), 1);
     }
 
@@ -60,7 +61,7 @@ public class RepeatCommandTest {
     public void typeOfPeriod_getTypeOfPeriod_success() {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "d");
         testRepeatCommand.execute(testTaskList, testUi);
-        testEvent.updateDateAndTime();
+        testEvent.updateDate();
         assertEquals(testEvent.getTypeOfPeriod(), "d");
     }
 
@@ -68,7 +69,7 @@ public class RepeatCommandTest {
     public void repeatingTask_getDateOfRepeatTask_tomorrowDate() {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "d");
         testRepeatCommand.execute(testTaskList, testUi);
-        testEvent.updateDateAndTime();
+        testEvent.updateDate();
         assertEquals(testEvent.getDate(), LocalDateTime.now().plusDays(1).toLocalDate());
     }
 
@@ -77,7 +78,7 @@ public class RepeatCommandTest {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "w");
         testRepeatCommand.execute(testTaskList, testUi);
         LocalDate taskDate = testEvent.getDate();
-        testEvent.updateDateAndTime();
+        testEvent.updateDate();
         assertEquals(testEvent.getDate(), taskDate.plusWeeks(1));
     }
 
@@ -86,7 +87,7 @@ public class RepeatCommandTest {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "m");
         testRepeatCommand.execute(testTaskList, testUi);
         LocalDate taskDate = testEvent.getDate();
-        testEvent.updateDateAndTime();
+        testEvent.updateDate();
         assertEquals(testEvent.getDate(), taskDate.plusMonths(1));
     }
 
@@ -95,7 +96,7 @@ public class RepeatCommandTest {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "y");
         testRepeatCommand.execute(testTaskList, testUi);
         LocalDate taskDate = testEvent.getDate();
-        testEvent.updateDateAndTime();
+        testEvent.updateDate();
         assertEquals(testEvent.getDate(), taskDate.plusYears(1));
     }
 

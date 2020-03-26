@@ -52,6 +52,8 @@ image::storage.PNG[Storage Class Diagram]
 === CommandResult Component
 
 == Implementation
+This section will detail how some noteworthy features are implemented.
+
 === Delete Command
 image::delete.png[Delete Command sequence diagram]
 
@@ -96,8 +98,6 @@ to store the original index of the results.
 * If `task type` is *all*, `SearchCommand` class will call the `getSearchQueryAllTasks` method and returns an ArrayList of the results.
 
 * if `task type` is *event*, `SearchCommand` class will call the `getSearchQueryEvents` method and returns an ArrayList of the results.
-This section will detail how some noteworthy features are implemented.
-
 * if `task type` is *assignment*, `SearchCommand` class will call the `getSearchQueryAssignments` and returns an ArrayList of all the results.
 
 *Step 4.* +
@@ -112,4 +112,72 @@ class to print the success message
 if there are no results to the search query or if there are no tasks in the task list, `SearchCommand` class
 will create a new `IncorrectCommand` class to print the error messages
 
-=== Calendar
+
+=== Repeat event feature
+==== Current Implementation
+* The `RepeatCommand` class extends `Command` class and initializes 3 values within a specified `Event` object which are stated below.
+This will flag the given event as repeating, allowing other features to be able to catch and perform relevant desired behaviours.
+. `Boolean isRepeat` variable: Set to true, marking the event as a repeating event.
+. `int numOfPeriod` variable: Set to the given value that states the frequency which typeOfPeriod will repeat at.
+. `String typeOfPeriod` variable: Set to d (days), w (weeks), m (months) or y (years) to indicate how often it will repeat.
+
+* Given below is an example usage scenario and how the repeat command mechanism behaves at each step.
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. He/She enters `repeat id/2 p/1w` into the command line. Method `parseCommand()` from `Parser` will be called to parse the command
+provided. It will obtain the information to get integers `eventID`, `numOfPeriod` and also String `typeOfPeriod`.
+. A new instance of RepeatCommand with `eventID`, `numOfPeriod` and `typeOfPeriod` initialized will be created. The `execute` method of
+`repeatCommand` will then be called.
+. `execute` command will do 3 things after it calls `getTask` method from `TaskList` class to get the user input task.
+** It will check if the `eventID` provided refers to a valid `Event` task.
+** It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `setNoRepeat`
+method from `Event` class.
+*** `setNoRepeat` method will reinitialize the 3 variables (`isRepeat`, `numOfPeriod`, `typeOfPeriod`) to `false`, `0` and `null` respectively.
+** If it is not 0, it will set the event to repeating by calling `setRepeat` method from `Event` class.
+*** `setRepeat` method will initialize the 3 variables (`isRepeat`, `numOfPeriod`, `typeOfPeriod`) to the respective values given by
+user. In this example, they will be set to `true`, `1` and `w` respectively.
+. After `execute` command is done, it will return a new `ResultCommand` class with a string containing the result of the execution.
+This string will be printed by calling `showToUser` method in the `Ui` class. Then the event will be saved into local file by calling
+`trySaveTaskList` method from `Storage` class.
+
+* The following sequence diagram summarizes how repeat command operation works: +
+
+image::RepeatCommand_UML.png[Repeat Command Sequence Diagram]
+
+==== Impact on Event dates
+* With the implementation in mind, every time the app is launched, after `load` method in `Storage` class is called, the app will call a
+method `updateEventDate` which will iterate through every task in the list  and calls `updateDate` method from `Event` class if the task
+is a repeating event and its date is in the past.
+
+==== Design Considerations
+* Allowing only tasks that are `Event` to be repeated
+** Rationale: +
+We feel that given the context of University Students, it makes little sense for most assignments to repeat. However, it makes sense for
+ events to repeat since many events actually occur on a regular basis.
+** Alternative considered: +
+1. Allowing all tasks to be repeatable.
+*** Pros: Allow more flexibility for the user to set which tasks they want to repeat, regardless of task type.
+*** Cons: Memory wastage as additional variables are set for repeating tasks and in the case of minimal assignments requiring to be
+repeated, these spaces are wasted.
+
+* Allowing event to repeat for any amount of period by using `numOfPeriod` and `typeOfPeriod` (d, w, m ,y)
+** Rationale: +
+It provides great flexibility in allowing an event to repeat for any specified frequency. For example, some classes occur every 2 weeks.
+Some events may happen every 10 days or any x amount of period.
+** Alternative considered: +
+1. Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
+*** Pros: It would simply usability and implementation since there will only be 4 options to choose from.
+*** Cons: It would reduce the usability for the 2 examples provided above as users would not be able to make events repeat every 2 weeks
+or 10 days, forcing them to have to manually type in the same event for as many times as it will occur if they wish to still keep track
+of that event.
+
+* Keeping repeated event as a single entity within the list and not repeatedly add new events of a newer date when repeat command is used.
+** Rationale: +
+It allows the repeated events to be removed or to stop repeating with ease as it remains a single entity and not multiple events,
+improving the user's usability.
+** Alternative considered: +
+1. Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
+*** Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
+*** Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the tasklist of
+the user and increase the file size of the local storage that stores the tasklist.
+
+=== Calendar feature
