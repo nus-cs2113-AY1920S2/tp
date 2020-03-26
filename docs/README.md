@@ -3,6 +3,6 @@
 {Give product intro here}
 
 Useful links:
-* [User Guide](UserGuide.md)
-* [Developer Guide](UserGuide.md)
+* [User Guide](UserGuide.adoc)
+* [Developer Guide](DeveloperGuide.adoc)
 * [About Us](AboutUs.md)
