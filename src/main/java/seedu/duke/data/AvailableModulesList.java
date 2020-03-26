@@ -43,6 +43,23 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(module);
         return super.add(module);
     }
+/*
+    @Override
+    public Module remove(int index) {
+        availableModulesList.remove(index);
+        return super.remove(index);
+    }
+*/
+
+    @Override
+    public boolean remove(Object moduleObject) {
+        assert(moduleObject instanceof Module);
+        Module module = (Module) moduleObject;
+        availableModulesList.remove(module);
+        return super.remove(module);
+    }
+
+
 
     public boolean isModuleIdInList(String id) {
         for (Module module : availableModulesList) {
