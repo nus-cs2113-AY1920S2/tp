@@ -56,7 +56,7 @@ image::storage.PNG[Storage Class Diagram]
 image::delete.png[Delete Command sequence diagram]
 1. The Parser Class will call `prepareDeleteCommand(String)` and processes the delete index once it detects a `delete` command.
 * If an IndexOutOfBoundsException or NumberFormatException is detected, the Parser class will create a new `IncorrectCommand` class
-to display the corresponding error messages
+to display the corresponding error messages +
 2.`prepareDeleteCommand` will create a new `DeleteCommand` class.
 * If there is no items in the task list, the `DeleteCommand` class will create a new `IncorrectCommand` class to display the
 corresponding error message
