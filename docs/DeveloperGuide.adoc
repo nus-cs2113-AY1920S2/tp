@@ -81,12 +81,6 @@ specifies the index of task that the user wants to delete.
 . The user launches the app and retrieves the tasks which are saved under a local file using Storage.
 . The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command
 provided. It will obtain information to get `delete index`.
-
-
-[WARNING]
-If there is an `IndexOutOfBoundsException` or `NumberFormatException`, a new `IncorrectCommand` class will be created
-to print the error messages.
-
 . A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
 `DeleteCommand` will then be called.
 . `execute` command will then do 2 things :
