@@ -1,5 +1,4 @@
 # Developer Guide
-cover page
 ## Table of Contents
 ### Target user profile
 Our target audiences are professors who need help organizing their personal work schedule and need more time.
@@ -18,17 +17,15 @@ PAC. The following groups are in particular the intended audience of the documen
 - PAC developers
 - PAC software testers
 
-## Document Organisation
-| Section           | Purpose               |
-|-------------------|-----------------------|
-|                   |                       | 
-
 ## Architecture
 This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
 ### Overall Architecture
 *Overall Class diagram*
+{To be added in future revisions}
+
 ### Command
+![Command](images/Command.png "Class diagram of Command component")         
 *Class diagram of the Command component*  
 
 Commands are the main classes to be executed in PAC. All of the specific Command classes inherit the 
@@ -40,18 +37,17 @@ A subclass of Command is created and executed when the professor input a corresp
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
 of PAC. 
 
-| Parser           | Created in          |
-|------------------|---------------------|
-| EventParser | EventCommandInterpreter  | 
-| CalenderParser | EventCommandInterpreter | 
-| AttendanceParser | Step-by-step command at Attendance-related command classes |
-| PerformanceParser | Step-by-step command at performance-related command classes |  
+| Parser                    | Created in                                                    |
+|---------------------------|---------------------------------------------------------------|
+| EventParser               | EventCommandInterpreter                                       | 
+| CalenderParser            | EventCommandInterpreter                                       | 
+| AttendanceParser          | Step-by-step command at Attendance-related command classes    |
+| PerformanceParser         | Step-by-step command at performance-related command classes   |  
 
 A Parser class is created when a user input contains data to be stored or used in certain features.    
 
-### Storage
-*Class diagram of the Storage component*
 ### UI
+![Ui](images/Ui.png "Class diagram of Ui component")                
 *Class diagram of the UI component*   
 
 UI is the main class handles user display, which includes reading user input and printing information 
@@ -61,7 +57,7 @@ DisplayList and DisplayTable, to specifically print the list and table interface
 
 ## Feature Design and Implementation 
 ### Event
-![event](images/event.png "Class diagram of Event component")
+![event](images/event.png "Class diagram of Event component")           
 *Class diagram of the Event component*
 
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
@@ -81,6 +77,7 @@ either by complete match, or fuzzy match.
 * Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar control flow. 
 
 ### Attendance
+![attendance](images/Attendance.png "Class diagram of Attendance component")        
 *Class diagram of the Attendance component*
 1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
@@ -93,6 +90,7 @@ The user is given an option to either use an existing list stored under StudentL
 create a new attendance list. `n/` and `p/` flags are used to insert new attendance.
 
 ### Performance
+![Performance](images/Performance.png "Class diagram of Performance component")     
 *Class diagram of the Performance component*  
 1. When a user enters a performance-related command, the command is analysed by `PerformanceCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the command is created (e.g. AddPerformance, 
@@ -108,15 +106,15 @@ by its own.
 prevent time wasted on key in wrong commands. 
 
 ### Student List Collection
+![Student](images/Student.png "Class diagram of Student component")     
+*Class diagram of the Student component*  
+1. When a user enters an studentList-related command, the command is analysed by `StudentCommandInterpreter`. 
+1. Once determined, the relevant class that corresponds to the type of command is created.
+1. Then, the class will execute base on its function. It modifies `AttendanceList`.
+1. These commands are then returned to `Duke.run()` to `execute()`. 
 
-## Design & Implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-### Overall Design & Implementation
-### Event Design & Implementation
-### Attendance Design & Implementation
-### Performance Design & Implementation
-### Student List Design & Implementation
-
+Note that:
+* studentList-related commands can be executed without the existence of events.
 
 ## User Stories
 
@@ -137,6 +135,7 @@ prevent time wasted on key in wrong commands.
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
+{To be added in future revisions}
 
 ## Glossary
 
@@ -145,3 +144,4 @@ prevent time wasted on key in wrong commands.
 ## Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+{To be added in future revisions}

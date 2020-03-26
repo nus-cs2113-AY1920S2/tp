@@ -6,14 +6,14 @@
 
 ## Content Page  
 1. [Introduction](#1-introduction)  
-1.1. [What is PAC?](#11-what-is-pac)  
-1.2. [Who are our audience?](#12-who-are-our-audience)
+    1.1. [What is PAC?](#11-what-is-pac)  
+    1.2. [Who are our audience?](#12-who-are-our-audience)
 2. [Setting Up](#2-setting-up)  
-2.1. [Requirements](#21-requirements)   
-2.2. [Startup using Command Line](#22-startup-using-command-line)  
-2.3. [Startup using JAR](#23-startup-using-jar)   
+    2.1. [Requirements](#21-requirements)   
+    2.2. [Startup using Command Line](#22-startup-using-command-line)  
+    2.3. [Startup using JAR](#23-startup-using-jar)   
 3. [Quick Start](#3-quick-start)  
-3.1. [Using PAC](#31-using-pac)
+    3.1. [Using PAC](#31-using-pac)
 4. [Features](#4-features)  
 4.1. [Event](#41-event)  
 4.1.1. [Add New Event](#411-add-new-event)  
@@ -22,15 +22,17 @@
 4.1.4. [Edit Event -name](#414-edit-event-name)      
 4.1.5. [Edit Event -datetime](#415-edit-event-datetime)      
 4.1.6. [Edit Event -venue](#416-edit-event-venue)  
-4.1.7. [Edit Event](#417-edit-event)  
+4.1.7. [Edit Event](#417-edit-event)    
 4.2. [Attendance](#42-attendance)  
-4.2.1. [Add New Attendance](#421-add-attendance)  
-4.3. [Performance](#43-performance)
+4.2.1. [Add New Attendance](#421-add-students-attendance-to-event-attendance-attendance-add)    
+4.2.2. [View Attendance List](#422-view-attendance-list-attendance-list)   
+4.3. [Performance](#43-performance)     
 4.3.1. [Add New Performance](#431-add-performance)  
 4.3.2. [Delete Current Performance](#432-delete-performance)   
-4.3.3. [View Performance List](#433-view-performance-list)  
-4.4. [Student List](#44-student)  
-4.4.1. [Add New Student List](#441-add-new-student-list)  
+4.3.3. [View Performance List](#433-view-performance-list)      
+4.4. [Student List](#44-student)        
+4.4.1. [Add New Student List](#441-add-new-student-list)        
+4.4.2. [View Student List](#442-view-all-existing-student-lists-from-the-student-list-collection-student-list)
 5. [Possible Console Messages and Reasons](#5-possible-console-messages-and-reasons)           
 6. [FAQ](#6-faq)  
 7. [Command Summary](#7-command-summary)  
@@ -201,9 +203,10 @@ Expected outcome:
 
     Your Event was edited from |Event: lunch with colleague, time: Mar 23 2020 1800, venue: Marina Bay Sands| to |Event: lunch by myself, venue: home|.
 
-### 4.2. Attendance
-#### 4.2.1. Add Attendance
-Add a student’s attendance to the attendance list.  
+### 4.2 Attendance
+#### 4.2.1 Add students’ attendance to event: attendance `attendance add`
+
+Add a student’s attendance to the performance list.  
 This is a step by step command and you may follow the instructions given by the console. 
 You may wish to use an existing list found in StudentListCollection.
 
@@ -211,36 +214,52 @@ Format: `attendance add`
     
 Step by step guide: 
 
-    performance add
-    > Please key in the name of event that you wish to access to its student's performance. 
-    event
+    User:   attendance add
+    PAC:    Please key in the name of event that you wish to access to its student's performance. 
+    User:   eventName
     
-If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
+If the event is found, you can choose to add the student's attendance by manually key in each student, or you may choose
 the alternative provided by PAC: record using an existing name list located under StudentListCollection. 
 Do note that you need to have an existing name list before you are using this shortcut.  
-The following will show a success example of using an existing name list to add attendance. 
+The following will show a success example of *using an existing name list to add attendance*. 
 
-    > Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
-    yes
-    > Please choose the name list you wish to use by its index. (shows a list of list names)
-    1    
-    > Please key in the attendance status for student (student1 name) [Y/N]
-    Y
-    > (student name) is (attendance status) for event (event name)
+    PAC:    Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    User:   yes
+    PAC:    Please choose the name list you wish to use by its index. (shows a list of list names)
+    User:   1    
+    PAC:    Please key in the attendance status for student (student1 name) [Y/N]
+    User:   Y
+    PAC:    (student name) is (attendance status) for event (event name)
     ...
 
-The following will show a success example of creating a new attendance list.
+The following will show a success example of *creating a new attendance list*.
 
-    > Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
-    no
-    >
-    >Please key in student name and result in the following format: n/Student_Name p/Is_Present
-    n/John Doe p/Y
-    > Please key in the attendance status for student (student1 name) [Y/N]
-    Y
-    > (student name) is (attendance status) for event (event name)
+    PAC:    Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    User:   no
+    PAC:    Please key in student name and result in the following format: n/Student_Name p/Is_Present
+    User:   n/John Doe p/Y
+    PAC:    Please key in the attendance status for student (student1 name) [Y/N]
+    User:   Y
+    PAC:    (student name) is (attendance status) for event (event name)
     ...
+    
+#### 4.2.2 View attendance list: `attendance list`
 
+View the attendance list under a certain event.  
+
+Format: `attendance list`
+    
+Step by step guide: 
+
+    User:   attendance list
+    PAC:    Please key in the name of event.
+    User:   eventName
+    PAC:    (example of Table format list is shown below)
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                    |  Result                                     |
+    |___________|_____________________________________|_____________________________________________|
+    | 1         |  XX                                 |  A                                          |
+    |___________|_____________________________________|_____________________________________________|
 
 ### 4.3. Performance
 #### 4.3.1. Add Performance
@@ -251,22 +270,23 @@ Format: `performance add`
     
 Step by step guide: 
 
-    user: performance add
-    PAC: Please key in the name of event that you wish to access to its student's performance. 
-    user: event
+    User:   performance add
+    PAC:    Please key in the name of event that you wish to access to its student's performance. 
+    User:   event
+    
 If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
 the alternative provided by PAC: record using a current name list. Do note that you have to have an existing name list 
 before you are using this short cut.  
 The following will show a success example of using a current name list to add performance. 
 
-    PAC: Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
-    user: yes
-    PAC: Please choose the name list you wish to use. (shows a list of list names)
-    user: 1
-    PAC: Please key in the result for student (student1 name)
-    user: A
-    PAC: The result of student (student name) has been added successfully under event (event name)
-    PAC: Please key in the result for student (student2 name)
+    PAC:    Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    User:   yes
+    PAC:    Please choose the name list you wish to use. (shows a list of list names)
+    User:   1
+    PAC:    Please key in the result for student (student1 name)
+    User:   A
+    PAC:    The result of student (student name) has been added successfully under event (event name)
+    PAC:    Please key in the result for student (student2 name)
     ...
 
 #### 4.3.2. Delete Performance
@@ -277,12 +297,12 @@ Format: `performance delete`
     
 Step by step guide: 
 
-    user: performance delete
-    PAC: Please key in the name of event that you wish to access to its student's performance. 
-    user: event
-    PAC: Please key in the name of student that you wish to delete his/her performance 
-    user: name
-    PAC: The result of student (name) has been deleted successfully under event name.
+    User:   performance delete
+    PAC:    Please key in the name of event that you wish to access to its student's performance. 
+    User:   event
+    PAC:    Please key in the name of student that you wish to delete his/her performance 
+    User:   name
+    PAC:    The result of student (name) has been deleted successfully under event name.
 
 #### 4.3.3. View Performance List
 View the list of students' result under a certain event.  
@@ -292,10 +312,10 @@ Format: `performance list`
     
 Step by step guide: 
 
-    user: performance delete
-    PAC: Please key in the name of event that you wish to access to its student's performance.
-    user: event
-    PAC: (example of Table format list is shown below)
+    User:   performance delete
+    PAC:    Please key in the name of event that you wish to access to its student's performance.
+    User:   event
+    PAC:    (example of Table format list is shown below)
     _________________________________________________________________________________________________
     | index     |  Name of Student                    |  Result                                     |
     |___________|_____________________________________|_____________________________________________|
@@ -308,33 +328,58 @@ Step by step guide:
 Creates a student list and adds it to the collection of student list 
 that can be used for adding attendance and performance
 
-Format: `Insert format here`
-
 Command: 
 
     student add
     
 Examples: 
 
-    Insert example here
+    PAC:    What is the name of your list?
+    USER:   CS2113T Tut
+    PAC:    Please enter a student Name. If you are finished, enter done
+    USER:   John
+    PAC:    Please enter a student Name. If you are finished, enter done
+    USER:   Jodi
+    PAC:    Please enter a student Name. If you are finished, enter done
+    USER:   done
+    PAC:    Student List created, named : CS2113T Tut
     
+#### 4.4.2 View all existing student lists from the student list collection `student list`
+
+View all existing students lists from student list collection.
+
+Command: 
+
+    student list
+    
+Examples: 
+
+    PAC:    [1] CS2113T Tut
+            1. John
+            2. Jodi
+            --------------
+            [2] CS1010
+            1. Ryan
+            2. Nicole
+            3. Leon
 
 ## 5. Possible Console Messages and Reasons:  
 If event list is empty    
         
-    PAC: The event list is empty
+    PAC:    The event list is empty
 If event is not found in the list
            
-    PAC: Event is not found in the list.
+    PAC:    Event is not found in the list.
 If students' name list is empty
         
-    There is no existing student list.
+    PAC:    There is no existing student list.
            
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Well, write the User Guide in active voice anyway.
+**A**: It is not possible to save data locally and transfer another computer at this version. 
+Future patches will allow users to save their data and use it on another computer.
 
 ## 7. Command Summary
 
