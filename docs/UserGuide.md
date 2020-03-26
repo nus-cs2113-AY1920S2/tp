@@ -386,3 +386,6 @@ Future patches will allow users to save their data and use it on another compute
 {Give a 'cheat sheet' of commands here}
 
 * Add to-do `todo n/TODO_NAME d/DEADLINE`
+
+## 8. Contact Us
+If you have further queries or feedback on PAC, please contact us at [contact_us@pac.com](contact_us@PAC.com)
