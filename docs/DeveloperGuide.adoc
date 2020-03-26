@@ -70,14 +70,14 @@ Design Considerations for `clear done` command: +
 
 * Pros: Lesser code has to be written.
 
-* Cons: Tedious to implement as it is difficult to tack the current index of the task.
+* Cons: Tedious to implement as it is difficult to tack the current index of the task. +
 
 2. Loop through the TaskList to store the index of the completed task, and deletes the task from the TaskList, based
 on the stored index
 
 * Pros: Easier to implement as it is easier to track the current index of the task.
 
-* Cons: More lines of code has to be written. 
+* Cons: More lines of code has to be written.
 
 === Search Command
 *Step 1.* +
