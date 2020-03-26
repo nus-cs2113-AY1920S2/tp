@@ -39,17 +39,21 @@ public class FindCommand extends Command {
         }
 
         StringBuilder output = new StringBuilder();
-        output.append("\nList of selected modules:\n");
+        output.append(System.lineSeparator()
+                + "List of selected modules:"
+                + System.lineSeparator());
         for (Module module : listOfSelectedModulesToDisplay) {
             output.append(module.toString())
-                    .append("\n");
+                    .append(System.lineSeparator());
         }
 
-        output.append("\nList of available modules\n");
+        output.append(System.lineSeparator()
+                + "List of available modules"
+                + System.lineSeparator());
 
         for (Module module : listOfAvailableModulesToDisplay) {
             output.append(module.toString())
-                    .append("\n");
+                    .append(System.lineSeparator());
         }
         return output.toString();
     }

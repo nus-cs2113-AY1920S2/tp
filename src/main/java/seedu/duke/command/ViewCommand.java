@@ -92,7 +92,7 @@ public class ViewCommand extends Command {
 
     private void viewAvailableModules(AvailableModulesList modulesList) {
         StringBuilder viewList = new StringBuilder();
-        for (Module module : AvailableModulesList.availableModulesList) {
+        for (Module module : modulesList) {
             int index = modulesList.indexOf(module) + 1;
             viewList.append(Ui.BOX_MARGIN)
                     .append(System.lineSeparator())
