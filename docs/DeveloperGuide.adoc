@@ -106,6 +106,36 @@ the `execute` method of the `DeleteCommand` class
 case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also
 allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
 
+=== Clear Task feature
+==== Current Implementation
+* The `clearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function
+has to be executed
+
+* Given below is an example usage of `clear all` command:
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to
+parse the command provided.
+. A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute` method of
+`DeleteCommand` will then be called.
+. The `execute` command will then call the `clearAll()` method in the `clearCommand` class :
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message indicating an empty task list
+** If there are tasks in the existing task list, it will call the `clearList()` method from the `TaskList` class to clear the
+existing taskList
+
+* Given below is an example usage of `clear done` command:
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to
+parse the command provided.
+. A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute` method of
+`DeleteCommand` will then be called.
+. The `execute` command will then call the `clearDone()` method in the `clearCommand` class :
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message indicating an empty task list
+** If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()`
+method in the `taskList` class
+
+
 === Repeat event feature
 ==== Current Implementation
 * The `RepeatCommand` class extends `Command` class and initializes 3 values within a specified `Event` object which are stated below.
