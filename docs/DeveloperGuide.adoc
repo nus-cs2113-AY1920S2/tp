@@ -56,7 +56,7 @@ image::storage.PNG[Storage Class Diagram]
 image::delete.png[Delete Command sequence diagram]
 
 *Step 1.* +
-The Parser Class will call `prepareDeleteCommand(String)` and processes the delete index once it detects a `delete` command.
+The Parser Class will call `prepareDeleteCommand` method and processes the delete index once it detects a `delete` command.
 
 [WARNING]
 * If an IndexOutOfBoundsException or NumberFormatException is detected, the Parser class will create a new `IncorrectCommand` class
@@ -70,10 +70,42 @@ to display the corresponding error messages
 corresponding error message
 
 *Step 3.* +
-If not, the `DeleteCommand` class will call the `TaskList` class to get the updated task list and deletes the task corresponding to the index.
+`DeleteCommand` class will call the `TaskList` class to get the updated task list and deletes the task corresponding to the index.
 
+=== Search Command
+*Step 1.* +
+The Parser Class will call `prepareDeleteCommand` method and process the `task type` and `search query`
 
+[WARNING]
+`task type` refers to `all`,`event' or `assignment`
 
+*Step 2.* +
+`prepareSearchCommand method` will create a new `SearchCommand` class
+
+*Step 3.* +
+`SearchCommand` class will check the `task type` and calls their respective methods. In each of the respective methods, an ArrayList is used
+to store the original index of the results.
+
+[WARNING]
+If `task type` is *all*, `SearchCommand` class will call the `getSearchQueryAllTasks` method and returns an ArrayList of the results.
+
+[Warning]
+if `task type` is *event*, `SearchCommand` class will call the `getSearchQueryEvents` method and returns an ArrayList of the results.
 This section will detail how some noteworthy features are implemented.
+
+[Warning]
+if `task type` is *assignment*, `SearchCommand` class will call the `getSearchQueryAssignments` and returns an ArrayList of all the results.
+
+*Step 4.* +
+`SearchCommand` class calls the `searchList` method to format the results of the search query into a String format
+
+*Step 5.* +
+`SearchCommand` class calls the `resultsList` method to print the results of the search query, and creates a new `IncorrectCommand`
+class to print the success message
+
+
+[WARNING]
+if there are no results to the search query or if there are no tasks in the task list, `SearchCommand` class
+will create a new `IncorrectCommand` class to print the error messages
 
 === Calendar
