@@ -15,3 +15,43 @@ ifdef::env-github[]
 endif::[]
 
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
+
+== Design
+This section will give a high-level overview of how various components in ATAS function and interact with each other.
+
+=== Architecture
+The following sections will explain each component in greater detail.
+
+=== Atas Component
+The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command +
+image:images/Atas help command sequence diagram v2.PNG[Component interactions for help command] +
+
+The Atas Class contains the main logic for ATAS. +
+1. Atas uses the UI class to read user input. +
+2. The Parser class is used to parse the user input string, returning a Command object. +
+3. The Command's execute() method is run, returning a CommandResult object. +
+4. Atas then uses the UI class to show the CommandResult's message to the user. +
+5. Finally, Atas uses the Storage object to save the new state of the application.
+
+
+=== UI Component
+
+=== Parser Component
+image:images/parser class diagram v1.PNG[Parser Class Diagram] +
+1. The Atas class uses the Parser class' static parseCommand() method to parse user commands. +
+2. The Parser class' parseCommand() method then returns the appropriate Command object depending on the user input.
+
+=== Storage Component
+image:images/storage class diagram v1.PNG[Storage Class Diagram] +
+1. A Storage object is created by the Atas class to handle the loading and saving of task data.
+2. The load() method is used to read saved data from a local file into the current session of ATAS.
+3. The save() method writes the current state of ATAS into the local save file using the Task.encodeTask() method.
+
+=== Command Component
+
+=== CommandResult Component
+
+== Implementation
+This section will detail how some noteworthy features are implemented.
+
+=== Calendar
