@@ -139,13 +139,16 @@ method in the `taskList` class
 * Creating another `clear done` command instead of just 1 `clear` command
 ** Rationale: +
 Considering that our target audience are students, we feel that it might be inconvenient for the students to delete each
-completed one by one
+completed one by one, just to reduce the number of tasks that is being displayed during `list` command.
 ** Alternative considered: +
 1. Delete the task once it has been marked as completed
 *** pros: Easier to implement and improved code readability
 *** cons: User may want to refer back to completed tasks for reference in the future and may not want to delete the
 completed task
-
+2. Instead of deleting the completed tasks, we can choose to only list commands that have been completed
+*** pros: Easier to implement and improved code readability
+*** cons: ArrayList will be filled up with unnecessary tasks that could have been removed. This might affect the
+time complexity of future addition or searching operations on the ArrayList.
 
 === Repeat event feature
 ==== Current Implementation
