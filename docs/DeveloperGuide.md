@@ -18,30 +18,47 @@ PAC. The following groups are in particular the intended audience of the documen
 - PAC developers
 - PAC software testers
 
-## Document Organisation
-| Section | Purpose |
-|---------|---------|
-|         |         |
-|         |         | 
-|         |         | 
-
-## Overall Design
+## Architecture
+This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
 ### Overall Architecture
 *Overall Class diagram*
+{To be added in future revisions}
+
 ### Command
-*Class diagram of the Command component*
+![Command](images/Command.png "Class diagram of Command component")         
+*Class diagram of the Command component*  
+
+Commands are the main classes to be executed in PAC. All of the specific Command classes inherit the 
+base Command abstract class, and utilize its abstract execute() method.  
+A subclass of Command is created and executed when the professor input a corresponding command.
+ 
 ### Parser
-*Class diagram of the Parser component*
-### Storage
-*Class diagram of the Storage component*
+*Class diagram of the Parser component*  
+There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
+of PAC. 
+
+| Parser                    | Created in                                                    |
+|---------------------------|---------------------------------------------------------------|
+| EventParser               | EventCommandInterpreter                                       | 
+| CalenderParser            | EventCommandInterpreter                                       | 
+| AttendanceParser          | Step-by-step command at Attendance-related command classes    |
+| PerformanceParser         | Step-by-step command at performance-related command classes   |  
+
+A Parser class is created when a user input contains data to be stored or used in certain features.    
+
 ### UI
-*Class diagram of the UI component*
+![Ui](images/Ui.png "Class diagram of Ui component")                
+*Class diagram of the UI component*   
+
+UI is the main class handles user display, which includes reading user input and printing information 
+back to the user on command-line.  
+Besides the normal command line messages, there are two subclasses of UI: 
+DisplayList and DisplayTable, to specifically print the list and table interface to professor. 
 
 ## Feature Design and Implementation 
 ### Event
-![event](images/event.png "Class diagram of Event component")
-
+![event](images/event.png "Class diagram of Event component")           
 *Class diagram of the Event component*
 
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
@@ -60,7 +77,8 @@ and `time`, which corresponds to `d/` and `t/` flag respectively.
 either by complete match, or fuzzy match.
 * Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar control flow. 
 
-### Attendance Tracker
+### Attendance
+![attendance](images/Attendance.png "Class diagram of Attendance component")        
 *Class diagram of the Attendance component*
 1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
@@ -91,20 +109,32 @@ Note that:
 The user is given an option to either use an existing list stored under StudentListCollection or
 create a new attendance list. `n/` and `p/` flags are used to insert new attendance.
 
-### Performance Tracker
-*Class diagram of the Performance component*
+### Performance
+![Performance](images/Performance.png "Class diagram of Performance component")     
+*Class diagram of the Performance component*  
+1. When a user enters a performance-related command, the command is analysed by `PerformanceCommandInterpreter`. 
+1. Once determined, the relevant class that corresponds to the command is created (e.g. AddPerformance, 
+DeletePerformance...), and ask for relevant information (e.g. event name, student name, student result) from the user. 
+1. Then, with the information extracted from the previous step passed into it. It modifies PerformanceList` under
+the event class correspond to the input event name.
+1. These commands are then returned to `Duke.run()` to `execute()`. 
+
+Note that:
+* All PerformanceList class should be created under an Event class. A PerformanceList class cannot exist 
+by its own. 
+* All Performance commands are line-by-line commands. This aims to assist the user with correct command format and
+prevent time wasted on key in wrong commands. 
+
 ### Student List Collection
-*Class diagram of the Student List component*
+![Student](images/Student.png "Class diagram of Student component")     
+*Class diagram of the Student component*  
+1. When a user enters an studentList-related command, the command is analysed by `StudentCommandInterpreter`. 
+1. Once determined, the relevant class that corresponds to the type of command is created.
+1. Then, the class will execute base on its function. It modifies `AttendanceList`.
+1. These commands are then returned to `Duke.run()` to `execute()`. 
 
-
-## Design & Implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-### Overall Design & Implementation
-### Event Design & Implementation
-### Attendance Design & Implementation
-### Performance Design & Implementation
-### Student List Design & Implementation
-
+Note that:
+* studentList-related commands can be executed without the existence of events.
 
 ## User Stories
 
@@ -127,6 +157,7 @@ create a new attendance list. `n/` and `p/` flags are used to insert new attenda
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
+{To be added in future revisions}
 
 ## Glossary
 
