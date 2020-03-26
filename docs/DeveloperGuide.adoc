@@ -76,7 +76,7 @@ corresponding error message
 *Step 1.* +
 The Parser Class will call `prepareDeleteCommand` method and process the `task type` and `search query`
 
-[WARNING]
+[NOTE]
 `task type` refers to `all`,`event' or `assignment`
 
 *Step 2.* +
