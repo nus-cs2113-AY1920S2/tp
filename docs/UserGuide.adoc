@@ -205,7 +205,7 @@ Here are the relevant tasks:
 ```
 
 === List upcoming events: *`list upcoming events`*
-You can view all your upcoming events from the list of tasks
+You can view all your *upcoming events* from the list of tasks.
 
 Format: `list upcoming events`
 
@@ -219,6 +219,21 @@ Here are the relevant tasks:
             notes: Look for internship
   7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
             notes: Have to check the exam venue and duration again
+```
+
+=== List Incomplete Assignments: *`list incomplete assignments`*
+You can view all your *incomplete assignments* from the list of tasks.
+
+Format: `list incomplete assignments`
+
+Expected outcome:
+
+```
+Here are the relevant tasks:
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
 ```
 
 === Edit Tasks: *`edit`*
