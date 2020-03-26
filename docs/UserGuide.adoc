@@ -257,6 +257,7 @@ Refer to <<Add Assignments: *`assignment`*>> or <<Add Events: *`event`*>> for us
 
 === Delete Tasks: *`delete`*
 You can delete unwanted tasks in your existing list.
+
 Format: `delete [INDEX]`
 
 [TIP]
@@ -267,6 +268,7 @@ Example: `delete 1`
 
 === Mark Done: *`done`*
 You can mark a completed task as done in your existing list.
+
 Format: `done [INDEX]`
 
 [TIP]
@@ -282,17 +284,20 @@ Expected outcome:
 
 === Clear Tasks: *`clear`*
 ==== Clear All Tasks
-You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared. +
+You can clear *all* tasks in the list if you want to start from a fresh list. The stored list will also be cleared.
+
 Format: `clear all`
 
 ==== Clear All Done Tasks
 You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
-also be reflected in the stored list. +
+also be reflected in the stored list.
+
 Format: `clear done`
 
 === Repeating Events: *`repeat`*
 ==== Set an event to repeat
 Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
+
 Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
 
 [NOTE]
@@ -306,7 +311,9 @@ Index of task specified has to be an *event* task.
 
 ==== Unset repeating event
 Stop a repeating event from continuing to repeat.
+
 Format: `repeat id/[INDEX] p/0`
+
 [TIP]
 You can think of this as repeating the task every 0 days and hence not repeating!
 
