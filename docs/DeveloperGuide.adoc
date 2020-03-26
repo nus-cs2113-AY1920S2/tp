@@ -54,23 +54,13 @@ image::storage.PNG[Storage Class Diagram]
 == Implementation
 === Delete Command
 image::delete.png[Delete Command sequence diagram]
+Design Considerations:
+1. Loop through the ArrayList to get the task at the specified index and delete from the index
+2. Use `remove` method to delete the task at a specified index
 
-*Step 1.* +
-The Parser Class will call `prepareDeleteCommand` method and processes the delete index once it detects a `delete` command.
-
-[WARNING]
-If an `IndexOutOfBoundsException` or `NumberFormatException is detected`, the Parser class will create a new `IncorrectCommand` class
-to display the corresponding error messages
-
-*Step 2.* +
-`prepareDeleteCommand` will create a new `DeleteCommand` class.
-
-[WARNING]
-If there is no items in the task list, the `DeleteCommand` class will create a new `IncorrectCommand` class to display the
-corresponding error message
-
-*Step 3.* +
-`DeleteCommand` class will call the `TaskList` class to get the updated task list and deletes the task corresponding to the index.
+We implemented the 2nd option for deleting of tasks. This is because:
+* Both methods have similar time and space complexities, but the 2nd method is much easier to implement as compared
+to the 1st method
 
 === Search Command
 *Step 1.* +
