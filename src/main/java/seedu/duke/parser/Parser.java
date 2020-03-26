@@ -4,10 +4,12 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.Command;
+
 import seedu.duke.command.CalculateCapCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.DeleteFromSemCommand;
 import seedu.duke.command.DeleteFromAvailableCommand;
+
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.FindCommand;
 import seedu.duke.command.HelpingCommand;
@@ -263,6 +265,7 @@ public class Parser {
         throw new InputException("invalid 'delete' command to delete from Available Modules",
                 "delete id/ID OR delete n/NAME");
     }
+
 
     private static String convertSemToStandardFormat(String semester) {
         String standardSemFormat;

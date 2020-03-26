@@ -224,6 +224,10 @@ Your CAP:
 4.75
 
 
+Okay, this module has been deleted from the corresponding semester
+Module IS4241 has been deleted from semester 2018/2019 SEM2
+
+
 Okay! Here is your module plan:
 2018/2019 SEM1
 1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
@@ -231,7 +235,17 @@ Okay! Here is your module plan:
 
 2018/2019 SEM2
 1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
-2.[✓] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
+
+
+Okay, this module has been deleted from the list of available modules
+ID: GES1000 Name: Singapore Employment Law | Modular Credit: 4
+
+
+Module CS1010 cannot be deleted because it is a prerequisite to other modules.
+
+
+Okay, this module has been deleted from the list of available modules
+ID: GET1002 Name: Bridging East and West: Exploring Chinese Communication | Modular Credit: 4
 
 
 Okay! Here are your available modules in database:
@@ -276,21 +290,17 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  19 | GET1001  | Seeing the World Through Maps                                 | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  20 | GET1002  | Bridging East and West: Exploring Chinese Communication       | 4             | None                    |
+|  20 | GET1003  | Home                                                          | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  21 | GET1003  | Home                                                          | 4             | None                    |
+|  21 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  22 | GES1000  | Singapore Employment Law                                      | 4             | None                    |
+|  22 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  23 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
+|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  24 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
+|  24 | CS1231   | Discrete Structures                                           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  25 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  26 | CS1231   | Discrete Structures                                           | 4             | None                    |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  27 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
+|  25 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
 ----------------------------------------------------------------------------------------------------------------------------
 
 
@@ -301,7 +311,6 @@ Okay! Here is your module plan:
 
 2018/2019 SEM2
 1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
-2.[✓] ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
 
 
 bye!

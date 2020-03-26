@@ -17,20 +17,15 @@ public class SemModulesList extends ArrayList<SelectedModule> {
         return semester;
     }
 
-
-    /**
-     * Checks if the moduleIdentifier is in the semModulesList.
-     * @param moduleIdentifier : name of the module to check in the ModulesList.
-     */
     public boolean isInList(String moduleIdentifier) {
         for (SelectedModule module: this) {
             if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
+
                 return true;
             }
         }
         return false;
     }
-
 
     public boolean isModuleIdInList(String moduleId) {
         for (Module module: this) {
