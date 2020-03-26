@@ -46,7 +46,7 @@ public class Quiz {
      * @param subject Subject to be tested.
      * @throws EscException when chosen subject has no questions.
      */
-    public static void quizQuestion(Subject subject) throws EscException {
+    public static void quizQuestion(Subject subject, int numToQuiz) throws EscException {
         HashSet<Card> set = new HashSet<>();
         CardList cards = subject.getCardList();
         if (cards.size() == 0) {
@@ -56,9 +56,13 @@ public class Quiz {
         int max = cards.size();
         int attempted = 0;
         double score = 0;
-        while (attempted < max) {
+        while (attempted < max && attempted != numToQuiz) {
             try {
-                score += quizNext(cards, set);
+                double obtainedScore = quizNext(cards, set);
+                if (obtainedScore == -1.0) {
+                    break;
+                }
+                score += obtainedScore;
                 attempted++;
             } catch (EscException e) {
                 System.out.println(e.getMessage());
@@ -76,10 +80,8 @@ public class Quiz {
      * @param cards Stack of cards to quiz from.
      * @param set Set of cards that has already been quizzed.
      * @return Score obtained from question.
-     * @throws EscException when input format is incorrect.
      */
     public static double quizNext(CardList cards, HashSet<Card> set) throws EscException {
-        double score;
         Card questionCard = retrieveCard(cards);
         while (set.contains(questionCard)) {
             questionCard = retrieveCard(cards);
@@ -89,9 +91,24 @@ public class Quiz {
         ui.showLine();
         String question = questionCard.getQuestion();
         System.out.println("Question: " + question);
-        ui.readAnswer();
+        String userAnswer = ui.readAnswer();
+        if (userAnswer.equals("exitquiz")) {
+            return -1.0;
+        }
         String answer = questionCard.getAnswer();
-        System.out.println("Your Answer: " + answer);
+        System.out.println("Correct Answer: " + answer);
+        double score = markCorrectness();
+        return score;
+    }
+
+    /**
+     * Mark the correctness of the answer.
+     * @return Score of the question.
+     * @throws EscException if marking format is wrong.
+     */
+    public static double markCorrectness() throws EscException {
+        UI ui = new UI();
+        double score;
         String check = ui.checkCorrectness();
         if (check.equals("Y")) {
             score = 1.0;

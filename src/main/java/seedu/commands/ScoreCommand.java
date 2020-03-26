@@ -1,5 +1,7 @@
 package seedu.commands;
 
+import seedu.exception.EscException;
+import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
 /**
@@ -25,8 +27,9 @@ public class ScoreCommand extends Command {
      * View all the scores attained for a subject.
      */
     @Override
-    public void execute(SubjectList subjectList) {
-
-        //Duke.listCards(cards.getCards());
+    public void execute(SubjectList subjectList) throws EscException {
+        Subject subject = subjectList.getSubject(subjectIndex);
+        subject.showScores();;
     }
+
 }
