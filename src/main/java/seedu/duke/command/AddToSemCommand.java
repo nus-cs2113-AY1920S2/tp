@@ -1,14 +1,13 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
+
+import seedu.duke.data.SemesterList;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
-import seedu.duke.data.SelectedModulesList;
-import seedu.duke.data.SemesterList;
+
 import seedu.duke.data.SemModulesList;
 import seedu.duke.module.Module;
-import seedu.duke.module.SelectedModule;
-import seedu.duke.ui.Ui;
 
 public class AddToSemCommand extends AddCommand {
 

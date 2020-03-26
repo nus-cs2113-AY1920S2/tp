@@ -17,22 +17,10 @@ public class SemModulesList extends ArrayList<SelectedModule> {
         return semester;
     }
 
-// SORRY THIS PART DAMN MESSY I WILL TIDY IT UP, BUT I THINK PULL ALREADY THEN EASIER TO EDIT
-    /**
-     * Checks if the moduleName is in the semModulesList.
-     * @param moduleName : name of the module to check in the ModulesList.
-     */
-    public boolean isModuleNameInList(String moduleName) {
-        for (Module module: this) {
-            if (module.getName().equals(moduleName)) {
-  /*
-     * Checks if the moduleIdentifier is in the semModulesList.
-     * @param moduleIdentifier : name of the module to check in the ModulesList.
-     
     public boolean isInList(String moduleIdentifier) {
         for (SelectedModule module: this) {
             if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
-              */
+
                 return true;
             }
         }

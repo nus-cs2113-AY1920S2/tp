@@ -1,13 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.command.DeleteCommand;
 import seedu.duke.data.AvailableModulesList;
-import seedu.duke.data.SelectedModulesList;
 import seedu.duke.data.SemModulesList;
-import seedu.duke.module.SelectedModule;
+import seedu.duke.data.SemesterList;
+import seedu.duke.exception.RuntimeException;
 import seedu.duke.ui.Ui;
 import seedu.duke.module.Module;
-import seedu.duke.module.NewModule;
 
 public class DeleteFromAvailableCommand extends DeleteCommand {
 
@@ -24,21 +22,21 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
         this.type = type;
     }
 
-    public void execute(SelectedModulesList selectedModulesList, AvailableModulesList availableModulesList) {
+    public void execute(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
+            throws RuntimeException {
         boolean isModuleAvailable = checkIfModuleAvailable(availableModulesList);
         if (!isModuleAvailable) {
-            Ui.showError(String.format("Module %s not found in available modules", moduleIdentifier));
-            return;
+            throw new RuntimeException(String.format("Module %s not found in available modules", moduleIdentifier));
         }
 
         Module moduleChosen = availableModulesList.getModule(moduleIdentifier);
         boolean isPreReq = checkIfIsPreReq(moduleChosen, availableModulesList);
         if (isPreReq) {
-            Ui.showError(String.format("Module %s cannot be deleted because it is a prerequisite to other modules.",
+            throw new RuntimeException(String.format(
+                    "Module %s cannot be deleted because it is a prerequisite to other modules.",
                     moduleIdentifier));
-            return;
         }
-        availableModulesList.remove(moduleChosen); // why did this work????
+        availableModulesList.remove(moduleChosen);
         Ui.showDeleteFromAvailableMessage(moduleChosen.toString());
 
         boolean isInModulePlan = checkIfInModulePlan(moduleChosen.getId(), selectedModulesList);
@@ -73,7 +71,7 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
         return false;
     }
 
-    public boolean checkIfInModulePlan(String moduleId, SelectedModulesList selectedModulesList) {
+    public boolean checkIfInModulePlan(String moduleId, SemesterList selectedModulesList) {
         for (SemModulesList sem : selectedModulesList) {
             if (sem.isModuleIdInList(moduleId)) {
                 return true;

@@ -4,10 +4,12 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.Command;
+
+import seedu.duke.command.CalculateCapCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.DeleteFromSemCommand;
 import seedu.duke.command.DeleteFromAvailableCommand;
-import seedu.duke.command.CalculateCapCommand;
+
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.FindCommand;
 import seedu.duke.command.HelpingCommand;
@@ -53,10 +55,10 @@ public class Parser {
             return processHelpCommand();
         case FindCommand.COMMAND_WORD:
             return processFindCommand(args);
-        case DeleteCommand.COMMAND_WORD:
-            return processDeleteCommand(args);
         case CalculateCapCommand.COMMAND_WORD:
             return processCalculateCapCommand();
+        case DeleteCommand.COMMAND_WORD:
+            return processDeleteCommand(args);
         default:
             throw new InputException("invalid command");
         }
@@ -221,6 +223,10 @@ public class Parser {
         return new FindCommand(args);
     }
 
+    private static CalculateCapCommand processCalculateCapCommand() {
+        return new CalculateCapCommand();
+    }
+
     private static DeleteCommand processDeleteCommand(String args) throws InputException {
         if (args.contains("s/")) {
             return processDeleteFromSemCommand(args);
@@ -258,10 +264,8 @@ public class Parser {
         }
         throw new InputException("invalid 'delete' command to delete from Available Modules",
                 "delete id/ID OR delete n/NAME");
-
-    private static CalculateCapCommand processCalculateCapCommand() {
-        return new CalculateCapCommand();
     }
+
 
     private static String convertSemToStandardFormat(String semester) {
         String standardSemFormat;
@@ -270,4 +274,5 @@ public class Parser {
         standardSemFormat = year + "/" + (year + 1) + " SEM" + sem;
         return standardSemFormat;
     }
+
 }
