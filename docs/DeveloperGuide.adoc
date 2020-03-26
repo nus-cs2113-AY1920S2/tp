@@ -57,6 +57,7 @@ This section will detail how some noteworthy features are implemented.
 === Delete Command
 
 Current Implementation: +
+
 * The `DeleteCommand` extends `Command` class and initializes the `delete index` in its constructor. The `delete index`
 specifies the index of task that the user wants to delete.
 
