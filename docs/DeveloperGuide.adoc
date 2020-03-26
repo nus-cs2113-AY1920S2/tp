@@ -56,13 +56,28 @@ image::storage.PNG[Storage Class Diagram]
 image::delete.png[Delete Command sequence diagram]
 
 Design Considerations: +
-1. Loop through the ArrayList to get the task at the specified index and delete from the index +
+1. Loop through the TaskList to get the task at the specified index and delete from the index +
 2. Use `remove` method to delete the task at a specified index +
 
 We implemented the 2nd option for deleting of tasks. This is because:
 
 * Both methods have similar time and space complexities, but the 2nd method is much easier to implement as compared
 to the 1st method
+
+=== Clear Command
+Design Considerations for `clear done` command: +
+1. Loop through the TaskList to check if task is completed, and deletes the task if the task is completed
+
+* Pros: Lesser code has to be written.
+
+* Cons: Tedious to implement as it is difficult to tack the current index of the task.
+
+2. Loop through the TaskList to store the index of the completed task, and deletes the task from the TaskList, based
+on the stored index
+
+* Pros: Easier to implement as it is easier to track the current index of the task.
+
+* Cons: More lines of code has to be written. 
 
 === Search Command
 *Step 1.* +
