@@ -42,7 +42,7 @@ image:images/parser class diagram v1.PNG[Parser Class Diagram] +
 2. The Parser class' parseCommand() method then returns the appropriate Command object depending on the user input.
 
 === Storage Component
-image::storage.PNG[Storage Class Diagram] +
+image::storage.PNG[Storage Class Diagram]
 1. A Storage object is created by the Atas class to handle the loading and saving of task data.
 2. The load() method is used to read saved data from a local file into the current session of ATAS.
 3. The save() method writes the current state of ATAS into the local save file using the Task.encodeTask() method.
