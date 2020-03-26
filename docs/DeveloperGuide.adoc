@@ -24,6 +24,7 @@ This section will give a high-level overview of how various components in ATAS f
 The following sections will explain each component in greater detail.
 
 === Atas Component
+
 The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command +
 
 image::Atas help command sequence diagram v2.PNG[Component interactions for help command]
@@ -289,6 +290,78 @@ Therefore, the `set` method of `ArrayList` is used to replace the edited task wi
 ** Alternatives Considered: +
 Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However,
 this is not chosen as it is not intuitive for the user's task index to shift after editing the task.
+
+
+=== View Calendar feature
+
+[[calendar]]
+.Sample output of Calendar Command
+image::calendar2.png[]
+
+==== Implementation
+The `CalendarCommand` class extends `Command` with methods to implement the necessary pre-processing to display an overview of tasks in the given date.
+The following sequence diagram outlines an example execution of `CalendarCommand` when it is called and the interaction it has with the relevant components.
+
+image::calendar-diagram.png[]
+
+The following outlines the step by step execution of the above sequence diagram.
+
+*Step 1* +
+The users enters the command `calendar d/05/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
+
+*Step 2* +
+The `Parser` will construct a `CalendarCommand` object with the LocalDate provided by the user input.
+
+[NOTE]
+An `IncorrectCommand` object will be constructed with its specific error message instead according to the error encountered.
+This can be in the form of no arguments provided or parser fails to parse the date provided.
+
+*Step 3* +
+The `execute` method in the `CalendarCommand` is then called by the `Atas` component.
+
+The method manages all pre-processing to get the details needed to formulate the calendar. Details include details of Tasks that falls within the given month and the details of the month itself.
+*The pre-processing work is listed in chronological order below:* +
+
+* Calibrates an instance of Calendar of the Java.util class with the provided LocalDate and obtain all necessary information about the Calendar month.
+* Obtains all `Task` details that falls within the range of the month. This is performed through calling the `getTasksByRange` of the `TaskList` component.
+* Duplicates all `Repeat Task` that is returned from the method above to obtain an ArrayList of all `Tasks` that exist within the month.
+* Appends the `Calendar` title and legend to the resultant String that contains the calendar view.
+** This is done through separate method calls to `addCalendarTitle` and `addCalendarLegend` respectively.
+* Appends the main body of the `Calendar` according to the ArrayList of `Task` obtained earlier through a method call to `addCalendarBody`.
+* Constructs a `CommandResult` object with the resultant String that contains the calendar view and returns this object.
+
+[NOTE]
+Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the design considerations subsection.
+
+*Step 4* +
+The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the Calendar view by calling `showToUser` method of the `Ui` component.
+
+==== Design Considerations
+* Duplicating Tasks instead of keeping the a Repeat `Event` as a single entity like how it is stored.
+** Rationale: +
+By duplicating the repeating `Event`, it allows better abstraction by removing the need to constantly differentiate between normal `Tasks` and repeating `Task`
+during the construction of the final Calendar View. The current implementation allows `addCalendarBody` method to obtain all possible `Tasks`, with repeating `Event` stored as a separate `Task` within the ArrayList of `Tasks`.
+Each `Task` can be removed from the ArrayList after it has been printed which makes the task simpler.
+** Alternatives considered: +
+Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with singular tasks such as `delete`, `search`, `mark done`.
+
+* Truncation of Task details instead of extending column size
+** Rationale: +
+This keeps the calendar compact such that the command line application can be viewed as a smaller window as opposed to the taking up the entire screen.
+Since row size is also extendable, extending column size independently from row size will destroy the integrity of a traditional calendar box view.
+** Also, there are other features that can be used in conjunction with the Calendar to allow user to obtain more information of the task such as `SearchCommand` and `ListCommand`.
+** Alternative considered: +
+Wrapping of tasks details to display the full detail of tasks. This is not feasible as this further increases the need for number of rows.
+As mentioned, we would like to keep the integrity and view of a traditional calendar and this does the opposite of that.
+
+* Limiting the number of Tasks that is able to be displayed for a particular calendar date
+** Rationale: +
+Limiting the number of task might misrepresent the list of `Task` a user has for any particular date if there are more tasks than available slots on the calendar date.
+To solve the issue of misrepresentation, we decided to replace the last `Task` slot of each Calendar date with an indicator to indicate there are tasks not shown if there are indeed tasks left out
+due to the constraints that is the lack of Calendar rows.
+** Alternative considered: +
+Expanding number of Calendar rows. This will require the need to increase the number of Calendar Columns to preserve the integrity of a traditional calendar view.
+However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
 
 == Testing
 === Using IntelliJ JUnit Tests

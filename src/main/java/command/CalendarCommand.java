@@ -38,6 +38,7 @@ public class CalendarCommand extends Command {
     private static final String BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String STARTING_BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String PAD = " ";
+    private static final String MORE_TASK_INDICATOR = ANSI_CYAN + "....." + ANSI_RESET;
 
     // Calendar dimensions
     private static final int MAX_CALENDAR_ROWS = 30;
@@ -49,6 +50,7 @@ public class CalendarCommand extends Command {
     private static final int DATE_PADDING_WIDTH = MAX_CALENDAR_BOX_WIDTH - 3;
     private static final int EMPTY_BOX_PADDING = MAX_CALENDAR_BOX_WIDTH - 1;
     private static final int CONTENT_WIDTH = MAX_CALENDAR_BOX_WIDTH - 1;
+    private static final int MIDDLE_JUSTIFIED_WIDTH_PADDING = MAX_CALENDAR_BOX_WIDTH / 2 - 3;
 
     public static final String COMMAND_WORD = "calendar";
     public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/YY]";
@@ -233,8 +235,12 @@ public class CalendarCommand extends Command {
                 boolean hasPrintedTask = false;
                 for (Task task : monthlyTaskList) {
                     if (task.getDate().getDayOfMonth() == currentDayRepresented) {
-                        hasPrintedTask = true;
-                        addTaskToCalendar(monthlyTaskList, calendarView, task);
+                        if (calendarRow % CALENDAR_BOX_HEIGHT == 5) {
+                            addTaskNotShownIndicator(calendarView);
+                        } else {
+                            hasPrintedTask = true;
+                            addTaskToCalendar(monthlyTaskList, calendarView, task);
+                        }
                         break;
                     }
                 }
@@ -245,6 +251,17 @@ public class CalendarCommand extends Command {
             }
             addCalendarNewLine(calendarView);
         }
+    }
+
+    /**
+     * Adds an indicator to indicate that there are Tasks are not shown.
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     */
+    public void addTaskNotShownIndicator(StringBuilder calendarView) {
+        calendarView.append(PAD.repeat(MIDDLE_JUSTIFIED_WIDTH_PADDING))
+                .append(MORE_TASK_INDICATOR)
+                .append(PAD.repeat(CONTENT_WIDTH - MIDDLE_JUSTIFIED_WIDTH_PADDING - 5))
+                .append(BORDER);
     }
 
     /**
