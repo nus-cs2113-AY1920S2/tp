@@ -53,6 +53,14 @@ image::storage.PNG[Storage Class Diagram]
 
 == Implementation
 === Delete Command
+image::delete.png[Delete Command sequence diagram]
+1. The Parser Class will call `prepareDeleteCommand(String)` and processes the delete index once it detects a `delete` command.
+*If an IndexOutOfBoundsException or NumberFormatException is detected, the Parser class will create a new `IncorrectCommand` class
+to display the corresponding error messages
+2.`prepareDeleteCommand` will create a new `DeleteCommand` class.
+*If there is no items in the task list, the `DeleteCommand` class will create a new `IncorrectCommand` class to display the
+corresponding error message
+* If not, the `DeleteCommand` class will call the `TaskList` class to get the updated task list and deletes the task corresponding to the index.
 This section will detail how some noteworthy features are implemented.
 
 === Calendar
