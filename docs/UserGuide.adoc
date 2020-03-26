@@ -169,7 +169,7 @@ Here are the relevant tasks:
             notes: Have to check the exam venue and duration again
 ```
 
-==== List today's tasks: `list today`
+==== List today's tasks: *`list today`*
 You can view only the tasks you have today.
 
 Format: `list today`
@@ -183,7 +183,7 @@ Here are the relevant tasks:
             notes: Zoom meeting
 ```
 
-==== List weekly tasks: `list week`
+==== List weekly tasks: *`list week`*
 You can view all the tasks for the next 7 days
 
 Format: `list week`
@@ -191,7 +191,7 @@ Format: `list week`
 Expected Outcome(Assuming today's date is 27 March 2020):
 
 ```
-> Here are the relevant tasks:
+Here are the relevant tasks:
   1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
             notes: Last chance to get feedback!
   3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
@@ -202,6 +202,23 @@ Expected Outcome(Assuming today's date is 27 March 2020):
             notes: Complete DG draft to get tutor comments
   6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
             notes: Look for internship
+```
+
+=== List upcoming events: *`list upcoming events`*
+You can view all your upcoming events from the list of tasks
+
+Format: `list upcoming events`
+
+Expected outcome:
+
+```
+Here are the relevant tasks:
+  4. [E][/] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: Zoom meeting
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: Look for internship
+  7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
+            notes: Have to check the exam venue and duration again
 ```
 
 === Edit Tasks: *`edit`*
