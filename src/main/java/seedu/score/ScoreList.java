@@ -1,5 +1,7 @@
 package seedu.score;
 
+import seedu.exception.EscException;
+
 import java.util.ArrayList;
 
 /**
@@ -27,6 +29,23 @@ public class ScoreList {
         }
         double avgScore = totalScore / scores.size();
         return avgScore;
+    }
+
+    /**
+     * Prints out all the past score history for selected subject.
+     */
+    public void listScores() throws EscException {
+        if (scores.isEmpty()) {
+            throw new EscException("No test history yet.");
+        }
+        System.out.println("Past test history:");
+        String msg;
+        int counter = 1;
+        for (double score : scores) {
+            System.out.println(counter + ") " + score);
+            counter++;
+        }
+        System.out.println("Average Score: " + getAvg());
     }
 
 }
