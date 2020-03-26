@@ -15,8 +15,8 @@ Meeting Organizer is your friendly chatbot that helps you find free time between
 ## Features 
 
 - [Add new contact](#Adding-a-new-contact)
-- [Display contacts](#Display-contacts:-contacts)
-- [Display meetings](#Display-meetings:-meetings)
+- [Display contacts](#Display-contacts:-`contacts`)
+- [Display meetings](#Display-meetings:-`meetings`)
 <br/><br/>
 ### Adding a to-do: `todo`
 Adds a to-do item to the list of to-dos.
@@ -49,7 +49,7 @@ Expected output:
 ```
 {insert ui}
 ```
-<br/><br/>
+<br/>
 
 ### Display contacts: `contacts`
 Displays names of all contacts that is stored in program.
@@ -60,7 +60,7 @@ Expected output:
 ```
 {insert ui}
 ```
-<br/><br/>
+<br/>
 
 ### Display meetings: `meetings`
 Displays all scheduled meetings stored in program.
@@ -71,7 +71,7 @@ Expected output:
 ```
 {insert ui}
 ```
-<br/><br/>
+<br/>
 
 ## FAQ
 
