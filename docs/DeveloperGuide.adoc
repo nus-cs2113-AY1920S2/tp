@@ -12,6 +12,7 @@
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
+:warning-caption: :warning:
 endif::[]
 
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
@@ -50,6 +51,21 @@ image::storage.PNG[Storage Class Diagram]
 === Command Component
 
 === CommandResult Component
+
+== Setting Up
+
+. Ensure you have Java 11 or above installed on your computer
+.. For *Windows* Users:
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
+... Open a `cmd` (Command Prompt) window.
+... Navigate to the folder containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
+
+.. For *Mac* Users:
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
+... Open up `Terminal`
+... Navigate to the directory containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
 
 == Implementation
 This section will detail how some noteworthy features are implemented.
@@ -104,7 +120,6 @@ class to print the success message
 [WARNING]
 if there are no results to the search query or if there are no tasks in the task list, `SearchCommand` class
 will create a new `IncorrectCommand` class to print the error messages
-
 
 === Repeat event feature
 ==== Current Implementation
@@ -173,4 +188,80 @@ improving the user's usability.
 *** Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the tasklist of
 the user and increase the file size of the local storage that stores the tasklist.
 
-=== Calendar feature
+=== Edit Task Feature
+==== Implementation
+The `EditCommand` class extends the `Command` class by provided functions to edit specific tasks in the list of
+*ATAS*.
+
+Given below is an example usage scenario and how the `EditCommand` class behaves at each step/
+
+*Step 1* +
+The user types in `edit 1`. The `parseCommand` method of the `Parser` class is called to obtain `edit` which is the type
+of command the user is entering.
+
+[WARNING]
+An `IncorrectCommand` class will be returned and an `UNKNOWN_COMMAND_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if the command supplied was invalid.
+
+*Step 2* +
+The `parseCommand` method subsequently calls the  `prepareEditCommand` method inside the same `Parser` class. This method
+splits the `fullCommand` string parameters into 2 tokens. The integer `1` will be obtained as the *Index* of the task
+specified in the list. This method returns a new instance `EditCommand` class, passing the integer `1` as the parameter.
+
+[WARNING]
+An `IncorrectCommand` class will be returned and a `NUM_FORMAT_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if the number supplied was not an *integer*. +
+An `IncorrectCommand` class will be returned and a `INCORRECT_ARGUMENT_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if there are no task index supplied by the user. +
+
+*Step 3* +
+A new instance of `EditCommand` class is returned to the main method of *ATAS* with paremter `1` as described above.
+The execute method of the `EditCommand` class is now called.
+
+*Step 4* +
+The `execute` method in the `EditCommand` class first gets an input from the user on the details of the edited task.
+
+[TIP]
+Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENtS]`
+Event Command Format: `event n/[NAME] l/[LOCATION] d/DD/MM/YY HHmm - HHmm c/[COMMENTS]`
+
+*Step 5* +
+If the user supplies an `assignment` command, the `editAssignment` method will be invoked. This method extracts the
+`assignmentName`, `moduleName`, `dateTime` and `comments` string to return a new instance of an  `Assignment` class. +
+
+If the user supplies an `event` command, the `editEvent` method will be invoked. This method extracts the
+`eventName`, `location`, `startDateTime`, `endDateTime` and `comments` string to return a new instance of an `Event` class.
+
+*Step 6* +
+This new instanced class (either `Assignment` or `Event`) will be passed into the method `editTask` of the `TaskList` class.
+The `editTask` method of the `TaskList` class uses Java's `ArrayList` `set` method to replace the task.
+
+*Step 7* +
+Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of
+that class.
+
+==== Design Considerations
+* Placing invocation of new `assignment` and `event` class in `editCommand` class
+** Rationale: +
+The `execute` method of `editCommand` class has to use the `Ui` class parsed as one of the parameters to get input from
+user on new details of the task. The new input captured will be then passed to the `editAssignment` or `editEvent` method
+in the `editCommand` class.
+
+** Alternatives Considered: +
+The `editAssignment` and `editEvent` methods can be placed in the `Parser` class and called in the `prepareEditCommand`
+method of that class.
+
+
+* Using Java `ArrayList` `set` method
+** Rationale: +
+When a task is selected to be edited, it is logical for the index of the task to not change as the task is being edited.
+Therefore, the `set` method of `ArrayList` is used to replace the edited task with the old task.
+
+** Alternatives Considered: +
+Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However,
+this is not chosen as it is not intuitive for the user's task index to shift after editing the task.
+
+== Testing
+=== Using IntelliJ JUnit Tests
+* To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
+* For individual tests, you can right-click on the test *package*, *class* or a single test and choose `Run 'TEST'`
