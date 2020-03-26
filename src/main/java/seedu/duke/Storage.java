@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import seedu.cards.Card;
 import seedu.exception.EscException;
 import seedu.subjects.Subject;
 
@@ -10,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -27,11 +25,7 @@ public class Storage {
      * Default constructor.
      */
     public Storage() {
-//        try {
-//            ensureFileExists();
-//        } catch (EscException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
     /**
@@ -79,11 +73,12 @@ public class Storage {
                 tempList = (ArrayList) objRead.readObject();
                 for (int i = 0; i < tempList.size(); i++) {
                     loadSubs.add((Subject) tempList.get(i));
+                    System.out.println("adding");
                 }
 
                 objRead.close();
             } catch (IOException | ClassNotFoundException e) {
-                throw new EscException("Load error " +e);
+                throw new EscException("Load error");
             }
         }
         return loadSubs;
