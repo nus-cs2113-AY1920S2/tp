@@ -156,7 +156,7 @@ repeated, these spaces are wasted.
 ** Rationale: +
 It provides great flexibility in allowing an event to repeat for any specified frequency. For example, some classes occur every 2 weeks.
 Some events may happen every 10 days or any x amount of period.
-** Alternative considered:
+** Alternative considered: +
 1. Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
 *** Pros: It would simply usability and implementation since there will only be 4 options to choose from.
 *** Cons: It would reduce the usability for the 2 examples provided above as users would not be able to make events repeat every 2 weeks
@@ -167,7 +167,7 @@ of that event.
 ** Rationale: +
 It allows the repeated events to be removed or to stop repeating with ease as it remains a single entity and not multiple events,
 improving the user's usability.
-** Alternative considered:
+** Alternative considered: +
 1. Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
 *** Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
 *** Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the tasklist of
