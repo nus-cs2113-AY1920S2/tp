@@ -59,14 +59,14 @@ image::delete.png[Delete Command sequence diagram]
 The Parser Class will call `prepareDeleteCommand` method and processes the delete index once it detects a `delete` command.
 
 [WARNING]
-* If an `IndexOutOfBoundsException` or `NumberFormatException is detected`, the Parser class will create a new `IncorrectCommand` class
+If an `IndexOutOfBoundsException` or `NumberFormatException is detected`, the Parser class will create a new `IncorrectCommand` class
 to display the corresponding error messages
 
 *Step 2.* +
 `prepareDeleteCommand` will create a new `DeleteCommand` class.
 
 [WARNING]
-* If there is no items in the task list, the `DeleteCommand` class will create a new `IncorrectCommand` class to display the
+If there is no items in the task list, the `DeleteCommand` class will create a new `IncorrectCommand` class to display the
 corresponding error message
 
 *Step 3.* +
