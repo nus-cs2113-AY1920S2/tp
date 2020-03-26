@@ -1,8 +1,45 @@
 # Developer Guide
 
 ## Design & Implementation
-
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+### Implementation
+
+#### `Add to Semester` feature 
+The `Add to Semester` mechanism is facilitated by `AddtoSemCommand` which extends from `Command`. 
+It allows `ModuleManager` to assign a module to a semester by adding the module to a 
+`SemModulesList`, it implements the following operations:
+
+Given below is an example how the `Add to Semester` behaves at each step.
+
+##### Step 1:
+The user launches the application for the first time. The `SemesterList` will be initialized with the none 
+`SemModulesList` in it.
+
+##### Step 2:
+When users enter a add to semester command, e.g `add id/CS2113 s/4 mc/4`, this command will be parsed in `Parser`
+and then `Parser` returns a `AddToSemCommand`. `AddToSemCommand` then calls `Command#excuted(SemesterList semesterList,
+ AvailableModulesList availableModulesList) `
+`(AddToSemCommand#excuted(SemesterList semesterList, AvailableModulesList availableModulesList))`
+
+##### Step 3:
+`AddToSemCommand#excuted()` then calls self method `AddToSemCommand#addModule()`.`AddToSemCommand#addModule()`
+ then calls `AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected 
+module is already in the selected module list (which is`semesterList`). If the module is not in the list, 
+`AddToSemCommand#addModule()` will check whether there is a semester list whose name is the module's semester name. If 
+the semester list exist, the module will be added to the list. If not, `AddToSemCommand#addModule()` will create a new 
+semester list and then add this module to the new list.
+
+#### Step 4:
+`AddToSemCommand#excuted()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to show the result to the 
+user
+
+The following sequence diagram shows how the `Add to Semester` operation works:
+![Sequence Diagram of Add to Semester](https://raw.githubusercontent.com/RenzoTsai/tp/master/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
+
+
+
+
 
 
 ## Product Scope

@@ -1,18 +1,21 @@
 Duke
 2017
 view
-add id/CS2113 s/4
-add n/Software Engineering & Object-Oriented Programming s/4
-add id/CS1010 s/3
-add id/IS4241 s/4
-add id/IS4241 n/Social Media Network Analysis pre/CS1010 IS1103
-add id/IS4241 s/4
-add id/CS1231 n/Discrete Structures
-add id/CS2104 n/Programming Language Concepts pre/CS2030
-add id/CS1231 s/3
+add id/CS2113 s/4 mc/4
+add n/Software Engineering & Object-Oriented Programming s/4 mc/4
+add id/CS1010 s/3 mc/4
+add id/IS4241 s/4 mc/4
+add id/IS4241 n/Social Media Network Analysis mc/4 pre/CS1010 IS1103
+add id/IS4241 s/4 mc/4
+add id/CS1231 n/Discrete Structures mc/4
+add id/CS2104 n/Programming Language Concepts mc/4 pre/CS2030
+view
+add id/CS1231 s/3 mc/4
 view /mp
-done id/CS2113 g/B c/4
+done id/IS4241 g/A-
 view /dm
 view /cc
 find cS
+done id/CS1010 g/A+
+CAP
 bye

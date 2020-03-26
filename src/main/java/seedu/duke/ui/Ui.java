@@ -39,13 +39,13 @@ public class Ui {
     private static final String REQUIRED_INPUT_USER_NAME = "What is your name? Please enter it over here:";
 
     private static final String BOX_EDGE = "--------------------------------------------------------------------------"
-            + "----------------------------------------------";
+            + "--------------------------------------------------";
 
     private static final String BOX_HEADER = "| S/N |    ID    | Name                                                 "
-            + "         | Prerequisites                       |";
+            + "         | Module Credit | Prerequisites           |";
 
     public static final String BOX_MARGIN = "|-----|----------|------------------------------------------------------"
-            + "---------|-------------------------------------|";
+            + "---------|---------------|-------------------------|";
 
 
 
@@ -63,6 +63,8 @@ public class Ui {
             + "8. \"view /cc\" to view the number of modular credits u have completed";
 
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
+
+    private static final String SHOW_CAP = "Your CAP:";
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
@@ -123,6 +125,10 @@ public class Ui {
     }
 
     public static void showCompletedCredits() {
-        showToUser(VIEWED_CREDITS, Integer.toString(Person.getTotalModularCreditCompleted()), LINE_SEPARATOR);
+        showToUser(VIEWED_CREDITS, Integer.toString(Person.getTotalModuleCreditCompleted()), LINE_SEPARATOR);
+    }
+
+    public static void showCap(String cap) {
+        showToUser(SHOW_CAP, cap, LINE_SEPARATOR);
     }
 }

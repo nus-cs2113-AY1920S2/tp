@@ -4,15 +4,17 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.AddToDataCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.CalculateCapCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.FindCommand;
 import seedu.duke.command.HelpingCommand;
-import seedu.duke.command.MarkAsDoneCommand;
 import seedu.duke.command.ViewCommand;
+import seedu.duke.command.MarkAsDoneCommand;
 import seedu.duke.data.Person;
 import seedu.duke.exception.InputException;
-import seedu.duke.module.Module;
+import seedu.duke.module.Grading;
 import seedu.duke.module.NewModule;
+import seedu.duke.module.SelectedModule;
 
 /**
  * Parses user input.
@@ -41,15 +43,15 @@ public class Parser {
         case ViewCommand.COMMAND_WORD:
             return processViewCommand(args);
         case ExitCommand.COMMAND_WORD:
-            assert taskType.equals("bye");
             return processExitCommand();
         case MarkAsDoneCommand.COMMAND_WORD:
-            assert taskType.equals("done");
             return processMarkAsDone(args);
         case HelpingCommand.COMMAND_WORD:
             return processHelpCommand();
         case FindCommand.COMMAND_WORD:
             return processFindCommand(args);
+        case CalculateCapCommand.COMMAND_WORD:
+            return processCalculateCapCommand();
         default:
             throw new InputException("invalid command");
         }
@@ -59,18 +61,60 @@ public class Parser {
         String[] moduleWords;
         moduleWords = args.split(" g/");
         if (moduleWords.length < 2) {
-            throw new InputException("invalid 'done' command", "done n/NAME s/SEMESTER | done id/ID s/SEMESTER");
+            throw new InputException("invalid 'done' command", "done n/NAME g/GRADE | done id/ID g/GRADE");
         }
+        String grade = moduleWords[1];
+        Grading grading;
         String module = moduleWords[0];
-        moduleWords = moduleWords[1].split(" c/");
-        String grade = moduleWords[0];
-        int credit = Integer.parseInt(moduleWords[1]);
+        switch (grade) {
+        case "A+":
+            grading = Grading.APLUS;
+            break;
+        case "A":
+            grading = Grading.A;
+            break;
+        case "A-":
+            grading = Grading.AMINUS;
+            break;
+        case "B+":
+            grading = Grading.BPLUS;
+            break;
+        case "B":
+            grading = Grading.B;
+            break;
+        case "B-":
+            grading = Grading.BMINUS;
+            break;
+        case "C+":
+            grading = Grading.CPLUS;
+            break;
+        case "C":
+            grading = Grading.C;
+            break;
+        case "D+":
+            grading = Grading.DPLUS;
+            break;
+        case "D":
+            grading = Grading.D;
+            break;
+        case "F":
+            grading = Grading.F;
+            break;
+        case "CS":
+            grading = Grading.CS;
+            break;
+        case "CU":
+            grading = Grading.CU;
+            break;
+        default:
+            throw new IllegalStateException("Unexpected value: " + grade);
+        }
         if (module.contains("n/")) {
             String moduleName = module.replace("n/","");
-            return new MarkAsDoneCommand(moduleName, grade, credit);
+            return new MarkAsDoneCommand(moduleName, grading);
         } else if (module.contains("id/")) {
             String moduleId = module.replace("id/","");
-            return new MarkAsDoneCommand(moduleId, grade, credit);
+            return new MarkAsDoneCommand(moduleId, grading);
         }
         return null;
     }
@@ -88,16 +132,31 @@ public class Parser {
         moduleWords = args.split(" s/");
         if (moduleWords.length < 2) {
             throw new InputException("invalid 'add' command",
-                    "addtosem id/ID s/SEMESTER | add n/Name s/SEMESTER ");
+                    "add id/ID s/SEMESTER mc/MODULE_CREDIT | " + "add n/Name s/SEMESTER mc/MODULE_CREDIT "
+                    + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
         }
         String module = moduleWords[0];
-        String semester = convertSemToStandardFormat(moduleWords[1]);
-        if (module.contains("n/")) {
-            String moduleName = module.replace("n/","");
-            return new AddToSemCommand(new Module("name", moduleName, semester));
-        } else if (module.contains("id/")) {
+        String semester;
+        String[] moduleDetails = moduleWords[1].split(" mc/");
+        if (moduleDetails.length < 2) {
+            throw new InputException("invalid 'add' command",
+                    "add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT "
+                    + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
+        }
+        semester = convertSemToStandardFormat(moduleDetails[0]);
+        int moduleCredit = Integer.parseInt(moduleDetails[1]);
+        if (module.contains("id/")) {
             String moduleId = module.replace("id/","");
-            return new AddToSemCommand(new Module("id", moduleId, semester));
+            if (moduleId.contains("n/")) {
+                String[] idAndName = moduleId.split("n/");
+                String id = idAndName[0];
+                String name = idAndName[1];
+                return new AddToSemCommand(new SelectedModule("Both", id, name, semester, moduleCredit));
+            }
+            return new AddToSemCommand(new SelectedModule("id", moduleId, semester, moduleCredit));
+        } else if (module.contains("n/")) {
+            String moduleName = module.replace("n/","");
+            return new AddToSemCommand(new SelectedModule("name", moduleName, semester, moduleCredit));
         }
         return null;
     }
@@ -107,23 +166,23 @@ public class Parser {
         moduleWords = args.split("id/");
         if (moduleWords.length < 2) {
             throw new InputException("invalid 'add' command",
-                    "add id/ID n/NAME pre/PREREQMODULES");
+                    "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
         }
         moduleWords = moduleWords[1].split(" n/");
         if (moduleWords.length < 2) {
             return null;
         }
         String moduleId = moduleWords[0];
-        moduleWords = moduleWords[1].split(" pre/");
+        moduleWords = moduleWords[1].split(" mc/");
         String moduleName = moduleWords[0];
+        moduleWords = moduleWords[1].split(" pre/");
+        int moduleCredit = Integer.parseInt(moduleWords[0]);
         if (moduleWords.length < 2) {
-            return new AddToDataCommand(new NewModule(moduleId, moduleName));
+            return new AddToDataCommand(new NewModule(moduleId, moduleName, moduleCredit));
         }
         String[] preRequisiteModules;
         preRequisiteModules = moduleWords[1].split(" ");
-        return new AddToDataCommand((new NewModule(moduleId, moduleName, preRequisiteModules)));
-
-
+        return new AddToDataCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
     }
 
     private static ViewCommand processViewCommand(String args) {
@@ -157,6 +216,10 @@ public class Parser {
         return new FindCommand(args);
     }
 
+    private static CalculateCapCommand processCalculateCapCommand() {
+        return new CalculateCapCommand();
+    }
+
     private static String convertSemToStandardFormat(String semester) {
         String standardSemFormat;
         int year = Person.getMatricYear() + (Integer.parseInt(semester) - 1) / 2;
@@ -164,5 +227,6 @@ public class Parser {
         standardSemFormat = year + "/" + (year + 1) + " SEM" + sem;
         return standardSemFormat;
     }
+
 
 }
