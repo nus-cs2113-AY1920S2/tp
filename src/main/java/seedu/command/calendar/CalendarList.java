@@ -1,4 +1,4 @@
-package seedu.calendar;
+package seedu.command.calendar;
 
 import seedu.event.Event;
 import seedu.event.EventList;
