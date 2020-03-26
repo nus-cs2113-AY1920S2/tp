@@ -14,25 +14,15 @@ Meeting Organizer is your friendly chatbot that helps you find free time between
 
 ## Features 
 
-- [Add new contact](#Adding-a-new-contact)
-- [Display contacts](#Display-contacts:-contacts)
-- [Display meetings](#Display-meetings:-meetings)
+- [Adding a new contact](#adding-a-new-contact)
+- [Display contacts](#display-contacts-contacts)
+- [Edit contact's timetable](#edit-contacts-timetable-edit)
+- [Schedule a new meeting](#schedule-a-new-meeting-schedule)
+- [Delete a scheduled meeting](#delete-a-scheduled-meeting-delete)
+- [Display meetings](#display-meetings-meetings)
+- [Exit the application](#exit-the-application-exit)
+
 <br/><br/>
-### Adding a to-do: `todo`
-Adds a to-do item to the list of to-dos.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
-<br/><br/>
-
 
 ### Adding a new contact
 Adds a new person and their class schedule into our list of contacts.
@@ -62,6 +52,57 @@ Expected output:
 ```
 <br/><br/>
 
+### Edit contact's timetable `edit`
+Edits the timetable of a contact from the list of contacts.
+
+Format: `edit <Member Number> <busy/free> <startDay> <startTime> <endDay> <endTime>`
+
+Example of usage:
+
+`
+edit 0 busy 2 22:00 2 23:00
+`
+
+Expected output:
+```
+{insert ui}
+```
+<br/><br/>
+
+### Schedule a new meeting `schedule`
+Schedules a new meeting and adds it into the meeting list.
+
+Format: `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`
+
+Example of usage:
+
+`
+schedule meeting 3 17:00 3 19:00
+`
+
+Expected output:
+```
+{insert ui}
+```
+<br/><br/>
+
+### Delete a scheduled meeting `delete`
+Deletes a meeting from the meeting list.
+
+Format: `delete <Meeting Index>`
+
+Example of usage:
+
+`
+delete 1
+`
+
+Expected output:
+```
+{insert ui}
+```
+<br/><br/>
+
 ### Display meetings: `meetings`
 Displays all scheduled meetings stored in program.
 
@@ -70,6 +111,17 @@ Example of usage: `meetings`
 Expected output:
 ```
 {insert ui}
+```
+<br/><br/>
+
+### Exit the application: `exit`
+Exits the application and ends the current session.
+
+Example of usage: `exit`
+
+Expected output:
+```
+Thank you for using MeetingOrganizer, goodbye!
 ```
 <br/><br/>
 
