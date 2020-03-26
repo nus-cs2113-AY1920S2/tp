@@ -70,56 +70,44 @@ image::storage.PNG[Storage Class Diagram]
 == Implementation
 This section will detail how some noteworthy features are implemented.
 
-=== Delete Command
-image::delete.png[Delete Command sequence diagram]
+=== Delete Task Feature
 
-*Step 1.* +
-The Parser Class will call `prepareDeleteCommand` method and processes the delete index once it detects a `delete` command.
+Current Implementation: +
 
-[WARNING]
-If an `IndexOutOfBoundsException` or `NumberFormatException is detected`, the Parser class will create a new `IncorrectCommand` class
-to display the corresponding error messages
+* The `DeleteCommand` extends `Command` class and initializes the `delete index` in its constructor. The `delete index`
+specifies the index of task that the user wants to delete.
 
-*Step 2.* +
-`prepareDeleteCommand` will create a new `DeleteCommand` class.
-
-[WARNING]
-If there is no items in the task list, the `DeleteCommand` class will create a new `IncorrectCommand` class to display the
-corresponding error message
-
-*Step 3.* +
-`DeleteCommand` class will call the `TaskList` class to get the updated task list and deletes the task corresponding to the index.
-
-=== Search Command
-*Step 1.* +
-The Parser Class will call `prepareDeleteCommand` method and process the `task type` and `search query`
-
-[NOTE]
-`task type` refers to `all`,`event' or `assignment`
-
-*Step 2.* +
-`prepareSearchCommand method` will create a new `SearchCommand` class
-
-*Step 3.* +
-`SearchCommand` class will check the `task type` and calls their respective methods. In each of the respective methods, an ArrayList is used
-to store the original index of the results.
-
-* If `task type` is *all*, `SearchCommand` class will call the `getSearchQueryAllTasks` method and returns an ArrayList of the results.
-
-* if `task type` is *event*, `SearchCommand` class will call the `getSearchQueryEvents` method and returns an ArrayList of the results.
-* if `task type` is *assignment*, `SearchCommand` class will call the `getSearchQueryAssignments` and returns an ArrayList of all the results.
-
-*Step 4.* +
-`SearchCommand` class calls the `searchList` method to format the results of the search query into a String format
-
-*Step 5.* +
-`SearchCommand` class calls the `resultsList` method to print the results of the search query, and creates a new `IncorrectCommand`
-class to print the success message
+* Given below is an example usage and how the delete command mechanism behaves at each step:
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command
+provided. It will obtain information to get `delete index`.
 
 
 [WARNING]
-if there are no results to the search query or if there are no tasks in the task list, `SearchCommand` class
-will create a new `IncorrectCommand` class to print the error messages
+If there is an `IndexOutOfBoundsException` or `NumberFormatException`, a new `IncorrectCommand` class will be created
+to print the error messages.
+
+. A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
+`DeleteCommand` will then be called.
+. `execute` command will then do 2 things :
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message indicating an empty task list
+** If there are tasks in the existing task list, the `DeleteCommand` class will call the `deleteTask()` method from the
+`TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will
+initialize a new `CommandResult` class that prints out the success message for task deletion.
+
+** The following sequence diagram summarizes how repeat command operation works: +
+
+image::delete.png[delete task]
+
+==== Design Considerations
+* Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within
+the `execute` method of the `DeleteCommand` class
+** Pros: Easier implementation for other classes that requires the same use.
+** Cons: Increased coupling amongst classes, which makes it harder for testing.
+** Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a
+case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also
+allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
 
 === Repeat event feature
 ==== Current Implementation
