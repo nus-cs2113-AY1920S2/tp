@@ -135,7 +135,7 @@ message indicating an empty task list
 ** If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()`
 method in the `taskList` class
 
-Design Considerations:
+==== Design Considerations
 * Creating another `clear done` command instead of just 1 `clear` command
 ** Rationale: +
 Considering that our target audience are students, we feel that it might be inconvenient for the students to delete each
