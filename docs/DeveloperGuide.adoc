@@ -224,3 +224,24 @@ The `editTask` method of the `TaskList` class uses Java's `ArrayList` `set` meth
 *Step 7* +
 Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of
 that class.
+
+==== Design Considerations
+* Placing invocation of new `assignment` and `event` class in `editCommand` class
+** Rationale: +
+The `execute` method of `editCommand` class has to use the `Ui` class parsed as one of the parameters to get input from
+user on new details of the task. The new input captured will be then passed to the `editAssignment` or `editEvent` method
+in the `editCommand` class.
+
+** Alternatives Considered: +
+The `editAssignment` and `editEvent` methods can be placed in the `Parser` class and called in the `prepareEditCommand`
+method of that class.
+
+
+* Using Java `ArrayList` `set` method
+** Rationale: +
+When a task is selected to be edited, it is logical for the index of the task to not change as the task is being edited.
+Therefore, the `set` method of `ArrayList` is used to replace the edited task with the old task.
+
+** Alternatives Considered: +
+Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However,
+this is not chosen as it is not intuitive for the user's task index to shift after editing the task. 
