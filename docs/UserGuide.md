@@ -32,7 +32,9 @@
 4.3.3. [View Performance List](#433-view-performance-list)      
 4.4. [Student List](#44-student)        
 4.4.1. [Add New Student List](#441-add-new-student-list)        
-4.4.2. [View Student List](#442-view-all-existing-student-lists-from-the-student-list-collection-student-list)
+4.4.2. [View Student List](#442-view-all-existing-student-lists-from-the-student-list-collection-student-list)  
+4.5 [Calendar](#45-calendar)
+4.5.1 [View Events under desired time](#451-view-events-under-a-particular-time--calendar-s2-ay19-20)
 5. [Possible Console Messages and Reasons](#5-possible-console-messages-and-reasons)           
 6. [FAQ](#6-faq)  
 7. [Command Summary](#7-command-summary)  
@@ -345,23 +347,48 @@ Examples:
     PAC:    Student List created, named : CS2113T Tut
     
 #### 4.4.2 View all existing student lists from the student list collection `student list`
+    View all existing students lists from student list collection.
+    
+    Command: 
+    
+        student list
+        
+    Examples: 
+    
+        PAC:    [1] CS2113T Tut
+                1. John
+                2. Jodi
+                --------------
+                [2] CS1010
+                1. Ryan
+                2. Nicole
+                3. Leon
+                
+### 4.5 Calendar 
+#### 4.5.1 View events under a particular time : `calendar s/2 ay/19-20`  
+View existing events under a particular semester and academic year.
+Semester refers to a numerical number, 1 or 2 while academic year refers 
+to any 2 consecutive years with a hyphen separating them. 
 
-View all existing students lists from student list collection.
+Format: `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO `
 
 Command: 
 
-    student list
+    calendar s/2 ay/19-20
     
 Examples: 
 
-    PAC:    [1] CS2113T Tut
-            1. John
-            2. Jodi
-            --------------
-            [2] CS1010
-            1. Ryan
-            2. Nicole
-            3. Leon
+     _______________________________________________________________________ 
+                          SEMESTER 2 AY 19/20 
+     _______________________________________________________________________ 
+    | JUL       | AUG       | SEP       | OCT       | NOV       | DEC       |
+    |___________|___________|___________|___________|___________|___________|
+    |           | talk      | slideshow |           |           |           |
+    |___________|___________|___________|___________|___________|___________|
+    |           | interview |           |           |           |           |
+    |___________|___________|___________|___________|___________|___________| 
+    
+## FAQ
 
 ## 5. Possible Console Messages and Reasons:  
 If event list is empty    
@@ -385,7 +412,13 @@ Future patches will allow users to save their data and use it on another compute
 
 {Give a 'cheat sheet' of commands here}
 
-* Add to-do `todo n/TODO_NAME d/DEADLINE`
+* Add event `event add n/NAME d/DATE t/TIME v/VENUE`
+* list events `event list`
+* Edit name of existing event `event editname i/INDEX n/NAME`
+* Edit date and time of existing event `event editdatetime i/INDEX d/DATE t/TIME`
+* Edit venue of existing event `event editvenue i/INDEX v/VENUE`
+* Delete event `event delete i/INDEX`
+* View calendar `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
 
 ## 8. Contact Us
 If you have further queries or feedback on PAC, please contact us at [contact_us@pac.com](contact_us@PAC.com)

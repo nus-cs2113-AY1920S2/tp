@@ -1,4 +1,4 @@
-package seedu.calendar;
+package seedu.command.calendar;
 
 import seedu.command.Command;
 import seedu.event.EventList;
@@ -15,6 +15,6 @@ public class AddFirstSemester extends Command {
 
     @Override
     public void execute() throws DukeException {
-        CalendarList.getFirstSemester(eventList, year);
+        CalendarList.showFirstSemester(eventList, year);
     }
 }
