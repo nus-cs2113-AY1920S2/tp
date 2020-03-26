@@ -12,6 +12,7 @@
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
+:warning-caption: :warning:
 endif::[]
 
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
@@ -106,3 +107,66 @@ if there are no results to the search query or if there are no tasks in the task
 will create a new `IncorrectCommand` class to print the error messages
 
 === Calendar
+
+=== Edit Task Feature
+==== Implementation
+The `EditCommand` class extends the `Command` class by provided functions to edit specific tasks in the list of
+*ATAS*.
+
+Given below is an example usage scenario and how the `EditCommand` class behaves at each step/
+
+*Step 1* +
+The user types in `edit 1`. The `parseCommand` method of the `Parser` class is called to obtain `edit` which is the type
+of command the user is entering.
+
+[WARNING]
+An `IncorrectCommand` class will be returned and an `UNKNOWN_COMMAND_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if the command supplied was invalid.
+
+*Step 2* +
+The `parseCommand` method subsequently calls the  `prepareEditCommand` method inside the same `Parser` class. This method
+splits the `fullCommand` string parameters into 2 tokens. The integer `1` will be obtained as the *Index* of the task
+specified in the list. This method returns a new instance `EditCommand` class, passing the integer `1` as the parameter.
+
+[WARNING]
+An `IncorrectCommand` class will be returned and a `NUM_FORMAT_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if the number supplied was not an *integer*. +
+An `IncorrectCommand` class will be returned and a `INCORRECT_ARGUMENT_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if there are no task index supplied by the user. +
+
+*Step 3* +
+A new instance of `EditCommand` class is returned to the main method of *ATAS* with paremter `1` as described above.
+The execute method of the `EditCommand` class is now called.
+
+*Step 4* +
+The `execute` method in the `EditCommand` class first gets an input from the user on the details of the edited task.
+
+[TIP]
+Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENtS]`
+Event Command Format: `event n/[NAME] l/[LOCATION] d/DD/MM/YY HHmm - HHmm c/[COMMENTS]`
+
+*Step 5* +
+If the user supplies an `assignment` command, the `editAssignment` method will be invoked. This method extracts the
+`assignmentName`, `moduleName`, `dateTime` and `comments` string to return a new instance of an  `Assignment` class. +
+
+If the user supplies an `event` command, the `editEvent` method will be invoked. This method extracts the
+`eventName`, `location`, `startDateTime`, `endDateTime` and `comments` string to return a new instance of an `Event` class.
+
+*Step 6* +
+This new instanced class (either `Assignment` or `Event`) will be passed into the method `editTask` of the `TaskList` class.
+The `editTask` method of the `TaskList` class uses Java's `ArrayList` `set` method to replace the task.
+
+*Step 7* +
+Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of
+that class. 
+
+
+
+
+
+
+
+
+
+
+
