@@ -3,6 +3,7 @@ package command;
 import common.Messages;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
+import tasks.Assignment;
 import tasks.Event;
 import tasks.Task;
 
@@ -60,22 +61,38 @@ public class RepeatCommand extends Command {
 
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
+        Task task;
         try {
-            Task task = taskList.getTask(eventIndex);
-            //set to not repeat if numOfPeriod = 0, ignoring typeOfPeriod
-            if (numOfPeriod == 0) {
-                ((Event) task).setNoRepeat();
-                return new CommandResult(String.format(Messages.STOP_REPEATING_SUCCESS_MESSAGE, task.getName()));
-            //set to repeat otherwise
-            } else if (task instanceof Event) {
-                ((Event) task).setRepeat(numOfPeriod, typeOfPeriod);
-                return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, task.getName(),
-                        numOfPeriod == 1 ? "" : numOfPeriod + " ", iconToString(typeOfPeriod),
-                        numOfPeriod <= 1 ? "" : "s"));
+            task = taskList.getTask(eventIndex);
+            if (task instanceof Assignment) {
+                return new CommandResult(String.format(Messages.REPEAT_ASSIGN_ERROR, task.getName()));
             }
-            return new CommandResult(Messages.REPEAT_ASSIGN_ERROR);
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
         }
+        assert (task instanceof Event);
+
+        //unset repeat if numOfPeriod = 0, ignoring typeOfPeriod
+        if (numOfPeriod == 0) {
+            return unsetRepeat((Event) task);
+        //set to repeat otherwise
+        } else {
+            return setRepeat((Event) task);
+        }
+    }
+
+    private CommandResult setRepeat(Event task) {
+        task.setRepeat(numOfPeriod, typeOfPeriod);
+        return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, task.getName(),
+                numOfPeriod == 1 ? "" : numOfPeriod + " ", iconToString(typeOfPeriod),
+                numOfPeriod <= 1 ? "" : "s"));
+    }
+
+    private CommandResult unsetRepeat(Event task) {
+        if (!(task.getIsRepeat())) {
+            return new CommandResult(String.format(Messages.REPEAT_NOT_SET_ERROR, task.getName()));
+        }
+        task.setNoRepeat();
+        return new CommandResult(String.format(Messages.STOP_REPEATING_SUCCESS_MESSAGE, task.getName()));
     }
 }

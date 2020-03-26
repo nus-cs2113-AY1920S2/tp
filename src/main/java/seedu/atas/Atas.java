@@ -68,7 +68,7 @@ public class Atas {
     private void updateEventDate(TaskList taskList) {
         for (Task task : taskList.getTaskArray()) {
             if (task instanceof Event) {
-                ((Event) task).updateDateAndTime();
+                ((Event) task).updateDate();
             }
         }
     }

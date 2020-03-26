@@ -289,6 +289,9 @@ You can clear *all* tasks in the list if you want to start from a fresh list. Th
 Format: `clear all`
 
 ==== Clear All Done Tasks
+* You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
+also be reflected in the stored list. +
+* Format: `clear done`
 You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will
 also be reflected in the stored list.
 
@@ -306,6 +309,10 @@ Available Period: Day [d], Week [w], Month [m], Year [y]
 Example: `repeat id/1 p/3d` +
 This command will repeat task of index 1 every 3 days.
 
+Expected outcome:
+```
+ [Learn Japanese] will repeat every 3 days.
+```
 [NOTE]
 Index of task specified has to be an *event* task.
 
@@ -320,6 +327,10 @@ You can think of this as repeating the task every 0 days and hence not repeating
 Example: `repeat id/1 p/0` +
 This command will cause task of index 1 to stop repeating.
 
+Expected outcome:
+```
+[Learn Japanese] will no longer repeat.
+```
 === Search Tasks: *`search`*
 ==== Search by Name
 You can search for tasks in the list by specifying the type and name of task you might be searching for.

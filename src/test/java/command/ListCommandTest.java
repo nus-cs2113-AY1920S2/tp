@@ -217,7 +217,7 @@ public class ListCommandTest {
     public void repeatingEvent_filledList_allTaskListMsg() {
         RepeatCommand testRepeatCommand = new RepeatCommand(2, 6, "m");
         testRepeatCommand.execute(filledTasklist, ui);
-        ((Event) filledTasklist.getTask(2)).updateDateAndTime();
+        ((Event) filledTasklist.getTask(2)).updateDate();
         assertEquals(expectedOutputFromFilledTasklistForRepeating,
                 new ListCommand("").execute(filledTasklist, ui).feedbackToUser);
     }
