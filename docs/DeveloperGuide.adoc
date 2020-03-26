@@ -54,11 +54,13 @@ image::storage.PNG[Storage Class Diagram]
 == Implementation
 === Delete Command
 image::delete.png[Delete Command sequence diagram]
+
 Design Considerations: +
 1. Loop through the ArrayList to get the task at the specified index and delete from the index +
-2. Use `remove` method to delete the task at a specified index
+2. Use `remove` method to delete the task at a specified index +
 
 We implemented the 2nd option for deleting of tasks. This is because:
+
 * Both methods have similar time and space complexities, but the 2nd method is much easier to implement as compared
 to the 1st method
 
