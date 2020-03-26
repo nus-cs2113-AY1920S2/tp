@@ -55,7 +55,28 @@ image::storage.PNG[Storage Class Diagram]
 This section will detail how some noteworthy features are implemented.
 
 === Delete Command
-image::delete.png[Delete Command sequence diagram]
+
+Current Implementation: +
+* The `DeleteCommand` extends `Command` class and initializes the `delete index` in its constructor. The `delete index`
+specifies the index of task that the user wants to delete.
+
+* Given below is an example usage and how the delete command mechanism behaves at each step:
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command
+provided. It will obtain information to get `delete index`.
+
+[Warning]
+If there is a *IndexOutOfBoundsException* or *NumberFormatException*, a new `IncorrectCommand` class will be created
+to print to error message
+
+. A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
+`DeleteCommand` will then be called.
+. `execute` command will then do 2 things :
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message indicating an empty task list
+** If there are tasks in the existing task list, the `DeleteCommand` class will call the `deleteTask()` method from the
+`TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will
+initialize a new `CommandResult` class that prints out the success message for task deletion.
 
 Design Considerations: +
 1. Loop through the TaskList to get the task at the specified index and delete from the index +
@@ -65,53 +86,6 @@ We implemented the 2nd option for deleting of tasks. This is because:
 
 * Both methods have similar time and space complexities, but the 2nd method is much easier to implement as compared
 to the 1st method
-
-=== Clear Command
-Design Considerations for `clear done` command: +
-1. Loop through the TaskList to check if task is completed, and deletes the task if the task is completed
-
-* Pros: Lesser code has to be written.
-
-* Cons: Tedious to implement as it is difficult to tack the current index of the task. +
-
-2. Loop through the TaskList to store the index of the completed task, and deletes the task from the TaskList, based
-on the stored index
-
-* Pros: Easier to implement as it is easier to track the current index of the task.
-
-* Cons: More lines of code has to be written.
-
-=== Search Command
-*Step 1.* +
-The Parser Class will call `prepareDeleteCommand` method and process the `task type` and `search query`
-
-[NOTE]
-`task type` refers to `all`,`event' or `assignment`
-
-*Step 2.* +
-`prepareSearchCommand method` will create a new `SearchCommand` class
-
-*Step 3.* +
-`SearchCommand` class will check the `task type` and calls their respective methods. In each of the respective methods, an ArrayList is used
-to store the original index of the results.
-
-* If `task type` is *all*, `SearchCommand` class will call the `getSearchQueryAllTasks` method and returns an ArrayList of the results.
-
-* if `task type` is *event*, `SearchCommand` class will call the `getSearchQueryEvents` method and returns an ArrayList of the results.
-* if `task type` is *assignment*, `SearchCommand` class will call the `getSearchQueryAssignments` and returns an ArrayList of all the results.
-
-*Step 4.* +
-`SearchCommand` class calls the `searchList` method to format the results of the search query into a String format
-
-*Step 5.* +
-`SearchCommand` class calls the `resultsList` method to print the results of the search query, and creates a new `IncorrectCommand`
-class to print the success message
-
-
-[WARNING]
-if there are no results to the search query or if there are no tasks in the task list, `SearchCommand` class
-will create a new `IncorrectCommand` class to print the error messages
-
 
 === Repeat event feature
 ==== Current Implementation
