@@ -2,8 +2,8 @@ package utils;
 
 import java.io.IOException;
 
-import commands.*;
 
+import commands.*;
 import menu.Menu;
 import report.ReportWriter;
 import reservation.ReservationList;
@@ -40,7 +40,7 @@ public class CommandParser {
                 try {
                     new AddStockCommand(commands[1]).execute(stock);
                     successfulCommand();
-                } catch (InvalidStockCommandException | IllegalStateException e) {                    
+                } catch (IllegalStateException | InvalidStockCommandException e) {
                     errorCommand();
                     printErrorMessage(e.getMessage());
                 }

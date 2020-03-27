@@ -1,9 +1,6 @@
 package menu;
 
-import com.sun.tools.javac.Main;
 import dish.Dish;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Menu {
@@ -11,7 +8,7 @@ public class Menu {
     /**
      * Hashmap of all dishes on menu.
      */
-     private static HashMap<String, Dish> dishMap;
+    private static HashMap<String, Dish> dishMap;
 
     /**
      * Constructor for Menu
@@ -27,6 +24,5 @@ public class Menu {
     public static HashMap<String, Dish> getDishMap() {
         return dishMap;
     }
-
 
 }

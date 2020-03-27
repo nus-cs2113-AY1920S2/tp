@@ -5,7 +5,7 @@ import menu.Menu;
 public class ListDishCommand extends Menu {
 
     /**
-     * Prints out dishes from hashmap
+     * Prints out dishes from hashmap.
      */
     public static void printDishes() {
         for (String name: Menu.getDishMap().keySet()) {

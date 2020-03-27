@@ -46,7 +46,7 @@ public class AddDishCommand extends Menu {
     }
 
     /**
-     * Parse price from input string
+     * Parse price from input string.
      * @param input input string
      * @return price of dish
      */
