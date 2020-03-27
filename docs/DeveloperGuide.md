@@ -99,7 +99,8 @@ Step 1.  The `ui` object gets user input and sends it to the `parser`. The `pars
 and returns it. The command type is decided by the `commandPrompt`. The `RecordMealCommand` has `record-meal` as its commandPrompt. 
 During the process a new`RecordMealCommand` object will be generated and returned to the `Logic` component.
 
-![Step1. Generate command](/docs/images/Record_step1.png)
+### Step1. Generate command
+![Step1. Diagram](/docs/images/Record_step1.png)
 
 Step 2.  The `Logic` composition calls the `execute()` method of the `RecordMealCommand` object. 
 
