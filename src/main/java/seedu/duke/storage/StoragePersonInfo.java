@@ -91,7 +91,7 @@ public class StoragePersonInfo {
      */
     public static void writeToFile() throws IOException {
         FileWriter fw = new FileWriter(DEFAULT_FILEPATH);
-        fw.write(Person.toStorageString());
+        fw.write(Person.toStorageString() + System.lineSeparator());
         fw.close();
     }
 
