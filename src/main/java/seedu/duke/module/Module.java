@@ -92,5 +92,7 @@ public abstract class Module {
         return preReqModulesList;
     }
 
+    public abstract String toStorageString();
+
 
 }

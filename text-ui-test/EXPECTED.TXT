@@ -70,6 +70,12 @@ Okay! Here are your available modules in database:
 |  23 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  24 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
+|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
+|  25 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
+|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
+|  26 | CS1231   | Discrete Structures                                           | 4             | None                    |
+|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
+|  27 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
 ----------------------------------------------------------------------------------------------------------------------------
 
 
@@ -82,7 +88,7 @@ ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM
 
 
 Okay! I have added this module to your semester's module list:
-ID: IS4241 | Module Credit: 4 | Sem: 2018/2019 SEM2
+ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2
 
 
 Okay! I have added this module to the available modules to choose from:

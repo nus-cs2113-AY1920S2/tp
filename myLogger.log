@@ -49,3 +49,16 @@ Please enter your command again!
 Mar 27, 2020 2:14:39 PM seedu.duke.Duke run
 WARNING: Input Error: invalid command
 Please enter your command again!
+Mar 27, 2020 3:07:34 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 3:24:14 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 4:01:17 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'delete' command to delete from Available Modules
+Please enter your command again! Format:
+delete id/ID OR delete n/NAME
+Mar 27, 2020 4:01:31 PM seedu.duke.Duke run
+WARNING: Runtime Error: Module CS2030 cannot be deleted because it is a prerequisite to other modules.
+Please enter your command again!

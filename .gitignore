@@ -15,3 +15,4 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 *.log
+/text-ui-test/data/

@@ -86,4 +86,9 @@ public class SelectedModule extends Module {
             return this.getIcon() + " " + super.toString() + " | Sem: " + semester;
         }
     }
+
+    @Override
+    public String toStorageString() {
+        return this.toString();
+    }
 }

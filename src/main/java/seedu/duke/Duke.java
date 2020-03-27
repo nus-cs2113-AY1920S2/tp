@@ -17,6 +17,7 @@ import seedu.duke.exception.ModuleManagerException;
 import seedu.duke.exception.RuntimeException;
 import seedu.duke.exception.StorageException;
 import seedu.duke.parser.Parser;
+import seedu.duke.storage.StorageAvailableModulesList;
 import seedu.duke.storage.StoragePersonInfo;
 import seedu.duke.ui.Ui;
 
@@ -33,10 +34,11 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        availableModulesList = new AvailableModulesList();
+        //availableModulesList = new AvailableModulesList();
         semesterList = new SemesterList();
         try {
             StoragePersonInfo.load();
+            availableModulesList = StorageAvailableModulesList.load();
         } catch (StorageException e) {
             logr.log(Level.WARNING, e.getMessage());
         }
