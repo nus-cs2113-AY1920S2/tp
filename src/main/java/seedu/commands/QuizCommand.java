@@ -17,8 +17,16 @@ public class QuizCommand extends Command {
 
     private int subjectIndex;
 
+    private int numToQuiz;
+
     public QuizCommand(int subjectIndex) {
         this.subjectIndex = subjectIndex - 1;
+        this.numToQuiz = -1;
+    }
+
+    public QuizCommand(int subjectIndex, int numToQuiz) {
+        this.subjectIndex = subjectIndex - 1;
+        this.numToQuiz = numToQuiz;
     }
 
     /**
@@ -27,6 +35,11 @@ public class QuizCommand extends Command {
     @Override
     public void execute(SubjectList subjectList) throws EscException {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
-        Quiz.quizQuestion(chosenSubject);
+        int numQuestions = chosenSubject.getCardList().size();
+        if (numToQuiz > numQuestions) {
+            Quiz.quizQuestion(chosenSubject, numQuestions);
+        } else {
+            Quiz.quizQuestion(chosenSubject, numToQuiz);
+        }
     }
 }
