@@ -47,7 +47,7 @@ public class Dish {
     }
 
     /**
-     * Return name of dish
+     * Return name of dish.
      * @return name of dish
      */
     public String getName() {

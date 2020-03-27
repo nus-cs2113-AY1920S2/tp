@@ -1,11 +1,23 @@
 package utils;
 
 
-import sales.Sales;
-import commands.*;
+import commands.DeleteStockCommand;
+import commands.InvalidStockCommandException;
+import commands.DeleteDishCommand;
+import commands.AddStockCommand;
+import commands.QuitCommand;
+import commands.AddDishCommand;
+import commands.AddReservationCommand;
+import commands.VoidReservationCommand;
+import commands.ListDishCommand;
+import commands.ListReservationCommand;
+import commands.ListStockCommand;
+import commands.SearchStockCommand;
+import commands.HelpCommand;
 import menu.Menu;
 import report.ReportWriter;
 import reservation.ReservationList;
+import sales.Sales;
 import stock.Stock;
 
 import java.io.IOException;
@@ -106,17 +118,17 @@ public class CommandParser {
                 errorCommand();
             }
         } else if (splitCommands[0].equals("help")) {
-                new HelpCommand().execute();
+            new HelpCommand().execute();
         } else if (splitCommands[0].equals("sell")) {
-                sales.addSale(commands[1]);
+            sales.addSale(commands[1]);
         } else if (splitCommands[0].equals("profit")) {
-                sales.calculateProfit();
+            sales.calculateProfit();
         } else if (splitCommands[0].equals("popular")) {
-                sales.mostPopularDish();
+            sales.mostPopularDish();
         } else {
-                errorCommand();
-            }
+            errorCommand();
         }
+    }
 
 
 

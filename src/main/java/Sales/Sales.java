@@ -38,14 +38,14 @@ public class Sales {
             int numberSold = soldDishes.get(item);
             double dishProfit = 0.0;
 
-             try {
-                  dishProfit = new Profit(item).getProfit() * numberSold;
-             } catch (NegativeProfitException | EmptyStockException | IngredientMissingException e) {
-                 System.out.println("There has been an error in calculating profit.");
-                 System.out.println("Check if profit is positive, if there is stock and "
-                         + "ingredients for this dish:" + item);
-                 profitError = true;
-                 break;
+            try {
+                dishProfit = new Profit(item).getProfit() * numberSold;
+            } catch (NegativeProfitException | EmptyStockException | IngredientMissingException e) {
+                System.out.println("There has been an error in calculating profit.");
+                System.out.println("Check if profit is positive, if there is stock and "
+                        + "ingredients for this dish:" + item);
+                profitError = true;
+                break;
             }
 
             profit += dishProfit;
