@@ -328,7 +328,7 @@ class ParserTest {
     void parse_quizQueryWithoutSubjectIndex_exceptionThrown() {
         expectedException = new EscException("The subject index is required.");
         String[] quizQueries = {
-            "quiz s/"};
+            "quiz s/ n/1"};
         for (String query : quizQueries) {
             try {
                 parser.parse(query);
@@ -341,7 +341,7 @@ class ParserTest {
 
     @Test
     void parse_quizQueryWithNonIntegerSubject_exceptionThrown() {
-        String quizQuery = "quiz s/something";
+        String quizQuery = "quiz s/something n/1";
         expectedException = new EscException("The subject index has to be an integer.");
         try {
             parser.parse(quizQuery);
@@ -353,7 +353,7 @@ class ParserTest {
 
     @Test
     void parse_quizQuery_QuizCommandReturned() throws Exception {
-        String quizQuery = "quiz s/1";
+        String quizQuery = "quiz s/1 n/1";
         Command returnedCommand = parser.parse(quizQuery);
         assertTrue(returnedCommand instanceof QuizCommand);
     }

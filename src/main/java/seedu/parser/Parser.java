@@ -27,6 +27,8 @@ public class Parser {
 
     private static final String CARD_ARG = "c/";
 
+    private static final String QUIZ_ARG = "n/";
+
     public static final String INCORRECT_COMMAND = "Incorrect Command\n";
 
     /**
@@ -151,14 +153,11 @@ public class Parser {
      */
     private static Command prepareQuiz(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, QuizCommand.MESSAGE_USAGE);
-        checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG);
+        checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG, QUIZ_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
-        if (arguments[1].split(" ").length == 2) {
-            int numToQuiz = getNumberToQuiz(arguments[1]);
-            return new QuizCommand(subjectIndex, numToQuiz);
-        } else {
-            return new QuizCommand(subjectIndex);
-        }
+        int numToQuiz = getNumberToQuiz(arguments[1]);
+
+        return new QuizCommand(subjectIndex, numToQuiz);
     }
 
     /**
@@ -179,7 +178,7 @@ public class Parser {
      * @throws EscException if the input number is a non-integer.
      */
     private static int getNumberToQuiz(String argument) throws EscException {
-        String num = argument.split(" ")[1];
+        String num = argument.split(QUIZ_ARG)[1].trim();
         int numToQuiz = 0;
         try {
             numToQuiz = Integer.parseInt(num);
@@ -198,14 +197,12 @@ public class Parser {
      * @throws EscException if the subject index is absent or non-integer.
      */
     private static int getSubjectIndex(String argument) throws EscException {
-        argument = argument.split(" ")[0];
-        String argWithoutPrefixes = argument.split(QUESTION_ARG)[0].split(CARD_ARG)[0];
+        String argWithoutPrefixes = argument.split(QUESTION_ARG)[0].split(CARD_ARG)[0].split(QUIZ_ARG)[0];
         String subjectIndexString = argWithoutPrefixes.replace(SUBJECT_ARG,"").trim();
 
         if (subjectIndexString.trim().isEmpty()) {
             throw new EscException("The subject index is required.");
         }
-
         try {
             return Integer.parseInt(subjectIndexString);
         } catch (NumberFormatException  e) {

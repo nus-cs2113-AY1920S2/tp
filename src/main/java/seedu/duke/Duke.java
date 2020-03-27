@@ -21,7 +21,7 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             try {
-                subjectList = new SubjectList(storage.loadSubs());
+                //subjectList = new SubjectList(storage.loadSubs());
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(subjectList);
