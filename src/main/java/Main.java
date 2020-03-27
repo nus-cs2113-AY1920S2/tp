@@ -1,4 +1,4 @@
-import Sales.Sales;
+import sales.Sales;
 import menu.Menu;
 import reservation.ReservationList;
 import stock.Stock;
@@ -36,7 +36,7 @@ public class Main {
         this.menu = new Menu();
         this.reservations = new ReservationList();
         this.ui = new Ui();
-        this.sales = new Sales()
+        this.sales = new Sales();
         ui.showWelcomeMessage();
     }
     

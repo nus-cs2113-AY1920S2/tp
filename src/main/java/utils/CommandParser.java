@@ -1,7 +1,7 @@
 package utils;
 
 
-import Sales.Sales;
+import sales.Sales;
 import commands.*;
 import menu.Menu;
 import report.ReportWriter;
@@ -108,7 +108,7 @@ public class CommandParser {
         } else if (splitCommands[0].equals("help")) {
                 new HelpCommand().execute();
         } else if (splitCommands[0].equals("sell")) {
-                sales.addSale(command);
+                sales.addSale(commands[1]);
         } else if (splitCommands[0].equals("profit")) {
                 sales.calculateProfit();
         } else if (splitCommands[0].equals("popular")) {
