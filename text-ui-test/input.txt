@@ -18,4 +18,11 @@ view /cc
 find cS
 done id/CS1010 g/A+
 CAP
+delete id/IS4241 s/4
+view /mp
+delete n/Singapore Employment Law
+delete id/CS1010
+delete id/GET1002
+view
+view /mp
 bye

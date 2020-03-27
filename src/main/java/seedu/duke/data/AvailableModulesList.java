@@ -46,4 +46,46 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(module);
         return super.add(module);
     }
+
+    @Override
+    public boolean remove(Object moduleObject) {
+        assert (moduleObject instanceof Module);
+        Module module = (Module) moduleObject;
+        availableModulesList.remove(module);
+        return super.remove(module);
+    }
+
+
+    public boolean isModuleIdInList(String id) {
+        for (Module module : availableModulesList) {
+            if (module.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isModuleNameInList(String name) {
+        for (Module module : availableModulesList) {
+            if (module.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * To retrieve a module from the list of available modules from the Id or the Name of the module.
+     * Assumes that the user knows that the module already exists in the list of modules.
+     * @param moduleIdentifier Id or Name of module.
+     * @return Module that corresponds to the modules identifier inputted.
+     */
+    public Module getModule(String moduleIdentifier) {
+        for (Module module : availableModulesList) {
+            if (moduleIdentifier.equals(module.getId()) || moduleIdentifier.equals(module.getName())) {
+                return module;
+            }
+        }
+        return null;
+    }
 }
