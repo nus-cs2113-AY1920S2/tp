@@ -23,7 +23,7 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return studentName + " " + isPresent;
+        return studentName + ": " + isPresent;
     }
 
 }

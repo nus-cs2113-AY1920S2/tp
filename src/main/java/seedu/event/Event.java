@@ -1,7 +1,9 @@
 package seedu.event;
 
+import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.exception.DukeException;
+import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 
 import java.time.Instant;
@@ -112,6 +114,10 @@ public class Event {
         this.venue = venue;
     }
 
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
+    }
+
     public PerformanceList getPerformanceList() {
         return performanceList;
     }
@@ -130,7 +136,70 @@ public class Event {
         return output;
     }
 
-    public AttendanceList getAttendanceList() {
-        return attendanceList;
+    /**
+     * Returns a storage-compatible String representation of the event.
+     * @return a storage-compatible String representation of the event
+     */
+    public String toStorable() {
+        StringBuilder output = new StringBuilder(name + ',' + datetime.getDateTime() + ',' + venue + System.lineSeparator());
+
+        for (Attendance attendance : attendanceList.getAttendanceList()) {
+            output.append(attendance.toString());
+            output.append(',');
+        }
+        output.append(System.lineSeparator());
+
+        for (Performance performance : performanceList.getPerformanceList()) {
+            output.append(performance.toString());
+            output.append(',');
+        }
+        output.append(System.lineSeparator());
+
+        return output.toString();
+    }
+
+    /**
+     * Returns an event based on its storage-compatible String representation.
+     * @param representation a storage-compatible String representation of an event
+     * @return an Event object
+     */
+    public Event parseStorable(String representation) throws DukeException {
+        String[] tokens = representation.split(System.lineSeparator());
+
+        // name, datetime, venue
+        String[] token1 = tokens[0].split(",");
+        String name = token1[0];
+        String datetime = token1[1];
+        String venue = token1[2];
+
+        Event newEvent = new Event(name, datetime, venue);
+
+        // add attendance list, populate it
+        attendanceList = new AttendanceList();
+        String[] token2 = tokens[1].split(",");
+        for (String attendance : token2) {
+            String[] attendanceDetail = attendance.split(": ");
+            assert attendanceDetail.length == 2 : "Name contains ': '";
+            String person = attendanceDetail[0];
+            String isPresent = attendanceDetail[1];
+            Attendance newAttendance = new Attendance(person, isPresent);
+
+            attendanceList.addToList(newAttendance, name);
+        }
+
+        // add performance list, populate it
+        performanceList = new PerformanceList();
+        String[] token3 = tokens[2].split(",");
+        for (String performance : token3) {
+            String[] performanceDetail = performance.split(": ");
+            assert performanceDetail.length == 2 : "Name contains ': '";
+            String person = performanceDetail[0];
+            String result = performanceDetail[1];
+            Performance newPerformance = new Performance(person, result);
+
+            performanceList.addToList(newPerformance, name);
+        }
+
+        return newEvent;
     }
 }
