@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.RuntimeException;
 import seedu.duke.data.AvailableModulesList;
 
 import seedu.duke.data.SemesterList;
@@ -19,15 +20,15 @@ public class AddToSemCommand extends AddCommand {
     }
 
     @Override
-    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
         addModule(semesterList);
         Ui.showAddedToSemMessage(selectedModule.announceAdded());
     }
 
-    private void addModule(SemesterList semesterList) {
+    private void addModule(SemesterList semesterList) throws RuntimeException {
         boolean isModuleExist = checkModuleExist(semesterList);
         if (isModuleExist) {
-            return;
+            throw new RuntimeException("The module is already exist in your semester list!");
         }
 
         for (SemModulesList sem: semesterList) {
@@ -52,12 +53,25 @@ public class AddToSemCommand extends AddCommand {
         }
     }
 
-    private boolean checkModuleExist(SemesterList semesterList) {
+    private boolean checkModuleExist(SemesterList semesterList) throws RuntimeException {
+        boolean isInAvailableList = false;
+
+        for (Module module: AvailableModulesList.availableModulesList) {
+            if (module.getName().equals(selectedModule.getName())) {
+                isInAvailableList = true;
+            }
+        }
+
+        if (!isInAvailableList) {
+            throw new RuntimeException("Please add this module to available list first!");
+        }
+
         for (SemModulesList sem: semesterList) {
             if (sem.isInList(selectedModule.getName()) || sem.isInList(selectedModule.getId())) {
                 return true;
             }
         }
+
         return false;
     }
 }
