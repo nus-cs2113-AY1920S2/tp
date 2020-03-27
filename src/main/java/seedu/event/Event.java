@@ -118,8 +118,16 @@ public class Event {
         return attendanceList;
     }
 
+    public void setAttendanceList(AttendanceList attendanceList) {
+        this.attendanceList = attendanceList;
+    }
+
     public PerformanceList getPerformanceList() {
         return performanceList;
+    }
+
+    public void setPerformanceList(PerformanceList performanceList) {
+        this.performanceList = performanceList;
     }
 
     @Override
