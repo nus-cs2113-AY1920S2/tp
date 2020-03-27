@@ -21,7 +21,7 @@
 * **[6. Command Summary](#command-summary)**
 
 &nbsp;
-
+<!-- @@author kokjoon97 -->
 ## Introduction
 
 Have you ever encountered the problem of having to make multiple trips to the supermarket
@@ -35,7 +35,6 @@ SHOCO is a command-line interface (CLI) application that allows you to
 manage and plan your shopping list and budget. With better organisation and also a
 budget tracker, we are here to enhance your grocery-shopping experience and make the woes of
 grocery shopping disappear.
-
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -48,7 +47,7 @@ grocery shopping disappear.
    `java -jar SHOCO.jar`
 4. You are now all set to plan your shopping list!
 &nbsp;
-
+<!-- @@author -->
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 
@@ -60,14 +59,14 @@ grocery shopping disappear.
 
 * Items in square brackets are *optional* and you can omit them. 
   * e.g `EDIT 1 [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]` can be used as `EDIT 1 i/apple p/4.00` or as `EDIT 1 i/apple`.
-  
+<!-- @@author kokjoon97 -->
 * All command words are case-sensitive and you should always use uppercase.
   * e.g `ADD` in `ADD i/DESCRIPTION` consists of only uppercase letters.
   
 * You can supply parameters for the `ADD` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order. 
 However, note that for the `EDIT` command, the delimiters (i.e. `i/`, `q/` and `p/`) should come in alphabetical order.
   * e.g `EDIT i/DESCRIPTION p/PRICE` is acceptable but `EDIT p/PRICE i/DESCRIPTION` is not.
-
+<!-- @@author -->
 &nbsp;
 
 ***
@@ -130,7 +129,7 @@ Example of usage:
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Deleting an item: `DEL`
 Removes an item from the list at the specified index.
 
@@ -142,7 +141,7 @@ Format: `DEL INDEX`
 Example of usage: 
 
 `DEL 3`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -206,7 +205,7 @@ Format: `DISPLAY`
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Setting a budget: `SET`
 Sets a budget for the user.
 
@@ -218,7 +217,7 @@ Format: `SET b/AMOUNT`
 Example of usage: 
 
 `SET b/3.00`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -235,7 +234,7 @@ Format: `RES`
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Finding an item: `FIND`
 Filters the shopping list according to a keyword specified by the user.
 
@@ -247,7 +246,7 @@ Format: `FIND KEYWORD`
 Example of usage: 
 
 `FIND apple`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -279,7 +278,7 @@ Format: `BYE`
 ***
 
 &nbsp;
-
+<!-- @@author kokjoon97 -->
 ## Additional information
 
 ### 1. Loading and saving your shopping list
@@ -294,13 +293,16 @@ When the total cost of the items in your shopping list exceeds the stored budget
 displayed which states by how much you have overrun your current budget. This message will only
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
-
+<!-- @@author -->
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
 
+
 **A**: Simply transfer the JSON files that contain your SHOCO data onto the new computer and place them in the
 folder that contains the SHOCO app. If the folder already has the JSON files, replace them.
+
+<!-- @@author kokjoon97 -->
 
 **Q**: Is it possible to restore a list that I have deleted?
 
@@ -308,6 +310,8 @@ folder that contains the SHOCO app. If the folder already has the JSON files, re
 point in time. It is however, possible to manually backup the `shoppinglist.json` file
 from time to time so that if you unintentionally cleared your list, you can always replace the empty
 `shoppinglist.json` file with your backed up version.
+
+<!-- @@author -->
 
 &nbsp;
 

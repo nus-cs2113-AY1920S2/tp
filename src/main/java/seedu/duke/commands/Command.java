@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 
+//@@author trishaangelica, jiajuinphoon, Shannonwje, kokjoon97, JLoh579
 public class Command {
 
     protected ShoppingList items;
@@ -23,3 +24,4 @@ public class Command {
     }
 
 }
+//@@author
