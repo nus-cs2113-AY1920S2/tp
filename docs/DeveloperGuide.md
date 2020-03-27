@@ -321,9 +321,9 @@ cost of the items. It then calls the <code>getAmount</code> and <code>getRemaini
 The following sequence diagrams below show how the display feature works. Note the <code>Ui</code> class is
 omitted to emphasise the other classes:
 
-![alt text](images/List.png)
+![alt text](images/Display.png)
 
-![alt text](images/List_SD.png)
+![alt text](images/Display_SD.png)
 
 #### 3.6.2 Design considerations
 ##### Aspect: Data structure to support the display feature
@@ -607,7 +607,7 @@ This section contains the user stories for the different versions of our product
 |v2.0|practical home cook|be able to edit the items in my lists|update the items on my list accordingly|
 |v2.0|organised home cook|save my list|have a local copy of my list|
 |v2.0|organised home cook|load my saved list|add on to my existing list|
-|v2.0|frugal home cook|see the remaining budget update based on the quantity of items|see how much I spend based on ````````how much I buy|
+|v2.0|frugal home cook|see the remaining budget update based on the quantity of items|see how much I spend based on how much I buy|
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
