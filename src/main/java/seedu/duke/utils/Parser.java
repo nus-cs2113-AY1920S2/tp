@@ -1,19 +1,19 @@
 package seedu.duke.utils;
 
-import seedu.duke.commands.Command;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ClearCommand;
+import seedu.duke.commands.Command;
 import seedu.duke.commands.DeleteCommand;
+import seedu.duke.commands.DisplayCommand;
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.FindCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.IncorrectCommand;
-import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.UnmarkCommand;
-import seedu.duke.commands.FindCommand;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,8 +84,8 @@ public class Parser {
             break;
         //@@author
 
-        case ListCommand.COMMAND_WORD:
-            createListCommand(arguments);
+        case DisplayCommand.COMMAND_WORD:
+            createDisplayCommand(arguments);
             break;
 
 
@@ -469,19 +469,19 @@ public class Parser {
         }
 
     }
-    //@@author
 
+    //@@author JLoh579
     /**
      * Initialises the ListCommand.
      */
-    private void createListCommand(String arguments) {
+    private void createDisplayCommand(String arguments) {
         if (arguments != null) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Invalid command."
                     + System.lineSeparator()
                     + "To display your shopping list, just input \"DISPLAY\".");
         } else {
-            newCommand = new ListCommand();
+            newCommand = new DisplayCommand();
         }
     }
 

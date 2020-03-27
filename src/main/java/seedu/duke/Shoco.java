@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class Duke {
+public class Shoco {
 
     private static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
@@ -30,8 +30,8 @@ public class Duke {
      *
      */
     public static void main(String[] args) {
-        Duke.setUpLogger();
-        new Duke().run();
+        Shoco.setUpLogger();
+        new Shoco().run();
     }
 
     //@@author kokjoon97
