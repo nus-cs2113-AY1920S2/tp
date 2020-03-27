@@ -15,4 +15,4 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 *.log
-
+docs/images/Architecture.png

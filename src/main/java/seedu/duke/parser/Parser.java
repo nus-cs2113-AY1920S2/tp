@@ -52,6 +52,7 @@ public class Parser {
         case MarkAsDoneCommand.COMMAND_WORD:
             return processMarkAsDone(args);
         case HelpingCommand.COMMAND_WORD:
+            assert taskType.equals("help");
             return processHelpCommand();
         case FindCommand.COMMAND_WORD:
             return processFindCommand(args);
