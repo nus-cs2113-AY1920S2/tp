@@ -173,14 +173,19 @@ public class Parser {
         moduleWords = args.split("id/");
         if (moduleWords.length < 2) {
             throw new InputException("invalid 'add' command",
-                    "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
+                    "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES]");
         }
         moduleWords = moduleWords[1].split(" n/");
         if (moduleWords.length < 2) {
-            return null;
+            throw new InputException("invalid 'add' command",
+                    "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
         }
         String moduleId = moduleWords[0];
         moduleWords = moduleWords[1].split(" mc/");
+        if (moduleWords.length < 2) {
+            throw new InputException("invalid 'add' command",
+                    "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
+        }
         String moduleName = moduleWords[0];
         moduleWords = moduleWords[1].split(" pre/");
         int moduleCredit = Integer.parseInt(moduleWords[0]);

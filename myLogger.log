@@ -62,3 +62,30 @@ delete id/ID OR delete n/NAME
 Mar 27, 2020 4:01:31 PM seedu.duke.Duke run
 WARNING: Runtime Error: Module CS2030 cannot be deleted because it is a prerequisite to other modules.
 Please enter your command again!
+Mar 27, 2020 5:05:09 PM seedu.duke.Duke run
+WARNING: Runtime Error: module not found
+Please enter your command again!
+Mar 27, 2020 5:42:21 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:07 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:10 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:18 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:24 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:34 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES

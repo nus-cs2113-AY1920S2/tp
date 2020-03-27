@@ -29,23 +29,26 @@ public class StorageAvailableModulesList {
      * @throws StorageException if file path is wrong.
      */
     public static AvailableModulesList load() throws StorageException {
+        AvailableModulesList availableModulesList = new AvailableModulesList();
         try {
-            return loadFileContents();
+            loadFileContents(availableModulesList);
         } catch (FileNotFoundException e) {
-            throw new StorageException("No person information file exits. I will make a new one later!");
+            throw new StorageException("No file exits. I will make a new one later!");
+        } finally {
+            return availableModulesList;
         }
     }
 
     /**
      * Uses scanner to get the data in file and gets the stored available modules list.
-     * @return available modules list.
      * @throws FileNotFoundException if file path is wrong.
      */
-    public static AvailableModulesList loadFileContents() throws FileNotFoundException, StorageException {
+    public static void loadFileContents(AvailableModulesList availableModulesList)
+            throws FileNotFoundException, StorageException {
+
         checkDir();
         File fileToBeLoad = new File(DEFAULT_FILEPATH);
         Scanner s = new Scanner(fileToBeLoad);
-        AvailableModulesList availableModulesList = new AvailableModulesList();
 
         /* skip head */
         if (s.hasNext()) {
@@ -56,8 +59,6 @@ public class StorageAvailableModulesList {
             String moduleInfo = s.nextLine();
             processModuleInfoString(moduleInfo, availableModulesList);
         }
-
-        return availableModulesList;
     }
 
     /**

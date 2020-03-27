@@ -19,6 +19,7 @@ import seedu.duke.exception.StorageException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.StorageAvailableModulesList;
 import seedu.duke.storage.StoragePersonInfo;
+import seedu.duke.storage.StorageSemesterList;
 import seedu.duke.ui.Ui;
 
 
@@ -34,11 +35,18 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        //availableModulesList = new AvailableModulesList();
-        semesterList = new SemesterList();
         try {
             StoragePersonInfo.load();
+        } catch (StorageException e) {
+            logr.log(Level.WARNING, e.getMessage());
+        }
+        try {
             availableModulesList = StorageAvailableModulesList.load();
+        } catch (StorageException e) {
+            logr.log(Level.WARNING, e.getMessage());
+        }
+        try {
+            semesterList = StorageSemesterList.load();
         } catch (StorageException e) {
             logr.log(Level.WARNING, e.getMessage());
         }

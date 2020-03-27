@@ -5,6 +5,7 @@ import seedu.duke.data.SemesterList;
 import seedu.duke.exception.StorageException;
 import seedu.duke.storage.StorageAvailableModulesList;
 import seedu.duke.storage.StoragePersonInfo;
+import seedu.duke.storage.StorageSemesterList;
 
 public class ExitCommand extends Command {
 
@@ -14,6 +15,7 @@ public class ExitCommand extends Command {
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws StorageException {
         StoragePersonInfo.save();
         StorageAvailableModulesList.save(availableModulesList);
+        StorageSemesterList.save(semesterList);
     }
 
     public boolean isExit() {
