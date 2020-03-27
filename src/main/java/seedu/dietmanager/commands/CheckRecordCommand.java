@@ -23,7 +23,7 @@ public class CheckRecordCommand extends Command {
     public CheckRecordCommand(String command, String description) throws InvalidFormatException {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.date = descriptionArray[0];
+        this.date = descriptionArray[0].toUpperCase();
         this.mealType = descriptionArray[1];
     }
 
