@@ -16,9 +16,10 @@ public class ListReservationCommand extends ReservationCommand {
             System.out.println(reservations.getReservation(i));
         }
     }
-    
+
     @Override
     protected void parseInput(String description) {
 
     }
+
 }

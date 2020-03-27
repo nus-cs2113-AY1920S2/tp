@@ -1,45 +1,48 @@
 package utils;
 
-import java.io.IOException;
 
-import commands.AddDishCommand;
-import commands.AddReservationCommand;
-import commands.AddStockCommand;
-import commands.DeleteDishCommand;
 import commands.DeleteStockCommand;
 import commands.InvalidStockCommandException;
+import commands.DeleteDishCommand;
+import commands.AddStockCommand;
+import commands.QuitCommand;
+import commands.AddDishCommand;
+import commands.AddReservationCommand;
+import commands.VoidReservationCommand;
 import commands.ListDishCommand;
 import commands.ListReservationCommand;
 import commands.ListStockCommand;
-import commands.QuitCommand;
 import commands.SearchStockCommand;
-import commands.VoidReservationCommand;
+import commands.HelpCommand;
 import menu.Menu;
 import report.ReportWriter;
 import reservation.ReservationList;
+import sales.Sales;
 import stock.Stock;
 
+import java.io.IOException;
+
 public class CommandParser {
-    
-    /** Pass the parsed user input into readable formats to be processed
+
+    /**
+     * Pass the parsed user input into readable formats to be processed
      * by either a menu, stock or a reservation.
-     *
      */
-    public void parseCommand(String command, Menu menu, 
-            Stock stock, ReservationList reservations) {
-        
+    public void parseCommand(String command, Menu menu,
+                             Stock stock, ReservationList reservations, Sales sales) {
+
         if (command.equals("bye")) {
             try {
-                new ReportWriter(stock,reservations,menu).writeToFile();
+                new ReportWriter(stock, reservations, menu).writeToFile();
             } catch (IOException e) {
                 System.out.println("Error writing to file");
             }
             new QuitCommand().execute();
         }
-        
-        String[] commands = command.split(";",2);
-        String[] splitCommands = commands[0].split(" ",2);
-        
+
+        String[] commands = command.split(";", 2);
+        String[] splitCommands = commands[0].split(" ", 2);
+
         if (splitCommands[0].equals("add")) {
             if (splitCommands[1].equals("dish")) {
                 // Add dish.
@@ -50,7 +53,9 @@ public class CommandParser {
                 try {
                     new AddStockCommand(commands[1]).execute(stock);
                     successfulCommand();
+
                 } catch (IllegalStateException | InvalidStockCommandException e) {
+
                     errorCommand();
                     printErrorMessage(e.getMessage());
                 }
@@ -72,7 +77,7 @@ public class CommandParser {
                 try {
                     new DeleteStockCommand(commands[1]).execute(stock);
                     successfulCommand();
-                } catch (InvalidStockCommandException | IllegalStateException e) {                    
+                } catch (InvalidStockCommandException | IllegalStateException e) {
                     errorCommand();
                     printErrorMessage(e.getMessage());
                 }
@@ -105,36 +110,47 @@ public class CommandParser {
                 try {
                     new SearchStockCommand(commands[1]).execute(stock);
                     successfulCommand();
-                } catch (InvalidStockCommandException e) {                    
+                } catch (InvalidStockCommandException e) {
                     errorCommand();
                     printErrorMessage(e.getMessage());
                 }
             } else {
                 errorCommand();
             }
+        } else if (splitCommands[0].equals("help")) {
+            new HelpCommand().execute();
+        } else if (splitCommands[0].equals("sell")) {
+            sales.addSale(commands[1]);
+        } else if (splitCommands[0].equals("profit")) {
+            sales.calculateProfit();
+        } else if (splitCommands[0].equals("popular")) {
+            sales.mostPopularDish();
         } else {
             errorCommand();
         }
     }
-    
+
+
+
     public static void errorCommand() {
         System.out.println("Incorrect command");
     }
-    
-    /** 
-     * Displays an error message to the user. 
-     * */
+
+    /**
+     * Displays an error message to the user.
+     */
     public static void printErrorMessage(String message) {
         System.out.println("============================================================"
                 + "================================================================");
-        
+
         System.out.println(message);
-        
+
         System.out.println("============================================================"
                 + "================================================================");
     }
-    
+
     public static void successfulCommand() {
         System.out.println("The command has been successfully executed.");
     }
 }
+
