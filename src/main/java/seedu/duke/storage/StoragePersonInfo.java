@@ -13,7 +13,7 @@ import java.util.Scanner;
  * Saves and loads the file of Person information.
  */
 public class StoragePersonInfo {
-    public static final String DEFAULT_FILEPATH = "data/personInfo.txt";
+    public static final String DEFAULT_FILEPATH = "data/personInfo.csv";
     public static final String FOLDER_PATH = "data";
 
     public StoragePersonInfo() {
