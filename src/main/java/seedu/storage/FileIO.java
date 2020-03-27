@@ -14,6 +14,11 @@ public class FileIO {
     private FileWriter fileToWriteTo;
     private Scanner scanner;
 
+    /**
+     * Open files to be modified, and scanner to read from file.
+     * @param directory the file to be opened
+     * @throws DukeException if cannot initialise file
+     */
     public FileIO(String directory) throws DukeException {
         File f = open(directory);
 
