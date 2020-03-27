@@ -7,7 +7,7 @@ import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.ResetBudgetCommand;
-import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.DisplayCommand;
 import seedu.duke.commands.ExitCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,7 +48,7 @@ public class ParserTest {
     @Test
     public void parse_listCommand_parsedCorrectly() {
         final String input = "DISPLAY";
-        parseAndAssertCommandType(input, ListCommand.class);
+        parseAndAssertCommandType(input, DisplayCommand.class);
     }
 
     @Test

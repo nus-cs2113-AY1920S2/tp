@@ -1,7 +1,6 @@
 # SHOCO v2.0 - User Guide
 
-&nbsp;
-
+### Table of Contents
 * **[1. Introduction](#introduction)**
 * **[2. Quick Start](#quick-start)**
 * **[3. Features](#features)**
@@ -21,9 +20,8 @@
 * **[5. FAQ](#faq)**
 * **[6. Command Summary](#command-summary)**
 
-
 &nbsp;
-
+<!-- @@author kokjoon97 -->
 ## Introduction
 
 Have you ever encountered the problem of having to make multiple trips to the supermarket
@@ -37,7 +35,6 @@ SHOCO is a command-line interface (CLI) application that allows you to
 manage and plan your shopping list and budget. With better organisation and also a
 budget tracker, we are here to enhance your grocery-shopping experience and make the woes of
 grocery shopping disappear.
-
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -50,7 +47,7 @@ grocery shopping disappear.
    `java -jar SHOCO.jar`
 4. You are now all set to plan your shopping list!
 &nbsp;
-
+<!-- @@author -->
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 
@@ -62,14 +59,14 @@ grocery shopping disappear.
 
 * Items in square brackets are *optional* and you can omit them. 
   * e.g `EDIT 1 [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]` can be used as `EDIT 1 i/apple p/4.00` or as `EDIT 1 i/apple`.
-  
+<!-- @@author kokjoon97 -->
 * All command words are case-sensitive and you should always use uppercase.
   * e.g `ADD` in `ADD i/DESCRIPTION` consists of only uppercase letters.
   
 * You can supply parameters for the `ADD` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order. 
 However, note that for the `EDIT` command, the delimiters (i.e. `i/`, `q/` and `p/`) should come in alphabetical order.
   * e.g `EDIT i/DESCRIPTION p/PRICE` is acceptable but `EDIT p/PRICE i/DESCRIPTION` is not.
-
+<!-- @@author -->
 &nbsp;
 
 ***
@@ -132,7 +129,7 @@ Example of usage:
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Deleting an item: `DEL`
 Removes an item from the list at the specified index.
 
@@ -144,7 +141,7 @@ Format: `DEL INDEX`
 Example of usage: 
 
 `DEL 3`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -208,19 +205,19 @@ Format: `DISPLAY`
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Setting a budget: `SET`
 Sets a budget for the user.
 
 Format: `SET b/AMOUNT`
 
-* The `AMOUNT` can be any double that is between 0 to 5000.
+* The `AMOUNT` can be any decimal number that is between 0 to 5000.
 * The `b/` substring should be present in the command.  
 
 Example of usage: 
 
 `SET b/3.00`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -237,7 +234,7 @@ Format: `RES`
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Finding an item: `FIND`
 Filters the shopping list according to a keyword specified by the user.
 
@@ -249,7 +246,7 @@ Format: `FIND KEYWORD`
 Example of usage: 
 
 `FIND apple`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -281,14 +278,14 @@ Format: `BYE`
 ***
 
 &nbsp;
-
+<!-- @@author kokjoon97 -->
 ## Additional information
 
 ### 1. Loading and saving your shopping list
 
-All of the information stored in your shopping list is saved to a JSON file after you
-exit the application. This data is also retrieved from the same JSON file the next time you boot up
-Shoco. There is nothing that you have to do as this is an automatic process.
+All your shopping list and budget data are saved to JSON files after you
+exit the application. This data is also retrieved from the same JSON files the next time you boot up
+Shoco. No further action is required from you as this is an automatic process.
 
 ### 2. Automated budget tracker
 
@@ -296,20 +293,25 @@ When the total cost of the items in your shopping list exceeds the stored budget
 displayed which states by how much you have overrun your current budget. This message will only
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
-
+<!-- @@author -->
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: Install the app in the other computer and replace the empty data file it creates with the file 
-that contains the data of your previous SHOCO shopping list.
+
+**A**: Simply transfer the JSON files that contain your SHOCO data onto the new computer and place them in the
+folder that contains the SHOCO app. If the folder already has the JSON files, replace them.
+
+<!-- @@author kokjoon97 -->
 
 **Q**: Is it possible to restore a list that I have deleted?
 
 **A**: Unfortunately, we are still working on this feature and there is no such functionality at this
-point in time. It is however possible to manually backup the shoppinglist.json file
+point in time. It is however, possible to manually backup the `shoppinglist.json` file
 from time to time so that if you unintentionally cleared your list, you can always replace the empty
-shoppinglist.json file with your backed up version.
+`shoppinglist.json` file with your backed up version.
+
+<!-- @@author -->
 
 &nbsp;
 
@@ -328,7 +330,7 @@ shoppinglist.json file with your backed up version.
 * Un-mark item `UNMARK INDEX`
 * Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
-* Reset Budget `RES`
+* Reset budget `RES`
 * Find item `FIND KEYWORD`
 * View help `HELP`
 * Exit program `BYE`
@@ -336,4 +338,3 @@ shoppinglist.json file with your backed up version.
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
-
