@@ -1,7 +1,6 @@
 # SHOCO v2.0 - User Guide
 
-&nbsp;
-
+### Table of Contents
 * **[1. Introduction](#introduction)**
 * **[2. Quick Start](#quick-start)**
 * **[3. Features](#features)**
@@ -20,7 +19,6 @@
 * **[4. Additional information](#additional-information)**
 * **[5. FAQ](#faq)**
 * **[6. Command Summary](#command-summary)**
-
 
 &nbsp;
 
@@ -214,7 +212,7 @@ Sets a budget for the user.
 
 Format: `SET b/AMOUNT`
 
-* The `AMOUNT` can be any double that is between 0 to 5000.
+* The `AMOUNT` can be any decimal number that is between 0 to 5000.
 * The `b/` substring should be present in the command.  
 
 Example of usage: 
@@ -286,9 +284,9 @@ Format: `BYE`
 
 ### 1. Loading and saving your shopping list
 
-All of the information stored in your shopping list is saved to a JSON file after you
-exit the application. This data is also retrieved from the same JSON file the next time you boot up
-Shoco. There is nothing that you have to do as this is an automatic process.
+All your shopping list and budget data are saved to JSON files after you
+exit the application. This data are also retrieved from the same JSON files the next time you boot up
+Shoco. No further action is required from you as this is an automatic process.
 
 ### 2. Automated budget tracker
 
@@ -301,15 +299,15 @@ your budget.
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: Install the app in the other computer and replace the empty data file it creates with the file 
-that contains the data of your previous SHOCO shopping list.
+**A**: Simply transfer the JSON files that contain your SHOCO data onto the new computer and place them in the
+folder that contains the SHOCO app. If the folder already has the JSON files, replace them.
 
 **Q**: Is it possible to restore a list that I have deleted?
 
 **A**: Unfortunately, we are still working on this feature and there is no such functionality at this
-point in time. It is however possible to manually backup the shoppinglist.json file
+point in time. It is however, possible to manually backup the `shoppinglist.json` file
 from time to time so that if you unintentionally cleared your list, you can always replace the empty
-shoppinglist.json file with your backed up version.
+`shoppinglist.json` file with your backed up version.
 
 &nbsp;
 
@@ -328,7 +326,7 @@ shoppinglist.json file with your backed up version.
 * Un-mark item `UNMARK INDEX`
 * Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
-* Reset Budget `RES`
+* Reset budget `RES`
 * Find item `FIND KEYWORD`
 * View help `HELP`
 * Exit program `BYE`
@@ -336,4 +334,3 @@ shoppinglist.json file with your backed up version.
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
-
