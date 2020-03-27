@@ -31,12 +31,15 @@ public class Duke {
         setupLogger();
 
         ui = new UI();
-        eventList = new EventList();  //TODO: new Storage().load()
 
         interpreter = new CommandInterpreter(eventList);
         studentListCollection = new ArrayList<>(maxListSize);
 
         storage = new Storage(filepath);
+        eventList = storage.loadAll();
+        if (eventList == null) {
+            eventList = new EventList();
+        }
     }
 
     private void setupLogger() {
@@ -55,7 +58,7 @@ public class Duke {
         }
     }
 
-    public void run() {
+    public void run() throws DukeException {
         ui.setUserName();
         Command command = null;
 
@@ -69,6 +72,8 @@ public class Duke {
             }
         } while (isNotBye(command));
 
+        storage.saveAll(eventList);
+        storage.close();
         ui.close();
     }
 
@@ -83,7 +88,6 @@ public class Duke {
         try {
             Duke pac = new Duke("./data.txt");
             pac.run();
-            pac.storage.close();
         } catch (DukeException m) {
             UI.display(m.getMessage());
         }
