@@ -1,22 +1,23 @@
 package sales;
 
-import Sales.Sales;
 import commands.AddDishCommand;
 import exceptions.EmptyStockException;
 import exceptions.IngredientMissingException;
 import exceptions.NegativeProfitException;
 import ingredient.Ingredient;
 import menu.Menu;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import stock.Stock;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class SalesTest {
+
+    final Menu menu = new Menu();
 
     public void stockA() {
         Stock stockA = new Stock();
@@ -31,13 +32,13 @@ public class SalesTest {
     }
 
     @Test
-    public void TestAddSale1() {
-        Menu m = new Menu();
-        String d1 = "n/bacon pizza; i/cheese, bacon; p/5.00;";
-        AddDishCommand.addDish(d1);
-        String d2 = "n/bacon; i/bacon; p/3.00;";
-        AddDishCommand.addDish(d2);
+    public void testAddSale1() {
         String d3 = "n/pasta; i/spaghetti, bacon; p/10.00;";
+        String d2 = "n/bacon; i/bacon; p/3.00;";
+        String d1 = "n/bacon pizza; i/cheese, bacon; p/5.00;";
+
+        AddDishCommand.addDish(d1);
+        AddDishCommand.addDish(d2);
         AddDishCommand.addDish(d3);
         Sales s = new Sales();
         String s1 = "d/bacon pizza; q/5;";
@@ -47,15 +48,14 @@ public class SalesTest {
         s.addSale(s2);
         s.addSale(s3);
         assertNotNull(s.getSalesMap());
-        assertTrue(s.getSalesMap().get(m.getDishMap().get("bacon pizza")).equals(5));
-        assertTrue(s.getSalesMap().get(m.getDishMap().get("bacon")).equals(10));
-        assertTrue(s.getSalesMap().get(m.getDishMap().get("pasta")).equals(20));
+        assertTrue(s.getSalesMap().get(Menu.getDishMap().get("bacon pizza")).equals(5));
+        assertTrue(s.getSalesMap().get(Menu.getDishMap().get("bacon")).equals(10));
+        assertTrue(s.getSalesMap().get(Menu.getDishMap().get("pasta")).equals(20));
 
     }
 
     @Test
     public void testAddSale2() {
-        Menu m = new Menu();
         String d1 = "n/bacon pizza; i/cheese, bacon; p/5.00;";
         AddDishCommand.addDish(d1);
         String d2 = "n/bacon; i/bacon; p/3.00;";
@@ -69,15 +69,15 @@ public class SalesTest {
         s.addSale(s2);
         s.addSale(s3);
         assertNotNull(s.getSalesMap());
-        assertTrue(s.getSalesMap().get(m.getDishMap().get("bacon pizza")).equals(5));
-        assertTrue(s.getSalesMap().get(m.getDishMap().get("bacon")).equals(10));
-        assertNull(s.getSalesMap().get(m.getDishMap().get("pasta")));
+        assertTrue(s.getSalesMap().get(Menu.getDishMap().get("bacon pizza")).equals(5));
+        assertTrue(s.getSalesMap().get(Menu.getDishMap().get("bacon")).equals(10));
+        assertNull(s.getSalesMap().get(Menu.getDishMap().get("pasta")));
     }
 
     @Test
     public void testTotalProfit() throws NegativeProfitException, EmptyStockException, IngredientMissingException {
         stockA();
-        Menu m = new Menu();
+
         String d1 = "n/bacon pizza; i/cheese, bacon; p/5.00;";
         AddDishCommand.addDish(d1);
 
@@ -101,7 +101,7 @@ public class SalesTest {
     @Test
     public void testPopularDishAndProfit() {
         stockA();
-        Menu m = new Menu();
+
         String d1 = "n/bacon pizza; i/cheese, bacon; p/5.00;";
         AddDishCommand.addDish(d1);
 
