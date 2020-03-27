@@ -14,6 +14,7 @@ import seedu.command.interpreter.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
+import seedu.storage.Storage;
 import seedu.ui.UI;
 
 public class Duke {
@@ -24,8 +25,9 @@ public class Duke {
     protected EventList eventList;
     public static ArrayList<StudentList> studentListCollection;
     protected int maxListSize = 100;
+    protected Storage storage;
 
-    public Duke() {
+    public Duke(String filepath) throws DukeException {
         setupLogger();
 
         ui = new UI();
@@ -33,6 +35,8 @@ public class Duke {
 
         interpreter = new CommandInterpreter(eventList);
         studentListCollection = new ArrayList<>(maxListSize);
+
+        storage = new Storage(filepath);
     }
 
     private void setupLogger() {
@@ -61,8 +65,7 @@ public class Duke {
                 command = interpreter.decideCommand(ui.getUserInput());
                 command.execute();
             } catch (DukeException m) {
-                logger.log(Level.WARNING, "DukeException at main()");
-                System.out.println(m.getMessage());
+                logger.log(Level.WARNING, "DukeException at Duke.run()");
             }
         } while (isNotBye(command));
 
@@ -77,6 +80,12 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        new Duke().run();
+        try {
+            Duke pac = new Duke("./data.txt");
+            pac.run();
+            pac.storage.close();
+        } catch (DukeException m) {
+            UI.display(m.getMessage());
+        }
     }
 }

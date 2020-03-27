@@ -149,7 +149,10 @@ public class Event {
      * @return a storage-compatible String representation of the event
      */
     public String toStorable() {
-        StringBuilder output = new StringBuilder(name + ',' + datetime.getDateTime() + ',' + venue + System.lineSeparator());
+        StringBuilder output = new StringBuilder(name + ','
+                + datetime.getDateTime() + ','
+                + venue
+                + System.lineSeparator());
 
         for (Attendance attendance : attendanceList.getAttendanceList()) {
             output.append(attendance.toString());

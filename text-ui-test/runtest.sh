@@ -12,7 +12,7 @@ java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.
 
 diff EXPECTED.TXT ACTUAL.TXT
 
-rm ACTUAL.TXT Duke.log
+rm ACTUAL.TXT Duke.log data.txt
 
 if [ $? -eq 0 ]
 then

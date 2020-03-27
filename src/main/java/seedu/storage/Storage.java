@@ -19,8 +19,8 @@ public class Storage {
 
     /**
      * Load all events to EventList.
-     * @throws DukeException if EOF is encountered
      * @return an EventList object with all events loaded
+     * @throws DukeException if EOF is encountered
      */
     public EventList loadAll() throws DukeException {
         EventList eventList = new EventList();
