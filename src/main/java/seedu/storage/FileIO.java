@@ -59,6 +59,16 @@ public class FileIO {
     }
 
     /**
+     * Read in information that is required to reconstruct one Event
+     * (which is three lines).
+     * @return a String that consists of three lines
+     * @throws DukeException if EOF is encountered
+     */
+    public String readOneEvent() throws DukeException {
+        return this.read() + this.read() + this.read();
+    }
+
+    /**
      * Read a line from current file.
      * @return the next line
      * @throws DukeException if EOF is encountered
