@@ -17,14 +17,18 @@ public class Patient {
     protected String allergies = null;
     protected String remarks = null;
 
-
     /**
      * Constructor for Task Class.
      * It creates a new task with the description provided by the user.
      * It also sets isDone to false as it is a newly created task.
      *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
+     * @param name          Name of the patient.
+     * @param nric          NRIC of the patient.
+     * @param phoneNumber   Phone number of the patient.
+     * @param dateOfBirth   Date of birth of the patient.
+     * @param bloodType     Blood type of the patient.
+     * @param allergies     Allergies the patient may have.
+     * @param remarks       Remarks for the patient.
      */
     public Patient(String name, String nric, int phoneNumber, String dateOfBirth,
                    String bloodType, String allergies, String remarks) {
@@ -35,59 +39,6 @@ public class Patient {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.remarks = remarks;
-    }
-
-    /**
-     * Constructor for Task Class.
-     * It creates a new task with the description provided by the user.
-     * It also sets isDone to false as it is a newly created task.
-     *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
-     */
-    public Patient(String name, String nric, int phoneNumber, String dateOfBirth,
-                   String bloodType, String allergies) {
-        this.name = name;
-        this.nric = nric;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.bloodType = bloodType;
-        this.allergies = allergies;
-    }
-
-    /**
-     * Constructor for Task Class.
-     * It creates a new task with the description provided by the user.
-     * It also sets isDone to false as it is a newly created task.
-     *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
-     */
-    public Patient(String name, String nric, String dateOfBirth,
-                   int phoneNumber, String bloodType, String remarks) {
-        this.name = name;
-        this.nric = nric;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.bloodType = bloodType;
-        this.remarks = remarks;
-    }
-
-    /**
-     * Constructor for Task Class.
-     * It creates a new task with the description provided by the user.
-     * It also sets isDone to false as it is a newly created task.
-     *
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
-     */
-    public Patient(String name, String nric, String dateOfBirth,
-                   int phoneNumber, String bloodType) {
-        this.name = name;
-        this.nric = nric;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.bloodType = bloodType;
     }
 
     /**
@@ -177,5 +128,18 @@ public class Patient {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    /**
+     * Create a string with all the patient's data for storage to a text file.
+     * Each variable is separated with | as a divider.
+     *
+     * @return a formatted string with patient's data.
+     */
+    public String toSave() {
+        String text = this.name + "|" + this.nric + "|"
+                + this.phoneNumber + "|" + this.dateOfBirth + "|"
+                + this.bloodType + "|" + this.allergies + "|" + this.remarks;
+        return text;
     }
 }

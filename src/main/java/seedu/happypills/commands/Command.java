@@ -1,6 +1,6 @@
 package seedu.happypills.commands;
 
-import seedu.happypills.data.PatientList;
+import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 
 /**
@@ -26,15 +26,15 @@ public abstract class Command {
      * Executes the command based on the information provided by the user.
      *
      * @param patients Contains the list of tasks on which the commands are executed on.
+     * @return null
      * @throws HappyPillsException If issues are found during execution of command.
      */
-    public String execute(PatientList patients) throws HappyPillsException {
+    public String execute(PatientMap patients) throws HappyPillsException {
         return null;
     }
 
     /**
      * Returns exit condition.
-     *
      * @return isExit Contains information that allow the program to exit.
      */
     public boolean isExit() {

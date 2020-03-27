@@ -1,0 +1,11 @@
+add
+list
+help
+help add
+list
+edit s12345f /p918
+edit /rVegetarian
+get s12345f
+delete s12345f n
+delete s12345f y
+list

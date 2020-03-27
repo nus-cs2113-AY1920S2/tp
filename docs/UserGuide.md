@@ -1,33 +1,164 @@
-# User Guide
+# HappyPills
+HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI). 
+The application replaces all physical papers and is highly optimised for fast typing users.
+If you can type fast, HappyPills can help to manage patients’ records faster than traditional Graphical User Interface (GUI) applications. 
+All notes are neatly organised in HappyPills so that no information of the patients will be missing. 
+Say goodbye to messy desks, illegible handwriting, time-consuming handwritten notes with HappyPills!
 
-## Introduction
-
-{Give a product intro}
-
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Usage](#usage)
 ## Quick Start
+**Installation**
+1. Ensure that you have `Java 11` or later installed in your computer 
+2. Click [here](link to be added later?) to download the HappyPills JAR File
 
-{Give steps to get started quickly}
+**For Window users**
+1. Open Command Prompt in the directory where the JAR file is located.
+2. Run the command `java -jar happypills.jar`
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+## Features
+Command | Description
+---------------|---------------
+`help [command]` | Display a help message with all commands or specific commands with usage examples
+`list` | Display all the Patients in alphabetical order
+<code>add /ic\[NRIC] /n\[NAME] <br>/p\[PHONE_NUMBER] /d\[DOB] <br>/b\[BLOOD_TYPE];</code> | Add a new patient with the specified details.
+`get [nric]` | Retrieve details of the patient with the specified NRIC
+<code>edit NRIC \[Options]\[editedInput];</code> <br> <code>Options: </Code> <br> <code> -p edit phone number</code><br> <code> -a edit allergies</code> <br> <code> -r edit remarks</code>| Edit information of the patient with the specified NRIC
+`delete [nric]` | Deletes a patient with the specified NRIC
+`exit` | Saves the data to a text file and exits the program
 
-## Features 
+## Usage
+### help
+Display a help message with all commands or specific commands with usage examples
+##### Usage example:
+*For general help*  
+```
+help
+```
 
-{Give detailed description of each feature}
+> ***Expected output:***
+>
+>     ===================================================
+>      HappyPills Commands:
+>        add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+>        add /a[ALLERGIES]
+>        add /r[REMARKS]
+>        list 
+>        get [NRIC]
+>        edit [OPTIONS][EDITED_INPUT]
+>           -p edit phone number
+>           -a edit allergies
+>           -r edit remarks
+>        delete NRIC
+>        help
+>        exit
+>        For more detailed command instructions, enter help [COMMAND].
+>      ===================================================
+*For specific help*  
+```
+help [Command]
+```
+###### Example:
+`help get`
+> ***Expected output:***
+>
+>     ===================================================
+>     To retrieve a patient's information, run the following command:
+>     Note: patient details are within the parenthesis [ ]
+>       get [NRIC]
+>     Example:
+>       get S9999999Z
+>     The command above will display information regarding the patient with NRIC S9999999Z.
+>     ===================================================
+>
 
-### Adding a to-do: `todo`
-Adds a to-do item to the list of to-dos.
+### List
+Display all the Patients in alphabetical order
+##### Usage example:
+```
+list
+```
+> ***Expected output:***
+>
+>         ===================================================
+>         Alice | S8888888A 
+>         Bob | S9999999Z   
+>         ===================================================    
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+### Add
+Add a new patient with the specified parameters. User can also add allergies or remarks to existing users.
+##### Usage example:
+*To add a new user*   
+```
+add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+```
+###### Example:
+- `add /icS9999999Z /nBob /p999 /d12-11-98 /bA+`
+> ***Expected output:***
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+*To add allergies or remarks to existing user*   
+```
+add /ic[NRIC] /a[ALLERGIES]   
+add /ic[NRIC] /r[REMARKS]
+```
+###### Example:
+- `add /icS9999999Z /aSchool`
+- `add /icS9999999Z /rHad contact with COVID-19 Case200`
+> ***Expected output:***
 
-Example of usage: 
+### Get
+Retrieve details of the patient with the specified NRIC
+##### Usage example:
+`get [nric]`
+###### Example:
+- `get S9999999Z`
+> ***Expected output:***
+>
+>        ===================================================
+>         Here are the patient's details:
+>             Name : Bob
+>             NRIC : S9999999Z
+>             Phone Number : 999
+>             DOB : 12-11-98
+>             Blood Type : A+
+>             Allergies : School
+>             Remarks : Had contact with COVID-19 Case200
+>         ===================================================
 
-`todo n/Write the rest of the User Guide d/next week`
+### Edit
+Edit information of the patient with the specified NRIC
+##### Usage example:
+```
+edit [nric] [options][editedInput]
+  
+Options:
+    -p edit phone number
+    -a edit allergies
+    -r edit remarks
+```
+	
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+###### Example:
+> ***Expected output:***
+
+### Delete
+Display all the Patients in alphabetical order
+##### Usage example:
+```
+delete [nric]
+```
+###### Example: 
+`delete S1234567A`
+> ***Expected output:***
+
+### Exit
+Saves the data to a text file and exits the program
+##### Usage example:
+```
+exit
+```
 
 ## FAQ
 
@@ -40,3 +171,9 @@ Example of usage:
 {Give a 'cheat sheet' of commands here}
 
 * Add to-do `todo n/TODO_NAME d/DEADLINE`
+
+
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](UserGuide.md)
+* [About Us](AboutUs.md)

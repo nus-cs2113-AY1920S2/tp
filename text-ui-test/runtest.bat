@@ -2,10 +2,17 @@
 setlocal enableextensions
 pushd %~dp0
 
+if exist ..\library del ..\library
+
 cd ..
 call gradlew shadowJar
 
+if exist ..\library del ..\library
+
 cd build\libs
+
+if exist ..\library del ..\library
+
 for /f "tokens=*" %%a in (
     'dir /b *.jar'
 ) do (

@@ -8,3 +8,53 @@ Hello from
 |__| |__||__| |__||___|    |___|      |___|  |___|    |___| |_______||_______||_______|
 
 What can I do for you today, doctor?
+    =====================================================
+    Patient's detail is empty.
+    =====================================================
+    =====================================================
+    There are no patients in the list.
+    =====================================================
+    =====================================================
+    HappyPills Commands:
+      add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+      list
+      get [NRIC]
+      edit [NRIC] /p[PHONE_NUMBER] or /a[ALLERGIES] or /r[REMARKS]
+      delete [NRIC]
+      help
+      exit
+      For more detailed command instructions, enter help [COMMAND].
+    =====================================================
+    =====================================================
+    To add a new patient into the program, use the following command:
+    Note: patient details are within the parenthesis [ ]
+      add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+    The command above adds a new patient.
+    To add allergies and remarks to the patient's details, use the following commands
+      add /ic[NRIC] /a[ALLERGIES]
+      add /ic[NRIC] /r[REMARKS]
+    Example:
+      add /icS9999999Z /nJanice /p999 /d12-11-98 /bA+
+      add /icS9999999Z /aSchool
+      add /icS9999999Z /rHad contact with COVID-19 Case200
+    =====================================================
+    =====================================================
+    There are no patients in the list.
+    =====================================================
+    =====================================================
+    Patient not found. Please try again.
+    =====================================================
+    =====================================================
+    Please input your patient's details correctly.
+    =====================================================
+    =====================================================
+The patient you are looking for cannot be found
+    =====================================================
+    Patient does not exist. Please try again.
+    =====================================================
+    =====================================================
+    Patient does not exist. Please try again.
+    =====================================================
+    =====================================================
+    There are no patients in the list.
+    =====================================================
