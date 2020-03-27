@@ -15,7 +15,7 @@ public class Dish {
     private String name;
 
     /**
-     * Price of dish
+     * Price of dish.
      */
     private double price;
 
@@ -39,7 +39,7 @@ public class Dish {
     }
 
     /**
-     * Return price of dish
+     * Return price of dish.
      * @return price of dish
      */
     public double getPrice() {
