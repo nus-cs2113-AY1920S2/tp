@@ -163,7 +163,7 @@ public class Event {
      * @param representation a storage-compatible String representation of an event
      * @return an Event object
      */
-    public Event parseStorable(String representation) throws DukeException {
+    public static Event parseStorable(String representation) throws DukeException {
         String[] tokens = representation.split(System.lineSeparator());
 
         // name, datetime, venue
@@ -175,7 +175,7 @@ public class Event {
         Event newEvent = new Event(name, datetime, venue);
 
         // add attendance list, populate it
-        attendanceList = new AttendanceList();
+        AttendanceList attendanceList = new AttendanceList();
         String[] token2 = tokens[1].split(",");
         for (String attendance : token2) {
             String[] attendanceDetail = attendance.split(": ");
@@ -188,7 +188,7 @@ public class Event {
         }
 
         // add performance list, populate it
-        performanceList = new PerformanceList();
+        PerformanceList performanceList = new PerformanceList();
         String[] token3 = tokens[2].split(",");
         for (String performance : token3) {
             String[] performanceDetail = performance.split(": ");
