@@ -153,7 +153,8 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
-      
+
+<!-- @@author kokjoon97 --> 
 ### 3.3 Delete feature
 #### 3.3.1 Current implementation
 
@@ -192,7 +193,7 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
     simply executes those commands as black boxes, without worrying about their internal details
-  
+
   
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -244,7 +245,7 @@ This next sequence diagram will show how the <code>FindCommand</code> creates th
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
     simply executes those commands as black boxes, without worrying about their internal details
-  
+<!-- @@author -->
   
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -391,6 +392,7 @@ omitted to emphasise the other classes:
 
 &nbsp;
 
+<!-- @@author kokjoon97 -->
 ### 3.8 Set budget feature
 #### 3.8.1 Current implementation
 
@@ -429,7 +431,7 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
   simply executes those commands as black boxes, without worrying about their internal details
-
+<!-- @@author -->
  
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -563,7 +565,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
-  
+<!-- @@author kokjoon97 -->
 ## Appendix A: Product Scope
 This section talks about who this product targets and what it aims to achieve.
 
@@ -579,7 +581,7 @@ paper
 
 - Make grocery shopping a breeze by offering greater flexibility in managing
 shopping lists and also providing helpful features like budget tracking
-
+<!-- @@author -->
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
@@ -613,12 +615,13 @@ This section contains the user stories for the different versions of our product
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
-
+<!-- @@author kokjoon97 -->
 ## Appendix C: Non-Functional Requirements
 
 1. Should work on any OS that has Java 11 or later installed.
 2. Should respond to any user commands within 2 seconds.
 3. Should be easy to use even for people who have never used a command line interface before.
+<!-- @@author -->
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>

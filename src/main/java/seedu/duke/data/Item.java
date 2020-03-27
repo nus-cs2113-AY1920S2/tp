@@ -1,5 +1,6 @@
 package seedu.duke.data;
 
+//@@author trishaangelica, jiajuinphoon, Shannonwje, kokjoon97, JLoh579
 public class Item {
 
     private double price;
@@ -87,3 +88,4 @@ public class Item {
     }
 
 }
+//@@author
