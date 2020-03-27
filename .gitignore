@@ -15,3 +15,5 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 *.log
+myLogger.log.lck
+docs/images/Architecture.png
