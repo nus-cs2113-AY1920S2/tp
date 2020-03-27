@@ -1,5 +1,6 @@
 package utils;
 
+
 import Sales.Sales;
 import commands.*;
 import menu.Menu;
@@ -33,14 +34,16 @@ public class CommandParser {
         if (splitCommands[0].equals("add")) {
             if (splitCommands[1].equals("dish")) {
                 // Add dish.
-                menu.addDish(commands[1]);
+                AddDishCommand.addDish(commands[1]);
                 successfulCommand();
             } else if (splitCommands[1].equals("stock")) {
                 // Add stock.
                 try {
                     new AddStockCommand(commands[1]).execute(stock);
                     successfulCommand();
-                } catch (InvalidStockCommandException | IllegalStateException e) {
+
+                } catch (IllegalStateException | InvalidStockCommandException e) {
+
                     errorCommand();
                     printErrorMessage(e.getMessage());
                 }
@@ -55,7 +58,7 @@ public class CommandParser {
             if (splitCommands[1].equals("dish")) {
                 // Delete dish.
                 String newcomm = commands[1].substring(3, commands[1].length() - 1);
-                menu.deleteDish(newcomm);
+                DeleteDishCommand.deleteDish(newcomm);
                 successfulCommand();
             } else if (splitCommands[1].equals("stock")) {
                 // Delete stock.
@@ -76,7 +79,7 @@ public class CommandParser {
         } else if (splitCommands[0].equals("list")) {
             if (splitCommands[1].equals("dish")) {
                 // List dish.
-                menu.printDishes();
+                ListDishCommand.printDishes();
                 successfulCommand();
             } else if (splitCommands[1].equals("stock")) {
                 // List stock.
