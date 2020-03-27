@@ -27,6 +27,12 @@ public class FileIO {
         this.scanner = new Scanner(fileToReadFrom);
     }
 
+    /**
+     * Opens a file, creating its relevant directory if necessary.
+     * @param directory the abstract pathname of the file
+     * @return a File object pointing to the file
+     * @throws DukeException if directory already exists while creating it
+     */
     protected File open(String directory) throws DukeException {
         File f = new File(directory);
         ensurePathExist(f);
@@ -37,6 +43,7 @@ public class FileIO {
      * Checks if the file denoted by this abstract pathname exists.
      * If it does not exist, create directories until that path.
      * @param f the abstract pathname
+     * @throws DukeException if directory already exists while creating it
      */
     private void ensurePathExist(File f) throws DukeException {
         if (!f.exists()) {
