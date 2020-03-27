@@ -11,7 +11,7 @@ public class Menu {
     private static HashMap<String, Dish> dishMap;
 
     /**
-     * Constructor for Menu
+     * Constructor for Menu.
      */
     public Menu() {
         dishMap = new HashMap<String, Dish>();
