@@ -4,13 +4,14 @@
     + [2.1 Add feature](#21-add-feature)
     + [2.2 Edit feature](#22-edit-feature)
     + [2.3 Delete feature](#23-delete-feature)
-    + [2.4 Mark and Unmark feature](#24-mark-and-unmark-feature)
-    + [2.5 Display feature](#25-display-feature)
-    + [2.6 Clear list feature](#26-clear-list-feature)
-    + [2.7 Set budget feature](#27-set-budget-feature)
-    + [2.8 Reset budget feature](#28-reset-budget-feature)
-    + [2.9 View help feature](#29-view-help-feature)
-    + [2.10 Exit program feature](#210-exit-program-feature)
+    + [2.4 Find feature](#24-find-feature)
+    + [2.5 Mark and Unmark feature](#25-mark-and-unmark-feature)
+    + [2.6 Display feature](#26-display-feature)
+    + [2.7 Clear list feature](#27-clear-list-feature)
+    + [2.8 Set budget feature](#28-set-budget-feature)
+    + [2.9 Reset budget feature](#29-reset-budget-feature)
+    + [2.10 View help feature](#210-view-help-feature)
+    + [2.11 Exit program feature](#211-exit-program-feature)
  * [Appendix A: Product Scope](#appendix-a-product-scope)
  * [Appendix B: User Stories](#appendix-b-user-stories)
  * [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
@@ -41,8 +42,6 @@ This section will describe how the main features of the application are implemen
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 &nbsp;
 
-
-<!-- @@author jiajuinphoon -->
 ### 2.1 Add feature
 #### 2.1.1 Current implementation
  
@@ -67,7 +66,6 @@ This section will describe how the main features of the application are implemen
  ![alt text](images/AddFeature.png)
  
  ![alt text](images/AddFeature_SD.png)
-
  
 #### 2.1.2 Design considerations
 
@@ -84,6 +82,7 @@ This section will describe how the main features of the application are implemen
   scenario (eg: user wants to have duplicates because the item is for different occasion and 
   the user wants to record down twice without any elaboration).
 
+
 - Alternative 2: Require user to provide all three values to successfully add the item into 
                  the list.
 
@@ -92,7 +91,8 @@ This section will describe how the main features of the application are implemen
   
   - Cons: User flexibility will decrease, because user must input all parameters even if he/she does not want to provide certain
   variables such as price and quantity, which will result unsuccessful adding items into the list. 
- <!-- @@author -->
+ 
+
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
@@ -154,18 +154,18 @@ The delete feature is implemented using a <code>DeleteCommand</code> class which
 <code>Command</code> class with an index representing that of the item to be deleted from the shopping
 list. 
  
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
+The <code>Shoco</code> class first receives user input from the <code>Ui</code> class before it creates a 
 <code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
 <code>DeleteCommand</code> object based on that user input.
 
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>DeleteCommand</code> object
+The <code>Shoco</code> class then calls the <code>execute</code> method of the <code>DeleteCommand</code> object
 which makes another call to the <code>deleteItem</code> function of the <code>ShoppingList</code> object 
 with the specified index.
 
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/DeleteFeature.png)
+![alt text](images/Delete.png)
 
 #### 2.3.2 Design considerations
 
@@ -179,11 +179,11 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Might significantly increase the code base with another class being added
 
 
-- Alternative 2: Implement delete feature in the <code>Duke</code> class
+- Alternative 2: Implement delete feature in the <code>Shoco</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Shoco</code> class
   
-  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
     simply executes those commands as black boxes, without worrying about their internal details
   
   
@@ -192,8 +192,60 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 &nbsp;
 
-### 2.4 Mark and Unmark feature
-#### 2.4.1 Current Implementation
+### 2.4 Find feature
+#### 2.4.1 Current implementation
+
+The find feature is implemented using a <code>FindCommand</code> class which extends the main
+<code>Command</code> class with a String representing the keyword specified by the user.
+ 
+The <code>Shoco</code> class first receives user input from the <code>Ui</code> class before it creates a 
+<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
+<code>FindCommand</code> object based on that user input.
+
+The <code>Shoco</code> class then calls the <code>execute</code> method of the <code>FindCommand</code> object
+which makes various calls to the <code>getItem</code> method of the <code>ShoppingList</code> object 
+to check whether the <code>Item</code> at each specified index contains the given keyword.
+
+Each <code>Item</code> that contains the keyword is then added to a new <code>ArrayList</code> named
+ <code>filteredItems</code> that is maintained by the <code>FindCommand</code>, which then prints the list to standard output once it is done
+creating the list.
+
+The following sequence diagram below shows how the <code>Shoco</code> object creates the <code>FindCommand</code> object. Note the <code>Ui</code> class is
+omitted in the sequence diagram to emphasise on the other classes:
+
+![alt text](images/Find.png)
+
+This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
+
+![alt text](images/FindItem.png)
+
+#### 2.4.2 Design considerations
+
+##### Aspect: Data structure to support the find feature
+
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>FindCommand</code>
+ 
+  - Pros: Easy to add the find feature without having to change the logic of the code much as each command object
+  is treated as a black box
+  
+  - Cons: Might significantly increase the code base with another class being added
+
+
+- Alternative 2: Implement find feature in the <code>Shoco</code> class
+
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Shoco</code> class
+  
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
+    simply executes those commands as black boxes, without worrying about their internal details
+  
+  
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
+
+### 2.5 Mark and Unmark feature
+#### 2.5.1 Current Implementation
   
  The mark and unmark feature is implemented using the <code>MarkCommand</code> and <code>UnmarkCommand</code> class
  which extends the main <code>Command</code> class with an index representing that of the item to be marked or
@@ -218,7 +270,7 @@ Diagram 2:
 
 ![alt text](images/Unmark.png)
   
-#### 2.4.2 Design Considerations
+#### 2.5.2 Design Considerations
   
 ##### Aspect: Data structure to support the Mark and Unmark Feature
   
@@ -243,8 +295,8 @@ having to edit the mark and unmark feature difficult.
 
 &nbsp;
 
-### 2.5 Display feature
-#### 2.5.1 Current implementation
+### 2.6 Display feature
+#### 2.6.1 Current implementation
 
 The display feature is implemented using a <code>ListCommand</code> class which extends the <code>Command</code> class. 
  
@@ -264,7 +316,7 @@ omitted to emphasise the other classes:
 
 ![alt text](images/ListFeature_SD.png)
 
-#### 2.5.2 Design considerations
+#### 2.6.2 Design considerations
 ##### Aspect: Data structure to support the display feature
 
 - Alternative 1 (current choice): Object-oriented style with a separate class for <code>ListCommand</code>
@@ -287,8 +339,8 @@ omitted to emphasise the other classes:
 
 &nbsp;
 
-### 2.6 Clear list feature
-#### 2.6.1 Current implementation
+### 2.7 Clear list feature
+#### 2.7.1 Current implementation
 The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
 class. 
 
@@ -304,7 +356,7 @@ omitted to emphasise the other classes:
   
 ![alt text](images/ClearFeature.png)
   
-#### 2.6.2 Design considerations
+#### 2.7.2 Design considerations
   
 ##### Aspect: Data structure to support the clear list feature
   
@@ -328,27 +380,27 @@ omitted to emphasise the other classes:
 
 &nbsp;
 
-### 2.7 Set budget feature
-#### 2.7.1 Current implementation
+### 2.8 Set budget feature
+#### 2.8.1 Current implementation
 
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
+The <code>Shoco</code> class first receives user input from the <code>Ui</code> class before it creates a 
 <code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
 <code>SetBudgetCommand</code> object based on that user input.
 
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>SetBudgetCommand</code> object
+The <code>Shoco</code> class then calls the <code>execute</code> method of the <code>SetBudgetCommand</code> object
 which makes another call to the <code>setBudget</code> function of the <code>Budget</code> object 
 with the amount specified by the user for the budget.
 
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/SetBudget.png)
+![alt text](images/setdiagram.png)
 
 
-#### 2.7.2 Design considerations
+#### 2.8.2 Design considerations
 
 ##### Aspect: Data structure to support the set budget feature
 
@@ -360,11 +412,11 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Might significantly increase the code base with another class being added
 
 
-- Alternative 2: Implement set budget feature in the <code>Duke</code> class
+- Alternative 2: Implement set budget feature in the <code>Shoco</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Shoco</code> class
   
-  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
   simply executes those commands as black boxes, without worrying about their internal details
 
  
@@ -373,8 +425,8 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 &nbsp;
 
-### 2.8 Reset budget feature
-#### 2.8.1 Current implementation
+### 2.9 Reset budget feature
+#### 2.9.1 Current implementation
 
 The reset budget feature is implemented using a <code>ResetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
@@ -392,7 +444,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 ![alt text](images/Reset_Budget.png)
 
 
-#### 2.8.2 Design considerations
+#### 2.9.2 Design considerations
 
 ##### Aspect: Data structure to support the reset budget feature
 
@@ -416,8 +468,8 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 &nbsp;      
  
-### 2.9 View help feature
-#### 2.9.1 Current implementation
+### 2.10 View help feature
+#### 2.10.1 Current implementation
 
 The help feature is implemented using a <code>HelpCommand</code> class which extends the main
 <code>Command</code> class. The <code>HelpCommand</code> class shows the program usage instructions to the user.
@@ -435,7 +487,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/HelpFeature.png)
 
-#### 2.9.2 Design considerations
+#### 2.10.2 Design considerations
 
 ##### Aspect: Data structure to support the help feature
 
@@ -459,8 +511,8 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 &nbsp;
 
-### 2.10 Exit program feature
-#### 2.10.1 Current implementation
+### 2.11 Exit program feature
+#### 2.11.1 Current implementation
 
 The program termination feature is implemented using a <code>ExitCommand</code> class which extends the main
 <code>Command</code> class. The <code>ExitCommand</code> class terminates the program when instantiated.
@@ -477,7 +529,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/ExitFeature.png)
 
-#### 2.10.2 Design considerations
+#### 2.11.2 Design considerations
 
 ##### Aspect: Data structure to support the exit feature
 
