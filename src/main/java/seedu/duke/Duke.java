@@ -14,7 +14,10 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.Person;
 import seedu.duke.data.SemesterList;
 import seedu.duke.exception.ModuleManagerException;
+import seedu.duke.exception.RuntimeException;
+import seedu.duke.exception.StorageException;
 import seedu.duke.parser.Parser;
+import seedu.duke.storage.StoragePersonInfo;
 import seedu.duke.ui.Ui;
 
 
@@ -32,6 +35,11 @@ public class Duke {
         ui = new Ui();
         availableModulesList = new AvailableModulesList();
         semesterList = new SemesterList();
+        try {
+            StoragePersonInfo.load();
+        } catch (StorageException e) {
+            logr.log(Level.WARNING, e.getMessage());
+        }
     }
 
     /**
@@ -39,12 +47,10 @@ public class Duke {
      */
     public void run() {
         setupLogger();
-        boolean isUserExist = false;            //Needs to store to "database" and load from database when runs.
         Scanner in = new Scanner(System.in);
         Ui.greetUser();
-        if (!isUserExist) {
+        if (!Person.isPersonExist()) {
             Person.createNewUser(in);
-            isUserExist = true;
         }
         Ui.showHelpMessage();
         String fullCommand;

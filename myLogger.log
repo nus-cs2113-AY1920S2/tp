@@ -36,3 +36,16 @@ Please enter your command again!
 Mar 25, 2020 11:00:22 AM seedu.duke.Duke run
 WARNING: Input Error: invalid command
 Please enter your command again!
+Mar 27, 2020 1:59:15 PM seedu.duke.Duke run
+WARNING: Some thing wrong when saving.
+Mar 27, 2020 1:59:23 PM seedu.duke.Duke run
+WARNING: Some thing wrong when saving.
+Mar 27, 2020 2:13:51 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 2:14:32 PM seedu.duke.Duke run
+WARNING: Runtime Error: The module is already exist in your semester list!
+Please enter your command again!
+Mar 27, 2020 2:14:39 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!

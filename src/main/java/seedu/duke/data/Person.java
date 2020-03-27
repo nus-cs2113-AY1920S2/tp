@@ -9,6 +9,7 @@ public class Person {
     private static int matricYear;
     private static double totalCap;
     private static int totalModuleCreditCompleted;
+    private static boolean isPersonExist = false;
 
 
     public static int getTotalModuleCreditCompleted() {
@@ -22,6 +23,7 @@ public class Person {
     public Person(String name, int year) {
         Person.name = name;
         matricYear = year;
+        isPersonExist = true;
     }
 
     public static Person createNewUser(Scanner in) {
@@ -47,5 +49,13 @@ public class Person {
 
     public static double getTotalCap() {
         return totalCap;
+    }
+
+    public static boolean isPersonExist() {
+        return isPersonExist;
+    }
+
+    public static String toStorageString() {
+        return name + "," + matricYear;
     }
 }
