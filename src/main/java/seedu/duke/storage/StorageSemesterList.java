@@ -129,7 +129,7 @@ public class StorageSemesterList {
         FileWriter fw = new FileWriter(DEFAULT_FILEPATH);
         fw.write("id,name,mc,semester,isDone,grade" + System.lineSeparator());
         for (SemModulesList sem: semesterList) {
-            for(SelectedModule module: sem) {
+            for (SelectedModule module: sem) {
                 fw.write(module.toStorageString() + System.lineSeparator());
             }
         }

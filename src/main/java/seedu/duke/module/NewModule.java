@@ -16,7 +16,7 @@ public class NewModule extends Module {
         super("Both", id, name, moduleCredit);
 
         StringBuffer preReq = new StringBuffer();
-        for(String preRequisiteModule: preRequisiteModules){
+        for (String preRequisiteModule: preRequisiteModules) {
             preReq.append(preRequisiteModule).append(" ");
         }
         this.preReqString = preReq.toString();

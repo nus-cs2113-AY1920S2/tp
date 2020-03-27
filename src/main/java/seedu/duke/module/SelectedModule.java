@@ -105,6 +105,8 @@ public class SelectedModule extends Module {
         case "CU":
             this.grade = Grading.CU;
             break;
+        default:
+            this.grade = Grading.CS;
         }
     }
 
