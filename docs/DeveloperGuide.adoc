@@ -1,0 +1,375 @@
+= A.T.A.S (Amazing Task and Assignment System) Developer Guide
+:site-section: UserGuide
+:toc:
+:toclevels: 4
+:toc-title: Contents
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:warning-caption: :warning:
+endif::[]
+
+By: `Team M16-1` Since: `Jan 2020` License: `MIT`
+
+== Design
+This section will give a high-level overview of how various components in ATAS function and interact with each other.
+
+=== Architecture
+The following sections will explain each component in greater detail.
+
+=== Atas Component
+
+The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command +
+
+image::Atas help command sequence diagram v2.PNG[Component interactions for help command]
+
+The Atas Class contains the main logic for ATAS. +
+1. Atas uses the UI class to read user input. +
+2. The Parser class is used to parse the user input string, returning a Command object. +
+3. The Command's execute() method is run, returning a CommandResult object. +
+4. Atas then uses the UI class to show the CommandResult's message to the user. +
+5. Finally, Atas uses the Storage object to save the new state of the application.
+
+
+=== UI Component
+
+=== Parser Component
+image::parser class diagram v1.PNG[Parser Class Diagram]
+1. The Atas class uses the Parser class' static parseCommand() method to parse user commands. +
+2. The Parser class' parseCommand() method then returns the appropriate Command object depending on the user input.
+
+=== Storage Component
+image::storage.PNG[Storage Class Diagram]
+1. A Storage object is created by the Atas class to handle the loading and saving of task data.
+2. The load() method is used to read saved data from a local file into the current session of ATAS.
+3. The save() method writes the current state of ATAS into the local save file using the Task.encodeTask() method.
+
+=== Command Component
+
+=== CommandResult Component
+
+== Setting Up
+
+. Ensure you have Java 11 or above installed on your computer
+.. For *Windows* Users:
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
+... Open a `cmd` (Command Prompt) window.
+... Navigate to the folder containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
+
+.. For *Mac* Users:
+... Download the latest release of *ATAS* https://github.com/AY1920S2-CS2113T-M16-1/tp/releases[here].
+... Open up `Terminal`
+... Navigate to the directory containing downloaded jar file.
+... Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of *ATAS* in a few seconds.
+
+== Implementation
+This section will detail how some noteworthy features are implemented.
+
+=== Delete Task Feature
+
+Current Implementation: +
+
+* The `DeleteCommand` extends `Command` class and initializes the `delete index` in its constructor. The `delete index`
+specifies the index of task that the user wants to delete.
+
+* Given below is an example usage and how the delete command mechanism behaves at each step:
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command
+provided. It will obtain information to get `delete index`.
+** If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new `IncorrectCommand` class will be called to
+print the respective error messages
+. A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute` method of
+`DeleteCommand` will then be called.
+. `execute` command will then do 2 things :
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message indicating an empty task list
+** If there are tasks in the existing task list, the `DeleteCommand` class will call the `deleteTask()` method from the
+`TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will
+initialize a new `CommandResult` class that prints out the success message for task deletion.
+
+** The following sequence diagram summarizes how repeat command operation works: +
+
+image::delete.png[delete task]
+
+==== Design Considerations
+* Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within
+the `execute` method of the `DeleteCommand` class
+** Pros: Easier implementation for other classes that requires the same use.
+** Cons: Increased coupling amongst classes, which makes it harder for testing.
+** Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a
+case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also
+allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
+
+=== Clear Task feature
+==== Current Implementation
+* The `clearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function
+has to be executed
+
+* Given below is an example usage of `clear all` command:
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to
+parse the command provided.
+. A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute` method of
+`DeleteCommand` will then be called.
+. The `execute` command will then call the `clearAll()` method in the `clearCommand` class :
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message indicating an empty task list
+** If there are tasks in the existing task list, it will call the `clearList()` method from the `TaskList` class to clear the
+existing taskList
+
+* Given below is an example usage of `clear done` command:
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to
+parse the command provided.
+. A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute` method of
+`DeleteCommand` will then be called.
+. The `execute` command will then call the `clearDone()` method in the `clearCommand` class :
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message indicating an empty task list
+** If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()`
+method in the `taskList` class
+
+==== Design Considerations
+* Creating another `clear done` command instead of just 1 `clear` command
+** Rationale: +
+Considering that our target audience are students, we feel that it might be inconvenient for the students to delete each
+completed one by one, just to reduce the number of tasks that is being displayed during `list` command.
+** Alternative considered: +
+1. Delete the task once it has been marked as completed
+*** pros: Easier to implement and improved code readability
+*** cons: User may want to refer back to completed tasks for reference in the future and may not want to delete the
+completed task
+2. Instead of deleting the completed tasks, we can choose to only list commands that have been completed
+*** pros: Easier to implement and improved code readability
+*** cons: ArrayList will be filled up with unnecessary tasks that could have been removed. This might affect the
+time complexity of future addition or searching operations on the ArrayList.
+
+=== Repeat event feature
+==== Current Implementation
+* The `RepeatCommand` class extends `Command` class and initializes 3 values within a specified `Event` object which are stated below.
+This will flag the given event as repeating, allowing other features to be able to catch and perform relevant desired behaviours.
+. `Boolean isRepeat` variable: Set to true, marking the event as a repeating event.
+. `int numOfPeriod` variable: Set to the given value that states the frequency which typeOfPeriod will repeat at.
+. `String typeOfPeriod` variable: Set to d (days), w (weeks), m (months) or y (years) to indicate how often it will repeat.
+
+* Given below is an example usage scenario and how the repeat command mechanism behaves at each step.
+. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
+. He/She enters `repeat id/2 p/1w` into the command line. Method `parseCommand()` from `Parser` will be called to parse the command
+provided. It will obtain the information to get integers `eventID`, `numOfPeriod` and also String `typeOfPeriod`.
+. A new instance of RepeatCommand with `eventID`, `numOfPeriod` and `typeOfPeriod` initialized will be created. The `execute` method of
+`repeatCommand` will then be called.
+. `execute` command will do 3 things after it calls `getTask` method from `TaskList` class to get the user input task.
+** It will check if the `eventID` provided refers to a valid `Event` task.
+** It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `setNoRepeat`
+method from `Event` class.
+*** `setNoRepeat` method will reinitialize the 3 variables (`isRepeat`, `numOfPeriod`, `typeOfPeriod`) to `false`, `0` and `null` respectively.
+** If it is not 0, it will set the event to repeating by calling `setRepeat` method from `Event` class.
+*** `setRepeat` method will initialize the 3 variables (`isRepeat`, `numOfPeriod`, `typeOfPeriod`) to the respective values given by
+user. In this example, they will be set to `true`, `1` and `w` respectively.
+. After `execute` command is done, it will return a new `ResultCommand` class with a string containing the result of the execution.
+This string will be printed by calling `showToUser` method in the `Ui` class. Then the event will be saved into local file by calling
+`trySaveTaskList` method from `Storage` class.
+
+* The following sequence diagram summarizes how repeat command operation works: +
+
+image::RepeatCommand_UML.png[Repeat Command Sequence Diagram]
+
+==== Impact on Event dates
+* With the implementation in mind, every time the app is launched, after `load` method in `Storage` class is called, the app will call a
+method `updateEventDate` which will iterate through every task in the list  and calls `updateDate` method from `Event` class if the task
+is a repeating event and its date is in the past.
+
+==== Design Considerations
+* Allowing only tasks that are `Event` to be repeated
+** Rationale: +
+We feel that given the context of University Students, it makes little sense for most assignments to repeat. However, it makes sense for
+ events to repeat since many events actually occur on a regular basis.
+** Alternative considered: +
+1. Allowing all tasks to be repeatable.
+*** Pros: Allow more flexibility for the user to set which tasks they want to repeat, regardless of task type.
+*** Cons: Memory wastage as additional variables are set for repeating tasks and in the case of minimal assignments requiring to be
+repeated, these spaces are wasted.
+
+* Allowing event to repeat for any amount of period by using `numOfPeriod` and `typeOfPeriod` (d, w, m ,y)
+** Rationale: +
+It provides great flexibility in allowing an event to repeat for any specified frequency. For example, some classes occur every 2 weeks.
+Some events may happen every 10 days or any x amount of period.
+** Alternative considered: +
+1. Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
+*** Pros: It would simply usability and implementation since there will only be 4 options to choose from.
+*** Cons: It would reduce the usability for the 2 examples provided above as users would not be able to make events repeat every 2 weeks
+or 10 days, forcing them to have to manually type in the same event for as many times as it will occur if they wish to still keep track
+of that event.
+
+* Keeping repeated event as a single entity within the list and not repeatedly add new events of a newer date when repeat command is used.
+** Rationale: +
+It allows the repeated events to be removed or to stop repeating with ease as it remains a single entity and not multiple events,
+improving the user's usability.
+** Alternative considered: +
+1. Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
+*** Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
+*** Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the tasklist of
+the user and increase the file size of the local storage that stores the tasklist.
+
+=== Edit Task Feature
+==== Implementation
+The `EditCommand` class extends the `Command` class by provided functions to edit specific tasks in the list of
+*ATAS*.
+
+Given below is an example usage scenario and how the `EditCommand` class behaves at each step/
+
+*Step 1* +
+The user types in `edit 1`. The `parseCommand` method of the `Parser` class is called to obtain `edit` which is the type
+of command the user is entering.
+
+[WARNING]
+An `IncorrectCommand` class will be returned and an `UNKNOWN_COMMAND_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if the command supplied was invalid.
+
+*Step 2* +
+The `parseCommand` method subsequently calls the  `prepareEditCommand` method inside the same `Parser` class. This method
+splits the `fullCommand` string parameters into 2 tokens. The integer `1` will be obtained as the *Index* of the task
+specified in the list. This method returns a new instance `EditCommand` class, passing the integer `1` as the parameter.
+
+[WARNING]
+An `IncorrectCommand` class will be returned and a `NUM_FORMAT_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if the number supplied was not an *integer*. +
+An `IncorrectCommand` class will be returned and a `INCORRECT_ARGUMENT_ERROR` string from the `Messages` class will be passed
+into the constructor of that class if there are no task index supplied by the user. +
+
+*Step 3* +
+A new instance of `EditCommand` class is returned to the main method of *ATAS* with paremter `1` as described above.
+The execute method of the `EditCommand` class is now called.
+
+*Step 4* +
+The `execute` method in the `EditCommand` class first gets an input from the user on the details of the edited task.
+
+[TIP]
+Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENtS]`
+Event Command Format: `event n/[NAME] l/[LOCATION] d/DD/MM/YY HHmm - HHmm c/[COMMENTS]`
+
+*Step 5* +
+If the user supplies an `assignment` command, the `editAssignment` method will be invoked. This method extracts the
+`assignmentName`, `moduleName`, `dateTime` and `comments` string to return a new instance of an  `Assignment` class. +
+
+If the user supplies an `event` command, the `editEvent` method will be invoked. This method extracts the
+`eventName`, `location`, `startDateTime`, `endDateTime` and `comments` string to return a new instance of an `Event` class.
+
+*Step 6* +
+This new instanced class (either `Assignment` or `Event`) will be passed into the method `editTask` of the `TaskList` class.
+The `editTask` method of the `TaskList` class uses Java's `ArrayList` `set` method to replace the task.
+
+*Step 7* +
+Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of
+that class.
+
+==== Design Considerations
+* Placing invocation of new `assignment` and `event` class in `editCommand` class
+** Rationale: +
+The `execute` method of `editCommand` class has to use the `Ui` class parsed as one of the parameters to get input from
+user on new details of the task. The new input captured will be then passed to the `editAssignment` or `editEvent` method
+in the `editCommand` class.
+
+** Alternatives Considered: +
+The `editAssignment` and `editEvent` methods can be placed in the `Parser` class and called in the `prepareEditCommand`
+method of that class.
+
+
+* Using Java `ArrayList` `set` method
+** Rationale: +
+When a task is selected to be edited, it is logical for the index of the task to not change as the task is being edited.
+Therefore, the `set` method of `ArrayList` is used to replace the edited task with the old task.
+
+** Alternatives Considered: +
+Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However,
+this is not chosen as it is not intuitive for the user's task index to shift after editing the task.
+
+
+=== View Calendar feature
+
+[[calendar]]
+.Sample output of Calendar Command
+image::calendar2.png[]
+
+==== Implementation
+The `CalendarCommand` class extends `Command` with methods to implement the necessary pre-processing to display an overview of tasks in the given date.
+The following sequence diagram outlines an example execution of `CalendarCommand` when it is called and the interaction it has with the relevant components.
+
+.Interaction of CalendarCommand and the various major components
+image::calendar-diagram.png[]
+
+In particular, the below diagram shows the explicit execution flow that `CalendarCommand` takes.
+
+.Explicit execution flow of CalendarCommand
+image::addMonthlyCalendar.png[]
+
+The following outlines the step by step execution of the above sequence diagram.
+
+*Step 1* +
+The users enters the command `calendar d/05/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
+
+*Step 2* +
+The `Parser` will construct a `CalendarCommand` object with the LocalDate provided by the user input.
+
+[NOTE]
+An `IncorrectCommand` object will be constructed with its specific error message instead according to the error encountered.
+This can be in the form of no arguments provided or parser fails to parse the date provided.
+
+*Step 3* +
+The `execute` method in the `CalendarCommand` is then called by the `Atas` component.
+
+The method manages all pre-processing to get the details needed to formulate the calendar. Details include details of Tasks that falls within the given month and the details of the month itself.
+*The pre-processing work is listed in chronological order below:* +
+
+* Calibrates an instance of Calendar of the Java.util class with the provided LocalDate and obtain all necessary information about the Calendar month.
+* Obtains all `Task` details that falls within the range of the month. This is performed through calling the `getTasksByRange` of the `TaskList` component.
+* Duplicates all `Repeat Task` that is returned from the method above to obtain an ArrayList of all `Tasks` that exist within the month.
+* Appends the `Calendar` title and legend to the resultant String that contains the calendar view.
+** This is done through separate method calls to `addCalendarTitle` and `addCalendarLegend` respectively.
+* Appends the main body of the `Calendar` according to the ArrayList of `Task` obtained earlier through a method call to `addCalendarBody`.
+* Constructs a `CommandResult` object with the resultant String that contains the calendar view and returns this object.
+
+[NOTE]
+Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the design considerations subsection.
+
+*Step 4* +
+The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the Calendar view by calling `showToUser` method of the `Ui` component.
+
+==== Design Considerations
+* Duplicating Tasks instead of keeping the a Repeat `Event` as a single entity like how it is stored.
+** Rationale: +
+By duplicating the repeating `Event`, it allows better abstraction by removing the need to constantly differentiate between normal `Tasks` and repeating `Task`
+during the construction of the final Calendar View. The current implementation allows `addCalendarBody` method to obtain all possible `Tasks`, with repeating `Event` stored as a separate `Task` within the ArrayList of `Tasks`.
+Each `Task` can be removed from the ArrayList after it has been printed which makes the task simpler.
+** Alternatives considered: +
+Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with singular tasks such as `delete`, `search`, `mark done`.
+
+* Truncation of Task details instead of extending column size
+** Rationale: +
+This keeps the calendar compact such that the command line application can be viewed as a smaller window as opposed to the taking up the entire screen.
+Since row size is also extendable, extending column size independently from row size will destroy the integrity of a traditional calendar box view.
+** Also, there are other features that can be used in conjunction with the Calendar to allow user to obtain more information of the task such as `SearchCommand` and `ListCommand`.
+** Alternative considered: +
+Wrapping of tasks details to display the full detail of tasks. This is not feasible as this further increases the need for number of rows.
+As mentioned, we would like to keep the integrity and view of a traditional calendar and this does the opposite of that.
+
+* Limiting the number of Tasks that is able to be displayed for a particular calendar date
+** Rationale: +
+Limiting the number of task might misrepresent the list of `Task` a user has for any particular date if there are more tasks than available slots on the calendar date.
+To solve the issue of misrepresentation, we decided to replace the last `Task` slot of each Calendar date with an indicator to indicate there are tasks not shown if there are indeed tasks left out
+due to the constraints that is the lack of Calendar rows.
+** Alternative considered: +
+Expanding number of Calendar rows. This will require the need to increase the number of Calendar Columns to preserve the integrity of a traditional calendar view.
+However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
+
+== Testing
+=== Using IntelliJ JUnit Tests
+* To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
+* For individual tests, you can right-click on the test *package*, *class* or a single test and choose `Run 'TEST'`

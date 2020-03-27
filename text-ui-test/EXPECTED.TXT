@@ -1,9 +1,109 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+No existing save file found. A new save file will be created
+ _______        _______        _______        _______ 
+|   _   |      |       |      |   _   |      |       |
+|  |_|  |      |_     _|      |  |_|  |      |  _____|
+|       |        |   |        |       |      | |_____ 
+|       | ___    |   |   ___  |       | ___  |_____  |
+|   _   ||   |   |   |  |   | |   _   ||   |  _____| |
+|__| |__||___|   |___|  |___| |__| |__||___| |_______|
 
-What is your name?
-Hello James Gosling
+_______________________________________________________________________
+You have no tasks for today!
+> Following is the list of commands available:
+  1. Help Format: help
+  2. Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
+  3. Add Event: event n/[EVENT NAME] l/[LOCATION] d/[dd/MM/yy HHmm - HHmm] c/[COMMENTS]
+  4. List commands that are available:
+     - List All Tasks: list
+     - List Today's Tasks: list today
+     - List This Week's Tasks: list week
+     - List Upcoming Events: list upcoming events
+     - List Incomplete Assignments: list incomplete assignments
+  5. Mark Task as Done: done [TASK NUMBER]
+  6. Edit Task: edit [TASK NUMBER]
+  7. Delete a Task: delete [TASK NUMBER]
+  8. Clear commands that are available:
+     - Clear All Tasks: clear all
+     - Clear All Completed Tasks: clear done
+  9. Repeat commands that are available: (Available Periods are: d, w, m, y)
+     - Make event recur: repeat id/[EVENT INDEX] p/[NUM OF PERIOD][TYPE OF PERIOD]
+     - Stop event recur: repeat id/[EVENT INDEX] p/0
+ 10. Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
+ 11. Search for tasks according to date: search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]
+ 12. Get a Calendar view: calendar d/[dd/MM/YY]
+ 13. Exit ATAS: exit
+_______________________________________________________________________
+> Oh no. Incorrect format for Assignment Command
+Add Assignment: assignment n/[ASSIGNMENT NAME] m/[MODULE NAME] d/[dd/MM/yy HHmm] c/[COMMENTS]
+_______________________________________________________________________
+> Added task:
+     [A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
+            notes: 5%
+Now you have 1 task in the list!
+_______________________________________________________________________
+> Added task:
+     [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+Now you have 2 tasks in the list!
+_______________________________________________________________________
+> Added task:
+     [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)
+            notes: 20%
+Now you have 3 tasks in the list!
+_______________________________________________________________________
+> Added task:
+     [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
+            notes: New year new me
+Now you have 4 tasks in the list!
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)
+            notes: 5%
+  2. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+  3. [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)
+            notes: 20%
+  4. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
+            notes: New year new me
+_______________________________________________________________________
+> [Assignment 3] has been marked done!
+_______________________________________________________________________
+> All completed tasks have been removed
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+  2. [E][X] Midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)
+            notes: 20%
+  3. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
+            notes: New year new me
+_______________________________________________________________________
+> [Midterms] has been deleted!
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+  2. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
+            notes: New year new me
+_______________________________________________________________________
+> Here are the relevant tasks:
+  2. [E][X] Countdown (at: TimeSquare | Sat 13 Mar 2021 18:00 - 23:00)
+            notes: New year new me
+_______________________________________________________________________
+> Here are the relevant tasks:
+  1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+_______________________________________________________________________
+> Here are the search results:
+  1.[A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+
+_______________________________________________________________________
+> Please use a different name. Task already exists in list
+_______________________________________________________________________
+> All tasks have been deleted
+_______________________________________________________________________
+> No tasks were found
+_______________________________________________________________________
+> Exiting A.T.A.S
+_______________________________________________________________________
