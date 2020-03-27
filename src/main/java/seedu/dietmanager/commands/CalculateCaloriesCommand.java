@@ -51,6 +51,7 @@ public class CalculateCaloriesCommand extends Command {
         if (checkOneDay) {
             DailyFoodRecord record = profile.getRecordOfDay(this.begin);
             if (record.getDailyCalories().isPresent()) {
+                assert record.getDailyCalories().isPresent();
                 sum += record.getDailyCalories().get();
             }
         } else {
@@ -66,6 +67,7 @@ public class CalculateCaloriesCommand extends Command {
                 if (curIndex >= firstDay.getIndex() && curIndex <= lastDay.getIndex()) {
                     curRecord = profile.getRecordOfDay(day.getName());
                     if (curRecord.getDailyCalories().isPresent()) {
+                        assert curRecord.getDailyCalories().isPresent();
                         sum += curRecord.getDailyCalories().get();
                     }
                 } else if (curIndex > lastDay.getIndex()) {
