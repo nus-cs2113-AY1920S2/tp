@@ -1,4 +1,4 @@
-# SHOCO v1.0 - User Guide
+# SHOCO v2.0 - User Guide
 
 &nbsp;
 
@@ -7,26 +7,36 @@
 * **[3. Features](#features)**
   * [3.1 Adding an item: `ADD`](#adding-an-item-add)
   * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
-  * [3.3 Deleting an item: `Delete`](#deleting-an-item-del)
-  * [3.4 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
-  * [3.5 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
-  * [3.6 Listing all items: `DISPLAY`](#listing-all-items-display)
-  * [3.7 Setting a budget: `SET`](#setting-a-budget-set)
-  * [3.8 Finding an item: `FIND`](#finding-an-item-find)
-  * [3.9 Viewing help: `HELP`](#viewing-help-help)
-  * [3.10 Exiting the Program: `BYE`](#exiting-the-program-bye)
-* **4. [FAQ](#faq)**
-* **5. [Command Summary](#command-summary)**
+  * [3.3 Deleting an item: `DEL`](#deleting-an-item-del)
+  * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
+  * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
+  * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
+  * [3.7 Display list and budget details: `DISPLAY`](#display-list-and-budget-details-display)
+  * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
+  * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
+  * [3.10 Finding an item: `FIND`](#finding-an-item-find)
+  * [3.11 Viewing help: `HELP`](#viewing-help-help)
+  * [3.12 Exiting the Program: `BYE`](#exiting-the-program-bye)
+* **[4. Additional information](#additional-information)**
+* **[5. FAQ](#faq)**
+* **[6. Command Summary](#command-summary)**
 
 
 &nbsp;
 
 ## Introduction
 
-SHOCO is a command-line interface (CLI) application that allows users to 
-manage and plan their shopping lists and budget. If you are a fast typer, 
-you will find SHOCO to be even more effective than applications with graphical 
-user interfaces.
+Have you ever encountered the problem of having to make multiple trips to the supermarket
+because you forgot to get something important? Have you ever gone to the supermarket just to realise
+you do not have enough cash on you?
+
+If these problems sound familiar to you, fret not! With SHOCO, such troubles are now a thing of the
+past.
+
+SHOCO is a command-line interface (CLI) application that allows you to 
+manage and plan your shopping list and budget. With better organisation and also a
+budget tracker, we are here to enhance your grocery-shopping experience and make the woes of
+grocery shopping disappear.
 
 &nbsp;
 
@@ -35,8 +45,10 @@ user interfaces.
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
-
+2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
+3. Open the command prompt in the directory of the executable and type in the following command:
+   `java -jar SHOCO.jar`
+4. You are now all set to plan your shopping list!
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
@@ -45,35 +57,41 @@ user interfaces.
 ## Features 
 
 #### Command Format
-* Words in UPPER_CASE are the parameters to be supplied by the user 
+* Please note the words in UPPER_CASE are the parameters that you can supply 
   * e.g. in `ADD i/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `ADD i/apple`.
 
-* Items in square brackets are *optional*. 
+* Items in square brackets are *optional* and you can omit them. 
   * e.g `EDIT 1 [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]` can be used as `EDIT 1 i/apple p/4.00` or as `EDIT 1 i/apple`.
-
+  
+* All command words are case-sensitive and you should always use uppercase.
+  * e.g `ADD` in `ADD i/DESCRIPTION` consists of only uppercase letters.
+  
+* You can supply parameters for the `ADD` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order. 
+However, note that for the `EDIT` command, the delimiters (i.e. `i/`, `q/` and `p/`) should come in alphabetical order.
+  * e.g `EDIT i/DESCRIPTION p/PRICE` is acceptable but `EDIT p/PRICE i/DESCRIPTION` is not.
 
 &nbsp;
 
 ***
 
 ### Adding an item: `ADD`
-{add your details here}
 Add the specified item in the shopping list.
 
-Format: `ADD [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
+Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 
-* The `[DESCRIPTION]` must exist.
+* The `DESCRIPTION` must exist.
 * The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of two parameters (price/quantity) must be present.
 * i/, p/, q/ delimiters must be in **alphabetical** order.
-
+* note that you can rearrange the delimiters (more will shown in the example.)
 Example of usage: 
 
-1. `ADD i/potato p/5.00 q/3`
+1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
     * Add the description, price and quantity of this item in the shopping list
     
-2. `ADD i/potato chips p/5.00`  **OR**  `ADD i/potato chips q/2`
+2. `ADD i/potato chips p/5.00`  **OR**  `ADD i/potato chips q/2` **OR** `ADD p/5.00 i/potato chips` 
+   **OR** `ADD q/5 i/potato chips`
     * Add the description and price /  description and quantity /  of the item in the shopping list
     
 3. `ADD i/potato chips` 
@@ -90,9 +108,9 @@ Edits the specified item in the shopping list.
 
 Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 
-* Edits the item at the specified `[INDEX]`. The `[INDEX]` refers to the index number 
+* Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list.
-* The `[INDEX]` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+* The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of three parameters (description/price/quantity) must be present.
 * i/, p/, q/ delimiters must be in **alphabetical** order.
@@ -127,6 +145,16 @@ Example of usage:
 
 `DEL 3`
 
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
+***
+
+### Clearing the list: `CLEAR`
+Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
+
+Format: `CLEAR`
 
 &nbsp;
 
@@ -135,7 +163,16 @@ Example of usage:
 ***
 
 ### Marking an item as bought: `MARK`
-{add your details here}
+Marks an item from the list at the specified index as bought.
+
+Format: `MARK INDEX`
+
+* The `INDEX` should be an integer.
+* The `INDEX` should not be out of bounds of the shopping list.
+
+Example of the usage: 
+
+`MARK 5`
 
 &nbsp;
 
@@ -144,10 +181,16 @@ Example of usage:
 ***
 
 ### Un-marking a marked item: `UNMARK`
-{add your details here}
+Un-marks a marked-as-bought item from the list at the specified index.
 
+Format: `UNMARK INDEX`
 
+* The `INDEX` should be an integer
+* The `INDEX` should not be out of bounds of the shopping list.
 
+Example of the usage:
+
+`UNMARK 3`
 
 &nbsp;
 
@@ -155,10 +198,10 @@ Example of usage:
 
 ***
 
-### Listing all items: `DISPLAY`
-{add your details here}
+### Display list and budget details: `DISPLAY`
+Shows the shopping list, budget, cost of the items and the remaining budget.
 
-
+Format: `DISPLAY` 
 
 &nbsp;
 
@@ -177,6 +220,17 @@ Format: `SET b/AMOUNT`
 Example of usage: 
 
 `SET b/3.00`
+
+&nbsp;
+
+<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
+***
+
+### Resetting a budget: `RES`
+Resets te budget to be 0.00 for the user.
+
+Format: `RES`
 
 &nbsp;
 
@@ -203,6 +257,7 @@ Example of usage:
 ***
 
 ### Viewing help: `HELP`
+Shows the available commands and how they are to be used.
 
 Format: `HELP`
 
@@ -227,12 +282,34 @@ Format: `BYE`
 
 &nbsp;
 
+## Additional information
+
+### 1. Loading and saving your shopping list
+
+All of the information stored in your shopping list is saved to a JSON file after you
+exit the application. This data is also retrieved from the same JSON file the next time you boot up
+Shoco. There is nothing that you have to do as this is an automatic process.
+
+### 2. Automated budget tracker
+
+When the total cost of the items in your shopping list exceeds the stored budget amount, a message will be
+displayed which states by how much you have overrun your current budget. This message will only
+stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
+your budget.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
+**A**: Install the app in the other computer and replace the empty data file it creates with the file 
 that contains the data of your previous SHOCO shopping list.
+
+**Q**: Is it possible to restore a list that I have deleted?
+
+**A**: Unfortunately, we are still working on this feature and there is no such functionality at this
+point in time. It is however possible to manually backup the shoppinglist.json file
+from time to time so that if you unintentionally cleared your list, you can always replace the empty
+shoppinglist.json file with your backed up version.
 
 &nbsp;
 
@@ -243,11 +320,18 @@ that contains the data of your previous SHOCO shopping list.
 
 ## Command Summary
 
+* Add item `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Delete item `DEL INDEX`
+* Clear list `CLEAR`
+* Mark item `MARK INDEX`
+* Un-mark item `UNMARK INDEX`
+* Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
+* Reset Budget `RES`
 * Find item `FIND KEYWORD`
-* Viewing help `HELP`
+* View help `HELP`
+* Exit program `BYE`
 
 &nbsp;
 

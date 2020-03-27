@@ -48,10 +48,11 @@ public class Parser {
         }
 
         switch (commandWord) {
-
+        //@@author jiajuinphoon
         case AddCommand.COMMAND_WORD:
             createAddCommand(arguments);
             break;
+        //author
 
         //@@author Shannonwje
         case MarkCommand.COMMAND_WORD:
@@ -121,6 +122,7 @@ public class Parser {
     private String[] splitCommandAndArgs(String userInput) {
         return userInput.trim().split(" ", 2);
     }
+    //@@author jiajuinphoon
 
     private void createAddCommand(String arguments) {
         try {
@@ -132,8 +134,24 @@ public class Parser {
             prices = args[1];
             quantity = args[2];
             if (prices == null && quantity != null) {
-                int quantityInInteger = Integer.getInteger(quantity);
-                newCommand = new AddCommand(description, 0.0, quantityInInteger);
+                try {
+                    int quantityInInteger = Integer.parseInt(quantity);
+                    newCommand = new AddCommand(description, 0.0, quantityInInteger);
+                } catch (NullPointerException e) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! Invalid Command. Check if these are met:"
+                            + System.lineSeparator()
+                            + " - Price of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - Quantity of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                            + System.lineSeparator()
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
+                }
             } else if (prices != null && quantity == null) {
                 try {
                     double price = Double.parseDouble(prices);
@@ -330,7 +348,7 @@ public class Parser {
                     + "|| Example: ADD i/apples p/9.90 q/9");
         }
         return argsArray;
-    }
+    } //@@author
 
     //@@author Shannonwje
     /**
