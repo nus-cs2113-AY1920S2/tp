@@ -83,4 +83,18 @@ public class FileIO {
             throw new DukeException("FileIO.write: " + m.getMessage());
         }
     }
+
+    /**
+     * Close everything in FileIO.
+     * @throws DukeException if IOException occurs
+     */
+    public void close() throws DukeException {
+        try {
+            this.fileToWriteTo.close();
+            this.fileToReadFrom.close();
+            this.scanner.close();
+        } catch (IOException m) {
+            throw new DukeException("FileIO.close: " + m.getMessage());
+        }
+    }
 }
