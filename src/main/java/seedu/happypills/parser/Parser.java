@@ -183,7 +183,8 @@ public class Parser {
      * Prompt user for conformation with this message.
      */
     public static String promptConformation(String[] parseInput) {
-        String text = "        Name : " + parseInput[0].trim() + "\n"
+        String text = TextUi.DIVIDER
+                + "\n        Name : " + parseInput[0].trim() + "\n"
                 + "        NRIC : " + parseInput[1].trim() + "\n"
                 + "        Phone Number : " + parseInput[2].trim() + "\n"
                 + "        DOB : " + parseInput[3].trim() + "\n"
