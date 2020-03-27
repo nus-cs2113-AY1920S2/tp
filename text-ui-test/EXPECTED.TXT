@@ -10,8 +10,6 @@ Hello from
 
 
 
-What is your name? Please enter it over here:
-Hello Duke, please input your matric year:
 Here are the commands that I can do for you:
 1. "help" to look at all the commands that I can do
 2. "view" to see all modules we have in our module list
