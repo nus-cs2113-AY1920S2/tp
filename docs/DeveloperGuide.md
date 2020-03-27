@@ -83,20 +83,22 @@ user
 The following sequence diagram shows how the `Add to Semester` operation works:
 ![Sequence Diagram of Add to Semester](https://raw.githubusercontent.com/RenzoTsai/tp/master/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
 
-#### `Mark as Done` feature
-
-
-
 
 
 ## Product Scope
 ### Target user profile
 
-{Describe the target user profile}
+* A computer science undergraduate of NUS with a need to manage modules
+* Prefer desktop apps over other types
+* Able to type quickly
+* Prefers to control apps with typing rather than a mouse
+* Comfortable using Command Line Input apps
 
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
+
+Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app 
 
 ## User Stories
 
