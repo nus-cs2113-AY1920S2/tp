@@ -311,7 +311,7 @@ This command will repeat task of index 6 every 11 months.
 
 Expected outcome:
 ```
- [Online Career Fair] will repeat every 3 days.
+ [Online Career Fair] will repeat every 11 months.
 ```
 [NOTE]
 Index of task specified has to be an *event* task.
