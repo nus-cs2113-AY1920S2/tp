@@ -21,51 +21,97 @@ import java.util.stream.Collectors;
 public class AutoCompleteTextField extends TextField {
     private final SortedSet<String> entries;
     private ContextMenu entriesPopup;
+    private String enteredText;
+    private int startIndex;
+    private int endIndex;
+    private String prefix;
 
     public AutoCompleteTextField() {
         super();
         this.entries = new TreeSet<>();
         this.entriesPopup = new ContextMenu();
         entriesPopup.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-border-color: lightgrey; -fx-border-radius: 3");
-        setListener();
+        // setListener();
+    }
+
+    public void setEnteredText(String enteredText, int startIndex, int endIndex, String prefix) {
+        this.enteredText = enteredText;
+        this.startIndex = startIndex;
+        this.endIndex = endIndex;
+        this.prefix = prefix;
+    }
+
+    public void setEnteredText(String enteredText, int startIndex, int endIndex) {
+        this.setEnteredText(enteredText, startIndex, endIndex, "");
     }
 
     public ContextMenu getEntriesPopup() {
         return entriesPopup;
     }
 
-    private void setListener() {
-        //Add "suggestions" by changing text
-        textProperty().addListener((observable, oldValue, newValue) -> {
-            String enteredText = getText().trim();
-            // Hide suggestions if there in no input
-            if (enteredText.isBlank()) {
-                entriesPopup.hide();
-            } else {
-                // Filters suggestions in case-insensitive manner
-                List<String> filteredEntries = entries.stream()
-                        .filter(e -> e.toLowerCase().contains(enteredText.toLowerCase()))
-                        .collect(Collectors.toList());
-                // Show suggestions if present
-                if (!filteredEntries.isEmpty()) {
-                    // Create popup
-                    int y = (filteredEntries.size())*12;
-                    populatePopup(filteredEntries, enteredText);
-                    //if (!entriesPopup.isShowing()) {
-                    entriesPopup.show(AutoCompleteTextField.this, Side.TOP, 0, -y); //position of popup
-                    //}
-                    // Hide popup if no suggestions
-                } else {
-                    entriesPopup.hide();
-                }
-            }
-        });
-
-        // Hide always by focus-in (optional) and out
-        focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+    public void displaySuggestions() {
+        if (enteredText.isBlank()) {
             entriesPopup.hide();
-        });
+        } else {
+            // Filters suggestions in case-insensitive manner
+            List<String> filteredEntries = entries.stream()
+                    .filter(e -> e.toLowerCase().contains(enteredText.toLowerCase()))
+                    .collect(Collectors.toList());
+
+            // Show suggestions if present
+            if (!filteredEntries.isEmpty()) {
+                // Create popup
+                // int y = (filteredEntries.size())*12;
+                populatePopup(filteredEntries, enteredText);
+                //if (!entriesPopup.isShowing()) {
+                entriesPopup.show(AutoCompleteTextField.this, Side.BOTTOM, 0, 0); //position of popup
+                //}
+                // Hide popup if no suggestions
+            } else {
+                entriesPopup.hide();
+            }
+        }
     }
+
+    //private void setListener() {
+    //    //Add "suggestions" by changing text
+    //    textProperty().addListener((observable, oldValue, newValue) -> {
+    //        // Hide suggestions if there in no input
+    //        if (enteredText.isBlank()) {
+    //            entriesPopup.hide();
+    //        } else {
+    //            // Filters suggestions in case-insensitive manner
+    //            List<String> filteredEntries = entries.stream()
+    //                    .filter(e -> e.toLowerCase().contains(enteredText.toLowerCase()))
+    //                    .collect(Collectors.toList());
+    //
+    //            System.out.println("word: " + enteredText);
+    //            System.out.print("filtered entries: ");
+    //            for (String e : filteredEntries) {
+    //                System.out.print(e + " ");
+    //            }
+    //            System.out.println("");
+    //
+    //            // Show suggestions if present
+    //            if (!filteredEntries.isEmpty()) {
+    //                // Create popup
+    //                int y = (filteredEntries.size())*12;
+    //                populatePopup(filteredEntries, enteredText);
+    //                //if (!entriesPopup.isShowing()) {
+    //                entriesPopup.show(AutoCompleteTextField.this, Side.TOP, 0, -y); //position of popup
+    //                //}
+    //                // Hide popup if no suggestions
+    //            } else {
+    //                entriesPopup.hide();
+    //            }
+    //        }
+    //    });
+    //
+    //    // Hide always by focus-in (optional) and out
+    //    focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+    //        entriesPopup.hide();
+    //    });
+    //}
 
 
     /**
@@ -91,8 +137,14 @@ public class AutoCompleteTextField extends TextField {
 
             //if any suggestion is select set it into text and close popup
             item.setOnAction(actionEvent -> {
-                setText(result);
-                positionCaret(result.length());
+                String inputText = getText();
+                String before = inputText.substring(0, startIndex).trim();
+                String after = inputText.substring(endIndex).trim();
+                String resultWithPrefix = prefix.isEmpty() ? result : (prefix + " " + result);
+                String combinedBefore = before.isEmpty() ? resultWithPrefix : (before + " " + resultWithPrefix);
+                setText(String.format("%s %s", combinedBefore, after));
+
+                positionCaret(combinedBefore.length() + 1);
                 entriesPopup.hide();
             });
         }

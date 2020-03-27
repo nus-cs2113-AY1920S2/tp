@@ -461,8 +461,8 @@ public class Parser {
         Matcher matcher = EditModuleCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, MODULE_CODE_PREFIX);
 
-        String newModuleCode = matcher.group("identifier").trim();
-        String oldModuleCode = matcher.group("moduleCode")
+        String oldModuleCode = matcher.group("identifier").trim();
+        String newModuleCode = matcher.group("moduleCode")
                 .replace(MODULE_CODE_PREFIX, "").trim();
 
         if (isNothingToEdit(newModuleCode)) {
@@ -485,10 +485,10 @@ public class Parser {
         Matcher matcher = EditCategoryCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, PRIORITY_PREFIX);
 
-        String newCategoryName = matcher.group("identifier").trim();
+        String oldCategoryName = matcher.group("identifier").trim();
         String moduleCode = matcher.group("moduleCode")
                 .replace(MODULE_CODE_PREFIX, "").trim();
-        String oldCategoryName = matcher.group("categoryName")
+        String newCategoryName = matcher.group("categoryName")
                 .replace(CATEGORY_NAME_PREFIX, "").trim();
         String newPriority = matcher.group("priority")
                 .replace(PRIORITY_PREFIX, "").trim();
@@ -522,12 +522,12 @@ public class Parser {
         validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, TASK_DESCRIPTION_PREFIX,
                 DEADLINE_PREFIX, PRIORITY_PREFIX);
 
-        String newTaskDescription = matcher.group("identifier").trim();
+        String oldTaskDescription = matcher.group("identifier").trim();
         String moduleCode = matcher.group("moduleCode")
                 .replace(MODULE_CODE_PREFIX, "").trim();
         String categoryName = matcher.group("categoryName")
                 .replace(CATEGORY_NAME_PREFIX, "").trim();
-        String oldTaskDescription = matcher.group("taskDescription")
+        String newTaskDescription = matcher.group("taskDescription")
                 .replace(TASK_DESCRIPTION_PREFIX, "").trim();
 
         String optionalParameters = matcher.group("optional");

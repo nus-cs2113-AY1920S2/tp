@@ -1,5 +1,6 @@
 package seedu.nuke.gui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -58,37 +59,30 @@ public class MainController implements Initializable {
         autoCompleteTextField.setPadding(new Insets(5));
         autoCompleteTextField.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-background-color: white;"
                 + "-fx-border-color: lightgrey; -fx-border-radius: 3");
-        autoCompleteTextField.setOnKeyTyped(this::onType);
-        consoleBox.getChildren().addAll(autoCompleteTextField, consoleMask);
+
+        autoCompleteTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            String currentUserInput = autoCompleteTextField.getText();
+            consoleMask.getChildren().clear();
+            consoleMask.getChildren().add(new GuiParser(autoCompleteTextField).smartParse(currentUserInput));
+        });
+
+        autoCompleteTextField.setOnAction(this::onSubmitInput);
+
+        consoleBox.getChildren().addAll(consoleMask, autoCompleteTextField);
+    }
+
+    private void onSubmitInput(ActionEvent actionEvent) {
+        String userInput = autoCompleteTextField.getText().trim();
+        new GuiExecutor(consoleScreen).executeAction(userInput);
+        autoCompleteTextField.clear();
     }
 
     public void submitInput() {
         String userInput = console.getText().trim();
-        new GuiExecutor(console, consoleScreen).executeAction(userInput);
+        new GuiExecutor(consoleScreen).executeAction(userInput);
         console.clear();
     }
 
-    @FXML
-    private void onType(KeyEvent keyEvent) {
-        switch (keyEvent.getCode()) {
-        case UP:
-            keyEvent.consume();
-            System.out.println("View last command.");
-            break;
-        case DOWN:
-            System.out.println("View earlier command.");
-            break;
-        case TAB:
-            System.out.println("Auto-complete here.");
-            break;
-        default:
-            String currentUserInput = autoCompleteTextField.getText();
-            consoleMask.getChildren().clear();
-            consoleMask.getChildren().add(TextUI.createText(currentUserInput,
-                    new GuiParser(autoCompleteTextField).parseCommandWord(currentUserInput)));
-            break;
-        }
-    }
 
     public void onEnterKey(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
@@ -105,7 +99,7 @@ public class MainController implements Initializable {
         default:
             String currentUserInput = console.getText();
             consoleMask.getChildren().clear();
-            consoleMask.getChildren().add(TextUI.createText(currentUserInput, new GuiParser(autoCompleteTextField).parseCommandWord(currentUserInput)));
+            consoleMask.getChildren().add(new GuiParser(autoCompleteTextField).smartParse(currentUserInput));
             break;
         }
     }

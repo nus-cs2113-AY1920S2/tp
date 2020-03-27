@@ -163,11 +163,12 @@
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>
                         </VBox>
-                        <VBox fx:id="consoleBox" prefHeight="463.0" prefWidth="360.0" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="463.0" prefWidth="360.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <ScrollPane fx:id="consoleScreenScrollPane" fitToWidth="true" prefHeight="494.0" prefWidth="935.0" style="-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="consoleBox" minHeight="65.0" prefHeight="0.0" prefWidth="935.0" />
+                                <ScrollPane fx:id="consoleScreenScrollPane" fitToWidth="true" prefHeight="509.0" prefWidth="935.0" style="-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                                     <content>
-                                        <TextFlow fx:id="consoleScreen" lineSpacing="1.0" prefHeight="491.0" prefWidth="933.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3; -fx-background-color: white;">
+                                        <TextFlow fx:id="consoleScreen" lineSpacing="1.0" prefHeight="456.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3; -fx-background-color: white;">
                                             <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </padding>

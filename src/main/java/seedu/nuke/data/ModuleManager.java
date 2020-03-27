@@ -33,7 +33,7 @@ public class ModuleManager implements Iterable<Module> {
         moduleList = new ArrayList<>();
     }
 
-    public static ModuleManager getInstance(Root root, HashMap<String, String> modulesMa) {
+    public static ModuleManager getInstance(Root root, HashMap<String, String> modulesMap) {
         if (moduleManager == null) {
             moduleManager = new ModuleManager(root, modulesMap);
         }

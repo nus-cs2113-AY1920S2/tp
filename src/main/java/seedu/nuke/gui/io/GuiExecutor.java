@@ -22,11 +22,9 @@ import java.util.stream.Collectors;
 
 
 public class GuiExecutor {
-    private TextField console;
     private TextFlow consoleScreen;
 
-    public GuiExecutor(TextField console, TextFlow consoleScreen) {
-        this.console = console;
+    public GuiExecutor(TextFlow consoleScreen) {
         this.consoleScreen = consoleScreen;
     }
 
@@ -35,7 +33,7 @@ public class GuiExecutor {
         displayResult(result);
 
         if (ExitCommand.isExit()) {
-            Stage window = (Stage) console.getScene().getWindow();
+            Stage window = (Stage) consoleScreen.getScene().getWindow();
             window.close();
         }
     }
