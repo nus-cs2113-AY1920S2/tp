@@ -6,11 +6,8 @@ import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.PopupWindow;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +27,8 @@ public class AutoCompleteTextField extends TextField {
         super();
         this.entries = new TreeSet<>();
         this.entriesPopup = new ContextMenu();
-        entriesPopup.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-border-color: lightgrey; -fx-border-radius: 3");
+        entriesPopup.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; "
+                + "-fx-border-color: lightgrey; -fx-border-radius: 3");
         // setListener();
     }
 
@@ -55,64 +53,21 @@ public class AutoCompleteTextField extends TextField {
         } else {
             // Filters suggestions in case-insensitive manner
             List<String> filteredEntries = entries.stream()
-                    .filter(e -> e.toLowerCase().contains(enteredText.toLowerCase()))
+                    .filter(entry -> entry.toLowerCase().contains(enteredText.toLowerCase()))
                     .collect(Collectors.toList());
 
             // Show suggestions if present
             if (!filteredEntries.isEmpty()) {
                 // Create popup
-                // int y = (filteredEntries.size())*12;
                 populatePopup(filteredEntries, enteredText);
-                //if (!entriesPopup.isShowing()) {
-                entriesPopup.show(AutoCompleteTextField.this, Side.BOTTOM, 0, 0); //position of popup
-                //}
-                // Hide popup if no suggestions
+                int xDisplacement = startIndex * 10;
+                // Position and show popup
+                entriesPopup.show(AutoCompleteTextField.this, Side.BOTTOM, xDisplacement, 0);
             } else {
                 entriesPopup.hide();
             }
         }
     }
-
-    //private void setListener() {
-    //    //Add "suggestions" by changing text
-    //    textProperty().addListener((observable, oldValue, newValue) -> {
-    //        // Hide suggestions if there in no input
-    //        if (enteredText.isBlank()) {
-    //            entriesPopup.hide();
-    //        } else {
-    //            // Filters suggestions in case-insensitive manner
-    //            List<String> filteredEntries = entries.stream()
-    //                    .filter(e -> e.toLowerCase().contains(enteredText.toLowerCase()))
-    //                    .collect(Collectors.toList());
-    //
-    //            System.out.println("word: " + enteredText);
-    //            System.out.print("filtered entries: ");
-    //            for (String e : filteredEntries) {
-    //                System.out.print(e + " ");
-    //            }
-    //            System.out.println("");
-    //
-    //            // Show suggestions if present
-    //            if (!filteredEntries.isEmpty()) {
-    //                // Create popup
-    //                int y = (filteredEntries.size())*12;
-    //                populatePopup(filteredEntries, enteredText);
-    //                //if (!entriesPopup.isShowing()) {
-    //                entriesPopup.show(AutoCompleteTextField.this, Side.TOP, 0, -y); //position of popup
-    //                //}
-    //                // Hide popup if no suggestions
-    //            } else {
-    //                entriesPopup.hide();
-    //            }
-    //        }
-    //    });
-    //
-    //    // Hide always by focus-in (optional) and out
-    //    focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-    //        entriesPopup.hide();
-    //    });
-    //}
-
 
     /**
      * Populate the entry set with the given search results. Display is limited to 10 entries, for performance.
@@ -120,22 +75,22 @@ public class AutoCompleteTextField extends TextField {
      * @param suggestions The set of matching strings.
      */
     private void populatePopup(List<String> suggestions, String searchResult) {
-        //List of "suggestions"
+        // List of suggestions
         List<CustomMenuItem> menuItems = new LinkedList<>();
-        //List size - 10 or founded suggestions count
+        // List size - 10 or founded suggestions count
         int maxEntries = 10;
         int count = Math.min(suggestions.size(), maxEntries);
-        //Build list as set of labels
+        // Build list as set of labels
         for (int i = 0; i < count; i++) {
             final String result = suggestions.get(i);
-            //label with graphic (text flow) to highlight founded subtext in suggestions
+            // Label with graphic (text flow) to highlight found subtext in suggestions
             Label entryLabel = new Label();
             entryLabel.setGraphic(buildTextFlow(result, searchResult));
             entryLabel.setPrefHeight(12);  //don't sure why it's changed with "graphic"
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             menuItems.add(item);
 
-            //if any suggestion is select set it into text and close popup
+            // Set selected suggestion into text and close popup
             item.setOnAction(actionEvent -> {
                 String inputText = getText();
                 String before = inputText.substring(0, startIndex).trim();
@@ -144,12 +99,13 @@ public class AutoCompleteTextField extends TextField {
                 String combinedBefore = before.isEmpty() ? resultWithPrefix : (before + " " + resultWithPrefix);
                 setText(String.format("%s %s", combinedBefore, after));
 
+                // Position caret just after change
                 positionCaret(combinedBefore.length() + 1);
                 entriesPopup.hide();
             });
         }
 
-        //"Refresh" context menu
+        // Refresh context menu
         entriesPopup.getItems().clear();
         entriesPopup.getItems().addAll(menuItems);
     }

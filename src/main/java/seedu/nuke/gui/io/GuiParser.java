@@ -115,7 +115,12 @@ public class GuiParser {
         int startIndexOfCommandWord = matcher.start(COMMAND_WORD_GROUP);
         int endIndexOfCommandWord = matcher.end(COMMAND_WORD_GROUP);
 
-        populateCommandWordSuggestions(commandWord, parameters, startIndexOfCommandWord, endIndexOfCommandWord);
+        populateSuggestions(commandWord, COMMAND_WORDS, startIndexOfCommandWord, endIndexOfCommandWord, NONE);
+
+        if (textField.getCaretPosition() < startIndexOfCommandWord
+                || textField.getCaretPosition() > endIndexOfCommandWord) {
+            textField.getEntriesPopup().hide();
+        }
 
         highlightInput(commandWord, rawCommandWord, parameters, endIndexOfCommandWord, COMMAND_WORDS, true);
 
@@ -199,24 +204,6 @@ public class GuiParser {
         }
         textField.setEnteredText(commandWord, startIndex, endIndex);
         textField.displaySuggestions();
-    }
-
-    private boolean isPartOfCommandWord(String givenCommandWord) {
-        for (String commandWord : COMMAND_WORDS) {
-            if (commandWord.contains(givenCommandWord)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isMatchingCommandWord(String givenCommandWord) {
-        for (String commandWord : COMMAND_WORDS) {
-            if (commandWord.equals(givenCommandWord)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void smartParseChangeDirectoryCommand(String parameters, int startIndex) {
