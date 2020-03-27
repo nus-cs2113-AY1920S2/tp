@@ -284,7 +284,7 @@ Format: `BYE`
 ### 1. Loading and saving your shopping list
 
 All your shopping list and budget data are saved to JSON files after you
-exit the application. This data are also retrieved from the same JSON files the next time you boot up
+exit the application. This data is also retrieved from the same JSON files the next time you boot up
 Shoco. No further action is required from you as this is an automatic process.
 
 ### 2. Automated budget tracker
