@@ -27,6 +27,7 @@ import seedu.nuke.util.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -35,12 +36,20 @@ import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
 import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.directory.DirectoryTraverser.getCurrentDirectory;
 import static seedu.nuke.directory.DirectoryTraverser.getCurrentDirectoryLevel;
+import static seedu.nuke.gui.io.GuiCommandPattern.ADD_CATEGORY_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.ADD_MODULE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.ADD_TASK_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.BASIC_COMMAND_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_CATEGORY_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_MODULE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_TASK_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_CATEGORY_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_MODULE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_TASK_FORMAT;
 import static seedu.nuke.gui.ui.TextUI.createText;
 
 
 public class GuiParser {
-    private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>\\s*\\w+)(?<parameters>.*)");
     private static final String WHITESPACES = "\\s+";
     private static final String NONE = "";
 
@@ -52,7 +61,6 @@ public class GuiParser {
     public static final String ALL_FLAG = "-a";
     public static final String EXACT_FLAG = "-e";
 
-
     private static final String COMMAND_WORD_GROUP = "commandWord";
     private static final String PARAMETERS_GROUP = "parameters";
     private static final String IDENTIFIER_GROUP = "identifier";
@@ -63,7 +71,6 @@ public class GuiParser {
     private static final String PRIORITY_GROUP = "priority";
     private static final String EXACT_GROUP = "exact";
     private static final String ALL_GROUP = "all";
-    private static final String OPTIONAL_GROUP = "optional";
     private static final String INVALID_GROUP = "invalid";
 
     private AutoCompleteTextField textField;
@@ -74,14 +81,13 @@ public class GuiParser {
         this.highlightedInput = new TextFlow();
     }
 
-    private static final String[] COMMAND_WORDS = {
+    private static final ArrayList<String> COMMAND_WORDS = new ArrayList<>(Arrays.asList(
             AddModuleCommand.COMMAND_WORD, AddCategoryCommand.COMMAND_WORD, AddTaskCommand.COMMAND_WORD,
             DeleteModuleCommand.COMMAND_WORD, DeleteCategoryCommand.COMMAND_WORD, DeleteTaskCommand.COMMAND_WORD,
             ListModuleCommand.COMMAND_WORD, ListCategoryCommand.COMMAND_WORD, ListTaskCommand.COMMAND_WORD,
             EditModuleCommand.COMMAND_WORD, EditCategoryCommand.COMMAND_WORD, EditTaskCommand.COMMAND_WORD,
             ChangeDirectoryCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD
-    };
-    
+    ));
 
     public TextFlow smartParse(String input) {
         try {
@@ -90,10 +96,8 @@ public class GuiParser {
         } catch (ParseFailureException e) {
             return highlightedInput;
         }
-
         return highlightedInput;
     }
-
 
     /**
      * Parses the command word in the input string from the GUI console.
@@ -104,7 +108,8 @@ public class GuiParser {
     private Matcher smartParseCommandWord(String input) throws ParseFailureException {
         final Matcher matcher = matchPattern(input, BASIC_COMMAND_FORMAT);
 
-        String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase().trim();
+        String rawCommandWord = matcher.group(COMMAND_WORD_GROUP);
+        String commandWord = rawCommandWord.trim().toLowerCase();
         String parameters = matcher.group(PARAMETERS_GROUP);
 
         int startIndexOfCommandWord = matcher.start(COMMAND_WORD_GROUP);
@@ -112,28 +117,9 @@ public class GuiParser {
 
         populateCommandWordSuggestions(commandWord, parameters, startIndexOfCommandWord, endIndexOfCommandWord);
 
+        highlightInput(commandWord, rawCommandWord, parameters, endIndexOfCommandWord, COMMAND_WORDS, true);
 
-        if (!isPartOfCommandWord(commandWord)) {
-            // Does not match a command word at all
-            highlightedInput.getChildren().add(createText(input, Color.CRIMSON));
-            throw new ParseFailureException();
-        }
-
-        if (isMatchingCommandWord(commandWord)) {
-            // Completely matches a command word
-            String toHighlight = input.substring(startIndexOfCommandWord, endIndexOfCommandWord);
-            highlightedInput.getChildren().add(
-                    createText(toHighlight, Color.GREEN));
-            return matcher;
-        } else if (!parameters.isEmpty()) {
-            // Partially matches a command word BUT not continuing to type
-            highlightedInput.getChildren().add(createText(input, Color.CRIMSON));
-            throw new ParseFailureException();
-        } else {
-            // Partially matches a command word and continuing to type
-            highlightedInput.getChildren().add(createText(input, Color.DARKGRAY));
-            throw new ParseFailureException();
-        }
+        return matcher;
     }
 
     private void smartParseParameters(Matcher matcher) throws ParseFailureException {
@@ -205,7 +191,7 @@ public class GuiParser {
         if (parameters.isEmpty()) {
             // Add the list of command words as possible suggestions
             textField.getEntries().clear();
-            textField.getEntries().addAll(Arrays.asList(COMMAND_WORDS));
+            textField.getEntries().addAll(COMMAND_WORDS);
         } else {
             // Hide current suggestions
             textField.getEntries().clear();
@@ -289,11 +275,7 @@ public class GuiParser {
 
     private void smartParseAddModuleCommand(String parameters, int startIndex)
             throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, ADD_MODULE_FORMAT);
 
         String moduleCode = matcher.group(IDENTIFIER_GROUP);
         int startIndexOfModule =  matcher.start(IDENTIFIER_GROUP) + startIndex;
@@ -315,13 +297,7 @@ public class GuiParser {
     }
 
     void smartParseAddCategoryCommand(String parameters, int startIndex) throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*?)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, ADD_CATEGORY_FORMAT);
 
         String categoryName = matcher.group(IDENTIFIER_GROUP);
         String invalid = matcher.group(INVALID_GROUP);
@@ -337,15 +313,7 @@ public class GuiParser {
     }
 
     void smartParseAddTaskCommand(String parameters, int startIndex) throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*?)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, ADD_TASK_FORMAT);
 
         String taskDescription = matcher.group(IDENTIFIER_GROUP);
         String invalid = matcher.group(INVALID_GROUP);
@@ -361,13 +329,7 @@ public class GuiParser {
     }
 
     private void smartParseDeleteAndListModuleCommand(String parameters, int startIndex) throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
-                + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_MODULE_FORMAT);
 
         String invalid = matcher.group(INVALID_GROUP);
 
@@ -380,14 +342,7 @@ public class GuiParser {
 
     private void smartParseDeleteAndListCategoryCommand(String parameters, int startIndex)
             throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
-                + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*)(?:\\s*)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_CATEGORY_FORMAT);
 
         String invalid = matcher.group(INVALID_GROUP);
 
@@ -400,15 +355,7 @@ public class GuiParser {
     }
 
     private void smartParseDeleteAndListTaskCommand(String parameters, int startIndex) throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
-                + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*)(?:\\s*)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_TASK_FORMAT);
 
         String invalid = matcher.group(INVALID_GROUP);
 
@@ -422,12 +369,7 @@ public class GuiParser {
     }
 
     private void smartParseEditModuleCommand(String parameters, int startIndex) throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, EDIT_MODULE_FORMAT);
 
         String invalid = matcher.group(INVALID_GROUP);
 
@@ -438,14 +380,7 @@ public class GuiParser {
     }
 
     private void smartParseEditCategoryCommand(String parameters, int startIndex) throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, EDIT_CATEGORY_FORMAT);
 
         String invalid = matcher.group(INVALID_GROUP);
 
@@ -458,16 +393,7 @@ public class GuiParser {
     }
 
     private void smartParseEditTaskCommand(String parameters, int startIndex) throws ParseFailureException {
-        Pattern format = Pattern.compile(
-                "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-                + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<taskDescription>(?:\\s+" + TASK_DESCRIPTION_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-                + "(?<invalid>(?:\\s+-.*)*)(?:\\s*)");
-
-        final Matcher matcher = matchPattern(parameters, format);
+        final Matcher matcher = matchPattern(parameters, EDIT_TASK_FORMAT);
 
         String invalid = matcher.group(INVALID_GROUP);
 
