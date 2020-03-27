@@ -139,39 +139,54 @@ public class EditTaskCommand extends EditCommand {
     protected Task getBaseTaskDirectory()
             throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
             CategoryManager.CategoryNotFoundException, TaskManager.TaskNotFoundException {
+        //if (moduleCode.isEmpty()) {
+        //    if (categoryName.isEmpty()) {
+        //        if (oldTaskDescription.isEmpty()) {
+        //            return getBaseTask();
+        //        }
+        //        return getBaseCategory().getTasks().getTask(oldTaskDescription);
+        //    }
+        //    if (oldTaskDescription.isEmpty()) {
+        //        if (!getBaseCategory().isSameCategory(categoryName)) {
+        //            throw new IncorrectDirectoryLevelException();
+        //        }
+        //        return getBaseTask();
+        //    }
+        //    return getBaseModule().getCategories().getTask(categoryName, oldTaskDescription);
+        //}
+        //
+        //if (categoryName.isEmpty()) {
+        //    if (!getBaseCategory().isSameCategory(categoryName)) {
+        //        throw new IncorrectDirectoryLevelException();
+        //    }
+        //    if (oldTaskDescription.isEmpty()) {
+        //        if (!getBaseTask().isSameTask(oldTaskDescription)) {
+        //            throw new IncorrectDirectoryLevelException();
+        //        }
+        //        return getBaseTask();
+        //    }
+        //    return getBaseCategory().getTasks().getTask(oldTaskDescription);
+        //}
+        //if (oldTaskDescription.isEmpty()) {
+        //    if (!getBaseCategory().isSameCategory(categoryName) && !getBaseTask().isSameTask(oldTaskDescription)) {
+        //        throw new IncorrectDirectoryLevelException();
+        //    }
+        //    return getBaseTask();
+        //}
         if (moduleCode.isEmpty()) {
-            if (categoryName.isEmpty()) {
-                if (oldTaskDescription.isEmpty()) {
-                    return getBaseTask();
-                }
-                return getBaseCategory().getTasks().getTask(oldTaskDescription);
-            }
-            if (oldTaskDescription.isEmpty()) {
-                if (!getBaseCategory().isSameCategory(categoryName)) {
-                    throw new IncorrectDirectoryLevelException();
-                }
-                return getBaseTask();
-            }
-            return getBaseModule().getCategories().getTask(categoryName, oldTaskDescription);
+            moduleCode = getBaseModule().getModuleCode();
         }
-
         if (categoryName.isEmpty()) {
-            if (!getBaseCategory().isSameCategory(categoryName)) {
+            if (!getBaseModule().isSameModule(moduleCode)) {
                 throw new IncorrectDirectoryLevelException();
             }
-            if (oldTaskDescription.isEmpty()) {
-                if (!getBaseTask().isSameTask(oldTaskDescription)) {
-                    throw new IncorrectDirectoryLevelException();
-                }
-                return getBaseTask();
-            }
-            return getBaseCategory().getTasks().getTask(oldTaskDescription);
+            categoryName = getBaseCategory().getCategoryName();
         }
         if (oldTaskDescription.isEmpty()) {
-            if (!getBaseCategory().isSameCategory(categoryName) && !getBaseTask().isSameTask(oldTaskDescription)) {
+            if (!getBaseModule().isSameModule(moduleCode) && !getBaseCategory().isSameCategory(categoryName)) {
                 throw new IncorrectDirectoryLevelException();
             }
-            return getBaseTask();
+            oldTaskDescription = getBaseTask().getDescription();
         }
         return ModuleManager.getTask(moduleCode, categoryName, oldTaskDescription);
     }

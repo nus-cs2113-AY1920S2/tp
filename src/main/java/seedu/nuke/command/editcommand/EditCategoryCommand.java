@@ -5,6 +5,7 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.regex.Pattern;
@@ -107,18 +108,28 @@ public class EditCategoryCommand extends EditCommand {
     protected Category getBaseCategoryDirectory()
             throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
             CategoryManager.CategoryNotFoundException {
+        //if (moduleCode.isEmpty()) {
+        //    if (oldCategoryName.isEmpty()) {
+        //        return getBaseCategory();
+        //    }
+        //    return getBaseModule().getCategories().getCategory(oldCategoryName);
+        //}
+        //if (oldCategoryName.isEmpty()) {
+        //    if (!getBaseModule().isSameModule(moduleCode)) {
+        //        throw new IncorrectDirectoryLevelException();
+        //    }
+        //    return getBaseCategory();
+        //}
         if (moduleCode.isEmpty()) {
-            if (oldCategoryName.isEmpty()) {
-                return getBaseCategory();
-            }
-            return getBaseModule().getCategories().getCategory(oldCategoryName);
+            moduleCode = getBaseModule().getModuleCode();
         }
         if (oldCategoryName.isEmpty()) {
             if (!getBaseModule().isSameModule(moduleCode)) {
                 throw new IncorrectDirectoryLevelException();
             }
-            return getBaseCategory();
+            oldCategoryName = getBaseCategory().getCategoryName();
         }
+
         return ModuleManager.getCategory(moduleCode, oldCategoryName);
     }
 
