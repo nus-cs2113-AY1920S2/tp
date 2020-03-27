@@ -64,7 +64,7 @@ get started! Become a more *ATAS* version of yourself today!
 e.g. Typing `help` command and pressing kbd:[Enter] will list the commands present
 . Some example commands you can try to get familiar with *ATAS*:
 * `help`: Lists the commands that *ATAS* supports.
-* `assignment n/Assignment One m/CS2113T d/01/01/20 1200 c/Important Assignment`: Adds an assignment called *Assignment
+* `assignment n/Assignment One m/CS2113T d/01/01/20 1600 c/Important Assignment`: Adds an assignment called *Assignment
 one* for the module *CS2113T*. This assignment is due on *01/01/2020 1600* and the comments for this assignment is that
 it is an *Important Assignment*.
 * `exit`: Exits *ATAS*.
@@ -306,12 +306,12 @@ Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
 [NOTE]
 Available Period: Day [d], Week [w], Month [m], Year [y]
 
-Example: `repeat id/1 p/3d` +
-This command will repeat task of index 1 every 3 days.
+Example: `repeat id/6 p/11m` +
+This command will repeat task of index 6 every 11 months.
 
 Expected outcome:
 ```
- [Learn Japanese] will repeat every 3 days.
+ [Online Career Fair] will repeat every 11 months.
 ```
 [NOTE]
 Index of task specified has to be an *event* task.
@@ -324,12 +324,12 @@ Format: `repeat id/[INDEX] p/0`
 [TIP]
 You can think of this as repeating the task every 0 days and hence not repeating!
 
-Example: `repeat id/1 p/0` +
-This command will cause task of index 1 to stop repeating.
+Example: `repeat id/6 p/0` +
+This command will cause task of index 6 to stop repeating.
 
 Expected outcome:
 ```
-[Learn Japanese] will no longer repeat.
+[Online Career Fair] will no longer repeat.
 ```
 === Search Tasks: *`search`*
 ==== Search by Name
