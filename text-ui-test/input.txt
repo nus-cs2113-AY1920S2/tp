@@ -1,6 +1,6 @@
-add dish; n/pizza; i/cheese, sauce;
+add dish; n/pizza; i/cheese, sauce; p/7.00;
 list dish
-add dish; n/rice; i/rice, salt;
+add dish; n/rice; i/rice, salt; p/12.00;
 delete dish; n/pizza;
 list dish
 add stock; i/tomato; q/10; p/$0.40;
