@@ -6,8 +6,7 @@ import jikan.exception.EmptyQueryException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
-import static jikan.parser.Parser.lastShownList;
-import static jikan.parser.Parser.tokenizedInputs;
+import static jikan.Jikan.lastShownList;
 
 /**
  * Represents a command to find activities in the activity list.
