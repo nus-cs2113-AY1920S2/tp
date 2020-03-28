@@ -73,6 +73,7 @@ Delete menu items, ingredients and reservations.
 * Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
 * Example: `delete reservation; r/12;`
 #### Mark reservation as served: mark reservation
+Cannot mark the reservation as served if the reservation is originally invalid.
 * Format: `mark reservation; r/NUMBER_OF_RESERVATION;`
 * Example: `mark reservation; r/4;`
 

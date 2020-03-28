@@ -46,7 +46,7 @@ public class Main {
         while (true) {
             System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
-            new CommandParser().parseCommand(userInput,this.menu,this.stock,this.reservations,this.sales, this.ui);
+            new CommandParser().parseCommand(userInput, this.menu, this.stock, this.reservations, this.sales, this.ui);
         }
     }
     

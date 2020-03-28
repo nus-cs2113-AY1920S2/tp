@@ -58,10 +58,13 @@ public class VoidReservationCommand extends ReservationCommand {
         if (numberPos == -1) {
             throw new InputMissingException("reservation number " + RES_INDEX_MARKER);
         }
+        assert numberPos != -1 : "Reservation Number Missing";
+        
         int numberEndPos = description.indexOf(DELIMITER, numberPos);
         if (numberEndPos == -1) {
             throw new DelimiterMissingException();
         }
+        assert numberEndPos != -1 : "Semicolon Missing";
         
         this.reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
                 numberEndPos).trim());
@@ -69,5 +72,6 @@ public class VoidReservationCommand extends ReservationCommand {
         if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
             throw new NumberFormatException();
         }
+        assert 0 <= this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
     }
 }

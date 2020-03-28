@@ -279,12 +279,6 @@ Input next command:
 Please enter a valid positive integer.
 The command has been successfully executed.
 Input next command:
-Successfully void Reservation[1]
-The command has been successfully executed.
-Input next command:
-Successfully void Reservation[2]
-The command has been successfully executed.
-Input next command:
 Please enter a valid positive integer.
 The command has been successfully executed.
 Input next command:
@@ -298,7 +292,7 @@ contact details: 98955555
 comments: No comments
 
 Reservation [1]
-Status: Invalid
+Status: Unserved
 contact person: Mary
 date: 2020-03-11 12:00
 number of guests: 8
@@ -307,7 +301,7 @@ contact details: 99998888
 comments: No comments
 
 Reservation [2]
-Status: Invalid
+Status: Unserved
 contact person: David
 date: 2020-03-12 12:00
 number of guests: 9
@@ -317,6 +311,105 @@ comments: No comments
 
 Reservation [3]
 Status: Unserved
+contact person: Lisa
+date: 2020-03-13 12:00
+number of guests: 3
+table size: S
+contact details: 98889999
+comments: no spicy food please
+
+The command has been successfully executed.
+Input next command:
+Delimiter Missing.
+Input next command:
+Here comes the reservations on the date 2020-03-12:
+Reservation [0]
+Status: Invalid
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98955555
+comments: No comments
+
+Reservation [2]
+Status: Unserved
+contact person: David
+date: 2020-03-12 12:00
+number of guests: 9
+table size: L
+contact details: 98887777
+comments: No comments
+
+Input next command:
+Please enter a valid positive integer.
+Input next command:
+Please enter a valid positive integer.
+Input next command:
+Successfully mark Reservation[3] as served.
+Input next command:
+Reservation[0] is invalid, so it cannot be marked as served.
+Input next command:
+Reservation [3]
+Status: Served
+contact person: Lisa
+date: 2020-03-13 12:00
+number of guests: 3
+table size: S
+contact details: 98889999
+comments: no spicy food please
+
+The command has been successfully executed.
+Input next command:
+Reservation [1]
+Status: Unserved
+contact person: Mary
+date: 2020-03-11 12:00
+number of guests: 8
+table size: M
+contact details: 99998888
+comments: No comments
+
+Reservation [2]
+Status: Unserved
+contact person: David
+date: 2020-03-12 12:00
+number of guests: 9
+table size: L
+contact details: 98887777
+comments: No comments
+
+The command has been successfully executed.
+Input next command:
+Reservation [0]
+Status: Invalid
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98955555
+comments: No comments
+
+Reservation [1]
+Status: Unserved
+contact person: Mary
+date: 2020-03-11 12:00
+number of guests: 8
+table size: M
+contact details: 99998888
+comments: No comments
+
+Reservation [2]
+Status: Unserved
+contact person: David
+date: 2020-03-12 12:00
+number of guests: 9
+table size: L
+contact details: 98887777
+comments: No comments
+
+Reservation [3]
+Status: Served
 contact person: Lisa
 date: 2020-03-13 12:00
 number of guests: 3

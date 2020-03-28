@@ -11,6 +11,8 @@ class ReservationTest {
     
     @Test
     void testGetterandSetter_normalInput_success() {
+        final String ls = System.lineSeparator();
+        
         Reservation reservation = new Reservation(2, "Lisa",
                 LocalDateTime.parse("2020-03-15 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 3, "12345678");
@@ -43,5 +45,22 @@ class ReservationTest {
         assertEquals("Unserved", reservation.getStatus());
         reservation.setStatus("Served");
         assertEquals("Served", reservation.getStatus());
+        
+        assertEquals("Reservation [2]"
+                + ls
+                + "Status: Served"
+                + ls
+                + "contact person: Peter"
+                + ls
+                + "date: 2020-03-15 13:00"
+                + ls
+                + "number of guests: 8"
+                + ls
+                + "table size: M"
+                + ls
+                + "contact details: 11111111"
+                + ls
+                + "comments: no spicy food please"
+                + ls, reservation.toString());
     }
 }
