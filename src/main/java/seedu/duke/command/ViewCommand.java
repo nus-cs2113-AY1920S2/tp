@@ -95,7 +95,7 @@ public class ViewCommand extends Command {
     }
 
     /**
-     * print user's available module list
+     * print user's available module list.
      *
      * @param modulesList user's available module list.
      */
