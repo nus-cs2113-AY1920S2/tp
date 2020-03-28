@@ -112,7 +112,8 @@ After the CAP is assigned to `Person.totalCap`, `Person.totalCap` is then called
 with a pattern of `#.00`. `Ui.showcap(cap)` is called to display the user's cap using the formatted `String`.
 
 The following diagram shows how the Calculate CAP operation works:
-![Calculate CAP feature](http/)
+![Calculate CAP feature](https://github.com/bennychanya/tp/blob/master/CalculateCap.png?raw=true)
+
 
 #####
 
