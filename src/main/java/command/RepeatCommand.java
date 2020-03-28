@@ -8,6 +8,7 @@ import tasks.Event;
 import tasks.RepeatEvent;
 import tasks.Task;
 
+//@@author e0309556
 public class RepeatCommand extends Command {
     public static final String COMMAND_WORD = "repeat";
     public static final String DAILY_ICON = "d";
@@ -69,7 +70,7 @@ public class RepeatCommand extends Command {
                 return new CommandResult(String.format(Messages.REPEAT_ASSIGN_ERROR, task.getName()));
             }
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
+            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, taskList.getRangeOfValidIndex(taskList)));
         }
         assert (task instanceof Event);
 

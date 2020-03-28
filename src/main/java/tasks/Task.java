@@ -61,6 +61,7 @@ public abstract class Task {
         return String.format("%s %s", getStatusIcon(), name);
     }
 
+    //@@author e0309556
     @Override
     public boolean equals(Object addedTask) {
         if (this == addedTask) {
@@ -76,12 +77,12 @@ public abstract class Task {
             return false;
         }
         assert ((addedTask.getClass() == Assignment.class)
-                || (addedTask.getClass() == Event.class)
-                || (addedTask.getClass() == RepeatEvent.class));
+                || (addedTask.getClass() == Event.class));
         Task task = (Task) addedTask;
         return name.equals(task.getName());
     }
 
+    //@@author lwxymere
     /**
      * Encodes a task for local storage.
      * @return String that represents the encoded task

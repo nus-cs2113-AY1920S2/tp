@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.StringJoiner;
 
+//@@author lwxymere
 public class Event extends Task {
     public static final String EVENT_ICON = "E";
 
@@ -98,8 +99,8 @@ public class Event extends Task {
         sj.add(isDone ? "true" : "false");
         sj.add(name);
         sj.add(location);
-        sj.add(startDateAndTime.format(Parser.INPUT_DATE_FORMAT));
-        sj.add(endDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(startDateAndTime.format(Parser.INPUT_DATE_TIME_FORMAT));
+        sj.add(endDateAndTime.format(Parser.INPUT_DATE_TIME_FORMAT));
         sj.add(comments);
         return sj.toString();
     }

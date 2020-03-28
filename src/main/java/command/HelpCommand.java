@@ -3,6 +3,7 @@ package command;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 
+//@@author
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
     public static final String COMMAND_USAGE = "Help Format: help";
@@ -21,6 +22,7 @@ public class HelpCommand extends Command {
         return indexToString;
     }
 
+    //@@author e0309556
     private String getAllCommandUsage() {
         return "Following is the list of commands available:" + System.lineSeparator()
                 + convertIndexToString() + COMMAND_USAGE + System.lineSeparator()
@@ -38,6 +40,7 @@ public class HelpCommand extends Command {
                 + convertIndexToString() + ExitCommand.COMMAND_USAGE;
     }
 
+    //@@author
     /**
      * Prints to user the help message.
      * @param taskList TaskList object that handles adding Task

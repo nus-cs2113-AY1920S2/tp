@@ -8,11 +8,13 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.StringJoiner;
 
+//@@author
 public class Assignment extends Task {
     public static final String ASSIGNMENT_ICON = "A";
     protected String module;
     protected LocalDateTime deadline;
 
+    //@@author lwxymere
     /**
      * Assignment object.
      * @param name name of Assignment
@@ -59,12 +61,14 @@ public class Assignment extends Task {
                 + comments;
     }
 
+    //@@author e0309556
     @Override
     public boolean equals(Object addedTask) {
         return super.equals(addedTask)
                 && this.getModule().equals(((Assignment) addedTask).getModule());
     }
 
+    //@@author lwxymere
     @Override
     public String encodeTask() {
         StringJoiner sj = new StringJoiner(STORAGE_DELIMITER);
@@ -72,7 +76,7 @@ public class Assignment extends Task {
         sj.add(isDone ? "true" : "false");
         sj.add(name);
         sj.add(module);
-        sj.add(deadline.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(deadline.format(Parser.INPUT_DATE_TIME_FORMAT));
         sj.add(comments);
         return sj.toString();
     }

@@ -8,6 +8,7 @@ import tasks.Task;
 
 import java.util.ArrayList;
 
+//@@author
 public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     private static final String CLEAR_ALL_COMMAND_USAGE = "- Clear All Tasks: clear all";

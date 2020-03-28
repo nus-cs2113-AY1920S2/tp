@@ -1,36 +1,20 @@
 package seedu.atas;
 
-import command.AssignmentCommand;
-import command.ClearCommand;
-import command.Command;
-import command.DeleteCommand;
-import command.DoneCommand;
-import command.EditCommand;
-import command.EventCommand;
-import command.ExitCommand;
-import command.HelpCommand;
-import command.IncorrectCommand;
-import command.ListCommand;
-import command.RepeatCommand;
-import command.SearchCommand;
-import command.SearchdCommand;
-import command.EditCommand;
-import command.CalendarCommand;
+import command.*;
 import common.Messages;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy HHmm");
+    public static final DateTimeFormatter INPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy HHmm");
     public static final DateTimeFormatter PRINT_DATE_FORMAT = DateTimeFormatter.ofPattern("EEE dd MMM yyyy HH':'mm");
     public static final DateTimeFormatter PRINT_TIME_FORMAT = DateTimeFormatter.ofPattern("HH':'mm");
-    public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
+    public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
 
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
@@ -74,11 +58,12 @@ public class Parser {
             "(?<calendar>[^/]+)"
                     + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
 
+    //@@author lwxymere
     /**
      * Returns a Command object depending on the command input by the user.
      *
      * @param fullCommand line input by the user, which represents a command
-     * @return Command depending on user input, with the appropriate arguments set
+     * @return Command object depending on user input, with the appropriate arguments set
      */
     public static Command parseCommand(String fullCommand) {
         String commandType = fullCommand.split("\\s+", 2)[0].trim().toLowerCase();
@@ -128,7 +113,7 @@ public class Parser {
         // handle issue where there are multiple spaces between the date and the time
         String[] dateAndTime = dateTimeString.split("\\s+", 2);
         String formattedDateTimeString = dateAndTime[0] + " " + dateAndTime[1];
-        return LocalDateTime.parse(formattedDateTimeString, INPUT_DATE_FORMAT);
+        return LocalDateTime.parse(formattedDateTimeString, INPUT_DATE_TIME_FORMAT);
     }
 
     private static Command prepareAssignmentCommand(String fullCommand) {
@@ -151,6 +136,7 @@ public class Parser {
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
+    //@@author
     private static Command prepareSearchCommand(String fullCommand) {
         final Matcher matcher = SEARCH_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
@@ -173,13 +159,14 @@ public class Parser {
         String stringDate = matcher.group("dateTime");
         LocalDate date;
         try {
-            date = LocalDate.parse(stringDate, INPUT_DATE_ONLY_FORMAT);
+            date = LocalDate.parse(stringDate, INPUT_DATE_FORMAT);
             return new SearchdCommand(taskType, taskName, date);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
     }
 
+    //@@author lwxymere
     private static Command prepareDeleteCommand(String fullCommand) {
         String[] tokens = fullCommand.split("\\s+", 2);
         assert tokens.length == 1 || tokens.length == 2;
@@ -239,6 +226,7 @@ public class Parser {
         return new EventCommand(eventName, location, startDateTime, endDateTime, comments);
     }
 
+    //@@author e0309556
     private static Command prepareListCommand(String fullCommand) {
         String[] tokens = fullCommand.trim().split("\\s+", 2);
         if (tokens.length == 1) {
@@ -249,6 +237,7 @@ public class Parser {
         return new ListCommand(tokens[1].trim());
     }
 
+    //@@author
     private static Command prepareClearCommand(String fullCommand) {
         String[] tokens = fullCommand.trim().split("\\s+", 2);
         if (tokens.length == 1) {
@@ -292,6 +281,7 @@ public class Parser {
         return new EditCommand(editIndex);
     }
 
+    //@@author e0309556
     private static Command prepareRepeatCommand(String fullCommand) {
         final Matcher matcher = REPEAT_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
@@ -314,6 +304,7 @@ public class Parser {
         }
     }
 
+    //@@author
     private static Command prepareCalendarCommand(String fullCommand) {
         final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
@@ -323,7 +314,7 @@ public class Parser {
 
         LocalDate date;
         try {
-            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_ONLY_FORMAT);
+            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_FORMAT);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }

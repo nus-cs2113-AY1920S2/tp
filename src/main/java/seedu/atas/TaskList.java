@@ -1,6 +1,7 @@
 package seedu.atas;
 
 import command.RepeatCommand;
+import common.Messages;
 import tasks.Assignment;
 import tasks.Event;
 import tasks.RepeatEvent;
@@ -40,6 +41,33 @@ public class TaskList {
         return this.tasks;
     }
 
+    //@@author e0309556
+    /**
+     * Obtain a range of numbers that is valid for usage on taskList.
+     * @param taskList The interested list in TaskManager to find the range of values
+     * @return A string with the range of valid numbers.
+     */
+    public String getRangeOfValidIndex(TaskList taskList) {
+        int maxTasks = taskList.getListSize();
+        return String.format(Messages.RANGE_OF_VALID_TASK_INDEX_MSG, maxTasks);
+    }
+
+    /**
+     * Checks for duplicate task within tasklist.
+     * @param tasklist TaskList to be checked against
+     * @param addedTask new Task that needs to be checked
+     * @return True if there already exists a task within tasklist. Otherwise, false.
+     */
+    public Boolean isRepeatTask(TaskList tasklist, Task addedTask) {
+        for (Task task : tasklist.getTaskArray()) {
+            if (task.equals(addedTask)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //@@author
     /**
      * Getter for the current Local Date.
      * Formats Local Date into "dd/MM/yyyy" format.
@@ -73,6 +101,7 @@ public class TaskList {
         return taskList;
     }
 
+    //@@author e0309556
     /**
      * Getter method for tasks that are events and in the future.
      * @return ArrayList object containing all future events.
@@ -106,6 +135,7 @@ public class TaskList {
         return assignList;
     }
 
+    //@@author
     /**
      * Getter for all events tasks.
      * @return ArrayList object containing all events

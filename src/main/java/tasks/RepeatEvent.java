@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.StringJoiner;
 
+//@@author e0309556
 public class RepeatEvent extends Event {
     public static final String REPEAT_ICON = "R";
     int numOfPeriod;
@@ -174,12 +175,12 @@ public class RepeatEvent extends Event {
         sj.add(isDone ? "true" : "false");
         sj.add(name);
         sj.add(location);
-        sj.add(startDateAndTime.format(Parser.INPUT_DATE_FORMAT));
-        sj.add(endDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(startDateAndTime.format(Parser.INPUT_DATE_TIME_FORMAT));
+        sj.add(endDateAndTime.format(Parser.INPUT_DATE_TIME_FORMAT));
         sj.add(Integer.toString(numOfPeriod));
         sj.add(typeOfPeriod);
         sj.add(Integer.toString(periodCounter));
-        sj.add(originalDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(originalDateAndTime.format(Parser.INPUT_DATE_TIME_FORMAT));
         sj.add(comments);
         return sj.toString();
     }

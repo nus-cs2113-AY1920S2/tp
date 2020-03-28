@@ -17,6 +17,7 @@ public class Atas {
     private Storage storage;
     private TaskList taskList;
 
+    //@@author lwxymere
     /**
      * Instantiate Ui and TaskList.
      */
@@ -65,6 +66,7 @@ public class Atas {
         }
     }
 
+    //@@author e0309556
     private void updateEventDate(TaskList taskList) {
         for (Task task : taskList.getTaskArray()) {
             if (task instanceof RepeatEvent) {
@@ -73,6 +75,7 @@ public class Atas {
         }
     }
 
+    //@@author lwxymere
     private void showTodayTasksIfAny() {
         ArrayList<Task> todayTasks = taskList.getTasksByDays(0);
         String todayTasksString = new ListCommand(null).showListTasks(taskList.getTaskArray(), todayTasks);
@@ -88,7 +91,7 @@ public class Atas {
     }
 
     /**
-     * Main entry-point for the seedu.atas.Atas application.
+     * Main entry-point for the Atas application.
      */
     public static void main(String[] args) {
         new Atas().run();

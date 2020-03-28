@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+//@@author
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
@@ -81,7 +81,7 @@ public class EditCommand extends Command {
             }
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult(String.format(Messages.INVALID_ID_ERROR,
-                    getRangeOfValidIndex(taskList)));
+                    taskList.getRangeOfValidIndex(taskList)));
         }
 
     }

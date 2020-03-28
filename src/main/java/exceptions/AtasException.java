@@ -1,5 +1,6 @@
 package exceptions;
 
+//@@author
 public class AtasException extends Exception {
 
     public AtasException(String errorMsg) {

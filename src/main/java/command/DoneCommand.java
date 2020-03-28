@@ -5,6 +5,7 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
 
+//@@author
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
     public static final String COMMAND_USAGE = "Mark Task as Done: done [TASK NUMBER]";
@@ -32,7 +33,7 @@ public class DoneCommand extends Command {
             taskList.markTaskAsDone(doneIndex);
             return new CommandResult(String.format(Messages.DONE_SUCCESS_MESSAGE, taskToBeMarkDone.getName()));
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
+            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, taskList.getRangeOfValidIndex(taskList)));
         }
     }
 }

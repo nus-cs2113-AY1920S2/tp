@@ -8,6 +8,7 @@ import tasks.Task;
 
 import java.time.LocalDateTime;
 
+//@@author
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     public static final String COMMAND_USAGE = "Add Event: "
@@ -39,7 +40,7 @@ public class EventCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newEvent = new Event(eventName, eventLocation, startDateTime, endDateTime, comments);
-        if (isRepeatTask(taskList, newEvent)) {
+        if (taskList.isRepeatTask(taskList, newEvent)) {
             return new CommandResult(Messages.SAME_TASK_ERROR);
         }
         taskList.addTask(newEvent);
