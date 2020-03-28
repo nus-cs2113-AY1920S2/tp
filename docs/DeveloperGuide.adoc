@@ -106,7 +106,7 @@ message indicating an empty task list
 `TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will
 initialize a new `CommandResult` class that prints out the success message for task deletion.
 
-** The following sequence diagram summarizes how repeat command operation works: +
+** The following sequence diagram summarizes how delete command operation works: +
 
 image::delete.png[delete task]
 
@@ -118,6 +118,48 @@ the `execute` method of the `DeleteCommand` class
 ** Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a
 case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also
 allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
+
+=== Search task feature
+==== Current Implementation
+* The `Search task feature` is currently implemented in both `SearchCommand` class and `SearchdCommand` class. Both
+classes inherits from the `Command` class.
+** `SearchCommand` initializes the `taskType` to check which tasks the search function to search from and `searchParam`
+to get the search query that the user inputs.
+** Similar to the `SearchCommand`, `SearchdCommand` initializes `taskType` to check the tasks that the search function has to search
+through and `searchParam` to get the search query that the user inputs. It also has a `date` parameter to check the date
+that the users wants to search from
+
+* Given below is an example usage of the `Search` command: +
+. The user launches the app and retrieves the tasks that are saved under a local file using Storage.
+. The user enters `search t\{TASK TYPE} n\{SEARCH QUERY}` into the command line. Method `parseCommand()` from the
+`Parser` class will be called to parse the command provided.
+. A new instance of `SearchCommand` with the `taskType` and `searchParam` initialized will be created,
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message, indicating an empty task list
+** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
+or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
+
+* Given below is an example usage of the `Searchd` command: +
+. The user launches the app and retrieves the tasks that are saved under a local file using Storage.
+. The user enters `searchd t\{TASK TYPE} n\{SEARCH QUERY} d\{DATE}` into the command line. Method `parseCommand()` from the
+`Parser` class will be called to parse the command provided.
+. A new instance of `SearchCommand` with the `taskType` and `searchParam` and `date` initialized will be created,
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message, indicating an empty task list
+** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
+or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
+
+==== Design Considerations:
+* Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
+** Rationale: +
+To create 2 separate commands so that users can filter their search query more easily.
+** Alternatives considered: +
+1. Use a `Search` class that implements both functions of `SearchCommand` and `SearchdCommand`
+*** Pros: Reduced coupling. Improved code structure.
+*** Cons: More difficult to implement
+2. Create another `SearchdCommand` within the `Parser` class that does the same operations as the `SearchdCommand`.
+*** Pros: Easier to implement.
+*** Cons: Makes the code for `Parser` unnecessarily long. Makes the code less OOP.
 
 === Clear Task feature
 ==== Current Implementation
@@ -147,6 +189,10 @@ parse the command provided.
 message indicating an empty task list
 ** If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()`
 method in the `taskList` class
+
+** The following sequence diagram summarizes how delete command operation works: +
+
+image::clear.png[clear command]
 
 ==== Design Considerations
 * Creating another `clear done` command instead of just 1 `clear` command
@@ -385,3 +431,6 @@ However, this also is infeasible as our goal is to keep the calendar compact suc
 === Using IntelliJ JUnit Tests
 * To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 * For individual tests, you can right-click on the test *package*, *class* or a single test and choose `Run 'TEST'`
+
+=== Using Input-Output Tests
+*  Navigate to the `text-ui-test` folder and run the runtest (.bat/.sh) script.
