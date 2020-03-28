@@ -28,7 +28,7 @@ In these components, cards and subjects have similar structure. Both of them con
 Duke, along with all command class and Parser form the logic box of the product
 <br />![](images/logicuml.jpg)
 
-<br />Logic box interacts with data box, ie Card, CardList, Subject, SubjectList, ScoreList.
+<br />Logic box interacts with Model box, ie Card, CardList, Subject, SubjectList, ScoreList.
 <br />![](images/modeluml.jpg)
 
 <br />Finally the storage box, ie Storage class will handle writing and reading the files.
