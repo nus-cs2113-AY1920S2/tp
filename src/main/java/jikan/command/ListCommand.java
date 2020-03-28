@@ -33,7 +33,8 @@ public class ListCommand extends Command {
             Ui.printDivider("The time range specified is not valid.");
         } catch (DateTimeParseException e) {
             Log.makeInfoLog("Specified time range was not in the valid format");
-            Ui.printDivider("Please input your dates as either yyyy-MM-dd or dd/MM/yyyy.");
+            Ui.printDivider("Please input your dates as either yyyy-MM-dd or dd/MM/yyyy.\n"
+            +" Alternatively, you can use 'day', 'week', or 'month' to get the respective reports.");
         }
     }
 }

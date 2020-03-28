@@ -24,11 +24,13 @@ import jikan.ui.Ui;
 import jikan.Log;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -66,7 +68,7 @@ public class Parser {
          */
         lastShownList.activities.addAll(activityList.activities);
         String userInput = scanner.nextLine();
-        tokenizedInputs = userInput.split(" ", 2);
+        tokenizedInputs = userInput.split(" ", 3);
         instruction = tokenizedInputs[0];
         Command command = null;
 
@@ -130,12 +132,61 @@ public class Parser {
 
         lastShownList.activities.clear();
 
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+
         // Parse either format
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("[dd/MM/yyyy][yyyy-MM-dd]");
-        LocalDate startDate = LocalDate.parse(tokenizedInputs[1], parser);
+
+        // Check if the user has given a verbal input
+        // (User can either say day or daily and get the same output)
+        switch (tokenizedInputs[1]) {
+        case "day":
+            // Fallthrough
+        case "daily":
+            startDate = LocalDate.now();
+            break;
+        case "week":
+            // Fallthrough
+        case "weekly":
+            // If user has input a specific date to obtain the week from, use that;
+            // (eg. the input is list week 2020-05-20)
+            // Otherwise get current date
+            if (tokenizedInputs.length == 3) {
+                startDate = LocalDate.parse(tokenizedInputs[2], parser);
+            } else {
+                startDate = LocalDate.now();
+            }
+
+            // Set current Monday and Sunday as time range
+            startDate = startDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+            endDate = startDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+            break;
+        case "month":
+            // Fallthrough
+        case "monthly":
+            // If user has input a specific date to obtain the month from, use that;
+            // Otherwise get current date
+            if (tokenizedInputs.length == 3) {
+                startDate = LocalDate.parse(tokenizedInputs[2], parser);
+            } else {
+                startDate = LocalDate.now();
+            }
+
+            // Set first and last day of month as time range
+            startDate = startDate.withDayOfMonth(1);
+            endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
+            break;
+        default:
+            startDate = LocalDate.parse(tokenizedInputs[1], parser);
+            if (tokenizedInputs.length == 3) {
+                endDate = LocalDate.parse(tokenizedInputs[2], parser);
+            }
+            break;
+        }
 
         // Only one date is specified; return all entries with start date coinciding with that date
-        if (tokenizedInputs.length == 2) {
+        if (endDate == null) {
             for (Activity i : activityList.activities) {
                 if (i.getDate().equals(startDate)) {
                     lastShownList.activities.add(i);
@@ -143,8 +194,7 @@ public class Parser {
             }
             Ui.printList(lastShownList);
             // Both start and end dates are specified
-        } else if (tokenizedInputs.length == 3) {
-            LocalDate endDate = LocalDate.parse(tokenizedInputs[2], parser);
+        } else {
 
             if (endDate.isBefore(startDate)) {
                 throw new InvalidTimeFrameException();
@@ -156,10 +206,7 @@ public class Parser {
                 }
             }
             Ui.printList(lastShownList);
-        } else {
-            throw new InvalidTimeFrameException();
         }
-
     }
 
     /** Method to parse user inputs that are not recognised. */
