@@ -1,4 +1,4 @@
-package teammember;
+package schedulelogic;
 
 import java.util.ArrayList;
 

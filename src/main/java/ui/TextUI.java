@@ -7,7 +7,7 @@ import static java.lang.System.out;
 import exception.MoException;
 import meeting.Meeting;
 import meeting.MeetingList;
-import teammember.TeamMember;
+import schedulelogic.TeamMember;
 import java.util.ArrayList;
 
 /**
