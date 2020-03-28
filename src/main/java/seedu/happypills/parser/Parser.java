@@ -168,6 +168,9 @@ public class Parser {
 
     /**
      * Check if the String can be converted to Integer.
+     *
+     * @param input value to check if is integer
+     * @return true if is an integer, false otherwise
      */
     public static boolean isInteger(String input) {
         try {
@@ -181,6 +184,9 @@ public class Parser {
 
     /**
      * Prompt user for conformation with this message.
+     *
+     * @param parseInput details to be displayed to user for confirmation
+     * @return string to be displayed to user for confirmation
      */
     public static String promptConformation(String[] parseInput) {
         String text = TextUi.DIVIDER

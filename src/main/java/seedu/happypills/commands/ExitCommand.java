@@ -6,12 +6,11 @@ import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ExitCommand extends Command {
     Logger logger = Logger.getLogger(HappyPills.class.getName());
-    
+
     public ExitCommand() {
     }
 
