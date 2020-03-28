@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Map;
 import java.util.Optional;
 
+import exceptions.InvalidStockCommandException;
 import org.junit.jupiter.api.Test;
 
 import ingredient.Ingredient;

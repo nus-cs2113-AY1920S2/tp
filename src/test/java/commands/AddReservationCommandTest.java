@@ -5,6 +5,7 @@ import exceptions.InputMissingException;
 import org.junit.jupiter.api.Test;
 import reservation.Reservation;
 import reservation.ReservationList;
+import ui.Ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,10 +16,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 class AddReservationCommandTest {
     
     ReservationList reservationList = new ReservationList();
+    Ui ui = new Ui();
 
     @Test
     void execute_normalAddReservationCommand_success() {
-        new AddReservationCommand("p/Peter; d/2020-03-12 12:00; n/3; c/98955555;").execute(reservationList);
+        new AddReservationCommand("p/Peter; d/2020-03-12 12:00; n/3; c/98955555;").execute(reservationList, ui);
         Reservation reservation = reservationList.getReservation(reservationList.getSize() - 1);
         assertEquals("Peter", reservation.getName());
         assertEquals(LocalDateTime.parse("2020-03-12 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), 
@@ -31,7 +33,7 @@ class AddReservationCommandTest {
     @Test
     void execute_normalAddReservationCommandwithCommentnDifferentSequence_success() {
         new AddReservationCommand("p/Lisa; m/no spicy food please; d/2020-03-13 12:00; n/9; c/98889999;")
-                .execute(reservationList);
+                .execute(reservationList, ui);
         Reservation reservation = reservationList.getReservation(reservationList.getSize() - 1);
         assertEquals("Lisa", reservation.getName());
         assertEquals(LocalDateTime.parse("2020-03-13 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),

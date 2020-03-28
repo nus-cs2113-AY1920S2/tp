@@ -5,21 +5,24 @@ import exceptions.InputMissingException;
 import org.junit.jupiter.api.Test;
 import reservation.Reservation;
 import reservation.ReservationList;
+import ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class VoidReservationCommandTest {
     ReservationList reservationList; 
+    Ui ui;
     
     public VoidReservationCommandTest() {
+        ui = new Ui();
         reservationList = new ReservationList();
-        new AddReservationCommand("p/Peter; d/2020-03-12 12:00; n/3; c/98955555;").execute(reservationList);
+        new AddReservationCommand("p/Peter; d/2020-03-12 12:00; n/3; c/98955555;").execute(reservationList, ui);
     }
 
     @Test
     void execute_normalVoidReservationCommand_success() {
-        new VoidReservationCommand("r/0;").execute(reservationList);
+        new VoidReservationCommand("r/0;").execute(reservationList, ui);
         Reservation reservation = reservationList.getReservation(reservationList.getSize() - 1);
         assertEquals("Invalid", reservation.getStatus());
     }
