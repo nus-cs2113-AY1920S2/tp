@@ -118,8 +118,14 @@ through and `searchParam` to get the search query that the user inputs. It also 
 that the users wants to search from
 
 * Given below is an example usage of the `Search` command: +
-. TEST TEST
-
+. The user launches the app and retrieves the tasks that are saved under a local file using Storage.
+. The user enters `search t\{TASK TYPE} n\{SEARCH QUERY}` into the command line. Method `parseCommand()` from the
+`Parser` class will be called to parse the command provided.
+. A new instance of `SearchCommand` with the `taskType` and `searchParam` initialized will be created,
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message, indicating an empty task list
+** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
+or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
 
 === Clear Task feature
 ==== Current Implementation
