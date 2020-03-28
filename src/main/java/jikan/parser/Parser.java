@@ -50,7 +50,6 @@ public class Parser {
     public static String[] tokenizedInputs;
     String instruction;
     private static Log logger = new Log();
-    // public static ActivityList lastShownList = new ActivityList();
     public static ActivityList lastShownList = new ActivityList();
     // flag to check if the current activity is a continued one
     public static int continuedIndex = -1;
@@ -66,7 +65,6 @@ public class Parser {
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands
         referencing by index of this list.
          */
-        lastShownList.activities.addAll(activityList.activities);
         String userInput = scanner.nextLine();
         tokenizedInputs = userInput.split(" ", 2);
         instruction = tokenizedInputs[0];

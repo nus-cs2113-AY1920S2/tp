@@ -51,19 +51,19 @@ public class Ui {
 
     /**
      * Prints the results from a 'find' or 'filter' command.
-     * @param lastShownList the list of activities to print
+     * @param resultsList the list of activities to print
      */
-    public static void printResults(ActivityList lastShownList) {
-        if (lastShownList.activities.size() > 0) {
+    public static void printResults(ActivityList resultsList) {
+        if (resultsList.activities.size() > 0) {
             System.out.println(DIVIDER);
             System.out.println("Here are the matching activities in your list:\n");
             System.out.println(String.format("  %s %-25s %s %-10s %s %-10s %s %-30s",
                     "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
-            for (int i = 0; i < lastShownList.getSize(); i++) {
-                if (lastShownList.get(i).getTags() != null && !lastShownList.get(i).getTags().isEmpty()) {
-                    printTableFormat(lastShownList, i, true);
+            for (int i = 0; i < resultsList.getSize(); i++) {
+                if (resultsList.get(i).getTags() != null && !resultsList.get(i).getTags().isEmpty()) {
+                    printTableFormat(resultsList, i, true);
                 } else {
-                    printTableFormat(lastShownList, i, false);
+                    printTableFormat(resultsList, i, false);
                 }
             }
             System.out.println(DIVIDER);
