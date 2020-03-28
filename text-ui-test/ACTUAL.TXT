@@ -7,7 +7,7 @@
 There are no previous records of meetings, let's create a new one!
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
-[display] Display combined timetable of you and your selected contacts.
+[timetable] Display combined timetable of selected contacts.
 [edit] Edit contacts' timetable.
 [schedule] Schedule a new meeting.
 [delete] Delete a scheduled meeting.

@@ -136,7 +136,7 @@ public class MeetingOrganizer {
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList(), mainUser.getName());
             break;
-        case "timetable": // timetable OR timetable <Member Number 1> <Member Number 2> (eg. timetable 0 1 3)
+        case "timetable": // timetable OR timetable 1 OR timetable <Member Number 1> <Member Number 2> (eg. timetable 0 1 3)
             if (userInputWords.length > 1) {
                 ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
                 for (int i = 1; i < userInputWords.length; i++) {
