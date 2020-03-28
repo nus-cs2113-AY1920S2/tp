@@ -118,6 +118,8 @@ through and `searchParam` to get the search query that the user inputs. It also 
 that the users wants to search from.
 
 *Given below is an example usage of the `Search` command:
+. TEST TEST
+
 
 === Clear Task feature
 ==== Current Implementation
