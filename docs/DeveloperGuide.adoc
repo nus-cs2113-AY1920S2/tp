@@ -127,6 +127,28 @@ message, indicating an empty task list
 ** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
 or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
 
+* Given below is an example usage of the `Searchd` command: +
+. The user launches the app and retrieves the tasks that are saved under a local file using Storage.
+. The user enters `searchd t\{TASK TYPE} n\{SEARCH QUERY} d\{DATE}` into the command line. Method `parseCommand()` from the
+`Parser` class will be called to parse the command provided.
+. A new instance of `SearchCommand` with the `taskType` and `searchParam` and `date` initialized will be created,
+** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
+message, indicating an empty task list
+** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
+or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
+
+==== Design Considerations:
+* Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
+** Rationale: +
+To create 2 separate commands so that users can filter their search query more easily.
+** Alternative considered: +
+1. Use a `Search` class that implements both functions of `SearchCommand` and `SearchdCommand`
+*** Pros: Reduced coupling. Improved code structure.
+*** Cons: More difficult to implement
+2. Create another `SearchdCommand` within the `Parser` class that does the same operations as the `SearchdCommand`.
+*** Pros: Easier to implement.
+*** Cons: Makes the code for `Parser` unnecessarily long. Makes the code less OOP.
+
 === Clear Task feature
 ==== Current Implementation
 * The `clearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function
