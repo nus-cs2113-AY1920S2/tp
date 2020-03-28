@@ -16,6 +16,7 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 
 - [Adding a new contact](#adding-a-new-contact)
 - [Display contacts](#display-contacts-contacts)
+- [Display timetable](#display-timetable-timetable)
 - [Edit contact's timetable](#edit-contacts-timetable-edit)
 - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
 - [Delete a scheduled meeting](#delete-a-scheduled-meeting-delete)
@@ -52,6 +53,34 @@ Expected output:
 ```
 <br/><br/>
 
+### Display timetable: `timetable`
+1) Displays the main user's timetable.
+    
+    Example of usage: `timetable` 
+    
+    Expected output:
+    ```
+    {insert ui}
+    ```
+2) Displays the timetable of the selected contact.
+
+    Example of usage: `timetable 1` 
+    
+    Expected output:
+    ```
+    {insert ui}
+    ```
+
+3) Displays the combined timetable of the selected contacts.
+   
+   Example of usage: `timetable 0 1` 
+   
+   Expected output:
+   ```
+   {insert ui}
+   ```
+   <br/><br/>
+   
 ### Edit contact's timetable `edit`
 Edits the timetable of a contact from the list of contacts.
 

@@ -35,7 +35,7 @@ public class TextUI {
         out.println("__________________________________________________________"
                 + "______________________________________________________________________");
         out.println("[contacts] List all contacts.");
-        out.println("[display] Display combined timetable of you and your selected contacts.");
+        out.println("[timetable] Display combined timetable of selected contacts.");
         out.println("[edit] Edit contacts' timetable.");
         out.println("[schedule] Schedule a new meeting.");
         out.println("[delete] Delete a scheduled meeting.");
