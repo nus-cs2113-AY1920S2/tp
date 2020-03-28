@@ -66,10 +66,18 @@ public abstract class Task {
         if (this == addedTask) {
             return true;
         }
-        if (addedTask == null || getClass() != addedTask.getClass()) {
+
+        if ((this instanceof RepeatEvent && addedTask instanceof Event)
+            || (this instanceof Event && addedTask instanceof RepeatEvent)) {
+            return name.equals(((Task) addedTask).getName());
+        }
+
+       if (addedTask == null || getClass() != addedTask.getClass()) {
             return false;
         }
-        assert ((addedTask.getClass() == Assignment.class) || (addedTask.getClass() == Event.class));
+        assert ((addedTask.getClass() == Assignment.class)
+                || (addedTask.getClass() == Event.class)
+                || (addedTask.getClass() == RepeatEvent.class));
         Task task = (Task) addedTask;
         return name.equals(task.getName());
     }
