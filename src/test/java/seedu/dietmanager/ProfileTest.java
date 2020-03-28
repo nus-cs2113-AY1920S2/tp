@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProfileTest {
+class ProfileTest {
 
     @Test
-    public void setName() {
+    void setName() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         profile.setName("Jane Doe");
@@ -15,7 +15,7 @@ public class ProfileTest {
     }
 
     @Test
-    public void setGender() {
+    void setGender() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         profile.setGender("Female");
@@ -23,7 +23,7 @@ public class ProfileTest {
     }
 
     @Test
-    public void setAge() {
+    void setAge() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         profile.setAge(18);
@@ -31,7 +31,7 @@ public class ProfileTest {
     }
 
     @Test
-    public void setHeight() {
+    void setHeight() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         profile.setHeight(170);
@@ -39,7 +39,7 @@ public class ProfileTest {
     }
 
     @Test
-    public void setWeightGoal() {
+    void setWeightGoal() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         profile.setWeightGoal(50);
@@ -47,7 +47,7 @@ public class ProfileTest {
     }
 
     @Test
-    public void setProfileExist() {
+    void setProfileExist() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         profile.setProfileExist(false);
@@ -55,51 +55,59 @@ public class ProfileTest {
     }
 
     @Test
-    public void isProfileExist() {
+    void isProfileExist() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals(true, profile.isProfileExist());
     }
 
     @Test
-    public void getHeight() {
+    void getHeight() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals(180, profile.getHeight());
     }
 
     @Test
-    public void getWeight() {
+    void getWeight() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals(80, profile.getWeight());
     }
 
     @Test
-    public void getWeightGoal() {
+    void getWeightGoal() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals(75, profile.getWeightGoal());
     }
 
     @Test
-    public void getAge() {
+    void getAge() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals(20, profile.getAge());
     }
 
     @Test
-    public void getGender() {
+    void getGender() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals("Male", profile.getGender());
     }
 
     @Test
-    public void getName() {
+    void getName() {
         Profile profile = new Profile();
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals("John Doe", profile.getName());
+    }
+
+    @Test
+    void getRecordOfDay() {
+        Profile profile = new Profile();
+        profile.setProfile("John Doe",20, "Male", 180, 80, 75);
+        DailyFoodRecord record = profile.getRecordOfDay("WEDNESDAY");
+        assertEquals(new DailyFoodRecord("WEDNESDAY"), record);
     }
 }
