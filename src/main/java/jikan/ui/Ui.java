@@ -1,7 +1,13 @@
 package jikan.ui;
 
+import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+
+import java.time.Duration;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+
+import static jikan.Jikan.lastShownList;
 
 public class Ui {
     public static final String GREETING = "Jikan";
@@ -89,6 +95,38 @@ public class Ui {
                 printTableFormat(activityList, i, false);
             }
         }
+        System.out.println(DIVIDER);
+    }
+
+    public static void printActivityGraph(int interval) {
+        System.out.println(DIVIDER);
+        System.out.println(String.format("%-25s %s %-100s", "Name", "|", "Duration"));
+        for (int i = 0; i < lastShownList.getSize(); i++) {
+            Activity activity = lastShownList.get(i);
+            Duration duration = activity.getDuration();
+            double minutes = duration.toMinutes() / (double) interval;
+            int scaledMinutes = (int) Math.round(minutes);
+            System.out.print(String.format("%-25s %s", activity.getName(), "|"));
+            for (int j = 0; j < scaledMinutes; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
+        }
+        System.out.println(DIVIDER);
+    }
+
+    public static void printTagsGraph(HashMap<String, Duration> tags) {
+        System.out.println(DIVIDER);
+        System.out.println(String.format("%-10s %s %-100s", "Tag", "|", "Duration"));
+        tags.forEach((key,value) -> {
+            double minutes = value.toMinutes() / 10.0;
+            int scaledMinutes = (int) Math.round(minutes);
+            System.out.print(String.format("%-10s %s", key, "|"));
+            for (int j = 0; j < scaledMinutes; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
+        });
         System.out.println(DIVIDER);
     }
 }
