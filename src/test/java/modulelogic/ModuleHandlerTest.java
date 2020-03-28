@@ -2,7 +2,10 @@ package modulelogic;
 
 import org.junit.jupiter.api.Test;
 
-import static common.Messages.*;
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
+import static common.Messages.MESSAGE_EMPTY_MODULE;
+import static common.Messages.MESSAGE_MODULECODE_IN_BLACKLIST;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModuleHandlerTest {
