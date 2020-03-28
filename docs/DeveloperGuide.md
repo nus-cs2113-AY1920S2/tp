@@ -100,8 +100,17 @@ User launches the application. `SelectedModules` are added to `SemModuleList` th
 
 Step 2:
 User executes `CAP` command to view his own CAP. The `CAP` commands is parsed through `Parser`, which would then return 
-`CalculateCapCommand()`
+`CalculateCapCommand()`. `CalculateCapCommand.execute()` is then called.
+
 Step 3:
+`CalculateCapCommand.execute()` will call `CalculateCapCommand.calculateCap(SemesterList semesterList)`, which will
+calculate CAP by looking for all the completed `SelectedModules` stored within `SemModuleList`, which are stored within 
+`SemesterList`. It will then assign a `double` type ranging from 0.00 to 5.00 to `Person.totalCap`.
+
+Step 4:
+After the CAP is assigned to `Person.totalCap`, `Person.totalCap` is then called and formatted using `DecimalFormat` into a `String`
+with a pattern of `#.00`. `Ui.showcap(cap)` is called to display the user's cap using the formatted `String`.
+
 #####
 
 

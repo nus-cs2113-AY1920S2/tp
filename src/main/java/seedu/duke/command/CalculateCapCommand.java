@@ -48,7 +48,7 @@ public class CalculateCapCommand extends Command {
             }
         }
         double cap = totalGradePoint / totalGradeModuleCredit;
-        assert cap > 5.0:"Invalid CAP";
+        assert cap > 5.0 : "Invalid CAP";
         Person.setTotalCap(cap);
     }
 }
