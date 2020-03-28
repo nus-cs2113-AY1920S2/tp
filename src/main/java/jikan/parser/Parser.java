@@ -68,7 +68,7 @@ public class Parser {
          */
         lastShownList.activities.addAll(activityList.activities);
         String userInput = scanner.nextLine();
-        tokenizedInputs = userInput.split(" ", 3);
+        tokenizedInputs = userInput.split(" ", 2);
         instruction = tokenizedInputs[0];
         Command command = null;
 
@@ -130,6 +130,9 @@ public class Parser {
             return;
         }
 
+        String[] listInputs;
+        listInputs = tokenizedInputs[1].split(" ", 2);
+
         lastShownList.activities.clear();
 
         LocalDate startDate = null;
@@ -140,7 +143,7 @@ public class Parser {
 
         // Check if the user has given a verbal input
         // (User can either say day or daily and get the same output)
-        switch (tokenizedInputs[1]) {
+        switch (listInputs[0]) {
         case "day":
             // Fallthrough
         case "daily":
@@ -152,8 +155,8 @@ public class Parser {
             // If user has input a specific date to obtain the week from, use that;
             // (eg. the input is list week 2020-05-20)
             // Otherwise get current date
-            if (tokenizedInputs.length == 3) {
-                startDate = LocalDate.parse(tokenizedInputs[2], parser);
+            if (listInputs.length == 2) {
+                startDate = LocalDate.parse(listInputs[1], parser);
             } else {
                 startDate = LocalDate.now();
             }
@@ -167,8 +170,8 @@ public class Parser {
         case "monthly":
             // If user has input a specific date to obtain the month from, use that;
             // Otherwise get current date
-            if (tokenizedInputs.length == 3) {
-                startDate = LocalDate.parse(tokenizedInputs[2], parser);
+            if (listInputs.length == 2) {
+                startDate = LocalDate.parse(listInputs[1], parser);
             } else {
                 startDate = LocalDate.now();
             }
@@ -178,9 +181,9 @@ public class Parser {
             endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
             break;
         default:
-            startDate = LocalDate.parse(tokenizedInputs[1], parser);
-            if (tokenizedInputs.length == 3) {
-                endDate = LocalDate.parse(tokenizedInputs[2], parser);
+            startDate = LocalDate.parse(listInputs[0], parser);
+            if (listInputs.length == 2) {
+                endDate = LocalDate.parse(listInputs[1], parser);
             }
             break;
         }
