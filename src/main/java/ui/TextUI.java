@@ -1,7 +1,13 @@
 package ui;
 
+import static common.Messages.FORMAT_TIMETABLE;
+import static common.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
+import static common.Messages.MESSAGE_INVALID_MEETING;
+import static common.Messages.MESSAGE_INVALID_NUDMOSLINK;
 import static common.Messages.MESSAGE_INVALID_NUMBER;
+import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static java.lang.System.out;
 
 import exception.MoException;
@@ -120,6 +126,15 @@ public class TextUI {
         out.println(MESSAGE_INVALID_NUMBER);
     }
 
+    public static void invalidNumberTimetableMsg() {
+        invalidNumberMsg();
+        out.println(FORMAT_TIMETABLE);
+    }
+
+    public static void indexOutOfBoundsMsg() {
+        out.println(MESSAGE_INDEX_OUT_OF_BOUNDS);
+    }
+
     public static void listAllScheduledMeetings(ArrayList<Meeting> meetingList) {
         System.out.println("The current scheduled meeting(s):");
         for (int i = 0; i < meetingList.size(); i++) {
@@ -184,13 +199,15 @@ public class TextUI {
     public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList, String mainUser) {
         System.out.println("____________________________________________________________\n"
                 + "Here are your stored contacts:");
-        int i = 1;
-        System.out.println("\t Main user: " + mainUser);
+        int i = 0;
         for (TeamMember teamMember : teamMemberList) {
-            if (!teamMember.getName().equals(mainUser)) {
-                out.println("\t " + i + ") " + teamMember.getName());
-                i++;
+            out.print("\t " + i + ") " + teamMember.getName());
+            if (i == 0) {
+                System.out.println(" (main user)");
+            } else {
+                System.out.println();
             }
+            i++;
         }
         System.out.println("____________________________________________________________\n");
     }

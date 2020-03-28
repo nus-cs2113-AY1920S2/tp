@@ -136,22 +136,31 @@ public class MeetingOrganizer {
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList(), mainUser.getName());
             break;
-        case "timetable": // timetable OR timetable 1 OR timetable <Member Number 1> <Member Number 2> (eg. timetable 0 1 3)
-            if (userInputWords.length > 1) {
-                ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
-                for (int i = 1; i < userInputWords.length; i++) {
-                    memberNumber = Integer.parseInt(userInputWords[i]);
-                    member = myTeamMemberList.getTeamMemberList().get(memberNumber);
-                    myScheduleList.add(member);
+        case "timetable": // timetable OR timetable <Member Number 1> OR timetable <Member Number 1>
+            // <Member Number 2> (eg. timetable 0 1 3)
+            try {
+                if (userInputWords.length > 1) {
+                    ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
+                    for (int i = 1; i < userInputWords.length; i++) {
+                        memberNumber = Integer.parseInt(userInputWords[i]);
+                        member = myTeamMemberList.getTeamMemberList().get(memberNumber);
+                        myScheduleList.add(member);
+                    }
+                    ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
+                    Boolean[][] myMasterSchedule;
+                    myMasterSchedule = myScheduleHandler.getMasterSchedule();
+                    System.out.println("Timetable of the selected team member/s:");
+                    TextUI.printTimetable(myMasterSchedule);
+                } else {
+                    System.out.println("Your timetable:");
+                    TextUI.printTimetable(mainUser.getSchedule());
                 }
-                ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
-                Boolean[][] myMasterSchedule;
-                myMasterSchedule = myScheduleHandler.getMasterSchedule();
-                System.out.println("Timetable of the selected team member/s:");
-                TextUI.printTimetable(myMasterSchedule);
-            } else {
-                System.out.println("Your timetable:");
-                TextUI.printTimetable(mainUser.getSchedule());
+            } catch (IndexOutOfBoundsException e) {
+                TextUI.indexOutOfBoundsMsg();
+                System.out.println("Index should be within range 0 to " + (myTeamMemberList.getTeamMemberList().size() - 1) + ".");
+                TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList(),mainUser.getName());
+            } catch (NumberFormatException e) {
+                TextUI.invalidNumberTimetableMsg();
             }
 
             break;
@@ -259,6 +268,8 @@ public class MeetingOrganizer {
                 TextUI.timeOutOfRangeMsg();
             } catch (NumberFormatException e) {
                 TextUI.invalidNumberMsg();
+            } catch (IndexOutOfBoundsException e) {
+                TextUI.indexOutOfBoundsMsg();
             } finally {
                 TextUI.menuMsg(myTeamMemberList.getSize());
             }
