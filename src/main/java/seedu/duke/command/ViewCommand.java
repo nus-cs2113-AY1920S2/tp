@@ -68,7 +68,7 @@ public class ViewCommand extends Command {
     }
 
     /**
-     * Prints the user's completed modules
+     * Prints the user's completed modules.
      *
      * @param semesterList user's module list.
      */
@@ -97,7 +97,7 @@ public class ViewCommand extends Command {
 
     /**
      *
-     * print user's available module list
+     * print user's available module list.
      *
      * @param modulesList user's available module list.
      */

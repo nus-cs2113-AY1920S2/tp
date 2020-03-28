@@ -25,7 +25,7 @@ public class SemModulesList extends ArrayList<SelectedModule> {
     public void setYearSemester() {
         StringBuilder yearSemesterBuilder = new StringBuilder();
         int intSemester = Integer.parseInt(semester);
-        yearSemesterBuilder.append("Y").append((intSemester+1) / 2).append("S");
+        yearSemesterBuilder.append("Y").append((intSemester + 1) / 2).append("S");
         if (intSemester % 2 == 0) {
             yearSemesterBuilder.append(2);
         } else {

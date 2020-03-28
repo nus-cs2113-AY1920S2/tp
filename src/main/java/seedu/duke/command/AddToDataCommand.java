@@ -29,7 +29,6 @@ public class AddToDataCommand extends AddCommand {
     /**
      *
      * adds a module to the user's available module list.
-     *
      * @param semesterList : user's current semester list.
      * @param availableModulesList : user's current available modules list.
      */
@@ -38,16 +37,17 @@ public class AddToDataCommand extends AddCommand {
             boolean hasSameId = newModule.getId().equals(module.getId());
             boolean hasSameName = newModule.getName().equals(module.getName());
             if (hasSameId && hasSameName) {
-                throw new InputException("This module's name and Id has already " +
-                        "been added to the available modules list");
+                throw new InputException("This module's name and Id has already "
+                        + "been added to the available modules list");
             } else if (hasSameId) {
                 module.updateName(newModule.getName());
             } else if (hasSameName) {
                 module.updateId(newModule.getId());
             } else {
                 throw new InputException("Seems like the format is wrong",
-                        "add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]\"" +
-                        " to add a module to the list of available modules\n");
+                        "add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]\" to add a"
+                                + " module to the list of available modules\n");
+
             }
         }
         availableModulesList.add(newModule);
@@ -66,8 +66,8 @@ public class AddToDataCommand extends AddCommand {
     private void checkSemesterList(SemesterList semesterList) {
         for (SemModulesList sem: semesterList) {
             for (SelectedModule selectedModule: sem) {
-                if (selectedModule.getId().equals(newModule.getId()) ||
-                        selectedModule.getName().equals(newModule.getName())) {
+                if (selectedModule.getId().equals(newModule.getId())
+                        || selectedModule.getName().equals(newModule.getName())) {
                     selectedModule.setModuleConfig(newModule);
                 }
             }

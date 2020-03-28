@@ -55,7 +55,7 @@ public class DeleteFromSemCommand extends DeleteCommand {
     public void setYearSemester() {
         StringBuilder yearSemesterBuilder = new StringBuilder();
         int intSemester = Integer.parseInt(semester);
-        yearSemesterBuilder.append("Y").append((intSemester+1) / 2).append("S");
+        yearSemesterBuilder.append("Y").append((intSemester + 1) / 2).append("S");
         if (intSemester % 2 == 0) {
             yearSemesterBuilder.append(2);
         } else {
@@ -67,7 +67,8 @@ public class DeleteFromSemCommand extends DeleteCommand {
     private boolean checkModuleExistInCorrectSem(SemesterList moduleList) {
         for (SemModulesList sem: moduleList) {
             if (sem.getSem().equals(semester) && sem.isInList(moduleIdentifier)) {
-                return true; }
+                return true;
+            }
         }
         return false;
     }

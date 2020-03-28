@@ -127,7 +127,7 @@ public class SelectedModule extends Module {
     public void setYearSemester() {
         StringBuilder yearSemesterBuilder = new StringBuilder();
         int intSemester = Integer.parseInt(semester);
-        yearSemesterBuilder.append("Y").append(Integer.toString((intSemester+1) / 2)).append("S");
+        yearSemesterBuilder.append("Y").append(Integer.toString((intSemester + 1) / 2)).append("S");
         if (intSemester % 2 == 0) {
             yearSemesterBuilder.append(Integer.toString(2));
         } else {

@@ -55,12 +55,12 @@ public class Ui {
     private static final String HELP = "Here are the commands that I can do for you:\n"
             + "1. \"help\" to look at all the commands that I can do\n"
             + "2. \"view\" to see all modules you have in your module list\n"
-            + "3. \"add id/[module code] s/[semester] mc/[credit] " +
-            "| add n/[module name] s/[semester] mc/[credit] " +
-            "| add id/[module code] n/[module name] s/[semester] mc/[credit]\"" +
-            " to add a module to your personal module manager\n"
-            + "4. \"add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]\"" +
-            " to add a module to the list of available modules\n"
+            + "3. \"add id/[module code] s/[semester] mc/[credit] "
+            + "| add n/[module name] s/[semester] mc/[credit] "
+            + "| add id/[module code] n/[module name] s/[semester] mc/[credit]\""
+            + " to add a module to your personal module manager\n"
+            + "4. \"add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]\""
+            + " to add a module to the list of available modules\n"
             + "5. \"done n/[module name] g/[grade] | done id/[module code] g/[grade]\" "
             + "to mark it as done\n"
             + "6. \"view /mp\" to view your module plan\n"
