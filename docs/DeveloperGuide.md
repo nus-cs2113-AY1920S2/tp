@@ -1,6 +1,14 @@
 # Developer Guide
+- [Design](#1-Design)
+- [Implementation](#2-implementation)
+  - [[Proposed] Subject Feature](#21-proposed-subject-feature)
+- [Appendix A: Product Scope](#appendix-a-product-scope)
+- [Appendix B: User Stories](#appendix-b--user-stories)
+- [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+- [Appendix D: Glossary](#appendix-d-glossary)
+- [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
 
-## Design & Implementation
+## 1. Design
 1. Architecture
 The Duke class is the main class of the product.It is responsible for,
 
@@ -26,17 +34,55 @@ Duke, along with all command class and Parser form the logic box of the product
 <br />Finally the storage box, ie Storage class will handle writing and reading the files.
 <br />{insert image here}
 
+## 2. Implementation
+### 2.1. [Proposed] Subject Feature
+#### 2.1.1. Proposed Implementation
+The subject feature is an extension to the existing flashcard feature which allows users to categorise their
+flashcards. This helps users to search for their flashcards more efficiently and also users to quiz by subject. The list of user's subjects are stored inside the SubjectList. It implements the following operations:
 
+- ``SubjectList#addSubject()`` - Adds a new subject to the subject list.
+- ``SubjectList#removeSubject()`` - Removes an existing subject from the subject list.
+- ``SubjectList#listSubjects()`` - List the subjects in the subject list.
 
-## Product Scope
+Step 1. Before the user decides to add a flashcard, he/she can create a subject to store the flashcard using
+the command ``addsubject s/SUBJECTNAME``.
+The following diagram describes how the add subject operation works:
+
+![](images/addsubject_sequence_uml.jpg)
+
+Step 2. The user executes the command ``listsubjects`` to view the subjects currently stored in the application.
+
+Step 3. Once the user has chosen a subject, he/she can execute the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``
+to add a flashcard into the subject. 
+The following diagram describes how the add card operation works:
+
+![](images/addcard_sequence_uml.jpg)
+
+#### 2.1.2. Design Considerations
+##### Aspect: How user can add a flashcard into a subject
+- **Alternative 1 (current choice)**: Include the subject index in the command.
+  - Pros: 
+    - Simple implementation without involving states
+  - Cons: 
+    - The user will have to list the subjects first to determine the subject index.
+  
+- **Alternative 2**: Select the subject first, then add a flashcard.
+  - Pros:
+    - The command for adding a card will be shorter.
+  - Cons:
+    - Multiple states will be involved.
+    - The application will become more complex as different states use different commands.
+    - The application can also become more difficult to use as users can be unclear about the states.
+    
+## Appendix A: Product Scope
 ### Target user profile
 The product is intended for students preparing for exams. Students can store practice question and model answers in the product.
 Also, the product offers students to quiz themselves to practice for exams
 
 ### Value proposition
-The product aims to provide students with more convient way of doing revision. By using the product students can categorize questions into different subjects and practice more effectively.
+The product aims to provide students with more convenient way of doing revision. By using the product students can categorize questions into different subjects and practice more effectively.
 
-## User Stories
+## Appendix B:  User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -44,21 +90,22 @@ The product aims to provide students with more convient way of doing revision. B
 |v1.0|user|delete cards|organize cards better|
 |v1.0|user|quiz myself|practice the questions|
 |v1.0|user|list cards|organize the cards|
+|v1.0|user|save my cards|access them in the future|
 |v2.0|user|add cards with subjects|categorize the cards better|
 |v2.0|user|list cards by subjects|organize the cards|
 |v2.0|user|delete subjects|organize subjects better|
 |v2.0|user|view my score|see how I performed|
 |v2.0|user|view my test history|see how I performed|
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 <br />1.The product should be able to run on any platform that has JDK11
 <br />2.The product should be able to hold up to 1000 cards
 
-## Glossary
+## Appendix D: Glossary
 
 * *glossary item* - Definition
 
-## Instructions for Manual Testing
+## Appendix E: Instructions for Manual Testing
 <br />1. Running Tests
 <br />There are two ways to run tests.
 
