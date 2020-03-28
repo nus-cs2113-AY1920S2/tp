@@ -41,8 +41,7 @@ public class Parser {
     public static String[] tokenizedInputs;
     String instruction;
     private static Log logger = new Log();
-    // public static ActivityList lastShownList = new ActivityList();
-    // public static ActivityList lastShownList = new ActivityList();
+    public static ActivityList lastShownList = new ActivityList();
     // flag to check if the current activity is a continued one
     public static int continuedIndex = -1;
 

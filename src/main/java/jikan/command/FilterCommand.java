@@ -26,8 +26,15 @@ public class FilterCommand extends Command {
      */
     @Override
     public void executeCommand(ActivityList activityList) {
+        if (parameters.contains("-s")) {
+            filterSubList();
+        } else {
+            filterFullList(activityList);
+        }
+    }
+
+    private void filterFullList(ActivityList activityList) {
         try {
-            // Parser.parseFilter(activityList, lastShownList, tokenizedInputs[1]);
             String query = parameters;
             if (query.length() < 1) {
                 throw new EmptyQueryException();
@@ -45,8 +52,29 @@ public class FilterCommand extends Command {
         }
     }
 
-    private void populateLastShownList(ActivityList activityList, ActivityList lastShownList, String keyword) {
-        for (Activity i : activityList.activities) {
+    private void filterSubList() {
+        try {
+            String query = parameters.replace("-s ", "");
+            ActivityList prevList = new ActivityList();
+            prevList.activities.addAll(lastShownList.activities);
+            if (query.length() < 1) {
+                throw new EmptyQueryException();
+            } else {
+                lastShownList.activities.clear();
+                String[] keywords = query.split(" ");
+
+                for (String keyword : keywords) {
+                    populateLastShownList(prevList, lastShownList, keyword);
+                }
+                Ui.printResults(lastShownList);
+            }
+        } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
+            Ui.printDivider("No keyword was given.");
+        }
+    }
+
+    private void populateLastShownList(ActivityList targetList, ActivityList lastShownList, String keyword) {
+        for (Activity i : targetList.activities) {
             if (!lastShownList.activities.contains(i) && i.getTags().contains(keyword)) {
                 lastShownList.activities.add(i);
             }
