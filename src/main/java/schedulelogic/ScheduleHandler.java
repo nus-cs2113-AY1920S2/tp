@@ -1,4 +1,4 @@
-package teammember;
+package schedulelogic;
 
 import static common.Messages.MESSAGE_INVALID_MEETING;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;

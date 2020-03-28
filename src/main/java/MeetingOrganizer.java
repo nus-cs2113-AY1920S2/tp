@@ -11,9 +11,9 @@ import java.util.Scanner;
 import meeting.Meeting;
 import meeting.MeetingList;
 import storage.Storage;
-import teammember.ScheduleHandler;
-import teammember.TeamMember;
-import teammember.TeamMemberList;
+import schedulelogic.ScheduleHandler;
+import schedulelogic.TeamMember;
+import schedulelogic.TeamMemberList;
 import ui.TextUI;
 
 /**
@@ -118,21 +118,6 @@ public class MeetingOrganizer {
                 System.out.println(e.getMessage());
             }
             break;
-        case "edit": // edit <Member Number> <busy/free> <startDay> <startTime> <endDay> <endTime> (eg. edit 0 busy 2 22:00 2 23:00)
-            memberNumber = Integer.parseInt(userInputWords[1]);
-            member = myTeamMemberList.getTeamMemberList().get(memberNumber);
-            String memberName = member.getName();
-            startDay = Integer.parseInt(userInputWords[3]);
-            String startTimeString = userInputWords[4];
-            endDay = Integer.parseInt(userInputWords[5]);
-            String endTimeString = userInputWords[6];
-
-            if (userInputWords[2].equals("busy")) {
-                member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString);
-            } else if (userInputWords[2].equals("free")) {
-                member.addFreeBlocks(memberName, startDay, startTimeString, endDay, endTimeString);
-            }
-            break;
         case "contacts":  // contacts
             TextUI.teamMemberListMsg(myTeamMemberList.getTeamMemberList(), mainUser.getName());
             break;
@@ -186,7 +171,7 @@ public class MeetingOrganizer {
             try {
                 Meeting meetingToDelete = myMeetingList.getMeetingList().get(index);
                 String meetingNameToDelete = meetingToDelete.getMeetingName();
-                mainUser.deleteBusyBlocks(meetingNameToDelete);
+                mainUser.deleteBlocksWithName(meetingNameToDelete);
                 myMeetingList.delete(index);
                 myTeamMemberList.set(0, mainUser);
             } catch (IndexOutOfBoundsException e) {

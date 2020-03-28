@@ -1,7 +1,7 @@
 package storage;
 
 import meeting.Meeting;
-import teammember.TeamMember;
+import schedulelogic.TeamMember;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
