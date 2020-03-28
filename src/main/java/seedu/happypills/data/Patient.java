@@ -139,7 +139,7 @@ public class Patient {
     public String toSave() {
         String text = this.name + "|" + this.nric + "|"
                 + this.phoneNumber + "|" + this.dateOfBirth + "|"
-                + this.bloodType + "|" + this.allergies + "|" + this.remarks;
+                + this.bloodType + "|" + this.allergies + "|" + this.remarks + System.lineSeparator();
         return text;
     }
 }
