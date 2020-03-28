@@ -141,7 +141,7 @@ or `getSearchQueryEvents` respectively and initialize a new `CommandResult` clas
 * Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
 ** Rationale: +
 To create 2 separate commands so that users can filter their search query more easily.
-** Alternative considered: +
+** Alternatives considered: +
 1. Use a `Search` class that implements both functions of `SearchCommand` and `SearchdCommand`
 *** Pros: Reduced coupling. Improved code structure.
 *** Cons: More difficult to implement
@@ -420,5 +420,5 @@ However, this also is infeasible as our goal is to keep the calendar compact suc
 * To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 * For individual tests, you can right-click on the test *package*, *class* or a single test and choose `Run 'TEST'`
 
-=== Using Input-Output test
+=== Using Input-Output Tests
 *  Navigate to the `text-ui-test` folder and run the runtest (.bat/.sh) script.
