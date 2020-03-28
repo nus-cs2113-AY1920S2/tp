@@ -6,10 +6,8 @@ import jikan.exception.EmptyQueryException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
+import static jikan.Jikan.lastShownList;
 import java.util.ArrayList;
-
-import static jikan.parser.Parser.lastShownList;
-import static jikan.parser.Parser.tokenizedInputs;
 
 /**
  * Represents a command to find activities in the activity list.

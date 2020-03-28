@@ -25,6 +25,8 @@ public class Jikan {
     /** Activity list to store current tasks in. */
     private static ActivityList activityList;
 
+    public static ActivityList lastShownList = new ActivityList();
+
     /** Ui to handle printing. */
     private static Ui ui = new Ui();
 
@@ -46,6 +48,7 @@ public class Jikan {
         cleaner.autoClean();
         activityList = storage.createActivityList();
         activityList.storage = storage;
+        lastShownList.activities.addAll(activityList.activities);
         //public static final Scanner in = new Scanner(System.in);
 
         while (true) {

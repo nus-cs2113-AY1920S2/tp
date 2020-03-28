@@ -1,15 +1,16 @@
 package jikan.parser;
 
+import jikan.command.Command;
 import jikan.command.AbortCommand;
 import jikan.command.ByeCommand;
-import jikan.command.Command;
 import jikan.command.CleanCommand;
 import jikan.command.ContinueCommand;
 import jikan.command.DeleteCommand;
 import jikan.command.EditCommand;
 import jikan.command.EndCommand;
-import jikan.command.FindCommand;
 import jikan.command.FilterCommand;
+import jikan.command.FindCommand;
+import jikan.command.GraphCommand;
 import jikan.command.ListCommand;
 import jikan.command.StartCommand;
 
@@ -36,6 +37,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import static jikan.Jikan.lastShownList;
+
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
  */
@@ -56,7 +59,8 @@ public class Parser {
 
     /**
      * Parses user commands to relevant functions to carry out the commands.
-     * @param scanner scanner object which reads user input
+     *
+     * @param scanner      scanner object which reads user input
      * @param activityList the list of activities
      */
     public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) {
@@ -65,6 +69,7 @@ public class Parser {
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands
         referencing by index of this list.
          */
+        // lastShownList.activities.addAll(activityList.activities);
         String userInput = scanner.nextLine();
         tokenizedInputs = userInput.split(" ", 2);
         instruction = tokenizedInputs[0];
@@ -103,6 +108,9 @@ public class Parser {
             break;
         case "continue":
             command = new ContinueCommand(tokenizedInputs[1]);
+            break;
+        case "graph":
+            command = new GraphCommand(tokenizedInputs[1]);
             break;
         default:
             parseDefault();
@@ -210,7 +218,9 @@ public class Parser {
         }
     }
 
-    /** Method to parse user inputs that are not recognised. */
+    /**
+     * Method to parse user inputs that are not recognised.
+     */
     private void parseDefault() {
         String line = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
         Log.makeInfoLog("Invalid command entered");
