@@ -40,11 +40,6 @@ of SHOCO and is tailored for the developers, designers, and software testers of 
 
 ## 2. Overview of the SHOCO application
 
-{Add class diagram here}
-
-## 3. Implementation
-This section will describe how the main features of the application are implemented.
-
 The overview of the main classes in the application are shown in the class diagram below.
 Omitted are the classes for the features implemented, the <code>LoadData</code>
 class, <code>WriteData</code> class, <code>FileUtil</code> class and
@@ -52,10 +47,30 @@ class, <code>WriteData</code> class, <code>FileUtil</code> class and
 
 ![alt text](images/ClassDiag.png)
 
+<!-- @@author kokjoon97 -->
+The <code>Shoco</code> class manages all required resources in the execution of the application. These include
+a <code>ShoppingList</code> object to keep track of the <code>Item</code> objects the user has added to his list and
+a <code>Budget</code> object to store the user's budget.
+
+<code>Shoco</code> also has a <code>Storage</code> object for saving and loading data from memory - this data includes
+the latest saved <code>ShoppingList</code> and <code>Budget</code>.
+
+There is a dependency from <code>Shoco</code> to <code>Parser</code> as it only creates an instance of the <code>Parser</code>
+every time user input is received by the <code>Ui</code> and does not keep track of the <code>Parser</code> which is deleted
+after it is done parsing the current user input. The <code>Parser</code> determines what command is being invoked by the
+user before creating a new <code>Command</code> object. It then returns the reference to the new <code>Command</code> object 
+to <code>Shoco</code>. 
+
+At any point in time, <code>Shoco</code> only stores up to one <code>Command</code> and no more. This
+<code>Command</code> has to be executed before <code>Shoco</code> can receive more user input.
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 &nbsp;
+
+## 3. Implementation
+This section will describe how the main features of the application are implemented.
 
 ### 3.1 Add feature
 #### 3.1.1 Current implementation
