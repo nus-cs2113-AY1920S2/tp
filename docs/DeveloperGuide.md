@@ -86,7 +86,7 @@ Step 2b. If the attribute toClean is equal to true, access the storage data file
 The Storage class represents the back-end of Jikan, handling the creation, saving and loading of data. 
 Jikan uses a `.csv` file to store its data, formatted in the following way:
 
-`entry-name, start-time, end-time, tags`
+`entry-name, start-time, end-time, duration, tags`
 
 All tags are saved in the same cell, separated by a white space; this design decision was taken to make sure that each entry occupies the same number of cells regardless of each entry’s number of tags. The tags are then separately parsed when the data is loaded.
 
