@@ -1,13 +1,26 @@
 package seedu.atas;
 
-import command.*;
+import command.AssignmentCommand;
+import command.CalendarCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.DoneCommand;
+import command.EventCommand;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.IncorrectCommand;
+import command.ListCommand;
+import command.RepeatCommand;
 import common.Messages;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.atas.Parser.capitalize;
 
 public class ParserTest {

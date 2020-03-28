@@ -1,6 +1,20 @@
 package seedu.atas;
 
-import command.*;
+import command.AssignmentCommand;
+import command.CalendarCommand;
+import command.ClearCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.DoneCommand;
+import command.EditCommand;
+import command.EventCommand;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.IncorrectCommand;
+import command.ListCommand;
+import command.RepeatCommand;
+import command.SearchCommand;
+import command.SearchdCommand;
 import common.Messages;
 
 import java.time.LocalDate;

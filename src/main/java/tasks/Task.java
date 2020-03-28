@@ -73,11 +73,11 @@ public abstract class Task {
             return name.equals(((Task) addedTask).getName());
         }
 
-       if (addedTask == null || getClass() != addedTask.getClass()) {
+        if (addedTask == null || getClass() != addedTask.getClass()) {
             return false;
         }
-        assert ((addedTask.getClass() == Assignment.class)
-                || (addedTask.getClass() == Event.class));
+
+        assert ((addedTask.getClass() == Assignment.class) || (addedTask.getClass() == Event.class));
         Task task = (Task) addedTask;
         return name.equals(task.getName());
     }
