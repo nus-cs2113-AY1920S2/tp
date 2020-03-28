@@ -424,6 +424,15 @@ image::calendar.png[calendar.png]
 . *Calendar View*: `calendar d/[DD/MM/YY]`
 * e.g. `calendar d/01/01/20`
 
+== FAQ
+Q: Can I transfer my saved data to a computer with a different operating system? +
+A: Yes, you can! To do so, follow the instructions mentioned in the answer below.
+
+Q: How do I transfer my saved data to another computer? +
+A: In the folder where your *ATAS* jar file is located, look for a file named "atasData.txt".
+Place a copy of this file into the folder where the *ATAS* jar file is located in your new computer.
+
+
 
 
 
