@@ -42,6 +42,10 @@ public abstract class Module {
         this.id = moduleId;
     }
 
+    public Module() {
+
+    }
+
     @Override
     public String toString() {
         String returnString = null;
@@ -91,6 +95,8 @@ public abstract class Module {
         }
         return preReqModulesList;
     }
+
+    public abstract String toStorageString();
 
 
 }
