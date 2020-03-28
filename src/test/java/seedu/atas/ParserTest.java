@@ -1,6 +1,7 @@
 package seedu.atas;
 
 import command.AssignmentCommand;
+import command.CalendarCommand;
 import command.Command;
 import command.DeleteCommand;
 import command.DoneCommand;
@@ -10,13 +11,11 @@ import command.HelpCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
-import command.CalendarCommand;
 import common.Messages;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -232,7 +231,7 @@ public class ParserTest {
 
     }
 
-    //@@author
+    //@@author e0309556
     /** Repeat Command Tests. */
     @Test
     public void parseRepeatCommand_expectedInput_success() {
@@ -247,6 +246,7 @@ public class ParserTest {
         assertTrue(parsedCommandEmptyPeriod instanceof IncorrectCommand);
     }
 
+    //@@author
     /** Exit Command Tests. */
     @Test
     public void parseExitCommand_expectedInput_success() {

@@ -1,5 +1,6 @@
 package command;
 
+//@@author e0309556
 /**
  * Result from running the Command to be shown to user.
  */

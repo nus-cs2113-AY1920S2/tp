@@ -1,11 +1,11 @@
 package command;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author
 public class AssignmentCommandTest {

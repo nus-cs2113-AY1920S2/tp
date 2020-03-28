@@ -7,6 +7,7 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
 import tasks.Task;
 
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ import java.util.Calendar;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@@author
 public class CalendarCommandTest {
     public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
     private static CalendarCommand testCalendarCommand;
@@ -93,7 +95,10 @@ public class CalendarCommandTest {
         final Assignment testCaseOne = new Assignment("Assignment 3", "CS2102", testDateTime1, " ");
         testCaseTwo = new Assignment("OP1", "CS2101", testDateTime3, "15%");
         final Event testCaseThree = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, " ");
-        testCaseFour = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
+        // set to repeat every 14 days in the month of Jan 2020, will only see it thrice in month of Jan
+        // inclusive of the original event
+        testCaseFour = new RepeatEvent("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me",
+                14, RepeatCommand.DAILY_ICON, testDateTime3, 0);
 
         testCalendar = Calendar.getInstance();
         String testDate = "01/01/20";
@@ -104,9 +109,7 @@ public class CalendarCommandTest {
         testLocalDate2 = LocalDate.parse(testDate2, INPUT_DATE_ONLY_FORMAT);
         testCalendarCommand = new CalendarCommand(testLocalDate);
 
-        // set to repeat every 14 days in the month of Jan 2020, will only see it thrice in month of Jan
-        // inclusive of the original event
-        testCaseFour.setRepeat(14, RepeatCommand.DAILY_ICON);
+
         testTaskList.addTask(testCaseOne);
         testTaskList.addTask(testCaseTwo);
         testTaskList.addTask(testCaseThree);
@@ -235,8 +238,8 @@ public class CalendarCommandTest {
         LocalDate endOfMonth = YearMonth.from(testLocalDate).atEndOfMonth();
         ArrayList<Task> finalTaskList = new ArrayList<>();
         for (Task task : resultList) {
-            if (task instanceof Event && ((Event) task).getIsRepeat() && ((Event)task).equals(testCaseFour)) {
-                testCalendarCommand.addRepeatEvents(endOfMonth, finalTaskList, testCaseFour);
+            if (task instanceof RepeatEvent && task.equals(testCaseFour)) {
+                testCalendarCommand.addRepeatEvents(endOfMonth, finalTaskList, (RepeatEvent) testCaseFour);
             }
         }
         assertEquals(finalTaskList.size(), testLocalDate.until(endOfMonth).getDays() / 14);

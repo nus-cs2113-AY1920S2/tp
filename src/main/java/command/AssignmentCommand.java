@@ -8,6 +8,7 @@ import tasks.Task;
 
 import java.time.LocalDateTime;
 
+//@@author
 public class AssignmentCommand extends Command {
     public static final String COMMAND_WORD = "assignment";
     public static final String COMMAND_USAGE = "Add Assignment: "
@@ -41,7 +42,7 @@ public class AssignmentCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newAssignment = new Assignment(assignmentName, moduleName, deadline, comments);
-        if (isRepeatTask(taskList, newAssignment)) {
+        if (taskList.isRepeatTask(taskList, newAssignment)) {
             return new CommandResult(Messages.SAME_TASK_ERROR);
         }
         taskList.addTask(newAssignment);

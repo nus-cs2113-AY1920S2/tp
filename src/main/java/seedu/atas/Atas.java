@@ -6,7 +6,7 @@ import command.ExitCommand;
 import command.ListCommand;
 import common.Messages;
 import exceptions.AtasException;
-import tasks.Event;
+import tasks.RepeatEvent;
 import tasks.Task;
 
 import java.io.IOException;
@@ -66,11 +66,11 @@ public class Atas {
         }
     }
 
-    //@@author
+    //@@author e0309556
     private void updateEventDate(TaskList taskList) {
         for (Task task : taskList.getTaskArray()) {
-            if (task instanceof Event) {
-                ((Event) task).updateDate();
+            if (task instanceof RepeatEvent) {
+                ((RepeatEvent) task).updateDate();
             }
         }
     }

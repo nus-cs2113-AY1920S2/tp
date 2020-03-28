@@ -4,6 +4,7 @@ import common.Messages;
 import exceptions.AtasException;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
 import tasks.Task;
 
 import java.io.File;
@@ -55,6 +56,9 @@ public class Storage {
                 break;
             case Event.EVENT_ICON:
                 task = Event.decodeTask(encodedTask);
+                break;
+            case RepeatEvent.REPEAT_ICON:
+                task = RepeatEvent.decodeTask(encodedTask);
                 break;
             default:
                 throw new AtasException(Messages.INCORRECT_STORAGE_FORMAT_ERROR);

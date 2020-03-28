@@ -5,6 +5,7 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
 
+//@@author
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_USAGE = "Delete a Task: delete [TASK NUMBER]";
@@ -29,7 +30,7 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(Messages.DELETE_SUCCESS_MESSAGE, taskToBeDeleted.getName()));
         } catch (IndexOutOfBoundsException e) {
             assert deleteIndex <= 0 || deleteIndex > taskList.getListSize() - 1;
-            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, getRangeOfValidIndex(taskList)));
+            return new CommandResult(String.format(Messages.INVALID_ID_ERROR, taskList.getRangeOfValidIndex(taskList)));
         }
     }
 }

@@ -4,6 +4,7 @@ import common.Messages;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 
+//@@author
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
     public static final String COMMAND_USAGE = "Exit ATAS: exit";

@@ -2,8 +2,6 @@ package command;
 
 import common.Messages;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
@@ -13,6 +11,9 @@ import tasks.Event;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+//@@author
 public class SearchCommandTest {
     private static TaskList filledTaskList;
     private static TaskList emptyTaskList;

@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.StringJoiner;
 
+//@@author
 public class Assignment extends Task {
     public static final String ASSIGNMENT_ICON = "A";
     protected String module;
@@ -60,7 +61,7 @@ public class Assignment extends Task {
                 + comments;
     }
 
-    //@@author
+    //@@author e0309556
     @Override
     public boolean equals(Object addedTask) {
         return super.equals(addedTask)

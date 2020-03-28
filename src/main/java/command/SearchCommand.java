@@ -8,6 +8,7 @@ import tasks.Task;
 
 import java.util.ArrayList;
 
+//@@author
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
     public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";

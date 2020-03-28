@@ -1,14 +1,15 @@
 package seedu.atas;
 
 import command.RepeatCommand;
-import tasks.Task;
+import common.Messages;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
+import tasks.Task;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -40,6 +41,33 @@ public class TaskList {
         return this.tasks;
     }
 
+    //@@author e0309556
+    /**
+     * Obtain a range of numbers that is valid for usage on taskList.
+     * @param taskList The interested list in TaskManager to find the range of values
+     * @return A string with the range of valid numbers.
+     */
+    public String getRangeOfValidIndex(TaskList taskList) {
+        int maxTasks = taskList.getListSize();
+        return String.format(Messages.RANGE_OF_VALID_TASK_INDEX_MSG, maxTasks);
+    }
+
+    /**
+     * Checks for duplicate task within tasklist.
+     * @param tasklist TaskList to be checked against
+     * @param addedTask new Task that needs to be checked
+     * @return True if there already exists a task within tasklist. Otherwise, false.
+     */
+    public Boolean isRepeatTask(TaskList tasklist, Task addedTask) {
+        for (Task task : tasklist.getTaskArray()) {
+            if (task.equals(addedTask)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //@@author
     /**
      * Getter for the current Local Date.
      * Formats Local Date into "dd/MM/yyyy" format.
@@ -73,6 +101,7 @@ public class TaskList {
         return taskList;
     }
 
+    //@@author e0309556
     /**
      * Getter method for tasks that are events and in the future.
      * @return ArrayList object containing all future events.
@@ -82,7 +111,10 @@ public class TaskList {
         LocalDateTime currDateTime = LocalDateTime.now();
         for (Task task : tasks) {
             LocalDateTime taskDateTime = task.getDateAndTime();
-            if (task instanceof Event && taskDateTime.compareTo(currDateTime) > 0) {
+            if ((task instanceof Event && taskDateTime.compareTo(currDateTime) > 0)
+                    || (task instanceof RepeatEvent
+                    && taskDateTime.toLocalDate().compareTo(currDateTime.toLocalDate()) == 0
+                    && ((RepeatEvent) task).getNextDateTime().compareTo(currDateTime) > 0)) {
                 eventList.add(task);
             }
         }
@@ -103,6 +135,7 @@ public class TaskList {
         return assignList;
     }
 
+    //@@author
     /**
      * Getter for all events tasks.
      * @return ArrayList object containing all events
@@ -219,7 +252,7 @@ public class TaskList {
             }
 
             // Add repeat Events that is before startOfRange but will spillover to provided time period
-            if (task instanceof Event && ((Event) task).getIsRepeat() && startOfRange.compareTo(taskDate) >= 0) {
+            if (task instanceof RepeatEvent && startOfRange.compareTo(taskDate) >= 0) {
                 addFirstRepeatedEventWithinRange(startOfRange, endOfRange, task, taskDate, taskArrayList);
             }
         }
@@ -236,7 +269,7 @@ public class TaskList {
      */
     private void addFirstRepeatedEventWithinRange(LocalDate startOfRange, LocalDate endOfRange,
                                                Task task, LocalDate taskDate, ArrayList<Task> taskArrayList) {
-        Event event = (Event) task;
+        RepeatEvent event = (RepeatEvent) task;
         int numOfPeriod = event.getNumOfPeriod();
         String typeOfPeriod = event.getTypeOfPeriod();
 
@@ -246,12 +279,11 @@ public class TaskList {
                     .compareTo(endOfRange) <= 0; timesRepeated++) {
                 if (isWithinRange(startOfRange, endOfRange,
                         taskDate.plusYears(numOfPeriod * timesRepeated))) {
-                    Event yearlyEventToAdd = new Event(event.getName(),
+                    RepeatEvent yearlyEventToAdd = new RepeatEvent(event.getName(),
                             event.getLocation(),
                             event.getDateAndTime().plusYears(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusYears(timesRepeated * numOfPeriod),
-                            event.getComments());
-                    yearlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                            event.getEndDateAndTime().plusYears(timesRepeated * numOfPeriod), event.getComments(),
+                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
                     taskArrayList.add(yearlyEventToAdd);
                     break;
                 }
@@ -262,12 +294,11 @@ public class TaskList {
                     .compareTo(endOfRange) <= 0; timesRepeated++) {
                 if (isWithinRange(startOfRange, endOfRange,
                         taskDate.plusMonths(numOfPeriod * timesRepeated))) {
-                    Event monthlyEventToAdd = new Event(event.getName(),
+                    Event monthlyEventToAdd = new RepeatEvent(event.getName(),
                             event.getLocation(),
                             event.getDateAndTime().plusMonths(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusMonths(timesRepeated * numOfPeriod),
-                            event.getComments());
-                    monthlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                            event.getEndDateAndTime().plusMonths(timesRepeated * numOfPeriod), event.getComments(),
+                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
                     taskArrayList.add(monthlyEventToAdd);
                     break;
                 }
@@ -278,12 +309,11 @@ public class TaskList {
                     .compareTo(endOfRange) <= 0; timesRepeated++) {
                 if (isWithinRange(startOfRange, endOfRange,
                         taskDate.plusWeeks(numOfPeriod * timesRepeated))) {
-                    Event weeklyEventToAdd = new Event(event.getName(),
+                    RepeatEvent weeklyEventToAdd = new RepeatEvent(event.getName(),
                             event.getLocation(),
                             event.getDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
-                            event.getComments());
-                    weeklyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                            event.getEndDateAndTime().plusWeeks(timesRepeated * numOfPeriod), event.getComments(),
+                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
                     taskArrayList.add(weeklyEventToAdd);
                     break;
                 }
@@ -294,12 +324,11 @@ public class TaskList {
                  .compareTo(endOfRange) <= 0; timesRepeated++) {
                 if (isWithinRange(startOfRange, endOfRange,
                         taskDate.plusDays(numOfPeriod * timesRepeated))) {
-                    Event dailyEventToAdd = new Event(event.getName(),
+                    RepeatEvent dailyEventToAdd = new RepeatEvent(event.getName(),
                             event.getLocation(),
                             event.getDateAndTime().plusDays(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusDays(timesRepeated * numOfPeriod),
-                            event.getComments());
-                    dailyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                            event.getEndDateAndTime().plusDays(timesRepeated * numOfPeriod), event.getComments(),
+                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
                     taskArrayList.add(dailyEventToAdd);
                     break;
                 }

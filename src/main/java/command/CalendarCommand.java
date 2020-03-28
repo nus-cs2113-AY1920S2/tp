@@ -5,6 +5,7 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
 import tasks.Task;
 
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+//@@author
 public class CalendarCommand extends Command {
     // ANSI text colour scheme
     public static final String ANSI_RESET = "\u001B[0m";
@@ -150,8 +152,8 @@ public class CalendarCommand extends Command {
 
         for (Task task : unrepeatedTaskList) {
             resultTaskList.add(task);
-            if (task instanceof Event && ((Event) task).getIsRepeat()) {
-                addRepeatEvents(endOfMonth, resultTaskList, (Event) task);
+            if (task instanceof RepeatEvent) {
+                addRepeatEvents(endOfMonth, resultTaskList, (RepeatEvent) task);
             }
         }
         return resultTaskList;
@@ -163,7 +165,7 @@ public class CalendarCommand extends Command {
      * @param resultTaskList ArrayList of Task that contains duplicated tasks of repeat events
      * @param event Event to repeat and add to resultTaskList
      */
-    public void addRepeatEvents(LocalDate endOfMonth, ArrayList<Task> resultTaskList, Event event) {
+    public void addRepeatEvents(LocalDate endOfMonth, ArrayList<Task> resultTaskList, RepeatEvent event) {
         int numOfPeriod = event.getNumOfPeriod();
         String typeOfPeriod = event.getTypeOfPeriod();
         LocalDate eventDate = event.getDateAndTime().toLocalDate();

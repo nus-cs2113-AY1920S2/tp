@@ -61,14 +61,22 @@ public abstract class Task {
         return String.format("%s %s", getStatusIcon(), name);
     }
 
+    //@@author e0309556
     @Override
     public boolean equals(Object addedTask) {
         if (this == addedTask) {
             return true;
         }
+
+        if ((this instanceof RepeatEvent && addedTask instanceof Event)
+            || (this instanceof Event && addedTask instanceof RepeatEvent)) {
+            return name.equals(((Task) addedTask).getName());
+        }
+
         if (addedTask == null || getClass() != addedTask.getClass()) {
             return false;
         }
+
         assert ((addedTask.getClass() == Assignment.class) || (addedTask.getClass() == Event.class));
         Task task = (Task) addedTask;
         return name.equals(task.getName());
