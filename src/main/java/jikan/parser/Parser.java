@@ -1,6 +1,18 @@
 package jikan.parser;
 
-import jikan.command.*;
+import jikan.command.Command;
+import jikan.command.AbortCommand;
+import jikan.command.ByeCommand;
+import jikan.command.CleanCommand;
+import jikan.command.ContinueCommand;
+import jikan.command.DeleteCommand;
+import jikan.command.EditCommand;
+import jikan.command.EndCommand;
+import jikan.command.FilterCommand;
+import jikan.command.FindCommand;
+import jikan.command.GraphCommand;
+import jikan.command.ListCommand;
+import jikan.command.StartCommand;
 
 import jikan.exception.EmptyNameException;
 import jikan.activity.Activity;
