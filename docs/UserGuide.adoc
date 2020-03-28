@@ -86,7 +86,7 @@ Example: image:task_index_example.png[Task Index Example]
 * Dates supplied by the user must follow the format `DD/MM/YY`. +
 Example: 01/03/20 represents the date 1st March 2020
 
-* Times supplied by the user must follow the 24h format `HHmm`.
+* Times supplied by the user must follow the 24h format `HHmm`. +
 Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm
 
 * The parameters of a command cannot be reordered. +
@@ -95,7 +95,7 @@ the wrong position.
 
 [NOTE]
 Don't worry if all of these seems overwhelming. +
-There are plenty of examples provided to aid your understanding and learning of *ATAS* command
+There are plenty of examples provided to aid your understanding and learning of *ATAS* commands
 
 
 === Add Assignments: *`assignment`*
@@ -106,8 +106,8 @@ Format: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`
 
 * `NAME` is the name of your assignment.
 * `MODULE` is the module that your assignment is for.
-* `DATE TIME` is the deadline of your assignment. +
-* `COMMENTS` will be any other notes relevant to your `assignment`.
+* `DATE TIME` is the deadline of your assignment.
+* `COMMENTS` will be any other notes relevant to your assignment.
 
 [NOTE]
 The new `assignment` added cannot have both the same `NAME` and `MODULE` as another existing `assignment`.
@@ -150,7 +150,7 @@ Now you have 1 task in the list!
 You can view the tasks that you have stored in *ATAS*. +
 Various keywords can be used to only show the tasks you are interested in.
 
-==== List all tasks: *`list`*
+==== List All Tasks: *`list`*
 You can view all tasks stored in *ATAS* at once.
 
 Format: `list`
@@ -174,7 +174,7 @@ Here are the relevant tasks:
             notes: Have to check the exam venue and duration again
 ```
 
-==== List today's tasks: *`list today`*
+==== List Today's Tasks: *`list today`*
 You can view only the tasks you have today.
 
 Format: `list today`
@@ -188,7 +188,7 @@ Here are the relevant tasks:
             notes: Zoom meeting
 ```
 
-==== List weekly tasks: *`list week`*
+==== List Weekly Tasks: *`list week`*
 You can view all the tasks for the next 7 days
 
 Format: `list week`
@@ -209,7 +209,7 @@ Here are the relevant tasks:
             notes: Look for internship
 ```
 
-=== List upcoming events: *`list upcoming events`*
+==== List Upcoming Events: *`list upcoming events`*
 You can view all your *upcoming events* from the list of tasks.
 
 Format: `list upcoming events`
@@ -226,7 +226,7 @@ Here are the relevant tasks:
             notes: Have to check the exam venue and duration again
 ```
 
-=== List Incomplete Assignments: *`list incomplete assignments`*
+==== List Incomplete Assignments: *`list incomplete assignments`*
 You can view all your *incomplete assignments* from the list of tasks.
 
 Format: `list incomplete assignments`
@@ -317,7 +317,7 @@ Expected outcome:
 [NOTE]
 Index of task specified has to be an *event* task.
 
-==== Unset repeating event
+==== Unset Repeating Event
 Stop a repeating event from continuing to repeat.
 
 Format: `repeat id/[INDEX] p/0`
@@ -375,7 +375,7 @@ Here are the search results:
       [1m]  notes: Test3
 ```
 
-=== Calendar view: *`calendar`*
+=== Calendar View: *`calendar`*
 You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into
 consideration repeating events that you might have set. This allows for an intuitive way to plan for your free time as you
 can see your free slots at a glance.
@@ -386,7 +386,7 @@ Expected outcome:
 
 image::calendar.png[calendar.png]
 
-== Commands Summary
+== Command Summary
 === List of available *ATAS* commands
 . *Help*: `help`
 . *Exit*: `exit`
