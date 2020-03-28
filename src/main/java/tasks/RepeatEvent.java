@@ -170,7 +170,7 @@ public class RepeatEvent extends Event {
     @Override
     public String encodeTask() {
         StringJoiner sj = new StringJoiner(STORAGE_DELIMITER);
-        sj.add(EVENT_ICON);
+        sj.add(REPEAT_ICON);
         sj.add(isDone ? "true" : "false");
         sj.add(name);
         sj.add(location);
@@ -195,19 +195,18 @@ public class RepeatEvent extends Event {
     public static Event decodeTask(String encodedTask)
             throws DateTimeParseException, IndexOutOfBoundsException {
         String[] tokens = encodedTask.split("\\" + STORAGE_DELIMITER);
-        assert tokens[0].equals(EVENT_ICON);
+        assert tokens[0].equals(REPEAT_ICON);
         boolean isDone = Boolean.parseBoolean(tokens[1]);
         String name = tokens[2];
         String location = tokens[3];
         LocalDateTime startDateAndTime = Parser.parseDate(tokens[4]);
         LocalDateTime endDateAndTime = Parser.parseDate(tokens[5]);
-        boolean isRepeat = Boolean.parseBoolean(tokens[6]);
-        int numOfPeriod = Integer.parseInt(tokens[7]);
-        String typeOfPeriod = tokens[8];
-        int periodCounter = Integer.parseInt(tokens[9]);
-        LocalDateTime originalDateAndTime = Parser.parseDate(tokens[10]);
-        String comments = tokens[11];
-        assert tokens.length == 12;
+        int numOfPeriod = Integer.parseInt(tokens[6]);
+        String typeOfPeriod = tokens[7];
+        int periodCounter = Integer.parseInt(tokens[8]);
+        LocalDateTime originalDateAndTime = Parser.parseDate(tokens[9]);
+        String comments = tokens[10];
+        assert tokens.length == 11;
         RepeatEvent repeatEvent = new RepeatEvent(name, location, startDateAndTime, endDateAndTime,
                 comments, numOfPeriod, typeOfPeriod, originalDateAndTime, periodCounter);
         if (isDone) {
