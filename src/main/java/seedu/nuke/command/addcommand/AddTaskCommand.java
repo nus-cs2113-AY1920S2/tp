@@ -35,7 +35,7 @@ import static seedu.nuke.util.Message.messageAddTaskSuccess;
 public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_WORD = "addt";
     public static final String FORMAT = COMMAND_WORD
-            + " <task description> -m <module code> -c <category name> -d <deadline> -p <priority>";
+            + " <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)"

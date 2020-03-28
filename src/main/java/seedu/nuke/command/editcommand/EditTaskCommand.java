@@ -35,8 +35,8 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
 public class EditTaskCommand extends EditCommand {
     public static final String COMMAND_WORD = "edt";
     public static final String FORMAT = COMMAND_WORD
-            + " <old task description> -m <module code> -c <category name>"
-            + " -t <new task description> -d <new deadline> -p <new priority>";
+            + " <task description> -m <module code> -c <category name>"
+            + " [ -t <new task description> -d <new deadline> -p <new priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
             + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"

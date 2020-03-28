@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.nuke.gui.controller.MainController">
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.nuke.gui.controller.MainController">
     <children>
         <MenuBar>
             <menus>
@@ -166,9 +166,22 @@
                         <VBox prefHeight="463.0" prefWidth="360.0" HBox.hgrow="ALWAYS">
                             <children>
                         <VBox fx:id="consoleBox" minHeight="65.0" prefHeight="0.0" prefWidth="935.0" />
+                        <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="directoryPathLabel" alignment="CENTER_RIGHT" minHeight="30.0" prefHeight="30.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Consolas" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
                                 <ScrollPane fx:id="consoleScreenScrollPane" fitToWidth="true" prefHeight="509.0" prefWidth="935.0" style="-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                                     <content>
-                                        <TextFlow fx:id="consoleScreen" lineSpacing="1.0" prefHeight="456.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3; -fx-background-color: white;">
+                                        <TextFlow fx:id="consoleScreen" lineSpacing="1.0" prefHeight="520.0" prefWidth="933.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3; -fx-background-color: white;">
                                             <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </padding>
@@ -178,7 +191,7 @@
                                         </TextFlow>
                                     </content>
                                 </ScrollPane>
-                                <TextField fx:id="console" onAction="#submitInput" onKeyTyped="#onEnterKey" prefHeight="37.0" prefWidth="935.0" promptText="Enter input..." VBox.vgrow="SOMETIMES">
+                                <TextField fx:id="spareConsole" onAction="#submitInput" onKeyTyped="#onKeyType" prefHeight="37.0" prefWidth="935.0" promptText="Enter input..." VBox.vgrow="SOMETIMES">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>

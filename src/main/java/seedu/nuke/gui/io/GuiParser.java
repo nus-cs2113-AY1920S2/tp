@@ -3,6 +3,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.ExitCommand;
+import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
@@ -27,7 +28,6 @@ import seedu.nuke.util.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -46,7 +46,7 @@ import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_TASK_FORMAT;
 import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_CATEGORY_FORMAT;
 import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_MODULE_FORMAT;
 import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_TASK_FORMAT;
-import static seedu.nuke.gui.ui.TextUI.createText;
+import static seedu.nuke.gui.util.TextUtil.createText;
 
 
 public class GuiParser {
@@ -73,11 +73,11 @@ public class GuiParser {
     private static final String ALL_GROUP = "all";
     private static final String INVALID_GROUP = "invalid";
 
-    private AutoCompleteTextField textField;
+    private AutoCompleteTextField console;
     private TextFlow highlightedInput;
 
-    public GuiParser(AutoCompleteTextField textField) {
-        this.textField = textField;
+    public GuiParser(AutoCompleteTextField console) {
+        this.console = console;
         this.highlightedInput = new TextFlow();
     }
 
@@ -117,9 +117,9 @@ public class GuiParser {
 
         populateSuggestions(commandWord, COMMAND_WORDS, startIndexOfCommandWord, endIndexOfCommandWord, NONE);
 
-        if (textField.getCaretPosition() < startIndexOfCommandWord
-                || textField.getCaretPosition() > endIndexOfCommandWord) {
-            textField.getEntriesPopup().hide();
+        if (console.getCaretPosition() < startIndexOfCommandWord
+                || console.getCaretPosition() > endIndexOfCommandWord) {
+            console.getEntriesPopup().hide();
         }
 
         highlightInput(commandWord, rawCommandWord, parameters, endIndexOfCommandWord, COMMAND_WORDS, true);
@@ -128,7 +128,7 @@ public class GuiParser {
     }
 
     private void smartParseParameters(Matcher matcher) throws ParseFailureException {
-        String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase();
+        String commandWord = matcher.group(COMMAND_WORD_GROUP).trim().toLowerCase();
         String parameters = matcher.group(PARAMETERS_GROUP);
         final int startIndexOfParameters = matcher.start(PARAMETERS_GROUP);
 
@@ -159,11 +159,7 @@ public class GuiParser {
         case ListTaskCommand.COMMAND_WORD:
             smartParseDeleteAndListTaskCommand(parameters, startIndexOfParameters);
             break;
-
-
-        //case ListAllTasksDeadlineCommand.COMMAND_WORD:
-        //    return new ListAllTasksDeadlineCommand();
-        //
+            
         case EditModuleCommand.COMMAND_WORD:
             smartParseEditModuleCommand(parameters, startIndexOfParameters);
             break;
@@ -180,12 +176,6 @@ public class GuiParser {
             smartParseChangeDirectoryCommand(parameters, startIndexOfParameters);
             break;
 
-        //case HelpCommand.COMMAND_WORD:
-        //    return new HelpCommand();
-        //
-        case ExitCommand.COMMAND_WORD:
-            break;
-
         default:
             break;
         }
@@ -195,15 +185,15 @@ public class GuiParser {
     private void populateCommandWordSuggestions(String commandWord, String parameters, int startIndex, int endIndex) {
         if (parameters.isEmpty()) {
             // Add the list of command words as possible suggestions
-            textField.getEntries().clear();
-            textField.getEntries().addAll(COMMAND_WORDS);
+            console.getEntries().clear();
+            console.getEntries().addAll(COMMAND_WORDS);
         } else {
             // Hide current suggestions
-            textField.getEntries().clear();
-            textField.getEntriesPopup().hide();
+            console.getEntries().clear();
+            console.getEntriesPopup().hide();
         }
-        textField.setEnteredText(commandWord, startIndex, endIndex);
-        textField.displaySuggestions();
+        console.setEnteredText(commandWord, startIndex, endIndex);
+        console.displaySuggestions();
     }
 
     private void smartParseChangeDirectoryCommand(String parameters, int startIndex) {
@@ -273,8 +263,8 @@ public class GuiParser {
         ArrayList<String> suggestedModules = generateSuggestedNewModules();
         populateSuggestions(moduleCode.trim(), suggestedModules, startIndexOfModule, endIndexOfModule, NONE);
 
-        if (textField.getCaretPosition() > endIndexOfModule) {
-            textField.getEntriesPopup().hide();
+        if (console.getCaretPosition() > endIndexOfModule) {
+            console.getEntriesPopup().hide();
         }
 
         highlightInput(moduleCode.trim().toUpperCase(), moduleCode, NONE, endIndexOfModule,
@@ -531,8 +521,8 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (textField.getCaretPosition() < startIndexOfCategory || textField.getCaretPosition() > endIndexOfCategory) {
-            textField.getEntriesPopup().hide();
+        if (console.getCaretPosition() < startIndexOfCategory || console.getCaretPosition() > endIndexOfCategory) {
+            console.getEntriesPopup().hide();
         }
 
         highlightInput(categoryName, rawCategoryName, parametersAfter, endIndexOfCategory,
@@ -565,8 +555,8 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (textField.getCaretPosition() < startIndexOfTask || textField.getCaretPosition() > endIndexOfTask) {
-            textField.getEntriesPopup().hide();
+        if (console.getCaretPosition() < startIndexOfTask || console.getCaretPosition() > endIndexOfTask) {
+            console.getEntriesPopup().hide();
         }
 
         highlightInput(taskDescription, rawTaskDescription, parametersAfter, endIndexOfTask, suggestedTasks, false);
@@ -643,8 +633,8 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (textField.getCaretPosition() < startIndexOfCategory || textField.getCaretPosition() > endIndexOfCategory) {
-            textField.getEntriesPopup().hide();
+        if (console.getCaretPosition() < startIndexOfCategory || console.getCaretPosition() > endIndexOfCategory) {
+            console.getEntriesPopup().hide();
         }
 
         highlightInput(categoryName, rawCategoryName, parametersAfter, endIndexOfCategory,
@@ -667,8 +657,8 @@ public class GuiParser {
         ArrayList<String> suggestedModules = generateSuggestedModules();
         populateSuggestions(moduleCode, suggestedModules, startIndexOfModule, endIndexOfModule, NONE);
 
-        if (textField.getCaretPosition() < startIndexOfModule || textField.getCaretPosition() > endIndexOfModule) {
-            textField.getEntriesPopup().hide();
+        if (console.getCaretPosition() < startIndexOfModule || console.getCaretPosition() > endIndexOfModule) {
+            console.getEntriesPopup().hide();
         }
 
         highlightInput(moduleCode, rawModuleCode, parametersAfter, endIndexOfModule,
@@ -697,8 +687,8 @@ public class GuiParser {
         ArrayList<String> suggestedModules = generateSuggestedModules();
         populateSuggestions(moduleCode, suggestedModules, startIndexOfModule, endIndexOfModule, MODULE_CODE_PREFIX);
 
-        if (textField.getCaretPosition() < startIndexOfModule || textField.getCaretPosition() > endIndexOfModule) {
-            textField.getEntriesPopup().hide();
+        if (console.getCaretPosition() < startIndexOfModule || console.getCaretPosition() > endIndexOfModule) {
+            console.getEntriesPopup().hide();
         }
 
         highlightInput(moduleCode, rawModuleCode, parametersAfter, endIndexOfModule, suggestedModules, isExact);
@@ -768,7 +758,7 @@ public class GuiParser {
         if (isMatchingWord(parameter, suggestions)) {
             // Completely matches a suggestion
             highlightedInput.getChildren().add(createText(rawParameter, Color.GREEN));
-        } else if (textField.getCaretPosition() > endIndex) {
+        } else if (console.getCaretPosition() > endIndex) {
             // Partially matches a suggestion but not typing
             if (isExact) {
                 highlightedInput.getChildren().addAll(
@@ -850,10 +840,10 @@ public class GuiParser {
 
     private void populateSuggestions(String keyword, ArrayList<String> suggestions,
                                      int startIndex, int endIndex, String prefix) {
-        textField.getEntries().clear();
-        textField.getEntries().addAll(suggestions);
-        textField.setEnteredText(keyword, startIndex, endIndex, prefix);
-        textField.displaySuggestions();
+        console.getEntries().clear();
+        console.getEntries().addAll(suggestions);
+        console.setEnteredText(keyword, startIndex, endIndex, prefix);
+        console.displaySuggestions();
     }
 
     private boolean isPartOfWord(String givenWord, ArrayList<String> acceptedWords) {

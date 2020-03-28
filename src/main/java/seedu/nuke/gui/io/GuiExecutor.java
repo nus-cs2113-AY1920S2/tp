@@ -1,6 +1,5 @@
 package seedu.nuke.gui.io;
 
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -8,13 +7,11 @@ import javafx.stage.Stage;
 import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
-import seedu.nuke.command.promptcommand.PromptType;
-import seedu.nuke.common.DataType;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
-import seedu.nuke.gui.ui.TextUI;
+import seedu.nuke.gui.util.TextUtil;
 import seedu.nuke.util.ListCreator;
 
 import java.util.ArrayList;
@@ -39,7 +36,7 @@ public class GuiExecutor {
     }
 
     private void displayResult(CommandResult result) {
-        Text feedbackToUser = TextUI.createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.BLUE);
+        Text feedbackToUser = TextUtil.createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.BLUE);
         consoleScreen.getChildren().add(feedbackToUser);
 
         DirectoryLevel dataType = result.getDirectoryLevel();
@@ -70,7 +67,7 @@ public class GuiExecutor {
             return;
         }
 
-        Text taskListTable = TextUI.createText(String.format("%s\n\n", listTableToShow), Color.BROWN);
+        Text taskListTable = TextUtil.createText(String.format("%s\n\n", listTableToShow), Color.BROWN);
         consoleScreen.getChildren().add(taskListTable);
     }
 }

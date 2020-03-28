@@ -30,7 +30,7 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_CATEGORY_SUCCESS;
 public class EditCategoryCommand extends EditCommand {
     public static final String COMMAND_WORD = "edc";
     public static final String FORMAT = COMMAND_WORD
-            + " <new category name> -m <module code> -c <old category name> -p <new priority>";
+            + " <category name> -m <module code> [ -c <new category name> -p <new priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
             + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"

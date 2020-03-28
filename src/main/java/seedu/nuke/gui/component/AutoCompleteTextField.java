@@ -1,5 +1,6 @@
 package seedu.nuke.gui.component;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
@@ -27,9 +28,7 @@ public class AutoCompleteTextField extends TextField {
         super();
         this.entries = new TreeSet<>();
         this.entriesPopup = new ContextMenu();
-        entriesPopup.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; "
-                + "-fx-border-color: lightgrey; -fx-border-radius: 3");
-        // setListener();
+        customiseStyle();
     }
 
     public void setEnteredText(String enteredText, int startIndex, int endIndex, String prefix) {
@@ -86,7 +85,7 @@ public class AutoCompleteTextField extends TextField {
             // Label with graphic (text flow) to highlight found subtext in suggestions
             Label entryLabel = new Label();
             entryLabel.setGraphic(buildTextFlow(result, searchResult));
-            entryLabel.setPrefHeight(12);  //don't sure why it's changed with "graphic"
+            entryLabel.setPrefHeight(12);
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             menuItems.add(item);
 
@@ -126,6 +125,17 @@ public class AutoCompleteTextField extends TextField {
         textFilter.setFill(Color.GREEN);
         textFilter.setStyle("-fx-font-weight: bold");
         return new TextFlow(textBefore, textFilter, textAfter);
+    }
+
+    private void customiseStyle() {
+        this.setMinHeight(30);
+        this.setPadding(new Insets(5));
+        this.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-background-color: white;"
+                + "-fx-border-color: lightgrey; -fx-border-radius: 3");
+        this.setPromptText("Enter here!");
+
+        entriesPopup.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; "
+                + "-fx-border-color: lightgrey; -fx-border-radius: 3");
     }
 }
 

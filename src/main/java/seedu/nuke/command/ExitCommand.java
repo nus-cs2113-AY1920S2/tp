@@ -4,6 +4,7 @@ import static seedu.nuke.util.Message.MESSAGE_EXIT;
 
 public class ExitCommand extends TaskCommand {
     public static final String COMMAND_WORD = "bye";
+    public static final String FORMAT = COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exit the program.\n    Example: " + COMMAND_WORD;
 
 

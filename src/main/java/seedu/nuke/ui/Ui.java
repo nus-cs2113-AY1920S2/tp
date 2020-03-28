@@ -38,9 +38,9 @@ public class Ui {
     public Ui() {
         in = new Scanner(System.in);
         out = new PrintStream(System.out);
-        commands.add(AddModuleCommand.MESSAGE_USAGE);
+        commands.add(AddModuleCommand.FORMAT);
         commands.add(AddTaskCommand.MESSAGE_USAGE);
-        commands.add(ChangeDirectoryCommand.MESSAGE_USAGE);
+        commands.add(ChangeDirectoryCommand.FORMAT);
         commands.add(ListAllTasksDeadlineCommand.MESSAGE_USAGE);
         commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
         commands.add(DeleteModuleCommand.MESSAGE_USAGE);

@@ -25,7 +25,7 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_MODULE_SUCCESS;
  */
 public class EditModuleCommand extends EditCommand {
     public static final String COMMAND_WORD = "edm";
-    public static final String FORMAT = COMMAND_WORD + " <new module code> -m <old module code>";
+    public static final String FORMAT = COMMAND_WORD + " <module code> -m <new module code>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
             + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
