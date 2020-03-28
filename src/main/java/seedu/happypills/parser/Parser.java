@@ -155,7 +155,7 @@ public class Parser {
                 System.out.println("    Please input [y] for yes or [n] for no");
             }
         }
-        return new AddCommand(parseInput[0].trim(), parseInput[1].trim(), Integer.parseInt(parseInput[2].trim()),
+        return new AddCommand(parseInput[0].trim(), parseInput[1].toUpperCase().trim(), Integer.parseInt(parseInput[2].trim()),
                 parseInput[3].trim(), parseInput[4].trim(), parseInput[5].trim(), parseInput[6].trim());
     }
 
@@ -191,7 +191,7 @@ public class Parser {
     public static String promptConformation(String[] parseInput) {
         String text = TextUi.DIVIDER
                 + "\n        Name : " + parseInput[0].trim() + "\n"
-                + "        NRIC : " + parseInput[1].trim() + "\n"
+                + "        NRIC : " + parseInput[1].toUpperCase().trim() + "\n"
                 + "        Phone Number : " + parseInput[2].trim() + "\n"
                 + "        DOB : " + parseInput[3].trim() + "\n"
                 + "        Blood Type : " + parseInput[4].trim() + "\n"
