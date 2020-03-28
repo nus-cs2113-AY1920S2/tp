@@ -42,7 +42,7 @@ help
 >
 >     ===================================================
 >      HappyPills Commands:
->        add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+>        add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /r[REMARKS]
 >        add /a[ALLERGIES]
 >        add /r[REMARKS]
 >        list 
@@ -84,30 +84,55 @@ list
 >
 >         ===================================================
 >         Alice | S8888888A 
->         Bob | S9999999Z   
+>         Bob   | S9999999Z   
 >         ===================================================    
 
 ### Add
-Add a new patient with the specified parameters. User can also add allergies or remarks to existing users.
+Add a new patient with the specified parameters in any order.
+Any missing field will be prompt.
+User will require to confirm the input before add the new patient.
+
 ##### Usage example:
 *To add a new user*   
 ```
 add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
 ```
 ###### Example:
-- `add /icS9999999Z /nBob /p999 /d12-11-98 /bA+`
+- `add /ic S9999999Z /n Bob /d 12-11-98 /b A+`
+>***Expected output:***
+>    
+>       =====================================================
+>       Please input your missing detail listed below
+>       /p[PHONE] only number
+>       =====================================================
+>
+- `/p 999` to add missing field.
 > ***Expected output:***
-
-*To add allergies or remarks to existing user*   
-```
-add /ic[NRIC] /a[ALLERGIES]   
-add /ic[NRIC] /r[REMARKS]
-```
-###### Example:
-- `add /icS9999999Z /aSchool`
-- `add /icS9999999Z /rHad contact with COVID-19 Case200`
+>
+>     =====================================================
+>         Name : Bob
+>         NRIC : S9999999Z
+>         Phone Number : 999
+>         DOB : 12-11-98
+>         Blood Type : A+
+>         Allergies : NIL
+>         Remarks : NIL
+>                                                    (Y/N)?
+>     =====================================================
+- Type `y` to confirm.
 > ***Expected output:***
-
+>    
+>       =====================================================
+>       Got it! I've added this patient:
+>         Name : Bob
+>         NRIC : S9999999Z
+>         Phone Number : 999
+>         DOB : 12-11-98
+>         Blood Type : A+
+>         Allergies : NIL
+>         Remarks : NIL
+>       =====================================================
+>
 ### Get
 Retrieve details of the patient with the specified NRIC
 ##### Usage example:
@@ -162,18 +187,9 @@ exit
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
 
-**A**: Well, write the User Guide in active voice anyway.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add to-do `todo n/TODO_NAME d/DEADLINE`
 
 
-Useful links:
-* [User Guide](UserGuide.md)
-* [Developer Guide](UserGuide.md)
-* [About Us](AboutUs.md)
