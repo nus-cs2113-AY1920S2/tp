@@ -27,11 +27,29 @@ public class DateTime {
     }
 
     /**
+     * Returns the <code>date</code>.
+     *
+     * @return The <code>date</code>
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Returns the <code>time</code>.
+     *
+     * @return The <code>time</code>
+     */
+    public LocalTime getTime() {
+        return time;
+    }
+
+    /**
      * Returns the <code>date</code> as a string with the format {@value DATE_FORMAT}.
      *
      * @return The <code>date</code> in a string format
      */
-    public String getDate() {
+    public String getDateString() {
         return date.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
@@ -40,7 +58,7 @@ public class DateTime {
      *
      * @return The <code>time</code> in a string format
      */
-    public String getTime() {
+    public String getTimeString() {
         return time.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
     }
 
@@ -129,7 +147,7 @@ public class DateTime {
      *
      * @return <code>TRUE</code> if the <b>Date Time</b> has expired, and <code>FALSE</code> otherwise
      */
-    private boolean isDue() {
+    public boolean isDue() {
         return LocalDate.now().isAfter(date)
                 || (hasTime() && isToday() && LocalTime.now().isAfter(time));
     }
@@ -145,7 +163,7 @@ public class DateTime {
         } else if (isTomorrow()) {
             return "tomorrow";
         } else {
-            return getDate();
+            return getDateString();
         }
     }
 
@@ -156,7 +174,7 @@ public class DateTime {
      * @return The <code>time</code> in a string format.
      */
     private String timeToString() {
-        return hasTime() ? getTime() : "";
+        return hasTime() ? getTimeString() : "";
     }
 
     /**
@@ -179,7 +197,7 @@ public class DateTime {
      */
     @Override
     public String toString() {
-        return getDate() + " " + timeToString();
+        return getDateString() + " " + timeToString();
     }
 
 }

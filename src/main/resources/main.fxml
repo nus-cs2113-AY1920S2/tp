@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -151,13 +150,12 @@
                 </VBox>
                 <HBox prefHeight="463.0" prefWidth="600.0" spacing="5.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="286.0" prefWidth="250.0" spacing="2.0" style="-fx-border-color: lightgrey; -fx-border-radius: 5;" HBox.hgrow="SOMETIMES">
+                        <VBox fx:id="directoryBox" alignment="TOP_CENTER" prefHeight="286.0" prefWidth="250.0" spacing="2.0" style="-fx-border-color: lightgrey; -fx-border-radius: 5;" HBox.hgrow="SOMETIMES">
                             <children>
-                                <Label alignment="TOP_CENTER" text="Module List">
+                                <Label alignment="TOP_CENTER" text="Directory List">
                                     <font>
-                                        <Font name="System Bold" size="12.0" />
+                                        <Font name="Copperplate Gothic Bold" size="14.0" />
                                     </font></Label>
-                                <TreeView prefHeight="473.0" prefWidth="231.0" style="-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-border-color: lightgrey; -fx-border-radius: 3;" VBox.vgrow="ALWAYS" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

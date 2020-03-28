@@ -1,5 +1,6 @@
 package seedu.nuke.gui.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.gui.component.AutoCompleteTextField;
+import seedu.nuke.gui.component.DirectoryTree;
 import seedu.nuke.gui.component.SyntaxConsole;
 import seedu.nuke.gui.io.GuiExecutor;
 import seedu.nuke.gui.io.GuiParser;
@@ -40,9 +42,14 @@ public class MainController implements Initializable {
     @FXML
     private Label directoryPathLabel;
 
+    @FXML
+    private VBox directoryBox;
+
     private SyntaxConsole consoleMask;
 
     private AutoCompleteTextField console;
+
+    private DirectoryTree directoryTree;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,11 +57,13 @@ public class MainController implements Initializable {
         consoleScreenScrollPane.vvalueProperty().bind(consoleScreen.heightProperty());
         consoleScreen.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt");
 
+        directoryTree = new DirectoryTree();
         consoleMask = new SyntaxConsole();
         console = new AutoCompleteTextField();
         directoryPathLabel.setTextFill(Color.BLACK);
 
-        console.addEventFilter(KeyEvent.ANY, this::onKeyType);
+        directoryBox.getChildren().add(directoryTree);
+        directoryTree.prefHeightProperty().bind(directoryBox.heightProperty());
 
         console.textProperty().addListener((observable, oldValue, newValue) -> {
             String currentUserInput = console.getText();
@@ -62,13 +71,20 @@ public class MainController implements Initializable {
             consoleMask.getChildren().add(new GuiParser(console).smartParse(currentUserInput));
         });
 
+        console.addEventFilter(KeyEvent.ANY, this::onKeyType);
         console.setOnAction(this::onSubmitInput);
 
         consoleBox.getChildren().addAll(consoleMask, console);
 
         refreshScene();
         welcomeUser();
+
+        // Set focus on console on start
+        Platform.runLater(() -> {
+          console.requestFocus();
+        });
     }
+
 
     private void welcomeUser() {
         Text logo = TextUtil.createText(MESSAGE_LOGO, Color.MAGENTA);
@@ -116,6 +132,7 @@ public class MainController implements Initializable {
 
     private void refreshScene() {
         console.clear();
+        directoryTree.refresh();
         directoryPathLabel.setText(DirectoryTraverser.getFullPath());
     }
 }
