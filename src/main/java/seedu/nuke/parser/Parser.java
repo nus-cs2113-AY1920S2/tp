@@ -8,6 +8,7 @@ import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddTagCommand;
+import seedu.nuke.command.editcommand.MarkAsDoneCommand;
 import seedu.nuke.command.filtercommand.FilterCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
@@ -133,6 +134,9 @@ public class Parser {
 
             case EditTaskCommand.COMMAND_WORD:
                 return prepareEditTaskCommand(parameters);
+
+            case MarkAsDoneCommand.COMMAND_WORD:
+                return prepareMarkAsDoneCommand(parameters);
 
             //        case ListCommand.COMMAND_WORD:
             //            return prepareListCommand(parameters);
@@ -562,6 +566,29 @@ public class Parser {
         } catch (NumberFormatException | InvalidPriorityException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
         }
+    }
+
+    /**
+     * Prepares the command to mark a task as done.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to edit a task
+     */
+    private Command prepareMarkAsDoneCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = MarkAsDoneCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_CODE_PREFIX, CATEGORY_NAME_PREFIX, TASK_DESCRIPTION_PREFIX);
+
+        String moduleCode = matcher.group("moduleCode")
+                .replace(MODULE_CODE_PREFIX, "").trim();
+        String categoryName = matcher.group("categoryName")
+                .replace(CATEGORY_NAME_PREFIX, "").trim();
+        String taskDescription = matcher.group("taskDescription")
+                .replace(TASK_DESCRIPTION_PREFIX, "").trim();
+
+        return new MarkAsDoneCommand(taskDescription, moduleCode, categoryName);
     }
 
     private boolean isMissingCompulsoryParameters(Pattern[] formats, Matcher[] matchers, String parameters) {
