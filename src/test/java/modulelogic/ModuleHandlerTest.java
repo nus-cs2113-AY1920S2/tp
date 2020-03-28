@@ -2,8 +2,7 @@ package modulelogic;
 
 import org.junit.jupiter.api.Test;
 
-import static common.Messages.MESSAGE_MODULECODE_IN_BLACKLIST;
-import static common.Messages.MESSAGE_EMPTY_MODULE;
+import static common.Messages.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModuleHandlerTest {
@@ -20,8 +19,7 @@ public class ModuleHandlerTest {
     public void generateModule_FormattedAndCorrectModuleCode() {
         myModuleHandler = new ModuleHandler("CG2023");
         String expected = myModuleHandler.generateModule();
-        String actual = "Success";
-        assertEquals(expected, actual);
+        assertEquals(expected, MESSAGE_RETURN_SUCCESS);
     }
 
     @Test
