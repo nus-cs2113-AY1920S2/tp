@@ -1,14 +1,18 @@
 package modulelogic;
 
-import static common.Messages.MESSAGE_INVALID_NUDMOSLINK;
-
-
 import exception.InvalidUrlException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static common.Messages.MESSAGE_INVALID_NUDMOSLINK;
+
+/**
+ * This class contains essential methods to filter out the modules and the timeslots the user
+ * is taking from the NUSMOD link.
+ */
 public class TimetableParser {
     String nusmodsLink;
     String semester;
@@ -24,7 +28,7 @@ public class TimetableParser {
     }
 
 
-    //main method for easy in-class behaviour testing
+    //static main() method for easy in-class behaviour testing
     public static void main(String[] args) throws InvalidUrlException {
         //observe behaviour by substituting field in BackendAPI.LessonsGenerator() with other NUSMODS link
         TimetableParser myTimetableParser = new TimetableParser("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
@@ -51,8 +55,8 @@ public class TimetableParser {
     }
 
     /**
-     * Parses website link into module information using hashMap as data structure.
-     * Also stores module information collected to be used by LessonGenerator class.
+     * Filter the time-slots and module from weblink and returns a hashMap data structure,
+     * and stores modules user is taking(modulesArr) to be used by LessonGenerator class.
      *
      * @param unparsedModules Raw website link with module information.
      * @return  Returns Key-value pair. Key = "moduleCode"-Value = ArrayList of "LessonType:Class number"

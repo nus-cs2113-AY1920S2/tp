@@ -1,10 +1,11 @@
 package modulelogic;
 
-import exception.InvalidUrlException;
-import exception.UnformattedModuleException;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import common.LessonType;
+import exception.InvalidUrlException;
+import exception.UnformattedModuleException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +13,10 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * myLessonDetails contains an ArrayList of lessons in the form: startTime, endTime, day, weeks(delimited by ':').
+ * This class retrieves information from both TimetableParser and ModuleHandler classes to generate a data structure
+ * containing all the modules a user is taking and is to be used by the schedulelogic component.
+ * The data structure used is an ArrayList<String[4]> called myLessonDetails and
+ * it contains an ArrayList of lessons in the form: startTime, endTime, day, weeks(delimited by ':').
  */
 public class LessonsGenerator {
     private TimetableParser myTimetableParser;
@@ -24,7 +28,7 @@ public class LessonsGenerator {
     }
 
 
-    //main method for easy in-class behaviour testing
+    //static main method for easy in-class behaviour testing
     public static void main(String[] args) throws InvalidUrlException, IOException, UnformattedModuleException {
         //observe behaviour by substituting field in BackendAPI.LessonsGenerator() with other NUSMODS link
         LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
@@ -39,6 +43,11 @@ public class LessonsGenerator {
     }
 
 
+    /**
+     * Generates user's blocked time-slots based on his/her Nusmods timetable.
+     * @throws FileNotFoundException throws error if file UnformattedModules doesn't exist in source
+     * @throws UnformattedModuleException throws error if module requested is in UnformattedModules.
+     */
     public void generate() throws FileNotFoundException, UnformattedModuleException {
         myTimetableParser.parse();
         //Key-value pair: Key = module code, Value = LessonType:Class number(delimited by :)
@@ -49,7 +58,7 @@ public class LessonsGenerator {
         for (String module : userModules) {
             ModuleHandler myModuleHandler = new ModuleHandler(module);
             myModuleHandler.generateModule();
-            // the index of the following ArrayList matches - classNumber[0] and lessonType[0] is the same lesson,
+            // The index of the following ArrayList matches - classNumber[0] and lessonType[0] is the same lesson,
             // and it's startTime, endTime = startTime[0], endTime[0]
             ArrayList<String> classNumber = myModuleHandler.getClassNumber().get(semester);
             ArrayList<String> lessonType = myModuleHandler.getLessonType().get(semester);
@@ -57,17 +66,14 @@ public class LessonsGenerator {
             ArrayList<String> endTime = myModuleHandler.getEndTime().get(semester);
             ArrayList<String> day = myModuleHandler.getDay().get(semester);
             ArrayList<ArrayList<String>> weeks = myModuleHandler.getWeeks().get(semester);
-
             ArrayList<String> delimitedWeeks = delimitWeeks(weeks);
 
-            // Putting lesson information of a module into Key-Value(Array of fixed size 4) pair:
-            // ("lessonType:ClassNo") - (startTime endTime day weeks)
             Multimap<String, String[]> allLessonMap = ArrayListMultimap.create();
             for (int i = 0; i < classNumber.size(); i++) {
                 String lessonTypeLongFormat = lessonType.get(i);
                 String lessonTypeShortFormat = LessonType.lessonType.get(lessonTypeLongFormat);
                 allLessonMap.put(lessonTypeShortFormat + ":"
-                    + classNumber.get(i), new String[] {startTime.get(i), endTime.get(i), day.get(i), delimitedWeeks.get(i)});
+                        + classNumber.get(i), new String[]{startTime.get(i), endTime.get(i), day.get(i), delimitedWeeks.get(i)});
             }
             ArrayList<String> userModuleProfile = userLessons.get(module);
             lessonsChecker(allLessonMap, userModuleProfile);
@@ -75,15 +81,14 @@ public class LessonsGenerator {
     }
 
     /**
-     * Checks if lessonType:classNo from userModuleProfile matches Multimap's info and if it does,
-     * adds a matched value pair containing an array(size 4) of startTime, endTime, day and weeks into mylessonsDetails.
-     * @param allLessonMap All lesson information with key=lessonType:classNo.
-     * @param userModuleProfile ArrayList of lessonType:classNo that user has taken for a particular module.
+     * Checks if "lessonType:classNo" from userModuleProfile matches Multimap's key. If it does,
+     * add the matched value pair containing an array(size 4) of startTime, endTime, day and weeks into mylessonsDetails.
+     *
+     * @param allLessonMap      All lesson information where Key equals "lessonType:classNo".
+     * @param userModuleProfile ArrayList of "lessonType:classNo" that user has taken for a particular module,
+     *                          used to do key matching.
      */
     private void lessonsChecker(Multimap<String, String[]> allLessonMap, ArrayList<String> userModuleProfile) {
-        //System.out.println("USER " + userModuleProfile);
-        //System.out.println("ALL: ");
-
         for (String s : userModuleProfile) {
             if (allLessonMap.containsKey(s)) {
                 Collection<String[]> values = allLessonMap.get(s);
@@ -96,10 +101,11 @@ public class LessonsGenerator {
     }
 
     /**
-     * Refactor weeks into 1 single ArrayList from a 2d ArrayList delimited with ':'.
+     * Refactor "weeks" data structure into 1 single ArrayList, originally a 2D ArrayList.
      *
-     * @param weeks 2D ArrayList weeks: For eg, weeks.get(0) = weeks at classNo 0 = [1, 2, 3, 6, 13].
-     * @return Weeks Delimited weeks indexed by each lessons.
+     * @param weeks 2D ArrayList weeks: For eg, weeks.get(0) = weeks at classNo 0 = array of [1, 2, 3, 6, 13].
+     * @return Delimited weeks indexed by each lessons,
+     * For eg, weeks.get(0) is now a String = "1:2:3:6:13"
      */
     private ArrayList<String> delimitWeeks(ArrayList<ArrayList<String>> weeks) {
         ArrayList<String> delimitedWeeks = new ArrayList<>();

@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Returns one school module in JSONArray format.
+ * Handles the HTTP requests from NUSMOD API server.
  * Data grabbed from NUSMODS API: https://api.nusmods.com/v2/2019-2020/modules/MODULECODE.json
  */
 public class ModuleApiParser {
@@ -22,6 +22,10 @@ public class ModuleApiParser {
         apiUrl = templateUrl + moduleName + ".json";
     }
 
+    /**
+     * @return One NUS module in JSONArray format.
+     * @throws IOException Throws error when the API SERVER returns an invalid json.
+     */
     public JsonArray parse() throws IOException {
         URL url = new URL(apiUrl);
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
