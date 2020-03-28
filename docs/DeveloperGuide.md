@@ -85,7 +85,37 @@ The following sequence diagram shows how the `Add to Semester` operation works:
 
 #### `Mark as Done` feature
 
+#### Calculate CAP feature
 
+The Calculate CAP mechanism is executed by `CalculateCapCommand`.  
+`CalculateCapCommand` is extended from `Command` and this implementation calculates the CAP using completed 
+`SelectedModule` stored in `SemModulesList`.
+
+Given below is the behaviour of the Calculate CAP mechanism at each step:
+
+Step 1: 
+User launches the application. `SelectedModules` are added to `SemModuleList` through either of the following methods:
+1) Imported from `semesterList.csv` using `StorageSemesterList.load()`
+2) Added using `add id/ID s/SEMESTER mc/MODULE_CREDIT` command
+
+Step 2:
+User executes `CAP` command to view his own CAP. The `CAP` commands is parsed through `Parser`, which would then return 
+`CalculateCapCommand()`. `CalculateCapCommand.execute()` is then called.
+
+Step 3:
+`CalculateCapCommand.execute()` will call `CalculateCapCommand.calculateCap(SemesterList semesterList)`, which will
+calculate CAP by looking for all the completed `SelectedModules` stored within `SemModuleList`, which are stored within 
+`SemesterList`. It will then assign a `double` type ranging from 0.00 to 5.00 to `Person.totalCap`.
+
+Step 4:
+After the CAP is assigned to `Person.totalCap`, `Person.totalCap` is then called and formatted using `DecimalFormat` into a `String`
+with a pattern of `#.00`. `Ui.showcap(cap)` is called to display the user's cap using the formatted `String`.
+
+The following diagram shows how the Calculate CAP operation works:
+![Calculate CAP feature](https://github.com/bennychanya/tp/blob/master/CalculateCap.png?raw=true)
+
+
+#####
 
 
 
