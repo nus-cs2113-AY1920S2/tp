@@ -19,6 +19,10 @@ public class Event extends Task {
     protected boolean isRepeat;
     protected int numOfPeriod;
     protected String typeOfPeriod;
+    protected LocalDateTime originalDateAndTime;
+    protected int periodCounter;
+    protected LocalDateTime nextDateAndTime;
+
 
     /**
      * Event object constructor.
@@ -92,15 +96,25 @@ public class Event extends Task {
         return isRepeat;
     }
 
+    public LocalDateTime getNextDateTime() {
+        return nextDateAndTime;
+    }
+
+    public int getPeriodCounter() {
+        return periodCounter;
+    }
+
     /**
      * Set event as repeating event.
      * @param numOfPeriod number of periods before event repeats
      * @param typeOfPeriod type of period which event repeats - could be daily, weekly, monthly or yearly
      */
-    public void setRepeat(int numOfPeriod, String typeOfPeriod) {
+    public void setRepeat(int numOfPeriod, String typeOfPeriod, LocalDateTime originalDateAndTime, int periodCounter) {
         this.isRepeat = true;
         this.numOfPeriod = numOfPeriod;
         this.typeOfPeriod = typeOfPeriod;
+        this.originalDateAndTime = originalDateAndTime;
+        this.periodCounter = periodCounter;
     }
 
     /**
@@ -110,6 +124,8 @@ public class Event extends Task {
         this.isRepeat = false;
         this.numOfPeriod = 0;
         this.typeOfPeriod = null;
+        this.originalDateAndTime = null;
+        this.periodCounter = -1;
     }
 
     /**
@@ -142,11 +158,20 @@ public class Event extends Task {
      * @param numOfPeriod num of days before it recurs
      */
     private void updateDateByDays(int numOfPeriod) {
-        LocalDateTime currDateTime = LocalDateTime.now();
-        do {
-            startDateAndTime = startDateAndTime.plusDays(numOfPeriod);
-            endDateAndTime = endDateAndTime.plusDays(numOfPeriod);
-        } while (startDateAndTime.compareTo(currDateTime) < 0);
+        LocalDate currDate = LocalDate.now();
+        LocalDate startDate = startDateAndTime.toLocalDate();
+        while (startDate.compareTo(currDate) < 0) {
+            startDate = startDate.plusDays(numOfPeriod);
+            periodCounter += 1;
+        }
+        startDateAndTime = startDateAndTime.plusDays(periodCounter * numOfPeriod);
+        endDateAndTime = endDateAndTime.plusDays(periodCounter * numOfPeriod);
+
+        if (startDateAndTime.compareTo(LocalDateTime.now()) < 0) {
+            nextDateAndTime = startDateAndTime.plusDays(numOfPeriod);
+        } else {
+            nextDateAndTime = startDateAndTime;
+        }
     }
 
     /**
@@ -154,11 +179,20 @@ public class Event extends Task {
      * @param numOfPeriod num of months before it recurs
      */
     private void updateDateByMonth(int numOfPeriod) {
-        LocalDateTime currDateTime = LocalDateTime.now();
-        do {
-            startDateAndTime = startDateAndTime.plusMonths(numOfPeriod);
-            endDateAndTime = endDateAndTime.plusMonths(numOfPeriod);
-        } while (startDateAndTime.compareTo(currDateTime) < 0);
+        LocalDate currDate = LocalDate.now();
+        LocalDate startDate = startDateAndTime.toLocalDate();
+        while (startDate.compareTo(currDate) < 0) {
+            startDate = startDate.plusMonths(numOfPeriod);
+            periodCounter += 1;
+        }
+        startDateAndTime = startDateAndTime.plusMonths(periodCounter * numOfPeriod);
+        endDateAndTime = endDateAndTime.plusMonths(periodCounter * numOfPeriod);
+
+        if (startDateAndTime.compareTo(LocalDateTime.now()) <= 0) {
+            nextDateAndTime = startDateAndTime.plusMonths(numOfPeriod);
+        } else {
+            nextDateAndTime = startDateAndTime;
+        }
     }
 
     /**
@@ -166,16 +200,25 @@ public class Event extends Task {
      * @param numOfPeriod num of years before it recurs
      */
     private void updateDateByYear(int numOfPeriod) {
-        LocalDateTime currDateTime = LocalDateTime.now();
-        do {
-            startDateAndTime = startDateAndTime.plusYears(numOfPeriod);
-            endDateAndTime = endDateAndTime.plusYears(numOfPeriod);
-        } while (startDateAndTime.compareTo(currDateTime) < 0);
+        LocalDate currDate = LocalDate.now();
+        LocalDate startDate = startDateAndTime.toLocalDate();
+        while (startDate.compareTo(currDate) < 0) {
+            startDate = startDate.plusYears(numOfPeriod);
+            periodCounter += 1;
+        }
+        startDateAndTime = startDateAndTime.plusYears(periodCounter * numOfPeriod);
+        endDateAndTime = endDateAndTime.plusYears(periodCounter * numOfPeriod);
+
+        if (startDateAndTime.compareTo(LocalDateTime.now()) <= 0) {
+            nextDateAndTime = startDateAndTime.plusYears(numOfPeriod);
+        } else {
+            nextDateAndTime = startDateAndTime;
+        }
     }
 
     private String repeatToStringAndComment() {
         if (isRepeat) {
-            String repeatString = String.valueOf(numOfPeriod) + typeOfPeriod;
+            String repeatString = numOfPeriod + typeOfPeriod;
             return String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, repeatString);
         } else {
             return Messages.COMMENTS_INDENT;
@@ -208,8 +251,12 @@ public class Event extends Task {
         sj.add(startDateAndTime.format(Parser.INPUT_DATE_FORMAT));
         sj.add(endDateAndTime.format(Parser.INPUT_DATE_FORMAT));
         sj.add(isRepeat ? "true" : "false");
-        sj.add(Integer.toString(numOfPeriod));
-        sj.add(typeOfPeriod);
+        if (isRepeat) {
+            sj.add(Integer.toString(numOfPeriod));
+            sj.add(typeOfPeriod);
+            sj.add(Integer.toString(periodCounter));
+            sj.add(originalDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        }
         sj.add(comments);
         return sj.toString();
     }
@@ -232,13 +279,24 @@ public class Event extends Task {
         LocalDateTime startDateAndTime = Parser.parseDate(tokens[4]);
         LocalDateTime endDateAndTime = Parser.parseDate(tokens[5]);
         boolean isRepeat = Boolean.parseBoolean(tokens[6]);
-        int numOfPeriod = Integer.parseInt(tokens[7]);
-        String typeOfPeriod = tokens[8];
-        String comments = tokens[9];
-        assert tokens.length == 10;
-        Event event = new Event(name, location, startDateAndTime, endDateAndTime, comments);
+        int numOfPeriod;
+        String typeOfPeriod;
+        int periodCounter;
+        LocalDateTime originalDateAndTime;
+        String comments;
+        Event event;
         if (isRepeat) {
-            event.setRepeat(numOfPeriod, typeOfPeriod);
+            numOfPeriod = Integer.parseInt(tokens[7]);
+            typeOfPeriod = tokens[8];
+            periodCounter = Integer.parseInt(tokens[9]);
+            originalDateAndTime = Parser.parseDate(tokens[10]);
+            comments = tokens[11];
+            assert tokens.length == 12;
+            event = new Event(name, location, startDateAndTime, endDateAndTime, comments);
+            event.setRepeat(numOfPeriod, typeOfPeriod, originalDateAndTime, periodCounter);
+        } else {
+            comments = tokens[7];
+            event = new Event(name, location, startDateAndTime, endDateAndTime, comments);
         }
         if (isDone) {
             event.setDone();

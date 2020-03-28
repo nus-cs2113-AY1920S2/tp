@@ -82,7 +82,7 @@ public class RepeatCommand extends Command {
     }
 
     private CommandResult setRepeat(Event task) {
-        task.setRepeat(numOfPeriod, typeOfPeriod);
+        task.setRepeat(numOfPeriod, typeOfPeriod, task.getDateAndTime(), 0);
         return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, task.getName(),
                 numOfPeriod == 1 ? "" : numOfPeriod + " ", iconToString(typeOfPeriod),
                 numOfPeriod <= 1 ? "" : "s"));

@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class RepeatCommandTest {
     private static Event testEvent;
@@ -27,7 +26,7 @@ public class RepeatCommandTest {
         testTaskList = new TaskList();
         testUi = new Ui();
 
-        testEvent = new Event("Daily Work", "CS2113T", Parser.parseDate("20/03/20 0000"),
+        testEvent = new Event("Daily Work", "CS2113T", Parser.parseDate("31/01/20 0800"),
                 Parser.parseDate("20/03/20 1200"), "testing");
         testTaskList.addTask(testEvent);
     }
@@ -36,7 +35,7 @@ public class RepeatCommandTest {
     @Test
     public void nonRecurringEvent_updateDateTime_failure() {
         testEvent.updateDate();
-        assertNotEquals(testEvent.getIsRepeat(), true);
+        assertEquals(testEvent.getIsRepeat(), false);
     }
 
     @Test
@@ -70,7 +69,7 @@ public class RepeatCommandTest {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "d");
         testRepeatCommand.execute(testTaskList, testUi);
         testEvent.updateDate();
-        assertEquals(testEvent.getDate(), LocalDateTime.now().plusDays(1).toLocalDate());
+        assertEquals(testEvent.getDate(), LocalDateTime.now().toLocalDate());
     }
 
     @Test
@@ -79,7 +78,7 @@ public class RepeatCommandTest {
         testRepeatCommand.execute(testTaskList, testUi);
         LocalDate taskDate = testEvent.getDate();
         testEvent.updateDate();
-        assertEquals(testEvent.getDate(), taskDate.plusWeeks(1));
+        assertEquals(testEvent.getDate(), taskDate.plusWeeks(testEvent.getPeriodCounter() * testEvent.getNumOfPeriod()));
     }
 
     @Test
@@ -88,7 +87,7 @@ public class RepeatCommandTest {
         testRepeatCommand.execute(testTaskList, testUi);
         LocalDate taskDate = testEvent.getDate();
         testEvent.updateDate();
-        assertEquals(testEvent.getDate(), taskDate.plusMonths(1));
+        assertEquals(testEvent.getDate(), taskDate.plusMonths(testEvent.getPeriodCounter() * testEvent.getNumOfPeriod()));
     }
 
     @Test
@@ -97,7 +96,7 @@ public class RepeatCommandTest {
         testRepeatCommand.execute(testTaskList, testUi);
         LocalDate taskDate = testEvent.getDate();
         testEvent.updateDate();
-        assertEquals(testEvent.getDate(), taskDate.plusYears(1));
+        assertEquals(testEvent.getDate(), taskDate.plusYears(testEvent.getPeriodCounter() * testEvent.getNumOfPeriod()));
     }
 
     @Test

@@ -85,6 +85,11 @@ public class TaskList {
             if (task instanceof Event && taskDateTime.compareTo(currDateTime) > 0) {
                 eventList.add(task);
             }
+            if (task instanceof Event && ((Event) task).getIsRepeat()
+                    && taskDateTime.toLocalDate().compareTo(currDateTime.toLocalDate()) == 0
+                    && ((Event) task).getNextDateTime().compareTo(currDateTime) > 0) {
+                eventList.add(task);
+            }
         }
         return eventList;
     }
@@ -251,7 +256,8 @@ public class TaskList {
                             event.getDateAndTime().plusYears(timesRepeated * numOfPeriod),
                             event.getEndDateAndTime().plusYears(timesRepeated * numOfPeriod),
                             event.getComments());
-                    yearlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    yearlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod, yearlyEventToAdd.getDateAndTime(),
+                            yearlyEventToAdd.getPeriodCounter());
                     taskArrayList.add(yearlyEventToAdd);
                     break;
                 }
@@ -267,7 +273,8 @@ public class TaskList {
                             event.getDateAndTime().plusMonths(timesRepeated * numOfPeriod),
                             event.getEndDateAndTime().plusMonths(timesRepeated * numOfPeriod),
                             event.getComments());
-                    monthlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    monthlyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod, monthlyEventToAdd.getDateAndTime(),
+                            monthlyEventToAdd.getPeriodCounter());
                     taskArrayList.add(monthlyEventToAdd);
                     break;
                 }
@@ -283,7 +290,8 @@ public class TaskList {
                             event.getDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
                             event.getEndDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
                             event.getComments());
-                    weeklyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    weeklyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod, weeklyEventToAdd.getDateAndTime(),
+                            weeklyEventToAdd.getPeriodCounter());
                     taskArrayList.add(weeklyEventToAdd);
                     break;
                 }
@@ -299,7 +307,8 @@ public class TaskList {
                             event.getDateAndTime().plusDays(timesRepeated * numOfPeriod),
                             event.getEndDateAndTime().plusDays(timesRepeated * numOfPeriod),
                             event.getComments());
-                    dailyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod);
+                    dailyEventToAdd.setRepeat(numOfPeriod, typeOfPeriod, dailyEventToAdd.getDateAndTime(),
+                            dailyEventToAdd.getPeriodCounter());
                     taskArrayList.add(dailyEventToAdd);
                     break;
                 }

@@ -106,7 +106,7 @@ public class CalendarCommandTest {
 
         // set to repeat every 14 days in the month of Jan 2020, will only see it thrice in month of Jan
         // inclusive of the original event
-        testCaseFour.setRepeat(14, RepeatCommand.DAILY_ICON);
+        testCaseFour.setRepeat(14, RepeatCommand.DAILY_ICON, testDateTime3, 0);
         testTaskList.addTask(testCaseOne);
         testTaskList.addTask(testCaseTwo);
         testTaskList.addTask(testCaseThree);
