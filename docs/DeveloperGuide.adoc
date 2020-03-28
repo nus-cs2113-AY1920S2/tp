@@ -18,41 +18,53 @@ endif::[]
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 == Design
-This section will give a high-level overview of how various components in ATAS function and interact with each other.
+This section will give a high-level overview of how various components in *ATAS* function and interact with each other.
 
 === Architecture
+image::overall architecture.png[overall architecture]
+The architecture diagram above illustrates the high-level design of the *ATAS* application. +
+
+The `Atas` component contains all the other components in the application. +
+
+* `Ui`: Reads user input, and shows the results of commands to the user
+* `Logic`: Handles execution of user input commands
+* `Model`: Stores the runtime data of the application
+* `Storage`: Reads and stores data from a file stored on the user's computer
+
 The following sections will explain each component in greater detail.
 
-=== Atas Component
-
-The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command +
-
-image::Atas help command sequence diagram v2.PNG[Component interactions for help command]
-
-The Atas Class contains the main logic for ATAS. +
-1. Atas uses the UI class to read user input. +
-2. The Parser class is used to parse the user input string, returning a Command object. +
-3. The Command's execute() method is run, returning a CommandResult object. +
-4. Atas then uses the UI class to show the CommandResult's message to the user. +
-5. Finally, Atas uses the Storage object to save the new state of the application.
-
-
 === UI Component
+1. The `Ui` component reads user input which represents a command.
+2. The `Ui` component shows the result of the command to the user.
 
-=== Parser Component
-image::parser class diagram v1.PNG[Parser Class Diagram]
-1. The Atas class uses the Parser class' static parseCommand() method to parse user commands. +
-2. The Parser class' parseCommand() method then returns the appropriate Command object depending on the user input.
+=== Logic Component
+The Logic component comprises the `Parser`, `Command`, and `CommandResult` classes: +
+1. `Parser` will interpret the user command and return the corresponding `Command` object. +
+2. `Command#execute()` is called to run the command, returning a `CommandResult` object. +
+3. The `CommandResult` object will contain the output to be shown to the user.
+
+=== Model Component
+The Model component contains the `Task` and `TaskList` classes, which store the user's schedule.
+
+image::TaskList Task class diagram.png[TaskList and Tasks]
 
 === Storage Component
-image::storage.PNG[Storage Class Diagram]
-1. A Storage object is created by the Atas class to handle the loading and saving of task data.
-2. The load() method is used to read saved data from a local file into the current session of ATAS.
-3. The save() method writes the current state of ATAS into the local save file using the Task.encodeTask() method.
+image::storage.png[Storage Class Diagram]
+1. A `Storage` object is created by the `Atas` class to handle the loading and saving of `Task` data.
+2. The `load()` method is used to read saved data from a local file into the current session of *ATAS*.
+3. The `save()` method writes the current state of *ATAS* into the local save file using the `Task#encodeTask()` method.
 
-=== Command Component
+=== Atas Component
+The `Atas` Component integrates all the abovementioned components to run the overall application logic. +
+The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command +
 
-=== CommandResult Component
+image::atas help command sequence diagram v3.PNG[Component interactions for help command]
+
+1. The `Ui` class is used to read user input. +
+2. The `Parser` class is used to parse the user input string, returning a `Command` object. +
+3. The `Command#execute()` method is run, returning a `CommandResult` object. +
+4. The `Ui` class is used to show the `CommandResult` message to the user. +
+5. The `Storage` object is used to save the new state of the application.
 
 == Setting Up
 
@@ -141,7 +153,7 @@ or `getSearchQueryEvents` respectively and initialize a new `CommandResult` clas
 * Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
 ** Rationale: +
 To create 2 separate commands so that users can filter their search query more easily.
-** Alternatives considered: +
+** Alternatives Considered: +
 1. Use a `Search` class that implements both functions of `SearchCommand` and `SearchdCommand`
 *** Pros: Reduced coupling. Improved code structure.
 *** Cons: More difficult to implement
@@ -187,7 +199,7 @@ image::clear.png[clear command]
 ** Rationale: +
 Considering that our target audience are students, we feel that it might be inconvenient for the students to delete each
 completed one by one, just to reduce the number of tasks that is being displayed during `list` command.
-** Alternative considered: +
+** Alternative Considered: +
 1. Delete the task once it has been marked as completed
 *** pros: Easier to implement and improved code readability
 *** cons: User may want to refer back to completed tasks for reference in the future and may not want to delete the
@@ -237,7 +249,7 @@ is a repeating event and its date is in the past.
 ** Rationale: +
 We feel that given the context of University Students, it makes little sense for most assignments to repeat. However, it makes sense for
  events to repeat since many events actually occur on a regular basis.
-** Alternative considered: +
+** Alternative Considered: +
 1. Allowing all tasks to be repeatable.
 *** Pros: Allow more flexibility for the user to set which tasks they want to repeat, regardless of task type.
 *** Cons: Memory wastage as additional variables are set for repeating tasks and in the case of minimal assignments requiring to be
@@ -247,7 +259,7 @@ repeated, these spaces are wasted.
 ** Rationale: +
 It provides great flexibility in allowing an event to repeat for any specified frequency. For example, some classes occur every 2 weeks.
 Some events may happen every 10 days or any x amount of period.
-** Alternative considered: +
+** Alternative Considered: +
 1. Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
 *** Pros: It would simply usability and implementation since there will only be 4 options to choose from.
 *** Cons: It would reduce the usability for the 2 examples provided above as users would not be able to make events repeat every 2 weeks
@@ -402,7 +414,7 @@ Allowing `TaskList` to accept `Task` with duplicated details. However, this will
 This keeps the calendar compact such that the command line application can be viewed as a smaller window as opposed to the taking up the entire screen.
 Since row size is also extendable, extending column size independently from row size will destroy the integrity of a traditional calendar box view.
 ** Also, there are other features that can be used in conjunction with the Calendar to allow user to obtain more information of the task such as `SearchCommand` and `ListCommand`.
-** Alternative considered: +
+** Alternative Considered: +
 Wrapping of tasks details to display the full detail of tasks. This is not feasible as this further increases the need for number of rows.
 As mentioned, we would like to keep the integrity and view of a traditional calendar and this does the opposite of that.
 
@@ -411,9 +423,49 @@ As mentioned, we would like to keep the integrity and view of a traditional cale
 Limiting the number of task might misrepresent the list of `Task` a user has for any particular date if there are more tasks than available slots on the calendar date.
 To solve the issue of misrepresentation, we decided to replace the last `Task` slot of each Calendar date with an indicator to indicate there are tasks not shown if there are indeed tasks left out
 due to the constraints that is the lack of Calendar rows.
-** Alternative considered: +
+** Alternative Considered: +
 Expanding number of Calendar rows. This will require the need to increase the number of Calendar Columns to preserve the integrity of a traditional calendar view.
 However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
+
+=== Storage
+==== Implementation
+The Storage class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user's computer. +
+Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
+
+===== Saving the current state of *ATAS* with `Storage#save()`: +
+*Step 1* +
+For each `Task` in the `TaskList`, `Task#encode()` is called, and the result is appended to a save string.
+Each encoded `Task` is separated by a newline.
+
+*Step 2* +
+The save string is written into the specified save file, which will be created if it does not already exist.
+
+===== Loading previously saved `TaskList` data into *ATAS* with `Storage#load()`: +
+*Step 1* +
+Read each line from the save file one by one. Each line corresponds to an encoded `Task`.
+
+*Step 2* +
+For each line, determine its `Task` type, and call the static `decode()` method from the corresponding class.
+
+*Step 3* +
+Add each decoded `Task` into a `TaskList`.
+
+*Step 4* +
+When all lines in the save file have been decoded, return the `TaskList`.
+
+==== Design Considerations
+* Saving the `TaskList` after every `Command` executed +
+** Rationale +
+There will be reduced coupling as `Storage#save()` is always called regardless of what `Command` is executed.
+However, unnecessary saves will be made as not all `Command` executions modify the `TaskList`.
+** Alternatives Considered +
+`Storage#save()` could be called only after `Command` executions that modify the `TaskList`, so that no unnecessary saves are made.
+However, this method increases coupling as either `Storage` will have to know what `Command` was executed,
+or `Storage#save()` has to be called in `Command#execute()`.
+** Conclusion +
+As the `TaskList` is expected to be small for most users, the drop in performance due to unnecessary saves is negligible.
+The first method is chosen to make the code easier to maintain.
+
 
 == Testing
 === Using IntelliJ JUnit Tests
@@ -422,3 +474,10 @@ However, this also is infeasible as our goal is to keep the calendar compact suc
 
 === Using Input-Output Tests
 *  Navigate to the `text-ui-test` folder and run the runtest (.bat/.sh) script.
+
+== Appendices
+
+=== Appendix A: Product Scope
+=== Appendix B: User Stories
+=== Appendix C: Use Cases
+=== Appendix D: Non-Functional Requirements
