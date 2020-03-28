@@ -38,7 +38,7 @@ public class CalculateCapCommand extends Command {
                 boolean isGradedModuleFailed = module.getGrade().getGrade().equals("F");
                 boolean isUngradedPassed = module.getGrade().getGrade().equals("CS");
                 boolean isUngradedFailed = module.getGrade().getGrade().equals("CU");
-                boolean isCompletedModuleGraded = !isUngradedPassed || !isUngradedFailed;
+                boolean isCompletedModuleGraded = !isUngradedPassed && !isUngradedFailed;
                 if (isGradedModuleFailed) {
                     totalGradeModuleCredit += module.getModuleCredit();
                 } else if (isCompletedModuleGraded) {
