@@ -1,9 +1,9 @@
 # Developer Guide
 
 ### Table of Contents
-* [1. Introduction](#1-introduction)
-* [2. Overview of the SHOCO application](#2-overview-of-the-shoco-application)
-* [3. Implementation](#3-implementation)
+* **[1. Introduction](#1-introduction)**
+* **[2. Overview of the SHOCO application](#2-overview-of-the-shoco-application)**
+* **[3. Implementation](#3-implementation)**
     + [3.1 Add feature](#31-add-feature)
     + [3.2 Edit feature](#32-edit-feature)
     + [3.3 Delete feature](#33-delete-feature)
@@ -15,11 +15,11 @@
     + [3.9 Reset budget feature](#39-reset-budget-feature)
     + [3.10 View help feature](#310-view-help-feature)
     + [3.11 Exit program feature](#311-exit-program-feature)
- * [Appendix A: Product Scope](#appendix-a-product-scope)
- * [Appendix B: User Stories](#appendix-b-user-stories)
- * [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
- * [Appendix D: Glossary](#appendix-d-glossary)
- * [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
+ * **[Appendix A: Product Scope](#appendix-a-product-scope)**
+ * **[Appendix B: User Stories](#appendix-b-user-stories)**
+ * **[Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)**
+ * **[Appendix D: Glossary](#appendix-d-glossary)**
+ * **[Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)**
  
 
 ## 1. Introduction

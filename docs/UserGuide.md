@@ -37,7 +37,7 @@ budget tracker, we are here to enhance your grocery-shopping experience and make
 grocery shopping disappear.
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
 
@@ -48,7 +48,7 @@ grocery shopping disappear.
 4. You are now all set to plan your shopping list!
 &nbsp;
 <!-- @@author -->
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 
 ## Features 
@@ -96,7 +96,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide"> &#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide"> &#129053; back to top</a></b>
 <!-- @@author trishaangelica -->
 
 ***
@@ -127,7 +127,7 @@ Example of usage:
     
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -146,7 +146,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -157,7 +157,7 @@ Format: `CLEAR`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -175,7 +175,7 @@ Example of the usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -193,7 +193,7 @@ Example of the usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -204,7 +204,7 @@ Format: `DISPLAY`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author kokjoon97 -->
@@ -222,7 +222,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -233,7 +233,7 @@ Format: `RES`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author kokjoon97 -->
@@ -251,7 +251,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -262,7 +262,7 @@ Format: `HELP`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 
 ***
@@ -275,7 +275,7 @@ Format: `BYE`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -317,7 +317,7 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -339,4 +339,4 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
