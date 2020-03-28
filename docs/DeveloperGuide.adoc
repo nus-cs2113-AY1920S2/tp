@@ -419,3 +419,5 @@ However, this also is infeasible as our goal is to keep the calendar compact suc
 === Using IntelliJ JUnit Tests
 * To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 * For individual tests, you can right-click on the test *package*, *class* or a single test and choose `Run 'TEST'`
+=== Using Input-Output test
+*  Navigate to the `text-ui-test` folder and run the runtest (.bat/.sh) script.
