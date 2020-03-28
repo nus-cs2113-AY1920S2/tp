@@ -117,7 +117,7 @@ to get the search query that the user inputs.
 through and `searchParam` to get the search query that the user inputs. It also has a `date` parameter to check the date
 that the users wants to search from
 
-*Given below is an example usage of the `Search` command: +
+* Given below is an example usage of the `Search` command: +
 . TEST TEST
 
 
