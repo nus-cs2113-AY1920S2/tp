@@ -189,14 +189,16 @@ public class ListCreator {
             String taskDescription = task.getDescription();
             String deadline = (task.getDeadline() != null) ? task.getDeadline().toShow() : "-NIL-";
             String priority = String.valueOf(task.getPriority());
+            String statusIcon = task.getStatusIcon();
 
-            taskListTable.append(String.format("%s%s%s%s%s%s%s%s%s%s%s\n",
+            taskListTable.append(String.format("%s%s%s%s%s%s%s%s%s%s%s%s%s\n",
                     centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
                     centraliseText(fitText(moduleCode, 10), 10), SEPARATOR,
-                    centraliseText(fitText(categoryName, 22), 22), SEPARATOR,
+                    centraliseText(fitText(categoryName, 16), 16), SEPARATOR,
                     centraliseText(fitText(taskDescription, 24), 24), SEPARATOR,
                     centraliseText(fitText(deadline, 30), 30), SEPARATOR,
-                    centraliseText(fitText(priority, 5), 5)
+                    centraliseText(fitText(priority, 5), 5), SEPARATOR,
+                    centraliseText(fitText(statusIcon, 6), 5)
             ));
         }
 
@@ -217,13 +219,14 @@ public class ListCreator {
         StringBuilder header = new StringBuilder();
 
         header.append(LIST_DIVIDER);
-        header.append(String.format("%s%s%s%s%s%s%s%s%s%s%s\n",
+        header.append(String.format("%s%s%s%s%s%s%s%s%s%s%s%s%s\n",
                 centraliseText("NO", 4), SEPARATOR,
                 centraliseText("MODULE", 10), SEPARATOR,
-                centraliseText("CATEGORY", 22), SEPARATOR,
+                centraliseText("CATEGORY", 16), SEPARATOR,
                 centraliseText("TASK", 24), SEPARATOR,
                 centraliseText("DEADLINE", 30), SEPARATOR,
-                centraliseText("PTY", 5)
+                centraliseText("PTY", 5), SEPARATOR,
+                centraliseText("DONE", 6)
         ));
         header.append(LIST_DIVIDER);
 
