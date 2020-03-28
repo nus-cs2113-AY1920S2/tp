@@ -38,16 +38,16 @@ public class EditTaskCommand extends EditCommand {
             + " <task description> -m <module code> -c <category name>"
             + " [ -t <new task description> -d <new deadline> -p <new priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<taskDescription>(?:\\s+" + TASK_DESCRIPTION_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<optional>(?:\\s+-[dp](?:\\s+[^-\\s]\\S*)+)*)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<taskDescription>(?:\\s+" + TASK_DESCRIPTION_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<optional>(?:\\s+-[dp](?:\\s+\\w\\S*)+)*)"
+            + "(?<invalid>.*)"
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
     );
 
     private String oldTaskDescription;

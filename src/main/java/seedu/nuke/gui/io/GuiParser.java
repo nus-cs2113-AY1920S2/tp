@@ -3,7 +3,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.ExitCommand;
-import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
@@ -50,7 +49,6 @@ import static seedu.nuke.gui.util.TextUtil.createText;
 
 
 public class GuiParser {
-    private static final String WHITESPACES = "\\s+";
     private static final String NONE = "";
 
     public static final String MODULE_CODE_PREFIX = "-m";
@@ -159,7 +157,7 @@ public class GuiParser {
         case ListTaskCommand.COMMAND_WORD:
             smartParseDeleteAndListTaskCommand(parameters, startIndexOfParameters);
             break;
-            
+
         case EditModuleCommand.COMMAND_WORD:
             smartParseEditModuleCommand(parameters, startIndexOfParameters);
             break;

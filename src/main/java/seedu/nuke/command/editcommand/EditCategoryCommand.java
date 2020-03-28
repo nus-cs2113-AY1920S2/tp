@@ -32,11 +32,11 @@ public class EditCategoryCommand extends EditCommand {
     public static final String FORMAT = COMMAND_WORD
             + " <category name> -m <module code> [ -c <new category name> -p <new priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<invalid>.*)"
     );
 
     private String oldCategoryName;

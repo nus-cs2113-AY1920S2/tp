@@ -38,15 +38,15 @@ public class AddTaskCommand extends AddCommand {
             + " <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<optional>(?:\\s+-[dp](?:\\s+[^-\\s]\\S*)+)*)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<optional>(?:\\s+-[dp](?:\\s+\\w\\S*)+)*)"
+            + "(?<invalid>.*)"
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
     );
 
     private String moduleCode;

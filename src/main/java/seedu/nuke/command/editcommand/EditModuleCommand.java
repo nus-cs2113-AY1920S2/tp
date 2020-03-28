@@ -27,9 +27,9 @@ public class EditModuleCommand extends EditCommand {
     public static final String COMMAND_WORD = "edm";
     public static final String FORMAT = COMMAND_WORD + " <module code> -m <new module code>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<invalid>.*)"
     );
 
     private String oldModuleCode;

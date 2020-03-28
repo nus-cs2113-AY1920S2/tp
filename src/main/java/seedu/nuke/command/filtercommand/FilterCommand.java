@@ -19,22 +19,22 @@ import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
 
 public abstract class FilterCommand extends Command {
     public static final Pattern MODULE_REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<optional>(?:\\s+-[ea])*)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            + "(?<invalid>.*)"
     );
     public static final Pattern CATEGORY_REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<optional>(?:\\s+-[ea])*)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            + "(?<invalid>.*)"
     );
     public static final Pattern TASK_REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)?)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
-            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<optional>(?:\\s+-[ea])*)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            + "(?<invalid>.*)"
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
             "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
