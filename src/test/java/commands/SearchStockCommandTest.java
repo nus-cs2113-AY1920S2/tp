@@ -10,7 +10,7 @@ import exceptions.InvalidStockCommandException;
 import org.junit.jupiter.api.Test;
 
 import ingredient.Ingredient;
-import ingredient.IngredientNotFoundException;
+import exceptions.IngredientNotFoundException;
 import stock.Stock;
 import utils.Pair;
 

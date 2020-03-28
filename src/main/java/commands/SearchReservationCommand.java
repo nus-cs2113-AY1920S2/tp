@@ -49,7 +49,7 @@ public class SearchReservationCommand extends ReservationCommand {
                 Reservation reservation = reservations.getReservation(reservationNumber);
                 ui.showMessage(reservation.toString());
             } else if (date != null) { // only have date
-                System.out.println(String.format("Here comes the reservations on the date %s:", date));
+                ui.showMessage(String.format("Here comes the reservations on the date %s:", date));
                 boolean emptyList = true;
                 for (int i = 0; i < reservations.getSize(); i++) {
                     Reservation reservation = reservations.getReservation(i);

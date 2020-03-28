@@ -67,7 +67,7 @@ public class MarkReservationCommand extends ReservationCommand {
         assert numberEndPos != -1 : "Semicolon Missing";
         
         this.reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
-                numberEndPos + 1).trim());
+                numberEndPos).trim());
 
         if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
             throw new NumberFormatException();
