@@ -26,9 +26,9 @@ public class Person {
         isPersonExist = true;
     }
 
-    public static Person createNewUser(Scanner in) {         // say hi user, and jump straight to help
+    public static Person createNewUser(Scanner in) {
         name = "User";
-        String matricYear = "Y1";
+        String matricYear = "2018";
         return new Person(name, matricYear);
     }
 
