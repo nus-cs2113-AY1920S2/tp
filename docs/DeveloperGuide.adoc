@@ -107,6 +107,16 @@ the `execute` method of the `DeleteCommand` class
 case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also
 allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
 
+=== Search task feature
+==== Current Implementation
+* The `Search task feature` is currently implemented in both `SearchCommand` class and `SearchdCommand` class. Both
+classes inherits from the `Command` class.
+** `SearchCommand` initializes the `taskType` to check which tasks the search function to search from and `searchParam`
+to get the search query that the user inputs.
+** Similar to the `SearchCommand`, `taskType` is initialized to check the tasks that the search function has to search
+through and `searchParam` to get the search query that the user inputs. It also has a `date` parameter to check the date
+that the users wants to search from.
+
 === Clear Task feature
 ==== Current Implementation
 * The `clearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function
