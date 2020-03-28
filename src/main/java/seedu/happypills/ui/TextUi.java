@@ -323,7 +323,7 @@ public class TextUi {
         String formattedPatientString = "";
         for (Map.Entry patient : patients.entrySet()) {
             Patient p = (Patient)patient.getValue();
-            formattedPatientString += p.toSave() + System.lineSeparator();
+            formattedPatientString += p.toSave();
         }
         return formattedPatientString;
     }
