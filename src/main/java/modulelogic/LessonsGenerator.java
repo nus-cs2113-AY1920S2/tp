@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+
 import static common.Messages.MESSAGE_RETURN_SUCCESS;
+
 /**
  * This class retrieves information from both TimetableParser and ModuleHandler classes to generate a data structure
  * containing all the modules a user is taking and is to be used by the schedulelogic component.
- * The data structure used is an ArrayList<String[4]> called myLessonDetails and
+ * The data structure used is an ArrayList of String[] called myLessonDetails and
  * it contains an ArrayList of lessons in the form: startTime, endTime, day, weeks(delimited by ':').
  */
 public class LessonsGenerator {
@@ -110,7 +112,7 @@ public class LessonsGenerator {
      *
      * @param weeks 2D ArrayList weeks: For eg, weeks.get(0) = weeks at classNo 0 = array of [1, 2, 3, 6, 13].
      * @return Delimited weeks indexed by each lessons,
-     * For eg, weeks.get(0) is now a String = "1:2:3:6:13"
+     *         For eg, weeks.get(0) is now a String = "1:2:3:6:13"
      */
     private ArrayList<String> delimitWeeks(ArrayList<ArrayList<String>> weeks) {
         ArrayList<String> delimitedWeeks = new ArrayList<>();

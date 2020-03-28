@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,7 +23,7 @@ public class ModuleApiParser {
         apiUrl = templateUrl + moduleName + ".json";
     }
 
-    /**
+    /** Parses weblink into JsonArray.
      * @return 1 NUS module in JSONArray format from API,
      *         if unable to access API, returns an empty JsonArray.
      */

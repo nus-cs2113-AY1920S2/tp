@@ -61,10 +61,10 @@ public class TimetableParser {
      * and stores modules user is taking(modulesArr) to be used by LessonGenerator class.
      *
      * @param unparsedModules Raw website link with module information.
-     * @return  Returns Key-value pair. Key = "moduleCode"-Value = ArrayList of "LessonType:Class number"
+     * @return Returns Key-value pair. Key = "moduleCode"-Value = ArrayList of "LessonType:Class number"
      */
     private Map<String, ArrayList<String>> parseModules(String unparsedModules) {
-        assert  unparsedModules != null;
+        assert unparsedModules != null;
         ArrayList<String> unparsed = new ArrayList<>(Arrays.asList(unparsedModules.split("&")));
         Map<String, ArrayList<String>> myModuleDetails = new HashMap<String, ArrayList<String>>();
 

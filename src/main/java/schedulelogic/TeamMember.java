@@ -6,7 +6,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
-import static common.Messages.*;
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
+import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 
 /**
  * This class contains information of a member's schedule in blocks of 30mins interval,
@@ -37,9 +40,7 @@ public class TeamMember {
         }
     }
 
-    /**
-     * Public method to add
-     *
+    /** Adds scheduled meeting in LocalTime into schedule[][] data structure.
      * @param meetingName name of the scheduled meeting to be added.
      * @param startDay    start day of the meeting in integer.
      * @param startTime   start time of the meeting in LocalTime format. For eg, 11:30, 14:30, 00:00
@@ -113,9 +114,7 @@ public class TeamMember {
     }
 
 
-    /**
-     * Delete a scheduled meeting by changing mySchedule[][] via myScheduleName[][]
-     *
+    /** Delete a scheduled meeting by changing mySchedule[][] via myScheduleName[][].
      * @param meetingName name of meeting previously added to be deleted.
      */
     public void deleteBlocksWithName(String meetingName) {
@@ -141,14 +140,14 @@ public class TeamMember {
         int minuteBlocks = -1;
         int hourBlocks = -1;
         switch (myTime.getMinute()) {
-            case 0:
-                minuteBlocks = 0;
-                break;
-            case 30:
-                minuteBlocks = 1;
-                break;
-            default:
-                throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
+        case 0:
+            minuteBlocks = 0;
+            break;
+        case 30:
+            minuteBlocks = 1;
+            break;
+        default:
+            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
 
         }
         hourBlocks = myTime.getHour() * 2;

@@ -23,12 +23,12 @@ public class LessonsGeneratorTest {
     public void generate_correctLessonDetails() throws InvalidUrlException {
         myLessonsGenerator = new LessonsGenerator("https://nusmods.com/timetable/sem-1/share?CG1111=TUT:04,LAB:02");
         myLessonsGenerator.generate();
-        ArrayList<String[]> expected = myLessonsGenerator.getLessonDetails();
         ArrayList<String[]> actual = new ArrayList<>();
-        actual.add(new String[] {"1400", "1600", "Friday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
-        actual.add(new String[] {"1400", "1700", "Wednesday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
-        actual.add(new String[] {"1400", "1700", "Monday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
-        for (int i = 0; i < expected.size(); i++){
+        actual.add(new String[]{"1400", "1600", "Friday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
+        actual.add(new String[]{"1400", "1700", "Wednesday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
+        actual.add(new String[]{"1400", "1700", "Monday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
+        ArrayList<String[]> expected = myLessonsGenerator.getLessonDetails();
+        for (int i = 0; i < expected.size(); i++) {
             assertArrayEquals(expected.get(i), actual.get(i));
         }
     }

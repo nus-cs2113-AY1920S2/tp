@@ -18,10 +18,10 @@ public class ModuleHandlerTest {
 
     @Test
     public void generateModule_FormattedAndCorrectModuleCode() {
-       myModuleHandler = new ModuleHandler("CG2023");
-       String expected = myModuleHandler.generateModule();
-       String actual = "Success";
-       assertEquals(expected, actual);
+        myModuleHandler = new ModuleHandler("CG2023");
+        String expected = myModuleHandler.generateModule();
+        String actual = "Success";
+        assertEquals(expected, actual);
     }
 
     @Test

@@ -19,8 +19,9 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import static common.Messages.*;
-
+import static common.Messages.MESSAGE_MODULECODE_IN_BLACKLIST;
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
+import static common.Messages.MESSAGE_EMPTY_MODULE;
 /**
  * Contains private members storing the module information.
  * The class members are an ArrayList of size 2(two sem) of ArrayList except member "weeks".
@@ -35,6 +36,7 @@ import static common.Messages.*;
  * For eg, week[0].get(2) = [1, 3, 4, 5], this means
  * semester 1, classNo:2 has lessons in week 1, 3, 4, 5.
  */
+
 public class ModuleHandler {
     JsonArray semesterData;
     private ArrayList<ArrayList<String>> classNumber; // can be repeated.
@@ -139,7 +141,7 @@ public class ModuleHandler {
 
 
     /**
-     * Generates a 2d ArrayList<String> module information data structure as follows:
+     * Generates a 2d ArrayList of String module information data structure as follows:
      * classNumber, lessonType, startTime, endTime, day, weeks.
      * To be used within the loop of generateModules().
      */
@@ -158,11 +160,10 @@ public class ModuleHandler {
         this.weeks.get(semester).add(weeksData);
     }
 
-    /**
-     * @throws UnformattedModuleException
-     * Throws error if user's module is within the file UnformattedModules,
-     * which contains all modules which can't be parsed due to ill-formatting by NUSMOD API side.
-     * method to update the list of modules in UnformattedModules is in static main()
+    /** Checks if module is within the blacklisted UnformattedModules file.
+     * @throws UnformattedModuleException Throws error if user's module is within the file UnformattedModules,
+     *                                    which contains all modules which can't be parsed due to ill-formatting by NUSMOD API side.
+     *                                    method to update the list of modules in UnformattedModules is in static main()
      */
     private void checkModuleFormat() throws UnformattedModuleException {
         if (unformattedModules.contains(moduleName)) {
