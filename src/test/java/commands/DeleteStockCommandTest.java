@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.InvalidStockCommandException;
 import ingredient.Ingredient;
 import ingredient.IngredientNotFoundException;
 import org.junit.jupiter.api.Test;

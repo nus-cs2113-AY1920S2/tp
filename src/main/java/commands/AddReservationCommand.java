@@ -10,7 +10,12 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static utils.Constants.*;
+import static utils.Constants.DELIMITER;
+import static utils.Constants.RES_DATE_MARKER;
+import static utils.Constants.RES_PERSON_MARKER;
+import static utils.Constants.RES_NUM_MARKER;
+import static utils.Constants.RES_CONTACT_MARKER;
+import static utils.Constants.RES_COMMENT_MARKER;
 
 
 /* Command object for "add reservation" command */
@@ -70,7 +75,7 @@ public class AddReservationCommand extends ReservationCommand {
     protected void parseInput(String description) throws InputMissingException, DelimiterMissingException {
         boolean delimiterMissing;
         String[] markers = {RES_PERSON_MARKER, RES_DATE_MARKER, RES_NUM_MARKER,
-                RES_CONTACT_MARKER, RES_CONTACT_MARKER, RES_COMMENT_MARKER};
+            RES_CONTACT_MARKER, RES_CONTACT_MARKER, RES_COMMENT_MARKER};
         
         // name
         int namePos = description.indexOf(RES_PERSON_MARKER);

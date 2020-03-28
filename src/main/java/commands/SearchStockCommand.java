@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.InvalidStockCommandException;
 import stock.Stock;
 
 /**

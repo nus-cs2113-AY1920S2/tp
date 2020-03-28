@@ -10,7 +10,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static utils.Constants.*;
+import static utils.Constants.DELIMITER;
+import static utils.Constants.RES_DATE_MARKER;
+import static utils.Constants.RES_INDEX_MARKER;
 
 /** Command object for "search reservation" command. */
 public class SearchReservationCommand extends ReservationCommand {
