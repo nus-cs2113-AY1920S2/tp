@@ -48,7 +48,8 @@ public class Parser {
 
     /**
      * Parses user commands to relevant functions to carry out the commands.
-     * @param scanner scanner object which reads user input
+     *
+     * @param scanner      scanner object which reads user input
      * @param activityList the list of activities
      */
     public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) {
@@ -206,7 +207,9 @@ public class Parser {
         }
     }
 
-    /** Method to parse user inputs that are not recognised. */
+    /**
+     * Method to parse user inputs that are not recognised.
+     */
     private void parseDefault() {
         String line = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
         Log.makeInfoLog("Invalid command entered");

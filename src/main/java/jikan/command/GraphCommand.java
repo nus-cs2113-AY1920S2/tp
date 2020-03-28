@@ -21,11 +21,18 @@ public class GraphCommand extends Command {
 
     @Override
     public void executeCommand(ActivityList activityList) {
-        if (parameters.equals("tags")) {
-            graphTags();
-        } else {
-            int interval = Integer.parseInt(parameters);
-            Ui.printActivityGraph(interval);
+        try {
+            if (parameters.equals("tags")) {
+                graphTags();
+            } else {
+                int interval = Integer.parseInt(parameters);
+                Ui.printActivityGraph(interval);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printDivider("Please include the time interval for graphing.\n");
+        } catch (NumberFormatException e) {
+            Ui.printDivider("Please input an integer for the time interval.\n" +
+                    "If you'd like to graph by tags, enter the command <graph tags>");
         }
     }
 
