@@ -4,6 +4,7 @@ import common.Messages;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 
+//@@author lwxymere
 public class IncorrectCommand extends Command {
     public final String description;
 
@@ -13,6 +14,13 @@ public class IncorrectCommand extends Command {
      */
     public IncorrectCommand(String description) {
         this.description = description;
+    }
+
+    /**
+     * Returns a String as the description of the IncorrectCommand.
+     */
+    public String getDescription() {
+        return description;
     }
 
     @Override

@@ -21,10 +21,10 @@ public class EditCommandTest {
     private static String dateStringThree = "13/03/20 1600";
     private static String dateStringFour = "13/03/20 1800";
 
-    private static LocalDateTime dateOne = LocalDateTime.parse(dateStringOne, Parser.INPUT_DATE_FORMAT);
-    private static LocalDateTime dateTwo = LocalDateTime.parse(dateStringTwo, Parser.INPUT_DATE_FORMAT);
-    private static LocalDateTime dateThree = LocalDateTime.parse(dateStringThree, Parser.INPUT_DATE_FORMAT);
-    private static LocalDateTime dateFour = LocalDateTime.parse(dateStringFour, Parser.INPUT_DATE_FORMAT);
+    private static LocalDateTime dateOne = LocalDateTime.parse(dateStringOne, Parser.INPUT_DATE_TIME_FORMAT);
+    private static LocalDateTime dateTwo = LocalDateTime.parse(dateStringTwo, Parser.INPUT_DATE_TIME_FORMAT);
+    private static LocalDateTime dateThree = LocalDateTime.parse(dateStringThree, Parser.INPUT_DATE_TIME_FORMAT);
+    private static LocalDateTime dateFour = LocalDateTime.parse(dateStringFour, Parser.INPUT_DATE_TIME_FORMAT);
 
     /**
      * Initialise TaskList for testing.

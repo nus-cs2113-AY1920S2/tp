@@ -7,6 +7,7 @@ import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 
+//@@author
 public class EventCommandTest {
     @Test
     public void testExecute() {

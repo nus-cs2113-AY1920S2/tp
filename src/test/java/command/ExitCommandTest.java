@@ -9,6 +9,7 @@ import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 
+//@@author
 public class ExitCommandTest {
     @Test
     public void testExit() {
