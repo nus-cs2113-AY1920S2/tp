@@ -1,19 +1,19 @@
 package seedu.duke.utils;
 
-import seedu.duke.commands.Command;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ClearCommand;
+import seedu.duke.commands.Command;
 import seedu.duke.commands.DeleteCommand;
+import seedu.duke.commands.DisplayCommand;
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.FindCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.IncorrectCommand;
-import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.MarkCommand;
 import seedu.duke.commands.ResetBudgetCommand;
 import seedu.duke.commands.SetBudgetCommand;
 import seedu.duke.commands.UnmarkCommand;
-import seedu.duke.commands.FindCommand;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,13 +23,14 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
+    private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z/])"
+            + "|i/(?<description>[a-zA-Z ]+[^ipq/]+)"
+            + "|p/(?<price>[\\d*.?\\d* ]+|[^a-zA-Z/])"
+            + "|q/(?<quantity>[\\d ]+|[^a-zA-Z/.])|$";
+    private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static Command newCommand;
-    private static final Pattern ITEM_ARGS_FORMAT =
-            Pattern.compile("^(?<index>[\\d\\s]+)"
-                    + "(?<descriptionArgs>(?:i/[a-zA-Z\\d\\s]+)|)"
-                    + "(?<priceArgs>(?:p/[\\d*.?\\d* ]+|))"
-                    + "(?<quantityArgs>(?:q/[\\d\\n]+)|)$");
+
 
     /**
      * Parses user input into command for execution.
@@ -84,8 +85,8 @@ public class Parser {
             break;
         //@@author
 
-        case ListCommand.COMMAND_WORD:
-            createListCommand(arguments);
+        case DisplayCommand.COMMAND_WORD:
+            createDisplayCommand(arguments);
             break;
 
 
@@ -395,58 +396,162 @@ public class Parser {
     //@@author
 
     //@@author trishaangelica
+
     /**
      * Initialises the EditCommand.
      */
     private void createEditCommand(String arguments) {
         try {
-            final Matcher matcher = ITEM_ARGS_FORMAT.matcher(arguments.trim());
-            // Validate args string format
-            if (!matcher.matches()) {
+            final Matcher matcher = EDIT_ITEM_ARGS_FORMAT.matcher(arguments.trim());
+
+            String[] newValues;
+            final boolean iPresent = arguments.contains("i/");
+            final boolean pPresent = arguments.contains("p/");
+            final boolean qPresent = arguments.contains("q/");
+
+            boolean delimiterPresent = iPresent | pPresent | qPresent;
+            boolean hasSingleDelimiter = singleDelimiterChecker(arguments);
+            newValues = splitArgsForEditCommand(matcher);
+            boolean validValues = validValuesChecker(newValues, iPresent, pPresent, qPresent);
+
+            if (delimiterPresent && hasSingleDelimiter && validValues) {
+
+                String newItemDescription = null;
+                String newItemPrice = null;
+                String newItemQuantity = null;
+
+                if (newValues[1] != null) {
+                    newItemDescription = newValues[1].trim();
+                }
+                if (newValues[2] != null) {
+                    newItemPrice = newValues[2].trim();
+                }
+                if (newValues[3] != null) {
+                    newItemQuantity = newValues[3].trim();
+                }
+
+                int itemIndex = Integer.parseInt(newValues[0].trim());
+
+                newCommand = new EditCommand(itemIndex, newItemDescription, newItemPrice, newItemQuantity);
+            } else {
+
                 LOGGER.log(Level.WARNING, "(Edit command) Rejecting user command, invalid command format entered.");
                 newCommand = new IncorrectCommand(EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT);
-
-            } else {
-                String[] editCommandArgs = splitArgsForEditCommand(arguments, matcher);
-                //{index, description, price, quantity}
-                int itemIndex = Integer.parseInt(editCommandArgs[0]);
-                String newItemDescription = editCommandArgs[1];
-                String newItemPrice = editCommandArgs[2];
-                String newItemQuantity = editCommandArgs[3];
-                newCommand = new EditCommand(itemIndex, newItemDescription, newItemPrice, newItemQuantity);
             }
-        } catch (NullPointerException e) {
-            LOGGER.log(Level.WARNING, "(Edit command) Rejecting user command, invalid command format entered.");
-            newCommand = new IncorrectCommand(System.lineSeparator()
-                    + "Invalid Command. Please provide a new description, price or quantity.");
+        } catch (NullPointerException npe) {
+            newCommand = new IncorrectCommand(EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT);
         }
-    }
-    //@@author
 
-    //@@author trishaangelica
+    }
+
+    /**
+     * Checks the input string for duplicate delimiter.
+     *
+     * @param stringToCheck full input string.
+     * @return true if there is no duplicate delimiter found.
+     */
+    private boolean singleDelimiterChecker(String stringToCheck) {
+        boolean result;
+        String[] splitByDescription = stringToCheck.split("i/");
+        String[] splitByPrice = stringToCheck.split("p/");
+        String[] splitByQuantity = stringToCheck.split("q/");
+
+        int countI = splitByDescription.length - 1;
+        int countP = splitByPrice.length - 1;
+        int countQ = splitByQuantity.length - 1;
+        result = countI < 2 && countP < 2 && countQ < 2;
+        return result;
+    }
+
     /**
      * Split arguments for Edit Command.
-     */
-    private String[] splitArgsForEditCommand(String arguments, Matcher matcher) throws NullPointerException {
-        String indexOfItem;
+     *
+     * @param matcher matcher object to match the entire input sequence against the regex pattern.
+     * @return an array of the found matches.
+     **/
+    private String[] splitArgsForEditCommand(Matcher matcher) {
+
+        String indexOfItem = null;
         String itemDescription = null;
         String itemPrice = null;
         String itemQuantity = null;
-        final boolean descriptionPresent = arguments.contains("i/");
-        final boolean pricePresent = arguments.contains("p/");
-        final boolean quantityPresent = arguments.contains("q/");
 
-        indexOfItem = matcher.group("index").trim();
-        if (descriptionPresent) { //group: i/...; split: [i/, ...]
-            itemDescription = matcher.group("descriptionArgs").trim().split("i/")[1];
-        }
-        if (pricePresent) {
-            itemPrice = matcher.group("priceArgs").trim().split("p/")[1];
-        }
-        if (quantityPresent) {
-            itemQuantity = matcher.group("quantityArgs").trim().split("q/")[1];
+        while (matcher.find()) {
+
+            if (matcher.group("index") != null) {
+                indexOfItem = matcher.group("index");
+            }
+
+            if (matcher.group("description") != null) {
+                itemDescription = matcher.group("description");
+            }
+
+            if (matcher.group("price") != null) {
+                itemPrice = matcher.group("price");
+            }
+
+            if (matcher.group("quantity") != null) {
+                itemQuantity = matcher.group("quantity");
+            }
         }
         return new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
+    }
+
+    /**
+     * Validates the previously found matches.
+     * E.g if "i/" was present in input sequence, it's found match should be a value and not null.
+     *
+     * @param arrToCheck         Array that contains the found matches.
+     * @param descriptionPresent indicator for presence of "i/" in input string.
+     * @param pricePresent       indicator for presence of "p/" in input string.
+     * @param quantityPresent    indicator for presence of "q/" in input string.
+     * @return true if all values are valid.
+     **/
+    private boolean validValuesChecker(String[] arrToCheck, Boolean descriptionPresent, Boolean pricePresent,
+                                       Boolean quantityPresent) {
+        boolean validIndex = false;
+        boolean validDescription = false;
+        boolean validPrice = false;
+        boolean validQuantity = false;
+
+        if (arrToCheck[0] != null) {
+            validIndex = true;
+        }
+
+        if (descriptionPresent) {
+            if (arrToCheck[1] != null) {
+                validDescription = true;
+            }
+        }
+        if (!descriptionPresent) {
+            if (arrToCheck[1] == null) {
+                validDescription = true;
+            }
+        }
+
+        if (pricePresent) {
+            if (arrToCheck[2] != null) {
+                validPrice = true;
+            }
+        }
+        if (!pricePresent) {
+            if (arrToCheck[2] == null) {
+                validPrice = true;
+            }
+        }
+
+        if (quantityPresent) {
+            if (arrToCheck[3] != null) {
+                validQuantity = true;
+            }
+        }
+        if (!quantityPresent) {
+            if (arrToCheck[3] == null) {
+                validQuantity = true;
+            }
+        }
+
+        return validIndex && validDescription && validPrice && validQuantity;
     }
     //@@author
 
@@ -469,19 +574,19 @@ public class Parser {
         }
 
     }
-    //@@author
 
+    //@@author JLoh579
     /**
      * Initialises the ListCommand.
      */
-    private void createListCommand(String arguments) {
+    private void createDisplayCommand(String arguments) {
         if (arguments != null) {
             newCommand = new IncorrectCommand(System.lineSeparator()
                     + "Invalid command."
                     + System.lineSeparator()
                     + "To display your shopping list, just input \"DISPLAY\".");
         } else {
-            newCommand = new ListCommand();
+            newCommand = new DisplayCommand();
         }
     }
 
