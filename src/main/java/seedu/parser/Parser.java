@@ -27,6 +27,8 @@ public class Parser {
 
     private static final String CARD_ARG = "c/";
 
+    private static final String NUMBER_QUESTIONS_ARG = "n/";
+
     public static final String INCORRECT_COMMAND = "Incorrect Command\n";
 
     /**
@@ -199,7 +201,7 @@ public class Parser {
      */
     private static int getSubjectIndex(String argument) throws EscException {
         argument = argument.split(" ")[0];
-        String argWithoutPrefixes = argument.split(QUESTION_ARG)[0].split(CARD_ARG)[0];
+        String argWithoutPrefixes = argument.split(QUESTION_ARG)[0].split(CARD_ARG)[0].split(NUMBER_QUESTIONS_ARG)[0];
         String subjectIndexString = argWithoutPrefixes.replace(SUBJECT_ARG,"").trim();
 
         if (subjectIndexString.trim().isEmpty()) {
