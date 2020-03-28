@@ -63,9 +63,8 @@ grocery shopping disappear.
 * All command words are case-sensitive and you should always use uppercase.
   * e.g `ADD` in `ADD i/DESCRIPTION` consists of only uppercase letters.
   
-* You can supply parameters for the `ADD` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order. 
-However, note that for the `EDIT` command, the delimiters (i.e. `i/`, `q/` and `p/`) should come in alphabetical order.
-  * e.g `EDIT i/DESCRIPTION p/PRICE` is acceptable but `EDIT p/PRICE i/DESCRIPTION` is not.
+* You can supply parameters for the `ADD` and `EDIT` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order.
+  * e.g `ADD i/apple q/5` **AND** `ADD q/5 i/apple` should both produce the same result.
 <!-- @@author -->
 &nbsp;
 
