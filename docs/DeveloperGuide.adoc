@@ -21,38 +21,50 @@ By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 This section will give a high-level overview of how various components in ATAS function and interact with each other.
 
 === Architecture
+image::overall architecture.png[overall architecture]
+The architecture diagram above illustrates the high-level design of the ATAS application. +
+
+The Atas component contains all the other components in the application. +
+
+* Ui: Reads user input, and shows the results of commands to the user
+* Logic: Handles execution of user input commands
+* Model: Stores the runtime data of the application
+* Storage: Reads and stores data from a file stored on the user's computer
+
 The following sections will explain each component in greater detail.
 
-=== Atas Component
-
-The sequence diagram below shows how various components in the Atas class interact when the user enters a `help` command +
-
-image::Atas help command sequence diagram v2.PNG[Component interactions for help command]
-
-The Atas Class contains the main logic for ATAS. +
-1. Atas uses the UI class to read user input. +
-2. The Parser class is used to parse the user input string, returning a Command object. +
-3. The Command's execute() method is run, returning a CommandResult object. +
-4. Atas then uses the UI class to show the CommandResult's message to the user. +
-5. Finally, Atas uses the Storage object to save the new state of the application.
-
-
 === UI Component
+1. The Ui component reads user input which represents a command.
+2. The Ui component shows the result of the command to the user.
 
-=== Parser Component
-image::parser class diagram v1.PNG[Parser Class Diagram]
-1. The Atas class uses the Parser class' static parseCommand() method to parse user commands. +
-2. The Parser class' parseCommand() method then returns the appropriate Command object depending on the user input.
+=== Logic Component
+The Logic component comprises the Parser, Command, and CommandResult classes: +
+1. Parser will interpret the user command and return the corresponding Command object. +
+2. Command#execute() is called to run the command, returning a CommandResult object. +
+3. The CommandResult object will contain the output to be shown to the user.
+
+=== Model Component
+The Model component contains the Task and TaskList classes, which store the user's schedule.
+
+image::TaskList Task class diagram.png[TaskList and Tasks]
 
 === Storage Component
-image::storage.PNG[Storage Class Diagram]
+image::storage.png[Storage Class Diagram]
 1. A Storage object is created by the Atas class to handle the loading and saving of task data.
 2. The load() method is used to read saved data from a local file into the current session of ATAS.
 3. The save() method writes the current state of ATAS into the local save file using the Task.encodeTask() method.
 
-=== Command Component
+=== Atas Component
+The Atas Component integrates all the abovementioned components to run the overall application logic. +
+The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command +
 
-=== CommandResult Component
+image::atas help command sequence diagram v3.PNG[Component interactions for help command]
+
+1. The UI class is used to read user input. +
+2. The Parser class is used to parse the user input string, returning a Command object. +
+3. The Command's execute() method is run, returning a CommandResult object. +
+4. Atas uses the UI class to show the CommandResult's message to the user. +
+5. The Storage object is used to save the new state of the application.
 
 == Setting Up
 
