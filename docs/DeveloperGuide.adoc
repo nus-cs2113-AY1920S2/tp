@@ -94,7 +94,7 @@ message indicating an empty task list
 `TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will
 initialize a new `CommandResult` class that prints out the success message for task deletion.
 
-** The following sequence diagram summarizes how repeat command operation works: +
+** The following sequence diagram summarizes how delete command operation works: +
 
 image::delete.png[delete task]
 
@@ -113,9 +113,11 @@ allows us to keep all the related commands to the list of tasks within a class w
 classes inherits from the `Command` class.
 ** `SearchCommand` initializes the `taskType` to check which tasks the search function to search from and `searchParam`
 to get the search query that the user inputs.
-** Similar to the `SearchCommand`, `taskType` is initialized to check the tasks that the search function has to search
+** Similar to the `SearchCommand`, `SearchdCommand` initializes `taskType` to check the tasks that the search function has to search
 through and `searchParam` to get the search query that the user inputs. It also has a `date` parameter to check the date
 that the users wants to search from.
+
+*Given below is an example usage of the `Search` command:
 
 === Clear Task feature
 ==== Current Implementation
@@ -145,6 +147,10 @@ parse the command provided.
 message indicating an empty task list
 ** If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()`
 method in the `taskList` class
+
+** The following sequence diagram summarizes how delete command operation works: +
+
+image::clear.png[clear command]
 
 ==== Design Considerations
 * Creating another `clear done` command instead of just 1 `clear` command
