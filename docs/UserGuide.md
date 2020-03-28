@@ -37,6 +37,7 @@ budget tracker, we are here to enhance your grocery-shopping experience and make
 grocery shopping disappear.
 &nbsp;
 
+
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
@@ -48,8 +49,8 @@ grocery shopping disappear.
 4. You are now all set to plan your shopping list!
 &nbsp;
 <!-- @@author -->
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ## Features 
 
@@ -67,6 +68,8 @@ grocery shopping disappear.
   * e.g `ADD i/apple q/5` **AND** `ADD q/5 i/apple` should both produce the same result.
 <!-- @@author -->
 &nbsp;
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -110,7 +113,7 @@ shown in the displayed shopping list.
 * The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
 * At least one of three parameters (description/price/quantity) must be present.
-* i/, p/, q/ delimiters must be in **alphabetical** order.
+* i/, p/, q/ delimiters can be in any order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
 Example of usage: 
 
