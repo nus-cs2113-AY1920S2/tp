@@ -35,6 +35,15 @@ public class DailyFoodRecord {
     }
 
     /**
+     * Returns the date of this record.
+     * @return the date of this record
+     */
+
+    public String getDate() {
+        return this.date;
+    }
+
+    /**
      * Records the meals consumed into their respective categories.
      */
 
