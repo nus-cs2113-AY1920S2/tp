@@ -30,3 +30,62 @@ Please enter your command again!
 Mar 21, 2020 11:52:32 PM seedu.duke.Duke run
 WARNING: Input Error: invalid command
 Please enter your command again!
+Mar 25, 2020 11:00:18 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 25, 2020 11:00:22 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 1:59:15 PM seedu.duke.Duke run
+WARNING: Some thing wrong when saving.
+Mar 27, 2020 1:59:23 PM seedu.duke.Duke run
+WARNING: Some thing wrong when saving.
+Mar 27, 2020 2:13:51 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 2:14:32 PM seedu.duke.Duke run
+WARNING: Runtime Error: The module is already exist in your semester list!
+Please enter your command again!
+Mar 27, 2020 2:14:39 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 3:07:34 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 3:24:14 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 27, 2020 4:01:17 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'delete' command to delete from Available Modules
+Please enter your command again! Format:
+delete id/ID OR delete n/NAME
+Mar 27, 2020 4:01:31 PM seedu.duke.Duke run
+WARNING: Runtime Error: Module CS2030 cannot be deleted because it is a prerequisite to other modules.
+Please enter your command again!
+Mar 27, 2020 5:05:09 PM seedu.duke.Duke run
+WARNING: Runtime Error: module not found
+Please enter your command again!
+Mar 27, 2020 5:42:21 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:07 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:10 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:18 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:24 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 27, 2020 5:43:34 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
