@@ -12,7 +12,15 @@ import seedu.commands.ScoreCommand;
 import seedu.commands.QuizCommand;
 import seedu.commands.HelpCommand;
 import seedu.commands.ExitCommand;
+import seedu.commands.ShowUpcomingCommand;
+import seedu.commands.AddExamCommand;
+import seedu.commands.ListExamCommand;
+import seedu.exams.Exam;
 import seedu.exception.EscException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Contains methods to parse user inputs into sensible commands.
@@ -26,6 +34,10 @@ public class Parser {
     private static final String SUBJECT_ARG = "s/";
 
     private static final String CARD_ARG = "c/";
+
+    private static final String EVENT_ARG = "e/";
+
+    private static final String DATE_ARG = "d/";
 
     public static final String INCORRECT_COMMAND = "Incorrect Command\n";
 
@@ -62,6 +74,15 @@ public class Parser {
 
         case ScoreCommand.COMMAND_WORD:
             return prepareScore(arguments);
+
+        case AddExamCommand.COMMAND_WORD:
+            return prepareAddExam(arguments);
+
+        case ListExamCommand.COMMAND_WORD:
+            return new ListExamCommand();
+
+        case ShowUpcomingCommand.COMMAND_WORD:
+            return prepareShowUpcoming(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -174,6 +195,35 @@ public class Parser {
     }
 
     /**
+     * Parses the user input into arguments for the AddExam command.
+     * @return AddExamDate Command.
+     */
+    private static Command prepareAddExam(String[] arguments) throws EscException {
+        checkNumberOfArguments(arguments, AddExamCommand.MESSAGE_USAGE);
+        checkArgumentPrefixes(arguments[1], AddExamCommand.MESSAGE_USAGE, DATE_ARG, EVENT_ARG);
+
+        String examTopic = getExamTopic(arguments[1]);
+        LocalDate examDate = getExamDate(arguments[1]);
+
+        Exam exam = new Exam(examTopic, examDate);
+
+        return new AddExamCommand(exam);
+    }
+
+    /**
+     * Parses the user input into arguments for the ShowUpcoming command.
+     * @return ShowUpcoming Command.
+     */
+    private static Command prepareShowUpcoming(String[] arguments) throws EscException {
+        checkNumberOfArguments(arguments, ShowUpcomingCommand.MESSAGE_USAGE);
+        checkArgumentPrefixes(arguments[1], ShowUpcomingCommand.MESSAGE_USAGE, DATE_ARG);
+
+        int dateRange = getDateRange(arguments[1]);
+
+        return new ShowUpcomingCommand(dateRange);
+    }
+
+    /**
      * Returns the number of questions to quiz from the user input.
      * @return the number of questions to quiz.
      * @throws EscException if the input number is a non-integer.
@@ -230,6 +280,70 @@ public class Parser {
             return Integer.parseInt(cardIndexString);
         } catch (NumberFormatException  e) {
             throw new EscException("The card index has to be an integer.");
+        }
+    }
+
+    /**
+     * Returns the exam topic from the user input.
+     * @return the exam topic.
+     * @throws EscException if the exam topic is absent.
+     */
+    private static String getExamTopic(String argument) throws EscException {
+        String argWithoutPrefixes = argument.split(DATE_ARG)[0].split(EVENT_ARG)[1];
+        String topicString = argWithoutPrefixes.replace(EVENT_ARG,"").trim();
+
+        if (topicString.trim().isEmpty()) {
+            throw new EscException("The exam topic is required");
+        }
+
+        return topicString;
+    }
+
+    /**
+     * Returns the exam date from the user input.
+     * @return the exam date.
+     * @throws EscException if the exam date format is wrong or absent.
+     */
+    private static LocalDate getExamDate(String argument) throws EscException {
+        String argWithoutPrefixes = argument.split(DATE_ARG)[1];
+        String dateString = argWithoutPrefixes.replace(DATE_ARG,"").trim();
+
+        if (dateString.trim().isEmpty()) {
+            throw new EscException("The exam date is required");
+        }
+
+        DateTimeFormatter dateKey = DateTimeFormatter.ofPattern("[dd/MM/yyyy][d/M/yyyy][dd/MM/yy][d/M/yy]"
+                + "[yyyy/MM/dd][yyyy-MM-dd][yyyy-M-d]"
+                + "[dd-MM-yyyy][d-M-yyyy][dd-MM-yy][d-M-yy]"
+                + "[dd.MM.yy][d.M.yy][dd.MM.yyyy][d.M.yyyy]"
+                + "[dd-MMM-yyyy][d-MMM-yyyy][d-MMM-yy]");
+
+        LocalDate parsedDate;
+        try {
+            parsedDate = LocalDate.parse(dateString, dateKey);
+        } catch (DateTimeParseException e) {
+            throw new EscException("Wrong date format.");
+        }
+
+        return parsedDate;
+    }
+
+    /**
+     * Returns the date range of upcoming exams to show from the user input.
+     * @return the date range integer.
+     * @throws EscException if the date range is absent or non-integer.
+     */
+    private static int getDateRange(String argument) throws EscException {
+        String dateRangeString = argument.replace(DATE_ARG,"").trim();
+
+        if (dateRangeString.trim().isEmpty()) {
+            throw new EscException("The date range is required");
+        }
+
+        try {
+            return Integer.parseInt(dateRangeString);
+        } catch (NumberFormatException  e) {
+            throw new EscException("The date range has to be an integer.");
         }
     }
 
