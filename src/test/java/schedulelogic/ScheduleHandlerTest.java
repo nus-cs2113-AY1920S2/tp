@@ -1,6 +1,5 @@
-package teammember;
+package schedulelogic;
 
-import teammember.TeamMember;
 import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import java.util.ArrayList;

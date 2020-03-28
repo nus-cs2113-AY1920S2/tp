@@ -3,7 +3,7 @@ package ui;
 import static common.Messages.FORMAT_TIMETABLE;
 import static common.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static common.Messages.MESSAGE_INVALID_MEETING;
-import static common.Messages.MESSAGE_INVALID_NUDMOSLINK;
+import static common.Messages.MESSAGE_INVALID_NUSMODLINK;
 import static common.Messages.MESSAGE_INVALID_NUMBER;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
@@ -13,7 +13,7 @@ import static java.lang.System.out;
 import exception.MoException;
 import meeting.Meeting;
 import meeting.MeetingList;
-import teammember.TeamMember;
+import schedulelogic.TeamMember;
 import java.util.ArrayList;
 
 /**
