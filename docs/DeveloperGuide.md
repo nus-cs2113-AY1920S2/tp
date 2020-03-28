@@ -57,7 +57,7 @@ By: `CS2113T-T12-2` Since: `2020`
 
 ## 4. Implementation
 
-### 4.1. Add Patient's Information
+### 4.1. Managing Patient Details
 
 #### 4.1.1 Description
 
@@ -206,37 +206,44 @@ Step 5: `HappyPills` will execute the command.
 
 #### 4.3.1 Description
 
-This is an internal feature of the program, implemented to allow users to recover information even after HappyPills is closed in the terminal. This is achieved by storing all important information in a text file using a structured format.
+This is an internal feature of the program, implemented to allow users to recover information 
+even after HappyPills is closed in the terminal. This is achieved by storing all relevant information
+ in a text file using a structured format.
 
 #### 4.3.2 Implementation
 
- The current methods implemented in this class include: ‘addStringToFile’, ‘loadFromFile’ and ‘parseFileContent’. Each of these methods will carry out the following operations:
-- `addStringToFile` — allows the program to add a new class object to the specified text file. This requires the program to structure the content of the class object as a single-line string, which can be done within the various classes. This saves on execution time as the saving time for all information could increase extensively with the increase of patient database. 
-- `loadFromFile` — allows the program to access the specific folder and retrieve all information in the file as strings and passes it to parseFileContent line by line.
-- `parseFileContent` — processes the string of information passed to it, by instantiating a relevant class object and adding it into the list containing all the objects of the same class.
+ The current methods implemented in this class include: 'writeAllToFile', ‘addSingleItemToFile’, ‘loadFromFile’ and ‘parseFileContent’. 
+ Provided is a brief description of each method:
+ - `writeAllToFile` — writes the entire list of item to the specified text file.
+ - `addSingleItemToFile` — allows the program to add a new item to the specified text file.
+ - `loadFromFile` — allows the program to access the specific folder and retrieve all information in the file as strings.
+ - `parseFileContent` — instantiate a relevant item of the given string and adding it into the relevant list.
 
 #### 4.3.3 Design Considerations
 
 ##### Aspect: Saving method
+Alternative 1 was chosen as fewer checks means that the program is less prone to exception, especially
+so if the checks are confusing to implement. This would put lesser risk on the user experience for now.
 
         Alternative 1 (current choice): Single object stored into the same file
-          Pros: Parsing a single file would be easier as they are structured in a similar fashion. Fewer checks are needed to identify which class does the object belongs to and which list it should be added to.
-          Cons: Deleting a single patient could be tedious as it involves saving the entire list of the various class object back into their respective text file. If there was a large amount of the class object, then it would take an even longer time.
-          Cons: It can also appear messy and relationship of prescriptions and appointments of individual users may not be clear without the use of the program. This is not friendly for backup recovery or data transfer in the future.
+          Pros: Fewer checks required to identify class of the string, parsing is easier.
+          Cons: Delete and update operation may take a long time if the string is very long
 
-        Alternative 2: Store each patient as an individual text file, along with all its relevant class objects. A list with all the patient’s NRIC will also be stored to be used as a reference.
-          Pros: Each patient and their relevant details are well-associated. Deleting a single user will only involve the deletion of the associated text file and overwriting the text file containing all the NRIC of the patients, instead of overwriting all the textfiles that could possibly be relevant to the patient.
-          Cons: The user could end up with a lot of text files and more checks/rules are needed to find out which is the class that each string in the individual text files belongs to. Adding to the wrong class could trigger exceptions and errors that requires manual intervention.
+        Alternative 2: Store each patient as an individual text file, along with all its relevant class objects. 
+                       A list with all the patient’s NRIC will also be stored for referencing.
+          Pros: Delete and edit operation on a patient will only affect his/her file, and the referencing list.
+          Cons: More checks are requires to identify class of the string
 
-##### Aspect: Updating deletion
+##### Aspect: Updating deletion/edit
+Alternative 1 was chosen for now as the program is relatively new, and is more likely to be subjected to unexpected exceptions.
 
-        Alternative 1 (current choice): Upon every deletion, update the relevant text file
+        Alternative 1 (current choice): Upon every delete/edit operation, update the relevant text file
           Pros: All deletions are updated in the relevant text files immediately and will not be affected by any unexpected termination of the program.
           Cons: In the event that there is a large amount of deletion, it could be time-consuming for the user and memory-intensive on the machine.
 
-        Alternative 2: Saving the patients for deletion to a list then processed before the exit of the program
-          Pros: This will push the deletion time cost towards the end of the code so that the use of the program is faster and smoother even with a large amount of deletion.
-          Cons: If the program was to terminate unexpectedly, the deletion may not be reflected in the respective text files and would be recovered in the next run of the program.
+        Alternative 2: Saving the delete/edit operation to a list, then process it before the exit of the program
+          Pros: Delay deletion time cost so that the use of the program is faster and smoother during time of use.
+          Cons: If the program was to terminate unexpectedly, the deletion may not be reflected in the respective files.
 
 
 
