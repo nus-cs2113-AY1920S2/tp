@@ -11,12 +11,12 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
 
     private String moduleIdentifier;
     private String type;
+
     /**
      * Constructor for DeleteFromAvailableCommand.
      * @param moduleIdentifier The Id or the Name of the Module.
      * @param type To determine if the moduleIdentifier is an Id or the Name of the module.
      */
-
     public DeleteFromAvailableCommand(String moduleIdentifier, String type) {
         this.moduleIdentifier = moduleIdentifier;
         this.type = type;
@@ -42,7 +42,7 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
         boolean isInModulePlan = checkIfInModulePlan(moduleChosen.getId(), selectedModulesList);
         if (isInModulePlan) {
             for (SemModulesList sem : selectedModulesList) {
-                if (sem.isModuleIdInList(moduleChosen.getId())) {
+                if (sem.isInList(moduleChosen.getId())) {
                     sem.deleteModule(moduleIdentifier);
                     Ui.showDeleteFromAvailableFollowUpMessage(moduleChosen.toString());
                     break;
@@ -73,7 +73,7 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
 
     public boolean checkIfInModulePlan(String moduleId, SemesterList selectedModulesList) {
         for (SemModulesList sem : selectedModulesList) {
-            if (sem.isModuleIdInList(moduleId)) {
+            if (sem.isInList(moduleId)) {
                 return true;
             }
         }

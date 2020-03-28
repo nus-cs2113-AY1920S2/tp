@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Person {
     private static String name;
-    private static int matricYear;
+    private static String matricYear;
     private static double totalCap;
     private static int totalModuleCreditCompleted;
     private static boolean isPersonExist = false;
@@ -20,26 +20,23 @@ public class Person {
         Person.totalModuleCreditCompleted += modularCredit;
     }
 
-    public Person(String name, int year) {
+    public Person(String name, String year) {
         Person.name = name;
         matricYear = year;
         isPersonExist = true;
     }
 
-    public static Person createNewUser(Scanner in) {
-        Ui.showInputUserNameRequest();
-        String userName = in.nextLine();
-        name = userName;
-        Ui.showInputUserMatricYearRequest();
-        int matricYear = Integer.parseInt(in.nextLine());
-        return new Person(userName, matricYear);
+    public static Person createNewUser(Scanner in) {         // say hi user, and jump straight to help
+        name = "User";
+        String matricYear = "Y1";
+        return new Person(name, matricYear);
     }
 
     public static String getName() {
         return name;
     }
 
-    public static int getMatricYear() {
+    public static String getMatricYear() {
         return matricYear;
     }
 

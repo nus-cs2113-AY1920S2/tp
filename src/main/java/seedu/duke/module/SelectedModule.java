@@ -5,6 +5,7 @@ public class SelectedModule extends Module {
     protected boolean isDone;
     private Grading grade;
     protected String semester;
+    private String yearSemester;
 
     /**
      * This is Module's constructor.
@@ -18,6 +19,7 @@ public class SelectedModule extends Module {
         super(type, moduleIdentifier, moduleCredit);
         this.semester = semester;
         this.isDone = false;
+        setYearSemester();
     }
 
     /**
@@ -33,6 +35,7 @@ public class SelectedModule extends Module {
         super(type, moduleId, moduleName, moduleCredit);
         this.semester = semester;
         this.isDone = false;
+        setYearSemester();
     }
 
     /**
@@ -108,14 +111,34 @@ public class SelectedModule extends Module {
         default:
             this.grade = Grading.CS;
         }
+        setYearSemester();
     }
 
     public SelectedModule(String id, String name, String semester, int moduleCredit, boolean isDone) {
         super();
         this.semester = semester;
         this.isDone = false;
+        setYearSemester();
     }
 
+    /**
+     * Converts semester (e.g. semester 5) to specific year semester string (Y3S1)
+     */
+    public void setYearSemester() {
+        StringBuilder yearSemesterBuilder = new StringBuilder();
+        int intSemester = Integer.parseInt(semester);
+        yearSemesterBuilder.append("Y").append(Integer.toString((intSemester+1) / 2)).append("S");
+        if (intSemester % 2 == 0) {
+            yearSemesterBuilder.append(Integer.toString(2));
+        } else {
+            yearSemesterBuilder.append(Integer.toString(1));
+        }
+        yearSemester = yearSemesterBuilder.toString();
+    }
+
+    public String getYearSemester() {
+        return yearSemester.toString();
+    }
 
     public void setModuleConfig(Module availableModule) {
         this.name = availableModule.name;
@@ -152,7 +175,7 @@ public class SelectedModule extends Module {
     }
 
     public String announceAdded() {
-        return super.toString() + " | Sem: " + semester;
+        return super.toString() + " | Sem: " + yearSemester;
     }
 
     public Grading getGrade() {
@@ -162,10 +185,10 @@ public class SelectedModule extends Module {
     @Override
     public String toString() {
         if (this.isDone) {
-            return this.getIcon() + " " + super.toString() + " | Sem: " + semester
+            return this.getIcon() + " " + super.toString() + " | Sem: " + yearSemester
                     + " | Grade: " + grade.getGrade();
         } else {
-            return this.getIcon() + " " + super.toString() + " | Sem: " + semester;
+            return this.getIcon() + " " + super.toString() + " | Sem: " + yearSemester;
         }
     }
 

@@ -55,7 +55,7 @@ public class ViewCommand extends Command {
     private void viewModulePlan(SemesterList semesterList) {
         StringBuilder viewList = new StringBuilder();
         for (SemModulesList sem : semesterList) {
-            viewList.append(sem.getSem()).append(System.lineSeparator());
+            viewList.append(sem.getYearSemester()).append(System.lineSeparator());
             for (Module selectedModule : sem) {
                 int index = sem.indexOf(selectedModule) + 1;
                 viewList.append(index).append(".")
@@ -67,12 +67,17 @@ public class ViewCommand extends Command {
         Ui.showViewMessage(viewList.toString().trim());
     }
 
+    /**
+     * Prints the user's completed modules
+     *
+     * @param semesterList user's module list.
+     */
     private void viewDoneModules(SemesterList semesterList) {
         StringBuilder viewList = new StringBuilder();
         for (SemModulesList sem : semesterList) {
             StringBuilder viewSemList = new StringBuilder();
             boolean haveCompletedModule = false;
-            viewSemList.append(sem.getSem()).append(System.lineSeparator());
+            viewSemList.append(sem.getYearSemester()).append(System.lineSeparator());
             int index = 1;
             for (SelectedModule selectedModule : sem) {
                 if (selectedModule.getDone()) {
@@ -90,6 +95,12 @@ public class ViewCommand extends Command {
         Ui.showViewDoneMessage(viewList.toString().trim());
     }
 
+    /**
+     *
+     * print user's available module list
+     *
+     * @param modulesList user's available module list.
+     */
     private void viewAvailableModules(AvailableModulesList modulesList) {
         StringBuilder viewList = new StringBuilder();
         for (Module module : modulesList) {

@@ -89,3 +89,26 @@ Mar 27, 2020 5:43:34 PM seedu.duke.Duke run
 WARNING: Input Error: invalid 'add' command
 Please enter your command again! Format:
 add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES
+Mar 28, 2020 6:04:33 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT | add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT
+Mar 28, 2020 6:19:08 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 28, 2020 6:19:27 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT | add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT
+Mar 28, 2020 9:21:12 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES]
+Mar 28, 2020 9:22:44 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT | add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT
+Mar 28, 2020 9:26:42 PM seedu.duke.Duke run
+WARNING: Input Error: invalid 'done' command
+Please enter your command again! Format:
+done n/NAME g/GRADE | done id/ID g/GRADE

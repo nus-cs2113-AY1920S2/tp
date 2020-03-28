@@ -52,7 +52,6 @@ public class Parser {
         case MarkAsDoneCommand.COMMAND_WORD:
             return processMarkAsDone(args);
         case HelpingCommand.COMMAND_WORD:
-            assert taskType.equals("help");
             return processHelpCommand();
         case FindCommand.COMMAND_WORD:
             return processFindCommand(args);
@@ -151,7 +150,7 @@ public class Parser {
                     "add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT "
                     + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
         }
-        semester = convertSemToStandardFormat(moduleDetails[0]);
+        semester = moduleDetails[0];
         int moduleCredit = Integer.parseInt(moduleDetails[1]);
         if (module.contains("id/")) {
             String moduleId = module.replace("id/","");
@@ -245,11 +244,11 @@ public class Parser {
         String[] moduleWords = args.split(" s/");
         if (args.contains("id/")) {
             String moduleId = moduleWords[0].replace("id/", "");
-            String semester = convertSemToStandardFormat(moduleWords[1]);
+            String semester = moduleWords[1];
             return new DeleteFromSemCommand(moduleId, semester, "id");
         } else if (args.contains("n/")) {
             String moduleName = moduleWords[0].replace("n/", "");
-            String semester = convertSemToStandardFormat(moduleWords[1]);
+            String semester = moduleWords[1];
             return new DeleteFromSemCommand(moduleName, semester, "name");
         }
         throw new InputException("invalid 'delete' command to delete from Selected Modules",
@@ -270,15 +269,6 @@ public class Parser {
         }
         throw new InputException("invalid 'delete' command to delete from Available Modules",
                 "delete id/ID OR delete n/NAME");
-    }
-
-
-    private static String convertSemToStandardFormat(String semester) {
-        String standardSemFormat;
-        int year = Person.getMatricYear() + (Integer.parseInt(semester) - 1) / 2;
-        int sem = (Integer.parseInt(semester) + 1) % 2 + 1;
-        standardSemFormat = year + "/" + (year + 1) + " SEM" + sem;
-        return standardSemFormat;
     }
 
 }
