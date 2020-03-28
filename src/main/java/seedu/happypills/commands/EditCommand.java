@@ -4,8 +4,10 @@ import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -108,6 +110,11 @@ public class EditCommand extends Command {
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
             + "\n    enter \"help edit\"");
+        }
+        try {
+            Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
+        } catch (IOException e) {
+            logger.info("Adding patient list to file failed.");
         }
         assert output.length() > 0 : "output message is invalid";
         return output;

@@ -4,8 +4,10 @@ import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,8 +57,14 @@ public class AddCommand extends Command {
     @Override
     public String execute(PatientMap patients) throws HappyPillsException {
         assert !patients.containsKey(nric) : "New nric can be added";
-        patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
+        Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
+        patients.add(tempPatient);
         assert patients.containsKey(nric) : "nric added successfully";
+        try {
+            Storage.addSingleItemToFile(Storage.PATIENT_FILEPATH, tempPatient.toSave());
+        } catch (IOException e) {
+            logger.info("Patient not added to file.");
+        }
         String message = "";
         message = TextUi.getPatient(patients.get(nric));
         logger.log(logLevel, "end of addCommand");

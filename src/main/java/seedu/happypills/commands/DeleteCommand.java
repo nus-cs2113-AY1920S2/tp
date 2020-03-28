@@ -4,8 +4,10 @@ import seedu.happypills.HappyPills;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,6 +64,11 @@ public class DeleteCommand extends Command {
             while (!isConfirmed) {
                 if (confirm.equalsIgnoreCase("y")) {
                     message = deletePatient(patient, patients);
+                    try {
+                        Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
+                    } catch (IOException e) {
+                        logger.info("Adding patient list to file failed.");
+                    }
                     isConfirmed = true;
                     logger.log(logLevel, "patient is deleted");
                 } else if (confirm.equalsIgnoreCase("n")) {

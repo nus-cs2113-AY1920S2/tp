@@ -23,17 +23,16 @@ public class HappyPills {
     private TextUi ui;
     private PatientMap patients;
     private static final Logger logger = Logger.getLogger(HappyPills.class.getName());
-    private static final String DATA_FILEPATH = "data/data.txt";
+
 
     /**
      * Sets up the required objects, loads up the data from the storage file.
      */
     public HappyPills() {
         ui = new TextUi();
-        //patients = new PatientList();
         try {
             logger.info("loading patient data from file.");
-            patients = Storage.loadFromFile(DATA_FILEPATH);
+            patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
         } catch (FileNotFoundException e) {
             logger.info("No patient data file was found.");
             patients = new PatientMap();

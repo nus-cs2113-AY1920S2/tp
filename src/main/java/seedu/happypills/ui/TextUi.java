@@ -313,4 +313,18 @@ public class TextUi {
         return "    Patient " + patient.getName() + " || " + patient.getNric()
             + " has been deleted successfully.\n";
     }
+
+    /**
+     * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
+     * @param patients A patient list with all existing patients
+     * @return a message to be displayed to user
+     */
+    public static String getFormattedPatientString(PatientMap patients) {
+        String formattedPatientString = "";
+        for (Map.Entry patient : patients.entrySet()) {
+            Patient p = (Patient)patient.getValue();
+            formattedPatientString += p.toSave() + System.lineSeparator();
+        }
+        return formattedPatientString;
+    }
 }
