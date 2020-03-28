@@ -10,15 +10,18 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test in alphanumeric order instead of random order to ensure that
- * testing function "repeatingEvent_filledList_allTaskListMsg"
- * is the last to run and will not affect the other hard coded test cases.
+ * testing methods relating to repeat commands
+ * are the last ones to run and will not affect the other hard coded test cases.
  */
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class ListCommandTest {
@@ -35,6 +38,7 @@ public class ListCommandTest {
     private static LocalDateTime oneWeekDateTime2 = currDateTime2.plusDays(7);
     private static LocalDateTime afterCurrButSameDayDateTime1 = currDateTime1.plusSeconds(30);
     private static LocalDateTime afterCurrButSameDayDateTime2 = currDateTime1.plusSeconds(300);
+    private static LocalDateTime pastDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(5, 12));
     private static String beforeCurrDateTimeString1 = "13/02/20 1800";
     private static String beforeCurrDateTimeString2 = "13/02/20 2030";
     private static String afterCurrDateTimeString1 = "01/01/21 0000";
@@ -123,7 +127,7 @@ public class ListCommandTest {
             + "  2. [A][X] Quiz 1 (by: Fri 01 Jan 2021 00:00 | mod: CS2173)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%"
             + System.lineSeparator()
-            + "  3. [E][X] midterms (at: MPSH1A | Thu 13 Aug 2020 18:00 - 20:30)"
+            + "  3. [R][X] midterms (at: MPSH1A | Thu 13 Aug 2020 18:00 - 20:30)"
             + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "6m") + "-"
             + System.lineSeparator()
             + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00 - 02:59)"
@@ -132,6 +136,30 @@ public class ListCommandTest {
             + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint1 + " - "
             + afterCurrButSameDayStringForPrint2 + ")"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-";
+
+    private static String expectedOutputFromTodayFilledTasklistForRepeating = "Here are the relevant tasks:"
+            + System.lineSeparator()
+            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint1 + " - "
+            + afterCurrButSameDayStringForPrint2 + ")"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "-"
+            + System.lineSeparator()
+            + "  6. [R][X] Bathe2 (at: Toilet | " + pastDateTime.format(Parser.PRINT_DATE_FORMAT) + " - "
+            + pastDateTime.plusMinutes(15).format(Parser.PRINT_TIME_FORMAT) + ")"
+            + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "4d") + "before sleep";
+
+    private static String expectedOutputFromUpcomingEventFilledTasklistForRepeating = "Here are the relevant tasks:"
+            + System.lineSeparator()
+            + "  4. [E][X] Countdown (at: TimeSquare | Fri 01 Jan 2021 00:00 - 02:59)"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "new year new me"
+            + System.lineSeparator()
+            + "  5. [E][X] Bathe (at: Toilet | " + afterCurrButSameDayStringForPrint1 + " - "
+            + afterCurrButSameDayStringForPrint2 + ")"
+            + System.lineSeparator() + Messages.COMMENTS_INDENT + "-"
+            + System.lineSeparator()
+            + "  6. [R][X] Bathe2 (at: Toilet | " + pastDateTime.format(Parser.PRINT_DATE_FORMAT) + " - "
+            + pastDateTime.plusMinutes(15).format(Parser.PRINT_TIME_FORMAT) + ")"
+            + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "4d") + "before sleep";
+
 
     /**
      * Initialize hardcoded test cases for testing.
@@ -168,7 +196,6 @@ public class ListCommandTest {
         filledWeeklyTaskList.addTask(currDateTimeEvent);
         filledWeeklyTaskList.addTask(nextWeekAssignment);
         filledWeeklyTaskList.addTask(nextWeekEvent);
-
     }
 
     @Test
@@ -213,12 +240,27 @@ public class ListCommandTest {
                 new ListCommand("week").execute(filledWeeklyTaskList, ui).feedbackToUser);
     }
 
+    /**
+     * Will occur first before repeatingEvent_filledList_weekTasks() method hence no need to add testRepeatEvent again.
+     */
     @Test
-    public void repeatingEvent_filledList_allTaskListMsg() {
-        RepeatCommand testRepeatCommand = new RepeatCommand(2, 6, "m");
-        testRepeatCommand.execute(filledTasklist, ui);
-        ((Event) filledTasklist.getTask(2)).updateDate();
-        assertEquals(expectedOutputFromFilledTasklistForRepeating,
-                new ListCommand("").execute(filledTasklist, ui).feedbackToUser);
+    public void repeatingEvent_filledList_todayTasks() {
+        RepeatEvent testRepeatEvent = new RepeatEvent("Bathe2", "Toilet", pastDateTime,
+                pastDateTime.plusMinutes(15), "before sleep", 4, RepeatCommand.DAILY_ICON,
+                pastDateTime, 0);
+        filledTasklist.addTask(testRepeatEvent);
+
+        RepeatEvent repeatEvent = ((RepeatEvent) filledTasklist.getTask(5));
+        repeatEvent.updateDate();
+        assertEquals(expectedOutputFromTodayFilledTasklistForRepeating,
+                new ListCommand("today").execute(filledTasklist, ui).feedbackToUser);
+    }
+
+    @Test
+    public void repeatingEvent_filledList_weekTasks() {
+        RepeatEvent repeatEvent = ((RepeatEvent) filledTasklist.getTask(5));
+        repeatEvent.updateDate();
+        assertEquals(expectedOutputFromUpcomingEventFilledTasklistForRepeating,
+                new ListCommand("upcoming events").execute(filledTasklist, ui).feedbackToUser);
     }
 }

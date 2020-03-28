@@ -5,6 +5,7 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
 import tasks.Task;
 
 public class RepeatCommand extends Command {
@@ -74,25 +75,32 @@ public class RepeatCommand extends Command {
 
         //unset repeat if numOfPeriod = 0, ignoring typeOfPeriod
         if (numOfPeriod == 0) {
-            return unsetRepeat((Event) task);
+            return unsetRepeat(taskList, (Event) task);
         //set to repeat otherwise
         } else {
-            return setRepeat((Event) task);
+            return setRepeat(taskList, ((Event) task));
         }
     }
 
-    private CommandResult setRepeat(Event task) {
-        task.setRepeat(numOfPeriod, typeOfPeriod, task.getDateAndTime(), 0);
-        return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, task.getName(),
+    //String name, String location, LocalDateTime startDateTime, LocalDateTime endDateTime, String comments,
+    //                       int numOfPeriod, String typeOfPeriod, LocalDateTime originalDateAndTime, int periodCounter
+
+    private CommandResult setRepeat(TaskList taskList, Event event) {
+        RepeatEvent newRepeatEvent = new RepeatEvent(event.getName(), event.getLocation(), event.getDateAndTime(),
+                event.getEndDateAndTime(), event.getComments(), numOfPeriod, typeOfPeriod, event.getDateAndTime(), 0);
+        taskList.editTask(eventIndex, newRepeatEvent);
+        return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, newRepeatEvent.getName(),
                 numOfPeriod == 1 ? "" : numOfPeriod + " ", iconToString(typeOfPeriod),
                 numOfPeriod <= 1 ? "" : "s"));
     }
 
-    private CommandResult unsetRepeat(Event task) {
-        if (!(task.getIsRepeat())) {
-            return new CommandResult(String.format(Messages.REPEAT_NOT_SET_ERROR, task.getName()));
+    private CommandResult unsetRepeat(TaskList taskList, Event event) {
+        if (event instanceof RepeatEvent) {
+            Event newEvent = new Event(event.getName(), event.getLocation(), event.getDateAndTime(),
+                    event.getEndDateAndTime(), event.getComments());
+            taskList.editTask(eventIndex, newEvent);
+            return new CommandResult(String.format(Messages.STOP_REPEATING_SUCCESS_MESSAGE, newEvent.getName()));
         }
-        task.setNoRepeat();
-        return new CommandResult(String.format(Messages.STOP_REPEATING_SUCCESS_MESSAGE, task.getName()));
+        return new CommandResult(String.format(Messages.REPEAT_NOT_SET_ERROR, event.getName()));
     }
 }
