@@ -85,7 +85,17 @@ The following sequence diagram shows how the `Add to Semester` operation works:
 
 #### `Mark as Done` feature
 
+#### Calculate CAP feature
 
+The Calculate CAP mechanism is executed by `CalculateCapCommand`.  
+`CalculateCapCommand` is extended from `Command` and this implementation calculates the CAP using completed `SelectedModule` stored in `SemModulesList`.
+
+Given below is the behaviour of the Calculate CAP mechanism at each step:
+
+Step 1: 
+User launches the application. `SelectedModules` are 
+
+#####
 
 
 
