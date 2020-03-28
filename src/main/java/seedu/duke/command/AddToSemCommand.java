@@ -53,18 +53,9 @@ public class AddToSemCommand extends AddCommand {
         }
     }
 
-    private boolean checkModuleExist(SemesterList semesterList) throws RuntimeException {
-        boolean isInAvailableList = false;
-
-        for (Module module: AvailableModulesList.availableModulesList) {
-            if (module.getName().equals(selectedModule.getName())) {
-                isInAvailableList = true;
-            }
-        }
-
-        if (!isInAvailableList) {
-            throw new RuntimeException("Please add this module to available list first!");
-        }
+    private boolean checkModuleExist(SemesterList semesterList) {
+        /* Allows users to add to data later(or not) and then it if users add a module to data,
+        it will automatically update the information of the selected module. */
 
         for (SemModulesList sem: semesterList) {
             if (sem.isInList(selectedModule.getName()) || sem.isInList(selectedModule.getId())) {

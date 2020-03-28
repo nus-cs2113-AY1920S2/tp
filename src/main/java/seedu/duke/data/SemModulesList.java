@@ -20,7 +20,6 @@ public class SemModulesList extends ArrayList<SelectedModule> {
     public boolean isInList(String moduleIdentifier) {
         for (SelectedModule module: this) {
             if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
-
                 return true;
             }
         }

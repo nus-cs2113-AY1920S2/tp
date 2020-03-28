@@ -10,8 +10,6 @@ Hello from
 
 
 
-What is your name? Please enter it over here:
-Hello Duke, please input your matric year:
 Here are the commands that I can do for you:
 1. "help" to look at all the commands that I can do
 2. "view" to see all modules we have in our module list
@@ -72,23 +70,21 @@ Okay! Here are your available modules in database:
 |  23 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  24 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
+|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
+|  25 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
+|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
+|  26 | CS1231   | Discrete Structures                                           | 4             | None                    |
+|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
+|  27 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
 ----------------------------------------------------------------------------------------------------------------------------
 
 
 Okay! I have added this module to your semester's module list:
-ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
-
-
-Okay! I have added this module to your semester's module list:
-ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1
+ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2
 
 
 Okay! I have added this module to the available modules to choose from:
 ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4 | Prerequisites: CS1010
-
-
-Okay! I have added this module to your semester's module list:
-ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2
 
 
 Okay! I have added this module to the available modules to choose from:
@@ -159,13 +155,9 @@ Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 
 
-Okay! I have added this module to your semester's module list:
-ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
-
-
 Okay! Here is your module plan:
 2018/2019 SEM1
-1.[✗] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1
+1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
 2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
 
 2018/2019 SEM2
@@ -177,6 +169,9 @@ Okay, I've marked the module as done!
 
 
 Okay! Here are your completed modules:
+2018/2019 SEM1
+1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
+
 2018/2019 SEM2
 1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
 
@@ -188,7 +183,7 @@ You have completed this amount of credits:
 Okay, this is the list of related modules:
 
 List of selected modules:
-[✗] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1
+[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
 [✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
 [✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
 
