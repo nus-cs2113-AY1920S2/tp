@@ -24,6 +24,7 @@ public class SearchReservationCommand extends ReservationCommand {
     public SearchReservationCommand(String description) {
         this.description = description;
         this.reservationNumber = -1;
+        this.date = null;
     }
 
     /**
@@ -53,7 +54,8 @@ public class SearchReservationCommand extends ReservationCommand {
                 boolean emptyList = true;
                 for (int i = 0; i < reservations.getSize(); i++) {
                     Reservation reservation = reservations.getReservation(i);
-                    if (reservation.getDate().equals(date)) {
+                    if (reservation.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                            .equals(date.toString())) {
                         ui.showMessage(reservation.toString());
                         emptyList = false;
                     }

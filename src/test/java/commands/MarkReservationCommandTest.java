@@ -2,6 +2,7 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
+import exceptions.ReservationCannotMarkException;
 import org.junit.jupiter.api.Test;
 import reservation.Reservation;
 import reservation.ReservationList;

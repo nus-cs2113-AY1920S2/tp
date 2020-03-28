@@ -2,6 +2,7 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
+import exceptions.ReservationCannotMarkException;
 import reservation.ReservationList;
 import ui.Ui;
 
@@ -34,13 +35,16 @@ public class MarkReservationCommand extends ReservationCommand {
             // mark the reservation as done
             reservations.markReservationAsServed(reservationNumber);
             
-            ui.showMessage(String.format("Successfully mark Reservation[%d] as served", this.reservationNumber));
+            ui.showMessage(String.format("Successfully mark Reservation[%d] as served.", this.reservationNumber));
         } catch (NumberFormatException e) {
             ui.showMessage("Please enter a valid positive integer.");
         } catch (InputMissingException e) {
             ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
             ui.showMessage(e.getMessage());
+        } catch (ReservationCannotMarkException e) {
+            ui.showMessage(String.format("Reservation[%d] is invalid, so it cannot be marked as served.", 
+                    this.reservationNumber));
         }
     }
 
