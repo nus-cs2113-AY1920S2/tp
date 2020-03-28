@@ -98,7 +98,7 @@ public class Parser {
             command = new ContinueCommand(tokenizedInputs[1]);
             break;
         case "graph":
-            command = new GraphCommand(null);
+            command = new GraphCommand(tokenizedInputs[1]);
             break;
         default:
             parseDefault();
