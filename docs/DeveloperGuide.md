@@ -44,6 +44,14 @@ of SHOCO and is tailored for the developers, designers, and software testers of 
 
 ## 3. Implementation
 This section will describe how the main features of the application are implemented.
+
+The overview of the main classes in the application are shown in the class diagram below.
+Omitted are the classes for the features implemented, the <code>LoadData</code>
+class, <code>WriteData</code> class, <code>FileUtil</code> class and
+<code>CommandLineTable</code> class.
+
+![alt text](images/ClassDiag.png)
+
 &nbsp;
 
 <b><a href="#developer-guide">&#129053; back to top</a></b>
