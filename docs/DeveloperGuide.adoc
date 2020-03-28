@@ -46,10 +46,11 @@ The Logic component comprises the `Parser`, `Command`, and `CommandResult` class
 === Model Component
 The Model component contains the `Task` and `TaskList` classes, which store the user's schedule.
 
-image::TaskList Task class diagram.png[TaskList and Tasks]
+image::TaskList Task class diagram.PNG[TaskList and Tasks]
 
 === Storage Component
-image::storage.png[Storage Class Diagram]
+
+image::storage.PNG[Storage Class Diagram]
 1. A `Storage` object is created by the `Atas` class to handle the loading and saving of `Task` data.
 2. The `load()` method is used to read saved data from a local file into the current session of *ATAS*.
 3. The `save()` method writes the current state of *ATAS* into the local save file using the `Task#encodeTask()` method.
