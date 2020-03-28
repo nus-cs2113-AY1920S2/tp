@@ -40,11 +40,6 @@ of SHOCO and is tailored for the developers, designers, and software testers of 
 
 ## 2. Overview of the SHOCO application
 
-{Add class diagram here}
-
-## 3. Implementation
-This section will describe how the main features of the application are implemented.
-
 The overview of the main classes in the application are shown in the class diagram below.
 Omitted are the classes for the features implemented, the <code>LoadData</code>
 class, <code>WriteData</code> class, <code>FileUtil</code> class and
@@ -52,10 +47,30 @@ class, <code>WriteData</code> class, <code>FileUtil</code> class and
 
 ![alt text](images/ClassDiag.png)
 
+<!-- @@author kokjoon97 -->
+The <code>Shoco</code> class manages all required resources in the execution of the application. These include
+a <code>ShoppingList</code> object to keep track of the <code>Item</code> objects the user has added to his list and
+a <code>Budget</code> object to store the user's budget.
+
+<code>Shoco</code> also has a <code>Storage</code> object for saving and loading data from memory - this data includes
+the latest saved <code>ShoppingList</code> and <code>Budget</code>.
+
+There is a dependency from <code>Shoco</code> to <code>Parser</code> as it only creates an instance of the <code>Parser</code>
+every time user input is received by the <code>Ui</code> and does not keep track of the <code>Parser</code> which is deleted
+after it is done parsing the current user input. The <code>Parser</code> determines what command is being invoked by the
+user before creating a new <code>Command</code> object. It then returns the reference to the new <code>Command</code> object 
+to <code>Shoco</code>. 
+
+At any point in time, <code>Shoco</code> only stores up to one <code>Command</code> and no more. This
+<code>Command</code> has to be executed before <code>Shoco</code> can receive more user input.
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 &nbsp;
+
+## 3. Implementation
+This section will describe how the main features of the application are implemented.
 
 ### 3.1 Add feature
 #### 3.1.1 Current implementation
@@ -67,13 +82,13 @@ class, <code>WriteData</code> class, <code>FileUtil</code> class and
  default which is 1 if the user did not input any value for quantity. 
  
  Process of object creation:
- 1. First, <code>Duke</code> class receives user input from the <code>Ui</code> class. 
- 2. Next, a <code>Parser</code> object is created to call its <code>parseCommand</code> method.
+ 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
+ 2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
  3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>AddCommand</code> object.
  4. In the <code>execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> object, using items.add().
  5. In the SD, the AddCommand will add <code>item</code> if the description is provided and one / both price and quantity is provided. 
- 6. Last but not least, the <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
+ 6. The <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
  
  The following sequence diagram below shows how the add feature works. The details of the adding item's values
  are shown in a separate sequence diagram below:
@@ -113,6 +128,7 @@ class, <code>WriteData</code> class, <code>FileUtil</code> class and
 
 &nbsp;
 
+<!-- @@author trishaangelica --> 
 ### 3.2 Edit feature
 #### 3.2.1 Current implementation
 
@@ -121,15 +137,16 @@ The edit feature is implemented using an <code>EditCommand</code> class. This cl
 in the user input. In addition to the index no. , the user input **must also contain at least one** of these parameters: 
 *description*, *price*, *quantity*. 
 
-The process of object creation:
-1. First, <code>Duke</code> class receives user input from the <code>Ui</code> class. 
-2. Next, a <code>Parser</code> object is created to call its <code>parseCommand</code> method.
+The process of object creation is as follows:
+
+1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
+2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
 * The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
-3. Then, the <code>Duke</code> class calls the <code>execute</code> method of the <code>EditCommand</code> object.
+3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>EditCommand</code> object.
 4. In the <code>execute</code> function, the <code>item</code> to be edited (based on the specified index of the 
 user input) is called from the <code>ShoppingList</code> object.The original description/price/quantity of the item is overwritten 
 with the new values from the user input.
-5. Finally, the <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
+5. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
@@ -159,6 +176,7 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
+<!-- @@author -->
 
 &nbsp;
 
