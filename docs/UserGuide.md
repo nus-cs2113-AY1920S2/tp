@@ -36,6 +36,10 @@ As such, the daily report will include these categories:
 
 Add menu items, ingredients and reservations.
 
+* words in UPPERCASE: parameters
+* parameters in [ ]: optional parameters
+* parameters in { | }: at least one of them
+
 <a name="add"></a>
 
 ### Add
@@ -68,6 +72,9 @@ Delete menu items, ingredients and reservations.
 #### Mark reservation as invalid: delete reservation
 * Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
 * Example: `delete reservation; r/12;`
+#### Mark reservation as served: mark reservation
+* Format: `mark reservation; r/NUMBER_OF_RESERVATION;`
+* Example: `mark reservation; r/4;`
 
 <a name="list"></a>
 
@@ -76,7 +83,9 @@ List items in the menu, stock and reservations.
 
 * List menu : `list dish`
 * List stock : `list stock`
-* List reservation : `list reservation`
+* List all reservation : `list reservation`
+* List served reservation: `list served reservation`
+* List unserved reservation: `list unserved reservation`
 
 <a name="search"></a>
 
@@ -85,6 +94,11 @@ Search items in the menu, stock and reservations.
 
 * Search stock : `search stock; KEYWORD`
 
+* Search reservation: `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}
+  * Example: `search reservation; r/1;`
+  * Example: `search reservation; d/2020-02-02;`
+  * Example: `search reservation; r/0; d/2020-02-02;`
+
 <a name="command-summary"></a>
 
 ### Sales
@@ -92,13 +106,14 @@ Add daily sales and calculate profit
 
 #### Sell item : sell item
 * Format: `sell dish; d/DISH; q/QUANTITY;`
-* Example: `sell dish; pasta; q/10;`
+* Example: `sell dish; d/pasta; q/10;`
 
 #### Generate Profit : calculate profit
 * Format: `profit`
 
 #### Find most popular dish : popular
 * Format: `popular`
+
 ## Command Summary
 
 * Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
@@ -108,3 +123,9 @@ Add daily sales and calculate profit
 * Format: `delete stock; i/INGREDIENT; q/QUANTITY;`
 * Format: `delete stock; i/INGREDIENT;`
 * Format: `delete reservation; r/NUMBER_OF_RESERVATIONS;`
+* Format: `mark reservation; r/NUMBER_OF_RESERVATIONS`;
+* Format: `list dish`
+* Format: `list stock`
+* Format: `list reservation`
+* Format: `list served reservation`
+* Format: `list unserved reservation`

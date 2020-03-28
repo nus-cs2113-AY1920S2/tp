@@ -4,17 +4,13 @@ import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
 import reservation.Reservation;
 import reservation.ReservationList;
+import ui.Ui;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static utils.Constants.DELIMITER;
-import static utils.Constants.RES_PERSON_MARKER;
-import static utils.Constants.RES_DATE_MARKER;
-import static utils.Constants.RES_NUM_MARKER;
-import static utils.Constants.RES_CONTACT_MARKER;
-import static utils.Constants.RES_COMMENT_MARKER;
+import static utils.Constants.*;
 
 
 /* Command object for "add reservation" command */
@@ -30,14 +26,15 @@ public class AddReservationCommand extends ReservationCommand {
     public AddReservationCommand(String description) {
         this.description = description;
     }
-    
+
     /**
      * Adds a reservation into the list.
      * 
      * @param reservations Existing reservation list.
+     * @param ui Interaction with users.
      */
     @Override
-    public void execute(ReservationList reservations) {
+    public void execute(ReservationList reservations, Ui ui) {
         try {
             parseInput(this.description);
             
@@ -49,17 +46,16 @@ public class AddReservationCommand extends ReservationCommand {
                 reservation.setComments(this.comments);
             }
             reservations.addReservation(reservation);
-
-            // TODO: change to ui.showMessage()
-            System.out.println(String.format("Reservation[%d] has been added into the list", this.reservationNumber));
+            
+            ui.showMessage(String.format("Reservation[%d] has been added into the list", this.reservationNumber));
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid positive integer.");
+            ui.showMessage("Please enter a valid positive integer.");
         } catch (DateTimeException e) {
-            System.out.println("Please follow the date time format strictly: yyyy-MM-dd HH:mm; eg. 2000-01-01 12:00");
+            ui.showMessage("Please follow the date time format strictly: yyyy-MM-dd HH:mm; eg. 2000-01-01 12:00");
         } catch (InputMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
         }
     }
     
@@ -73,6 +69,8 @@ public class AddReservationCommand extends ReservationCommand {
     @Override
     protected void parseInput(String description) throws InputMissingException, DelimiterMissingException {
         boolean delimiterMissing;
+        String[] markers = {RES_PERSON_MARKER, RES_DATE_MARKER, RES_NUM_MARKER,
+                RES_CONTACT_MARKER, RES_CONTACT_MARKER, RES_COMMENT_MARKER};
         
         // name
         int namePos = description.indexOf(RES_PERSON_MARKER);
@@ -84,7 +82,8 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
         
-        delimiterMissing = hasDelimiterInBetween(namePos + RES_PERSON_MARKER.length(), nameEndPos);
+        delimiterMissing = hasDelimiterInBetween(namePos + RES_PERSON_MARKER.length(), nameEndPos, 
+                markers, description);
         if (delimiterMissing) {
             throw new DelimiterMissingException();
         }
@@ -101,7 +100,8 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
         
-        delimiterMissing = hasDelimiterInBetween(datePos + RES_DATE_MARKER.length(), dateEndPos);
+        delimiterMissing = hasDelimiterInBetween(datePos + RES_DATE_MARKER.length(), dateEndPos, 
+                markers, description);
         if (delimiterMissing) {
             throw new DelimiterMissingException();
         }
@@ -120,7 +120,8 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
         
-        delimiterMissing = hasDelimiterInBetween(numberPos + RES_NUM_MARKER.length(), numberEndPos);
+        delimiterMissing = hasDelimiterInBetween(numberPos + RES_NUM_MARKER.length(), numberEndPos,
+                markers, description);
         if (delimiterMissing) {
             throw new DelimiterMissingException();
         }
@@ -141,7 +142,8 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
         
-        delimiterMissing = hasDelimiterInBetween(contactPos + RES_CONTACT_MARKER.length(), contactEndPos);
+        delimiterMissing = hasDelimiterInBetween(contactPos + RES_CONTACT_MARKER.length(), contactEndPos,
+                markers, description);
         if (delimiterMissing) {
             throw new DelimiterMissingException();
         }
@@ -159,33 +161,13 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
 
-        delimiterMissing = hasDelimiterInBetween(commentsPos + RES_COMMENT_MARKER.length(), commentsEndPos);
+        delimiterMissing = hasDelimiterInBetween(commentsPos + RES_COMMENT_MARKER.length(), commentsEndPos,
+                markers, description);
         if (delimiterMissing) {
             throw new DelimiterMissingException();
         }
         
         this.comments = description.substring(
                 commentsPos + RES_COMMENT_MARKER.length(), commentsEndPos).trim();        
-    }
-
-    /**
-     * Checks if there is another marker between the subcommand.
-     * Checks for delimiter missing.
-     *
-     * @param startPos Starting position after the original marker.
-     * @param endPos Position of the delimiter;
-     * @return True if there is another marker, False otherwise.
-     */
-    private boolean hasDelimiterInBetween(int startPos, int endPos) {
-        String[] markers = {RES_PERSON_MARKER, RES_DATE_MARKER, RES_NUM_MARKER, 
-            RES_CONTACT_MARKER, RES_CONTACT_MARKER, RES_COMMENT_MARKER};
-
-        String targetSubstring = this.description.substring(startPos, endPos);
-        for (String marker: markers) {
-            if (targetSubstring.contains(marker)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

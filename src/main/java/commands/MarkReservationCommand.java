@@ -3,6 +3,7 @@ package commands;
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
 import reservation.ReservationList;
+import ui.Ui;
 
 import static utils.Constants.DELIMITER;
 import static utils.Constants.RES_INDEX_MARKER;
@@ -22,24 +23,24 @@ public class MarkReservationCommand extends ReservationCommand {
      * Marks the reservation as done.
      * 
      * @param reservations Existing reservation list.
+     * @param ui Interaction with users.
      */
     @Override
-    public void execute(ReservationList reservations) {
+    public void execute(ReservationList reservations, Ui ui) {
         try {
             validMaxRange = reservations.getSize() - 1;
             parseInput(this.description);
 
             // mark the reservation as done
             reservations.markReservationAsServed(reservationNumber);
-
-            // TODO: change to ui.showMessage()
-            System.out.println(String.format("Successfully mark Reservation[%d] as served", this.reservationNumber));
+            
+            ui.showMessage(String.format("Successfully mark Reservation[%d] as served", this.reservationNumber));
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid positive integer.");
+            ui.showMessage("Please enter a valid positive integer.");
         } catch (InputMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
         }
     }
 
