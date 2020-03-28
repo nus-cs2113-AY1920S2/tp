@@ -112,7 +112,18 @@ The following class diagram shows how the listing operation works:
 + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. Sorting it, however, as compared to `List`, is much less straightforward.
 
 <a name="product-scope"></a>
+### 1.3 [Proposed] Generate profit for the day
+#### 1.3.1 Proposed Implementation
+In the restaurant daily report, the user can input the amount of items sold each day and a total profit will be generated, when the user inputs `profit`.
 
+Below is an example usage scenario for the user.
+
+Step 1. The user opens the program and an empty `sales` is initalized.
+
+Step 2. The user can add sold items by inputting `sell dish; d/DISH; q/QUANTITY`. An example would be `sell dish; d/pasta; q/15;`.
+The user can input as many sales as they like as long as the dish exists in the menu.
+
+Step 3. The user can generate the profit by inputting `profit`.
 ## 2. Product Scope
 ### Target user profile
 

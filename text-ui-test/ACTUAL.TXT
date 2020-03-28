@@ -1,0 +1,330 @@
+______  ______  _____ ______    ___  __  __ ______        __  _______  ______
+||    ||||      \       ||     / ||  ||  || ||    |      / || ||    ||   ||
+||    ||||       \      ||    /  ||  ||  || ||    |     /  || ||    ||   ||
+||__ /  ||___     \___  ||   /___||  ||  || ||__ /     /___|| ||    ||   ||
+||   \\ ||           \  ||  /    ||  ||  || ||   \\   /    || ||    ||   ||
+||    \\||____   _____\ || /     ||   \__/  ||    \\ /     Daily Report v2.0
+Input next command:
+The command has been successfully executed.
+Input next command:
+Name: pizza; Ingredients: cheese, sauce
+The command has been successfully executed.
+Input next command:
+The command has been successfully executed.
+Input next command:
+The command has been successfully executed.
+Input next command:
+Name: rice; Ingredients: rice, salt
+The command has been successfully executed.
+Input next command:
+Ingredient tomato successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient tomato successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient tomato successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient tomato successfully added!
+The command has been successfully executed.
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input given cannot be parsed into ingredient arguments.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input is missing both the ingredient's quantity to be added and the ingredient's price!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input must specify both the ingredient's name and the ingredient's price!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input must specify both the ingredient's name and the quantity to be added!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input must specify the ingredient's name!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input must specify the quantity of the ingredient to be added!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input must specify the ingredient's price!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please ensure that the quantity specified is an integer!
+============================================================================================================================
+Input next command:
+Ingredient tomato successfully added!
+The command has been successfully executed.
+Input next command:
+Incorrect command
+============================================================================================================================
+Please enter a positive value for the quantity to be added!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please enter a positive value for the ingredient's price!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please ensure that the price specified has a '$' sign and is a decimal!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input given cannot be parsed into ingredient arguments.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input given cannot be parsed into ingredient arguments.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input given cannot be parsed into ingredient arguments.
+============================================================================================================================
+Input next command:
+Ingredient rice successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient vege successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient greenie successfully added!
+The command has been successfully executed.
+Input next command:
+Ingredient toxic greens successfully added!
+The command has been successfully executed.
+Input next command:
+Here are the ingredients in the stock currently:
+============================================================================================================================
+1. [50][$0.50] tomato
+2. [11][$0.40] rice
+3. [10][$0.40] vege
+4. [1][$0.40] toxic greens
+5. [0][$0.40] greenie
+============================================================================================================================
+All ingredients listed successfully!
+The command has been successfully executed.
+Input next command:
+Ingredient tomato reduced by 1!
+The command has been successfully executed.
+Input next command:
+Ingredient tomato reduced by 1!
+The command has been successfully executed.
+Input next command:
+Ingredient tomato reduced by 9!
+The command has been successfully executed.
+Input next command:
+Here are the ingredients in the stock currently:
+============================================================================================================================
+1. [39][$0.50] tomato
+2. [11][$0.40] rice
+3. [10][$0.40] vege
+4. [1][$0.40] toxic greens
+5. [0][$0.40] greenie
+============================================================================================================================
+All ingredients listed successfully!
+The command has been successfully executed.
+Input next command:
+Ingredient tomato deleted from the stock!
+The command has been successfully executed.
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input given cannot be parsed into ingredient arguments.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input must specify an ingredient name.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please ensure that the quantity specified is an integer!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please enter a positive value for the quantity to be added!
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input given cannot be parsed into ingredient arguments.
+============================================================================================================================
+Input next command:
+Here are the ingredients in the stock currently:
+============================================================================================================================
+1. [11][$0.40] rice
+2. [10][$0.40] vege
+3. [1][$0.40] toxic greens
+4. [0][$0.40] greenie
+============================================================================================================================
+All ingredients listed successfully!
+The command has been successfully executed.
+Input next command:
+Incorrect command
+============================================================================================================================
+Please enter an ingredient's name to be searched against the stock.
+============================================================================================================================
+Input next command:
+Here are the ingredients in the stock that matches the keyword:
+============================================================================================================================
+============================================================================================================================
+The command has been successfully executed.
+Input next command:
+Here are the ingredients in the stock that matches the keyword:
+============================================================================================================================
+1. [11][$0.40] rice
+============================================================================================================================
+The command has been successfully executed.
+Input next command:
+Here are the ingredients in the stock that matches the keyword:
+============================================================================================================================
+1. [1][$0.40] toxic greens
+============================================================================================================================
+The command has been successfully executed.
+Input next command:
+Reservation[0] has been added into the list
+The command has been successfully executed.
+Input next command:
+Reservation[1] has been added into the list
+The command has been successfully executed.
+Input next command:
+Reservation[2] has been added into the list
+The command has been successfully executed.
+Input next command:
+Reservation[3] has been added into the list
+The command has been successfully executed.
+Input next command:
+Delimiter Missing.
+The command has been successfully executed.
+Input next command:
+Input Missing: number of guests n/ is missing.
+The command has been successfully executed.
+Input next command:
+Please follow the date time format strictly: yyyy-MM-dd HH:mm; eg. 2000-01-01 12:00
+The command has been successfully executed.
+Input next command:
+Please enter a valid positive integer.
+The command has been successfully executed.
+Input next command:
+Reservation [0]
+Status: Unserved
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98955555
+comments: No comments
+
+Reservation [1]
+Status: Unserved
+contact person: Mary
+date: 2020-03-11 12:00
+number of guests: 8
+table size: M
+contact details: 99998888
+comments: No comments
+
+Reservation [2]
+Status: Unserved
+contact person: David
+date: 2020-03-12 12:00
+number of guests: 9
+table size: L
+contact details: 98887777
+comments: No comments
+
+Reservation [3]
+Status: Unserved
+contact person: Lisa
+date: 2020-03-13 12:00
+number of guests: 3
+table size: S
+contact details: 98889999
+comments: no spicy food please
+
+The command has been successfully executed.
+Input next command:
+Please enter a valid positive integer.
+The command has been successfully executed.
+Input next command:
+Successfully void Reservation[0]
+The command has been successfully executed.
+Input next command:
+Delimiter Missing.
+The command has been successfully executed.
+Input next command:
+Please enter a valid positive integer.
+The command has been successfully executed.
+Input next command:
+Successfully void Reservation[1]
+The command has been successfully executed.
+Input next command:
+Successfully void Reservation[2]
+The command has been successfully executed.
+Input next command:
+Please enter a valid positive integer.
+The command has been successfully executed.
+Input next command:
+Reservation [0]
+Status: Invalid
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98955555
+comments: No comments
+
+Reservation [1]
+Status: Invalid
+contact person: Mary
+date: 2020-03-11 12:00
+number of guests: 8
+table size: M
+contact details: 99998888
+comments: No comments
+
+Reservation [2]
+Status: Invalid
+contact person: David
+date: 2020-03-12 12:00
+number of guests: 9
+table size: L
+contact details: 98887777
+comments: No comments
+
+Reservation [3]
+Status: Unserved
+contact person: Lisa
+date: 2020-03-13 12:00
+number of guests: 3
+table size: S
+contact details: 98889999
+comments: no spicy food please
+
+The command has been successfully executed.
+Input next command:
+The menu, stock and reservations have been saved to report.txt
+The program is now exiting

@@ -26,10 +26,10 @@ public class Stock {
      * Note that quantity is an Integer and price is a Double.
      * 
      */
-    private final Map<String, Pair<Integer, Double>> stock;
+    private static Map<String, Pair<Integer, Double>> stock = null;
     
     public Stock() {
-        this.stock = new HashMap<>();
+        stock = new HashMap<>();
     }
     
     /**
@@ -182,8 +182,8 @@ public class Stock {
         }
     }
     
-    public Map<String, Pair<Integer, Double>> getStock() {
-        return this.stock;
+    public static Map<String, Pair<Integer, Double>> getStock() {
+        return stock;
     }
     
 }
