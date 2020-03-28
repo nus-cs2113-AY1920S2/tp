@@ -1,6 +1,6 @@
-add dish; n/pizza; i/cheese, sauce;
+add dish; n/pizza; i/cheese, sauce; p/7.00;
 list dish
-add dish; n/rice; i/rice, salt;
+add dish; n/rice; i/rice, salt; p/12.00;
 delete dish; n/pizza;
 list dish
 add stock; i/tomato; q/10; p/$0.40;
@@ -55,8 +55,15 @@ delete reservation; r/;
 delete reservation; r/0;
 delete reservation; r/0
 delete reservation; r/-1;
-delete reservation; r/1;
-delete reservation; r/2;
 delete reservation; r/4;
+list reservation
+search reservation; d/2020-03-12
+search reservation; d/2020-03-12;
+mark reservation; r/4;
+mark reservation; r/-1;
+mark reservation; r/3;
+mark reservation; r/0;
+list served reservation
+list unserved reservation
 list reservation
 bye

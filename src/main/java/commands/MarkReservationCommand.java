@@ -2,7 +2,9 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
+import exceptions.ReservationCannotMarkException;
 import reservation.ReservationList;
+import ui.Ui;
 
 import static utils.Constants.DELIMITER;
 import static utils.Constants.RES_INDEX_MARKER;
@@ -22,24 +24,27 @@ public class MarkReservationCommand extends ReservationCommand {
      * Marks the reservation as done.
      * 
      * @param reservations Existing reservation list.
+     * @param ui Interaction with users.
      */
     @Override
-    public void execute(ReservationList reservations) {
+    public void execute(ReservationList reservations, Ui ui) {
         try {
             validMaxRange = reservations.getSize() - 1;
             parseInput(this.description);
 
             // mark the reservation as done
             reservations.markReservationAsServed(reservationNumber);
-
-            // TODO: change to ui.showMessage()
-            System.out.println(String.format("Successfully mark Reservation[%d] as served", this.reservationNumber));
+            
+            ui.showMessage(String.format("Successfully mark Reservation[%d] as served.", this.reservationNumber));
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid positive integer.");
+            ui.showMessage("Please enter a valid positive integer.");
         } catch (InputMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
+        } catch (ReservationCannotMarkException e) {
+            ui.showMessage(String.format("Reservation[%d] is invalid, so it cannot be marked as served.", 
+                    this.reservationNumber));
         }
     }
 
@@ -57,16 +62,20 @@ public class MarkReservationCommand extends ReservationCommand {
         if (numberPos == -1) {
             throw new InputMissingException("reservation number " + RES_INDEX_MARKER);
         }
+        assert numberPos != -1 : "Reservation Number Missing";
+        
         int numberEndPos = description.indexOf(DELIMITER, numberPos);
         if (numberEndPos == -1) {
             throw new DelimiterMissingException();
         }
+        assert numberEndPos != -1 : "Semicolon Missing";
         
         this.reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
-                numberEndPos + 1).trim());
+                numberEndPos).trim());
 
         if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
             throw new NumberFormatException();
         }
+        assert 0 <= this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
     }
 }

@@ -3,6 +3,7 @@ package commands;
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
 import reservation.ReservationList;
+import ui.Ui;
 
 import static utils.Constants.DELIMITER;
 import static utils.Constants.RES_INDEX_MARKER;
@@ -22,9 +23,10 @@ public class VoidReservationCommand extends ReservationCommand {
      * Marks the reservation as invalid in the case like reservation cancellation and etc.
      * 
      * @param reservations Existing reservation list.
+     * @param ui Interaction with users.
      */
     @Override
-    public void execute(ReservationList reservations) {
+    public void execute(ReservationList reservations, Ui ui) {
         try {
             validMaxRange = reservations.getSize() - 1;
             parseInput(this.description);
@@ -32,14 +34,13 @@ public class VoidReservationCommand extends ReservationCommand {
             // voids the reservation
             reservations.voidReservation(reservationNumber);
             
-            // TODO: change to ui.showMessage()
-            System.out.println(String.format("Successfully void Reservation[%d]", this.reservationNumber));
+            ui.showMessage(String.format("Successfully void Reservation[%d]", this.reservationNumber));
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid positive integer.");
+            ui.showMessage("Please enter a valid positive integer.");
         } catch (InputMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
-            System.out.println(e.getMessage());
+            ui.showMessage(e.getMessage());
         }
     }
 
@@ -57,10 +58,13 @@ public class VoidReservationCommand extends ReservationCommand {
         if (numberPos == -1) {
             throw new InputMissingException("reservation number " + RES_INDEX_MARKER);
         }
+        assert numberPos != -1 : "Reservation Number Missing";
+        
         int numberEndPos = description.indexOf(DELIMITER, numberPos);
         if (numberEndPos == -1) {
             throw new DelimiterMissingException();
         }
+        assert numberEndPos != -1 : "Semicolon Missing";
         
         this.reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
                 numberEndPos).trim());
@@ -68,5 +72,6 @@ public class VoidReservationCommand extends ReservationCommand {
         if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
             throw new NumberFormatException();
         }
+        assert 0 <= this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
     }
 }

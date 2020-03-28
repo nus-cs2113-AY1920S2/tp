@@ -1,3 +1,4 @@
+import sales.Sales;
 import menu.Menu;
 import reservation.ReservationList;
 import stock.Stock;
@@ -15,6 +16,7 @@ public class Main {
     private Ui ui;
     private ReservationList reservations;
     private Menu menu;
+    private Sales sales;
 
     /** Driver code for the program. */
     public static void main(String... args) {
@@ -34,6 +36,7 @@ public class Main {
         this.menu = new Menu();
         this.reservations = new ReservationList();
         this.ui = new Ui();
+        this.sales = new Sales();
         ui.showWelcomeMessage();
     }
     
@@ -43,7 +46,7 @@ public class Main {
         while (true) {
             System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
-            new CommandParser().parseCommand(userInput,this.menu,this.stock,this.reservations);
+            new CommandParser().parseCommand(userInput, this.menu, this.stock, this.reservations, this.sales, this.ui);
         }
     }
     
