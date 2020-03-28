@@ -26,6 +26,7 @@ public class UI {
      * The position is set to the beginning of the next line.
      */
     public void readUserInput() {
+        System.out.print(">>> ");
         userInput = in.nextLine();
     }
 
