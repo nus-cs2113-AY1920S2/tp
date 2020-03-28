@@ -13,6 +13,7 @@ public class Assignment extends Task {
     protected String module;
     protected LocalDateTime deadline;
 
+    //@@author lwxymere
     /**
      * Assignment object.
      * @param name name of Assignment
@@ -59,12 +60,14 @@ public class Assignment extends Task {
                 + comments;
     }
 
+    //@@author
     @Override
     public boolean equals(Object addedTask) {
         return super.equals(addedTask)
                 && this.getModule().equals(((Assignment) addedTask).getModule());
     }
 
+    //@@author lwxymere
     @Override
     public String encodeTask() {
         StringJoiner sj = new StringJoiner(STORAGE_DELIMITER);
@@ -72,7 +75,7 @@ public class Assignment extends Task {
         sj.add(isDone ? "true" : "false");
         sj.add(name);
         sj.add(module);
-        sj.add(deadline.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(deadline.format(Parser.INPUT_DATE_TIME_FORMAT));
         sj.add(comments);
         return sj.toString();
     }

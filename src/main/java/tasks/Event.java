@@ -20,6 +20,7 @@ public class Event extends Task {
     protected int numOfPeriod;
     protected String typeOfPeriod;
 
+    //@@author lwxymere
     /**
      * Event object constructor.
      * @param name name of Event
@@ -80,6 +81,7 @@ public class Event extends Task {
         return endDateAndTime.toLocalTime();
     }
 
+    //@@author
     public int getNumOfPeriod() {
         return numOfPeriod;
     }
@@ -182,6 +184,7 @@ public class Event extends Task {
         }
     }
 
+    //@@author lwxymere
     @Override
     public String toString() {
         return "[" + EVENT_ICON + "]"
@@ -205,8 +208,8 @@ public class Event extends Task {
         sj.add(isDone ? "true" : "false");
         sj.add(name);
         sj.add(location);
-        sj.add(startDateAndTime.format(Parser.INPUT_DATE_FORMAT));
-        sj.add(endDateAndTime.format(Parser.INPUT_DATE_FORMAT));
+        sj.add(startDateAndTime.format(Parser.INPUT_DATE_TIME_FORMAT));
+        sj.add(endDateAndTime.format(Parser.INPUT_DATE_TIME_FORMAT));
         sj.add(isRepeat ? "true" : "false");
         sj.add(Integer.toString(numOfPeriod));
         sj.add(typeOfPeriod);

@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author
 /**
  * Test in alphanumeric order instead of random order to ensure that
  * testing function "repeatingEvent_filledList_allTaskListMsg"
@@ -41,13 +42,13 @@ public class ListCommandTest {
     private static String afterCurrDateTimeString2 = "01/01/21 0259";
 
     private static LocalDateTime beforeCurrDateTime1 =
-            LocalDateTime.parse(beforeCurrDateTimeString1, Parser.INPUT_DATE_FORMAT);
+            LocalDateTime.parse(beforeCurrDateTimeString1, Parser.INPUT_DATE_TIME_FORMAT);
     private static LocalDateTime beforeCurrDateTime2 =
-            LocalDateTime.parse(beforeCurrDateTimeString2, Parser.INPUT_DATE_FORMAT);
+            LocalDateTime.parse(beforeCurrDateTimeString2, Parser.INPUT_DATE_TIME_FORMAT);
     private static LocalDateTime afterCurrDateTime1 =
-            LocalDateTime.parse(afterCurrDateTimeString1, Parser.INPUT_DATE_FORMAT);
+            LocalDateTime.parse(afterCurrDateTimeString1, Parser.INPUT_DATE_TIME_FORMAT);
     private static LocalDateTime afterCurrDateTime2 =
-            LocalDateTime.parse(afterCurrDateTimeString2, Parser.INPUT_DATE_FORMAT);
+            LocalDateTime.parse(afterCurrDateTimeString2, Parser.INPUT_DATE_TIME_FORMAT);
     private static String currDateTimeStringForPrint1 = currDateTime1.format(Parser.PRINT_DATE_FORMAT);
     private static String currDateTimeStringForPrint2 = currDateTime2.format(Parser.PRINT_TIME_FORMAT);
     private static String nextWeekDateTimeStringForPrint1 = oneWeekDateTime1.format(Parser.PRINT_DATE_FORMAT);

@@ -74,6 +74,7 @@ public abstract class Task {
         return name.equals(task.getName());
     }
 
+    //@@author lwxymere
     /**
      * Encodes a task for local storage.
      * @return String that represents the encoded task

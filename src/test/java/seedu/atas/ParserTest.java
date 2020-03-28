@@ -22,9 +22,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.atas.Parser.capitalize;
 
 public class ParserTest {
 
+    //@@author lwxymere
     /** Date Tests. */
     @Test
     public void parseDate_correctFormat_success() {
@@ -41,16 +43,17 @@ public class ParserTest {
     }
 
     @Test
+    public void parseDate_incorrectFormat_throwIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> Parser.parseDate("22/02/20"));
+        assertThrows(IndexOutOfBoundsException.class, () -> Parser.parseDate("1800"));
+    }
+
+    //@@author
+    @Test
     public void parseDate_invalidDateTime_throwDateTimeParseException() {
         assertThrows(DateTimeParseException.class, () -> Parser.parseDate("32/02/20 1111"));
         assertThrows(DateTimeParseException.class, () -> Parser.parseDate("20/02/20 2500"));
         assertThrows(DateTimeParseException.class, () -> Parser.parseDate("32/O2/2O 1111"));
-    }
-
-    @Test
-    public void parseDate_incorrectFormat_throwIndexOutOfBoundsException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> Parser.parseDate("22/02/20"));
-        assertThrows(IndexOutOfBoundsException.class, () -> Parser.parseDate("1800"));
     }
 
     /** Unknown Command Tests. */
@@ -62,6 +65,7 @@ public class ParserTest {
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.UNKNOWN_COMMAND_ERROR));
     }
 
+    //@@author lwxymere
     /** Assignment Command Tests. */
     @Test
     public void parseAssignmentCommand_expectedInput_success() {
@@ -84,11 +88,17 @@ public class ParserTest {
 
     @Test
     public void parseAssignmentCommand_missingParameters_returnIncorrectCommand() {
-        assertEquals(Parser.parseCommand(AssignmentCommand.COMMAND_WORD
-                        + " n/ASS m/cs1010 d/30/02/20 1111")
-                        .execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_FORMAT_ERROR,
-                        Parser.capitalize(AssignmentCommand.COMMAND_WORD), AssignmentCommand.COMMAND_USAGE)));
+        Command parsedCommand = Parser.parseCommand(
+                AssignmentCommand.COMMAND_WORD
+                        + " n/ASS m/cs1010 d/30/02/20 1111"
+        );
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                capitalize(AssignmentCommand.COMMAND_WORD),
+                AssignmentCommand.COMMAND_USAGE
+                ),
+                ((IncorrectCommand)parsedCommand).getDescription()
+        );
     }
 
     /** Event Command Tests. */
@@ -113,19 +123,27 @@ public class ParserTest {
 
     @Test
     public void parseEventCommand_missingComment_returnIncorrectCommand() {
-        assertEquals(Parser.parseCommand(EventCommand.COMMAND_WORD
-                        + " n/EVE l/LOC d/30/02/20 1111 - 2222 c/")
-                        .execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_FORMAT_ERROR,
-                        Parser.capitalize(EventCommand.COMMAND_WORD), EventCommand.COMMAND_USAGE)));
+        Command parsedCommand = Parser.parseCommand(
+                EventCommand.COMMAND_WORD
+                + " n/EVE l/LOC d/30/02/20 1111 - 2222 c/"
+        );
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(String.format(
+                Messages.INCORRECT_FORMAT_ERROR,
+                capitalize(EventCommand.COMMAND_WORD),
+                EventCommand.COMMAND_USAGE
+                ), ((IncorrectCommand)parsedCommand).getDescription()
+        );
     }
 
     @Test
     public void parseEventCommand_startTimeAfterEndTime_returnIncorrectCommand() {
-        assertEquals(Parser.parseCommand(EventCommand.COMMAND_WORD
-                        + " n/EVE l/LOC d/30/02/20 2222 - 1111 c/none")
-                        .execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.INCORRECT_START_END_TIME_ERROR));
+        Command parsedCommand = Parser.parseCommand(
+                EventCommand.COMMAND_WORD
+                + " n/EVE l/LOC d/30/02/20 2222 - 1111 c/none"
+        );
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(Messages.INCORRECT_START_END_TIME_ERROR, ((IncorrectCommand)parsedCommand).getDescription());
     }
 
     /** Delete Command Tests. */
@@ -144,16 +162,19 @@ public class ParserTest {
     @Test
     public void parseDeleteCommand_missingParameter_returnIncorrectCommand() {
         Command parsedCommand = Parser.parseCommand(DeleteCommand.COMMAND_WORD);
-        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_ARGUMENT_ERROR,
-                        Parser.capitalize(DeleteCommand.COMMAND_WORD), DeleteCommand.COMMAND_USAGE)));
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(String.format(
+                Messages.INCORRECT_ARGUMENT_ERROR,
+                capitalize(DeleteCommand.COMMAND_WORD),
+                DeleteCommand.COMMAND_USAGE
+                ), ((IncorrectCommand)parsedCommand).getDescription()
+        );
     }
 
     @Test
     public void parseDeleteCommand_invalidParameter_returnIncorrectCommand() {
         Command parsedCommand = Parser.parseCommand(DeleteCommand.COMMAND_WORD + " abc");
-        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.NUM_FORMAT_ERROR));
+        assertEquals(((IncorrectCommand)parsedCommand).getDescription(), Messages.NUM_FORMAT_ERROR);
     }
 
     /** Done Command Tests. */
@@ -172,16 +193,20 @@ public class ParserTest {
     @Test
     public void parseDoneCommand_missingParameter_returnIncorrectCommand() {
         Command parsedCommand = Parser.parseCommand(DoneCommand.COMMAND_WORD);
-        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_ARGUMENT_ERROR,
-                        Parser.capitalize(DoneCommand.COMMAND_WORD), DoneCommand.COMMAND_USAGE)));
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(String.format(
+                Messages.INCORRECT_ARGUMENT_ERROR,
+                capitalize(DoneCommand.COMMAND_WORD),
+                DoneCommand.COMMAND_USAGE
+                ), ((IncorrectCommand)parsedCommand).getDescription()
+        );
     }
 
     @Test
     public void parseDoneCommand_invalidParameter_returnIncorrectCommand() {
         Command parsedCommand = Parser.parseCommand(DoneCommand.COMMAND_WORD + " abc");
-        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.NUM_FORMAT_ERROR));
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(Messages.NUM_FORMAT_ERROR, ((IncorrectCommand)parsedCommand).getDescription());
     }
 
     /** Help Command Tests. */
@@ -207,6 +232,7 @@ public class ParserTest {
 
     }
 
+    //@@author
     /** Repeat Command Tests. */
     @Test
     public void parseRepeatCommand_expectedInput_success() {
@@ -240,7 +266,7 @@ public class ParserTest {
         assertTrue(parsedCommand instanceof IncorrectCommand);
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_FORMAT_ERROR,
-                        Parser.capitalize(CalendarCommand.COMMAND_WORD), CalendarCommand.COMMAND_USAGE)));
+                        capitalize(CalendarCommand.COMMAND_WORD), CalendarCommand.COMMAND_USAGE)));
     }
 
     @Test
