@@ -82,9 +82,6 @@ public class RepeatCommand extends Command {
         }
     }
 
-    //String name, String location, LocalDateTime startDateTime, LocalDateTime endDateTime, String comments,
-    //                       int numOfPeriod, String typeOfPeriod, LocalDateTime originalDateAndTime, int periodCounter
-
     private CommandResult setRepeat(TaskList taskList, Event event) {
         RepeatEvent newRepeatEvent = new RepeatEvent(event.getName(), event.getLocation(), event.getDateAndTime(),
                 event.getEndDateAndTime(), event.getComments(), numOfPeriod, typeOfPeriod, event.getDateAndTime(), 0);

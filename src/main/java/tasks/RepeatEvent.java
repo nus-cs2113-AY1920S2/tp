@@ -15,16 +15,22 @@ public class RepeatEvent extends Event {
     String typeOfPeriod;
     int periodCounter;
     LocalDateTime originalDateAndTime;
+    // nextDateAndTime stores when the next time the event will occur for usage in different list commands
     LocalDateTime nextDateAndTime;
 
     /**
      * Event object constructor.
      *
-     * @param name          name of Event
-     * @param location      location of Event
-     * @param startDateTime starting date and time of Event
-     * @param endDateTime   ending date and time of Event
-     * @param comments      comments for the Event
+     * @param name                name of Event
+     * @param location            location of Event
+     * @param startDateTime       starting date and time of Event
+     * @param endDateTime         ending date and time of Event
+     * @param comments            comments for the Event
+     * @param numOfPeriod         number of period it repeats for
+     * @param typeOfPeriod        type of periods which could be (d)aily, (w)eekly, (m)onthly or (y)early
+     * @param originalDateAndTime Original Date and Time when Event was set to Repeat, used to keep track
+     *                            time lapses especially with respect to dates at end of the month
+     * @param periodCounter       number of periods that has past since originalDateAndTime
      */
     public RepeatEvent(String name, String location, LocalDateTime startDateTime, LocalDateTime endDateTime,
                        String comments, int numOfPeriod, String typeOfPeriod, LocalDateTime originalDateAndTime,
@@ -90,8 +96,9 @@ public class RepeatEvent extends Event {
             startDate = startDate.plusDays(numOfPeriod);
             periodCounter += 1;
         }
-        startDateAndTime = startDateAndTime.plusDays(periodCounter * numOfPeriod);
-        endDateAndTime = endDateAndTime.plusDays(periodCounter * numOfPeriod);
+        startDateAndTime = originalDateAndTime.plusDays(periodCounter * numOfPeriod);
+        endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
+                endDateAndTime.toLocalTime());
 
         if (startDateAndTime.compareTo(LocalDateTime.now()) < 0) {
             nextDateAndTime = startDateAndTime.plusDays(numOfPeriod);
@@ -112,7 +119,8 @@ public class RepeatEvent extends Event {
             periodCounter += 1;
         }
         startDateAndTime = startDateAndTime.plusMonths(periodCounter * numOfPeriod);
-        endDateAndTime = endDateAndTime.plusMonths(periodCounter * numOfPeriod);
+        endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
+                endDateAndTime.toLocalTime());
 
         if (startDateAndTime.compareTo(LocalDateTime.now()) <= 0) {
             nextDateAndTime = startDateAndTime.plusMonths(numOfPeriod);
@@ -133,7 +141,8 @@ public class RepeatEvent extends Event {
             periodCounter += 1;
         }
         startDateAndTime = startDateAndTime.plusYears(periodCounter * numOfPeriod);
-        endDateAndTime = endDateAndTime.plusYears(periodCounter * numOfPeriod);
+        endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
+                endDateAndTime.toLocalTime());
 
         if (startDateAndTime.compareTo(LocalDateTime.now()) <= 0) {
             nextDateAndTime = startDateAndTime.plusYears(numOfPeriod);
@@ -176,12 +185,12 @@ public class RepeatEvent extends Event {
     }
 
     /**
-     * Converts an encoded Event back to an Event object.
-     * @param encodedTask Event encoded using encodedTask()
-     * @return Event with the correct attributes set
+     * Converts an encoded RepeatEvent back to a RepeatEvent object.
+     * @param encodedTask RepeatEvent encoded using encodedTask()
+     * @return RepeatEvent with the correct attributes set
      * @throws DateTimeParseException if encoded startDateAndTime or endDateAndTime cannot be parsed
      * @throws IndexOutOfBoundsException if encodedTask is not a String returned by calling encodeTask() on
-     *              an Event
+     *              an RepeatEvent
      */
     public static Event decodeTask(String encodedTask)
             throws DateTimeParseException, IndexOutOfBoundsException {
