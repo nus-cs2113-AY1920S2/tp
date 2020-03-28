@@ -47,7 +47,7 @@ public class Parser {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
                 throw new HappyPillsException("    NRIC of the patient not provided");
             }
-            return new GetCommand(userCommand[1]);
+            return new GetCommand(userCommand[1].trim().toUpperCase());
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
             String[] edit = fullCommand.split(" ", 3);
             if (edit.length < 3) {
