@@ -4,7 +4,7 @@ import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyQueryException;
 import jikan.parser.Parser;
-import jikan.ui.Ui;;
+import jikan.ui.Ui;
 
 import static jikan.Jikan.lastShownList;
 

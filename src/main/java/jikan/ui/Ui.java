@@ -98,6 +98,10 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints a graph of the last shown list.
+     * @param interval The time interval for the graph.
+     */
     public static void printActivityGraph(int interval) {
         System.out.println(DIVIDER);
         System.out.println(String.format("%-25s %s %-100s", "Name", "|", "Duration"));
@@ -115,6 +119,10 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints a graph based on activity tags.
+     * @param tags The set of tags to be graphed.
+     */
     public static void printTagsGraph(HashMap<String, Duration> tags) {
         System.out.println(DIVIDER);
         System.out.println(String.format("%-10s %s %-100s", "Tag", "|", "Duration"));
