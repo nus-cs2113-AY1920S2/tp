@@ -1,5 +1,7 @@
 package reservation;
 
+import exceptions.ReservationCannotMarkException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,13 +36,18 @@ public class ReservationList {
     public void addReservation(Reservation reservation) {
         reservations.add(reservation);
     }
-
+    
     /**
      * Marks the reservation as served.
      * 
      * @param reservationNumber The index number of the reservation.
+     * @throws ReservationCannotMarkException If the reservation is originally invalid.
      */
-    public void markReservationAsServed(int reservationNumber) {
+    public void markReservationAsServed(int reservationNumber) throws ReservationCannotMarkException {
+        Reservation reservation = reservations.get(reservationNumber);
+        if (reservation.getStatus().equals(INVALID)) {
+            throw new ReservationCannotMarkException();
+        }
         reservations.get(reservationNumber).setStatus(SERVED);
     }
 
