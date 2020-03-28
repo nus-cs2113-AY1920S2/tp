@@ -6,12 +6,11 @@ import common.LessonType;
 import exception.InvalidUrlException;
 import exception.UnformattedModuleException;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
 /**
  * This class retrieves information from both TimetableParser and ModuleHandler classes to generate a data structure
  * containing all the modules a user is taking and is to be used by the schedulelogic component.
@@ -31,7 +30,7 @@ public class LessonsGenerator {
     //static main method for easy in-class behaviour testing
     public static void main(String[] args) throws InvalidUrlException, IOException, UnformattedModuleException {
         //observe behaviour by substituting field in BackendAPI.LessonsGenerator() with other NUSMODS link
-        LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
+        LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-1/share?CG1111=TUT:04,LAB:02");
         mylesson.generate();
         ArrayList<String[]> myLessonDetails = mylesson.getLessonDetails();
         for (int i = 0; i < myLessonDetails.size(); i++) {
@@ -45,11 +44,13 @@ public class LessonsGenerator {
 
     /**
      * Generates user's blocked time-slots based on his/her Nusmods timetable.
-     * @throws FileNotFoundException throws error if file UnformattedModules doesn't exist in source
-     * @throws UnformattedModuleException throws error if module requested is in UnformattedModules.
      */
-    public void generate() throws FileNotFoundException, UnformattedModuleException {
-        myTimetableParser.parse();
+    public String generate() {
+        String message;
+        message = myTimetableParser.parse();
+        if (!message.equals(MESSAGE_RETURN_SUCCESS)) {
+            return message;
+        }
         //Key-value pair: Key = module code, Value = LessonType:Class number(delimited by :)
         Map<String, ArrayList<String>> userLessons = myTimetableParser.getModulesMap();
         ArrayList<String> userModules = myTimetableParser.getModulesArr();
@@ -57,7 +58,10 @@ public class LessonsGenerator {
         Integer semester = Integer.parseInt(myTimetableParser.getSemester()) - 1;
         for (String module : userModules) {
             ModuleHandler myModuleHandler = new ModuleHandler(module);
-            myModuleHandler.generateModule();
+            message = myModuleHandler.generateModule();
+            if (!message.equals(MESSAGE_RETURN_SUCCESS)) {
+                return message;
+            }
             // The index of the following ArrayList matches - classNumber[0] and lessonType[0] is the same lesson,
             // and it's startTime, endTime = startTime[0], endTime[0]
             ArrayList<String> classNumber = myModuleHandler.getClassNumber().get(semester);
@@ -78,6 +82,7 @@ public class LessonsGenerator {
             ArrayList<String> userModuleProfile = userLessons.get(module);
             lessonsChecker(allLessonMap, userModuleProfile);
         }
+        return MESSAGE_RETURN_SUCCESS;
     }
 
     /**

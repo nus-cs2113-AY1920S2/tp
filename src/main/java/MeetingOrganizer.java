@@ -1,20 +1,20 @@
-import modulelogic.LessonsGenerator;
 import exception.InvalidUrlException;
 import exception.MoException;
-import exception.UnformattedModuleException;
 import inputparser.CliParser;
+import meeting.Meeting;
+import meeting.MeetingList;
+import modulelogic.LessonsGenerator;
+import schedulelogic.ScheduleHandler;
+import schedulelogic.TeamMember;
+import schedulelogic.TeamMemberList;
+import storage.Storage;
+import ui.TextUI;
+
 import java.io.FileNotFoundException;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import meeting.Meeting;
-import meeting.MeetingList;
-import storage.Storage;
-import schedulelogic.ScheduleHandler;
-import schedulelogic.TeamMember;
-import schedulelogic.TeamMemberList;
-import ui.TextUI;
 
 /**
  * TESTING SUMMARY DOC.
@@ -114,7 +114,7 @@ public class MeetingOrganizer {
                 }
                 myTeamMemberList.add(member);
                 TextUI.showAddedMember(member.getName());
-            } catch (InvalidUrlException | UnformattedModuleException | FileNotFoundException e) {
+            } catch (InvalidUrlException e) {
                 System.out.println(e.getMessage());
             }
             break;

@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import static common.Messages.*;
+
 /**
  * Contains private members storing the module information.
  * The class members are an ArrayList of size 2(two sem) of ArrayList except member "weeks".
@@ -44,7 +46,7 @@ public class ModuleHandler {
     private String moduleName;
     private Set<String> unformattedModules;
 
-    public ModuleHandler(String moduleName) throws FileNotFoundException {
+    public ModuleHandler(String moduleName) {
         this.moduleName = moduleName;
         this.classNumber = new ArrayList<>();
         this.startTime = new ArrayList<>();
@@ -61,7 +63,13 @@ public class ModuleHandler {
             this.weeks.add(new ArrayList<>());
         }
         this.unformattedModules = new HashSet<>();
-        Scanner reader = new Scanner(new File("UnformattedModules"));
+        Scanner reader = null;
+        try {
+            reader = new Scanner(new File("UnformattedModules"));
+        } catch (FileNotFoundException e) {
+            System.out.println("WARNING, UnformattedModules file not found, please re-download from source code.");
+        }
+        assert reader != null;
         while (reader.hasNext()) {
             String data = reader.nextLine();
             unformattedModules.add(data);
@@ -97,19 +105,21 @@ public class ModuleHandler {
 
     /**
      * Format the JsonArray object returned from ModuleApiParser.parse into easy to use data structure.
-     *
-     * @throws UnformattedModuleException throws error if module is within /UnformattedModules
      */
-    public void generateModule() throws UnformattedModuleException {
+    public String generateModule() {
         ModuleApiParser myModuleApiParser = new ModuleApiParser(moduleName);
-        try {
-            semesterData = myModuleApiParser.parse();
-        } catch (IOException e) {
-            System.out.println("Unable to access api, using auxiliary module data");
+        semesterData = myModuleApiParser.parse();
+        if (semesterData.size() == 0) {
+            //TODO SET UP FAKE DATA HERE IF UNABLE TO ACCESS API
+            return MESSAGE_EMPTY_MODULE;
         }
-        //TODO SET UP FAKE DATA HERE IF UNABLE TO ACCESS API
         assert semesterData != null;
-        checkModuleFormat();
+        try {
+            checkModuleFormat();
+        } catch (UnformattedModuleException e) {
+            System.out.println(this.moduleName + MESSAGE_MODULECODE_IN_BLACKLIST);
+            return MESSAGE_MODULECODE_IN_BLACKLIST;
+        }
         for (int i = 0; i < semesterData.size(); i++) {
             JsonObject semesterDataObj = semesterData.get(i).getAsJsonObject();
             // get semester number from json
@@ -124,6 +134,7 @@ public class ModuleHandler {
             }
 
         }
+        return MESSAGE_RETURN_SUCCESS;
     }
 
 

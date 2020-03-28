@@ -23,17 +23,22 @@ public class ModuleApiParser {
     }
 
     /**
-     * @return One NUS module in JSONArray format.
-     * @throws IOException Throws error when the API SERVER returns an invalid json.
+     * @return 1 NUS module in JSONArray format from API,
+     *         if unable to access API, returns an empty JsonArray.
      */
-    public JsonArray parse() throws IOException {
-        URL url = new URL(apiUrl);
-        HttpURLConnection request = (HttpURLConnection) url.openConnection();
-        request.connect();
-        //Convert the input stream to a json element
-        JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
-        JsonObject rootObj = root.getAsJsonObject();
-        assert  rootObj != null;
-        return (JsonArray) rootObj.get("semesterData");
+    public JsonArray parse() {
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.connect();
+            //Convert the input stream to a json element
+            JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
+            JsonObject rootObj = root.getAsJsonObject();
+            assert rootObj != null;
+            return (JsonArray) rootObj.get("semesterData");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return new JsonArray();
+        }
     }
 }

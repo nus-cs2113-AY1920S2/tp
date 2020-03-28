@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static common.Messages.MESSAGE_INVALID_NUDMOSLINK;
+import static common.Messages.MESSAGE_INVALID_NUSMODLINK;
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
 
 /**
  * This class contains essential methods to filter out the modules and the timeslots the user
@@ -22,7 +23,7 @@ public class TimetableParser {
     public TimetableParser(String nusmodsLink) throws InvalidUrlException {
         this.nusmodsLink = nusmodsLink;
         if (!this.nusmodsLink.matches("https://nusmods\\.com/timetable/sem-./share\\?.*")) {
-            throw new InvalidUrlException(MESSAGE_INVALID_NUDMOSLINK);
+            throw new InvalidUrlException(MESSAGE_INVALID_NUSMODLINK);
         }
         this.modulesArr = new ArrayList<>();
     }
@@ -39,7 +40,7 @@ public class TimetableParser {
     }
 
 
-    public void parse() {
+    public String parse() {
         assert nusmodsLink.contains("share?");
         int strippedIndex = this.nusmodsLink.indexOf("share?");
         String unparsedSemester = this.nusmodsLink.substring(0, strippedIndex);
@@ -52,6 +53,7 @@ public class TimetableParser {
         }
         this.modulesMap = parseModules(unparsedModules);
 
+        return MESSAGE_RETURN_SUCCESS;
     }
 
     /**

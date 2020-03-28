@@ -6,9 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
-import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
+import static common.Messages.*;
 
 /**
  * This class contains information of a member's schedule in blocks of 30mins interval,
@@ -75,7 +73,7 @@ public class TeamMember {
         }
 
         addBusyBlocksLogic(startBlock, endBlock, startDay, endDay, meetingName);
-        return "SUCCESS";
+        return MESSAGE_RETURN_SUCCESS;
     }
 
     /**
