@@ -410,11 +410,11 @@ public class Parser {
             final boolean qPresent = arguments.contains("q/");
 
             boolean delimiterPresent = iPresent | pPresent | qPresent;
-            boolean noDuplicateDelimiter = duplicateDelimiterChecker(arguments);
+            boolean hasSingleDelimiter = singleDelimiterChecker(arguments);
             newValues = splitArgsForEditCommand(matcher);
             boolean validValues = validValuesChecker(newValues, iPresent, pPresent, qPresent);
 
-            if (delimiterPresent && noDuplicateDelimiter && validValues) {
+            if (delimiterPresent && hasSingleDelimiter && validValues) {
 
                 String newItemDescription = null;
                 String newItemPrice = null;
@@ -448,9 +448,9 @@ public class Parser {
      * Checks the input string for duplicate delimiter.
      *
      * @param stringToCheck full input string.
-     * @return true if there is a duplicate delimiter found.
+     * @return true if there is no duplicate delimiter found.
      */
-    private boolean duplicateDelimiterChecker(String stringToCheck) {
+    private boolean singleDelimiterChecker(String stringToCheck) {
         boolean result;
         String[] splitByDescription = stringToCheck.split("i/");
         String[] splitByPrice = stringToCheck.split("p/");
@@ -461,13 +461,12 @@ public class Parser {
         int countQ = splitByQuantity.length - 1;
         result = countI < 2 && countP < 2 && countQ < 2;
         return result;
-
     }
 
     /**
      * Split arguments for Edit Command.
      *
-     * @param matcher match the entire input sequence against the pattern.
+     * @param matcher matcher object to match the entire input sequence against the regex pattern.
      * @return an array of the found matches.
      **/
     private String[] splitArgsForEditCommand(Matcher matcher) {
@@ -493,7 +492,6 @@ public class Parser {
 
             if (matcher.group("quantity") != null) {
                 itemQuantity = matcher.group("quantity");
-
             }
         }
         return new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
@@ -507,53 +505,53 @@ public class Parser {
      * @param descriptionPresent indicator for presence of "i/" in input string.
      * @param pricePresent       indicator for presence of "p/" in input string.
      * @param quantityPresent    indicator for presence of "q/" in input string.
-     * @return true is valid.
+     * @return true if all values are valid.
      **/
     private boolean validValuesChecker(String[] arrToCheck, Boolean descriptionPresent, Boolean pricePresent,
                                        Boolean quantityPresent) {
-        boolean result1 = false;
-        boolean result2 = false;
-        boolean result3 = false;
-        boolean result4 = false;
+        boolean validIndex = false;
+        boolean validDescription = false;
+        boolean validPrice = false;
+        boolean validQuantity = false;
 
         if (arrToCheck[0] != null) {
-            result1 = true;
+            validIndex = true;
         }
 
         if (descriptionPresent) {
             if (arrToCheck[1] != null) {
-                result2 = true;
+                validDescription = true;
             }
         }
         if (!descriptionPresent) {
             if (arrToCheck[1] == null) {
-                result2 = true;
+                validDescription = true;
             }
         }
 
         if (pricePresent) {
             if (arrToCheck[2] != null) {
-                result3 = true;
+                validPrice = true;
             }
         }
         if (!pricePresent) {
             if (arrToCheck[2] == null) {
-                result3 = true;
+                validPrice = true;
             }
         }
 
         if (quantityPresent) {
             if (arrToCheck[3] != null) {
-                result4 = true;
+                validQuantity = true;
             }
         }
         if (!quantityPresent) {
             if (arrToCheck[3] == null) {
-                result4 = true;
+                validQuantity = true;
             }
         }
 
-        return result1 && result2 && result3 && result4;
+        return validIndex && validDescription && validPrice && validQuantity;
     }
     //@@author
 
