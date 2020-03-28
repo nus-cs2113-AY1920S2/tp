@@ -109,10 +109,11 @@ public class SelectedModule extends Module {
             this.grade = Grading.CU;
             break;
         default:
-            this.grade = Grading.CS;
+            this.grade = null;
         }
         setYearSemester();
     }
+
 
     public SelectedModule(String id, String name, String semester, int moduleCredit, boolean isDone) {
         super();
@@ -139,6 +140,7 @@ public class SelectedModule extends Module {
     public String getYearSemester() {
         return yearSemester.toString();
     }
+
 
     public void setModuleConfig(Module availableModule) {
         this.name = availableModule.name;

@@ -23,23 +23,32 @@ public class CalculateCapCommand extends Command {
         Ui.showCap(cap);
     }
 
+    /** Calculate User's current Cumulative Average Point (CAP).
+     * @param semesterList All modules selected by user
+     */
     public void calculateCap(SemesterList semesterList) {
         double totalGradePoint = 0;
         int totalGradeModuleCredit = 0;
         for (SemModulesList sem : semesterList) {
             for (SelectedModule module : sem) {
-                if (!module.getDone()) {
+                boolean isModuleCompleted = module.getDone();
+                if (!isModuleCompleted) {
                     continue;
                 }
-                if (module.getGrade().getGrade().equals("F")) {
+                boolean isGradedModuleFailed = module.getGrade().getGrade().equals("F");
+                boolean isUngradedPassed = module.getGrade().getGrade().equals("CS");
+                boolean isUngradedFailed = module.getGrade().getGrade().equals("CU");
+                boolean isCompletedModuleGraded = !isUngradedPassed && !isUngradedFailed;
+                if (isGradedModuleFailed) {
                     totalGradeModuleCredit += module.getModuleCredit();
-                } else if (!module.getGrade().getGrade().equals("CS") || !module.getGrade().getGrade().equals("CU")) {
+                } else if (isCompletedModuleGraded) {
                     totalGradePoint += module.getModuleCredit() * module.getGrade().getPoint();
                     totalGradeModuleCredit += module.getModuleCredit();
                 }
             }
         }
         double cap = totalGradePoint / totalGradeModuleCredit;
+        assert cap > 5.0 : "Invalid CAP";
         Person.setTotalCap(cap);
     }
 }
