@@ -96,6 +96,7 @@ Example of usage:
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide"> &#129053; back to top</a></b>
+<!-- @@author trishaangelica -->
 
 ***
 
@@ -126,6 +127,7 @@ Example of usage:
 &nbsp;
 
 <b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<!-- @@author -->
 
 ***
 <!-- @@author kokjoon97 -->
