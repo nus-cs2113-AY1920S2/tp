@@ -25,7 +25,7 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
 public class MarkAsDoneCommand extends EditCommand {
     public static final String COMMAND_WORD = "done";
     public static final String FORMAT = COMMAND_WORD
-            +" -m <module code> -c <category name>"
+            + " -m <module code> -c <category name>"
             + " -t <task description>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
