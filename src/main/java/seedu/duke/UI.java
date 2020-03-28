@@ -56,9 +56,11 @@ public class UI {
         showLine();
         System.out.println("Please indicate if your answer is correct (Y/N):");
         String userInput = in.nextLine();
+        userInput = userInput.toUpperCase();
         while (!userInput.equals("Y") && !userInput.equals("N")) {
             System.out.println("Please enter only (Y/N):");
             userInput = in.nextLine();
+            userInput = userInput.toUpperCase();
         }
         return userInput;
     }
@@ -69,15 +71,17 @@ public class UI {
     public static void printHelp() {
         String helpMessage = "Here's a list of things you can do:\n"
                 + "\taddsubject s/<SUBJECTNAME>                 Add a subject\n"
-                + "\tdeletesubject s/<INDEX>                    Delete a subject and all its cards\n"
                 + "\tlistsubject                                List all subjects\n"
+                + "\tdeletesubject s/<INDEX>                    Delete a subject and all its cards\n"
                 + "\n"
                 + "\taddcard s/<INDEX> q/<QUESTION> a/<ANSWER>  Add a card into the specified subject\n"
-                + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified category\n"
                 + "\tlistcard s/<INDEX>                         List all cards in specified subject\n"
+                + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified category\n"
                 + "\n"
-                + "\tquiz s/<INDEX>                             Start a quiz from the specified subject\n"
-                + "\tscore s/<INDEX>                            Get previous scores of quizzes from specified subject\n"
+                + "\tquiz s/<INDEX> n/<NUMBER>                  Start a quiz of the specified number of questions from"
+                        + " the specified subject\n"
+                + "\tscore s/<INDEX>                            View previous scores of quizzes from specified "
+                        + "subject\n"
                 + "\n"
                 + "\thelp                                       Displays the help page\n"
                 + "\texit                                       Exits the program";

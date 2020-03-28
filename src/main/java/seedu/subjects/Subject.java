@@ -1,6 +1,7 @@
 package seedu.subjects;
 
 import seedu.cards.CardList;
+import seedu.exception.EscException;
 import seedu.score.ScoreList;
 
 import java.io.Serializable;
@@ -27,6 +28,13 @@ public class Subject implements Serializable {
 
     public ScoreList getScoreList() {
         return this.scoreList;
+    }
+
+    /**
+     * Shows all the past score history for this subject.
+     */
+    public void showScores() throws EscException  {
+        this.scoreList.listScores();
     }
 
 }

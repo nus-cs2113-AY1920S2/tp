@@ -155,8 +155,12 @@ public class Parser {
         checkNumberOfArguments(arguments, QuizCommand.MESSAGE_USAGE);
         checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
-
-        return new QuizCommand(subjectIndex);
+        if (arguments[1].split(" ").length == 2) {
+            int numToQuiz = getNumberToQuiz(arguments[1]);
+            return new QuizCommand(subjectIndex, numToQuiz);
+        } else {
+            return new QuizCommand(subjectIndex);
+        }
     }
 
     /**
@@ -172,11 +176,31 @@ public class Parser {
     }
 
     /**
+     * Returns the number of questions to quiz from the user input.
+     * @return the number of questions to quiz.
+     * @throws EscException if the input number is a non-integer.
+     */
+    private static int getNumberToQuiz(String argument) throws EscException {
+        String num = argument.split(" ")[1];
+        int numToQuiz = 0;
+        try {
+            numToQuiz = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            throw new EscException("Number of questions to quiz has to be an integer.");
+        }
+        if (numToQuiz == 0) {
+            throw new EscException("Number of questions to quiz has to be a positive integer.");
+        }
+        return numToQuiz;
+    }
+
+    /**
      * Returns the subject index from the user input.
      * @return the subject index integer.
      * @throws EscException if the subject index is absent or non-integer.
      */
     private static int getSubjectIndex(String argument) throws EscException {
+        argument = argument.split(" ")[0];
         String argWithoutPrefixes = argument.split(QUESTION_ARG)[0].split(CARD_ARG)[0].split(NUMBER_QUESTIONS_ARG)[0];
         String subjectIndexString = argWithoutPrefixes.replace(SUBJECT_ARG,"").trim();
 
