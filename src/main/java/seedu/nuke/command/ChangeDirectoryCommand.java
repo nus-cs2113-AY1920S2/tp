@@ -13,6 +13,8 @@ public class ChangeDirectoryCommand extends Command {
     public static final String COMMAND_WORD = "cd";
     public static final String FORMAT = COMMAND_WORD + " <next directory name> to traverse down; "
             + COMMAND_WORD + " .. to traverse up";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <next directory name> to traverse down; "
+            + COMMAND_WORD + " .. to traverse up";
 
     private String nextDirectoryName;
 

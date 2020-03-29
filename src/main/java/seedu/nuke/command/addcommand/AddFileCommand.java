@@ -11,13 +11,20 @@ import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.regex.Pattern;
+import java.security.SecureRandom;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.ExceptionMessage.*;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.Message.messageAddFileSuccess;
-import static seedu.nuke.util.Message.messageAddTaskSuccess;
 
 /**
  * <h3>Add File Command</h3>
@@ -38,6 +45,8 @@ public class AddFileCommand extends AddCommand {
             + "(?<filePath>(?:\\s+" + FILE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
+
+    private final String fileDirectory = "data/files";
 
     private String moduleCode;
     private String categoryName;
@@ -69,6 +78,49 @@ public class AddFileCommand extends AddCommand {
     }
 
     /**
+     * Generates a random hash of alphanumeric characters of fixed length.
+     *
+     * @return
+     *  The random hash
+     */
+    private String generateRandomHash() {
+        final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        final int hashLength = 16;
+        StringBuilder hash = new StringBuilder();
+
+        for (int i = 0; i < hashLength; ++i) {
+            hash.append(characters.charAt(new SecureRandom().nextInt(characters.length())));
+        }
+
+        return hash.toString();
+    }
+
+    /**
+     * Copies file from user-specified path into a folder in the application.
+     *
+     * @throws IOException
+     *  If there is an error copying the file
+     */
+    private void copyFile() throws IOException {
+        File sourceFile = new File(filePath);
+        if (!sourceFile.exists() || !sourceFile.isFile()) {
+            throw new FileNotFoundException();
+        }
+        Path sourcePath = sourceFile.toPath();
+
+        String randomHash = generateRandomHash();
+        File destinationFile = new File(String.format("%s/%s/%s", fileDirectory, randomHash, sourceFile.getName()));
+        Path destinationPath = destinationFile.toPath();
+        Files.createDirectories(destinationPath.getParent());
+
+        System.out.println(sourcePath.toAbsolutePath());
+        System.out.println(destinationPath.toAbsolutePath());
+
+        Files.copy(sourcePath, destinationPath, REPLACE_EXISTING);
+        filePath = randomHash;
+    }
+
+    /**
      * Constructs the command to add a file without a path.
      *
      * @param moduleCode
@@ -95,6 +147,7 @@ public class AddFileCommand extends AddCommand {
     public CommandResult execute() {
         try {
             Task parentTask = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
+            copyFile();
             TaskFile toAdd = new TaskFile(parentTask, fileName, filePath);
             parentTask.getFiles().add(toAdd);
             return new CommandResult(messageAddFileSuccess(fileName));
@@ -105,9 +158,17 @@ public class AddFileCommand extends AddCommand {
         } catch (TaskManager.TaskNotFoundException e) {
             return new CommandResult(MESSAGE_TASK_NOT_FOUND);
         } catch (TaskFileManager.DuplicateTaskFileException e) {
-            return new CommandResult(MESSAGE_DUPLICATE_TASK);
+            return new CommandResult(MESSAGE_DUPLICATE_TASK_FILE);
         } catch (IncorrectDirectoryLevelException e) {
             return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+        } catch (FileNotFoundException e) {
+            return new CommandResult(MESSAGE_FILE_NOT_FOUND);
+        } catch (IOException e) {
+            return new CommandResult(MESSAGE_FILE_IO_EXCEPTION);
+        } catch (IllegalArgumentException e) {
+            return new CommandResult(MESSAGE_INVALID_FILE_PATH);
+        } catch (SecurityException e) {
+            return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
         }
     }
 }

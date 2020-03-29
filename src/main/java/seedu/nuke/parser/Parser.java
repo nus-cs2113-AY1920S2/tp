@@ -114,6 +114,9 @@ public class Parser {
             case AddTaskCommand.COMMAND_WORD:
                 return prepareAddTaskCommand(parameters);
 
+            case AddFileCommand.COMMAND_WORD:
+                return prepareAddFileCommand(parameters);
+
             // todo check if in module
             case AddTagCommand.COMMAND_WORD:
                 return new AddTagCommand(parameters);
