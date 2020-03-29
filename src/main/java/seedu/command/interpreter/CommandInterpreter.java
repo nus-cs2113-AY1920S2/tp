@@ -8,6 +8,8 @@ import seedu.exception.DukeException;
 
 public class CommandInterpreter {
     protected EventList eventList;
+    private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"event", "seminar", 
+        "attendance", "performance", "student", "calendar"};
 
     public CommandInterpreter(EventList eventList) {
         this.eventList = eventList;
@@ -44,6 +46,21 @@ public class CommandInterpreter {
     }
 
     /**
+     * Check if the input is a command that requires any argument. It checks 
+     * from COMMANDS_THAT_NEED_ARGUMENT, so that array must be set up properly first.
+     * @param commandCategory the command to be checked
+     * @return (@code true} if command category requires an argument
+     */
+    protected boolean needArgument(String commandCategory) {
+        for (String command : COMMANDS_THAT_NEED_ARGUMENT) {
+            if (commandCategory.equals(command)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Decide the command from userInput.
      *
      * @param userInput The userInput from the Ui.
@@ -55,7 +72,7 @@ public class CommandInterpreter {
         String commandCategory = getFirstWord(userInput);
         String commandDescription = "";
         // only look for 2nd to last words if commandCategory requires.
-        if (!commandCategory.equals("bye")) {
+        if (needArgument(commandCategory)) {
             commandDescription = getSubsequentWords(userInput);
         }
 
