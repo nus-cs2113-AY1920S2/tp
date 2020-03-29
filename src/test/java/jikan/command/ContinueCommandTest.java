@@ -56,7 +56,7 @@ class ContinueCommandTest {
             command.executeCommand(activities);
             Duration elapsed = initial.plus(Duration.between(startTime, LocalDateTime.now()));
             Duration duration = activities.get(1).getDuration();
-            assertEquals(elapsed.toSeconds(), duration.toSeconds());
+            assertEquals(elapsed.toMinutes(), duration.toMinutes());
         } catch (EmptyNameException | InvalidTimeFrameException e) {
             System.out.println("Error.");
         }
