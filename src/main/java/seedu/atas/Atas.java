@@ -11,6 +11,7 @@ import tasks.Task;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import org.fusesource.jansi.AnsiConsole;
 
 public class Atas {
     private Ui ui;
@@ -94,6 +95,7 @@ public class Atas {
      * Main entry-point for the Atas application.
      */
     public static void main(String[] args) {
+        AnsiConsole.systemInstall();
         new Atas().run();
     }
 }
