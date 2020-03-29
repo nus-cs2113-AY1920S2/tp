@@ -15,29 +15,17 @@ import jikan.command.ListCommand;
 import jikan.command.StartCommand;
 
 import jikan.exception.EmptyNameException;
-import jikan.activity.Activity;
 import jikan.activity.ActivityList;
-import jikan.exception.EmptyQueryException;
-import jikan.exception.InvalidTimeFrameException;
-import jikan.exception.NoSuchActivityException;
 import jikan.storage.StorageCleaner;
 import jikan.ui.Ui;
 import jikan.Log;
 
-import java.io.IOException;
-import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.TemporalAdjusters;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import static jikan.Jikan.lastShownList;
+import static jikan.Log.makeInfoLog;
 
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
@@ -48,12 +36,11 @@ public class Parser {
     public static LocalDateTime endTime = null;
     public static String activityName = null;
     public static Set<String> tags = new HashSet<>();
-    private static Ui ui = new Ui();
     private static StorageCleaner cleaner;
     public static String[] tokenizedInputs;
     String instruction;
     private static Log logger = new Log();
-    //public static ActivityList lastShownList = new ActivityList();
+
     // flag to check if the current activity is a continued one
     public static int continuedIndex = -1;
 
@@ -65,7 +52,7 @@ public class Parser {
      */
     public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) throws
             EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
-        Log.makeInfoLog("Starting to parse inputs.");
+        makeInfoLog("Starting to parse inputs.");
         Parser.cleaner = cleaner;
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands
         referencing by index of this list.
@@ -84,7 +71,7 @@ public class Parser {
             try {
                 command = new StartCommand(tokenizedInputs[1], scanner);
             } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
-                Log.makeInfoLog("Activity started without activity name");
+                makeInfoLog("Activity started without activity name");
                 Ui.printDivider("Activity name cannot be empty!");
             }
             break;
@@ -95,7 +82,11 @@ public class Parser {
             command = new AbortCommand(null);
             break;
         case "list":
-            command = new ListCommand(null);
+            if (tokenizedInputs.length == 1) {
+                command = new ListCommand(null);
+            } else {
+                command = new ListCommand(tokenizedInputs[1]);
+            }
             break;
         case "delete":
             try {
@@ -123,7 +114,7 @@ public class Parser {
                 command = new EditCommand(tokenizedInputs[1]);
             } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("Activity name cannot be empty!");
-                Log.makeInfoLog("Edit command failed as there was no existing activity name provided.");
+                makeInfoLog("Edit command failed as there was no existing activity name provided.");
             }
             break;
         case "clean":
@@ -138,7 +129,7 @@ public class Parser {
                 command = new ContinueCommand(tokenizedInputs[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("Activity name cannot be empty!");
-                Log.makeInfoLog("Continue command failed as there was no activity name provided.");
+                makeInfoLog("Continue command failed as there was no activity name provided.");
             }
             break;
         case "graph":
@@ -157,110 +148,11 @@ public class Parser {
     }
 
     /**
-     * Parse a list command. The user can specify either a single date or a specific time frame.
-     *
-     * @param activityList The activity list to search for matching activities.
-     */
-    public static void parseList(ActivityList activityList) throws InvalidTimeFrameException, DateTimeParseException {
-
-        // If no time frame is specified, print the entire list
-        if (tokenizedInputs.length == 1) {
-            lastShownList.activities.clear();
-            Ui.printList(activityList);
-
-            // Can't do lastShownList = activityList, otherwise we just copy
-            lastShownList.activities.addAll(activityList.activities);
-            return;
-        }
-
-        String[] listInputs;
-        listInputs = tokenizedInputs[1].split(" ", 2);
-
-        lastShownList.activities.clear();
-
-        LocalDate startDate = null;
-        LocalDate endDate = null;
-
-        // Parse either format
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("[dd/MM/yyyy][yyyy-MM-dd]");
-
-        // Check if the user has given a verbal input
-        // (User can either say day or daily and get the same output)
-        switch (listInputs[0]) {
-        case "day":
-            // Fallthrough
-        case "daily":
-            startDate = LocalDate.now();
-            break;
-        case "week":
-            // Fallthrough
-        case "weekly":
-            // If user has input a specific date to obtain the week from, use that;
-            // (eg. the input is list week 2020-05-20)
-            // Otherwise get current date
-            if (listInputs.length == 2) {
-                startDate = LocalDate.parse(listInputs[1], parser);
-            } else {
-                startDate = LocalDate.now();
-            }
-
-            // Set current Monday and Sunday as time range
-            startDate = startDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-            endDate = startDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-            break;
-        case "month":
-            // Fallthrough
-        case "monthly":
-            // If user has input a specific date to obtain the month from, use that;
-            // Otherwise get current date
-            if (listInputs.length == 2) {
-                startDate = LocalDate.parse(listInputs[1], parser);
-            } else {
-                startDate = LocalDate.now();
-            }
-
-            // Set first and last day of month as time range
-            startDate = startDate.withDayOfMonth(1);
-            endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
-            break;
-        default:
-            startDate = LocalDate.parse(listInputs[0], parser);
-            if (listInputs.length == 2) {
-                endDate = LocalDate.parse(listInputs[1], parser);
-            }
-            break;
-        }
-
-        // Only one date is specified; return all entries with start date coinciding with that date
-        if (endDate == null) {
-            for (Activity i : activityList.activities) {
-                if (i.getDate().equals(startDate)) {
-                    lastShownList.activities.add(i);
-                }
-            }
-            Ui.printList(lastShownList);
-            // Both start and end dates are specified
-        } else {
-
-            if (endDate.isBefore(startDate)) {
-                throw new InvalidTimeFrameException();
-            }
-
-            for (Activity i : activityList.activities) {
-                if (i.isWithinDateFrame(startDate, endDate)) {
-                    lastShownList.activities.add(i);
-                }
-            }
-            Ui.printList(lastShownList);
-        }
-    }
-
-    /**
      * Method to parse user inputs that are not recognised.
      */
     private void parseDefault() {
         String line = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-        Log.makeInfoLog("Invalid command entered");
+        makeInfoLog("Invalid command entered");
         Ui.printDivider(line);
     }
 
