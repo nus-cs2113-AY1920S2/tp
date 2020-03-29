@@ -290,7 +290,7 @@ Windows, Linux, Unix, OS-X
 
 ## Instructions for Manual Testing
 
-##Useful links:
+## Useful links:
 * [User Guide](UserGuide.md)
 * [About Us](AboutUs.md)
 
