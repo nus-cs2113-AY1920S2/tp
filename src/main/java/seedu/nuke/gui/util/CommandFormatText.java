@@ -92,7 +92,7 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(AddCategoryCommand.COMMAND_WORD, Color.GREEN),
                 createText(" <category name> ", Color.BLUE),
-                createText(MODULE_CODE_PREFIX, Color.GREEN),
+                createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code>", Color.BLUE),
                 createText(String.format(" %s %s %s %s", "[", PRIORITY_PREFIX, "<priority>", "]"), Color.DARKGRAY)
 
@@ -104,9 +104,9 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(AddTaskCommand.COMMAND_WORD, Color.GREEN),
                 createText(" <task description> ", Color.BLUE),
-                createText(MODULE_CODE_PREFIX, Color.GREEN),
+                createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code> ", Color.BLUE),
-                createText(CATEGORY_NAME_PREFIX, Color.GREEN),
+                createText(CATEGORY_PREFIX, Color.GREEN),
                 createText(" <category name>", Color.BLUE),
                 createText(String.format(" %s %s %s %s %s %s", "[", DEADLINE_PREFIX, "<deadline>",
                         PRIORITY_PREFIX, "<priority>", "]"), Color.DARKGRAY)
@@ -127,7 +127,7 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(DeleteCategoryCommand.COMMAND_WORD, Color.GREEN),
                 createText(" <category name> ", Color.BLUE),
-                createText(MODULE_CODE_PREFIX, Color.GREEN),
+                createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code>", Color.BLUE),
                 createText(String.format(" %s %s %s %s", "[", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
@@ -138,9 +138,9 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(DeleteTaskCommand.COMMAND_WORD, Color.GREEN),
                 createText(" <task description> ", Color.BLUE),
-                createText(MODULE_CODE_PREFIX, Color.GREEN),
+                createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code> ", Color.BLUE),
-                createText(CATEGORY_NAME_PREFIX, Color.GREEN),
+                createText(CATEGORY_PREFIX, Color.GREEN),
                 createText(" <category name>", Color.BLUE),
                 createText(String.format(" %s %s %s %s", "[", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
@@ -160,7 +160,7 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(ListCategoryCommand.COMMAND_WORD, Color.GREEN),
                 createText(String.format(" %s %s %s %s %s %s %s", "[", "<category keyword>",
-                        MODULE_CODE_PREFIX, "<module keyword>", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+                        MODULE_PREFIX, "<module keyword>", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -169,8 +169,8 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(ListTaskCommand.COMMAND_WORD, Color.GREEN),
                 createText(String.format(" %s %s %s %s %s %s %s %s %s", "[", "<task keyword>",
-                        MODULE_CODE_PREFIX, "<module keyword>",
-                        CATEGORY_NAME_PREFIX, "<category keyword>", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+                        MODULE_PREFIX, "<module keyword>",
+                        CATEGORY_PREFIX, "<category keyword>", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -179,7 +179,7 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(EditModuleCommand.COMMAND_WORD, Color.GREEN),
                 createText(" <module code> ", Color.BLUE),
-                createText(MODULE_CODE_PREFIX, Color.GREEN),
+                createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <new module code> ", Color.BLUE)
         );
         return commandFormat;
@@ -189,9 +189,9 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(EditCategoryCommand.COMMAND_WORD, Color.GREEN),
                 createText(" <category name> ", Color.BLUE),
-                createText(MODULE_CODE_PREFIX, Color.GREEN),
+                createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code>", Color.BLUE),
-                createText(String.format(" %s %s %s %s %s %s", "[", CATEGORY_NAME_PREFIX, "<new category name>",
+                createText(String.format(" %s %s %s %s %s %s", "[", CATEGORY_PREFIX, "<new category name>",
                         PRIORITY_PREFIX, "<new priority>", "]"), Color.DARKGRAY)
 
         );
@@ -202,12 +202,12 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(EditTaskCommand.COMMAND_WORD, Color.GREEN),
                 createText(" <task description> ", Color.BLUE),
-                createText(MODULE_CODE_PREFIX, Color.GREEN),
+                createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code> ", Color.BLUE),
-                createText(CATEGORY_NAME_PREFIX, Color.GREEN),
+                createText(CATEGORY_PREFIX, Color.GREEN),
                 createText(" <category name>", Color.BLUE),
                 createText(String.format(" %s %s %s %s %s %s %s %s", "[",
-                        TASK_DESCRIPTION_PREFIX, "<new task description>", DEADLINE_PREFIX, "<new deadline>",
+                        TASK_PREFIX, "<new task description>", DEADLINE_PREFIX, "<new deadline>",
                         PRIORITY_PREFIX, "<new priority>", "]"), Color.DARKGRAY)
         );
         commandFormat.setStyle("-fx-font-size: 10pt");

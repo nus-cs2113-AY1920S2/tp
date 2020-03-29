@@ -83,72 +83,65 @@ public class Task extends Directory implements Tag {
         this.priority = priority;
     }
 
-    //public void setModuleCode(String moduleCode) {
-    //    this.moduleCode = moduleCode;
-    //}
-
     public boolean isDone() {
         return isDone;
     }
 
-    ///**
-    // * moduleCode getter method.
-    // *
-    // * @return the module code of the module which the task belongs to
-    // */
-    //public String getModuleCode() {
-    //    return moduleCode;
-    //}
-
     /**
-     * description getter method.
+     * Returns the description of the task.
      *
-     * @return the description of the task
+     * @return
+     *  The description of the task
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * deadline getter method.
+     * Returns the deadline of the task.
      *
-     * @return the deadline of the task
+     * @return
+     *  The deadline of the task
      */
     public DateTime getDeadline() {
         return deadline;
     }
 
     /**
-     * deadline setter method.
+     * Edit the deadline of the task.
      *
-     * @param deadline the deadline of the task
+     * @param deadline
+     *  The deadline of the task
      */
     public void setDeadline(DateTime deadline) {
         this.deadline = deadline;
     }
 
     /**
-     * priority getter method.
+     * Returns the priority of the task.
      *
-     * @return the priority of the task
+     * @return
+     *  The priority of the task
      */
     public int getPriority() {
         return priority;
     }
 
     /**
-     * return an icon representing the status of the task.
+     * Returns an icon representing the done status of the task.
      *
-     * @return a String of the icon.
+     * @return
+     *  The icon representing the done status of the task
      */
     public String getStatusIcon() {
         return (isDone ? YES_ICON : NO_ICON);
     }
 
     /**
-     * files getter method.
+     * Returns the File List of the task.
      *
-     * @return an ArrayList of String representing the files which the task is associated with
+     * @return
+     *  The File List of the task
      */
     public TaskFileManager getFiles() {
         return files;
@@ -158,17 +151,6 @@ public class Task extends Directory implements Tag {
     public Category getParent() {
         return (Category) this.parent;
     }
-
-    ///**
-    // * Adds a file into the File List of this task.
-    // * @param fileName
-    // *  The file name of the file to be added
-    // * @param filePath
-    // *  The path to the file to be added
-    // */
-    //public void addFile(String fileName, String filePath) {
-    //    files.add(new TaskFile(fileName, filePath));
-    //}
 
     /**
      * Checks if one task has the same description as another.

@@ -51,9 +51,10 @@ import static seedu.nuke.gui.util.TextUtil.createText;
 public class GuiParser {
     private static final String NONE = "";
 
-    public static final String MODULE_CODE_PREFIX = "-m";
-    public static final String CATEGORY_NAME_PREFIX = "-c";
-    public static final String TASK_DESCRIPTION_PREFIX = "-t";
+    public static final String MODULE_PREFIX = "-m";
+    public static final String CATEGORY_PREFIX = "-c";
+    public static final String TASK_PREFIX = "-t";
+    public static final String FILE_PREFIX = "-f";
     public static final String PRIORITY_PREFIX = "-p";
     public static final String DEADLINE_PREFIX = "-d";
     public static final String ALL_FLAG = "-a";
@@ -65,6 +66,7 @@ public class GuiParser {
     private static final String MODULE_GROUP = "moduleCode";
     private static final String CATEGORY_GROUP = "categoryName";
     private static final String TASK_GROUP = "taskDescription";
+    private static final String FILE_GROUP = "filePath";
     private static final String DEADLINE_GROUP = "deadline";
     private static final String PRIORITY_GROUP = "priority";
     private static final String EXACT_GROUP = "exact";
@@ -388,9 +390,9 @@ public class GuiParser {
             return;
         }
 
-        String taskDescription = taskGroup.replace(TASK_DESCRIPTION_PREFIX, NONE).trim();
+        String taskDescription = taskGroup.replace(TASK_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = taskGroup.indexOf(TASK_DESCRIPTION_PREFIX) + 2;
+        int endIndexOfPrefix = taskGroup.indexOf(TASK_PREFIX) + 2;
         String prefix = taskGroup.substring(0, endIndexOfPrefix);
         String rawTaskDescription = taskGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(TASK_GROUP));
@@ -399,8 +401,8 @@ public class GuiParser {
         highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
 
         // Retrieves Task List and checks if new task description is repeated
-        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_CODE_PREFIX, NONE).trim();
-        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_NAME_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
         try {
             ArrayList<String> suggestedTasks = generateSuggestedTasks(moduleCode, categoryName, true);
             if (suggestedTasks.contains(taskDescription)) {
@@ -428,9 +430,9 @@ public class GuiParser {
             return;
         }
 
-        String moduleCode = moduleGroup.replace(MODULE_CODE_PREFIX, NONE).trim().toUpperCase();
+        String moduleCode = moduleGroup.replace(MODULE_PREFIX, NONE).trim().toUpperCase();
 
-        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_CODE_PREFIX) + 2;
+        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_PREFIX) + 2;
         String prefix = moduleGroup.substring(0, endIndexOfPrefix);
         String rawModuleName = moduleGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(MODULE_GROUP));
@@ -461,9 +463,9 @@ public class GuiParser {
             return;
         }
 
-        String categoryName = categoryGroup.replace(CATEGORY_NAME_PREFIX, NONE).trim();
+        String categoryName = categoryGroup.replace(CATEGORY_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_NAME_PREFIX) + 2;
+        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_PREFIX) + 2;
         String prefix = categoryGroup.substring(0, endIndexOfPrefix);
         String rawCategoryName = categoryGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(CATEGORY_GROUP));
@@ -472,7 +474,7 @@ public class GuiParser {
         highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
 
         // Retrieves Category List and checks if new category name is repeated
-        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_CODE_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
         try {
             ArrayList<String> suggestedCategories = generateSuggestedCategories(moduleCode, true);
             if (suggestedCategories.contains(categoryName)) {
@@ -508,7 +510,7 @@ public class GuiParser {
         String categoryName = rawCategoryName.trim();
         String parametersAfter =  parameters.substring(matcher.end(IDENTIFIER_GROUP));
 
-        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_CODE_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
         ArrayList<String> suggestedCategories;
         try {
             suggestedCategories = generateSuggestedCategories(moduleCode, false);
@@ -540,8 +542,8 @@ public class GuiParser {
         String taskDescription = rawTaskDescription.trim();
         String parametersAfter =  parameters.substring(matcher.end(IDENTIFIER_GROUP));
 
-        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_CODE_PREFIX, NONE).trim();
-        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_NAME_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
 
         ArrayList<String> suggestedTasks;
         try {
@@ -611,20 +613,20 @@ public class GuiParser {
         int startIndexOfCategory =  matcher.start(CATEGORY_GROUP) + startIndex;
         int endIndexOfCategory =  matcher.end(CATEGORY_GROUP) + startIndex;
 
-        String categoryName = categoryGroup.replace(CATEGORY_NAME_PREFIX, NONE).trim();
+        String categoryName = categoryGroup.replace(CATEGORY_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_NAME_PREFIX) + 2;
+        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_PREFIX) + 2;
         String prefix = categoryGroup.substring(0, endIndexOfPrefix);
         String rawCategoryName = categoryGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(CATEGORY_GROUP));
 
         highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
 
-        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_CODE_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
         ArrayList<String> suggestedCategories;
         try {
             suggestedCategories = generateSuggestedCategories(moduleCode, isExact);
-            populateSuggestions(categoryName, suggestedCategories, startIndexOfCategory, endIndexOfCategory, CATEGORY_NAME_PREFIX);
+            populateSuggestions(categoryName, suggestedCategories, startIndexOfCategory, endIndexOfCategory, CATEGORY_PREFIX);
         } catch (IncorrectDirectoryLevelException e) {
             highlightedInput.getChildren().addAll(createText(rawCategoryName, Color.CRIMSON),
                     createText(parametersAfter, Color.DARKGRAY));
@@ -673,9 +675,9 @@ public class GuiParser {
         int startIndexOfModule =  matcher.start(MODULE_GROUP) + startIndex;
         int endIndexOfModule =  matcher.end(MODULE_GROUP) + startIndex;
 
-        String moduleCode = moduleGroup.replace(MODULE_CODE_PREFIX, NONE).trim().toUpperCase();
+        String moduleCode = moduleGroup.replace(MODULE_PREFIX, NONE).trim().toUpperCase();
 
-        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_CODE_PREFIX) + 2;
+        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_PREFIX) + 2;
         String prefix = moduleGroup.substring(0, endIndexOfPrefix);
         String rawModuleCode = moduleGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(MODULE_GROUP));
@@ -683,7 +685,7 @@ public class GuiParser {
         highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
 
         ArrayList<String> suggestedModules = generateSuggestedModules();
-        populateSuggestions(moduleCode, suggestedModules, startIndexOfModule, endIndexOfModule, MODULE_CODE_PREFIX);
+        populateSuggestions(moduleCode, suggestedModules, startIndexOfModule, endIndexOfModule, MODULE_PREFIX);
 
         if (console.getCaretPosition() < startIndexOfModule || console.getCaretPosition() > endIndexOfModule) {
             console.getEntriesPopup().hide();

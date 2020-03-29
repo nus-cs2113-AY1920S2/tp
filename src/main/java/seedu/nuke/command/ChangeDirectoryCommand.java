@@ -41,12 +41,6 @@ public class ChangeDirectoryCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        ////context switch
-        //setCurrentDirectory(this.directoryToChange);
-        //if (directoryToChange instanceof Root) {
-        //    return new CommandResult(MESSAGE_ROOT_CHANGE_SUCCESSFUL);
-        //}
-        //return new CommandResult(MESSAGE_MODULE_CHANGE_SUCCESSFUL);
         try {
             if ((nextDirectoryName != null)) {
                 Directory nextDirectory = DirectoryTraverser.findNextDirectory(nextDirectoryName);

@@ -43,16 +43,6 @@ public class AddModuleCommand extends AddCommand {
     }
 
     /**
-     * Returns the parent root level directory of the Directory to be added.
-     *
-     * @return
-     *  The parent root level directory of the Directory to be added
-     */
-    protected Root getParentDirectory() {
-        return ModuleManager.getRoot();
-    }
-
-    /**
      * Executes the <b>Add Module Command</b> to add a <b>Module</b> into the <b>Module List</b>.
      *
      * @return The <b>Command Result</b> of the execution

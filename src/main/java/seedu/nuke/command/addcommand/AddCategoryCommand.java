@@ -5,6 +5,7 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.util.ExceptionMessage;
@@ -12,7 +13,7 @@ import seedu.nuke.util.ExceptionMessage;
 import java.util.regex.Pattern;
 
 import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
-import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
+import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.Message.messageAddCategorySuccess;
 
@@ -28,7 +29,7 @@ public class AddCategoryCommand extends AddCommand {
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> [ -p <priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)+)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
@@ -66,25 +67,6 @@ public class AddCategoryCommand extends AddCommand {
     }
 
     /**
-     * Returns the parent module level directory of the Directory to be added.
-     *
-     * @return
-     *  The parent module level directory of the Directory to be added
-     * @throws IncorrectDirectoryLevelException
-     *  If the current directory is too low to obtain the parent module level directory
-     * @throws ModuleManager.ModuleNotFoundException
-     *  If the module with the module code is not found in the Module List
-     */
-    protected Module getParentDirectory()
-            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException {
-        if (moduleCode.isEmpty()) {
-            return getBaseModule();
-        } else {
-            return ModuleManager.getModule(moduleCode);
-        }
-    }
-
-    /**
      * Executes the <b>Add Category Command</b> to add a <b>Category</b> into the <b>Category List</b>.
      *
      * @return The <b>Command Result</b> of the execution
@@ -94,7 +76,7 @@ public class AddCategoryCommand extends AddCommand {
     @Override
     public CommandResult execute() {
         try {
-            Module parentModule = getParentDirectory();
+            Module parentModule = DirectoryTraverser.getModuleDirectory(moduleCode);
             Category toAdd = new Category(parentModule, categoryName, categoryPriority);
             parentModule.getCategories().add(toAdd);
             return new CommandResult(messageAddCategorySuccess(categoryName));

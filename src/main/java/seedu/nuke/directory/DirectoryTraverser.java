@@ -1,6 +1,8 @@
 package seedu.nuke.directory;
 
+import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.TaskManager;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DirectoryTraversalOutOfBoundsException;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -194,5 +196,87 @@ public class DirectoryTraverser {
         default:
             throw new IncorrectDirectoryLevelException();
         }
+    }
+
+    /**
+     * Returns the module level directory of the current Directory.
+     *
+     * @return
+     *  The module level directory of the current Directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the module level directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     */
+    public static Module getModuleDirectory(String moduleCode)
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException {
+        if (moduleCode.isEmpty()) {
+            return getBaseModule();
+        } else {
+            return ModuleManager.getModule(moduleCode);
+        }
+    }
+
+    /**
+     * Returns the category level directory of the current Directory.
+     *
+     * @return
+     *  The category level directory of the current Directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the category level directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the category name is not found in the Category List
+     */
+    public static Category getCategoryDirectory(String moduleCode, String categoryName)
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
+            CategoryManager.CategoryNotFoundException {
+        if (moduleCode.isEmpty()) {
+            moduleCode = getBaseModule().getModuleCode();
+        }
+        if (categoryName.isEmpty()) {
+            if (!getBaseModule().isSameModule(moduleCode)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            categoryName = getBaseCategory().getCategoryName();
+        }
+
+        return ModuleManager.getCategory(moduleCode, categoryName);
+    }
+
+    /**
+     * Returns the task level directory of the current Directory.
+     *
+     * @return
+     *  The task level directory of the current Directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the task level directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the category name is not found in the Category List
+     * @throws TaskManager.TaskNotFoundException
+     *  If teh task with the task description is not found in the Task List
+     */
+    public static Task getTaskDirectory(String moduleCode, String categoryName, String taskDescription)
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
+            CategoryManager.CategoryNotFoundException, TaskManager.TaskNotFoundException {
+        if (moduleCode.isEmpty()) {
+            moduleCode = getBaseModule().getModuleCode();
+        }
+        if (categoryName.isEmpty()) {
+            if (!getBaseModule().isSameModule(moduleCode)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            categoryName = getBaseCategory().getCategoryName();
+        }
+        if (taskDescription.isEmpty()) {
+            if (!getBaseModule().isSameModule(moduleCode) && !getBaseCategory().isSameCategory(categoryName)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            taskDescription = getBaseTask().getDescription();
+        }
+        return ModuleManager.getTask(moduleCode, categoryName, taskDescription);
     }
 }

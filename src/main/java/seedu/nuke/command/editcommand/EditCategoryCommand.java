@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
 import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
-import static seedu.nuke.parser.Parser.CATEGORY_NAME_PREFIX;
-import static seedu.nuke.parser.Parser.MODULE_CODE_PREFIX;
+import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
+import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY;
@@ -33,8 +33,8 @@ public class EditCategoryCommand extends EditCommand {
             + " <category name> -m <module code> [ -c <new category name> -p <new priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)+)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_CODE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<categoryName>(?:\\s+" + CATEGORY_NAME_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
@@ -94,54 +94,18 @@ public class EditCategoryCommand extends EditCommand {
     }
 
     /**
-     * Returns the base category level directory of the current Directory.
+     * Executes the <b>Edit Category Command</b> to edit a <b>Category</b> with the <code>category name</code>
+     * from the <b>Category List</b>.
      *
-     * @return
-     *  The base category level directory of the current Directory
-     * @throws IncorrectDirectoryLevelException
-     *  If the current directory is too low to obtain the category level directory
-     * @throws ModuleManager.ModuleNotFoundException
-     *  If the module with the module code is not found in the Module List
-     * @throws CategoryManager.CategoryNotFoundException
-     *  If the category with the category name is not found in the Category List
-     */
-    protected Category getBaseCategoryDirectory()
-            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
-            CategoryManager.CategoryNotFoundException {
-        //if (moduleCode.isEmpty()) {
-        //    if (oldCategoryName.isEmpty()) {
-        //        return getBaseCategory();
-        //    }
-        //    return getBaseModule().getCategories().getCategory(oldCategoryName);
-        //}
-        //if (oldCategoryName.isEmpty()) {
-        //    if (!getBaseModule().isSameModule(moduleCode)) {
-        //        throw new IncorrectDirectoryLevelException();
-        //    }
-        //    return getBaseCategory();
-        //}
-        if (moduleCode.isEmpty()) {
-            moduleCode = getBaseModule().getModuleCode();
-        }
-        if (oldCategoryName.isEmpty()) {
-            if (!getBaseModule().isSameModule(moduleCode)) {
-                throw new IncorrectDirectoryLevelException();
-            }
-            oldCategoryName = getBaseCategory().getCategoryName();
-        }
-
-        return ModuleManager.getCategory(moduleCode, oldCategoryName);
-    }
-
-    /**
-     * Executes an edit on the category.
-     *
-     * @return The result of the execution
+     * @return The <b>Command Result</b> of the execution
+     * @see Category
+     * @see CategoryManager
+     * @see CommandResult
      */
     @Override
-    protected CommandResult executeEdit() {
+    public CommandResult execute() {
         try {
-            Category toEdit = getBaseCategoryDirectory();
+            Category toEdit = DirectoryTraverser.getCategoryDirectory(moduleCode, oldCategoryName);
             fillAllAttributes(toEdit);
             ModuleManager.retrieveList(moduleCode).edit(toEdit, newCategoryName, newPriority);
             return new CommandResult(MESSAGE_EDIT_CATEGORY_SUCCESS);
@@ -154,19 +118,5 @@ public class EditCategoryCommand extends EditCommand {
         } catch (IncorrectDirectoryLevelException e) {
             return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
-    }
-
-    /**
-     * Executes the <b>Edit Category Command</b> to edit a <b>Category</b> with the <code>category name</code>
-     * from the <b>Category List</b>.
-     *
-     * @return The <b>Command Result</b> of the execution
-     * @see Category
-     * @see CategoryManager
-     * @see CommandResult
-     */
-    @Override
-    public CommandResult execute() {
-        return executeEdit();
     }
 }

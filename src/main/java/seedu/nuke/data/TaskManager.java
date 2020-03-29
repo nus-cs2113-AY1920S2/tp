@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class TaskManager {
     private ArrayList<Task> taskList;
 
-    private static final String NO_KEYWORD = "";
-
     /**
      * Initiates an empty Task List.
      */
@@ -143,13 +141,6 @@ public class TaskManager {
     }
 
     /**
-     * Clears all tasks from the task list.
-     */
-    public void clear() {
-        taskList.clear();
-    }
-
-    /**
      * Counts the total number of tasks in the Task List.
      *
      * @return
@@ -184,9 +175,9 @@ public class TaskManager {
      */
     public ArrayList<Task> filter(String taskKeyword) {
         ArrayList<Task> filteredTaskList = new ArrayList<>();
-        for (Task category : taskList) {
-            if (category.getDescription().toLowerCase().contains(taskKeyword.toLowerCase())) {
-                filteredTaskList.add(category);
+        for (Task task : taskList) {
+            if (task.getDescription().toLowerCase().contains(taskKeyword.toLowerCase())) {
+                filteredTaskList.add(task);
             }
         }
         return filteredTaskList;
@@ -203,14 +194,15 @@ public class TaskManager {
      */
     public ArrayList<Task> filterExact(String taskKeyword) {
         // Returns all tasks in the Task List if no keyword is provided.
-        if (taskKeyword.equals(NO_KEYWORD)) {
+        String noKeyword = "";
+        if (taskKeyword.equals(noKeyword)) {
             return this.getTaskList();
         }
 
         ArrayList<Task> filteredTaskList = new ArrayList<>();
-        for (Task category : taskList) {
-            if (category.getDescription().toLowerCase().equals(taskKeyword.toLowerCase())) {
-                filteredTaskList.add(category);
+        for (Task task : taskList) {
+            if (task.getDescription().toLowerCase().equals(taskKeyword.toLowerCase())) {
+                filteredTaskList.add(task);
             }
         }
         return filteredTaskList;
