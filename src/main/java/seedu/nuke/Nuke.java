@@ -5,6 +5,8 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.ScreenShot;
+import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Root;
 import seedu.nuke.ui.TextUi;
@@ -36,6 +38,7 @@ public class Nuke {
         moduleManager = new ModuleManager(root, modulesMap);
         //ModuleManager.setModuleList(storageManager.load());
         storageManager.load2();
+        ScreenShotManager.saveScreenShot();
     }
 
     /**
@@ -79,11 +82,12 @@ public class Nuke {
      */
     private void runCommandLoopUntilExitCommand() {
         do {
-
             String userInput = ui.getInput();
 
             commandResult = Executor.executeCommand(userInput);
             ui.showResult(commandResult);
+
+            ScreenShotManager.saveScreenShot();
             //storageManager.save();
             storageManager.save2();
         } while (!ExitCommand.isExit());

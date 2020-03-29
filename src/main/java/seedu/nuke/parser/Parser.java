@@ -6,6 +6,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddTagCommand;
 import seedu.nuke.command.editcommand.MarkAsDoneCommand;
@@ -146,6 +147,8 @@ public class Parser {
 
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
 
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();

@@ -213,8 +213,6 @@ public class Message {
     public static final String MESSAGE_ILLEGAL_DELETE =
             "Attempting to delete the current or its parent's directory.\nMove out of the directory first.\n";
 
-    public static final String MESSAGE_UNDO_SUCCESSFUL = "Successfully undo!\n";
-
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "SUCCESS!! Module has been updated.\n";
 
     public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! Category has been updated.\n";
@@ -223,5 +221,5 @@ public class Message {
 
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
 
-
+    public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to last state.\n";
 }
