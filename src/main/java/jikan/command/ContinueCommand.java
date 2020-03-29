@@ -25,6 +25,11 @@ public class ContinueCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
+            if (Parser.startTime != null) {
+                String line = Parser.activityName + " is ongoing!";
+                Ui.printDivider("Could not continue activity due to already ongoing activity.");
+                return;
+            }
             //Parser.parseContinue(activityList);
             int index = activityList.findActivity(parameters);
             if (index != -1) {
