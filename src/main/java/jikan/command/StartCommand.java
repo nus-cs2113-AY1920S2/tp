@@ -88,7 +88,7 @@ public class StartCommand extends Command {
      * @param allocateDelimiter the index of the allocation delimiter.
      */
     private String parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
-            WrongDateFormatException{
+            WrongDateFormatException {
         String[] tokenizedInputs = this.parameters.split(" ",2);
         Parser.activityName = tokenizedInputs[0];
         if (Parser.activityName.isEmpty()) {
@@ -101,7 +101,7 @@ public class StartCommand extends Command {
             int index = tokenizedInputs[1].indexOf(" ");
             if (index != -1) {
                 allocatedTime = tokenizedInputs[1].substring(0,index);
-                tokenizedInputs[1] = tokenizedInputs[1].substring(index+1);
+                tokenizedInputs[1] = tokenizedInputs[1].substring(index + 1);
             } else {
                 allocatedTime = tokenizedInputs[1];
             }
