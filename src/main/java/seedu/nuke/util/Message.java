@@ -74,6 +74,10 @@ public class Message {
         return String.format("SUCCESS!! Task %s is created.\n", taskDescription);
     }
 
+    public static String messageAddFileSuccess(String fileName) {
+        return String.format("SUCCESS!! File %s is added.\n", fileName);
+    }
+
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "SUCCESS!! Module(s) have been deleted.\n";
 
     public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "SUCCESS!! Category/Categories have been deleted.\n";
@@ -222,6 +226,4 @@ public class Message {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
 
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
-
-
 }
