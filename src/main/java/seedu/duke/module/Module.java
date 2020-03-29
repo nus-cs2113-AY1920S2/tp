@@ -61,6 +61,10 @@ public abstract class Module {
 
 
     public String getName() {
+        if (name == null || name.equals(null)) {
+            name = "unnamed";
+            return name;
+        }
         return name;
     }
 

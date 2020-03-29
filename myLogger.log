@@ -112,3 +112,56 @@ Mar 28, 2020 9:26:42 PM seedu.duke.Duke run
 WARNING: Input Error: invalid 'done' command
 Please enter your command again! Format:
 done n/NAME g/GRADE | done id/ID g/GRADE
+Mar 29, 2020 1:47:22 AM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT | add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT
+Mar 29, 2020 1:47:39 AM seedu.duke.Duke run
+WARNING: Input Error: invalid 'add' command
+Please enter your command again! Format:
+add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT | add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT
+Mar 29, 2020 1:51:27 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 1:52:26 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 1:53:35 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 1:54:54 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 1:55:05 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 1:56:27 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 1:58:20 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 1:59:23 AM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 4:03:55 PM seedu.duke.Duke run
+WARNING: Runtime Error: The module is already exist in your semester list!
+Please enter your command again!
+Mar 29, 2020 4:04:55 PM seedu.duke.Duke run
+WARNING: Runtime Error: The module is already exist in your semester list!
+Please enter your command again!
+Mar 29, 2020 4:09:18 PM seedu.duke.Duke run
+WARNING: Runtime Error: The module is already exist in your semester list!
+Please enter your command again!
+Mar 29, 2020 4:10:43 PM seedu.duke.Duke run
+WARNING: Runtime Error: The module is already exist in your semester list!
+Please enter your command again!
+Mar 29, 2020 4:16:39 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 4:16:39 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
+Mar 29, 2020 4:17:02 PM seedu.duke.Duke run
+WARNING: Input Error: invalid command
+Please enter your command again!
