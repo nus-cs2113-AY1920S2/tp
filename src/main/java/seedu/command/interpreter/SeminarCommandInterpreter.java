@@ -1,6 +1,5 @@
 package seedu.command.interpreter;
 
-
 import seedu.command.Command;
 import seedu.command.event.EditDateTime;
 import seedu.command.event.EditName;
@@ -16,10 +15,28 @@ import seedu.parser.EventParser;
 
 public class SeminarCommandInterpreter extends CommandInterpreter {
     protected EventParser eventParser;
+    private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"add", 
+        "editname", "editdatetime", "editvenue", "editevent", "delete"};
 
     public SeminarCommandInterpreter(EventList eventList) {
         super(eventList);
         this.eventParser = new EventParser();
+    }
+
+    /**
+     * Check if the input is a command that requires any argument. It checks 
+     * from COMMANDS_THAT_NEED_ARGUMENT, so that array must be set up properly first.
+     * @param commandType the command to be checked
+     * @return (@code true} if command type requires an argument
+     */
+    @Override
+    protected boolean needArgument(String commandType) {
+        for (String command : COMMANDS_THAT_NEED_ARGUMENT) {
+            if (commandType.equals(command)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -32,7 +49,11 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
         String venue;
 
         String commandType = getFirstWord(commandDescription);
-        String commandParameters = getSubsequentWords(commandDescription);
+        String commandParameters = "";
+        // only look for 2nd to last words if commandCategory requires.
+        if (needArgument(commandType)) {
+            commandParameters = getSubsequentWords(commandDescription);
+        }
         assert commandType.isBlank() : "Seminar: Unknown command";
 
         switch (commandType) {
@@ -71,9 +92,6 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             throw new DukeException("Seminar: Unknown command");
         }
 
-        if (command == null) {
-            throw new DukeException("Seminar: Command is null");
-        }
         return command;
     }
 }

@@ -1,7 +1,6 @@
 package seedu.command.event;
 
 import seedu.command.Command;
-import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 
