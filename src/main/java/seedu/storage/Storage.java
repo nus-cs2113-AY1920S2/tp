@@ -24,11 +24,17 @@ public class Storage {
      */
     public EventList loadAll() throws DukeException {
         EventList eventList = new EventList();
-        String input;
+        String input = null;
         do {
-            input = fileIO.readOneEvent();
-            Event newEvent = Event.parseStorable(input);
-            eventList.add(newEvent);
+            try {
+                input = fileIO.readOneEvent();
+                Event newEvent = Event.parseStorable(input);
+                eventList.add(newEvent);
+            } catch (DukeException m) {
+                if (m.getMessage().equals("FileIO: nothing to read anymore")) {
+                    break;
+                }
+            }
         } while (!input.isBlank());
 
         return eventList;
