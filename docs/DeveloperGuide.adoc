@@ -21,7 +21,7 @@ By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 This section will give a high-level overview of how various components in *ATAS* function and interact with each other.
 
 === Architecture
-image::overall architecture.png[overall architecture]
+image::overall architecture.PNG[overall architecture]
 The architecture diagram above illustrates the high-level design of the *ATAS* application. +
 
 The `Atas` component contains all the other components in the application. +
