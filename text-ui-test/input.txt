@@ -1,21 +1,30 @@
-list
-start activity /t tag
+start activity 1 /t tag
+end
+start activity 2 /t tag
+end
+start activity 3 /t tag1
+start activity 4
+end
+continue activity 1
 end
 list
-start activity
+filter tag
+find 1
+find 3
+start activity 1
 yes
-abort
-start activity
-no
+end
+list week
+graph
+graph 1
+start
 end
 abort
-delete activity
-filter 2106
-graph 10
-graph 20
-find tutorial
-graph 5
-list 25/03/2020 28/03/2020
-list 28/03/2020
-graph tags
+hi
+filter
+find
+delete
+delete activity 2
+list
 bye
+
