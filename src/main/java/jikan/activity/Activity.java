@@ -64,6 +64,8 @@ public class Activity {
         return tags;
     }
 
+    public void setTags(Set<String> tags) { this.tags = tags; }
+
     public LocalDate getDate() {
         return date;
     }
