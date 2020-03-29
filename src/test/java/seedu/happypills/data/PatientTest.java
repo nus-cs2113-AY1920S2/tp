@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PatientTest {
 
     Patient patientOne = new Patient("Nyan", "S1234Z", 999,
-            "22 Aug", "O+", "Peanuts", "NIL");
+            "22/08/1996", "O+", "Peanuts", "NIL");
     Patient patientTwo = new Patient("Nadiah", "S9988N", 888,
-            "25 Sept", "A-", "School", "NIL");
+            "25/09/1998", "A-", "School", "NIL");
     Patient patientThree = new Patient("Jan", "S9888F", 912,
-            "10 March", "B", "NIL", "NIL");
+            "10/03/1998", "B", "NIL", "NIL");
 
     @Test
     void getName() {
@@ -30,7 +30,7 @@ class PatientTest {
 
     @Test
     void getDateOfBirth() {
-        assertEquals("25 Sept", patientTwo.getDateOfBirth());
+        assertEquals("25/09/1998", patientTwo.getDateOfBirth());
     }
 
     @Test
