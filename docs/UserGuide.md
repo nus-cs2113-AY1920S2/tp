@@ -93,9 +93,10 @@ List items in the menu, stock and reservations.
 ### Search
 Search items in the menu, stock and reservations.
 
-* Search stock : `search stock; KEYWORD`
+* Search stock : `search stock; k\KEYWORD`
+  * Example: `search stock; k\tomato;`
 
-* Search reservation: `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}
+* Search reservation: `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
   * Example: `search reservation; r/1;`
   * Example: `search reservation; d/2020-02-02;`
   * Example: `search reservation; r/0; d/2020-02-02;`
@@ -117,16 +118,32 @@ Add daily sales and calculate profit
 
 ## Command Summary
 
+### Add
 * Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
 * Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
 * Format: `add reservation; r/NUMBER_OF_RESERVATIONS;`
+
+### Delete
 * Format: `delete dish; n/NAME;`
 * Format: `delete stock; i/INGREDIENT; q/QUANTITY;`
 * Format: `delete stock; i/INGREDIENT;`
 * Format: `delete reservation; r/NUMBER_OF_RESERVATIONS;`
+
+### Mark
 * Format: `mark reservation; r/NUMBER_OF_RESERVATIONS`;
+
+### List
 * Format: `list dish`
 * Format: `list stock`
 * Format: `list reservation`
 * Format: `list served reservation`
 * Format: `list unserved reservation`
+
+### Search
+* Format: `search stock; k\KEYWORD`
+* Format: `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
+
+### Sales
+* Format: `sell dish; d/DISH; q/QUANTITY;`
+* Format: `profit`
+* Format: `popular`

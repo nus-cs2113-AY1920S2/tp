@@ -42,6 +42,15 @@ search stock;
 search stock; tomato
 search stock; rice
 search stock; o
+search stock; k/tomato;
+search stock; k/tomato
+search stock; k/toxic greens;
+search stock; toxic greensk/;
+search stock; k/   
+search stock; k/
+search stock; k  
+search stock; q/e
+search stock; /e
 add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
 add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;
 add reservation; p/David; d/2020-03-12 12:00; n/9; c/98887777;
@@ -57,8 +66,11 @@ delete reservation; r/0
 delete reservation; r/-1;
 delete reservation; r/4;
 list reservation
+search reservation; r/0;
+search reservation; r/0; d/2020-03-13;
 search reservation; d/2020-03-12
 search reservation; d/2020-03-12;
+search reservation;
 mark reservation; r/4;
 mark reservation; r/-1;
 mark reservation; r/3;

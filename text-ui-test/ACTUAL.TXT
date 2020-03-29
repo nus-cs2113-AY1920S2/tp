@@ -188,6 +188,21 @@ Incorrect command
 Please enter an ingredient's name to be searched against the stock.
 ============================================================================================================================
 Input next command:
+Incorrect command
+============================================================================================================================
+Please specify the keyword using the format 'k/keyword;'
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please specify the keyword using the format 'k/keyword;'
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please specify the keyword using the format 'k/keyword;'
+============================================================================================================================
+Input next command:
 Here are the ingredients in the stock that matches the keyword:
 ============================================================================================================================
 ============================================================================================================================
@@ -195,7 +210,6 @@ The command has been successfully executed.
 Input next command:
 Here are the ingredients in the stock that matches the keyword:
 ============================================================================================================================
-1. [11][$0.40] rice
 ============================================================================================================================
 The command has been successfully executed.
 Input next command:
@@ -204,6 +218,36 @@ Here are the ingredients in the stock that matches the keyword:
 1. [1][$0.40] toxic greens
 ============================================================================================================================
 The command has been successfully executed.
+Input next command:
+Incorrect command
+============================================================================================================================
+Please specify the keyword using the format 'k/keyword;'
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please enter an ingredient's name to be searched against the stock.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please enter an ingredient's name to be searched against the stock.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please specify the keyword using the format 'k/keyword;'
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please specify the keyword using the format 'k/keyword;'
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+Please specify the keyword using the format 'k/keyword;'
+============================================================================================================================
 Input next command:
 Reservation[0] has been added into the list
 The command has been successfully executed.
@@ -320,6 +364,18 @@ comments: no spicy food please
 
 The command has been successfully executed.
 Input next command:
+Reservation [0]
+Status: Invalid
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98955555
+comments: No comments
+
+Input next command:
+Sorry! No such reservation.
+Input next command:
 Delimiter Missing.
 Input next command:
 Here comes the reservations on the date 2020-03-12:
@@ -341,6 +397,8 @@ table size: L
 contact details: 98887777
 comments: No comments
 
+Input next command:
+Input Missing: either reservation number r/ or date d/ is missing.
 Input next command:
 Please enter a valid positive integer.
 Input next command:
