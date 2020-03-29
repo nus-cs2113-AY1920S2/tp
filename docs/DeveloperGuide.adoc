@@ -152,27 +152,35 @@ completed task
 time complexity of future addition or searching operations on the ArrayList.
 
 === Repeat event feature
-==== Current Implementation
-* The `RepeatCommand` class extends `Command` class and initializes 3 values within a specified `Event` object which are stated below.
-This will flag the given event as repeating, allowing other features to be able to catch and perform relevant desired behaviours.
-. `Boolean isRepeat` variable: Set to true, marking the event as a repeating event.
-. `int numOfPeriod` variable: Set to the given value that states the frequency which typeOfPeriod will repeat at.
-. `String typeOfPeriod` variable: Set to d (days), w (weeks), m (months) or y (years) to indicate how often it will repeat.
+The feature that allow users to repeat their events, reducing the need to insert multiple events with only difference in dates.
 
-* Given below is an example usage scenario and how the repeat command mechanism behaves at each step.
-. The user launches the app and retrieves the tasks which are saved under a local file using Storage.
-. He/She enters `repeat id/2 p/1w` into the command line. Method `parseCommand()` from `Parser` will be called to parse the command
-provided. It will obtain the information to get integers `eventID`, `numOfPeriod` and also String `typeOfPeriod`.
-. A new instance of RepeatCommand with `eventID`, `numOfPeriod` and `typeOfPeriod` initialized will be created. The `execute` method of
-`repeatCommand` will then be called.
-. `execute` command will do 3 things after it calls `getTask` method from `TaskList` class to get the user input task.
+==== Current Implementation
+* The `RepeatCommand` class extends `Command` class and either allow the stated event to repeat or to stop repeating.
+To allow an event to repeat, it will replace the current `Event` object with a `RepeatEvent` object. (`RepeatEvent` class extends
+ `Event` class.) Likewise, to stop repeating, it replaces the current `RepeatEvent` with a `Event` object. A detailed explanation and
+difference between the 2 classes will be elaborated later.
+
+* Before we go into the details on their implementation, below we have provided an example usage scenario and how the repeat
+command mechanism behaves at each step when a user enters `repeat id/2 p/1w` as a command.
+
+. Method `parseCommand()` from `Parser` class will be called to parse the command provided. Through the method, we will be able to obtain
+ information to get integers `eventID`, `numOfPeriod` and also String `typeOfPeriod`. +
+- `eventID` identifies the task that the user wishes to repeat. +
+- `numOfPeriod` and `typeOfPeriod` (which is fixed to `d`, `w`, `m` or `y`) would specify how often the user wants to repeat the event.
+
+. After parsing, a new instance of RepeatCommand with `eventID`, `numOfPeriod` and `typeOfPeriod` initialized will be created.
+`execute` method of `RepeatCommand` will then be called.
+
+. The `execute` method will check 3 things after it calls `getTask` method from `TaskList` class to get the user input task.
 ** It will check if the `eventID` provided refers to a valid `Event` task.
-** It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `setNoRepeat`
-method from `Event` class.
-*** `setNoRepeat` method will reinitialize the 3 variables (`isRepeat`, `numOfPeriod`, `typeOfPeriod`) to `false`, `0` and `null` respectively.
-** If it is not 0, it will set the event to repeating by calling `setRepeat` method from `Event` class.
-*** `setRepeat` method will initialize the 3 variables (`isRepeat`, `numOfPeriod`, `typeOfPeriod`) to the respective values given by
-user. In this example, they will be set to `true`, `1` and `w` respectively.
+** It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `unsetRepeat`
+method from `RepeatCommand` class.
+*** `unsetRepeat` method will check if the given task is indeed a `RepeatEvent` object and then create a new `Event` object using the
+variables from `RepeatEvent` and replace it in the `taskList`.
+** If it is not 0, it will set the event to repeating by calling `setRepeat` method from the `RepeatCommand` class.
+*** `setRepeat` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object and replace the
+current `event` object at the `eventID` in `taskList`.
+
 . After `execute` command is done, it will return a new `ResultCommand` class with a string containing the result of the execution.
 This string will be printed by calling `showToUser` method in the `Ui` class. Then the event will be saved into local file by calling
 `trySaveTaskList` method from `Storage` class.
@@ -181,17 +189,33 @@ This string will be printed by calling `showToUser` method in the `Ui` class. Th
 
 image::RepeatCommand_UML.png[Repeat Command Sequence Diagram]
 
-==== Impact on Event dates
-* With the implementation in mind, every time the app is launched, after `load` method in `Storage` class is called, the app will call a
-method `updateEventDate` which will iterate through every task in the list  and calls `updateDate` method from `Event` class if the task
-is a repeating event and its date is in the past.
+==== `Event` and `RepeatEvent` differences and impact
+* There are 4 main variables that differentiate a `RepeatEvent` object from an `Event` object and keep track of Date and Time for an
+event to repeat accurately.
+. `int numOfPeriod` variable: Set to the given value that states the frequency which typeOfPeriod will repeat at.
+. `String typeOfPeriod` variable: Set to `d` (days), `w` (weeks), `m` (months) or `y` (years) to indicate how often it will repeat.
+. `LocalDateTime originalDateAndTime` variable: Set to be the event's current Date and Time and will not change so that we can keep track
+of the original Date Time for other usages later.
+. `int periodCounter` variable: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods`
+with type `typeOfPeriod` has passed. +
+ For example if `numofPeriod` is `2` and `typeOfPeriod` is `d`, and 6 days has passed since originalDateAndTime, then periodCounter will be 3.
+
+* With this implementation in mind, every time the app is launched, after `load` method in `Storage` class is called, the app will call a
+method `updateEventDate` which will iterate through every task in the list  and calls `updateDate` method from `RepeatEvent` class if the
+task is of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and
+also `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future
+date if today is not possible.
+
+* To users,other than minor differences like their icon symbol and `RepeatEvent` lists how often it is being repeated,  there will be no
+other noticeable difference between `Event` and `RepeatEvent`, except for. The implementation of class `RepeatEvent` is transparent to the
+users and they can only add `Event` or `Assignment` to the app and would appear as if there are only 2 type of tasks.
 
 ==== Design Considerations
 * Allowing only tasks that are `Event` to be repeated
 ** Rationale: +
 We feel that given the context of University Students, it makes little sense for most assignments to repeat. However, it makes sense for
- events to repeat since many events actually occur on a regular basis.
-** Alternative considered: +
+ events to repeat since many events actually occur on a regular repeated basis.
+** Alternative Considered: +
 1. Allowing all tasks to be repeatable.
 *** Pros: Allow more flexibility for the user to set which tasks they want to repeat, regardless of task type.
 *** Cons: Memory wastage as additional variables are set for repeating tasks and in the case of minimal assignments requiring to be
@@ -199,24 +223,24 @@ repeated, these spaces are wasted.
 
 * Allowing event to repeat for any amount of period by using `numOfPeriod` and `typeOfPeriod` (d, w, m ,y)
 ** Rationale: +
-It provides great flexibility in allowing an event to repeat for any specified frequency. For example, some classes occur every 2 weeks.
+It provides great flexibility in allowing an event to repeat for any desired amount of time. For example, some classes occur every 2 weeks.
 Some events may happen every 10 days or any x amount of period.
 ** Alternative considered: +
 1. Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
-*** Pros: It would simply usability and implementation since there will only be 4 options to choose from.
+*** Pros: It would simplify usability and implementation since there will only be 4 options to choose from.
 *** Cons: It would reduce the usability for the 2 examples provided above as users would not be able to make events repeat every 2 weeks
 or 10 days, forcing them to have to manually type in the same event for as many times as it will occur if they wish to still keep track
 of that event.
 
-* Keeping repeated event as a single entity within the list and not repeatedly add new events of a newer date when repeat command is used.
+* Keeping repeated event as a single entity within the list and not repeatedly add new task with a newer date when repeat command is used.
 ** Rationale: +
 It allows the repeated events to be removed or to stop repeating with ease as it remains a single entity and not multiple events,
-improving the user's usability.
+improving the user's usability as it would not be a hassle to remove a repeating event then.
 ** Alternative considered: +
 1. Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
 *** Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
 *** Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the tasklist of
-the user and increase the file size of the local storage that stores the tasklist.
+the user and increase the file size of the local storage that stores the `tasklist`.
 
 === Edit Task Feature
 ==== Implementation
