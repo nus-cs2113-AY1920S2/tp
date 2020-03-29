@@ -62,27 +62,31 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             command = new AddEvent(seminar, this.eventList);
             break;
         case "editname":
-            index = eventParser.parseIndex(commandParameters);
-            name = eventParser.parseEventName(commandParameters);
+            eventParser.parse(commandParameters);
+            index = eventParser.getIndex();
+            name = eventParser.getName();
             command = new EditName(index, name, this.eventList);
             break;
         case "editdatetime":
-            index = eventParser.parseIndex(commandParameters);
-            datetime = eventParser.parseEventDateTime(commandParameters);
+            eventParser.parse(commandParameters);
+            index = eventParser.getIndex();
+            datetime = eventParser.getDate() + " " + eventParser.getTime();
             command = new EditDateTime(index, datetime, this.eventList);
             break;
         case "editvenue":
-            index = eventParser.parseIndex(commandParameters);
-            venue = eventParser.parseVenue(commandParameters);
+            eventParser.parse(commandParameters);
+            index = eventParser.getIndex();
+            venue = eventParser.getVenue();
             command = new EditVenue(index, venue, this.eventList);
             break;
         case "editevent":
-            index = eventParser.parseIndex(commandParameters);
             seminar = eventParser.parseSeminar(commandParameters);
+            index = eventParser.getIndex();
             command = new EditEvent(index, seminar, this.eventList);
             break;
         case "delete":
-            index = eventParser.parseIndex(commandParameters);
+            eventParser.parse(commandParameters);
+            index = eventParser.getIndex();
             command = new DeleteEvent(index, this.eventList);
             break;
         case "list":
