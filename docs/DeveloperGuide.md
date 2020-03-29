@@ -106,7 +106,7 @@ appointments do not clash and are within the opening hours of the clinic.
    
 Users can manage their appointment schedule using these commands:
    
-   - `add appt d/[DATE] t/[TIME] ic/[NRIC] r/[REASON]`
+   - `add appt ic/[NRIC] d/[DATE] t/[TIME] r/[REASON]`
    
      - The appointment object takes in the date and time of the appointment as well as the patient appointment is 
      scheduled for and the reason for the appointment. This appointment must be tied to a patient that exists 
@@ -289,5 +289,9 @@ Value proposition: Note taking application built for doctors to manage notes fas
 Windows, Linux, Unix, OS-X
 
 ## Instructions for Manual Testing
+
+##Useful links:
+* [User Guide](UserGuide.md)
+* [About Us](AboutUs.md)
 
 
