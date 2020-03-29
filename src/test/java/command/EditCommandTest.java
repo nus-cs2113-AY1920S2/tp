@@ -1,5 +1,6 @@
 package command;
 
+import common.Messages;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -8,11 +9,11 @@ import tasks.Assignment;
 import tasks.Event;
 import java.time.LocalDateTime;
 import seedu.atas.Parser;
+import seedu.atas.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
+//@@author jichngan
 public class EditCommandTest {
     private static TaskList filledTaskList;
     private static String dateStringOne = "12/03/20 1600";
@@ -26,6 +27,7 @@ public class EditCommandTest {
     private static LocalDateTime dateThree = LocalDateTime.parse(dateStringThree, Parser.INPUT_DATE_TIME_FORMAT);
     private static LocalDateTime dateFour = LocalDateTime.parse(dateStringFour, Parser.INPUT_DATE_TIME_FORMAT);
 
+    private static Ui ui;
     /**
      * Initialise TaskList for testing.
      */
@@ -58,12 +60,16 @@ public class EditCommandTest {
     }
 
     @Test
-    public void editTask_filledList_failure() {
-        Assignment editedAssignment = new Assignment("three", "cs2113", dateOne, "None");
-        assertThrows(IndexOutOfBoundsException.class, () -> filledTaskList.editTask(5, editedAssignment));
+    public void editTask_emptyList_failure() {
+        TaskList emptyTaskList = new TaskList();
+        assertEquals(new EditCommand(1).execute(emptyTaskList,ui).feedbackToUser,
+                Messages.NO_TASKS_MSG);
     }
 
-
-
+    @Test
+    public void editTask_filledList_failure() {
+        assertEquals(new EditCommand(6).execute(filledTaskList, ui).feedbackToUser,
+                "Please provide a valid task number from 1 to 4");
+    }
 
 }

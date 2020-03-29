@@ -81,7 +81,7 @@ public class TaskList {
         return formattedCurrDate;
     }
 
-    //@@author
+    //@@author jichngan
     /**
      * Getter method for tasks depending of days from today.
      * @param days Integer representing number of days from today
