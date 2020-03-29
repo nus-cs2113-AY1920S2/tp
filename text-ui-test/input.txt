@@ -61,6 +61,7 @@ search reservation; r/0;
 search reservation; r/0; d/2020-03-13;
 search reservation; d/2020-03-12
 search reservation; d/2020-03-12;
+search reservation;
 mark reservation; r/4;
 mark reservation; r/-1;
 mark reservation; r/3;

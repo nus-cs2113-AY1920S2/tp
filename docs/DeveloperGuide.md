@@ -32,7 +32,7 @@ Step 1. The user launches the application for the first time. An empty `stock` w
 
 Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a tomato ingredient into the `stock`. Further, the user may add more ingredients into the current `stock`. Suppose the user executes `add stock; i/potato; q/5; p/$0.40;` and `add stock; i/rice; q/3; p/$0.40;` as well.
 
-Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; tomato`, which will display the following result in the image. 
+Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; tomato;`, which will display the following result in the image. 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/59989652/77285807-d9d6f580-6d0c-11ea-8716-b4cb55877662.PNG">
@@ -138,6 +138,15 @@ Step 3. The user can generate the profit by inputting `profit`.
 
 In the restaurant daily report, users can search against the reservation category by supplying either a reservation number or a date.
 
+The feature implements the following operations:
+* `SearchReservationCommand#parseInput()` - parse the user input for either reservation number or a date.
+* `SearchReservationCommand#execute()` - search along the reservation list for the target reservation(s).
+
+The following class diagram shows the structures relevant to the "search reservation" feature:
+<p align="center">
+    <img src="ClassDiagramforSearchReservation.png">
+</p>
+
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. An empty `reservation` will be initialized.
@@ -145,11 +154,51 @@ Step 1. The user launches the application for the first time. An empty `reservat
 Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservation` list.  
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Further, the user may add more reservations into the current `reservation` list.  
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-13 12:00; n/3; c/98889999;` as well.
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
 
 Step 3. The user can now search against the current `reservation` list to see if an reservation is stored in the `reservation` list.  
-If the user now executes `search stock; tomato`, which will display the following result in the image. 
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
 
+<p align="center">
+    <img src="SearchByIndex.png">
+</p>
+
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
+
+<p align="center">
+    <img src="SearchByDate.png">
+</p>
+
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
+
+<p align="center">
+    <img src="SearchByIndexnDate.png">
+</p>
+
+The following sequence diagram shows the relevant interactions behind `search reservation`:
+
+<p align="center">
+    <img src="SequenceDiagramforSearchReservation.png">
+</p>
+
+#### 1.4.2 Design Considerations
+##### Aspect: How search reservation executes
+* **Alternative 1 (current choice)**: List all reservations that contains the reservation number or date provided.
++ Pros: Easy to implement.
++ Cons: 
+
+* **Alternative 2**: 
++ Pros:
++ Cons:
+
+##### Aspect: Data structure to support the search reservation feature.
+* **Alternative 1 (current choice)**: Display all all `Reservation` objects that contain the reservation number or date provided to the screen directly.
++ Pros: Easy to implement and understand.
++ Cons: 
+
+* **Alternative 2**: Use a `List` to store all `Reservation` objects that contain the reservation number or date provided.
++ Pros: 
++ Cons: 
 
 <a name="product-scope"></a>
 

@@ -354,6 +354,8 @@ contact details: 98887777
 comments: No comments
 
 Input next command:
+Input Missing: either reservation number r/ or date d/ is missing.
+Input next command:
 Please enter a valid positive integer.
 Input next command:
 Please enter a valid positive integer.
