@@ -495,11 +495,29 @@ The first method is chosen to make the code easier to maintain.
 === Appendix B: User Stories
 
 |===
-|S/N |As a ... |I can... | So that I can...
+|S/N |As a ... |I can... | So that I ...
 
-|01|user|add assignments, including assignment details|keep track of assignment details
-|02|user|add events, including event details|keep track of event details
-|03|have a daily view of tasks|see what is important for today only
+|01|user|add assignments, including assignment details|can keep track of assignment details
+|02|user|add events, including event details|can keep track of event details
+|03|user|have a daily view of tasks|can see what is important for today only
+|04|user|have a weekly view of tasks|can better plan my time to meet deadlines
+|05|user|list all the tasks|can overview and mark individual tasks as done or delete specific tasks
+|06|user|view all incomplete assignments|can know the progress of my work
+|07|user|view all upcoming events|can see which period of time I will be busy and plan my time accordingly
+|08|user|mark an assignment as completed|can easily view which assignments I have yet to complete
+|09|user|delete tasks|I do not clog up the calendar
+|10|user|clear all tasks|can clear all tasks with a single command
+|11|user|clear all completed tasks|can remove all completed tasks from the app in a single command
+|12|user|edit details of assignment|do not have to delete and create a new assignment instead
+|13|user|edit details of event|do not have to delete and create a new event instead
+|14|long-term user|have my data persist between sessions|do not need to close the application when I am not using it
+|15|frequent user|see the tasks I have for the day when the app starts up|can quickly check my schedule for the day
+|16|user with many tasks|search for an event by name|do not have to scroll through a long list to find its details
+|17|user with many tasks|search for an assignment by name or module|do not have to scroll through a long list to find its details
+|18|user with fixed schedule|set my events as repeated events|do not have to manually create many events with the same details
+|19|busy user|set an ending time for my events|clearly see when I am more free in my schedule
+|20|user|set my tasks in calendar view|can have an easy-to-read, sorted overview of my upcoming tasks
+
 |===
 
 === Appendix C: Use Cases
