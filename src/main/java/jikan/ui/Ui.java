@@ -77,7 +77,7 @@ public class Ui {
         if (resultsList.activities.size() > 0) {
             System.out.println(DIVIDER);
             System.out.println("Here are the matching activities in your list:\n");
-            System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %-30s",
+            System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %s",
                     "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
             for (int i = 0; i < resultsList.getSize(); i++) {
                 if (resultsList.get(i).getTags() != null && !resultsList.get(i).getTags().isEmpty()) {
@@ -114,7 +114,7 @@ public class Ui {
      */
     public static void printActivityGraph(int interval) {
         System.out.println(DIVIDER);
-        System.out.println(String.format("%-25s %s %-100s", "Name", "|", "Duration"));
+        System.out.println(String.format("%-25s %s %s", "Name", "|", "Duration"));
         for (int i = 0; i < lastShownList.getSize(); i++) {
             Activity activity = lastShownList.get(i);
             Duration duration = activity.getDuration();
@@ -135,7 +135,7 @@ public class Ui {
      */
     public static void printTagsGraph(HashMap<String, Duration> tags) {
         System.out.println(DIVIDER);
-        System.out.println(String.format("%-10s %s %-100s", "Tag", "|", "Duration"));
+        System.out.println(String.format("%-10s %s %s", "Tag", "|", "Duration"));
         tags.forEach((key,value) -> {
             double minutes = value.toMinutes() / 10.0;
             int scaledMinutes = (int) Math.round(minutes);

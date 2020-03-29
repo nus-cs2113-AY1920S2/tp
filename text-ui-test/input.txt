@@ -1,15 +1,30 @@
-start activity one /t tag tag1 tag2
+start activity 1 /t tag
 end
-start activity two /t tag2
-start activity 3
+start activity 2 /t tag
 end
-continue activity one
+start activity 3 /t tag1
+start activity 4
+end
+continue activity 1
+end
+list
+filter tag
+find 1
+find 3
+start activity 1
+yes
+end
+list week
+graph
+graph 1
+start
+end
 abort
-start activity two
-y
-end
-start activity three /t tag tag1
-end
-start four /t tag
-end
+hi
+filter
+find
+delete
+delete activity 2
+list
 bye
+

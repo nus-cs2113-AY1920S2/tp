@@ -5,6 +5,8 @@ import jikan.activity.ActivityList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  * Class that holds the path and File object for the current data file.
@@ -83,6 +85,16 @@ public class Storage {
             System.out.println("Error loading/creating data file.");
         }
         return activityList;
+    }
+
+    /**
+     * Clears the data file.
+     * @throws FileNotFoundException If file is not found.
+     */
+    public void clearFile() throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(dataFile);
+        writer.print("");
+        writer.close();
     }
 
 }

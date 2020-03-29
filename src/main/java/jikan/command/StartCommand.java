@@ -7,6 +7,7 @@ import jikan.exception.WrongDateFormatException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class StartCommand extends Command {
         super(parameters);
         this.scanner = scanner;
     }
-    
+
     @Override
     public void executeCommand(ActivityList activityList) {
         if (Parser.startTime != null) {
@@ -83,7 +84,8 @@ public class StartCommand extends Command {
     /**
      * Parses the started activity for name and tags.
      *
-     * @param delimiter The index of the tag delimiter.
+     * @param tagDelimiter the index of the tag delimiter.
+     * @param allocateDelimiter the index of the allocation delimiter.
      */
     private String parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
             WrongDateFormatException{
