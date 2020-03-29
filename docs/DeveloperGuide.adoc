@@ -367,8 +367,9 @@ The `editTask` method of the `TaskList` class uses Java's `ArrayList` `set` meth
 Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of
 that class.
 
-The following sequence diagram summarises what happens when the `EditCommand` class is executed
-image::EditCommand_SequenceDiagram[Edit Command UML]
+The following sequence diagram summarises what happens when the `EditCommand` class is executed.
+
+image::EditCommand_SequenceDiagram.png[]
 
 ==== Design Considerations
 * Placing invocation of new `assignment` and `event` class in `editCommand` class
