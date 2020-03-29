@@ -31,7 +31,11 @@ public class EventCommandInterpreter extends CommandInterpreter {
         String venue;
 
         String commandType = getFirstWord(commandDescription);
-        String commandParameters = getSubsequentWords(commandDescription);
+        String commandParameters = "";
+        // only look for 2nd to last words if commandCategory requires.
+        if (!commandType.equals("list")) {
+            commandParameters = getSubsequentWords(commandDescription);
+        }
         assert commandType.isBlank() : "Event: Unknown command";
 
         switch (commandType) {
@@ -70,9 +74,6 @@ public class EventCommandInterpreter extends CommandInterpreter {
             throw new DukeException("Event: Unknown command");
         }
 
-        if (command == null) {
-            throw new DukeException("Event: Command is null");
-        }
         return command;
     }
 }
