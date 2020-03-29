@@ -28,6 +28,7 @@ public class EditCommandTest {
     private static LocalDateTime dateFour = LocalDateTime.parse(dateStringFour, Parser.INPUT_DATE_TIME_FORMAT);
 
     private static Ui ui;
+
     /**
      * Initialise TaskList for testing.
      */
