@@ -2,13 +2,14 @@ package seedu.happypills.commands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.happypills.commands.patient_commands.GetPatientCommand;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GetCommandTest {
+public class GetPatientCommandTest {
 
     private static PatientMap newPatientMap;
     public static final String DIVIDER = "    =====================================================";
@@ -36,7 +37,7 @@ public class GetCommandTest {
     @Test
     public void getList_notInList_notFound() throws HappyPillsException {
         String expectedOutputNotInList = "The patient you are looking for cannot be found";
-        String message = new GetCommand("S789C").execute(newPatientMap);
+        String message = new GetPatientCommand("S789C").execute(newPatientMap);
         assertEquals(expectedOutputNotInList, message);
     }
 
@@ -51,7 +52,7 @@ public class GetCommandTest {
                 + "        Allergies : None\n"
                 + "        Remarks : NIL\n"
                 + DIVIDER;
-        String message = new GetCommand("S123A").execute(newPatientMap);
+        String message = new GetPatientCommand("S123A").execute(newPatientMap);
         assertEquals(expectedOutputInList, message);
     }
 }

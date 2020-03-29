@@ -2,13 +2,14 @@ package seedu.happypills.commands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.happypills.commands.patient_commands.ListPatientCommand;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ListCommandTest {
+class ListPatientCommandTest {
 
     private static PatientMap filledPatientMap;
     private static PatientMap emptyPatientMap;
@@ -43,13 +44,13 @@ class ListCommandTest {
 
     @Test
     public void printList_emptyList_emptyListMessage() throws HappyPillsException {
-        String message = new ListCommand().execute(emptyPatientMap);
+        String message = new ListPatientCommand().execute(emptyPatientMap);
         assertEquals(expectedOutputFromEmptyList, message);
     }
 
     @Test
     public void printList_filledList_filledListMessage() throws HappyPillsException {
-        String message = new ListCommand().execute(filledPatientMap);
+        String message = new ListPatientCommand().execute(filledPatientMap);
         assertEquals(expectedOutputFromFilledList, message);
     }
 

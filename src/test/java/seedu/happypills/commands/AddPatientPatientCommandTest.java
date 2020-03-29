@@ -1,17 +1,18 @@
 package seedu.happypills.commands;
 
 import org.junit.jupiter.api.Test;
+import seedu.happypills.commands.patient_commands.AddPatientPatientCommand;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class AddCommandTest {
+class AddPatientPatientCommandTest {
     @Test
     void testExecute() {
         PatientMap patients = new PatientMap();
-        AddCommand testAddCommand = new AddCommand(
+        AddPatientPatientCommand testAddCommand = new AddPatientPatientCommand(
                 "kesin", "S0618", 912, "22aug", "B-","", ""
         );
 

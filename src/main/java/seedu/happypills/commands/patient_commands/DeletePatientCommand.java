@@ -1,6 +1,7 @@
-package seedu.happypills.commands;
+package seedu.happypills.commands.patient_commands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
@@ -12,12 +13,12 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DeleteCommand extends Command {
+public class DeletePatientCommand extends PatientCommand {
     protected String nric;
     Logger logger = Logger.getLogger(HappyPills.class.getName());
     Level logLevel = Level.INFO;
 
-    public DeleteCommand(String nric) {
+    public DeletePatientCommand(String nric) {
         this.nric = nric;
     }
 
@@ -53,7 +54,7 @@ public class DeleteCommand extends Command {
      * @return The message to confirm deletion of patient or to confirm that the patient has not be deleted.
      * @throws HappyPillsException Throws an exception if patient does not exist.
      */
-    public String execute(PatientMap patients) throws HappyPillsException {
+    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
 
         if (patients.containsKey(nric)) {
             Patient patient = patients.get(nric);

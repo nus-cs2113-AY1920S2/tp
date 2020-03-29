@@ -1,6 +1,7 @@
-package seedu.happypills.commands;
+package seedu.happypills.commands.patient_commands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
@@ -12,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class AddCommand extends Command {
+public class AddPatientPatientCommand extends PatientCommand {
     protected String name;
     protected String nric;
     protected int phoneNumber;
@@ -35,8 +36,8 @@ public class AddCommand extends Command {
      * @param allergies   Contains any allergies the patient has.
      * @param remarks     Contains any remarks for the patient.
      */
-    public AddCommand(String name, String nric, int phoneNumber, String dateOfBirth,
-                      String bloodType, String allergies, String remarks) {
+    public AddPatientPatientCommand(String name, String nric, int phoneNumber, String dateOfBirth,
+                                    String bloodType, String allergies, String remarks) {
         this.name = name;
         this.nric = nric;
         this.phoneNumber = phoneNumber;
@@ -55,9 +56,13 @@ public class AddCommand extends Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      */
     @Override
-    public String execute(PatientMap patients) throws HappyPillsException {
+    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
         assert !patients.containsKey(nric) : "New nric can be added";
         Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
+        if (tempPatient.getNric() == null) {
+            return "    Patient not added.\n"
+                    + TextUi.DIVIDER;
+        }
         patients.add(tempPatient);
         assert patients.containsKey(nric) : "nric added successfully";
         try {
