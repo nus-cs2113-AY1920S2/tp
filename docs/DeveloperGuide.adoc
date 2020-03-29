@@ -18,6 +18,39 @@ endif::[]
 
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
+== Setting up
+This section will guide you on how to set up this project on your own computer.
+
+=== Prerequisites
+. JDK 11 or above
+. IntelliJ IDE
+
+=== Setting up the project
+. Fork this repository, and clone the fork to your computer
+. Open the IntelliJ IDE. If you are not in the welcome screen, click `File` > `Close Project` to close the existing project.
+. Set up the correct JDK version for Gradle
+.. Click `Configure` > `Project Defaults` > `Project Structure`
+.. Click `New...` and find the directory of the JDK
+. Click on `Import Project`
+. Locate and select the `build.gradle` file, then click `OK`
+. Click `Open as Project`
+. Click `OK` to use the default settings provided
+
+=== Verifying the Setup
+. In an IntelliJ terminal, run gradlew build
+. Cd to the folder `build` > `libs` and run: `java -jar atas-2.0.0.jar`
+.. To use *ATAS*, simply type a valid command into the terminal and press kbd:[Enter] to run the command. +
+e.g. Typing `help` command and pressing kbd:[Enter] will list the commands present
+.. Some example commands you can try to get familiar with *ATAS*:
+* `help`: Lists the commands that *ATAS* supports.
+* `assignment n/Assignment One m/CS2113T d/01/01/20 1600 c/Important Assignment`: Adds an assignment called *Assignment
+one* for the module *CS2113T*. This assignment is due on *01/01/2020 1600* and the comments for this assignment is that
+it is an *Important Assignment*.
+* `exit`: Exits *ATAS*.
+
+A summary of all the features available in *ATAS* can be found in <<Commands Summary>>. +
+Refer to <<Features>> for the detailed instruction of the various commands of *ATAS*.
+
 == Design
 This section will give a high-level overview of how various components in *ATAS* function and interact with each other.
 
