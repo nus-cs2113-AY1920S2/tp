@@ -47,6 +47,7 @@ public class Parser {
     public static LocalDateTime startTime = null;
     public static LocalDateTime endTime = null;
     public static String activityName = null;
+    public static String allocatedTime = null;
     public static Set<String> tags = new HashSet<>();
     private static Ui ui = new Ui();
     private static StorageCleaner cleaner;
@@ -67,10 +68,7 @@ public class Parser {
             EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
         Log.makeInfoLog("Starting to parse inputs.");
         Parser.cleaner = cleaner;
-        /*lastShownList is initialised here to facilitate subsequent delete and edit commands
-        referencing by index of this list.
-         */
-        // lastShownList.activities.addAll(activityList.activities);
+
         String userInput = scanner.nextLine();
         tokenizedInputs = userInput.split(" ", 2);
         instruction = tokenizedInputs[0];
