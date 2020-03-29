@@ -42,7 +42,7 @@ public class EventParser {
         }
 
         if (index < 0) {
-            throw new DukeException("Index not found.");
+            throw new DukeException("EventParser: Index not found.");
         }
         return index;
     }
@@ -116,29 +116,29 @@ public class EventParser {
         for (String token : tokens) {
             if (token.length() < 2) {
                 if (mostRecent == null) {
-                    throw new DukeException("invalid flag, too short");
+                    throw new DukeException("EventParser: Flag is too short");
                 } else {
                     append(mostRecent, token);
                 }
             } else {
                 switch (token.substring(0, 2).toLowerCase()) {
                 case "n/":
-                    ensureNotDuplicateFlag(name, "duplicate name flag");
+                    ensureNotDuplicateFlag(name, "EventParser: Duplicate name flag");
                     name += token.substring(2);
                     mostRecent = "name";
                     break;
                 case "t/":
-                    ensureNotDuplicateFlag(time, "duplicate time flag");
+                    ensureNotDuplicateFlag(time, "EventParser: Duplicate time flag");
                     time += token.substring(2);
                     mostRecent = "time";
                     break;
                 case "d/":
-                    ensureNotDuplicateFlag(date, "duplicate date flag");
+                    ensureNotDuplicateFlag(date, "EventParser: Duplicate date flag");
                     date += token.substring(2);
                     mostRecent = "date";
                     break;
                 case "v/":
-                    ensureNotDuplicateFlag(venue, "duplicate venue flag");
+                    ensureNotDuplicateFlag(venue, "EventParser: Duplicate venue flag");
                     venue += token.substring(2);
                     mostRecent = "venue";
                     break;
@@ -147,10 +147,10 @@ public class EventParser {
                 default:
                     // assumes that all valid flags have been processed before this line
                     if (isUnknownFlag(token)) {
-                        throw new DukeException("unknown flag");
+                        throw new DukeException("EventParser: Unknown flag");
                     }
                     if (mostRecent == null) {
-                        throw new DukeException("parameter without flag");
+                        throw new DukeException("EventParser: Parameter is provided without flag");
                     }
                     append(mostRecent, token);
                 }
@@ -175,7 +175,7 @@ public class EventParser {
             venue += venue.isEmpty() ? token : (" " + token);
             break;
         default:
-            throw new DukeException("invalid flag");
+            throw new DukeException("EventParser: Invalid flag");
         }
     }
 
