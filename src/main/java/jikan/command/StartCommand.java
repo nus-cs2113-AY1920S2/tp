@@ -3,6 +3,7 @@ package jikan.command;
 import jikan.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
+import jikan.exception.WrongDateFormatException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
@@ -51,6 +52,9 @@ public class StartCommand extends Command {
                 } catch (EmptyNameException e) {
                     Log.makeInfoLog("Activity started without activity name");
                     Ui.printDivider("Activity name cannot be empty!");
+                } catch (WrongDateFormatException w) {
+                    Log.makeInfoLog("Wrong format for allocated time.");
+                    Ui.printDivider("Please input in this format HH/MM/SS");
                 }
             }
         }
@@ -81,7 +85,8 @@ public class StartCommand extends Command {
      *
      * @param delimiter The index of the tag delimiter.
      */
-    private String parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException {
+    private String parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
+            WrongDateFormatException{
         String[] tokenizedInputs = this.parameters.split(" ",2);
         Parser.activityName = tokenizedInputs[0];
         if (Parser.activityName.isEmpty()) {
@@ -98,7 +103,11 @@ public class StartCommand extends Command {
             } else {
                 allocatedTime = tokenizedInputs[1];
             }
-            parseDuration(allocatedTime);
+            try {
+                parseDuration(allocatedTime);
+            } catch (WrongDateFormatException w) {
+                throw new WrongDateFormatException();
+            }
         }
         if (tagDelimiter != -1) {
             tokenizedInputs[1] = tokenizedInputs[1].substring(3);
@@ -108,14 +117,17 @@ public class StartCommand extends Command {
         return "Started: " + Parser.activityName;
     }
 
-    private void parseDuration(String allocatedTime) {
+    private void parseDuration(String allocatedTime) throws WrongDateFormatException {
         String[] tokenizedInputs;
-        System.out.println("hello");
-        try {
-            tokenizedInputs = allocatedTime.split("/");
-            System.out.println(tokenizedInputs[0]);
-        } catch (ArrayIndexOutOfBoundsException a) {
-            Ui.printDivider("Please input in this format HH/MM/SS");
+        tokenizedInputs = allocatedTime.split("/");
+        if (tokenizedInputs.length != 3) {
+            throw new WrongDateFormatException();
+        } else {
+            String hours = tokenizedInputs[0] + "H";
+            String minutes = tokenizedInputs[1] + "M";
+            String seconds = tokenizedInputs[2] + "S";
+            String duration = "PT" + hours + minutes + seconds;
+            Parser.allocatedTime = Duration.parse(duration);
         }
     }
 }
