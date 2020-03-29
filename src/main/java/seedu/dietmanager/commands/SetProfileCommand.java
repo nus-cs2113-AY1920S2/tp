@@ -16,6 +16,7 @@ public class SetProfileCommand extends Command {
     private double height;
     private double weight;
     private double weightGoal;
+    private boolean noDescription;
 
     /**
      * Constructs the Command object.
@@ -26,23 +27,35 @@ public class SetProfileCommand extends Command {
     public SetProfileCommand(String command, String description) throws InvalidFormatException,
             NumberFormatException, InvalidGenderException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.name = descriptionArray[0];
-        this.age = Integer.parseInt(descriptionArray[1]);
-        this.gender = Parser.parseGender(descriptionArray[2]);
-        this.height = Double.parseDouble(descriptionArray[3]);
-        this.weight = Double.parseDouble(descriptionArray[4]);
-        this.weightGoal = Double.parseDouble(descriptionArray[5]);
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.name = descriptionArray[0];
+            this.age = Integer.parseInt(descriptionArray[1]);
+            this.gender = Parser.parseGender(descriptionArray[2]);
+            this.height = Double.parseDouble(descriptionArray[3]);
+            this.weight = Double.parseDouble(descriptionArray[4]);
+            this.weightGoal = Double.parseDouble(descriptionArray[5]);
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        profile.setProfile(this.name, this.age, this.gender, this.height, this.weight, this.weightGoal);
+        if (!this.noDescription) {
+            profile.setProfile(this.name, this.age, this.gender, this.height, this.weight, this.weightGoal);
+        }
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = MessageBank.PROFILE_UPDATE_MESSAGE;
+        if (this.noDescription) {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+        } else {
+            this.result = MessageBank.PROFILE_UPDATE_MESSAGE;
+        }
     }
 }

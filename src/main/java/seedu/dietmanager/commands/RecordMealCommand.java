@@ -1,13 +1,18 @@
 package seedu.dietmanager.commands;
 
-import seedu.dietmanager.DailyFoodRecord;
-import seedu.dietmanager.Food;
-import seedu.dietmanager.FoodNutritionInfo;
-import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
 import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
+import seedu.dietmanager.DailyFoodRecord;
+import seedu.dietmanager.Food;
+import seedu.dietmanager.FoodNutritionInfo;
+import seedu.dietmanager.Profile;
+import seedu.dietmanager.Weekday;
+
+
+import java.util.ArrayList;
+
 
 import java.util.ArrayList;
 
@@ -16,7 +21,9 @@ public class RecordMealCommand extends Command {
     private String date;
     private String mealType;
     private String[] foodDescription;
-    boolean isValidFoodFormat;
+    private boolean isValidFoodFormat;
+    private boolean noDescription;
+    private boolean isInvalidDate;
 
     /**
      * Constructs the Command object.
@@ -27,25 +34,44 @@ public class RecordMealCommand extends Command {
 
     public RecordMealCommand(String command, String description) throws InvalidFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.date = descriptionArray[0].toUpperCase();
-        this.mealType = descriptionArray[1];
-        this.foodDescription = descriptionArray[2].trim().split("/");
-        this.isValidFoodFormat = true;
+        this.noDescription = false;
+        this.isInvalidDate = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.date = descriptionArray[0].toUpperCase();
+            this.mealType = descriptionArray[1];
+            this.foodDescription = descriptionArray[2].trim().split("/");
+            this.isValidFoodFormat = true;
+
+            Weekday.valueOf(this.date);
+
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        } catch (IllegalArgumentException e) {
+            this.isInvalidDate = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
+        if (this.noDescription | this.isInvalidDate) {
+            saveResult(profile);
+            return;
+        }
+
         DailyFoodRecord record = profile.getRecordOfDay(date);
         ArrayList<Food> foodList = new ArrayList<>();
         String[] foodDescriptionSplit;
         String foodName;
         int foodCalories;
         FoodNutritionInfo foodInfo = new FoodNutritionInfo();
+
         for (String singleFoodDescription : foodDescription) {
             if (singleFoodDescription.equals("")) {
                 continue;
             }
+
             foodDescriptionSplit = singleFoodDescription.trim().split(" -- ");
             switch (foodDescriptionSplit.length) {
             case 1:
@@ -78,6 +104,14 @@ public class RecordMealCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
+        if (this.noDescription) {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return;
+        } else if (this.isInvalidDate) {
+            this.result = MessageBank.INVALID_DATE_MESSAGE;
+            return;
+        }
+
         boolean isValidType = true;
         switch (mealType) {
         case "morning":
@@ -94,11 +128,11 @@ public class RecordMealCommand extends Command {
             this.result = MessageBank.MEAL_TYPE_ERROR;
             break;
         }
-        if (!isValidFoodFormat) {
-            this.result = this.result + MessageBank.INVALID_FOOD_FORMAT_ERROR;
-        }
         if (isValidType) {
             this.result = this.result + date + ".";
+        }
+        if (!isValidFoodFormat) {
+            this.result = this.result + System.lineSeparator() + MessageBank.INVALID_FOOD_FORMAT_ERROR;
         }
     }
 }
