@@ -28,12 +28,16 @@ class SearchStockCommandTest {
     /** The relative index after the '/' present within the string. */
     private final int indexAfterSlash = 2;
     
+    /** The length of 'k/' tag. */
+    private final int keywordTagLength = 2;
+    
     @Test
     public void construct_SearchStockCommand_constructNormally() 
             throws InvalidStockCommandException {
     
         String keywordSupplied = "tomato";
         String keywordInCommand = new SearchStockCommand(" k/tomato;").getKeyword();
+        System.out.println(keywordInCommand);
         assertTrue(keywordSupplied.equals(keywordInCommand));
     }
     
@@ -278,15 +282,20 @@ class SearchStockCommandTest {
         return outputMessage;
     }
     
+    /**
+     * A utility function of similar implementation of parseIntoSearchKeyword()
+     * in SearchStockCommand.                                      
+     */
     private String parseIntoSearchKeyword(String fullInputLine) 
             throws InvalidStockCommandException {
         
         checkValidSearchKeywordArgumentsSupplied(fullInputLine);
         
-        String trimmedKeyword = fullInputLine.trim()
-                .substring(indexAfterSlash, fullInputLine.length() - 2);
+        String trimmedKeyword = fullInputLine.trim();
+        String trimmedKeywordWithoutColon = 
+                trimmedKeyword.substring(indexAfterSlash, trimmedKeyword.length() - 1);
 
-        return trimmedKeyword;      
+        return trimmedKeywordWithoutColon;      
     }
     
     /**
@@ -311,11 +320,11 @@ class SearchStockCommandTest {
             throw new InvalidStockCommandException("Please "
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");
-        } else if (trimmedFullInputLine.length() == 2) {
+        } else if (trimmedFullInputLine.length() == keywordTagLength) {
             throw new InvalidStockCommandException("Please "
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");
-        } else if (trimmedFullInputLine.length() > 2) {
+        } else if (trimmedFullInputLine.length() > keywordTagLength) {
             if (trimmedFullInputLine.substring(indexAfterSlash, 
                     trimmedFullInputLine.length()).isBlank()) {
                 throw new InvalidStockCommandException("Please "
@@ -330,12 +339,12 @@ class SearchStockCommandTest {
      */
     private void checkForKAndSlashBeforeKeyword(String trimmedFullInputLine) 
             throws InvalidStockCommandException {
-        if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
-                && trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
+        if (trimmedFullInputLine.length() < keywordTagLength) {
             throw new InvalidStockCommandException("Please "
                     + "specify the keyword using the format "
                     + "'k/keyword;'");
-        } if (trimmedFullInputLine.length() < 2) {
+        } else if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
+                && trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
             throw new InvalidStockCommandException("Please "
                     + "specify the keyword using the format "
                     + "'k/keyword;'");

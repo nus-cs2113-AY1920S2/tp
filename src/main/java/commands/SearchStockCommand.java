@@ -18,6 +18,9 @@ public class SearchStockCommand extends StockCommand {
     /** The relative index of '/' present within the string. */
     private final int indexOfSlashCharacter = 1;
     
+    /** The length of 'k/' tag. */
+    private final int keywordTagLength = 2;
+    
     /**
      * A convenience constructor that contains the keyword to be searched
      * against the ingredients in the stock.
@@ -31,20 +34,22 @@ public class SearchStockCommand extends StockCommand {
     
     /**
      * Parses the user input into readable keyword. For example, 'search stock; 
-     * k/tomato' will return 'tomato' as the keyword.
+     * k/tomato' will return 'tomato' as the keyword. The 
      * @throws InvalidStockCommandException If the user's input does not 
      *                                      meet the required format by 
-     *                                      specifying 'k/KEYWORD';
+     *                                      specifying 'k/KEYWORD'.
      */
     private String parseIntoSearchKeyword(String fullInputLine) 
             throws InvalidStockCommandException {
         
         checkValidSearchKeywordArgumentsSupplied(fullInputLine);
         
-        String trimmedKeyword = fullInputLine.trim()
-                .substring(indexAfterSlash, fullInputLine.length() - 2);
+        String trimmedKeyword = fullInputLine.trim();
+        
+        String trimmedKeywordWithoutColon = trimmedKeyword
+                .substring(indexAfterSlash, trimmedKeyword.length() - 1);
 
-        return trimmedKeyword;      
+        return trimmedKeywordWithoutColon;      
     }
     
     /**
@@ -73,11 +78,11 @@ public class SearchStockCommand extends StockCommand {
             throw new InvalidStockCommandException("Please "
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");
-        } else if (trimmedFullInputLine.length() == 2) {
+        } else if (trimmedFullInputLine.length() == keywordTagLength) {
             throw new InvalidStockCommandException("Please "
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");
-        } else if (trimmedFullInputLine.length() > 2) {
+        } else if (trimmedFullInputLine.length() > keywordTagLength) {
             if (trimmedFullInputLine.substring(indexAfterSlash, 
                     trimmedFullInputLine.length()).isBlank()) {
                 throw new InvalidStockCommandException("Please "
@@ -95,12 +100,12 @@ public class SearchStockCommand extends StockCommand {
      */
     private void checkForKAndSlashBeforeKeyword(String trimmedFullInputLine) 
             throws InvalidStockCommandException {
-        if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
-                && trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
+        if (trimmedFullInputLine.length() < keywordTagLength) {
             throw new InvalidStockCommandException("Please "
                     + "specify the keyword using the format "
                     + "'k/keyword;'");
-        } if (trimmedFullInputLine.length() < 2) {
+        } else if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
+                && trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
             throw new InvalidStockCommandException("Please "
                     + "specify the keyword using the format "
                     + "'k/keyword;'");
