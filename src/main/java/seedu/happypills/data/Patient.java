@@ -1,8 +1,12 @@
 package seedu.happypills.data;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 /**
- * Represents a task.
- * It also functions as base class from which specialised tasks are inherited from.
+ * Represents a patient.
+ * It also functions as base class for patients from which specialised tasks are inherited from.
  */
 public class Patient {
 
@@ -16,11 +20,11 @@ public class Patient {
     protected String bloodType;
     protected String allergies = null;
     protected String remarks = null;
+    protected ArrayList<Appointment> appointments = null;
 
     /**
-     * Constructor for Task Class.
-     * It creates a new task with the description provided by the user.
-     * It also sets isDone to false as it is a newly created task.
+     * Constructor for Patient Class.
+     * It creates a new patient with the description provided by the user.
      *
      * @param name          Name of the patient.
      * @param nric          NRIC of the patient.
@@ -32,13 +36,20 @@ public class Patient {
      */
     public Patient(String name, String nric, int phoneNumber, String dateOfBirth,
                    String bloodType, String allergies, String remarks) {
-        this.name = name;
-        this.nric = nric;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.bloodType = bloodType;
-        this.allergies = allergies;
-        this.remarks = remarks;
+
+        if (dateValidation(dateOfBirth)) {
+            this.name = name;
+            this.nric = nric;
+            this.phoneNumber = phoneNumber;
+            this.dateOfBirth = dateOfBirth;
+            this.bloodType = bloodType;
+            this.allergies = allergies;
+            this.remarks = remarks;
+            this.appointments = new ArrayList<Appointment>();
+        } else {
+            System.out.println("    Date of birth is invalid. Please try again in this format:"
+                                + "\n    DD/MM/YYYY");
+        }
     }
 
     /**
@@ -106,6 +117,10 @@ public class Patient {
         return this.remarks;
     }
 
+    public void addAppointment(Appointment appt) {
+        this.appointments.add(appt);
+    }
+
     @Override
     public String toString() {
         String text = "        Name : " + this.name + "\n"
@@ -113,8 +128,8 @@ public class Patient {
                 + "        Phone Number : " + this.phoneNumber + "\n"
                 + "        DOB : " + this.dateOfBirth + "\n"
                 + "        Blood Type : " + this.bloodType + "\n"
-                + "        Allergies :" + this.allergies + "\n"
-                + "        Remarks :" + this.remarks + "\n";
+                + "        Allergies : " + this.allergies + "\n"
+                + "        Remarks : " + this.remarks + "\n";
         return text;
     }
 
@@ -130,6 +145,18 @@ public class Patient {
         this.remarks = remarks;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
+
     /**
      * Create a string with all the patient's data for storage to a text file.
      * Each variable is separated with | as a divider.
@@ -139,7 +166,31 @@ public class Patient {
     public String toSave() {
         String text = this.name + "|" + this.nric + "|"
                 + this.phoneNumber + "|" + this.dateOfBirth + "|"
-                + this.bloodType + "|" + this.allergies + "|" + this.remarks;
+                + this.bloodType + "|" + this.allergies + "|" + this.remarks + System.lineSeparator();
         return text;
+    }
+
+    private static boolean dateValidation(String date) {
+        boolean status = false;
+        if (checkDate(date)) {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            dateFormat.setLenient(false);
+            try {
+                dateFormat.parse(date);
+                status = true;
+            } catch (Exception e) {
+                status = false;
+            }
+        }
+        return status;
+    }
+
+    static boolean checkDate(String date) {
+        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
+        boolean flag = false;
+        if (date.matches(pattern)) {
+            flag = true;
+        }
+        return flag;
     }
 }

@@ -1,7 +1,7 @@
 package seedu.happypills;
 
 import seedu.happypills.commands.Command;
-import seedu.happypills.data.PatientList;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.parser.Parser;
@@ -22,24 +22,23 @@ import java.util.Scanner;
  */
 public class HappyPills {
     private TextUi ui;
-    private PatientList patients;
-    private PatientMap tests;
+    private PatientMap patients;
+    private AppointmentMap appointments;
     private static final Logger logger = Logger.getLogger(HappyPills.class.getName());
-    private static final String DATA_FILEPATH = "data/data.txt";
+
 
     /**
      * Sets up the required objects, loads up the data from the storage file.
      */
     public HappyPills() {
         ui = new TextUi();
-        //patients = new PatientList();
+        appointments = new AppointmentMap();
+        patients = new PatientMap();
         try {
             logger.info("loading patient data from file.");
-            patients = Storage.loadFromFile(DATA_FILEPATH);
+            patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
         } catch (FileNotFoundException e) {
             logger.info("No patient data file was found.");
-            patients = new PatientList();
-            tests = new PatientMap();
         }
     }
 
@@ -75,19 +74,27 @@ public class HappyPills {
             logger.info("going to start processing");
             String fullCommand = in.nextLine();
             System.out.println(TextUi.DIVIDER);
-            try {
-                Command c = Parser.parse(fullCommand);
-                String message = c.execute(tests);
-                if (!message.isEmpty()) {
-                    System.out.println(message);
-                }
-            } catch (HappyPillsException hpe) {
-                System.out.println(hpe.getMessage());
-                System.out.println(TextUi.DIVIDER);
-                logger.info(hpe.getMessage());
+            String message = getCommandType(fullCommand);
+            if (!message.isEmpty()) {
+                System.out.println(message);
             }
-
             logger.info("end of processing");
         }
+    }
+
+    private String getCommandType(String fullCommand) {
+        String message = "";
+        try {
+            Command c = Parser.parse(fullCommand);
+            message = c.execute(patients, appointments);
+        } catch (HappyPillsException hpe) {
+            System.out.println(hpe.getMessage());
+            System.out.println(TextUi.DIVIDER);
+            logger.info(hpe.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("    Command is incomplete. Please use the help command.\n"
+                    + TextUi.DIVIDER);
+        }
+        return message;
     }
 }

@@ -39,17 +39,7 @@ What can I do for you today, doctor?
       add /icS9999999Z /rHad contact with COVID-19 Case200
     =====================================================
     =====================================================
-    Got it! I've added this patient:
-        Name : s12345f
-        NRIC : kesin
-        Phone Number : 999
-        DOB :  18june
-        Blood Type :  O+
-        Allergies :
-        Remarks :
-    =====================================================
-    =====================================================
-    s12345f | kesin
+    There are no patients in the list.
     =====================================================
     =====================================================
     Patient not found. Please try again.
@@ -66,15 +56,5 @@ The patient you are looking for cannot be found
     Patient does not exist. Please try again.
     =====================================================
     =====================================================
-    s12345f | kesin
-    =====================================================
-    =====================================================
-    Got it! I've added this patient:
-        Name : s98765f
-        NRIC : nyan
-        Phone Number : 911
-        DOB :  22Aug
-        Blood Type :  O+
-        Allergies :
-        Remarks :
+    There are no patients in the list.
     =====================================================

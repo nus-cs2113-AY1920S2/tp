@@ -1,13 +1,10 @@
-package seedu.happypills.commands;
+package seedu.happypills.commands.patientcommands;
 
-import seedu.happypills.data.Patient;
-import seedu.happypills.data.PatientList;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.ui.TextUi;
 
-import java.util.Map;
-
-public class GetCommand extends Command {
+public class GetPatientCommand extends PatientCommand {
     protected String patientNric;
 
     /**
@@ -16,12 +13,12 @@ public class GetCommand extends Command {
      *
      * @param patientNric        Contains the nric of the patient that is to be retrieved.
      */
-    public GetCommand(String patientNric) {
+    public GetPatientCommand(String patientNric) {
         this.patientNric = patientNric;
     }
 
     @Override
-    public String execute(PatientMap patients) {
+    public String execute(PatientMap patients, AppointmentMap appointments) {
         assert !patientNric.isEmpty() : "No NRIC was provided";
         if (patients.containsKey(patientNric)) {
             return TextUi.getPatientSuccessMessage(patients.get(patientNric));

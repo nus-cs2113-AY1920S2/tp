@@ -1,16 +1,19 @@
-package seedu.happypills.commands;
+package seedu.happypills.commands.patientcommands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class AddCommand extends Command {
+public class AddPatientCommand extends PatientCommand {
     protected String name;
     protected String nric;
     protected int phoneNumber;
@@ -22,8 +25,8 @@ public class AddCommand extends Command {
     Level logLevel = Level.INFO;
 
     /**
-     * Constructor for AddCommand Class.
-     * It creates a new AddCommand Object with the information provided.
+     * Constructor for AddPatientCommand Class.
+     * It creates a new AddPatientCommand Object with the information provided.
      *
      * @param name        Contains the name of the patient.
      * @param nric        Contains the nric of the patient.
@@ -33,8 +36,8 @@ public class AddCommand extends Command {
      * @param allergies   Contains any allergies the patient has.
      * @param remarks     Contains any remarks for the patient.
      */
-    public AddCommand(String name, String nric, int phoneNumber, String dateOfBirth,
-                      String bloodType, String allergies, String remarks) {
+    public AddPatientCommand(String name, String nric, int phoneNumber, String dateOfBirth,
+                             String bloodType, String allergies, String remarks) {
         this.name = name;
         this.nric = nric;
         this.phoneNumber = phoneNumber;
@@ -42,7 +45,7 @@ public class AddCommand extends Command {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.remarks = remarks;
-        logger.log(logLevel, "patient is add");
+        logger.log(logLevel, "patient is added");
     }
 
     /**
@@ -53,10 +56,21 @@ public class AddCommand extends Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      */
     @Override
-    public String execute(PatientMap patients) throws HappyPillsException {
+    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
+        assert !patients.containsKey(nric) : "New nric can be added";
+        Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
+        if (tempPatient.getNric() == null) {
+            return "    Patient not added.\n"
+                    + TextUi.DIVIDER;
+        }
+        patients.add(tempPatient);
+        assert patients.containsKey(nric) : "nric added successfully";
+        try {
+            Storage.addSingleItemToFile(Storage.PATIENT_FILEPATH, tempPatient.toSave());
+        } catch (IOException e) {
+            logger.info("Patient not added to file.");
+        }
         String message = "";
-
-        patients.add(new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks));
         message = TextUi.getPatient(patients.get(nric));
         logger.log(logLevel, "end of addCommand");
         return message;
