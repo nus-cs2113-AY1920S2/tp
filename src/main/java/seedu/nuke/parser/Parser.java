@@ -645,7 +645,7 @@ public class Parser {
      * @return
      *  The command to be executed
      */
-    public Command parseInputAsConfirmation(String userInput) {
+    public Command parseConfirmation(String userInput) {
         switch (userInput) {
         case "yes":
         case "y":
@@ -668,7 +668,7 @@ public class Parser {
      * @return
      *  The command to be executed
      */
-    public Command parseInputAsIndices(String input) {
+    public Command parseIndices(String input) {
         final Matcher matcher = ListNumberPrompt.INDICES_FORMAT.matcher(input.trim());
 
         if (!matcher.matches()) {

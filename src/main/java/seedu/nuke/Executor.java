@@ -104,11 +104,11 @@ public class Executor {
         switch (promptType) {
 
         case CONFIRMATION:
-            command = new Parser().parseInputAsConfirmation(userInput.toLowerCase());
+            command = new Parser().parseConfirmation(userInput.toLowerCase());
             break;
 
         case INDICES:
-            command = new Parser().parseInputAsIndices(userInput);
+            command = new Parser().parseIndices(userInput);
             break;
 
         default:
