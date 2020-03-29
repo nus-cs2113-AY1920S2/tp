@@ -61,6 +61,7 @@ public class AssignmentTest {
         assertEquals(newAssignment.getName(),"TP");
         assertNull(nullAssignment.getName());
     }
+
     //@@author
     @Test
     public void assignmentTest_ToString() {

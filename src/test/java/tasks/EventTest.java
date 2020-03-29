@@ -71,6 +71,7 @@ public class EventTest {
         assertNull(nullEvent.getName());
     }
     //@@author
+
     @Test
     public void testToString() {
         String printedString = "[E][X] project meeting (at: NUS SOC | Fri 20 Mar 2020 09:00 - 11:00)"
