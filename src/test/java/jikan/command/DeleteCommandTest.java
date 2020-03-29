@@ -31,9 +31,10 @@ class DeleteCommandTest {
         LocalDateTime startTime = LocalDateTime.parse("2020-01-01T08:00:00");
         LocalDateTime endTime =  LocalDateTime.parse("2020-01-01T10:00:00");
         Duration duration = Duration.between(startTime, endTime);
-        Activity activity1 = new Activity("Activity1", startTime, endTime, duration, tags);
-        Activity activity2 = new Activity("Activity2", startTime, endTime, duration, tags);
-        Activity activity3 = new Activity("Activity3", startTime, endTime, duration, tags);
+        Duration allocatedTime = Duration.parse("PT0S");
+        Activity activity1 = new Activity("Activity1", startTime, endTime, duration, tags, allocatedTime);
+        Activity activity2 = new Activity("Activity2", startTime, endTime, duration, tags, allocatedTime);
+        Activity activity3 = new Activity("Activity3", startTime, endTime, duration, tags, allocatedTime);
         activities.add(activity1);
         activities.add(activity2);
         activities.add(activity3);

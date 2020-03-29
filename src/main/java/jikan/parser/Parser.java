@@ -20,12 +20,14 @@ import jikan.storage.StorageCleaner;
 import jikan.ui.Ui;
 import jikan.Log;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 import static jikan.Log.makeInfoLog;
+
 
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
@@ -35,6 +37,7 @@ public class Parser {
     public static LocalDateTime startTime = null;
     public static LocalDateTime endTime = null;
     public static String activityName = null;
+    public static Duration allocatedTime = null;
     public static Set<String> tags = new HashSet<>();
     private static StorageCleaner cleaner;
     public static String[] tokenizedInputs;
@@ -54,10 +57,7 @@ public class Parser {
             EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
         makeInfoLog("Starting to parse inputs.");
         Parser.cleaner = cleaner;
-        /*lastShownList is initialised here to facilitate subsequent delete and edit commands
-        referencing by index of this list.
-         */
-        // lastShownList.activities.addAll(activityList.activities);
+
         String userInput = scanner.nextLine();
         tokenizedInputs = userInput.split(" ", 2);
         instruction = tokenizedInputs[0];

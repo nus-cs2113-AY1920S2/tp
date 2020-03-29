@@ -28,7 +28,6 @@ public class EndCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            // Parser.parseEnd(activityList);
             if (Parser.startTime == null) {
                 throw new NoSuchActivityException();
             } else {
