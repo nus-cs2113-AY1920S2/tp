@@ -8,14 +8,15 @@ import tasks.Assignment;
 import tasks.Task;
 
 public class TaskListTest {
+    //@@author joelczk
     @Test
-    public void testGetListSize() {
+    public void taskListTest_GetListSize() {
         TaskList testTaskList = new TaskList();
         assertEquals(testTaskList.getListSize(), 0);
     }
 
     @Test
-    public void testAddTask() {
+    public void taskListTest_AddTask() {
         TaskList testTaskList = new TaskList();
         Task newTask = new Assignment(null, null, null, null);
         testTaskList.addTask(newTask);
@@ -23,4 +24,5 @@ public class TaskListTest {
         testTaskList.addTask(newTask);
         assertEquals(testTaskList.getListSize(), 2);
     }
+    //@@author joelczk
 }

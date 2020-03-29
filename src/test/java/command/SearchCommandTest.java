@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//@@author
+//@@author joelczk
 public class SearchCommandTest {
     private static TaskList filledTaskList;
     private static TaskList emptyTaskList;
@@ -103,7 +103,7 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void testSearchExecuteEmptyTaskList() {
+    public void executeMethod_emptyTaskList() {
         assertEquals(new SearchCommand("test", "all").execute(emptyTaskList,ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
         assertEquals(new SearchCommand("test", "assignment").execute(emptyTaskList, ui).feedbackToUser,
@@ -113,38 +113,38 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void testSearchExecuteInvalidSearchFormat() {
+    public void executeMethod_invalidSearchArgument() {
         assertEquals(new SearchCommand("test", "abcd").execute(filledTaskList, ui).feedbackToUser,
                 String.format(Messages.INCORRECT_ARGUMENT_ERROR,
                         Parser.capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE));
     }
 
     @Test
-    public void testSearchExecuteOneEvent() {
+    public void executeMethod_searchOneEvent_success() {
         assertEquals(new SearchCommand("midterms", "event").execute(filledTaskList, ui).feedbackToUser,
                 eventSingleResultString());
     }
 
     @Test
-    public void testSearchExecuteMultipleEvents() {
+    public void executeMethod_searchMultipleEvents_success() {
         assertEquals(new SearchCommand("mid", "event").execute(filledTaskList, ui).feedbackToUser,
                 eventMultipleResultsString());
     }
 
     @Test
-    public void testSearchExecuteSingleAssignment() {
+    public void executeMethod_searchOneAssignment_success() {
         assertEquals(new SearchCommand("assignment 3", "assignment").execute(filledTaskList,ui).feedbackToUser,
                 assignmentSingleResultString());
     }
 
     @Test
-    public void testSearchExecuteMultipleAssignments() {
+    public void executeMethod_searchMultipleAssignments_success() {
         assertEquals(new SearchCommand("assignment", "assignment").execute(filledTaskList,ui).feedbackToUser,
                 assignmentMultipleResultsString());
     }
 
     @Test
-    public void testSearchExecute_emptyResults() {
+    public void executeMethod_emptyResults() {
         assertEquals(new SearchCommand("abcd", "event").execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
         assertEquals(new SearchCommand("abcd", "assignment").execute(filledTaskList, ui).feedbackToUser,

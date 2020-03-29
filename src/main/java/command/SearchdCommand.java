@@ -9,6 +9,7 @@ import tasks.Task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//@@author joelczk
 public class SearchdCommand extends Command {
     public static final String COMMAND_WORD = "searchd";
     public static final String COMMAND_USAGE = "Search for tasks according to date: "

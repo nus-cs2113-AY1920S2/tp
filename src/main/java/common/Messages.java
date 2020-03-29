@@ -4,6 +4,7 @@ package common;
  * Container for all default messages printed to user.
  */
 public class Messages {
+    //@@author
     // Start up and Exit Print Messages
     public static final String LOGO =
             " _______        _______        _______        _______ "
