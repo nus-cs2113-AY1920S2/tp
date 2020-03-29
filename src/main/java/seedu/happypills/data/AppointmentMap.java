@@ -2,28 +2,50 @@ package seedu.happypills.data;
 
 import seedu.happypills.exception.HappyPillsException;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.String.valueOf;
+
 public class AppointmentMap {
 
-    private final Map<Date, Appointment> argMultimap = new HashMap<Date, Appointment>();
+    private final Map<String, Appointment> argMultimap = new HashMap<String, Appointment>();
 
+    /**
+     * Adds an appointment into the AppointmentMap.
+     *
+     * @param appointment the appointment to be added into the map.
+     * @throws HappyPillsException throws exception if there is already an appointment with the given datetime.
+     */
     public void addAppointment(Appointment appointment) throws HappyPillsException {
+        int current = argMultimap.size() + 1;
+        appointment.setAppointmentId(valueOf(current));
         if (!isDatetimeTaken(appointment)) {
-            argMultimap.put(appointment.getDatetime(), appointment);
+            argMultimap.put(appointment.getDate() + " " + appointment.getTime(), appointment);
         } else {
             throw new HappyPillsException("    There is already an Appointment at that date and time.\n"
                                                 + "    Please try again.");
         }
     }
 
+    public Iterable<? extends Map.Entry> entrySet() {
+        return argMultimap.entrySet();
+    }
 
-    public boolean isDatetimeTaken(Appointment appointment) {
+    public int size() {
+        return argMultimap.size();
+    }
+
+    public boolean isEmpty() {
+        return argMultimap.isEmpty();
+    }
+
+    private boolean isDatetimeTaken(Appointment appointment) {
+        String apptDatetime = appointment.getDate() + " " + appointment.getTime();
         for (Map.Entry mapElement : argMultimap.entrySet()) {
             Appointment value = ((Appointment)mapElement.getValue());
-            if (value.getDatetime() == appointment.getDatetime()) {
+            String datetime = value.getDate() + " " + value.getTime();
+            if (datetime.equalsIgnoreCase(apptDatetime)) {
                 return true;
             }
         }

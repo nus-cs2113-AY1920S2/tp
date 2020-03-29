@@ -1,9 +1,11 @@
 package seedu.happypills.parser;
 
-import seedu.happypills.commands.appointment_commands.AddAppointmentCommand;
-import seedu.happypills.commands.appointment_commands.AppointmentCommand;
-import seedu.happypills.commands.appointment_commands.DeleteAppointmentCommand;
-import seedu.happypills.commands.appointment_commands.IncorrectAppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.AddAppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.AppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.DeleteAppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.IncorrectAppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.ListAppointmentCommand;
+
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
@@ -11,23 +13,30 @@ import java.util.Scanner;
 
 public class AppointmentParser {
 
+    /**
+     * Parses the command given by the user to appointment commands.
+     * @param fullCommand the full command entered by the user.
+     * @return the command that the user has entered.
+     * @throws HappyPillsException throws an exception for invalid commands.
+     */
     public static AppointmentCommand parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.split(" ", 3);
 
         if (userCommand[0].equalsIgnoreCase("add")) {
             return parseAddCommand(userCommand[2]);
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
-
+            return new DeleteAppointmentCommand(fullCommand); // change to edit
         } else if (userCommand[0].equalsIgnoreCase("done")) {
-
+            return new DeleteAppointmentCommand(fullCommand); // change to done
         } else if (userCommand[0].equalsIgnoreCase("find")) {
-
+            return new DeleteAppointmentCommand(fullCommand); // change to find
         } else if (userCommand[0].equalsIgnoreCase("list")) {
-
+            return new ListAppointmentCommand();
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
             return new DeleteAppointmentCommand(userCommand[2]);
+        } else {
+            throw new HappyPillsException("    Invalid Command.");
         }
-        return new IncorrectAppointmentCommand();
     }
 
     private static AppointmentCommand parseAddCommand(String content) throws HappyPillsException {
@@ -43,7 +52,7 @@ public class AppointmentParser {
             if (detail.startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
                 parseInput[0] = detail.substring(1).trim();
             } else if (detail.startsWith("d") && parseInput[1].equalsIgnoreCase("")) {
-                parseInput[1] = detail.substring(2).trim();
+                parseInput[1] = detail.substring(1).trim();
             } else if (detail.startsWith("t") && parseInput[2].equalsIgnoreCase("")) {
                 parseInput[2] = detail.substring(1).trim();
             } else if (detail.startsWith("r") && parseInput[3].equalsIgnoreCase("")) {
@@ -93,21 +102,21 @@ public class AppointmentParser {
             }
         }
 
-        boolean userConformation = false;
+        boolean userConfirmation = false;
         System.out.println(promptConfirmation(parseInput));
-        while (!userConformation) {
-            String conformation = promptUser();
+        while (!userConfirmation) {
+            String confirmation = promptUser();
+            System.out.println(confirmation);
             System.out.println(TextUi.DIVIDER);
-            if (conformation.equalsIgnoreCase("y")) {
-                userConformation = true;
-            } else if (conformation.equalsIgnoreCase("n")) {
+            if (confirmation.equalsIgnoreCase("y")) {
+                userConfirmation = true;
+            } else if (confirmation.equalsIgnoreCase("n")) {
                 return new IncorrectAppointmentCommand();
             } else {
                 System.out.println("    Please input [y] for yes or [n] for no");
             }
         }
-        //change to AddAppointmentCommand
-        return new AddAppointmentCommand(parseInput[0].trim(), parseInput[1].trim(),
+        return new AddAppointmentCommand(parseInput[0].trim().substring(1), parseInput[1].trim(),
                 parseInput[2].trim(), parseInput[3].trim());
     }
 
@@ -141,7 +150,7 @@ public class AppointmentParser {
      * @return string to be displayed to user for confirmation
      */
     public static String promptConfirmation(String[] parseInput) {
-        String text = "        NRIC : " + parseInput[0].toUpperCase().trim() + "\n"
+        String text = "        NRIC : " + parseInput[0].toUpperCase().trim().substring(1) + "\n"
                 + "        Date : " + parseInput[1].trim() + "\n"
                 + "        Time : " + parseInput[2].trim() + "\n"
                 + "        Reason : " + parseInput[3].trim() + "\n"

@@ -1,41 +1,39 @@
 package seedu.happypills.data;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import static java.lang.String.valueOf;
 
+/**
+ * Represents an appointment.
+ * It also functions as base class for appointments from which specialised tasks are inherited from.
+ */
 public class Appointment {
 
-    private int id = 1;
-
+    /**
+     * Stores the details of the appointment.
+     */
     protected String nric;
     protected String reason;
     protected String date;
     protected String time;
-    protected Date datetime;
     protected String appointmentId;
     protected boolean isDone;
 
+    /**
+     * Constructor for Appointment class.
+     * It creates a new appointment with the details provided by the user.
+     *
+     * @param nric NRIC of patient.
+     * @param reason reason for appointment.
+     * @param date date of appointment.
+     * @param time time of appointment.
+     */
     public Appointment(String nric, String reason, String date, String time) {
-        try {
-            this.nric = nric;
-            this.reason = reason;
-            this.date = date;
-            this.time = time;
-            this.datetime = convertDate(date, time);
-            this.appointmentId = valueOf(id);
-            this.isDone = false;
-            id++;
-        } catch (Exception e) {
-            System.out.println("    Date is invalid.\n");
-        }
-    }
-
-    private Date convertDate(String date, String time) throws Exception {
-        String dt = date + 'T' + time;
-        Date datetime = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(dt);
-        return datetime;
+        this.nric = nric;
+        this.reason = reason;
+        this.date = date;
+        this.time = time;
+        this.appointmentId = valueOf(0);
+        this.isDone = false;
     }
 
     public String getNric() {
@@ -59,12 +57,7 @@ public class Appointment {
     }
 
     public void setDate(String date) {
-        try {
-            this.datetime = convertDate(date, this.time);
-            this.date = date;
-        } catch (Exception e) {
-            System.out.println("    Date is invalid. Please try again.");
-        }
+        this.date = date;
     }
 
     public String getTime() {
@@ -72,16 +65,11 @@ public class Appointment {
     }
 
     public void setTime(String time) {
-        try {
-            this.datetime = convertDate(this.date, time);
-            this.time = time;
-        } catch (Exception e) {
-            System.out.println("    Time is invalid. Please try again.");
-        }
+        this.time = time;
     }
 
-    public Date getDatetime() {
-        return datetime;
+    public void setAppointmentId(String appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public String getAppointmentId() {
