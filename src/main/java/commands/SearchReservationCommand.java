@@ -97,7 +97,7 @@ public class SearchReservationCommand extends ReservationCommand {
             if (numberEndPos == -1) {
                 throw new DelimiterMissingException();
             }
-            assert numberEndPos != -1: "Missing Semicolon";
+            assert numberEndPos != -1 : "Missing Semicolon";
 
             delimiterMissing = hasDelimiterInBetween(numberPos + RES_INDEX_MARKER.length(), numberEndPos,
                     markers, description);
