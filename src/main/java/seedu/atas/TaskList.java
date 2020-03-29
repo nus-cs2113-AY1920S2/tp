@@ -136,7 +136,7 @@ public class TaskList {
         return assignList;
     }
 
-    //@@author
+    //@@author joelczk
     /**
      * Getter for all events tasks.
      * @return ArrayList object containing all events
@@ -174,7 +174,8 @@ public class TaskList {
         }
         return assignmentList;
     }
-    
+
+    //@@author
     /**
      * Adds a task to TaskList.
      * @param task task object to be added
@@ -193,6 +194,7 @@ public class TaskList {
         assert tasks.get(doneIndex).getIsDone() == true;
     }
 
+    //@@author joelczk
     /**
      * Delete tasks according to the index specified by user.
      * @param deleteIndex index of task to be deleted
@@ -204,6 +206,7 @@ public class TaskList {
         assert tasks.size() == size - 1;
     }
 
+    //@@author
     /**
      * Edits task according to the index specified by user.
      * Edited task replaces the index of the old task.
@@ -215,6 +218,7 @@ public class TaskList {
         tasks.set(editIndex, editedTask);
     }
 
+    //@@author joelczk
     /**
      * Deletes all the tasks in the list.
      */
@@ -234,6 +238,7 @@ public class TaskList {
         }
     }
 
+    //@@author
     /**
      * Getter for tasks that falls within the provided time period.
      * @param startOfRange LocalDate representing start of time period
