@@ -4,7 +4,6 @@ import seedu.nuke.NukeLogger;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.Root;
 import seedu.nuke.exception.ModuleNotProvidedException;
 import seedu.nuke.directory.Module;
 
@@ -24,10 +23,11 @@ import static seedu.nuke.util.Message.messageAddModuleSuccess;
  */
 public class AddModuleCommand extends AddCommand {
     public static final String COMMAND_WORD = "addm";
+    public static final String FORMAT = COMMAND_WORD + " <module code>";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:(?:\\s+[^-\\s]\\S*)+|^[^-\\s]\\S*)+)"
-            + "(?<invalid>(?:\\s+-.*)*)"
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<invalid>.*)"
     );
 
     private String moduleCode;
@@ -40,16 +40,6 @@ public class AddModuleCommand extends AddCommand {
      */
     public AddModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
-    }
-
-    /**
-     * Returns the parent root level directory of the Directory to be added.
-     *
-     * @return
-     *  The parent root level directory of the Directory to be added
-     */
-    protected Root getParentDirectory() {
-        return ModuleManager.getRoot();
     }
 
     /**
