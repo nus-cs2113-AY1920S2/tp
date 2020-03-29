@@ -1,6 +1,5 @@
 package seedu.command.interpreter;
 
-
 import seedu.command.Command;
 import seedu.command.event.EditDateTime;
 import seedu.command.event.EditName;
@@ -32,7 +31,11 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
         String venue;
 
         String commandType = getFirstWord(commandDescription);
-        String commandParameters = getSubsequentWords(commandDescription);
+        String commandParameters = "";
+        // only look for 2nd to last words if commandCategory requires.
+        if (!commandType.equals("list")) {
+            commandParameters = getSubsequentWords(commandDescription);
+        }
         assert commandType.isBlank() : "Seminar: Unknown command";
 
         switch (commandType) {
@@ -71,9 +74,6 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             throw new DukeException("Seminar: Unknown command");
         }
 
-        if (command == null) {
-            throw new DukeException("Seminar: Command is null");
-        }
         return command;
     }
 }
