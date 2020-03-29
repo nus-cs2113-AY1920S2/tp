@@ -1,6 +1,9 @@
 # data files
 /data/
 
+# build/libs files
+/build/libs/data
+
 # text-ui-test data files
 /text-ui-test/data/
 /text-ui-test/ACTUAL.txt

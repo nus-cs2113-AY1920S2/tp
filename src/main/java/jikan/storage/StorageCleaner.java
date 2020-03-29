@@ -18,7 +18,7 @@ public class StorageCleaner {
     private File status;
     private File recycledData;
     public boolean toClean;
-    private int numberOfActivitiesToClean = 3;
+    private int numberOfActivitiesToClean;
     public Storage storage;
 
     /**
@@ -59,9 +59,12 @@ public class StorageCleaner {
                 } else {
                     this.toClean = false;
                 }
+                String line = sc.nextLine();
+                this.numberOfActivitiesToClean = Integer.parseInt(line);
             } else {
                 FileWriter fw = new FileWriter(status);
-                fw.write("0");
+                fw.write("0" + "\n");
+                fw.write("3" + "\n");
                 fw.close();
             }
         } catch (IOException e) {
@@ -108,7 +111,7 @@ public class StorageCleaner {
     /**
      * Method to activate/de-activate the auto cleanup.
      * @param status a boolean specifying whether the cleaner should be activated or not.
-     * @throws IOException if there is an error with reading/writing to the status file
+     * @throws IOException if there is an error with reading/writing to the status file.
      */
     public void setStatus(boolean status) throws IOException {
         this.toClean = status;
@@ -118,10 +121,33 @@ public class StorageCleaner {
         }
         BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));
         if (this.toClean) {
-            writer.write("1");
+            writer.write("1" + "\n");
         } else {
-            writer.write("0");
+            writer.write("0" + "\n");
         }
+        writer.write(Integer.toString(this.numberOfActivitiesToClean) + "\n");
+        writer.close();
+    }
+
+    /**
+     * Method to set a value for the number of activities to clean.
+     * @param value an integer representing the number to clean.
+     * @throws IOException if there is an error with reading/writing to the status file.
+     */
+    public void setNumberOfActivitiesToClean(int value) throws IOException {
+        boolean status = this.toClean;
+        File dataFile = new File(STATUS_FILE_PATH);
+        this.numberOfActivitiesToClean = value;
+        if (!dataFile.exists()) {
+            dataFile.createNewFile();
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));
+        if (status) {
+            writer.write("1" + "\n");
+        } else {
+            writer.write("0" + "\n");
+        }
+        writer.write(Integer.toString(value) + "\n");
         writer.close();
     }
 
