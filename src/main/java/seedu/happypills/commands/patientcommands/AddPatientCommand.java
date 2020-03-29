@@ -1,4 +1,4 @@
-package seedu.happypills.commands.patient_commands;
+package seedu.happypills.commands.patientcommands;
 
 import seedu.happypills.HappyPills;
 import seedu.happypills.data.AppointmentMap;
@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class AddPatientPatientCommand extends PatientCommand {
+public class AddPatientCommand extends PatientCommand {
     protected String name;
     protected String nric;
     protected int phoneNumber;
@@ -25,8 +25,8 @@ public class AddPatientPatientCommand extends PatientCommand {
     Level logLevel = Level.INFO;
 
     /**
-     * Constructor for AddCommand Class.
-     * It creates a new AddCommand Object with the information provided.
+     * Constructor for AddPatientCommand Class.
+     * It creates a new AddPatientCommand Object with the information provided.
      *
      * @param name        Contains the name of the patient.
      * @param nric        Contains the nric of the patient.
@@ -36,8 +36,8 @@ public class AddPatientPatientCommand extends PatientCommand {
      * @param allergies   Contains any allergies the patient has.
      * @param remarks     Contains any remarks for the patient.
      */
-    public AddPatientPatientCommand(String name, String nric, int phoneNumber, String dateOfBirth,
-                                    String bloodType, String allergies, String remarks) {
+    public AddPatientCommand(String name, String nric, int phoneNumber, String dateOfBirth,
+                             String bloodType, String allergies, String remarks) {
         this.name = name;
         this.nric = nric;
         this.phoneNumber = phoneNumber;
@@ -45,7 +45,7 @@ public class AddPatientPatientCommand extends PatientCommand {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.remarks = remarks;
-        logger.log(logLevel, "patient is add");
+        logger.log(logLevel, "patient is added");
     }
 
     /**

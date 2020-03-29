@@ -1,4 +1,4 @@
-package seedu.happypills.commands.patient_commands;
+package seedu.happypills.commands.patientcommands;
 
 import seedu.happypills.HappyPills;
 import seedu.happypills.data.AppointmentMap;
@@ -86,7 +86,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param patient The patient whose DOB is to be edited.
      * @param content The patient's new DOB.
      */
-    private String editDOB(Patient patient, String content) {
+    private String editDob(Patient patient, String content) {
         patient.setDateOfBirth(content);
         String message = TextUi.printEditSuccess(patient);
         return message;
@@ -145,7 +145,7 @@ public class EditPatientCommand extends PatientCommand {
         } else if (field.equals("/a")) {
             output = editAllergies(editPatient, content);
         } else if (field.equals("/d")) {
-            output = editDOB(editPatient, content);
+            output = editDob(editPatient, content);
         } else if (field.equals("/b")) {
             output = editBloodType(editPatient, content);
         } else if (field.equals("/n")) {

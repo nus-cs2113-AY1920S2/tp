@@ -1,4 +1,4 @@
-package seedu.happypills.commands.appointment_commands;
+package seedu.happypills.commands.appointmentcommands;
 
 import seedu.happypills.commands.Command;
 import seedu.happypills.data.AppointmentMap;

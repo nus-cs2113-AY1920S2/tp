@@ -1,8 +1,7 @@
-package seedu.happypills.commands.patient_commands;
+package seedu.happypills.commands.patientcommands;
 
 import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.PatientMap;
-import seedu.happypills.exception.HappyPillsException;
 
 /**
  * Represents an incorrect command. Upon execution, produces some feedback to the user.
