@@ -1,5 +1,3 @@
-
-# User Guide
 # Exam Study Companion
 
 ## Introduction 
