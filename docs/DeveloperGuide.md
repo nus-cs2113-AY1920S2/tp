@@ -1,8 +1,11 @@
 # Developer Guide
+**By:** Team T14-4<br/>
+**Since:** May 2020
 
 * [1. Design & Implementation](#design-implementation)
     + [1.1. [Proposed] Search stock feature](#search-stock)
     + [1.2. [Proposed] List stock in descending quantities](#list-stock)
+    + [3.1. [Proposed] Mark reservation as served](#mark-reservation-as-served)
 * [2. Product Scope](#product-scope)
 * [3. User Stories](#user-stories)
 * [4. Non-Functional Requirements](#nonfunctional-requirement)
@@ -124,6 +127,13 @@ Step 2. The user can add sold items by inputting `sell dish; d/DISH; q/QUANTITY`
 The user can input as many sales as they like as long as the dish exists in the menu.
 
 Step 3. The user can generate the profit by inputting `profit`.
+
+
+<a name="mark-reservation-as-served"></a>
+### 3.1 [Proposed] Mark reservation as served
+#### 3.1.
+
+
 ## 2. Product Scope
 ### Target user profile
 
