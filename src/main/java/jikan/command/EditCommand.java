@@ -36,8 +36,7 @@ public class EditCommand extends Command {
                 if (newName.isEmpty()) {
                     // no new name is provided
                     throw new InvalidEditFormatException();
-                }
-                else {
+                } else {
                     activityList.updateName(index, newName);
                     Ui.printDivider("Activity named " + Parser.activityName + " has been updated to " + newName);
                 }
@@ -48,8 +47,7 @@ public class EditCommand extends Command {
         } catch (NoSuchActivityException e) {
             Ui.printDivider("No activity with this name exists!");
             Log.makeInfoLog("Edit command failed as there was no such activity saved.");
-        }
-        catch (EmptyNameException e) {
+        } catch (EmptyNameException e) {
             Ui.printDivider("Activity name cannot be empty!");
             Log.makeInfoLog("Edit command failed as there was no activity name provided.");
         } catch (StringIndexOutOfBoundsException | InvalidEditFormatException e) {

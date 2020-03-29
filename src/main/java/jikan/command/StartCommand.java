@@ -21,7 +21,7 @@ public class StartCommand extends Command {
     /**
      * Constructor to create a new start command.
      */
-    public StartCommand(String parameters, Scanner scanner) throws EmptyNameException{
+    public StartCommand(String parameters, Scanner scanner) throws EmptyNameException {
         super(parameters);
         this.scanner = scanner;
     }

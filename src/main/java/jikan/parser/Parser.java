@@ -63,7 +63,8 @@ public class Parser {
      * @param scanner      scanner object which reads user input
      * @param activityList the list of activities
      */
-    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) throws EmptyQueryException, EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
+    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) throws EmptyNameException, NullPointerException,
+            ArrayIndexOutOfBoundsException {
         Log.makeInfoLog("Starting to parse inputs.");
         Parser.cleaner = cleaner;
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands
