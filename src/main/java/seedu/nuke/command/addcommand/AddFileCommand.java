@@ -113,9 +113,6 @@ public class AddFileCommand extends AddCommand {
         Path destinationPath = destinationFile.toPath();
         Files.createDirectories(destinationPath.getParent());
 
-        System.out.println(sourcePath.toAbsolutePath());
-        System.out.println(destinationPath.toAbsolutePath());
-
         Files.copy(sourcePath, destinationPath, REPLACE_EXISTING);
         filePath = randomHash;
     }
