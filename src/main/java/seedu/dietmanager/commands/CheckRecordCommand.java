@@ -23,7 +23,7 @@ public class CheckRecordCommand extends Command {
     public CheckRecordCommand(String command, String description) throws InvalidFormatException {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.date = descriptionArray[0];
+        this.date = descriptionArray[0].toUpperCase();
         this.mealType = descriptionArray[1];
     }
 
@@ -36,13 +36,13 @@ public class CheckRecordCommand extends Command {
     public void saveResult(Profile profile) {
         DailyFoodRecord record = profile.getRecordOfDay(date);
         switch (mealType) {
-        case "breakfast":
+        case "morning":
             this.result = date + " Morning: " + record.showBreakfast() + record.showDailyCalories(mealType);
             break;
-        case "lunch":
+        case "afternoon":
             this.result = date + " Afternoon: " + record.showLunch() + record.showDailyCalories(mealType);
             break;
-        case "dinner":
+        case "night":
             this.result = date + " Night: " + record.showDinner() + record.showDailyCalories(mealType);
             break;
         default:

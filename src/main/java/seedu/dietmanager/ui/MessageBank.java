@@ -51,4 +51,5 @@ public class MessageBank {
     public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories\n";
     public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories\n";
     public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories\n";
+    public static String CALCULATE_CALORIES_MESSAGE = "Your Calories intake during the given period is ";
 }

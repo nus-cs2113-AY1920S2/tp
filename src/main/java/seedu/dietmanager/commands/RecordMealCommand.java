@@ -28,7 +28,7 @@ public class RecordMealCommand extends Command {
     public RecordMealCommand(String command, String description) throws InvalidFormatException {
         super(command);
         String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.date = descriptionArray[0];
+        this.date = descriptionArray[0].toUpperCase();
         this.mealType = descriptionArray[1];
         this.foodDescription = descriptionArray[2].trim().split("/");
         this.isValidFoodFormat = true;
