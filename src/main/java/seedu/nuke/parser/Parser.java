@@ -153,6 +153,7 @@ public class Parser {
 
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
+
             case UndoCommand.COMMAND_WORD:
                 return new UndoCommand();
 

@@ -5,7 +5,6 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.ScreenShot;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Root;
@@ -57,8 +56,7 @@ public class Nuke {
     public void run() {
         welcomeUser();
         runCommandLoopUntilExitCommand();
-        storageManager.save2();
-        //exit();
+        exit();
     }
 
     /**
@@ -75,6 +73,7 @@ public class Nuke {
      */
     public void exit() {
         ui.showSystemMessage(Message.DIVIDER);
+        storageManager.save2();
     }
 
     /**
