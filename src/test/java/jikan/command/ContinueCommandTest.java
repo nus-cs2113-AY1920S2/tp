@@ -53,11 +53,7 @@ class ContinueCommandTest {
             Thread.sleep(2000);
             // End Activity2
             command = new EndCommand(null);
-            try {
-                command.executeCommand(activities);
-            } catch (EmptyNameException | InvalidTimeFrameException e) {
-                System.out.println("Field error.");
-            }
+            command.executeCommand(activities);
             Duration elapsed = initial.plus(Duration.between(startTime, LocalDateTime.now()));
             Duration duration = activities.get(1).getDuration();
             assertEquals(elapsed.toSeconds(), duration.toSeconds());
