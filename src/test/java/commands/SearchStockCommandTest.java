@@ -37,7 +37,6 @@ class SearchStockCommandTest {
     
         String keywordSupplied = "tomato";
         String keywordInCommand = new SearchStockCommand(" k/tomato;").getKeyword();
-        System.out.println(keywordInCommand);
         assertTrue(keywordSupplied.equals(keywordInCommand));
     }
     
@@ -121,6 +120,17 @@ class SearchStockCommandTest {
         }
     }
     
+    @Test
+    public void check_checkCorrectKeywordTagUsed_usePriceTagInstead()
+            throws InvalidStockCommandException {
+        
+        try {
+            new SearchStockCommand(" p/rice").getKeyword();
+        } catch (InvalidStockCommandException isce) {
+            assertEquals(isce.getMessage(),
+                    "Please specify the keyword using the format 'k/keyword;'");
+        }
+    }
     
     @Test
     public void execute_executeSearchCommand_executeNormally() 
@@ -321,6 +331,7 @@ class SearchStockCommandTest {
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");
         } else if (trimmedFullInputLine.length() == keywordTagLength) {
+            checkForKAndSlashBeforeKeyword(trimmedFullInputLine);
             throw new InvalidStockCommandException("Please "
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");

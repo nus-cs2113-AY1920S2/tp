@@ -102,6 +102,7 @@ class DeleteStockCommandTest {
                     executeDelete(stockCopy, tomatoToDelete));
         }
     }
+
     
     @Test
     public void parse_ParseUserInputIntoDeleteIngredientsArgsWithQuantity_parseNormally() 
@@ -289,14 +290,12 @@ class DeleteStockCommandTest {
         
         try {
             stock.deleteIngredient(ingredientToDelete);
-            
+            outputMessage += (createDeleteResultMessage(ingredientToDelete));
         } catch (IngredientNotFoundException e) {
             outputMessage += ("Ingredient " 
                     + ingredientToDelete.getIngredientName() 
                     + " not found and cannot be deleted!");
         }
-
-        outputMessage += (createDeleteResultMessage(ingredientToDelete));
         
         return outputMessage;
     }
