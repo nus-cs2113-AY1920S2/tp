@@ -2,7 +2,6 @@ package seedu.event;
 
 import seedu.exception.DukeException;
 
-import java.security.InvalidParameterException;
 import java.time.Instant;
 
 public class Seminar extends Event {

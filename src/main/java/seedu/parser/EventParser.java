@@ -1,6 +1,5 @@
 package seedu.parser;
 
-import seedu.event.DateTime;
 import seedu.event.Event;
 import seedu.event.Seminar;
 import seedu.exception.DukeException;

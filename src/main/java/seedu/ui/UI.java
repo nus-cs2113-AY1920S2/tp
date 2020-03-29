@@ -90,7 +90,7 @@ public class UI {
                 eventType, oldDateTime, newDateTime);
     }
 
-    public static void editEventVenueMessage(String oldVenue, String newVenue, String eventType) {
+    public void editEventVenueMessage(String oldVenue, String newVenue, String eventType) {
         System.out.printf("Your %s venue was changed from |%s| to |%s|.\n",
                 eventType, oldVenue, newVenue);
     }
