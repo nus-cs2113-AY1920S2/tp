@@ -7,6 +7,7 @@ import jikan.exception.EmptyNameException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
+import java.io.ByteArrayInputStream;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ public class StartCommand extends Command {
         super(parameters);
         this.scanner = scanner;
     }
-    
+
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
@@ -43,7 +44,8 @@ public class StartCommand extends Command {
                 int index = activityList.findActivity(parameters);
                 if (index != -1) {
                     Ui.printDivider("There is already an activity with this name. Would you like to continue it?");
-                    continueActivity(activityList, scanner, index);
+                    String userInput = scanner.nextLine();
+                    continueActivity(activityList, userInput, index);
                 } else {
                     int delimiter = parameters.indexOf("/t");
                     String line = parseActivity(delimiter);
@@ -62,10 +64,9 @@ public class StartCommand extends Command {
      * Received user input on whether or not to continue the activity.
      *
      * @param activityList List of activities.
-     * @param scanner Parse user input.
+     * @param userInput Whether the user wants to continue the activity.
      */
-    private static void continueActivity(ActivityList activityList, Scanner scanner, int index) {
-        String userInput = scanner.nextLine();
+    private static void continueActivity(ActivityList activityList, String userInput, int index) {
         if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
             Parser.activityName = activityList.get(index).getName();
             Parser.startTime = LocalDateTime.now();

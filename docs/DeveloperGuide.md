@@ -132,7 +132,7 @@ However, by allowing the user to edit the start date and time, there may be pote
 The continue feature allows the user to continue a previously ended activity.
 
 #### 3.5.1 Current Implementation
-![Continue command sequence diagram](https://i.imgur.com/MuaxFts.png)
+![Continue command sequence diagram](./pictures/continueActivity.png)
 
 **Continuing an activity:**
 
@@ -142,7 +142,7 @@ When the user enters the command to continue an activity, a *ContinueCommand* ob
  2. Gets the *name* and *tags* of the activity to be continued and saves it to a public static variable of *Parser* object
  3. Gets the current time and saves it to a public static variable of *Parser* object
  
- ![End command sequence diagram](https://i.imgur.com/soaCCXk.png)
+ ![End command sequence diagram](./pictures/endActivity.PNG)
 
  **Ending a continued activity:**
  
@@ -168,7 +168,7 @@ Although the current implementation of the continue feature disallows users to h
 
 #### 3.5.3 Additional Features
 As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
-![decision flowchart](https://i.imgur.com/mCCPuun.png)
+![decision flowchart](./pictures/continue_flowchart.PNG)
 
 ### 3.6 Find Feature
 This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
@@ -239,6 +239,9 @@ Allow users to record their daily activities and track their time usage in a use
 
 * *glossary item* - Definition
 
-### Instructions for Manual Testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Instructions for Manual Testing  
+  
+  #### Launch and Shutdown
+  1. Download the jar file and docs folder
+  2. Copy both into an empty folder
+  3. Run the jar file in your terminal using the command `java -jar jikan.jar`
