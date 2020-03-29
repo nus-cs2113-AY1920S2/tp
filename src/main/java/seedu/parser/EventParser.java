@@ -1,5 +1,6 @@
 package seedu.parser;
 
+import seedu.event.DateTime;
 import seedu.event.Event;
 import seedu.event.Seminar;
 import seedu.exception.DukeException;
@@ -68,7 +69,6 @@ public class EventParser {
         return venue;
     }
 
-    // TODO: [r/FREQ[/TIME or /DAY]]
     /**
      * Parse parameters based on the following format:
      * n/EVENTNAME [t/EVENTTIME] [d/EVENTDATE] [v/EVENTVENUE].
@@ -79,6 +79,9 @@ public class EventParser {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
+        if (name.equals("") && venue.equals("")) {
+            throw new DukeException("EventParser: Invalid arguments");
+        }
         return new Event(name, datetime, venue);
     }
 
@@ -86,6 +89,9 @@ public class EventParser {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
+        if (name.equals("") && venue.equals("")) {
+            throw new DukeException("EventParser: Invalid arguments");
+        }
         return new Seminar(name, datetime, venue);
     }
 
