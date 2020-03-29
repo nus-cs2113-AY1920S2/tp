@@ -515,8 +515,72 @@ The first method is chosen to make the code easier to maintain.
 *  Navigate to the `text-ui-test` folder and run the runtest (.bat/.sh) script.
 
 == Appendices
-
 === Appendix A: Product Scope
+Target user profile: +
+
+* has to manage multiple assignments or events from University
+* prefers desktop application over other types of application
+* has basic understanding on how to use command line interface applications
+* prefers to use command line interface over using mouse
+* can type fast
+
+*Value proposition:* manage assignments and events better than a typical mouse/GUI driven
+
 === Appendix B: User Stories
+Priorities: +
+ 1. High (must have) - `* * \*`  +
+ 2. Medium (nice to have) - `* \*` +
+ 3. Low (future development) - `*` +
+
+[width="100%",cols="10%,<10%,<30%,<30%",options="header",]
+|=======================================================================
+|Priority |As a ... |I want to ... |So that I can...
+|`* * *` |user |be able to add assignments including a description |keep track of the assignment details
+
+|`* * *` |user |be able to add events including a description |keep track of the event details
+
+|`* * *` |user |see a daily view of all available tasks |see what is important for today only
+
+|`* * *` |user |view the tasks I have this week |better plan my time to meet deadlines
+
+|`* * *` |user |list all tasks in the task scheduler |have an overview and mark individual tasks as done or delete specific tasks
+
+|`* * *` |user |view a list of all my incomplete assignments |know the progress of my work
+
+|`* * *` |user |mark an assignment as complete |easily see what assignments I have yet to complete
+
+|`* * *` |user | be able to delete tasks |have an uncluttered list
+
+|`* *`|user |delete all the tasks |clear all the tasks using a single command
+
+|`* *`|user |be able to clear all completed tasks| remove all completed tasks from the app in a single command
+
+|`* *`|long-term user |keep my data between sessions |close the application when I am not using it
+
+|`* *`|user |edit the details of assignments |update assignment details easily without having to delete and create a new one instead
+
+|`* *`|user |edit the details of events |update event details easily without having to delete and create a new one instead
+
+|`* *`|frequent user |see the tasks I have for the day when the app starts up |quickly check my schedule for the day
+
+|`* *`|user with many tasks |search for an assignment by name or module |find that specific assignment quickly without having to scroll
+through a long list to find its details
+
+|`* *`|user with many tasks |search for an event by name or module |find that specific event quickly without having to scroll
+through a long list to find its details
+
+|`* *`|user with relatively fixed schedule |set my events as repeated events |keep track of repeating events without having to manually
+create many events with the same details
+
+|`* *`|busy user |set an ending time for my events |see more clearly when I am free in my schedule
+
+|`* *`|user |see my tasks in a calendar view |have an easy-to-read, sorted overview of my upcoming tasks
+|=======================================================================
+
 === Appendix C: Use Cases
+
 === Appendix D: Non-Functional Requirements
+1. App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
+2. User with above average typing speed for English text (not coding) should be able to utilize the app to manage
+tasks more efficiently compared to using a mouse.
+3.
