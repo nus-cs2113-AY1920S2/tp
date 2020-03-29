@@ -31,7 +31,7 @@ Step 1. The user launches the application for the first time. An empty `stock` w
 
 Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a tomato ingredient into the `stock`. Further, the user may add more ingredients into the current `stock`. Suppose the user executes `add stock; i/potato; q/5; p/$0.40;` and `add stock; i/rice; q/3; p/$0.40;` as well.
 
-Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; tomato`, which will display the following result in the image. 
+Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; k/tomato`, which will display the following result in the image. 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/59989652/77285807-d9d6f580-6d0c-11ea-8716-b4cb55877662.PNG">
