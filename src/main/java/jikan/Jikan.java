@@ -3,6 +3,8 @@ package jikan;
 import jikan.activity.ActivityList;
 import jikan.command.ByeCommand;
 import jikan.command.Command;
+import jikan.exception.EmptyNameException;
+import jikan.exception.EmptyQueryException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
@@ -41,7 +43,7 @@ public class Jikan {
     /**
      * Main entry-point for the Jikan application.
      */
-    public static void main(String[] args) throws InvalidTimeFrameException, IOException {
+    public static void main(String[] args) throws InvalidTimeFrameException, IOException, EmptyNameException {
         ui.printGreeting();
         storage = new Storage(DATA_FILE_PATH);
         cleaner = new StorageCleaner(storage);

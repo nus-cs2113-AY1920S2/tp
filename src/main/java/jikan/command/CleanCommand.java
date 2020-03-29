@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.Log;
 import jikan.activity.ActivityList;
+import jikan.exception.InvalidCleanCommandException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
 import jikan.storage.StorageCleaner;
@@ -45,12 +46,18 @@ public class CleanCommand extends Command {
                 line = "Auto cleaning disabled";
                 Log.makeInfoLog("User has turned off automated cleaning");
             } else {
-                line = "Invalid Command!";
+                if (parameters.isEmpty()) {
+                    throw new IOException();
+                } else {
+                    throw new InvalidCleanCommandException();
+                }
             }
             Ui.printDivider(line);
             // Parser.parseClean(tokenizedInputs[1]);
-        } catch (ArrayIndexOutOfBoundsException | IOException e) {
+        } catch (IOException e) {
             Ui.printDivider("No keyword was given.");
+        } catch (InvalidCleanCommandException e) {
+            Ui.printDivider("Invalid clean command!");
         }
     }
 

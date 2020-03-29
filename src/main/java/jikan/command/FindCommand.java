@@ -48,7 +48,7 @@ public class FindCommand extends Command {
                 }
                 Ui.printResults(lastShownList);
             }
-        } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
+        } catch (EmptyQueryException e) {
             Ui.printDivider("No keyword was given.");
         }
     }
