@@ -49,6 +49,8 @@ search stock; toxic greensk/;
 search stock; k/   
 search stock; k/
 search stock; k  
+search stock; q/e
+search stock; /e
 add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
 add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;
 add reservation; p/David; d/2020-03-12 12:00; n/9; c/98887777;
