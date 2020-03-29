@@ -81,9 +81,11 @@ Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * The `DESCRIPTION` must exist.
 * The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
-* At least one of two parameters (price/quantity) must be present.
-* i/, p/, q/ delimiters must be in **alphabetical** order.
+* `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
+  respective values or omit them. The system will set the price and quantity to 
+  the default values `0.0` and `1` 
 * note that you can rearrange the delimiters (more will shown in the example.)
+
 Example of usage: 
 
 1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
