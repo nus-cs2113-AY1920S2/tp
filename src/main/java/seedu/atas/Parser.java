@@ -281,6 +281,7 @@ public class Parser {
         }
     }
 
+    //@@author jichngan
     private static Command prepareEditCommand(String fullCommand) {
         String[] tokens = fullCommand.split("\\s+", 2);
         int editIndex;
@@ -290,7 +291,7 @@ public class Parser {
             return new IncorrectCommand(Messages.NUM_FORMAT_ERROR);
         } catch (IndexOutOfBoundsException e) {
             return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
-                    capitalize(DoneCommand.COMMAND_WORD), DoneCommand.COMMAND_USAGE));
+                    capitalize(EditCommand.COMMAND_WORD), EditCommand.COMMAND_USAGE));
         }
         return new EditCommand(editIndex);
     }

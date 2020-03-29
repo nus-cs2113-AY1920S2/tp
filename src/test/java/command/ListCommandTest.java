@@ -45,7 +45,7 @@ public class ListCommandTest {
     private static String afterCurrDateTimeString1 = "01/01/21 0000";
     private static String afterCurrDateTimeString2 = "01/01/21 0259";
 
-    //@@author
+    //@@author jichngan
     private static LocalDateTime beforeCurrDateTime1 =
             LocalDateTime.parse(beforeCurrDateTimeString1, Parser.INPUT_DATE_TIME_FORMAT);
     private static LocalDateTime beforeCurrDateTime2 =
@@ -96,7 +96,7 @@ public class ListCommandTest {
             + "  2. [A][X] Quiz 1 (by: Fri 01 Jan 2021 00:00 | mod: CS2173)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "15%";
 
-    //@@author
+    //@@author jichngan
     private static String expectedOutputFromListToday = "Here are the relevant tasks:"
             + System.lineSeparator()
             + "  1. [A][X] Assignment 1 (by: " + currDateTimeStringForPrint1 + " | mod: CS2113)"
@@ -172,7 +172,7 @@ public class ListCommandTest {
         filledTasklist.addTask(eventOnSameDayAfterCurrTime);
         filledTasklist.markTaskAsDone(0);
 
-        //@@author
+        //@@author jichngan
         Assignment currDateTimeAssignment = new Assignment("Assignment 1", "CS2113", currDateTime1,
                 "Assignment 1 Notes");
         Event currDateTimeEvent = new Event("Event 1", "Classroom", currDateTime1, currDateTime2, "Event 1 Notes");
@@ -216,7 +216,7 @@ public class ListCommandTest {
                 new ListCommand("upcoming events").execute(filledTasklist, ui).feedbackToUser);
     }
 
-    //@@author
+    //@@author jichngan
     @Test
     public void printList_filledWeeklyList_todayTasks() {
         assertEquals(expectedOutputFromListToday,
