@@ -32,11 +32,12 @@ public class CommandInterpreter {
      * @throws DukeException if there is only 1 word from the input
      */
     protected String getSubsequentWords(String userInput) throws DukeException {
-        int startIndexOfSpace = userInput.trim().indexOf(" ");
+        userInput = userInput.trim();
+        int startIndexOfSpace = userInput.indexOf(" ");
 
-        /*if (startIndexOfSpace == -1) {
-            throw new DukeException("No parameters provided");
-        }*/
+        if (startIndexOfSpace == -1) {
+            throw new DukeException("Argument is required for command '" + userInput + "'");
+        }
 
         int startIndexOfParameter = startIndexOfSpace + 1;
         return userInput.substring(startIndexOfParameter);
