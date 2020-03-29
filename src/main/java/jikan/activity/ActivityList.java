@@ -99,6 +99,11 @@ public class ActivityList {
         fieldChangeUpdateFile();
     }
 
+    public void updateTags(int index, Set<String> newTags) {
+        activities.get(index).setTags(newTags);
+        fieldChangeUpdateFile();
+    }
+
     public void delete(int index) {
         activities.remove(index);
         deleteUpdateFile(index);

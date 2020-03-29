@@ -6,7 +6,14 @@ import jikan.exception.EmptyNameException;
 import jikan.exception.InvalidEditFormatException;
 import jikan.exception.NoSuchActivityException;
 import jikan.parser.Parser;
+import jikan.storage.Storage;
+import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Represents a command to edit an activity in the activity list.
@@ -31,14 +38,30 @@ public class EditCommand extends Command {
                 throw new EmptyNameException();
             }
             int index = activityList.findActivity(Parser.activityName);
-            String newName = parameters.substring(delimiter + 3);
+            String newName ="";
+            String[] tmpTags;
+            Set<String> newTags = new HashSet<String>();
+            if (tagDelim != -1) {
+                newName = parameters.substring(delimiter + 3, tagDelim - 1);
+                tmpTags = (parameters.substring(tagDelim + 4).split(" "));
+                for (String t : tmpTags) {
+                    newTags.add(t);
+                }
+
+            } else {
+                newName = parameters.substring(delimiter + 3);
+            }
+
             if (index != -1) {
                 if (newName.isEmpty()) {
                     // no new name is provided
                     throw new InvalidEditFormatException();
                 } else {
                     activityList.updateName(index, newName);
-                    Ui.printDivider("Activity named " + Parser.activityName + " has been updated to " + newName);
+                    if (!newTags.isEmpty()) {
+                        activityList.updateTags(index,newTags);
+                    }
+                    Ui.printDivider("Activity named " + Parser.activityName + " has been updated!");
                 }
             } else {
                 // activity is not found
@@ -55,6 +78,5 @@ public class EditCommand extends Command {
             Log.makeInfoLog("Edit command failed as there was no updated activity detail provided.");
         }
     }
-
 
 }
