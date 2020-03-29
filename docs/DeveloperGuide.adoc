@@ -495,17 +495,11 @@ The first method is chosen to make the code easier to maintain.
 === Appendix B: User Stories
 
 |===
-|S/N |As a ... |I can... | SO that I...
+|S/N |As a ... |I can... | So that I can...
 
-|01, row 1
-|user, row 1
-|add assignments, including assignment details , row 1
-|keep track of assignment details, row 1
-
-
-|Cell in column 1, row 2
-|Cell in column 2, row 2
-|Cell in column 3, row 2
+|01|user|add assignments, including assignment details|keep track of assignment details
+|02|user|add events, including event details|keep track of event details
+|03|have a daily view of tasks|see what is important for today only
 |===
 
 === Appendix C: Use Cases
