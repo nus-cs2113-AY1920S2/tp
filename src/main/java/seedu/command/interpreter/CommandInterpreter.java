@@ -21,6 +21,7 @@ public class CommandInterpreter {
      * @return the first word in lower cases
      */
     protected String getFirstWord(String userInput) {
+        userInput = userInput.trim();
         String commandType = userInput.split(" ")[0];
         commandType = commandType.trim();
         commandType = commandType.toLowerCase();
