@@ -444,7 +444,7 @@ Since an `Event` can be set to repeat, but is stored within the `TaskList` as a 
 The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the Calendar view by calling `showToUser` method of the `Ui` component.
 
 ==== Design Considerations
-* Duplicating Tasks instead of keeping the a Repeat `Event` as a single entity like how it is stored.
+* Duplicating Tasks instead of keeping the Repeat `Event` as a single entity like how it is stored in the `TaskList`.
 ** Rationale: +
 By duplicating the repeating `Event`, it allows better abstraction by removing the need to constantly differentiate between normal `Tasks` and repeating `Task`
 during the construction of the final Calendar View. The current implementation allows `addCalendarBody` method to obtain all possible `Tasks`, with repeating `Event` stored as a separate `Task` within the ArrayList of `Tasks`.
