@@ -37,7 +37,7 @@ public class Parser {
     public static LocalDateTime startTime = null;
     public static LocalDateTime endTime = null;
     public static String activityName = null;
-    public static Duration allocatedTime = null;
+    public static Duration allocatedTime = Duration.parse("PT0S");
     public static Set<String> tags = new HashSet<>();
     private static StorageCleaner cleaner;
     public static String[] tokenizedInputs;

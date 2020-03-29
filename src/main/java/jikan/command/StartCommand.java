@@ -101,7 +101,6 @@ public class StartCommand extends Command {
         if (Parser.activityName.isEmpty()) {
             throw new EmptyNameException();
         }
-        Parser.allocatedTime = Duration.parse("PT0S");
         if (allocateDelimiter != -1) {
             String allocatedTime;
             activityInfo = activityInfo.substring(3);

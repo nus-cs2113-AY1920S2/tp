@@ -51,7 +51,6 @@ public class Jikan {
         activityList = storage.createActivityList();
         activityList.storage = storage;
         lastShownList.activities.addAll(activityList.activities);
-        //public static final Scanner in = new Scanner(System.in);
 
         while (true) {
             Command command = parser.parseUserCommands(in,activityList,cleaner);
