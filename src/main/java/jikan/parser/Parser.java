@@ -37,7 +37,6 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import static jikan.Jikan.lastShownList;
 
 /**
  * Represents the object which parses user input to relevant functions for the execution of commands.
@@ -47,7 +46,7 @@ public class Parser {
     public static LocalDateTime startTime = null;
     public static LocalDateTime endTime = null;
     public static String activityName = null;
-    public static String allocatedTime = null;
+    public static Duration allocatedTime = null;
     public static Set<String> tags = new HashSet<>();
     private static Ui ui = new Ui();
     private static StorageCleaner cleaner;

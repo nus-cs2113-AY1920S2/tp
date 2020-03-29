@@ -200,7 +200,7 @@ public class ActivityList {
             LocalDateTime startTime = LocalDateTime.parse(strings.get(1));
             LocalDateTime endTime = LocalDateTime.parse(strings.get(2));
             Duration duration = Duration.parse(strings.get(3));
-            String allocatedTime = strings.get(4);
+            Duration allocatedTime = Duration.parse(strings.get(4));
             e = new Activity(strings.get(0), startTime, endTime, duration, tags, allocatedTime);
             activities.add(e);
         }

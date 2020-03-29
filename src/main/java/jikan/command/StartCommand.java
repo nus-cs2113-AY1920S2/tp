@@ -1,12 +1,12 @@
 package jikan.command;
 
-import jikan.Jikan;
 import jikan.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -87,6 +87,7 @@ public class StartCommand extends Command {
         if (Parser.activityName.isEmpty()) {
             throw new EmptyNameException();
         }
+        Parser.allocatedTime = Duration.parse("PT0S");
         if (allocateDelimiter != -1) {
             String allocatedTime;
             tokenizedInputs[1] = tokenizedInputs[1].substring(3);
@@ -97,14 +98,24 @@ public class StartCommand extends Command {
             } else {
                 allocatedTime = tokenizedInputs[1];
             }
-            Parser.allocatedTime = allocatedTime;
+            parseDuration(allocatedTime);
         }
         if (tagDelimiter != -1) {
-            String [] tagString;
             tokenizedInputs[1] = tokenizedInputs[1].substring(3);
-            tagString = tokenizedInputs[1].split(" ");
+            String [] tagString = tokenizedInputs[1].split(" ");
             Parser.tags.addAll(Arrays.asList(tagString));
         }
         return "Started: " + Parser.activityName;
+    }
+
+    private void parseDuration(String allocatedTime) {
+        String[] tokenizedInputs;
+        System.out.println("hello");
+        try {
+            tokenizedInputs = allocatedTime.split("/");
+            System.out.println(tokenizedInputs[0]);
+        } catch (ArrayIndexOutOfBoundsException a) {
+            Ui.printDivider("Please input in this format HH/MM/SS");
+        }
     }
 }

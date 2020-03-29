@@ -19,7 +19,7 @@ public class Activity {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Duration duration;
-    private String allocatedTime;
+    private Duration allocatedTime;
     private LocalDate date;
 
     /**
@@ -30,7 +30,7 @@ public class Activity {
      * @param endTime the time that the activity ended
      */
     public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Duration duration,
-                    Set<String> tags, String allocatedTime) throws InvalidTimeFrameException {
+                    Set<String> tags, Duration allocatedTime) throws InvalidTimeFrameException {
 
         if (endTime.isBefore(startTime)) {
             throw new InvalidTimeFrameException();
@@ -85,7 +85,7 @@ public class Activity {
         this.endTime = endTime;
     }
 
-    public String getAllocatedTime() {
+    public Duration getAllocatedTime() {
         return this.allocatedTime;
     }
 
