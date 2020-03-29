@@ -320,7 +320,7 @@ the user and increase the file size of the local storage that stores the `taskli
 The `EditCommand` class extends the `Command` class by provided functions to edit specific tasks in the list of
 *ATAS*.
 
-Given below is an example usage scenario and how the `EditCommand` class behaves at each step/
+Given below is an example usage scenario and how the `EditCommand` class behaves at each step.
 
 *Step 1* +
 The user types in `edit 1`. The `parseCommand` method of the `Parser` class is called to obtain `edit` which is the type
@@ -342,14 +342,14 @@ An `IncorrectCommand` class will be returned and a `INCORRECT_ARGUMENT_ERROR` st
 into the constructor of that class if there are no task index supplied by the user. +
 
 *Step 3* +
-A new instance of `EditCommand` class is returned to the main method of *ATAS* with paremter `1` as described above.
+A new instance of `EditCommand` class is returned to the main method of *ATAS* with parameter `1` as described above.
 The execute method of the `EditCommand` class is now called.
 
 *Step 4* +
 The `execute` method in the `EditCommand` class first gets an input from the user on the details of the edited task.
 
 [TIP]
-Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENtS]`
+Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENTS]`
 Event Command Format: `event n/[NAME] l/[LOCATION] d/DD/MM/YY HHmm - HHmm c/[COMMENTS]`
 
 *Step 5* +
@@ -366,6 +366,9 @@ The `editTask` method of the `TaskList` class uses Java's `ArrayList` `set` meth
 *Step 7* +
 Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of
 that class.
+
+The following sequence diagram summarises what happens when the `EditCommand` class is executed
+image::EditCommand_SequenceDiagram[Edit Command UML]
 
 ==== Design Considerations
 * Placing invocation of new `assignment` and `event` class in `editCommand` class
