@@ -46,7 +46,7 @@ public class Ui {
             printIndex = String.valueOf(index + 1) + " ";
         }
         if (gotTags) {
-            System.out.println(String.format("%s %s %-25s %s %-10s %s %-10s %s %-10s %s %-100s",
+            System.out.println(String.format("%s %s %-25s %s %-10s %s %-10s %s %-10s %s %s",
                     printIndex, "|", activityList.get(index).getName(), "|", duration, "|",
                     allocatedTime, "|",
                     activityList.get(index).getDate().toString(), "|",
@@ -96,7 +96,7 @@ public class Ui {
     public static void printList(ActivityList activityList) {
         System.out.println(DIVIDER);
         System.out.println("Your completed activities:");
-        System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %-10s %s %-30s",
+        System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %-10s %s %s",
                 "|", "Name", "|", "Duration", "|", "Target", "|", "Date", "|", "Tags"));
         for (int i = 0; i < activityList.getSize(); i++) {
             if (activityList.get(i).getTags() != null && !activityList.get(i).getTags().isEmpty()) {
