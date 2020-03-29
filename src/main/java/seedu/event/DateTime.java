@@ -68,6 +68,13 @@ public class DateTime {
         return year;
     }
 
+    public Integer getDate() {
+        LocalDateTime localDateTime = getDateTime();
+        int date = localDateTime.getDayOfMonth();
+        return date;
+    }
+
+
     public String toString() {
         return this.dateTimeFormat;
     }

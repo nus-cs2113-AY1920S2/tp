@@ -1,5 +1,6 @@
 package seedu.ui;
 
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class DisplayTable extends UI {
@@ -17,6 +18,13 @@ public class DisplayTable extends UI {
         String modifiedBody2 = extractLength(body2, 25);
         System.out.printf(columnOfThree, index, modifiedBody1, modifiedBody2);
         printSplitOfThree();
+    }
+
+    public static void printBodyOfSix(ArrayList<String> description) {
+        String columnOfSix = ("| %-20s| %-20s| %-20s| %-20s| %-20s| %-20s|%n");
+        System.out.printf(columnOfSix, description.get(0), description.get(1), description.get(2), description.get(3),
+                description.get(4), description.get(5));
+        printSplitOfSix();
     }
 
     private String extractLength(String string, int length) {
@@ -49,6 +57,22 @@ public class DisplayTable extends UI {
         Stream.generate(() -> "_").limit(52).forEach(System.out::print);
         System.out.print("|");
         Stream.generate(() -> "_").limit(30).forEach(System.out::print);
+        System.out.print("|\n");
+    }
+
+    public static void printSplitOfSix() {
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(21).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(21).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(21).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(21).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(21).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(21).forEach(System.out::print);
         System.out.print("|\n");
     }
 
