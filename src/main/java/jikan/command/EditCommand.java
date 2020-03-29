@@ -38,7 +38,7 @@ public class EditCommand extends Command {
                 throw new EmptyNameException();
             }
             int index = activityList.findActivity(Parser.activityName);
-            String newName ="";
+            String newName = "";
             String[] tmpTags;
             Set<String> newTags = new HashSet<String>();
             if (tagDelim != -1) {
