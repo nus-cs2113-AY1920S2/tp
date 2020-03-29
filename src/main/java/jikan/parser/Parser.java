@@ -63,7 +63,8 @@ public class Parser {
      * @param scanner      scanner object which reads user input
      * @param activityList the list of activities
      */
-    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) {
+    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) throws EmptyNameException, NullPointerException,
+            ArrayIndexOutOfBoundsException {
         Log.makeInfoLog("Starting to parse inputs.");
         Parser.cleaner = cleaner;
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands
@@ -80,7 +81,12 @@ public class Parser {
             command = new ByeCommand(null);
             break;
         case "start":
-            command = new StartCommand(tokenizedInputs[1], scanner);
+            try {
+                command = new StartCommand(tokenizedInputs[1], scanner);
+            } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+                Log.makeInfoLog("Activity started without activity name");
+                Ui.printDivider("Activity name cannot be empty!");
+            }
             break;
         case "end":
             command = new EndCommand(null);
@@ -92,25 +98,56 @@ public class Parser {
             command = new ListCommand(null);
             break;
         case "delete":
-            command = new DeleteCommand(tokenizedInputs[1]);
+            try {
+                command = new DeleteCommand(tokenizedInputs[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("Activity name cannot be empty!");
+            }
             break;
         case "find":
-            command = new FindCommand(tokenizedInputs[1]);
+            try {
+                command = new FindCommand(tokenizedInputs[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("No keyword was given.");
+            }
             break;
         case "filter":
-            command = new FilterCommand(tokenizedInputs[1]);
+            try {
+                command = new FilterCommand(tokenizedInputs[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("No keyword was given.");
+            }
             break;
         case "edit":
-            command = new EditCommand(tokenizedInputs[1]);
+            try {
+                command = new EditCommand(tokenizedInputs[1]);
+            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("Activity name cannot be empty!");
+                Log.makeInfoLog("Edit command failed as there was no existing activity name provided.");
+            }
             break;
         case "clean":
-            command = new CleanCommand(tokenizedInputs[1], cleaner);
+            try {
+                command = new CleanCommand(tokenizedInputs[1], cleaner);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("No keyword was given.");
+            }
             break;
         case "continue":
-            command = new ContinueCommand(tokenizedInputs[1]);
+            try {
+                command = new ContinueCommand(tokenizedInputs[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("Activity name cannot be empty!");
+                Log.makeInfoLog("Continue command failed as there was no activity name provided.");
+            }
             break;
         case "graph":
-            command = new GraphCommand(tokenizedInputs[1]);
+            try {
+                command = new GraphCommand(tokenizedInputs[1]);
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+                Ui.printDivider("Please input an integer for the time interval.\n"
+                        + "If you'd like to graph by tags, enter the command <graph tags>.");
+            }
             break;
         default:
             parseDefault();

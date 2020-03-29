@@ -21,13 +21,14 @@ public class StartCommand extends Command {
     /**
      * Constructor to create a new start command.
      */
-    public StartCommand(String parameters, Scanner scanner) {
+    public StartCommand(String parameters, Scanner scanner) throws EmptyNameException {
         super(parameters);
         this.scanner = scanner;
     }
     
     @Override
-    public void executeCommand(ActivityList activityList) {
+    public void executeCommand(ActivityList activityList) throws EmptyNameException {
+
         try {
             // Parser.parseStart(activityList, Jikan.in);
             // check if an activity has already been started
@@ -52,7 +53,7 @@ public class StartCommand extends Command {
                     Ui.printDivider(line);
                 }
             }
-        } catch (EmptyNameException | NullPointerException | ArrayIndexOutOfBoundsException e) {
+        } catch (EmptyNameException e) {
             Log.makeInfoLog("Activity started without activity name");
             Ui.printDivider("Activity name cannot be empty!");
         }
