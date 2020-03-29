@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyNameException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.storage.Storage;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DeleteCommandTest {
 
@@ -48,7 +49,11 @@ class DeleteCommandTest {
         String parameters = "Activity2";
 
         Command command = new DeleteCommand(parameters);
-        command.executeCommand(activities);
+        try {
+            command.executeCommand(activities);
+        } catch (EmptyNameException | InvalidTimeFrameException e) {
+            System.out.println("Field error.");
+        }
 
         assertEquals(activities.get(1).getName(), "Activity3");
         assertEquals(activities.getSize(), 2);

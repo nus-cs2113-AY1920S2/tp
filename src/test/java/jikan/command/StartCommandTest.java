@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyNameException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
@@ -14,7 +15,9 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class StartCommandTest {
     ActivityList activities = new ActivityList();
@@ -22,6 +25,7 @@ class StartCommandTest {
 
     void populateActivityList() throws InvalidTimeFrameException {
         activities.storage = new Storage("data/activityList_test.txt");
+        activities.activities.clear();
         try {
             activities.storage.clearFile();
         } catch (FileNotFoundException e) {
@@ -44,54 +48,59 @@ class StartCommandTest {
     void executeStart() {
         try {
             populateActivityList();
-        } catch (InvalidTimeFrameException e) {
-            System.out.println("Invalid time frame.");
+            Scanner scanner = new Scanner(System.in);
+            String parameters = "Activity 3 /t tag tag1";
+            Command command = new StartCommand(parameters, scanner);
+
+            HashSet<String> activity3Tags = new HashSet<>();
+            activity3Tags.add("tag");
+            activity3Tags.add("tag1");
+
+            command.executeCommand(activities);
+            assertNotNull(Parser.startTime);
+            assertEquals(Parser.activityName, "Activity 3");
+            assertEquals(activity3Tags, Parser.tags);
+
+            // end started activity to test continue feature
+            command = new EndCommand(null);
+            command.executeCommand(activities);
+        } catch (EmptyNameException | InvalidTimeFrameException e) {
+            System.out.println("Field error.");
         }
-        Scanner scanner = new Scanner(System.in);
-        String parameters = "Activity 3 /t tag tag1";
-        Command command = new StartCommand(parameters, scanner);
-
-        HashSet<String> activity3Tags = new HashSet<>();
-        activity3Tags.add("tag");
-        activity3Tags.add("tag1");
-
-        command.executeCommand(activities);
-        assertNotNull(Parser.startTime);
-        assertEquals(Parser.activityName, "Activity 3");
-        assertEquals(activity3Tags, Parser.tags);
     }
 
     @Test
     void executeStartContinued() {
         try {
             populateActivityList();
-        } catch (InvalidTimeFrameException e) {
-            System.out.println("Invalid time frame.");
+            String data = "Yes";
+            System.setIn(new ByteArrayInputStream(data.getBytes()));
+            Scanner scanner = new Scanner(System.in);
+            String parameters = "Activity1";
+            Command command = new StartCommand(parameters, scanner);
+            command.executeCommand(activities);
+            assertEquals(Parser.activityName, "Activity1");
+            assertNotNull(Parser.startTime);
+        } catch (InvalidTimeFrameException | EmptyNameException e) {
+            System.out.println("Field error.");
         }
-        String data = "Yes";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Scanner scanner = new Scanner(System.in);
-        String parameters = "Activity1";
-        Command command = new StartCommand(parameters, scanner);
-        command.executeCommand(activities);
-        assertEquals(Parser.activityName, "Activity1");
-        assertNotNull(Parser.startTime);
     }
 
     @Test
     void executeStartNotContinued() {
         try {
             populateActivityList();
-        } catch (InvalidTimeFrameException e) {
-            System.out.println("Invalid time frame.");
+            String data = "No";
+            System.setIn(new ByteArrayInputStream(data.getBytes()));
+            Scanner scanner = new Scanner(System.in);
+            String parameters = "Activity1";
+            Command command = new StartCommand(parameters, scanner);
+            command.executeCommand(activities);
+            assertNull(Parser.startTime);
+            assertNull(Parser.activityName);
+        } catch (InvalidTimeFrameException | EmptyNameException e) {
+            System.out.println("Field error.");
         }
-        String data = "No";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Scanner scanner = new Scanner(System.in);
-        String parameters = "Activity1";
-        Command command = new StartCommand(parameters, scanner);
-        command.executeCommand(activities);
-        assertNull(Parser.startTime);
-        assertNull(Parser.activityName);
+
     }
 }

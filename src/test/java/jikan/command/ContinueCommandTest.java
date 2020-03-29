@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyNameException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
@@ -12,7 +13,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ContinueCommandTest {
     ActivityList activities = new ActivityList();
@@ -49,17 +50,23 @@ class ContinueCommandTest {
         Command command = new ContinueCommand(parameters);
 
         // Continue Activity2
-        command.executeCommand(activities);
+        try {
+            command.executeCommand(activities);
+        } catch (EmptyNameException | InvalidTimeFrameException e) {
+            System.out.println("Field error.");
+        }
+
         LocalDateTime startTime = LocalDateTime.now();
         assertEquals(startTime.getMinute(), Parser.startTime.getMinute());
-
-        Duration initial = activities.get(1).getDuration();
-
+        final Duration initial = activities.get(1).getDuration();
         Thread.sleep(2000);
-
         // End Activity2
         command = new EndCommand(null);
-        command.executeCommand(activities);
+        try {
+            command.executeCommand(activities);
+        } catch (EmptyNameException | InvalidTimeFrameException e) {
+            System.out.println("Field error.");
+        }
         Duration elapsed = initial.plus(Duration.between(startTime, LocalDateTime.now()));
         Duration duration = activities.get(1).getDuration();
         assertEquals(elapsed.toSeconds(), duration.toSeconds());
