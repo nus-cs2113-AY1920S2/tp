@@ -37,10 +37,9 @@ public class StartCommand extends Command {
         } else {
             // tags should be reset
             assert Parser.tags.isEmpty();
+
             // check if there exists an activity with this name
-            String[] tokenizedInputs = this.parameters.split(" ",2);
-            String name = tokenizedInputs[0];
-            int index = activityList.findActivity(name);
+            int index = activityList.findActivity(parameters);
             if (index != -1) {
                 Ui.printDivider("There is already an activity with this name. Would you like to continue it?");
                 continueActivity(activityList, scanner, index);
@@ -92,8 +91,13 @@ public class StartCommand extends Command {
     private String parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
             WrongDateFormatException {
         String activityName = getActivityName(tagDelimiter, allocateDelimiter);
-        String activityInfo = this.parameters.substring(activityName.length() + 1);
         Parser.activityName = activityName;
+        String activityInfo;
+        if (tagDelimiter != -1 || allocateDelimiter != -1) {
+            activityInfo = this.parameters.substring(activityName.length() + 1);
+        } else {
+            return "Started: " + Parser.activityName;
+        }
         if (Parser.activityName.isEmpty()) {
             throw new EmptyNameException();
         }
