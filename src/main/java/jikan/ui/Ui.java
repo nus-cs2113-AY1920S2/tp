@@ -97,7 +97,7 @@ public class Ui {
         System.out.println(DIVIDER);
         System.out.println("Your completed activities:");
         System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %-10s %s %-30s",
-                "|", "Name", "|", "Duration", "|", "Allocation", "|", "Date", "|", "Tags"));
+                "|", "Name", "|", "Duration", "|", "Target", "|", "Date", "|", "Tags"));
         for (int i = 0; i < activityList.getSize(); i++) {
             if (activityList.get(i).getTags() != null && !activityList.get(i).getTags().isEmpty()) {
                 printTableFormat(activityList, i, true);
