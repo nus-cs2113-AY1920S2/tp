@@ -1,14 +1,12 @@
 package seedu.happypills.parser;
 
-import seedu.happypills.commands.patient_commands.AddPatientPatientCommand;
-import seedu.happypills.commands.patient_commands.DeletePatientCommand;
-import seedu.happypills.commands.patient_commands.EditPatientCommand;
-import seedu.happypills.commands.ExitCommand;
-import seedu.happypills.commands.patient_commands.PatientCommand;
-import seedu.happypills.commands.HelpCommand;
-import seedu.happypills.commands.patient_commands.IncorrectPatientCommand;
-import seedu.happypills.commands.patient_commands.ListPatientCommand;
-import seedu.happypills.commands.patient_commands.GetPatientCommand;
+import seedu.happypills.commands.patientcommands.AddPatientCommand;
+import seedu.happypills.commands.patientcommands.DeletePatientCommand;
+import seedu.happypills.commands.patientcommands.EditPatientCommand;
+import seedu.happypills.commands.patientcommands.PatientCommand;
+import seedu.happypills.commands.patientcommands.IncorrectPatientCommand;
+import seedu.happypills.commands.patientcommands.ListPatientCommand;
+import seedu.happypills.commands.patientcommands.GetPatientCommand;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
@@ -145,7 +143,7 @@ public class PatientParser {
                 System.out.println("    Please input [y] for yes or [n] for no");
             }
         }
-        return new AddPatientPatientCommand(parseInput[0].trim(), parseInput[1].toUpperCase().trim(),
+        return new AddPatientCommand(parseInput[0].trim(), parseInput[1].toUpperCase().trim(),
                 Integer.parseInt(parseInput[2].trim()), parseInput[3].trim(), parseInput[4].trim(),
                 parseInput[5].trim(), parseInput[6].trim());
     }
