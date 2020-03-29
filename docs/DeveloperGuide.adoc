@@ -493,10 +493,5 @@ The first method is chosen to make the code easier to maintain.
 
 === Appendix A: Product Scope
 === Appendix B: User Stories
-[cols=2*,options="header"]
-|===
-|Name of Column 1
-|Name of Column 2
-
 === Appendix C: Use Cases
 === Appendix D: Non-Functional Requirements
