@@ -8,17 +8,16 @@ import tasks.Task;
 import tasks.Assignment;
 import tasks.Event;
 
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//@@author
+//@@author jichngan
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-    public static final String ASSIGNMENT_COMMAND = "assignment";
-    public static final String EVENT_COMMAND = "event";
     public static final String COMMAND_USAGE = "Edit Task: edit [TASK NUMBER]";
 
     //Regex for Assignment Command
@@ -62,28 +61,35 @@ public class EditCommand extends Command {
         if (taskList.getListSize() == 0) {
             return new CommandResult(Messages.NO_TASKS_MSG);
         }
-        try {
-            ui.showToUser(Messages.EDIT_PROMPT);
-            ui.showToUser(Messages.DIVIDER);
-            String userInput = ui.getUserInput();
-            String commandType = userInput.split("\\s+", 2)[0].trim().toLowerCase();
-            switch (commandType) {
-            case ASSIGNMENT_COMMAND:
-                Task editedAssignment = editAssignment(userInput, ui);
-                taskList.editTask(editIndex, editedAssignment);
-                return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedAssignment));
-            case EVENT_COMMAND:
-                Task editedEvent = editEvent(userInput, ui);
-                taskList.editTask(editIndex, editedEvent);
-                return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
-            default:
-                return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR);
-            }
-        } catch (IndexOutOfBoundsException e) {
+
+        if (editIndex + 1 > taskList.getListSize()) {
             return new CommandResult(String.format(Messages.INVALID_ID_ERROR,
                     taskList.getRangeOfValidIndex(taskList)));
         }
 
+        ui.showToUser(Messages.EDIT_PROMPT);
+        ui.showToUser(Messages.DIVIDER);
+        String userInput = ui.getUserInput();
+        String commandType = userInput.split("\\s+", 2)[0].trim().toLowerCase();
+        switch (commandType) {
+        case AssignmentCommand.COMMAND_WORD:
+            Task editedAssignment = editAssignment(userInput, ui);
+            if (taskList.isRepeatTask(taskList, editedAssignment)) {
+                return new CommandResult(Messages.SAME_TASK_ERROR);
+            }
+
+            taskList.editTask(editIndex, editedAssignment);
+            return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedAssignment));
+        case EventCommand.COMMAND_WORD:
+            Task editedEvent = editEvent(userInput, ui);
+            if (taskList.isRepeatTask(taskList, editedEvent)) {
+                return new CommandResult((Messages.SAME_TASK_ERROR));
+            }
+            taskList.editTask(editIndex, editedEvent);
+            return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
+        default:
+            return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR);
+        }
     }
 
     /**
@@ -109,7 +115,6 @@ public class EditCommand extends Command {
         String assignmentName = Parser.capitalize(matcher.group("assignmentName"));
         String moduleName = matcher.group("moduleName");
         String comments = Parser.capitalize(matcher.group("comments"));
-
         return new Assignment(assignmentName, moduleName, dateTime, comments);
     }
 

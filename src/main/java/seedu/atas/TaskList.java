@@ -67,7 +67,7 @@ public class TaskList {
         return false;
     }
 
-    //@@author
+    //@@author jichngan
     /**
      * Getter for the current Local Date.
      * Formats Local Date into "dd/MM/yyyy" format.
@@ -81,6 +81,7 @@ public class TaskList {
         return formattedCurrDate;
     }
 
+    //@@author jichngan
     /**
      * Getter method for tasks depending of days from today.
      * @param days Integer representing number of days from today
