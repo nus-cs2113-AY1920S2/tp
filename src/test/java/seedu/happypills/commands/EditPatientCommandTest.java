@@ -1,28 +1,33 @@
 package seedu.happypills.commands;
 
 import org.junit.jupiter.api.Test;
+import seedu.happypills.commands.patientcommands.AddPatientCommand;
+import seedu.happypills.commands.patientcommands.EditPatientCommand;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EditCommandTest {
+class EditPatientCommandTest {
+    private static AppointmentMap newAppointmentMap;
+
     @Test
     void testExecute() {
         PatientMap patients = new PatientMap();
-        AddCommand testAddCommand = new AddCommand(
-                "kesin", "S0618", 912, "22aug", "B-","meat", "Strong"
+        AddPatientCommand testAddCommand = new AddPatientCommand(
+                "kesin", "S0618", 912, "22/08/1998", "B-","meat", "Strong"
         );
         try {
-            testAddCommand.execute(patients);
+            testAddCommand.execute(patients, newAppointmentMap);
         } catch (HappyPillsException e) {
             // catch exception
             e.printStackTrace();
         }
 
-        EditCommand testEditCommand = new EditCommand("S0618", "/rWeak");
+        EditPatientCommand testEditCommand = new EditPatientCommand("S0618", "/rWeak");
         try {
-            testEditCommand.execute(patients);
+            testEditCommand.execute(patients, newAppointmentMap);
         } catch (HappyPillsException e) {
             // catch exception
         }

@@ -1,12 +1,16 @@
 package seedu.happypills.commands;
 
+import seedu.happypills.commands.Command;
+import seedu.happypills.data.Appointment;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.PatientMap;
+import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
 
 /**
  * Displays full help instructions for every command.
  */
-public class HelpCommand extends Command {
+public class HelpCommand implements Command {
     protected String command;
 
     public HelpCommand(String command) {
@@ -19,7 +23,7 @@ public class HelpCommand extends Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      * @return message The command instructions.
      */
-    public String execute(PatientMap patients) {
+    public String execute(PatientMap patients, AppointmentMap appointments) {
         String message;
         if (command.equals("")) {
             message = TextUi.getHelp();

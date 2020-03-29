@@ -2,16 +2,19 @@ package seedu.happypills.commands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.happypills.commands.patientcommands.ListPatientCommand;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ListCommandTest {
+class ListPatientCommandTest {
 
     private static PatientMap filledPatientMap;
     private static PatientMap emptyPatientMap;
+    private static AppointmentMap newAppointmentMap;
     public static final String DIVIDER = "    =====================================================";
     private static String expectedOutputFromEmptyList = "    There are no patients in the list.\n" + DIVIDER;
     private static String expectedOutputFromFilledList = "    Nyan | S1234Z\n" + "    Nadiah | S9988N\n"
@@ -26,11 +29,11 @@ class ListCommandTest {
         emptyPatientMap = new PatientMap();
 
         Patient patientOne = new Patient("Nyan", "S1234Z", 999,
-                "22 Aug", "O+", "Peanuts", "NIL");
+                "22/08/1996", "O+", "Peanuts", "NIL");
         Patient patientTwo = new Patient("Nadiah", "S9988N", 888,
-                "25 Sept", "A-", "School", "NIL");
+                "25/09/1998", "A-", "School", "NIL");
         Patient patientThree = new Patient("Jan", "S9888F", 912,
-                "10 March", "B", "School", "NIL");
+                "10/03/1998", "B", "NIL", "NIL");
 
         try {
             filledPatientMap.add(patientOne);
@@ -43,13 +46,13 @@ class ListCommandTest {
 
     @Test
     public void printList_emptyList_emptyListMessage() throws HappyPillsException {
-        String message = new ListCommand().execute(emptyPatientMap);
+        String message = new ListPatientCommand().execute(emptyPatientMap, newAppointmentMap);
         assertEquals(expectedOutputFromEmptyList, message);
     }
 
     @Test
     public void printList_filledList_filledListMessage() throws HappyPillsException {
-        String message = new ListCommand().execute(filledPatientMap);
+        String message = new ListPatientCommand().execute(filledPatientMap, newAppointmentMap);
         assertEquals(expectedOutputFromFilledList, message);
     }
 
