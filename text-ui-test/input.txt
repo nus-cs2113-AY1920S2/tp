@@ -57,6 +57,8 @@ delete reservation; r/0
 delete reservation; r/-1;
 delete reservation; r/4;
 list reservation
+search reservation; r/0;
+search reservation; r/0; d/2020-03-13;
 search reservation; d/2020-03-12
 search reservation; d/2020-03-12;
 mark reservation; r/4;

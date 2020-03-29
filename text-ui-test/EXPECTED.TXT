@@ -320,6 +320,18 @@ comments: no spicy food please
 
 The command has been successfully executed.
 Input next command:
+Reservation [0]
+Status: Invalid
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98955555
+comments: No comments
+
+Input next command:
+Sorry! No such reservation.
+Input next command:
 Delimiter Missing.
 Input next command:
 Here comes the reservations on the date 2020-03-12:

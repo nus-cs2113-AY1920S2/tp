@@ -5,7 +5,8 @@
 * [1. Design & Implementation](#design-implementation)
     + [1.1. [Proposed] Search stock feature](#search-stock)
     + [1.2. [Proposed] List stock in descending quantities](#list-stock)
-    + [3.1. [Proposed] Mark reservation as served](#mark-reservation-as-served)
+    + [1.3. [Proposed] Generate profit for the day](#generate-profit)
+    + [1.4. [Proposed] Search reservation](#search-reservation)
 * [2. Product Scope](#product-scope)
 * [3. User Stories](#user-stories)
 * [4. Non-Functional Requirements](#nonfunctional-requirement)
@@ -114,7 +115,8 @@ The following class diagram shows how the listing operation works:
 + Pros: We do not need to create a new `List` to display the relevant results.
 + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. Sorting it, however, as compared to `List`, is much less straightforward.
 
-<a name="product-scope"></a>
+<a name="generate-profit"></a>
+
 ### 1.3 [Proposed] Generate profit for the day
 #### 1.3.1 Proposed Implementation
 In the restaurant daily report, the user can input the amount of items sold each day and a total profit will be generated, when the user inputs `profit`.
@@ -129,10 +131,27 @@ The user can input as many sales as they like as long as the dish exists in the 
 Step 3. The user can generate the profit by inputting `profit`.
 
 
-<a name="mark-reservation-as-served"></a>
-### 3.1 [Proposed] Mark reservation as served
-#### 3.1.
+<a name="search-reservation"></a>
 
+### 1.4 [Proposed] Search reservation
+#### 1.4.1. Propose Implementation
+
+In the restaurant daily report, users can search against the reservation category by supplying either a reservation number or a date.
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. An empty `reservation` will be initialized.
+
+Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservation` list.  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Further, the user may add more reservations into the current `reservation` list.  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-13 12:00; n/3; c/98889999;` as well.
+
+Step 3. The user can now search against the current `reservation` list to see if an reservation is stored in the `reservation` list.  
+If the user now executes `search stock; tomato`, which will display the following result in the image. 
+
+
+<a name="product-scope"></a>
 
 ## 2. Product Scope
 ### Target user profile

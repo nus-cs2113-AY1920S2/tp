@@ -97,6 +97,7 @@ public class SearchReservationCommand extends ReservationCommand {
             if (numberEndPos == -1) {
                 throw new DelimiterMissingException();
             }
+            assert numberEndPos != -1: "Missing Semicolon";
 
             delimiterMissing = hasDelimiterInBetween(numberPos + RES_INDEX_MARKER.length(), numberEndPos,
                     markers, description);
@@ -105,7 +106,7 @@ public class SearchReservationCommand extends ReservationCommand {
             }
 
             this.reservationNumber = Integer.parseInt(description.substring(
-                    numberEndPos + RES_INDEX_MARKER.length(), numberEndPos).trim());
+                    numberPos + RES_INDEX_MARKER.length(), numberEndPos).trim());
 
             if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
                 throw new NumberFormatException();
