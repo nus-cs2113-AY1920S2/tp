@@ -79,6 +79,7 @@ public class SearchStockCommand extends StockCommand {
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");
         } else if (trimmedFullInputLine.length() == keywordTagLength) {
+            checkForKAndSlashBeforeKeyword(trimmedFullInputLine);
             throw new InvalidStockCommandException("Please "
                     + "enter an ingredient's name to be "
                     + "searched against the stock.");
@@ -104,11 +105,13 @@ public class SearchStockCommand extends StockCommand {
             throw new InvalidStockCommandException("Please "
                     + "specify the keyword using the format "
                     + "'k/keyword;'");
-        } else if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
-                && trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
-            throw new InvalidStockCommandException("Please "
-                    + "specify the keyword using the format "
-                    + "'k/keyword;'");
+        } else if (trimmedFullInputLine.length() >= keywordTagLength) {
+            if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
+                    || trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
+                throw new InvalidStockCommandException("Please "
+                        + "specify the keyword using the format "
+                        + "'k/keyword;'");
+            }
         }
     }    
     
