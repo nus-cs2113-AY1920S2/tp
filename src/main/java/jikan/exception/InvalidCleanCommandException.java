@@ -1,4 +1,4 @@
 package jikan.exception;
 
-public class InvalidCleanCommandException {
+public class InvalidCleanCommandException extends Exception {
 }

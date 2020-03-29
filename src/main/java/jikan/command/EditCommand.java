@@ -3,6 +3,7 @@ package jikan.command;
 import jikan.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
+import jikan.exception.InvalidEditFormatException;
 import jikan.exception.NoSuchActivityException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
@@ -24,6 +25,7 @@ public class EditCommand extends Command {
         try {
             // Parser.parseEdit(activityList);
             int delimiter = parameters.indexOf("/e");
+            int tagDelim = parameters.indexOf("/et");
             Parser.activityName = parameters.substring(0, delimiter).strip();
             if (Parser.activityName.isEmpty()) {
                 throw new EmptyNameException();
@@ -31,8 +33,14 @@ public class EditCommand extends Command {
             int index = activityList.findActivity(Parser.activityName);
             String newName = parameters.substring(delimiter + 3);
             if (index != -1) {
-                activityList.updateName(index,newName);
-                Ui.printDivider("Activity named " +  Parser.activityName + " has been updated to " + newName);
+                if (newName.isEmpty()) {
+                    // no new name is provided
+                    throw new InvalidEditFormatException();
+                }
+                else {
+                    activityList.updateName(index, newName);
+                    Ui.printDivider("Activity named " + Parser.activityName + " has been updated to " + newName);
+                }
             } else {
                 // activity is not found
                 throw new NoSuchActivityException();
@@ -40,12 +48,13 @@ public class EditCommand extends Command {
         } catch (NoSuchActivityException e) {
             Ui.printDivider("No activity with this name exists!");
             Log.makeInfoLog("Edit command failed as there was no such activity saved.");
-        } catch (ArrayIndexOutOfBoundsException | EmptyNameException e) {
+        }
+        catch (EmptyNameException e) {
             Ui.printDivider("Activity name cannot be empty!");
-            Log.makeInfoLog("Edit command failed as there was no existing activity name provided.");
-        } catch (StringIndexOutOfBoundsException e) {
-            Ui.printDivider("New activity name not provided!");
-            Log.makeInfoLog("Edit command failed as there was no new activity name provided.");
+            Log.makeInfoLog("Edit command failed as there was no activity name provided.");
+        } catch (StringIndexOutOfBoundsException | InvalidEditFormatException e) {
+            Ui.printDivider("New details not provided!");
+            Log.makeInfoLog("Edit command failed as there was no updated activity detail provided.");
         }
     }
 

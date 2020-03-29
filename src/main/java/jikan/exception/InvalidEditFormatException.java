@@ -1,4 +1,4 @@
 package jikan.exception;
 
-public class InvalidEditFormatException {
+public class InvalidEditFormatException extends Exception {
 }

@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.InvalidGraphCommandException;
 import jikan.ui.Ui;
 
 import java.time.Duration;
@@ -26,15 +27,18 @@ public class GraphCommand extends Command {
             if (parameters.equals("tags")) {
                 graphTags();
             } else {
-                int interval = Integer.parseInt(parameters);
-                Ui.printActivityGraph(interval);
+                if (parameters.isEmpty()) {
+                    throw new InvalidGraphCommandException();
+                } else {
+                    int interval = Integer.parseInt(parameters);
+                    Ui.printActivityGraph(interval);
+                }
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            Ui.printDivider("Please include the time interval for graphing.\n");
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | InvalidGraphCommandException e) {
             Ui.printDivider("Please input an integer for the time interval.\n"
                     + "If you'd like to graph by tags, enter the command <graph tags>.");
         }
+
     }
 
     private void graphTags() {

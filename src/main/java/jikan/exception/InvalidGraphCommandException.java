@@ -1,4 +1,4 @@
 package jikan.exception;
 
-public class InvalidGraphCommandException {
+public class InvalidGraphCommandException extends Exception {
 }
