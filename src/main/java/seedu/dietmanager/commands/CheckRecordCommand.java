@@ -12,6 +12,7 @@ public class CheckRecordCommand extends Command {
     private static final int ARGUMENTS_REQUIRED = 2;
     private String date;
     private String mealType;
+    private boolean noDescription;
 
     /**
      * Constructs the Command object.
@@ -22,9 +23,15 @@ public class CheckRecordCommand extends Command {
 
     public CheckRecordCommand(String command, String description) throws InvalidFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.date = descriptionArray[0].toUpperCase();
-        this.mealType = descriptionArray[1];
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.date = descriptionArray[0].toUpperCase();
+            this.mealType = descriptionArray[1];
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
@@ -34,7 +41,13 @@ public class CheckRecordCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
+        if (this.noDescription) {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return;
+        }
+
         DailyFoodRecord record = profile.getRecordOfDay(date);
+
         switch (mealType) {
         case "morning":
             this.result = date + " Morning: " + record.showBreakfast() + record.showDailyCalories(mealType);

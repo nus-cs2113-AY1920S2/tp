@@ -10,6 +10,7 @@ public class SetWeightGoalCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private double weightGoal;
+    private boolean noDescription;
 
     /**
      * Constructs the Command object.
@@ -20,18 +21,30 @@ public class SetWeightGoalCommand extends Command {
     public SetWeightGoalCommand(String command, String description)
             throws InvalidFormatException, NumberFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.weightGoal = Double.parseDouble(descriptionArray[0]);
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.weightGoal = Double.parseDouble(descriptionArray[0]);
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        profile.setWeightGoal(this.weightGoal);
+        if (!this.noDescription) {
+            profile.setWeightGoal(this.weightGoal);
+        }
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = MessageBank.WEIGHT_GOAL_CHANGE_MESSAGE + String.format("%.2f.",profile.getWeightGoal());
+        if (!this.noDescription) {
+            this.result = MessageBank.WEIGHT_GOAL_CHANGE_MESSAGE + String.format("%.2f.",profile.getWeightGoal());
+        } else {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+        }
     }
 }

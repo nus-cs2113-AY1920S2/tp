@@ -72,7 +72,8 @@ public class Parser {
      * @throws InvalidFormatException if user input has the wrong format.
      */
 
-    public static String[] parseDescription(String description, int argumentsRequired) throws InvalidFormatException {
+    public static String[] parseDescription(String description, int argumentsRequired) throws InvalidFormatException,
+            NullPointerException {
         String[] descriptionArray = description.trim().split(" ", argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
@@ -162,8 +163,10 @@ public class Parser {
             command = new DeleteWeightCommand(commandPrompt, description);
             break;
         default:
+            description = null;
             throw new InvalidCommandException();
         }
+        description = null;
         return command;
     }
 

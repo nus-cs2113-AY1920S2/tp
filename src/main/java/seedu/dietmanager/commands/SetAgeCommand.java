@@ -10,6 +10,7 @@ public class SetAgeCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private int age;
+    private boolean noDescription;
 
     /**
      * Constructs the Command object.
@@ -19,18 +20,30 @@ public class SetAgeCommand extends Command {
 
     public SetAgeCommand(String command, String description) throws InvalidFormatException, NumberFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.age = Integer.parseInt(descriptionArray[0]);
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.age = Integer.parseInt(descriptionArray[0]);
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        profile.setAge(this.age);
+        if (!this.noDescription) {
+            profile.setAge(this.age);
+        }
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
+        if (!this.noDescription) {
+            this.result = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
+        } else {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+        }
     }
 }

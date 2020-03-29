@@ -10,6 +10,7 @@ public class SetHeightCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private double height;
+    private boolean noDescription;
 
     /**
      * Constructs the Command object.
@@ -19,18 +20,30 @@ public class SetHeightCommand extends Command {
 
     public SetHeightCommand(String command, String description) throws InvalidFormatException, NumberFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.height = Double.parseDouble(descriptionArray[0]);
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.height = Double.parseDouble(descriptionArray[0]);
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        profile.setHeight(this.height);
+        if (!this.noDescription) {
+            profile.setHeight(this.height);
+        }
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = MessageBank.HEIGHT_CHANGE_MESSAGE + String.format("%.2f.",profile.getHeight());
+        if (!this.noDescription) {
+            this.result = MessageBank.HEIGHT_CHANGE_MESSAGE + String.format("%.2f.",profile.getHeight());
+        } else {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+        }
     }
 }

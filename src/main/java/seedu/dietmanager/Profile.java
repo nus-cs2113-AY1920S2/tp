@@ -73,11 +73,11 @@ public class Profile {
     }
 
     public boolean isProfileExist() {
-        return profileExist;
+        return this.profileExist;
     }
 
     public double getHeight() {
-        return height;
+        return this.height;
     }
 
     public double getWeight() {
@@ -89,15 +89,15 @@ public class Profile {
     }
 
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public String getGender() {
-        return gender;
+        return this.gender;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**

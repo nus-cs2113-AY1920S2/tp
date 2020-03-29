@@ -14,6 +14,7 @@ public class DeleteWeightCommand extends Command {
     private double weightDeleted;
     private String weightDeletedDay;
     private int index;
+    private boolean noDescription;
 
     /**
      * Constructs the Command object.
@@ -24,22 +25,35 @@ public class DeleteWeightCommand extends Command {
     public DeleteWeightCommand(String command, String description)
             throws InvalidFormatException, NumberFormatException, IndexOutOfBoundsException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.index = Integer.parseInt(descriptionArray[0]) - 1;
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.index = Integer.parseInt(descriptionArray[0]) - 1;
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        weightDeleted = profile.getWeightProgress().get(index);
-        weightDeletedDay = profile.getWeightProgressDays().get(index);
-        profile.getWeightProgress().remove(index);
-        profile.getWeightProgressDays().remove(index);
+        if (!this.noDescription) {
+            weightDeleted = profile.getWeightProgress().get(index);
+            weightDeletedDay = profile.getWeightProgressDays().get(index);
+            profile.getWeightProgress().remove(index);
+            profile.getWeightProgressDays().remove(index);
+        }
+
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = weightDeleted + "kg " + weightDeletedDay + MessageBank.WEIGHT_DELETED_MESSAGE;
+        if (!this.noDescription) {
+            this.result = weightDeleted + "kg " + weightDeletedDay + MessageBank.WEIGHT_DELETED_MESSAGE;
+        } else {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+        }
     }
 
 }
