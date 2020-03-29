@@ -11,5 +11,5 @@ ESC is meant to help students be able to study more effectively using the medium
 
 ### Useful links
 * [User Guide](UserGuide.md)
-* [Developer Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
