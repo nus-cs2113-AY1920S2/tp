@@ -497,7 +497,7 @@ The first method is chosen to make the code easier to maintain.
 |===
 |Name of Column 1
 |Name of Column 2
-// end::b-base-h[]
+|===
 
 === Appendix C: Use Cases
 === Appendix D: Non-Functional Requirements
