@@ -155,6 +155,12 @@ method will create a new `CommandResult` class to print out the search results.
 message, indicating an empty task list
 ** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
 or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
+*** In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through
+the task list to store results matching the search query into an ArrayList.
+*** Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a
+String format.
+*** Lastly, the `searchList` method will call the `resultsList` method to return the search results and `execute`
+method will create a new `CommandResult` class to print out the search results.
 
 ==== Design Considerations:
 * Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
@@ -486,5 +492,13 @@ The first method is chosen to make the code easier to maintain.
 
 === Appendix A: Product Scope
 === Appendix B: User Stories
+Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*` +
+
+[cols="5%,10%,10%,15%,30%,30%"]
+.Table consolidating the user stories
+|===
+|*S/N*|*Use Case No*|*Priority Level*|*As a ...*|*I can ...*|*So that I ...*
+|01|01|* * *|University Student|Add a task|Won’t forget the tasks I have to complete
+
 === Appendix C: Use Cases
 === Appendix D: Non-Functional Requirements
