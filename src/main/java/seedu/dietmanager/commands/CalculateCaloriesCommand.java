@@ -35,7 +35,7 @@ public class CalculateCaloriesCommand extends Command {
 
     private boolean noDescription;
 
-    private boolean wrongTimeDescription;
+    private boolean isInvalidDate;
 
     private FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
 
@@ -48,7 +48,7 @@ public class CalculateCaloriesCommand extends Command {
     public CalculateCaloriesCommand(String command, String description) throws InvalidFormatException {
         super(command);
         this.noDescription = false;
-        this.wrongTimeDescription = false;
+        this.isInvalidDate = false;
 
         this.sum = 0.00;
 
@@ -75,7 +75,7 @@ public class CalculateCaloriesCommand extends Command {
         } catch (NullPointerException e) {
             this.noDescription = true;
         } catch (IllegalArgumentException e) {
-            this.wrongTimeDescription = true;
+            this.isInvalidDate = true;
         }
     }
 
@@ -88,7 +88,7 @@ public class CalculateCaloriesCommand extends Command {
 
     @Override
     public void execute(Profile profile, UI ui) {
-        if (this.noDescription | wrongTimeDescription) {
+        if (this.noDescription | this.isInvalidDate) {
             saveResult(profile);
             return;
         }
@@ -133,7 +133,7 @@ public class CalculateCaloriesCommand extends Command {
     public void saveResult(Profile profile) {
         if (this.noDescription) {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
-        } else if (this.wrongTimeDescription) {
+        } else if (this.isInvalidDate) {
             this.result = MessageBank.INVALID_DATE_MESSAGE;
         } else {
             this.result = MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.",sum);

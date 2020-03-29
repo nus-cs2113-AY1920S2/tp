@@ -1,13 +1,18 @@
 package seedu.dietmanager.commands;
 
-import seedu.dietmanager.DailyFoodRecord;
-import seedu.dietmanager.Food;
-import seedu.dietmanager.FoodNutritionInfo;
-import seedu.dietmanager.Profile;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
 import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
+import seedu.dietmanager.DailyFoodRecord;
+import seedu.dietmanager.Food;
+import seedu.dietmanager.FoodNutritionInfo;
+import seedu.dietmanager.Profile;
+import seedu.dietmanager.Weekday;
+
+
+import java.util.ArrayList;
+
 
 import java.util.ArrayList;
 
@@ -18,6 +23,7 @@ public class RecordMealCommand extends Command {
     private String[] foodDescription;
     private boolean isValidFoodFormat;
     private boolean noDescription;
+    private boolean isInvalidDate;
 
     /**
      * Constructs the Command object.
@@ -29,6 +35,7 @@ public class RecordMealCommand extends Command {
     public RecordMealCommand(String command, String description) throws InvalidFormatException {
         super(command);
         this.noDescription = false;
+        this.isInvalidDate = false;
 
         try {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
@@ -36,14 +43,19 @@ public class RecordMealCommand extends Command {
             this.mealType = descriptionArray[1];
             this.foodDescription = descriptionArray[2].trim().split("/");
             this.isValidFoodFormat = true;
+
+            Weekday.valueOf(this.date);
+
         } catch (NullPointerException e) {
             this.noDescription = true;
+        } catch (IllegalArgumentException e) {
+            this.isInvalidDate = true;
         }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        if (this.noDescription) {
+        if (this.noDescription | this.isInvalidDate) {
             saveResult(profile);
             return;
         }
@@ -94,6 +106,9 @@ public class RecordMealCommand extends Command {
     public void saveResult(Profile profile) {
         if (this.noDescription) {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return;
+        } else if (this.isInvalidDate) {
+            this.result = MessageBank.INVALID_DATE_MESSAGE;
             return;
         }
 
