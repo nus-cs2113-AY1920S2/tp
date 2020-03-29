@@ -14,6 +14,28 @@
 ## Features 
 
 {Give detailed description of each feature}
+### Finding and Filtering Activities
+
+## Finding Activities by Name: `find`
+Users can request for a sub-list of activities that has names containing a given keyword to be printed.
+
+Format: `find KEYWORD`
+
+## Filtering Activities by Tags: `filter`
+Users can request for a sub-list of activities that has specific tags.
+
+Format: `filter TAGNAME1 TAGNAME2`
+
+## Further Finding/Filtering: `-s`
+Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on his/her needs. 
+This is can be particularly useful when the user wants to generate a `graph`.
+
+This flag applies to `find` and `filter` commands only. 
+
+Format: 
+* `filter -s TAGNAME1 TAGNAME2`
+* `find -s keyword`
+
 
 ### Adding a to-do: `todo`
 Adds a to-do item to the list of to-dos.

@@ -12,7 +12,7 @@ import static jikan.parser.Parser.lastShownList;
 import static jikan.parser.Parser.tokenizedInputs;
 
 /**
- * Represents a command to find activities in the activity list.
+ * Represents a command to find activities by name.
  */
 public class FindCommand extends Command {
     /**
@@ -35,6 +35,10 @@ public class FindCommand extends Command {
         }
     }
 
+    /**
+     * Find activities which has name containing the keyword from the entire list.
+     * @param activityList full like of activities
+     */
     private void findFullList(ActivityList activityList) {
         try {
             // Parser.parseFind(activityList, lastShownList, tokenizedInputs[1]);
@@ -55,6 +59,9 @@ public class FindCommand extends Command {
         }
     }
 
+    /**
+     * Find activities which has name matching the keyword from the last shown list.
+     */
     private void findSubList() {
         try {
             String keyword = parameters.replace("-s ", "");
