@@ -5,7 +5,7 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
 
-//@@author
+//@@author joelczk
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_USAGE = "Delete a Task: delete [TASK NUMBER]";

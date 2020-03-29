@@ -8,9 +8,10 @@ import tasks.Task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author joelczk
 public class DeleteCommandTest {
     @Test
-    public void testDelete_success() {
+    public void executeMethod_success() {
         TaskList testTaskList = new TaskList();
         Task newTask = new Assignment(null, null, null, null);
         testTaskList.addTask(newTask);
@@ -22,8 +23,9 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void testDelete_failure() {
+    public void executeMethod_failure() {
         TaskList testTaskList = new TaskList();
         assertThrows(IndexOutOfBoundsException.class, () -> testTaskList.deleteTask(0));
     }
+    //@@author
 }

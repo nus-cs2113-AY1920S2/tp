@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+//@@author joelczk
 public class SearchdCommandTest {
     public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
     private static TaskList filledTaskList;
@@ -106,7 +107,7 @@ public class SearchdCommandTest {
     }
 
     @Test
-    public void testSearchExecuteEmptyTaskList() {
+    public void executeMethod_EmptyTaskList() {
         assertEquals(new SearchdCommand("test", "all", date1).execute(emptyTaskList,ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
         assertEquals(new SearchdCommand("test", "assignment", date1).execute(emptyTaskList, ui).feedbackToUser,
@@ -116,14 +117,14 @@ public class SearchdCommandTest {
     }
 
     @Test
-    public void testSearchExecuteInvalidSearchFormat() {
+    public void executeMethod_invalidSearchFormat() {
         assertEquals(new SearchdCommand("test", "abcd", date1).execute(filledTaskList, ui).feedbackToUser,
                 String.format(Messages.INCORRECT_ARGUMENT_ERROR,
                         Parser.capitalize(SearchdCommand.COMMAND_WORD), SearchdCommand.COMMAND_USAGE));
     }
 
     @Test
-    public void testSearchExecuteOneEvent() {
+    public void executeMethod_searchOneEvent_success() {
         String stringDate1 = "13/03/20";
         LocalDate date1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
         assertEquals(new SearchdCommand("event","midterms", date1).execute(filledTaskList, ui).feedbackToUser,
@@ -131,7 +132,7 @@ public class SearchdCommandTest {
     }
 
     @Test
-    public void testSearchExecuteMultipleEvents() {
+    public void executeMethod_searchMultipleEvents_success() {
         String stringDate1 = "13/03/20";
         LocalDate date1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
         assertEquals(new SearchdCommand("event", "mid", date1).execute(filledTaskList, ui).feedbackToUser,
@@ -139,7 +140,7 @@ public class SearchdCommandTest {
     }
 
     @Test
-    public void testSearchExecuteSingleAssignment() {
+    public void executeMethod_searchOneAssignment_success() {
         String stringDate1 = "13/03/20";
         LocalDate date1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
         assertEquals(new SearchdCommand("assignment", "assignment 3", date1).execute(filledTaskList,ui).feedbackToUser,
@@ -147,13 +148,13 @@ public class SearchdCommandTest {
     }
 
     @Test
-    public void testSearchExecuteMultipleAssignments() {
+    public void executeMethod_searchMultipleAssignments_success() {
         assertEquals(new SearchdCommand("assignment", "assignment", date1).execute(filledTaskList,ui).feedbackToUser,
                 assignmentMultipleResultsString());
     }
 
     @Test
-    public void testSearchExecute_emptyResults() {
+    public void  executeMethod_emptyResults() {
         assertEquals(new SearchdCommand("event","abcd", date1).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
         assertEquals(new SearchdCommand("assignment", "abcd", date1).execute(filledTaskList, ui).feedbackToUser,

@@ -150,7 +150,7 @@ public class Parser {
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
-    //@@author
+    //@@author joelczk
     private static Command prepareSearchCommand(String fullCommand) {
         final Matcher matcher = SEARCH_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
@@ -251,7 +251,7 @@ public class Parser {
         return new ListCommand(tokens[1].trim());
     }
 
-    //@@author
+    //@@author joelczk
     private static Command prepareClearCommand(String fullCommand) {
         String[] tokens = fullCommand.trim().split("\\s+", 2);
         if (tokens.length == 1) {
@@ -261,6 +261,7 @@ public class Parser {
         return new ClearCommand(tokens[1]);
     }
 
+    //@@author
     private static Command prepareExitCommand(String fullCommand) {
         assert fullCommand.trim().equals(ExitCommand.COMMAND_WORD);
         if (fullCommand.equals(ExitCommand.COMMAND_WORD)) {

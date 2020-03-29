@@ -527,55 +527,30 @@ Target user profile: +
 *Value proposition:* manage assignments and events better than a typical mouse/GUI driven
 
 === Appendix B: User Stories
-Priorities: +
- 1. High (must have) - `* * \*`  +
- 2. Medium (nice to have) - `* \*` +
- 3. Low (future development) - `*` +
+|===
+|S/N |As a ... |I can... | So that I ...
 
-[width="100%",cols="10%,<10%,<30%,<30%",options="header",]
-|=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |user |be able to add assignments including a description |keep track of the assignment details
-
-|`* * *` |user |be able to add events including a description |keep track of the event details
-
-|`* * *` |user |see a daily view of all available tasks |see what is important for today only
-
-|`* * *` |user |view the tasks I have this week |better plan my time to meet deadlines
-
-|`* * *` |user |list all tasks in the task scheduler |have an overview and mark individual tasks as done or delete specific tasks
-
-|`* * *` |user |view a list of all my incomplete assignments |know the progress of my work
-
-|`* * *` |user |mark an assignment as complete |easily see what assignments I have yet to complete
-
-|`* * *` |user | be able to delete tasks |have an uncluttered list
-
-|`* *`|user |delete all the tasks |clear all the tasks using a single command
-
-|`* *`|user |be able to clear all completed tasks| remove all completed tasks from the app in a single command
-
-|`* *`|long-term user |keep my data between sessions |close the application when I am not using it
-
-|`* *`|user |edit the details of assignments |update assignment details easily without having to delete and create a new one instead
-
-|`* *`|user |edit the details of events |update event details easily without having to delete and create a new one instead
-
-|`* *`|frequent user |see the tasks I have for the day when the app starts up |quickly check my schedule for the day
-
-|`* *`|user with many tasks |search for an assignment by name or module |find that specific assignment quickly without having to scroll
-through a long list to find its details
-
-|`* *`|user with many tasks |search for an event by name or module |find that specific event quickly without having to scroll
-through a long list to find its details
-
-|`* *`|user with relatively fixed schedule |set my events as repeated events |keep track of repeating events without having to manually
-create many events with the same details
-
-|`* *`|busy user |set an ending time for my events |see more clearly when I am free in my schedule
-
-|`* *`|user |see my tasks in a calendar view |have an easy-to-read, sorted overview of my upcoming tasks
-|=======================================================================
+|01|user|add assignments, including assignment details|can keep track of assignment details
+|02|user|add events, including event details|can keep track of event details
+|03|user|have a daily view of tasks|can see what is important for today only
+|04|user|have a weekly view of tasks|can better plan my time to meet deadlines
+|05|user|list all the tasks|can overview and mark individual tasks as done or delete specific tasks
+|06|user|view all incomplete assignments|can know the progress of my work
+|07|user|view all upcoming events|can see which period of time I will be busy and plan my time accordingly
+|08|user|mark an assignment as completed|can easily view which assignments I have yet to complete
+|09|user|delete tasks|do not clog up the calendar
+|10|user|clear all tasks|can clear all tasks with a single command
+|11|user|clear all completed tasks|can remove all completed tasks from the app in a single command
+|12|user|edit details of assignment|do not have to delete and create a new assignment instead
+|13|user|edit details of event|do not have to delete and create a new event instead
+|14|long-term user|have my data persist between sessions|do not need to close the application when I am not using it
+|15|frequent user|see the tasks I have for the day when the app starts up|can quickly check my schedule for the day
+|16|user with many tasks|search for an event by name|do not have to scroll through a long list to find its details
+|17|user with many tasks|search for an assignment by name or module|do not have to scroll through a long list to find its details
+|18|user with fixed schedule|set my events as repeated events|do not have to manually create many events with the same details
+|19|busy user|set an ending time for my events|can see clearly when I am free in my schedule
+|20|user|set my tasks in calendar view|can have an easy-to-read, sorted overview of my upcoming tasks
+|===
 
 === Appendix C: Use Cases
 
@@ -583,4 +558,3 @@ create many events with the same details
 1. App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 2. User with above average typing speed for English text (not coding) should be able to utilize the app to manage
 tasks more efficiently compared to using a mouse.
-3.
