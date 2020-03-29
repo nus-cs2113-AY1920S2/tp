@@ -20,7 +20,7 @@ public class AttendanceListTest {
     @Test
     void getAttendanceList() {
         assertEquals("[]", attendanceList.toString());
-        attendanceList.add(new Attendance("John Doe", "Yes"));
-        assertEquals("[John Doe Yes]", attendanceList.toString());
+        attendanceList.add(new Attendance("John Doe", "Y"));
+        assertEquals("[John Doe Y]", attendanceList.toString());
     }
 }

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AttendanceTest {
 
-    Attendance attendanceTestUnit = new Attendance("John Doe", "Yes");
+    Attendance attendanceTestUnit = new Attendance("John Doe", "Y");
 
     @Test
     void getStudentName() {
@@ -15,11 +15,11 @@ public class AttendanceTest {
 
     @Test
     void getAttendanceStatus() {
-        assertEquals("Yes", attendanceTestUnit.getAttendanceStatus());
+        assertEquals("Y", attendanceTestUnit.getAttendanceStatus());
     }
 
     @Test
     void getAttendance() {
-        assertEquals("John Doe Yes", attendanceTestUnit.toString());
+        assertEquals("John Doe Y", attendanceTestUnit.toString());
     }
 }

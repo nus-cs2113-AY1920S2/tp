@@ -109,7 +109,8 @@ public class CommandInterpreter {
         default:
             assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
-                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar"))
+                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
+                    && !commandCategory.equals("help") && !commandCategory.equals("student"))
                     : "accepted command category is not further interpreted!";
             throw new DukeException("Unknown command category is provided");
         }

@@ -10,14 +10,20 @@ import java.util.stream.Stream;
 
 import static seedu.duke.Duke.studentListCollection;
 
+import static seedu.duke.Duke.studentListCollection;
+
 public class UI {
+    private static String userName;
     private Scanner in;
     private String userInput;
-    private static String userName;
 
 
     public UI() {
         in = new Scanner(System.in);
+    }
+
+    public static void display(String message) {
+        System.out.println(message);
     }
 
     /**
@@ -50,10 +56,6 @@ public class UI {
      */
     public void close() {
         in.close();
-    }
-
-    public static void display(String message) {
-        System.out.println(message);
     }
 
     /**
@@ -198,6 +200,12 @@ public class UI {
         return in.nextLine();
     }
 
+    public String getAttendanceStatusOfStudent(String studentName) {
+        System.out.println("Please key in the attendance status for student " + studentName + "[Y/N]");
+        return in.nextLine();
+    }
+
+
     public String getPerformanceParameter() {
         System.out.println("Please key in student name and result in the following format:");
         System.out.println("n/Student_Name r/result. If you are finished, enter done.");
@@ -231,16 +239,10 @@ public class UI {
         return in.nextLine();
     }
 
-    public String getAttendancePerimeter() {
-        System.out.println("Please key in student name and result in the following format:");
-        System.out.println("n/Student_Name p/Is_Present");
-        return in.nextLine();
+    public void clearAttendanceMessage(String eventName) {
+        System.out.println("Attendance List cleared for Event: " + eventName);
     }
 
-    public void printWrongInput(String typeInput) {
-        System.out.printf("Wrong %s input. If you need help with "
-                + "the input format, please input help.\n", typeInput);
-    }
 
     public void printInsufficientInput(String typeInput) {
         System.out.printf("No %s input. If you need help with "
@@ -310,5 +312,48 @@ public class UI {
     }
 
     public void printStudentListHelp() {
+        System.out.print("To create a new studentList for future events, input:\n\t"
+                + "student add\n\n");
+        System.out.print("To delete an existing studentList, input:\n\t"
+                + "student delete (index)\n\n");
+        System.out.print("To clear all existing studentList, input:\n\t"
+                + "student clear\n\n");
+        System.out.print("To find an existing studentList, input:\n\t"
+                + "student find\n\n");
+        System.out.print("To list all existing studentList, input:\n\t"
+                + "student list\n\n");
+        System.out.print("To sort all existing studentList by their names, input:\n\t"
+                + "student sort/by/name\n\n");
+        System.out.print("To sort all name within the existing studentList, input:\n\t"
+                + "student sort/by/list\n\n");
+    }
+
+    public void readIndexPrompt() {
+        System.out.println("Please state the index of the studentList that you wish to import");
+    }
+
+    public void displayStudentMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void printStudentListCollection() {
+        if (studentListCollection.isEmpty()) {
+            System.out.println("The student list collection is currently empty");
+        } else {
+            DisplayTable displayTable = new DisplayTable();
+            for (int i = 0; i < studentListCollection.size(); i++) {
+                displayTable.printHeaderOfTwo("List #" + Integer.toString(i + 1),
+                        studentListCollection.get(i).getListName());
+                int index = 1;
+                for (String name : studentListCollection.get(i).getStudentList()) {
+                    displayTable.printBodyOfTwo(index, name);
+                    index++;
+                }
+            }
+        }
+    }
+
+    public void displayAttendanceMessage(String message) {
+        System.out.println(message);
     }
 }
