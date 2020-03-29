@@ -38,7 +38,9 @@ public class StartCommand extends Command {
             // tags should be reset
             assert Parser.tags.isEmpty();
             // check if there exists an activity with this name
-            int index = activityList.findActivity(parameters);
+            String[] tokenizedInputs = this.parameters.split(" ",2);
+            String name = tokenizedInputs[0];
+            int index = activityList.findActivity(name);
             if (index != -1) {
                 Ui.printDivider("There is already an activity with this name. Would you like to continue it?");
                 continueActivity(activityList, scanner, index);
