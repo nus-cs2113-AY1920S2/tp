@@ -202,12 +202,17 @@ public class Task extends Directory implements Tag {
     }
 
     @Override
-    public void removeTag() {
-        this.tags = null;
+    public void removeTag(String tag) {
+        tags.remove(tag);
+    }
+
+    @Override
+    public void removeAllTags() {
+        tags.clear();
     }
 
     @Override
     public String getTag() {
-        return this.tags != null ? tags.toString() : null;
+        return this.tags == null ? "" : tags.toString();
     }
 }

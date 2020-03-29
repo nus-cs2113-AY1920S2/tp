@@ -137,18 +137,22 @@ public class Module extends Directory {
      */
     public ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
-        ArrayList<Task> tasks = new TaskManager().getTaskList();
+        ArrayList<Task> tasks = new ArrayList<>();
+        for (Category category: categories.getCategoryList()) {
+            tasks.addAll(category.getTasks().getTaskList());
+        }
         Collections.sort(tasks, new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toShow();
-                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toShow();
+                String t1Deadline = t1.getDeadline().toString();
+                String t2Deadline = t2.getDeadline().toString();
                 return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });
         for (Task task: tasks) {
-            String deadline = task.getDeadline() == null ? "" : task.getDeadline().toShow();
-            deadlines.add(String.format("%-30s", task.getDescription()) + "   Deadline: " + task.getDeadline());
+            String deadline = task.getDeadline().toShow();
+            deadlines.add(String.format("%-30s", task.getDescription())
+                    + String.format("%-10s", task.getParent().getCategoryName()) + "   Deadline: " + deadline);
         }
         return deadlines;
     }
