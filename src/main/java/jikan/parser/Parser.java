@@ -53,7 +53,7 @@ public class Parser {
     public static String[] tokenizedInputs;
     String instruction;
     private static Log logger = new Log();
-    public static ActivityList lastShownList = new ActivityList();
+    //public static ActivityList lastShownList = new ActivityList();
     // flag to check if the current activity is a continued one
     public static int continuedIndex = -1;
 
@@ -64,6 +64,7 @@ public class Parser {
      * @param activityList the list of activities
      */
     public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) {
+
         Log.makeInfoLog("Starting to parse inputs.");
         Parser.cleaner = cleaner;
         /*lastShownList is initialised here to facilitate subsequent delete and edit commands

@@ -1,15 +1,21 @@
-start activity one /t tag tag1 tag2
+list
+start activity /t tag
 end
-start activity two /t tag2
-start activity 3
-end
-continue activity one
+list
+start activity
+yes
 abort
-start activity two
-y
+start activity
+no
 end
-start activity three /t tag tag1
-end
-start four /t tag
-end
+abort
+delete activity
+filter 2106
+graph 10
+graph 20
+find tutorial
+graph 5
+list 25/03/2020 28/03/2020
+list 28/03/2020
+graph tags
 bye
