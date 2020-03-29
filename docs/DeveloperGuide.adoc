@@ -495,8 +495,8 @@ The first method is chosen to make the code easier to maintain.
 === Appendix B: User Stories
 
 |===
-|Name of Column 1 |Name of Column 2 |Name of Column 3 <1>
-<2>
+|Name of Column 1 |Name of Column 2 |Name of Column 3
+
 |Cell in column 1, row 1
 |Cell in column 2, row 1
 |Cell in column 3, row 1
@@ -505,5 +505,6 @@ The first method is chosen to make the code easier to maintain.
 |Cell in column 2, row 2
 |Cell in column 3, row 2
 |===
+
 === Appendix C: Use Cases
 === Appendix D: Non-Functional Requirements
