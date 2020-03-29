@@ -37,7 +37,7 @@ logging and remembering important dates. Furthermore, students can view their up
 manage their time wisely and allocate sufficient time to complete these tasks.
 
 === What is this guide for?
-This guide aims to the educate you on how to use *ATAS* by providing examples and step-by-step instructions on all its features.
+This guide aims to show you on how to use *ATAS* by providing examples and step-by-step instructions on all its features.
 The features can be found in <<Features>> section.
 
 Interested in cultivating a habit of time management and plan your time more effectively? Head on to <<Quick Start>> to
@@ -388,41 +388,31 @@ image::calendar.png[calendar.png]
 
 == Command Summary
 === List of available *ATAS* commands
-. *Help*: `help`
-. *Exit*: `exit`
-. *Adding Assignments*: +
-`assignment n/[ASSIGNMENT NAME] m/[MODULE] d/[DD/MM/YY HHmm] c/[COMMENTS]`
-* e.g. `assignment n/Assignment One m/CS2113T d/01/01/20 1200 c/None`
-. *Adding Events*: +
-`event n/[EVENT NAME] l/[LOCATION] d/[DD/MM/YY HHmm - HHmm] c/[COMMENTS]`
-* e.g. `event n/Meeting l/Classroom d/01/01/20 1200 - 1400 c/None`
-. *List Tasks*
-.. *List All Tasks*: `list`
-.. *List Today's Tasks*: `list today`
-.. *List This Week's Tasks*: `list week`
-.. *List Upcoming Events*: `list upcoming events`
-.. *List Incomplete Assignments*: `list incomplete assignments`
-. *Mark a task as done*: `done [INDEX]`
-* e.g. `done 1`
-. *Edit Task*: `edit [INDEX]`
-* e.g. `edit 1`
-. *Delete Task*: `delete [INDEX]`
-* e.g. `delete 1`
-. *Clear Tasks*
-.. *Clear All Tasks*: `clear all`
-.. *Clear All Completed Tasks*: `clear done`
-. *Set tasks to repeat*: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
-* Available Period: Day [d], Week [w], Month [m], Year [y]
-* e.g. `repeat id/1 p/3d`
-. *Unset repeating tasks*: `repeat id/[INDEX] p/0`
-* e.g. `repeat id/1 p/0`
-. *Search for Tasks* (Available Task Type: assignment, event)
-.. *Search By Name*: `search t/[TASK TYPE] n/[TASK NAME]`
-* e.g. `search t/assignment n/Assignment one`
-.. *Search By Date*: `search t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
-* e.g. `search t/assignment n/Assignment one d/01/01/20`
-. *Calendar View*: `calendar d/[DD/MM/YY]`
-* e.g. `calendar d/01/01/20`
+[cols="10a,10a,40m,40m"]
+|===
+|S/N |Function |Format | Example
+
+|01|Help|help|-
+|02|Exit|exit|-
+|03|Adding Assignments|assignment n/[ASSIGNMENT NAME] m/[MODULE] d/[DD/MM/YY HHmm] c/[COMMENTS]|
+assignment n/Assignment One m/CS2113T d/01/01/20 1200 c/None
+|04|Adding Events|event n/[EVENT NAME] l/[LOCATION] d/[DD/MM/YY HHmm - HHmm] c/[COMMENTS]|
+event n/Meeting l/Classroom d/01/01/20 1200 - 1400 c/None
+|05|List All Tasks|list|-
+|06|List Today's Tasks|list today|-
+|06|List This Week's Tasks|list week|-
+|07|List Upcoming Events|list upcoming events|-
+|08|List Incomplete Assignments|list incomplete assignments|-
+|09|Mark a Task as Done|done [INDEX]|done 1
+|10|Edit a Task|edit [INDEX]|edit 1
+|11|Clear All Tasks|clear all|-
+|12|Clear All Completed Tasks|clear done|-
+|13|Set Tasks to Repeat|repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]|repeat id/1 p/3d
+|14|Unset Repeating Tasks|repeat id/[INDEX] p/0|repeat id/1 p/0
+|15|Search for Tasks|search t/[TASK TYPE] n/[TASK NAME]|search t/assignment n/Assignment one
+|16|Search by Date|searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]|searchd t/assignment n/Assignment one d/01/01/20
+|17|Calendar View|calendar d/[DD/MM/YY]|calendar d/01/01/2020
+|===
 
 == FAQ
 Q: Can I transfer my saved data to a computer with a different operating system? +
@@ -432,7 +422,12 @@ Q: How do I transfer my saved data to another computer? +
 A: In the folder where your *ATAS* jar file is located, look for a file named "atasData.txt".
 Place a copy of this file into the folder where the *ATAS* jar file is located in your new computer.
 
-
+Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days or the event repeats three days later? +
+A: Setting a repeat period of `3d` will mean that the event repeats *3 days later*. The numeric representation of the
+repeat command indicates the number of days before the event is repeated. +
+e.g. `repeat id/1 p/3d` +
+Given that today's date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20` +
+Refer to <<Repeating Events: *`repeat`*>> for more information on *`repeat`* command.
 
 
 
