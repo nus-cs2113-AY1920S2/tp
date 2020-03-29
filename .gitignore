@@ -2,7 +2,7 @@
 /data/
 
 # build/libs files
-/build/libs/data
+/build/libs
 
 # text-ui-test data files
 /text-ui-test/data/
