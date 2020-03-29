@@ -43,33 +43,27 @@ class ContinueCommandTest {
     void executeContinue() throws InterruptedException {
         try {
             populateActivityList();
-        } catch (InvalidTimeFrameException e) {
-            System.out.println("Invalid time frame.");
-        }
-        String parameters = "Activity2";
-        Command command = new ContinueCommand(parameters);
-
-        // Continue Activity2
-        try {
+            String parameters = "Activity2";
+            Command command = new ContinueCommand(parameters);
             command.executeCommand(activities);
-        } catch (EmptyNameException | InvalidTimeFrameException e) {
-            System.out.println("Field error.");
-        }
 
-        LocalDateTime startTime = LocalDateTime.now();
-        assertEquals(startTime.getMinute(), Parser.startTime.getMinute());
-        final Duration initial = activities.get(1).getDuration();
-        Thread.sleep(2000);
-        // End Activity2
-        command = new EndCommand(null);
-        try {
-            command.executeCommand(activities);
+            LocalDateTime startTime = LocalDateTime.now();
+            assertEquals(startTime.getMinute(), Parser.startTime.getMinute());
+            final Duration initial = activities.get(1).getDuration();
+            Thread.sleep(2000);
+            // End Activity2
+            command = new EndCommand(null);
+            try {
+                command.executeCommand(activities);
+            } catch (EmptyNameException | InvalidTimeFrameException e) {
+                System.out.println("Field error.");
+            }
+            Duration elapsed = initial.plus(Duration.between(startTime, LocalDateTime.now()));
+            Duration duration = activities.get(1).getDuration();
+            assertEquals(elapsed.toSeconds(), duration.toSeconds());
         } catch (EmptyNameException | InvalidTimeFrameException e) {
-            System.out.println("Field error.");
+            System.out.println("Error.");
         }
-        Duration elapsed = initial.plus(Duration.between(startTime, LocalDateTime.now()));
-        Duration duration = activities.get(1).getDuration();
-        assertEquals(elapsed.toSeconds(), duration.toSeconds());
     }
 
 }

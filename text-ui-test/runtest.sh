@@ -1,34 +1,22 @@
+
 #!/usr/bin/env bash
 
-# create bin directory if it doesn't exist
-if [ ! -d "../bin" ]
-then
-    mkdir ../bin
-fi
+# change to script directory
+cd "${0%/*}"
 
-# delete output from previous run
-if [ -e "./ACTUAL.TXT" ]
-then
-    rm ACTUAL.TXT
-fi
+cd ..
+./gradlew shadowJar
 
-# compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/jikan/Jikan.java
-then
-    echo "********** BUILD FAILURE **********"
-    exit 1
-fi
+cd text-ui-test
 
-# run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Jikan < input.txt > ACTUAL.TXT
+java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
 
-# compare the output to the expected output
-diff ACTUAL.TXT EXPECTED.TXT
+diff EXPECTED.TXT ACTUAL.TXT
 if [ $? -eq 0 ]
 then
-    echo "Test result: PASSED"
+    echo "Test passed!"
     exit 0
 else
-    echo "Test result: FAILED"
+    echo "Test failed!"
     exit 1
 fi
