@@ -109,6 +109,7 @@ public class MarkAsDoneCommand extends EditCommand {
         try {
             Task toMarkAsDone = getBaseTaskDirectory();
             toMarkAsDone.setDone(true);
+            assert toMarkAsDone.isDone() == true : "how can this be?";
             return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

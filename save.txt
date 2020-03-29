@@ -6,7 +6,7 @@ Lecture -|||- 1
 --- END TASK ---
 Tutorial -|||- 2
 --- TASK ---
-Tutorial 6 -|||- Y -|||- 24/03/2020 11:59PM -|||- 6
+Tutorial 6 -|||- N -|||- 24/03/2020 11:59PM -|||- 6
 --- FILE ---
 --- END FILE ---
 --- END TASK ---
