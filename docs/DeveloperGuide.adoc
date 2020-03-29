@@ -493,13 +493,17 @@ The first method is chosen to make the code easier to maintain.
 
 === Appendix A: Product Scope
 === Appendix B: User Stories
-Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*` +
 
-[cols="5%,10%,10%,15%,30%,30%"]
-.Table consolidating the user stories
-|===
-|*S/N*|*Use Case No*|*Priority Level*|*As a ...*|*I can ...*|*So that I ...*
-|01|01|* * *|University Student|Add a task|Won’t forget the tasks I have to complete
+.An example table
+[width="50%",cols=">s,^m,e",frame="topbot",options="header,footer"]
+|==========================
+|      2+|Columns 2 and 3
+|1       |Item 1  |Item 1
+|2       |Item 2  |Item 2
+|3       |Item 3  |Item 3
+|4       |Item 4  |Item 4
+|footer 1|footer 2|footer 3
+|==========================
 
 === Appendix C: Use Cases
 === Appendix D: Non-Functional Requirements
