@@ -1,0 +1,49 @@
+Menu Items
+
+1. rice 	 rice, salt 
+
+Current Stock
+
+1. toxic greens 	 $0.40 1 
+2. greenie 	 $0.40 0 
+3. vege 	 $0.40 10 
+4. rice 	 $0.40 11 
+
+Reservations
+
+Reservation [0]
+Status: Invalid
+contact person: Peter
+date: 2020-03-12 12:00
+number of guests: 3
+table size: S
+contact details: 98955555
+comments: No comments
+
+Reservation [1]
+Status: Invalid
+contact person: Mary
+date: 2020-03-11 12:00
+number of guests: 8
+table size: M
+contact details: 99998888
+comments: No comments
+
+Reservation [2]
+Status: Invalid
+contact person: David
+date: 2020-03-12 12:00
+number of guests: 9
+table size: L
+contact details: 98887777
+comments: No comments
+
+Reservation [3]
+Status: Unserved
+contact person: Lisa
+date: 2020-03-13 12:00
+number of guests: 3
+table size: S
+contact details: 98889999
+comments: no spicy food please
+
