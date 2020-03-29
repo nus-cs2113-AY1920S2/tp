@@ -81,7 +81,7 @@ public class CleanCommand extends Command {
             String numberString = line.substring(index + 4);
             try {
                 return Integer.parseInt(numberString);
-            } catch (NumberFormatException n){
+            } catch (NumberFormatException n) {
                 throw new NumberFormatException();
             }
         } catch (IndexOutOfBoundsException e) {
