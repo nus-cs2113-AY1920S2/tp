@@ -6,6 +6,7 @@
 :toc-placement: preamble
 :sectnums:
 :imagesDir: images
+:table-caption: Table
 :stylesDir: stylesheets
 :xrefstyle: full
 :experimental:
@@ -138,7 +139,13 @@ that the users wants to search from
 ** If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
 message, indicating an empty task list
 ** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
-or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
+or `getSearchQueryEvents` respectively.
+*** In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through
+the task list to store results matching the search query into an ArrayList.
+*** Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a
+String format.
+*** Lastly, the `searchList` method will call the `resultsList` method to return the search results and `execute`
+method will create a new `CommandResult` class to print out the search results.
 
 * Given below is an example usage of the `Searchd` command: +
 . The user launches the app and retrieves the tasks that are saved under a local file using Storage.
@@ -149,6 +156,12 @@ or `getSearchQueryEvents` respectively and initialize a new `CommandResult` clas
 message, indicating an empty task list
 ** If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
 or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
+*** In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through
+the task list to store results matching the search query into an ArrayList.
+*** Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a
+String format.
+*** Lastly, the `searchList` method will call the `resultsList` method to return the search results and `execute`
+method will create a new `CommandResult` class to print out the search results.
 
 ==== Design Considerations:
 * Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
