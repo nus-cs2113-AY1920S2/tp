@@ -81,7 +81,8 @@ Refer to <<Features>> for the detailed instruction of the various commands of *A
 
 * The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is
 shown on the left of each task whenever a `list` command is used. +
-Example: image:task_index_example.png[Task Index Example]
+Example index of list: +
+image:task_index_example.png[Task Index Example]
 
 * Dates supplied by the user must follow the format `DD/MM/YY`. +
 Example: 01/03/20 represents the date 1st March 2020
