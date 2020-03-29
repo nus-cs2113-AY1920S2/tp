@@ -495,11 +495,13 @@ The first method is chosen to make the code easier to maintain.
 === Appendix B: User Stories
 
 |===
-|Name of Column 1 |Name of Column 2 |Name of Column 3
+|S/N |As a ... |I can... | SO that I...
 
-|Cell in column 1, row 1
-|Cell in column 2, row 1
-|Cell in column 3, row 1
+|01, row 1
+|user, row 1
+|add assignments, including assignment details , row 1
+|keep track of assignment details, row 1
+
 
 |Cell in column 1, row 2
 |Cell in column 2, row 2
