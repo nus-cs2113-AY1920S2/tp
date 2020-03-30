@@ -153,6 +153,10 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints a progress message and progress bar based on the percentage of allocate time achieved.
+     * @param percent percentage of allocated time achieved
+     */
     public static void printProgessMessage(double percent) {
         System.out.println(DIVIDER);
         if (percent < 50) {
