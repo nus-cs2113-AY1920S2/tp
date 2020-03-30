@@ -13,7 +13,8 @@ public class ChangeDirectoryCommand extends Command {
     public static final String COMMAND_WORD = "cd";
     public static final String FORMAT = COMMAND_WORD + " <next directory name>";
     public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "traverse to another directory (.. represents parent directory)" + System.lineSeparator() + FORMAT + System.lineSeparator();
+            + "traverse to another directory (.. represents parent directory)" + System.lineSeparator()
+            + FORMAT + System.lineSeparator();
     private String nextDirectoryName;
 
     /**

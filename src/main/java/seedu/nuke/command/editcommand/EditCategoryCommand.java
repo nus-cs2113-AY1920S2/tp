@@ -29,7 +29,8 @@ public class EditCategoryCommand extends EditCommand {
     public static final String COMMAND_WORD = "edc";
     public static final String FORMAT = COMMAND_WORD
             + " <category name> -m <module code> [ -c <new category name> -p <new priority> ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Edit name and priority of category"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
+            + "Edit name and priority of category"
             + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
