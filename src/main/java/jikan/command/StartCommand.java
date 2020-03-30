@@ -37,15 +37,16 @@ public class StartCommand extends Command {
         } else {
             // tags should be reset
             assert Parser.tags.isEmpty();
+            int tagDelimiter = parameters.indexOf("/t");
+            int allocateDelimiter = parameters.indexOf("/a");
 
             // check if there exists an activity with this name
-            int index = activityList.findActivity(parameters);
+            String activityName = getActivityName(tagDelimiter,allocateDelimiter);
+            int index = activityList.findActivity(activityName);
             if (index != -1) {
                 Ui.printDivider("There is already an activity with this name. Would you like to continue it?");
                 continueActivity(activityList, scanner, index);
             } else {
-                int tagDelimiter = parameters.indexOf("/t");
-                int allocateDelimiter = parameters.indexOf("/a");
                 try {
                     String line = parseActivity(tagDelimiter,allocateDelimiter);
                     Parser.startTime = LocalDateTime.now();

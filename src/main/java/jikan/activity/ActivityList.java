@@ -141,6 +141,15 @@ public class ActivityList {
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
             Duration oldDuration = activityList.get(Parser.continuedIndex).getDuration();
             Duration newDuration = duration.plus(oldDuration);
+            Duration allocatedTime = activityList.get(Parser.continuedIndex).getAllocatedTime();
+            int value = newDuration.compareTo(allocatedTime);
+            if (value >= 0 && allocatedTime != Duration.parse("PT0S")) {
+                String line = "Good Job!! You have met the targeted time for this activity.";
+                Ui.printDivider(line);
+            } else if (value < 0 && allocatedTime != Duration.parse("PT0S")) {
+                String line = "Try Harder, you are almost there.";
+                Ui.printDivider(line);
+            }
             activityList.updateDuration(newDuration, Parser.endTime, Parser.continuedIndex);
             Parser.continuedIndex = -1;
             Parser.resetInfo();
