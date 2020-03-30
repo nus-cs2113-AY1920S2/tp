@@ -8,8 +8,8 @@ public class GetPatientCommand extends PatientCommand {
     protected String patientNric;
 
     /**
-     * Constructor for RetrieveCommand Class.
-     * It creates a new RetrieveCommand Object with the information provided.
+     * Constructor for GetPatientCommand Class.
+     * It creates a new GetPatientCommand Object with the information provided.
      *
      * @param patientNric        Contains the nric of the patient that is to be retrieved.
      */

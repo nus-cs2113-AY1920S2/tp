@@ -117,6 +117,15 @@ public class Patient {
         return this.remarks;
     }
 
+    /**
+     * Returns the ArrayList of appointments of the patient.
+     *
+     * @return appointments Represents the ArrayList of appointments of the patient.
+     */
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
+    }
+
     public void addAppointment(Appointment appt) {
         this.appointments.add(appt);
     }

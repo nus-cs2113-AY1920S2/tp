@@ -1,10 +1,12 @@
 package seedu.happypills.parser;
 
-import seedu.happypills.commands.appointmentcommands.AddAppointmentCommand;
 import seedu.happypills.commands.appointmentcommands.AppointmentCommand;
+
 import seedu.happypills.commands.appointmentcommands.DeleteAppointmentCommand;
-import seedu.happypills.commands.appointmentcommands.IncorrectAppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.happypills.commands.appointmentcommands.ListAppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.IncorrectAppointmentCommand;
+import seedu.happypills.commands.appointmentcommands.AddAppointmentCommand;
 
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
@@ -28,12 +30,12 @@ public class AppointmentParser {
             return new DeleteAppointmentCommand(fullCommand); // change to edit
         } else if (userCommand[0].equalsIgnoreCase("done")) {
             return new DeleteAppointmentCommand(fullCommand); // change to done
-        } else if (userCommand[0].equalsIgnoreCase("find")) {
-            return new DeleteAppointmentCommand(fullCommand); // change to find
         } else if (userCommand[0].equalsIgnoreCase("list")) {
             return new ListAppointmentCommand();
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
             return new DeleteAppointmentCommand(userCommand[2]);
+        } else if (userCommand[0].equalsIgnoreCase("find")) {
+            return new FindAppointmentCommand(userCommand[2]); // change to edit
         } else {
             throw new HappyPillsException("    Invalid Command.");
         }

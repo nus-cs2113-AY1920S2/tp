@@ -5,6 +5,8 @@ import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 
+import javax.lang.model.type.ArrayType;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -343,5 +345,32 @@ public class TextUi {
             formattedPatientString += p.toSave();
         }
         return formattedPatientString;
+    }
+
+    /**
+     * Generate a success message upon finding the correct patient.
+     * @param patient the patient which the program have to find the appointment for.
+     * @return Appointment details if any, and a notification message otherwise.
+     */
+    public static String getAppointmentSuccessMessage(Patient patient) {
+        String returnMessage = "    Here are the patient's appointments:\n"
+                + "     | ID | NRIC   | Reason | Date      | Time     |\n";
+        String content = "";
+        ArrayList<Appointment> tempList = patient.getAppointments();
+        for (Appointment appointment : tempList) {
+            String id = appointment.getAppointmentId();
+            String nric = appointment.getNric();
+            String reason = appointment.getReason();
+            String date = appointment.getDate();
+            String time = appointment.getTime();
+            content += "     | " + id + " | " + nric + " | " + reason + " | " + date + " | " + time + " | \n";
+        }
+        if (content.isEmpty()) {
+            returnMessage = "    There are no appointments in the list.\n";
+        } else {
+            returnMessage += content + DIVIDER;
+        }
+
+        return returnMessage;
     }
 }
