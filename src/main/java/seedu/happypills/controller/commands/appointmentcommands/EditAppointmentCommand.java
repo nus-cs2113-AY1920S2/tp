@@ -197,7 +197,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
         if (content.length() == 0) {
             return TextUi.editAptHelpMessage();
         }
-        String field = newContent.substring(0,2);
+        String field = newContent.substring(0,2).trim();
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");

@@ -114,14 +114,14 @@ public class Storage {
      * @return patientList of all patients found in the file.
      * @throws FileNotFoundException if the file specified by directory/filename does not exist.
      */
-    public static AppointmentMap loadAppointmentFromFile(String filePath) throws FileNotFoundException {
+    public static AppointmentMap loadAppointmentFromFile(String filePath, PatientMap patients) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
         AppointmentMap storedAppt = new AppointmentMap();
 
         while (s.hasNext()) {
             String stringInput = s.nextLine();
-            parseAppointmentFileContent(stringInput, storedAppt);
+            parseAppointmentFileContent(stringInput, storedAppt, patients);
         }
 
         return storedAppt;
@@ -132,13 +132,18 @@ public class Storage {
      * @param savedString a single string with all the data required for a appointment.
      * @param storedAppt a list which the appointment details retrieved should be added into.
      */
-    private static void parseAppointmentFileContent(String savedString, AppointmentMap storedAppt) {
+    private static void parseAppointmentFileContent(String savedString,
+                                                    AppointmentMap storedAppt, PatientMap patients) {
         String[] dataString = savedString.split("[|]", 7);
         Boolean isDone = dataString[5].equals("T") ? true : false;
         Appointment tempAppt = new Appointment(dataString[0], dataString[1],
                 dataString[2], dataString[3], dataString[4], isDone);
         try {
-            storedAppt.addAppointment(tempAppt);
+            Patient patient = (Patient) patients.get(dataString[1]);
+            if (!patient.equals(null)) {
+                patient.addAppointment(tempAppt);
+                storedAppt.addAppointment(tempAppt);
+            }
         } catch (HappyPillsException e) {
             e.printStackTrace();
         }

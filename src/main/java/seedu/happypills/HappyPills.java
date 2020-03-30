@@ -37,9 +37,14 @@ public class HappyPills {
         try {
             logger.info("loading patient data from file.");
             patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
-            appointments = Storage.loadAppointmentFromFile(Storage.APPOINTMENT_FILEPATH);
         } catch (FileNotFoundException e) {
             logger.info("No patient data file was found.");
+        }
+        try {
+            logger.info("loading appointment data from file.");
+            appointments = Storage.loadAppointmentFromFile(Storage.APPOINTMENT_FILEPATH, patients);
+        } catch (FileNotFoundException e) {
+            logger.info("No appointment data file was found.");
         }
     }
 

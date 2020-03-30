@@ -19,13 +19,7 @@ public class AppointmentMap {
      */
     public void addAppointment(Appointment appointment) throws HappyPillsException {
         int current = argMultimap.size() + 1;
-        appointment.setAppointmentId(valueOf(current));
-        /*if (!isDatetimeTaken(appointment)) {
-            argMultimap.put(appointment.getDate() + " " + appointment.getTime(), appointment);
-        } else {
-            throw new HappyPillsException("    There is already an Appointment at that date and time.\n"
-                                                + "    Please try again.");
-        }*/
+        //appointment.setAppointmentId(valueOf(current));
         if (!argMultimap.containsKey(appointment.appointmentId)) {
             argMultimap.put(appointment.appointmentId,appointment);
         }
@@ -41,18 +35,6 @@ public class AppointmentMap {
 
     public boolean isEmpty() {
         return argMultimap.isEmpty();
-    }
-
-    private boolean isDatetimeTaken(Appointment appointment) {
-        String apptDatetime = appointment.getDate() + " " + appointment.getTime();
-        for (Map.Entry mapElement : argMultimap.entrySet()) {
-            Appointment value = ((Appointment)mapElement.getValue());
-            String datetime = value.getDate() + " " + value.getTime();
-            if (datetime.equalsIgnoreCase(apptDatetime)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Appointment get(String appointmentID) {

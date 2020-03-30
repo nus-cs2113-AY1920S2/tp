@@ -11,6 +11,7 @@ public class Appointment {
     /**
      * Stores the details of the appointment.
      */
+    protected static int count = 1;
     protected String nric;
     protected String reason;
     protected String date;
@@ -32,8 +33,9 @@ public class Appointment {
         this.reason = reason;
         this.date = date;
         this.time = time;
-        this.appointmentId = valueOf(0);
+        this.appointmentId = valueOf(count);
         this.isDone = false;
+        count += 1;
     }
 
     /**
@@ -52,6 +54,7 @@ public class Appointment {
         this.time = time;
         this.appointmentId = id;
         this.isDone = done;
+        count += 1;
     }
 
     public String getNric() {
