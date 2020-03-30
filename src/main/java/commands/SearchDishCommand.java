@@ -28,7 +28,8 @@ public class SearchDishCommand extends Menu {
                 ingredientList += str + ", ";
             }
             ingredientList = ingredientList.substring(0, ingredientList.length() - 2);
-            System.out.println("Name: " + name + "; Ingredients: " + ingredientList + "; Price: $" + matchingDishes.get(name).getPrice()+ ";");
+            System.out.println("Name: " + name + "; Ingredients: " + ingredientList
+                    + "; Price: $" + matchingDishes.get(name).getPrice() + ";");
         }
         return matchingDishes;
     }
