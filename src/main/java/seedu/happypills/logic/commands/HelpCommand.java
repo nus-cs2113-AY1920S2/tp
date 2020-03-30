@@ -2,7 +2,7 @@ package seedu.happypills.logic.commands;
 
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
-import seedu.happypills.model.data.VisitMap;
+import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.ui.TextUi;
 
 /**
@@ -21,7 +21,7 @@ public class HelpCommand implements Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      * @return message The command instructions.
      */
-    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) {
+    public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecordMap) {
         String message;
         String[] userCommand = command.split(" ", 2);
         if (command.equals("")) {
@@ -62,15 +62,15 @@ public class HelpCommand implements Command {
 
     private String getVisitHelp(String pr) {
         String message = "";
-        if (visit.equalsIgnoreCase("add")) {
+        if (pr.equalsIgnoreCase("add")) {
             message = TextUi.printAddPatientHelp();
-        } else if (visit.equalsIgnoreCase("list")) {
+        } else if (pr.equalsIgnoreCase("list")) {
             message = TextUi.printListPatientHelp();
-        } else if (visit.equalsIgnoreCase("find")) {
+        } else if (pr.equalsIgnoreCase("find")) {
             message = TextUi.printGetPatientHelp();
-        } else if (visit.equalsIgnoreCase("edit")) {
+        } else if (pr.equalsIgnoreCase("edit")) {
             message = TextUi.printEditPatientHelp();
-        } else if (visit.equalsIgnoreCase("delete")) {
+        } else if (pr.equalsIgnoreCase("delete")) {
             message = TextUi.printDeletePatientHelp();
         } else {
             message = TextUi.printIncorrectCommand(command);

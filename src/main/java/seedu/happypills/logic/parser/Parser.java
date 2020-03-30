@@ -4,6 +4,7 @@ import seedu.happypills.logic.commands.Command;
 import seedu.happypills.logic.commands.ExitCommand;
 import seedu.happypills.logic.commands.HelpCommand;
 import seedu.happypills.logic.commands.appointmentcommands.IncorrectAppointmentCommand;
+import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import java.time.format.DateTimeFormatter;
@@ -39,7 +40,7 @@ public class Parser {
         } else if (userCommand[1].equalsIgnoreCase("appt")) {
             return AppointmentParser.parse(fullCommand);
         } else if (userCommand[1].equalsIgnoreCase("pr")) {
-            return VisitParser.parse(fullCommand);
+            return PatientRecordParser.parse(fullCommand);
         } else {
             return new IncorrectAppointmentCommand("    Command is invalid. "
                    + "Enter help to know how to use HappyPills.\n");

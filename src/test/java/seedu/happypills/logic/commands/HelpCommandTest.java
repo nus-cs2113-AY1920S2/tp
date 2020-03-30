@@ -40,43 +40,50 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_addCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("add patient").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String message = new HelpCommand("add patient").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(TextUi.printAddPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_listCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("list patient").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String message = new HelpCommand("list patient").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(TextUi.printListPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_getCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("get patient").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String message = new HelpCommand("get patient").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(TextUi.printGetPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_editCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("edit patient").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String message = new HelpCommand("edit patient").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(TextUi.printEditPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_deleteCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("delete patient").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String message = new HelpCommand("delete patient").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(TextUi.printDeletePatientHelp(), message);
     }
 
     @Test
     public void helpCommand_helpCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("help").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String message = new HelpCommand("help").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(TextUi.printHelpHelp(), message);
     }
 
     @Test
     public void helpCommand_exitCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("exit").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String message = new HelpCommand("exit").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(TextUi.printExitHelp(), message);
     }
 }

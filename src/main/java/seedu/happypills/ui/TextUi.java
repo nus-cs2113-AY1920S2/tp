@@ -549,7 +549,8 @@ public class TextUi {
         String emptyListMessage = "    There are no patient record in the list.\n" + DIVIDER;
         return emptyListMessage;
     }
-        /**
+
+    /**
      * format a list patient record success message for user.
      * Includes a specified string, requested patient details and a divider.
      *
