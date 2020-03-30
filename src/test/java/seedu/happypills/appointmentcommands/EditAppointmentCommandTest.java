@@ -34,7 +34,7 @@ class EditAppointmentCommandTest {
         }
 
         //add test appointment
-        Appointment appointmentThree = new Appointment("3","S123A",  "01/04/2020","reason3", "14:00:00",false);
+        Appointment appointmentThree = new Appointment("3","S123A",  "01/04/2020", "14:00:00","reason3",false);
         Appointment appointmentOne = new Appointment("1","S123A", "01/02/2020", "12:00:00","reason1",false);
         Appointment appointmentTwo = new Appointment("2","S123A", "01/03/2020", "13:00:00","reason2", false);
 
