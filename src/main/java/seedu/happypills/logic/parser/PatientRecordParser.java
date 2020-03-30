@@ -168,7 +168,8 @@ public class PatientRecordParser {
      */
     public static String promptConformation(String[] parseInput) {
         String text = TextUi.DIVIDER
-                + "\n        NRIC : " + parseInput[0].trim().toUpperCase() + "\n"
+                + "\n        Are you sure all the listed details are correct?\n"
+                + "        NRIC : " + parseInput[0].trim().toUpperCase() + "\n"
                 + "        Symptom : " + parseInput[1].trim() + "\n"
                 + "        Diagnosis : " + parseInput[2].trim() + "\n"
                 + "        Date : " + parseInput[3].trim() + "\n"
