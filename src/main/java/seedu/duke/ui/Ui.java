@@ -66,7 +66,7 @@ public class Ui {
             + "6. \"view /mp\" to view your module plan\n"
             + "7. \"view /dm\" to view all finished modules\n"
             + "8. \"view /cc\" to view the number of modular credits u have completed\n"
-            + "9. \"view\" to view all available modules";;
+            + "9. \"view\" to view all available modules";
 
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
