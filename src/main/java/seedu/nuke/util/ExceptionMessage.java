@@ -48,9 +48,10 @@ public class ExceptionMessage {
     public static final String MESSAGE_FILE_SYSTEM_EXCEPTION = "Alert! There was an error in retrieving your file. "
             + "Please check your file is not currently running.\n";
     public static final String MESSAGE_INVALID_FILE_PATH = "Alert! Invalid file path.\n";
-    public static final String MESSAGE_FILE_NOT_FOUND = "Alert! File does not exists. Please check file path again.\n";
+    public static final String MESSAGE_ADD_FILE_NOT_FOUND =
+            "Alert! File does not exists. Please check file path again.\n";
     public static final String MESSAGE_FILE_SECURITY_EXCEPTION =
             "Alert! File access was denied by device's security program.\n";
     public static final String MESSAGE_DELETE_FILE_ERROR = "Alert! There was an error in deleting your file.\n";
-    public static final String MESSAGE_DELETE_FILE_NOT_FOUND = "Alert! File does not exists.\n";
+    public static final String MESSAGE_FILE_NOT_FOUND = "Alert! File does not exists.\n";
 }

@@ -32,7 +32,7 @@ public class ListTaskCommand extends ListCommand {
      * @param isExact
      *  Checks if tasks are to be filtered exactly
      * @param isAll
-     *  Checks whether to show <b>all</b> tasks across modules and categories
+     *  Checks whether to show <b>all</b> tasks across modules, categories and tasks
      */
     public ListTaskCommand(String moduleKeyWord, String categoryKeyword, String taskKeyword,
                boolean isExact, boolean isAll) {
