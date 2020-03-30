@@ -7,6 +7,7 @@
     + [3.2. Delete:](#delete) `delete`
     + [3.3. List:](#list) `list`
     + [3.4. Search:](#search) `search`
+    + [3.5. Sales:](#sales) `sales`
 * [4. Command Summary](#command-summary)
 
 <a name="introduction"></a>
@@ -85,8 +86,8 @@ Search items in the menu, stock and reservations.
 
 * Search stock : `search stock; KEYWORD`
 
-<a name="command-summary"></a>
 
+<a name="sales"></a>
 ### Sales
 Add daily sales and calculate profit
 
@@ -99,6 +100,8 @@ Add daily sales and calculate profit
 
 #### Find most popular dish : popular
 * Format: `popular`
+
+<a name="command-summary"></a>
 ## Command Summary
 
 * Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
