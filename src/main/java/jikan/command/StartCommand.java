@@ -82,6 +82,7 @@ public class StartCommand extends Command {
             Ui.printDivider(Parser.activityName + " was continued");
             Log.makeFineLog(Parser.activityName + " was continued.");
         } else {
+            Parser.activityName = null;
             Ui.printDivider("Okay then, what else can I do for you?");
         }
     }
