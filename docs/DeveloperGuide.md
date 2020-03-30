@@ -379,7 +379,9 @@ closed in the terminal. This is achieved by storing all relevant information in 
   objects in a map. Each class object would have a class method to construct a toSave() string, and 
   each object is stored as a single line within the text file. Hence, the toSave() string is constructed with  
   '|' as a divider, and a newline to indicate the end of the object. The formatted string is a concatenation of all 
-  the toSave() strings of the objects in the list. `writeAllToFile` then writes the entire string into the text file, overwriting any existing strings in the file.
+  the toSave() strings of the objects in the list. `writeAllToFile` then writes the entire string into the text file, 
+  overwriting any existing strings in the file.
+  This is implemented for edit and delete commands as they cannot be appended.
   
   ![writing](/docs/images/StorageWriteAll.png)
  
@@ -400,7 +402,7 @@ For example, `loadingPatientsFromFile` retrieves the entire string from the pati
 `parsePatientFileContent` to convert each line into a patient object and adds it back to the patient map. 
 `loadAppointmentFromFile` and `parseAppointmentFileContent` does the same with the appointment file.
  
- ![loading](docs/images/StorageLoad.png)
+ ![loading](/docs/images/StorageLoad.png)
  
 **Design Considerations**
 
