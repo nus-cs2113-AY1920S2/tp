@@ -6,6 +6,7 @@ import seedu.happypills.controller.commands.patientcommands.ListPatientCommand;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +16,8 @@ class ListPatientCommandTest {
     private static PatientMap filledPatientMap;
     private static PatientMap emptyPatientMap;
     private static AppointmentMap newAppointmentMap;
+    private static VisitMap newVisitMap;
+
     public static final String DIVIDER = "    =====================================================";
     private static String expectedOutputFromEmptyList = "    There are no patients in the list.\n" + DIVIDER;
     private static String expectedOutputFromFilledList = "    Nyan | S1234Z\n" + "    Nadiah | S9988N\n"
@@ -46,13 +49,13 @@ class ListPatientCommandTest {
 
     @Test
     public void printList_emptyList_emptyListMessage() throws HappyPillsException {
-        String message = new ListPatientCommand().execute(emptyPatientMap, newAppointmentMap);
+        String message = new ListPatientCommand().execute(emptyPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputFromEmptyList, message);
     }
 
     @Test
     public void printList_filledList_filledListMessage() throws HappyPillsException {
-        String message = new ListPatientCommand().execute(filledPatientMap, newAppointmentMap);
+        String message = new ListPatientCommand().execute(filledPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputFromFilledList, message);
     }
 

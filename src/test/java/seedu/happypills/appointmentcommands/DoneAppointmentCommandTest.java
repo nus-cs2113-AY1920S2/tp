@@ -7,6 +7,7 @@ import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,12 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DoneAppointmentCommandTest {
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
+    private static VisitMap newVisitMap;
     public static final String DIVIDER = "    =====================================================";
 
     @BeforeAll
     public static void setup() {
         newPatientMap = new PatientMap();
         newAppointmentMap = new AppointmentMap();
+        newVisitMap = new VisitMap();
 
         //Add test patient
         Patient patientOne = new Patient("P1", "S123A", 123,
@@ -57,7 +60,8 @@ class DoneAppointmentCommandTest {
                 + "        ID       : 1\n"
                 + "        Attended : Yes\n"
                 + "    =====================================================";
-        String message = new DoneAppointmentCommand("S123A", "1").execute(newPatientMap, newAppointmentMap);
+        String message = new DoneAppointmentCommand("S123A", "1").execute(
+                newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputMissingInput, message);
     }
 

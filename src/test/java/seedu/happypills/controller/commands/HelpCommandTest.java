@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.view.ui.TextUi;
 
@@ -14,6 +15,7 @@ class HelpCommandTest {
 
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
+    private static VisitMap newVisitMap;
 
     /**
      * Initialize hardcoded test cases for testing.
@@ -38,43 +40,43 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_addCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("add").execute(newPatientMap, newAppointmentMap);
+        String message = new HelpCommand("add").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(TextUi.printAddHelp(), message);
     }
 
     @Test
     public void helpCommand_listCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("list").execute(newPatientMap, newAppointmentMap);
+        String message = new HelpCommand("list").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(TextUi.printListHelp(), message);
     }
 
     @Test
     public void helpCommand_getCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("get").execute(newPatientMap, newAppointmentMap);
+        String message = new HelpCommand("get").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(TextUi.printGetHelp(), message);
     }
 
     @Test
     public void helpCommand_editCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("edit").execute(newPatientMap, newAppointmentMap);
+        String message = new HelpCommand("edit").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(TextUi.printEditHelp(), message);
     }
 
     @Test
     public void helpCommand_deleteCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("delete").execute(newPatientMap, newAppointmentMap);
+        String message = new HelpCommand("delete").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(TextUi.printDeleteHelp(), message);
     }
 
     @Test
     public void helpCommand_helpCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("help").execute(newPatientMap, newAppointmentMap);
+        String message = new HelpCommand("help").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(TextUi.printHelpHelp(), message);
     }
 
     @Test
     public void helpCommand_exitCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("exit").execute(newPatientMap, newAppointmentMap);
+        String message = new HelpCommand("exit").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(TextUi.printExitHelp(), message);
     }
 }
