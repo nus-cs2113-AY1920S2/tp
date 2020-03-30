@@ -39,3 +39,9 @@ run{
     standardInput = System.in
     enableAssertions = true
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'jikan.Jikan'
+    }
+}

@@ -89,7 +89,9 @@ public class Activity {
         return this.allocatedTime;
     }
 
-    public void setAllocatedTime(Duration allocatedTime) { this.allocatedTime = allocatedTime; }
+    public void setAllocatedTime(Duration allocatedTime) {
+        this.allocatedTime = allocatedTime;
+    }
 
     /**
      * Gets the percentage completed of the allocated time.
