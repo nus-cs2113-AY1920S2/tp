@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 
@@ -94,9 +95,14 @@ public class ListCommand extends Command {
             // If user has input a specific date to obtain the month from, use that;
             // Otherwise get current date
             if (listInputs.length == 2) {
-                Month month = Month.valueOf(listInputs[1].toUpperCase());
-                YearMonth yearMonth = YearMonth.of(Calendar.getInstance().get(Calendar.YEAR), month.getValue());
-                startDate = yearMonth.atDay(1);
+                try {
+                    Month month = Month.valueOf(listInputs[1].toUpperCase());
+                    YearMonth yearMonth = YearMonth.of(Calendar.getInstance().get(Calendar.YEAR), month.getValue());
+                    startDate = yearMonth.atDay(1);
+                } catch (IllegalArgumentException e) {
+                    Ui.printDivider("Please specify the full month name.");
+                    return;
+                }
             } else {
                 startDate = LocalDate.now();
             }
@@ -106,7 +112,13 @@ public class ListCommand extends Command {
             endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
             break;
         default:
-            startDate = LocalDate.parse(listInputs[0], parser);
+            try {
+                startDate = LocalDate.parse(listInputs[0], parser);
+            } catch (DateTimeParseException e) {
+                Ui.printDivider("Please enter a valid date in the format dd/MM/yyyy or yyyy-MM-dd\n"
+                        + "Or use day / week / month to view tasks in the respective time period.");
+                return;
+            }
             if (listInputs.length == 2) {
                 endDate = LocalDate.parse(listInputs[1], parser);
             }
