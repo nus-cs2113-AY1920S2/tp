@@ -36,13 +36,13 @@ Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a
 Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; k/tomato;`, which will display the following result in the image. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77285807-d9d6f580-6d0c-11ea-8716-b4cb55877662.PNG">
+  <img src="https://user-images.githubusercontent.com/59989652/77921374-47b58b00-72d2-11ea-84bd-fe0c790b1d59.PNG">
 </p>
 
 The following sequence diagram shows how the search operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77437099-36c2d080-6e1f-11ea-8241-9000a65e3bb6.png">
+  <img src="https://user-images.githubusercontent.com/59989652/77916616-e8ed1300-72cb-11ea-9ba0-79e1ccc119ab.png">
 </p>
 
 #### 1.1.2 Design Considerations
@@ -86,7 +86,7 @@ Step 3. The user can now view the current `stock` to see what ingredients are th
 The following class diagram shows how the listing operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77317533-54703700-6d46-11ea-8fa7-1085ce028f55.png">
+  <img src="https://user-images.githubusercontent.com/59989652/77920226-cc070e80-72d0-11ea-82a5-b285173d4844.png">
 </p>
 
 1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
@@ -132,8 +132,8 @@ The user can input as many sales as they like as long as the dish exists in the 
 Step 3. The user can generate the profit by inputting `profit`.
 
 
-### 1.3.2 Design Considerations
-#### Aspect: Using a separate class to perform sale commands
+#### 1.3.2 Design Considerations
+##### Aspect: Using a separate class to perform sale commands
 **Current Implementation**: Methods are stored in the sales class
 * Pros: Easy to understand and implement.
 * Cons: May make the sales class long and convoluted and may become difficult to find certain features or methods
@@ -141,7 +141,7 @@ Step 3. The user can generate the profit by inputting `profit`.
 **Alternative**: Commands are stored in separate classes
 * Pros: Easier for a person who hasn't worked on the project to understand the structure
 * Cons: Takes longer to implement
-=======
+
 
 <a name="search-reservation"></a>
 
@@ -156,7 +156,7 @@ The feature implements the following operations:
 
 The following class diagram shows the structures relevant to the "search reservation" feature:
 <p align="center">
-    <img src="ClassDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\ClassDiagramforSearchReservation.png">
 </p>
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
@@ -172,25 +172,25 @@ Step 3. The user can now search against the current `reservation` list to see if
 If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
 
 <p align="center">
-    <img src="SearchByIndex.png">
+    <img src="documentations\Sibing\SearchByIndex.png">
 </p>
 
 If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
 
 <p align="center">
-    <img src="SearchByDate.png">
+    <img src="documentations\Sibing\SearchByDate.png">
 </p>
 
 If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
 
 <p align="center">
-    <img src="SearchByIndexnDate.png">
+    <img src="documentations\Sibing\SearchByIndexnDate.png">
 </p>
 
 The following sequence diagram shows the relevant interactions behind `search reservation`:
 
 <p align="center">
-    <img src="SequenceDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\SequenceDiagramforSearchReservation.png">
 </p>
 
 #### 1.4.2 Design Considerations

@@ -36,13 +36,14 @@ As such, the daily report will include these categories:
 <a name="features"></a>
 
 ## Features 
-
+``` javascript
 Add menu items, ingredients and reservations.
 
 * words in UPPERCASE: parameters
 * parameters in [ ]: optional parameters
 * parameters in { | }: at least one of them
 * sequence of the parameters can be changed
+```
 
 <a name="add"></a>
 
@@ -78,6 +79,7 @@ Delete menu items, ingredients and reservations.
 #### Delete stock of ingredient: delete stock
 * Format: `delete stock; i/INGREDIENT; [q/QUANTITY;]`
   + Example: `delete stock; i/tomato; q/1;`<br/>
+  + Example: `delete stock; i/tomato;`<br/>
 
 
 #### Mark reservation as invalid: delete reservation

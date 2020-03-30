@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.AddDishCommandTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-03-30T14:41:57" hostname="LAPTOP-44LCAOD7" time="0.056">
+  <properties/>
+  <testcase name="parseNameTestA()" classname="commands.AddDishCommandTest" time="0.035"/>
+  <testcase name="parseNameTestB()" classname="commands.AddDishCommandTest" time="0.001"/>
+  <testcase name="addDishTestA()" classname="commands.AddDishCommandTest" time="0.002"/>
+  <testcase name="addDishTestB()" classname="commands.AddDishCommandTest" time="0.001"/>
+  <testcase name="parseIngredientsTestA()" classname="commands.AddDishCommandTest" time="0.001"/>
+  <testcase name="parseIngredientsTestB()" classname="commands.AddDishCommandTest" time="0.004"/>
+  <testcase name="parsePriceTestA()" classname="commands.AddDishCommandTest" time="0.001"/>
+  <testcase name="parsePriceTestB()" classname="commands.AddDishCommandTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
