@@ -157,12 +157,12 @@ The sequence diagram below shows how various components, broken down into the va
 
 ## 3. Setting Up
 - For **Windows** Users:
-    1. Download the latest release of ATAS here.
+    1. Download the latest release of ATAS [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
     2. Open a ```cmd```(Command Prompt) window.
     3. Navigate to the directory containing downloaded jar file.
     4. Run the command ```java -jar atas.jar```. You will be greeted with the welcome screen of ATAS in a few seconds.
 - For **Mac** Users:
-    1. Download the latest release of ATAS here.
+    1. Download the latest release of ATAS [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
     2. Open up ```Terminal```
     3. Navigate to the directory containing downloaded jar file.
     4. Run the command ```java -jar atas.jar```. You will be greeted with the welcome screen of ATAS in a few seconds.
