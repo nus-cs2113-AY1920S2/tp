@@ -155,21 +155,21 @@ public class Event {
                 + name + '|'
                 + datetime.toStorable() + '|'
                 + venue
-                + ", ");
+                + ",");
 
         for (Attendance attendance : attendanceList.getAttendanceList()) {
             output.append(attendance.toString());
             output.append('|');
         }
         // add a space to prevent NoSuchElementException, in case no AttendanceList
-        output.append(", ");
+        output.append(",");
 
         for (Performance performance : performanceList.getPerformanceList()) {
             output.append(performance.toString());
             output.append('|');
         }
         // add a space to prevent NoSuchElementException, in case no PerformanceList
-        output.append(", ");
+        output.append(",");
 
         return output.toString();
     }
