@@ -41,6 +41,7 @@ public class AddTaskCommand extends AddCommand {
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<optional>(?:\\s+-[dp](?:\\s+\\w\\S*)+)*)"
+            + "(?<invalid>.*)"
 
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(

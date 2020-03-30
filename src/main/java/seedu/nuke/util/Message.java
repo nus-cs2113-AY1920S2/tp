@@ -44,9 +44,6 @@ public class Message {
     public static final String DIVIDER = "-".repeat(100);
 
     public static final String MESSAGE_SHOW_LIST = "Here are what you are looking for...\n";
-    public static final String MESSAGE_PRIORITY_NOT_IN_RANGE =
-            "Alert! Priority should be a number between 0 and 100 inclusive.\n";
-
 
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
     public static final String MESSAGE_NO_CATEGORIES_FOUND = "Sorry. No categories found.\n";
@@ -54,10 +51,6 @@ public class Message {
     public static final String MESSAGE_NO_FILES_FOUND = "Sorry. No files found.\n";
 
 
-    public static final String MESSAGE_TASK_ADDED = "Task added!\n";
-    public static final String MESSAGE_TASK_REMOVED = "Task removed!\n";
-    public static final String MESSAGE_MODULE_CHANGE_SUCCESSFUL = "Module change succeeded\n";
-    public static final String MESSAGE_ROOT_CHANGE_SUCCESSFUL = "ROOT change succeeded\n";
     public static final String MESSAGE_GO_INTO_MODULE = "please go inside a Module!\n";
     public static final String MESSAGE_HELP = "Here are valid commands and corresponding format:\n";
 
@@ -298,4 +291,6 @@ public class Message {
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
 
     public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to last state.\n";
+
+    public static final String MESSAGE_OPEN_FILE_SUCCESS = "SUCCESS!! The files are opening now...\n";
 }
