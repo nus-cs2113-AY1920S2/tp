@@ -47,6 +47,7 @@ public class ViewCommand extends Command {
         default:
             throw new RuntimeException("Please enter 'help' to find an acceptable command!");
         }
+        assert viewTaskType != null;
     }
 
     /**
