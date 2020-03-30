@@ -209,7 +209,8 @@ public class Ui {
                 System.out.print(" ");
             }
         }
-        System.out.println("|");
+        System.out.print("|");
+        System.out.println((int) percent + "% completed");
         System.out.println(DIVIDER);
     }
 
