@@ -81,12 +81,12 @@ public class Appointment {
     }
 
     public void setDone(boolean done) {
-        isDone = false;
+        isDone = done;
     }
 
     @Override
     public String toString() {
-        String status = isDone ? "Yes" : "No";
+        String status = this.isDone ? "Yes" : "No";
         String text = "        NRIC     : " + this.nric + "\n"
                 + "        Date     : " + this.date + "\n"
                 + "        Time     : " + this.time + "\n"
