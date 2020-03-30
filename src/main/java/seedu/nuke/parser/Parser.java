@@ -222,8 +222,8 @@ public class Parser {
 
     /**
      * Prepare the command to list the content based on the directory of the user is currently in.
-     * @param parameters
-     * @return
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
      * @throws InvalidPrefixException exception is thrown when prefix is invalid.
      * @throws InvalidParameterException exception is thrown when parameter is invalid.
      * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
