@@ -2,7 +2,11 @@
 
 ## Introduction
 
-{Give a product intro}
+AddressBook Level 3 (AB3) is for those who prefer to use a desktop app for managing contacts. 
+More importantly, AB3 is optimized for those who prefer to work with a Command Line Interface (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. 
+Interested? Jump to the Section 2, “Quick Start” to get started. Enjoy!
 
 ## Quick Start
 

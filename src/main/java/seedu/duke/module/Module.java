@@ -85,15 +85,15 @@ public abstract class Module {
     }
 
     public String getPreReqModulesID() {
-        String preReqModulesList = "";
+        String preReqModulesStringList = "";
         boolean hasNoPreReqModules = preRequisiteModules.size() == 0;
         if (hasNoPreReqModules) {
-            preReqModulesList = ("None");
+            preReqModulesStringList = ("None");
         }
         for (Module preReqModule : preRequisiteModules) {
-            preReqModulesList += preReqModule.getId() + " ";
+            preReqModulesStringList += preReqModule.getId() + " ";
         }
-        return preReqModulesList;
+        return preReqModulesStringList;
     }
 
     public abstract String toStorageString();
