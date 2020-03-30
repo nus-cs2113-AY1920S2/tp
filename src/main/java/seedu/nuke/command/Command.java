@@ -1,10 +1,5 @@
 package seedu.nuke.command;
 
-import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.Directory;
-import seedu.nuke.directory.Module;
-import seedu.nuke.exception.IncorrectDirectoryLevelException;
-
 public abstract class Command {
     // public static String COMMAND_WORD;
     //protected ModuleManager moduleManager;
@@ -16,8 +11,7 @@ public abstract class Command {
      * @return
      *  The result of the execution
      */
-    public abstract CommandResult execute() throws ModuleManager.ModuleNotFoundException, IncorrectDirectoryLevelException;
-
+    public abstract CommandResult execute();
 
     //public String toString() {
     //    return this.COMMAND_WORD;
