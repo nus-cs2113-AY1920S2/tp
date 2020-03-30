@@ -129,6 +129,32 @@ Format & Usage: `exit`
 
 **A**: Yes! All your subjects, cards and scores are saved. To ensure that your data is not lost, do not delete the folder called 'data' that is created when you first run the program.
 
+<hr>
+
+**Q**: If I delete a subject, what happens to the cards?
+**A**: By deleting a subject, you'll delete everything in that subject. So be careful with this.
+
+<hr>
+
+**Q**: Can I create a card that does not belong to any subject?
+**A**: Sorry, you can't. You must need a subject for every card.
+
+<hr>
+
+**Q**: Can I create a card that belongs to multiple subject?
+**A**: Sorry, at current stage this is not supported.
+
+<hr>
+
+**Q**: Will I be able to export the cards to a external file i.e. a text file?
+**A**: Sorry, at current stage this is not supported.
+
+<hr>
+**Q**: Can I add something else other than exam date to the programm? 
+**A**: Feel free to add anything you'd like.
+
+
+
 ## Command Summary
 * Add a subject `addsubject s/<SUBJECTNAME>`
 * List all subjects `listsubject`
