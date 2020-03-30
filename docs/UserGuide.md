@@ -47,7 +47,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application]()
+![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG)
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [Section 3, "Features"](#3-features) for detailed instructions on how to use each command.
 
