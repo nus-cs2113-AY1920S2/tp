@@ -47,7 +47,7 @@ public class Storage {
                 saveFile.getParentFile().mkdirs();
                 saveFile.createNewFile();
             } catch (IOException e) {
-                throw new EscException("File creation error in ensure");
+                throw new EscException("File creation error");
             }
         }
     }
@@ -60,12 +60,7 @@ public class Storage {
         ArrayList<Subject> loadSubs = new ArrayList<>();
         ArrayList tempList;
         if (!saveFile.exists()) {
-            try {
-                saveFile.getParentFile().mkdirs();
-                saveFile.createNewFile();
-            } catch (IOException e) {
-                throw new EscException("File creation error ");
-            }
+            ensureFileExists();
         } else {
             try {
                 FileInputStream fileRead = new FileInputStream(saveFile);
@@ -73,7 +68,6 @@ public class Storage {
                 tempList = (ArrayList) objRead.readObject();
                 for (int i = 0; i < tempList.size(); i++) {
                     loadSubs.add((Subject) tempList.get(i));
-                    System.out.println("adding");
                 }
 
                 objRead.close();
