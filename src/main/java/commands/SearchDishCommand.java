@@ -9,7 +9,7 @@ public class SearchDishCommand extends Menu {
 
     /**
      * Searches menu for dish names containing keyword.
-     * @param keyword keyword to search for
+     * @param input input string containing keyword
      */
     public static HashMap<String, Dish> searchDish(String input) {
         String keyword = parseKeyword(input);
