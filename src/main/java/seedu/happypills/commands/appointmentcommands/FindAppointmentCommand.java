@@ -5,7 +5,7 @@ import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.ui.TextUi;
 
-public class FindAppointmentCommand extends PatientCommand {
+public class FindAppointmentCommand extends AppointmentCommand {
     protected String patientNric;
 
     /**

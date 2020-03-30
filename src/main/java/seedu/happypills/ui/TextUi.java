@@ -348,7 +348,8 @@ public class TextUi {
     }
 
     public static String getAppointmentSuccessMessage(Patient patient) {
-        String returnMessage = "    Here are the patient's appointments:\n";
+        String returnMessage = "    Here are the patient's appointments:\n"
+                +"     | ID | NRIC   | Reason | Date      | Time     |\n";
         String content = "";
         ArrayList<Appointment> tempList = patient.getAppointments();
         for (Appointment appointment : tempList) {
@@ -357,12 +358,13 @@ public class TextUi {
             String reason = appointment.getReason();
             String date = appointment.getDate();
             String time = appointment.getTime();
-            content += "    " + nric + " | " + reason + " | " + date + " | " + time + " | " + id + " | \n";
+            content += "     | " + id + " | " + nric + " | " + reason + " | " + date + " | " + time + " | \n";
         }
         if (content.isEmpty()) {
             returnMessage = "    There are no appointments in the list.\n";
+        } else {
+            returnMessage += content + DIVIDER;
         }
-        returnMessage += DIVIDER;
 
         return returnMessage;
     }
