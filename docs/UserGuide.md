@@ -104,7 +104,7 @@ Format: `help`
 
 >***Expected output:***
 > 
-> ![help]()
+> ![help](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/HelpOutput.PNG)
 
 :information_source: | The help command is split into four different sections `(highlighted by the boxes)`.
 ---------------------|--------------------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd]()
+>   ![CheckConfirmAdd](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/addConfirm.PNG)
 >
 > Enter `y` to confirm.
 
@@ -175,7 +175,7 @@ Edit information of the patient with the specified NRIC.
 
 > ***Expected output:***
 >
-> ![editPatientOutput]()
+> ![editPatientOutput](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/EditCommandOutput.PNG)
 
 :information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
 ---------------------|--------------------------------------------------------------------------
