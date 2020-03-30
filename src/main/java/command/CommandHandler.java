@@ -12,30 +12,30 @@ import ui.TextUI;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 
 public class CommandHandler {
 
     public static TeamMember addContact(TeamMemberList myTeamMemberList, String[] userInputWords,
                                         Integer startDay, Integer endDay) throws MoException {
         TeamMember member;
-        int checkerForRepeatedName;
-        checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream()
-                .mapToInt(person -> check(person, userInputWords[0])).sum();
-        if (checkerForRepeatedName == 1) {
-            TextUI.showRepeatedPerson(userInputWords[0]);
-            throw new MoException("Repeated user");
-        }
+        checkRepeatedName(myTeamMemberList, userInputWords);
 
-        member = new TeamMember(userInputWords[0]);
         String name = userInputWords[0];
+        String url = userInputWords[1];
+
+        member = new TeamMember(name);
         LessonsGenerator myLessonGenerator;
         try {
-            myLessonGenerator = new LessonsGenerator(userInputWords[1]);
+            myLessonGenerator = new LessonsGenerator(url);
             myLessonGenerator.generate();
             ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
+
             for (int k = 0; k < myLessonDetails.size(); k++) {
                 String startTimeString = null;
                 String endTimeString = null;
+                String[] weeks = new String[0];
                 for (int j = 0; j < myLessonDetails.get(k).length; j++) {
                     switch (j) {
                     case 0:
@@ -49,22 +49,39 @@ public class CommandHandler {
                         endDay = startDay;
                         break;
                     case 3:
+                        weeks = myLessonDetails.get(k)[j].split(":");
+                        System.out.println(Arrays.toString(weeks));
                         //future improvement: since myLessonDetails.get(k)[3] contains data on the
                         // week number that this class occurs on, add capability of schedule to reflect
                         // schedule of the current week.
+                        //
+                        //0900 1200 Friday 5:7:9:11
+                        //1600 1800 Thursday 1:2:3:4:5:6:7:8:9:10:11:12:13
+                        //1600 1800 Tuesday 1:2:3:4:5:6:7:8:9:10:11:12:13
+                        //0900 1200 Tuesday 1:2:3:4:5:6
                         break;
                     default:
                         //data only has four sections from api
                         break;
                     }
                 }
-                member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString);
+                member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString, weeks);
             }
             TextUI.showAddedMember(member.getName());
         } catch (InvalidUrlException e) {
             System.out.println(e.getMessage());
         }
         return member;
+    }
+
+    private static void checkRepeatedName(TeamMemberList myTeamMemberList, String[] userInputWords) throws MoException {
+        int checkerForRepeatedName;
+        checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream()
+                .mapToInt(person -> check(person, userInputWords[0])).sum();
+        if (checkerForRepeatedName == 1) {
+            TextUI.showRepeatedPerson(userInputWords[0]);
+            throw new MoException("Repeated user");
+        }
     }
 
     private static Integer getNumberFromDay(String day) {
@@ -107,7 +124,6 @@ public class CommandHandler {
     }
 
     public static void listMeetings(MeetingList meetingList) {
-        TextUI.listMeetings();
         meetingList.show();
     }
 
@@ -126,20 +142,56 @@ public class CommandHandler {
     }
 
     public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser,
-                                       TeamMemberList teamMemberList) {
-        Integer startDay;
-        Integer endDay;
-        String meetingName = userInputWords[1];
-        startDay = Integer.parseInt(userInputWords[2]);
-        LocalTime startTime = LocalTime.parse(userInputWords[3]);
-        endDay = Integer.parseInt(userInputWords[4]);
-        LocalTime endTime = LocalTime.parse(userInputWords[5]);
+                                       TeamMemberList teamMemberList, int currentWeekNumber) {
+
 
         try {
-            if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime)) {
-                Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime);
+            int endOfMonthDate = 0;
+            Calendar cal = Calendar.getInstance();
+            String day = (cal.getTime().toString().split(" "))[0];
+            String month = (cal.getTime().toString().split(" "))[1];
+            int distFromPreviousSunday = 0;
+            for (int i = 0; i < 6 && !day.equals("Sun"); distFromPreviousSunday++, i++) {
+                cal.add(Calendar.DATE, -1);
+                if (!(cal.getTime().toString().split(" "))[1].equals(month)) {
+                    endOfMonthDate = Integer.parseInt(cal.getTime().toString().split(" ")[2]);
+                }
+                day = (cal.getTime().toString().split(" "))[0];
+            }
+            Calendar cal2 = Calendar.getInstance();
+            for (int i = 0; i < (14 - distFromPreviousSunday); i++) {
+                if (!(cal2.getTime().toString().split(" "))[1].equals(month)) {
+                    break;
+                }
+                endOfMonthDate = Integer.parseInt(cal2.getTime().toString().split(" ")[2]);
+                cal2.add(Calendar.DATE, 1);
+            }
+
+            Integer startDay;
+            Integer endDay;
+            int startOfWeekDate = getStartOfWeekDate();
+            String meetingName = userInputWords[1];
+            int startDate = Integer.parseInt(userInputWords[2]);
+            int endDate = Integer.parseInt(userInputWords[4]);
+            if (startDate - startOfWeekDate < 0) {
+                startDay = endOfMonthDate - startOfWeekDate + startDate;
+            } else {
+                startDay = startDate - startOfWeekDate;
+            }
+            if (endDate - startOfWeekDate < 0) {
+                endDay = endOfMonthDate - startOfWeekDate + endDate;
+            } else {
+                endDay = endDate - startOfWeekDate;
+            }
+
+
+            LocalTime startTime = LocalTime.parse(userInputWords[3]);
+            LocalTime endTime = LocalTime.parse(userInputWords[5]);
+            if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
+                Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime, startDate, endDate);
                 meetingList.add(myMeeting);
-                mainUser.addBusyBlocks(meetingName, startDay, userInputWords[3], endDay, userInputWords[5]);
+                String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
+                mainUser.addBusyBlocks(meetingName, startDay, userInputWords[3], endDay, userInputWords[5], thisWeekNumber);
                 TextUI.meetingListSizeMsg(meetingList);
             } else {
                 System.out.println("Schedule is blocked at that timeslot");
@@ -151,7 +203,75 @@ public class CommandHandler {
         teamMemberList.set(0, mainUser);
     }
 
-    public static void displayTimetable(String[] userInputWords, TeamMember mainUser, TeamMemberList teamMemberList) {
+    private static int getDateOfPreviousSunday(String[] data) {
+        int date;
+        Calendar cal = Calendar.getInstance();
+//        cal.add(Calendar.DATE, -);
+
+        switch (data[0]) {
+        case "Sun":
+            date = Integer.parseInt(data[2]);
+            break;
+        case "Mon":
+            cal.add(Calendar.DATE, -1);
+            break;
+        case "Tue":
+            cal.add(Calendar.DATE, -2);
+            break;
+        case "Wed":
+            cal.add(Calendar.DATE, -3);
+            break;
+        case "Thu":
+            cal.add(Calendar.DATE, -4);
+            break;
+        case "Fri":
+            cal.add(Calendar.DATE, -5);
+            break;
+        case "Sat":
+            cal.add(Calendar.DATE, -6);
+            break;
+        default:
+            cal.add(Calendar.DATE, 0);
+        }
+        String[] temp = cal.getTime().toString().split(" ");
+        date = Integer.parseInt(temp[2]);
+        return date;
+    }
+
+    private static int getStartOfWeekDate() {
+        String[] data = java.util.Calendar.getInstance().getTime().toString().split(" ");
+        String day = data[0];
+        int date = Integer.parseInt(data[2]);
+        switch (day) {
+        case "Mon":
+            date -= 1;
+            break;
+        case "Tue":
+            date -= 2;
+            break;
+        case "Wed":
+            date -= 3;
+            break;
+        case "Thu":
+            date -= 4;
+            break;
+        case "Fri":
+            date -= 5;
+            break;
+        case "Sat":
+            date -= 6;
+            break;
+        case "Sun":
+            date = date;
+            break;
+        default:
+            date = date;
+            break;
+        }
+        return date;
+    }
+
+    public static void displayTimetable(String[] userInputWords, TeamMember mainUser, TeamMemberList teamMemberList, int weekNumber, int weeksMoreToView) throws MoException {
         int memberNumber;
         TeamMember member;
         try {
@@ -163,13 +283,13 @@ public class CommandHandler {
                     myScheduleList.add(member);
                 }
                 ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
-                Boolean[][] myMasterSchedule;
+                Boolean[][][] myMasterSchedule;
                 myMasterSchedule = myScheduleHandler.getMasterSchedule();
-                System.out.println("Timetable of the selected team member/s:");
-                TextUI.printTimetable(myMasterSchedule);
+                System.out.println("Timetable of the selected team member/s this week:");
+                TextUI.printTimetable(myMasterSchedule, weeksMoreToView, weekNumber);
             } else {
-                System.out.println("Your timetable:");
-                TextUI.printTimetable(mainUser.getSchedule());
+                System.out.println("Your timetable this week:");
+                TextUI.printTimetable(mainUser.getSchedule(), weeksMoreToView, weekNumber);
             }
         } catch (IndexOutOfBoundsException e) {
             TextUI.indexOutOfBoundsMsg();
@@ -180,8 +300,12 @@ public class CommandHandler {
         }
     }
 
-    public static void listContacts(TeamMemberList teamMemberList, TeamMember mainUser) {
-        TextUI.teamMemberListMsg(teamMemberList.getTeamMemberList(), mainUser.getName());
+    public static void listContacts(TeamMemberList teamMemberList, TeamMember mainUser) throws MoException {
+        try {
+            TextUI.teamMemberListMsg(teamMemberList.getTeamMemberList(), mainUser.getName());
+        } catch (NullPointerException e) {
+          throw new MoException("You have no contacts.");
+        }
     }
 
 

@@ -6,6 +6,7 @@ import meeting.MeetingList;
 import schedulelogic.TeamMember;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
@@ -63,26 +64,114 @@ public class TextUI {
     }
 
 
-    public static void printTimetable(Boolean[][] mySchedule) {
-        out.println("      SUN MON TUE WED THU FRI SAT");
+    public static void printTimetable(Boolean[][][] mySchedule, int weeksMoreToView, int weekNumber) {
+        out.print("Date:  ");
+        String[] tempDate = java.util.Calendar.getInstance().getTime().toString().split(" ");
+        String day_string = tempDate[0];
+        int day = 0;
+        Calendar cal = Calendar.getInstance();
+        switch (day_string) {
+        case "Sun":
+            cal.add(Calendar.DATE, -1);
+            break;
+        case "Mon":
+            cal.add(Calendar.DATE, -2);
+            break;
+        case "Tue":
+            cal.add(Calendar.DATE, -3);
+            break;
+        case "Wed":
+            cal.add(Calendar.DATE, -4);
+            break;
+        case "Thu":
+            cal.add(Calendar.DATE, -5);
+            break;
+        case "Fri":
+            cal.add(Calendar.DATE, -6);
+            break;
+        case "Sat":
+            cal.add(Calendar.DATE, -7);
+            break;
+        default:
+            cal.add(Calendar.DATE, -1);
+            break;
+        }
+        int date = Integer.parseInt(tempDate[2]);
+        int weekViewLimit;
+        if (weeksMoreToView == 1) {
+            weekViewLimit = 14;
+        } else {
+            weekViewLimit = 7;
+        }
+        for (int i = 0; i < weekViewLimit; i++) {
+            cal.add(Calendar.DATE, 1);
+            String[] dateArray = cal.getTime().toString().split(" ");
+            int datePrint = Integer.parseInt(dateArray[2]);
+            String lastChar = dateArray[2].substring(dateArray[2].length() - 1);
+            String datePostFix;
+            if (lastChar.equals("1") && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
+                datePostFix = "st";
+            } else if (lastChar.equals("2")) {
+                datePostFix = "nd";
+            } else if (lastChar.equals("3")) {
+                datePostFix = "rd";
+            } else {
+                datePostFix = "th";
+            }
+            String output = datePrint + datePostFix;
+            System.out.print((output.length() == 3)? output + "   " : output + "  ");
+            if (i == 6 && weeksMoreToView == 1) {
+                out.print("  ");
+            }
+        }
+        out.println();
+
+        out.print("       SUN   MON   TUE   WED   THU   FRI   SAT  ");
+        if (weeksMoreToView == 1) {
+            out.print("   SUN   MON   TUE   WED   THU   FRI   SAT");
+        }
+        out.println();
 
         for (int i = 0; i < 24; ++i) {
-            out.println(String.format("%04d", (0000 + 100 * i)) + " +---+---+---+---+---+---+---+");
-
-            out.print("     |");
-            for (int j = 0; j < 7; ++j) {
-                out.print(" " + (mySchedule[j][2 * i] ? "X" : " ") + " |");
+            out.print(String.format("%04d", (0000 + 100 * i)) + " +-----+-----+-----+-----+-----+-----+-----+");
+            if (weeksMoreToView == 1) {
+                out.print(" +-----+-----+-----+-----+-----+-----+-----+");
             }
             out.println();
-            out.println("     +---+---+---+---+---+---+---+");
 
             out.print("     |");
-            for (int j = 0; j < 7; ++j) {
-                out.print(" " + (mySchedule[j][2 * i + 1] ? "X" : " ") + " |");
+            for (int z = 0; z <= weeksMoreToView; z++) {
+                for (int j = 0; j < 7; ++j) {
+                    out.print("  " + (mySchedule[weekNumber + z][j][2 * i] ?"X" :" ")+"  |");
+                }
+                if (z < weeksMoreToView) {
+                    out.print(" |");
+                }
+            }
+            out.println();
+
+            out.print("     +-----+-----+-----+-----+-----+-----+-----+");
+            if (weeksMoreToView == 1) {
+                out.print(" +-----+-----+-----+-----+-----+-----+-----+");
+            }
+            out.println();
+
+            out.print("     |");
+            for (int z = 0; z <= weeksMoreToView; z++) {
+                for (int j = 0; j < 7; ++j) {
+                out.print("  " + (mySchedule[weekNumber + z][j][2 * i + 1] ? "X" : " ") + "  |");
+                }
+                if (z < weeksMoreToView) {
+                    out.print(" |");
+                }
             }
             out.println();
         }
-        out.println("0000" + " +---+---+---+---+---+---+---+");
+        out.print("0000" + " +-----+-----+-----+-----+-----+-----+-----+");
+        if (weeksMoreToView == 1) {
+            out.print(" +-----+-----+-----+-----+-----+-----+-----+");
+        }
+        out.println();
     }
 
     public static void scheduleMeetingMsg() {
@@ -97,10 +186,6 @@ public class TextUI {
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
         out.println("You now have " + myMeetingList.getMeetingListSize() + " meeting/s in the list.");
-    }
-
-    public static void listMeetings() {
-        out.println("Here are all your meeting slots.");
     }
 
     public static void timeOutOfRangeMsg() {
@@ -126,13 +211,37 @@ public class TextUI {
             String startDay = getDayFromNumber(meetingList.get(i).getStartDay());
             String endDay = getDayFromNumber(meetingList.get(i).getEndDay());
             String meetingName = meetingList.get(i).getMeetingName();
-            System.out.println((i + 1) + ". " + startDay + " " + meetingList.get(i).getStartTime()
-                    + " to " + endDay + " " + meetingList.get(i).getEndTime() + "(" + meetingName + ")");
+            out.println(endDay);
+
+            String startDate = Integer.toString(meetingList.get(i).getStartDate());
+            String endDate = Integer.toString(meetingList.get(i).getEndDate());
+
+            System.out.println((i + 1) + ". " + startDay + "(" + startDate + getPostFix(startDate) + ") "
+                    + meetingList.get(i).getStartTime() + " to " + endDay + "(" + endDate + getPostFix(endDate) + ") "
+                    + meetingList.get(i).getEndTime() + " (" + meetingName + ")");
         }
+    }
+
+    private static String getPostFix(String date) {
+        String lastChar = date.substring(date.length() - 1);
+        String datePostFix;
+        if (lastChar.equals("1") && !date.substring(date.length() - 2, date.length() - 1).equals("1")) {
+            datePostFix = "st";
+        } else if (lastChar.equals("2")) {
+            datePostFix = "nd";
+        } else if (lastChar.equals("3")) {
+            datePostFix = "rd";
+        } else {
+            datePostFix = "th";
+        }
+        return datePostFix;
     }
 
     public static String getDayFromNumber(int dayNum) {
         String day;
+        if (dayNum > 6) {
+            dayNum %= 7;
+        }
         switch (dayNum) {
         case 0:
             day = "Sunday";
@@ -156,7 +265,7 @@ public class TextUI {
             day = "Saturday";
             break;
         default:
-            day = "";
+            day = "Out of range";
         }
         return day;
     }
@@ -182,19 +291,19 @@ public class TextUI {
     }
 
     public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList, String mainUser) {
-        System.out.println("____________________________________________________________\n"
-                + "Here are your stored contacts:");
-        int i = 0;
-        for (TeamMember teamMember : teamMemberList) {
-            out.print("\t " + i + ") " + teamMember.getName());
-            if (i == 0) {
-                System.out.println(" (main user)");
-            } else {
-                System.out.println();
+            System.out.println("____________________________________________________________\n"
+                    + "Here are your stored contacts:");
+            int i = 0;
+            for (TeamMember teamMember : teamMemberList) {
+                out.print("\t " + i + ") " + teamMember.getName());
+                if (i == 0) {
+                    System.out.println(" (main user)");
+                } else {
+                    System.out.println();
+                }
+                i++;
             }
-            i++;
-        }
-        System.out.println("____________________________________________________________\n");
+            System.out.println("____________________________________________________________\n");
     }
 
     public static void showAddedMember(String memberName) {

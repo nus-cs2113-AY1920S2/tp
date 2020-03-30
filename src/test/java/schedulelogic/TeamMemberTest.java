@@ -21,7 +21,7 @@ public class TeamMemberTest {
 
         myMember = new TeamMember("MEMBER");
         String invalidOutOfRangeEndTimeMessage = myMember.addBusyBlocks(meetingName,
-                validStartDay, validStartTime, validEndDay, invalidOutOfRangeEndTime);
+                validStartDay, validStartTime, validEndDay, invalidOutOfRangeEndTime, onWeeks);
         assertEquals(invalidOutOfRangeEndTimeMessage, MESSAGE_STARTENDTIME_OUT_OF_RANGE);
     }
 
@@ -34,14 +34,14 @@ public class TeamMemberTest {
         String meetingName = "TEST_MEETING";
         myMember = new TeamMember("MEMBER");
         String invalidOutOfRangeEndDayMessage = myMember.addBusyBlocks(meetingName,
-                validStartDay, validStartTime, invalidOutOfRangeEndDay, validEndTime);
+                validStartDay, validStartTime, invalidOutOfRangeEndDay, validEndTime, onWeeks);
         assertEquals(invalidOutOfRangeEndDayMessage, MESSAGE_STARTENDDAY_OUT_OF_RANGE);
 
         myMember = new TeamMember("MEMBER");
         int validEndDay = 3;
         int invalidOutOfRangeStartDay = -1;
         String invalidOutOfRangeStartDayMessage = myMember.addBusyBlocks(meetingName,
-                invalidOutOfRangeStartDay, validStartTime, validEndDay, validEndTime);
+                invalidOutOfRangeStartDay, validStartTime, validEndDay, validEndTime, onWeeks);
         assertEquals(invalidOutOfRangeStartDayMessage, MESSAGE_STARTENDDAY_OUT_OF_RANGE);
     }
 
@@ -55,14 +55,14 @@ public class TeamMemberTest {
 
         myMember = new TeamMember("MEMBER");
         String invalidFormatStartTimeMessage = myMember.addBusyBlocks(meetingName,
-                validStartDay, invalidFormatStartTime, validEndDay, validEndTime);
+                validStartDay, invalidFormatStartTime, validEndDay, validEndTime, onWeeks);
         assertEquals(invalidFormatStartTimeMessage, MESSAGE_STARTENDTIME_WRONG_FORMAT);
     }
 
     @Test
     public void addBusyBlocks_correctParams() {
         myMember = new TeamMember("MEMBER");
-        String correctMessage = myMember.addBusyBlocks("TEST MEETING", 1, "11:30", 2, "14:30");
+        String correctMessage = myMember.addBusyBlocks("TEST MEETING", 1, "11:30", 2, "14:30", onWeeks);
         assertEquals(correctMessage, MESSAGE_RETURN_SUCCESS);
     }
 }

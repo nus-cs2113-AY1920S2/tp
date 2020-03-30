@@ -38,8 +38,8 @@ public class ScheduleHandlerTest {
         ArrayList<TeamMember> myScheduleList = new ArrayList<>();
         final TeamMember member1 = new TeamMember("member1");
         final TeamMember member2 = new TeamMember("member2");
-        member1.addBusyBlocks("schedule1", 0, "13:00", 0, "19:00");
-        member1.addBusyBlocks("schedule2", 4, "16:00", 4, "18:00");
+        member1.addBusyBlocks("schedule1", 0, "13:00", 0, "19:00", onWeeks);
+        member1.addBusyBlocks("schedule2", 4, "16:00", 4, "18:00", onWeeks);
         myScheduleList.add(member1);
         myScheduleList.add(member2);
         myScheduleHandler = new ScheduleHandler(myScheduleList);
