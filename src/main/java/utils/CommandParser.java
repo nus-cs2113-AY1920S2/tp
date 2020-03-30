@@ -6,6 +6,7 @@ import commands.AddReservationCommand;
 import commands.DeleteDishCommand;
 import commands.DeleteStockCommand;
 import commands.MarkReservationCommand;
+import commands.SearchDishCommand;
 import commands.VoidReservationCommand;
 import commands.ListDishCommand;
 import commands.ListStockCommand;
@@ -134,17 +135,25 @@ public class CommandParser {
                 }
             } else if (splitCommands[1].equals("reservation")) {
                 new SearchReservationCommand(commands[1]).execute(reservations, ui);
+                successfulCommand();
+            } else if (splitCommands[1].equals("dish")) {
+                SearchDishCommand.searchDish(commands[1]);
+                successfulCommand();
             } else {
                 errorCommand();
             }
         } else if (splitCommands[0].equals("help")) {
             new HelpCommand().execute();
+            successfulCommand();
         } else if (splitCommands[0].equals("sell")) {
             sales.addSale(commands[1]);
+            successfulCommand();
         } else if (splitCommands[0].equals("profit")) {
             sales.calculateProfit();
+            successfulCommand();
         } else if (splitCommands[0].equals("popular")) {
             sales.mostPopularDish();
+            successfulCommand();
         } else {
             errorCommand();
         }

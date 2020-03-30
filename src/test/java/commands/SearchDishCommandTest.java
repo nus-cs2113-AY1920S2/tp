@@ -26,7 +26,7 @@ public class SearchDishCommandTest {
     @Test
     public void searchDishTestA() {
         start();
-        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("chicken");
+        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("k/chicken;");
         assertTrue(matchingA.containsKey("chicken biryani"));
         assertTrue(matchingA.containsKey("pasta with chicken"));
         assertFalse(matchingA.containsKey("bacon flatbread"));
@@ -36,12 +36,12 @@ public class SearchDishCommandTest {
     @Test
     public void searchDishTestB() {
         start();
-        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("bacon");
+        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("k/bacon;");
         assertTrue(matchingA.containsKey("bacon flatbread"));
         assertTrue(matchingA.containsKey("bacon pizza"));
         assertFalse(matchingA.containsKey("chicken biryani"));
         assertFalse(matchingA.containsKey("pasta with chicken"));
-        HashMap<String, Dish> matchingB = SearchDishCommand.searchDish("bac");
+        HashMap<String, Dish> matchingB = SearchDishCommand.searchDish("k/bac;");
         assertTrue(matchingB.containsKey("bacon flatbread"));
         assertTrue(matchingB.containsKey("bacon pizza"));
         assertFalse(matchingB.containsKey("chicken biryani"));
@@ -51,7 +51,7 @@ public class SearchDishCommandTest {
     @Test
     public void searchDishTestC() {
         start();
-        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("cheese");
+        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("k/cheese;");
         assertFalse(matchingA.containsKey("bacon flatbread"));
         assertFalse(matchingA.containsKey("bacon pizza"));
         assertFalse(matchingA.containsKey("chicken biryani"));
@@ -61,7 +61,7 @@ public class SearchDishCommandTest {
     @Test
     public void searchDishTestD() {
         start();
-        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("pizza");
+        HashMap<String, Dish> matchingA = SearchDishCommand.searchDish("k/pizza;");
         assertFalse(matchingA.containsKey("bacon flatbread"));
         assertTrue(matchingA.containsKey("bacon pizza"));
         assertFalse(matchingA.containsKey("chicken biryani"));
