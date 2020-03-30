@@ -144,10 +144,9 @@ public class ActivityList {
             Duration allocatedTime = activityList.get(Parser.continuedIndex).getAllocatedTime();
             activityList.updateDuration(newDuration, Parser.endTime, Parser.continuedIndex);
 
-            if (activityList.get(Parser.continuedIndex).getAllocatedTime() != Duration.parse("PT0S")) {
-                Ui.printProgessMessage(activityList.get(Parser.continuedIndex).getProgressPercent());
+            if (allocatedTime != Duration.parse("PT0S")) {
+                Ui.printProgressMessage(activityList.get(Parser.continuedIndex).getProgressPercent());
             }
-
             Parser.continuedIndex = -1;
             Parser.resetInfo();
         } else {
@@ -159,7 +158,7 @@ public class ActivityList {
             activityList.add(newActivity);
 
             if (newActivity.getAllocatedTime() != Duration.parse("PT0S")) {
-                Ui.printProgessMessage(newActivity.getProgressPercent());
+                Ui.printProgressMessage(newActivity.getProgressPercent());
             }
             // reset activity info
             Parser.resetInfo();

@@ -4,6 +4,7 @@ import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.parser.Parser;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +20,8 @@ public class Ui {
     public static final int PROGRESSCONVERTER = 2;
 
     public static final int TOTALBARS = 50;
+
+    private static final DecimalFormat df2 = new DecimalFormat("#.##");
 
     /** Prints the logo and greeting so users know the app is working. */
     public void printGreeting() {
@@ -157,7 +160,7 @@ public class Ui {
      * Prints a progress message and progress bar based on the percentage of allocate time achieved.
      * @param percent percentage of allocated time achieved
      */
-    public static void printProgessMessage(double percent) {
+    public static void printProgressMessage(double percent) {
         System.out.println(DIVIDER);
         if (percent < 50) {
             System.out.println("Try harder next time! Here's your progress:");
@@ -167,7 +170,7 @@ public class Ui {
             System.out.println("Great job! Here's your progress:");
         }
         int starsLeft = (int) (percent / PROGRESSCONVERTER);
-        System.out.print("Progess for " + Parser.activityName + ": ");
+        System.out.print("Progress for " + Parser.activityName + ": ");
         System.out.print("|");
         for (int i = 0; i < TOTALBARS; i++) {
             if (starsLeft > 0) {
@@ -178,6 +181,39 @@ public class Ui {
             }
         }
         System.out.println("|");
+        System.out.println(DIVIDER);
+    }
+
+    public static void printProgressBar(double percent, String activityName) {
+        int starsLeft = (int) (percent / PROGRESSCONVERTER);
+        String line = "Progress for " + activityName + ": ";
+        System.out.print(String.format("%-35s", line));
+        System.out.print("|");
+        for (int i = 0; i < TOTALBARS; i++) {
+            if (starsLeft > 0) {
+                System.out.print("*");
+                starsLeft--;
+            } else {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("|  " + df2.format(percent) + "%");
+    }
+
+    public static void graphTargets(ActivityList activityList) {
+        System.out.println(DIVIDER);
+        for (int i = 0; i < activityList.getSize(); i++) {
+            if (activityList.get(i).getAllocatedTime() == Duration.parse("PT0S")) {
+                continue;
+            }
+            double percent = activityList.get(i).getProgressPercent();
+            double max = 100;
+            if (percent > max) {
+                percent = max;
+            }
+            String activityName = activityList.get(i).getName();
+            printProgressBar(percent,activityName);
+        }
         System.out.println(DIVIDER);
     }
 }
