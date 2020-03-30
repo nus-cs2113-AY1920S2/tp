@@ -1,10 +1,8 @@
 package seedu.nuke.util;
 
 import org.fusesource.jansi.Ansi;
-import seedu.nuke.directory.Category;
-import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.*;
 import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -50,6 +48,7 @@ public class Message {
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
     public static final String MESSAGE_NO_CATEGORIES_FOUND = "Sorry. No categories found.\n";
     public static final String MESSAGE_NO_TASKS_FOUND = "Sorry. No tasks found.\n";
+    public static final String MESSAGE_NO_FILES_FOUND = "Sorry. No files found.\n";
 
 
     public static final String MESSAGE_TASK_ADDED = "Task added!\n";
@@ -86,6 +85,14 @@ public class Message {
 
     public static final String MESSAGE_DELETE_ABORTED = "Deletion is aborted.\n";
 
+    /**
+     * Creates the message to confirm deletion of a module.
+     *
+     * @param toDelete
+     *  The module to be deleted
+     * @return
+     *  The message to confirm deletion of the module
+     */
     public static String messageConfirmDeleteModule(Module toDelete) {
         return String.format("Confirm delete %s %s?\n", toDelete.getModuleCode(), toDelete.getTitle());
     }
@@ -129,6 +136,14 @@ public class Message {
                 + "\nEnter the list number(s) of the modules to delete.\n";
     }
 
+    /**
+     * Creates the message to confirm deletion of a category.
+     *
+     * @param toDelete
+     *  The category to be deleted
+     * @return
+     *  The message to confirm deletion of the category
+     */
     public static String messageConfirmDeleteCategory(Category toDelete) {
         return String.format("Confirm delete %s?\n", toDelete.getCategoryName());
     }
@@ -171,6 +186,14 @@ public class Message {
                 + "\nEnter the list number(s) of the categories to delete.\n";
     }
 
+    /**
+     * Creates the message to confirm deletion of a task.
+     *
+     * @param toDelete
+     *  The task to be deleted
+     * @return
+     *  The message to confirm deletion of the task
+     */
     public static String messageConfirmDeleteTask(Task toDelete) {
         return String.format("Confirm delete %s?\n", toDelete.getDescription());
     }
@@ -212,17 +235,64 @@ public class Message {
                 + "\nEnter the list number(s) of the tasks to delete.\n";
     }
 
+    /**
+     * Creates the message to confirm deletion of a file.
+     *
+     * @param toDelete
+     *  The file to be deleted
+     * @return
+     *  The message to confirm deletion of the file
+     */
+    public static String messageConfirmDeleteFile(TaskFile toDelete) {
+        return String.format("Confirm delete %s?\n", toDelete.getFileName());
+    }
+
+    /**
+     * Creates the message to confirm deletion of multiple files.
+     *
+     * @param filteredFiles
+     *  The filtered list of files
+     * @param toDeleteIndices
+     *  The indices of the files to be deleted from the list
+     * @return
+     *  The message to confirm deletion of files
+     */
+    public static String messageConfirmDeleteFile(ArrayList<TaskFile> filteredFiles,
+          ArrayList<Integer> toDeleteIndices) {
+        StringBuilder promptMessage = new StringBuilder();
+        promptMessage.append("Confirm delete these files?\n");
+        for (int index : toDeleteIndices) {
+            String toDeleteFileName = filteredFiles.get(index).getFileName();
+            promptMessage.append(String.format("%s\n", toDeleteFileName));
+        }
+        return promptMessage.toString();
+    }
+
+    /**
+     * Creates the message to prompt user to enter the indices of the files to be deleted from the list.
+     *
+     * @param filteredFiles
+     *  The filtered list of files to be deleted
+     * @return
+     *  The message to prompt the user to enter the indices
+     */
+    public static String messagePromptDeleteFileIndices(ArrayList<Directory> filteredFiles) {
+        ArrayList<TaskFile> files = filteredFiles.stream()
+                .map(TaskFile.class::cast)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return "Multiple matching files found.\n"
+                + ListCreator.createFileListTable(files)
+                + "\nEnter the list number(s) of the tasks to delete.\n";
+    }
+
     public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.\n";
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
     public static final String MESSAGE_ILLEGAL_DELETE =
             "Attempting to delete the current or its parent's directory.\nMove out of the directory first.\n";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "SUCCESS!! Module has been updated.\n";
-
     public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! Category has been updated.\n";
-
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
-
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
 
     public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to last state.\n";

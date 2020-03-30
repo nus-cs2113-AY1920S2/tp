@@ -21,7 +21,7 @@ import static seedu.nuke.util.Message.messagePromptDeleteCategoryIndices;
  */
 public class DeleteCategoryCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delc";
-    public static final String FORMAT = COMMAND_WORD + " <category name>";
+    public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> [ -e -a ]";
 
     private String moduleCode;
     private String categoryName;
