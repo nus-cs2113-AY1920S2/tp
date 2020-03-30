@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.exception.InputException;
+import seedu.duke.exception.RuntimeException;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.SemesterList;
@@ -17,12 +18,8 @@ public class AddToDataCommand extends AddCommand {
         this.newModule = newModule;
     }
 
-    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
-        try {
-            addModule(semesterList, availableModulesList);
-        } catch (InputException e) {
-            e.printStackTrace();
-        }
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
+        addModule(semesterList, availableModulesList);
         Ui.showAddedToDataMessage(newModule.toString());
     }
 
@@ -32,22 +29,19 @@ public class AddToDataCommand extends AddCommand {
      * @param semesterList : user's current semester list.
      * @param availableModulesList : user's current available modules list.
      */
-    private void addModule(SemesterList semesterList, AvailableModulesList availableModulesList) throws InputException {
+    private void addModule(SemesterList semesterList, AvailableModulesList availableModulesList)
+            throws RuntimeException {
+
         for (Module module : availableModulesList) {
             boolean hasSameId = newModule.getId().equals(module.getId());
             boolean hasSameName = newModule.getName().equals(module.getName());
             if (hasSameId && hasSameName) {
-                throw new InputException("This module's name and Id has already "
+                throw new RuntimeException("This module's name and Id has already "
                         + "been added to the available modules list");
             } else if (hasSameId) {
                 module.updateName(newModule.getName());
             } else if (hasSameName) {
                 module.updateId(newModule.getId());
-            } else {
-                throw new InputException("Seems like the format is wrong",
-                        "add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]\" to add a"
-                                + " module to the list of available modules\n");
-
             }
         }
         availableModulesList.add(newModule);
