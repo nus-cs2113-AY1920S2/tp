@@ -142,17 +142,6 @@ public class ActivityList {
             Duration oldDuration = activityList.get(Parser.continuedIndex).getDuration();
             Duration newDuration = duration.plus(oldDuration);
             Duration allocatedTime = activityList.get(Parser.continuedIndex).getAllocatedTime();
-             /*
-            int value = newDuration.compareTo(allocatedTime);
-            if (value >= 0 && allocatedTime != Duration.parse("PT0S")) {
-                String line = "Good Job!! You have met the targeted time for this activity.";
-                Ui.printDivider(line);
-            } else if (value < 0 && allocatedTime != Duration.parse("PT0S")) {
-                String line = "Try Harder, you are almost there.";
-                Ui.printDivider(line);
-            }
-
-             */
             activityList.updateDuration(newDuration, Parser.endTime, Parser.continuedIndex);
 
             if (activityList.get(Parser.continuedIndex).getAllocatedTime() != Duration.parse("PT0S")) {
@@ -165,20 +154,11 @@ public class ActivityList {
             Ui.printDivider("Ended: " + Parser.activityName);
             Parser.endTime = LocalDateTime.now();
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
-            /*
-            int value = duration.compareTo(Parser.allocatedTime);
-            if (value >= 0 && Parser.allocatedTime != Duration.parse("PT0S")) {
-                String line = "Good Job!! You have met the targeted time for this activity.";
-                Ui.printDivider(line);
-            } else if (value < 0 && Parser.allocatedTime != Duration.parse("PT0S")) {
-                String line = "Try Harder, you are almost there.";
-                Ui.printDivider(line);
-            }
-             */
             Activity newActivity = new Activity(Parser.activityName, Parser.startTime,
                     Parser.endTime, duration, Parser.tags, Parser.allocatedTime);
             activityList.add(newActivity);
-            if (Parser.allocatedTime != Duration.parse("PT0S")) {
+
+            if (newActivity.getAllocatedTime() != Duration.parse("PT0S")) {
                 Ui.printProgessMessage(newActivity.getProgressPercent());
             }
             // reset activity info
