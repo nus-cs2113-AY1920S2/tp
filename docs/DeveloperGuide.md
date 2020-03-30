@@ -36,23 +36,20 @@ Setting up the project
 Verifying the Setup
 -------------------
 
-1.  In an IntelliJ terminal, run gradlew build
+1.  In an IntelliJ terminal, run `gradlew build`
 
-2.  Cd to the folder `build` &gt; `libs` and run: `java -jar atas-2.0.0.jar`
+2.  Move to the folder `build` &gt; `libs` and run: `java -jar atas-2.0.0.jar`
 
-    1.  To use **ATAS**, simply type a valid command into the terminal and press kbd:\[Enter\] to run the command.  
-        e.g. Typing `help` command and pressing kbd:\[Enter\] will list the commands present
+    1.  To use **ATAS**, type a valid command into the terminal and press the enter key to run the command.  
+        e.g. Typing `help` and pressing the enter key will show the available commands
 
     2.  Some example commands you can try to get familiar with **ATAS**:
 
         -   `help`: Lists the commands that **ATAS** supports.
 
-        -   `assignment n/Assignment One m/CS2113T d/01/01/20 1600 c/Important Assignment`: Adds an assignment called **Assignment one** for the module **CS2113T**. This assignment is due on **01/01/2020 1600** and the comments for this assignment is that it is an **Important Assignment**.
+        -   `assignment n/Assignment One m/CS2113T d/01/02/20 1600 c/Important Assignment`: Adds an assignment called **Assignment One** for the module **CS2113T**. This assignment is due on **1st February 2020 4pm** and the comments for this assignment is that it is an **Important Assignment**.
 
         -   `exit`: Exits **ATAS**.
-
-A summary of all the features available in **ATAS** can be found in [???](#Commands Summary).  
-Refer to [???](#Features) for the detailed instruction of the various commands of **ATAS**.
 
 Design
 ======
@@ -62,7 +59,9 @@ This section will give a high-level overview of how various components in **ATAS
 Architecture
 ------------
 
-image::overall architecture.PNG\[overall architecture\] The architecture diagram above illustrates the high-level design of the **ATAS** application.  
+![overall architecture](images/overall architecture.PNG)
+
+The architecture diagram above illustrates the high-level design of the **ATAS** application.  
 
 The `Atas` component contains all the other components in the application.  
 
@@ -99,7 +98,7 @@ Model Component
 
 The Model component contains the `Task` and `TaskList` classes, which store the user’s schedule.
 
-image::TaskList Task class diagram.PNG\[TaskList and Tasks\]
+![TaskList and Tasks](images/TaskList Task class diagram.PNG)
 
 Storage Component
 -----------------
@@ -118,7 +117,7 @@ Atas Component
 The `Atas` component integrates all the aforementioned components to run the overall application logic.  
 The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command  
 
-image::atas help command sequence diagram v3.PNG\[Component interactions for help command\]
+![Component interactions for help command](images/atas help command sequence diagram v3.PNG)
 
 1.  The `Ui` class is used to read user input.  
 
@@ -129,31 +128,6 @@ image::atas help command sequence diagram v3.PNG\[Component interactions for hel
 4.  The `Ui` class is used to show the `CommandResult` message to the user.  
 
 5.  The `Storage` object is used to save the new state of the application.
-
-Setting Up
-==========
-
-Ensure you have Java 11 or above installed on your computer  
-
--   For **Windows** Users:
-
-    1.  Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
-
-    2.  Open a `cmd` (Command Prompt) window.
-
-    3.  Navigate to the folder containing downloaded jar file.
-
-    4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
-
--   For **Mac** Users:
-
-    1.  Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
-
-    2.  Open up `Terminal`
-
-    3.  Navigate to the directory containing downloaded jar file.
-
-    4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
 
 Implementation
 ==============
@@ -403,7 +377,7 @@ The following sequence diagram summarizes how repeat command operation works:
 
 ![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
 
-### `Event` and `RepeatEvent` differences and impact
+### `Event` and `RepeatEvent` Differences and Impact
 
 -   There are 4 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an event to repeat accurately.
 
@@ -666,7 +640,7 @@ Using IntelliJ JUnit Tests
 Using Input-Output Tests
 ------------------------
 
--   Navigate to the `text-ui-test` folder and run the runtest (.bat/.sh) script.
+-   Navigate to the `text-ui-test` folder and run the runtest.bat (Windows) or runtest.sh (Mac / Linux) script.
 
 Appendices
 ==========
@@ -859,5 +833,8 @@ Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
+
+3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
+
 
 
