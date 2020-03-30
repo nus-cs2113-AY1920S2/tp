@@ -49,7 +49,12 @@ public class GraphCommand extends Command {
         Ui.printTagsGraph(tags);
     }
 
-    private void extractTags(HashMap<String, Duration> tags, Activity activity) {
+    /**
+     * Gets the tags from the activities in the list together with the associated duration.
+     * @param tags the HashMap to store the tag name and duration.
+     * @param activity the activity containing the tag.
+     */
+    public static void extractTags(HashMap<String, Duration> tags, Activity activity) {
         Set<String> activityTags = activity.getTags();
         for (String tag : activityTags) {
             if (tags.containsKey(tag)) {
