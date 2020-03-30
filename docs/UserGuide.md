@@ -49,7 +49,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 2. Run the command `java -jar happypills.jar`.
 ![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG)
 3. When you start the application for the first time, you can type `help` to check all the available commands.
-4. Refer to [Section 3, "Features"](#3-features) for detailed instructions on how to use each command.
+4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
 ## 3. Features
 
@@ -129,9 +129,13 @@ Exits the program and ends the current session.
 
 Format: `exit`
 
+>***Expected output:***
+> 
+> ![Exit](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/Exit.PNG)
+
 ### 3.2. General Patient Information
 
-HappyPills can help users to manage patient their patients' information easily. 
+HappyPills can help users to manage their patients' information easily. 
 
 #### 3.2.1. Add Patient: `add patient`
 
@@ -149,10 +153,7 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
     
 >***Expected output:***
 >
->       =====================================================
->       Please input your missing detail listed below
->       /p[PHONE] only number
->       =====================================================
+>![MissingInput](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/MissingAddPatientInput.PNG)
 >
 > Enter `/p 999` to add missing field.
 
@@ -179,18 +180,7 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 
 > ***Expected output:***
 >    
->       =====================================================
->       Got it! I've added this patient:
->         Name : Bob
->         NRIC : S9999999Z
->         Phone Number : 999
->         DOB : 12-11-98
->         Blood Type : A+
->         Allergies : NIL
->         Remarks : NIL
->       =====================================================
-
-
+>  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG)
 
 #### 3.2.2. Edit Patient: `edit patient`
 
@@ -199,7 +189,7 @@ Edit information of the patient with the specified NRIC.
 ##### Usage example: 
 
 ```
-edit [NRIC] [Options][editedInput]
+edit patient [NRIC] [Options][editedInput]
   
 Options:
     -p edit phone number
@@ -215,6 +205,23 @@ Delete a patient as specified by the NRIC.
 
     delete patient [NRIC]
     
+**Example:**
+
+    delete patient S1234567F
+
+> ***Expected output:***
+>
+> ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG)
+
+:information_source: | HappyPills will prompt for confirmation before deleting patient in the patient list.  
+---------------------|-------------------------------------------------------------------
+
+> ***Expected output:***
+>    
+>  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG)
+
+:heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
+-------------------------|-------------------------------------------------------------------
 
 #### 3.2.4. List All Patients: `list patient`
 
@@ -226,10 +233,7 @@ Displays all the patients in alphabetical order.
     
 > ***Expected output:***
 >
->         ===================================================
->         Alice | S8888888A 
->         Bob   | S9999999Z   
->         ===================================================    
+> ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG)  
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
@@ -239,24 +243,23 @@ Retrieve details of the patient with the specified NRIC
 
     get patient [NRIC] 
     
-**Example::**
+**Example:**
 
-    get S9999999Z
+    get patient S9876543Z
     
 > ***Expected output:***
 >
->        ===================================================
->         Here are the patient's details:
->             Name : Bob
->             NRIC : S9999999Z
->             Phone Number : 999
->             DOB : 12-11-98
->             Blood Type : A+
->             Allergies : School
->             Remarks : Had contact with COVID-19 Case200
->         ===================================================
+> ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG)
 
 ### 3.3. Patient Medical Information Commands 
+
+#### 3.3.1. Add Visit: `add visit`
+
+#### 3.3.2. Edit Visit: `edit visit`
+
+#### 3.3.3. List Visit: `list visit`
+
+#### 3.3.4. Delete Visit: `delete visit`
 
 ### 3.4. Appointment Scheduling Commands 
 
