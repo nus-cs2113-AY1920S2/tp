@@ -1,13 +1,11 @@
 
 package seedu.nuke.data;
 
-import seedu.nuke.directory.Category;
-import seedu.nuke.directory.Root;
+import seedu.nuke.directory.*;
+import seedu.nuke.directory.Module;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
-import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -126,6 +124,36 @@ public class ModuleManager implements Iterable<Module> {
             throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
             TaskManager.TaskNotFoundException {
         return getCategory(moduleCode, categoryName).getTasks().getTask(taskDescription);
+    }
+
+    /**
+     * Searches the Module List for the module with the specified module code, then searches the module's
+     * Category List for the category with the specified name, then searches the category's Task List for
+     * the task with the specified description, then searches the task's File List for the file with the
+     * specified name.
+     *
+     * @param moduleCode
+     *  The module code of the module to be found
+     * @param categoryName
+     *  The name of the category to be found
+     * @param taskDescription
+     *  The description of the task to be found
+     * @return
+     *  The found task with the specified description, with its parent category and module with the specified
+     *      module code and category name respectively
+     * @throws ModuleNotFoundException
+     *  If the module is not found
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category is not found
+     * @throws TaskManager.TaskNotFoundException
+     *  If the task is not found
+     * @throws TaskFileManager.TaskFileNotFoundException
+     *  If the file is not found
+     */
+    public static TaskFile getFile(String moduleCode, String categoryName, String taskDescription, String fileName)
+            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
+            TaskManager.TaskNotFoundException, TaskFileManager.TaskFileNotFoundException {
+        return getTask(moduleCode, categoryName, taskDescription).getFiles().getFile(fileName);
     }
 
     /**
@@ -359,6 +387,34 @@ public class ModuleManager implements Iterable<Module> {
         return filteredTaskList;
     }
 
+    /**
+     * Filter for modules in the Module List with module code that contains the specified module keyword,
+     * then for categories in the Category List of the filtered modules with name that contains the specified
+     * category keyword, then for tasks in the Task List of the filtered categories with description that
+     * contains the specified task keyword, then for files in the File List of the filtered tasks with name
+     * that contains the specified file keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @param fileKeyword
+     *  The keyword to filter the files
+     * @return
+     *  The list of filtered files
+     */
+    public static ArrayList<TaskFile> filter(String moduleKeyword, String categoryKeyword, String taskKeyword,
+            String fileKeyword) {
+        ArrayList<TaskFile> filteredFileList = new ArrayList<>();
+        for (Task task : filter(moduleKeyword, categoryKeyword, taskKeyword)) {
+            filteredFileList.addAll(task.getFiles().filterExact(fileKeyword));
+        }
+        return filteredFileList;
+    }
+
     /* Filters for data (module / task / category) that *matches exactly* the given keywords in a case-insensitive
      *  manner. Empty keywords, however, will instead collect all instances of the data.
      *  There may be multiple data that matches. */
@@ -430,6 +486,34 @@ public class ModuleManager implements Iterable<Module> {
             filteredTaskList.addAll(category.getTasks().filterExact(taskKeyword));
         }
         return filteredTaskList;
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that matches <b>exactly</b> the specified module
+     * keyword, then for categories in the Category List of the filtered modules with name that that matches
+     * <b>exactly</b> the specified category keyword, then for tasks in the Task List of the filtered categories
+     * with description that that matches <b>exactly</b> the specified task keyword, then for files in the File List
+     * that matches <b>exactly</b> the specified file keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @param fileKeyword
+     *  The keyword to filter the files
+     * @return
+     *  The list of filtered files
+     */
+    public static ArrayList<TaskFile> filterExact(String moduleKeyword, String categoryKeyword, String taskKeyword,
+            String fileKeyword) {
+        ArrayList<TaskFile> filteredFileList = new ArrayList<>();
+        for (Task task : filterExact(moduleKeyword, categoryKeyword, taskKeyword)) {
+            filteredFileList.addAll(task.getFiles().filterExact(fileKeyword));
+        }
+        return filteredFileList;
     }
 
     /**
