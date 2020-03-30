@@ -64,20 +64,22 @@ The user launches the application for the first time. The `SemesterList` will be
 
 ##### Step 2:
 When users enter a add to semester command, e.g `add id/CS2113 s/4 mc/4`, this command will be parsed in `Parser`
-and then `Parser` returns a `AddToSemCommand`. `AddToSemCommand` then calls `Command#excuted(SemesterList semesterList,
+and then `Parser` returns a `AddToSemCommand`. `AddToSemCommand` then calls `Command#execute(SemesterList semesterList,
  AvailableModulesList availableModulesList) `
-`(AddToSemCommand#excuted(SemesterList semesterList, AvailableModulesList availableModulesList))`
+`(AddToSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`
 
 ##### Step 3:
-`AddToSemCommand#excuted()` then calls self method `AddToSemCommand#addModule()`.`AddToSemCommand#addModule()`
+`AddToSemCommand#execute()` then calls self method `AddToSemCommand#addModule()`.`AddToSemCommand#addModule()`
  then calls `AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected 
-module is already in the selected module list (which is`semesterList`). If the module is not in the list, 
-`AddToSemCommand#addModule()` will check whether there is a semester list whose name is the module's semester name. If 
-the semester list exist, the module will be added to the list. If not, `AddToSemCommand#addModule()` will create a new 
-semester list and then add this module to the new list.
+module is already in the selected module list (i.e:`semesterList`, which is a `PriorityQueue<SemModulesList>`). 
+If the module is not in the list, `AddToSemCommand#addModule()` will check whether there is a semester list
+(i.e:`semesterModulesList`, which is a `ArrayList<SelectedModule>`) whose name is the module's semester name. 
+If the semester list exist, the module will be added to the list. 
+If not, `AddToSemCommand#addModule()` will create a new semester list and then add this module to the new list. and the
+the new semester list will be added to `semesterList` as well.
 
 #### Step 4:
-`AddToSemCommand#excuted()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to show the result to the 
+`AddToSemCommand#execute()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to show the result to the 
 user
 
 The following sequence diagram shows how the `Add to Semester` operation works:
