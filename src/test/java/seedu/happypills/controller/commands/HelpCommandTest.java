@@ -40,32 +40,32 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_addCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("add").execute(newPatientMap, newAppointmentMap, newVisitMap);
-        assertEquals(TextUi.printAddHelp(), message);
+        String message = new HelpCommand("add patient").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        assertEquals(TextUi.printAddPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_listCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("list").execute(newPatientMap, newAppointmentMap, newVisitMap);
-        assertEquals(TextUi.printListHelp(), message);
+        String message = new HelpCommand("list patient").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        assertEquals(TextUi.printListPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_getCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("get").execute(newPatientMap, newAppointmentMap, newVisitMap);
-        assertEquals(TextUi.printGetHelp(), message);
+        String message = new HelpCommand("get patient").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        assertEquals(TextUi.printGetPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_editCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("edit").execute(newPatientMap, newAppointmentMap, newVisitMap);
-        assertEquals(TextUi.printEditHelp(), message);
+        String message = new HelpCommand("edit patient").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        assertEquals(TextUi.printEditPatientHelp(), message);
     }
 
     @Test
     public void helpCommand_deleteCommandMessage() throws HappyPillsException {
-        String message = new HelpCommand("delete").execute(newPatientMap, newAppointmentMap, newVisitMap);
-        assertEquals(TextUi.printDeleteHelp(), message);
+        String message = new HelpCommand("delete patient").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        assertEquals(TextUi.printDeletePatientHelp(), message);
     }
 
     @Test
