@@ -118,7 +118,13 @@ Format: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`
 
 Example: `assignment n/Final Reflection Draft m/GEQ1000 d/01/04/20 2359 c/Last chance to get feedback!`
 
-Expected Outcome: \`\`\` Added task: \[A\]\[X\] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000) notes: Last chance to get feedback! Now you have 1 task in the list! \`\`\`
+Expected Outcome:
+```
+Added task:
+     [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+Now you have 1 task in the list!
+```
 
 Add Events: **`event`**
 -----------------------
@@ -142,8 +148,13 @@ Format: `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMME
 
 Example: `event n/Lecture l/NUS LT19 d/25/03/20 0800 - 1000 c/Remember to bring a jacket`
 
-Expected Outcome: \`\`\` Added task: \[E\]\[X\] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00) notes: Remember to bring a jacket Now you have 1 task in the list! \`\`\`
-
+Expected Outcome:
+```
+Added task:
+     [E][X] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00)
+            notes: Remember to bring a jacket
+Now you have 2 tasks in the list!
+```
 List Tasks: **`list`**
 ----------------------
 
@@ -156,15 +167,38 @@ You can view all tasks stored in **ATAS** at once.
 
 Format: `list`
 
-Expected Outcome: \`\`\` Here are the relevant tasks: 1. \[A\]\[X\] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000) notes: Last chance to get feedback! 2. \[E\]\[X\] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00) notes: Remember to bring a jacket 3. \[A\]\[/\] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235) notes: Follow submission instructions 4. \[E\]\[X\] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35) notes: Zoom meeting 5. \[A\]\[X\] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T) notes: Complete DG draft to get tutor comments 6. \[E\]\[X\] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00) notes: Look for internship 7. \[E\]\[X\] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00) notes: Have to check the exam venue and duration again \`\`\`
-
+Expected Outcome:
+```
+Here are the relevant tasks:
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+  2. [E][X] Lecture (at: NUS LT19 | Wed 25 Mar 2020 08:00 - 10:00)
+            notes: false
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: false
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: false
+  7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
+            notes: false
+```
 ### List Today’s Tasks: **`list today`**
 
 You can view only the tasks you have today.
 
 Format: `list today`
 
-Expected Outcome (Assuming today’s date is 27th March 2020): \`\`\` Here are the relevant tasks: 3. \[A\]\[/\] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235) notes: Follow submission instructions 4. \[E\]\[X\] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35) notes: Zoom meeting \`\`\`
+Expected Outcome (Assuming today’s date is 27th March 2020): 
+```
+Here are the relevant tasks: 
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: false
+```
 
 ### List Weekly Tasks: **`list week`**
 
@@ -173,8 +207,19 @@ You can view all the tasks for the next 7 days
 Format: `list week`
 
 Expected Outcome (Assuming today’s date is 27 March 2020):
-
-\`\`\` Here are the relevant tasks: 1. \[A\]\[X\] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000) notes: Last chance to get feedback! 3. \[A\]\[/\] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235) notes: Follow submission instructions 4. \[E\]\[/\] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35) notes: Zoom meeting 5. \[A\]\[X\] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T) notes: Complete DG draft to get tutor comments 6. \[E\]\[X\] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00) notes: Look for internship \`\`\`
+```
+Here are the relevant tasks: 
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback!
+  3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
+            notes: Follow submission instructions
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: false
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: false
+```
 
 ### List Upcoming Events: **`list upcoming events`**
 
@@ -183,9 +228,15 @@ You can view all your **upcoming events** from the list of tasks.
 Format: `list upcoming events`
 
 Expected outcome:
-
-\`\`\` Here are the relevant tasks: 4. \[E\]\[/\] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35) notes: Zoom meeting 6. \[E\]\[X\] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00) notes: Look for internship 7. \[E\]\[X\] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00) notes: Have to check the exam venue and duration again \`\`\`
-
+```
+Here are the relevant tasks: 
+  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+            notes: false
+  6. [E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: false
+  7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
+            notes: false
+```
 ### List Incomplete Assignments: **`list incomplete assignments`**
 
 You can view all your **incomplete assignments** from the list of tasks.
@@ -193,9 +244,13 @@ You can view all your **incomplete assignments** from the list of tasks.
 Format: `list incomplete assignments`
 
 Expected outcome:
-
-\`\`\` Here are the relevant tasks: 1. \[A\]\[X\] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000) notes: Last chance to get feedback! 5. \[A\]\[X\] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T) notes: Complete DG draft to get tutor comments \`\`\`
-
+```
+Here are the relevant tasks: 
+  1. [A][X] Final Reflection Draft (by: Wed 01 Apr 2020 23:59 | mod: GEQ1000)
+            notes: Last chance to get feedback
+  5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
+            notes: Complete DG draft to get tutor comments
+```
 Edit Tasks: **`edit`**
 ----------------------
 
@@ -241,7 +296,10 @@ Format: `done [INDEX]`
 
 Example: `done 1`
 
-Expected outcome: \`\`\` \[Final Reflection Draft\] has been marked done! \`\`\`
+Expected outcome:
+```
+[Final Reflection Draft] has been marked done!
+```
 
 Clear Tasks: **`clear`**
 ------------------------
@@ -276,7 +334,10 @@ Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
 Example: `repeat id/6 p/11m`  
 This command will repeat task of index 6 every 11 months.
 
-Expected outcome: \`\`\` \[Online Career Fair\] will repeat every 11 months. \`\`\`
+Expected outcome:
+```
+[Online Career Fair] will repeat every 11 months.
+```
 
 > **Note**
 >
@@ -295,7 +356,15 @@ Format: `repeat id/[INDEX] p/0`
 Example: `repeat id/6 p/0`  
 This command will cause task of index 6 to stop repeating.
 
-Expected outcome: \`\`\` \[Online Career Fair\] will no longer repeat. \`\`\` === Search Tasks: **`search`** ==== Search by Name You can search for tasks in the list by specifying the type and name of task you might be searching for.
+Expected outcome:
+```
+[Online Career Fair] will no longer repeat.
+```
+
+Search tasks: **`search`**
+------------------------------
+### Search by Name 
+You can search for tasks in the list by specifying the type and name of task you might be searching for.
 
 > **Tip**
 >
@@ -305,8 +374,12 @@ Format: `search t/[TASK TYPE] n/[TASK NAME]`
 
 Example: `search t/event n/te`
 
-Expected outcome: \`\`\` Here are the search results: 1.\[E\]\[X\] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00) \[3d\] notes: Test 2.\[E\]\[X\] Test2 (at: test2 | Wed 03 Jun 2020 13:00 - 14:00) \[1w\] notes: Test2 3.\[E\]\[X\] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00) \[1m\] notes: Test3 4.\[E\]\[X\] Test4 (at: test4 | Wed 29 Apr 2020 11:00 - 12:00) \[1m\] notes: Test4 \`\`\`
-
+Expected outcome:
+```
+Here are the search results:
+  3.[E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+            notes: false
+```
 ### Search by Name and Date
 
 You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for.
@@ -319,7 +392,12 @@ Format: `searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
 
 Example: `searchd t/event n/te d/01/05/20`
 
-Expected outcome: \`\`\` Here are the search results: 1.\[E\]\[X\] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00) \[1m\] notes: Test3 \`\`\`
+Expected outcome: 
+```
+Here are the search results: 
+    1.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+        notes: Test3
+```
 
 Calendar View: **`calendar`**
 -----------------------------
