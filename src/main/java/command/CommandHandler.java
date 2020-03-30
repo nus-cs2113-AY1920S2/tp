@@ -18,7 +18,6 @@ import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
 import static common.Messages.MESSAGE_WRONG_COMMAND_MEETING;
 import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
 
-
 public class CommandHandler {
 
     public static TeamMember addContact(TeamMemberList myTeamMemberList, String[] userInputWords,
@@ -211,8 +210,8 @@ public class CommandHandler {
         }
     }
 
-    public static void listContacts(TeamMemberList teamMemberList, TeamMember mainUser) {
-        TextUI.teamMemberListMsg(teamMemberList.getTeamMemberList(), mainUser.getName());
+    public static void listContacts(TeamMemberList teamMemberList) {
+        TextUI.teamMemberListMsg(teamMemberList.getTeamMemberList());
     }
 
 
