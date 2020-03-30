@@ -174,7 +174,7 @@ public class TextUI {
         System.out.println("There are no previous records of meetings, let's create a new one!");
     }
 
-    public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList, String mainUser) {
+    public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList) {
         System.out.println("____________________________________________________________\n"
                 + "Here are your stored contacts:");
         int i = 0;

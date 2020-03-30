@@ -30,7 +30,11 @@ public class MeetingOrganizer {
             myTeamMemberList = new TeamMemberList(storage.loadMemberListFromDisk());
             TextUI.introMsg();
             if (myTeamMemberList.getSize() > 0) {
-                myTeamMemberList.getTeamMemberList().forEach(member -> mainUser = member.isMainUser() ? member : null);
+                for (int i = 0; i < myTeamMemberList.getSize(); i++) {
+                    if (myTeamMemberList.getTeamMemberList().get(i).isMainUser()) {
+                        mainUser = myTeamMemberList.getTeamMemberList().get(i);
+                    }
+                }
                 ArrayList<TeamMember> teamMemberList = myTeamMemberList.getTeamMemberList();
                 // Shift mainUser to index 0
                 for (int j = 0; j < teamMemberList.size(); j++) {
@@ -43,7 +47,7 @@ public class MeetingOrganizer {
                 }
             }
             assert getMainUser() != null;
-            CommandHandler.listContacts(getMyTeamMemberList(), getMainUser());
+            CommandHandler.listContacts(getMyTeamMemberList());
         } catch (FileNotFoundException e) {
             TextUI.introMsg();
             TextUI.showLoadingError();
@@ -80,7 +84,7 @@ public class MeetingOrganizer {
             }
             switch (userCommand) {
             case "contacts":  //list all contacts. contacts
-                CommandHandler.listContacts(getMyTeamMemberList(), getMainUser());
+                CommandHandler.listContacts(getMyTeamMemberList());
                 break;
             case "timetable": //timetable OR timetable <Member Number> OR timetable <Member Number1> <Member Number2>
                 //(eg. timetable 0 1 3)
