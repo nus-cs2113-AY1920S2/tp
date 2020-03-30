@@ -88,6 +88,11 @@ public class Event {
         return datetime.getYear();
     }
 
+    public int getDay() {
+        return datetime.getDate();
+    }
+
+
     /**
      * Sets the datetime of the event.
      * @param datetime the new datetime for the event

@@ -11,6 +11,7 @@ public class EventParser {
     private String venue;
     private int index;
 
+
     public EventParser() {
         this.name = "";
         this.date = "";
@@ -18,6 +19,20 @@ public class EventParser {
         this.venue = "";
         this.index = -1;
     }
+
+    public String getDateTime() {
+        return date + " " + time;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void parseTokens(String parameters) throws DukeException {
+        String[] tokens = parameters.split(" ");
+        splitByEventFlags(tokens);
+    }
+
 
     /**
      * Returns the index in a string of parameters with this format:
@@ -52,8 +67,7 @@ public class EventParser {
     public String parseEventDateTime(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
-        String datetime = date + " " + time;
-        return datetime;
+        return date + " " + time;
     }
 
     /**
@@ -126,7 +140,7 @@ public class EventParser {
                     mostRecent = "venue";
                     break;
                 case "i/":
-                    ensureNotDuplicateFlag(venue, "EventParser: Duplicate index flag");
+                    ensureNotDuplicateIndex(index, "EventParser: Duplicate index flag");
                     try {
                         index = Integer.parseInt(token.substring(2));
                     } catch (NumberFormatException m) {
@@ -177,6 +191,12 @@ public class EventParser {
 
     private void ensureNotDuplicateFlag(String name, String message) throws DukeException {
         if (!name.isEmpty()) {
+            throw new DukeException(message);
+        }
+    }
+
+    private void ensureNotDuplicateIndex(int index, String message) throws DukeException {
+        if (index != -1) {
             throw new DukeException(message);
         }
     }

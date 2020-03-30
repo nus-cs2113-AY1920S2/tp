@@ -41,7 +41,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
 
     @Override
     public Command decideCommand(String commandDescription) throws DukeException {
-        Command command = null;
+        Command command;
         Event event;
         int index;
         String name;
@@ -67,8 +67,11 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new EditName(index, name, this.eventList);
             break;
         case "editdatetime":
-            index = eventParser.parseIndex(commandParameters);
-            datetime = eventParser.parseEventDateTime(commandParameters);
+            eventParser.parseTokens(commandParameters);
+            index = eventParser.getIndex();
+            datetime = eventParser.getDateTime();
+            //index = eventParser.parseIndex(commandParameters);
+            //datetime = eventParser.parseEventDateTime(commandParameters);
             command = new EditDateTime(index, datetime, this.eventList);
             break;
         case "editvenue":
