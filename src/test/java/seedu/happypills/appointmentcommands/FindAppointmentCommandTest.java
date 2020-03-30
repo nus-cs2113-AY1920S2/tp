@@ -52,16 +52,16 @@ public class FindAppointmentCommandTest {
 
     @Test
     public void getAppointment_patientNotFound() throws HappyPillsException {
-        String expectedOutputNotInList = "The patient you are looking for cannot be found";
+        String expectedOutputNotfound = "The patient you are looking for cannot be found";
         String message = new FindAppointmentCommand("S789C").execute(newPatientMap, newAppointmentMap);
-        assertEquals(expectedOutputNotInList, message);
+        assertEquals(expectedOutputNotfound, message);
     }
 
     @Test
     public void getAppointment_EmptyList_notFound() throws HappyPillsException {
-        String expectedOutputNotInList = "    There are no appointments in the list.\n";
+        String expectedOutputEmptyList = "    There are no appointments in the list.\n";
         String message = new FindAppointmentCommand("S456B").execute(newPatientMap, newAppointmentMap);
-        assertEquals(expectedOutputNotInList, message);
+        assertEquals(expectedOutputEmptyList, message);
     }
 
     @Test

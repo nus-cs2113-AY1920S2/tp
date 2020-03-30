@@ -52,7 +52,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editPhone(Patient patient, String content) {
         patient.setPhoneNumber(Integer.parseInt(content));
-        String message = TextUi.printEditSuccess(patient);
+        String message = TextUi.printEditPatientSuccess(patient);
         return message;
     }
 
@@ -64,7 +64,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editAllergies(Patient patient, String content) {
         patient.setAllergies(content);
-        String message = TextUi.printEditSuccess(patient);
+        String message = TextUi.printEditPatientSuccess(patient);
         return message;
     }
 
@@ -76,7 +76,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editRemarks(Patient patient, String content) {
         patient.setRemarks(content);
-        String message = TextUi.printEditSuccess(patient);
+        String message = TextUi.printEditPatientSuccess(patient);
         return message;
     }
 
@@ -88,7 +88,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editDob(Patient patient, String content) {
         patient.setDateOfBirth(content);
-        String message = TextUi.printEditSuccess(patient);
+        String message = TextUi.printEditPatientSuccess(patient);
         return message;
     }
 
@@ -100,7 +100,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editName(Patient patient, String content) {
         patient.setName(content);
-        String message = TextUi.printEditSuccess(patient);
+        String message = TextUi.printEditPatientSuccess(patient);
         return message;
     }
 
@@ -112,7 +112,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editBloodType(Patient patient, String content) {
         patient.setBloodType(content);
-        String message = TextUi.printEditSuccess(patient);
+        String message = TextUi.printEditPatientSuccess(patient);
         return message;
     }
 

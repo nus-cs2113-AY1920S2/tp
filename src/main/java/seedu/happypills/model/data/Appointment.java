@@ -16,7 +16,7 @@ public class Appointment {
     protected String date;
     protected String time;
     protected String appointmentId;
-    protected boolean isDone;
+    protected Boolean isDone;
 
     /**
      * Constructor for Appointment class.
@@ -81,7 +81,19 @@ public class Appointment {
     }
 
     public void setDone(boolean done) {
-        isDone = done;
+        isDone = false;
+    }
+
+    @Override
+    public String toString() {
+        String status = isDone ? "Yes" : "No";
+        String text = "        NRIC     : " + this.nric + "\n"
+                + "        Date     : " + this.date + "\n"
+                + "        Time     : " + this.time + "\n"
+                + "        Reason   : " + this.reason + "\n"
+                + "        ID       : " + this.appointmentId + "\n"
+                + "        Attended : " + status + "\n";
+        return text;
     }
 
     private String doneString(boolean done) {

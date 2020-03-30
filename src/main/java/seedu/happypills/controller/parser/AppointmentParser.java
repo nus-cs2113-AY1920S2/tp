@@ -2,11 +2,13 @@ package seedu.happypills.controller.parser;
 
 import seedu.happypills.controller.commands.appointmentcommands.AppointmentCommand;
 
+
 import seedu.happypills.controller.commands.appointmentcommands.DeleteAppointmentCommand;
 import seedu.happypills.controller.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.happypills.controller.commands.appointmentcommands.ListAppointmentCommand;
 import seedu.happypills.controller.commands.appointmentcommands.IncorrectAppointmentCommand;
 import seedu.happypills.controller.commands.appointmentcommands.AddAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.EditAppointmentCommand;
 
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.view.ui.TextUi;
@@ -27,7 +29,8 @@ public class AppointmentParser {
         if (userCommand[0].equalsIgnoreCase("add")) {
             return parseAddCommand(userCommand[2]);
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
-            return new DeleteAppointmentCommand(fullCommand); // change to edit
+            String [] detailedCommand = userCommand[2].split(" ",3);
+            return new EditAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim(), detailedCommand[2]);
         } else if (userCommand[0].equalsIgnoreCase("done")) {
             return new DeleteAppointmentCommand(fullCommand); // change to done
         } else if (userCommand[0].equalsIgnoreCase("list")) {
