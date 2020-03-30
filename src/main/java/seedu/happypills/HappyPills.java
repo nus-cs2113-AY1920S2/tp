@@ -1,12 +1,12 @@
 package seedu.happypills;
 
-import seedu.happypills.commands.Command;
-import seedu.happypills.data.AppointmentMap;
-import seedu.happypills.data.PatientMap;
-import seedu.happypills.exception.HappyPillsException;
-import seedu.happypills.parser.Parser;
+import seedu.happypills.controller.commands.Command;
+import seedu.happypills.model.data.AppointmentMap;
+import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.controller.parser.Parser;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.view.ui.TextUi;
 
 import java.io.FileNotFoundException;
 import java.util.logging.ConsoleHandler;

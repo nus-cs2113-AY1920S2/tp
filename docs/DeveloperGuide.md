@@ -373,6 +373,7 @@ closed in the terminal. This is achieved by storing all relevant information in 
 
 *Aspect: Saving method* 
 
+##### Aspect: Saving method
 Alternative 1 was chosen as fewer checks means that the program is less prone to exception, especially
 so if the checks are confusing to implement. This would put lesser risk on the user experience for now.
 
@@ -384,7 +385,7 @@ so if the checks are confusing to implement. This would put lesser risk on the u
                        A list with all the patient’s NRIC will also be stored for referencing.
           Pros: Delete and edit operation on a patient will only affect his/her file, and the referencing list.
           Cons: More checks are requires to identify class of the string
-          
+
 *Aspect: Updating deletion/edit* 
 
 Alternative 1 was chosen for now as the program is relatively new, and is more likely to be subjected to unexpected exceptions.
@@ -460,41 +461,11 @@ Windows, Linux, Unix, OS-X
 
 ### Appendix E: Instructions for Manual Testing
 
+## Useful links:
+* [User Guide](UserGuide.md)
+* [About Us](AboutUs.md)
 
 ------
-
-Users are able to store patients’ information on the program, 
-ensuring that the patients’ information can be accessed easily with the NRIC as a unique identifier.
-
-
-
-This feature was implemented to allow users to add patient’s information when using HappyPills.
-
-The commands introduced in this feature include : `add`, `edit`, `list`, `delete`, `get`. 
-The commands are implemented with HashMap and use NRIC as key and the Patient class as value.
-The patient list feature is facilitated by PatientMap class which implements the following operations: 
-
-    - PatientMap #add(Patient patient) — This command adds the patient object into the patient list using the patient’s nric as key.
-
-    - PatientMap #remove(String nric) — This command removes the patient object from the existing patient list. 
-
-    - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
-
-
-
-#### 4.2.3 Design Consideration
-
-##### Aspect: Data Structure of the Patient List
-
-        Alternative 1 (current choice): Hash Map
-          Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
-          Cons: Implementation is harder and may result in bugs if not implemented accurately.
-            
-        Alternative 2: Array List
-          Pros: This would be easier to implement and retrieve the information.
-          Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-                This would cause the deletion to be very slow when there is a large number of patients in the list.
-
 
 ### 4.3. User Prompting 
     
