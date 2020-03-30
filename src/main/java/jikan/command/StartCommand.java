@@ -48,6 +48,9 @@ public class StartCommand extends Command {
                 continueActivity(activityList, scanner, index);
             } else {
                 try {
+                    if (activityName.isEmpty()) {
+                        throw new EmptyNameException();
+                    }
                     String line = parseActivity(tagDelimiter,allocateDelimiter);
                     Parser.startTime = LocalDateTime.now();
                     Log.makeFineLog("Started: " + Parser.activityName);
