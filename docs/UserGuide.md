@@ -40,6 +40,7 @@ Add menu items, ingredients and reservations.
 * words in UPPERCASE: parameters
 * parameters in [ ]: optional parameters
 * parameters in { | }: at least one of them
+* sequence of the parameters can be changed
 
 <a name="add"></a>
 
@@ -48,13 +49,17 @@ Add menu items, ingredients, and reservations.
 
 #### Add menu item: add dish
 * Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...]; p/PRICE;`
-* Example: `add dish; n/bacon pizza; i/cheese, bacon; p/7.00;`
+  + Example: `add dish; n/bacon pizza; i/cheese, bacon; p/7.00;`<br/>
+  
+
 #### Add ingredient into stock: add stock
 * Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
-* Example: `add stock; i/tomato; q/10; p/$0.50;`
+  + Example: `add stock; i/tomato; q/10; p/$0.50;`<br/>
+
+
 #### Add reservation into list: add reservation 
 * Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
-* Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
+  + Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;<br/>
 
 *The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be an integer.*
 
@@ -65,18 +70,24 @@ Delete menu items, ingredients and reservations.
 
 #### Delete menu item: delete dish
 * Format: `delete dish; n/NAME;`
-* Example: `delete dish; n/bacon pizza;`
+  + Example: `delete dish; n/bacon pizza;`<br/>
+
+
 #### Delete stock of ingredient: delete stock
-* Format: `delete stock; i/INGREDIENT; q/QUANTITY;` or
-* Format: `delete stock; i/INGREDIENT;`
-* Example: `delete stock; i/tomato; q/1;`
+* Format: `delete stock; i/INGREDIENT; [q/QUANTITY;]`
+  + Example: `delete stock; i/tomato; q/1;`<br/>
+
+
 #### Mark reservation as invalid: delete reservation
 * Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
-* Example: `delete reservation; r/12;`
+  + Example: `delete reservation; r/12;`<br/>
+
+
 #### Mark reservation as served: mark reservation
 Cannot mark the reservation as served if the reservation is originally invalid.
 * Format: `mark reservation; r/NUMBER_OF_RESERVATION;`
-* Example: `mark reservation; r/4;`
+  + Example: `mark reservation; r/4;`<br/>
+
 
 <a name="list"></a>
 
@@ -86,24 +97,31 @@ List items in the menu, stock and reservations.
 * List menu : `list dish`
 * List stock : `list stock`
 * List all reservation : `list reservation`
-* List served reservation: `list served reservation`
-* List unserved reservation: `list unserved reservation`
+* List served reservation : `list served reservation`
+* List unserved reservation : `list unserved reservation`
 
 <a name="search"></a>
 
 ### Search
 Search items in the menu, stock and reservations.
 
+#### Search for dish: search dish
 * Search dish : `search dish; k/KEYWORD;`
-  * Example: `search dish; k/bacon;`
+  + Example: `search dish; k/bacon;`
 
+
+#### Search for stock: search stock
 * Search stock : `search stock; k/KEYWORD;`
-  * Example: `search stock; k/tomato;`
+  + Example: `search stock; k/tomato;`
 
-* Search reservation: `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
-  * Example: `search reservation; r/1;`
-  * Example: `search reservation; d/2020-02-02;`
-  * Example: `search reservation; r/0; d/2020-02-02;`
+
+#### Search for reservation: search reservation
+* Search reservation : `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
+  + Example: `search reservation; r/1;`
+  + Example: `search reservation; d/2020-02-02;`
+  + Example: `search reservation; r/0; d/2020-02-02;`
+
+*The `DATE` must be in **yyyy-mm-dd** format. The `NUMBER_OF_GUESTS` must be an integer.*
 
 
 <a name="sales"></a>
