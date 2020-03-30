@@ -89,11 +89,11 @@ The following class diagram shows how the listing operation works:
   <img src="https://user-images.githubusercontent.com/59989652/77317533-54703700-6d46-11ea-8fa7-1085ce028f55.png">
 </p>
 
-* 1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
-* 2. Through its `runCommandUntilExit()` method, it then instructs the ui object to scan and read for user input. A CommandParser object is then initialized to parse this user input into a command.
-* 3. The CommandParser object detects `list stock` as the user input, in which it will then create a ListStockCommand object.
-* 4. The ListStockCommand object is then executed via its `execute(stock)` method, which takes in the stock object initialized previously and instruct it to list all ingredients through its `listIngredient()` method.
-* 5. Within  the `listIngredient()` method, a temporary `List` data structure is used to convert from the `HashMap` in the stock object. The list is then sorted by supplying a `new Comparator` that compares the ingredient's quantity. Afterwards, the sorted list is then printed to be displayed to the user.
+1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
+2. Through its `runCommandUntilExit()` method, it then instructs the ui object to scan and read for user input. A CommandParser object is then initialized to parse this user input into a command.
+3. The CommandParser object detects `list stock` as the user input, in which it will then create a ListStockCommand object.
+4. The ListStockCommand object is then executed via its `execute(stock)` method, which takes in the stock object initialized previously and instruct it to list all ingredients through its `listIngredient()` method.
+5. Within  the `listIngredient()` method, a temporary `List` data structure is used to convert from the `HashMap` in the stock object. The list is then sorted by supplying a `new Comparator` that compares the ingredient's quantity. Afterwards, the sorted list is then printed to be displayed to the user.
 
 
 #### 1.2.2 Design Considerations
@@ -153,24 +153,24 @@ Given below is an example usage scenario and how the search mechanism behaves at
 Step 1. The user launches the application for the first time. An empty `reservation` will be initialized.
 
 Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservation` list.  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Further, the user may add more reservations into the current `reservation` list.  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
+Further, the user may add more reservations into the current `reservation` list.  
+Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
+and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
 
 Step 3. The user can now search against the current `reservation` list to see if an reservation is stored in the `reservation` list.  
-&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
+If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
 
 <p align="center">
     <img src="SearchByIndex.png">
 </p>
 
-&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
+If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
 
 <p align="center">
     <img src="SearchByDate.png">
 </p>
 
-&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
+If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
 
 <p align="center">
     <img src="SearchByIndexnDate.png">
@@ -210,7 +210,7 @@ Utilization of `HashMap` will be considered if the restaurant becomes more popul
   + Cons: Extra memory space is needed.
 
 **The reason to make the current choice:**  
-There is no need for objects to be stored separately given current user stories.
+There is no need for objects to be stored separately given current user stories and functionality required.
 
 <a name="search-dish"></a>
 
