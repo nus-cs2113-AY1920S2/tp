@@ -1,6 +1,6 @@
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
-Contents: x
+Contents:
 - [Introduction](#1-introduction)
   * [What is **ATAS**?](#11-what-is-atas)
   * [What are the functions of **ATAS**?](#12-what-are-the-functions-of-atas)
