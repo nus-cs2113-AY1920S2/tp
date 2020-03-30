@@ -105,6 +105,9 @@ Input next command:
 Ingredient rice successfully added!
 The command has been successfully executed.
 Input next command:
+Ingredient salt successfully added!
+The command has been successfully executed.
+Input next command:
 Ingredient vege successfully added!
 The command has been successfully executed.
 Input next command:
@@ -117,10 +120,11 @@ Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [50][$0.50] tomato
-2. [11][$0.40] rice
-3. [10][$0.40] vege
-4. [1][$0.40] toxic greens
-5. [0][$0.40] greenie
+2. [20][$0.20] salt
+3. [11][$0.40] rice
+4. [10][$0.40] vege
+5. [1][$0.40] toxic greens
+6. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -137,10 +141,11 @@ Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [39][$0.50] tomato
-2. [11][$0.40] rice
-3. [10][$0.40] vege
-4. [1][$0.40] toxic greens
-5. [0][$0.40] greenie
+2. [20][$0.20] salt
+3. [11][$0.40] rice
+4. [10][$0.40] vege
+5. [1][$0.40] toxic greens
+6. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -175,10 +180,11 @@ The user's input given cannot be parsed into ingredient arguments.
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
-1. [11][$0.40] rice
-2. [10][$0.40] vege
-3. [1][$0.40] toxic greens
-4. [0][$0.40] greenie
+1. [20][$0.20] salt
+2. [11][$0.40] rice
+3. [10][$0.40] vege
+4. [1][$0.40] toxic greens
+5. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -373,10 +379,13 @@ table size: S
 contact details: 98955555
 comments: No comments
 
+The command has been successfully executed.
 Input next command:
 Sorry! No such reservation.
+The command has been successfully executed.
 Input next command:
 Delimiter Missing.
+The command has been successfully executed.
 Input next command:
 Here comes the reservations on the date 2020-03-12:
 Reservation [0]
@@ -397,8 +406,10 @@ table size: L
 contact details: 98887777
 comments: No comments
 
+The command has been successfully executed.
 Input next command:
 Input Missing: either reservation number r/ or date d/ is missing.
+The command has been successfully executed.
 Input next command:
 Please enter a valid positive integer.
 Input next command:
@@ -475,6 +486,15 @@ table size: S
 contact details: 98889999
 comments: no spicy food please
 
+The command has been successfully executed.
+Input next command:
+The command has been successfully executed.
+Input next command:
+The total profit for the day is: $57.0
+The command has been successfully executed.
+Input next command:
+The most popular dish today is: rice
+This has sales of: 5
 The command has been successfully executed.
 Input next command:
 The menu, stock and reservations have been saved to report.txt

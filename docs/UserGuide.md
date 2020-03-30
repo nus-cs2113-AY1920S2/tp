@@ -138,10 +138,9 @@ Add daily sales and calculate profit
 #### Find most popular dish : popular
 * Format: `popular`
 
-<<<<<<< HEAD
+
 <a name="command-summary"></a>
-=======
->>>>>>> 898073971f006c56200b487d010d87b3d314976e
+
 ## Command Summary
 
 ### Add

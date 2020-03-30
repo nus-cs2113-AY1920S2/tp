@@ -131,7 +131,7 @@ The user can input as many sales as they like as long as the dish exists in the 
 
 Step 3. The user can generate the profit by inputting `profit`.
 
-<<<<<<< HEAD
+
 ### 1.3.2 Design Considerations
 #### Aspect: Using a separate class to perform sale commands
 **Current Implementation**: Methods are stored in the sales class
@@ -267,7 +267,7 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 
 <a name="product-scope"></a>
 
->>>>>>> 898073971f006c56200b487d010d87b3d314976e
+
 ## 2. Product Scope
 ### Target user profile
 

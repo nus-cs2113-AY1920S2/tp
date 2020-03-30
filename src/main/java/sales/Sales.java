@@ -51,7 +51,7 @@ public class Sales {
             profit += dishProfit;
         }
         if (profitError == false) {
-            System.out.println("The total profit for the day is: " + profit);
+            System.out.println("The total profit for the day is: $" + profit);
         }
         //Return statement is for testing purposes
         return profit;
