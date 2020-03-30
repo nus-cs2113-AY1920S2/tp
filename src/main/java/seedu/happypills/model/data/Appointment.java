@@ -36,6 +36,15 @@ public class Appointment {
         this.isDone = false;
     }
 
+    public Appointment(String ID, String nric, String date, String time,String reason, Boolean done) {
+        this.nric = nric;
+        this.reason = reason;
+        this.date = date;
+        this.time = time;
+        this.appointmentId = ID;
+        this.isDone = done;
+    }
+
     public String getNric() {
         return nric;
     }

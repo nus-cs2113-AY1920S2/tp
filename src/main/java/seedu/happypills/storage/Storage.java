@@ -1,5 +1,7 @@
 package seedu.happypills.storage;
 
+import seedu.happypills.model.data.Appointment;
+import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.exception.HappyPillsException;
@@ -99,6 +101,44 @@ public class Storage {
                 dataString[5], dataString[6]);
         try {
             storedPatients.add(tempPatient);
+        } catch (HappyPillsException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Read and send file data to parse line by line as string.
+     * Returns a list of historical patients patient list
+     *
+     * @param filePath location of file to read from.
+     * @return patientList of all patients found in the file.
+     * @throws FileNotFoundException if the file specified by directory/filename does not exist.
+     */
+    public static AppointmentMap loadAppointmentFromFile(String filePath) throws FileNotFoundException {
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
+        AppointmentMap storedAppt = new AppointmentMap();
+
+        while (s.hasNext()) {
+            String stringInput = s.nextLine();
+            parseAppointmentFileContent(stringInput, storedAppt);
+        }
+
+        return storedAppt;
+    }
+
+    /**
+     * convert a single line data into values of an appointment and add it back to the provided apptList.
+     * @param savedString a single string with all the data required for a appointment.
+     * @param storedAppt a list which the appointment details retrieved should be added into.
+     */
+    private static void parseAppointmentFileContent(String savedString, AppointmentMap storedAppt) {
+        String[] dataString = savedString.split("[|]", 7);
+        Boolean isDone= dataString[5].equals("T") ? true : false;
+        Appointment tempAppt = new Appointment(dataString[0], dataString[1],
+                dataString[2], dataString[3], dataString[4], isDone);
+        try {
+            storedAppt.addAppointment(tempAppt);
         } catch (HappyPillsException e) {
             e.printStackTrace();
         }
