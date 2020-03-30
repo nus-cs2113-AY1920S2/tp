@@ -190,7 +190,6 @@ public class Ui {
      * @param percent percentage of allocated time achieved
      */
     public static void printProgressMessage(double percent) {
-        System.out.println(DIVIDER);
         if (percent < 50) {
             System.out.println("Try harder next time! Here's your progress:");
         } else if (percent < 100) {
