@@ -6,10 +6,10 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 - [2. Quick Start](#2-quick-start)
 - [3. Features](#3-features)
     * [3.1. General Commands](#31-general-commands)
-        + [3.1.1. View help: `help`](#)
-        + [3.1.2. Exit program: `exit`](#)
+        + [3.1.1. View help: `help`](#311-view-help-help)
+        + [3.1.2. Exit program: `exit`](#312-exit-program-exit)
         
-    * [3.2. General Patient Information Commands](32-general-patient-information-commands)
+    * [3.2. General Patient Information Commands](#32-general-patient-information)
         + [3.2.1. Add Patient: `add patient`](#321-add-patient-add-patient)
         + [3.2.2. Edit Patient: `edit patient`](#322-edit-patient-edit-patient)
         + [3.2.3. Delete Patient: `delete patient`](#323-delete-patient-delete-patient)
