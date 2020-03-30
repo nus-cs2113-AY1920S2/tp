@@ -24,6 +24,9 @@ public class AutoCompleteTextField extends TextField {
     private int endIndex;
     private String prefix;
 
+    /**
+     * Constructs the Auto Complete Text Field.
+     */
     public AutoCompleteTextField() {
         super();
         this.entries = new TreeSet<>();
@@ -31,6 +34,19 @@ public class AutoCompleteTextField extends TextField {
         customiseStyle();
     }
 
+    /**
+     * Sets the text of the current attribute that the user is currently typing in the console for the auto complete
+     * field to process and generate suggestions.
+     *
+     * @param enteredText
+     *  The text of the attribute currently typed so far
+     * @param startIndex
+     *  The starting index of the attribute being typed
+     * @param endIndex
+     *  The ending index of the attribute being typed
+     * @param prefix
+     *  The prefix of the current attribute being typed
+     */
     public void setEnteredText(String enteredText, int startIndex, int endIndex, String prefix) {
         this.enteredText = enteredText;
         this.startIndex = startIndex;
@@ -38,14 +54,34 @@ public class AutoCompleteTextField extends TextField {
         this.prefix = prefix;
     }
 
+    /**
+     * Sets the text of the current attribute (without a prefix) that the user is currently typing in the console for
+     * the auto complete field to process and generate suggestions.
+     *
+     * @param enteredText
+     *  The text of the attribute currently typed so far
+     * @param startIndex
+     *  The starting index of the attribute being typed
+     * @param endIndex
+     *  The ending index of the attribute being typed
+     */
     public void setEnteredText(String enteredText, int startIndex, int endIndex) {
         this.setEnteredText(enteredText, startIndex, endIndex, "");
     }
 
+    /**
+     * Returns the popup menu containing the suggestions for the auto complete.
+     *
+     * @return
+     *  The popup menu
+     */
     public ContextMenu getEntriesPopup() {
         return entriesPopup;
     }
 
+    /**
+     * Displays the suggestions to the user.
+     */
     public void displaySuggestions() {
         if (enteredText.isBlank()) {
             entriesPopup.hide();
@@ -59,9 +95,9 @@ public class AutoCompleteTextField extends TextField {
             if (!filteredEntries.isEmpty()) {
                 // Create popup
                 populatePopup(filteredEntries, enteredText);
-                int xDisplacement = startIndex * 10;
+                int displacementX = startIndex * 10;
                 // Position and show popup
-                entriesPopup.show(AutoCompleteTextField.this, Side.BOTTOM, xDisplacement, 0);
+                entriesPopup.show(AutoCompleteTextField.this, Side.BOTTOM, displacementX, 0);
             } else {
                 entriesPopup.hide();
             }
@@ -69,9 +105,10 @@ public class AutoCompleteTextField extends TextField {
     }
 
     /**
-     * Populate the entry set with the given search results. Display is limited to 10 entries, for performance.
+     * Populate the entry set with the given search results. Display is limited to 10 entries only.
      *
-     * @param suggestions The set of matching strings.
+     * @param suggestions
+     *  The set of matching strings that will be considered to be shown
      */
     private void populatePopup(List<String> suggestions, String searchResult) {
         // List of suggestions
@@ -109,14 +146,26 @@ public class AutoCompleteTextField extends TextField {
         entriesPopup.getItems().addAll(menuItems);
     }
 
+    /**
+     * Returns the existing set of autocomplete entries.
+     *
+     * @return
+     *  The existing autocomplete entries
+     */
+    public SortedSet<String> getEntries() {
+        return entries;
+    }
 
     /**
-     * Get the existing set of autocomplete entries.
+     * Creates the TextFlow corresponding to the text of the auto complete entries. Matching characters will be
+     * colored green.
      *
-     * @return The existing autocomplete entries.
+     * @param text
+     *  The text to be converted to a TextFlow
+     * @param filter
+     *  The matching part of the text
+     * @return
      */
-    public SortedSet<String> getEntries() { return entries; }
-
     private TextFlow buildTextFlow(String text, String filter) {
         int filterIndex = text.toLowerCase().indexOf(filter.toLowerCase());
         Text textBefore = new Text(text.substring(0, filterIndex));
@@ -127,6 +176,9 @@ public class AutoCompleteTextField extends TextField {
         return new TextFlow(textBefore, textFilter, textAfter);
     }
 
+    /**
+     * Sets the style for the auto complete text field.
+     */
     private void customiseStyle() {
         this.setMinHeight(30);
         this.setPadding(new Insets(5));

@@ -34,6 +34,16 @@ public class ModuleManager implements Iterable<Module> {
         moduleList = new ArrayList<>();
     }
 
+    /**
+     * Returns the instance of the Module Manager class.
+     *
+     * @param root
+     *  The root of the Directory Tree
+     * @param modulesMap
+     *  The modules provided by NUS
+     * @return
+     *  The instance of the Module Manager
+     */
     public static ModuleManager getInstance(Root root, HashMap<String, String> modulesMap) {
         if (moduleManager == null) {
             moduleManager = new ModuleManager(root, modulesMap);

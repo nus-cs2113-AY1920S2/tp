@@ -36,7 +36,7 @@ public class InfiNus extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("INFI \u2022 NUS");
+        stage.setTitle("INFI • NUS");
         stage.getIcons().add(new Image("images/venus_icon.png"));
         stage.setMinWidth(1200);
         stage.setMinHeight(700);

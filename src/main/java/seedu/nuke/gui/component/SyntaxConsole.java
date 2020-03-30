@@ -40,6 +40,12 @@ public class SyntaxConsole extends TextFlow {
         return input.trim().split(whiteSpace)[0]; // Get the first word in the input
     }
 
+    /**
+     * Shows the command format hint to the user based on the command word entered by the user.
+     *
+     * @param input
+     *  The current input typed in the console.
+     */
     public void showCommandFormat(String input) {
         this.getChildren().clear();
         String commandWord = getCommandWord(input);

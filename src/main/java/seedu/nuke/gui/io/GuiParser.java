@@ -1,4 +1,5 @@
 package seedu.nuke.gui.io;
+
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import seedu.nuke.command.ChangeDirectoryCommand;
@@ -89,6 +90,14 @@ public class GuiParser {
             ChangeDirectoryCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD
     ));
 
+    /**
+     * Parses the input given by the user, checks the syntax and format, and highlights the input with various colors.
+     *
+     * @param input
+     *  The input being typed by the user
+     * @return
+     *  The highlighted correspondent of the input
+     */
     public TextFlow smartParse(String input) {
         try {
             Matcher matcher = smartParseCommandWord(input);
@@ -100,10 +109,10 @@ public class GuiParser {
     }
 
     /**
-     * Parses the command word in the input string from the GUI console.
+     * Parses the command word in the input string from the console.
      *
      * @param input
-     *  The user input read by the <b>GUI</b>
+     *  The input being typed by the user
      */
     private Matcher smartParseCommandWord(String input) throws ParseFailureException {
         final Matcher matcher = matchPattern(input, BASIC_COMMAND_FORMAT);
@@ -258,8 +267,6 @@ public class GuiParser {
         int startIndexOfModule =  matcher.start(IDENTIFIER_GROUP) + startIndex;
         int endIndexOfModule =  matcher.end(IDENTIFIER_GROUP) + startIndex;
 
-        String invalid = matcher.group(INVALID_GROUP);
-
         ArrayList<String> suggestedModules = generateSuggestedNewModules();
         populateSuggestions(moduleCode.trim(), suggestedModules, startIndexOfModule, endIndexOfModule, NONE);
 
@@ -270,6 +277,7 @@ public class GuiParser {
         highlightInput(moduleCode.trim().toUpperCase(), moduleCode, NONE, endIndexOfModule,
                 suggestedModules, true);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
@@ -277,14 +285,13 @@ public class GuiParser {
         final Matcher matcher = matchPattern(parameters, ADD_CATEGORY_FORMAT);
 
         String categoryName = matcher.group(IDENTIFIER_GROUP);
-        String invalid = matcher.group(INVALID_GROUP);
 
         highlightedInput.getChildren().add(createText(categoryName, Color.BLUE));
 
         smartParseModule(matcher, parameters, startIndex, true);
-
         smartParsePriority(matcher, parameters);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
 
     }
@@ -293,7 +300,6 @@ public class GuiParser {
         final Matcher matcher = matchPattern(parameters, ADD_TASK_FORMAT);
 
         String taskDescription = matcher.group(IDENTIFIER_GROUP);
-        String invalid = matcher.group(INVALID_GROUP);
 
         highlightedInput.getChildren().add(createText(taskDescription, Color.BLUE));
 
@@ -302,18 +308,18 @@ public class GuiParser {
         smartParseDeadline(matcher, parameters);
         smartParsePriority(matcher, parameters);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
     private void smartParseDeleteAndListModuleCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_MODULE_FORMAT);
 
-        String invalid = matcher.group(INVALID_GROUP);
-
         smartParseIdentityModule(matcher, parameters, startIndex, false);
         smartParseFlag(matcher, EXACT_GROUP);
         smartParseFlag(matcher, ALL_GROUP);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
@@ -321,20 +327,17 @@ public class GuiParser {
             throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_CATEGORY_FORMAT);
 
-        String invalid = matcher.group(INVALID_GROUP);
-
         smartParseIdentityCategory(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, false);
         smartParseFlag(matcher, EXACT_GROUP);
         smartParseFlag(matcher, ALL_GROUP);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
     private void smartParseDeleteAndListTaskCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_TASK_FORMAT);
-
-        String invalid = matcher.group(INVALID_GROUP);
 
         smartParseIdentityTask(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, false);
@@ -342,37 +345,34 @@ public class GuiParser {
         smartParseFlag(matcher, EXACT_GROUP);
         smartParseFlag(matcher, ALL_GROUP);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
     private void smartParseEditModuleCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, EDIT_MODULE_FORMAT);
 
-        String invalid = matcher.group(INVALID_GROUP);
-
         smartParseIdentityModule(matcher, parameters, startIndex, true);
         checkDuplicateModule(matcher, parameters);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
     private void smartParseEditCategoryCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, EDIT_CATEGORY_FORMAT);
 
-        String invalid = matcher.group(INVALID_GROUP);
-
         smartParseIdentityCategory(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, true);
         checkDuplicateCategory(matcher, parameters);
         smartParsePriority(matcher, parameters);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
     private void smartParseEditTaskCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, EDIT_TASK_FORMAT);
-
-        String invalid = matcher.group(INVALID_GROUP);
 
         smartParseIdentityTask(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, true);
@@ -381,6 +381,7 @@ public class GuiParser {
         smartParseDeadline(matcher, parameters);
         smartParsePriority(matcher, parameters);
 
+        String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
@@ -495,7 +496,6 @@ public class GuiParser {
             throw new ParseFailureException();
         }
     }
-
 
     private void smartParseIdentityCategory(Matcher matcher, String parameters, int startIndex)
             throws ParseFailureException {
@@ -626,7 +626,8 @@ public class GuiParser {
         ArrayList<String> suggestedCategories;
         try {
             suggestedCategories = generateSuggestedCategories(moduleCode, isExact);
-            populateSuggestions(categoryName, suggestedCategories, startIndexOfCategory, endIndexOfCategory, CATEGORY_PREFIX);
+            populateSuggestions(categoryName, suggestedCategories, startIndexOfCategory,
+                    endIndexOfCategory, CATEGORY_PREFIX);
         } catch (IncorrectDirectoryLevelException e) {
             highlightedInput.getChildren().addAll(createText(rawCategoryName, Color.CRIMSON),
                     createText(parametersAfter, Color.DARKGRAY));
@@ -679,8 +680,6 @@ public class GuiParser {
 
         int endIndexOfPrefix = moduleGroup.indexOf(MODULE_PREFIX) + 2;
         String prefix = moduleGroup.substring(0, endIndexOfPrefix);
-        String rawModuleCode = moduleGroup.substring(endIndexOfPrefix);
-        String parametersAfter =  parameters.substring(matcher.end(MODULE_GROUP));
 
         highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
 
@@ -691,6 +690,8 @@ public class GuiParser {
             console.getEntriesPopup().hide();
         }
 
+        String rawModuleCode = moduleGroup.substring(endIndexOfPrefix);
+        String parametersAfter =  parameters.substring(matcher.end(MODULE_GROUP));
         highlightInput(moduleCode, rawModuleCode, parametersAfter, endIndexOfModule, suggestedModules, isExact);
     }
 

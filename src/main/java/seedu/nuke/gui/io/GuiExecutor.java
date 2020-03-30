@@ -25,6 +25,12 @@ public class GuiExecutor {
         this.consoleScreen = consoleScreen;
     }
 
+    /**
+     * Executes the corresponding action based on the command given by the user in the console.
+     *
+     * @param userInput
+     *  The input given by the user
+     */
     public void executeAction(String userInput) {
         CommandResult result = Executor.executeCommand(userInput);
         displayResult(result);
@@ -35,6 +41,12 @@ public class GuiExecutor {
         }
     }
 
+    /**
+     * Displays the result on the console screen to the user.
+     *
+     * @param result
+     *  The result from executing the command
+     */
     private void displayResult(CommandResult result) {
         Text feedbackToUser = TextUtil.createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.BLUE);
         consoleScreen.getChildren().add(feedbackToUser);

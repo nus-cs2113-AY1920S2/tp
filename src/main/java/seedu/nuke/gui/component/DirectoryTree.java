@@ -16,6 +16,9 @@ import java.util.Comparator;
 
 public class DirectoryTree extends TreeView<Label> {
 
+    /**
+     * Constructs the Directory Tree class.
+     */
     public DirectoryTree() {
         super();
         setStyle("-fx-font-family: Consolas; -fx-font-size: 11pt; -fx-font-weight: bold; "

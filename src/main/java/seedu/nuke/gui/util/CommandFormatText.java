@@ -18,12 +18,27 @@ import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 
-import static seedu.nuke.gui.io.GuiParser.*;
+import static seedu.nuke.gui.io.GuiParser.ALL_FLAG;
+import static seedu.nuke.gui.io.GuiParser.CATEGORY_PREFIX;
+import static seedu.nuke.gui.io.GuiParser.DEADLINE_PREFIX;
+import static seedu.nuke.gui.io.GuiParser.EXACT_FLAG;
+import static seedu.nuke.gui.io.GuiParser.MODULE_PREFIX;
+import static seedu.nuke.gui.io.GuiParser.PRIORITY_PREFIX;
+import static seedu.nuke.gui.io.GuiParser.TASK_PREFIX;
 import static seedu.nuke.gui.util.TextUtil.createText;
 
 public class CommandFormatText {
     private static TextFlow commandFormat = new TextFlow();
 
+    /**
+     * Returns the command format hint to show the user as a TextFlow. The text is highlighted with various colors
+     * to allow user to recognise and differentiate compulsory and optional attributes.
+     *
+     * @param commandWord
+     *  The command word corresponding to the format to be shown
+     * @return
+     *  The command format hint
+     */
     public static TextFlow getCommandFormat(String commandWord) {
         commandFormat.getChildren().clear();
         commandFormat.setStyle("-fx-font-size: 12pt");

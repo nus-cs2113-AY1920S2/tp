@@ -23,7 +23,10 @@ import seedu.nuke.gui.util.TextUtil;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.DIVIDER;
+import static seedu.nuke.util.Message.MESSAGE_LOGO;
+import static seedu.nuke.util.Message.MESSAGE_WELCOME_1;
+import static seedu.nuke.util.Message.MESSAGE_WELCOME_2;
 
 
 public class MainController implements Initializable {
@@ -81,14 +84,15 @@ public class MainController implements Initializable {
 
         // Set focus on console on start
         Platform.runLater(() -> {
-          console.requestFocus();
+            console.requestFocus();
         });
     }
 
 
     private void welcomeUser() {
         Text logo = TextUtil.createText(MESSAGE_LOGO, Color.MAGENTA);
-        Text welcomeMessage = TextUtil.createText(String.format("%s\n%s\n\n", MESSAGE_WELCOME_1, MESSAGE_WELCOME_2), Color.BLUE);
+        Text welcomeMessage = TextUtil.createText(String.format("%s\n%s\n\n",
+                MESSAGE_WELCOME_1, MESSAGE_WELCOME_2), Color.BLUE);
         Text divider = TextUtil.createText(DIVIDER + "\n");
         consoleScreen.getChildren().addAll(logo, divider, welcomeMessage);
     }
@@ -99,6 +103,9 @@ public class MainController implements Initializable {
         refreshScene();
     }
 
+    /**
+     * Submits the user input to be processed by the parser.
+     */
     public void submitInput() {
         String userInput = spareConsole.getText().trim();
         new GuiExecutor(consoleScreen).executeAction(userInput);
@@ -106,6 +113,12 @@ public class MainController implements Initializable {
     }
 
 
+    /**
+     * Handles the event when the user types on the console.
+     *
+     * @param keyEvent
+     *  The key type / press event
+     */
     public void onKeyType(KeyEvent keyEvent) {
         // Remove unnecessary action
         if (keyEvent.getEventType() == KeyEvent.KEY_RELEASED) {
