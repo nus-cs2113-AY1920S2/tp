@@ -31,18 +31,19 @@ As such, the daily report will include these categories:
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `Restaurant Report` from [here](https://github.com/AY1920S2-CS2113-T14-4/tp).
+2. Download the latest version of `Restaurant Report` from [here](https://github.com/AY1920S2-CS2113-T14-4/tp/releases/download/v2.0/restaurant-2.0.jar).
 
 <a name="features"></a>
 
 ## Features 
-
+``` javascript
 Add menu items, ingredients and reservations.
 
 * words in UPPERCASE: parameters
 * parameters in [ ]: optional parameters
 * parameters in { | }: at least one of them
 * sequence of the parameters can be changed
+```
 
 <a name="add"></a>
 
@@ -78,6 +79,7 @@ Delete menu items, ingredients and reservations.
 #### Delete stock of ingredient: delete stock
 * Format: `delete stock; i/INGREDIENT; [q/QUANTITY;]`
   + Example: `delete stock; i/tomato; q/1;`<br/>
+  + Example: `delete stock; i/tomato;`<br/>
 
 
 #### Mark reservation as invalid: delete reservation

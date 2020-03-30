@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.AddReservationCommandTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2020-03-30T14:41:57" hostname="LAPTOP-44LCAOD7" time="0.102">
+  <properties/>
+  <testcase name="parseInput_nameMissingAddReservationCommand_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.004"/>
+  <testcase name="parseInput_commentDelimiterMissingAddReservationCommand2_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.018"/>
+  <testcase name="parseInput_dateDelimiterMissingAddReservationCommand2_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.001"/>
+  <testcase name="parseInput_guestNumberDelimiterMissingAddReservationCommand1_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.001"/>
+  <testcase name="parseInput_nameDelimiterMissingAddReservationCommand1_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.001"/>
+  <testcase name="execute_normalAddReservationCommandwithCommentnDifferentSequence_success()" classname="commands.AddReservationCommandTest" time="0.008"/>
+  <testcase name="parseInput_contactDelimiterMissingAddReservationCommand2_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.0"/>
+  <testcase name="execute_normalAddReservationCommand_success()" classname="commands.AddReservationCommandTest" time="0.002"/>
+  <testcase name="parseInput_guestNumberDelimiterMissingAddReservationCommand2_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.019"/>
+  <testcase name="parseInput_invalidGuestNumberAddReservationCommand_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.005"/>
+  <testcase name="parseInput_nameDelimiterMissingAddReservationCommand2_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.001"/>
+  <testcase name="parseInput_guestNumberMissingAddReservationCommand_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.002"/>
+  <testcase name="parseInput_commentDelimiterMissingAddReservationCommand1_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.002"/>
+  <testcase name="parseInput_contactMissingAddReservationCommand_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.003"/>
+  <testcase name="parseInput_dateDelimiterMissingAddReservationCommand1_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.0"/>
+  <testcase name="parseInput_dateMissingAddReservationCommand_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.001"/>
+  <testcase name="parseInput_contactDelimiterMissingAddReservationCommand1_exceptionThrown()" classname="commands.AddReservationCommandTest" time="0.001"/>
+  <system-out><![CDATA[Reservation[0] has been added into the list
+Reservation[0] has been added into the list
+Please enter a valid positive integer.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
