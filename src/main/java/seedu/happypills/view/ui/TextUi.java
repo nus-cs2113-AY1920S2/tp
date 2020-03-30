@@ -407,4 +407,10 @@ public class TextUi {
                 + appointment + DIVIDER;
         return message;
     }
+
+    public static String doneAppointmentSuccessMessage(Appointment appointment) {
+        String message = "    The following appointment has been marked done:\n"
+                + appointment + DIVIDER;
+        return message;
+    }
 }
