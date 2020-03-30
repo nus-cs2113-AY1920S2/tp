@@ -130,28 +130,37 @@ public class Parser {
 
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
+
             case AddCategoryCommand.COMMAND_WORD:
                 return prepareAddCategoryCommand(parameters);
+
             case AddTaskCommand.COMMAND_WORD:
                 return prepareAddTaskCommand(parameters);
+
             case AddFileCommand.COMMAND_WORD:
                 return prepareAddFileCommand(parameters);
+
             case AddTagCommand.COMMAND_WORD:
                 return prepareAddTagCommand(parameters);
                 
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, true);
+
             case DeleteCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, true);
+
             case DeleteTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, true);
+
             case DeleteFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, true);
 
             case ListModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, false);
+
             case ListCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, false);
+
             case ListTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, false);
 
@@ -166,10 +175,13 @@ public class Parser {
 
             case EditModuleCommand.COMMAND_WORD:
                 return prepareEditModuleCommand(parameters);
+
             case EditCategoryCommand.COMMAND_WORD:
                 return prepareEditCategoryCommand(parameters);
+
             case EditTaskCommand.COMMAND_WORD:
                 return prepareEditTaskCommand(parameters);
+
             case EditFileCommand.COMMAND_WORD:
                 return prepareEditFileCommand(parameters);
 
