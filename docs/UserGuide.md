@@ -17,6 +17,11 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
         
     * [3.3. Patient Medical Records Commands](#33-patient-medical-information-commands)
+        + [3.3.1. Add Patient Records : `add pr`](#321-add-patient-add-patient)
+        + [3.3.2. Edit Patient Records : `edit pr`](#322-edit-patient-edit-patient)
+        + [3.3.3. Delete Patient Records : `delete pr`](#323-delete-patient-delete-patient)
+        + [3.3.4. List Patient Records : `list pr`](#324-list-all-patients-list-patient)
+        + [3.3.5. Find Patient Records : `find pr`](#325-retrieve-a-patients-information-get-patient)
     
     * [3.4. Appointment Scheduling Commands](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
@@ -253,13 +258,15 @@ Retrieve details of the patient with the specified NRIC
 
 ### 3.3. Patient Medical Information Commands 
 
-#### 3.3.1. Add Visit: `add visit`
+#### 3.3.1. Add Patient Records: `add pr`
 
-#### 3.3.2. Edit Visit: `edit visit`
+#### 3.3.2. Edit Patient Records: `edit pr`
 
-#### 3.3.3. List Visit: `list visit`
+#### 3.3.3. Delete Patient Records: `delete pr`
 
-#### 3.3.4. Delete Visit: `delete visit`
+#### 3.3.4. List Patient Records: `list pr`
+
+#### 3.3.5. Find Patient Records: `find pr`
 
 ### 3.4. Appointment Scheduling Commands 
 
