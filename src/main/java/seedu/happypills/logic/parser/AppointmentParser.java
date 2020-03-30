@@ -156,7 +156,8 @@ public class AppointmentParser {
      * @return string to be displayed to user for confirmation
      */
     public static String promptConfirmation(String[] parseInput) {
-        String text = "        NRIC : " + parseInput[0].toUpperCase().trim().substring(1) + "\n"
+        String text = "        Are you sure all the listed details are correct?\n"
+                + "        NRIC : " + parseInput[0].toUpperCase().trim().substring(1) + "\n"
                 + "        Date : " + parseInput[1].trim() + "\n"
                 + "        Time : " + parseInput[2].trim() + "\n"
                 + "        Reason : " + parseInput[3].trim() + "\n"

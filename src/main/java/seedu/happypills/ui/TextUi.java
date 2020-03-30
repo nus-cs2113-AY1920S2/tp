@@ -56,31 +56,32 @@ public class TextUi {
      */
     public static String getHelp() {
         String helpMessage = "    HappyPills Commands\n"
-                + "    -----------------------------------------------\n"
+                + "    ---------------------------------------------------\n"
                 + "    General Commands:\n"
                 + "      help | Displays all of HappyPill's Commands\n"
                 + "      exit | Exits the program\n"
-                + "    -----------------------------------------------\n"
+                + "    ---------------------------------------------------\n"
                 + "    Patient Details Commands:\n"
                 + "      add patient | Adds a patient into the program\n"
                 + "      list patient | Lists all the patients in the program\n"
                 + "      get patient | Retrieves the details of a given patient\n"
                 + "      edit patient | Edits a patient's detail\n"
                 + "      delete patient | Deletes a patient from the program\n"
-                + "    -----------------------------------------------\n"
+                + "    ---------------------------------------------------\n"
                 + "    Patient Medial Records Commands:\n"
-                + "      add visit | Adds a prior patient visit into the program\n"
-                + "      "
-                + "    -----------------------------------------------\n"
+                + "      add pr | Adds a prior patient records into the program\n"
+                + "      edit pr | Edits a prior patient record\n"
+                + "      delete pr | Deletes a prior patient record\n"
+                + "      list pr | List down all records for a particular patient\n"
+                + "      find pr | Retrieves a particular record\n"
+                + "    ---------------------------------------------------\n"
                 + "    Appointment Scheduling Commands:\n"
                 + "      add appt | Adds an appointment into the program\n"
                 + "      list appt | Lists all the appointments into the program\n"
                 + "      edit appt | Edits an appointment in the program\n"
                 + "      delete appt | Deletes an appointment from the program\n"
                 + "      done appt | Marks an appointment as done\n"
-                + "      find appt | Finds all the appointments under a patient\n"
-                + "    -----------------------------------------------\n"
-                + "    For more detailed command instructions, enter help [COMMAND].\n";
+                + "      find appt | Finds all the appointments under a patient\n";
         helpMessage += DIVIDER;
         return helpMessage;
     }
@@ -151,7 +152,7 @@ public class TextUi {
     public static void printDeleteConfirmation(Patient patient) {
         System.out.println("    Are you sure you want to delete this patient:\n      "
                 + patient.getName()
-                + " || "
+                + " | "
                 + patient.getNric()
                 + "\n                                                   (Y/N)?\n"
                 + DIVIDER);
@@ -166,7 +167,7 @@ public class TextUi {
         System.out.println("    Please try again."
                 + "    Are you sure you want to delete this patient:\n      "
                 + patient.getName()
-                + " || "
+                + " | "
                 + patient.getNric()
                 + "\n                                                   (Y/N)?\n"
                 + DIVIDER);
@@ -433,7 +434,7 @@ public class TextUi {
      * @return display message.
      */
     public static String deletePatient(Patient patient) {
-        return "    Patient " + patient.getName() + " || " + patient.getNric()
+        return "    Patient " + patient.getName() + " | " + patient.getNric()
             + " has been deleted successfully.\n";
     }
 

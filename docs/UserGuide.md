@@ -9,21 +9,21 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.1.1. View help: `help`](#311-view-help-help)
         + [3.1.2. Exit program: `exit`](#312-exit-program-exit)
         
-    * [3.2. General Patient Information Commands](#32-general-patient-information)
+    * [3.2. General Patient Information](#32-general-patient-information)
         + [3.2.1. Add Patient: `add patient`](#321-add-patient-add-patient)
         + [3.2.2. Edit Patient: `edit patient`](#322-edit-patient-edit-patient)
         + [3.2.3. Delete Patient: `delete patient`](#323-delete-patient-delete-patient)
         + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
         + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
         
-    * [3.3. Patient Medical Records Commands](#33-patient-medical-information-commands)
-        + [3.3.1. Add Patient Records : `add pr`](#321-add-patient-add-patient)
-        + [3.3.2. Edit Patient Records : `edit pr`](#322-edit-patient-edit-patient)
-        + [3.3.3. Delete Patient Records : `delete pr`](#323-delete-patient-delete-patient)
-        + [3.3.4. List Patient Records : `list pr`](#324-list-all-patients-list-patient)
-        + [3.3.5. Find Patient Records : `find pr`](#325-retrieve-a-patients-information-get-patient)
+    * [3.3. Patient Medical Records](#33-patient-medical-information-commands)
+        + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
+        + [3.3.2. Edit Patient Records : `edit pr`](#332-edit-patient-records-edit-pr)
+        + [3.3.3. Delete Patient Records : `delete pr`](#333-delete-patient-records-delete-pr)
+        + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-list-pr)
+        + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-find-pr)
     
-    * [3.4. Appointment Scheduling Commands](#34-appointment-scheduling-commands)
+    * [3.4. Appointments](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
         + [3.4.2. Edit Appointment: `edit appt`](#342-edit-appointment-edit-appt)
         + [3.4.3. Delete Appointment: `delete appt`](#343-delete-appointment-delete-appt)
@@ -37,11 +37,12 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 
 ## 1. Introduction 
 
-HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI). 
-The application replaces all physical papers and is highly optimised for fast typing users.
-If you can type fast, HappyPills can help to manage patients’ records faster than traditional Graphical User Interface (GUI) applications. 
-All notes are neatly organised in HappyPills so that all your important information are safely stored. 
-Say goodbye to messy desks, illegible handwriting, time-consuming handwritten notes with HappyPills!
+HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI).
+  
+The application replaces all physical papers and is highly optimised for fast typing users.    
+If you can type fast, HappyPills can help to manage patients’ records **faster** than traditional Graphical User Interface (GUI) applications.  
+All notes are **neatly organised** in HappyPills so that all your important information are **safely stored**.  
+Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! :relaxed:
 
 ## 2. Quick Start
 **Installation**
@@ -52,7 +53,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG)
+![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG "Start of App")
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
@@ -61,7 +62,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 ### Command Format
 - Words in `UPPER_CASE` are the parameters to be supplied by you **e.g.** in `add patient \ic NRIC`, `NRIC` is the input required from you.
 - In case a tag is used multiple times in a command then its first instance will be taken and the remaining instances will be treated as invalid input.
-- Items in square brackets are optional **e.g.** `/ic NRIC [/a ALLERGIES]` can be used as `/ic S1234567F` or as `/ic S1234567F /a Dust`
+- Items in square brackets are optional **e.g.** `/ic NRIC /a [ALLERGIES]` can be used as `/ic S1234567F` or as `/ic S1234567F /a Dust`
 - Parameters can be in any order **e.g.** if the command requires `/n NAME /ic NRIC` or `/ic NRIC /n NAME `
 - All commands are case insensitive **e.g.** `help` or `HELP` or `HeLp` will display all the commands and their usage.
 
@@ -86,45 +87,26 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 
 - `/r` → Reason for the Patient's appointment
 
-- `/` → 
+- `/sym` → Patient's Symptoms
 
-- `/` →
-
-- `/` →
+- `/diag` → Patient's Diagnosis
 
 ### 3.1. General Commands 
 
 #### 3.1.1. View Help: `help`
 
-Displays the list of commands and their syntaxes.
-
-Format: `help`
+Displays the list of commands and their syntax.
 
 ###### Usage example:
 
-*For general help*
+Format: `help`
 
-    help
+>***Expected output:***
+> 
+> ![help](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/HelpOutput.PNG "help output")
 
-*For specific help*
-
-    help [COMMAND] 
-    
-**Example:**
-
-`help get`
-
-> ***Expected output:***
->
->     ===================================================
->     To retrieve a patient's information, run the following command:
->     Note: patient details are within the parenthesis [ ]
->       get [NRIC]
->     Example:
->       get S1234567Z
->     The command above will display information regarding the patient with NRIC S1234567Z.
->     ===================================================
->
+:information_source: | The help command is split into four different sections `(highlighted by the boxes)`.
+---------------------|--------------------------------------------------------------------------------------------------
 
 #### 3.1.2. Exit program: `exit`
 
@@ -136,7 +118,7 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![Exit](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/Exit.PNG)
+> ![Exit](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/Exit.PNG "Exit Ouput")
 
 ### 3.2. General Patient Information
 
@@ -144,21 +126,23 @@ HappyPills can help users to manage their patients' information easily.
 
 #### 3.2.1. Add Patient: `add patient`
 
-This feature allows you to add more patients into the exisiting patients' list. <br>  
-HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list. You can also add a new patient with the specified parameters in any order.
+This feature allows you to add more patients into the existing patients' list.
+ 
+HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list.  
+You can also add a new patient with the specified parameters in any order.
 
 
 ###### Usage Example:   
 
-    add patient /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+    add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
     
 **Example:**
 
-    add patient /ic S9999999Z /n Bob /d 12-11-98 /b A+
+    add patient /ic S9999999Z /n Bob /dob 12-11-98 /b A+
     
 >***Expected output:***
 >
->![MissingInput](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/MissingAddPatientInput.PNG)
+>![MissingInput](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/MissingAddPatientInput.PNG "Missing Add Ouput")
 >
 > Enter `/p 999` to add missing field.
 
@@ -167,16 +151,7 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 
 > ***Expected output:***
 >
->     =====================================================
->         Name : Bob
->         NRIC : S9999999Z
->         Phone Number : 999
->         DOB : 12-11-98
->         Blood Type : A+
->         Allergies : NIL
->         Remarks : NIL
->                                                    (Y/N)?
->     =====================================================
+>   ![CheckConfirmAdd](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/addConfirm.PNG "Add Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -185,22 +160,26 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG)
+>  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
 #### 3.2.2. Edit Patient: `edit patient`
 
 Edit information of the patient with the specified NRIC. 
 
 ##### Usage example: 
+ 
+    edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
 
-```
-edit patient [NRIC] [Options][editedInput]
-  
-Options:
-    -p edit phone number
-    -a edit allergies
-    -r edit remarks
-```
+**Example:**
+
+    edit patient S0618 /p9111
+
+> ***Expected output:***
+>
+> ![editPatientOutput](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/EditCommandOutput.PNG "Edit Patient Ouput")
+
+:information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
+---------------------|--------------------------------------------------------------------------
 
 #### 3.2.3. Delete Patient: `delete patient`
 
@@ -208,7 +187,7 @@ Delete a patient as specified by the NRIC.
 
 ##### Usage example: 
 
-    delete patient [NRIC]
+    delete patient NRIC
     
 **Example:**
 
@@ -216,21 +195,23 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG)
+> ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+>
+> Enter `y` to confirm.
 
 :information_source: | HappyPills will prompt for confirmation before deleting patient in the patient list.  
 ---------------------|-------------------------------------------------------------------
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG)
+>  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
 :heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
 -------------------------|-------------------------------------------------------------------
 
 #### 3.2.4. List All Patients: `list patient`
 
-Displays all the patients in alphabetical order.
+Displays all the patients in the patient list. 
 
 ##### Usage example: 
 
@@ -238,15 +219,15 @@ Displays all the patients in alphabetical order.
     
 > ***Expected output:***
 >
-> ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG)  
+> ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG "List Ouput")  
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
-Retrieve details of the patient with the specified NRIC
+Retrieve details of the patient with the specified NRIC.
 
 ##### Usage example: 
 
-    get patient [NRIC] 
+    get patient NRIC
     
 **Example:**
 
@@ -254,19 +235,78 @@ Retrieve details of the patient with the specified NRIC
     
 > ***Expected output:***
 >
-> ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG)
+> ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG "Get Ouput")
 
-### 3.3. Patient Medical Information Commands 
+### 3.3. Patient Medical Records 
 
 #### 3.3.1. Add Patient Records: `add pr`
 
+Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
+
+##### Usage example:
+
+    add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS
+    
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
+
 #### 3.3.2. Edit Patient Records: `edit pr`
+
+Edit patient's medical records when there is any error in previous inputs.
+
+##### Usage example:
+
+    edit pr NRIC INDEX /sym [SYMPTOMS] /diag [DIAGNOSIS] /d [DATE] /t [TIME]
+    
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
 
 #### 3.3.3. Delete Patient Records: `delete pr`
 
+Delete patient's medical records based on the given NRIC and the index of records  . 
+
+##### Usage example: 
+
+    delete pr NRIC INDEX
+
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
 #### 3.3.4. List Patient Records: `list pr`
 
+##### Usage example:
+
+    list pr NRIC
+
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
 #### 3.3.5. Find Patient Records: `find pr`
+
+##### Usage example:
+
+    find pr NRIC INDEX
+
+**Example:**
+
+> ***Expected output:***
+>
+>
+>![]()
 
 ### 3.4. Appointment Scheduling Commands 
 
@@ -285,8 +325,37 @@ Retrieve details of the patient with the specified NRIC
 ### 3.5. Saving Data
 
 
-
 ## 4. Command Summary
+
+#### General Patient Information
+
+**Command** | **Format**
+--------|----------
+Add a patient's information | `add patient` /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]
+Edit a patient's information |  `edit patient` NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
+list all patients | `list patient`
+Retrieve a patient's information | `get patient` NRIC
+
+#### Patient Medical Records
+
+**Command** | **Format**
+--------|----------
+ Add a Patient Record |`add pr` /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS
+ Edit a Patient Record |`edit pr`
+ Delete a Patient Record | `delete pr`
+ List all Patient Records |`list pr`
+ Find a Patient Record|`find pr`
+
+#### Appointments
+
+**Command** | **Format**
+--------|----------
+Add an appointment | `add appt`
+Edit an appointment | `edit appt`
+Delete an appointment | `delete appt`
+Mark an appointment as done | `done appt`
+List all appointments | `list appt`
+Find an appointment| `find appt`
 
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
