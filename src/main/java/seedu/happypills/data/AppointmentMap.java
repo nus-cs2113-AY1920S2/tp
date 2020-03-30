@@ -58,6 +58,7 @@ public class AppointmentMap {
     public Appointment get(String appointmentID) {
         return argMultimap.get(appointmentID);
     }
+
     public boolean containsKey(String appointmentId) {
         return argMultimap.containsKey(appointmentId);
     }

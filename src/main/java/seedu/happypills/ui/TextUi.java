@@ -379,7 +379,7 @@ public class TextUi {
      *
      * @return The Edit command instruction.
      */
-    public static String EditAptHelpMessage() {
+    public static String editAptHelpMessage() {
         String message = "    To edit a patient's appointment, run the following command:\n"
                 + "      edit appt [NRIC] [APPTID] /d [DD/MM/YYYY] to edit appointment's phone number,\n"
                 + "      edit appt [NRIC] [APPTID] /t [HH:MM] to edit appointment's allergies,\n"
@@ -391,7 +391,7 @@ public class TextUi {
     }
 
     /**
-     * print any string as needed
+     * print any string as needed.
      * @param string print any string to screen
      */
     public static void print(String string) {
@@ -404,7 +404,7 @@ public class TextUi {
      * @param appointment The appointment that was updated.
      * @return The patient's updated appointment.
      */
-    public static String EditAppointmentSuccessMessage(Appointment appointment) {
+    public static String editAppointmentSuccessMessage(Appointment appointment) {
         String message = "    Patient appointment have been updated as follows:\n"
                 + appointment + DIVIDER;
         return message;

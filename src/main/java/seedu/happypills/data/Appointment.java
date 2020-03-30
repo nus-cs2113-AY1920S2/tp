@@ -86,7 +86,7 @@ public class Appointment {
 
     @Override
     public String toString() {
-        String status = isDone?"Yes":"No";
+        String status = isDone ? "Yes" : "No";
         String text = "        NRIC     : " + this.nric + "\n"
                 + "        Date     : " + this.date + "\n"
                 + "        Time     : " + this.time + "\n"

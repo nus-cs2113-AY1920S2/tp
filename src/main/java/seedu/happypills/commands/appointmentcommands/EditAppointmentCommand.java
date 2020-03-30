@@ -1,15 +1,11 @@
 package seedu.happypills.commands.appointmentcommands;
 
-import seedu.happypills.HappyPills;
 import seedu.happypills.data.Appointment;
 import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 import seedu.happypills.exception.HappyPillsException;
 import seedu.happypills.ui.TextUi;
-
-import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class EditAppointmentCommand extends AppointmentCommand {
     protected String nric;
@@ -56,7 +52,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * check string if fits date format
+     * check string if fits date format.
      * @param date date in String type
      * @return true if correct date format, false otherwise
      */
@@ -66,14 +62,14 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * Edit the date of the appointment in the list within the patient object
+     * Edit the date of the appointment in the list within the patient object.
      *
      * @param patient Contains the patient that to get appointment from.
      * @param newDate The new date to be edited into.
      * @return the appointment with the specified apptID or null if not found
      */
     private Boolean editDate(Patient patient, String newDate) {
-        if(!checkDate(newDate)) {
+        if (!checkDate(newDate)) {
             return false;
         }
         for (Appointment appointment : patient.getAppointments()) {
@@ -94,7 +90,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      */
     private Boolean editDate(Appointment appointment, String newDate) {
         if (!checkDate(newDate)) {
-            TextUi.print(TextUi.EditAptHelpMessage());
+            TextUi.print(TextUi.editAptHelpMessage());
             return false;
         } else {
             appointment.setDate(newDate);
@@ -103,9 +99,9 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * check string if fits time format
-     * @param time time in String type
-     * @return true if correct date format, false otherwise
+     * check string if fits time format.
+     * @param time time in String type.
+     * @return true if correct date format, false otherwise.
      */
     static boolean checkTime(String time) {
         String pattern = "([01][0-9]|2[0-3]):([0-5][0-9]|60)";
@@ -120,7 +116,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return the appointment with the specified apptID or null if not found.
      */
     private Boolean editTime(Patient patient, String newTime) {
-        if(!checkTime(newTime)) {
+        if (!checkTime(newTime)) {
             return false;
         }
         newTime += ":00";
@@ -141,10 +137,10 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return true if successful, false otherwise.
      */
     private Boolean editTime(Appointment appointment, String newTime) {
-        if(checkTime(newTime)){
+        if (checkTime(newTime)) {
             newTime += ":00";
-           appointment.setTime(newTime);
-           return true;
+            appointment.setTime(newTime);
+            return true;
         }
         return false;
     }
@@ -187,8 +183,8 @@ public class EditAppointmentCommand extends AppointmentCommand {
      */
     @Override
     public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
-        if(newContent.length() < 3) {
-            return TextUi.EditAptHelpMessage();
+        if (newContent.length() < 3) {
+            return TextUi.editAptHelpMessage();
         }
         String field = newContent.substring(0,2);
         String content = newContent.substring(2).trim();
@@ -204,10 +200,10 @@ public class EditAppointmentCommand extends AppointmentCommand {
         String errorMsg = "Something went wrong, the edit could not be made.";
         if (field.equals("/d")) {
             output = editDate(editPatient, content) && editDate(editAppt,content);
-            errorMsg = output?errorMsg:"Invalid date or date format(DD/MM/YYYY).";
+            errorMsg = output ? errorMsg : "Invalid date or date format(DD/MM/YYYY).";
         } else if (field.equals("/t")) {
             output = editTime(editPatient, content) && editTime(editAppt,content);
-            errorMsg = output?errorMsg:"Invalid time or time format(HH:MM).";
+            errorMsg = output ? errorMsg : "Invalid time or time format(HH:MM).";
         } else if (field.equals("/r")) {
             output = editReason(editPatient, content) && editReason(editAppt,content);
         } else {
@@ -219,6 +215,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
         } catch (IOException e) {
             logger.info("Adding patient list to file failed.");
         }*/
-        return output?TextUi.EditAppointmentSuccessMessage(editAppt):errorMsg;
+        return output ? TextUi.editAppointmentSuccessMessage(editAppt) : errorMsg;
     }
 }
