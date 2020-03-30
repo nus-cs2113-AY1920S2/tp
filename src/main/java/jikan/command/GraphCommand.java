@@ -24,7 +24,9 @@ public class GraphCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            if (parameters.equals("tags")) {
+            if (parameters.equals("targets")) {
+                Ui.graphTargets(activityList);
+            } else if (parameters.equals("tags")) {
                 graphTags();
             } else {
                 if (parameters.isEmpty()) {

@@ -1,4 +1,4 @@
-package jikan.storage;
+package jikan.log;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,25 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 /**
- * A storage cleaner class that does automated cleaning
- * for data files under the user's request.
+ * A log cleaner class that does automated cleaning
+ * for log files under the user's request.
  */
-public class StorageCleaner {
-    private static final String STATUS_FILE_PATH = "data/recycled/status.txt";
-    private static final String DATA_FILE_PATH = "data/recycled/data.csv";
+public class LogCleaner {
+    private static final String STATUS_FILE_PATH = "data/recycled/logStatus.txt";
+    private static final String DATA_FILE_PATH = "data/recycled/logData.txt";
+    private static final String LOG_FILE_PATH = "data/LogRecord.txt";
     private File status;
     private File recycledData;
     public boolean toClean;
-    private int numberOfActivitiesToClean;
-    public Storage storage;
+    private int numberOfLogsToClean;
+
 
     /**
-     * Constructor for the storage cleaner.
-     * @param storage an object that holds the data on the list of activities.
+     * Constructor for the log cleaner.
      */
-    public StorageCleaner(Storage storage) {
-        this.storage = storage;
+    public LogCleaner() {
         status = new File(STATUS_FILE_PATH);
         recycledData = new File(DATA_FILE_PATH);
         initialiseCleaner();
@@ -34,7 +34,7 @@ public class StorageCleaner {
     }
 
     /**
-     * Initialises a data file containing the deleted entries.
+     * Initialise a data file containing the deleted logs.
      */
     private void initialiseDataFile() {
         try {
@@ -45,7 +45,7 @@ public class StorageCleaner {
     }
 
     /**
-     * Activates/De-activates the auto cleanup by checking the status file.
+     * Activates/De-activates the auto cleanup of logs by checking the status file.
      */
     private void initialiseCleaner() {
         try {
@@ -53,18 +53,18 @@ public class StorageCleaner {
                 Scanner sc = new Scanner(status);
                 String status = sc.nextLine();
                 int value = Integer.parseInt(status);
-                assert value == 0 || value == 1;
+                assert value == 0 | value == 1;
                 if (value == 1) {
                     this.toClean = true;
                 } else {
                     this.toClean = false;
                 }
                 String line = sc.nextLine();
-                this.numberOfActivitiesToClean = Integer.parseInt(line);
+                this.numberOfLogsToClean = Integer.parseInt(line);
             } else {
                 FileWriter fw = new FileWriter(status);
                 fw.write("0" + "\n");
-                fw.write("3" + "\n");
+                fw.write("10" + "\n");
                 fw.close();
             }
         } catch (IOException e) {
@@ -73,7 +73,7 @@ public class StorageCleaner {
     }
 
     /**
-     * Loads the status file and checks if the file exists or not.
+     * Loads the status file and checks if it exists or not.
      * @param file status file.
      * @return true if the file exists and false otherwise.
      * @throws IOException if there is an error with the creation/loading of the status file.
@@ -88,8 +88,8 @@ public class StorageCleaner {
     }
 
     /**
-     * Loads the data file that contains deleted entries.
-     * @param file data file with the deleted entries.
+     * Loads the data file that contains deleted logs.
+     * @param file data file with the deleted logs.
      * @throws IOException if there is an error with the creation/loading of the data file.
      */
     private void loadFile(File file) throws IOException {
@@ -109,8 +109,8 @@ public class StorageCleaner {
     }
 
     /**
-     * Method to activate/de-activate the auto cleanup.
-     * @param status a boolean specifying whether the cleaner should be activated or not.
+     * Method to activate/de-activate the auto cleanup for logs.
+     * @param status a boolean specifying whether the log cleaner should be activated or not.
      * @throws IOException if there is an error with reading/writing to the status file.
      */
     public void setStatus(boolean status) throws IOException {
@@ -125,23 +125,23 @@ public class StorageCleaner {
         } else {
             writer.write("0" + "\n");
         }
-        writer.write(Integer.toString(this.numberOfActivitiesToClean) + "\n");
+        writer.write(Integer.toString(this.numberOfLogsToClean) + "\n");
         writer.close();
     }
 
     /**
-     * Method to set a value for the number of activities to clean.
+     * Method to set a value for the number of logs to clean.
      * @param value an integer representing the number to clean.
      * @throws IOException if there is an error with reading/writing to the status file.
      */
-    public void setNumberOfActivitiesToClean(int value) throws IOException {
+    public void setNumberOfLogsToClean(int value) throws IOException {
         boolean status = this.toClean;
         File dataFile = new File(STATUS_FILE_PATH);
-        this.numberOfActivitiesToClean = value;
+        this.numberOfLogsToClean = value;
         if (!dataFile.exists()) {
             dataFile.createNewFile();
         }
-        BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter((dataFile)));
         if (status) {
             writer.write("1" + "\n");
         } else {
@@ -152,42 +152,41 @@ public class StorageCleaner {
     }
 
     /**
-     * Method to clear up the live data file and move them to the recycled data file.
-     * @throws IOException if there is an error with reading/writing to the live data file and
-     *         recycled data file.
+     * Method to clear up the live log file and move them to the recycled log file.
+     * @throws IOException if there is an error with reading/writing to the live log file and
+     *         recycled log file.
      */
     public void autoClean() throws IOException {
-        List<String> activitiesForRecycling = new ArrayList<>();
-        List<String> activitiesLeftInData = new ArrayList<>();
+        List<String> logsForRecycling = new ArrayList<>();
+        List<String> logsLeftInData = new ArrayList<>();
         if (this.toClean) {
-            String filePath = storage.dataFilePath;
-            File liveData = new File(filePath);
+            File liveData = new File(LOG_FILE_PATH);
             Scanner recycledDataScanner = new Scanner(recycledData);
             Scanner liveDataScanner = new Scanner(liveData);
             while (recycledDataScanner.hasNext()) {
                 String line = recycledDataScanner.nextLine();
-                activitiesForRecycling.add(line);
+                logsForRecycling.add(line);
             }
-            while (numberOfActivitiesToClean != 0) {
+            while (numberOfLogsToClean != 0) {
                 if (!liveDataScanner.hasNext()) {
                     break;
                 }
                 String line = liveDataScanner.nextLine();
-                activitiesForRecycling.add(line);
-                numberOfActivitiesToClean -= 1;
+                logsForRecycling.add(line);
+                numberOfLogsToClean -= 1;
             }
             while (liveDataScanner.hasNext()) {
                 String line = liveDataScanner.nextLine();
-                activitiesLeftInData.add(line);
+                logsLeftInData.add(line);
             }
 
             BufferedWriter recycledDataWriter = new BufferedWriter(new FileWriter(recycledData));
-            for (String line : activitiesForRecycling) {
+            for (String line : logsForRecycling) {
                 recycledDataWriter.write(line + "\n");
             }
             recycledDataWriter.close();
             BufferedWriter liveDataWriter = new BufferedWriter(new FileWriter(liveData));
-            for (String line : activitiesLeftInData) {
+            for (String line : logsLeftInData) {
                 liveDataWriter.write(line + "\n");
             }
             liveDataWriter.close();

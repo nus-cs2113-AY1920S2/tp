@@ -1,4 +1,4 @@
-package jikan;
+package jikan.log;
 
 import java.io.File;
 import java.io.IOException;

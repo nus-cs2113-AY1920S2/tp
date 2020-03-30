@@ -1,11 +1,10 @@
 package jikan.command;
 
-import jikan.Log;
+import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.NoSuchActivityException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
-import jikan.Log;
 
 /**
  * Represents a command to abort a currently running activity.
