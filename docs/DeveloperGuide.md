@@ -41,10 +41,10 @@ Content
 	- [Using IntelliJ JUnit Tests](#51-using-intellij-junit-tests)
 	- [Using Input-Output Tests](#52-using-input-output-tests)
 - [Appendices](#6-appendices)
-- [Product Scope](#61-appendix-a-product-scope)
-- [User Stories](#62-appendix-b-user-stories)
-- [Use Cases](#63-appendix-c-use-cases)
-- [Non-Functional Requirements](#64-appendex-d-non-functional-requirements)
+    - [Product Scope](#61-appendix-a-product-scope)
+    - [User Stories](#62-appendix-b-user-stories)
+    - [Use Cases](#63-appendix-c-use-cases)
+    - [Non-Functional Requirements](#64-appendex-d-non-functional-requirements)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
