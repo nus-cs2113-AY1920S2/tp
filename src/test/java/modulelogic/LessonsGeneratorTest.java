@@ -4,10 +4,12 @@ import exception.InvalidUrlException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static common.Messages.MESSAGE_MODULECODE_IN_BLACKLIST;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LessonsGeneratorTest {
     LessonsGenerator myLessonsGenerator;
@@ -23,13 +25,17 @@ public class LessonsGeneratorTest {
     public void generate_correctLessonDetails() throws InvalidUrlException {
         myLessonsGenerator = new LessonsGenerator("https://nusmods.com/timetable/sem-1/share?CG1111=TUT:04,LAB:02");
         myLessonsGenerator.generate();
-        ArrayList<String[]> actual = new ArrayList<>();
-        actual.add(new String[]{"1400", "1600", "Friday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
-        actual.add(new String[]{"1400", "1700", "Wednesday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
-        actual.add(new String[]{"1400", "1700", "Monday", "1:2:3:4:5:6:7:8:9:10:11:12:13"});
-        ArrayList<String[]> expected = myLessonsGenerator.getLessonDetails();
-        for (int i = 0; i < expected.size(); i++) {
-            assertArrayEquals(expected.get(i), actual.get(i));
+        Set<String> actual = new HashSet<>();
+        actual.add("14001600Friday1:2:3:4:5:6:7:8:9:10:11:12:13");
+        actual.add("14001700Wednesday1:2:3:4:5:6:7:8:9:10:11:12:13");
+        actual.add("14001700Monday1:2:3:4:5:6:7:8:9:10:11:12:13");
+        ArrayList<String[]> expectedArray = myLessonsGenerator.getLessonDetails();
+        ArrayList<String> expected = new ArrayList<>();
+        for (String[] strings : expectedArray) {
+            expected.add(String.join("", strings));
+        }
+        for (String string : expected) {
+            assertTrue(actual.contains(string));
         }
     }
 }
