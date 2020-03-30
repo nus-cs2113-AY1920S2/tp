@@ -18,7 +18,7 @@ public class ManualNoteCreator {
         String extract = Ui.getCommand();
         System.out.println("Paste any URLs associated with this note:");
         String url = Ui.getCommand();
-        System.out.println("Does the note belong to any category?");
+        System.out.println("What is the category (type \"default\" if you don't know it)");
         String category = Ui.getCommand();
         String epochSecond = CurrentTimeFetcher.execute();
         Note note = new Note(title, extract, epochSecond);

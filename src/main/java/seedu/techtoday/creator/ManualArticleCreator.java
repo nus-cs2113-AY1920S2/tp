@@ -14,7 +14,7 @@ public class ManualArticleCreator {
         String title = Ui.getCommand();
         System.out.println("What is the URl of the article (type \"No URL\")?");
         String url = Ui.getCommand();
-        System.out.println("What is the category (type \"default\" if you done know it)");
+        System.out.println("What is the category (type \"default\" if you don't know it)");
         String category = Ui.getCommand();
         String epochSecond = CurrentTimeFetcher.execute();
         Article article = new Article(title, url, category);

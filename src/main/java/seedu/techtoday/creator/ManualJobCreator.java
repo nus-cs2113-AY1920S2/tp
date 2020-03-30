@@ -15,7 +15,7 @@ public class ManualJobCreator {
         String title = Ui.getCommand();
         System.out.println("What is the job description?");
         String text = Ui.getCommand();
-        System.out.println("What is the category (type \"default\" if you done know it)");
+        System.out.println("What is the category (type \"default\" if you don't know it)");
         String category = Ui.getCommand();
         String epochSecond = CurrentTimeFetcher.execute();
         Job job = new Job(title, text, category);
