@@ -37,16 +37,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static seedu.nuke.directory.DirectoryTraverser.*;
-import static seedu.nuke.gui.io.GuiCommandPattern.ADD_CATEGORY_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.ADD_MODULE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.ADD_TASK_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.BASIC_COMMAND_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_CATEGORY_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_MODULE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_TASK_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_CATEGORY_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_MODULE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_TASK_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.*;
 import static seedu.nuke.gui.util.TextUtil.createText;
 
 
@@ -68,7 +59,7 @@ public class GuiParser {
     private static final String MODULE_GROUP = "moduleCode";
     private static final String CATEGORY_GROUP = "categoryName";
     private static final String TASK_GROUP = "taskDescription";
-    private static final String FILE_GROUP = "filePath";
+    private static final String FILE_GROUP = "fileInfo";
     private static final String DEADLINE_GROUP = "deadline";
     private static final String PRIORITY_GROUP = "priority";
     private static final String EXACT_GROUP = "exact";
@@ -166,6 +157,9 @@ public class GuiParser {
         case AddTaskCommand.COMMAND_WORD:
             smartParseAddTaskCommand(parameters, startIndexOfParameters);
             break;
+        case AddFileCommand.COMMAND_WORD:
+            smartParseAddFileCommand(parameters, startIndexOfParameters);
+            break;
 
         case DeleteModuleCommand.COMMAND_WORD:
         case ListModuleCommand.COMMAND_WORD:
@@ -179,6 +173,10 @@ public class GuiParser {
         case ListTaskCommand.COMMAND_WORD:
             smartParseDeleteAndListTaskCommand(parameters, startIndexOfParameters);
             break;
+        case DeleteFileCommand.COMMAND_WORD:
+        case ListFileCommand.COMMAND_WORD:
+            smartParseDeleteAndListFileCommand(parameters, startIndexOfParameters);
+            break;
 
         case EditModuleCommand.COMMAND_WORD:
             smartParseEditModuleCommand(parameters, startIndexOfParameters);
@@ -189,9 +187,16 @@ public class GuiParser {
         case EditTaskCommand.COMMAND_WORD:
             smartParseEditTaskCommand(parameters, startIndexOfParameters);
             break;
+        case EditFileCommand.COMMAND_WORD:
+            smartParseEditFileCommand(parameters, startIndexOfParameters);
+            break;
 
         case ChangeDirectoryCommand.COMMAND_WORD:
             smartParseChangeDirectoryCommand(parameters, startIndexOfParameters);
+            break;
+
+        case OpenFileCommand.COMMAND_WORD:
+            smartParseOpenFileCommand(parameters, startIndexOfParameters);
             break;
 
         default:
@@ -271,6 +276,24 @@ public class GuiParser {
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
+    void smartParseAddFileCommand(String parameters, int startIndex) throws ParseFailureException {
+        final Matcher matcher = matchPattern(parameters, ADD_FILE_FORMAT);
+
+        String fileName = matcher.group(IDENTIFIER_GROUP);
+
+        highlightedInput.getChildren().add(createText(fileName, Color.BLUE));
+
+        smartParseModule(matcher, parameters, startIndex, true);
+        smartParseCategory(matcher, parameters, startIndex, true);
+        smartParseTask(matcher, parameters, startIndex, true);
+
+        String filePath = matcher.group(FILE_GROUP);
+        highlightedInput.getChildren().add(createText(filePath, Color.BLUE));
+
+        String invalid = matcher.group(INVALID_GROUP);
+        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+    }
+
     private void smartParseDeleteAndListModuleCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_MODULE_FORMAT);
 
@@ -301,6 +324,20 @@ public class GuiParser {
         smartParseIdentityTask(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, false);
         smartParseCategory(matcher, parameters, startIndex, false);
+        smartParseFlag(matcher, EXACT_GROUP);
+        smartParseFlag(matcher, ALL_GROUP);
+
+        String invalid = matcher.group(INVALID_GROUP);
+        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+    }
+
+    private void smartParseDeleteAndListFileCommand(String parameters, int startIndex) throws ParseFailureException {
+        final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_FILE_FORMAT);
+
+        smartParseIdentityFile(matcher, parameters, startIndex);
+        smartParseModule(matcher, parameters, startIndex, false);
+        smartParseCategory(matcher, parameters, startIndex, false);
+        smartParseTask(matcher, parameters, startIndex, false);
         smartParseFlag(matcher, EXACT_GROUP);
         smartParseFlag(matcher, ALL_GROUP);
 
@@ -339,6 +376,31 @@ public class GuiParser {
         checkDuplicateTask(matcher, parameters);
         smartParseDeadline(matcher, parameters);
         smartParsePriority(matcher, parameters);
+
+        String invalid = matcher.group(INVALID_GROUP);
+        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+    }
+
+    private void smartParseEditFileCommand(String parameters, int startIndex) throws ParseFailureException {
+        final Matcher matcher = matchPattern(parameters, EDIT_FILE_FORMAT);
+
+        smartParseIdentityFile(matcher, parameters, startIndex);
+        smartParseModule(matcher, parameters, startIndex, true);
+        smartParseCategory(matcher, parameters, startIndex, true);
+        smartParseTask(matcher, parameters, startIndex, true);
+        checkDuplicateFile(matcher, parameters);
+
+        String invalid = matcher.group(INVALID_GROUP);
+        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+    }
+
+    private void smartParseOpenFileCommand(String parameters, int startIndex) throws ParseFailureException {
+        final Matcher matcher = matchPattern(parameters, OPEN_FILE_FORMAT);
+
+        smartParseIdentityFile(matcher, parameters, startIndex);
+        smartParseModule(matcher, parameters, startIndex, true);
+        smartParseCategory(matcher, parameters, startIndex, true);
+        smartParseTask(matcher, parameters, startIndex, true);
 
         String invalid = matcher.group(INVALID_GROUP);
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
