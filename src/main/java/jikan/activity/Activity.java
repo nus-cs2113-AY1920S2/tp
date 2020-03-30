@@ -89,6 +89,11 @@ public class Activity {
         return this.allocatedTime;
     }
 
+
+    public double getProgressPercent() {
+        double percent = ((double)this.duration.toMillis() / this.allocatedTime.toMillis()) * 100;
+        return percent;
+    }
     /**
      * Returns true if the Activity's date is within the date range specified (inclusive).
      *
