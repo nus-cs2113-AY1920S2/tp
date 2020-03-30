@@ -96,7 +96,7 @@ public class Ui {
             }
             System.out.println(DIVIDER);
         } else {
-            System.out.println("There are no activities matching that description.\n");
+            Ui.printDivider("There are no activities matching that description.");
         }
     }
 
