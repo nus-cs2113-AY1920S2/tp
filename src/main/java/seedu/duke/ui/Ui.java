@@ -70,6 +70,8 @@ public class Ui {
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
     private static final String SHOW_CAP = "Your current CAP is:";
+    private static final String SHOW_INPUT_ERROR = "Input Error, please enter your comand again!"
+            + " Type \"help\" for help";
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
@@ -140,4 +142,9 @@ public class Ui {
     public static void showCap(String cap) {
         showToUser(SHOW_CAP, cap, LINE_SEPARATOR);
     }
+
+    public static void showInputError() {
+        showToUser(SHOW_INPUT_ERROR);
+    }
+
 }

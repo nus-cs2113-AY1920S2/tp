@@ -2,8 +2,6 @@ package seedu.duke.module;
 
 import seedu.duke.data.ModuleList;
 
-import java.util.Collection;
-
 public abstract class Module {
     protected String name;
     protected String id;
@@ -61,6 +59,10 @@ public abstract class Module {
 
 
     public String getName() {
+        if (name == null || name.equals(null)) {
+            name = "unnamed";
+            return name;
+        }
         return name;
     }
 
