@@ -3,7 +3,6 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyQueryException;
-import jikan.parser.Parser;
 import jikan.ui.Ui;
 
 import static jikan.Jikan.lastShownList;
@@ -34,21 +33,18 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Find activities which has name containing the keyword from the entire list.
+     * Find activities which has names containing the keywords from the entire list.
      * @param activityList full like of activities
      */
     private void findFullList(ActivityList activityList) {
         try {
-            // Parser.parseFind(activityList, lastShownList, tokenizedInputs[1]);
-            String keyword = parameters;
-            if (keyword.length() < 1) {
+            if (parameters.length() < 1) {
                 throw new EmptyQueryException();
             } else {
+                String keywords[] = parameters.split(" / ");
                 lastShownList.activities.clear();
-                for (Activity i : activityList.activities) {
-                    if (i.getName().contains(keyword)) {
-                        lastShownList.activities.add(i);
-                    }
+                for(String keyword : keywords) {
+                    populateLastShownList(keyword, activityList.activities);
                 }
                 Ui.printResults(lastShownList);
             }
@@ -58,21 +54,20 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Find activities which has name matching the keyword from the last shown list.
+     * Find activities which has names containing the keywords from the last shown list.
      */
     private void findSubList() {
         try {
-            String keyword = parameters.replace("-s ", "");
+            String query = parameters.replace("-s ", "");
             ArrayList<Activity> prevList = new ArrayList<>();
             prevList.addAll(lastShownList.activities);
-            if (keyword.length() < 1) {
+            if (query.length() < 1) {
                 throw new EmptyQueryException();
             } else {
+                String keywords[] = query.split(" / ");
                 lastShownList.activities.clear();
-                for (Activity i : prevList) {
-                    if (i.getName().contains(keyword)) {
-                        lastShownList.activities.add(i);
-                    }
+                for (String keyword : keywords) {
+                    populateLastShownList(keyword, prevList);
                 }
             }
             Ui.printResults(lastShownList);
@@ -80,4 +75,18 @@ public class FindCommand extends Command {
             Ui.printDivider("No keyword was given.");
         }
     }
+
+    /**
+     * Fills the last shown list with the results from matching names of activities to a keyword.
+     * @param keyword the keyword to match against
+     * @param activities the list of activities to search
+     */
+    private void populateLastShownList(String keyword, ArrayList<Activity> activities) {
+        for (Activity i : activities) {
+            if (i.getName().contains(keyword)) {
+                lastShownList.activities.add(i);
+            }
+        }
+    }
+
 }
