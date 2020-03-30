@@ -1,6 +1,6 @@
 package jikan.parser;
 
-import jikan.Log;
+import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
 import jikan.storage.StorageCleaner;
@@ -22,6 +22,7 @@ import jikan.command.ListCommand;
 import jikan.command.StartCommand;
 import jikan.command.ViewGoalsCommand;
 
+
 import java.io.File;
 import jikan.exception.EmptyNameException;
 import jikan.activity.ActivityList;
@@ -31,6 +32,7 @@ import jikan.ui.Ui;
 import jikan.log.Log;
 
 import java.time.Duration;
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -64,7 +66,6 @@ public class Parser {
      * @param scanner      scanner object which reads user input
      * @param activityList the list of activities
      */
-  
     public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner,
                                      File tagFile) throws
             EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
