@@ -43,7 +43,7 @@ public class PatientParser {
             if (edit.length < 3) {
                 throw new HappyPillsException("    Please input your patient's details correctly.");
             }
-            return new EditPatientCommand(edit[2].substring(3), edit[3]);
+            return new EditPatientCommand(edit[2], edit[3]);
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
             return new DeletePatientCommand(userCommand[2]);
         } else {
