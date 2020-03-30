@@ -22,7 +22,7 @@ public class CommandResult {
      * @param listToShow the list of Directory to be printed to the user.
      * @param helpGuides the helping guides to be printed to the user.
      */
-    public CommandResult (String feedbackToUser, DirectoryLevel directoryLevel,
+    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel,
                           ArrayList<Directory> listToShow, ArrayList<String> helpGuides) {
         this.feedbackToUser = feedbackToUser;
         this.directoryLevel = directoryLevel;

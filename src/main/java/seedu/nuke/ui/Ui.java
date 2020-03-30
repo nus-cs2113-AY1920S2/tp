@@ -102,9 +102,8 @@ public class Ui {
             return;
         }
 
-        if(result.getHelpGuides() != null) {
+        if (result.getHelpGuides() != null) {
             printShownList(result.getHelpGuides());
-
             return;
         }
 

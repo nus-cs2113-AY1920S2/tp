@@ -126,6 +126,10 @@ public class Module extends Directory {
         this.categories = categories;
     }
 
+    /**
+     * Get a list of tasks of the module.
+     * @return a list of tasks of the module
+     */
     public ArrayList<Task> getAllTasks() {
         ArrayList<Task> allTasks =  new ArrayList<>();
         for (Category category: categories.getCategoryList()) {
