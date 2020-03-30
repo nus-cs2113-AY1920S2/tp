@@ -97,7 +97,7 @@ public class Ui {
             System.out.println(DIVIDER);
             System.out.println("Here are the matching activities in your list:\n");
             System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %s",
-                    "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
+                    "|", "Name", "|", "Duration", "|", "Target", "|", "Date", "|", "Tags"));
             for (int i = 0; i < resultsList.getSize(); i++) {
                 if (resultsList.get(i).getTags() != null && !resultsList.get(i).getTags().isEmpty()) {
                     printTableFormat(resultsList, i, true);
@@ -107,7 +107,7 @@ public class Ui {
             }
             System.out.println(DIVIDER);
         } else {
-            System.out.println("There are no activities matching that description.\n");
+            Ui.printDivider("There are no activities matching that description.");
         }
     }
 
@@ -201,7 +201,6 @@ public class Ui {
      * @param percent percentage of allocated time achieved
      */
     public static void printProgressMessage(double percent) {
-        System.out.println(DIVIDER);
         if (percent < 50) {
             System.out.println("Try harder next time! Here's your progress:");
         } else if (percent < 100) {
@@ -220,7 +219,8 @@ public class Ui {
                 System.out.print(" ");
             }
         }
-        System.out.println("|");
+        System.out.print("|");
+        System.out.println((int) percent + "% completed");
         System.out.println(DIVIDER);
     }
 
