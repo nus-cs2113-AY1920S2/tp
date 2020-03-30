@@ -19,6 +19,7 @@ public class Activity {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Duration duration;
+    private Duration allocatedTime;
     private LocalDate date;
 
     /**
@@ -29,12 +30,11 @@ public class Activity {
      * @param endTime the time that the activity ended
      */
     public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Duration duration,
-                    Set<String> tags) throws InvalidTimeFrameException {
+                    Set<String> tags, Duration allocatedTime) throws InvalidTimeFrameException {
 
         if (endTime.isBefore(startTime)) {
             throw new InvalidTimeFrameException();
         }
-
 
         this.name = name.strip();
         this.startTime = startTime;
@@ -42,6 +42,7 @@ public class Activity {
         this.endTime = endTime;
         this.duration = duration;
         this.date = endTime.toLocalDate();
+        this.allocatedTime = allocatedTime;
     }
 
     public Duration getDuration() {
@@ -64,6 +65,10 @@ public class Activity {
         return tags;
     }
 
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -78,6 +83,10 @@ public class Activity {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    public Duration getAllocatedTime() {
+        return this.allocatedTime;
     }
 
     /**
@@ -108,7 +117,7 @@ public class Activity {
         tagString = tagsToString(tagString);
 
         String dataLine = (this.name + "," + this.startTime + "," + this.endTime + ","
-                + this.duration.toString() + "," + tagString);
+                + this.duration.toString() + "," + this.allocatedTime + "," + tagString);
         return dataLine;
     }
 

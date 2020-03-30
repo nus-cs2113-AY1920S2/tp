@@ -1,6 +1,7 @@
 package jikan.command;
 
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyNameException;
 import jikan.exception.NoSuchActivityException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
@@ -26,10 +27,16 @@ public class DeleteCommand extends Command {
                 Ui.printDivider("You have deleted " + parameters);
                 activityList.delete(index);
             } else {
-                throw new NoSuchActivityException();
+                if (parameters.isEmpty()) {
+                    throw new EmptyNameException();
+                } else {
+                    throw new NoSuchActivityException();
+                }
             }
         } catch (NoSuchActivityException e) {
             Ui.printDivider("No activity with this name exists!");
+        } catch (EmptyNameException e) {
+            Ui.printDivider("Activity name cannot be empty!");
         }
     }
 }

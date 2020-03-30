@@ -20,7 +20,8 @@ class ActivityTest {
             LocalDateTime startTime = LocalDateTime.parse("2020-01-01T08:00:00");
             LocalDateTime endTime =  LocalDateTime.parse("2020-01-01T10:00:00");
             Duration duration = Duration.between(startTime, endTime);
-            activity = new Activity("Activity", startTime, endTime, duration, tags);
+            Duration allocatedTime = Duration.parse("PT0S");
+            activity = new Activity("Activity", startTime, endTime, duration, tags, allocatedTime);
         } catch (InvalidTimeFrameException e) {
             e.printStackTrace();
         }

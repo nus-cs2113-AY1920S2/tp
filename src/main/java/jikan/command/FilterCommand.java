@@ -6,10 +6,7 @@ import jikan.exception.EmptyQueryException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
-import java.util.ArrayList;
-
-import static jikan.parser.Parser.lastShownList;
-import static jikan.parser.Parser.tokenizedInputs;
+import static jikan.Jikan.lastShownList;
 
 /**
  * Represents a command to filter activities by specified tags.
@@ -54,7 +51,7 @@ public class FilterCommand extends Command {
                 }
                 Ui.printResults(lastShownList);
             }
-        } catch (ArrayIndexOutOfBoundsException | EmptyQueryException e) {
+        } catch (EmptyQueryException e) {
             Ui.printDivider("No keyword was given.");
         }
     }

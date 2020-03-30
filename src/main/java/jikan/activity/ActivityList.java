@@ -99,6 +99,11 @@ public class ActivityList {
         fieldChangeUpdateFile();
     }
 
+    public void updateTags(int index, Set<String> newTags) {
+        activities.get(index).setTags(newTags);
+        fieldChangeUpdateFile();
+    }
+
     public void delete(int index) {
         activities.remove(index);
         deleteUpdateFile(index);
@@ -144,7 +149,7 @@ public class ActivityList {
             Parser.endTime = LocalDateTime.now();
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
             Activity newActivity = new Activity(Parser.activityName, Parser.startTime,
-                    Parser.endTime, duration, Parser.tags);
+                    Parser.endTime, duration, Parser.tags, Parser.allocatedTime);
             activityList.add(newActivity);
             // reset activity info
             Parser.resetInfo();
@@ -183,9 +188,9 @@ public class ActivityList {
             Set<String> tags = new HashSet<String>();
 
             // if there are tags
-            if (strings.size() > 4) {
+            if (strings.size() > 5) {
                 // remove square brackets surrounding tags
-                tagStrings = strings.get(4).split(" ");
+                tagStrings = strings.get(5).split(" ");
                 for (String i : tagStrings) {
                     tags.add(i);
                 }
@@ -195,7 +200,8 @@ public class ActivityList {
             LocalDateTime startTime = LocalDateTime.parse(strings.get(1));
             LocalDateTime endTime = LocalDateTime.parse(strings.get(2));
             Duration duration = Duration.parse(strings.get(3));
-            e = new Activity(strings.get(0), startTime, endTime, duration, tags);
+            Duration allocatedTime = Duration.parse(strings.get(4));
+            e = new Activity(strings.get(0), startTime, endTime, duration, tags, allocatedTime);
             activities.add(e);
         }
     }
