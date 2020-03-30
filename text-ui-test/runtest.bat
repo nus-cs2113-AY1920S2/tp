@@ -18,4 +18,5 @@ cd ..\..\text-ui-test
 
 FC ACTUAL.TXT EXPECTED.TXT >NUL && ECHO Test passed! || Echo Test failed!
 
-del ACTUAL.TXT Duke.log data.txt
+del ACTUAL.TXT Duke.log
+del ..\build\libs\data\eventlist.txt ..\build\libs\data\studentlist.txt

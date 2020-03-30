@@ -31,6 +31,7 @@ public class UI {
      */
     public void readUserInput() {
         System.out.print(">>> ");
+        System.out.flush();
         userInput = in.nextLine();
     }
 
