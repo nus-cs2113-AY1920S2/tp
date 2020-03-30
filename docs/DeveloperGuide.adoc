@@ -187,18 +187,26 @@ The user enters `search t\{TASK TYPE} n\{SEARCH QUERY}` into the command line. M
 `Parser` class will be called to parse the command provided.
 
 *Step 3* +
-A new instance of `SearchCommand` with the `taskType` and `searchParam` initialized will be created,
+A new instance of `SearchCommand` with the `taskType`, `searchParam` and an ArrayList to store the index of search query
+, `storeIndex` will be initialized,
 
 * If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
 message, indicating an empty task list
 * If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
-or `getSearchQueryEvents` respectively.
+or `getSearchQueryEvents`, according to the `taskType`.
 ** In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through
-the task list to store results matching the search query into an `ArrayList`.
+the task list to store results matching the search query into an ArrayList.
+*** In the `getSearchQuery` method, we will first get the updated task list from the `getTaskArray` of the `TaskList`
+class and initialize a new ArrayList, `results` to store the results.
+*** We will then loop though the updated task array to find matching tasks. Matching tasks will be added to the
+`results` ArrayList and the corresponding index will be stored to the `storeIndex` ArrayList.
 ** Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a
 String format.
-** Lastly, the `searchList` method will call the `resultsList` method to return the search results and `execute()`
-method will create a new `CommandResult` class to print out the search results.
+** Lastly, the `searchList` method will call the `resultsList` method to return the search results.
+*** If there are no matching search queries in the search results, `execute` method will then create a new
+`CommandResult` class to print an error message indicating an empty search results list.
+*** If there are matching search queries in the search results, `execute` method will then create a new `CommandResults`
+class to print out the search results.
 
 Given below is an example usage of the `Searchd` command: +
 
@@ -210,18 +218,26 @@ The user enters `searchd t\{TASK TYPE} n\{SEARCH QUERY} d\{DATE}` into the comma
 `Parser` class will be called to parse the command provided.
 
 *Step 3* +
-A new instance of `SearchCommand` with the `taskType` and `searchParam` and `date` initialized will be created,
+A new instance of `SearchCommand` with the `taskType`, `searchParam`, `date` and an ArrayList to store the index of
+search query, `storeIndex`initialized will be created,
 
 * If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
 message, indicating an empty task list
 * If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments`
-or `getSearchQueryEvents` respectively and initialize a new `CommandResult` class of the results.
+or `getSearchQueryEvents`, according to the `taskType`.
 ** In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through
-the task list to store results matching the search query into an ArrayList.
+the task list to store results matching the search query and the provided date into an ArrayList.
+*** In the `getSearchQuery` method, we will first get the updated task list from the `getTaskArray` of the `TaskList`
+class and initialize a new ArrayList, `results` to store the results.
+*** We will then loop though the updated task array to find matching tasks. Matching tasks will be added to the
+`results` ArrayList and the corresponding index will be stored to the `storeIndex` ArrayList.
 ** Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a
 String format.
-** Lastly, the `searchList` method will call the `resultsList` method to return the search results and `execute()`
-method will create a new `CommandResult` class to print out the search results.
+** Lastly, the `searchList` method will call the `resultsList` method to return the search results.
+*** If there are no matching search queries in the search results, `execute` method will then create a new
+`CommandResult` class to print an error message indicating an empty search results list.
+*** If there are matching search queries in the search results, `execute` method will then create a new `CommandResults`
+class to print out the search results.
 
 ==== Design Considerations:
 * Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
