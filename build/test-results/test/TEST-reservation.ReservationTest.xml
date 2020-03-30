@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="reservation.ReservationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-30T14:41:58" hostname="LAPTOP-44LCAOD7" time="0.047">
+  <properties/>
+  <testcase name="testGetterandSetter_normalInput_success()" classname="reservation.ReservationTest" time="0.047"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.AddStockCommandTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2020-03-30T14:41:58" hostname="LAPTOP-44LCAOD7" time="0.091">
+  <properties/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingQuantityTag()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndPrice()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="construct_AddStockCommand_constructNormally()" classname="commands.AddStockCommandTest" time="0.007"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientQuantityAndPrice()" classname="commands.AddStockCommandTest" time="0.007"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientQuantityOnly()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameOnly()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="getIngredient_GetIngredientInAddCommand_getNormally()" classname="commands.AddStockCommandTest" time="0.002"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientPriceOnly()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingAllTags()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingPriceTag()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndQuantity()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="execute_ExecuteAddStockCommand_executeNormally()" classname="commands.AddStockCommandTest" time="0.042"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientTag()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
