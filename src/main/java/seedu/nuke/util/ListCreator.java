@@ -277,7 +277,7 @@ public class ListCreator {
         }
 
         fileListTable.append(LIST_DIVIDER);
-        fileListTable.append(String.format("Total tasks: %d\n", fileList.size()));
+        fileListTable.append(String.format("Total files: %d\n", fileList.size()));
         fileListTable.append(LIST_DIVIDER);
 
         return fileListTable.toString();

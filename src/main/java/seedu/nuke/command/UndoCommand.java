@@ -18,9 +18,7 @@ public class UndoCommand extends Command {
         try {
             ScreenShotManager.revertToLastScreenShot();
             return new CommandResult(MESSAGE_UNDO_SUCCESS);
-        } catch (IOException e) {
-            return new CommandResult(MESSAGE_UNDO_UNSUCCESSFUL);
-        } catch (CorruptedFileException e) {
+        } catch (IOException | CorruptedFileException e) {
             return new CommandResult(MESSAGE_UNDO_UNSUCCESSFUL);
         } catch (EmptyStackException e) {
             return new CommandResult(MESSAGE_UNDO_AT_BEGINNING);

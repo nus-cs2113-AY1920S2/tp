@@ -36,7 +36,7 @@ public class EditTaskCommand extends EditCommand {
             + " <task description> -m <module code> -c <category name>"
             + " [ -t <new task description> -d <new deadline> -p <new priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -134,8 +134,7 @@ public class EditTaskCommand extends EditCommand {
         try {
             Task toEdit = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, oldTaskDescription);
             fillAllAttributes(toEdit);
-            ModuleManager.retrieveList(moduleCode, categoryName)
-                    .edit(toEdit, newTaskDescription, newDeadline, newPriority);
+            toEdit.getParent().getTasks().edit(toEdit, newTaskDescription, newDeadline, newPriority);
             return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

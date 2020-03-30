@@ -128,6 +128,15 @@ public class DirectoryTraverser {
                     currentTaskDirectory.getDescription()));
             break;
 
+        case FILE:
+            TaskFile currentFileDirectory = (TaskFile) getCurrentDirectory();
+            path.append(String.format(" / %s / %s / %s / %s",
+                    currentFileDirectory.getParent().getParent().getParent().getModuleCode(),
+                    currentFileDirectory.getParent().getParent().getCategoryName(),
+                    currentFileDirectory.getParent().getDescription(),
+                    currentFileDirectory.getFileName()));
+            break;
+
         default:
             break;
         }

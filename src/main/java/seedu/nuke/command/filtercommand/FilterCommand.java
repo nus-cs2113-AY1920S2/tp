@@ -9,10 +9,7 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.parser.Parser.ALL_FLAG;
-import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
-import static seedu.nuke.parser.Parser.EXACT_FLAG;
-import static seedu.nuke.parser.Parser.MODULE_PREFIX;
+import static seedu.nuke.parser.Parser.*;
 
 public abstract class FilterCommand extends Command {
     public static final Pattern MODULE_REGEX_FORMAT = Pattern.compile(
@@ -30,6 +27,14 @@ public abstract class FilterCommand extends Command {
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<invalid>.*)"
+    );
+    public static final Pattern FILE_REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<optional>(?:\\s+-[ea])*)"
             + "(?<invalid>.*)"
     );
@@ -100,7 +105,7 @@ public abstract class FilterCommand extends Command {
                 taskKeyword = DirectoryTraverser.getBaseTask().getDescription();
             }
             if (fileKeyword.isEmpty()) {
-                fileKeyword = DirectoryTraverser.getBaseTask().getDescription();
+                fileKeyword = DirectoryTraverser.getBaseFile().getFileName();
             }
             return filterFiles(moduleKeyword, categoryKeyword, taskKeyword, fileKeyword, isExact);
         } catch (IncorrectDirectoryLevelException e) {

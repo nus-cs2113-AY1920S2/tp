@@ -436,7 +436,7 @@ public class ModuleManager implements Iterable<Module> {
             String fileKeyword) {
         ArrayList<TaskFile> filteredFileList = new ArrayList<>();
         for (Task task : filter(moduleKeyword, categoryKeyword, taskKeyword)) {
-            filteredFileList.addAll(task.getFiles().filterExact(fileKeyword));
+            filteredFileList.addAll(task.getFiles().filter(fileKeyword));
         }
         return filteredFileList;
     }

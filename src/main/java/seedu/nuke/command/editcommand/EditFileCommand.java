@@ -7,10 +7,8 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.directory.DirectoryTraverser;
-import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
-import seedu.nuke.util.DateTime;
 
 import java.util.regex.Pattern;
 
@@ -29,11 +27,11 @@ public class EditFileCommand extends EditCommand {
     public static final String FORMAT = COMMAND_WORD
             + " <file name> -m <module code> -c <category name> -t <task description> -f <new file name>";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<fileName>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<fileInfo>(?:\\s+" + FILE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
 
@@ -81,8 +79,7 @@ public class EditFileCommand extends EditCommand {
         try {
             TaskFile toEdit =
                     DirectoryTraverser.getFileDirectory(moduleCode, categoryName, taskDescription, oldFileName);
-            ModuleManager.retrieveList(moduleCode, categoryName, taskDescription)
-                    .edit(toEdit, newFileName);
+            toEdit.getParent().getFiles().edit(toEdit, newFileName);
             return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

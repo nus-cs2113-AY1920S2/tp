@@ -30,7 +30,7 @@ public class EditCategoryCommand extends EditCommand {
     public static final String FORMAT = COMMAND_WORD
             + " <category name> -m <module code> [ -c <new category name> -p <new priority> ]";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -105,7 +105,7 @@ public class EditCategoryCommand extends EditCommand {
         try {
             Category toEdit = DirectoryTraverser.getCategoryDirectory(moduleCode, oldCategoryName);
             fillAllAttributes(toEdit);
-            ModuleManager.retrieveList(moduleCode).edit(toEdit, newCategoryName, newPriority);
+            toEdit.getParent().getCategories().edit(toEdit, newCategoryName, newPriority);
             return new CommandResult(MESSAGE_EDIT_CATEGORY_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
