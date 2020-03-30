@@ -43,7 +43,7 @@ public class DeleteTaskCommand extends DeleteCommand {
      * @param isExact
      *  Checks if categories are to be filtered exactly
      * @param isAll
-     *  Checks if filtering is to be done across all modules and categories
+     *  Checks if filtering is to be done across all modules, categories and tasks
      */
     public DeleteTaskCommand(String moduleCode, String categoryName, String taskDescription,
                              boolean isExact, boolean isAll) {

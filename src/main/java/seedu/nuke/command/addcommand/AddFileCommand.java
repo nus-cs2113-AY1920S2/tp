@@ -29,7 +29,7 @@ import static seedu.nuke.parser.Parser.TASK_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_TASK_FILE;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_IO_EXCEPTION;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_ADD_FILE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SECURITY_EXCEPTION;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
@@ -170,7 +170,7 @@ public class AddFileCommand extends AddCommand {
         } catch (IncorrectDirectoryLevelException e) {
             return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         } catch (FileNotFoundException e) {
-            return new CommandResult(MESSAGE_FILE_NOT_FOUND);
+            return new CommandResult(MESSAGE_ADD_FILE_NOT_FOUND);
         } catch (FileSystemException e) {
             return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
         } catch (IOException e) {

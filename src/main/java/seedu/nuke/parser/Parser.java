@@ -1,12 +1,13 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
+
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
-
+import seedu.nuke.command.OpenFileCommand;
 import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddFileCommand;
@@ -154,6 +155,9 @@ public class Parser {
 
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
+
+            case OpenFileCommand.COMMAND_WORD:
+                return prepareOpenFileCommand(parameters);
 
             case UndoCommand.COMMAND_WORD:
                 return new UndoCommand();
@@ -569,6 +573,34 @@ public class Parser {
 
         return new EditFileCommand(oldFileName, moduleCode, categoryName, taskDescription, newFileName);
     }
+
+    /* Miscellaneous Commands */
+
+    /**
+     * Prepares the command to open file(s).
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to open file(s)
+     */
+    private Command prepareOpenFileCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = OpenFileCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX);
+
+        String fileName = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+
+        return new OpenFileCommand(moduleCode, categoryName, taskDescription, fileName);
+    }
+
+
+
+
+
 
     /**
      * Checks if the priority is between 0 and 100 inclusive.
