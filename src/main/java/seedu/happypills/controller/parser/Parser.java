@@ -6,7 +6,12 @@ import seedu.happypills.controller.commands.HelpCommand;
 import seedu.happypills.controller.commands.appointmentcommands.IncorrectAppointmentCommand;
 import seedu.happypills.model.exception.HappyPillsException;
 
+import java.time.format.DateTimeFormatter;
+
 public class Parser {
+
+    public static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("HH:mm");
+    public static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
      * Parses the command given by the user to the other command parses.
@@ -32,6 +37,8 @@ public class Parser {
             return PatientParser.parse(fullCommand);
         } else if (userCommand[1].equalsIgnoreCase("appt")) {
             return AppointmentParser.parse(fullCommand);
+        } else if (userCommand[1].equalsIgnoreCase("visit")) {
+            return VisitParser.parse(fullCommand);
         } else {
             return new IncorrectAppointmentCommand();
         }

@@ -3,6 +3,7 @@ package seedu.happypills.controller.commands.patientcommands;
 import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.view.ui.TextUi;
 
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ public class ListPatientCommand extends PatientCommand {
     Level logLevel = Level.INFO;
 
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments) {
+    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) {
         String message = "";
         if (patients.isEmpty()) {
             message = TextUi.getEmptyPatientList();

@@ -11,12 +11,13 @@ public class Appointment {
     /**
      * Stores the details of the appointment.
      */
+    protected static int count = 1;
     protected String nric;
     protected String reason;
     protected String date;
     protected String time;
     protected String appointmentId;
-    protected boolean isDone;
+    protected Boolean isDone;
 
     /**
      * Constructor for Appointment class.
@@ -32,8 +33,30 @@ public class Appointment {
         this.reason = reason;
         this.date = date;
         this.time = time;
-        this.appointmentId = valueOf(0);
+        this.appointmentId = valueOf(count);
         this.isDone = false;
+        count += 1;
+    }
+
+    /**
+     * Constructor for Appointment class.
+     * It creates a new appointment with the details provided by load function in storage.
+     *
+     * @param id id of the appointment
+     * @param nric NRIC of patient.
+     * @param reason reason for appointment.
+     * @param date date of appointment.
+     * @param time time of appointment.
+     * @param done status of whether the appointment is over
+     */
+    public Appointment(String id, String nric, String date, String time,String reason, Boolean done) {
+        this.nric = nric;
+        this.reason = reason;
+        this.date = date;
+        this.time = time;
+        this.appointmentId = id;
+        this.isDone = done;
+        count += 1;
     }
 
     public String getNric() {
@@ -82,6 +105,18 @@ public class Appointment {
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    @Override
+    public String toString() {
+        String status = this.isDone ? "Yes" : "No";
+        String text = "        NRIC     : " + this.nric + "\n"
+                + "        Date     : " + this.date + "\n"
+                + "        Time     : " + this.time + "\n"
+                + "        Reason   : " + this.reason + "\n"
+                + "        ID       : " + this.appointmentId + "\n"
+                + "        Attended : " + status + "\n";
+        return text;
     }
 
     private String doneString(boolean done) {

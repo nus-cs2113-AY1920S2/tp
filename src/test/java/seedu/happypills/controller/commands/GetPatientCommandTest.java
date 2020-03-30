@@ -6,6 +6,7 @@ import seedu.happypills.controller.commands.patientcommands.GetPatientCommand;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +15,7 @@ public class GetPatientCommandTest {
 
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
+    private static VisitMap newVisitMap;
     public static final String DIVIDER = "    =====================================================";
 
     /**
@@ -39,7 +41,7 @@ public class GetPatientCommandTest {
     @Test
     public void getList_notInList_notFound() throws HappyPillsException {
         String expectedOutputNotInList = "The patient you are looking for cannot be found";
-        String message = new GetPatientCommand("S789C").execute(newPatientMap, newAppointmentMap);
+        String message = new GetPatientCommand("S789C").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputNotInList, message);
     }
 
@@ -54,7 +56,7 @@ public class GetPatientCommandTest {
                 + "        Allergies : None\n"
                 + "        Remarks : NIL\n"
                 + DIVIDER;
-        String message = new GetPatientCommand("S123A").execute(newPatientMap, newAppointmentMap);
+        String message = new GetPatientCommand("S123A").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputInList, message);
     }
 }

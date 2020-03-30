@@ -43,7 +43,7 @@ public class PatientParser {
             if (edit.length < 3) {
                 throw new HappyPillsException("    Please input your patient's details correctly.");
             }
-            return new EditPatientCommand(edit[2].substring(3), edit[3]);
+            return new EditPatientCommand(edit[2], edit[3]);
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
             return new DeletePatientCommand(userCommand[2]);
         } else {
@@ -67,14 +67,14 @@ public class PatientParser {
                 parseInput[1] = detail.substring(2).trim();
             } else if (detail.startsWith("p") && parseInput[2].equalsIgnoreCase("")) {
                 parseInput[2] = detail.substring(1).trim();
-            } else if (detail.startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
-                parseInput[3] = detail.substring(1).trim();
+            } else if (detail.startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
+                parseInput[3] = detail.substring(3).trim();
             } else if (detail.startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
                 parseInput[4] = detail.substring(1).trim();
             } else if (detail.startsWith("a") && parseInput[5].equalsIgnoreCase("NIL")) {
                 parseInput[5] = detail.substring(1).trim();
-            } else if (detail.startsWith("r") && parseInput[6].equalsIgnoreCase("NIL")) {
-                parseInput[6] = detail.substring(1).trim();
+            } else if (detail.startsWith("rm") && parseInput[6].equalsIgnoreCase("NIL")) {
+                parseInput[6] = detail.substring(2).trim();
             } else {
                 System.out.println("    " + detail + " is not a valid input.\n"
                         + "    " + detail + " will not be added\n" + TextUi.DIVIDER);
@@ -95,7 +95,7 @@ public class PatientParser {
                 System.out.println("    /p[PHONE] only number");
             }
             if (parseInput[3].equalsIgnoreCase("")) {
-                System.out.println("    /d[DOB]");
+                System.out.println("    /dob[DOB]");
             }
             if (parseInput[4].equalsIgnoreCase("")) {
                 System.out.println("    /b[BLOOD TYPE]");
@@ -120,8 +120,8 @@ public class PatientParser {
                 } else if (update.trim().startsWith("p") && (parseInput[2].equalsIgnoreCase("")
                         || !isInteger(parseInput[2].trim()))) {
                     parseInput[2] = update.trim().substring(1);
-                } else if (update.trim().startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
-                    parseInput[3] = update.trim().substring(1);
+                } else if (update.trim().startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
+                    parseInput[3] = update.trim().substring(3);
                 } else if (update.trim().startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
                     parseInput[4] = update.trim().substring(1);
                 }
