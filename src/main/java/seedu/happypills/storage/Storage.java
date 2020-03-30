@@ -134,7 +134,7 @@ public class Storage {
      */
     private static void parseAppointmentFileContent(String savedString, AppointmentMap storedAppt) {
         String[] dataString = savedString.split("[|]", 7);
-        Boolean isDone= dataString[5].equals("T") ? true : false;
+        Boolean isDone = dataString[5].equals("T") ? true : false;
         Appointment tempAppt = new Appointment(dataString[0], dataString[1],
                 dataString[2], dataString[3], dataString[4], isDone);
         try {

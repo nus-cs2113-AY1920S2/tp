@@ -36,12 +36,21 @@ public class Appointment {
         this.isDone = false;
     }
 
-    public Appointment(String ID, String nric, String date, String time,String reason, Boolean done) {
+    /**
+     * Constructor for Appointment class.
+     * It creates a new appointment with the details provided by load function in storage.
+     *
+     * @param nric NRIC of patient.
+     * @param reason reason for appointment.
+     * @param date date of appointment.
+     * @param time time of appointment.
+     */
+    public Appointment(String id, String nric, String date, String time,String reason, Boolean done) {
         this.nric = nric;
         this.reason = reason;
         this.date = date;
         this.time = time;
-        this.appointmentId = ID;
+        this.appointmentId = id;
         this.isDone = done;
     }
 
