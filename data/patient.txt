@@ -1,1 +1,2 @@
 kesin|S0618|912|22aug|B-|meat|Weak
+nyan|S123|111|aug22|o|NIL|NIL

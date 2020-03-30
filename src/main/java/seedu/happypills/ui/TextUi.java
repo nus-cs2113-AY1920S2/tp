@@ -1,8 +1,11 @@
 package seedu.happypills.ui;
 
+import seedu.happypills.data.Appointment;
+import seedu.happypills.data.AppointmentMap;
 import seedu.happypills.data.Patient;
 import seedu.happypills.data.PatientMap;
 
+import java.util.Date;
 import java.util.Map;
 
 public class TextUi {
@@ -10,16 +13,36 @@ public class TextUi {
 
     /**
      * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
-     * @param patients A patient list with all existing patients
-     * @return a message to be displayed to user
+     * @param patients A patient list with all existing patients.
+     * @return a message to be displayed to user.
      */
-    public static String getList(PatientMap patients) {
+    public static String getPatientList(PatientMap patients) {
         String message = "";
         for (Map.Entry patient : patients.entrySet()) {
             String nric = (String)patient.getKey();
             Patient p = (Patient)patient.getValue();
             String name = p.getName();
             message += "    " + name + " | " + nric + "\n";
+        }
+        message += DIVIDER;
+        return message;
+    }
+
+    /**
+     * Shows list of appointments in the program.
+     * @param appointments The list of appointments.
+     * @return message to be displayed to the user.
+     */
+    public static String getAppointmentList(AppointmentMap appointments) {
+        String message = "    Here is your list of appointments:\n"
+                + "    ID | date       | time     | NRIC\n";
+        for (Map.Entry appointment : appointments.entrySet()) {
+            Appointment a = (Appointment)appointment.getValue();
+            String nric = a.getNric();
+            String id = a.getAppointmentId();
+            String date = a.getDate();
+            String time = a.getTime();
+            message += "    " + id + "  | " + date + " | " + time + " | " + nric + "\n";
         }
         message += DIVIDER;
         return message;
@@ -47,14 +70,18 @@ public class TextUi {
      * Displays empty list message when there are no patients in the list.
      * @return a message to be displayed to user
      */
-    public static String getEmptyList() {
+    public static String getEmptyPatientList() {
         String emptyListMessage = "    There are no patients in the list.\n" + DIVIDER;
         return emptyListMessage;
     }
 
-    public static void printPatient(Patient patient) {
-        System.out.println("    Got it! I've added this patient:");
-        System.out.println(patient + DIVIDER);
+    /**
+     * Displays empty list message when there are no appointments in the list.
+     * @return a message to be displayed to user
+     */
+    public static String getEmptyAppointmentList() {
+        String emptyListMessage = "    There are no appointments in the list.\n" + DIVIDER;
+        return emptyListMessage;
     }
 
     /**
@@ -287,16 +314,6 @@ public class TextUi {
      */
     public static String prependDivider(String s) {
         return DIVIDER + "\n" + s;
-    }
-
-    /**
-     * Display message that a patient already exists in the program.
-     *
-     * @param nric NRIC of existing patient.
-     * @return display message.
-     */
-    public static String patientExists(String nric) {
-        return "    Patient " + nric + " already exists in the program.";
     }
 
     public static String patientNotExist(String nric) {
