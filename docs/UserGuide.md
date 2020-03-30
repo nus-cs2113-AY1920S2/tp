@@ -1,15 +1,38 @@
-# HappyPills
+# HappyPills - User Guide
+By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
+
+## Table of Content
+- [1. Introduction](#1-introduction)
+- [2. Quick Start](#2-quick-start)
+- [3. Features](#3-features)
+    * [3.1. General Commands](#31-general-commands)
+        + [3.1.1. View help: `help`](#311-view-help-help)
+        + [3.1.2. Exit program: `exit`](312-exit-program-exit)
+    * [3.2. General Patient Information](32-general-patient-information)
+        + [3.2.1. Add Patient: `add patient`](#321-add-patient-add-patient)
+        + [3.2.2. Edit Patient: `edit patient`](#322-edit-patient-edit-patient)
+        + [3.2.3. Delete Patient: `delete patient`](#323-delete-patient-delete-patient)
+        + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
+        + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
+    * [3.3. Patient Medical Information](#33-patient-medical-information)
+    * [3.4. Appointment Scheduling](#34-appointment-scheduling)
+        + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
+        + [3.4.2. Edit Appointment: `edit appt`](#342-edit-appointment-edit-appt)
+        + [3.4.3. Delete Appointment: `delete appt`](#343-delete-appointment-delete-appt)
+        + [3.4.4. Mark Appointment as Done: `done appt`](#344-mark-appointment-as-done-done-appt)
+        + [3.4.5. List All Appointments: `list appt`](#345-list-all-appointments-list-appt)
+        + [3.4.6. Find Patient's Appointments: `find appt`](#346-find-patients-appointments-find-appt)
+- [4. Command Summary](#4-command-summary)
+
+## 1. Introduction 
+
 HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI). 
 The application replaces all physical papers and is highly optimised for fast typing users.
 If you can type fast, HappyPills can help to manage patients’ records faster than traditional Graphical User Interface (GUI) applications. 
-All notes are neatly organised in HappyPills so that no information of the patients will be missing. 
+All notes are neatly organised in HappyPills so that all your important information are safely stored. 
 Say goodbye to messy desks, illegible handwriting, time-consuming handwritten notes with HappyPills!
 
-## Table of Contents
-- [Quick Start](#quick-start)
-- [Features](#features)
-- [Usage](#usage)
-## Quick Start
+## 2. Quick Start
 **Installation**
 1. Ensure that you have `Java 11` or later installed in your computer 
 2. Click [here](link to be added later?) to download the HappyPills JAR File
@@ -18,7 +41,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`
 
-## Features
+## 3. Features
 Command | Description
 ---------------|---------------
 `help [command]` | Display a help message with all commands or specific commands with usage examples
