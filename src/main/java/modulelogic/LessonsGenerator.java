@@ -99,9 +99,7 @@ public class LessonsGenerator {
         for (String s : userModuleProfile) {
             if (allLessonMap.containsKey(s)) {
                 Collection<String[]> values = allLessonMap.get(s);
-                for (String[] elem : values) {
-                    myLessonsDetails.add(elem);
-                }
+                myLessonsDetails.addAll(values);
             }
         }
 
