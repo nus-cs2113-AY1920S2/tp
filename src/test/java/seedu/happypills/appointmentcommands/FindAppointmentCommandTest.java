@@ -1,4 +1,4 @@
-package seedu.happypills.AppointmentCommands;
+package seedu.happypills.appointmentcommands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

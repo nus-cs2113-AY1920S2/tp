@@ -347,9 +347,14 @@ public class TextUi {
         return formattedPatientString;
     }
 
+    /**
+     * Generate a success message upon finding the correct patient.
+     * @param patient the patient which the program have to find the appointment for.
+     * @return Appointment details if any, and a notification message otherwise.
+     */
     public static String getAppointmentSuccessMessage(Patient patient) {
         String returnMessage = "    Here are the patient's appointments:\n"
-                +"     | ID | NRIC   | Reason | Date      | Time     |\n";
+                + "     | ID | NRIC   | Reason | Date      | Time     |\n";
         String content = "";
         ArrayList<Appointment> tempList = patient.getAppointments();
         for (Appointment appointment : tempList) {
