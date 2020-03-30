@@ -36,8 +36,8 @@ public class SemModulesList extends ArrayList<SelectedModule> {
 
     public boolean isInList(String moduleIdentifier) {
         for (SelectedModule module: this) {
-            boolean hasSameName = module.getName().equals(moduleIdentifier) && module.isNameValid();
-            boolean hasSameId = module.getId().equals(moduleIdentifier) && module.isIdValid();
+            boolean hasSameName = module.getName().equalsIgnoreCase(moduleIdentifier) && module.isNameValid();
+            boolean hasSameId = module.getId().equalsIgnoreCase(moduleIdentifier) && module.isIdValid();
             if (hasSameName || hasSameId) {
                 return true;
             }

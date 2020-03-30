@@ -5,7 +5,7 @@
 
 ### Architecture
 
-![Architecture Diagram](https://github.com/DeetoMok/tp/raw/d14fb309c9f816a46ecd19ed26f74b8c8ac1ac03/Architecture.png)
+![Architecture Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Architecture.png)
 
 The Architecture Diagram given above explains the high-level design of the Module Manager Application.
 
@@ -31,8 +31,8 @@ The `UI` component,
 The `Logic` component 
 
 1. `Logic` uses the `Parser` class to parse the user command.
-2. `Parser` then returns a specific command class e.g. `AddCommand`, `FindCommand` etc. 
-which is executed by the main class `Duke`.
+2. The parsed command is passed to `Controller` which then returns a specific command class 
+e.g. `AddCommand`, `FindCommand` etc. which is executed by the main class `Duke`.
 All these command classes inherits from the abstract `Command` class.
 3. The command execution can affect the Model (e.g. adding a module in ModuleList)
 4. The result of the command execution is passed back to the Ui.
@@ -46,7 +46,10 @@ The `Model` component
 * Does not depend on any of the other three components
 
 #### Storage component
-
+The `Storage` component,
+* can save `personInfo` objects in csv format and read it back
+* can save the available module list in csv format and read it back
+* can save the semester list in csv format and read it back 
 
 
 ### Implementation
@@ -131,25 +134,39 @@ The following diagram shows how the Calculate CAP operation works:
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
-
 Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app 
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Priority| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|***|User|View my study plan|Keep track of what is my study plan when I forget about it|
+|***|User|Add and assign modules to different semesters|Update my study plan|
+|***|User|Add modules to available module list|Add the module to my study plan when I plan to in the future|
+|***|User|Delete study plans in specific semesters|Update my study plan according to my new plan in mind|
+|***|New user|see usage instructions|Refer to instructions when I forgot how to use the App|
+|***|User|Mark module as done|Update my study plan according to modules that I have completed|
+|**|User|Calculate cap|Check my current cap based on modules I have completed|
+|**|User|find a module by name or module code|Locate a module and its module code without having to go through all the modules|
+
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 modules in the available module list without a noticeable sluggishness in
+ performance for typical usage.
+ 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+  should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 ## Glossary
 
-* *glossary item* - Definition
+**Mainstream OS** - Windows, Linux, Unix, OS-X
+
+
 
 ## Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+

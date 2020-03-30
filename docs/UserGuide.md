@@ -17,7 +17,13 @@ Interested? Jump to the Section 2, “Quick Start” to get started. Enjoy!
 
 ### Command Format
 
-Words in `[XXX]` are the parameters to be supplied by the user.
+- Words in `[XXX]` are the parameters to be supplied by the user.
+- `[module code]` is to be entered in alpha-numeric uppercase characters i.e.`CS2113`
+- `[module name` is to be entered in alpha-numeric characters i.e.`Software Engineering & Object-Oriented Programming`
+- '[semester]' is to be entered in numeric characters between 1-8 i.e.`5`
+- `[credit]` is to be entered in numeric characters i.e. `4`
+- `[grade` is to be entered in alpha **uppercase** characters i.e. `A+`
+
 
 For example: in `​add id/[module code] s/[semester] mc/[credit]`, `[module code]` is the parameter of a specific 
 module’s code which can be used as `add id/CS2113 s/4 mc/4`.
@@ -31,6 +37,13 @@ Format:​
 Example:​ `add n/Software Engineering & Object-Oriented Programming s/4 mc/4`
 
 Example:​ `add id/CS2113 s/4 mc/4`
+
+Adds a specific module to available module list. 
+
+Format:
+`add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
+
+Example: `add id/CS2113 n/Software Engineering & Object-Oriented Programming mc/4 pre/CS2040C`
 
 ### Marking as done: done
 
@@ -66,8 +79,15 @@ Display modules' credits the user completed.
 
 Format: ​`view /cc`
 
+#### Viewing cap 
+Display the user's current CAP
+
+Format: `CAP`
+
 ### Help
 Display the help list.
+
+Format: `help`
 
 ## FAQ
 
@@ -86,6 +106,10 @@ Command:
 or
 
 `add n/[module name] s/[semester] mc/[credit]`
+
+Command:
+
+`add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
 
 ### Done
 
@@ -119,4 +143,6 @@ or
 
 `view /cc`
 
+or
 
+`CAP`
