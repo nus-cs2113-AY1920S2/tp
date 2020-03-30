@@ -16,9 +16,10 @@ import jikan.command.StartCommand;
 
 import jikan.exception.EmptyNameException;
 import jikan.activity.ActivityList;
+import jikan.log.LogCleaner;
 import jikan.storage.StorageCleaner;
 import jikan.ui.Ui;
-import jikan.Log;
+import jikan.log.Log;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -26,7 +27,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import static jikan.Log.makeInfoLog;
+import static jikan.log.Log.makeInfoLog;
 
 
 /**
@@ -39,7 +40,8 @@ public class Parser {
     public static String activityName = null;
     public static Duration allocatedTime = Duration.parse("PT0S");
     public static Set<String> tags = new HashSet<>();
-    private static StorageCleaner cleaner;
+    public StorageCleaner cleaner;
+    public LogCleaner logcleaner;
     public static String[] tokenizedInputs;
     String instruction;
     private static Log logger = new Log();
@@ -53,10 +55,9 @@ public class Parser {
      * @param scanner      scanner object which reads user input
      * @param activityList the list of activities
      */
-    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) throws
+    public Command parseUserCommands(Scanner scanner, ActivityList activityList) throws
             EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
         makeInfoLog("Starting to parse inputs.");
-        Parser.cleaner = cleaner;
 
         String userInput = scanner.nextLine();
         tokenizedInputs = userInput.split(" ", 2);
@@ -119,7 +120,7 @@ public class Parser {
             break;
         case "clean":
             try {
-                command = new CleanCommand(tokenizedInputs[1], cleaner);
+                command = new CleanCommand(tokenizedInputs[1], this.cleaner, this.logcleaner);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
             }

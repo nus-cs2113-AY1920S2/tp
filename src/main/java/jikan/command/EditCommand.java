@@ -1,18 +1,14 @@
 package jikan.command;
 
-import jikan.Log;
+import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
 import jikan.exception.InvalidEditFormatException;
 import jikan.exception.NoSuchActivityException;
 import jikan.parser.Parser;
-import jikan.storage.Storage;
-import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**

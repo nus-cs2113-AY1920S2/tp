@@ -1,7 +1,6 @@
 package jikan.command;
 
-import jikan.Jikan;
-import jikan.Log;
+import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
