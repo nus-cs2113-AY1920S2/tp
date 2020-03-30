@@ -104,6 +104,11 @@ public class ActivityList {
         fieldChangeUpdateFile();
     }
 
+    public void updateAlloc(int index, Duration newAllocTime) {
+        activities.get(index).setAllocatedTime(newAllocTime);
+        fieldChangeUpdateFile();
+    }
+
     public void delete(int index) {
         activities.remove(index);
         deleteUpdateFile(index);
