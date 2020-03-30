@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 
 import static seedu.duke.Duke.studentListCollection;
 
-import static seedu.duke.Duke.studentListCollection;
-
 public class UI {
     private static String userName;
     private Scanner in;
@@ -33,6 +31,7 @@ public class UI {
      */
     public void readUserInput() {
         System.out.print(">>> ");
+        System.out.flush();
         userInput = in.nextLine();
     }
 
