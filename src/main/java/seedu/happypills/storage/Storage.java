@@ -1,8 +1,8 @@
 package seedu.happypills.storage;
 
-import seedu.happypills.data.Patient;
-import seedu.happypills.data.PatientMap;
-import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.model.data.Patient;
+import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.exception.HappyPillsException;
 
 import java.io.File;
 import java.io.FileNotFoundException;

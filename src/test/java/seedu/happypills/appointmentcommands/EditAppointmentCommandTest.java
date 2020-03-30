@@ -2,7 +2,7 @@ package seedu.happypills.appointmentcommands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.happypills.commands.appointmentcommands.EditAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.happypills.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.happypills.commands.patientcommands.AddPatientCommand;
 import seedu.happypills.commands.patientcommands.EditPatientCommand;

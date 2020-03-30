@@ -2,13 +2,12 @@ package seedu.happypills.appointmentcommands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.happypills.commands.appointmentcommands.FindAppointmentCommand;
-import seedu.happypills.commands.patientcommands.GetPatientCommand;
-import seedu.happypills.data.Appointment;
-import seedu.happypills.data.AppointmentMap;
-import seedu.happypills.data.Patient;
-import seedu.happypills.data.PatientMap;
-import seedu.happypills.exception.HappyPillsException;
+import seedu.happypills.controller.commands.appointmentcommands.FindAppointmentCommand;
+import seedu.happypills.model.data.Appointment;
+import seedu.happypills.model.data.AppointmentMap;
+import seedu.happypills.model.data.Patient;
+import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
