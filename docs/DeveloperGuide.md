@@ -1,6 +1,6 @@
 # Developer Guide
 
-By: `CS2113T-T12-2` Since: `2020`
+By: `CS2113T-T12-2` Since: `March 2020`
 
 ![Supported Java versions](https://img.shields.io/badge/Java-11-blue.svg) 
 ![Supported OS](https://img.shields.io/badge/Supported%20OS-Windows|MacOS|Linux-yellow.svg) 
@@ -38,6 +38,7 @@ By: `CS2113T-T12-2` Since: `2020`
     * [4.5 Logging](#45-logging)
 - [5. Documentation](#5-documentation)
 - [6. Testing](#6-testing)
+- [7. Useful Links](#7-useful-links)
 - [Appendices](#appendices)
     * [Appendix A: Product Scope](#qppendix-a-product-scope)
     * [Appendix B: User Stories](#appendix-b-user-stories)
@@ -116,12 +117,22 @@ down into five main features: `Patient Details`, `Patient Medical Records`, `App
 
 ### 4.1. Patient Details Feature
 
+The commands introduced in this feature include : `add`, `edit`, `list`, `delete`, `get`. 
+The commands are implemented with HashMap and use NRIC as key and the Patient class as value.
+The patient list feature is facilitated by PatientMap class which implements the following operations: 
+
+    - PatientMap #add(Patient patient) — This command adds the patient object into the patient list using the patient’s nric as key.
+
+    - PatientMap #remove(String nric) — This command removes the patient object from the existing patient list. 
+
+    - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
+
 #### 4.1.1 Add Patient Details
 
 The user is able to add patients into the program to keep track of the patient's details. 
 The command: 
 
-    `add patient /ic S7777777Z /n Alice /p 98765432 /d 01/01/2000 /b B+ /a Peanuts` 
+    add patient /ic S7777777Z /n Alice /p 98765432 /d 01/01/2000 /b B+ /a Peanuts
     
 will add a patient with `NRIC` as S7777777Z with the following attributes: 
 * name: `Alice`
@@ -132,9 +143,12 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 
 **Implementation** 
 
+The activity diagram below summarises the process of executing an `add` command.
+![Add Activity Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddCommandActivityDiagram.png)
+
 // insert diagram
 
-The following steps explains the sequence diagram as shown above: 
+The following steps explains the sequence diagram shown above: 
 
 1. The user enters `add patient /ic S7777777Z /n Alice /p 98765432 /d 01/01/2000 /b B+ /a Peanuts`.
 
@@ -145,26 +159,66 @@ The following steps explains the sequence diagram as shown above:
 4. `PatientParser#parseAddCommand()` will first validate the attributes and then create an object `AddPatientCommand` 
 if the attributes are valid. 
 
-5. `HappyPills` then calls `AddPatientCommand.execute()` to execute the method. 
+5. `HappyPills` then calls `AddPatientCommand.execute()` to execute the command. 
 
 6. In `AddPatientCommand.execute()`, a patient is added and the display message is returned.
 
 #### 4.1.2 Edit Patient Details
 
+The user is able to edit the details of a patient in the list of patients currently in the program. The command: 
+
+    edit patient S7777777Z /a School
+    
+will edit the patient's allergies to `School`. 
+
+**Implementation** 
+
+The following steps explains the sequence diagram shown above: 
+
+1. The user enters `edit patient S7777777Z /a School` 
+
+2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
+
+3. `PatientParser#parse()` will then create an object `EditPatientCommand`. 
+
+4. `HappyPills` then calls `EditPatientCommand.execute()` method to execute the command. 
+
+5. In `EditPatientCommand.execute()`, the given attribute of the patient is edited and the display message is returned. 
+
 #### 4.1.3. Delete Patient Details 
+
+The user can delete a patient from the list of patients currently in the program. The command: 
+
+    delete patient S7777777Z 
+    
+will delete the patient with NRIC `S7777777Z`, if found. 
+
+**Implementation** 
+
+The following steps explains the sequence diagram shown above: 
+
+1. The user enters `delete patient S7777777Z`. 
+
+2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
+
+3. `PatientParser#parse()` will then create an object `DeletePatientCommand`. 
+
+4. `HappyPills` then calls `DeletePatientCommand.execute()` to execute the command. 
+
+5. In `DeletePatientCommand.execute()`, the respective patient is deleted and the display message is returned. 
 
 #### 4.1.4. List Patients
 
 The user is able to get a list of all the patients currently in the program.
 The command: 
     
-    `list patient`
+    list patient
     
 will list all the appointments in the `PatientMap`. 
 
 **Implementation** 
 
-The following steps explains the sequence diagram as shown above: 
+The following steps explains the sequence diagram shown above: 
 
 1. The user enters `list patient`.
 
@@ -178,6 +232,29 @@ The following steps explains the sequence diagram as shown above:
 
 #### 4.1.5. Retrieve Patient Details 
 
+The user can retrieve a patient's details. The command: 
+
+    get patient S7777777Z
+    
+will retrieve the details of the patient with NRIC `S7777777Z`. 
+
+**Implementation** 
+
+The following steps explains the sequence diagram shown above: 
+
+1. The user enters `get patient S7777777Z` .
+
+2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`. 
+
+3. `PatientParser#parse()` will create an object `GetPatientCommand`.
+
+5. `HappyPills` then calls `GetPatientCommand.execute()` to execute the method. 
+
+6. `GetPatientCommand.execute()` calls `TextUi.getPatientSuccessMessage()` if a patient of NRIC `S7777777Z` can be found 
+or `TextUi.patientNotExists()` if no patient with the given NRIC exists in the program. 
+
+7. The respective `TextUi` methods will then display the message to the user accordingly.
+
 ### 4.2 Patient Medical Records Features 
 
 
@@ -188,7 +265,7 @@ The following steps explains the sequence diagram as shown above:
 The user is able to add appointments into the program to manage the appointment schedule. 
 The command: 
 
-    `add appt /ic S7777777Z /d 01/04/2020 /t 12:00:00 /r Checkup` 
+    add appt /ic S7777777Z /d 01/04/2020 /t 12:00:00 /r Checkup 
     
 will add an appointment with `NRIC` as S7777777Z with the following attributes: 
 * appointment date: `01/04/2020`
@@ -201,7 +278,7 @@ An `appointmentId` will also be given when an appointment is successfully added.
 
 // insert diagram
 
-The following steps explains the sequence diagram as shown above: 
+The following steps explains the sequence diagram shown above: 
 
 1. The user enters `add appt /ic S7777777Z /d 01/04/2020 /t 12:00:00 /r Checkup` .
 
@@ -217,6 +294,26 @@ The following steps explains the sequence diagram as shown above:
 
 #### 4.3.3. Delete Appointment 
 
+The user can delete an appointment from the list of appointments currently in the program. The command: 
+
+    delete appt 1 
+    
+will delete the appointment with appointment ID `1`, if found. 
+
+**Implementation** 
+
+The following steps explains the sequence diagram shown above: 
+
+1. The user enters `delete appt 1`. 
+
+2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+
+3. `AppointmentParser#parse()` will then create an object `DeleteAppointmentCommand`. 
+
+4. `HappyPills` then calls `DeleteAppointmentCommand.execute()` to execute the command. 
+
+5. In `DeleteAppointmentCommand.execute()`, the respective patient is deleted and the display message is returned. 
+
 #### 4.3.4. Mark Appointment as Done 
 
 #### 4.3.5. List Appointments 
@@ -224,13 +321,13 @@ The following steps explains the sequence diagram as shown above:
 The user is able to get a list of all the appointments currently in the program.
 The command: 
     
-    `list appt`
+    list appt
     
 will list all the appointments in the `AppointmentMap`. 
 
 **Implementation** 
 
-The following steps explains the sequence diagram as shown above: 
+The following steps explains the sequence diagram shown above: 
 
 1. The user enters `list appt`.
 
@@ -293,17 +390,64 @@ Alternative 1 was chosen for now as the program is relatively new, and is more l
 
 ## 6. Testing 
 
+## 7. Useful links
+
+* [User Guide](UserGuide.md)
+* [About Us](AboutUs.md)
+
 ## Appendices 
 
 ### Appendix A: Product Scope 
 
+Our product is targeted at users who:
+  
+   - has a need to record significant number of patients' information
+   
+   - want to keep patients' information organised
+   
+   - prefer desktop apps over other types
+   
+   - can type fast
+   
+   - prefer typing over mouse input
+   
+   - prefer CLI apps over GUI apps
+  
+Value proposition: Note taking application built for doctors to manage notes faster than a typical mouse/GUI driven app
+
 ### Appendix B: User Stories 
+
+|Version| As a ... | I want to ... | So that I can ...|
+|--------|----------|---------------|------------------|
+|v1.0|Doctor|add Patient's details|view their information in their subsequent visits.|
+|v1.0|Doctor|have a quick overview of a list of all patients|check for their detailed information.|
+|v1.0|Doctor|retrieve my patient's detailed information|check for his/her allergies and provide a more accurate diagnosis|
+|v1.0|Doctor|edit a particular patient's information|the most up-to-date details in our patient records|
+|v2.0|Doctor|ensure that Patient's details are accurate before I add into the patient list|so that I can retify mistakes earlier|
+|v2.0|Doctor|?|?|
+|v2.0|Doctor|?|?|
+|v2.0|Doctor|?|?|
 
 ### Appendix C: Non-functional Requirements
 
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+
+2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+3. Should be able to hold up to 1000 patients' information without a noticeable sluggishness in performance for typical usage.
+
+4. Should be able to display large amount of inforamtion quickly. 
+
 ### Appendix D: Glossary 
 
-### Appendix E: Intructions for Manual Testing
+*Mainstream OS*
+
+Windows, Linux, Unix, OS-X
+
+### Appendix E: Instructions for Manual Testing
+
+
+------
 
 Users are able to store patients’ information on the program, 
 ensuring that the patients’ information can be accessed easily with the NRIC as a unique identifier.
@@ -322,8 +466,7 @@ The patient list feature is facilitated by PatientMap class which implements the
 
     - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
 
-The activity diagram below summarises the process of executing an `add` command.
-![Add Activity Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddCommandActivityDiagram.png)
+
 
 #### 4.2.3 Design Consideration
 
@@ -481,61 +624,4 @@ This is an internal feature of the program, implemented to allow users to recove
         Alternative 2: Saving the patients for deletion to a list then processed before the exit of the program
           Pros: This will push the deletion time cost towards the end of the code so that the use of the program is faster and smoother even with a large amount of deletion.
           Cons: If the program was to terminate unexpectedly, the deletion may not be reflected in the respective text files and would be recovered in the next run of the program.
-
-
-
-## Appendix A: Product Scope
-
-Our product is targeted at users who:
-  
-   - has a need to record significant number of patients' information
-   
-   - want to keep patients' information organised
-   
-   - prefer desktop apps over other types
-   
-   - can type fast
-   
-   - prefer typing over mouse input
-   
-   - prefer CLI apps over GUI apps
-  
-Value proposition: Note taking application built for doctors to manage notes faster than a typical mouse/GUI driven app
-
-## Appendix B: User Stories
-
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|Doctor|add Patient's details|view their information in their subsequent visits.|
-|v1.0|Doctor|have a quick overview of a list of all patients|check for their detailed information.|
-|v1.0|Doctor|retrieve my patient's detailed information|check for his/her allergies and provide a more accurate diagnosis|
-|v1.0|Doctor|edit a particular patient's information|the most up-to-date details in our patient records|
-|v2.0|Doctor|ensure that Patient's details are accurate before I add into the patient list|so that I can retify mistakes earlier|
-|v2.0|Doctor|?|?|
-|v2.0|Doctor|?|?|
-|v2.0|Doctor|?|?|
-
-## Non-Functional Requirements
-
-1. Should work on any mainstream OS as long as it has Java 11 or above installed.
-
-2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-3. Should be able to hold up to 1000 patients' information without a noticeable sluggishness in performance for typical usage.
-
-4. Should be able to display large amount of inforamtion quickly. 
-
-
-## Glossary
-
-*Mainstream OS*
-
-Windows, Linux, Unix, OS-X
-
-## Instructions for Manual Testing
-
-##Useful links:
-* [User Guide](UserGuide.md)
-* [About Us](AboutUs.md)
-
 
