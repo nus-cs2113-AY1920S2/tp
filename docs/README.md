@@ -1,8 +1,8 @@
 # Duke
 
-{Give product intro here}
+Meeting Organizer is a friendly chatbot that helps you find common free time among you and your friends, using just the NUSMODS links to your school timetable.
 
 Useful links:
 * [User Guide](UserGuide.md)
-* [Developer Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
