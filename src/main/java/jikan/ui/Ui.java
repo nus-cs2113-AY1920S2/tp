@@ -12,10 +12,19 @@ import java.util.concurrent.TimeUnit;
 import static jikan.Jikan.lastShownList;
 
 public class Ui {
-    public static final String GREETING = "Jikan";
+    public static final String LOGO = "::::::::::: ::::::::::: :::    :::     :::     ::::    :::\n"
+            + "    :+:         :+:     :+:   :+:    :+: :+:   :+:+:   :+:\n"
+            + "    +:+         +:+     +:+  +:+    +:+   +:+  :+:+:+  +:+\n"
+            + "    +#+         +#+     +#++:++    +#++:++#++: +#+ +:+ +#+\n"
+            + "    +#+         +#+     +#+  +#+   +#+     +#+ +#+  +#+#+#\n"
+            + "#+# #+#         #+#     #+#   #+#  #+#     #+# #+#   #+#+#\n"
+            + " #####      ########### ###    ### ###     ### ###    ####";
+
+    public static final String WELCOMEMESSAGE = " Hello there! I'm Jikan, your trusty time tracker.\n"
+            + " What can I do for you today?";
 
     public static final String DIVIDER = "-------------------------------"
-            + "------------------------------------------------------------";
+            + "-----------------------------------------------------------";
 
     public static final int PROGRESSCONVERTER = 2;
 
@@ -25,7 +34,9 @@ public class Ui {
 
     /** Prints the logo and greeting so users know the app is working. */
     public void printGreeting() {
-        System.out.println(GREETING);
+        System.out.println(LOGO);
+        System.out.println(DIVIDER);
+        System.out.println(WELCOMEMESSAGE);
         System.out.println(DIVIDER);
     }
 

@@ -188,5 +188,6 @@ public class Parser {
         startTime = null;
         activityName = null;
         tags = new HashSet<>();
+        allocatedTime = Duration.parse("PT0S");
     }
 }
