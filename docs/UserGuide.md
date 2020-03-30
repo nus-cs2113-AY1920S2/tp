@@ -10,7 +10,7 @@
   * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
   * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
-  * [3.7 Display list and budget details: `DISPLAY`](#display-list-and-budget-details-display)
+  * [3.7 Displaying list and budget details: `DISPLAY`](#displaying-list-and-budget-details-display)
   * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
   * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
   * [3.10 Finding an item: `FIND`](#finding-an-item-find)
@@ -81,9 +81,11 @@ Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * The `DESCRIPTION` must exist.
 * The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
-* At least one of two parameters (price/quantity) must be present.
-* i/, p/, q/ delimiters must be in **alphabetical** order.
+* `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
+  respective values or omit them. The system will set the price and quantity to 
+  the default values `0.0` and `1` 
 * note that you can rearrange the delimiters (more will shown in the example.)
+
 Example of usage: 
 
 1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
@@ -199,7 +201,7 @@ Example of the usage:
 
 ***
 
-### Display list and budget details: `DISPLAY`
+### Displaying list and budget details: `DISPLAY`
 Shows the shopping list, budget, cost of the items and the remaining budget.
 
 Format: `DISPLAY` 
