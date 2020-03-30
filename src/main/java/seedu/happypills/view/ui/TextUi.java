@@ -173,7 +173,7 @@ public class TextUi {
      * @param patient The patient whose records were updated.
      * @return The patient's updated records.
      */
-    public static String printEditSuccess(Patient patient) {
+    public static String printEditPatientSuccess(Patient patient) {
         String message = "    Patient details have been updated as follows:\n"
                 + patient + DIVIDER;
         return message;
@@ -370,5 +370,53 @@ public class TextUi {
         }
 
         return returnMessage;
+    }
+
+    /**
+     * Displays detailed Edit command instruction.
+     *
+     * @return The Edit command instruction.
+     */
+    public static String editAptHelpMessage() {
+        String message = "    To edit a patient's appointment, run the following command:\n"
+                + "      edit appt [NRIC] [APPTID] /d [DD/MM/YYYY] to edit appointment's phone number,\n"
+                + "      edit appt [NRIC] [APPTID] /t [HH:MM] to edit appointment's allergies,\n"
+                + "      edit appt [NRIC] [APPTID] /r [REASON] to edit appointment's remarks\"\n"
+                + "    Do note that editing the patient's records will overwrite any previous information.\n"
+                + "    The apptID can be found using \"find appt [NRIC]\"\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * print any string as needed.
+     * @param string print any string to screen
+     */
+    public static void print(String string) {
+        System.out.println(string);
+    }
+
+    /**
+     * Display updated patient's appointment.
+     *
+     * @param appointment The appointment that was updated.
+     * @return The patient's updated appointment.
+     */
+    public static String editAppointmentSuccessMessage(Appointment appointment) {
+        String message = "    Patient appointment have been updated as follows:\n"
+                + appointment + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Display updated patient's appointment.
+     *
+     * @param appointment The appointment that was updated.
+     * @return The patient's updated appointment.
+     */
+    public static String doneAppointmentSuccessMessage(Appointment appointment) {
+        String message = "    The following appointment has been marked done:\n"
+                + appointment + DIVIDER;
+        return message;
     }
 }
