@@ -47,21 +47,21 @@ The following sequence diagram shows how the search operation works:
 #### 1.1.2 Design Considerations
 ##### Aspect: How search stock executes
 * **Alternative 1 (current choice)**: List all ingredients that contains the keyword supplied.
-+ Pros: Easy to implement.
-+ Cons: All ingredients containing the keyword will be listed. This means that even if the keyword doesn't make sense, such as supplying "to", both potato and tomato will be listed since it contains "to".
+  + Pros: Easy to implement.
+  + Cons: All ingredients containing the keyword will be listed. This means that even if the keyword doesn't make sense, such as supplying "to", both potato and tomato will be listed since it contains "to".
 
 * **Alternative 2**: The user supplies the exact ingredient name.
-+ Pros: The ingredient that matches exactly with the keyword supplied will be listed.
-+ Cons: The user have to input the ingredient name correctly each time he/she uses the search stock feature.
+  + Pros: The ingredient that matches exactly with the keyword supplied will be listed.
+  + Cons: The user have to input the ingredient name correctly each time he/she uses the search stock feature.
 
 ##### Aspect: Data structure to support the search stock feature.
 * **Alternative 1 (current choice)**: Use a `List` to store all possible ingredient names that contain the keyword supplied.
-+ Pros: Easy to understand.
-+ Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
+  + Pros: Easy to understand.
+  + Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
 
 * **Alternative 2**: Use the existing `HashMap` data structure employed by the `stock` object.
-+ Pros: We do not need to create a new `List` to display the relevant results.
-+ Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. These, compared to `List`, is much less straightforward.
+  + Pros: We do not need to create a new `List` to display the relevant results.
+  + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. These, compared to `List`, is much less straightforward.
 
 <a name="list-stock"></a>
 
@@ -99,21 +99,21 @@ The following class diagram shows how the listing operation works:
 
 ##### Aspect: How listing stock executes
 * **Alternative 1 (current choice)**: List all ingredients in the stock in descending quantities.
-+ Pros: The user is able to tell which ingredients are the least/most quickly. This can help to facilitate quicker decision making in terms of what ingredients to re-stock.
-+ Cons: The current ingredients are listed in a specific ordering. A change in the ordering requirement would mean that a change in the implementation of the `comparator`.
+  + Pros: The user is able to tell which ingredients are the least/most quickly. This can help to facilitate quicker decision making in terms of what ingredients to re-stock.
+  + Cons: The current ingredients are listed in a specific ordering. A change in the ordering requirement would mean that a change in the implementation of the `comparator`.
 
 * **Alternative 2**: List all ingredients in the stock without any ordering.
-+ Pros: Easy to implement.
-+ Cons: Hard to identity which ingredients that require re-stocking quickly.
+  + Pros: Easy to implement.
+  + Cons: Hard to identity which ingredients that require re-stocking quickly.
 
 ##### Aspect: Data structure to support the search stock feature.
 * **Alternative 1 (current choice)**: Use a `List` to store all possible ingredient names.
-+ Pros: Easy to understand.
-+ Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
+  + Pros: Easy to understand.
+  + Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
 
 * **Alternative 2**: Use the existing `HashMap` data structure employed by the `stock` object.
-+ Pros: We do not need to create a new `List` to display the relevant results.
-+ Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. Sorting it, however, as compared to `List`, is much less straightforward.
+  + Pros: We do not need to create a new `List` to display the relevant results.
+  + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. Sorting it, however, as compared to `List`, is much less straightforward.
 
 <a name="generate-profit"></a>
 
@@ -157,19 +157,19 @@ Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
 
 Step 3. The user can now search against the current `reservation` list to see if an reservation is stored in the `reservation` list.  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
+&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
 
 <p align="center">
     <img src="SearchByIndex.png">
 </p>
 
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
+&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
 
 <p align="center">
     <img src="SearchByDate.png">
 </p>
 
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
+&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
 
 <p align="center">
     <img src="SearchByIndexnDate.png">
@@ -183,22 +183,33 @@ The following sequence diagram shows the relevant interactions behind `search re
 
 #### 1.4.2 Design Considerations
 ##### Aspect: How search reservation executes
-* **Alternative 1 (current choice)**: List all reservations that contains the reservation number or date provided.
-+ Pros: Easy to implement.
-+ Cons: 
+* **Alternative 1 (current choice)**: Access reservation by `ReservationList#getReservation(reservationNumber)` if reservation number is provided,
+or do linear search along the reservation list for reservations with date matched.
+  + Pros: Easy to implement and understand.
+  + Cons: May have performance issues in terms of time usage when searching along the reservation list.
 
-* **Alternative 2**: 
-+ Pros:
-+ Cons:
+* **Alternative 2**: Create a `HashMap` with date as the key and all Reservation objects in that date as the value.
+Once a new Reservation object is created, it will be added into the `HashMap` according to its date.
+  + Pros: Easier for searching in terms of date.
+  + Cons: Extra memory space is needed.
+
+**The reason to make the current choice:**  
+There is a trade-off between time and space.
+So far the reservation list size is not very large, so it is acceptable to do linear search along the list.
+Creating `HashMap` for each date will lead to many `HashMap`s, which is space-wasting in current stage.
+Utilization of `HashMap` will be considered if the restaurant becomes more popular and the reservation list gets longer and longer.
 
 ##### Aspect: Data structure to support the search reservation feature.
 * **Alternative 1 (current choice)**: Display all all `Reservation` objects that contain the reservation number or date provided to the screen directly.
-+ Pros: Easy to implement and understand.
-+ Cons: 
+  + Pros: Easy to implement and understand.
+  + Cons: The target objects are not really "contained" in a data structure.
 
 * **Alternative 2**: Use a `List` to store all `Reservation` objects that contain the reservation number or date provided.
-+ Pros: 
-+ Cons: 
+  + Pros: Objects are stored in a data structure, which is easier to do operation on that specific collections of objects.
+  + Cons: Extra memory space is needed.
+
+**The reason to make the current choice:**  
+There is no need for objects to be stored separately given current user stories.
 
 <a name="product-scope"></a>
 
