@@ -41,6 +41,18 @@ public class AddTagCommand extends Command {
     private String moduleCode;
     private String categoryName;
 
+    /**
+     * Constructs an Add Tag Command.
+     *
+     * @param info
+     *  The tag info
+     * @param taskDescription
+     *  The description of the task
+     * @param moduleCode
+     *  The module code of the parent module
+     * @param categoryName
+     *  The name of the parent category
+     */
     public AddTagCommand(ArrayList<String> infos, String taskDescription, String moduleCode, String categoryName) {
         this.infos = infos;
         this.taskDescription = taskDescription;
@@ -49,7 +61,7 @@ public class AddTagCommand extends Command {
     }
 
     protected CommandResult executeAdd() {
-        try {
+       try {
             Task toAddTag = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
             toAddTag.setTag(infos);
             for (String info: infos) {

@@ -53,10 +53,6 @@ public class DeleteTaskCommand extends DeleteCommand {
         this.isAll = isAll;
     }
 
-    public DeleteTaskCommand(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
     /**
      *  Executes the initial phase of the task deletion process depending on the number of tasks filtered.
      *  If there are no tasks in the filtered list, then the deletion ends.
@@ -95,16 +91,6 @@ public class DeleteTaskCommand extends DeleteCommand {
      */
     @Override
     public CommandResult execute() {
-        //try {
-        //    Module currentModule = (Module) Command.getCurrentDirectory();
-        //    Task toDelete = currentModule.getTaskManager().delete(taskDescription);
-        //
-        //    //add the task to the data manager
-        //    moduleManager.removeTask(currentModule.getTaskManager(), toDelete);
-        //    return new CommandResult(MESSAGE_TASK_REMOVED);
-        //} catch (TaskManager.TaskNotFoundException e) {
-        //    return new CommandResult(MESSAGE_TASK_NOT_FOUND);
-        //}
         ArrayList<Directory> filteredTasks =
                 createFilteredTaskList(moduleCode, categoryName, taskDescription, isExact, isAll);
         return executeInitialDelete(filteredTasks);

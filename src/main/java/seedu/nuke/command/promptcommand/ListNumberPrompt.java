@@ -3,11 +3,13 @@ package seedu.nuke.command.promptcommand;
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_LIST_NUMBER_NOT_FOUND;
 import static seedu.nuke.util.Message.messageConfirmDeleteCategory;
+import static seedu.nuke.util.Message.messageConfirmDeleteFile;
 import static seedu.nuke.util.Message.messageConfirmDeleteModule;
 import static seedu.nuke.util.Message.messageConfirmDeleteTask;
 
@@ -68,6 +71,14 @@ public class ListNumberPrompt extends Command {
                     .map(Task.class::cast)
                     .collect(Collectors.toCollection(ArrayList::new));
             return new CommandResult(messageConfirmDeleteTask(filteredTasks, indices));
+        }
+
+        case FILE: {
+            // Cast to Array List of tasks
+            ArrayList<TaskFile> fileteredFiles = filteredList.stream()
+                    .map(TaskFile.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            return new CommandResult(messageConfirmDeleteFile(fileteredFiles, indices));
         }
 
         default:

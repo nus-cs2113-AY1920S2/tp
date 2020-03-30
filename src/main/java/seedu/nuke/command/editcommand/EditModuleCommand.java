@@ -29,7 +29,7 @@ public class EditModuleCommand extends EditCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Edit module code of module"
             + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );

@@ -124,8 +124,8 @@ public class ScreenShotManager {
     /**
      * save the screen shot.
      */
-    public static ScreenShot takeNewScreenShot(ModuleManager moduleManager) {
-        String jsonStrModuleList = StorageManager.saveModuleToString(moduleManager.getModuleList());
+    public static ScreenShot takeNewScreenShot() {
+        String jsonStrModuleList = StorageManager.saveModuleToString(ModuleManager.getModuleList());
         return new ScreenShot(jsonStrModuleList);
     }
 

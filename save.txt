@@ -12,6 +12,9 @@ Tutorial 6 -|||- N -|||- 24/03/2020 11:59PM -|||- 6
 --- END TASK ---
 Lab -|||- 3
 --- TASK ---
+work -|||- N -|||- 31/03/2020 08:00PM -|||- 3
+--- FILE ---
+--- END FILE ---
 --- END TASK ---
 Assignment -|||- 5
 --- TASK ---
@@ -26,7 +29,6 @@ Lecture -|||- 1
 --- TASK ---
 notes -|||- N -|||-  -|||- 1
 --- FILE ---
-info pack -|||- n0418BNbLx4Kr25I
 --- END FILE ---
 --- END TASK ---
 Tutorial -|||- 2

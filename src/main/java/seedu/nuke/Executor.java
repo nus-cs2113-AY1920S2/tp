@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Executor {
     /* Variables to transit between parsing regular commands and prompts */
     private static PromptType promptType = PromptType.NONE;
-    // private static String userMessage;
     private static DirectoryLevel directoryLevel = DirectoryLevel.NONE;
     private static ArrayList<Directory> filteredList;
     private static ArrayList<Integer> indices;
@@ -92,7 +91,6 @@ public class Executor {
         Executor.directoryLevel = directoryLevel;
     }
 
-
     /**
      * Executes command.
      *
@@ -116,29 +114,10 @@ public class Executor {
             break;
         }
 
-        //load from current screen shot
-        //readScreenShot();
-        // supplies the data the command will operate on.
-        // if there is no file to load or the file is empty, setData will initialize a new taskManager system
-        //update the module manager as well as the data manager
-        // setCommandData(command);
-        //take the screen shot
-        //takeScreenShot();
-        //add screen shot
-        //addScreenShotToScreenShotList();
-        // Execute according to the command itself
         return execute(command);
-        // save the taskManager to a file
-        //moduleManager.getStorager().save(taskManager);
-        //StorageFile.saveJson(taskManager);
     }
 
     public static CommandResult execute(Command command) {
         return command.execute();
     }
-
-
-    //public void setCommandData(Command command) {
-    //    command.setData(moduleManager);
-    //}
 }
