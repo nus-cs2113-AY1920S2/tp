@@ -169,7 +169,7 @@ public class CalendarList {
     private String getEventDescription(Event event) {
         String day = getDayDescription(event);
         String typeOfEvent = getEventType(event);
-        String description = day + " ~" + typeOfEvent + event.getName();
+        String description = day + " " + typeOfEvent + event.getName();
         if (description.length() > 18) {
             return description.substring(0, 16) + "...";
         }

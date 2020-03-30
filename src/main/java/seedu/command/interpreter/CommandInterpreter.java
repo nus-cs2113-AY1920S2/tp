@@ -34,7 +34,6 @@ public class CommandInterpreter {
      * @throws DukeException if there is only 1 word from the input
      */
     protected String getSubsequentWords(String userInput) throws DukeException {
-        userInput = userInput.trim();
         int startIndexOfSpace = userInput.indexOf(" ");
 
         if (startIndexOfSpace == -1) {

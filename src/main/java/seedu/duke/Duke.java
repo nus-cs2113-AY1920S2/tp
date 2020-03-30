@@ -57,7 +57,12 @@ public class Duke {
         do {
             ui.readUserInput();
             try {
-                command = interpreter.decideCommand(ui.getUserInput());
+                String input = ui.getUserInput().trim();
+                if (input.isEmpty()) {
+                    throw new DukeException("Please provide a valid command.");
+                }
+
+                command = interpreter.decideCommand(input);
                 command.execute();
             } catch (DukeException m) {
                 logger.log(Level.WARNING, "DukeException at main()");
