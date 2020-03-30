@@ -1,4 +1,4 @@
-package seedu.happypills.controller;
+package seedu.happypills;
 
 import seedu.happypills.controller.commands.Command;
 import seedu.happypills.model.data.AppointmentMap;

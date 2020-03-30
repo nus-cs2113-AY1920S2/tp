@@ -1,6 +1,6 @@
 package seedu.happypills.controller.commands.patientcommands;
 
-import seedu.happypills.controller.HappyPills;
+import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.view.ui.TextUi;
