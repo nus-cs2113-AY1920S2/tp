@@ -1,6 +1,6 @@
 package seedu.command.student;
 
-import seedu.StudentList;
+import seedu.student.StudentList;
 import seedu.command.Command;
 import seedu.duke.Duke;
 import seedu.exception.DukeException;
@@ -8,7 +8,7 @@ import seedu.ui.UI;
 
 import java.util.Collections;
 
-import static seedu.StudentList.listNameComparator;
+import static seedu.student.StudentList.listNameComparator;
 
 /**
  * Class representing a student related command to sort all studentLists

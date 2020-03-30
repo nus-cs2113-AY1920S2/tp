@@ -1,7 +1,7 @@
 package seedu.parser;
 
-import seedu.StudentList;
-import seedu.StudentListCollection;
+import seedu.student.StudentList;
+import seedu.student.StudentListCollection;
 
 import static seedu.duke.Duke.studentListCollection;
 

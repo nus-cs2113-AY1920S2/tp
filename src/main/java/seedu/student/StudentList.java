@@ -1,4 +1,4 @@
-package seedu;
+package seedu.student;
 
 import seedu.ui.DisplayTable;
 

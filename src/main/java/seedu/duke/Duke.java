@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import seedu.StudentListCollection;
+import seedu.student.StudentListCollection;
 import seedu.command.Bye;
 import seedu.command.interpreter.CommandInterpreter;
 import seedu.command.Command;
