@@ -2,13 +2,15 @@ package seedu.duke.utils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.IncorrectCommand;
-import seedu.duke.commands.HelpCommand;
+
 import seedu.duke.commands.ClearCommand;
-import seedu.duke.commands.ResetBudgetCommand;
+import seedu.duke.commands.Command;
 import seedu.duke.commands.DisplayCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.commands.ResetBudgetCommand;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -161,9 +163,20 @@ public class ParserTest {
     @Test
     public void parse_editCommandMissingParams_errorMessage() {
         final String[] inputs = {"EDIT", "EDIT "};
+
         final String resultMessage = System.lineSeparator()
-                + "Invalid Command. Please provide a new description, price or quantity.";
-        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+                + "Oops! Invalid Command. Check if these are met:"
+                + System.lineSeparator()
+                + " - Index of item must be a positive number."
+                + System.lineSeparator()
+                + " - Price of an item should be in positive numerical form."
+                + System.lineSeparator()
+                + " - Quantity of an item should be in positive numerical form."
+                + System.lineSeparator()
+                + " - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], "
+                + "p/[NEW PRICE] or q/[QUANTITY] must be present."
+                + System.lineSeparator()
+                + "|| Example: EDIT 2 i/lollipop p/2.50 q/5";
     }
 
     @Test
@@ -180,8 +193,6 @@ public class ParserTest {
                 + " - Price of an item should be in positive numerical form."
                 + System.lineSeparator()
                 + " - Quantity of an item should be in positive numerical form."
-                + System.lineSeparator()
-                + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
                 + System.lineSeparator()
                 + " - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], "
                 + "p/[NEW PRICE] or q/[QUANTITY] must be present."

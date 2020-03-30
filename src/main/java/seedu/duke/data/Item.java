@@ -30,7 +30,7 @@ public class Item {
      * @param description Name of the object.
      * @param price Price of the object
      */
-    public Item(String description,double price) { // constructor can be removed when Add Command deals with qty
+    public Item(String description,double price) {
         this.price = price;
         this.description = description;
         this.quantity = 1;
