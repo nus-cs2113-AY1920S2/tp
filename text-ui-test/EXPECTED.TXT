@@ -12,13 +12,9 @@ What can I do for you today, doctor?
     Command is incomplete. Please use the help command.
     =====================================================
     =====================================================
+    d01/01/2000 is not a valid input.
+    d01/01/2000 will not be added
     =====================================================
-        Name : P1
-        NRIC : S123A
-        Phone Number : 123
-        DOB : 01/01/2000
-        Blood Type : O+
-        Allergies : None
-        Remarks : NIL
-                                                   (Y/N)?
+    Please input your missing detail listed below
+    /dob[DOB]
     =====================================================
