@@ -6,6 +6,7 @@ import commands.AddReservationCommand;
 import commands.DeleteDishCommand;
 import commands.DeleteStockCommand;
 import commands.MarkReservationCommand;
+import commands.SearchDishCommand;
 import commands.VoidReservationCommand;
 import commands.ListDishCommand;
 import commands.ListStockCommand;
@@ -134,6 +135,8 @@ public class CommandParser {
                 }
             } else if (splitCommands[1].equals("reservation")) {
                 new SearchReservationCommand(commands[1]).execute(reservations, ui);
+            } else if (splitCommands[1].equals("dish")) {
+                SearchDishCommand.searchDish(commands[1]);
             } else {
                 errorCommand();
             }
