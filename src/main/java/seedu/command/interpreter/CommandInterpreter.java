@@ -68,11 +68,11 @@ public class CommandInterpreter {
      * @return {@code true} if at least one flag is not found
      */
     protected boolean flagDoesNotExist(String string, String... flags) {
-        boolean output = false;
+        boolean output = true;
         for (String flag : flags) {
-            output = output && !string.contains(flag);
+            output = output && string.contains(flag);
         }
-        return output;
+        return !output;
     }
 
     /**
