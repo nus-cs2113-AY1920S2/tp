@@ -16,6 +16,8 @@ public class Executor {
     private static ArrayList<Directory> filteredList;
     private static ArrayList<Integer> indices;
 
+    private static boolean isGui = false;
+
     /**
      * Prepares the system to prepare a prompt for the user to input indices.
      */
@@ -99,6 +101,17 @@ public class Executor {
     public static void setFilteredList(ArrayList<Directory> filteredList, DirectoryLevel directoryLevel) {
         Executor.filteredList = filteredList;
         Executor.directoryLevel = directoryLevel;
+    }
+
+    public static boolean isGui() {
+        return isGui;
+    }
+
+    /**
+     * Indicate that the program is running via GUI instead of CLI.
+     */
+    public static void setIsGui() {
+        isGui = true;
     }
 
     /**

@@ -200,6 +200,7 @@ public class GuiParser {
             break;
 
         default:
+            highlightedInput.getChildren().add(createText(parameters, Color.CRIMSON));
             break;
         }
     }
@@ -680,7 +681,7 @@ public class GuiParser {
             console.getEntriesPopup().hide();
         }
 
-        highlightInput(taskDescription, rawFileName, parametersAfter, endIndexOfFile, suggestedFiles, false);
+        highlightInput(fileName, rawFileName, parametersAfter, endIndexOfFile, suggestedFiles, false);
     }
 
     private void smartParseModule(Matcher matcher, String parameters, int startIndex, boolean isExact)
@@ -1111,7 +1112,7 @@ public class GuiParser {
     }
 
     private void smartParseConfirmation(String input) {
-        switch(input.trim().toLowerCase()) {
+        switch (input.trim().toLowerCase()) {
         case "yes":
         case "y":
         case "no":

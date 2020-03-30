@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
+import seedu.nuke.command.addcommand.AddFileCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.storage.StorageManager;
@@ -32,6 +34,7 @@ public class InfiNus extends Application {
         StorageManager storageManager = new StorageManager("save.txt");
         ModuleManager moduleManager = ModuleManager.getInstance(root, modulesMap);
         storageManager.load2();
+        Executor.setIsGui();
     }
 
     @Override

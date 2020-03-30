@@ -36,6 +36,7 @@ import seedu.nuke.command.promptcommand.ListNumberPrompt;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.InvalidFormatException;
+import seedu.nuke.gui.io.GuiExecutor;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
 
@@ -47,14 +48,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DEADLINE_FORMAT;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PREFIX;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
-import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
-import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
+import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.util.Message.*;
 
 
 public class Parser {

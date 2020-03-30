@@ -3,6 +3,7 @@ package seedu.nuke.gui.io;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
@@ -12,15 +13,15 @@ import seedu.nuke.directory.Module;
 import seedu.nuke.gui.util.TextUtil;
 import seedu.nuke.util.ListCreator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-
 public class GuiExecutor {
-    private TextFlow consoleScreen;
+    private static TextFlow consoleScreen;
 
     public GuiExecutor(TextFlow consoleScreen) {
-        this.consoleScreen = consoleScreen;
+        GuiExecutor.consoleScreen = consoleScreen;
     }
 
     /**
@@ -89,5 +90,28 @@ public class GuiExecutor {
 
         Text taskListTable = TextUtil.createText(String.format("%s\n\n", listTableToShow), Color.DEEPSKYBLUE);
         consoleScreen.getChildren().add(taskListTable);
+    }
+
+    /**
+     * Opens up the file chooser for the user to select a file to add to the File List.
+     *
+     * @return
+     *  A String array containing the path and name of the selected file
+     */
+    public static String[] executeFileChooser() {
+        Stage stage = (Stage) consoleScreen.getScene().getWindow();
+        String[] chosenFileInformation = new String[2];
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File To Add");
+        File chosenFile = fileChooser.showOpenDialog(stage);
+
+        if (chosenFile != null) {
+            chosenFileInformation[0] = chosenFile.getAbsolutePath();
+            chosenFileInformation[1] = chosenFile.getName();
+        } else {
+            return null;
+        }
+        return chosenFileInformation;
     }
 }

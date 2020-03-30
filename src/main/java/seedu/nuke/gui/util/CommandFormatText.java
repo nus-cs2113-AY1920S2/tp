@@ -274,7 +274,6 @@ public class CommandFormatText {
                         TASK_PREFIX, "<new task description>", DEADLINE_PREFIX, "<new deadline>",
                         PRIORITY_PREFIX, "<new priority>", "]"), Color.DARKGRAY)
         );
-        commandFormat.setStyle("-fx-font-size: 10pt");
         return commandFormat;
     }
 
