@@ -240,8 +240,13 @@ public class UI {
         String studentName;
         do {
             System.out.println("Please enter a student Name. If you are finished, enter done");
-            studentName = in.nextLine();
-            studentList.addToList(studentName);
+            readUserInput();
+            studentName = getUserInput();
+            if (studentName.equals("done")) {
+                break;
+            } else {
+                studentList.addToList(studentName);
+            }
         } while (!studentName.equals("done"));
     }
 
@@ -288,28 +293,36 @@ public class UI {
 
     public void printAttendanceHelp() {
         System.out.print("To add students' attendance under an event, input:\n  "
-                + "attendance add (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n\n");
-        System.out.print("To delete a student's performance under an event, input:\n  "
-                + "attendance delete (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n\n");
+                + "`attendance add`\n\n");
+        System.out.print("To clear a student's attendance under an event, input:\n  "
+                + "`attendance clear`\n\n");
+        System.out.print("To view a student's attendance under an event, input:\n  "
+                + "`attendance list`\n\n");
+        System.out.print("To sort a student's attendance under an event by name, input:\n\t"
+                + "`attendance sort`\n\t"
+                + "Followed by `name`\n\n");
+        System.out.print("To view a student's attendance under an event by status, input:\n\t"
+                + "`attendance sort`\n\t"
+                + "Followed by `status`\n");
     }
 
     public void printStudentListHelp() {
         System.out.print("To create a new studentList for future events, input:\n\t"
-                + "student add\n\n");
+                + "`student add`\n\n");
         System.out.print("To delete an existing studentList, input:\n\t"
-                + "student delete (index)\n\n");
+                + "`student delete`\n\n");
         System.out.print("To clear all existing studentList, input:\n\t"
-                + "student clear\n\n");
+                + "`student clear`\n\n");
         System.out.print("To find an existing studentList, input:\n\t"
-                + "student find\n\n");
+                + "`student find`\n\n");
         System.out.print("To list all existing studentList, input:\n\t"
-                + "student list\n\n");
+                + "`student list`\n\n");
         System.out.print("To sort all existing studentList by their names, input:\n\t"
-                + "student sort/by/name\n\n");
+                + "`student sort`\n\t"
+                + "Followed by `list`\n\n");
         System.out.print("To sort all name within the existing studentList, input:\n\t"
-                + "student sort/by/list\n\n");
+                + "`student sort`\n\t"
+                + "Followed by`name`\n\n");
     }
 
     public void displayStudentMessage(String message) {
