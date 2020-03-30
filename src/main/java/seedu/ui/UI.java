@@ -11,13 +11,17 @@ import java.util.stream.Stream;
 import static seedu.duke.Duke.studentListCollection;
 
 public class UI {
+    private static String userName;
     private Scanner in;
     private String userInput;
-    private static String userName;
 
 
     public UI() {
         in = new Scanner(System.in);
+    }
+
+    public static void display(String message) {
+        System.out.println(message);
     }
 
     /**
@@ -27,6 +31,7 @@ public class UI {
      */
     public void readUserInput() {
         System.out.print(">>> ");
+        System.out.flush();
         userInput = in.nextLine();
     }
 
@@ -50,10 +55,6 @@ public class UI {
      */
     public void close() {
         in.close();
-    }
-
-    public static void display(String message) {
-        System.out.println(message);
     }
 
     /**
@@ -100,9 +101,9 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
-    public void addAttendanceMessage(String studentName, String eventName) {
-        System.out.printf("Attendance of %s has been taken successfully"
-                + " under event %s.\n", studentName, eventName);
+    public void addAttendanceMessage(String studentName, String attendanceStatus, String eventName) {
+        System.out.printf("Attendance of %s (%s) has been taken successfully"
+                + " under event %s.\n", studentName, attendanceStatus, eventName);
     }
 
     public void addPerformanceMessage(String studentName, String taskName) {
@@ -115,50 +116,30 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
-    public static void printBorderOfCalendar() {
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|");
-        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
-        System.out.print("|\n");
-    }
 
-    public static void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
+    public void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
         printCalendarHorizontalLine();
         String line = "SEMESTER " + semester + " AY " + semesterOneYear + "/" + semesterTwoYear;
-        System.out.printf(" %40s %n", line);
+        System.out.printf(" %75s %n", line);
         printCalendarHorizontalLine();
     }
 
-    public static void printCalendarHorizontalLine() {
+
+    public void printCalendarHorizontalLine() {
         Stream.generate(() -> " _").limit(1).forEach(System.out::print);
-        Stream.generate(() -> "_").limit(70).forEach(System.out::print);
+        Stream.generate(() -> "_").limit(130).forEach(System.out::print);
         System.out.println(" ");
     }
 
-    public static void printBodyOfSix(ArrayList<String> description) {
-        String columnOfSix = ("| %-10s| %-10s| %-10s| %-10s| %-10s| %-10s|%n");
-        System.out.printf(columnOfSix, description.get(0), description.get(1), description.get(2), description.get(3),
-                description.get(4), description.get(5));
-        printBorderOfCalendar();
-    }
 
-
-    public static void printCalendar(ArrayList<ArrayList<String>> list, int semesterOneYear, int semesterTwoYear,
+    public void printCalendarHeader(int semesterOneYear, int semesterTwoYear,
                                      int semester) {
+        System.out.println();
         printCalendarHeading(semesterOneYear, semesterTwoYear, semester);
         printCalendarMonthsHeading(semester);
     }
 
-    public static void printCalendarMonthsHeading(int semester) {
+    public void printCalendarMonthsHeading(int semester) {
         ArrayList<String> months = new ArrayList<>();
         if (semester == 1) {
             months.add(0, "JUL");
@@ -175,7 +156,7 @@ public class UI {
             months.add(4, "MAY");
             months.add(5, "JUN");
         }
-        printBodyOfSix(months);
+        DisplayTable.printBodyOfSix(months);
     }
 
     /**
@@ -197,6 +178,12 @@ public class UI {
         System.out.println("Please key in the result for student " + studentName);
         return in.nextLine();
     }
+
+    public String getAttendanceStatusOfStudent(String studentName) {
+        System.out.println("Please key in the attendance status for student " + studentName + "[Y/N]");
+        return in.nextLine();
+    }
+
 
     public String getPerformanceParameter() {
         System.out.println("Please key in student name and result in the following format:");
@@ -231,16 +218,18 @@ public class UI {
         return in.nextLine();
     }
 
-    public String getAttendancePerimeter() {
-        System.out.println("Please key in student name and result in the following format:");
-        System.out.println("n/Student_Name p/Is_Present");
-        return in.nextLine();
+    public void clearAttendanceMessage(String eventName) {
+        System.out.println("Attendance List cleared for Event: " + eventName);
     }
 
-    public void printWrongInput(String typeInput) {
-        System.out.printf("Wrong %s input. If you need help with "
-                + "the input format, please input help.\n", typeInput);
+    public void sortAttendanceByStatus(String eventName) {
+        System.out.println("Attendance List is sorted by name for Event: " + eventName);
     }
+
+    public void sortAttendanceByName(String eventName) {
+        System.out.println("Attendance List is sorted by attendance status for Event:  " + eventName);
+    }
+
 
     public void printInsufficientInput(String typeInput) {
         System.out.printf("No %s input. If you need help with "
@@ -252,9 +241,6 @@ public class UI {
         do {
             System.out.println("Please enter a student Name. If you are finished, enter done");
             studentName = in.nextLine();
-            if (studentName.contains("done")) {
-                break;
-            }
             studentList.addToList(studentName);
         } while (!studentName.equals("done"));
     }
@@ -276,7 +262,7 @@ public class UI {
 
     public void printEventHelp() {
         System.out.print("To add an event, use the following format:\n  "
-                + "Event add n/Event_name v/Venue_name d/yyyy-MM-dd. "
+                + "Event add n/Event_name v/Venue_name d/yyyy-MM-dd t/HHmm. "
                 + "You may also replace 'Event' with one of the following type:"
                 + "\n  - Seminar\n  - Exam\n  - Tutorial\n\n");
         System.out.print("To edit an event, use the following format:\n  "
@@ -310,5 +296,44 @@ public class UI {
     }
 
     public void printStudentListHelp() {
+        System.out.print("To create a new studentList for future events, input:\n\t"
+                + "student add\n\n");
+        System.out.print("To delete an existing studentList, input:\n\t"
+                + "student delete (index)\n\n");
+        System.out.print("To clear all existing studentList, input:\n\t"
+                + "student clear\n\n");
+        System.out.print("To find an existing studentList, input:\n\t"
+                + "student find\n\n");
+        System.out.print("To list all existing studentList, input:\n\t"
+                + "student list\n\n");
+        System.out.print("To sort all existing studentList by their names, input:\n\t"
+                + "student sort/by/name\n\n");
+        System.out.print("To sort all name within the existing studentList, input:\n\t"
+                + "student sort/by/list\n\n");
+    }
+
+    public void displayStudentMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void printStudentListCollection() {
+        if (studentListCollection.isEmpty()) {
+            System.out.println("The student list collection is currently empty");
+        } else {
+            DisplayTable displayTable = new DisplayTable();
+            for (int i = 0; i < studentListCollection.size(); i++) {
+                displayTable.printHeaderOfTwo("List #" + (i + 1),
+                        studentListCollection.get(i).getListName());
+                int index = 1;
+                for (String name : studentListCollection.get(i).getStudentList()) {
+                    displayTable.printBodyOfTwo(index, name);
+                    index++;
+                }
+            }
+        }
+    }
+
+    public void displayAttendanceMessage(String message) {
+        System.out.println(message);
     }
 }

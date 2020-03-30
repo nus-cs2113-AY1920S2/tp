@@ -2,8 +2,11 @@ package seedu.command.interpreter;
 
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.command.attendance.AddAttendance;
-import seedu.command.attendance.ListAttendance;
+import seedu.command.attendance.AddAttendanceList;
+import seedu.command.attendance.ClearAttendanceList;
+import seedu.command.attendance.SortAttendanceListByName;
+import seedu.command.attendance.ViewAttendanceList;
+import seedu.command.attendance.SortAttendanceListByStatus;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 import seedu.ui.UI;
@@ -54,20 +57,56 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
      */
     public Command decideCommand(String commandDescription) throws DukeException {
 
+        String commandType = getFirstWord(commandDescription);
+
+        assert commandType.isBlank() : "Attendance: Unknown command";
+
         AttendanceCommandInterpreter.setupLogger();
         logger.info("My First Log");
         logger.fine("My Second Log");
 
-        String commandType = getFirstWord(commandDescription);
-        eventName = ui.getEventNameForAttendance();
-        attendances = getAttendance(eventName);
-        assert commandType == "" : "UnknownType";
-        assert commandType == "" : "UnknownParameter";
         switch (commandType) {
         case "add":
-            return new AddAttendance(attendances, eventName);
+            eventName = ui.getEventNameForAttendance();
+            attendances = getAttendance(eventName);
+            return new AddAttendanceList(attendances, eventName);
         case "list":
-            return new ListAttendance(attendances);
+            eventName = ui.getEventNameForAttendance();
+            attendances = getAttendance(eventName);
+            return new ViewAttendanceList(attendances);
+        case "clear":
+            eventName = ui.getEventNameForAttendance();
+            attendances = getAttendance(eventName);
+            return new ClearAttendanceList(attendances, eventName);
+
+        case "sort":
+            try {
+                ui.displayStudentMessage("Please Key in either 'name' or 'status'.");
+                ui.readUserInput();
+                String sortType = ui.getUserInput();
+                switch (sortType) {
+                case "name":
+                    try {
+                        eventName = ui.getEventNameForAttendance();
+                        attendances = getAttendance(eventName);
+                        return new SortAttendanceListByName(attendances, eventName);
+                    } catch (Exception e) {
+                        throw new DukeException("Attendance Command Sort By Name failed.");
+                    }
+                case "status":
+                    try {
+                        eventName = ui.getEventNameForAttendance();
+                        attendances = getAttendance(eventName);
+                        return new SortAttendanceListByStatus(attendances, eventName);
+                    } catch (Exception e) {
+                        throw new DukeException("Attendance Command Sort By Status failed.");
+                    }
+                default:
+                    throw new DukeException("Unknown Attendance Sort Command");
+                }
+            } catch (Exception e) {
+                throw new DukeException("Attendance Command Sort failed.");
+            }
         default:
             throw new DukeException("Attendance: Unknown command.");
         }

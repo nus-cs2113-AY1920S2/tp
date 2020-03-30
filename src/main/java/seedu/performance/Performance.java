@@ -22,4 +22,9 @@ public class Performance {
     public String getResult() {
         return result;
     }
+
+    @Override
+    public String toString() {
+        return studentName + ": " + result;
+    }
 }

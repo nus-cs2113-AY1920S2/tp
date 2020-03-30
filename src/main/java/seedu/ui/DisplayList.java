@@ -21,20 +21,6 @@ public class DisplayList extends UI {
         studentList.showList();
     }
 
-    public void printStudentListCollection() throws DukeException {
-        int index = 1;
-        try {
-            for (StudentList studentList : studentListCollection) {
-                System.out.print("[" + index + "] ");
-                studentList.showList();
-                System.out.println("--------------");
-                index++;
-            }
-        } catch (Exception e) {
-            throw new DukeException(e.getMessage());
-        }
-    }
-
     public int getStudentListIndex() {
         assert !studentListCollection.isEmpty() : "studentListCollection should be empty.";
         int index = 1;
@@ -43,5 +29,19 @@ public class DisplayList extends UI {
             System.out.println(index + ". " + studentList.getListName());
         }
         return Integer.parseInt(getStringInput());
+    }
+
+    public void printSearchResults(ArrayList<StudentList> searchResults) throws DukeException {
+        System.out.println("Here's the Search Results");
+        try {
+            int index = 1;
+            for (StudentList studentList : searchResults) {
+                System.out.println("\n[" + index + "]");
+                studentList.showList();
+                index++;
+            }
+        } catch (Exception e) {
+            throw new DukeException("Search Failed");
+        }
     }
 }

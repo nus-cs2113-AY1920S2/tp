@@ -41,7 +41,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
 
     @Override
     public Command decideCommand(String commandDescription) throws DukeException {
-        Command command = null;
+        Command command;
         Event event;
         int index;
         String name;

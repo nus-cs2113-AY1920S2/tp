@@ -35,7 +35,6 @@ public class CommandInterpreter {
      * @throws DukeException if there is only 1 word from the input
      */
     protected String getSubsequentWords(String userInput) throws DukeException {
-        userInput = userInput.trim();
         int startIndexOfSpace = userInput.indexOf(" ");
 
         if (startIndexOfSpace == -1) {
@@ -124,7 +123,8 @@ public class CommandInterpreter {
         default:
             assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
-                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar"))
+                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
+                    && !commandCategory.equals("help") && !commandCategory.equals("student"))
                     : "accepted command category is not further interpreted!";
             throw new DukeException("Unknown command category is provided");
         }

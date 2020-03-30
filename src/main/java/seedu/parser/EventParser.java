@@ -11,6 +11,7 @@ public class EventParser {
     private String venue;
     private int index;
 
+
     public EventParser() {
         this.name = "";
         this.date = "";
