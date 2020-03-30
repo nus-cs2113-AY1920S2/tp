@@ -49,9 +49,11 @@ Add menu items, ingredients, and reservations.
 #### Add menu item: add dish
 * Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...]; p/PRICE;`
   + Example: `add dish; n/bacon pizza; i/cheese, bacon; p/7.00;`
+  
 #### Add ingredient into stock: add stock
 * Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
   + Example: `add stock; i/tomato; q/10; p/$0.50;`
+
 #### Add reservation into list: add reservation 
 * Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
   + Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
@@ -66,12 +68,15 @@ Delete menu items, ingredients and reservations.
 #### Delete menu item: delete dish
 * Format: `delete dish; n/NAME;`
   + Example: `delete dish; n/bacon pizza;`
+
 #### Delete stock of ingredient: delete stock
 * Format: `delete stock; i/INGREDIENT; [q/QUANTITY;]`
   + Example: `delete stock; i/tomato; q/1;`
+
 #### Mark reservation as invalid: delete reservation
 * Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
   + Example: `delete reservation; r/12;`
+
 #### Mark reservation as served: mark reservation
 Cannot mark the reservation as served if the reservation is originally invalid.
 * Format: `mark reservation; r/NUMBER_OF_RESERVATION;`
@@ -96,9 +101,11 @@ Search items in the menu, stock and reservations.
 #### Search for dish: search dish
 * Search dish : `search dish; k/KEYWORD;`
   + Example: `search dish; k/bacon;`
+
 #### Search for stock: search stock
 * Search stock : `search stock; k/KEYWORD;`
   + Example: `search stock; k/tomato;`
+
 #### Search for reservation: search reservation
 * Search reservation : `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
   + Example: `search reservation; r/1;`
