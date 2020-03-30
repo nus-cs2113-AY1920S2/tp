@@ -2,8 +2,6 @@ package seedu.duke.module;
 
 import seedu.duke.data.ModuleList;
 
-import java.util.Collection;
-
 public abstract class Module {
     protected String name;
     protected String id;
@@ -101,6 +99,14 @@ public abstract class Module {
     }
 
     public abstract String toStorageString();
+
+    public boolean isNameValid() {
+        return isNameValid;
+    }
+
+    public boolean isIdValid() {
+        return isIdValid;
+    }
 
 
 }
