@@ -68,6 +68,10 @@ public class Jikan {
 
         while (true) {
             Command command = parser.parseUserCommands(in,activityList,cleaner,tagFile);
+<<<<<<< HEAD
+=======
+
+>>>>>>> de74454c9173645ba1795e576c73b5300488a2a7
             if (command == null) {
                 continue;
             }

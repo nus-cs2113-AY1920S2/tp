@@ -156,34 +156,8 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    /**
-     * Prints a progress message and progress bar based on the percentage of allocate time achieved.
-     * @param percent percentage of allocated time achieved
-     */
-    public static void printProgressMessage(double percent) {
-        System.out.println(DIVIDER);
-        if (percent < 50) {
-            System.out.println("Try harder next time! Here's your progress:");
-        } else if (percent < 100) {
-            System.out.println("Almost there ! Here's your progress:");
-        } else {
-            System.out.println("Great job! Here's your progress:");
-        }
-        int starsLeft = (int) (percent / PROGRESSCONVERTER);
-        System.out.print("Progress for " + Parser.activityName + ": ");
-        System.out.print("|");
-        for (int i = 0; i < TOTALBARS; i++) {
-            if (starsLeft > 0) {
-                System.out.print("*");
-                starsLeft--;
-            } else {
-                System.out.print(" ");
-            }
-        }
-        System.out.println("|");
-    }
-
     /** Print goals as a table.
+     * Print goals as a table.
      * @param tagsGoals the goals set for each tag.
      * @param tagsActual the actual duration spent for each tag.
      */
@@ -212,8 +186,35 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    /**
-     * Method to print progress bar without message.
+     /** Prints a progress message and progress bar based on the percentage of allocate time achieved.
+     * @param percent percentage of allocated time achieved
+     */
+    public static void printProgressMessage(double percent) {
+        System.out.println(DIVIDER);
+        if (percent < 50) {
+            System.out.println("Try harder next time! Here's your progress:");
+        } else if (percent < 100) {
+            System.out.println("Almost there ! Here's your progress:");
+        } else {
+            System.out.println("Great job! Here's your progress:");
+        }
+        int starsLeft = (int) (percent / PROGRESSCONVERTER);
+        System.out.print("Progress for " + Parser.activityName + ": ");
+        System.out.print("|");
+        for (int i = 0; i < TOTALBARS; i++) {
+            if (starsLeft > 0) {
+                System.out.print("*");
+                starsLeft--;
+            } else {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("|");
+        System.out.println(DIVIDER);
+    }
+
+
+    /** Method to print progress bar without message.
      * @param percent percentage of allocated time achieved.
      * @param activityName name of a particular activity.
      */
