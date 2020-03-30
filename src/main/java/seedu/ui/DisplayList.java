@@ -1,6 +1,6 @@
 package seedu.ui;
 
-import seedu.StudentList;
+import seedu.student.StudentList;
 import seedu.event.Event;
 import seedu.exception.DukeException;
 

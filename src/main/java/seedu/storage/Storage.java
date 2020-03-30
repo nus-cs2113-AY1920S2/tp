@@ -1,7 +1,7 @@
 package seedu.storage;
 
-import seedu.StudentList;
-import seedu.StudentListCollection;
+import seedu.student.StudentList;
+import seedu.student.StudentListCollection;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
