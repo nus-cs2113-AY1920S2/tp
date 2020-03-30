@@ -7,6 +7,7 @@
     + [1.2. [Proposed] List stock in descending quantities](#list-stock)
     + [1.3. [Proposed] Generate profit for the day](#generate-profit)
     + [1.4. [Proposed] Search reservation](#search-reservation)
+    + [1.5  [Proposed] Search dish](#search-dish)
 * [2. Product Scope](#product-scope)
 * [3. User Stories](#user-stories)
 * [4. Non-Functional Requirements](#nonfunctional-requirement)
@@ -199,6 +200,48 @@ The following sequence diagram shows the relevant interactions behind `search re
 * **Alternative 2**: Use a `List` to store all `Reservation` objects that contain the reservation number or date provided.
 + Pros: 
 + Cons: 
+
+<a name="search-dish"></a>
+
+### 1.5 [Proposed] Search dish feature
+#### 1.5.1 Proposed implementation
+
+In restaurant daily report, a user can search from available menu items using the search dish commmand.
+
+The search dish command takes in a keyword denoted by k/, and searches all dish names for dishes containing the keyword.
+
+An example of the usage of search dish can be found below.
+
+Step 1. User launches application. An empty `Menu` is initialized.
+
+Step 2. User adds a menu item to the empty menu with `add dish; n/bacon pizza; i/cheese, bacon; p/7.00;`. Bacon pizza is now on the menu.
+
+Step 3. User adds more menu items to the menu. For example, they can `add dish; n/chicken rice; i/chicken, rice; p/4.00;` and `add dish; n/pasta with bacon; i/pasta, bacon; p/6.00;`
+
+Step 4. User searches the menu for any dish names containing a keyword. Let the user execute `search dish; k/bacon;`, the expected behavior can be found in the screenshot below.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48315922/77872867-3e66e880-7216-11ea-9003-e04bda089f24.png">
+</p>
+
+#### 1.5.2 Design Considerations
+##### Aspect: Execution of search dish
+* **Alternative 1 (current choice)**: Search dish names for keyword
++ Pros: Intuitive use of search, easy to implement
++ Cons: If dishes are not named intuitively, such as `pasta with bacon`, feature becomes less useful
+
+* **Alternative 2**: Search dish ingredients for keyword
++ Pros: Can find all dishes with a certain ingredient, which is useful if you really like something like `bacon` or are allergic to something like `cilantro`
++ Cons: Cannot easily find if the menu contains your favorite dish by name, like `ratatouille`
+
+##### Aspect: Data structure in search dish
+* **Alternative 1 (current choice)**: Create a new temporary `HashMap<String, Dish>` that contains all dishes that match the search
++ Pros: Flexible to use later on, easy to implement
++ Cons: Potentially duplicate work as similar functionality could be accomplished without creating a new HashMap
+
+* **Alternative 2**: Use original dish HashMap to identify dishes matching search
++ Pros: No duplicate work and we're always using the same HashMap
++ Cons: If we choose to further develop this feature later on, we'll have to do the search again because we did not save the matching items any way
 
 <a name="product-scope"></a>
 
