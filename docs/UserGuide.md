@@ -138,7 +138,7 @@ As mentioned previously, **Nuke** follows the structure of a **Directory Tree** 
 - When you are at the **Module Directory**, `mkdir <category name>` will add a _category_ into your **Category List**.
 - When you are at the Category Directory, `mkdir <task description>` will add a _task_ into your **Task List**.
 
-The above mentioned commands have to be done in the corresponding directories, and the commands below can be done in any directories, but 
+The above mentioned commands have to be done in the corresponding directories, and the commands below can be done in any directories, but less generic.
 
 #### a. Add a Module into your Module List  
 Adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the List Module command.
