@@ -157,6 +157,36 @@ public class Ui {
     }
 
     /**
+     * Print goals as a table.
+     * @param tagsGoals the goals set for each tag.
+     * @param tagsActual the actual duration spent for each tag.
+     */
+    public static void printGoals(HashMap<String, Duration> tagsGoals, HashMap<String,
+            Duration> tagsActual) {
+        System.out.println(DIVIDER);
+        System.out.println(String.format("   %-15s %s %-15s %s %-15s %s %s",
+                "Tag", "|", "Goal", "|", "Actual", "|", "Duration left"));
+        tagsGoals.forEach((key, value) -> {
+            String message;
+            String goalDuration = convertDuration(tagsGoals.get(key));
+            String actualDuration = convertDuration(tagsActual.get(key));
+            Duration difference = tagsGoals.get(key).minus(tagsActual.get(key));
+            String diffDuration = convertDuration(difference);
+            if (difference.isNegative()) {
+                if (diffDuration.equals("00:00:00")) {
+                    message = " [You have met your goal!]";
+                } else {
+                    message = " [You have exceeded your goal!]";
+                }
+            } else {
+                message = " [You have not met your goal!]";
+            }
+            System.out.println(String.format("   %-15s %s %-15s %s %-15s %s %s", key,
+                    "|", goalDuration, "|", actualDuration, "|", diffDuration + message));
+        });
+        System.out.println(DIVIDER);
+    }
+
      * Prints a progress message and progress bar based on the percentage of allocate time achieved.
      * @param percent percentage of allocated time achieved
      */
@@ -185,6 +215,21 @@ public class Ui {
     }
 
     /**
+     * Converts duration object to a string for printing.
+     * @param dur the duration object.
+     * @return duration the duration as a string.
+     */
+    public static String convertDuration(Duration dur) {
+        long durationInNanos = dur.toNanos();
+        String duration = String.format("%02d:%02d:%02d",
+                TimeUnit.NANOSECONDS.toHours(durationInNanos),
+                TimeUnit.NANOSECONDS.toMinutes(durationInNanos)
+                        - TimeUnit.HOURS.toMinutes(TimeUnit.NANOSECONDS.toHours(durationInNanos)),
+                TimeUnit.NANOSECONDS.toSeconds(durationInNanos)
+                        - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(durationInNanos)));
+        return duration;
+    }
+
      * Method to print progress bar without message.
      * @param percent percentage of allocated time achieved.
      * @param activityName name of a particular activity.
