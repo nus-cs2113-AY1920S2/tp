@@ -8,6 +8,8 @@
     + [3.3. List:](#list) `list`
     + [3.4. Search:](#search) `search`
     + [3.5. Sales:](#sales) `sales`
+    + [3.6. Saving](#save) `bye`
+    + [3.7. Loading](#load) 
 * [4. Command Summary](#command-summary)
 
 <a name="introduction"></a>
@@ -138,6 +140,18 @@ Add daily sales and calculate profit
 #### Find most popular dish : popular
 * Format: `popular`
 
+<a name="save"></a>
+
+### Saving
+All dishes, stock and reservations will be saved to `report.txt` automatically after the program is exited.
+
+#### Exit Program: bye
+* Format: `bye`
+
+<a name="load"></a>
+
+### Loading (for v2.1)
+Dishes, stock and reservations will be automatically loaded when the program is started.
 
 <a name="command-summary"></a>
 
