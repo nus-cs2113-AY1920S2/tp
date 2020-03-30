@@ -9,7 +9,7 @@ import jikan.ui.Ui;
 import static jikan.Jikan.lastShownList;
 
 /**
- * Represents a command to filter activities based on user-specified criterias.
+ * Represents a command to filter activities by specified tags.
  */
 public class FilterCommand extends Command {
 
@@ -21,7 +21,7 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * Shows the user all past activities that has tags which match the keywords queried by the user.
+     * Shows the user all past activities that has tags which match the one or more keywords queried by the user.
      * @param activityList the activity list to search for matching activities
      */
     @Override
@@ -33,6 +33,10 @@ public class FilterCommand extends Command {
         }
     }
 
+    /**
+     * Filters activities by tags from the entire list of activities.
+     * @param activityList the full list of activities
+     */
     private void filterFullList(ActivityList activityList) {
         try {
             String query = parameters;
@@ -52,6 +56,9 @@ public class FilterCommand extends Command {
         }
     }
 
+    /**
+     * Filter activities by tags based on the last shown list.
+     */
     private void filterSubList() {
         try {
             String query = parameters.replace("-s ", "");

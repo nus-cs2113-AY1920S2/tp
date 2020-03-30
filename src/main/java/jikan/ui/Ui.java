@@ -2,6 +2,7 @@ package jikan.ui;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.parser.Parser;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -14,6 +15,10 @@ public class Ui {
 
     public static final String DIVIDER = "-------------------------------"
             + "------------------------------------------------------------";
+
+    public static final int PROGRESSCONVERTER = 2;
+
+    public static final int TOTALBARS = 50;
 
     /** Prints the logo and greeting so users know the app is working. */
     public void printGreeting() {
@@ -145,6 +150,34 @@ public class Ui {
             }
             System.out.println("");
         });
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Prints a progress message and progress bar based on the percentage of allocate time achieved.
+     * @param percent percentage of allocated time achieved
+     */
+    public static void printProgessMessage(double percent) {
+        System.out.println(DIVIDER);
+        if (percent < 50) {
+            System.out.println("Try harder next time! Here's your progress:");
+        } else if (percent < 100) {
+            System.out.println("Almost there ! Here's your progress:");
+        } else {
+            System.out.println("Great job! Here's your progress:");
+        }
+        int starsLeft = (int) (percent / PROGRESSCONVERTER);
+        System.out.print("Progess for " + Parser.activityName + ": ");
+        System.out.print("|");
+        for (int i = 0; i < TOTALBARS; i++) {
+            if (starsLeft > 0) {
+                System.out.print("*");
+                starsLeft--;
+            } else {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("|");
         System.out.println(DIVIDER);
     }
 }
