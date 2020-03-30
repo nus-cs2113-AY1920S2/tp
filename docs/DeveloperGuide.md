@@ -2,47 +2,48 @@ By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 - [Setting up](#1-setting-up)
 	- [Prerequisites](#11-prerequisites)
-	- [Setting up the project](#setting-up-the-project)
-	- [Verifying the Setup](#verifying-the-setup)
-- [Design](#design)
-	- [Architecture](#architecture)
-	- [UI Component](#ui-component)
-	- [Logic Component](#logic-component)
-	- [Model Component](#model-component)
-	- [Storage Component](#storage-component)
-	- [Atas Component](#atas-component)
-- [Implementation](#implementation)
-	- [Delete Task Feature](#delete-task-feature)
-		- [Design Considerations](#design-considerations)
-	- [Search task feature](#search-task-feature)
-		- [Current Implementation](#current-implementation)
-		- [Design Considerations:](#design-considerations-1)
-	- [Clear Task feature](#clear-task-feature)
-		- [Current Implementation](#current-implementation-1)
-		- [Design Considerations](#design-considerations-2)
-	- [Repeat event feature](#repeat-event-feature)
-		- [Current Implementation](#current-implementation-2)
-		- [`Event` and `RepeatEvent` Differences and Impact](#event-and-repeatevent-differences-and-impact)
-		- [Design Considerations](#design-considerations-3)
-	- [Edit Task Feature](#edit-task-feature)
-		- [Implementation](#implementation-1)
-		- [Design Considerations](#design-considerations-4)
-	- [View Calendar feature](#view-calendar-feature)
-		- [Implementation](#implementation-2)
-		- [Design Considerations](#design-considerations-5)
-	- [Storage](#storage)
-		- [Implementation](#implementation-3)
-			- [Saving the current state of **ATAS** with `Storage#save()`:](#saving-the-current-state-of-atas-with-storagesave)
-			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#loading-previously-saved-tasklist-data-into-atas-with-storageload)
-		- [Design Considerations](#design-considerations-6)
-- [Testing](#testing)
-	- [Using IntelliJ JUnit Tests](#using-intellij-junit-tests)
-	- [Using Input-Output Tests](#using-input-output-tests)
-- [Appendices](#appendices)
-- [Product Scope](#product-scope)
-- [User Stories](#user-stories)
-- [Use Cases](#use-cases)
-- [Non-Functional Requirements](#non-functional-requirements)
+	- [Setting up the project](#12-setting-up-the-project)
+	- [Verifying the Setup](#13-verifying-the-setup)
+- [Design](#2-design)
+	- [Architecture](#21-architecture)
+	- [UI Component](#22-ui-component)
+	- [Logic Component](#23-logic-component)
+	- [Model Component](#24-model-component)
+	- [Storage Component](#25-storage-component)
+	- [Atas Component](#26-atas-component)
+- [Setting Up](#3-setting-up)
+- [Implementation](#4-implementation)
+	- [Delete Task Feature](#41-delete-task-feature)
+		- [Design Considerations](#411-design-considerations)
+	- [Search task feature](#42-search-task-feature)
+		- [Current Implementation](#421-current-implementation)
+		- [Design Considerations:](#422-design-considerations)
+	- [Clear Task feature](#43-clear-task-feature)
+		- [Current Implementation](#431-current-implementation)
+		- [Design Considerations](#432-design-considerations)
+	- [Repeat event feature](#44-repeat-event-feature)
+		- [Current Implementation](#441-current-implementation)
+		- [`Event` and `RepeatEvent` Differences and Impact](#442-event-and-repeatevent-differences-and-impact)
+		- [Design Considerations](#443-design-considerations)
+	- [Edit Task Feature](#-45-edit-task-feature)
+		- [Implementation](#451-implementation)
+		- [Design Considerations](#452-design-considerations)
+	- [View Calendar feature](#46-view-calendar-feature)
+		- [Implementation](#461-implementation)
+		- [Design Considerations](#462-design-considerations)
+	- [Storage](#47-storage)
+		- [Implementation](#471-implementation)
+			- [Saving the current state of **ATAS** with `Storage#save()`:](#472-saving-the-current-state-of-atas-with-storagesave)
+			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#473-loading-previously-saved-tasklist-data-into-atas-with-storageload)
+		- [Design Considerations](#474-design-considerations)
+- [Testing](#5-testing)
+	- [Using IntelliJ JUnit Tests](#51-using-intellij-junit-tests)
+	- [Using Input-Output Tests](#52-using-input-output-tests)
+- [Appendices](#6-appendices)
+- [Product Scope](#61-appendix-a-product-scope)
+- [User Stories](#62-appendix-b-user-stories)
+- [Use Cases](#63-appendix-c-use-cases)
+- [Non-Functional Requirements](#64-appendex-d-non-functional-requirements)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -460,8 +461,6 @@ The following sequence diagram summarizes how repeat command operation works:
             -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the user’s list and increase the size of the local file that stores the `TaskList`.
 
 ### 4.5. Edit Task Feature
------------------
-
 #### 4.5.1. Implementation
 
 The `EditCommand` class extends the `Command` class by providing functions to edit specific tasks in the list of **ATAS**.
@@ -612,7 +611,7 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
 Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
 
-#### Saving the current state of **ATAS** with `Storage#save()`:  
+#### 4.7.2. Saving the current state of **ATAS** with `Storage#save()`:  
 
 **Step 1**  
 For each `Task` in the `TaskList`, `Task#encode()` is called, and the result is appended to a save string. Each encoded `Task` is separated by a newline.
@@ -620,7 +619,7 @@ For each `Task` in the `TaskList`, `Task#encode()` is called, and the result is 
 **Step 2**  
 The save string is written into the specified save file, which will be created if it does not already exist.
 
-#### Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:  
+#### 4.7.3. Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:  
 
 **Step 1**  
 Read each line from the save file one by one. Each line corresponds to an encoded `Task`.
@@ -634,7 +633,7 @@ Add each decoded `Task` into a `TaskList`.
 **Step 4**  
 When all lines in the save file have been decoded, return the `TaskList`.
 
-#### 4.7.2. Design Considerations
+#### 4.7.4. Design Considerations
 
 -   Saving the `TaskList` after every `Command` executed  
 
