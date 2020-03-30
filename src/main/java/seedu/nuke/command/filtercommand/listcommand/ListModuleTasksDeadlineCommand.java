@@ -17,10 +17,11 @@ import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 public class ListModuleTasksDeadlineCommand extends ListCommand {
 
     public static final String COMMAND_WORD = "lsmtd";
-    public static final String FORMAT = COMMAND_WORD;
+    public static final String FORMAT = COMMAND_WORD + "-m <module code>";
     public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "List tasks of module in ascending order of deadline" + System.lineSeparator() + FORMAT + System.lineSeparator();
+            + "List tasks in ascending order of deadline" + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final int EMPTY = 0;
+
 
     private ArrayList<String> deadlines;
 

@@ -12,14 +12,14 @@ public class CommandResult {
     private final String feedbackToUser;
     private final DirectoryLevel directoryLevel;
     private final ArrayList<Directory> shownList;
-    private final ArrayList<String> shownList2;
+    private final ArrayList<String> helpGuides;
 
     public CommandResult
-            (String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow, ArrayList<String> listToShow2) {
+            (String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow, ArrayList<String> helpGuides) {
         this.feedbackToUser = feedbackToUser;
         this.directoryLevel = directoryLevel;
         this.shownList = listToShow;
-        this.shownList2 = listToShow2;
+        this.helpGuides = helpGuides;
     }
 
     /**
@@ -79,7 +79,7 @@ public class CommandResult {
         return shownList;
     }
 
-    public ArrayList<String> getShownList2() {
-        return shownList2;
+    public ArrayList<String> getHelpGuides() {
+        return helpGuides;
     }
 }
