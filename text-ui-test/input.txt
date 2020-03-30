@@ -3,5 +3,5 @@ addm CS3235
 addm CS1111
 lst
 cd CS3235
-lstm
+cd Assignment
 bye
