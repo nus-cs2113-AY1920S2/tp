@@ -248,6 +248,8 @@ Allow users to record their daily activities and track their time usage in a use
   
   It is important to include the docs folder to have data for testing!
   
+  #### Starting activities
+  
   #### Listing activities
   Test case: `list month april`
   
