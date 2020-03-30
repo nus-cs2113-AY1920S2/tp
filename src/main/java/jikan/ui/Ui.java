@@ -184,6 +184,11 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Method to print progress bar without message.
+     * @param percent percentage of allocated time achieved.
+     * @param activityName name of a particular activity.
+     */
     public static void printProgressBar(double percent, String activityName) {
         int starsLeft = (int) (percent / PROGRESSCONVERTER);
         String line = "Progress for " + activityName + ": ";
@@ -200,6 +205,10 @@ public class Ui {
         System.out.println("|  " + df2.format(percent) + "%");
     }
 
+    /**
+     * Method to graph out all the targets.
+     * @param activityList a list of all activities.
+     */
     public static void graphTargets(ActivityList activityList) {
         System.out.println(DIVIDER);
         for (int i = 0; i < activityList.getSize(); i++) {
