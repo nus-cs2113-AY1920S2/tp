@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 public class Storage {
 
     /** Path to current data file. */
-    public String dataFilePath;
+    public static String dataFilePath;
 
     /** File object for current data file. */
     public File dataFile;
@@ -37,7 +37,7 @@ public class Storage {
      * @param s The input string.
      * @throws IOException If an error occurs while writing.
      */
-    public void writeToFile(String s) throws IOException {
+    public static void writeToFile(String s) throws IOException {
         FileWriter fw = new FileWriter(dataFilePath, true);
         fw.write(s + System.lineSeparator());
         fw.close();
@@ -67,7 +67,6 @@ public class Storage {
         dataFile.getParentFile().mkdirs(); // Create data directory (does nothing if directory already exists)
         dataFile.createNewFile();
     }
-
 
     /**
      * Creates ActivityList and loads data from data file if the data file previously existed.
