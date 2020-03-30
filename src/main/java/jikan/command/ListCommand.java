@@ -6,10 +6,14 @@ import jikan.ui.Ui;
 
 import jikan.exception.InvalidTimeFrameException;
 
+import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
 
 import static jikan.Jikan.lastShownList;
 
@@ -40,11 +44,15 @@ public class ListCommand extends Command {
             // Can't do lastShownList = activityList, otherwise we just copy
             lastShownList.activities.addAll(activityList.activities);
         } else {
-            listInterval(activityList);
+            try {
+                listInterval(activityList);
+            } catch (ParseException e) {
+                System.out.println("invalid date.");
+            }
         }
     }
 
-    private void listInterval(ActivityList activityList) throws InvalidTimeFrameException {
+    private void listInterval(ActivityList activityList) throws InvalidTimeFrameException, ParseException {
         String[] listInputs;
         listInputs = parameters.split(" ", 2);
 
@@ -86,13 +94,15 @@ public class ListCommand extends Command {
             // If user has input a specific date to obtain the month from, use that;
             // Otherwise get current date
             if (listInputs.length == 2) {
-                startDate = LocalDate.parse(listInputs[1], parser);
+                Month month = Month.valueOf(listInputs[1].toUpperCase());
+                YearMonth yearMonth = YearMonth.of(Calendar.getInstance().get(Calendar.YEAR), month.getValue());
+                startDate = yearMonth.atDay(1);
             } else {
                 startDate = LocalDate.now();
             }
 
             // Set first and last day of month as time range
-            startDate = startDate.withDayOfMonth(1);
+            //startDate = startDate.withDayOfMonth(1);
             endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
             break;
         default:

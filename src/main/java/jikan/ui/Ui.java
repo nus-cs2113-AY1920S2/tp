@@ -2,7 +2,9 @@ package jikan.ui;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.parser.Parser;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -12,7 +14,14 @@ import static jikan.Jikan.lastShownList;
 public class Ui {
     public static final String GREETING = "Jikan";
 
-    public static final String DIVIDER = "-----------------------------------------------------------------";
+    public static final String DIVIDER = "-------------------------------"
+            + "------------------------------------------------------------";
+
+    public static final int PROGRESSCONVERTER = 2;
+
+    public static final int TOTALBARS = 50;
+
+    private static final DecimalFormat df2 = new DecimalFormat("#.##");
 
     /** Prints the logo and greeting so users know the app is working. */
     public void printGreeting() {
@@ -37,26 +46,35 @@ public class Ui {
 
     private static void printTableFormat(ActivityList activityList, int index, boolean gotTags) {
         long durationInNanos = (activityList.get(index).getDuration()).toNanos();
-        String duration = String.format("%02d:%02d:%02d",
-                TimeUnit.NANOSECONDS.toHours(durationInNanos),
-                TimeUnit.NANOSECONDS.toMinutes(durationInNanos)
-                        - TimeUnit.HOURS.toMinutes(TimeUnit.NANOSECONDS.toHours(durationInNanos)),
-                TimeUnit.NANOSECONDS.toSeconds(durationInNanos)
-                        - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(durationInNanos)));
+        long allocatedTimeInNanos = (activityList.get(index).getAllocatedTime()).toNanos();
+        String duration = formatString(durationInNanos);
+        String allocatedTime = formatString(allocatedTimeInNanos);
         String printIndex = String.valueOf(index + 1);
         if (index < 9) {
             printIndex = String.valueOf(index + 1) + " ";
         }
         if (gotTags) {
-            System.out.println(String.format("%s %s %-25s %s %-10s %s %-10s %s %s",
+            System.out.println(String.format("%s %s %-25s %s %-10s %s %-10s %s %-10s %s %s",
                     printIndex, "|", activityList.get(index).getName(), "|", duration, "|",
+                    allocatedTime, "|",
                     activityList.get(index).getDate().toString(), "|",
                     activityList.get(index).getTags().toString()));
         } else {
-            System.out.println(String.format("%s %s %-25s %s %-10s %s %-10s %s %s",
+            System.out.println(String.format("%s %s %-25s %s %-10s %s %-10s %s %-10s %s %s",
                     printIndex, "|", activityList.get(index).getName(), "|", duration, "|",
-                    activityList.get(index).getDate().toString(), "|", ""));
+                    allocatedTime, "|",
+                    activityList.get(index).getDate().toString(), "|",
+                    ""));
         }
+    }
+
+    private static String formatString(long timeInNanos) {
+        return String.format("%02d:%02d:%02d",
+                TimeUnit.NANOSECONDS.toHours(timeInNanos),
+                TimeUnit.NANOSECONDS.toMinutes(timeInNanos)
+                        - TimeUnit.HOURS.toMinutes(TimeUnit.NANOSECONDS.toHours(timeInNanos)),
+                TimeUnit.NANOSECONDS.toSeconds(timeInNanos)
+                        - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(timeInNanos)));
     }
 
     /**
@@ -86,8 +104,8 @@ public class Ui {
     public static void printList(ActivityList activityList) {
         System.out.println(DIVIDER);
         System.out.println("Your completed activities:");
-        System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %s",
-                "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
+        System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %-10s %s %s",
+                "|", "Name", "|", "Duration", "|", "Target", "|", "Date", "|", "Tags"));
         for (int i = 0; i < activityList.getSize(); i++) {
             if (activityList.get(i).getTags() != null && !activityList.get(i).getTags().isEmpty()) {
                 printTableFormat(activityList, i, true);
@@ -169,6 +187,33 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+     * Prints a progress message and progress bar based on the percentage of allocate time achieved.
+     * @param percent percentage of allocated time achieved
+     */
+    public static void printProgressMessage(double percent) {
+        System.out.println(DIVIDER);
+        if (percent < 50) {
+            System.out.println("Try harder next time! Here's your progress:");
+        } else if (percent < 100) {
+            System.out.println("Almost there ! Here's your progress:");
+        } else {
+            System.out.println("Great job! Here's your progress:");
+        }
+        int starsLeft = (int) (percent / PROGRESSCONVERTER);
+        System.out.print("Progress for " + Parser.activityName + ": ");
+        System.out.print("|");
+        for (int i = 0; i < TOTALBARS; i++) {
+            if (starsLeft > 0) {
+                System.out.print("*");
+                starsLeft--;
+            } else {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("|");
+        System.out.println(DIVIDER);
+    }
+
     /**
      * Converts duration object to a string for printing.
      * @param dur the duration object.
@@ -183,5 +228,46 @@ public class Ui {
                 TimeUnit.NANOSECONDS.toSeconds(durationInNanos)
                         - TimeUnit.MINUTES.toSeconds(TimeUnit.NANOSECONDS.toMinutes(durationInNanos)));
         return duration;
+    }
+
+     * Method to print progress bar without message.
+     * @param percent percentage of allocated time achieved.
+     * @param activityName name of a particular activity.
+     */
+    public static void printProgressBar(double percent, String activityName) {
+        int starsLeft = (int) (percent / PROGRESSCONVERTER);
+        String line = "Progress for " + activityName + ": ";
+        System.out.print(String.format("%-35s", line));
+        System.out.print("|");
+        for (int i = 0; i < TOTALBARS; i++) {
+            if (starsLeft > 0) {
+                System.out.print("*");
+                starsLeft--;
+            } else {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("|  " + df2.format(percent) + "%");
+    }
+
+    /**
+     * Method to graph out all the targets.
+     * @param activityList a list of all activities.
+     */
+    public static void graphTargets(ActivityList activityList) {
+        System.out.println(DIVIDER);
+        for (int i = 0; i < activityList.getSize(); i++) {
+            if (activityList.get(i).getAllocatedTime() == Duration.parse("PT0S")) {
+                continue;
+            }
+            double percent = activityList.get(i).getProgressPercent();
+            double max = 100;
+            if (percent > max) {
+                percent = max;
+            }
+            String activityName = activityList.get(i).getName();
+            printProgressBar(percent,activityName);
+        }
+        System.out.println(DIVIDER);
     }
 }

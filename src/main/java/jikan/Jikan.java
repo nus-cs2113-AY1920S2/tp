@@ -7,6 +7,7 @@ import jikan.command.GoalCommand;
 import jikan.exception.EmptyNameException;
 import jikan.exception.EmptyQueryException;
 import jikan.exception.InvalidTimeFrameException;
+import jikan.log.LogCleaner;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
 import jikan.storage.StorageCleaner;
@@ -42,6 +43,8 @@ public class Jikan {
     /** CLeaner to delete entries in data.csv when it gets too long */
     private static StorageCleaner cleaner;
 
+    private static LogCleaner logCleaner = new LogCleaner();
+
     public static final Scanner in = new Scanner(System.in);
 
     public static File tagFile;
@@ -54,15 +57,18 @@ public class Jikan {
         storage = new Storage(DATA_FILE_PATH);
         cleaner = new StorageCleaner(storage);
         cleaner.autoClean();
+        logCleaner.autoClean();
         activityList = storage.createActivityList();
         activityList.storage = storage;
         GoalCommand.createFile(TAG_FILE_PATH, tagFile);
 
         lastShownList.activities.addAll(activityList.activities);
-        //public static final Scanner in = new Scanner(System.in);
+        parser.cleaner = cleaner;
+        parser.logcleaner = logCleaner;
 
         while (true) {
             Command command = parser.parseUserCommands(in,activityList,cleaner,tagFile);
+
             if (command == null) {
                 continue;
             }
