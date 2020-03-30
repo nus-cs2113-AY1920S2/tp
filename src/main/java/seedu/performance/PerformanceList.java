@@ -29,6 +29,7 @@ public class PerformanceList {
     public ArrayList<Performance> getPerformanceList() {
         return performanceList;
     }
+
     /**
      * Delete the student's performance from the performance list.
      * It detects whether the current list is empty, contains the
