@@ -1,0 +1,863 @@
+By: `Team M16-1` Since: `Jan 2020` License: `MIT`
+
+Setting up
+==========
+
+This section will guide you on how to set up this project on your own computer.
+
+Prerequisites
+-------------
+
+1.  JDK 11 or above
+
+2.  IntelliJ IDE
+
+Setting up the project
+----------------------
+
+1.  Fork this repository, and clone the fork to your computer
+
+2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
+
+3.  Set up the correct JDK version for Gradle
+
+    1.  Click `Configure` &gt; `Project Defaults` &gt; `Project Structure`
+
+    2.  Click `New...` and find the directory of the JDK
+
+4.  Click on `Import Project`
+
+5.  Locate and select the `build.gradle` file, then click `OK`
+
+6.  Click `Open as Project`
+
+7.  Click `OK` to use the default settings provided
+
+Verifying the Setup
+-------------------
+
+1.  In an IntelliJ terminal, run gradlew build
+
+2.  Cd to the folder `build` &gt; `libs` and run: `java -jar atas-2.0.0.jar`
+
+    1.  To use **ATAS**, simply type a valid command into the terminal and press kbd:\[Enter\] to run the command.  
+        e.g. Typing `help` command and pressing kbd:\[Enter\] will list the commands present
+
+    2.  Some example commands you can try to get familiar with **ATAS**:
+
+        -   `help`: Lists the commands that **ATAS** supports.
+
+        -   `assignment n/Assignment One m/CS2113T d/01/01/20 1600 c/Important Assignment`: Adds an assignment called **Assignment one** for the module **CS2113T**. This assignment is due on **01/01/2020 1600** and the comments for this assignment is that it is an **Important Assignment**.
+
+        -   `exit`: Exits **ATAS**.
+
+A summary of all the features available in **ATAS** can be found in [???](#Commands Summary).  
+Refer to [???](#Features) for the detailed instruction of the various commands of **ATAS**.
+
+Design
+======
+
+This section will give a high-level overview of how various components in **ATAS** function and interact with each other.
+
+Architecture
+------------
+
+image::overall architecture.PNG\[overall architecture\] The architecture diagram above illustrates the high-level design of the **ATAS** application.  
+
+The `Atas` component contains all the other components in the application.  
+
+-   `Ui`: Reads user input, and shows the results of commands to the user
+
+-   `Logic`: Handles execution of user input commands
+
+-   `Model`: Stores the runtime data of the application
+
+-   `Storage`: Reads and stores data from a file stored on the user’s computer
+
+The following sections will explain each component in greater detail.
+
+UI Component
+------------
+
+1.  The `Ui` component reads user input which represents a command.
+
+2.  The `Ui` component shows the result of the command to the user.
+
+Logic Component
+---------------
+
+The Logic component comprises the `Parser`, `Command`, and `CommandResult` classes:  
+
+1.  `Parser` will interpret the user command and return the corresponding `Command` object.  
+
+2.  `Command#execute()` is called to run the command, returning a `CommandResult` object.  
+
+3.  The `CommandResult` object will contain the output to be shown to the user.
+
+Model Component
+---------------
+
+The Model component contains the `Task` and `TaskList` classes, which store the user’s schedule.
+
+image::TaskList Task class diagram.PNG\[TaskList and Tasks\]
+
+Storage Component
+-----------------
+
+![Storage Class Diagram](images/storage.PNG)
+
+1.  A `Storage` object is created by the `Atas` class to handle the loading and saving of `Task` data.
+
+2.  The `load()` method is used to read saved data from a local file into the current session of **ATAS**.
+
+3.  The `save()` method writes the current state of **ATAS** into the local save file using the `Task#encodeTask()` method.
+
+Atas Component
+--------------
+
+The `Atas` component integrates all the aforementioned components to run the overall application logic.  
+The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command  
+
+image::atas help command sequence diagram v3.PNG\[Component interactions for help command\]
+
+1.  The `Ui` class is used to read user input.  
+
+2.  The `Parser` class is used to parse the user input string, returning a `Command` object.  
+
+3.  The `Command#execute()` method is run, returning a `CommandResult` object.  
+
+4.  The `Ui` class is used to show the `CommandResult` message to the user.  
+
+5.  The `Storage` object is used to save the new state of the application.
+
+Setting Up
+==========
+
+Ensure you have Java 11 or above installed on your computer  
+
+-   For **Windows** Users:
+
+    1.  Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
+
+    2.  Open a `cmd` (Command Prompt) window.
+
+    3.  Navigate to the folder containing downloaded jar file.
+
+    4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
+
+-   For **Mac** Users:
+
+    1.  Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
+
+    2.  Open up `Terminal`
+
+    3.  Navigate to the directory containing downloaded jar file.
+
+    4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
+
+Implementation
+==============
+
+This section will detail how some noteworthy features are implemented.
+
+Delete Task Feature
+-------------------
+
+Current Implementation:  
+The `DeleteCommand` extends the `Command` class and initializes the `delete index` in its constructor. The `delete index` specifies the index of task that the user wants to delete.
+
+Given below is an example usage and how the `DeleteCommand` mechanism behaves at each step:
+
+**Step 1**  
+The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
+
+**Step 2**  
+The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided. It will obtain information to get `delete index`.
+
+> **Warning**
+>
+> If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new `IncorrectCommand` class will be called to print the respective error messages
+
+**Step 3**  
+A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
+
+**Step 4**  
+The `execute()` method will do 2 things:
+
+-   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+
+-   If there are tasks in the existing task list, the `DeleteCommand` class will call the `deleteTask()` method from the `TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will initialize a new `CommandResult` class that prints out the success message for task deletion.
+
+The following sequence diagram summarizes how delete command operation works:  
+
+![delete task](images/delete.png)
+
+### Design Considerations
+
+-   Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within the `execute()` method of the `DeleteCommand` class
+
+    -   Pros: Easier implementation for other classes that requires the same use.
+
+    -   Cons: Increased coupling amongst classes, which makes it harder for testing.
+
+    -   Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
+
+Search task feature
+-------------------
+
+### Current Implementation
+
+The search task feature is currently implemented in both `SearchCommand` class and `SearchdCommand` class. Both classes inherit from the `Command` class.
+
+-   `SearchCommand` initializes the `taskType` to check which tasks the search function to search from and `searchParam` to get the search query that the user inputs.
+
+-   Similar to the `SearchCommand`, `SearchdCommand` initializes `taskType` to check the tasks that the search function has to search through and `searchParam` to get the search query that the user inputs. It also has a `date` parameter to check the date that the users wants to search from
+
+Given below is an example usage of the `Search` command:  
+
+**Step 1**  
+The user launches the app and retrieves the tasks that are saved under a local file using `Storage`.
+
+**Step 2**  
+The user enters `search t\{TASK TYPE} n\{SEARCH QUERY}` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+
+**Step 3**  
+A new instance of `SearchCommand` with the `taskType`, `searchParam` and an ArrayList to store the index of search query , `storeIndex` will be initialized,
+
+-   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
+
+-   If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments` or `getSearchQueryEvents`, according to the `taskType`.
+
+    -   In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through the task list to store results matching the search query into an ArrayList.
+
+        -   In the `getSearchQuery` method, we will first get the updated task list from the `getTaskArray` of the `TaskList` class and initialize a new ArrayList, `results` to store the results.
+
+        -   We will then loop though the updated task array to find matching tasks. Matching tasks will be added to the `results` ArrayList and the corresponding index will be stored to the `storeIndex` ArrayList.
+
+    -   Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a String format.
+
+    -   Lastly, the `searchList` method will call the `resultsList` method to return the search results.
+
+        -   If there are no matching search queries in the search results, `execute` method will then create a new `CommandResult` class to print an error message indicating an empty search results list.
+
+        -   If there are matching search queries in the search results, `execute` method will then create a new `CommandResults` class to print out the search results.
+
+Given below is an example usage of the `Searchd` command:  
+
+**Step 1**  
+The user launches the app and retrieves the tasks that are saved under a local file using `Storage`.
+
+**Step 2**  
+The user enters `searchd t\{TASK TYPE} n\{SEARCH QUERY} d\{DATE}` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+
+**Step 3**  
+A new instance of `SearchCommand` with the `taskType`, `searchParam`, `date` and an ArrayList to store the index of search query, `storeIndex` initialized will be created,
+
+-   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
+
+-   If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments` or `getSearchQueryEvents`, according to the `taskType`.
+
+    -   In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through the task list to store results matching the search query and the provided date into an ArrayList.
+
+        -   In the `getSearchQuery` method, we will first get the updated task list from the `getTaskArray` of the `TaskList` class and initialize a new ArrayList, `results` to store the results.
+
+        -   We will then loop though the updated task array to find matching tasks. Matching tasks will be added to the `results` ArrayList and the corresponding index will be stored to the `storeIndex` ArrayList.
+
+    -   Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a String format.
+
+    -   Lastly, the `searchList` method will call the `resultsList` method to return the search results.
+
+        -   If there are no matching search queries in the search results, `execute` method will then create a new `CommandResult` class to print an error message indicating an empty search results list.
+
+        -   If there are matching search queries in the search results, `execute` method will then create a new `CommandResults` class to print out the search results.
+
+The following sequence diagram summarizes how the `SearchCommand` and `SearchdCommand` works:
+
+![Search operations](images/search.png)
+
+### Design Considerations:
+
+-   Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
+
+    -   Rationale:  
+        To create 2 separate commands so that users can filter their search query more easily.
+
+    -   Alternatives Considered:  
+
+        1.  Use a `Search` class that implements both functions of `SearchCommand` and `SearchdCommand`
+
+            -   Pros: Reduced coupling. Improved code structure.
+
+            -   Cons: More difficult to implement
+
+        2.  Create another `SearchdCommand` within the `Parser` class that does the same operations as the `SearchdCommand`.
+
+            -   Pros: Easier to implement.
+
+            -   Cons: Makes the code for `Parser` unnecessarily long. Makes the code less OOP.
+
+Clear Task feature
+------------------
+
+### Current Implementation
+
+The `ClearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function has to be executed
+
+Given below is an example usage of the `clear all` command:
+
+**Step 1**  
+The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
+
+**Step 2**  
+The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+
+**Step 3**  
+A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
+
+**Step 4**  
+The `execute()` method will then call the `clearAll()` method in the `ClearCommand` class :
+
+-   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+
+-   If there are tasks in the existing task list, it will call the `clearList()` method from the `TaskList` class to clear the existing taskList
+
+Given below is an example usage of `clear done` command:
+
+**Step 1**  
+The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
+
+**Step 2**  
+The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+
+**Step 3**  
+A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
+
+**Step 4**  
+The `execute()` method will then call the `clearDone()` method in the `ClearCommand` class :
+
+-   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+
+-   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()` method in the `TaskList` class
+
+The following sequence diagram summarizes how the `ClearCommand` operation works:  
+
+![clear command](images/clear.png)
+
+### Design Considerations
+
+-   Creating another `clear done` command instead of just 1 `clear` command
+
+    -   Rationale:  
+        Considering that our target audience are students, we feel that it might be inconvenient for the students to delete each completed one by one, just to reduce the number of tasks that is being displayed during `list` command.
+
+    -   Alternative Considered:  
+
+        1.  Delete the task once it has been marked as completed
+
+            -   Pros: Easier to implement and improved code readability
+
+            -   Cons: User may want to refer back to completed tasks for reference in the future and may not want to delete the completed task
+
+        2.  Instead of deleting the completed tasks, we can choose to only list commands that have been completed
+
+            -   Pros: Easier to implement and improved code readability
+
+            -   Cons: `ArrayList` will be filled up with unnecessary tasks that could have been removed. This might affect the time complexity of future addition or searching operations on the `ArrayList`.
+
+Repeat event feature
+--------------------
+
+This feature allow users to repeat their events, removing the need to insert the same event multiple times with different dates.
+
+### Current Implementation
+
+The `RepeatCommand` class extends the `Command` class and either allows the stated event to repeat or to stop repeating. To allow an event to repeat, it will replace the current `Event` object with a `RepeatEvent` object (`RepeatEvent` inherits from `Event`). Likewise, to stop repeating, it replaces the current `RepeatEvent` with a `Event` object. A detailed explanation and the difference between the 2 classes will be elaborated later.
+
+Given below is an example usage of the `repeat id/2 p/1w` command.
+
+**Step 1**  
+Method `parseCommand()` from the `Parser` class will be called to parse the command provided. Through this method, we will be able to obtain information to get integers `eventID`, `numOfPeriod` and the string `typeOfPeriod`.  
+- `eventID` identifies the task that the user wishes to repeat.  
+- `numOfPeriod` and `typeOfPeriod` (`d`, `w`, `m`, or `y`) specifies how often the user wants to repeat the event.
+
+**Step 2**  
+After parsing, a new instance of RepeatCommand with `eventID`, `numOfPeriod` and `typeOfPeriod` initialized will be created. The `execute()` method of `RepeatCommand` will then be called.
+
+**Step 3**  
+The `execute()` method will check 3 things after it calls `getTask()` method from `TaskList` class to get the user input task.
+
+-   It will check if the `eventID` provided refers to a valid `Event` task.
+
+-   It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `unsetRepeat` method from `RepeatCommand` class.
+
+    -   `unsetRepeat()` method will check if the given task is indeed a `RepeatEvent` object and then create a new `Event` object using the variables from `RepeatEvent` and replace it in the `TaskList`.
+
+-   If it is not 0, it will set the event to repeating by calling `setRepeat()` method from the `RepeatCommand` class.
+
+    -   `setRepeat` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object and replace the current `Event` object at the `eventID` in `TaskList`.
+
+**Step 4**  
+After the `execute()` method completes, a new `CommandResult` class with a string containing the result of the execution. This string will be printed by calling `showToUser()` method in the `Ui` class. Then the event will be saved into local file by calling the `trySaveTaskList()` method from the `Atas` class.
+
+The following sequence diagram summarizes how repeat command operation works:  
+
+![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
+
+### `Event` and `RepeatEvent` differences and impact
+
+-   There are 4 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an event to repeat accurately.
+
+    1.  `int numOfPeriod`: Set to the given value that states the frequency which `typeOfPeriod` will repeat at.
+
+    2.  `String typeOfPeriod`: Set to `d` (days), `w` (weeks), `m` (months) or `y` (years) to indicate how often it will repeat.
+
+    3.  `LocalDateTime originalDateAndTime`: Set to be the event’s current Date and Time and will not change so that we can keep track of the original Date and Time for other usages later.
+
+    4.  `int periodCounter`: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods` with type `typeOfPeriod` has passed.  
+        For example, if `numofPeriod` is `2` and `typeOfPeriod` is `d`, and 6 days has passed since `originalDateAndTime`, then `periodCounter` will be 3.
+
+-   With this implementation in mind, every time the app is launched, after `load()` method in `Storage` class is called, the app will call a method `updateEventDate()` which will iterate through every task in the list and calls `updateDate()` method from the `RepeatEvent` class if the task is of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future date if today is not possible.
+
+-   To users, apart from minor differences such as the icon and `RepeatEvent` listing how often it is being repeated, there will be no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and they can only add `Event` or `Assignment` to the app and would appear as if there are only 2 type of tasks.
+
+### Design Considerations
+
+-   Allowing only tasks that are `Event` to be repeated
+
+    -   Rationale:  
+        We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it makes sense for events to repeat since many events actually occur on a regular basis.
+
+    -   Alternative Considered:  
+
+        1.  Allowing all tasks to be repeatable.
+
+            -   Pros: Allow more flexibility for the user to set which tasks they want to repeat, regardless of task type.
+
+            -   Cons: Memory wastage as additional variables are set for repeating tasks. In the case of minimal assignments being repeated, the space is wasted.
+
+-   Allowing an `Event` to repeat for any period by using `numOfPeriod` and `typeOfPeriod` (d, w, m ,y)
+
+    -   Rationale:  
+        It provides great flexibility in allowing an event to repeat for any desired amount of time. For example, some classes occur every 2 weeks. Some events may happen every 10 days or any x period.
+
+    -   Alternative Considered:  
+
+        1.  Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
+
+            -   Pros: It would simplify usability and implementation since there will only be 4 options to choose from.
+
+            -   Cons: It would reduce the usability for the 2 examples provided above as users would not be able to make events repeat every 2 weeks or 10 days, forcing them to have to manually type in the same event for as many times as it will occur if they wish to still keep track of that event.
+
+-   Keeping `RepeatEvent` as a single entity within the list and not repeatedly adding new tasks with progressive dates when `RepeatCommand` is used.
+
+    -   Rationale:  
+        It allows the repeated events to be easily removed or un-repeated as a there will only be a single `RepeatEvent` present in the list.
+
+    -   Alternative considered:  
+
+        1.  Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
+
+            -   Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
+
+            -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the user’s list and increase the size of the local file that stores the `TaskList`.
+
+Edit Task Feature
+-----------------
+
+### Implementation
+
+The `EditCommand` class extends the `Command` class by providing functions to edit specific tasks in the list of **ATAS**.
+
+Given below is an example usage scenario of the `edit` command.
+
+**Step 1**  
+The user types in `edit 1`. The `parseCommand()` method of the `Parser` class is called to obtain `edit` which is the type of command the user is entering.
+
+> **Warning**
+>
+> An `IncorrectCommand` class will be returned and an `UNKNOWN_COMMAND_ERROR` string from the `Messages` class will be passed into the constructor of that class if the command supplied was invalid.
+
+**Step 2**  
+The `parseCommand()` method subsequently calls the `prepareEditCommand()` method inside the same `Parser` class. This method splits the `fullCommand` string parameters into 2 tokens. The integer `1` will be obtained as the **Index** of the task specified in the list. This method returns a new instance of the `EditCommand` class, passing the integer `1` as the parameter.
+
+> **Warning**
+>
+> An `IncorrectCommand` class will be returned and a `NUM_FORMAT_ERROR` string from the `Messages` class will be passed into the constructor of that class if the number supplied was not an **integer**.  
+> An `IncorrectCommand` class will be returned and a `INCORRECT_ARGUMENT_ERROR` string from the `Messages` class will be passed into the constructor of that class if there are no task index supplied by the user.  
+
+**Step 3**  
+A new instance of the `EditCommand` class is returned to the main method of **ATAS** with parameter `1` as described above. The `execute()` method of the `EditCommand` class is now called.
+
+**Step 4**  
+The `execute()` method in the `EditCommand` class first gets an input from the user on the details of the edited task.
+
+> **Tip**
+>
+> Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENTS]`  
+> Event Command Format: `event n/[NAME] l/[LOCATION] d/DD/MM/YY HHmm - HHmm c/[COMMENTS]`
+
+**Step 5**  
+If the user supplies an `assignment` command, the `editAssignment()` method will be invoked. This method extracts the `assignmentName`, `moduleName`, `dateTime` and `comments` string to return a new instance of the `Assignment` class.  
+
+If the user supplies an `event` command, the `editEvent()` method will be invoked. This method extracts the `eventName`, `location`, `startDateTime`, `endDateTime` and `comments` string to return a new instance of the `Event` class.
+
+**Step 6**  
+This newly instanced class (either `Assignment` or `Event`) will be passed into the method `editTask()` of the `TaskList` class. The `editTask()` method of the `TaskList` class uses Java’s `ArrayList` `set()` method to replace the task.
+
+**Step 7**  
+Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of that class.
+
+The following sequence diagram summarises what happens when the `EditCommand` class is executed.
+
+![EditCommand\_SequenceDiagram.png](images/EditCommand_SequenceDiagram.png)
+
+### Design Considerations
+
+-   Placing invocation of new `Assignment` and `Event` class in `EditCommand` class
+
+    -   Rationale:  
+        The `execute()` method of `EditCommand` class has to use the `Ui` class parsed as one of the parameters to get input from user on new details of the task. The new input captured will be then passed to the `editAssignment()` or `editEvent()` method in the `EditCommand` class.
+
+    -   Alternatives Considered:  
+        The `editAssignment()` and `editEvent()` methods can be placed in the `Parser` class and called in the `prepareEditCommand` method of that class.
+
+-   Using Java’s `ArrayList#set()` method
+
+    -   Rationale:  
+        When a task is selected to be edited, it is logical for the index of the task to not change as the task is being edited. Therefore, the `set()` method of `ArrayList` is used to replace the edited task with the old task.
+
+    -   Alternatives Considered:  
+        Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However, this is not chosen as it is not intuitive for the user’s task index to shift after editing the task.
+
+View Calendar feature
+---------------------
+
+![Sample output of Calendar Command](images/calendar2.png)
+
+### Implementation
+
+The `CalendarCommand` class extends the `Command` class with methods to implement the necessary pre-processing to display an overview of tasks in the given date. The following sequence diagram outlines an example execution of `CalendarCommand` when it is called and the interaction it has with the relevant components.
+
+![Interaction of CalendarCommand and the various major components](images/calendar-diagram.png)
+
+In particular, the diagram below shows the explicit execution flow that `CalendarCommand` takes.
+
+![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar.png)
+
+Given below is an example usage of the `calendar` command. The step by step execution is shown in the sequence diagram above.
+
+**Step 1**  
+The users enters the command `calendar d/05/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
+
+**Step 2**  
+The `Parser` will construct a `CalendarCommand` object with the `LocalDate` provided by the user input.
+
+> **Note**
+>
+> An `IncorrectCommand` object will be constructed with its specific error message instead according to the error encountered. This can be in the form of no arguments provided or parser fails to parse the date provided.
+
+**Step 3**  
+The `execute()` method in the `CalendarCommand` is then called by the `Atas` class.
+
+The method manages all pre-processing to get the details needed to formulate the calendar. Details include details of tasks that fall within the given month, and the details of the month itself. **The pre-processing work is listed in sequential order below:**  
+
+-   Calibrates an instance of `Calendar` of the `Java.util` class with the provided `LocalDate` and obtain all necessary information about the `Calendar` month.
+
+-   Obtains all `Task` details that falls within the range of the month. This is performed through calling the `getTasksByRange()` method of the `TaskList` class.
+
+-   Duplicates all `RepeatEvent` that is returned from the method above to obtain an `ArrayList` of all `Task` objects that exist within the month.
+
+-   Appends the `Calendar` title and legend to the resultant string that contains the calendar view.
+
+    -   This is done through separate method calls to `addCalendarTitle()` and `addCalendarLegend()` respectively.
+
+-   Appends the main body of the `Calendar` according to the `ArrayList` of `Task` obtained earlier through a method call to `addCalendarBody()`.
+
+-   Constructs a `CommandResult` object with the resultant string that contains the calendar view and returns this object.
+
+> **Note**
+>
+> Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the design considerations subsection.
+
+**Step 4**  
+The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the `Calendar` view by calling `showToUser()` method of the `Ui` component.
+
+### Design Considerations
+
+-   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
+
+    -   Rationale:  
+        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects, with each `RepeatEvent` being stored as a separate `Task` within the `ArrayList` of `Task` objects. Each `Task` can be removed from the `ArrayList` after it has been printed which makes the task simpler.
+
+    -   Alternatives considered:  
+        Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`.
+
+-   Truncation of `Task` details instead of extending column size
+
+    -   Rationale:  
+        This keeps the calendar compact such that the command line application can be viewed as a smaller window as opposed to the taking up the entire screen. Since row size is also extendable, extending column size independently from row size will destroy the integrity of a traditional calendar box view.
+
+    -   Also, there are other features that can be used in conjunction with the `Calendar` to allow users to obtain more information of the `Task` such as `SearchCommand` and `ListCommand`.
+
+    -   Alternative Considered:  
+        Wrapping of `Task` details to display its full details. This is not feasible as this further increases the need for number of rows. As mentioned, we would like to keep the integrity and view of a traditional calendar and this does the opposite of that.
+
+-   Limiting the number of `Task` objects that can be displayed for a particular calendar date
+
+    -   Rationale:  
+        Limiting the number of task might misrepresent the list of `Task` a user has for any particular date if there are more tasks than available slots on the calendar date. To solve the issue of misrepresentation, we decided to replace the last `Task` slot of each `Calendar` date with an indicator to indicate there are tasks not shown if there are indeed tasks left out due to the constraints that is the lack of `Calendar` rows.
+
+    -   Alternative Considered:  
+        Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
+
+Storage
+-------
+
+### Implementation
+
+The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
+Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
+
+#### Saving the current state of **ATAS** with `Storage#save()`:  
+
+**Step 1**  
+For each `Task` in the `TaskList`, `Task#encode()` is called, and the result is appended to a save string. Each encoded `Task` is separated by a newline.
+
+**Step 2**  
+The save string is written into the specified save file, which will be created if it does not already exist.
+
+#### Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:  
+
+**Step 1**  
+Read each line from the save file one by one. Each line corresponds to an encoded `Task`.
+
+**Step 2**  
+For each line, determine its `Task` type, and call the static `decode()` method from the corresponding class.
+
+**Step 3**  
+Add each decoded `Task` into a `TaskList`.
+
+**Step 4**  
+When all lines in the save file have been decoded, return the `TaskList`.
+
+### Design Considerations
+
+-   Saving the `TaskList` after every `Command` executed  
+
+    -   Rationale  
+        There will be reduced coupling as `Storage#save()` is always called regardless of what `Command` is executed. However, unnecessary saves will be made as not all `Command` executions modify the `TaskList`.
+
+    -   Alternatives Considered  
+        `Storage#save()` could be called only after `Command` executions that modify the `TaskList`, so that no unnecessary saves are made. However, this method increases coupling as either `Storage` will have to know what `Command` was executed, or `Storage#save()` has to be called in `Command#execute()`.
+
+    -   Conclusion  
+        As the `TaskList` is expected to be small for most users, the drop in performance due to unnecessary saves is negligible. The first method is chosen to make the code easier to maintain.
+
+Testing
+=======
+
+Using IntelliJ JUnit Tests
+--------------------------
+
+-   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
+
+-   For individual tests, you can right-click on the test **package**, **class** or a single test and choose `Run 'TEST'`
+
+Using Input-Output Tests
+------------------------
+
+-   Navigate to the `text-ui-test` folder and run the runtest (.bat/.sh) script.
+
+Appendices
+==========
+
+Product Scope
+=============
+
+Target user profile:  
+
+-   manages many university assignments or events
+
+-   understands how to use a command line interface application
+
+-   prefers desktop applications over other types of applications
+
+-   prefers using a command line interface over a graphical user interface
+
+-   types fast
+
+**Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
+
+User Stories
+============
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p>S/N</p></td>
+<td><p>Version</p></td>
+<td><p>As a …</p></td>
+<td><p>I can…</p></td>
+<td><p>So that I …</p></td>
+</tr>
+<tr class="even">
+<td><p>01</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Add assignments, including assignment details</p></td>
+<td><p>Can keep track of assignment details</p></td>
+</tr>
+<tr class="odd">
+<td><p>02</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Add events, including event details</p></td>
+<td><p>Can keep track of event details</p></td>
+</tr>
+<tr class="even">
+<td><p>03</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Have a daily view of tasks</p></td>
+<td><p>Can see what is important for today only</p></td>
+</tr>
+<tr class="odd">
+<td><p>04</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Have a weekly view of tasks</p></td>
+<td><p>Can better plan my time to meet deadlines</p></td>
+</tr>
+<tr class="even">
+<td><p>05</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>List all the tasks</p></td>
+<td><p>Can have an overview of tasks and mark individual tasks as done or delete specific tasks</p></td>
+</tr>
+<tr class="odd">
+<td><p>06</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>View all incomplete assignments</p></td>
+<td><p>Can know the progress of my work</p></td>
+</tr>
+<tr class="even">
+<td><p>07</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>View all upcoming events</p></td>
+<td><p>Can see which period of time I will be busy and plan my time accordingly</p></td>
+</tr>
+<tr class="odd">
+<td><p>08</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Mark an assignment as completed</p></td>
+<td><p>Can easily view which assignments I have yet to complete</p></td>
+</tr>
+<tr class="even">
+<td><p>09</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Delete tasks</p></td>
+<td><p>Do not clog up the calendar</p></td>
+</tr>
+<tr class="odd">
+<td><p>10</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Clear all tasks</p></td>
+<td><p>Can clear all tasks with a single command</p></td>
+</tr>
+<tr class="even">
+<td><p>11</p></td>
+<td><p>V1.0</p></td>
+<td><p>User</p></td>
+<td><p>Clear all completed tasks</p></td>
+<td><p>Can remove all completed tasks from the app in a single command</p></td>
+</tr>
+<tr class="odd">
+<td><p>12</p></td>
+<td><p>V2.0</p></td>
+<td><p>User</p></td>
+<td><p>Edit details of assignment</p></td>
+<td><p>Do not have to delete and create a new assignment instead</p></td>
+</tr>
+<tr class="even">
+<td><p>13</p></td>
+<td><p>V2.0</p></td>
+<td><p>User</p></td>
+<td><p>Edit details of event</p></td>
+<td><p>Do not have to delete and create a new event instead</p></td>
+</tr>
+<tr class="odd">
+<td><p>14</p></td>
+<td><p>V2.0</p></td>
+<td><p>Long-term User</p></td>
+<td><p>Have my data persist between sessions</p></td>
+<td><p>Do not need to close the application when I am not using it</p></td>
+</tr>
+<tr class="even">
+<td><p>15</p></td>
+<td><p>V2.0</p></td>
+<td><p>Frequent User</p></td>
+<td><p>See the tasks I have for the day when the app starts up</p></td>
+<td><p>Can quickly check my schedule for the day</p></td>
+</tr>
+<tr class="odd">
+<td><p>16</p></td>
+<td><p>V2.0</p></td>
+<td><p>User with many tasks</p></td>
+<td><p>Search for an event by name</p></td>
+<td><p>Do not have to scroll through a long list to find its details</p></td>
+</tr>
+<tr class="even">
+<td><p>17</p></td>
+<td><p>V2.0</p></td>
+<td><p>User with many tasks</p></td>
+<td><p>Search for an assignment by name or module</p></td>
+<td><p>Do not have to scroll through a long list to find its details</p></td>
+</tr>
+<tr class="odd">
+<td><p>18</p></td>
+<td><p>V2.0</p></td>
+<td><p>User with fixed schedule</p></td>
+<td><p>Set my events as repeated events</p></td>
+<td><p>Do not have to manually create many events with the same details</p></td>
+</tr>
+<tr class="even">
+<td><p>19</p></td>
+<td><p>V2.0</p></td>
+<td><p>Busy user</p></td>
+<td><p>Set an ending time for my events</p></td>
+<td><p>Can see clearly when I am free in my schedule</p></td>
+</tr>
+<tr class="odd">
+<td><p>20</p></td>
+<td><p>V2.0</p></td>
+<td><p>User</p></td>
+<td><p>Set my tasks in calendar view</p></td>
+<td><p>Can have an easy-to-read, sorted overview of my upcoming tasks</p></td>
+</tr>
+</tbody>
+</table>
+
+Use Cases
+=========
+
+Non-Functional Requirements
+===========================
+
+1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
+
+2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
+
+
