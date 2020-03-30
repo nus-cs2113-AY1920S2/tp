@@ -1,7 +1,9 @@
 package seedu.nuke.tag;
 
+import java.util.ArrayList;
+
 public interface Tag {
-    public void setTag(String info);
+    public void setTag(ArrayList<String> infos);
 
     public void removeTag(String tag);
 

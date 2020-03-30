@@ -24,7 +24,8 @@ import static seedu.nuke.util.Message.messageAddModuleSuccess;
 public class AddModuleCommand extends AddCommand {
     public static final String COMMAND_WORD = "addm";
     public static final String FORMAT = COMMAND_WORD + " <module code>";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a new module"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<invalid>.*)"

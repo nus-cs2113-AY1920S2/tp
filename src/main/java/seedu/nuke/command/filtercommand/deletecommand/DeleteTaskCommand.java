@@ -22,8 +22,8 @@ import static seedu.nuke.util.Message.messagePromptDeleteTaskIndices;
 public class DeleteTaskCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delt";
     public static final String FORMAT = COMMAND_WORD + " <category name>";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Delete a task of module"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     private String moduleCode;
     private String categoryName;
     private String taskDescription;

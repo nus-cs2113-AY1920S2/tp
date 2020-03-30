@@ -12,6 +12,8 @@ import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 public class ListTaskCommand extends ListCommand {
     public static final String COMMAND_WORD = "lst";
     public static final String FORMAT = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "list task"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
 
     private String moduleKeyWord;
     private String categoryKeyword;
