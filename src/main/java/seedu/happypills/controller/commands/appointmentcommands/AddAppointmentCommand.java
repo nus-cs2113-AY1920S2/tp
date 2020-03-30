@@ -1,18 +1,25 @@
 package seedu.happypills.controller.commands.appointmentcommands;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
+
+import java.io.IOException;
+import java.util.logging.Logger;
 
 public class AddAppointmentCommand extends AppointmentCommand {
     protected String nric;
     protected String date;
     protected String time;
     protected String reason;
+
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
 
     /**
      * Constructor for AddPatientCommand Class.
@@ -51,6 +58,11 @@ public class AddAppointmentCommand extends AppointmentCommand {
             appointments.addAppointment(appointment);
             Patient patient = (Patient) patients.get(nric);
             patient.addAppointment(appointment);
+            try {
+                Storage.addSingleItemToFile(Storage.APPOINTMENT_FILEPATH, appointment.toSave());
+            } catch (IOException e) {
+                logger.warning("Patient's appointment not added to file.");
+            }
             message = "    Appointment has been added with Appointment ID "
                     + appointment.getAppointmentId() + ".\n"
                     + TextUi.DIVIDER;

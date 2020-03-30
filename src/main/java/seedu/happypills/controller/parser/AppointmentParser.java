@@ -39,7 +39,8 @@ public class AppointmentParser {
         } else if (userCommand[0].equalsIgnoreCase("list")) {
             return new ListAppointmentCommand();
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
-            return new DeleteAppointmentCommand(userCommand[2]);
+            String [] detailedCommand = userCommand[2].split(" ",2);
+            return new DeleteAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim());
         } else if (userCommand[0].equalsIgnoreCase("find")) {
             return new FindAppointmentCommand(userCommand[2]); // change to edit
         } else {
