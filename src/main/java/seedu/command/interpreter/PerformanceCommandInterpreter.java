@@ -1,9 +1,7 @@
 package seedu.command.interpreter;
 
 import seedu.command.Command;
-import seedu.command.performance.AddPerformance;
-import seedu.command.performance.DeletePerformance;
-import seedu.command.performance.ListStudentPerformance;
+import seedu.command.performance.*;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 import seedu.performance.PerformanceList;
@@ -37,11 +35,22 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return new DeletePerformance(performances, eventName);
         case "list":
             return new ListStudentPerformance(performances);
+        case "sort":
+            return getSortCommand();
         default:
             throw new DukeException("Performance: Unknown command.");
         }
     }
 
+    private Command getSortCommand() throws DukeException {
+        String type = ui.getSortType();
+        if (type.equals("name")) {
+            return new SortPerformanceListByName(performances, eventName);
+        } else if (type.equals("grade")) {
+            return new SortPerformanceListByGrade(performances, eventName);
+        }
+        throw new DukeException("Performance sort: Unknown command. Enter 'name' or 'student'.");
+    }
 
     /**
      * This get the performance list under the event input by user.

@@ -7,6 +7,9 @@ import seedu.ui.UI;
 import java.util.ArrayList;
 import java.util.List;
 
+import static seedu.performance.Performance.performanceListNameComparator;
+import static seedu.performance.Performance.performanceListGradeComparator;
+
 public class PerformanceList {
     public static ArrayList<Performance> performanceList;
     UI ui;
@@ -83,5 +86,13 @@ public class PerformanceList {
 
     public boolean isEmpty() {
         return performanceList.isEmpty();
+    }
+
+    public void sortByName() {
+        performanceList.sort(performanceListNameComparator);
+    }
+
+    public void sortByGrade() {
+        performanceList.sort(performanceListGradeComparator);
     }
 }

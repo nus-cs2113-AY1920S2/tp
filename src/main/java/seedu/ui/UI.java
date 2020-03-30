@@ -251,6 +251,14 @@ public class UI {
         System.out.println("Attendance List is sorted by attendance status for Event:  " + eventName);
     }
 
+    public void sortPerformanceByName(String eventName) {
+        System.out.println("Performance List is sorted by Performance name for Event:  " + eventName);
+    }
+
+    public String getSortType() {
+        System.out.println("Do you want to sort by students' name or grade?");
+        return getStringInput().toLowerCase();
+    }
 
     public void printInsufficientInput(String typeInput) {
         System.out.printf("No %s input. If you need help with "

@@ -14,6 +14,9 @@ public class PerformanceParser {
         for (String s : dataToRead) {
             if (s != null) {
                 String[] data = s.split("/");
+                if (data.length < 2) {
+                    throw new DukeException("Insufficient parameter or wrong command.");
+                }
                 switch (data[0]) {
                 case "n":
                     studentName = data[1];
