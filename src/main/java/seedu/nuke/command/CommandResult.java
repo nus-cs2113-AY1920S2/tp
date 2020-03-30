@@ -12,7 +12,7 @@ public class CommandResult {
     private final String feedbackToUser;
     private final DirectoryLevel directoryLevel;
     private final ArrayList<Directory> shownList;
-    private final ArrayList<String> shownList2;
+    private final ArrayList<String> helpGuides;
 
     /**
      * Constructor of the CommandResult class.
@@ -20,14 +20,14 @@ public class CommandResult {
      * @param feedbackToUser The feedback to be printed to the user.
      * @param directoryLevel The directoryLevel the user is at currently.
      * @param listToShow the list of Directory to be printed to the user.
-     * @param listToShow2 the list of Directory to be printed to the user.
+     * @param helpGuides the helping guides to be printed to the user.
      */
-    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow,
-                          ArrayList<String> listToShow2) {
+    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel,
+                          ArrayList<Directory> listToShow, ArrayList<String> helpGuides) {
         this.feedbackToUser = feedbackToUser;
         this.directoryLevel = directoryLevel;
         this.shownList = listToShow;
-        this.shownList2 = listToShow2;
+        this.helpGuides = helpGuides;
     }
 
     /**
@@ -87,7 +87,7 @@ public class CommandResult {
         return shownList;
     }
 
-    public ArrayList<String> getShownList2() {
-        return shownList2;
+    public ArrayList<String> getHelpGuides() {
+        return helpGuides;
     }
 }

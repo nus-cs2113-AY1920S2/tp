@@ -8,7 +8,7 @@ import seedu.nuke.util.DateTime;
 import java.util.ArrayList;
 
 /**
- * every module has a task manager to manage tasks within module.
+ * every category manager has a task manager to manage tasks within module.
  */
 public class TaskManager {
     private ArrayList<Task> taskList;

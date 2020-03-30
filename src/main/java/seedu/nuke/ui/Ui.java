@@ -62,12 +62,10 @@ public class Ui {
         commands.add(DeleteCategoryCommand.MESSAGE_USAGE);
         commands.add(DeleteTaskCommand.MESSAGE_USAGE);
         commands.add(DeleteTagCommand.MESSAGE_USAGE);
-        commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
         commands.add(ListCategoryCommand.MESSAGE_USAGE);
         commands.add(ListTaskCommand.MESSAGE_USAGE);
         commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
         commands.add(ListAllTasksDeadlineCommand.MESSAGE_USAGE);
-        //commands.add(UndoCommand.MESSAGE_USAGE);
         commands.add(HelpCommand.MESSAGE_USAGE);
         commands.add(ExitCommand.MESSAGE_USAGE);
     }
@@ -100,12 +98,12 @@ public class Ui {
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
 
-        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getShownList2() == null) {
+        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getHelpGuides() == null) {
             return;
         }
 
-        if (result.getShownList2() != null) {
-            printShownList(result.getShownList2());
+        if (result.getHelpGuides() != null) {
+            printShownList(result.getHelpGuides());
             return;
         }
 
