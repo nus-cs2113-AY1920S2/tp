@@ -1,36 +1,52 @@
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
-Introduction
-============
+Contents: 
+- [Introduction](#1-introduction)
+  * [What is **ATAS**?](#11-what-is-atas)
+  * [What are the functions of **ATAS**?](#12-what-are-the-functions-of-atas)
+  * [How does **ATAS** solve the problem of our target audience?](#13-how-does-atas-solve-the-problem-of-our-target-audience)
+  * [What is this guide for?](#14-what-is-this-guide-for)
+- [Quick Start](#2-quick-start)
+  * [Setting up](#21-setting-up)
+  * [Usage](#22-usage)
+- [Features](#3-features)
+  * [Add Assignments: **`assignment`**](#-31-add-assignments-assignment)
+  * [Add Events: **`event`**](#-32-add-events-event)
+  * [List Tasks: **`list`**](#33-list-tasks-list)
+    + [List All Tasks: **`list`**](#331-list-all-tasks-list)
+    + [List Today’s Tasks: **`list today`**](#332-list-todays-tasks-list-today)
+    + [List Weekly Tasks: **`list week`**](#333-list-weekly-tasks-list-week)
+    + [List Upcoming Events: **`list upcoming events`**](#334-list-upcoming-events-list-upcoming-events)
+    + [List Incomplete Assignments: **`list incomplete assignments`**](#335-list-incomplete-assignments-list-incomplete-assignments)
+  * [Edit Tasks: **`edit`**](#-34-edit-tasks-edit)
+  * [Delete Tasks: **`delete`**](#35-delete-tasks-delete)
+  * [Mark Done: **`done`**](#36-mark-done-done)
+  * [Clear Tasks: **`clear`**](#37-clear-tasks-clear)
+    + [Clear All Tasks](#371-clear-all-tasks)
+    + [Clear All Done Tasks](#372-clear-all-done-tasks)
+  * [Repeating Events: **`repeat`**](#-38-repeating-events-repeat)
+    + [Set an event to repeat](#381-set-an-event-to-repeat)
+    + [Unset Repeating Event](#382-unset-repeating-event)
+  * [Search tasks: **`search`**](#39-search-tasks-search)
+    + [Search by Name](#391-search-by-name)
+    + [Search by Name and Date](#392-search-by-name-and-date)
+  * [Calendar View: **`calendar`**](#-310-calendar-view-calendar)
+- [Command Summary](#4-command-summary)
+  * [List of available **ATAS** commands](#41-list-of-available-atas-commands)
+- [FAQ](#5-faq)
 
-What is **ATAS**?
------------------
-
+## 1. Introduction
+### 1.1. What is **ATAS**?
 **ATAS** (Amazing Task and Assignment System) is a cross platform Command Line Interface (CLI) program that allows you to track your assignments and events. **ATAS** is catered for students who want to maximise their productivity and cultivate effective time management habits through a desktop application. **ATAS** is optimised for users who prefer to work with the CLI.
-
-What are the functions of **ATAS**?
------------------------------------
-
+### 1.2. What are the functions of **ATAS**?
 Besides being able to store your assignment and event details in a text file, **ATAS** allows you to view your assignment deadlines and event dates in a user-friendly calendar format. You can also list down events that are upcoming and assignments that are due in the following week. Furthermore, **ATAS** displays the assignment and event details in an easy-to-read format so that you would not miss out any important details at one glance.
-
-How does **ATAS** solve the problem of our target audience?
------------------------------------------------------------
-
+### 1.3. How does **ATAS** solve the problem of our target audience?
 University students often have piles of assignments and events that are difficult to manage and track efficiently. **ATAS** allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due to manage their time wisely and allocate sufficient time to complete these tasks.
-
-What is this guide for?
------------------------
-
+### 1.4. What is this guide for?
 This guide aims to show you on how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [???](#Features) section.
-
 Interested in cultivating a habit of time management and plan your time more effectively? Head on to [???](#Quick Start) to get started! Become a more **ATAS** version of yourself today!
-
-Quick Start
-===========
-
-Setting up
-----------
-
+## 2. Quick Start
+### 2.1. Setting up
 1.  Ensure you have Java 11 or above installed on your computer
 
     1.  For **Windows** Users:
@@ -53,9 +69,7 @@ Setting up
 
         4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
 
-Usage
------
-
+### 2.2. Usage
 1.  To use **ATAS**, simply type a valid command into the terminal and press kbd:\[Enter\] to run the command.  
     e.g. Typing `help` command and pressing kbd:\[Enter\] will list the commands present
 
@@ -67,12 +81,10 @@ Usage
 
     -   `exit`: Exits **ATAS**.
 
-A summary of all the features available in **ATAS** can be found in [???](#Commands Summary).  
-Refer to [???](#Features) for the detailed instruction of the various commands of **ATAS**.
+A summary of all the features available in **ATAS** can be found in [Command Summary](#).  
+Refer to [Section 3, "Features"](#3-features) for the detailed instruction of the various commands of **ATAS**.
 
-Features
-========
-
+## 3. Features
 **Command Format**
 
 -   Words in UPPER\_CASE and wrapped in \[square brackets\] are parameters to be supplied by the user.  
@@ -92,11 +104,10 @@ Features
     Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in the wrong position.
 
 > **Note**
->
 > Don’t worry if all of these seems overwhelming.  
 > There are plenty of examples provided to aid your understanding and learning of **ATAS** commands
 
-Add Assignments: **`assignment`**
+### 3.1. Add Assignments: **`assignment`**
 ---------------------------------
 
 An assignment is a task that you have to complete by a certain deadline, for a particular module.  
@@ -113,7 +124,6 @@ Format: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`
 -   `COMMENTS` will be any other notes relevant to your assignment.
 
 > **Note**
->
 > The new `assignment` added cannot have both the same `NAME` and `MODULE` as another existing `assignment`.
 
 Example: `assignment n/Final Reflection Draft m/GEQ1000 d/01/04/20 2359 c/Last chance to get feedback!`
@@ -126,7 +136,7 @@ Added task:
 Now you have 1 task in the list!
 ```
 
-Add Events: **`event`**
+### 3.2. Add Events: **`event`**
 -----------------------
 
 An event is a task that you plan to do at a particular date and time.  
@@ -155,13 +165,12 @@ Added task:
             notes: Remember to bring a jacket
 Now you have 2 tasks in the list!
 ```
-List Tasks: **`list`**
-----------------------
+### 3.3. List Tasks: **`list`**
 
 You can view the tasks that you have stored in **ATAS**.  
 Various keywords can be used to only show the tasks you are interested in.
 
-### List All Tasks: **`list`**
+#### 3.3.1 List All Tasks: **`list`**
 
 You can view all tasks stored in **ATAS** at once.
 
@@ -185,7 +194,7 @@ Here are the relevant tasks:
   7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
             notes: false
 ```
-### List Today’s Tasks: **`list today`**
+#### 3.3.2. List Today’s Tasks: **`list today`**
 
 You can view only the tasks you have today.
 
@@ -200,7 +209,7 @@ Here are the relevant tasks:
             notes: false
 ```
 
-### List Weekly Tasks: **`list week`**
+#### 3.3.3. List Weekly Tasks: **`list week`**
 
 You can view all the tasks for the next 7 days
 
@@ -221,7 +230,7 @@ Here are the relevant tasks:
             notes: false
 ```
 
-### List Upcoming Events: **`list upcoming events`**
+#### 3.3.4. List Upcoming Events: **`list upcoming events`**
 
 You can view all your **upcoming events** from the list of tasks.
 
@@ -237,7 +246,7 @@ Here are the relevant tasks:
   7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
             notes: false
 ```
-### List Incomplete Assignments: **`list incomplete assignments`**
+#### 3.3.5. List Incomplete Assignments: **`list incomplete assignments`**
 
 You can view all your **incomplete assignments** from the list of tasks.
 
@@ -251,7 +260,7 @@ Here are the relevant tasks:
   5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
             notes: Complete DG draft to get tutor comments
 ```
-Edit Tasks: **`edit`**
+### 3.4. Edit Tasks: **`edit`**
 ----------------------
 
 You can edit tasks in your existing list if there are any changes.
@@ -268,8 +277,7 @@ Example: `edit 1`
 After issuing the `edit` command, you can input the changes you want to make by entering in the `assignment` or `events` command.  
 Refer to [???](#Add Assignments: <emphasis role=)
 
-Delete Tasks: **`delete`**
---------------------------
+### 3.5. Delete Tasks: **`delete`**
 
 You can delete unwanted tasks in your existing list.
 
@@ -282,8 +290,7 @@ Format: `delete [INDEX]`
 
 Example: `delete 1`
 
-Mark Done: **`done`**
----------------------
+### 3.6. Mark Done: **`done`**
 
 You can mark a completed task as done in your existing list.
 
@@ -301,16 +308,15 @@ Expected outcome:
 [Final Reflection Draft] has been marked done!
 ```
 
-Clear Tasks: **`clear`**
-------------------------
+### 3.7. Clear Tasks: **`clear`**
 
-### Clear All Tasks
+#### 3.7.1. Clear All Tasks
 
 You can clear **all** tasks in the list if you want to start from a fresh list. The stored list will also be cleared.
 
 Format: `clear all`
 
-### Clear All Done Tasks
+#### 3.7.2. Clear All Done Tasks
 
 -   You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.  
 
@@ -318,17 +324,16 @@ Format: `clear all`
 
 Format: `clear done`
 
-Repeating Events: **`repeat`**
+### 3.8. Repeating Events: **`repeat`**
 ------------------------------
 
-### Set an event to repeat
+#### 3.8.1. Set an event to repeat
 
 Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
 
 Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
 
 > **Note**
->
 > Available Period: Day \[d\], Week \[w\], Month \[m\], Year \[y\]
 
 Example: `repeat id/6 p/11m`  
@@ -340,10 +345,9 @@ Expected outcome:
 ```
 
 > **Note**
->
 > Index of task specified has to be an **event** task.
 
-### Unset Repeating Event
+#### 3.8.2. Unset Repeating Event
 
 Stop a repeating event from continuing to repeat.
 
@@ -361,13 +365,12 @@ Expected outcome:
 [Online Career Fair] will no longer repeat.
 ```
 
-Search tasks: **`search`**
-------------------------------
-### Search by Name 
+### 3.9. Search tasks: **`search`**
+
+#### 3.9.1. Search by Name 
 You can search for tasks in the list by specifying the type and name of task you might be searching for.
 
 > **Tip**
->
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
 
 Format: `search t/[TASK TYPE] n/[TASK NAME]`
@@ -380,7 +383,7 @@ Here are the search results:
   3.[E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
             notes: false
 ```
-### Search by Name and Date
+#### 3.9.2. Search by Name and Date
 
 You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for.
 
@@ -399,7 +402,7 @@ Here are the search results:
         notes: Test3
 ```
 
-Calendar View: **`calendar`**
+### 3.10. Calendar View: **`calendar`**
 -----------------------------
 
 You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan for your free time as you can see your free slots at a glance.
@@ -410,11 +413,9 @@ Expected outcome:
 
 ![calendar.png](images/calendar.png)
 
-Command Summary
-===============
+## 4. Command Summary
 
-List of available **ATAS** commands
------------------------------------
+### 4.1. List of available **ATAS** commands
 
 <table>
 <colgroup>
@@ -541,8 +542,7 @@ List of available **ATAS** commands
 </tbody>
 </table>
 
-FAQ
-===
+## 5. FAQ
 
 Q: Can I transfer my saved data to a computer with a different operating system?  
 A: Yes, you can! To do so, follow the instructions mentioned in the answer below.
@@ -554,4 +554,4 @@ Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days o
 A: Setting a repeat period of `3d` will mean that the event repeats **3 days later**. The numeric representation of the repeat command indicates the number of days before the event is repeated.  
 e.g. `repeat id/1 p/3d`  
 Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`  
-Refer to [???](#Repeating Events: <emphasis role=)
+Refer to [Section 3.8, "Repeating Events: `repeat`"](#-38-repeating-events-repeat)
