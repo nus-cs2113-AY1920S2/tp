@@ -4,8 +4,13 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.io.File;
@@ -14,13 +19,21 @@ import java.io.IOException;
 import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import static seedu.nuke.util.ExceptionMessage.*;
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DELETE_FILE_ERROR;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DELETE_FILE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SECURITY_EXCEPTION;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_ABORTED;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_FILE_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_MODULE_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_DELETE_TASK_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_ILLEGAL_DELETE;
+import static seedu.nuke.util.Message.MESSAGE_PROMPT_FORMAT;
 
 public class DeleteConfirmationPrompt extends Command {
     private ConfirmationStatus confirmationStatus;

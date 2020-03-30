@@ -7,15 +7,11 @@ import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.TaskFile;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_NO_FILES_FOUND;
+import static seedu.nuke.util.Message.messageConfirmDeleteFile;
+import static seedu.nuke.util.Message.messagePromptDeleteFileIndices;
 
 /**
  * <h3>Delete File Command</h3>

@@ -18,14 +18,24 @@ import java.io.IOException;
 import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.regex.Pattern;
 import java.security.SecureRandom;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import static seedu.nuke.parser.Parser.*;
-import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
+import static seedu.nuke.parser.Parser.FILE_PREFIX;
+import static seedu.nuke.parser.Parser.MODULE_PREFIX;
+import static seedu.nuke.parser.Parser.TASK_PREFIX;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_TASK_FILE;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_IO_EXCEPTION;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SECURITY_EXCEPTION;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_FILE_PATH;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
 import static seedu.nuke.util.Message.messageAddFileSuccess;
 
 /**

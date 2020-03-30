@@ -13,8 +13,8 @@ import java.util.Stack;
 public class DirectoryTraverser {
     private static Stack<Directory> directoryStack = new Stack<>();
     private static final DirectoryLevel[] DIRECTORY_LEVELS = {
-            DirectoryLevel.ROOT, DirectoryLevel.MODULE, DirectoryLevel.CATEGORY,
-            DirectoryLevel.TASK, DirectoryLevel.FILE
+        DirectoryLevel.ROOT, DirectoryLevel.MODULE, DirectoryLevel.CATEGORY,
+        DirectoryLevel.TASK, DirectoryLevel.FILE
     };
     private static int currentLevel = 0;
     private static final int MINIMUM_LEVEL = 0;

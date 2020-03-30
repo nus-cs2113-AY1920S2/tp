@@ -2,14 +2,22 @@ package seedu.nuke.command.filtercommand;
 
 import seedu.nuke.command.Command;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import static seedu.nuke.parser.Parser.*;
+import static seedu.nuke.parser.Parser.ALL_FLAG;
+import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
+import static seedu.nuke.parser.Parser.EXACT_FLAG;
+import static seedu.nuke.parser.Parser.MODULE_PREFIX;
+import static seedu.nuke.parser.Parser.TASK_PREFIX;
 
 public abstract class FilterCommand extends Command {
     public static final Pattern MODULE_REGEX_FORMAT = Pattern.compile(

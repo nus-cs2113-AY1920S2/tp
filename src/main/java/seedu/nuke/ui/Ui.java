@@ -1,6 +1,5 @@
 package seedu.nuke.ui;
 
-import com.sun.source.util.TaskListener;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.ChangeDirectoryCommand;
@@ -13,8 +12,12 @@ import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 import seedu.nuke.util.ListCreator;
 
 import java.io.PrintStream;

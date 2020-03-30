@@ -1,8 +1,10 @@
-
 package seedu.nuke.data;
 
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Root;
+import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
@@ -200,8 +202,8 @@ public class ModuleManager implements Iterable<Module> {
         ArrayList<Task> allTasks = sortAllTasks();
         for (Task task: allTasks) {
             deadlines.add(String.format("%-30s", task.getDescription()) + " "
-                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) +
-                    String.format("%-10s", task.getParent().getCategoryName())
+                    + String.format("%-8s", task.getParent().getParent().getModuleCode())
+                    + String.format("%-10s", task.getParent().getCategoryName())
                     + "   deadline: " + task.getDeadline().toShow());
         }
         return deadlines;

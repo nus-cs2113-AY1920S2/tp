@@ -254,6 +254,14 @@ public class ListCreator {
     }
 
 
+    /**
+     * Creates a sorted file list table from a list of files.
+     *
+     * @param fileList
+     *  The list of files to be converted into a table
+     * @return
+     *  The sorted file list table
+     */
     public static String createFileListTable(ArrayList<TaskFile> fileList) {
         sortFileList(fileList);
         StringBuilder fileListTable = new StringBuilder();

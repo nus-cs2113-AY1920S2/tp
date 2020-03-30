@@ -1,8 +1,11 @@
 package seedu.nuke.util;
 
 import org.fusesource.jansi.Ansi;
-import seedu.nuke.directory.*;
+import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
