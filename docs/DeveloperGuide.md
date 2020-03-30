@@ -132,8 +132,8 @@ The user can input as many sales as they like as long as the dish exists in the 
 Step 3. The user can generate the profit by inputting `profit`.
 
 
-### 1.3.2 Design Considerations
-#### Aspect: Using a separate class to perform sale commands
+#### 1.3.2 Design Considerations
+##### Aspect: Using a separate class to perform sale commands
 **Current Implementation**: Methods are stored in the sales class
 * Pros: Easy to understand and implement.
 * Cons: May make the sales class long and convoluted and may become difficult to find certain features or methods
@@ -141,7 +141,7 @@ Step 3. The user can generate the profit by inputting `profit`.
 **Alternative**: Commands are stored in separate classes
 * Pros: Easier for a person who hasn't worked on the project to understand the structure
 * Cons: Takes longer to implement
-=======
+
 
 <a name="search-reservation"></a>
 
@@ -172,25 +172,25 @@ Step 3. The user can now search against the current `reservation` list to see if
 If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
 
 <p align="center">
-    <img src="SearchByIndex.png">
+    <img src="documentations\Sibing\SearchByIndex.png">
 </p>
 
 If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
 
 <p align="center">
-    <img src="SearchByDate.png">
+    <img src="documentations\Sibing\SearchByDate.png">
 </p>
 
 If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
 
 <p align="center">
-    <img src="SearchByIndexnDate.png">
+    <img src="documentations\Sibing\SearchByIndexnDate.png">
 </p>
 
 The following sequence diagram shows the relevant interactions behind `search reservation`:
 
 <p align="center">
-    <img src="SequenceDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\SequenceDiagramforSearchReservation.png">
 </p>
 
 #### 1.4.2 Design Considerations
