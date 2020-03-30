@@ -1,6 +1,15 @@
 package seedu.happypills.controller.parser;
 
-import seedu.happypills.controller.commands.appointmentcommands.*;
+import seedu.happypills.controller.commands.appointmentcommands.AppointmentCommand;
+
+import seedu.happypills.controller.commands.appointmentcommands.AddAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.DoneAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.EditAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.DeleteAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.FindAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.IncorrectAppointmentCommand;
+import seedu.happypills.controller.commands.appointmentcommands.ListAppointmentCommand;
+
 
 
 import seedu.happypills.model.exception.HappyPillsException;

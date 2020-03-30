@@ -408,6 +408,12 @@ public class TextUi {
         return message;
     }
 
+    /**
+     * Display updated patient's appointment.
+     *
+     * @param appointment The appointment that was updated.
+     * @return The patient's updated appointment.
+     */
     public static String doneAppointmentSuccessMessage(Appointment appointment) {
         String message = "    The following appointment has been marked done:\n"
                 + appointment + DIVIDER;
