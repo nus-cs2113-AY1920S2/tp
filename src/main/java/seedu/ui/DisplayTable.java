@@ -5,6 +5,21 @@ import java.util.stream.Stream;
 
 public class DisplayTable extends UI {
 
+    public void printHeaderOfTwo(String index, String header) {
+        String columnOfTwo = ("| %-10s|  %-82s|%n");
+        printSplit();
+        System.out.printf(columnOfTwo, index, header);
+        printSplitOfTwo();
+    }
+
+    public void printBodyOfTwo(int index, String body) {
+        String columnOfTwo = ("| %-10d|  %-82s|%n");
+        String modifiedBody1 = extractLength(body, 50);
+        System.out.printf(columnOfTwo, index, modifiedBody1);
+        printSplitOfTwo();
+    }
+
+
     public void printHeaderOfThree(String index, String header1, String header2) {
         String columnOfThree = ("| %-10s|  %-50s|  %-28s|%n");
         printSplit();
@@ -57,6 +72,14 @@ public class DisplayTable extends UI {
         Stream.generate(() -> "_").limit(52).forEach(System.out::print);
         System.out.print("|");
         Stream.generate(() -> "_").limit(30).forEach(System.out::print);
+        System.out.print("|\n");
+    }
+
+    public void printSplitOfTwo() {
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(11).forEach(System.out::print);
+        System.out.print("|");
+        Stream.generate(() -> "_").limit(84).forEach(System.out::print);
         System.out.print("|\n");
     }
 

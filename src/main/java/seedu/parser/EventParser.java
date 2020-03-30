@@ -9,12 +9,14 @@ public class EventParser {
     private String date;
     private String time;
     private String venue;
+    private int index;
 
     public EventParser() {
         this.name = "";
         this.date = "";
         this.time = "";
         this.venue = "";
+        this.index = -1;
     }
 
     /**
@@ -25,25 +27,7 @@ public class EventParser {
      */
     public int parseIndex(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-        int index = -1;
-        for (String token: tokens) {
-            try {
-                switch (token.substring(0, 2)) {
-                case "i/":
-                    index = Integer.parseInt(parameters.substring(2, 3));
-                    break;
-                default:
-                    // does nothing, as intended
-                    break;
-                }
-            } catch (Exception m) {
-                throw new DukeException(m.getMessage());
-            }
-        }
-
-        if (index < 0) {
-            throw new DukeException("Index not found.");
-        }
+        splitByEventFlags(tokens);
         return index;
     }
 
@@ -84,7 +68,6 @@ public class EventParser {
         return venue;
     }
 
-    // TODO: [r/FREQ[/TIME or /DAY]]
     /**
      * Parse parameters based on the following format:
      * n/EVENTNAME [t/EVENTTIME] [d/EVENTDATE] [v/EVENTVENUE].
@@ -93,21 +76,21 @@ public class EventParser {
      */
     public Event parseEvent(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-
         splitByEventFlags(tokens);
-
         String datetime = date + " " + time;
-
+        if (name.equals("") && venue.equals("")) {
+            throw new DukeException("EventParser: Invalid arguments");
+        }
         return new Event(name, datetime, venue);
     }
 
     public Seminar parseSeminar(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
-
         splitByEventFlags(tokens);
-
         String datetime = date + " " + time;
-
+        if (name.equals("") && venue.equals("")) {
+            throw new DukeException("EventParser: Invalid arguments");
+        }
         return new Seminar(name, datetime, venue);
     }
 
@@ -116,46 +99,59 @@ public class EventParser {
         for (String token : tokens) {
             if (token.length() < 2) {
                 if (mostRecent == null) {
-                    throw new DukeException("invalid flag, too short");
-                } else {
+                    throw new DukeException("EventParser: Flag is too short");
+                } else if (validFlagToAppend(mostRecent)) {
                     append(mostRecent, token);
                 }
             } else {
                 switch (token.substring(0, 2).toLowerCase()) {
                 case "n/":
-                    ensureNotDuplicateFlag(name, "duplicate name flag");
+                    ensureNotDuplicateFlag(name, "EventParser: Duplicate name flag");
                     name += token.substring(2);
                     mostRecent = "name";
                     break;
                 case "t/":
-                    ensureNotDuplicateFlag(time, "duplicate time flag");
+                    ensureNotDuplicateFlag(time, "EventParser: Duplicate time flag");
                     time += token.substring(2);
                     mostRecent = "time";
                     break;
                 case "d/":
-                    ensureNotDuplicateFlag(date, "duplicate date flag");
+                    ensureNotDuplicateFlag(date, "EventParser: Duplicate date flag");
                     date += token.substring(2);
                     mostRecent = "date";
                     break;
                 case "v/":
-                    ensureNotDuplicateFlag(venue, "duplicate venue flag");
+                    ensureNotDuplicateFlag(venue, "EventParser: Duplicate venue flag");
                     venue += token.substring(2);
                     mostRecent = "venue";
                     break;
                 case "i/":
+                    ensureNotDuplicateFlag(venue, "EventParser: Duplicate index flag");
+                    try {
+                        index = Integer.parseInt(token.substring(2));
+                    } catch (NumberFormatException m) {
+                        throw new DukeException("EventParser: Parameter is not an integer");
+                    }
+                    mostRecent = "index";
                     break;
                 default:
                     // assumes that all valid flags have been processed before this line
                     if (isUnknownFlag(token)) {
-                        throw new DukeException("unknown flag");
+                        throw new DukeException("EventParser: Unknown flag");
                     }
                     if (mostRecent == null) {
-                        throw new DukeException("parameter without flag");
+                        throw new DukeException("EventParser: Parameter is provided without flag");
                     }
-                    append(mostRecent, token);
+                    if (validFlagToAppend(mostRecent)) {
+                        append(mostRecent, token);
+                    }
                 }
             }
         }
+    }
+
+    private boolean validFlagToAppend(String flag) {
+        return flag.equals("name") || flag.equals("venue");
     }
 
     /**
@@ -175,7 +171,7 @@ public class EventParser {
             venue += venue.isEmpty() ? token : (" " + token);
             break;
         default:
-            throw new DukeException("invalid flag");
+            throw new DukeException("EventParser: Invalid flag to append to");
         }
     }
 
