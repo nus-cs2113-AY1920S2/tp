@@ -17,16 +17,12 @@ import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 public class ListModuleTasksDeadlineCommand extends ListCommand {
 
     public static final String COMMAND_WORD = "lsmtd";
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String FORMAT = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
+            + "List tasks of module in ascending order of deadline" + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final int EMPTY = 0;
 
     private ArrayList<String> deadlines;
-
-    /**
-     * Constructor method for CheckModuleTaskDeadlineCommand class.
-     */
-    public ListModuleTasksDeadlineCommand() {
-    }
 
     @Override
     public CommandResult execute() {
@@ -39,7 +35,7 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
             assert module.countTasks() != EMPTY : "make sure the list is not empty";
 
             deadlines = module.checkDeadline();
-            return new CommandResult(messageTaskSuccessfullyList(module.countTasks()) + deadlines);
+            return new CommandResult(messageTaskSuccessfullyList(module.countTasks()), deadlines);
         } else {
             return new CommandResult(MESSAGE_GO_INTO_MODULE);
         }

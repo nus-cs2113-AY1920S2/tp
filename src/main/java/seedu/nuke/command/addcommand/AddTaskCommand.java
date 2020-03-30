@@ -34,13 +34,14 @@ public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_WORD = "addt";
     public static final String FORMAT = COMMAND_WORD
             + " <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a new task"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<optional>(?:\\s+-[dp](?:\\s+\\w\\S*)+)*)"
-            + "(?<invalid>.*)"
+
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
             "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"

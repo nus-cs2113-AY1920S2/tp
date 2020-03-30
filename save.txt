@@ -46,6 +46,12 @@ Big Lab Work -|||- N -|||- 25/03/2020 06:00PM -|||- 7
 --- FILE ---
 --- END FILE ---
 --- END TASK ---
+Lab -|||- 0
+--- TASK ---
+read -|||- N -|||-  -|||- 0
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
 --- END CATEGORY ---
 CS2100 -|||- Computer Organisation -|||- NIL
 --- CATEGORY ---
