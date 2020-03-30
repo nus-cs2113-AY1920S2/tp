@@ -23,6 +23,7 @@ add stock; tomato; q/10; p/$0.50;
 add stock; i/tomato; 10; p/$0.50;
 add stock; i/tomato; q/10; 0.50;
 add stock; i/rice; q/11; p/$0.40;
+add stock; i/salt; q/20; p/$0.20;
 add stock; i/vege; q/10; p/$0.40;
 add stock; i/greenie; q/0; p/$0.40;
 add stock; i/toxic greens; q/1; p/$0.40;
@@ -78,4 +79,7 @@ mark reservation; r/0;
 list served reservation
 list unserved reservation
 list reservation
+sell dish; d/rice; q/5;
+profit
+popular
 bye
