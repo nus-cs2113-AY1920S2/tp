@@ -7,7 +7,7 @@
     + [1.2. [Proposed] List stock in descending quantities](#list-stock)
     + [1.3. [Proposed] Generate profit for the day](#generate-profit)
     + [1.4. [Proposed] Search reservation](#search-reservation)
-    + [1.5  [Proposed] Search dish](#search-dish)
+    + [1.5. [Proposed] Search dish](#search-dish)
 * [2. Product Scope](#product-scope)
 * [3. User Stories](#user-stories)
 * [4. Non-Functional Requirements](#nonfunctional-requirement)
@@ -238,21 +238,21 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 #### 1.5.2 Design Considerations
 ##### Aspect: Execution of search dish
 * **Alternative 1 (current choice)**: Search dish names for keyword
-+ Pros: Intuitive use of search, easy to implement
-+ Cons: If dishes are not named intuitively, such as `pasta with bacon`, feature becomes less useful
+  + Pros: Intuitive use of search, easy to implement
+  + Cons: If dishes are not named intuitively, such as `pasta with bacon`, feature becomes less useful
 
 * **Alternative 2**: Search dish ingredients for keyword
-+ Pros: Can find all dishes with a certain ingredient, which is useful if you really like something like `bacon` or are allergic to something like `cilantro`
-+ Cons: Cannot easily find if the menu contains your favorite dish by name, like `ratatouille`
+  + Pros: Can find all dishes with a certain ingredient, which is useful if you really like something like `bacon` or are allergic to something like `cilantro`
+  + Cons: Cannot easily find if the menu contains your favorite dish by name, like `ratatouille`
 
 ##### Aspect: Data structure in search dish
 * **Alternative 1 (current choice)**: Create a new temporary `HashMap<String, Dish>` that contains all dishes that match the search
-+ Pros: Flexible to use later on, easy to implement
-+ Cons: Potentially duplicate work as similar functionality could be accomplished without creating a new HashMap
+  + Pros: Flexible to use later on, easy to implement
+  + Cons: Potentially duplicate work as similar functionality could be accomplished without creating a new HashMap
 
 * **Alternative 2**: Use original dish HashMap to identify dishes matching search
-+ Pros: No duplicate work and we're always using the same HashMap
-+ Cons: If we choose to further develop this feature later on, we'll have to do the search again because we did not save the matching items any way
+  + Pros: No duplicate work and we're always using the same HashMap
+  + Cons: If we choose to further develop this feature later on, we'll have to do the search again because we did not save the matching items any way
 
 <a name="product-scope"></a>
 
