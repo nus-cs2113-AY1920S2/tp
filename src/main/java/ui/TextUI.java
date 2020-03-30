@@ -1,20 +1,14 @@
 package ui;
 
-import static common.Messages.FORMAT_TIMETABLE;
-import static common.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
-import static common.Messages.MESSAGE_INVALID_MEETING;
-import static common.Messages.MESSAGE_INVALID_NUSMODLINK;
-import static common.Messages.MESSAGE_INVALID_NUMBER;
-import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
-import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
-import static java.lang.System.out;
-
 import exception.MoException;
 import meeting.Meeting;
 import meeting.MeetingList;
 import schedulelogic.TeamMember;
+
 import java.util.ArrayList;
+
+import static common.Messages.*;
+import static java.lang.System.out;
 
 /**
  * TESTING SUMMARY DOC.
@@ -102,20 +96,8 @@ public class TextUI {
         out.println("You now have " + myMeetingList.getMeetingListSize() + " meeting/s in the list.");
     }
 
-    public static void deleteMeetingMsg() {
-        out.println("Which meeting slot do you want to delete?");
-    }
-
-    public static void editMeetingMsg() {
-        out.println("Which meeting slot do you want to edit?");
-    }
-
     public static void listMeetings() {
         out.println("Here are all your meeting slots.");
-    }
-
-    public static void enterScheduleMsg(String memberName) {
-        out.println("Enter schedule of member " + memberName + ": <Schedule Name> <Start Day> <Start Time> <End Day> <End Time>");
     }
 
     public static void timeOutOfRangeMsg() {
@@ -185,7 +167,7 @@ public class TextUI {
         String endDay = getDayFromNumber(meetingList.get(index).getEndDay());
         System.out.println("I have removed:");
         System.out.println((index + 1) + ". " + startDay + " " + meetingList.get(index).getStartTime()
-                + " to " + endDay + " " + meetingList.get(index).getEndTime());
+                + " to " + endDay + " " + meetingList.get(index).getEndTime() + " " + meetingList.get(index).getMeetingName());
     }
 
     public static void displayInvalidDeleteTarget() {

@@ -1,8 +1,10 @@
 package command;
 
+import exception.InvalidUrlException;
 import meeting.MeetingList;
 import exception.MoException;
 import meeting.Meeting;
+import modulelogic.LessonsGenerator;
 import schedulelogic.ScheduleHandler;
 import schedulelogic.TeamMember;
 import schedulelogic.TeamMemberList;
@@ -13,6 +15,95 @@ import java.util.ArrayList;
 
 public class CommandHandler {
 
+    public static TeamMember addContact(TeamMemberList myTeamMemberList, String[] userInputWords,
+                                        Integer startDay, Integer endDay) throws MoException {
+        TeamMember member;
+        int checkerForRepeatedName;
+        checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream()
+                .mapToInt(person -> check(person, userInputWords[0])).sum();
+        if (checkerForRepeatedName == 1) {
+            TextUI.showRepeatedPerson(userInputWords[0]);
+            throw new MoException("Repeated user");
+        }
+
+        member = new TeamMember(userInputWords[0]);
+        String name = userInputWords[0];
+        LessonsGenerator myLessonGenerator;
+        try {
+            myLessonGenerator = new LessonsGenerator(userInputWords[1]);
+            myLessonGenerator.generate();
+            ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
+            for (int k = 0; k < myLessonDetails.size(); k++) {
+                String startTimeString = null;
+                String endTimeString = null;
+                for (int j = 0; j < myLessonDetails.get(k).length; j++) {
+                    switch (j) {
+                        case 0:
+                            startTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                            break;
+                        case 1:
+                            endTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                            break;
+                        case 2:
+                            startDay = getNumberFromDay(myLessonDetails.get(k)[j]);
+                            endDay = startDay;
+                            break;
+                        case 3:
+                            //future improvement: since myLessonDetails.get(k)[3] contains data on the
+                            // week number that this class occurs on, add capability of schedule to reflect
+                            // schedule of the current week.
+                            break;
+                        default:
+                            //data only has four sections from api
+                            break;
+                    }
+                }
+                member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString);
+            }
+            TextUI.showAddedMember(member.getName());
+        } catch (InvalidUrlException e) {
+            System.out.println(e.getMessage());
+        }
+        return member;
+    }
+
+    private static Integer getNumberFromDay(String day) {
+        int dayInNumber;
+        switch (day) {
+            case "Monday":
+                dayInNumber = 1;
+                break;
+            case "Tuesday":
+                dayInNumber = 2;
+                break;
+            case "Wednesday":
+                dayInNumber = 3;
+                break;
+            case "Thursday":
+                dayInNumber = 4;
+                break;
+            case "Friday":
+                dayInNumber = 5;
+                break;
+            case "Saturday":
+                dayInNumber = 6;
+                break;
+            case "Sunday":
+                dayInNumber = 0;
+                break;
+            default:
+                dayInNumber = Integer.parseInt(null);
+                break;
+        }
+        return dayInNumber;
+    }
+    private static int check(TeamMember person, String name) {
+        if (person.getName().equals(name)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
     public static void listMeetings(MeetingList meetingList) {
         TextUI.listMeetings();
         meetingList.show();
