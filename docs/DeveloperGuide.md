@@ -205,11 +205,6 @@ Once a new Reservation object is created, it will be added into the `HashMap` ac
   + Pros: Easier for searching in terms of date.
   + Cons: Extra memory space is needed.
 
-**The reason to make the current choice:**  
-There is a trade-off between time and space.
-So far the reservation list size is not very large, so it is acceptable to do linear search along the list.
-Creating `HashMap` for each date will lead to many `HashMap`s, which is space-wasting in current stage.
-Utilization of `HashMap` will be considered if the restaurant becomes more popular and the reservation list gets longer and longer.
 
 ##### Aspect: Data structure to support the search reservation feature.
 * **Alternative 1 (current choice)**: Display all all `Reservation` objects that contain the reservation number or date provided to the screen directly.
@@ -220,8 +215,6 @@ Utilization of `HashMap` will be considered if the restaurant becomes more popul
   + Pros: Objects are stored in a data structure, which is easier to do operation on that specific collections of objects.
   + Cons: Extra memory space is needed.
 
-**The reason to make the current choice:**  
-There is no need for objects to be stored separately given current user stories and functionality required.
 
 <a name="search-dish"></a>
 
