@@ -109,7 +109,11 @@ public class ActivityList {
         deleteUpdateFile(index);
     }
 
-    private void deleteUpdateFile(int index) {
+    /**
+     * Deletes the line in the file.
+     * @param index the index of the line in the file.
+     */
+    public void deleteUpdateFile(int index) {
         try {
             StorageHandler.removeLine(index, storage);
         } catch (IOException e) {
