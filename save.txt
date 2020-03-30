@@ -46,6 +46,12 @@ Big Lab Work -|||- N -|||- 25/03/2020 06:00PM -|||- 7
 --- FILE ---
 --- END FILE ---
 --- END TASK ---
+Lab -|||- 0
+--- TASK ---
+read -|||- N -|||-  -|||- 0
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
 --- END CATEGORY ---
 CS2100 -|||- Computer Organisation -|||- NIL
 --- CATEGORY ---
@@ -62,6 +68,24 @@ Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
 Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+--- END CATEGORY ---
+CS3235 -|||- Computer Security -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+Programming Assignment -|||- 0
 --- TASK ---
 --- END TASK ---
 --- END CATEGORY ---

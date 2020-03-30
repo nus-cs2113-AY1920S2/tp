@@ -176,8 +176,8 @@ public class Task extends Directory implements Tag {
     }
 
     @Override
-    public void setTag(String info) {
-        this.tags.add(info);
+    public void setTag(ArrayList<String> infos) {
+        this.tags.addAll(infos);
     }
 
     @Override

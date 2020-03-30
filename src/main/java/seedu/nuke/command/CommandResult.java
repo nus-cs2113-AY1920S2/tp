@@ -12,6 +12,23 @@ public class CommandResult {
     private final String feedbackToUser;
     private final DirectoryLevel directoryLevel;
     private final ArrayList<Directory> shownList;
+    private final ArrayList<String> shownList2;
+
+    /**
+     * Constructor of the CommandResult class.
+     *
+     * @param feedbackToUser The feedback to be printed to the user.
+     * @param directoryLevel The directoryLevel the user is at currently.
+     * @param listToShow the list of Directory to be printed to the user.
+     * @param listToShow2 the list of Directory to be printed to the user.
+     */
+    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow,
+                          ArrayList<String> listToShow2) {
+        this.feedbackToUser = feedbackToUser;
+        this.directoryLevel = directoryLevel;
+        this.shownList = listToShow;
+        this.shownList2 = listToShow2;
+    }
 
     /**
      * Constructs a command result that contains both feedback message and list to show.
@@ -24,9 +41,11 @@ public class CommandResult {
      *  The list to be shown to the user
      */
     public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow) {
-        this.feedbackToUser = feedbackToUser;
-        this.directoryLevel = directoryLevel;
-        this.shownList = listToShow;
+        this(feedbackToUser, directoryLevel, listToShow, null);
+    }
+
+    public CommandResult(String feedbackToUser, ArrayList<String> listToShow) {
+        this(feedbackToUser, DirectoryLevel.NONE, null, listToShow);
     }
 
     /**
@@ -35,7 +54,7 @@ public class CommandResult {
      *  The feedback message to be shown to the user
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, DirectoryLevel.NONE, null);
+        this(feedbackToUser, DirectoryLevel.NONE, null, null);
     }
 
     /**
@@ -66,5 +85,9 @@ public class CommandResult {
      */
     public ArrayList<Directory> getShownList() {
         return shownList;
+    }
+
+    public ArrayList<String> getShownList2() {
+        return shownList2;
     }
 }

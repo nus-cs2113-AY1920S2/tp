@@ -1,17 +1,26 @@
 package seedu.nuke.ui;
 
-import seedu.nuke.command.addcommand.AddModuleCommand;
-import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.ChangeDirectoryCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.editcommand.EditDeadlineCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.nuke.command.addcommand.AddCategoryCommand;
+import seedu.nuke.command.addcommand.AddFileCommand;
+import seedu.nuke.command.addcommand.AddModuleCommand;
+import seedu.nuke.command.addcommand.AddTagCommand;
+import seedu.nuke.command.addcommand.AddTaskCommand;
+import seedu.nuke.command.editcommand.EditCategoryCommand;
+import seedu.nuke.command.editcommand.EditModuleCommand;
+import seedu.nuke.command.editcommand.EditTaskCommand;
+import seedu.nuke.command.editcommand.MarkAsDoneCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTagCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.DirectoryTraverser;
@@ -39,15 +48,25 @@ public class Ui {
     public Ui() {
         in = new Scanner(System.in);
         out = new PrintStream(System.out);
-        commands.add(AddModuleCommand.MESSAGE_USAGE);
-        commands.add(AddTaskCommand.MESSAGE_USAGE);
         commands.add(ChangeDirectoryCommand.MESSAGE_USAGE);
-        commands.add(ListAllTasksDeadlineCommand.MESSAGE_USAGE);
-        commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(AddModuleCommand.MESSAGE_USAGE);
+        commands.add(AddCategoryCommand.MESSAGE_USAGE);
+        commands.add(AddTaskCommand.MESSAGE_USAGE);
+        commands.add(AddTagCommand.MESSAGE_USAGE);
+        commands.add(AddFileCommand.MESSAGE_USAGE);
+        commands.add(EditModuleCommand.MESSAGE_USAGE);
+        commands.add(EditCategoryCommand.MESSAGE_USAGE);
+        commands.add(EditTaskCommand.MESSAGE_USAGE);
+        commands.add(MarkAsDoneCommand.MESSAGE_USAGE);
         commands.add(DeleteModuleCommand.MESSAGE_USAGE);
+        commands.add(DeleteCategoryCommand.MESSAGE_USAGE);
         commands.add(DeleteTaskCommand.MESSAGE_USAGE);
-        commands.add(EditDeadlineCommand.MESSAGE_DONE);
-        commands.add(ListModuleCommand.MESSAGE_USAGE);
+        commands.add(DeleteTagCommand.MESSAGE_USAGE);
+        commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(ListCategoryCommand.MESSAGE_USAGE);
+        commands.add(ListTaskCommand.MESSAGE_USAGE);
+        commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(ListAllTasksDeadlineCommand.MESSAGE_USAGE);
         //commands.add(UndoCommand.MESSAGE_USAGE);
         commands.add(HelpCommand.MESSAGE_USAGE);
         commands.add(ExitCommand.MESSAGE_USAGE);
@@ -81,7 +100,12 @@ public class Ui {
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
 
-        if ((result.getDirectoryLevel() == DirectoryLevel.NONE)) {
+        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getShownList2() == null) {
+            return;
+        }
+
+        if (result.getShownList2() != null) {
+            printShownList(result.getShownList2());
             return;
         }
 

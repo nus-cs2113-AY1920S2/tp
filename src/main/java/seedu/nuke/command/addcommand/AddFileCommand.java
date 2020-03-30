@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.regex.Pattern;
 import java.security.SecureRandom;
+import java.util.regex.Pattern;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
@@ -49,6 +49,8 @@ public class AddFileCommand extends AddCommand {
     public static final String COMMAND_WORD = "addf";
     public static final String FORMAT = COMMAND_WORD
             + " <file name> -m <module code> -c <category name> -t <task description> -f <file path>";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a file to task"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"

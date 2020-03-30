@@ -23,14 +23,18 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
@@ -65,6 +69,9 @@ public class Parser {
     private static final int COMMAND_WORD_INDEX = 0;
     private static final int PARAMETER_WORD_INDEX = 1;
 
+    private static final String GENERIC_LIST_COMMAND = "ls";
+    private static final String GENERIC_MKDIR_COMMAND = "mkdir";
+
     public static final String MODULE_PREFIX = "-m";
     public static final String CATEGORY_PREFIX = "-c";
     public static final String TASK_PREFIX = "-t";
@@ -73,6 +80,7 @@ public class Parser {
     public static final String DEADLINE_PREFIX = "-d";
     public static final String ALL_FLAG = "-a";
     public static final String EXACT_FLAG = "-e";
+    public static final String TAG_PREFIX = "-g";
 
     private static final String COMMAND_WORD_GROUP = "commandWord";
     private static final String PARAMETERS_GROUP = "parameters";
@@ -111,6 +119,12 @@ public class Parser {
         try {
             switch (commandWord) {
 
+            case GENERIC_LIST_COMMAND:
+                return prepareGenericListCommand(parameters.trim());
+
+            case GENERIC_MKDIR_COMMAND:
+                return prepareGenericAddCommand(parameters);
+
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
             case AddCategoryCommand.COMMAND_WORD:
@@ -119,11 +133,9 @@ public class Parser {
                 return prepareAddTaskCommand(parameters);
             case AddFileCommand.COMMAND_WORD:
                 return prepareAddFileCommand(parameters);
-
-            //// todo check if in module
-            //case AddTagCommand.COMMAND_WORD:
-            //    return new AddTagCommand(parameters);
-
+            case AddTagCommand.COMMAND_WORD:
+                return prepareAddTagCommand(parameters);
+                
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, true);
             case DeleteCategoryCommand.COMMAND_WORD:
@@ -141,6 +153,8 @@ public class Parser {
                 return prepareDeleteAndListTaskCommand(parameters, false);
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
+            case ListModuleTasksDeadlineCommand.COMMAND_WORD:
+                return new ListModuleTasksDeadlineCommand();
             case ListAllTasksDeadlineCommand.COMMAND_WORD:
                 return new ListAllTasksDeadlineCommand();
 
@@ -193,6 +207,52 @@ public class Parser {
             return new ChangeDirectoryCommand();
         } else {
             return new ChangeDirectoryCommand(parameters.trim());
+        }
+    }
+
+    /**
+     * Prepare the command to list the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericListCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            if (parameters.length() == 0) {
+                return prepareDeleteAndListModuleCommand(parameters, false);
+            } else {
+                parameters = " " + MODULE_PREFIX + " " + parameters;
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            }
+        case MODULE:
+            if (parameters.length() == 0) {
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            } else {
+                parameters = " " + CATEGORY_PREFIX + " " + parameters;
+                return prepareDeleteAndListTaskCommand(parameters, false);
+            }
+        case CATEGORY:
+            return prepareDeleteAndListTaskCommand(parameters, false);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+    }
+
+    private Command prepareGenericAddCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareAddModuleCommand(parameters);
+        case MODULE:
+            return prepareAddCategoryCommand(parameters);
+        case CATEGORY:
+            return prepareAddTaskCommand(parameters);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
     }
 
@@ -286,6 +346,19 @@ public class Parser {
         } catch (NumberFormatException | InvalidPriorityException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
         }
+    }
+
+    private Command prepareAddTagCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = AddTagCommand.REGEX_FORMATS.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX, TAG_PREFIX);
+
+        String info = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+
+        return new AddTagCommand(new ArrayList<>(Arrays.asList(info)), moduleCode, categoryName, taskDescription);
     }
 
     /**

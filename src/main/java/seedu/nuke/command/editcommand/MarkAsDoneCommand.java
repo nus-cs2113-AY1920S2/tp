@@ -10,14 +10,10 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.regex.Pattern;
 
-import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
-import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
-import static seedu.nuke.directory.DirectoryTraverser.getBaseTask;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.TASK_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_TASK;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
@@ -28,6 +24,8 @@ public class MarkAsDoneCommand extends EditCommand {
     public static final String FORMAT = COMMAND_WORD
             + " -m <module code> -c <category name>"
             + " -t <task description>";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Mark task as done"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+[^-\\s]\\S*)+)?)"
