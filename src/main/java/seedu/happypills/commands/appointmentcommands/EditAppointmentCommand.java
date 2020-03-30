@@ -15,7 +15,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     protected String nric;
     protected String newContent;
     protected  String apptID;
-    Logger logger = Logger.getLogger(HappyPills.class.getName());
 
     /**
      * Constructor for EditAppointmentCommand Class.
@@ -24,7 +23,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @param nric Contains the nric of the patient that is to be retrieved.
      * @param newContent Contains the string that the attribute is to be updated to.
      */
-    public EditAppointmentCommand(String nric, String newContent, String apptID) {
+    public EditAppointmentCommand(String nric, String apptID, String newContent) {
         this.nric = nric;
         this.newContent = newContent;
         this.apptID = apptID;
@@ -57,22 +56,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * Retrieve the appointment from the patient provided.
-     *
-     * @param patient Contains the patient that to get appointment from.
-     * @return the appointment with the specified apptID or null if not found
-     */
-    private Appointment findAppointment(Patient patient) {
-        ArrayList<Appointment> tempAppointment = patient.getAppointments();
-        for (Appointment appointment : tempAppointment) {
-            if (appointment.getAppointmentId().equals(apptID)) {
-                return appointment;
-            }
-        }
-            return null;
-        }
-
-    /**
      * check string if fits date format
      * @param date date in String type
      * @return true if correct date format, false otherwise
@@ -83,7 +66,27 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * Edit the date of the appointment.
+     * Edit the date of the appointment in the list within the patient object
+     *
+     * @param patient Contains the patient that to get appointment from.
+     * @param newDate The new date to be edited into.
+     * @return the appointment with the specified apptID or null if not found
+     */
+    private Boolean editDate(Patient patient, String newDate) {
+        if(!checkDate(newDate)) {
+            return false;
+        }
+        for (Appointment appointment : patient.getAppointments()) {
+            if (appointment.getAppointmentId().equals(apptID)) {
+                appointment.setDate(newDate);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Edit the date of the appointment in the shared appointment map.
      *
      * @param appointment The appointment which date is to be edited.
      * @param newDate The new date to be edited into.
@@ -110,7 +113,28 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * Edit the time of the appointment.
+     * Edit the time of the appointment in the shared appointment map.
+     *
+     * @param patient Contains the patient that to get appointment from.
+     * @param newTime The new time to be edited into.
+     * @return the appointment with the specified apptID or null if not found.
+     */
+    private Boolean editTime(Patient patient, String newTime) {
+        if(!checkTime(newTime)) {
+            return false;
+        }
+        newTime += ":00";
+        for (Appointment appointment : patient.getAppointments()) {
+            if (appointment.getAppointmentId().equals(apptID)) {
+                appointment.setTime(newTime);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Edit the time of the appointment in the shared appointment map.
      *
      * @param appointment The appointment which time is to be edited.
      * @param newTime The new date to be edited into.
@@ -118,6 +142,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      */
     private Boolean editTime(Appointment appointment, String newTime) {
         if(checkTime(newTime)){
+            newTime += ":00";
            appointment.setTime(newTime);
            return true;
         }
@@ -125,7 +150,24 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * Edit the remarks of the patient.
+     * Edit the reason of the appointment in the shared appointment map.
+     *
+     * @param patient Contains the patient that to get appointment from.
+     * @param newReason The new reason to be edited into.
+     * @return the appointment with the specified apptID or null if not found.
+     */
+    private Boolean editReason(Patient patient, String newReason) {
+        for (Appointment appointment : patient.getAppointments()) {
+            if (appointment.getAppointmentId().equals(apptID)) {
+                appointment.setReason(newReason);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Edit the remark of the appointment in the shared appointment map.
      *
      * @param appointment The appointment which reason is to be edited.
      * @param newReason The appointment's updated reason.
@@ -138,8 +180,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
 
     /**
      * Edit the appointment details with the information provided by calling.
-     * {} (or) {}
-     * (or) {} as require
      *
      * @param patients Contains the list of patients on which the commands are executed on.
      * @param appointments Contains the list of appointments on which the commands are executed on.
@@ -156,18 +196,20 @@ public class EditAppointmentCommand extends AppointmentCommand {
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
         }
-        Patient targetPatient = findPatient(patients);
-        Appointment targetappt = findAppointment(appointments);
+        Appointment editAppt = findAppointment(appointments); //from the shared appointment map
+        if (editAppt == null) {
+            throw new HappyPillsException("    Appointment not found. Please try again.");
+        }
         Boolean output = false;
         String errorMsg = "Something went wrong, the edit could not be made.";
         if (field.equals("/d")) {
-            output = editDate(findAppointment(targetPatient), content) && editDate(targetappt,content);
+            output = editDate(editPatient, content) && editDate(editAppt,content);
             errorMsg = output?errorMsg:"Invalid date or date format(DD/MM/YYYY).";
         } else if (field.equals("/t")) {
-            output = editTime(findAppointment(targetPatient), content) && editTime(targetappt,content);
+            output = editTime(editPatient, content) && editTime(editAppt,content);
             errorMsg = output?errorMsg:"Invalid time or time format(HH:MM).";
         } else if (field.equals("/r")) {
-            output = editReason(findAppointment(targetPatient), content) && editReason(targetappt,content);
+            output = editReason(editPatient, content) && editReason(editAppt,content);
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit appointment command, "
             + "\n    enter \"help appt edit\"");
@@ -177,6 +219,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
         } catch (IOException e) {
             logger.info("Adding patient list to file failed.");
         }*/
-        return output?TextUi.EditAppointmentSuccessMessage(targetappt):errorMsg;
+        return output?TextUi.EditAppointmentSuccessMessage(editAppt):errorMsg;
     }
 }

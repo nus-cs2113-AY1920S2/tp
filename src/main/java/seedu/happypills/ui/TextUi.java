@@ -182,18 +182,6 @@ public class TextUi {
     }
 
     /**
-     * Display updated patient's appointment.
-     *
-     * @param appointment The appointment that was updated.
-     * @return The patient's updated appointment.
-     */
-    public static String EditAppointmentSuccessMessage(Appointment appointment) {
-        String message = "    Patient appointment have been updated as follows:\n"
-                + appointment + DIVIDER;
-        return message;
-    }
-
-    /**
      * Displays detailed Add command instruction.
      *
      * @return The Add command instruction.
@@ -408,5 +396,17 @@ public class TextUi {
      */
     public static void print(String string) {
         System.out.println(string);
+    }
+
+    /**
+     * Display updated patient's appointment.
+     *
+     * @param appointment The appointment that was updated.
+     * @return The patient's updated appointment.
+     */
+    public static String EditAppointmentSuccessMessage(Appointment appointment) {
+        String message = "    Patient appointment have been updated as follows:\n"
+                + appointment + DIVIDER;
+        return message;
     }
 }
