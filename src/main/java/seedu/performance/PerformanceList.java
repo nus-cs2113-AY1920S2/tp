@@ -4,6 +4,7 @@ import seedu.exception.DukeException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static seedu.performance.Performance.performanceListNameComparator;
@@ -25,6 +26,9 @@ public class PerformanceList {
         ui.addPerformanceMessage(performance.studentName, eventName);
     }
 
+    public ArrayList<Performance> getPerformanceList() {
+        return performanceList;
+    }
     /**
      * Delete the student's performance from the performance list.
      * It detects whether the current list is empty, contains the
