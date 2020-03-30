@@ -34,8 +34,8 @@ class DoneAppointmentCommandTest {
         }
 
         //add test appointment
-        Appointment appointmentOne = new Appointment("S123A", "reason1", "01/02/2020", "12:00:00");
-        Appointment appointmentTwo = new Appointment("S123A", "reason2", "01/03/2020", "13:00:00");
+        Appointment appointmentOne = new Appointment("1","S123A", "01/02/2020", "12:00:00","reason1",false);
+        Appointment appointmentTwo = new Appointment("2","S123A", "01/03/2020", "13:00:00","reason2", false);
 
         try {
             newAppointmentMap.addAppointment(appointmentOne);

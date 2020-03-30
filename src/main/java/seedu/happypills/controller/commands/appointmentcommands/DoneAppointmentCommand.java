@@ -1,21 +1,29 @@
 package seedu.happypills.controller.commands.appointmentcommands;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
+
+import java.io.IOException;
+import java.util.logging.Logger;
 
 public class DoneAppointmentCommand extends AppointmentCommand {
     protected String nric;
     protected String apptID;
+
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
 
     /**
      * Constructor for DoneAppointmentCommand Class.
      * It creates a new DoneAppointmentCommand Object with the information provided.
      *
      * @param nric Contains the nric of the patient that is to be retrieved.
+     * @param apptID Contains the id of the appointment to be marked as done
      */
     public DoneAppointmentCommand(String nric, String apptID) {
         this.nric = nric;
@@ -97,13 +105,14 @@ public class DoneAppointmentCommand extends AppointmentCommand {
         Boolean output = editDone(editPatient) && editDone(editAppt);
         if (!output) {
             throw new HappyPillsException(" An unknown error has occurred, please try again later.");
+        } else {
+            try {
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+            } catch (IOException e) {
+                logger.info("Adding patient list to file failed.");
+            }
         }
 
-        /*try {
-            Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
-        } catch (IOException e) {
-            logger.info("Adding patient list to file failed.");
-        }*/
         return TextUi.doneAppointmentSuccessMessage(editAppt);
     }
 }

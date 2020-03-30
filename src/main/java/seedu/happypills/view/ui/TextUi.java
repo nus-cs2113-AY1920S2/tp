@@ -332,9 +332,9 @@ public class TextUi {
     }
 
     /**
-     * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
-     * @param patients A patient list with all existing patients
-     * @return a message to be displayed to user
+     * returns a list of patients' name and their details.
+     * @param patients A patient list with all existing patients.
+     * @return a message to be displayed to user.
      */
     public static String getFormattedPatientString(PatientMap patients) {
         String formattedPatientString = "";
@@ -343,6 +343,20 @@ public class TextUi {
             formattedPatientString += p.toSave();
         }
         return formattedPatientString;
+    }
+
+    /**
+     * Retuens a list of patients' NRIC and appointment details.
+     * @param appointments An appointment list with all existing patients.
+     * @return a message to be displayed to user.
+     */
+    public static String getFormattedApptString(AppointmentMap appointments) {
+        String formattedAppointmentString = "";
+        for (Map.Entry appointment : appointments.entrySet()) {
+            Appointment a = (Appointment) appointment.getValue();
+            formattedAppointmentString += a.toSave();
+        }
+        return formattedAppointmentString;
     }
 
     /**

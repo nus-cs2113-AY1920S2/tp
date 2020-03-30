@@ -1,16 +1,23 @@
 package seedu.happypills.controller.commands.appointmentcommands;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
+
+import java.io.IOException;
+import java.util.logging.Logger;
 
 public class EditAppointmentCommand extends AppointmentCommand {
     protected String nric;
     protected String newContent;
     protected  String apptID;
+
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
 
     /**
      * Constructor for EditAppointmentCommand Class.
@@ -18,6 +25,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      *
      * @param nric Contains the nric of the patient that is to be retrieved.
      * @param newContent Contains the string that the attribute is to be updated to.
+     * @param apptID Contains the id of the appointment that is to be edited
      */
     public EditAppointmentCommand(String nric, String apptID, String newContent) {
         this.nric = nric;
@@ -190,7 +198,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
         if (content.length() == 0) {
             return TextUi.editAptHelpMessage();
         }
-        String field = newContent.substring(0,2);
+        String field = newContent.substring(0,2).trim();
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
@@ -213,11 +221,13 @@ public class EditAppointmentCommand extends AppointmentCommand {
             throw new HappyPillsException("    Please try again. To learn more about the Edit appointment command, "
             + "\n    enter \"help appt edit\"");
         }
-        /*try {
-            Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
-        } catch (IOException e) {
-            logger.info("Adding patient list to file failed.");
-        }*/
+        if (output) {
+            try {
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+            } catch (IOException e) {
+                logger.info("Adding patient list to file failed.");
+            }
+        }
         errorMsg = TextUi.appendDivider(errorMsg);
         return output ? TextUi.editAppointmentSuccessMessage(editAppt) : errorMsg;
     }
