@@ -13,7 +13,6 @@ public class AvailableModulesListTest {
     void getModule() {
         AvailableModulesList modulesList = new AvailableModulesList();
         NewModule module = new NewModule("CS1010", "Programming Methodology", 4);
-        //AvailableModulesList modulesList = (AvailableModulesList) AvailableModulesList.availableModulesList;
         assertEquals(module, modulesList.getModule("CS1010"));
     }
 }
