@@ -131,11 +131,9 @@ Users can manage their appointment schedule using these commands:
    
      - An appointment can be marked as done after the patient has showed up for the appointment.
      
-   - `list appt [START DATE] - [END DATE]` 
+   - `list appt` 
    
      - Users can list all the appointments that has been scheduled within the program.
-     
-     - [OPTIONAL] Users can include the range of dates of the appointments that is to be listed down.
 
 #### 4.2.3 Design Consideration
    
