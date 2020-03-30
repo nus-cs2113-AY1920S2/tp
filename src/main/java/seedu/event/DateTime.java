@@ -68,4 +68,12 @@ public class DateTime {
     public String toString() {
         return this.dateTimeFormat;
     }
+
+    public String toStorable() {
+        return getDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+    }
+
+    public static DateTime parseStorable(String representation) {
+        return new DateTime(representation);
+    }
 }

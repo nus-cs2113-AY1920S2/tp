@@ -29,7 +29,7 @@ public class Storage {
         String input = null;
         do {
             try {
-                input = fileIO.readOneEvent();
+                input = fileIO.read();
                 Event newEvent = Event.parseStorable(input);
                 eventList.add(newEvent);
             } catch (DukeException m) {
@@ -49,7 +49,7 @@ public class Storage {
      */
     public void saveEventList(EventList eventList) throws DukeException {
         for (Event event : eventList.list) {
-            fileIO.write(event.toStorable());
+            fileIO.write(event.toStorable() + System.lineSeparator());
         }
     }
     

@@ -84,7 +84,7 @@ public class StudentList {
      * @return a studentList
      */
     public static StudentList parseString(String representation) {
-        String[] tokens = representation.split("|");
+        String[] tokens = representation.split("\\|");
         assert tokens.length > 0 : "Not a studentList";
 
         String listName = tokens[0];

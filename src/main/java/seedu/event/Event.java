@@ -149,66 +149,82 @@ public class Event {
      * @return a storage-compatible String representation of the event
      */
     public String toStorable() {
-        StringBuilder output = new StringBuilder(name + ','
-                + datetime.getDateTime() + ','
+        StringBuilder output = new StringBuilder(name + '|'
+                + datetime.toStorable() + '|'
                 + venue
-                + System.lineSeparator());
+                + ", ");
 
         for (Attendance attendance : attendanceList.getAttendanceList()) {
             output.append(attendance.toString());
-            output.append(',');
+            output.append('|');
         }
-        output.append(System.lineSeparator());
+        // add a space to prevent NoSuchElementException, in case no AttendanceList
+        output.append(", ");
 
         for (Performance performance : performanceList.getPerformanceList()) {
             output.append(performance.toString());
-            output.append(',');
+            output.append('|');
         }
-        output.append(System.lineSeparator());
+        // add a space to prevent NoSuchElementException, in case no PerformanceList
+        output.append(", ");
 
         return output.toString();
     }
 
     /**
      * Returns an event based on its storage-compatible String representation.
+     * Major components are split by {@code ,}, minor components are split by {@code |}.
      * @param representation a storage-compatible String representation of an event
      * @return an Event object
      */
     public static Event parseStorable(String representation) throws DukeException {
-        String[] tokens = representation.split(System.lineSeparator());
+        String[] tokens = representation.split(",");
 
         // name, datetime, venue
-        String[] token1 = tokens[0].split(",");
+        String[] token1 = tokens[0].split("\\|");
         String name = token1[0];
         String datetime = token1[1];
-        String venue = token1[2];
+        String venue;
+        try {
+            venue = token1[2];
+        } catch (ArrayIndexOutOfBoundsException m) {
+            venue = "";
+        }
 
         Event newEvent = new Event(name, datetime, venue);
 
         // add attendance list, populate it
         AttendanceList attendanceList = new AttendanceList();
-        String[] token2 = tokens[1].split(",");
-        for (String attendance : token2) {
-            String[] attendanceDetail = attendance.split(": ");
-            assert attendanceDetail.length == 2 : "Name contains ': '";
-            String person = attendanceDetail[0];
-            String isPresent = attendanceDetail[1];
-            Attendance newAttendance = new Attendance(person, isPresent);
+        try {
+            String[] token2 = tokens[1].split("\\|");
+            for (String attendance : token2) {
+                String[] attendanceDetail = attendance.split(": ");
+                assert attendanceDetail.length == 2 : "Name contains ': '";
+                String person = attendanceDetail[0];
+                String isPresent = attendanceDetail[1];
+                Attendance newAttendance = new Attendance(person, isPresent);
 
-            attendanceList.addToList(newAttendance, name);
+                attendanceList.addToList(newAttendance, name);
+            }
+        } catch (ArrayIndexOutOfBoundsException m) {
+            // Do nothing, as intended
         }
 
         // add performance list, populate it
         PerformanceList performanceList = new PerformanceList();
-        String[] token3 = tokens[2].split(",");
-        for (String performance : token3) {
-            String[] performanceDetail = performance.split(": ");
-            assert performanceDetail.length == 2 : "Name contains ': '";
-            String person = performanceDetail[0];
-            String result = performanceDetail[1];
-            Performance newPerformance = new Performance(person, result);
+        try {
+            String[] token3 = tokens[2].split("\\|");
+            for (String performance : token3) {
+                String[] performanceDetail = performance.split(": ");
+                assert performanceDetail.length == 2 : "Name contains ': '";
+                String person = performanceDetail[0];
+                String result = performanceDetail[1];
+                Performance newPerformance = new Performance(person, result);
 
-            performanceList.addToList(newPerformance, name);
+                performanceList.addToList(newPerformance, name);
+            }
+        } catch (ArrayIndexOutOfBoundsException m) {
+            // Do nothing, as intended
         }
 
         return newEvent;
