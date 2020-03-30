@@ -89,7 +89,7 @@ public class AppointmentParser {
             }
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
-                return new IncorrectAppointmentCommand();
+                return new IncorrectAppointmentCommand("    Appointment is not added\n");
             }
             String[] updates;
             if (input.startsWith("/")) {
@@ -115,17 +115,16 @@ public class AppointmentParser {
         System.out.println(promptConfirmation(parseInput));
         while (!userConfirmation) {
             String confirmation = promptUser();
-            System.out.println(confirmation);
             System.out.println(TextUi.DIVIDER);
             if (confirmation.equalsIgnoreCase("y")) {
                 userConfirmation = true;
             } else if (confirmation.equalsIgnoreCase("n")) {
-                return new IncorrectAppointmentCommand();
+                return new IncorrectAppointmentCommand("    Appointment is not added.\n");
             } else {
                 System.out.println("    Please input [y] for yes or [n] for no");
             }
         }
-        return new AddAppointmentCommand(parseInput[0].trim().substring(1), parseInput[1].trim(),
+        return new AddAppointmentCommand(parseInput[0].toUpperCase().substring(1).trim(), parseInput[1].trim(),
                 parseInput[2].trim(), parseInput[3].trim());
     }
 
