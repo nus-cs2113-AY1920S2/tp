@@ -31,7 +31,8 @@ public class Parser {
                 return new ExitCommand();
             } else {
                 // incorrect command
-                return new IncorrectAppointmentCommand("    Command is invalid. Enter help to know how to use HappyPills.\n");
+                return new IncorrectAppointmentCommand("    Command is invalid. "
+                        + "Enter help to know how to use HappyPills.\n");
             }
         } else if (userCommand[1].equalsIgnoreCase("patient")) {
             return PatientParser.parse(fullCommand);
@@ -40,7 +41,8 @@ public class Parser {
         } else if (userCommand[1].equalsIgnoreCase("visit")) {
             return VisitParser.parse(fullCommand);
         } else {
-            return new IncorrectAppointmentCommand("    Command is invalid. Enter help to know how to use HappyPills.\n");
+            return new IncorrectAppointmentCommand("    Command is invalid. "
+                   + "Enter help to know how to use HappyPills.\n");
         }
     }
 }
