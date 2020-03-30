@@ -20,66 +20,9 @@ public class EventParser {
         this.index = -1;
     }
 
-    public String getDateTime() {
-        return date + " " + time;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
-    public void parseTokens(String parameters) throws DukeException {
+    public void parse(String parameters) throws DukeException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
-    }
-
-
-    /**
-     * Returns the index in a string of parameters with this format:
-     * [i/INDEX] ... .
-     * @param parameters original parameters
-     * @return the index in a string of parameters
-     */
-    public int parseIndex(String parameters) throws DukeException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        return index;
-    }
-
-    /**
-     * Parses string passed in to obtain name of the event.
-     *
-     * @param parameters Input String by user in the format: i/[INDEX] n/[EVENTNAME]
-     * @return Name of event as a string.
-     */
-    public String parseEventName(String parameters) throws DukeException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        return name;
-    }
-
-    /**
-     * Parses input string to obtain date and time of the event.
-     *
-     * @param parameters Input String by user in the format: i/[INDEX] d/[EVENTDATE] t/[EVENTTIME]
-     * @return Date and time of the event as a string.
-     */
-    public String parseEventDateTime(String parameters) throws DukeException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        return date + " " + time;
-    }
-
-    /**
-     * Parses input string to obtain venue of the event.
-     *
-     * @param parameters Input String by user in the format: i/[INDEX] v/[EVENTVENUE]
-     * @return Venue of the event as a String
-     */
-    public String parseVenue(String parameters) throws DukeException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        return venue;
     }
 
     /**
@@ -140,7 +83,7 @@ public class EventParser {
                     mostRecent = "venue";
                     break;
                 case "i/":
-                    ensureNotDuplicateIndex(index, "EventParser: Duplicate index flag");
+                    ensureNotDuplicateFlag(index, "EventParser: Duplicate index flag");
                     try {
                         index = Integer.parseInt(token.substring(2));
                     } catch (NumberFormatException m) {
@@ -195,8 +138,8 @@ public class EventParser {
         }
     }
 
-    private void ensureNotDuplicateIndex(int index, String message) throws DukeException {
-        if (index != -1) {
+    private void ensureNotDuplicateFlag(int name, String message) throws DukeException {
+        if (name != -1) {
             throw new DukeException(message);
         }
     }
@@ -210,5 +153,25 @@ public class EventParser {
      */
     private boolean isUnknownFlag(String input) {
         return input.charAt(1) == '/';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }
