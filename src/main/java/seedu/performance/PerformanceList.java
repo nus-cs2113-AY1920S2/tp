@@ -4,7 +4,6 @@ import seedu.exception.DukeException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static seedu.performance.Performance.performanceListNameComparator;
