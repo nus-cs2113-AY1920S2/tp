@@ -41,9 +41,9 @@ public class FindCommand extends Command {
             if (parameters.length() < 1) {
                 throw new EmptyQueryException();
             } else {
-                String keywords[] = parameters.split(" / ");
+                String[] keywords = parameters.split(" / ");
                 lastShownList.activities.clear();
-                for(String keyword : keywords) {
+                for (String keyword : keywords) {
                     populateLastShownList(keyword, activityList.activities);
                 }
                 Ui.printResults(lastShownList);
@@ -64,7 +64,7 @@ public class FindCommand extends Command {
             if (query.length() < 1) {
                 throw new EmptyQueryException();
             } else {
-                String keywords[] = query.split(" / ");
+                String[] keywords = query.split(" / ");
                 lastShownList.activities.clear();
                 for (String keyword : keywords) {
                     populateLastShownList(keyword, prevList);

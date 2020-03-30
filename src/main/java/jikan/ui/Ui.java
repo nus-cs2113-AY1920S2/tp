@@ -166,7 +166,7 @@ public class Ui {
         } else {
             System.out.println("Great job! Here's your progress:");
         }
-        int starsLeft = (int) (percent/ PROGRESSCONVERTER);
+        int starsLeft = (int) (percent / PROGRESSCONVERTER);
         System.out.print("Progess for " + Parser.activityName + ": ");
         System.out.print("|");
         for (int i = 0; i < TOTALBARS; i++) {
