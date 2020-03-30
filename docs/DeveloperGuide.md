@@ -67,7 +67,7 @@ This section describes some noteworthy details of how our application works in t
 ### 3.1. Detailed implementation of modulelogic component
 ![modulelogic Component](images/TimetableParser.png)<br>
 The above figure shows```TimetableParser```, a private class called exclusively by ```LessonsGenerator```. It makes use of regex to sift through timetable link provided by user in the form of ```String``` object and stores
-the semester and the user's module information according to the timetable link provided. It depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.
+the semester and the user's module information according to the timetable link provided. It depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
 ![modulelogic Component](images/ModuleHandler.jpg)<br>
  From the figure above, ```ModuleApiParser``` instantiates a HTTP GET request object to fetch a Json object from the open-sourced NUSMOD API server, and is called by ```ModuleHandler``` every time a particular module information is requested.
  <br>
