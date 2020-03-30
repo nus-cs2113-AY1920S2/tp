@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static common.Messages.MESSAGE_INVALID_NUMBER;
-import static common.Messages.FORMAT_TIMETABLE;
 import static java.lang.System.out;
 
 /**
@@ -39,7 +38,6 @@ public class TextUI {
                 + "______________________________________________________________________");
         out.println("[contacts] List all contacts.");
         out.println("[timetable] Display combined timetable of selected contacts.");
-        out.println("[edit] Edit contacts' timetable.");
         out.println("[schedule] Schedule a new meeting.");
         out.println("[delete] Delete a scheduled meeting.");
         out.println("[meetings] List all scheduled meetings.");
@@ -109,11 +107,6 @@ public class TextUI {
 
     public static void invalidNumberMsg() {
         out.println(MESSAGE_INVALID_NUMBER);
-    }
-
-    public static void invalidNumberTimetableMsg() {
-        invalidNumberMsg();
-        out.println(FORMAT_TIMETABLE);
     }
 
     public static void indexOutOfBoundsMsg() {
@@ -203,6 +196,19 @@ public class TextUI {
 
     public static void showRepeatedPerson(String userInputWord) {
         out.println(userInputWord + " already exists!");
+    }
+
+    public static void printFormatTimetable() {
+        out.println("\nTo display timetable:\ntimetable\ntimetable <Member Number 1>"
+                + "\ntimetable <Member Number 1> <Member Number 2>");
+    }
+
+    public static void printFormatSchedule() {
+        out.println("\nTo schedule a meeting:\nschedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>");
+    }
+
+    public static void printFormatDelete() {
+        out.println("\nTo delete contact:\ndelete <Member Number>");
     }
 }
 
