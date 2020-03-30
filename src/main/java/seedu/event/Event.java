@@ -149,7 +149,10 @@ public class Event {
      * @return a storage-compatible String representation of the event
      */
     public String toStorable() {
-        StringBuilder output = new StringBuilder(name + '|'
+        String type = this.getClass().getSimpleName();
+
+        StringBuilder output = new StringBuilder(type + '|'
+                + name + '|'
                 + datetime.toStorable() + '|'
                 + venue
                 + ", ");
@@ -178,20 +181,28 @@ public class Event {
      * @return an Event object
      */
     public static Event parseStorable(String representation) throws DukeException {
+        Event newEvent;
         String[] tokens = representation.split(",");
 
         // name, datetime, venue
         String[] token1 = tokens[0].split("\\|");
-        String name = token1[0];
-        String datetime = token1[1];
+        String type = token1[0];
+        String name = token1[1];
+        String datetime = token1[2];
         String venue;
         try {
-            venue = token1[2];
+            venue = token1[3];
         } catch (ArrayIndexOutOfBoundsException m) {
             venue = "";
         }
 
-        Event newEvent = new Event(name, datetime, venue);
+        switch (type) {
+        case "Seminar":
+            newEvent = new Seminar(name, datetime, venue);
+            break;
+        default:
+            newEvent = new Event(name, datetime, venue);
+        }
 
         // add attendance list, populate it
         AttendanceList attendanceList = new AttendanceList();
