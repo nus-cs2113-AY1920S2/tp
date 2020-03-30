@@ -150,7 +150,7 @@ public class TextUi {
     public static void printDeleteConfirmation(Patient patient) {
         System.out.println("    Are you sure you want to delete this patient:\n      "
                 + patient.getName()
-                + " || "
+                + " | "
                 + patient.getNric()
                 + "\n                                                   (Y/N)?\n"
                 + DIVIDER);
@@ -165,7 +165,7 @@ public class TextUi {
         System.out.println("    Please try again."
                 + "    Are you sure you want to delete this patient:\n      "
                 + patient.getName()
-                + " || "
+                + " | "
                 + patient.getNric()
                 + "\n                                                   (Y/N)?\n"
                 + DIVIDER);
@@ -432,7 +432,7 @@ public class TextUi {
      * @return display message.
      */
     public static String deletePatient(Patient patient) {
-        return "    Patient " + patient.getName() + " || " + patient.getNric()
+        return "    Patient " + patient.getName() + " | " + patient.getNric()
             + " has been deleted successfully.\n";
     }
 
