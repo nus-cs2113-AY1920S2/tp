@@ -78,14 +78,35 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
             eventName = ui.getEventNameForAttendance();
             attendances = getAttendance(eventName);
             return new ClearAttendanceList(attendances, eventName);
+
         case "sort":
-            eventName = ui.getEventNameForAttendance();
-            attendances = getAttendance(eventName);
-            return new SortAttendanceListByName(attendances);
-        case "sort/":
-            eventName = ui.getEventNameForAttendance();
-            attendances = getAttendance(eventName);
-            return new SortAttendanceListByStatus(attendances);
+            try {
+                ui.displayStudentMessage("Please Key in either 'name' or 'status'.");
+                ui.readUserInput();
+                String sortType = ui.getUserInput();
+                switch (sortType) {
+                case "name":
+                    try {
+                        eventName = ui.getEventNameForAttendance();
+                        attendances = getAttendance(eventName);
+                        return new SortAttendanceListByName(attendances, eventName);
+                    } catch (Exception e) {
+                        throw new DukeException("Attendance Command Sort By Name failed.");
+                    }
+                case "status":
+                    try {
+                        eventName = ui.getEventNameForAttendance();
+                        attendances = getAttendance(eventName);
+                        return new SortAttendanceListByStatus(attendances, eventName);
+                    } catch (Exception e) {
+                        throw new DukeException("Attendance Command Sort By Status failed.");
+                    }
+                default:
+                    throw new DukeException("Unknown Attendance Sort Command");
+                }
+            } catch (Exception e) {
+                throw new DukeException("Attendance Command Sort failed.");
+            }
         default:
             throw new DukeException("Attendance: Unknown command.");
         }

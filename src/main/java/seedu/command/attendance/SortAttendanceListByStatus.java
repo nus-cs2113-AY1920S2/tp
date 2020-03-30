@@ -13,8 +13,10 @@ public class SortAttendanceListByStatus extends Command {
 
     protected UI ui;
     protected AttendanceList attendances;
+    protected String eventName;
 
-    public SortAttendanceListByStatus(AttendanceList attendances) {
+    public SortAttendanceListByStatus(AttendanceList attendances, String eventName) {
+        this.eventName = eventName;
         this.attendances = attendances;
         this.ui = new UI();
     }
@@ -27,7 +29,7 @@ public class SortAttendanceListByStatus extends Command {
             ui.displayAttendanceMessage("An empty list cannot be sorted");
         } else {
             attendances.sortByStatus();
-            ui.displayAttendanceMessage("sorted by status");
+            ui.sortAttendanceByStatus(eventName);
         }
     }
 

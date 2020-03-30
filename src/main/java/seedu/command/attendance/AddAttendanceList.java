@@ -56,13 +56,13 @@ public class AddAttendanceList extends Command {
         String name = "";
         String status = "";
         while (!status.equals("done")) {
-            System.out.println("\nName of Student?");
+            System.out.println("Please key in student name.");
             ui.readUserInput();
             name = ui.getUserInput();
             if (name.equals("done")) {
                 break;
             }
-            System.out.println("\nStatus [Y/N]?");
+            System.out.println("Please key in the student's attendance status [Y/N].");
             ui.readUserInput();
             status = ui.getUserInput();
             attendances.addToList(new Attendance(name,status), eventName);

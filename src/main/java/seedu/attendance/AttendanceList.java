@@ -3,6 +3,7 @@ package seedu.attendance;
 import seedu.exception.DukeException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -30,7 +31,7 @@ public class AttendanceList {
 
     public void addToList(Attendance attendance, String eventName) {
         attendanceList.add(attendance);
-        ui.addAttendanceMessage(attendance.studentName, eventName);
+        ui.addAttendanceMessage(attendance.studentName, attendance.getAttendanceStatus(), eventName);
     }
 
     public void printList() throws DukeException {
