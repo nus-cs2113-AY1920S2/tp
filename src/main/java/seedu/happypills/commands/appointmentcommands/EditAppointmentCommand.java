@@ -57,7 +57,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return true if correct date format, false otherwise
      */
     static boolean checkDate(String date) {
-        String pattern = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|2[0-9])[0-9]{2})";
+        String pattern = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((2[0-9])[0-9]{2})";
         return date.matches(pattern);
     }
 
@@ -104,7 +104,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return true if correct date format, false otherwise.
      */
     static boolean checkTime(String time) {
-        String pattern = "([01][0-9]|2[0-3]):([0-5][0-9]|60)";
+        String pattern = "([01][0-9]|2[0-3]):([0-5][0-9])";
         return time.matches(pattern);
     }
 
@@ -186,8 +186,11 @@ public class EditAppointmentCommand extends AppointmentCommand {
         if (newContent.length() < 3) {
             return TextUi.editAptHelpMessage();
         }
-        String field = newContent.substring(0,2);
         String content = newContent.substring(2).trim();
+        if (content.length() == 0) {
+            return TextUi.editAptHelpMessage();
+        }
+        String field = newContent.substring(0,2);
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
@@ -197,13 +200,13 @@ public class EditAppointmentCommand extends AppointmentCommand {
             throw new HappyPillsException("    Appointment not found. Please try again.");
         }
         Boolean output = false;
-        String errorMsg = "Something went wrong, the edit could not be made.";
+        String errorMsg = "    Something went wrong, the edit could not be made.\n";
         if (field.equals("/d")) {
             output = editDate(editPatient, content) && editDate(editAppt,content);
-            errorMsg = output ? errorMsg : "Invalid date or date format(DD/MM/YYYY).";
+            errorMsg = output ? errorMsg : "    Invalid date or date format(DD/MM/YYYY).\n";
         } else if (field.equals("/t")) {
             output = editTime(editPatient, content) && editTime(editAppt,content);
-            errorMsg = output ? errorMsg : "Invalid time or time format(HH:MM).";
+            errorMsg = output ? errorMsg : "    Invalid time or time format(HH:MM).\n";
         } else if (field.equals("/r")) {
             output = editReason(editPatient, content) && editReason(editAppt,content);
         } else {
@@ -215,6 +218,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
         } catch (IOException e) {
             logger.info("Adding patient list to file failed.");
         }*/
+        errorMsg = TextUi.appendDivider(errorMsg);
         return output ? TextUi.editAppointmentSuccessMessage(editAppt) : errorMsg;
     }
 }
