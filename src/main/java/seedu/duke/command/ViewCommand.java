@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
+import seedu.duke.exception.RuntimeException;
 import seedu.duke.module.Module;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
@@ -29,7 +30,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
         switch (viewTaskType) {
         case VIEW_MODULE_PLAN:
             viewModulePlan(semesterList);
@@ -44,7 +45,9 @@ public class ViewCommand extends Command {
             viewCompletedCredits();
             break;
         default:
+            throw new RuntimeException("Please enter 'help' to find an acceptable command!");
         }
+        assert viewTaskType != null;
     }
 
     /**
