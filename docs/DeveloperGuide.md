@@ -38,7 +38,9 @@ By: `AY1920S2-CS2113T-T12-1`
 ### 2.2. UI component
 
 ### 2.3. Module parsing logic component
-**Structure of the module logic component.**
+The Module parsing logic component retrieves module information from NUSMODS API.
+
+**Structure of the module logic component:**
 <br>
 The module parsing logic of our application consists of 4 classes: ```TimetableParser ModuleApiParser ModuleHandler LessonsGenerator```.
 A detailed implementation would be explained in the implementation section.
@@ -51,8 +53,16 @@ A detailed implementation would be explained in the implementation section.
 4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
 <br>
 
-### 2.4. Member component
+### 2.4. Schedule component
+The Schedule component finds common free slots from team members’ schedules.
 
+**Structure of the Schedule component:**
+
+The Schedule component of our application consists of 3 classes TeamMember```, ```TeamMemberList``` and ```ScheduleHandler```. 
+
+1. ```TeamMember``` consists of information of a member's schedule.
+2. ```TeamMemberList``` is a ```Arraylist<TeamMember> ``` which new ```TeamMember``` can be added to.
+3. ```ScheduleHandler``` retrieves the schedule of selected ```TeamMember``` in the ```TeamMemberList```, to generate a combined schedule.
 ### 2.5. Meeting component
 The Meeting component of our application consists of 2 classes: ```Meeting MeetingList```
 <br>
