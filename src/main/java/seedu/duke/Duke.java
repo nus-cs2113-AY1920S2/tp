@@ -30,15 +30,16 @@ public class Duke {
 
         ui = new UI();
 
-        interpreter = new CommandInterpreter(eventList);
-        studentListCollection = new StudentListCollection();
-
         storage = new Storage(filepath);
         eventList = storage.loadEventList();
         studentListCollection = storage.loadStudentListCollection();
         if (eventList == null) {
             eventList = new EventList();
         }
+        if (studentListCollection == null) {
+            studentListCollection = new StudentListCollection();
+        }
+        interpreter = new CommandInterpreter(eventList);
     }
 
     private void setupLogger() {
