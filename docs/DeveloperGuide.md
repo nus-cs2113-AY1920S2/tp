@@ -208,7 +208,7 @@ The following sequence diagram shows the relevant interactions behind `search re
 
 In restaurant daily report, a user can search from available menu items using the search dish commmand.
 
-The search dish command takes in a keyword denoted by /k, and searches all dish names for dishes containing the keyword.
+The search dish command takes in a keyword denoted by k/, and searches all dish names for dishes containing the keyword.
 
 An example of the usage of search dish can be found below.
 
@@ -235,7 +235,7 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 + Cons: Cannot easily find if the menu contains your favorite dish by name, like `ratatouille`
 
 ##### Aspect: Data structure in search dish
-* **Alternative 1 (current choice)**: Create a new temporary HashMap<String, Dish> that contains all dishes that match the search
+* **Alternative 1 (current choice)**: Create a new temporary `HashMap<String, Dish>` that contains all dishes that match the search
 + Pros: Flexible to use later on, easy to implement
 + Cons: Potentially duplicate work as similar functionality could be accomplished without creating a new HashMap
 
