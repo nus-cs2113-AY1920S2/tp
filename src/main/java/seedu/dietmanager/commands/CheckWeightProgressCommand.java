@@ -19,6 +19,7 @@ public class CheckWeightProgressCommand extends Command {
     private double initialWeight;
     private double currentWeight;
     private double weightDifference;
+    private boolean noDescription;
 
 
     /**
@@ -30,17 +31,25 @@ public class CheckWeightProgressCommand extends Command {
     public CheckWeightProgressCommand(String command, String description)
             throws InvalidFormatException, NumberFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.profileName = descriptionArray[0];
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.profileName = descriptionArray[0];
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        weightRecord = profile.getWeightProgress();
-        weightRecordDays = profile.getWeightProgressDays();
-        ui.showCommandMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE); //Wil change this part later on
-        for (int i = 0; i < weightRecord.size(); i++) {
-            ui.showCommandMessage(i + 1 + ". " + weightRecord.get(i) + "kg " + weightRecordDays.get(i));
+        if (!this.noDescription) {
+            weightRecord = profile.getWeightProgress();
+            weightRecordDays = profile.getWeightProgressDays();
+            ui.showCommandMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE); //Wil change this part later on
+            for (int i = 0; i < weightRecord.size(); i++) {
+                ui.showCommandMessage(i + 1 + ". " + weightRecord.get(i) + "kg " + weightRecordDays.get(i));
+            }
         }
 
         saveResult(profile);
@@ -48,6 +57,11 @@ public class CheckWeightProgressCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
+        if (this.noDescription) {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return;
+        }
+
         initialWeight = weightRecord.get(0);
         currentWeight = weightRecord.get(weightRecord.size() - 1);
         weightDifference = initialWeight - currentWeight;
