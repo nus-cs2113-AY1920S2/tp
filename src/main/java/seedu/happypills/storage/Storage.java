@@ -114,7 +114,8 @@ public class Storage {
      * @return patientList of all patients found in the file.
      * @throws FileNotFoundException if the file specified by directory/filename does not exist.
      */
-    public static AppointmentMap loadAppointmentFromFile(String filePath, PatientMap patients) throws FileNotFoundException {
+    public static AppointmentMap loadAppointmentFromFile(String filePath, PatientMap patients)
+            throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
         AppointmentMap storedAppt = new AppointmentMap();

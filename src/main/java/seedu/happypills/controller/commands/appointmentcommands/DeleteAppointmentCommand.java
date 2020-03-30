@@ -26,6 +26,19 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     }
 
     /**
+     * Retrieve the patient from the NRIC of the delete command.
+     *
+     * @param patients Contains the list of patients to be searched.
+     */
+    private Patient findPatient(PatientMap patients) {
+        if (patients.containsKey(nric)) {
+            return patients.get(nric);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Delete an appointment of the patient from the shared map.
      *
      * @param appointments The shared appointment map.
@@ -39,18 +52,6 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         return false;
     }
 
-    /**
-     * Retrieve the patient from the NRIC of the delete command.
-     *
-     * @param patients Contains the list of patients to be searched.
-     */
-    private Patient findPatient(PatientMap patients) {
-        if (patients.containsKey(nric)) {
-            return patients.get(nric);
-        } else {
-            return null;
-        }
-    }
     /**
      * Delete an appointment of the patient in the patient object.
      *
