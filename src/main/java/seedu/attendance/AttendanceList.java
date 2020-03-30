@@ -1,12 +1,10 @@
 package seedu.attendance;
 
-import seedu.StudentList;
 import seedu.exception.DukeException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import static seedu.attendance.Attendance.attendanceListNameComparator;
 import static seedu.attendance.Attendance.attendanceStatusComparator;

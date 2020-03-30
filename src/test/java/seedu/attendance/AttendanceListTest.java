@@ -13,15 +13,14 @@ public class AttendanceListTest {
     @Test
     void isEmpty() {
         assertEquals(true, attendanceList.isEmpty());
-        attendanceList.add(new Attendance("John Doe", "Yes"));
+        attendanceList.add(new Attendance("John Doe", "Y"));
         assertEquals(false, attendanceList.isEmpty());
     }
 
     @Test
     void getAttendanceList() {
-        System.out.println(attendanceList);
         assertEquals("[]", attendanceList.toString());
-        attendanceList.add(new Attendance("John Doe", "Yes"));
-        assertEquals("[John Doe: Yes]", attendanceList.toString());
+        attendanceList.add(new Attendance("John Doe", "Y"));
+        assertEquals("[John Doe: Y]", attendanceList.toString());
     }
 }
