@@ -1,5 +1,6 @@
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
+Content
 - [Setting up](#1-setting-up)
 	- [Prerequisites](#11-prerequisites)
 	- [Setting up the project](#12-setting-up-the-project)
