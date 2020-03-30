@@ -1,5 +1,7 @@
 package seedu.storage;
 
+import seedu.StudentList;
+import seedu.StudentListCollection;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
@@ -42,12 +44,45 @@ public class Storage {
 
     /**
      * Save all events to Storage.
+     * @param eventList the list of events to be stored
      * @throws DukeException if IOException occurs
      */
     public void saveEventList(EventList eventList) throws DukeException {
         for (Event event : eventList.list) {
             fileIO.write(event.toStorable());
         }
+    }
+    
+    /**
+     * Load all studentLists to a StudentListCollection object.
+     * @return a StudentListCollection object with all studentLists loaded
+     */
+    public StudentListCollection loadStudentListCollection() {
+        StudentListCollection studentListCollection = new StudentListCollection();
+        String input = null;
+        do {
+            try {
+                input = fileIO.read();
+                StudentList newStudentList = StudentList.parseString(input);
+                studentListCollection.add(newStudentList);
+            } catch (DukeException m) {
+                if (m.getMessage().equals("FileIO: nothing to read anymore")) {
+                    break;
+                }
+            }
+        } while (!input.isBlank());
+
+        return studentListCollection;
+    }
+
+    /**
+     * Save all studentLists to Storage.
+     * @param studentListCollection the list of studentlLsts to be stored
+     * @throws DukeException if IOException occurs
+     */
+    public void saveStudentListCollection(StudentListCollection studentListCollection) 
+        throws DukeException {
+        fileIO.write(studentListCollection.toString());
     }
 
     /**

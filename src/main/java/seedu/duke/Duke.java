@@ -35,6 +35,7 @@ public class Duke {
 
         storage = new Storage(filepath);
         eventList = storage.loadEventList();
+        studentListCollection = storage.loadStudentListCollection();
         if (eventList == null) {
             eventList = new EventList();
         }
@@ -70,6 +71,7 @@ public class Duke {
         } while (isNotBye(command));
 
         storage.saveEventList(eventList);
+        storage.saveStudentListCollection(studentListCollection);
         storage.close();
         ui.close();
     }
