@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -66,10 +68,14 @@ public class ModuleHandler {
         }
         this.unformattedModules = new HashSet<>();
         Scanner reader = null;
-        try {
-            reader = new Scanner(new File("UnformattedModules"));
-        } catch (FileNotFoundException e) {
-            System.out.println("WARNING, UnformattedModules file not found, please re-download from source code.");
+        // Only try reading from UnformattedModules if it exist, to prevent infinite exceptions
+        // due to ModuleHandler constructor being called at runOnce() in MeetingOrganizer class.
+        if (Files.exists(Paths.get("UnformattedModules"))) {
+            try {
+                reader = new Scanner(new File("UnformattedModules"));
+            } catch (FileNotFoundException e) {
+                System.out.println("WARNING, UnformattedModules file not found, please re-download from source code.");
+            }
         }
         assert reader != null;
         while (reader.hasNext()) {
@@ -82,27 +88,6 @@ public class ModuleHandler {
      * Run this to retrieve all the modules that doesn't follow the conventional format and
      * store it into /UnformattedModules file.
      */
-    public static void main(String[] args) throws IOException {
-        // RUN THIS TO FILTER UNFORMATTED MODULES INTO /UnformmattedModules file
-        FileWriter fw = new FileWriter("UnformattedModules", true);
-        URL url = new URL("https://api.nusmods.com/v2/2019-2020/moduleList.json");
-        HttpURLConnection request = (HttpURLConnection) url.openConnection();
-        request.connect();
-        //Convert the input stream to a json element
-        JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
-        JsonArray rootObj = root.getAsJsonArray();
-        for (int i = 0; i < rootObj.size(); i++) {
-            JsonObject module = rootObj.get(i).getAsJsonObject();
-            String moduleCode = module.get("moduleCode").toString().replaceAll("^.|.$", "");
-            try {
-                ModuleHandler myModuleHandler = new ModuleHandler(moduleCode);
-                myModuleHandler.generateModule();
-            } catch (Exception e) {
-                fw.write(moduleCode + "\n");
-            }
-        }
-        fw.close();
-    }
 
 
     /**

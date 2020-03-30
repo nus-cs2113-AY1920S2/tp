@@ -1,7 +1,21 @@
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import command.CommandHandler;
 import exception.MoException;
 import inputparser.CliParser;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import meeting.MeetingList;
+import modulelogic.ModuleHandler;
 import schedulelogic.TeamMember;
 import schedulelogic.TeamMemberList;
 import storage.Storage;
@@ -56,7 +70,38 @@ public class MeetingOrganizer {
         }
     }
 
+    public static void runOnce() throws IOException {
+        // RUN THIS TO FILTER UNFORMATTED MODULES INTO /UnformmattedModules file
+        FileWriter fw = new FileWriter("UnformattedModules", true);
+        URL url = new URL("https://api.nusmods.com/v2/2019-2020/moduleList.json");
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.connect();
+        //Convert the input stream to a json element
+        JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
+        JsonArray rootObj = root.getAsJsonArray();
+        for (int i = 0; i < rootObj.size(); i++) {
+            JsonObject module = rootObj.get(i).getAsJsonObject();
+            String moduleCode = module.get("moduleCode").toString().replaceAll("^.|.$", "");
+            try {
+                ModuleHandler myModuleHandler = new ModuleHandler(moduleCode);
+                myModuleHandler.generateModule();
+            } catch (Exception e) {
+                fw.write(moduleCode + "\n");
+            }
+        }
+        fw.close();
+    }
+
     public static void main(String[] args) {
+        try {
+            if (!Files.exists(Paths.get("UnformattedModules"))) {
+                System.out.println("Application is downloading blacklisted modules, please wait. "
+                    + "This would only be run once.");
+                runOnce();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         new MeetingOrganizer().run();
     }
 
