@@ -11,7 +11,7 @@ class DukeTest {
 
     public DukeTest() {
         try {
-            duke = new Duke("./data.txt");
+            duke = new Duke();
         } catch (DukeException m) {
             System.out.println(m.getMessage());
         }

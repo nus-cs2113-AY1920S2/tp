@@ -26,18 +26,18 @@ public class Duke {
     protected Storage eventStorage;
     protected Storage studentListCollectionStorage;
 
-    public Duke(String filepath) throws DukeException {
+    public Duke() throws DukeException {
         setupLogger();
 
         ui = new UI();
 
-        eventStorage = new Storage(filepath);
+        eventStorage = new Storage("./data/eventlist.txt");
         eventList = eventStorage.loadEventList();
         if (eventList == null) {
             eventList = new EventList();
         }
 
-        studentListCollectionStorage = new Storage("./studentlist.txt");
+        studentListCollectionStorage = new Storage("./data/studentlist.txt");
         studentListCollection = studentListCollectionStorage.loadStudentListCollection();
         if (studentListCollection == null) {
             studentListCollection = new StudentListCollection();
@@ -93,7 +93,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         try {
-            Duke pac = new Duke("./data.txt");
+            Duke pac = new Duke();
             pac.run();
         } catch (DukeException m) {
             UI.display(m.getMessage());
