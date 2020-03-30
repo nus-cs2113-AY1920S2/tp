@@ -13,19 +13,19 @@ import static seedu.duke.Duke.studentListCollection;
 public class DeleteStudentList extends Command {
 
     protected int index;
+    protected String line;
     protected DisplayList displayList = new DisplayList();
     protected UI ui = new UI();
-
-    public DeleteStudentList(int index) {
-        this.index = index;
-    }
 
     /**
      * Method to delete an existing student list from studentListCollection by its index.
      * @throws DukeException    DukeException is thrown when there is an out of bound index.
      */
     private void deleteFromExisting() throws DukeException {
+        ui.readUserInput();
+        line = ui.getUserInput();
         try {
+            index = Integer.parseInt(line);
             studentListCollection.remove(index - 1);
         } catch (Exception e) {
             throw new DukeException("Deletion Failed, out of bound.");

@@ -1,14 +1,12 @@
 package seedu.duke;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import seedu.StudentList;
 import seedu.StudentListCollection;
 import seedu.command.Bye;
 import seedu.command.interpreter.CommandInterpreter;

@@ -1,12 +1,11 @@
 package seedu.attendance;
 
-import seedu.StudentList;
 import seedu.exception.DukeException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import static seedu.attendance.Attendance.attendanceListNameComparator;
 import static seedu.attendance.Attendance.attendanceStatusComparator;
@@ -28,7 +27,7 @@ public class AttendanceList {
 
     public void addToList(Attendance attendance, String eventName) {
         attendanceList.add(attendance);
-        ui.addAttendanceMessage(attendance.studentName, eventName);
+        ui.addAttendanceMessage(attendance.studentName, attendance.getAttendanceStatus(), eventName);
     }
 
     public void printList() throws DukeException {

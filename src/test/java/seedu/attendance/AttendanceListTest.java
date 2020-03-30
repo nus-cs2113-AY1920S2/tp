@@ -21,6 +21,6 @@ public class AttendanceListTest {
     void getAttendanceList() {
         assertEquals("[]", attendanceList.toString());
         attendanceList.add(new Attendance("John Doe", "Y"));
-        assertEquals("[John Doe Y]", attendanceList.toString());
+        assertEquals("[John Doe Present]", attendanceList.toString());
     }
 }

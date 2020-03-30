@@ -12,9 +12,9 @@ public class Attendance {
 
     public Attendance(String studentName, String isPresent) {
         this.studentName = studentName;
-        this.isPresent = "N";
+        this.isPresent = "Absent";
         if (isPresent.toUpperCase().equals("Y")) {
-            this.isPresent = "Y";
+            this.isPresent = "Present";
         }
     }
 

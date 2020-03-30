@@ -13,8 +13,10 @@ public class SortAttendanceListByName extends Command {
 
     protected UI ui;
     protected AttendanceList attendances;
+    protected String eventName;
 
-    public SortAttendanceListByName(AttendanceList attendances) {
+    public SortAttendanceListByName(AttendanceList attendances, String eventName) {
+        this.eventName = eventName;
         this.attendances = attendances;
         this.ui = new UI();
     }
@@ -27,7 +29,7 @@ public class SortAttendanceListByName extends Command {
             ui.displayAttendanceMessage("An empty list cannot be sorted");
         } else {
             attendances.sort();
-            ui.displayAttendanceMessage("sorted by name");
+            ui.sortAttendanceByName(eventName);
         }
     }
 

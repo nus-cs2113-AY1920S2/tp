@@ -15,11 +15,11 @@ public class AttendanceTest {
 
     @Test
     void getAttendanceStatus() {
-        assertEquals("Y", attendanceTestUnit.getAttendanceStatus());
+        assertEquals("Present", attendanceTestUnit.getAttendanceStatus());
     }
 
     @Test
     void getAttendance() {
-        assertEquals("John Doe Y", attendanceTestUnit.toString());
+        assertEquals("John Doe Present", attendanceTestUnit.toString());
     }
 }
