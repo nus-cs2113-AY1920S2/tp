@@ -184,7 +184,7 @@ public class ModuleManager implements Iterable<Module> {
         //check duplicate
         if (contains(toAdd.getModuleCode())) {
             throw new DuplicateModuleException();
-        } else if (!modulesMap.containsKey(toAdd.getModuleCode())) {
+        } else if (modulesMap.size() > 0 && !modulesMap.containsKey(toAdd.getModuleCode())) {
             throw new ModuleNotProvidedException();
         } else {
             String moduleTitle = modulesMap.get(toAdd.getModuleCode());
