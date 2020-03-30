@@ -11,6 +11,7 @@ import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListModuleCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsm";
+    public static final String FORMAT = "lsm [ <module keyword> -e -a ]";
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     private String moduleKeyWord;

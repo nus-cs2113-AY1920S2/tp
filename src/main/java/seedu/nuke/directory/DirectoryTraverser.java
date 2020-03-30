@@ -2,6 +2,7 @@ package seedu.nuke.directory;
 
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DirectoryTraversalOutOfBoundsException;
@@ -12,8 +13,8 @@ import java.util.Stack;
 public class DirectoryTraverser {
     private static Stack<Directory> directoryStack = new Stack<>();
     private static final DirectoryLevel[] DIRECTORY_LEVELS = {
-            DirectoryLevel.ROOT, DirectoryLevel.MODULE, DirectoryLevel.CATEGORY,
-            DirectoryLevel.TASK, DirectoryLevel.FILE
+        DirectoryLevel.ROOT, DirectoryLevel.MODULE, DirectoryLevel.CATEGORY,
+        DirectoryLevel.TASK, DirectoryLevel.FILE
     };
     private static int currentLevel = 0;
     private static final int MINIMUM_LEVEL = 0;
@@ -127,6 +128,15 @@ public class DirectoryTraverser {
                     currentTaskDirectory.getDescription()));
             break;
 
+        case FILE:
+            TaskFile currentFileDirectory = (TaskFile) getCurrentDirectory();
+            path.append(String.format(" / %s / %s / %s / %s",
+                    currentFileDirectory.getParent().getParent().getParent().getModuleCode(),
+                    currentFileDirectory.getParent().getParent().getCategoryName(),
+                    currentFileDirectory.getParent().getDescription(),
+                    currentFileDirectory.getFileName()));
+            break;
+
         default:
             break;
         }
@@ -199,6 +209,21 @@ public class DirectoryTraverser {
     }
 
     /**
+     * Returns the base file level directory of the current directory.
+     *
+     * @return
+     *  The base file level directory of the current directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the base file level directory
+     */
+    public static TaskFile getBaseFile() throws IncorrectDirectoryLevelException {
+        if (DirectoryTraverser.getCurrentDirectoryLevel() == DirectoryLevel.FILE) {
+            return (TaskFile) DirectoryTraverser.getCurrentDirectory();
+        }
+        throw new IncorrectDirectoryLevelException();
+    }
+
+    /**
      * Returns the module level directory of the current Directory.
      *
      * @return
@@ -210,6 +235,7 @@ public class DirectoryTraverser {
      */
     public static Module getModuleDirectory(String moduleCode)
             throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException {
+        // Fill up missing values first
         if (moduleCode.isEmpty()) {
             return getBaseModule();
         } else {
@@ -232,6 +258,7 @@ public class DirectoryTraverser {
     public static Category getCategoryDirectory(String moduleCode, String categoryName)
             throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
             CategoryManager.CategoryNotFoundException {
+        // Fill up missing values first
         if (moduleCode.isEmpty()) {
             moduleCode = getBaseModule().getModuleCode();
         }
@@ -257,11 +284,12 @@ public class DirectoryTraverser {
      * @throws CategoryManager.CategoryNotFoundException
      *  If the category with the category name is not found in the Category List
      * @throws TaskManager.TaskNotFoundException
-     *  If teh task with the task description is not found in the Task List
+     *  If the task with the task description is not found in the Task List
      */
     public static Task getTaskDirectory(String moduleCode, String categoryName, String taskDescription)
             throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
             CategoryManager.CategoryNotFoundException, TaskManager.TaskNotFoundException {
+        // Fill up missing values first
         if (moduleCode.isEmpty()) {
             moduleCode = getBaseModule().getModuleCode();
         }
@@ -272,11 +300,58 @@ public class DirectoryTraverser {
             categoryName = getBaseCategory().getCategoryName();
         }
         if (taskDescription.isEmpty()) {
-            if (!getBaseModule().isSameModule(moduleCode) && !getBaseCategory().isSameCategory(categoryName)) {
+            if (!getBaseModule().isSameModule(moduleCode) || !getBaseCategory().isSameCategory(categoryName)) {
                 throw new IncorrectDirectoryLevelException();
             }
             taskDescription = getBaseTask().getDescription();
         }
         return ModuleManager.getTask(moduleCode, categoryName, taskDescription);
+    }
+
+    /**
+     * Returns the file level directory of the current Directory.
+     *
+     * @return
+     *  The file level directory of the current Directory
+     * @throws IncorrectDirectoryLevelException
+     *  If the current directory is too low to obtain the file level directory
+     * @throws ModuleManager.ModuleNotFoundException
+     *  If the module with the module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the category name is not found in the Category List
+     * @throws TaskManager.TaskNotFoundException
+     *  If the task with the task description is not found in the Task List
+     * @throws TaskFileManager.TaskFileNotFoundException
+     *  If the file with the file name is not found in the File List
+     */
+    public static TaskFile getFileDirectory(String moduleCode, String categoryName, String taskDescription,
+            String fileName)
+            throws IncorrectDirectoryLevelException, ModuleManager.ModuleNotFoundException,
+            CategoryManager.CategoryNotFoundException, TaskManager.TaskNotFoundException,
+            TaskFileManager.TaskFileNotFoundException {
+        // Fill up missing values first
+        if (moduleCode.isEmpty()) {
+            moduleCode = getBaseModule().getModuleCode();
+        }
+        if (categoryName.isEmpty()) {
+            if (!getBaseModule().isSameModule(moduleCode)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            categoryName = getBaseCategory().getCategoryName();
+        }
+        if (taskDescription.isEmpty()) {
+            if (!getBaseModule().isSameModule(moduleCode) || !getBaseCategory().isSameCategory(categoryName)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            taskDescription = getBaseTask().getDescription();
+        }
+        if (fileName.isEmpty()) {
+            if (!getBaseModule().isSameModule(moduleCode) || !getBaseCategory().isSameCategory(categoryName)
+                || !getBaseTask().isSameTask(taskDescription)) {
+                throw new IncorrectDirectoryLevelException();
+            }
+            fileName = getBaseFile().getFileName();
+        }
+        return ModuleManager.getFile(moduleCode, categoryName, taskDescription, fileName);
     }
 }

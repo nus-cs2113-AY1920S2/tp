@@ -21,7 +21,8 @@ import static seedu.nuke.util.Message.messagePromptDeleteTaskIndices;
  */
 public class DeleteTaskCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delt";
-    public static final String FORMAT = COMMAND_WORD + " <category name>";
+    public static final String FORMAT = COMMAND_WORD + " <task description> -m <module code> "
+            + "-c <category name> [ -e -a ]";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
 
     private String moduleCode;
@@ -51,10 +52,6 @@ public class DeleteTaskCommand extends DeleteCommand {
         this.taskDescription = taskDescription;
         this.isExact = isExact;
         this.isAll = isAll;
-    }
-
-    public DeleteTaskCommand(String taskDescription) {
-        this.taskDescription = taskDescription;
     }
 
     /**
@@ -95,16 +92,6 @@ public class DeleteTaskCommand extends DeleteCommand {
      */
     @Override
     public CommandResult execute() {
-        //try {
-        //    Module currentModule = (Module) Command.getCurrentDirectory();
-        //    Task toDelete = currentModule.getTaskManager().delete(taskDescription);
-        //
-        //    //add the task to the data manager
-        //    moduleManager.removeTask(currentModule.getTaskManager(), toDelete);
-        //    return new CommandResult(MESSAGE_TASK_REMOVED);
-        //} catch (TaskManager.TaskNotFoundException e) {
-        //    return new CommandResult(MESSAGE_TASK_NOT_FOUND);
-        //}
         ArrayList<Directory> filteredTasks =
                 createFilteredTaskList(moduleCode, categoryName, taskDescription, isExact, isAll);
         return executeInitialDelete(filteredTasks);

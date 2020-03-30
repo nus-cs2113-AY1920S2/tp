@@ -6,6 +6,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.data.storage.StoragePath;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
@@ -14,16 +15,27 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.regex.Pattern;
 import java.security.SecureRandom;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import static seedu.nuke.parser.Parser.*;
-import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
+import static seedu.nuke.parser.Parser.FILE_PREFIX;
+import static seedu.nuke.parser.Parser.MODULE_PREFIX;
+import static seedu.nuke.parser.Parser.TASK_PREFIX;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_TASK_FILE;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_IO_EXCEPTION;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SECURITY_EXCEPTION;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_FILE_PATH;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
 import static seedu.nuke.util.Message.messageAddFileSuccess;
 
 /**
@@ -42,11 +54,9 @@ public class AddFileCommand extends AddCommand {
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<filePath>(?:\\s+" + FILE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<fileInfo>(?:\\s+" + FILE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
-
-    private final String fileDirectory = "data/files";
 
     private String moduleCode;
     private String categoryName;
@@ -109,12 +119,13 @@ public class AddFileCommand extends AddCommand {
         Path sourcePath = sourceFile.toPath();
 
         String randomHash = generateRandomHash();
-        File destinationFile = new File(String.format("%s/%s/%s", fileDirectory, randomHash, sourceFile.getName()));
+        File destinationFile = new File(String.format("%s/%s/%s",
+                StoragePath.TASK_FILE_DIRECTORY_PATH, randomHash, sourceFile.getName()));
         Path destinationPath = destinationFile.toPath();
         Files.createDirectories(destinationPath.getParent());
 
         Files.copy(sourcePath, destinationPath, REPLACE_EXISTING);
-        filePath = randomHash;
+        filePath = String.format("%s/%s", StoragePath.TASK_FILE_DIRECTORY_PATH, randomHash);
     }
 
     /**
@@ -160,6 +171,8 @@ public class AddFileCommand extends AddCommand {
             return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         } catch (FileNotFoundException e) {
             return new CommandResult(MESSAGE_FILE_NOT_FOUND);
+        } catch (FileSystemException e) {
+            return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
         } catch (IOException e) {
             return new CommandResult(MESSAGE_FILE_IO_EXCEPTION);
         } catch (IllegalArgumentException e) {

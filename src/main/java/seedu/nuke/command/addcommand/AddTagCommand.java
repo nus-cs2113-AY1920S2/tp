@@ -35,6 +35,18 @@ public class AddTagCommand extends Command {
     private String moduleCode;
     private String categoryName;
 
+    /**
+     * Constructs an Add Tag Command.
+     *
+     * @param info
+     *  The tag info
+     * @param taskDescription
+     *  The description of the task
+     * @param moduleCode
+     *  The module code of the parent module
+     * @param categoryName
+     *  The name of the parent category
+     */
     public AddTagCommand(String info, String taskDescription, String moduleCode, String categoryName) {
         this.info = info;
         this.taskDescription = taskDescription;
@@ -100,7 +112,7 @@ public class AddTagCommand extends Command {
         try {
             Task toAddTag = getBaseTaskDirectory();
             toAddTag.setTag(info);
-            assert toAddTag.getTags().contains(info) == true : "tags have successfully added";
+            assert toAddTag.getTags().contains(info) : "tags have successfully added";
             return new CommandResult(MESSAGE_TAG_ADDED);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

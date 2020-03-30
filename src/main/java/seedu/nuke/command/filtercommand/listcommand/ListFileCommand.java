@@ -9,13 +9,15 @@ import java.util.ArrayList;
 
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
-public class ListTaskCommand extends ListCommand {
-    public static final String COMMAND_WORD = "lst";
-    public static final String FORMAT = "lst [ <task keyword> -c <category keyword> -m <module keyword> -e -a ]";
+public class ListFileCommand extends ListCommand {
+    public static final String COMMAND_WORD = "lsf";
+    public static final String FORMAT = "lsf [ <file keyword> -f <task keyword> -c <category keyword> "
+            + "-m <module keyword> -e -a ]";
 
     private String moduleKeyWord;
     private String categoryKeyword;
     private String taskKeyword;
+    private String fileKeyword;
     private boolean isExact;
     private boolean isAll;
 
@@ -28,16 +30,19 @@ public class ListTaskCommand extends ListCommand {
      *  The keyword to filter the categories
      * @param taskKeyword
      *  The keyword to filter the tasks
+     * @param fileKeyword
+     *  The keyword to filter the files
      * @param isExact
      *  Checks if tasks are to be filtered exactly
      * @param isAll
      *  Checks whether to show <b>all</b> tasks across modules and categories
      */
-    public ListTaskCommand(String moduleKeyWord, String categoryKeyword, String taskKeyword,
+    public ListFileCommand(String moduleKeyWord, String categoryKeyword, String taskKeyword, String fileKeyword,
                boolean isExact, boolean isAll) {
         this.moduleKeyWord = moduleKeyWord;
         this.categoryKeyword = categoryKeyword;
         this.taskKeyword = taskKeyword;
+        this.fileKeyword = fileKeyword;
         this.isExact = isExact;
         this.isAll = isAll;
     }
@@ -51,8 +56,8 @@ public class ListTaskCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredTaskList =
-                createFilteredTaskList(moduleKeyWord, categoryKeyword, taskKeyword, isExact, isAll);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.TASK, filteredTaskList);
+        ArrayList<Directory> filteredFileList =
+                createFilteredFileList(moduleKeyWord, categoryKeyword, taskKeyword, fileKeyword, isExact, isAll);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.FILE, filteredFileList);
     }
 }
