@@ -25,6 +25,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      *
      * @param nric Contains the nric of the patient that is to be retrieved.
      * @param newContent Contains the string that the attribute is to be updated to.
+     * @param apptID Contains the id of the appointment that is to be edited
      */
     public EditAppointmentCommand(String nric, String apptID, String newContent) {
         this.nric = nric;

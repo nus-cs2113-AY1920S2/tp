@@ -111,6 +111,7 @@ public class Storage {
      * Returns a list of historical patients patient list
      *
      * @param filePath location of file to read from.
+     * @param patients Shared map of all patients
      * @return patientList of all patients found in the file.
      * @throws FileNotFoundException if the file specified by directory/filename does not exist.
      */

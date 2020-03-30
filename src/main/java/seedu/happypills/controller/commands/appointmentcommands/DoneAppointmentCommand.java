@@ -23,6 +23,7 @@ public class DoneAppointmentCommand extends AppointmentCommand {
      * It creates a new DoneAppointmentCommand Object with the information provided.
      *
      * @param nric Contains the nric of the patient that is to be retrieved.
+     * @param apptID Contains the id of the appointment to be marked as done
      */
     public DoneAppointmentCommand(String nric, String apptID) {
         this.nric = nric;
