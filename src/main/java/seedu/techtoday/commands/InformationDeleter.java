@@ -45,6 +45,10 @@ public class InformationDeleter {
                     + "Your command format is incorrect. Try again ");
             Messages.printStraightLine();
             return;
+        } catch (NumberFormatException e) {
+            System.out.println("Sorry! Please enter a valid index number for the delete command. Try again.");
+            Messages.printStraightLine();
+            return;
         }
     }
 }

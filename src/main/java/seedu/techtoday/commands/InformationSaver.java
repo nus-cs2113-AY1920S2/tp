@@ -48,6 +48,10 @@ public class InformationSaver {
                     + "Try \" view [article \\ job] \" or a differnt command");
             Messages.printStraightLine();
             return;
+        } catch (NumberFormatException e) {
+            System.out.println("Sorry! Please enter a valid index number for the save command. Try again.");
+            Messages.printStraightLine();
+            return;
         }
     }
 }
