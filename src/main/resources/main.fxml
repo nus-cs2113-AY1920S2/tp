@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.nuke.gui.controller.MainController">
+<VBox prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.nuke.gui.controller.MainController">
     <children>
         <MenuBar>
             <menus>
@@ -150,7 +150,7 @@
                 </VBox>
                 <HBox prefHeight="463.0" prefWidth="600.0" spacing="5.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox fx:id="directoryBox" alignment="TOP_CENTER" prefHeight="286.0" prefWidth="250.0" spacing="2.0" style="-fx-border-color: lightgrey; -fx-border-radius: 5;" HBox.hgrow="SOMETIMES">
+                        <VBox fx:id="directoryBox" alignment="TOP_CENTER" prefHeight="661.0" prefWidth="308.0" spacing="2.0" style="-fx-border-color: lightgrey; -fx-border-radius: 5;" HBox.hgrow="SOMETIMES">
                             <children>
                                 <Label alignment="TOP_CENTER" text="Directory List">
                                     <font>
@@ -189,7 +189,7 @@
                                         </TextFlow>
                                     </content>
                                 </ScrollPane>
-                                <TextField fx:id="spareConsole" onAction="#submitInput" onKeyTyped="#onKeyType" prefHeight="37.0" prefWidth="935.0" promptText="Enter input..." VBox.vgrow="SOMETIMES">
+                                <TextField fx:id="spareConsole" onAction="#submitInput" onKeyTyped="#onKeyType" prefHeight="37.0" prefWidth="834.0" promptText="Enter input..." VBox.vgrow="SOMETIMES">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>

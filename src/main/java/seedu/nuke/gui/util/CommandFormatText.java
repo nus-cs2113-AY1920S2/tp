@@ -5,26 +5,26 @@ import javafx.scene.text.TextFlow;
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
+import seedu.nuke.command.OpenFileCommand;
+import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
+import seedu.nuke.command.addcommand.AddFileCommand;
 import seedu.nuke.command.addcommand.AddModuleCommand;
 import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.editcommand.EditCategoryCommand;
+import seedu.nuke.command.editcommand.EditFileCommand;
 import seedu.nuke.command.editcommand.EditModuleCommand;
 import seedu.nuke.command.editcommand.EditTaskCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 
-import static seedu.nuke.gui.io.GuiParser.ALL_FLAG;
-import static seedu.nuke.gui.io.GuiParser.CATEGORY_PREFIX;
-import static seedu.nuke.gui.io.GuiParser.DEADLINE_PREFIX;
-import static seedu.nuke.gui.io.GuiParser.EXACT_FLAG;
-import static seedu.nuke.gui.io.GuiParser.MODULE_PREFIX;
-import static seedu.nuke.gui.io.GuiParser.PRIORITY_PREFIX;
-import static seedu.nuke.gui.io.GuiParser.TASK_PREFIX;
+import static seedu.nuke.gui.io.GuiParser.*;
 import static seedu.nuke.gui.util.TextUtil.createText;
 
 public class CommandFormatText {
@@ -45,42 +45,48 @@ public class CommandFormatText {
         switch (commandWord) {
         case AddModuleCommand.COMMAND_WORD:
             return getAddModuleFormat();
-
         case AddCategoryCommand.COMMAND_WORD:
             return getAddCategoryFormat();
-
         case AddTaskCommand.COMMAND_WORD:
             return getAddTaskFormat();
+        case AddFileCommand.COMMAND_WORD:
+            return getAddFileFormat();
 
         case DeleteModuleCommand.COMMAND_WORD:
             return getDeleteModuleFormat();
+        case DeleteCategoryCommand.COMMAND_WORD:
+            return getDeleteCategoryFormat();
+        case DeleteTaskCommand.COMMAND_WORD:
+            return getDeleteTaskFormat();
+        case DeleteFileCommand.COMMAND_WORD:
+            return getDeleteFileFormat();
 
         case ListModuleCommand.COMMAND_WORD:
             return getListModuleFormat();
-
-        case DeleteCategoryCommand.COMMAND_WORD:
-            return getDeleteCategoryFormat();
-
         case ListCategoryCommand.COMMAND_WORD:
             return getListCategoryFormat();
-
-        case DeleteTaskCommand.COMMAND_WORD:
-            return getDeleteTaskFormat();
-
         case ListTaskCommand.COMMAND_WORD:
             return getListTaskFormat();
+        case ListFileCommand.COMMAND_WORD:
+            return getListFileFormat();
 
         case EditModuleCommand.COMMAND_WORD:
             return getEditModuleFormat();
-
         case EditCategoryCommand.COMMAND_WORD:
             return getEditCategoryFormat();
-
         case EditTaskCommand.COMMAND_WORD:
             return getEditTaskFormat();
+        case EditFileCommand.COMMAND_WORD:
+            return getEditFileFormat();
 
         case ChangeDirectoryCommand.COMMAND_WORD:
             return getChangeDirectoryFormat();
+
+        case OpenFileCommand.COMMAND_WORD:
+            return getOpenFileFormat();
+
+        case UndoCommand.COMMAND_WORD:
+            return getUndoFormat();
 
         case ExitCommand.COMMAND_WORD:
             return getExitFormat();
@@ -129,6 +135,23 @@ public class CommandFormatText {
         return commandFormat;
     }
 
+    private static TextFlow getAddFileFormat() {
+        commandFormat.getChildren().addAll(
+                createText(AddFileCommand.COMMAND_WORD, Color.GREEN),
+                createText(" <file name> ", Color.BLUE),
+                createText(MODULE_PREFIX, Color.GREEN),
+                createText(" <module code> ", Color.BLUE),
+                createText(CATEGORY_PREFIX, Color.GREEN),
+                createText(" <category name> ", Color.BLUE),
+                createText(TASK_PREFIX, Color.GREEN),
+                createText(" <task description> ", Color.BLUE),
+                createText(FILE_PREFIX, Color.GREEN),
+                createText(" <file path>", Color.BLUE)
+        );
+        return commandFormat;
+    }
+
+
     private static TextFlow getDeleteModuleFormat() {
         commandFormat.getChildren().addAll(
                 createText(DeleteModuleCommand.COMMAND_WORD, Color.GREEN),
@@ -162,6 +185,21 @@ public class CommandFormatText {
         return commandFormat;
     }
 
+    private static TextFlow getDeleteFileFormat() {
+        commandFormat.getChildren().addAll(
+                createText(DeleteFileCommand.COMMAND_WORD, Color.GREEN),
+                createText(" <file name> ", Color.BLUE),
+                createText(MODULE_PREFIX, Color.GREEN),
+                createText(" <module code> ", Color.BLUE),
+                createText(CATEGORY_PREFIX, Color.GREEN),
+                createText(" <category name> ", Color.BLUE),
+                createText(TASK_PREFIX, Color.GREEN),
+                createText(" <task description>", Color.BLUE),
+                createText(String.format(" %s %s %s %s", "[", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+        );
+        return commandFormat;
+    }
+
     private static TextFlow getListModuleFormat() {
         commandFormat.getChildren().addAll(
                 createText(ListModuleCommand.COMMAND_WORD, Color.GREEN),
@@ -186,6 +224,17 @@ public class CommandFormatText {
                 createText(String.format(" %s %s %s %s %s %s %s %s %s", "[", "<task keyword>",
                         MODULE_PREFIX, "<module keyword>",
                         CATEGORY_PREFIX, "<category keyword>", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+        );
+        return commandFormat;
+    }
+
+    private static TextFlow getListFileFormat() {
+        commandFormat.getChildren().addAll(
+                createText(ListFileCommand.COMMAND_WORD, Color.GREEN),
+                createText(String.format(" %s %s %s %s %s %s %s %s %s %s %s",
+                        "[", "<file keyword>", MODULE_PREFIX, "<module keyword>",
+                        CATEGORY_PREFIX, "<category keyword>", TASK_PREFIX, "<task keyword>",
+                        EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -229,6 +278,21 @@ public class CommandFormatText {
         return commandFormat;
     }
 
+    private static TextFlow getEditFileFormat() {
+        commandFormat.getChildren().addAll(
+                createText(EditFileCommand.COMMAND_WORD, Color.GREEN),
+                createText(" <file name> ", Color.BLUE),
+                createText(MODULE_PREFIX, Color.GREEN),
+                createText(" <module code> ", Color.BLUE),
+                createText(CATEGORY_PREFIX, Color.GREEN),
+                createText(" <category name> ", Color.BLUE),
+                createText(TASK_PREFIX, Color.GREEN),
+                createText(" <task description>", Color.BLUE)
+        );
+        commandFormat.setStyle("-fx-font-size: 10pt");
+        return commandFormat;
+    }
+
     private static TextFlow getChangeDirectoryFormat() {
         commandFormat.getChildren().addAll(
                 createText(ChangeDirectoryCommand.COMMAND_WORD, Color.GREEN),
@@ -237,6 +301,28 @@ public class CommandFormatText {
                 createText(ChangeDirectoryCommand.COMMAND_WORD, Color.GREEN),
                 createText("..", Color.BLUE),
                 createText(" to traverse up", Color.DARKGRAY)
+        );
+        return commandFormat;
+    }
+
+    private static TextFlow getOpenFileFormat() {
+        commandFormat.getChildren().addAll(
+                createText(OpenFileCommand.COMMAND_WORD, Color.GREEN),
+                createText(" [ <file name> ] ", Color.DARKGRAY),
+                createText(MODULE_PREFIX, Color.GREEN),
+                createText(" <module code> ", Color.BLUE),
+                createText(CATEGORY_PREFIX, Color.GREEN),
+                createText(" <category name> ", Color.BLUE),
+                createText(TASK_PREFIX, Color.GREEN),
+                createText(" <task description>", Color.BLUE)
+        );
+        return commandFormat;
+    }
+
+
+    private static TextFlow getUndoFormat() {
+        commandFormat.getChildren().addAll(
+                createText(UndoCommand.COMMAND_WORD, Color.GREEN)
         );
         return commandFormat;
     }
@@ -252,6 +338,20 @@ public class CommandFormatText {
         commandFormat.getChildren().addAll(
                 createText(HelpCommand.COMMAND_WORD, Color.GREEN),
                 createText(String.format(" %s %s %s", "[", "<command word>", "]"), Color.DARKGRAY)
+        );
+        return commandFormat;
+    }
+
+    private static TextFlow getMakeDirectoryFormat() {
+        commandFormat.getChildren().addAll(
+                createText("mkdir", Color.GREEN)
+        );
+        return commandFormat;
+    }
+
+    private static TextFlow getListFormat() {
+        commandFormat.getChildren().addAll(
+                createText("ls", Color.GREEN)
         );
         return commandFormat;
     }

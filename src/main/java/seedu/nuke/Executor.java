@@ -58,6 +58,16 @@ public class Executor {
     }
 
     /**
+     * Returns the prompt type of the current execution.
+     *
+     * @return
+     *  The prompt type
+     */
+    public static PromptType getPromptType() {
+        return promptType;
+    }
+
+    /**
      * Returns the level of the directory (module, category, task, file) in the filtered list of directories that is
      * used during prompt mode.
      *

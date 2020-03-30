@@ -38,8 +38,8 @@ public class InfiNus extends Application {
     public void start(Stage stage) throws IOException {
         stage.setTitle("INFI • NUS");
         stage.getIcons().add(new Image("images/venus_icon.png"));
-        stage.setMinWidth(1200);
-        stage.setMinHeight(700);
+        stage.setMinWidth(1400);
+        stage.setMinHeight(800);
 
         FXMLLoader sceneLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent mainRoot = sceneLoader.load();

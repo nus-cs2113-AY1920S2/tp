@@ -7,10 +7,8 @@ import javafx.stage.Stage;
 import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
-import seedu.nuke.directory.Category;
-import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.*;
 import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Task;
 import seedu.nuke.gui.util.TextUtil;
 import seedu.nuke.util.ListCreator;
 
@@ -48,6 +46,9 @@ public class GuiExecutor {
      *  The result from executing the command
      */
     private void displayResult(CommandResult result) {
+        if (result.getFeedbackToUser().isEmpty()) {
+            return;
+        }
         Text feedbackToUser = TextUtil.createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.BLUE);
         consoleScreen.getChildren().add(feedbackToUser);
 
@@ -75,11 +76,18 @@ public class GuiExecutor {
             listTableToShow = ListCreator.createTaskListTable(taskList);
             break;
 
+        case FILE:
+            ArrayList<TaskFile> fileList = result.getShownList().stream()
+                    .map(TaskFile.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            listTableToShow = ListCreator.createFileListTable(fileList);
+            break;
+
         default:
             return;
         }
 
-        Text taskListTable = TextUtil.createText(String.format("%s\n\n", listTableToShow), Color.BROWN);
+        Text taskListTable = TextUtil.createText(String.format("%s\n\n", listTableToShow), Color.DEEPSKYBLUE);
         consoleScreen.getChildren().add(taskListTable);
     }
 }

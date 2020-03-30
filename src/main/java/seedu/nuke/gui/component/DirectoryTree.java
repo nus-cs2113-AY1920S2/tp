@@ -57,7 +57,9 @@ public class DirectoryTree extends TreeView<Label> {
                 for (Task task : taskList) {
                     // Add task to tree
                     TreeItem<Label> taskItem = new TreeItem<>();
-                    if (task.getDeadline().isDue()) {
+                    if (task.getDeadline() == null) {
+                        styleTreeItem(taskItem, categoryItem, task.getDescription(), Color.CORNFLOWERBLUE);
+                    } else if (task.getDeadline().isDue()) {
                         // Highlight if task is due
                         styleTreeItem(taskItem, categoryItem, task.getDescription(), Color.CRIMSON);
                         taskItem.getValue().setStyle("-fx-background-color: PeachPuff");
