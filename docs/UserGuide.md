@@ -11,7 +11,7 @@
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `Duke` from [here](http://link.to/duke).
 
-<<<<<<< HEAD
+
 ## Features 
 =======
 ## Usage
@@ -34,22 +34,21 @@ Not done with an activity and want to continue it? Use the `continue` command to
 Finally, when you're done and want to close the app, simply say `bye` and Jikan will exit.
 
 This is just a quick overview of what Jikan can do for you. For more details on each individual command, read the command guide below.
->>>>>>> 6b02c0250b849489c2ac63312f0c566fecc8391b
 
-{Give detailed description of each feature}
-### Finding and Filtering Activities
 
-## Finding Activities by Name: `find`
+## Finding and Filtering Activities
+
+### Finding Activities by Name: `find`
 Users can request for a sub-list of activities that has names containing a given keyword to be printed.
 
 Format: `find KEYWORD`
 
-## Filtering Activities by Tags: `filter`
+### Filtering Activities by Tags: `filter`
 Users can request for a sub-list of activities that has specific tags.
 
 Format: `filter TAGNAME1 TAGNAME2`
 
-## Further Finding/Filtering: `-s`
+### Further Finding/Filtering: `-s`
 Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on his/her needs. 
 This is can be particularly useful when the user wants to generate a `graph`.
 
