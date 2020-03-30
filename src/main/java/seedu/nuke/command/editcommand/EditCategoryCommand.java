@@ -10,8 +10,6 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.regex.Pattern;
 
-import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
-import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;

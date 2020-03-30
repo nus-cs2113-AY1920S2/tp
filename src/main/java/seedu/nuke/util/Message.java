@@ -78,10 +78,9 @@ public class Message {
     }
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "SUCCESS!! Module(s) have been deleted.\n";
-
     public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "SUCCESS!! Category/Categories have been deleted.\n";
-
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "SUCCESS!! Task(s) have been deleted.\n";
+    public static final String MESSAGE_DELETE_FILE_SUCCESS = "SUCCESS!! Files(s) have been deleted.\n";
 
     public static final String MESSAGE_DELETE_ABORTED = "Deletion is aborted.\n";
 

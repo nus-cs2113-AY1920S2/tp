@@ -634,8 +634,7 @@ public class Parser {
         }
         return true;
     }
-
-
+    
     /**
      * Parses the input as a confirmation status to a confirmation prompt for the user, and prepares the
      * corresponding command.

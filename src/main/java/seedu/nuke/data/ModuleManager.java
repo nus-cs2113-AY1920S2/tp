@@ -320,6 +320,31 @@ public class ModuleManager implements Iterable<Module> {
         return retrieveList(moduleCode).retrieveList(categoryName);
     }
 
+    /**
+     * Retrieves the File List of the task with the specified description, and has its parent category with the
+     * specified name and parent module with the specified module code.
+     *
+     * @param moduleCode
+     *  The module code of the module containing the category to retrieve the File List from
+     * @param categoryName
+     *  The name of the category to retrieve the File List from
+     * @param taskDescription
+     *  The description of the task to retrieve the File List from
+     * @return
+     *  The Task List of the found category
+     * @throws ModuleNotFoundException
+     *  If the module with the specified module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the specified name is not found in the Category List
+     * @throws TaskManager.TaskNotFoundException
+     *  If the task with the specified description is not found in the Task List
+     */
+    public static TaskFileManager retrieveList(String moduleCode, String categoryName, String taskDescription)
+            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
+            TaskManager.TaskNotFoundException {
+        return retrieveList(moduleCode, categoryName).retrieveList(taskDescription);
+    }
+
     /* Filters for data (module / task / category) that *contains* given keywords (i.e. not exact match)
      *  in a case-insensitive manner. There may be multiple data that matches. */
 

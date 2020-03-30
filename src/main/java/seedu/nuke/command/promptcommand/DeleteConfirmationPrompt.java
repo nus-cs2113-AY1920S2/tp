@@ -4,23 +4,23 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.Category;
-import seedu.nuke.directory.Directory;
-import seedu.nuke.directory.DirectoryLevel;
-import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.*;
 import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.FileSystemException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import static seedu.nuke.util.Message.MESSAGE_DELETE_ABORTED;
-import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
-import static seedu.nuke.util.Message.MESSAGE_DELETE_MODULE_SUCCESS;
-import static seedu.nuke.util.Message.MESSAGE_DELETE_TASK_SUCCESS;
-import static seedu.nuke.util.Message.MESSAGE_ILLEGAL_DELETE;
-import static seedu.nuke.util.Message.MESSAGE_PROMPT_FORMAT;
+import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.util.Message.*;
 
 public class DeleteConfirmationPrompt extends Command {
     private ConfirmationStatus confirmationStatus;
@@ -70,6 +70,30 @@ public class DeleteConfirmationPrompt extends Command {
     }
 
     /**
+     * Deletes a single file.
+     *
+     * @param toDelete
+     *  The file to be deleted
+     */
+    private void deleteSingleFile(TaskFile toDelete) throws IOException {
+        File fileToDelete = new File(toDelete.getFilePath());
+        if (!fileToDelete.exists()) {
+            throw new FileNotFoundException();
+        }
+
+        Path filePathToDelete = fileToDelete.toPath();
+        Files.walk(filePathToDelete)
+                .sorted(Comparator.reverseOrder())
+                .map(Path::toFile)
+                .forEach(File::delete);
+
+        assert !Files.exists(filePathToDelete) : "Directory still exists";
+
+        Task parentTask = toDelete.getParent();
+        parentTask.getFiles().delete(toDelete);
+    }
+
+    /**
      * Deletes multiple modules.
      *
      * @param modules
@@ -115,6 +139,22 @@ public class DeleteConfirmationPrompt extends Command {
     }
 
     /**
+     * Deletes multiple files.
+     *
+     * @param files
+     *  The filtered list of files
+     * @param toDeleteIndices
+     *  The list of indices of the files to be deleted
+     */
+    private void deleteMultipleFiles(ArrayList<TaskFile> files, ArrayList<Integer> toDeleteIndices)
+            throws IOException {
+        for (int index : toDeleteIndices) {
+            TaskFile toDelete = files.get(index);
+            deleteSingleFile(toDelete);
+        }
+    }
+
+    /**
      * Executes single deletion for the various levels of the Directory.
      *
      * @param toDelete
@@ -138,6 +178,21 @@ public class DeleteConfirmationPrompt extends Command {
         case TASK: {
             deleteSingleTask(((Task) toDelete));
             return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
+        }
+
+        case FILE: {
+            try {
+                deleteSingleFile(((TaskFile) toDelete));
+                return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
+            } catch (FileNotFoundException e) {
+                return new CommandResult(MESSAGE_DELETE_FILE_NOT_FOUND);
+            } catch (FileSystemException e) {
+                return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
+            } catch (IOException e) {
+                return new CommandResult(MESSAGE_DELETE_FILE_ERROR);
+            } catch (SecurityException e) {
+                return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
+            }
         }
 
         default:
@@ -182,6 +237,25 @@ public class DeleteConfirmationPrompt extends Command {
                     .collect(Collectors.toCollection(ArrayList::new));
             deleteMultipleTasks(filteredTasks, toDeleteIndices);
             return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
+        }
+
+        case FILE: {
+            // Cast to Array List of files
+            ArrayList<TaskFile> filteredFiles = filteredList.stream()
+                    .map(TaskFile.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            try {
+                deleteMultipleFiles(filteredFiles, toDeleteIndices);
+                return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
+            } catch (FileNotFoundException e) {
+                return new CommandResult(MESSAGE_DELETE_FILE_NOT_FOUND);
+            } catch (FileSystemException e) {
+                return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
+            } catch (IOException e) {
+                return new CommandResult(MESSAGE_DELETE_FILE_ERROR);
+            } catch (SecurityException e) {
+                return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
+            }
         }
 
         default:
@@ -230,6 +304,15 @@ public class DeleteConfirmationPrompt extends Command {
             String baseTaskDescription = DirectoryTraverser.getBaseTask().getDescription();
             for (Directory task : filteredList) {
                 if (((Task) task).isSameTask(baseTaskDescription)) {
+                    return true;
+                }
+            }
+            return false;
+
+        case FILE   :
+            String baseFileName = DirectoryTraverser.getBaseFile().getFileName();
+            for (Directory task : filteredList) {
+                if (((TaskFile) task).isSameFile(baseFileName)) {
                     return true;
                 }
             }

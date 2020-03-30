@@ -6,6 +6,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.data.storage.StoragePath;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
@@ -14,6 +15,7 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -45,8 +47,6 @@ public class AddFileCommand extends AddCommand {
             + "(?<filePath>(?:\\s+" + FILE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
-
-    private final String fileDirectory = "data/files";
 
     private String moduleCode;
     private String categoryName;
@@ -109,12 +109,13 @@ public class AddFileCommand extends AddCommand {
         Path sourcePath = sourceFile.toPath();
 
         String randomHash = generateRandomHash();
-        File destinationFile = new File(String.format("%s/%s/%s", fileDirectory, randomHash, sourceFile.getName()));
+        File destinationFile = new File(String.format("%s/%s/%s",
+                StoragePath.TASK_FILE_DIRECTORY_PATH, randomHash, sourceFile.getName()));
         Path destinationPath = destinationFile.toPath();
         Files.createDirectories(destinationPath.getParent());
 
         Files.copy(sourcePath, destinationPath, REPLACE_EXISTING);
-        filePath = randomHash;
+        filePath = String.format("%s/%s", StoragePath.TASK_FILE_DIRECTORY_PATH, randomHash);
     }
 
     /**
@@ -160,6 +161,8 @@ public class AddFileCommand extends AddCommand {
             return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         } catch (FileNotFoundException e) {
             return new CommandResult(MESSAGE_FILE_NOT_FOUND);
+        } catch (FileSystemException e) {
+            return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
         } catch (IOException e) {
             return new CommandResult(MESSAGE_FILE_IO_EXCEPTION);
         } catch (IllegalArgumentException e) {

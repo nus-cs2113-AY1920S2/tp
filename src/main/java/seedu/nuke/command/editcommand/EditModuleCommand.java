@@ -10,7 +10,6 @@ import seedu.nuke.exception.ModuleNotProvidedException;
 
 import java.util.regex.Pattern;
 
-import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_MODULE;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
