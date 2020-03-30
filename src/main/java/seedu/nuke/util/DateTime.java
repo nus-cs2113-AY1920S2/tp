@@ -52,7 +52,7 @@ public class DateTime {
      * @return The <code>date</code> in a string format
      */
     public String getDateInSortFormat() {
-        return hasDate()? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "";
+        return hasDate() ? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "";
     }
 
     /**
@@ -62,7 +62,7 @@ public class DateTime {
      * @return The <code>date</code> in a string format
      */
     public String getTimeInSortFormat() {
-        return hasTime()? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "";
+        return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "";
     }
 
     public String getDateTimeSortFormat() {

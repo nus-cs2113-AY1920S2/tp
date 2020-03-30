@@ -98,8 +98,7 @@ public class Ui {
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
 
-        if ((result.getDirectoryLevel() == DirectoryLevel.NONE)
-        && result.getHelpGuides() == null) {
+        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getHelpGuides() == null) {
             return;
         }
 
