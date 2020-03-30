@@ -4,6 +4,7 @@ import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
@@ -54,7 +55,7 @@ public class DeletePatientCommand extends PatientCommand {
      * @return The message to confirm deletion of patient or to confirm that the patient has not be deleted.
      * @throws HappyPillsException Throws an exception if patient does not exist.
      */
-    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
+    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) throws HappyPillsException {
 
         if (patients.containsKey(nric)) {
             Patient patient = patients.get(nric);

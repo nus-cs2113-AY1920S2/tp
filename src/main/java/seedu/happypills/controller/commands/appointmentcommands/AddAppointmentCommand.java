@@ -1,9 +1,6 @@
 package seedu.happypills.controller.commands.appointmentcommands;
 
-import seedu.happypills.model.data.Appointment;
-import seedu.happypills.model.data.AppointmentMap;
-import seedu.happypills.model.data.Patient;
-import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.*;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.view.ui.TextUi;
 
@@ -37,7 +34,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
      * @throws HappyPillsException throws exception if there is already an appointment at the same datetime.
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
+    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) throws HappyPillsException {
         String message = "";
         if (!patients.containsKey(nric)) {
             message = "    Patient does not exist. Please try again.\n"

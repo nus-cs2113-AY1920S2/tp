@@ -3,6 +3,7 @@ package seedu.happypills.controller.commands;
 import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
 
@@ -23,7 +24,7 @@ public class ExitCommand implements Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments) {
+    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) {
         try {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
         } catch (IOException e) {

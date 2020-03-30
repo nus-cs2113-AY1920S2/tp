@@ -32,6 +32,8 @@ public class Parser {
             return PatientParser.parse(fullCommand);
         } else if (userCommand[1].equalsIgnoreCase("appt")) {
             return AppointmentParser.parse(fullCommand);
+        } else if (userCommand[1].equalsIgnoreCase("visit")) {
+            return VisitParser.parse(fullCommand);
         } else {
             return new IncorrectAppointmentCommand();
         }

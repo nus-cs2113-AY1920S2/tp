@@ -12,17 +12,7 @@ import seedu.happypills.view.ui.TextUi;
 
 import java.util.Scanner;
 
-/**
- * Parses user input.
- */
-public class PatientParser {
-    /**
-     * Parses user input into command for execution.
-     *
-     * @param fullCommand Full user input string
-     * @return the command Based on the user input
-     * @throws HappyPillsException Errors base on invalid input or insufficient input
-     */
+public class VisitParser {
     public static PatientCommand parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.split(" ", 3);
 
@@ -68,7 +58,7 @@ public class PatientParser {
             } else if (detail.startsWith("p") && parseInput[2].equalsIgnoreCase("")) {
                 parseInput[2] = detail.substring(1).trim();
             } else if (detail.startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
-                parseInput[3] = detail.substring(3).trim();
+                parseInput[3] = detail.substring(1).trim();
             } else if (detail.startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
                 parseInput[4] = detail.substring(1).trim();
             } else if (detail.startsWith("a") && parseInput[5].equalsIgnoreCase("NIL")) {
@@ -121,7 +111,7 @@ public class PatientParser {
                         || !isInteger(parseInput[2].trim()))) {
                     parseInput[2] = update.trim().substring(1);
                 } else if (update.trim().startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
-                    parseInput[3] = update.trim().substring(3);
+                    parseInput[3] = update.trim().substring(1);
                 } else if (update.trim().startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
                     parseInput[4] = update.trim().substring(1);
                 }
