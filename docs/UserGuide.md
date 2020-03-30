@@ -2,17 +2,13 @@
 
 ## Introduction
 
-{Give a product intro}
+Jikan is a CLI time management tool that allows you to track the amount of time that you spend on different activities. This user guide will show you how to use the program effectively. 
 
 ## Quick Start
-
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Download the latest version of `Jikan` from [here](https://github.com/AY1920S2-CS2113-T15-1/tp/releases).
 
-
-## Features 
+Features 
 =======
 ## Usage
 Jikan lets you record how much time you spend on various activities so that you can easily see what took up the most time today / this week / this month.
@@ -75,12 +71,30 @@ Example of usage:
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
 
-**A**: Well, write the User Guide in active voice anyway.
+## Command Guide
 
-## Command Summary
-
-{Give a 'cheat sheet' of commands here}
-
-* Add to-do `todo n/TODO_NAME d/DEADLINE`
+* Start an activity: `start ACTVITY_NAME` 
+    * optional: `start ACTIVITY_NAME /t TAGS /a ALLOCATED_TIME`
+* Abort an activity: `abort`
+* Stop an activity: `end`
+* Continue an activity: `continue ACTIVITY_NAME`
+* List all activities: `list`
+* Edit an activity: `edit ACTIVITY_NAME [flag]`
+    * Edit activity name: `edit ACTIVITY_NAME /en NEW_NAME`
+    * Edit activity tags: `edit ACTIVITY_NAME /et NEW_TAG1 NEW_TAG2`
+    * Edit activity allocated time: `edit ACTIVITY_NAME /ea NEW_ALLOCATED_TIME`
+* Delete an activity: `delete ACTIVITY_NAME`
+* Find activities with keyword: `find KEYWORD`
+    * optional: `find -s KEYWORD` for more specific find
+* Filter activities by tags: `filter TAG_NAME`
+    * optional: `filter -s TAG1 TAG2` for more specific filter
+* Set a goal for tags: `goal TAG_NAME /g DURATION`
+* View goals for tags: `goal`
+* Display graph by tags: `graph tags`
+* Display graph by duration: `graph INTERVAL`
+* Clean data files: `clean [command]`
+    * On auto data cleaner: `clean on`
+    * Off auto data cleaner: `clean off`
+    * Specify number of files: `clean /n NUMBER`
+* Terminate the program: `bye`

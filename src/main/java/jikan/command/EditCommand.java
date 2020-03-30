@@ -10,7 +10,6 @@ import jikan.parser.Parser;
 import jikan.ui.Ui;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -89,6 +88,8 @@ public class EditCommand extends Command {
                     }
                     if (!newTags.isEmpty()) {
                         activityList.updateTags(index, newTags);
+                        //GoalCommand.updateTagFile(index, newTags);
+
                     }
                     if (!tmpAlloc.isEmpty()) {
                         activityList.updateAlloc(index, newAllocTime);
