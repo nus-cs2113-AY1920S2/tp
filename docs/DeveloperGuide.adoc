@@ -219,7 +219,7 @@ The user enters `searchd t\{TASK TYPE} n\{SEARCH QUERY} d\{DATE}` into the comma
 
 *Step 3* +
 A new instance of `SearchCommand` with the `taskType`, `searchParam`, `date` and an ArrayList to store the index of
-search query, `storeIndex`initialized will be created,
+search query, `storeIndex` initialized will be created,
 
 * If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error
 message, indicating an empty task list
