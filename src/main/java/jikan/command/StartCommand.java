@@ -37,6 +37,7 @@ public class StartCommand extends Command {
         } else {
             // tags should be reset
             assert Parser.tags.isEmpty();
+
             // check if there exists an activity with this name
             int index = activityList.findActivity(parameters);
             if (index != -1) {
@@ -89,21 +90,26 @@ public class StartCommand extends Command {
      */
     private String parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
             WrongDateFormatException {
-        String[] tokenizedInputs = this.parameters.split(" ",2);
-        Parser.activityName = tokenizedInputs[0];
+        String activityName = getActivityName(tagDelimiter, allocateDelimiter);
+        Parser.activityName = activityName;
+        String activityInfo;
+        if (tagDelimiter != -1 || allocateDelimiter != -1) {
+            activityInfo = this.parameters.substring(activityName.length() + 1);
+        } else {
+            return "Started: " + Parser.activityName;
+        }
         if (Parser.activityName.isEmpty()) {
             throw new EmptyNameException();
         }
-        Parser.allocatedTime = Duration.parse("PT0S");
         if (allocateDelimiter != -1) {
             String allocatedTime;
-            tokenizedInputs[1] = tokenizedInputs[1].substring(3);
-            int index = tokenizedInputs[1].indexOf(" ");
+            activityInfo = activityInfo.substring(3);
+            int index = activityInfo.indexOf(" ");
             if (index != -1) {
-                allocatedTime = tokenizedInputs[1].substring(0,index);
-                tokenizedInputs[1] = tokenizedInputs[1].substring(index + 1);
+                allocatedTime = activityInfo.substring(0,index);
+                activityInfo = activityInfo.substring(index + 1);
             } else {
-                allocatedTime = tokenizedInputs[1];
+                allocatedTime = activityInfo;
             }
             try {
                 parseDuration(allocatedTime);
@@ -112,11 +118,22 @@ public class StartCommand extends Command {
             }
         }
         if (tagDelimiter != -1) {
-            tokenizedInputs[1] = tokenizedInputs[1].substring(3);
-            String [] tagString = tokenizedInputs[1].split(" ");
+            activityInfo = activityInfo.substring(3);
+            String [] tagString = activityInfo.split(" ");
             Parser.tags.addAll(Arrays.asList(tagString));
         }
         return "Started: " + Parser.activityName;
+    }
+
+    private String getActivityName(int tagDelimiter, int allocateDelimiter) {
+        if (tagDelimiter != -1) {
+            return this.parameters.substring(0,tagDelimiter).strip();
+        } else if (allocateDelimiter != -1) {
+            return this.parameters.substring(0,allocateDelimiter).strip();
+        } else {
+            return this.parameters;
+        }
+
     }
 
     private void parseDuration(String allocatedTime) throws WrongDateFormatException {
