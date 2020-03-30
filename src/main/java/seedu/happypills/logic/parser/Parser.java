@@ -23,24 +23,26 @@ public class Parser {
         String[] userCommand = fullCommand.split(" ", 3);
         if (userCommand.length == 1) {
             // help & exit
-            if (userCommand[0].trim().equalsIgnoreCase("help")) {
+            if (userCommand[0].equalsIgnoreCase("help")) {
                 // help command
                 return new HelpCommand("");
-            } else if (userCommand[0].trim().equalsIgnoreCase("exit")) {
+            } else if (userCommand[0].equalsIgnoreCase("exit")) {
                 // exit command
                 return new ExitCommand();
             } else {
                 // incorrect command
-                return new IncorrectAppointmentCommand();
+                return new IncorrectAppointmentCommand("    Command is invalid. "
+                        + "Enter help to know how to use HappyPills.\n");
             }
-        } else if (userCommand[1].trim().equalsIgnoreCase("patient")) {
+        } else if (userCommand[1].equalsIgnoreCase("patient")) {
             return PatientParser.parse(fullCommand);
-        } else if (userCommand[1].trim().equalsIgnoreCase("appt")) {
+        } else if (userCommand[1].equalsIgnoreCase("appt")) {
             return AppointmentParser.parse(fullCommand);
-        } else if (userCommand[1].trim().equalsIgnoreCase("pr")) {
-            return PatientRecordParser.parse(fullCommand);
+        } else if (userCommand[1].equalsIgnoreCase("pr")) {
+            return VisitParser.parse(fullCommand);
         } else {
-            return new IncorrectAppointmentCommand();
+            return new IncorrectAppointmentCommand("    Command is invalid. "
+                   + "Enter help to know how to use HappyPills.\n");
         }
     }
 }

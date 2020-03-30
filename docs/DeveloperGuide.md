@@ -362,16 +362,49 @@ closed in the terminal. This is achieved by storing all relevant information in 
 
 **Implementation** 
 
- The current methods implemented in this class include: 'writeAllToFile', ‘addSingleItemToFile’, ‘loadFromFile’ and ‘parseFileContent’. 
- Provided is a brief description of each method:
+ The current methods implemented in this class and a brief description of each method:
  - `writeAllToFile` — writes the entire list of item to the specified text file.
- - `addSingleItemToFile` — allows the program to add a new item to the specified text file.
- - `loadFromFile` — allows the program to access the specific folder and retrieve all information in the file as strings.
- - `parseFileContent` — instantiate a relevant item of the given string and adding it into the relevant list.
+ - `addSingleItemToFile` — adds a new item as a single string to the end of specified text file.
+ - `loadPatientFromFile` — access the patient file and retrieve all information in the file as strings.
+ - `parsePatientFileContent` — process line-by-line to create a patient object and add to the shared patient map.
+ - `loadAppointmentFromFile` — access the patient file and retrieve all information in the file as strings.
+ - `parseAppointmentFileContent` — process line-by-line to create an appointment object and add to the 
+                                   shared appointment map.
  
- **Design Considerations**
-
-*Aspect: Saving method* 
+ The following diagram shows how each command interacts with the other classes.
+ 
+ *writeAllToFile*
+  
+  This storage method : `writeAllToFile`, gets a single formatted string from TextUi, containing details of all the 
+  objects in a map. Each class object would have a class method to construct a toSave() string, and 
+  each object is stored as a single line within the text file. Hence, the toSave() string is constructed with  
+  '|' as a divider, and a newline to indicate the end of the object. The formatted string is a concatenation of all 
+  the toSave() strings of the objects in the list. `writeAllToFile` then writes the entire string into the text file, 
+  overwriting any existing strings in the file.
+  This is implemented for edit and delete commands as they cannot be appended.
+  
+  ![writing](/docs/images/StorageWriteAll.png)
+ 
+ *addSingleItemToFile*
+ 
+ Each class object would have a class method to construct a toSave() string, and each object is stored as a single line
+ within the text file. Hence, the toSave() string is constructed with  '|' as a divider, and a newline to indicate 
+ the end of the object.  This storage method : addSingleItemToFile, uses the toSave() string of the object 
+ it needs to save, by appending it to the back of the text file. 
+ This provides improved performance as compared to using writeAllToFile().
+ 
+ ![saving](/docs/images/StorageSave.png)
+ 
+ *loading and parsing file content to HappyPills*
+ 
+Loading and parsing methods are separated by class types. Each text file in HappyPills represent a single class.
+For example, `loadingPatientsFromFile` retrieves the entire string from the patient file and uses 
+`parsePatientFileContent` to convert each line into a patient object and adds it back to the patient map. 
+`loadAppointmentFromFile` and `parseAppointmentFileContent` does the same with the appointment file.
+ 
+ ![loading](/docs/images/StorageLoad.png)
+ 
+**Design Considerations**
 
 ##### Aspect: Saving method
 Alternative 1 was chosen as fewer checks means that the program is less prone to exception, especially
