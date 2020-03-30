@@ -26,7 +26,7 @@ public class FindStudentList extends Command {
      * @throws DukeException    DukeException is thrown when there is an out of bound index.
      */
     protected void find() throws DukeException {
-        ui.displayStudentMessage("Please state the list name you are searching for");
+        ui.displayMessage("Please state the list name you are searching for");
         ui.readUserInput();
         name = ui.getUserInput();
         for (int i = 0; i < studentListCollection.size(); i++) {
@@ -35,9 +35,9 @@ public class FindStudentList extends Command {
             }
         }
         if (searchResults.isEmpty()) {
-            ui.displayStudentMessage("Nothing match you description : " + name);
+            ui.displayMessage("Nothing match you description : " + name);
         } else {
-            ui.displayStudentMessage("You have " + searchResults.size() + " matches:");
+            ui.displayMessage("You have " + searchResults.size() + " matches:");
             displayList.printSearchResults(searchResults);
         }
     }

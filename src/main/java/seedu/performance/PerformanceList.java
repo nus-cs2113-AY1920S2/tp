@@ -5,13 +5,12 @@ import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static seedu.performance.Performance.performanceListNameComparator;
 import static seedu.performance.Performance.performanceListGradeComparator;
 
 public class PerformanceList {
-    public static ArrayList<Performance> performanceList;
+    protected ArrayList<Performance> performanceList;
     UI ui;
     DisplayTable displayTable;
 

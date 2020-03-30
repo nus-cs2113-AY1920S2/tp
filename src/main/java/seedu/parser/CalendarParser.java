@@ -1,6 +1,5 @@
 package seedu.parser;
 
-import seedu.duke.Duke;
 import seedu.exception.DukeException;
 
 public class CalendarParser {

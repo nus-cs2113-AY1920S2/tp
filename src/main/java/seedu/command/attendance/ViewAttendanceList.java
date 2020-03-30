@@ -21,7 +21,7 @@ public class ViewAttendanceList extends Command {
     private void view() throws DukeException {
         try {
             if (attendances.isEmpty()) {
-                ui.displayAttendanceMessage("Attendance List is empty");
+                ui.displayMessage("Attendance List is empty");
             } else {
                 attendances.printList();
             }

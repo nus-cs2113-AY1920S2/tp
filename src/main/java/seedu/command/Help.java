@@ -1,13 +1,13 @@
 package seedu.command;
 
 import seedu.exception.DukeException;
-import seedu.ui.UI;
+
 
 public class Help extends Command {
-    UI ui;
+    seedu.ui.Help help;
 
     public Help() {
-        this.ui = new UI();
+        this.help = new seedu.ui.Help();
     }
 
     /**
@@ -18,20 +18,20 @@ public class Help extends Command {
      *                       selects any command out of the list.
      */
     public void selectHelpMessage() throws DukeException {
-        ui.printGetHelp();
-        String typeOfHelp = ui.getStringInput();
+        help.printGetHelp();
+        String typeOfHelp = help.getStringInput();
         switch (typeOfHelp) {
         case "1":
-            ui.printEventHelp();
+            help.printEventHelp();
             break;
         case "2":
-            ui.printAttendanceHelp();
+            help.printAttendanceHelp();
             break;
         case "3":
-            ui.printPerformanceHelp();
+            help.printPerformanceHelp();
             break;
         case "4":
-            ui.printStudentListHelp();
+            help.printStudentListHelp();
             break;
         default: throw new DukeException("Invalid help function selected.");
         }

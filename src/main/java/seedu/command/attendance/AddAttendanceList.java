@@ -105,7 +105,7 @@ public class AddAttendanceList extends Command {
      * @throws DukeException If a string is given instead of an integer.
      */
     private ArrayList<String> fetchAttendanceList() throws DukeException {
-        ui.displayAttendanceMessage("Please state the index of the studentList that you wish to import");
+        ui.displayMessage("Please state the index of the studentList that you wish to import");
         ui.readUserInput();
         try {
             int index = Integer.parseInt(ui.getUserInput());

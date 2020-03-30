@@ -30,7 +30,7 @@ public class DeleteStudentList extends Command {
         } catch (Exception e) {
             throw new DukeException("Deletion Failed, out of bound.");
         }
-        ui.displayStudentMessage("Here is the updated Student List Collection");
+        ui.displayMessage("Here is the updated Student List Collection");
         displayList.printStudentListCollection();
     }
 

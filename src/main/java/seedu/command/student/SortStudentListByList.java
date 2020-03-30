@@ -27,6 +27,6 @@ public class SortStudentListByList extends Command {
     @Override
     public void execute() throws DukeException {
         sort();
-        ui.displayStudentMessage("StudentList sorted by name within the lists");
+        ui.displayMessage("StudentList sorted by name within the lists");
     }
 }

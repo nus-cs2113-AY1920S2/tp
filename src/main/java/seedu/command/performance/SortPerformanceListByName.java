@@ -25,7 +25,7 @@ public class SortPerformanceListByName extends Command {
      */
     private void sort() {
         if (performances.isEmpty()) {
-            ui.displayAttendanceMessage("An empty list cannot be sorted");
+            ui.displayMessage("An empty list cannot be sorted");
         } else {
             performances.sortByName();
             ui.sortPerformanceByName(eventName);
