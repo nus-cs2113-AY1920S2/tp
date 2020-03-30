@@ -53,15 +53,32 @@ public class TextUi {
      * @return a message to be displayed to user
      */
     public static String getHelp() {
-        String helpMessage = "    HappyPills Commands:\n"
-                + "      add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]\n"
-                + "      list\n"
-                + "      get [NRIC]\n"
-                + "      edit [NRIC] /p[PHONE_NUMBER] or /a[ALLERGIES] or /r[REMARKS]\n"
-                + "      delete [NRIC]\n"
-                + "      help\n"
-                + "      exit\n"
-                + "      For more detailed command instructions, enter help [COMMAND].\n";
+        String helpMessage = "    HappyPills Commands\n"
+                + "    -----------------------------------------------\n"
+                + "    General Commands:\n"
+                + "      help | Displays all of HappyPill's Commands\n"
+                + "      exit | Exits the program\n"
+                + "    -----------------------------------------------\n"
+                + "    Patient Details Commands:\n"
+                + "      add patient | Adds a patient into the program\n"
+                + "      list patient | Lists all the patients in the program\n"
+                + "      get patient | Retrieves the details of a given patient\n"
+                + "      edit patient | Edits a patient's detail\n"
+                + "      delete patient | Deletes a patient from the program\n"
+                + "    -----------------------------------------------\n"
+                + "    Patient Medial Records Commands:\n"
+                + "      add visit | Adds a prior patient visit into the program\n"
+                + "      "
+                + "    -----------------------------------------------\n"
+                + "    Appointment Scheduling Commands:\n"
+                + "      add appt | Adds an appointment into the program\n"
+                + "      list appt | Lists all the appointments into the program\n"
+                + "      edit appt | Edits an appointment in the program\n"
+                + "      delete appt | Deletes an appointment from the program\n"
+                + "      done appt | Marks an appointment as done\n"
+                + "      find appt | Finds all the appointments under a patient\n"
+                + "    -----------------------------------------------\n"
+                + "    For more detailed command instructions, enter help [COMMAND].\n";
         helpMessage += DIVIDER;
         return helpMessage;
     }
@@ -184,18 +201,35 @@ public class TextUi {
      *
      * @return The Add command instruction.
      */
-    public static String printAddHelp() {
+    public static String printAddPatientHelp() {
         String message = "    To add a new patient into the program, use the following command:\n"
                 + "    Note: patient details are within the parenthesis [ ]\n"
-                + "      add /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]\n"
+                + "      add patient /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]\n"
                 + "    The command above adds a new patient.\n"
                 + "    To add allergies and remarks to the patient's details, use the following commands\n"
-                + "      add /ic[NRIC] /a[ALLERGIES]\n"
-                + "      add /ic[NRIC] /r[REMARKS]\n"
+                + "      add patient /ic[NRIC] /a[ALLERGIES]\n"
+                + "      add patient /ic[NRIC] /r[REMARKS]\n"
                 + "    Example:\n"
-                + "      add /icS9999999Z /nJanice /p999 /d12-11-98 /bA+\n"
-                + "      add /icS9999999Z /aSchool\n"
-                + "      add /icS9999999Z /rHad contact with COVID-19 Case200\n"
+                + "      add patient /icS9999999Z /nJanice /p999 /d12-11-98 /bA+\n"
+                + "      add patient /icS9999999Z /aSchool\n"
+                + "      add patient /icS9999999Z /rHad contact with COVID-19 Case200\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Add command instruction.
+     *
+     * @return The Add command instruction.
+     */
+    public static String printAddAppointmentHelp() {
+        String message = "    To add a new appointment into the program, use the following command:\n"
+                + "    Note: appointment details are within the parenthesis [ ]\n"
+                + "      add appt /ic[NRIC] /d[DATE] /t[TIME] /r[REASON]\n"
+                + "    The command above adds a new appointment.\n"
+                + "    Example:\n"
+                + "      add appt /icS9999999Z /d01-04-2020 /t12:00:00 /rCheckup\n"
+                + "    Please ensure that the date is formatted as DD-MM-YYYY and time as HH:mm:ss\n"
                 + DIVIDER;
         return message;
     }
@@ -205,10 +239,23 @@ public class TextUi {
      *
      * @return The List command instruction.
      */
-    public static String printListHelp() {
+    public static String printListPatientHelp() {
         String message = "    To retrieve a list of all the patients within the program,\n"
                 + "    run the following command:\n"
-                + "      list"
+                + "      list patient"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed List command instruction.
+     *
+     * @return The List command instruction.
+     */
+    public static String printListAppointmentHelp() {
+        String message = "    To retrieve a list of all the appointments within the program,\n"
+                + "    run the following command:\n"
+                + "      list appt"
                 + DIVIDER;
         return message;
     }
@@ -218,12 +265,12 @@ public class TextUi {
      *
      * @return The Get command instruction.
      */
-    public static String printGetHelp() {
+    public static String printGetPatientHelp() {
         String message = "    To retrieve a patient's information, run the following command:\n"
                 + "    Note: patient details are within the parenthesis [ ]\n"
-                + "      get [NRIC]\n"
+                + "      get patient [NRIC]\n"
                 + "    Example:\n"
-                + "      get S9999999Z\n"
+                + "      get patient S9999999Z\n"
                 + "    The command above will display information regarding the patient with NRIC S9999999Z.\n"
                 + DIVIDER;
         return message;
@@ -234,12 +281,28 @@ public class TextUi {
      *
      * @return The Edit command instruction.
      */
-    public static String printEditHelp() {
+    public static String printEditAppointmentHelp() {
+        String message = "    To edit an appointment's information, run the following command:\n"
+                + "    Note: appointment details are within the parenthesis [ ]\n"
+                + "      edit appt [NRIC] /d[DATE] to edit appointment date,\n"
+                + "      edit appt [NRIC] /t[TIME] to edit appointment time,\n"
+                + "      edit appt [NRIC] /r[REASON] to edit appointment reasons\"\n"
+                + "    Do note that editing the appointment details will overwrite any previous information.\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Edit command instruction.
+     *
+     * @return The Edit command instruction.
+     */
+    public static String printEditPatientHelp() {
         String message = "    To edit a patient's information, run the following command:\n"
                 + "    Note: patient details are within the parenthesis [ ]\n"
-                + "      edit [NRIC] /p[PHONE_NUMBER] to edit patient's phone number,\n"
-                + "      edit [NRIC] /a[ALLERGIES] to edit patient's allergies,\n"
-                + "      edit [NRIC] /r[REMARKS] to edit patient's remarks\"\n"
+                + "      edit patient [NRIC] /p[PHONE_NUMBER] to edit patient's phone number,\n"
+                + "      edit patient [NRIC] /a[ALLERGIES] to edit patient's allergies,\n"
+                + "      edit patient [NRIC] /r[REMARKS] to edit patient's remarks\"\n"
                 + "    Do note that editing the patient's records will overwrite any previous information.\n"
                 + "    Adding of allergies or remarks can be done with the add command.\n"
                 + DIVIDER;
@@ -251,12 +314,53 @@ public class TextUi {
      *
      * @return The Delete command instruction.
      */
-    public static String printDeleteHelp() {
+    public static String printDeletePatientHelp() {
         String message = "    To delete a patient's records, run the following command:\n"
                 + "    Note: patient details are within the parenthesis [ ]\n"
-                + "      delete [NRIC]\n"
+                + "      delete patient [NRIC]\n"
                 + "    The user will be prompted to confirm if they would like to delete the patient's records.\n"
                 + "    Do note that deletion cannot be undone.\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Delete command instruction.
+     *
+     * @return The Delete command instruction.
+     */
+    public static String printDeleteAppointmentHelp() {
+        String message = "    To delete an appointment, run the following command:\n"
+                + "    Note: appointment details are within the parenthesis [ ]\n"
+                + "      delete appt [APPT_ID]\n"
+                + "    The user will be prompted to confirm if they would like to delete the patient's records.\n"
+                + "    Do note that deletion cannot be undone.\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Find command instruction.
+     *
+     * @return The Find command instruction.
+     */
+    public static String printFindAppointmentHelp() {
+        String message = "    To find all of a patient's appointments, run the following command:\n"
+                + "    Note: appointment details are within the parenthesis [ ]\n"
+                + "      find appt [NRIC]\n"
+                + DIVIDER;
+        return message;
+    }
+
+    /**
+     * Displays detailed Done command instruction.
+     *
+     * @return The Done command instruction.
+     */
+    public static String printDoneAppointmentHelp() {
+        String message = "    To make an appointment as done, run the following command:\n"
+                + "    Note: appointment details are within the parenthesis [ ]\n"
+                + "      done appt [APPT_ID]\n"
                 + DIVIDER;
         return message;
     }
