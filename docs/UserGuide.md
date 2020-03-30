@@ -7,10 +7,12 @@ ESC is a flashcard study program, where you are able to create cards and categor
 
 ESC is meant to help students be able to study more effectively using the medium that they prefer, providing a simple, easy to use interface for the timestrapped student who prefers using CLI based applications and are able to type quickly. 
 
+** Do note that for v2.0 release, the program is UNABLE to load your previous session
+
 ## Quick Start
 1. Ensure that you have Java 11 or above installed on your computer.
-2. Download the latest version of `ESC` from [here](http://link.to/duke).
-3. Run ESC on your command terminal using this command: `java -jar <directory>/duke.jar`
+2. Download the latest version of `ESC` from [here](https://github.com/AY1920S2-CS2113-T15-2/tp/releases/tag/v2.0).
+3. Run ESC on your command terminal using this command: `java -jar <directory>/duke-v2.0.jar`
 
 ## Quick Use
 1. Create a subject.
