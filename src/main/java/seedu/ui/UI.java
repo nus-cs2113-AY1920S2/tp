@@ -258,7 +258,6 @@ public class UI {
         return in.nextLine();
     }
 
-
     public void printStudentListCollection() {
         if (studentListCollection.isEmpty()) {
             System.out.println("The student list collection is currently empty");
