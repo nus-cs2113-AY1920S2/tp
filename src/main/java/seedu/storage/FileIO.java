@@ -13,6 +13,7 @@ public class FileIO {
     private FileReader fileToReadFrom;
     private FileWriter fileToWriteTo;
     private Scanner scanner;
+    private File f;
 
     /**
      * Open files to be modified, and scanner to read from file.
@@ -20,11 +21,10 @@ public class FileIO {
      * @throws DukeException if cannot initialise file
      */
     public FileIO(String directory) throws DukeException {
-        File f = open(directory);
+        this.f = open(directory);
 
         try {
             this.fileToReadFrom = new FileReader(f);
-            this.fileToWriteTo = new FileWriter(f);
         } catch (IOException e) {
             throw new DukeException("FileIO: cannot initialise file");
         }
@@ -93,6 +93,9 @@ public class FileIO {
      */
     public void write(String input) throws DukeException {
         try {
+            if (this.fileToWriteTo == null) {
+                this.fileToWriteTo = new FileWriter(f);
+            }
             fileToWriteTo.write(input);
         } catch (IOException m) {
             throw new DukeException("FileIO.write: " + m.getMessage());
