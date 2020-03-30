@@ -28,7 +28,7 @@ public class StorageHandler {
      */
     public static void removeLine(int lineNumber, Storage storage) throws IOException {
         // Read file into list of strings, where each string is a line in the file
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(storage.dataFilePath),
+        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(Storage.dataFilePath),
                 StandardCharsets.UTF_8));
 
         //int removedIndex = 0;

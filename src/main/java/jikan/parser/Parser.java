@@ -1,25 +1,28 @@
 package jikan.parser;
 
-import jikan.command.Command;
+import jikan.Log;
+import jikan.activity.ActivityList;
+import jikan.exception.EmptyNameException;
+import jikan.storage.StorageCleaner;
+import jikan.ui.Ui;
+
 import jikan.command.AbortCommand;
 import jikan.command.ByeCommand;
 import jikan.command.CleanCommand;
+import jikan.command.Command;
 import jikan.command.ContinueCommand;
 import jikan.command.DeleteCommand;
 import jikan.command.EditCommand;
 import jikan.command.EndCommand;
 import jikan.command.FilterCommand;
 import jikan.command.FindCommand;
+import jikan.command.GoalCommand;
 import jikan.command.GraphCommand;
 import jikan.command.ListCommand;
 import jikan.command.StartCommand;
+import jikan.command.ViewGoalsCommand;
 
-import jikan.exception.EmptyNameException;
-import jikan.activity.ActivityList;
-import jikan.storage.StorageCleaner;
-import jikan.ui.Ui;
-import jikan.Log;
-
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -50,7 +53,8 @@ public class Parser {
      * @param scanner      scanner object which reads user input
      * @param activityList the list of activities
      */
-    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner) throws
+    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner,
+                                     File tagFile) throws
             EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
         makeInfoLog("Starting to parse inputs.");
         Parser.cleaner = cleaner;
@@ -138,6 +142,17 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 Ui.printDivider("Please input an integer for the time interval.\n"
                         + "If you'd like to graph by tags, enter the command <graph tags>.");
+            }
+            break;
+        case "goal":
+            try {
+                if (tokenizedInputs.length == 1) {
+                    command = new ViewGoalsCommand(null,tagFile);
+                } else {
+                    command = new GoalCommand(tokenizedInputs[1], scanner);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+                Ui.printDivider("Tag name cannot be empty!");
             }
             break;
         default:
