@@ -2,12 +2,12 @@ package seedu.happypills.appointmentcommands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.happypills.controller.commands.appointmentcommands.DoneAppointmentCommand;
+import seedu.happypills.logic.commands.appointmentcommands.DoneAppointmentCommand;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
-import seedu.happypills.model.data.VisitMap;
+import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DoneAppointmentCommandTest {
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
-    private static VisitMap newVisitMap;
+    private static PatientRecordMap newPatientRecordMap;
     public static final String DIVIDER = "    =====================================================";
 
     @BeforeAll
     public static void setup() {
         newPatientMap = new PatientMap();
         newAppointmentMap = new AppointmentMap();
-        newVisitMap = new VisitMap();
+        newPatientRecordMap = new PatientRecordMap();
 
         //Add test patient
         Patient patientOne = new Patient("P1", "S123A", 123,
@@ -61,7 +61,7 @@ class DoneAppointmentCommandTest {
                 + "        Attended : Yes\n"
                 + "    =====================================================";
         String message = new DoneAppointmentCommand("S123A", "1").execute(
-                newPatientMap, newAppointmentMap, newVisitMap);
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputMissingInput, message);
     }
 
