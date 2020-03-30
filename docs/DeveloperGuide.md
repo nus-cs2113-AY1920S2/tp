@@ -124,13 +124,24 @@ In the restaurant daily report, the user can input the amount of items sold each
 
 Below is an example usage scenario for the user.
 
-Step 1. The user opens the program and an empty `sales` is initalized.
+Step 1. The user opens the program and an empty `sales` is initialized.
 
 Step 2. The user can add sold items by inputting `sell dish; d/DISH; q/QUANTITY`. An example would be `sell dish; d/pasta; q/15;`.
 The user can input as many sales as they like as long as the dish exists in the menu.
 
 Step 3. The user can generate the profit by inputting `profit`.
 
+
+### 1.3.2 Design Considerations
+#### Aspect: Using a separate class to perform sale commands
+**Current Implementation**: Methods are stored in the sales class
+* Pros: Easy to understand and implement.
+* Cons: May make the sales class long and convoluted and may become difficult to find certain features or methods
+
+**Alternative**: Commands are stored in separate classes
+* Pros: Easier for a person who hasn't worked on the project to understand the structure
+* Cons: Takes longer to implement
+=======
 
 <a name="search-reservation"></a>
 
@@ -255,6 +266,7 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
   + Cons: If we choose to further develop this feature later on, we'll have to do the search again because we did not save the matching items any way
 
 <a name="product-scope"></a>
+
 
 ## 2. Product Scope
 ### Target user profile
