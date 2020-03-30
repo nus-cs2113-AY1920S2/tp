@@ -44,7 +44,7 @@ public class AddTagCommand extends Command {
     /**
      * Constructs an Add Tag Command.
      *
-     * @param info
+     * @param infos
      *  The tag info
      * @param taskDescription
      *  The description of the task
@@ -61,11 +61,11 @@ public class AddTagCommand extends Command {
     }
 
     protected CommandResult executeAdd() {
-       try {
+        try {
             Task toAddTag = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
             toAddTag.setTag(infos);
-            for (String info: infos) {
-                assert toAddTag.getTags().contains(info) == true: "tag have been successfully added";
+            for (String info : infos) {
+                assert toAddTag.getTags().contains(info) == true : "tag have been successfully added";
             }
             return new CommandResult(MESSAGE_TAG_ADDED);
         } catch (ModuleManager.ModuleNotFoundException e) {

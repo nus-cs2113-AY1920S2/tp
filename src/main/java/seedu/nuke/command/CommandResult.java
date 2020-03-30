@@ -14,8 +14,16 @@ public class CommandResult {
     private final ArrayList<Directory> shownList;
     private final ArrayList<String> shownList2;
 
-    public CommandResult
-            (String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow, ArrayList<String> listToShow2) {
+    /**
+     * Constructor of the CommandResult class.
+     *
+     * @param feedbackToUser The feedback to be printed to the user.
+     * @param directoryLevel The directoryLevel the user is at currently.
+     * @param listToShow the list of Directory to be printed to the user.
+     * @param listToShow2 the list of Directory to be printed to the user.
+     */
+    public CommandResult(String feedbackToUser, DirectoryLevel directoryLevel, ArrayList<Directory> listToShow,
+                          ArrayList<String> listToShow2) {
         this.feedbackToUser = feedbackToUser;
         this.directoryLevel = directoryLevel;
         this.shownList = listToShow;

@@ -100,12 +100,11 @@ public class Ui {
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
 
-        if ((result.getDirectoryLevel() == DirectoryLevel.NONE)
-        && result.getShownList2() == null) {
+        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getShownList2() == null) {
             return;
         }
 
-        if(result.getShownList2() != null) {
+        if (result.getShownList2() != null) {
             printShownList(result.getShownList2());
             return;
         }
