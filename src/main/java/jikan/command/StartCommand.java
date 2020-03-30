@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.exception.EmptyTagException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
@@ -42,25 +43,24 @@ public class StartCommand extends Command {
 
             // check if there exists an activity with this name
             String activityName = getActivityName(tagDelimiter,allocateDelimiter);
+            Parser.activityName = activityName;
             int index = activityList.findActivity(activityName);
             if (index != -1) {
                 Ui.printDivider("There is already an activity with this name. Would you like to continue it?");
                 continueActivity(activityList, scanner, index);
             } else {
                 try {
-                    if (activityName.isEmpty()) {
-                        throw new EmptyNameException();
-                    }
-                    String line = parseActivity(tagDelimiter,allocateDelimiter);
+                    parseActivity(tagDelimiter,allocateDelimiter);
                     Parser.startTime = LocalDateTime.now();
-                    Log.makeFineLog("Started: " + Parser.activityName);
-                    Ui.printDivider(line);
-                } catch (EmptyNameException e) {
-                    Log.makeInfoLog("Activity started without activity name");
-                    Ui.printDivider("Activity name cannot be empty!");
+                    Log.makeFineLog("Started: " + activityName);
+                    Ui.printDivider("Started: " + activityName);
                 } catch (WrongDateFormatException w) {
                     Log.makeInfoLog("Wrong format for allocated time.");
                     Ui.printDivider("Please input in this format HH/MM/SS");
+                } catch (EmptyNameException e) {
+                    Ui.printDivider("Activity name cannot be empty!");
+                } catch (EmptyTagException e) {
+                    Ui.printDivider("Tags cannot be empty!");
                 }
             }
         }
@@ -92,41 +92,45 @@ public class StartCommand extends Command {
      * @param tagDelimiter the index of the tag delimiter.
      * @param allocateDelimiter the index of the allocation delimiter.
      */
-    private String parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
-            WrongDateFormatException {
+    private void parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
+            WrongDateFormatException, EmptyTagException {
         String activityName = getActivityName(tagDelimiter, allocateDelimiter);
-        Parser.activityName = activityName;
+        if (activityName.isBlank()) {
+            throw new EmptyNameException();
+        }
         String activityInfo;
         if (tagDelimiter != -1 || allocateDelimiter != -1) {
             activityInfo = this.parameters.substring(activityName.length() + 1);
         } else {
-            return "Started: " + Parser.activityName;
-        }
-        if (Parser.activityName.isEmpty()) {
-            throw new EmptyNameException();
+            return;
         }
         if (allocateDelimiter != -1) {
             String allocatedTime;
-            activityInfo = activityInfo.substring(3);
-            int index = activityInfo.indexOf(" ");
-            if (index != -1) {
-                allocatedTime = activityInfo.substring(0,index);
-                activityInfo = activityInfo.substring(index + 1);
-            } else {
-                allocatedTime = activityInfo;
-            }
             try {
+                activityInfo = activityInfo.substring(3);
+                int index = activityInfo.indexOf(" ");
+                if (index != -1) {
+                    allocatedTime = activityInfo.substring(0,index);
+                    activityInfo = activityInfo.substring(index + 1);
+                } else {
+                    allocatedTime = activityInfo;
+                }
                 parseDuration(allocatedTime);
-            } catch (WrongDateFormatException w) {
+            } catch (WrongDateFormatException | StringIndexOutOfBoundsException w) {
                 throw new WrongDateFormatException();
             }
         }
         if (tagDelimiter != -1) {
-            activityInfo = activityInfo.substring(3);
-            String [] tagString = activityInfo.split(" ");
-            Parser.tags.addAll(Arrays.asList(tagString));
+            try {
+                activityInfo = activityInfo.substring(3);
+                String [] tagString = activityInfo.split(" ");
+                Parser.tags.addAll(Arrays.asList(tagString));
+            } catch (StringIndexOutOfBoundsException e) {
+                throw new EmptyTagException();
+            }
+
         }
-        return "Started: " + Parser.activityName;
+        //return "Started: " + Parser.activityName;
     }
 
     private String getActivityName(int tagDelimiter, int allocateDelimiter) {
