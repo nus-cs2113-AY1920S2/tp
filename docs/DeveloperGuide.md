@@ -73,7 +73,85 @@ The following diagram describes how the add card operation works:
     - Multiple states will be involved.
     - The application will become more complex as different states use different commands.
     - The application can also become more difficult to use as users can be unclear about the states.
+
+### 2.x. Quiz Feature
+#### 2.x.1. Implementation
+The quiz feature now incorporates random testing, builds upon the subject feature to allows users to set how many questions to quiz for a selected subject. 
+This helps users to quiz by subject, and get a score at the end of each quiz. It implements the following operations:
+
+- ``Quiz#quizQuestion()`` - Outputs a random question to the user that has not been tested before in this quiz session.
+- ``Quiz#quizNext()`` - Retrieves a random question from the available questions for that subject.
+- ``Quiz#markCorrectness()`` - Marks user answer as correct or wrong based on user's judgement.
+
+Given below is an example usage scenario and how the quiz mechanism behaves at each step.
+
+Step 1. Before the user decides to start a quiz, he/she has to create a subject using the command
+ ``addsubject s/SUBJECTNAME``, and add flashcards to that subject using the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``.
+
+Step 2. The user can start a quiz by indicating a subject and the number of questions to quiz using the command
+``quiz s/SUBJECTINDEX n/NUMBERTOQUIZ``. If the number of questions to quiz is not specified, all the questions stored
+in that subject will be quizzed.
+The following diagram describes how the quiz operation works:
+
+![](images/quiz_sequence_uml.png)
+
+Step 3: The quiz will end upon completion of the specified number of questions, or by stopping the quiz using the
+command ``exitquiz``.
+
+#### 2.x.2. Design Considerations
+##### Aspect: How the user can control how many questions to be quizzed
+- **Alternative 1**: Always quiz all stored questions for that subject, but allow users to stop the quiz whenever they want.
+  - Pros: 
+    - Simple implementation.
+  - Cons: 
+    - The user will have to keep track of how many questions he has already done.
+  
+- **Alternative 2 (current choice)**: Allow the user to both set the number of questions to quiz and to stop the quiz halfway.
+  - Pros:
+    - More flexibility for the user.
+  - Cons:
+    - More complex implementation.
+    - The user has to type in a longer command to start a quiz, or they will be quizzed with all questions by default.
     
+### 2.x. Score Feature
+#### 2.x.1. Implementation
+The score feature builds on the quiz feature, storing the score for each quiz session in a ScoreList. 
+This allows users to see all past scores and track any improvements. It implements the following operations:
+
+- ``Subject#showScores()`` - Shows all scores and the average score from all quiz sessions for that subject, in chronological order.
+- ``ScoreList#getAvg()`` - Calculates the average score for all scores in the ScoreList.
+- ``ScoreList#listScores()`` - Lists out all scores in the ScoreList.
+
+Given below is an example usage scenario and how the score mechanism behaves at each step.
+
+Step 1. Before the user can view his scores for a particular subject, he first needs to have done at least one quiz
+session for that subject using the command ``quiz s/SUBJECTINDEX n/NUMBERTOQUIZ``.
+
+Step 2. The user can view the score history and average score of a selected subject, if he has done at least one
+quiz session for that subject, using the command ``score s/SUBJECTINDEX``.
+The following diagram describes how the score operation works:
+
+![](images/scores_sequence_uml.png)
+
+#### 2.x.2. Design Considerations
+##### Aspect: How to format the score history shown to the user
+- **Alternative 1 (current choice)**: Show all scores in chronological order and in percentages of number of correct answers / number of
+ questions asked. Also show the average percentage score of all the scores.
+  - Pros: 
+    - Users can easily keep track of their progress and if they have been improving.
+    - A percentage score allows users to compare quiz results even if a different amount of questions were chosen to be quizzed in the quiz sessions.
+  - Cons: 
+    - More complex implementation.
+    - If the user attempts the quiz many times, showing every quiz score may clutter up the ui, and might be too much
+    information for the user to take in.
+  
+- **Alternative 2**: Show just the average score, and number of attempts taken.
+  - Pros:
+    - Clean ui, no clutter.
+    - Simple implementation.
+  - Cons:
+    - User will be unable to track his progress.
+
 ## Appendix A: Product Scope
 ### Target user profile
 The product is intended for students preparing for exams. Students can store practice question and model answers in the product.
