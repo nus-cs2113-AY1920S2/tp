@@ -1,20 +1,59 @@
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
-Setting up
-==========
+- [Setting up](#1-setting-up)
+	- [Prerequisites](#11-prerequisites)
+	- [Setting up the project](#setting-up-the-project)
+	- [Verifying the Setup](#verifying-the-setup)
+- [Design](#design)
+	- [Architecture](#architecture)
+	- [UI Component](#ui-component)
+	- [Logic Component](#logic-component)
+	- [Model Component](#model-component)
+	- [Storage Component](#storage-component)
+	- [Atas Component](#atas-component)
+- [Implementation](#implementation)
+	- [Delete Task Feature](#delete-task-feature)
+		- [Design Considerations](#design-considerations)
+	- [Search task feature](#search-task-feature)
+		- [Current Implementation](#current-implementation)
+		- [Design Considerations:](#design-considerations-1)
+	- [Clear Task feature](#clear-task-feature)
+		- [Current Implementation](#current-implementation-1)
+		- [Design Considerations](#design-considerations-2)
+	- [Repeat event feature](#repeat-event-feature)
+		- [Current Implementation](#current-implementation-2)
+		- [`Event` and `RepeatEvent` Differences and Impact](#event-and-repeatevent-differences-and-impact)
+		- [Design Considerations](#design-considerations-3)
+	- [Edit Task Feature](#edit-task-feature)
+		- [Implementation](#implementation-1)
+		- [Design Considerations](#design-considerations-4)
+	- [View Calendar feature](#view-calendar-feature)
+		- [Implementation](#implementation-2)
+		- [Design Considerations](#design-considerations-5)
+	- [Storage](#storage)
+		- [Implementation](#implementation-3)
+			- [Saving the current state of **ATAS** with `Storage#save()`:](#saving-the-current-state-of-atas-with-storagesave)
+			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#loading-previously-saved-tasklist-data-into-atas-with-storageload)
+		- [Design Considerations](#design-considerations-6)
+- [Testing](#testing)
+	- [Using IntelliJ JUnit Tests](#using-intellij-junit-tests)
+	- [Using Input-Output Tests](#using-input-output-tests)
+- [Appendices](#appendices)
+- [Product Scope](#product-scope)
+- [User Stories](#user-stories)
+- [Use Cases](#use-cases)
+- [Non-Functional Requirements](#non-functional-requirements)
 
+## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
 
-Prerequisites
--------------
+### 1.1. Prerequisites
 
 1.  JDK 11 or above
 
 2.  IntelliJ IDE
 
-Setting up the project
-----------------------
-
+### 1.2. Setting up the project
 1.  Fork this repository, and clone the fork to your computer
 
 2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
@@ -33,9 +72,7 @@ Setting up the project
 
 7.  Click `OK` to use the default settings provided
 
-Verifying the Setup
--------------------
-
+### 1.3. Verifying the Setup
 1.  In an IntelliJ terminal, run `gradlew build`
 
 2.  Move to the folder `build` &gt; `libs` and run: `java -jar atas-2.0.0.jar`
@@ -51,14 +88,10 @@ Verifying the Setup
 
         -   `exit`: Exits **ATAS**.
 
-Design
-======
-
+## 2. Design
 This section will give a high-level overview of how various components in **ATAS** function and interact with each other.
 
-Architecture
-------------
-
+### 2.1. Architecture
 ![overall architecture](images/overall architecture.PNG)
 
 The architecture diagram above illustrates the high-level design of the **ATAS** application.  
@@ -75,15 +108,12 @@ The `Atas` component contains all the other components in the application.
 
 The following sections will explain each component in greater detail.
 
-UI Component
-------------
-
+### 2.2. UI Component
 1.  The `Ui` component reads user input which represents a command.
 
 2.  The `Ui` component shows the result of the command to the user.
 
-Logic Component
----------------
+### 2.3. Logic Component
 
 The Logic component comprises the `Parser`, `Command`, and `CommandResult` classes:  
 
@@ -93,16 +123,12 @@ The Logic component comprises the `Parser`, `Command`, and `CommandResult` class
 
 3.  The `CommandResult` object will contain the output to be shown to the user.
 
-Model Component
----------------
-
+### 2.4. Model Component
 The Model component contains the `Task` and `TaskList` classes, which store the user’s schedule.
 
 ![TaskList and Tasks](images/TaskList Task class diagram.PNG)
 
-Storage Component
------------------
-
+### 2.5. Storage Component
 ![Storage Class Diagram](images/storage.PNG)
 
 1.  A `Storage` object is created by the `Atas` class to handle the loading and saving of `Task` data.
@@ -111,9 +137,7 @@ Storage Component
 
 3.  The `save()` method writes the current state of **ATAS** into the local save file using the `Task#encodeTask()` method.
 
-Atas Component
---------------
-
+### 2.6. Atas Component
 The `Atas` component integrates all the aforementioned components to run the overall application logic.  
 The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command  
 
@@ -129,14 +153,21 @@ The sequence diagram below shows how various components, broken down into the va
 
 5.  The `Storage` object is used to save the new state of the application.
 
-Implementation
-==============
+## 3. Setting Up
+- For **Windows** Users:
+    1. Download the latest release of ATAS here.
+    2. Open a ```cmd```(Command Prompt) window.
+    3. Navigate to the directory containing downloaded jar file.
+    4. Run the command ```java -jar atas.jar```. You will be greeted with the welcome screen of ATAS in a few seconds.
+- For **Mac** Users:
+    1. Download the latest release of ATAS here.
+    2. Open up ```Terminal```
+    3. Navigate to the directory containing downloaded jar file.
+    4. Run the command ```java -jar atas.jar```. You will be greeted with the welcome screen of ATAS in a few seconds.
 
+## 4. Implementation
 This section will detail how some noteworthy features are implemented.
-
-Delete Task Feature
--------------------
-
+### 4.1. Delete Task Feature
 Current Implementation:  
 The `DeleteCommand` extends the `Command` class and initializes the `delete index` in its constructor. The `delete index` specifies the index of task that the user wants to delete.
 
@@ -148,8 +179,7 @@ The user launches the app and retrieves the tasks which are saved under a local 
 **Step 2**  
 The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided. It will obtain information to get `delete index`.
 
-> **Warning**
->
+> **Warning:**
 > If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new `IncorrectCommand` class will be called to print the respective error messages
 
 **Step 3**  
@@ -166,7 +196,7 @@ The following sequence diagram summarizes how delete command operation works:
 
 ![delete task](images/delete.png)
 
-### Design Considerations
+#### 4.1.1. Design Considerations
 
 -   Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within the `execute()` method of the `DeleteCommand` class
 
@@ -176,10 +206,8 @@ The following sequence diagram summarizes how delete command operation works:
 
     -   Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
 
-Search task feature
--------------------
-
-### Current Implementation
+### 4.2. Search task feature
+#### 4.2.1 Current Implementation
 
 The search task feature is currently implemented in both `SearchCommand` class and `SearchdCommand` class. Both classes inherit from the `Command` class.
 
@@ -249,7 +277,7 @@ The following sequence diagram summarizes how the `SearchCommand` and `SearchdCo
 
 ![Search operations](images/search.png)
 
-### Design Considerations:
+#### 4.2.2. Design Considerations:
 
 -   Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
 
@@ -270,10 +298,8 @@ The following sequence diagram summarizes how the `SearchCommand` and `SearchdCo
 
             -   Cons: Makes the code for `Parser` unnecessarily long. Makes the code less OOP.
 
-Clear Task feature
-------------------
-
-### Current Implementation
+### 4.3. Clear Task feature
+#### 4.3.1. Current Implementation
 
 The `ClearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function has to be executed
 
@@ -317,7 +343,7 @@ The following sequence diagram summarizes how the `ClearCommand` operation works
 
 ![clear command](images/clear.png)
 
-### Design Considerations
+#### 4.3.2. Design Considerations
 
 -   Creating another `clear done` command instead of just 1 `clear` command
 
@@ -338,12 +364,10 @@ The following sequence diagram summarizes how the `ClearCommand` operation works
 
             -   Cons: `ArrayList` will be filled up with unnecessary tasks that could have been removed. This might affect the time complexity of future addition or searching operations on the `ArrayList`.
 
-Repeat event feature
---------------------
-
+### 4.4. Repeat event feature
 This feature allow users to repeat their events, removing the need to insert the same event multiple times with different dates.
 
-### Current Implementation
+#### 4.4.1. Current Implementation
 
 The `RepeatCommand` class extends the `Command` class and either allows the stated event to repeat or to stop repeating. To allow an event to repeat, it will replace the current `Event` object with a `RepeatEvent` object (`RepeatEvent` inherits from `Event`). Likewise, to stop repeating, it replaces the current `RepeatEvent` with a `Event` object. A detailed explanation and the difference between the 2 classes will be elaborated later.
 
@@ -377,7 +401,7 @@ The following sequence diagram summarizes how repeat command operation works:
 
 ![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
 
-### `Event` and `RepeatEvent` Differences and Impact
+#### 4.4.2. `Event` and `RepeatEvent` Differences and Impact
 
 -   There are 4 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an event to repeat accurately.
 
@@ -394,7 +418,7 @@ The following sequence diagram summarizes how repeat command operation works:
 
 -   To users, apart from minor differences such as the icon and `RepeatEvent` listing how often it is being repeated, there will be no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and they can only add `Event` or `Assignment` to the app and would appear as if there are only 2 type of tasks.
 
-### Design Considerations
+#### 4.4.3. Design Considerations
 
 -   Allowing only tasks that are `Event` to be repeated
 
@@ -435,10 +459,10 @@ The following sequence diagram summarizes how repeat command operation works:
 
             -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the user’s list and increase the size of the local file that stores the `TaskList`.
 
-Edit Task Feature
+### 4.5. Edit Task Feature
 -----------------
 
-### Implementation
+#### 4.5.1. Implementation
 
 The `EditCommand` class extends the `Command` class by providing functions to edit specific tasks in the list of **ATAS**.
 
@@ -485,7 +509,7 @@ The following sequence diagram summarises what happens when the `EditCommand` cl
 
 ![EditCommand\_SequenceDiagram.png](images/EditCommand_SequenceDiagram.png)
 
-### Design Considerations
+#### 4.5.2. Design Considerations
 
 -   Placing invocation of new `Assignment` and `Event` class in `EditCommand` class
 
@@ -503,12 +527,10 @@ The following sequence diagram summarises what happens when the `EditCommand` cl
     -   Alternatives Considered:  
         Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However, this is not chosen as it is not intuitive for the user’s task index to shift after editing the task.
 
-View Calendar feature
----------------------
-
+### 4.6. View Calendar feature
 ![Sample output of Calendar Command](images/calendar2.png)
 
-### Implementation
+#### 4.6.1. Implementation
 
 The `CalendarCommand` class extends the `Command` class with methods to implement the necessary pre-processing to display an overview of tasks in the given date. The following sequence diagram outlines an example execution of `CalendarCommand` when it is called and the interaction it has with the relevant components.
 
@@ -556,7 +578,7 @@ The method manages all pre-processing to get the details needed to formulate the
 **Step 4**  
 The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the `Calendar` view by calling `showToUser()` method of the `Ui` component.
 
-### Design Considerations
+#### 4.6.2. Design Considerations
 
 -   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
 
@@ -584,10 +606,8 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
     -   Alternative Considered:  
         Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
 
-Storage
--------
-
-### Implementation
+## 4.7. Storage
+### 4.7.1. Implementation
 
 The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
 Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
@@ -614,7 +634,7 @@ Add each decoded `Task` into a `TaskList`.
 **Step 4**  
 When all lines in the save file have been decoded, return the `TaskList`.
 
-### Design Considerations
+#### 4.7.2. Design Considerations
 
 -   Saving the `TaskList` after every `Command` executed  
 
@@ -627,27 +647,18 @@ When all lines in the save file have been decoded, return the `TaskList`.
     -   Conclusion  
         As the `TaskList` is expected to be small for most users, the drop in performance due to unnecessary saves is negligible. The first method is chosen to make the code easier to maintain.
 
-Testing
-=======
-
-Using IntelliJ JUnit Tests
---------------------------
+## 5. Testing
+### 5.1. Using IntelliJ JUnit Tests
 
 -   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 
 -   For individual tests, you can right-click on the test **package**, **class** or a single test and choose `Run 'TEST'`
 
-Using Input-Output Tests
-------------------------
-
+### 5.2. Using Input-Output Tests
 -   Navigate to the `text-ui-test` folder and run the runtest.bat (Windows) or runtest.sh (Mac / Linux) script.
 
-Appendices
-==========
-
-Product Scope
-=============
-
+## 6. Appendices
+### 6.1. Appendix A: Product Scope
 Target user profile:  
 
 -   manages many university assignments or events
@@ -662,9 +673,7 @@ Target user profile:
 
 **Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
 
-User Stories
-============
-
+### 6.2. Appendix B: User Stories
 <table>
 <colgroup>
 <col width="20%" />
@@ -824,12 +833,8 @@ User Stories
 </tbody>
 </table>
 
-Use Cases
-=========
-
-Non-Functional Requirements
-===========================
-
+### 6.3. Appendix C: Use Cases
+### 6.4. Appendex D: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
