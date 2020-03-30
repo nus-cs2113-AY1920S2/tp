@@ -27,7 +27,7 @@ class EditPatientCommandTest {
             e.printStackTrace();
         }
 
-        EditPatientCommand testEditCommand = new EditPatientCommand("S0618", "/rWeak");
+        EditPatientCommand testEditCommand = new EditPatientCommand("S0618", "/rmWeak");
         try {
             testEditCommand.execute(patients, newAppointmentMap, newVisitMap);
         } catch (HappyPillsException e) {
