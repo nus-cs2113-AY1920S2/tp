@@ -11,13 +11,13 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         
     * [3.2. General Patient Information Commands](#32-general-patient-information)
         + [3.2.1. Add Patient: `add patient`](#321-add-patient-add-patient)
-        + [3.2.2. Edit Patient: `edit patient`](#322-edit-patient-edit-patient)
-        + [3.2.3. Delete Patient: `delete patient`](#323-delete-patient-delete-patient)
-        + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
-        + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
+        + [3.2.2. Edit Patient: `edit patient`](#332-edit-patient-records-edit-pr)
+        + [3.2.3. Delete Patient: `delete patient`](#333-delete-patient-records-delete-pr)
+        + [3.2.4. List All Patients: `list patient`](#334-list-patient-records-list-pr)
+        + [3.2.5. Retrieve a Patient's Information: `get patient`](#335-find-patient-records-find-pr)
         
     * [3.3. Patient Medical Records Commands](#33-patient-medical-information-commands)
-        + [3.3.1. Add Patient Records : `add pr`](#321-add-patient-add-patient)
+        + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
         + [3.3.2. Edit Patient Records : `edit pr`](#322-edit-patient-edit-patient)
         + [3.3.3. Delete Patient Records : `delete pr`](#323-delete-patient-delete-patient)
         + [3.3.4. List Patient Records : `list pr`](#324-list-all-patients-list-patient)
