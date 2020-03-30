@@ -46,8 +46,8 @@ Add menu items, ingredients and reservations.
 Add menu items, ingredients, and reservations.
 
 #### Add menu item: add dish
-* Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
-* Example: `add dish; n/bacon pizza; i/cheese, bacon;`
+* Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...]; p/PRICE;`
+* Example: `add dish; n/bacon pizza; i/cheese, bacon; p/7.00;`
 #### Add ingredient into stock: add stock
 * Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
 * Example: `add stock; i/tomato; q/10; p/$0.50;`
@@ -93,8 +93,11 @@ List items in the menu, stock and reservations.
 ### Search
 Search items in the menu, stock and reservations.
 
-* Search stock : `search stock; k\KEYWORD`
-  * Example: `search stock; k\tomato;`
+* Search dish : `search dish; k/KEYWORD;`
+  * Example: `search dish; k/bacon;`
+
+* Search stock : `search stock; k/KEYWORD;`
+  * Example: `search stock; k/tomato;`
 
 * Search reservation: `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
   * Example: `search reservation; r/1;`
@@ -119,7 +122,7 @@ Add daily sales and calculate profit
 ## Command Summary
 
 ### Add
-* Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...];`
+* Format: `add dish; n/NAME; [i/INGREDIENT1, INGREDIENT2, ...]; p/PRICE;`
 * Format: `add stock; i/INGREDIENT1; q/QUANTITY; p/PRICE;`
 * Format: `add reservation; r/NUMBER_OF_RESERVATIONS;`
 
@@ -130,7 +133,7 @@ Add daily sales and calculate profit
 * Format: `delete reservation; r/NUMBER_OF_RESERVATIONS;`
 
 ### Mark
-* Format: `mark reservation; r/NUMBER_OF_RESERVATIONS`;
+* Format: `mark reservation; r/NUMBER_OF_RESERVATIONS;`
 
 ### List
 * Format: `list dish`
@@ -140,7 +143,8 @@ Add daily sales and calculate profit
 * Format: `list unserved reservation`
 
 ### Search
-* Format: `search stock; k\KEYWORD`
+* Format: `search dish; k/KEYWORD;`
+* Format: `search stock; k/KEYWORD;`
 * Format: `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
 
 ### Sales
