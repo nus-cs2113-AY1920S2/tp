@@ -11,8 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import ingredient.Ingredient;
-import ingredient.IngredientNotFoundException;
-import stock.Stock;
+import exceptions.IngredientNotFoundException;
 import utils.Pair;
 
 class StockTest {

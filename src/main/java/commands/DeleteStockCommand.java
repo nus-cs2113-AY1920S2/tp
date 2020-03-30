@@ -5,8 +5,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import exceptions.InvalidStockCommandException;
 import ingredient.Ingredient;
-import ingredient.IngredientNotFoundException;
+import exceptions.IngredientNotFoundException;
 import stock.Stock;
 
 /**
@@ -126,12 +127,12 @@ public class DeleteStockCommand extends StockCommand {
     public void execute(Stock stock) {    
         try {
             stock.deleteIngredient(ingredientToDelete);
+            System.out.println(createDeleteResultMessage());
         } catch (IngredientNotFoundException infe) {
             System.out.println("Ingredient " 
                     + this.ingredientToDelete.getIngredientName() 
                     + " not found and cannot be deleted!");
-        }
-        System.out.println(createDeleteResultMessage());
+        }       
     }
     
     /** Creates a message to notify the user of the deletion. */
@@ -154,14 +155,13 @@ public class DeleteStockCommand extends StockCommand {
         
         try {
             stock.deleteIngredient(ingredientToDelete);
+            outputMessage += (createDeleteResultMessage());
         } catch (IngredientNotFoundException infe) {
             outputMessage += ("Ingredient " 
                     + ingredientToDelete.getIngredientName() 
                     + " not found and cannot be deleted!");
         }
-        
-        outputMessage += (createDeleteResultMessage());
-        
+
         return outputMessage;
     }
     

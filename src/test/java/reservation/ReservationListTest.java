@@ -1,16 +1,23 @@
 package reservation;
 
+import commands.MarkReservationCommand;
+import commands.VoidReservationCommand;
+import exceptions.ReservationCannotMarkException;
 import org.junit.jupiter.api.Test;
+import ui.Ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ReservationListTest {
     ReservationList reservationList;
+    Ui ui;
     
     public ReservationListTest() {
+        ui = new Ui();
         reservationList = new ReservationList();
         reservationList.addReservation(new Reservation(0, "Lisa",
                 LocalDateTime.parse("2020-03-15 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
@@ -33,9 +40,13 @@ class ReservationListTest {
     
     @Test
     void markReservationAsServed_normalInput_success() {
-        reservationList.markReservationAsServed(0);
-        Reservation reservation = reservationList.getReservation(0);
-        assertEquals("Served", reservation.getStatus());
+        try {
+            reservationList.markReservationAsServed(0);
+            Reservation reservation = reservationList.getReservation(0);
+            assertEquals("Served", reservation.getStatus());
+        } catch (ReservationCannotMarkException e) {
+            fail(); // the test should not reach this line
+        }
     }
     
     @Test
@@ -43,6 +54,17 @@ class ReservationListTest {
         reservationList.voidReservation(0);
         Reservation reservation = reservationList.getReservation(0);
         assertEquals("Invalid", reservation.getStatus());
+    }
+
+    @Test
+    void markReservationAsServed_invalidReservation_exceptionThrown() {
+        try {
+            reservationList.voidReservation(0);
+            reservationList.markReservationAsServed(0);
+            fail(); // the test should not reach this line
+        } catch (ReservationCannotMarkException e) {
+            ui.showMessage("Reservation[0] is invalid, so it cannot be marked as served.");
+        }
     }
     
     @Test
