@@ -2,12 +2,13 @@ package seedu.score;
 
 import seedu.exception.EscException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Contains the scores for all quizzes taken.
  */
-public class ScoreList {
+public class ScoreList implements Serializable {
     private ArrayList<Double> scores = new ArrayList<>();
 
     /**

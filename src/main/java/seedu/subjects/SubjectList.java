@@ -16,6 +16,11 @@ public class SubjectList {
         this.exams = new ArrayList<Exam>();
     }
 
+    public SubjectList(ArrayList<Subject> subjects) {
+        this.subjects = subjects;
+        this.exams = new ArrayList<Exam>();
+    }
+
     public SubjectList(ArrayList<Subject> subjects, ArrayList<Exam> examDates) {
         this.subjects = subjects;
         this.exams = examDates;

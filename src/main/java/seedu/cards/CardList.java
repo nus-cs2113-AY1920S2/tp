@@ -2,12 +2,13 @@ package seedu.cards;
 
 import seedu.exception.EscException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Represents the entire deck of flashcards.
  */
-public class CardList {
+public class CardList implements Serializable {
     private ArrayList<Card> cards;
 
     public CardList() {
