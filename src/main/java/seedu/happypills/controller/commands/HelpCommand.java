@@ -2,6 +2,7 @@ package seedu.happypills.controller.commands;
 
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.view.ui.TextUi;
 
 /**
@@ -20,7 +21,7 @@ public class HelpCommand implements Command {
      * @param patients Contains the list of tasks on which the commands are executed on.
      * @return message The command instructions.
      */
-    public String execute(PatientMap patients, AppointmentMap appointments) {
+    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) {
         String message;
         if (command.equals("")) {
             message = TextUi.getHelp();

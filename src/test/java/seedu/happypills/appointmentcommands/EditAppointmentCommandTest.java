@@ -7,6 +7,7 @@ import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,12 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EditAppointmentCommandTest {
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
+    private static VisitMap newVisitMap;
     public static final String DIVIDER = "    =====================================================";
 
     @BeforeAll
     public static void setup() {
         newPatientMap = new PatientMap();
         newAppointmentMap = new AppointmentMap();
+        newVisitMap = new VisitMap();
 
         //Add test patient
         Patient patientOne = new Patient("P1", "S123A", 123,
@@ -60,7 +63,8 @@ class EditAppointmentCommandTest {
                 + "    Do note that editing the patient's records will overwrite any previous information.\n"
                 + "    The apptID can be found using \"find appt [NRIC]\"\n"
                 + "    =====================================================";
-        String message = new EditAppointmentCommand("S123A", "2", "/r ").execute(newPatientMap, newAppointmentMap);
+        String message = new EditAppointmentCommand("S123A", "2", "/r ").execute(
+                newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputMissingInput, message);
     }
 
@@ -75,7 +79,7 @@ class EditAppointmentCommandTest {
                 + "        Attended : No\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "2",
-                "/r Very sick hehe").execute(newPatientMap, newAppointmentMap);
+                "/r Very sick hehe").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputeditReason, message);
     }
 
@@ -84,7 +88,7 @@ class EditAppointmentCommandTest {
         String expectedOutputEditDateInvalid = "    Invalid date or date format(DD/MM/YYYY).\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "3",
-                "/d 01/01/202s").execute(newPatientMap, newAppointmentMap);
+                "/d 01/01/202s").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputEditDateInvalid, message);
     }
 
@@ -99,7 +103,7 @@ class EditAppointmentCommandTest {
                 + "        Attended : No\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "3",
-                "/d 01/01/2020").execute(newPatientMap, newAppointmentMap);
+                "/d 01/01/2020").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputEditDateValid, message);
     }
 
@@ -108,7 +112,7 @@ class EditAppointmentCommandTest {
         String expectedOutputEditTimeInvalid = "    Invalid time or time format(HH:MM).\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "1",
-                "/t 24:00").execute(newPatientMap, newAppointmentMap);
+                "/t 24:00").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputEditTimeInvalid, message);
     }
 
@@ -123,7 +127,7 @@ class EditAppointmentCommandTest {
                 + "        Attended : No\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "1",
-                "/t 23:59").execute(newPatientMap, newAppointmentMap);
+                "/t 23:59").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputEditTimeValid, message);
     }
 

@@ -5,6 +5,7 @@ import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
@@ -69,7 +70,9 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     }
 
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
         String message = "";
         Patient delPatient = findPatient(patients);
         if (delPatient.equals(null)) {

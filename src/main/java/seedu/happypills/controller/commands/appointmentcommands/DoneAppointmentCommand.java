@@ -3,8 +3,9 @@ package seedu.happypills.controller.commands.appointmentcommands;
 import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
-import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
+import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
@@ -93,7 +94,9 @@ public class DoneAppointmentCommand extends AppointmentCommand {
      * @throws HappyPillsException Throws an exception if the edit field is not valid.
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");

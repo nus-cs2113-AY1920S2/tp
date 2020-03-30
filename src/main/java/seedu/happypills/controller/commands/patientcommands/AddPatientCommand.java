@@ -4,6 +4,7 @@ import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.view.ui.TextUi;
@@ -56,7 +57,9 @@ public class AddPatientCommand extends PatientCommand {
      * @param patients Contains the list of tasks on which the commands are executed on.
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
         assert !patients.containsKey(nric) : "New nric can be added";
         Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
         if (tempPatient.getNric() == null) {

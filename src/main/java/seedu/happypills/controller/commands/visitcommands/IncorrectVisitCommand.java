@@ -1,17 +1,13 @@
-package seedu.happypills.controller.commands.patientcommands;
+package seedu.happypills.controller.commands.visitcommands;
 
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.VisitMap;
 
-/**
- * Represents an incorrect command. Upon execution, produces some feedback to the user.
- */
-public class IncorrectPatientCommand extends PatientCommand {
-
+public class IncorrectVisitCommand extends VisitCommand {
     public final String feedbackToUser;
 
-    public IncorrectPatientCommand(String feedbackToUser) {
+    public IncorrectVisitCommand(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
     }
 

@@ -7,6 +7,7 @@ import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.VisitMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +16,7 @@ public class FindAppointmentCommandTest {
 
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
+    private static VisitMap newVisitMap;
     public static final String DIVIDER = "    =====================================================";
 
     /**
@@ -24,6 +26,7 @@ public class FindAppointmentCommandTest {
     public static void setup() {
         newPatientMap = new PatientMap();
         newAppointmentMap = new AppointmentMap();
+        newVisitMap = new VisitMap();
 
         //Add test patient
         Patient patientOne = new Patient("P1", "S123A", 123,
@@ -53,14 +56,14 @@ public class FindAppointmentCommandTest {
     @Test
     public void getAppointment_patientNotFound() throws HappyPillsException {
         String expectedOutputNotfound = "The patient you are looking for cannot be found";
-        String message = new FindAppointmentCommand("S789C").execute(newPatientMap, newAppointmentMap);
+        String message = new FindAppointmentCommand("S789C").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputNotfound, message);
     }
 
     @Test
     public void getAppointment_EmptyList_notFound() throws HappyPillsException {
         String expectedOutputEmptyList = "    There are no appointments in the list.\n";
-        String message = new FindAppointmentCommand("S456B").execute(newPatientMap, newAppointmentMap);
+        String message = new FindAppointmentCommand("S456B").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputEmptyList, message);
     }
 
@@ -71,7 +74,7 @@ public class FindAppointmentCommandTest {
                 + "     | 1 | S123A | reason1 | 01/02/2020 | 12:00:00 | \n"
                 + "     | 2 | S123A | reason2 | 01/03/2020 | 13:00:00 | \n"
                 + DIVIDER;
-        String message = new FindAppointmentCommand("S123A").execute(newPatientMap, newAppointmentMap);
+        String message = new FindAppointmentCommand("S123A").execute(newPatientMap, newAppointmentMap, newVisitMap);
         assertEquals(expectedOutputInList, message);
     }
 }
