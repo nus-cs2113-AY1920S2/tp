@@ -176,17 +176,22 @@ public class Task extends Directory implements Tag {
     }
 
     @Override
-    public void setTag(String info) {
-        this.tags.add(info);
+    public void setTag(ArrayList<String> infos) {
+        this.tags.addAll(infos);
     }
 
     @Override
-    public void removeTag() {
-        this.tags = null;
+    public void removeTag(String tag) {
+        tags.remove(tag);
+    }
+
+    @Override
+    public void removeAllTags() {
+        tags.clear();
     }
 
     @Override
     public String getTag() {
-        return this.tags != null ? tags.toString() : null;
+        return this.tags == null ? "" : tags.toString();
     }
 }

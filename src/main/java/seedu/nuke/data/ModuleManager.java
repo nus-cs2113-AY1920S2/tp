@@ -1,12 +1,13 @@
 package seedu.nuke.data;
 
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Root;
+import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
-import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -133,6 +134,36 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
+     * Searches the Module List for the module with the specified module code, then searches the module's
+     * Category List for the category with the specified name, then searches the category's Task List for
+     * the task with the specified description, then searches the task's File List for the file with the
+     * specified name.
+     *
+     * @param moduleCode
+     *  The module code of the module to be found
+     * @param categoryName
+     *  The name of the category to be found
+     * @param taskDescription
+     *  The description of the task to be found
+     * @return
+     *  The found task with the specified description, with its parent category and module with the specified
+     *      module code and category name respectively
+     * @throws ModuleNotFoundException
+     *  If the module is not found
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category is not found
+     * @throws TaskManager.TaskNotFoundException
+     *  If the task is not found
+     * @throws TaskFileManager.TaskFileNotFoundException
+     *  If the file is not found
+     */
+    public static TaskFile getFile(String moduleCode, String categoryName, String taskDescription, String fileName)
+            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
+            TaskManager.TaskNotFoundException, TaskFileManager.TaskFileNotFoundException {
+        return getTask(moduleCode, categoryName, taskDescription).getFiles().getFile(fileName);
+    }
+
+    /**
      * Checks for duplicates of the same module code in the Module List.
      * @param moduleCode
      *  The module code to check
@@ -173,13 +204,12 @@ public class ModuleManager implements Iterable<Module> {
      */
     public static ArrayList<String> checkDeadline() {
         ArrayList<String> deadlines = new ArrayList<>();
-        sortAllTasks();
-        ArrayList<Task> allTasks = getAllTasks();
-
+        ArrayList<Task> allTasks = sortAllTasks();
         for (Task task: allTasks) {
             deadlines.add(String.format("%-30s", task.getDescription()) + " "
-                    + String.format("%-8s", task.getParent().getParent().getModuleCode()) + "   deadline: "
-                    + task.getDeadline());
+                    + String.format("%-8s", task.getParent().getParent().getModuleCode())
+                    + String.format("%-10s", task.getParent().getCategoryName())
+                    + "   deadline: " + task.getDeadline().toShow());
         }
         return deadlines;
     }
@@ -187,15 +217,17 @@ public class ModuleManager implements Iterable<Module> {
     /**
      * sort all tasks of all modules in ascending order of deadlines.
      */
-    public static void sortAllTasks() {
-        Collections.sort(getAllTasks(), new Comparator<Task>() {
+    public static ArrayList<Task> sortAllTasks() {
+        ArrayList<Task> allTasks = getAllTasks();
+        Collections.sort(allTasks, new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().toShow();
-                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().toShow();
+                String t1Deadline = t1.getDeadline().toString();
+                String t2Deadline = t2.getDeadline().toString();
                 return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });
+        return allTasks;
     }
 
     /**
@@ -296,6 +328,31 @@ public class ModuleManager implements Iterable<Module> {
         return retrieveList(moduleCode).retrieveList(categoryName);
     }
 
+    /**
+     * Retrieves the File List of the task with the specified description, and has its parent category with the
+     * specified name and parent module with the specified module code.
+     *
+     * @param moduleCode
+     *  The module code of the module containing the category to retrieve the File List from
+     * @param categoryName
+     *  The name of the category to retrieve the File List from
+     * @param taskDescription
+     *  The description of the task to retrieve the File List from
+     * @return
+     *  The Task List of the found category
+     * @throws ModuleNotFoundException
+     *  If the module with the specified module code is not found in the Module List
+     * @throws CategoryManager.CategoryNotFoundException
+     *  If the category with the specified name is not found in the Category List
+     * @throws TaskManager.TaskNotFoundException
+     *  If the task with the specified description is not found in the Task List
+     */
+    public static TaskFileManager retrieveList(String moduleCode, String categoryName, String taskDescription)
+            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
+            TaskManager.TaskNotFoundException {
+        return retrieveList(moduleCode, categoryName).retrieveList(taskDescription);
+    }
+
     /* Filters for data (module / task / category) that *contains* given keywords (i.e. not exact match)
      *  in a case-insensitive manner. There may be multiple data that matches. */
 
@@ -361,6 +418,34 @@ public class ModuleManager implements Iterable<Module> {
             filteredTaskList.addAll(category.getTasks().filter(taskKeyword));
         }
         return filteredTaskList;
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that contains the specified module keyword,
+     * then for categories in the Category List of the filtered modules with name that contains the specified
+     * category keyword, then for tasks in the Task List of the filtered categories with description that
+     * contains the specified task keyword, then for files in the File List of the filtered tasks with name
+     * that contains the specified file keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @param fileKeyword
+     *  The keyword to filter the files
+     * @return
+     *  The list of filtered files
+     */
+    public static ArrayList<TaskFile> filter(String moduleKeyword, String categoryKeyword, String taskKeyword,
+            String fileKeyword) {
+        ArrayList<TaskFile> filteredFileList = new ArrayList<>();
+        for (Task task : filter(moduleKeyword, categoryKeyword, taskKeyword)) {
+            filteredFileList.addAll(task.getFiles().filter(fileKeyword));
+        }
+        return filteredFileList;
     }
 
     /* Filters for data (module / task / category) that *matches exactly* the given keywords in a case-insensitive
@@ -434,6 +519,34 @@ public class ModuleManager implements Iterable<Module> {
             filteredTaskList.addAll(category.getTasks().filterExact(taskKeyword));
         }
         return filteredTaskList;
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that matches <b>exactly</b> the specified module
+     * keyword, then for categories in the Category List of the filtered modules with name that that matches
+     * <b>exactly</b> the specified category keyword, then for tasks in the Task List of the filtered categories
+     * with description that that matches <b>exactly</b> the specified task keyword, then for files in the File List
+     * that matches <b>exactly</b> the specified file keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @param categoryKeyword
+     *  The keyword to filter the categories
+     * @param taskKeyword
+     *  The keyword to filter the tasks
+     * @param fileKeyword
+     *  The keyword to filter the files
+     * @return
+     *  The list of filtered files
+     */
+    public static ArrayList<TaskFile> filterExact(String moduleKeyword, String categoryKeyword, String taskKeyword,
+            String fileKeyword) {
+        ArrayList<TaskFile> filteredFileList = new ArrayList<>();
+        for (Task task : filterExact(moduleKeyword, categoryKeyword, taskKeyword)) {
+            filteredFileList.addAll(task.getFiles().filterExact(fileKeyword));
+        }
+        return filteredFileList;
     }
 
     /**

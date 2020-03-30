@@ -10,8 +10,6 @@ import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.regex.Pattern;
 
-import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
-import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
@@ -31,8 +29,11 @@ public class EditCategoryCommand extends EditCommand {
     public static final String COMMAND_WORD = "edc";
     public static final String FORMAT = COMMAND_WORD
             + " <category name> -m <module code> [ -c <new category name> -p <new priority> ]";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
+            + "Edit name and priority of category"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -107,7 +108,7 @@ public class EditCategoryCommand extends EditCommand {
         try {
             Category toEdit = DirectoryTraverser.getCategoryDirectory(moduleCode, oldCategoryName);
             fillAllAttributes(toEdit);
-            ModuleManager.retrieveList(moduleCode).edit(toEdit, newCategoryName, newPriority);
+            toEdit.getParent().getCategories().edit(toEdit, newCategoryName, newPriority);
             return new CommandResult(MESSAGE_EDIT_CATEGORY_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

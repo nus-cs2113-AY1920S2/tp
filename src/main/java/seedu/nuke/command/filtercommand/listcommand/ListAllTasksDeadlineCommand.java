@@ -16,7 +16,10 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
     private ArrayList<String> deadlines;
 
     public static final String COMMAND_WORD = "lstd";
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String FORMAT = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
+            + "List all tasks in ascending order of deadline"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final int EMPTY = 0;
 
     @Override

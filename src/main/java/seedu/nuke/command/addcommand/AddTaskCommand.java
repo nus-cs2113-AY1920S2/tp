@@ -13,8 +13,6 @@ import seedu.nuke.util.DateTime;
 
 import java.util.regex.Pattern;
 
-import static seedu.nuke.directory.DirectoryTraverser.getBaseCategory;
-import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
 import static seedu.nuke.parser.Parser.DEADLINE_PREFIX;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
@@ -36,7 +34,8 @@ public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_WORD = "addt";
     public static final String FORMAT = COMMAND_WORD
             + " <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " task description " + ": Add a task to the module.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a new task"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"

@@ -1,26 +1,40 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
+
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.addcommand.*;
-import seedu.nuke.command.filtercommand.FilterCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.OpenFileCommand;
+import seedu.nuke.command.UndoCommand;
+import seedu.nuke.command.addcommand.AddCategoryCommand;
+import seedu.nuke.command.addcommand.AddFileCommand;
+import seedu.nuke.command.addcommand.AddModuleCommand;
+import seedu.nuke.command.addcommand.AddTagCommand;
+import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.editcommand.EditCategoryCommand;
+import seedu.nuke.command.editcommand.EditFileCommand;
 import seedu.nuke.command.editcommand.EditModuleCommand;
 import seedu.nuke.command.editcommand.EditTaskCommand;
+import seedu.nuke.command.filtercommand.FilterCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
@@ -55,6 +69,8 @@ public class Parser {
     private static final int COMMAND_WORD_INDEX = 0;
     private static final int PARAMETER_WORD_INDEX = 1;
 
+    private static final String GENERIC_LIST_COMMAND = "ls";
+    private static final String GENERIC_MKDIR_COMMAND = "mkdir";
     public static final String MODULE_PREFIX = "-m";
     public static final String CATEGORY_PREFIX = "-c";
     public static final String TASK_PREFIX = "-t";
@@ -63,6 +79,7 @@ public class Parser {
     public static final String DEADLINE_PREFIX = "-d";
     public static final String ALL_FLAG = "-a";
     public static final String EXACT_FLAG = "-e";
+    public static final String TAG_PREFIX = "-g";
 
     private static final String COMMAND_WORD_GROUP = "commandWord";
     private static final String PARAMETERS_GROUP = "parameters";
@@ -70,7 +87,7 @@ public class Parser {
     private static final String MODULE_GROUP = "moduleCode";
     private static final String CATEGORY_GROUP = "categoryName";
     private static final String TASK_GROUP = "taskDescription";
-    private static final String FILE_GROUP = "filePath";
+    private static final String FILE_GROUP = "fileInfo";
     private static final String DEADLINE_GROUP = "deadline";
     private static final String PRIORITY_GROUP = "priority";
     private static final String EXACT_GROUP = "exact";
@@ -100,51 +117,63 @@ public class Parser {
 
         try {
             switch (commandWord) {
+
+            case GENERIC_LIST_COMMAND:
+                return prepareGenericListCommand(parameters.trim());
+
+            case GENERIC_MKDIR_COMMAND:
+                return prepareGenericAddCommand(parameters);
+
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
-
             case AddCategoryCommand.COMMAND_WORD:
                 return prepareAddCategoryCommand(parameters);
-
             case AddTaskCommand.COMMAND_WORD:
                 return prepareAddTaskCommand(parameters);
-
-            // todo check if in module
+            case AddFileCommand.COMMAND_WORD:
+                return prepareAddFileCommand(parameters);
             case AddTagCommand.COMMAND_WORD:
-                return new AddTagCommand(parameters);
-
+                return prepareAddTagCommand(parameters);
+                
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, true);
-
             case DeleteCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, true);
-
             case DeleteTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, true);
+            case DeleteFileCommand.COMMAND_WORD:
+                return prepareDeleteAndListFileCommand(parameters, true);
 
             case ListModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, false);
-
             case ListCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, false);
-
             case ListTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, false);
-
+            case ListFileCommand.COMMAND_WORD:
+                return prepareDeleteAndListFileCommand(parameters, false);
+            case ListModuleTasksDeadlineCommand.COMMAND_WORD:
+                return new ListModuleTasksDeadlineCommand();
             case ListAllTasksDeadlineCommand.COMMAND_WORD:
                 return new ListAllTasksDeadlineCommand();
 
             case EditModuleCommand.COMMAND_WORD:
                 return prepareEditModuleCommand(parameters);
-
             case EditCategoryCommand.COMMAND_WORD:
                 return prepareEditCategoryCommand(parameters);
-
             case EditTaskCommand.COMMAND_WORD:
                 return prepareEditTaskCommand(parameters);
+            case EditFileCommand.COMMAND_WORD:
+                return prepareEditFileCommand(parameters);
 
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
+
+            case OpenFileCommand.COMMAND_WORD:
+                return prepareOpenFileCommand(parameters);
+
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
 
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
@@ -177,6 +206,52 @@ public class Parser {
             return new ChangeDirectoryCommand();
         } else {
             return new ChangeDirectoryCommand(parameters.trim());
+        }
+    }
+
+    /**
+     * Prepare the command to list the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericListCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            if (parameters.length() == 0) {
+                return prepareDeleteAndListModuleCommand(parameters, false);
+            } else {
+                parameters = " " + MODULE_PREFIX + " " + parameters;
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            }
+        case MODULE:
+            if (parameters.length() == 0) {
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            } else {
+                parameters = " " + CATEGORY_PREFIX + " " + parameters;
+                return prepareDeleteAndListTaskCommand(parameters, false);
+            }
+        case CATEGORY:
+            return prepareDeleteAndListTaskCommand(parameters, false);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+    }
+
+    private Command prepareGenericAddCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareAddModuleCommand(parameters);
+        case MODULE:
+            return prepareAddCategoryCommand(parameters);
+        case CATEGORY:
+            return prepareAddTaskCommand(parameters);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
     }
 
@@ -214,10 +289,8 @@ public class Parser {
         validateParameters(parameters, matcher, MODULE_PREFIX, PRIORITY_PREFIX);
 
         String categoryName = matcher.group(IDENTIFIER_GROUP).trim();
-        String moduleCode = matcher.group(MODULE_GROUP)
-                .replace(MODULE_PREFIX, NONE).trim();
-        String priority = matcher.group(PRIORITY_GROUP)
-                .replace(PRIORITY_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String priority = matcher.group(PRIORITY_GROUP).replace(PRIORITY_PREFIX, NONE).trim();
 
         if (priority.isEmpty()) {
             return new AddCategoryCommand(moduleCode, categoryName);
@@ -245,19 +318,15 @@ public class Parser {
                 DEADLINE_PREFIX, PRIORITY_PREFIX);
 
         String taskDescription = matcher.group(IDENTIFIER_GROUP).trim();
-        String moduleCode = matcher.group(MODULE_GROUP)
-                .replace(MODULE_PREFIX, NONE).trim();
-        String categoryName = matcher.group(CATEGORY_GROUP)
-                .replace(CATEGORY_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
 
         String optionalParameters = matcher.group(OPTIONAL_GROUP);
         Matcher optionalMatcher = AddTaskCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
         String[] optionalAttributes = getOptionalAttributes(optionalMatcher, DEADLINE_GROUP, PRIORITY_GROUP);
 
-        String deadline = optionalAttributes[0]
-                .replace(DEADLINE_PREFIX, NONE).trim();
-        String priority = optionalAttributes[1]
-                .replace(PRIORITY_PREFIX, NONE).trim();
+        String deadline = optionalAttributes[0].replace(DEADLINE_PREFIX, NONE).trim();
+        String priority = optionalAttributes[1].replace(PRIORITY_PREFIX, NONE).trim();
 
         DateTime deadlineToSet;
         try {
@@ -276,6 +345,19 @@ public class Parser {
         } catch (NumberFormatException | InvalidPriorityException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
         }
+    }
+
+    private Command prepareAddTagCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = AddTagCommand.REGEX_FORMATS.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX, TAG_PREFIX);
+
+        String info = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+
+        return new AddTagCommand(new ArrayList<>(Arrays.asList(info)), moduleCode, categoryName, taskDescription);
     }
 
     /**
@@ -300,7 +382,7 @@ public class Parser {
         return new AddFileCommand(moduleCode, categoryName, taskDescription, fileName, filePath);
     }
 
-    /* Prepare List Commands */
+    /* Prepare Delete and List Commands */
 
     /**
      * Prepares the command to delete modules or show filtered modules.
@@ -345,8 +427,7 @@ public class Parser {
         validateParameters(parameters, matcher, MODULE_PREFIX, EXACT_FLAG, ALL_FLAG);
 
         String categoryKeyword = matcher.group(IDENTIFIER_GROUP).trim();
-        String moduleKeyword = matcher.group(MODULE_GROUP)
-                .replace(MODULE_PREFIX, NONE).trim();
+        String moduleKeyword = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
 
         String optionalParameters = matcher.group(OPTIONAL_GROUP);
         Matcher optionalMatcher = FilterCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
@@ -378,10 +459,8 @@ public class Parser {
         validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, EXACT_FLAG, ALL_FLAG);
 
         String taskKeyword = matcher.group(IDENTIFIER_GROUP).trim();
-        String moduleKeyword = matcher.group(MODULE_GROUP)
-                .replace(MODULE_PREFIX, NONE).trim();
-        String categoryKeyword = matcher.group(CATEGORY_GROUP)
-                .replace(CATEGORY_PREFIX, NONE).trim();
+        String moduleKeyword = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryKeyword = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
 
         String optionalParameters = matcher.group(OPTIONAL_GROUP);
         Matcher optionalMatcher = FilterCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
@@ -396,6 +475,40 @@ public class Parser {
             return new DeleteTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
         } else {
             return new ListTaskCommand(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
+        }
+    }
+
+    /**
+     * Prepares the command to delete files or show filtered files.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to delete files or show filtered files
+     */
+    private Command prepareDeleteAndListFileCommand(String parameters, boolean isDelete)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = FilterCommand.FILE_REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX, EXACT_FLAG, ALL_FLAG);
+
+        String fileKeyword = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleKeyword = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryKeyword = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskKeyword = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+
+        String optionalParameters = matcher.group(OPTIONAL_GROUP);
+        Matcher optionalMatcher = FilterCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
+        String[] optionalAttributes = getOptionalAttributes(optionalMatcher, EXACT_GROUP, ALL_GROUP);
+
+        String exactFlag = optionalAttributes[0].trim();
+        boolean isExact = !exactFlag.isEmpty();
+        String allFlag = optionalAttributes[1].trim();
+        boolean isAll = !allFlag.isEmpty();
+
+        if (isDelete) {
+            return new DeleteFileCommand(moduleKeyword, categoryKeyword, taskKeyword, fileKeyword, isExact, isAll);
+        } else {
+            return new ListFileCommand(moduleKeyword, categoryKeyword, taskKeyword, fileKeyword, isExact, isAll);
         }
     }
 
@@ -415,8 +528,7 @@ public class Parser {
         validateParameters(parameters, matcher, MODULE_PREFIX);
 
         String oldModuleCode = matcher.group(IDENTIFIER_GROUP).trim();
-        String newModuleCode = matcher.group(MODULE_GROUP)
-                .replace(MODULE_PREFIX, NONE).trim();
+        String newModuleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
 
         if (isNothingToEdit(newModuleCode)) {
             return new IncorrectCommand(MESSAGE_NO_EDIT);
@@ -439,12 +551,9 @@ public class Parser {
         validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, PRIORITY_PREFIX);
 
         String oldCategoryName = matcher.group(IDENTIFIER_GROUP).trim();
-        String moduleCode = matcher.group(MODULE_GROUP)
-                .replace(MODULE_PREFIX, NONE).trim();
-        String newCategoryName = matcher.group(CATEGORY_GROUP)
-                .replace(CATEGORY_PREFIX, NONE).trim();
-        String newPriority = matcher.group(PRIORITY_GROUP)
-                .replace(PRIORITY_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String newCategoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String newPriority = matcher.group(PRIORITY_GROUP).replace(PRIORITY_PREFIX, NONE).trim();
 
         if (isNothingToEdit(newCategoryName, newPriority)) {
             return new IncorrectCommand(MESSAGE_NO_EDIT);
@@ -476,21 +585,16 @@ public class Parser {
                 DEADLINE_PREFIX, PRIORITY_PREFIX);
 
         String oldTaskDescription = matcher.group(IDENTIFIER_GROUP).trim();
-        String moduleCode = matcher.group(MODULE_GROUP)
-                .replace(MODULE_PREFIX, NONE).trim();
-        String categoryName = matcher.group(CATEGORY_GROUP)
-                .replace(CATEGORY_PREFIX, NONE).trim();
-        String newTaskDescription = matcher.group(TASK_GROUP)
-                .replace(TASK_PREFIX, NONE).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String newTaskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
 
         String optionalParameters = matcher.group(OPTIONAL_GROUP);
         Matcher optionalMatcher = EditTaskCommand.REGEX_OPTIONAL_FORMAT.matcher(optionalParameters);
         String[] optionalAttributes = getOptionalAttributes(optionalMatcher, DEADLINE_GROUP, PRIORITY_GROUP);
 
-        String newDeadline = optionalAttributes[0]
-                .replace(DEADLINE_PREFIX, NONE).trim();
-        String newPriority = optionalAttributes[1]
-                .replace(PRIORITY_PREFIX, NONE).trim();
+        String newDeadline = optionalAttributes[0].replace(DEADLINE_PREFIX, NONE).trim();
+        String newPriority = optionalAttributes[1].replace(PRIORITY_PREFIX, NONE).trim();
 
         if (isNothingToEdit(newTaskDescription, newDeadline, newPriority)) {
             return new IncorrectCommand(MESSAGE_NO_EDIT);
@@ -514,6 +618,55 @@ public class Parser {
         } catch (NumberFormatException | InvalidPriorityException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
         }
+    }
+
+    /**
+     * Prepares the command to edit a file.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to edit a file
+     */
+    private Command prepareEditFileCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = EditFileCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX, FILE_PREFIX);
+
+        String oldFileName = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+        String newFileName = matcher.group(FILE_GROUP).replace(FILE_PREFIX, NONE).trim();
+
+        if (isNothingToEdit(newFileName)) {
+            return new IncorrectCommand(MESSAGE_NO_EDIT);
+        }
+
+        return new EditFileCommand(oldFileName, moduleCode, categoryName, taskDescription, newFileName);
+    }
+
+    /* Miscellaneous Commands */
+
+    /**
+     * Prepares the command to open file(s).
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to open file(s)
+     */
+    private Command prepareOpenFileCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = OpenFileCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX);
+
+        String fileName = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+
+        return new OpenFileCommand(moduleCode, categoryName, taskDescription, fileName);
     }
 
     /**
@@ -624,8 +777,7 @@ public class Parser {
         }
         return true;
     }
-
-
+    
     /**
      * Parses the input as a confirmation status to a confirmation prompt for the user, and prepares the
      * corresponding command.
@@ -635,7 +787,7 @@ public class Parser {
      * @return
      *  The command to be executed
      */
-    public Command parseInputAsConfirmation(String userInput) {
+    public Command parseConfirmation(String userInput) {
         switch (userInput) {
         case "yes":
         case "y":
@@ -658,7 +810,7 @@ public class Parser {
      * @return
      *  The command to be executed
      */
-    public Command parseInputAsIndices(String input) {
+    public Command parseIndices(String input) {
         final Matcher matcher = ListNumberPrompt.INDICES_FORMAT.matcher(input.trim());
 
         if (!matcher.matches()) {

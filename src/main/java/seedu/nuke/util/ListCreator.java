@@ -3,6 +3,7 @@ package seedu.nuke.util;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,7 +20,7 @@ public class ListCreator {
      * @param toSort
      *  The list of modules to be sorted
      */
-    public static void sortModuleList(ArrayList<Module> toSort) {
+    private static void sortModuleList(ArrayList<Module> toSort) {
         Comparator<Module> sortByModule =
                 Comparator.comparing(Module::getModuleCode);
 
@@ -32,7 +33,7 @@ public class ListCreator {
      * @param toSort
      *  The list of categories to be sorted
      */
-    public static void sortCategoryList(ArrayList<Category> toSort) {
+    private static void sortCategoryList(ArrayList<Category> toSort) {
         Comparator<Category> sortByModule =
                 Comparator.comparing(category -> category.getParent().getModuleCode());
         Comparator<Category> sortByCategory =
@@ -48,7 +49,7 @@ public class ListCreator {
      * @param toSort
      *  The list of tasks to be sorted
      */
-    public static void sortTaskList(ArrayList<Task> toSort) {
+    private static void sortTaskList(ArrayList<Task> toSort) {
         Comparator<Task> sortByModule =
                 Comparator.comparing(task -> task.getParent().getParent().getModuleCode());
         Comparator<Task> sortByCategory =
@@ -57,6 +58,25 @@ public class ListCreator {
                 Comparator.comparing(Task::getDescription);
 
         toSort.sort(sortByModule.thenComparing(sortByCategory).thenComparing(sortByTask));
+    }
+
+    /**
+     * Sorts files in a list by their name.
+     *
+     * @param toSort
+     *  The list of files to be sorted
+     */
+    private static void sortFileList(ArrayList<TaskFile> toSort) {
+        Comparator<TaskFile> sortByModule =
+                Comparator.comparing(file -> file.getParent().getParent().getParent().getModuleCode());
+        Comparator<TaskFile> sortByCategory =
+                Comparator.comparing(file -> file.getParent().getParent().getCategoryName());
+        Comparator<TaskFile> sortByTask =
+                Comparator.comparing(file -> file.getParent().getDescription());
+        Comparator<TaskFile> sortByFile =
+                Comparator.comparing(TaskFile::getFileName);
+
+        toSort.sort(sortByModule.thenComparing(sortByCategory).thenComparing(sortByTask).thenComparing(sortByFile));
     }
 
     /**
@@ -189,14 +209,16 @@ public class ListCreator {
             String taskDescription = task.getDescription();
             String deadline = (task.getDeadline() != null) ? task.getDeadline().toShow() : "-NIL-";
             String priority = String.valueOf(task.getPriority());
+            String statusIcon = task.getStatusIcon();
 
-            taskListTable.append(String.format("%s%s%s%s%s%s%s%s%s%s%s\n",
+            taskListTable.append(String.format("%s%s%s%s%s%s%s%s%s%s%s%s%s\n",
                     centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
                     centraliseText(fitText(moduleCode, 10), 10), SEPARATOR,
-                    centraliseText(fitText(categoryName, 22), 22), SEPARATOR,
+                    centraliseText(fitText(categoryName, 16), 16), SEPARATOR,
                     centraliseText(fitText(taskDescription, 24), 24), SEPARATOR,
                     centraliseText(fitText(deadline, 30), 30), SEPARATOR,
-                    centraliseText(fitText(priority, 5), 5)
+                    centraliseText(fitText(priority, 5), 5), SEPARATOR,
+                    centraliseText(fitText(statusIcon, 6), 5)
             ));
         }
 
@@ -217,13 +239,74 @@ public class ListCreator {
         StringBuilder header = new StringBuilder();
 
         header.append(LIST_DIVIDER);
-        header.append(String.format("%s%s%s%s%s%s%s%s%s%s%s\n",
+        header.append(String.format("%s%s%s%s%s%s%s%s%s%s%s%s%s\n",
                 centraliseText("NO", 4), SEPARATOR,
                 centraliseText("MODULE", 10), SEPARATOR,
-                centraliseText("CATEGORY", 22), SEPARATOR,
+                centraliseText("CATEGORY", 16), SEPARATOR,
                 centraliseText("TASK", 24), SEPARATOR,
                 centraliseText("DEADLINE", 30), SEPARATOR,
-                centraliseText("PTY", 5)
+                centraliseText("PTY", 5), SEPARATOR,
+                centraliseText("DONE", 6)
+        ));
+        header.append(LIST_DIVIDER);
+
+        return header.toString();
+    }
+
+
+    /**
+     * Creates a sorted file list table from a list of files.
+     *
+     * @param fileList
+     *  The list of files to be converted into a table
+     * @return
+     *  The sorted file list table
+     */
+    public static String createFileListTable(ArrayList<TaskFile> fileList) {
+        sortFileList(fileList);
+        StringBuilder fileListTable = new StringBuilder();
+
+        fileListTable.append(createFileListTableHeader());
+
+        int id = 1;
+        for (TaskFile file : fileList) {
+            String moduleCode = file.getParent().getParent().getParent().getModuleCode();
+            String categoryName = file.getParent().getParent().getCategoryName();
+            String taskDescription = file.getParent().getDescription();
+            String fileName = file.getFileName();
+
+            fileListTable.append(String.format("%s%s%s%s%s%s%s%s%s\n",
+                    centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
+                    centraliseText(fitText(moduleCode, 16), 16), SEPARATOR,
+                    centraliseText(fitText(categoryName, 24), 24), SEPARATOR,
+                    centraliseText(fitText(taskDescription, 28), 28), SEPARATOR,
+                    centraliseText(fitText(fileName, 24), 24)
+            ));
+        }
+
+        fileListTable.append(LIST_DIVIDER);
+        fileListTable.append(String.format("Total files: %d\n", fileList.size()));
+        fileListTable.append(LIST_DIVIDER);
+
+        return fileListTable.toString();
+    }
+
+    /**
+     * Creates the header of the task list table.
+     *
+     * @return
+     *  The header of the task list table
+     */
+    private static String createFileListTableHeader() {
+        StringBuilder header = new StringBuilder();
+
+        header.append(LIST_DIVIDER);
+        header.append(String.format("%s%s%s%s%s%s%s%s%s\n",
+                centraliseText("NO", 4), SEPARATOR,
+                centraliseText("MODULE", 16), SEPARATOR,
+                centraliseText("CATEGORY", 24), SEPARATOR,
+                centraliseText("TASK", 28), SEPARATOR,
+                centraliseText("FILE", 24)
         ));
         header.append(LIST_DIVIDER);
 
