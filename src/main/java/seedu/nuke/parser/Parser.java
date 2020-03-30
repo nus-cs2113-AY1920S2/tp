@@ -31,6 +31,8 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
@@ -64,6 +66,9 @@ public class Parser {
     private static final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
     private static final int COMMAND_WORD_INDEX = 0;
     private static final int PARAMETER_WORD_INDEX = 1;
+
+    private static final String GENERIC_LIST_COMMAND = "ls";
+    private static final String GENERIC_MKDIR_COMMAND = "mkdir";
 
     public static final String MODULE_PREFIX = "-m";
     public static final String CATEGORY_PREFIX = "-c";
@@ -111,6 +116,12 @@ public class Parser {
 
         try {
             switch (commandWord) {
+
+            case GENERIC_LIST_COMMAND:
+                return prepareGenericListCommand(parameters.trim());
+
+            case GENERIC_MKDIR_COMMAND:
+                return prepareGenericAddCommand(parameters);
 
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
@@ -206,6 +217,52 @@ public class Parser {
             return new ChangeDirectoryCommand();
         } else {
             return new ChangeDirectoryCommand(parameters.trim());
+        }
+    }
+
+    /**
+     * Prepare the command to list the content based on the directory of the user is currently in.
+     * @param parameters
+     * @return
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericListCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            if (parameters.length() == 0) {
+                return prepareDeleteAndListModuleCommand(parameters, false);
+            } else {
+                parameters = " " + MODULE_PREFIX + " " + parameters;
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            }
+        case MODULE:
+            if (parameters.length() == 0) {
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            } else {
+                parameters = " " + CATEGORY_PREFIX + " " + parameters;
+                return prepareDeleteAndListTaskCommand(parameters, false);
+            }
+        case CATEGORY:
+            return prepareDeleteAndListTaskCommand(parameters, false);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+    }
+
+    private Command prepareGenericAddCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareAddModuleCommand(parameters);
+        case MODULE:
+            return prepareAddCategoryCommand(parameters);
+        case CATEGORY:
+            return prepareAddTaskCommand(parameters);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
     }
 

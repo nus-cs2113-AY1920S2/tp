@@ -71,4 +71,22 @@ Lab -|||- 3
 --- TASK ---
 --- END TASK ---
 --- END CATEGORY ---
+CS3235 -|||- Computer Security -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+Programming Assignment -|||- 0
+--- TASK ---
+--- END TASK ---
+--- END CATEGORY ---
 --- END MODULE ---
