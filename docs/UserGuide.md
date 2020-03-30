@@ -10,7 +10,7 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of `Duke` from [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
 
 ## Features 
 
