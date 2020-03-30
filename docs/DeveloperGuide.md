@@ -36,7 +36,7 @@ Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a
 Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; k/tomato;`, which will display the following result in the image. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77916570-d70b7000-72cb-11ea-8778-40b0f5ec0e9b.PNG">
+  <img src="https://user-images.githubusercontent.com/59989652/77921374-47b58b00-72d2-11ea-84bd-fe0c790b1d59.PNG">
 </p>
 
 The following sequence diagram shows how the search operation works:
@@ -156,7 +156,7 @@ The feature implements the following operations:
 
 The following class diagram shows the structures relevant to the "search reservation" feature:
 <p align="center">
-    <img src="ClassDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\ClassDiagramforSearchReservation.png">
 </p>
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
