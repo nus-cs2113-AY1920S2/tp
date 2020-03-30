@@ -65,38 +65,40 @@ public class MeetingOrganizer {
         // for both link and manual input.
         // TODO member's name can only be 1 word at the moment.
         if (userInputWords.length == 2 && userInputWords[1].contains("http")) {
-            userCommand = "add using link";
-        }
-        switch (userCommand) {
-        case "add using link": //add new contact with NUSMODS link. <Contact name> <NUSMODS link>
+            userCommand = "add using link"; //add new contact with NUSMODS link. <Contact name> <NUSMODS link>
             //eg. xz https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
             TeamMember newMember;
             newMember = CommandHandler.addContact(myTeamMemberList, userInputWords, startDay, endDay);
-            if (checkMainUser(newMember)) {
+            if (checkMainUser()) {
                 mainUser = newMember;
                 newMember.setMainUser();
             }
             myTeamMemberList.add(newMember);
-            break;
-        case "contacts":  //list all contacts. contacts
-            CommandHandler.listContacts(getMyTeamMemberList(), getMainUser());
-            break;
-        case "timetable": //timetable OR timetable <Member Number> OR timetable <Member Number1> <Member Number2>
-            //(eg. timetable 0 1 3)
-            CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyTeamMemberList());
-            break;
-        case "schedule": //schedule a meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
-            //(eg. schedule meeting 3 17:00 3 19:00)
-            CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyTeamMemberList());
-            break;
-        case "delete": //delete a meeting slot. delete <Meeting Number>
-            CommandHandler.deleteMeeting(userInputWords[1], getMyMeetingList(), getMainUser(), getMyTeamMemberList());
-            break;
-        case "meetings": //list all scheduled meeting slots. meetings
-            CommandHandler.listMeetings(getMyMeetingList());
-            break;
-        default:
-            throw new MoException("Unknown command, please try again.");
+        } else {
+            if (checkMainUser()) {
+                throw new MoException("Please enter main user first.");
+            }
+            switch (userCommand) {
+            case "contacts":  //list all contacts. contacts
+                CommandHandler.listContacts(getMyTeamMemberList(), getMainUser());
+                break;
+            case "timetable": //timetable OR timetable <Member Number> OR timetable <Member Number1> <Member Number2>
+                //(eg. timetable 0 1 3)
+                CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyTeamMemberList());
+                break;
+            case "schedule": //schedule a meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
+                //(eg. schedule meeting 3 17:00 3 19:00)
+                CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyTeamMemberList());
+                break;
+            case "delete": //delete a meeting slot. delete <Meeting Number>
+                CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyTeamMemberList());
+                break;
+            case "meetings": //list all scheduled meeting slots. meetings
+                CommandHandler.listMeetings(getMyMeetingList());
+                break;
+            default:
+                throw new MoException("Unknown command, please try again.");
+            }
         }
     }
 
@@ -132,7 +134,7 @@ public class MeetingOrganizer {
         TextUI.exitMsg();
     }
 
-    private Boolean checkMainUser(TeamMember newMember) {
+    private Boolean checkMainUser() {
         return myTeamMemberList.getSize() == 0;
     }
 

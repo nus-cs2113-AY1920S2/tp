@@ -10,7 +10,11 @@ import schedulelogic.TeamMember;
 import schedulelogic.TeamMemberList;
 import ui.TextUI;
 
+import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
+import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
+
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class CommandHandler {
@@ -111,10 +115,13 @@ public class CommandHandler {
         meetingList.show();
     }
 
-    public static void deleteMeeting(String userInputWord, MeetingList meetingList, TeamMember mainUser, TeamMemberList
+    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser, TeamMemberList
             teamMemberList) {
-        int index = Integer.parseInt(userInputWord) - 1;
         try {
+            if (userInputWords.length != 2) {
+                throw new MoException(MESSAGE_WRONG_COMMAND_DELETE);
+            }
+            int index = Integer.parseInt(userInputWords[1]) - 1;
             Meeting meetingToDelete = meetingList.getMeetingList().get(index);
             String meetingNameToDelete = meetingToDelete.getMeetingName();
             mainUser.deleteBlocksWithName(meetingNameToDelete);
@@ -122,20 +129,28 @@ public class CommandHandler {
             teamMemberList.set(0, mainUser);
         } catch (IndexOutOfBoundsException e) {
             TextUI.displayInvalidDeleteTarget();
+        } catch (MoException e) {
+            System.out.println(e.getMessage());
+            TextUI.printFormatDelete();
         }
     }
 
     public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser,
                                        TeamMemberList teamMemberList) {
-        Integer startDay;
-        Integer endDay;
-        String meetingName = userInputWords[1];
-        startDay = Integer.parseInt(userInputWords[2]);
-        LocalTime startTime = LocalTime.parse(userInputWords[3]);
-        endDay = Integer.parseInt(userInputWords[4]);
-        LocalTime endTime = LocalTime.parse(userInputWords[5]);
 
         try {
+            if (userInputWords.length < 6) {
+                throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
+            }
+
+            Integer startDay;
+            Integer endDay;
+            String meetingName = userInputWords[1];
+            startDay = Integer.parseInt(userInputWords[2]);
+            LocalTime startTime = LocalTime.parse(userInputWords[3]);
+            endDay = Integer.parseInt(userInputWords[4]);
+            LocalTime endTime = LocalTime.parse(userInputWords[5]);
+
             if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime)) {
                 Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime);
                 meetingList.add(myMeeting);
@@ -145,7 +160,14 @@ public class CommandHandler {
                 System.out.println("Schedule is blocked at that timeslot");
             }
         } catch (MoException e) {
-            System.out.println(e.getMessage() + ", try again.");
+            System.out.println(e.getMessage());
+            TextUI.printFormatSchedule();
+        } catch (DateTimeParseException e) {
+            TextUI.timeOutOfRangeMsg();
+            TextUI.printFormatSchedule();
+        } catch (NumberFormatException e) {
+            TextUI.invalidNumberMsg();
+            TextUI.printFormatSchedule();
         }
         // Replace main user's timetable with updated meeting blocks into TeamMember.TeamMemberList for storage purposes.
         teamMemberList.set(0, mainUser);
@@ -173,10 +195,10 @@ public class CommandHandler {
             }
         } catch (IndexOutOfBoundsException e) {
             TextUI.indexOutOfBoundsMsg();
-            System.out.println("Index should be within range 0 to " + (teamMemberList.getTeamMemberList().size() - 1) + ".");
-            listContacts(teamMemberList, mainUser);
+            TextUI.printFormatTimetable();
         } catch (NumberFormatException e) {
-            TextUI.invalidNumberTimetableMsg();
+            TextUI.invalidNumberMsg();
+            TextUI.printFormatTimetable();
         }
     }
 
