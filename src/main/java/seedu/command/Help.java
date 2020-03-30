@@ -10,6 +10,13 @@ public class Help extends Command {
         this.ui = new UI();
     }
 
+    /**
+     * This method allows the user to select the help message to
+     * be displayed by type of command.
+     *
+     * @throws DukeException Throws DukeException when the user
+     *                       selects any command out of the list.
+     */
     public void selectHelpMessage() throws DukeException {
         ui.printGetHelp();
         String typeOfHelp = ui.getStringInput();

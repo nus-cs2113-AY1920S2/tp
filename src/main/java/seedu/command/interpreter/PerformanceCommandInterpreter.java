@@ -46,6 +46,14 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
         }
     }
 
+    /**
+     * This method determines the type of Sorting command the user want, by
+     * getting a String input and parse it to return respective sorting Command.
+     *
+     * @return A Command with respect to the type of sorting command the user intend to execute.
+     * @throws DukeException Throws DukeException when the user input a not recognizable sorting
+     *                       command.
+     */
     private Command getSortCommand() throws DukeException {
         String type = ui.getSortType();
         if (type.equals("name")) {

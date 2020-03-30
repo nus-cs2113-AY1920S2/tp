@@ -21,10 +21,6 @@ public class PerformanceList {
         performanceList = new ArrayList<>();
     }
 
-    public List<Performance> getPerformanceList() {
-        return performanceList;
-    }
-
     public void addToList(Performance performance, String eventName) {
         performanceList.add(performance);
         ui.addPerformanceMessage(performance.studentName, eventName);
@@ -43,8 +39,7 @@ public class PerformanceList {
             throw new DukeException("No performance list under this event");
         }
         for (Performance p : performanceList) {
-            if (p != null
-                    && performance.getStudent().equals(p.getStudent())) {
+            if (p != null && performance.getStudent().equals(p.getStudent())) {
                 performanceList.remove(p);
                 hasDeleted = true;
                 break;

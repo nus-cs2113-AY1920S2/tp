@@ -260,11 +260,6 @@ public class UI {
         return getStringInput().toLowerCase();
     }
 
-    public void printInsufficientInput(String typeInput) {
-        System.out.printf("No %s input. If you need help with "
-                + "the input format, please input help.\n", typeInput);
-    }
-
     public void addStudent(StudentList studentList) {
         String studentName;
         do {
