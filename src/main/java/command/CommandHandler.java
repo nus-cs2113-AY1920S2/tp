@@ -38,24 +38,24 @@ public class CommandHandler {
                 String endTimeString = null;
                 for (int j = 0; j < myLessonDetails.get(k).length; j++) {
                     switch (j) {
-                        case 0:
-                            startTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
-                            break;
-                        case 1:
-                            endTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
-                            break;
-                        case 2:
-                            startDay = getNumberFromDay(myLessonDetails.get(k)[j]);
-                            endDay = startDay;
-                            break;
-                        case 3:
-                            //future improvement: since myLessonDetails.get(k)[3] contains data on the
-                            // week number that this class occurs on, add capability of schedule to reflect
-                            // schedule of the current week.
-                            break;
-                        default:
-                            //data only has four sections from api
-                            break;
+                    case 0:
+                        startTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                        break;
+                    case 1:
+                        endTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
+                        break;
+                    case 2:
+                        startDay = getNumberFromDay(myLessonDetails.get(k)[j]);
+                        endDay = startDay;
+                        break;
+                    case 3:
+                        //future improvement: since myLessonDetails.get(k)[3] contains data on the
+                        // week number that this class occurs on, add capability of schedule to reflect
+                        // schedule of the current week.
+                        break;
+                    default:
+                        //data only has four sections from api
+                        break;
                     }
                 }
                 member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString);
@@ -70,33 +70,34 @@ public class CommandHandler {
     private static Integer getNumberFromDay(String day) {
         int dayInNumber;
         switch (day) {
-            case "Monday":
-                dayInNumber = 1;
-                break;
-            case "Tuesday":
-                dayInNumber = 2;
-                break;
-            case "Wednesday":
-                dayInNumber = 3;
-                break;
-            case "Thursday":
-                dayInNumber = 4;
-                break;
-            case "Friday":
-                dayInNumber = 5;
-                break;
-            case "Saturday":
-                dayInNumber = 6;
-                break;
-            case "Sunday":
-                dayInNumber = 0;
-                break;
-            default:
-                dayInNumber = Integer.parseInt(null);
-                break;
+        case "Monday":
+            dayInNumber = 1;
+            break;
+        case "Tuesday":
+            dayInNumber = 2;
+            break;
+        case "Wednesday":
+            dayInNumber = 3;
+            break;
+        case "Thursday":
+            dayInNumber = 4;
+            break;
+        case "Friday":
+            dayInNumber = 5;
+            break;
+        case "Saturday":
+            dayInNumber = 6;
+            break;
+        case "Sunday":
+            dayInNumber = 0;
+            break;
+        default:
+            dayInNumber = Integer.parseInt(null);
+            break;
         }
         return dayInNumber;
     }
+
     private static int check(TeamMember person, String name) {
         if (person.getName().equals(name)) {
             return 1;
@@ -104,6 +105,7 @@ public class CommandHandler {
             return 0;
         }
     }
+
     public static void listMeetings(MeetingList meetingList) {
         TextUI.listMeetings();
         meetingList.show();

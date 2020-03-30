@@ -30,6 +30,7 @@ public class TeamMemberList {
 
         return this.teamMemberList;
     }
+
     public int getSize() {
         return this.getTeamMemberList().size();
     }

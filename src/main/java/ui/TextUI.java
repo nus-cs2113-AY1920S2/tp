@@ -7,7 +7,10 @@ import schedulelogic.TeamMember;
 
 import java.util.ArrayList;
 
-import static common.Messages.*;
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
+import static common.Messages.MESSAGE_INVALID_NUMBER;
+import static common.Messages.FORMAT_TIMETABLE;
 import static java.lang.System.out;
 
 /**
