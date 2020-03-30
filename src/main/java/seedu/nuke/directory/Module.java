@@ -1,7 +1,6 @@
 package seedu.nuke.directory;
 
 import seedu.nuke.data.CategoryManager;
-import seedu.nuke.data.TaskManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,34 +126,33 @@ public class Module extends Directory {
         this.categories = categories;
     }
 
+    public ArrayList<Task> getAllTasks() {
+        ArrayList<Task> allTasks =  new ArrayList<>();
+        for (Category category: categories.getCategoryList()) {
+            allTasks.addAll(category.getTasks().getTaskList());
+        }
+        return allTasks;
+    }
+
     public int countTasks() {
-        return new TaskManager().countTotalTasks();
+        return getAllTasks().size();
     }
 
     /**
      * The method to check the deadline of the tasks in a module.
      * @return an ArrayList of String representing the deadline of tasks in order.
      */
-    public ArrayList<String> checkDeadline() {
-        ArrayList<String> deadlines = new ArrayList<>();
-        ArrayList<Task> tasks = new ArrayList<>();
-        for (Category category: categories.getCategoryList()) {
-            tasks.addAll(category.getTasks().getTaskList());
-        }
-        Collections.sort(tasks, new Comparator<Task>() {
+    public ArrayList<Task> sortAllTasks() {
+        ArrayList<Task> filteredTaskList = getAllTasks();
+        Collections.sort(filteredTaskList, new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                String t1Deadline = t1.getDeadline().toString();
-                String t2Deadline = t2.getDeadline().toString();
+                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().getDateTimeSortFormat();
+                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().getDateTimeSortFormat();
                 return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });
-        for (Task task: tasks) {
-            String deadline = task.getDeadline().toShow();
-            deadlines.add(String.format("%-30s", task.getDescription())
-                    + String.format("%-10s", task.getParent().getCategoryName()) + "   Deadline: " + deadline);
-        }
-        return deadlines;
+        return filteredTaskList;
     }
 
     /**

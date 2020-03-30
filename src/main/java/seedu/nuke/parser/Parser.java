@@ -19,7 +19,6 @@ import seedu.nuke.command.editcommand.EditTaskCommand;
 import seedu.nuke.command.filtercommand.FilterCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
@@ -31,8 +30,10 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
-import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Module;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
@@ -46,10 +47,12 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DEADLINE_FORMAT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
@@ -160,7 +163,7 @@ public class Parser {
                 return prepareDeleteAndListTaskCommand(parameters, false);
                 
             case ListModuleTasksDeadlineCommand.COMMAND_WORD:
-                return new ListModuleTasksDeadlineCommand();
+                return new ListModuleTasksDeadlineCommand(parameters.trim());
                 
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
