@@ -1,6 +1,6 @@
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
-Contents: 
+Contents: x
 - [Introduction](#1-introduction)
   * [What is **ATAS**?](#11-what-is-atas)
   * [What are the functions of **ATAS**?](#12-what-are-the-functions-of-atas)
@@ -43,8 +43,8 @@ Besides being able to store your assignment and event details in a text file, **
 ### 1.3. How does **ATAS** solve the problem of our target audience?
 University students often have piles of assignments and events that are difficult to manage and track efficiently. **ATAS** allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due to manage their time wisely and allocate sufficient time to complete these tasks.
 ### 1.4. What is this guide for?
-This guide aims to show you on how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [???](#Features) section.
-Interested in cultivating a habit of time management and plan your time more effectively? Head on to [???](#Quick Start) to get started! Become a more **ATAS** version of yourself today!
+This guide aims to show you on how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3, "Features"](#3-features) section.
+Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2, "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
 ## 2. Quick Start
 ### 2.1. Setting up
 1.  Ensure you have Java 11 or above installed on your computer
@@ -108,7 +108,6 @@ Refer to [Section 3, "Features"](#3-features) for the detailed instruction of th
 > There are plenty of examples provided to aid your understanding and learning of **ATAS** commands
 
 ### 3.1. Add Assignments: **`assignment`**
----------------------------------
 
 An assignment is a task that you have to complete by a certain deadline, for a particular module.  
 You can add an assignment to **ATAS**, containing various details.
@@ -137,7 +136,6 @@ Now you have 1 task in the list!
 ```
 
 ### 3.2. Add Events: **`event`**
------------------------
 
 An event is a task that you plan to do at a particular date and time.  
 You can add an event to **ATAS**, containing various details.
