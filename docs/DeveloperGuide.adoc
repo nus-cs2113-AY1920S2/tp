@@ -242,7 +242,6 @@ class to print out the search results.
 The following sequence diagram summarizes how the `SearchCommand` and `SearchdCommand` works:
 
 image::search.png[Search operations]
-
 ==== Design Considerations:
 * Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
 ** Rationale: +
