@@ -9,19 +9,19 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.1.1. View help: `help`](#311-view-help-help)
         + [3.1.2. Exit program: `exit`](#312-exit-program-exit)
         
-    * [3.2. General Patients Information](#32-general-patient-information)
+    * [3.2. General Patient Information](#32-general-patient-information)
         + [3.2.1. Add Patient: `add patient`](#321-add-patient-add-patient)
-        + [3.2.2. Edit Patient: `edit patient`](#332-edit-patient-records-edit-pr)
-        + [3.2.3. Delete Patient: `delete patient`](#333-delete-patient-records-delete-pr)
-        + [3.2.4. List All Patients: `list patient`](#334-list-patient-records-list-pr)
-        + [3.2.5. Retrieve a Patient's Information: `get patient`](#335-find-patient-records-find-pr)
+        + [3.2.2. Edit Patient: `edit patient`](#322-edit-patient-edit-patient)
+        + [3.2.3. Delete Patient: `delete patient`](#323-delete-patient-delete-patient)
+        + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
+        + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
         
     * [3.3. Patient Medical Records](#33-patient-medical-information-commands)
         + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
-        + [3.3.2. Edit Patient Records : `edit pr`](#322-edit-patient-edit-patient)
-        + [3.3.3. Delete Patient Records : `delete pr`](#323-delete-patient-delete-patient)
-        + [3.3.4. List Patient Records : `list pr`](#324-list-all-patients-list-patient)
-        + [3.3.5. Find Patient Records : `find pr`](#325-retrieve-a-patients-information-get-patient)
+        + [3.3.2. Edit Patient Records : `edit pr`](#322-edit-patient-edit-patient)#332-edit-patient-records-edit-pr
+        + [3.3.3. Delete Patient Records : `delete pr`](#333-delete-patient-records-delete-pr)
+        + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-list-pr)
+        + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-find-pr)
     
     * [3.4. Appointments](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
@@ -40,8 +40,8 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI).
   
 The application replaces all physical papers and is highly optimised for fast typing users.    
-If you can type fast, HappyPills can help to manage patients’ records faster than traditional Graphical User Interface (GUI) applications.  
-All notes are neatly organised in HappyPills so that all your important information are safely stored.  
+If you can type fast, HappyPills can help to manage patients’ records **faster** than traditional Graphical User Interface (GUI) applications.  
+All notes are **neatly organised** in HappyPills so that all your important information are **safely stored**.  
 Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! :relaxed:
 
 ## 2. Quick Start
@@ -90,8 +90,6 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 - `/sym` → Patient's Symptoms
 
 - `/diag` → Patient's Diagnosis
-
-- `/` →
 
 ### 3.1. General Commands 
 
@@ -317,6 +315,32 @@ Retrieve details of the patient with the specified NRIC
 
 
 ## 4. Command Summary
+
+### General Patient Information
+
+Command | Format
+--------|----------
+Add a patient's information | add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]
+Edit a patient's information |  edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
+list all patients | list patient
+Retrieve a patient's information | get patient NRIC
+
+### Patient Medical Records
+
+Command | Format
+--------|----------
+
+
+### Appointments
+
+Command | Format
+--------|----------
+Add an appointment | add appt 
+Edit an appointment | edit appt
+Delete an appointment | delete appt
+Mark an appointment as done | done appt
+List all appointments | list appt
+Find an appointment| find appt
 
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
