@@ -55,7 +55,6 @@ public class AvailableModulesList extends ModuleList {
         return super.remove(module);
     }
 
-
     public boolean isModuleIdInList(String id) {
         for (Module module : availableModulesList) {
             if (module.getId().equals(id)) {

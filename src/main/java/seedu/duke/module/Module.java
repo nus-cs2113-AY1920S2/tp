@@ -98,5 +98,25 @@ public abstract class Module {
 
     public abstract String toStorageString();
 
-
+    @Override
+    public boolean equals(Object object) {
+        assert (object instanceof Module);
+        Module moduleObject = (Module) object;
+        boolean sameId = false;
+        if (moduleObject.getId().equals(this.getId())) {
+            sameId = true;
+        }
+        boolean sameName = false;
+        if (moduleObject.getName().equals(this.getName())) {
+            sameName = true;
+        }
+        boolean sameMC = false;
+        if (moduleObject.getModuleCredit() == this.getModuleCredit()) {
+            sameMC = true;
+        }
+        if (sameId && sameMC && sameName) {
+            return true;
+        }
+        return false;
+    }
 }
