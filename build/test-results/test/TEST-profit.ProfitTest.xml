@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="profit.ProfitTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-03-30T14:41:58" hostname="LAPTOP-44LCAOD7" time="0.012">
+  <properties/>
+  <testcase name="profitTestA()" classname="profit.ProfitTest" time="0.002"/>
+  <testcase name="profitTestB()" classname="profit.ProfitTest" time="0.003"/>
+  <testcase name="profitTestC()" classname="profit.ProfitTest" time="0.001"/>
+  <testcase name="profitTestD()" classname="profit.ProfitTest" time="0.001"/>
+  <system-out><![CDATA[Profit is <= 0
+Profit is <= 0
+Profit is <= 0
+Profit is <= 0
+Stock for an ingredient is empty
+Stock doesn't contain at least one ingredient
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sales.SalesTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-03-30T14:41:58" hostname="LAPTOP-44LCAOD7" time="0.025">
+  <properties/>
+  <testcase name="testTotalProfit()" classname="sales.SalesTest" time="0.006"/>
+  <testcase name="testAddSale1()" classname="sales.SalesTest" time="0.002"/>
+  <testcase name="testAddSale2()" classname="sales.SalesTest" time="0.004"/>
+  <testcase name="testPopularDishAndProfit()" classname="sales.SalesTest" time="0.006"/>
+  <testcase name="testNoDish()" classname="sales.SalesTest" time="0.002"/>
+  <system-out><![CDATA[The total profit for the day is: $272.1
+Dish doesn't exist
+The total profit for the day is: $272.1
+The most popular dish today is: pasta with chicken
+This has sales of: 20
+The total profit for the day is: $0.0
+There are no dishes
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
