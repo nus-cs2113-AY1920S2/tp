@@ -1,2 +1,5 @@
 id,name,mc,semester,isDone,grade
 cS1010,/,4,3,false,/
+cs0000,/,3,4,false,/
+CS0001,/,4,4,false,/
+CS2113,Software Engineering & Object-Oriented Programming,4,4,false,/

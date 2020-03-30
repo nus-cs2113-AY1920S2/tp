@@ -98,5 +98,13 @@ public abstract class Module {
 
     public abstract String toStorageString();
 
+    public boolean isNameValid() {
+        return isNameValid;
+    }
+
+    public boolean isIdValid() {
+        return isIdValid;
+    }
+
 
 }

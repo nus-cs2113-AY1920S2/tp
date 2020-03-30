@@ -54,15 +54,15 @@ public class SelectedModule extends Module {
             this.isIdValid = false;
         } else {
             this.isIdValid = true;
-            this.id = id;
         }
+        this.id = id;
 
         if (name.equals("/")) {
             this.isNameValid = false;
         } else {
             this.isNameValid = true;
-            this.name = name;
         }
+        this.name = name;
 
         this.semester = semester;
 
@@ -138,7 +138,7 @@ public class SelectedModule extends Module {
     }
 
     public String getYearSemester() {
-        return yearSemester.toString();
+        return yearSemester;
     }
 
 
