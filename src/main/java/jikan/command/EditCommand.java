@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.exception.ExistingTagGoalException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
@@ -9,11 +10,12 @@ import jikan.exception.NoSuchActivityException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
+import java.io.IOException;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import static jikan.Jikan.tagFile;
 import static jikan.command.GoalCommand.parseDuration;
 
 /**
@@ -88,7 +90,12 @@ public class EditCommand extends Command {
                         activityList.updateName(index, newName);
                     }
                     if (!newTags.isEmpty()) {
-                        activityList.updateTags(index, newTags);
+                        if (existsInTag(activityList.get(index).getTags())) {
+                            throw new ExistingTagGoalException();
+                        } else {
+                            activityList.updateTags(index, newTags);
+                        }
+
                     }
                     if (!tmpAlloc.isEmpty()) {
                         activityList.updateAlloc(index, newAllocTime);
@@ -112,7 +119,28 @@ public class EditCommand extends Command {
         } catch (StringIndexOutOfBoundsException | InvalidEditFormatException e) {
             Ui.printDivider("New details not provided!");
             Log.makeInfoLog("Edit command failed as there was no updated activity detail provided.");
+        } catch (ExistingTagGoalException e) {
+            Ui.printDivider("Tag cannot be edited as there is an existing tag goal!");
+            Log.makeInfoLog("Edit command failed as there was an existing tag goal tied to the tag.");
+        } catch (IOException e) {
+            Ui.printDivider("Error in loading the tag file!");
+            Log.makeInfoLog("Edit command failed as there was an error in loading the tag file.");
         }
+    }
+
+    /**
+     * Check if the tags have associated tag goals.
+     * @param oldTags the tags to be edited.
+     * @return true or false.
+     * @throws IOException if there is an error loading the file.
+     */
+    public static boolean existsInTag(Set<String> oldTags) throws IOException {
+        for (String i : oldTags) {
+            if (GoalCommand.checkIfExists(i) != -1) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
