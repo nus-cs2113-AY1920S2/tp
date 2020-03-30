@@ -53,7 +53,7 @@ public class StudentCommandInterpreter extends CommandInterpreter {
             }
         case "sort":
             try {
-                ui.displayStudentMessage("Please Key in either 'name' or 'list'.");
+                ui.displayMessage("Please Key in either 'name' or 'list'.");
                 ui.readUserInput();
                 String sortType = ui.getUserInput();
                 switch (sortType) {

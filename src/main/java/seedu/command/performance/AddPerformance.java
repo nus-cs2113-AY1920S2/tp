@@ -18,8 +18,9 @@ public class AddPerformance extends Command {
     String eventName;
 
     /**
-     * Constructor for AddPerformanceCommand. Takes String userInput
-     * and parse it to get the Performance to be added.
+     * Constructor for AddPerformanceCommand. Takes PerformanceList, performances of the
+     * event to be modified, and String eventName, name of the event that owns the
+     * performance list.
      */
     public AddPerformance(PerformanceList performances, String eventName) {
         this.performances = performances;
@@ -30,10 +31,8 @@ public class AddPerformance extends Command {
 
     /**
      * Add the performance to performance list.
-     * The user can choose to import a current student name list
-     * and iterate through that name list to add performance of each
-     * student. Also the user can choose to manually add a performance
-     * of student.
+     * The user is to choose whether to add the performance by importing a list
+     * or adding manually.
      */
     public void addToList() throws DukeException {
         boolean isByNameList = ui.isImportList();
@@ -45,6 +44,17 @@ public class AddPerformance extends Command {
         }
     }
 
+    /**
+     * This method gets the user to manually add a performance.
+     * The user has to input name of student and grade for each
+     * performance to be added. This method tells the user
+     * whether the performance is added successfully with a
+     * reply message.
+     *
+     * @throws DukeException A DukeException is thrown when the
+     *                       performance format input is incorrect
+     *                       and cannot be added successfully.
+     */
     private void addManually() throws DukeException {
         int studentNumber = 0;
         String parameter = ui.getPerformanceParameter();

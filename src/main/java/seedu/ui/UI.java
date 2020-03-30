@@ -230,10 +230,13 @@ public class UI {
         System.out.println("Attendance List is sorted by attendance status for Event:  " + eventName);
     }
 
+    public void sortPerformanceByName(String eventName) {
+        System.out.println("Performance List is sorted by Performance name for Event:  " + eventName);
+    }
 
-    public void printInsufficientInput(String typeInput) {
-        System.out.printf("No %s input. If you need help with "
-                + "the input format, please input help.\n", typeInput);
+    public String getSortType() {
+        System.out.println("Do you want to sort by students' name or grade?");
+        return getStringInput().toLowerCase();
     }
 
     public void addStudent(StudentList studentList) {
@@ -255,80 +258,6 @@ public class UI {
         return in.nextLine();
     }
 
-    public void printGetHelp() {
-        System.out.println("Hello " + userName + ", please select the type of "
-                + "command that you wish to get the format for.");
-        System.out.println("1. Event");
-        System.out.println("2. Attendance");
-        System.out.println("3. Performance");
-        System.out.println("4. Student List");
-        System.out.println("To track any list, input: type_of_list list");
-    }
-
-    public void printEventHelp() {
-        System.out.print("To add an event, use the following format:\n  "
-                + "Event add n/Event_name v/Venue_name d/yyyy-MM-dd t/HHmm. "
-                + "You may also replace 'Event' with one of the following type:"
-                + "\n  - Seminar\n  - Exam\n  - Tutorial\n\n");
-        System.out.print("To edit an event, use the following format:\n  "
-                + "Event editDateTime i/index_of_Event, or\n  "
-                + "Event editName i/index_of_Event, or\n  "
-                + "Event editVenue i/index_of_Event, or\n  "
-                + "Event editEvent (please edit these lines)\n\n");
-        System.out.print("To edit an event, use the following format:\n  "
-                + "Event editDateTime i/index_of_Event, or\n  "
-                + "Event editName i/index_of_Event, or\n  "
-                + "Event editVenue i/index_of_Event, or\n  "
-                + "Event editEvent (please edit these lines)\n\n");
-    }
-
-    public void printPerformanceHelp() {
-        System.out.print("To add students' performance under an event, input:\n  "
-                + "performance add (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n\n");
-        System.out.print("To delete a student's performance under an event, input:\n  "
-                + "Performance delete (this event should already be in the "
-                + "current event list) and follow step by step instructions.\n\n");
-    }
-
-    public void printAttendanceHelp() {
-        System.out.print("To add students' attendance under an event, input:\n  "
-                + "`attendance add`\n\n");
-        System.out.print("To clear a student's attendance under an event, input:\n  "
-                + "`attendance clear`\n\n");
-        System.out.print("To view a student's attendance under an event, input:\n  "
-                + "`attendance list`\n\n");
-        System.out.print("To sort a student's attendance under an event by name, input:\n\t"
-                + "`attendance sort`\n\t"
-                + "Followed by `name`\n\n");
-        System.out.print("To view a student's attendance under an event by status, input:\n\t"
-                + "`attendance sort`\n\t"
-                + "Followed by `status`\n");
-    }
-
-    public void printStudentListHelp() {
-        System.out.print("To create a new studentList for future events, input:\n\t"
-                + "`student add`\n\n");
-        System.out.print("To delete an existing studentList, input:\n\t"
-                + "`student delete`\n\n");
-        System.out.print("To clear all existing studentList, input:\n\t"
-                + "`student clear`\n\n");
-        System.out.print("To find an existing studentList, input:\n\t"
-                + "`student find`\n\n");
-        System.out.print("To list all existing studentList, input:\n\t"
-                + "`student list`\n\n");
-        System.out.print("To sort all existing studentList by their names, input:\n\t"
-                + "`student sort`\n\t"
-                + "Followed by `list`\n\n");
-        System.out.print("To sort all name within the existing studentList, input:\n\t"
-                + "`student sort`\n\t"
-                + "Followed by`name`\n\n");
-    }
-
-    public void displayStudentMessage(String message) {
-        System.out.println(message);
-    }
-
     public void printStudentListCollection() {
         if (studentListCollection.isEmpty()) {
             System.out.println("The student list collection is currently empty");
@@ -346,7 +275,7 @@ public class UI {
         }
     }
 
-    public void displayAttendanceMessage(String message) {
+    public void displayMessage(String message) {
         System.out.println(message);
     }
 }

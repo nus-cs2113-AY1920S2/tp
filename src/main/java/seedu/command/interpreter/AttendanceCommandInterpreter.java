@@ -81,7 +81,7 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
 
         case "sort":
             try {
-                ui.displayStudentMessage("Please Key in either 'name' or 'status'.");
+                ui.displayMessage("Please Key in either 'name' or 'status'.");
                 ui.readUserInput();
                 String sortType = ui.getUserInput();
                 switch (sortType) {

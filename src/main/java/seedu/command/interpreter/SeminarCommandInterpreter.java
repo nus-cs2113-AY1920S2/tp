@@ -109,7 +109,6 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
         default:
             throw new DukeException("Seminar: Unknown command");
         }
-
         return command;
     }
 }

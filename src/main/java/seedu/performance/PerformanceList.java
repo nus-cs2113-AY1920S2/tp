@@ -4,11 +4,14 @@ import seedu.exception.DukeException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
+
+import static seedu.performance.Performance.performanceListNameComparator;
+import static seedu.performance.Performance.performanceListGradeComparator;
 
 public class PerformanceList {
-    public static ArrayList<Performance> performanceList;
+    protected ArrayList<Performance> performanceList;
     UI ui;
     DisplayTable displayTable;
 
@@ -18,13 +21,13 @@ public class PerformanceList {
         performanceList = new ArrayList<>();
     }
 
-    public List<Performance> getPerformanceList() {
-        return performanceList;
-    }
-
     public void addToList(Performance performance, String eventName) {
         performanceList.add(performance);
         ui.addPerformanceMessage(performance.studentName, eventName);
+    }
+
+    public ArrayList<Performance> getPerformanceList() {
+        return performanceList;
     }
 
     /**
@@ -40,8 +43,7 @@ public class PerformanceList {
             throw new DukeException("No performance list under this event");
         }
         for (Performance p : performanceList) {
-            if (p != null
-                    && performance.getStudent().equals(p.getStudent())) {
+            if (p != null && performance.getStudent().equals(p.getStudent())) {
                 performanceList.remove(p);
                 hasDeleted = true;
                 break;
@@ -83,5 +85,13 @@ public class PerformanceList {
 
     public boolean isEmpty() {
         return performanceList.isEmpty();
+    }
+
+    public void sortByName() {
+        performanceList.sort(performanceListNameComparator);
+    }
+
+    public void sortByGrade() {
+        performanceList.sort(performanceListGradeComparator);
     }
 }

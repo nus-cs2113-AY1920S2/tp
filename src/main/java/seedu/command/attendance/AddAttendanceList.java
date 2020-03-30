@@ -37,7 +37,7 @@ public class AddAttendanceList extends Command {
                 + "If yes, input 'yes'. Else, input anything.");
         if (isByNameList()) {
             if (studentListCollection.isEmpty()) {
-                ui.displayAttendanceMessage("There is no existing student list to import");
+                ui.displayMessage("There is no existing student list to import");
             } else {
                 ui.printStudentListCollection();
                 ArrayList<String> studentNameList = fetchAttendanceList();
@@ -106,7 +106,7 @@ public class AddAttendanceList extends Command {
      * @throws DukeException If a string is given instead of an integer.
      */
     private ArrayList<String> fetchAttendanceList() throws DukeException {
-        ui.displayAttendanceMessage("Please state the index of the studentList that you wish to import");
+        ui.displayMessage("Please state the index of the studentList that you wish to import");
         ui.readUserInput();
         try {
             int index = Integer.parseInt(ui.getUserInput());

@@ -26,7 +26,7 @@ public class SortAttendanceListByName extends Command {
      */
     private void sort() {
         if (attendances.isEmpty()) {
-            ui.displayAttendanceMessage("An empty list cannot be sorted");
+            ui.displayMessage("An empty list cannot be sorted");
         } else {
             attendances.sort();
             ui.sortAttendanceByName(eventName);
