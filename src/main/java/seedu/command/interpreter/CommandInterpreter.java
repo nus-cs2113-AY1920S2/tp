@@ -8,6 +8,8 @@ import seedu.exception.DukeException;
 
 public class CommandInterpreter {
     protected EventList eventList;
+    private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"event", "seminar", 
+        "attendance", "performance", "student", "calendar"};
 
     public CommandInterpreter(EventList eventList) {
         this.eventList = eventList;
@@ -32,14 +34,30 @@ public class CommandInterpreter {
      * @throws DukeException if there is only 1 word from the input
      */
     protected String getSubsequentWords(String userInput) throws DukeException {
-        int startIndexOfSpace = userInput.trim().indexOf(" ");
+        userInput = userInput.trim();
+        int startIndexOfSpace = userInput.indexOf(" ");
 
-        /*if (startIndexOfSpace == -1) {
-            throw new DukeException("No parameters provided");
-        }*/
+        if (startIndexOfSpace == -1) {
+            throw new DukeException("Argument is required for command '" + userInput + "'");
+        }
 
         int startIndexOfParameter = startIndexOfSpace + 1;
         return userInput.substring(startIndexOfParameter);
+    }
+
+    /**
+     * Check if the input is a command that requires any argument. It checks 
+     * from COMMANDS_THAT_NEED_ARGUMENT, so that array must be set up properly first.
+     * @param commandCategory the command to be checked
+     * @return (@code true} if command category requires an argument
+     */
+    protected boolean needArgument(String commandCategory) {
+        for (String command : COMMANDS_THAT_NEED_ARGUMENT) {
+            if (commandCategory.equals(command)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -54,7 +72,7 @@ public class CommandInterpreter {
         String commandCategory = getFirstWord(userInput);
         String commandDescription = "";
         // only look for 2nd to last words if commandCategory requires.
-        if (!commandCategory.equals("bye")) {
+        if (needArgument(commandCategory)) {
             commandDescription = getSubsequentWords(userInput);
         }
 
@@ -91,7 +109,8 @@ public class CommandInterpreter {
         default:
             assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
-                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar"))
+                    && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
+                    && !commandCategory.equals("help") && !commandCategory.equals("student"))
                     : "accepted command category is not further interpreted!";
             throw new DukeException("Unknown command category is provided");
         }

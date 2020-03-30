@@ -1,14 +1,13 @@
 package seedu.duke;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import seedu.StudentList;
+import seedu.StudentListCollection;
 import seedu.command.Bye;
 import seedu.command.interpreter.CommandInterpreter;
 import seedu.command.Command;
@@ -23,8 +22,7 @@ public class Duke {
     protected UI ui;
     protected CommandInterpreter interpreter;
     protected EventList eventList;
-    public static ArrayList<StudentList> studentListCollection;
-    protected int maxListSize = 100;
+    public static StudentListCollection studentListCollection;
     protected Storage storage;
 
     public Duke(String filepath) throws DukeException {
@@ -33,7 +31,7 @@ public class Duke {
         ui = new UI();
 
         interpreter = new CommandInterpreter(eventList);
-        studentListCollection = new ArrayList<>(maxListSize);
+        studentListCollection = new StudentListCollection();
 
         storage = new Storage(filepath);
         eventList = storage.loadAll();
@@ -61,7 +59,6 @@ public class Duke {
     public void run() throws DukeException {
         ui.setUserName();
         Command command = null;
-
         do {
             ui.readUserInput();
             try {

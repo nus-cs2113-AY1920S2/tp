@@ -7,19 +7,24 @@ import seedu.ui.UI;
 
 import static seedu.duke.Duke.studentListCollection;
 
-public class AddStudent extends Command {
+/**
+ * Class representing a student related command to add a new studentList to studentListCollection.
+ */
+public class AddStudentList extends Command {
 
-    private UI ui;
-    private DisplayList displayList;
-    StudentList newStudentList;
+    protected UI ui;
+    protected DisplayList displayList;
 
-    public AddStudent(StudentList newStudentList) {
+    public AddStudentList() {
         this.ui = new UI();
-        this.newStudentList = newStudentList;
         this.displayList = new DisplayList();
     }
 
-    protected void addToList() {
+    /**
+     * Method to add student names to a new list.
+     * Once studentList is created, it will be appended to studentListCollection.
+     */
+    private void addToList() {
         String listName = ui.getListName();
         StudentList studentList = new StudentList(listName);
         ui.addStudent(studentList);

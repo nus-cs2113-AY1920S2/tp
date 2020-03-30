@@ -1,39 +1,79 @@
 package seedu.command.interpreter;
 
-import seedu.StudentList;
 import seedu.command.Command;
-import seedu.command.student.AddStudent;
-import seedu.command.student.DeleteStudent;
-import seedu.command.student.ListStudent;
+import seedu.command.student.SortStudentListByName;
+import seedu.command.student.ClearStudentList;
+import seedu.command.student.FindStudentList;
+import seedu.command.student.AddStudentList;
+import seedu.command.student.DeleteStudentList;
+import seedu.command.student.SortStudentListByList;
+import seedu.command.student.ViewStudentList;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
-import seedu.ui.UI;
 
 public class StudentCommandInterpreter extends CommandInterpreter {
-    StudentList studentList;
-    UI ui;
 
     public StudentCommandInterpreter(EventList eventList) {
         super(eventList);
-        this.ui = new UI();
     }
 
+    /**
+     * Method to decide the type of command to execute.
+     * @param commandDescription the following parameter used.
+     *                           Currently only used for delete command.
+     * @return The student related command that the user calls.
+     * @throws DukeException If an invalid command Description is provided.
+     */
     public Command decideCommand(String commandDescription) throws DukeException {
+
         String commandType = getFirstWord(commandDescription);
         String commandParameters = getSubsequentWords(commandDescription);
         switch (commandType) {
         case "add":
-            return new AddStudent(studentList);
+            try {
+                return new AddStudentList();
+            } catch (Exception e) {
+                throw new DukeException("Student Command Add failed.");
+            }
+
         case "list":
-            return new ListStudent();
+            try {
+                return new ViewStudentList();
+            } catch (Exception e) {
+                throw new DukeException("Student Command List failed.");
+            }
         case "delete":
             try {
-                return new DeleteStudent(Integer.parseInt(commandParameters));
+                return new DeleteStudentList(Integer.parseInt(commandParameters));
             } catch (Exception e) {
-                throw new DukeException(e.getMessage());
+                throw new DukeException("Student Command Delete failed.");
+            }
+        case "sort/by/list":
+            try {
+                return new SortStudentListByList();
+            } catch (Exception e) {
+                throw new DukeException("Student Command Sort By List failed.");
+            }
+        case "sort/by/name":
+            try {
+                return new SortStudentListByName();
+            } catch (Exception e) {
+                throw new DukeException("Student Command Sort By Name failed.");
+            }
+        case "find":
+            try {
+                return new FindStudentList();
+            } catch (Exception e) {
+                throw new DukeException("Student Command Find failed.");
+            }
+        case "clear":
+            try {
+                return new ClearStudentList();
+            } catch (Exception e) {
+                throw new DukeException("Student Command Clear failed.");
             }
         default:
-            throw new DukeException("Performance: Unknown command.");
+            throw new DukeException("Unknown Student Command.");
         }
     }
 
