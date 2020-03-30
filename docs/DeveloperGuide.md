@@ -58,7 +58,7 @@ The Schedule component finds common free slots from team members’ schedules.
 
 **Structure of the Schedule component:**
 
-The Schedule component of our application consists of 3 classes TeamMember```, ```TeamMemberList``` and ```ScheduleHandler```. 
+The Schedule component of our application consists of 3 classes ```TeamMember```, ```TeamMemberList``` and ```ScheduleHandler```. 
 
 1. ```TeamMember``` consists of information of a member's schedule.
 2. ```TeamMemberList``` is a ```Arraylist<TeamMember> ``` which new ```TeamMember``` can be added to.
