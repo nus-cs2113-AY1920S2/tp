@@ -1,7 +1,11 @@
 package seedu.command.interpreter;
 
 import seedu.command.Command;
-import seedu.command.performance.*;
+import seedu.command.performance.AddPerformance;
+import seedu.command.performance.DeletePerformance;
+import seedu.command.performance.ListStudentPerformance;
+import seedu.command.performance.SortPerformanceListByName;
+import seedu.command.performance.SortPerformanceListByGrade;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
 import seedu.performance.PerformanceList;
