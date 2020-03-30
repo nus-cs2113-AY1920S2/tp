@@ -83,4 +83,21 @@ public class Appointment {
     public void setDone(boolean done) {
         isDone = done;
     }
+
+    private String doneString(boolean done) {
+        return done ? "T" : "F";
+    }
+
+    /**
+     * Create a string with all the appointment's data for storage to a text file.
+     * Each variable is separated with | as a divider.
+     *
+     * @return a formatted string with appointment's data.
+     */
+    public String toSave() {
+        String text = this.appointmentId + "|" + this.nric + "|"
+                + this.date + "|" + this.time + "|"
+                + this.reason + "|" + doneString(this.isDone) + System.lineSeparator();
+        return text;
+    }
 }
