@@ -245,3 +245,39 @@ Allow users to record their daily activities and track their time usage in a use
   1. Download the jar file and docs folder
   2. Copy both into an empty folder
   3. Run the jar file in your terminal using the command `java -jar jikan.jar`
+  
+  It is important to include the docs folder to have data for testing!
+  
+  #### Listing activities
+  Test case: `list month april`
+  
+  Expected: A list of activities completed in the month of april should be shown.
+  
+  Test case: `list 25/03/2020`
+  
+  Expected: A list of activities completed on 25th March 2020 should be shown.
+  
+  #### Continuing activities
+  Test case: `continue lab 4 ex2`
+  
+  Expected: Message "lab 4 ex2 was continued" will be displayed.
+  
+  Test case: `start lab 4 ex2`
+  
+  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
+  
+  #### Graphing activities
+  Test case: (to be done in succession)
+  
+  `find tutorial` then `graph 10`
+  
+  Expected: List of activities that contain 'tutorial' will be shown.
+  Then a chart of the duration of these activities will be shown.
+  
+  Test case: (to be done in succession)
+  
+  `list week` then `graph tags`
+  
+  Expected: List of activities completed this week will be shown. 
+  Then a chart of the duration of the tags of these activities will be shown.
+  
