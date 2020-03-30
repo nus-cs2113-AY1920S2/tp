@@ -16,4 +16,5 @@ public class Messages {
     public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "You have entered an index out of bounds.";
     public static final String MESSAGE_WRONG_COMMAND_SCHEDULE = "Wrong format for schedule command!";
     public static final String MESSAGE_WRONG_COMMAND_DELETE = "Wrong format for delete command!";
+    public static final String MESSAGE_WRONG_COMMAND_MEETING = "Wrong format for meeting command!";
 }

@@ -94,7 +94,7 @@ public class MeetingOrganizer {
                 CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyTeamMemberList());
                 break;
             case "meetings": //list all scheduled meeting slots. meetings
-                CommandHandler.listMeetings(getMyMeetingList());
+                CommandHandler.listMeetings(userInputWords, getMyMeetingList());
                 break;
             default:
                 throw new MoException("Unknown command, please try again.");
