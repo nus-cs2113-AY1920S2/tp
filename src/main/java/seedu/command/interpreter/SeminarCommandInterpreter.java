@@ -54,7 +54,6 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
         if (needArgument(commandType)) {
             commandParameters = getSubsequentWords(commandDescription);
         }
-        assert commandType.isBlank() : "Seminar: Unknown command";
 
         switch (commandType) {
         case "add":
@@ -62,29 +61,44 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             command = new AddEvent(seminar, this.eventList);
             break;
         case "editname":
+            if (flagDoesNotExist(commandParameters, "i/")) {
+                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+            }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
             name = eventParser.getName();
             command = new EditName(index, name, this.eventList);
             break;
         case "editdatetime":
+            if (flagDoesNotExist(commandParameters, "i/")) {
+                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+            }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
             datetime = eventParser.getDate() + " " + eventParser.getTime();
             command = new EditDateTime(index, datetime, this.eventList);
             break;
         case "editvenue":
+            if (flagDoesNotExist(commandParameters, "i/")) {
+                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+            }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
             venue = eventParser.getVenue();
             command = new EditVenue(index, venue, this.eventList);
             break;
         case "editevent":
+            if (flagDoesNotExist(commandParameters, "i/")) {
+                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+            }
             seminar = eventParser.parseSeminar(commandParameters);
             index = eventParser.getIndex();
             command = new EditEvent(index, seminar, this.eventList);
             break;
         case "delete":
+            if (flagDoesNotExist(commandParameters, "i/")) {
+                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+            }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
             command = new DeleteEvent(index, this.eventList);

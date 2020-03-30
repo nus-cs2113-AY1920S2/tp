@@ -62,6 +62,20 @@ public class CommandInterpreter {
     }
 
     /**
+     * Check if a string contains the specified flags.
+     * @param string the string to check for flags
+     * @param flags any flags to be checked inside string
+     * @return {@code true} if at least one flag is not found
+     */
+    protected boolean flagDoesNotExist(String string, String... flags) {
+        boolean output = false;
+        for (String flag : flags) {
+            output = output && !string.contains(flag);
+        }
+        return output;
+    }
+
+    /**
      * Decide the command from userInput.
      *
      * @param userInput The userInput from the Ui.
