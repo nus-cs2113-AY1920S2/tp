@@ -10,12 +10,11 @@ import schedulelogic.TeamMember;
 import schedulelogic.TeamMemberList;
 import ui.TextUI;
 
-import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
-import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+
+import static common.Messages.*;
 
 public class CommandHandler {
 
@@ -110,9 +109,17 @@ public class CommandHandler {
         }
     }
 
-    public static void listMeetings(MeetingList meetingList) {
-        TextUI.listMeetings();
-        meetingList.show();
+    public static void listMeetings(String[] userInputWords, MeetingList meetingList) {
+        try {
+            if (userInputWords.length != 1) {
+                throw new MoException(MESSAGE_WRONG_COMMAND_MEETING);
+            }
+            TextUI.listMeetings();
+            meetingList.show();
+        } catch (MoException e) {
+            System.out.println(e.getMessage());
+            TextUI.printFormatMeeting();
+        }
     }
 
     public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser, TeamMemberList
@@ -135,9 +142,7 @@ public class CommandHandler {
         }
     }
 
-    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser,
-                                       TeamMemberList teamMemberList) {
-
+    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser, TeamMemberList teamMemberList) {
         try {
             if (userInputWords.length < 6) {
                 throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);

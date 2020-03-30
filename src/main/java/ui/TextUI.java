@@ -210,5 +210,9 @@ public class TextUI {
     public static void printFormatDelete() {
         out.println("\nTo delete contact:\ndelete <Member Number>");
     }
+
+    public static void printFormatMeeting() {
+        out.println("\nTo list meetings:\nmeeting");
+    }
 }
 
