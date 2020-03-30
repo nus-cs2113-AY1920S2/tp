@@ -183,7 +183,7 @@ public class Ui {
         System.out.println("|");
     }
 
-     /** Print goals as a table.
+    /** Print goals as a table.
      * @param tagsGoals the goals set for each tag.
      * @param tagsActual the actual duration spent for each tag.
      */
@@ -206,7 +206,8 @@ public class Ui {
             } else {
                 message = " [You have not met your goal!]";
             }
-            System.out.println(String.format("   %-15s %s %-15s %s %-15s %s %s", key, "|", goalDuration, "|", actualDuration, "|", diffDuration + message));
+            System.out.println(String.format("   %-15s %s %-15s %s %-15s %s %s", key, "|", goalDuration,
+                    "|", actualDuration, "|", diffDuration + message));
         });
         System.out.println(DIVIDER);
     }
@@ -253,7 +254,7 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-     /** Converts duration object to a string for printing.
+    /** Converts duration object to a string for printing.
      * @param dur the duration object.
      * @return duration the duration as a string.
      */
