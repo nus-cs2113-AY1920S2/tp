@@ -22,7 +22,7 @@ public class Storage {
      * @return an EventList object with all events loaded
      * @throws DukeException if EOF is encountered
      */
-    public EventList loadAll() throws DukeException {
+    public EventList loadEventList() throws DukeException {
         EventList eventList = new EventList();
         String input = null;
         do {
@@ -44,7 +44,7 @@ public class Storage {
      * Save all events to Storage.
      * @throws DukeException if IOException occurs
      */
-    public void saveAll(EventList eventList) throws DukeException {
+    public void saveEventList(EventList eventList) throws DukeException {
         for (Event event : eventList.list) {
             fileIO.write(event.toStorable());
         }
