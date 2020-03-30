@@ -14,7 +14,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-import static common.Messages.*;
+import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
+import static common.Messages.MESSAGE_WRONG_COMMAND_MEETING;
+import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
+
 
 public class CommandHandler {
 
@@ -142,7 +145,8 @@ public class CommandHandler {
         }
     }
 
-    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser, TeamMemberList teamMemberList) {
+    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser,
+                                       TeamMemberList teamMemberList) {
         try {
             if (userInputWords.length < 6) {
                 throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
