@@ -94,4 +94,8 @@ public class StudentList {
         }
         return newStudentList;
     }
+
+    public boolean isEmpty() {
+        return studentList.isEmpty();
+    }
 }

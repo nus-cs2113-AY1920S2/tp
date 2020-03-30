@@ -5,8 +5,11 @@ import seedu.command.Command;
 import seedu.command.Help;
 import seedu.event.EventList;
 import seedu.exception.DukeException;
+import seedu.ui.UI;
 
 public class CommandInterpreter {
+
+    protected UI ui = new UI();
     protected EventList eventList;
     private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"event", "seminar", 
         "attendance", "performance", "student", "calendar"};
@@ -126,9 +129,11 @@ public class CommandInterpreter {
                     && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
                     && !commandCategory.equals("help") && !commandCategory.equals("student"))
                     : "accepted command category is not further interpreted!";
+            ui.display("Unknown command category is provided.");
             throw new DukeException("Unknown command category is provided");
         }
         if (command == null) {
+            ui.displayMessage("Duke is null.");
             throw new DukeException("Duke is null.");
         }
         return command;

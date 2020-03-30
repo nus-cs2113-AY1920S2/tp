@@ -47,7 +47,8 @@ public class UI {
     }
 
     public String getStringInput() {
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
 
     /**
@@ -70,7 +71,8 @@ public class UI {
                 + "|__|     /__/      \\__\\  \\________|\n";
         display("Hello from\n" + logo);
         display("What is your name?");
-        userName = in.nextLine();
+        readUserInput();
+        userName = getUserInput();
         display("Hello " + userName + ". Welcome to your "
                 + "personal Professor Assistant Console. If you need "
                 + "assistant with command format, input 'help'.");
@@ -176,24 +178,27 @@ public class UI {
 
     public String getResultOfStudent(String studentName) {
         System.out.println("Please key in the result for student " + studentName);
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
 
     public String getAttendanceStatusOfStudent(String studentName) {
         System.out.println("Please key in the attendance status for student " + studentName + "[Y/N]");
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
-
 
     public String getPerformanceParameter() {
         System.out.println("Please key in student name and result in the following format:");
         System.out.println("n/Student_Name r/result. If you are finished, enter done.");
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
 
     public String getStudentName(String typeCommand) {
         System.out.printf("Please key in the name of student that you wish to %s \n", typeCommand);
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
 
     public String getTypeOfAddPerformance() {
@@ -210,12 +215,14 @@ public class UI {
     public String getEventName() {
         System.out.println("Please key in the name of event that "
                 + "you wish to access to its student's performance.");
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
 
     public String getEventNameForAttendance() {
         System.out.println("Please key in the name of event.");
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
 
     public void clearAttendanceMessage(String eventName) {
@@ -255,7 +262,8 @@ public class UI {
 
     public String getListName() {
         System.out.println("What is the name of your list?");
-        return in.nextLine();
+        readUserInput();
+        return getUserInput();
     }
 
     public void printStudentListCollection() {

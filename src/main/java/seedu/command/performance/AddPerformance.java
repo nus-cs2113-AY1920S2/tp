@@ -78,8 +78,13 @@ public class AddPerformance extends Command {
         if (studentListCollection.isEmpty()) {
             throw new DukeException("There is no existing student list.");
         }
-        int listIndex = displayList.getStudentListIndex();
-        return studentListCollection.get(listIndex - 1);
+        try {
+            int listIndex = displayList.getStudentListIndex();
+            return studentListCollection.get(listIndex - 1);
+        } catch (Exception e) {
+            ui.displayMessage("Fail to get list.");
+            throw new DukeException("Fail to get list");
+        }
     }
 
     /**

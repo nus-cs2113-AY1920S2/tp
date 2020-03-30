@@ -1,5 +1,6 @@
 package seedu.command.student;
 
+import seedu.exception.DukeException;
 import seedu.student.StudentList;
 import seedu.command.Command;
 import seedu.ui.DisplayList;
@@ -24,16 +25,25 @@ public class AddStudentList extends Command {
      * Method to add student names to a new list.
      * Once studentList is created, it will be appended to studentListCollection.
      */
-    private void addToList() {
+    private void addToList() throws DukeException {
         String listName = ui.getListName();
+        if (listName.toLowerCase().equals("done")) {
+            ui.displayMessage("Student Add cancelled.");
+            throw new DukeException("Student Add cancelled");
+        }
         StudentList studentList = new StudentList(listName);
         ui.addStudent(studentList);
+        if (studentList.isEmpty()) {
+            ui.displayMessage("You cannot create an empty Student List.");
+            throw new DukeException("You cannot create an empty Student List");
+
+        }
         displayList.printStudentList(studentList, listName);
         studentListCollection.add(studentList);
     }
 
     @Override
-    public void execute() {
+    public void execute() throws DukeException {
         addToList();
     }
 }

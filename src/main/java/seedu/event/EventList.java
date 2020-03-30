@@ -53,9 +53,11 @@ public class EventList {
      */
     public void delete(int index) throws DukeException {
         if (index < 0) {
+            ui.displayMessage("Invalid index, must start from 1.");
             throw new DukeException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
+            ui.displayMessage("Index not found.");
             throw new DukeException("Index not found.");
         }
 
@@ -75,9 +77,11 @@ public class EventList {
      */
     public Event find(int index) throws DukeException {
         if (index < 0) {
+            ui.displayMessage("Invalid index, must start from 1.");
             throw new DukeException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
+            ui.displayMessage("Index not found.");
             throw new DukeException("Index not found.");
         }
         return list.get(index);
@@ -140,6 +144,7 @@ public class EventList {
      */
     public void editEvent(int index, Event event) throws DukeException {
         if (index >= list.size()) {
+            ui.displayMessage("Index not found");
             throw new DukeException("Index not found.");
         }
         if (event instanceof Seminar) {
@@ -157,6 +162,7 @@ public class EventList {
 
     public Event getEvent(String eventName) throws DukeException {
         if (list.isEmpty()) {
+            ui.displayMessage("The event list is empty");
             throw new DukeException("The event list is empty.");
         }
         for (Event event : list) {
@@ -164,6 +170,7 @@ public class EventList {
                 return event;
             }
         }
+        ui.displayMessage("Event is not found in the list.");
         throw new DukeException("Event is not found in the list.");
     }
 
@@ -174,6 +181,7 @@ public class EventList {
      */
     public void listEvent() throws DukeException {
         if (list.isEmpty()) {
+            ui.displayMessage("The event list is empty");
             throw new DukeException("The event list is empty.");
         }
         displayList.printEventList(list, "event");
@@ -186,6 +194,7 @@ public class EventList {
      */
     public void listSeminar() throws DukeException {
         if (list.isEmpty()) {
+            ui.displayMessage("The event list is empty");
             throw new DukeException("The event list is empty.");
         }
         ArrayList<Event> seminarList = new ArrayList<>();

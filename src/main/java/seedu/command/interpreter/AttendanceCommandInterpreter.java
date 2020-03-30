@@ -91,6 +91,7 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
                         attendances = getAttendance(eventName);
                         return new SortAttendanceListByName(attendances, eventName);
                     } catch (Exception e) {
+                        ui.displayMessage("Attendance Command Sory By Name failed.");
                         throw new DukeException("Attendance Command Sort By Name failed.");
                     }
                 case "status":
@@ -99,15 +100,19 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
                         attendances = getAttendance(eventName);
                         return new SortAttendanceListByStatus(attendances, eventName);
                     } catch (Exception e) {
+                        ui.displayMessage("Attendance Command Sort By Status failed.");
                         throw new DukeException("Attendance Command Sort By Status failed.");
                     }
                 default:
+                    ui.displayMessage("Unknown Attendance Sort Command");
                     throw new DukeException("Unknown Attendance Sort Command");
                 }
             } catch (Exception e) {
+                ui.displayMessage("Attendance Command Sort failed.");
                 throw new DukeException("Attendance Command Sort failed.");
             }
         default:
+            ui.displayMessage("Attendance: Unknown command.");
             throw new DukeException("Attendance: Unknown command.");
         }
     }

@@ -22,15 +22,19 @@ public class DeleteStudentList extends Command {
      * @throws DukeException    DukeException is thrown when there is an out of bound index.
      */
     private void deleteFromExisting() throws DukeException {
+        ui.displayMessage("Please state the index of the student list you wish to delete.");
         ui.readUserInput();
         line = ui.getUserInput();
         try {
             index = Integer.parseInt(line);
             studentListCollection.remove(index - 1);
-        } catch (Exception e) {
+        } catch (NullPointerException e1) {
+            ui.displayMessage("Deletion Failed, out of bound");
+            throw new DukeException("Out of bound.");
+        } catch (Exception e2) {
+            ui.displayMessage("Deletion Failed.");
             throw new DukeException("Deletion Failed, out of bound.");
         }
-        ui.displayMessage("Here is the updated Student List Collection");
         displayList.printStudentListCollection();
     }
 

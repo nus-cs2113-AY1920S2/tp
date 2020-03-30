@@ -42,6 +42,7 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
         case "sort":
             return getSortCommand();
         default:
+            ui.displayMessage("Performance: Unknown command");
             throw new DukeException("Performance: Unknown command.");
         }
     }
@@ -61,6 +62,7 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
         } else if (type.equals("grade")) {
             return new SortPerformanceListByGrade(performances, eventName);
         }
+        ui.displayMessage("Performance sort: Unknown command. Enter 'name' or 'student'.");
         throw new DukeException("Performance sort: Unknown command. Enter 'name' or 'student'.");
     }
 
