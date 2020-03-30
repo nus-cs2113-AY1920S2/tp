@@ -55,7 +55,9 @@ public class DeletePatientCommand extends PatientCommand {
      * @return The message to confirm deletion of patient or to confirm that the patient has not be deleted.
      * @throws HappyPillsException Throws an exception if patient does not exist.
      */
-    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
 
         if (patients.containsKey(nric)) {
             Patient patient = patients.get(nric);

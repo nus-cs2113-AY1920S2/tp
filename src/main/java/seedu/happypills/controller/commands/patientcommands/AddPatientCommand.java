@@ -57,7 +57,9 @@ public class AddPatientCommand extends PatientCommand {
      * @param patients Contains the list of tasks on which the commands are executed on.
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
         assert !patients.containsKey(nric) : "New nric can be added";
         Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
         if (tempPatient.getNric() == null) {

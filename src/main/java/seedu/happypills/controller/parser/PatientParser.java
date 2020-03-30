@@ -73,8 +73,8 @@ public class PatientParser {
                 parseInput[4] = detail.substring(1).trim();
             } else if (detail.startsWith("a") && parseInput[5].equalsIgnoreCase("NIL")) {
                 parseInput[5] = detail.substring(1).trim();
-            } else if (detail.startsWith("r") && parseInput[6].equalsIgnoreCase("NIL")) {
-                parseInput[6] = detail.substring(1).trim();
+            } else if (detail.startsWith("rm") && parseInput[6].equalsIgnoreCase("NIL")) {
+                parseInput[6] = detail.substring(2).trim();
             } else {
                 System.out.println("    " + detail + " is not a valid input.\n"
                         + "    " + detail + " will not be added\n" + TextUi.DIVIDER);

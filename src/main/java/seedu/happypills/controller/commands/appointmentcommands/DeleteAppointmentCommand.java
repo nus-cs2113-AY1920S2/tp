@@ -14,7 +14,9 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     }
 
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
         String message = "";
         if (appointments.containsKey(appointmentId)) {
             appointments.remove(appointmentId);

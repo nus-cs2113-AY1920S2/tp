@@ -7,7 +7,9 @@ import seedu.happypills.model.exception.HappyPillsException;
 
 public class IncorrectAppointmentCommand extends AppointmentCommand {
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
         return "    Command is incorrect. Please try again.\n";
     }
 }

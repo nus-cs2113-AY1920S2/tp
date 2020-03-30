@@ -23,7 +23,7 @@ public class EditPatientCommand extends PatientCommand {
      * Constructor for EditCommand Class.
      * It creates a new EditCommand Object with the information provided.
      *
-     * @param nric Contains the nric of the patient that is to be retrieved.
+     * @param nric       Contains the nric of the patient that is to be retrieved.
      * @param newContent Contains the string that the attribute is to be updated to.
      */
     public EditPatientCommand(String nric, String newContent) {
@@ -126,13 +126,25 @@ public class EditPatientCommand extends PatientCommand {
      * @throws HappyPillsException Throws an exception if the edit field is not valid.
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments, VisitMap visits) throws HappyPillsException {
+    public String execute(
+            PatientMap patients, AppointmentMap appointments, VisitMap visits
+    ) throws HappyPillsException {
         if (newContent.length() < 2) {
             throw new HappyPillsException("    Content is invalid. Please try again");
         }
         // assert newContent.length() >= 2 : "Length of content has to be more than 2 characters.";
-        String field = newContent.substring(0,2);
-        String content = newContent.substring(2);
+        String field = "";
+        String content = "";
+        if (newContent.contains("/rm")) {
+            field = newContent.substring(0, 3);
+            content = newContent.substring(3);
+        } else if (newContent.contains("/dob")) {
+            field = newContent.substring(0, 4);
+            content = newContent.substring(4);
+        } else {
+            field = newContent.substring(0, 2);
+            content = newContent.substring(2);
+        }
         Patient editPatient = findPatient(patients);
         String output = "";
         if (editPatient == null) {
@@ -141,11 +153,11 @@ public class EditPatientCommand extends PatientCommand {
         // assert editPatient != null : "Patient is not in PatientList";
         if (field.equals("/p")) {
             output = editPhone(editPatient, content);
-        } else if (field.equals("/r")) {
+        } else if (field.equals("/rm")) {
             output = editRemarks(editPatient, content);
         } else if (field.equals("/a")) {
             output = editAllergies(editPatient, content);
-        } else if (field.equals("/d")) {
+        } else if (field.equals("/dob")) {
             output = editDob(editPatient, content);
         } else if (field.equals("/b")) {
             output = editBloodType(editPatient, content);
@@ -153,10 +165,10 @@ public class EditPatientCommand extends PatientCommand {
             output = editName(editPatient, content);
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
-            + "\n    enter \"help edit\"");
+                    + "\n    enter \"help edit\"");
         }
         try {
-            Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
+            Storage.writeAllToFile(Storage.PATIENT_FILEPATH, TextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
             logger.info("Adding patient list to file failed.");
         }
