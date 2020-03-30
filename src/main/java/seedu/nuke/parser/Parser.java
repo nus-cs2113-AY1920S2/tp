@@ -1,11 +1,13 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
+
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.OpenFileCommand;
 import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddFileCommand;
@@ -128,63 +130,54 @@ public class Parser {
 
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
-                
             case AddCategoryCommand.COMMAND_WORD:
                 return prepareAddCategoryCommand(parameters);
-                
             case AddTaskCommand.COMMAND_WORD:
                 return prepareAddTaskCommand(parameters);
-                
             case AddFileCommand.COMMAND_WORD:
                 return prepareAddFileCommand(parameters);
-                
             case AddTagCommand.COMMAND_WORD:
                 return prepareAddTagCommand(parameters);
                 
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, true);
-                
             case DeleteCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, true);
-                
             case DeleteTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, true);
-                
             case DeleteFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, true);
 
             case ListModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, false);
-                
             case ListCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, false);
-                
             case ListTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, false);
-                
+
             case ListModuleTasksDeadlineCommand.COMMAND_WORD:
                 return new ListModuleTasksDeadlineCommand(parameters.trim());
-                
+
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
-                
+            
             case ListAllTasksDeadlineCommand.COMMAND_WORD:
                 return new ListAllTasksDeadlineCommand();
 
             case EditModuleCommand.COMMAND_WORD:
                 return prepareEditModuleCommand(parameters);
-                
             case EditCategoryCommand.COMMAND_WORD:
                 return prepareEditCategoryCommand(parameters);
-                
             case EditTaskCommand.COMMAND_WORD:
                 return prepareEditTaskCommand(parameters);
-                
             case EditFileCommand.COMMAND_WORD:
                 return prepareEditFileCommand(parameters);
 
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
+
+            case OpenFileCommand.COMMAND_WORD:
+                return prepareOpenFileCommand(parameters);
 
             case UndoCommand.COMMAND_WORD:
                 return new UndoCommand();
@@ -659,6 +652,34 @@ public class Parser {
 
         return new EditFileCommand(oldFileName, moduleCode, categoryName, taskDescription, newFileName);
     }
+
+    /* Miscellaneous Commands */
+
+    /**
+     * Prepares the command to open file(s).
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to open file(s)
+     */
+    private Command prepareOpenFileCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = OpenFileCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX);
+
+        String fileName = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+
+        return new OpenFileCommand(moduleCode, categoryName, taskDescription, fileName);
+    }
+
+
+
+
+
 
     /**
      * Checks if the priority is between 0 and 100 inclusive.
