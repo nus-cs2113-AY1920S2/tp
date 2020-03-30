@@ -83,18 +83,6 @@ Okay! I have added this module to your semester's module list:
 ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
-Okay! I have added this module to the available modules to choose from:
-ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4 | Prerequisites: CS1010
-
-
-Okay! I have added this module to the available modules to choose from:
-ID: CS1231 Name: Discrete Structures | Modular Credit: 4
-
-
-Okay! I have added this module to the available modules to choose from:
-ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
-
-
 Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
