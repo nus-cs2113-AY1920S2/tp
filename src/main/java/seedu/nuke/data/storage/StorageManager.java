@@ -10,6 +10,7 @@ import seedu.nuke.exception.CorruptedFileException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class StorageManager {
             bufferedReader.close();
             fileReader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             ModuleManager.setModuleList(new ArrayList<>());
         } catch (CorruptedFileException e) {
             System.out.println("file is corrupted!\n");

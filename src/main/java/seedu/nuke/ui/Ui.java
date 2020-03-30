@@ -105,6 +105,7 @@ public class Ui {
 
         if(result.getHelpGuides() != null) {
             printShownList(result.getHelpGuides());
+
             return;
         }
 
