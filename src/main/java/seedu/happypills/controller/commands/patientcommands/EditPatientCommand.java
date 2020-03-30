@@ -27,7 +27,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param newContent Contains the string that the attribute is to be updated to.
      */
     public EditPatientCommand(String nric, String newContent) {
-        this.nric = nric;
+        this.nric = nric.toUpperCase();
         this.newContent = newContent;
     }
 

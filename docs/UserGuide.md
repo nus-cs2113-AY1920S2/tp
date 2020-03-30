@@ -61,7 +61,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 ### Command Format
 - Words in `UPPER_CASE` are the parameters to be supplied by you **e.g.** in `add patient \ic NRIC`, `NRIC` is the input required from you.
 - In case a tag is used multiple times in a command then its first instance will be taken and the remaining instances will be treated as invalid input.
-- Items in square brackets are optional **e.g.** `/ic NRIC [/a ALLERGIES]` can be used as `/ic S1234567F` or as `/ic S1234567F /a Dust`
+- Items in square brackets are optional **e.g.** `/ic NRIC /a [ALLERGIES]` can be used as `/ic S1234567F` or as `/ic S1234567F /a Dust`
 - Parameters can be in any order **e.g.** if the command requires `/n NAME /ic NRIC` or `/ic NRIC /n NAME `
 - All commands are case insensitive **e.g.** `help` or `HELP` or `HeLp` will display all the commands and their usage.
 
@@ -96,35 +96,18 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 
 #### 3.1.1. View Help: `help`
 
-Displays the list of commands and their syntaxes.
-
-Format: `help`
+Displays the list of commands and their syntax.
 
 ###### Usage example:
 
-*For general help*
+Format: `help`
 
-    help
+>***Expected output:***
+> 
+> ![help]()
 
-*For specific help*
-
-    help [COMMAND] 
-    
-**Example:**
-
-`help get`
-
-> ***Expected output:***
->
->     ===================================================
->     To retrieve a patient's information, run the following command:
->     Note: patient details are within the parenthesis [ ]
->       get [NRIC]
->     Example:
->       get S1234567Z
->     The command above will display information regarding the patient with NRIC S1234567Z.
->     ===================================================
->
+:information_source: | The help command is split into four different sections `(highlighted by the boxes)`.
+---------------------|--------------------------------------------------------------------------------------------------
 
 #### 3.1.2. Exit program: `exit`
 
@@ -144,17 +127,17 @@ HappyPills can help users to manage their patients' information easily.
 
 #### 3.2.1. Add Patient: `add patient`
 
-This feature allows you to add more patients into the exisiting patients' list. <br>  
+This feature allows you to add more patients into the existing patients' list. <br>  
 HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list. You can also add a new patient with the specified parameters in any order.
 
 
 ###### Usage Example:   
 
-    add patient /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+    add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
     
 **Example:**
 
-    add patient /ic S9999999Z /n Bob /d 12-11-98 /b A+
+    add patient /ic S9999999Z /n Bob /dob 12-11-98 /b A+
     
 >***Expected output:***
 >
@@ -167,16 +150,7 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 
 > ***Expected output:***
 >
->     =====================================================
->         Name : Bob
->         NRIC : S9999999Z
->         Phone Number : 999
->         DOB : 12-11-98
->         Blood Type : A+
->         Allergies : NIL
->         Remarks : NIL
->                                                    (Y/N)?
->     =====================================================
+>   ![CheckConfirmAdd]()
 >
 > Enter `y` to confirm.
 
@@ -192,15 +166,19 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 Edit information of the patient with the specified NRIC. 
 
 ##### Usage example: 
+ 
+    edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
 
-```
-edit patient [NRIC] [Options][editedInput]
-  
-Options:
-    -p edit phone number
-    -a edit allergies
-    -r edit remarks
-```
+**Example:**
+
+    edit patient S0618 /p9111
+
+> ***Expected output:***
+>
+> ![editPatientOutput]()
+
+:information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
+---------------------|--------------------------------------------------------------------------
 
 #### 3.2.3. Delete Patient: `delete patient`
 
@@ -208,7 +186,7 @@ Delete a patient as specified by the NRIC.
 
 ##### Usage example: 
 
-    delete patient [NRIC]
+    delete patient NRIC
     
 **Example:**
 
@@ -217,6 +195,8 @@ Delete a patient as specified by the NRIC.
 > ***Expected output:***
 >
 > ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG)
+>
+> Enter `y` to confirm.
 
 :information_source: | HappyPills will prompt for confirmation before deleting patient in the patient list.  
 ---------------------|-------------------------------------------------------------------
@@ -246,7 +226,7 @@ Retrieve details of the patient with the specified NRIC
 
 ##### Usage example: 
 
-    get patient [NRIC] 
+    get patient NRIC
     
 **Example:**
 
