@@ -70,8 +70,8 @@ public class EventCommandInterpreter extends CommandInterpreter {
             eventParser.parseTokens(commandParameters);
             index = eventParser.getIndex();
             datetime = eventParser.getDateTime();
-//            index = eventParser.parseIndex(commandParameters);
-//            datetime = eventParser.parseEventDateTime(commandParameters);
+            //index = eventParser.parseIndex(commandParameters);
+            //datetime = eventParser.parseEventDateTime(commandParameters);
             command = new EditDateTime(index, datetime, this.eventList);
             break;
         case "editvenue":
