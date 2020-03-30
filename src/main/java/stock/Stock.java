@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ingredient.Ingredient;
-import ingredient.IngredientNotFoundException;
+import exceptions.IngredientNotFoundException;
 import utils.Pair;
 
 /**

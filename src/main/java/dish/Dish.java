@@ -46,4 +46,12 @@ public class Dish {
         return price;
     }
 
+    /**
+     * Return name of dish.
+     * @return name of dish
+     */
+    public String getName() {
+        return name;
+    }
+
 }
