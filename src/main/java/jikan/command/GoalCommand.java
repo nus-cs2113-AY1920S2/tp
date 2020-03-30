@@ -108,7 +108,7 @@ public class GoalCommand extends Command {
      * @return index the index of the tag in the tag list.
      * @throws IOException when there is an error loading/creating the file.
      */
-    private int checkIfExists(String tagName) throws IOException {
+    public static int checkIfExists(String tagName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(TAG_FILE_PATH));
         int index = 0;
         int status = 0;
@@ -158,25 +158,11 @@ public class GoalCommand extends Command {
      *
      * @param dataLine Line to write to file.
      */
-
     public static void addTagLine(String dataLine) {
         try {
             writeToFile(dataLine);
         } catch (IOException e) {
             System.out.println("Error saving tag to tag file.");
-        }
-    }
-
-    /**
-     * Remove the tag data at the specified index.
-     *
-     * @param index index of the tag to remove.
-     */
-    public static void removeTagLine(int index) {
-        try {
-            removeLine(index);
-        } catch (IOException e) {
-            System.out.println("Error removing tag from tag file.");
         }
     }
 
