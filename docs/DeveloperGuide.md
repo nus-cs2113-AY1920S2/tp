@@ -2,58 +2,69 @@
 
 By: `CS2113T-T12-2` Since: `2020`
 
+![Supported Java versions](https://img.shields.io/badge/Java-11-blue.svg) 
+![Supported OS](https://img.shields.io/badge/Supported%20OS-Windows|MacOS|Linux-yellow.svg) 
 
 ## Table of Contents
 
 
-1. [Introduction](#introduction)
-2. [Setting up](#setting-up)
-3. [Design](#design)
-
-    3.1. Architecture
-    
-    
-    
-4. [Implementation](#implementation)
-
-    4.1. Add Patient's Information
-          
-      - 4.1.1. Description
-      
-      - 4.1.2. Implementation
-      
-      - 4.1.3. Design Considerations
-    
-    4.2. Appointment Scheduling
-    
-      - 4.2.1. Description
-      
-      - 4.2.2. Implementation 
-      
-      - 4.2.3. Design Consideration 
-    
-    4.3. 
-5. [Documentation](#documentation)
-6. [Testing](#testing)
-7. [DevOps](#devops)
-
-[Appendix A: Product Scope](#)
-
-[Appendix B: User Stories](#)
-
-[Appendix C: Non Functional Requirements](#)
-
-[Appendix E: Glossary](#)
-
-[Appendix F: Instructions for Manual Testing](#)
+- [1. Introduction](#introduction)
+    * [1.1.  Purpose](#purpose)
+    * [1.2. Scope](#scope)
+- [2. Setting up](#setting-up)
+- [3. Design](#design)
+    * [3.1. Architecture](#architecture)
+    * [3.2. UI Component](#ui-component)
+    * [3.3. Logic Component](#logic-component)
+    * [3.4. Model Component](#model-component)
+    * [3.5. Storage Component](#storage-component)
+- [4. Implementation](#implementation)
+    * [4.1. Patient Details Feature](#patient-details-feature)
+        + [4.1.1. Add Patient Details](#add-patient-details)
+        + [4.1.2. Edit Patient Details](#edit-patient-details)
+        + [4.1.3. Delete Patient Details](#delete-patient-details)
+        + [4.1.4. List Patients](#list-patients)
+        + [4.1.5. Retrieve Patient Details](#retrieve-patient-details)
+    * [4.2. Patient Medical Records Feature](#patient-medical-records-feature)
+        
+    * [4.3. Appointment Scheduling Feature](#appointment-scheduling-feature)
+        + [4.3.1. Add Appointment](#add-appointment)
+        + [4.3.2. Edit Appointment](#edit-appointment)
+        + [4.3.3. Delete Appointment](#delete-appointment)
+        + [4.3.4. Mark Appointment as Done](#mark-appointment-as-done)
+        + [4.3.5. List Appointments](#list-appointments)
+        + [4.3.6. Find Appointments of Patient](#find-appointments-of-patient)
+    * [4.4 Storage](#storage)
+    * [4.5 Logging](#logging)
+- [5. Documentation](#documentation)
+- [6. Testing](#testing)
+- [Appendices](#appendices)
+    * [Appendix A: Product Scope](#product-scope)
+    * [Appendix B: User Stories](#user-stories)
+    * [Appendix C: Non Functional Requirements](#non-functional-requirements)
+    * [Appendix E: Glossary](#glossary)
+    * [Appendix F: Instructions for Manual Testing](#instructions-for-manual-testing)
 
 
 ## 1. Introduction
 
+### 1.1. Purpose
+
+### 1.2. Scope
 
 ## 2. Setting Up
 
 ## 3. Design 
+
+### 3.1. Architecture
+
+### 3.2. UI Component
+
+### 3.3. Logic Component
+
+### 3.4. Model Component
+
+### 3.5. Storage Component
 
 ## 4. Implementation
 
