@@ -1,7 +1,7 @@
 package seedu.duke;
 
-import seedu.cards.Card;
 import seedu.exception.EscException;
+import seedu.subjects.Subject;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,14 +19,29 @@ public class Storage {
     private static Path filepath = Paths.get(dir, "data", "cards.txt");
     private static String filepathStr  = String.valueOf(filepath);
     private static File saveFile = new File(filepathStr);
+    private static Path saveDir = Paths.get(dir, "data");
 
     /**
-     * Loads any pre-existing cards from the save file and creates a new card list.
-     * @return pre-existing card list (if any) or a new list
+     * Default constructor.
      */
-    public static ArrayList<Card> loadCards() throws EscException {
-        ArrayList<Card> loadCards = new ArrayList<>();
-        ArrayList tempList;
+    public Storage() {
+
+    }
+
+    /**
+     * For Unit testing ONLY, saveFile should not be accessed by user.
+     * @param altSaveFile the alternate File object
+     * @throws EscException if file creation fails
+     */
+    public Storage(File altSaveFile) throws EscException {
+        saveFile = altSaveFile;
+    }
+
+    /**
+     * Checks if the save file exists and creates a new save file if it does not exist.
+     * @throws EscException if File is unable to be created
+     */
+    private static void ensureFileExists() throws EscException {
         if (!saveFile.exists()) {
             try {
                 saveFile.getParentFile().mkdirs();
@@ -34,13 +49,25 @@ public class Storage {
             } catch (IOException e) {
                 throw new EscException("File creation error");
             }
+        }
+    }
+
+    /**
+     * Loads any pre-existing cards from the save file and creates a new card list.
+     * @return pre-existing card list (if any) or a new list
+     */
+    public static ArrayList<Subject> loadSubs() throws EscException {
+        ArrayList<Subject> loadSubs = new ArrayList<>();
+        ArrayList tempList;
+        if (!saveFile.exists()) {
+            ensureFileExists();
         } else {
             try {
                 FileInputStream fileRead = new FileInputStream(saveFile);
                 ObjectInputStream objRead = new ObjectInputStream(fileRead);
                 tempList = (ArrayList) objRead.readObject();
                 for (int i = 0; i < tempList.size(); i++) {
-                    loadCards.add((Card) tempList.get(i));
+                    loadSubs.add((Subject) tempList.get(i));
                 }
 
                 objRead.close();
@@ -48,19 +75,21 @@ public class Storage {
                 throw new EscException("Load error");
             }
         }
-        return loadCards;
+        return loadSubs;
     }
 
     /**
      * Saves the current card list to the save file.
-     * @param currCards the current card list
+     * @param currSub the current subject list
      */
-    public void saveCards(ArrayList<Card> currCards) throws EscException {
+    public void saveSubs(ArrayList<Subject> currSub) throws EscException {
+        ensureFileExists();
+
         try {
             FileOutputStream fileWrite = new FileOutputStream(saveFile);
             ObjectOutputStream objWrite = new ObjectOutputStream(fileWrite);
 
-            objWrite.writeObject(currCards);
+            objWrite.writeObject(currSub);
             objWrite.flush();
             objWrite.close();
         } catch (IOException e) {
