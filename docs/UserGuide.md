@@ -37,11 +37,12 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 
 ## 1. Introduction 
 
-HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI). 
-The application replaces all physical papers and is highly optimised for fast typing users.
-If you can type fast, HappyPills can help to manage patients’ records faster than traditional Graphical User Interface (GUI) applications. 
-All notes are neatly organised in HappyPills so that all your important information are safely stored. 
-Say goodbye to messy desks, illegible handwriting, time-consuming handwritten notes with HappyPills!
+HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI).
+  
+The application replaces all physical papers and is highly optimised for fast typing users.    
+If you can type fast, HappyPills can help to manage patients’ records faster than traditional Graphical User Interface (GUI) applications.  
+All notes are neatly organised in HappyPills so that all your important information are safely stored.  
+Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! :relaxed:
 
 ## 2. Quick Start
 **Installation**
@@ -127,8 +128,10 @@ HappyPills can help users to manage their patients' information easily.
 
 #### 3.2.1. Add Patient: `add patient`
 
-This feature allows you to add more patients into the existing patients' list. <br>  
-HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list. You can also add a new patient with the specified parameters in any order.
+This feature allows you to add more patients into the existing patients' list.
+ 
+HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list.  
+You can also add a new patient with the specified parameters in any order.
 
 
 ###### Usage Example:   
@@ -240,13 +243,61 @@ Retrieve details of the patient with the specified NRIC
 
 #### 3.3.1. Add Patient Records: `add pr`
 
+##### Usage example:
+
+    add pr
+    
+**Example:**
+
+> ***Expected output:***
+>
+> 
+
 #### 3.3.2. Edit Patient Records: `edit pr`
+
+##### Usage example:
+
+    edit pr
+    
+**Example:**
+
+> ***Expected output:***
+>
+> 
 
 #### 3.3.3. Delete Patient Records: `delete pr`
 
+##### Usage example: 
+
+    delete pr
+
+**Example:**
+
+> ***Expected output:***
+>
+> 
 #### 3.3.4. List Patient Records: `list pr`
 
+##### Usage example:
+
+    list pr
+
+**Example:**
+
+> ***Expected output:***
+>
+> 
 #### 3.3.5. Find Patient Records: `find pr`
+
+##### Usage example:
+
+    find pr
+
+**Example:**
+
+> ***Expected output:***
+>
+> 
 
 ### 3.4. Appointment Scheduling Commands 
 
@@ -263,7 +314,6 @@ Retrieve details of the patient with the specified NRIC
 #### 3.4.6. Find Patient's Appointments: `find appt`
 
 ### 3.5. Saving Data
-
 
 
 ## 4. Command Summary
