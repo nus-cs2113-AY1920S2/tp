@@ -87,12 +87,6 @@ Format: `help`
 >
 
 Note:
-
-
------------------------------------------------------------------------------------------------------------------------
-| :information_source: | The help command is split into four different sections `(highlighted by the boxes)`. |
-| ------------------- | -------------------------------------------------------------------------------------- |
-
 <table>
   <col width="20">
   <col width="200">
@@ -104,6 +98,7 @@ Note:
 
  [&#8593; Return to Top](#Table-of-Content)
 
+>>>>>>> 344562f42a1e303a0e14d024b545563bd55ad552
 #### 3.1.2. Exit program: `exit`
 
 Exits the program and ends the current session. 
