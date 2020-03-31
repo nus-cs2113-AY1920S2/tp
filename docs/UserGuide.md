@@ -1,3 +1,4 @@
+# A.T.A.S (Amazing Task and Assignment System) User Guide
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 Contents:
@@ -47,7 +48,7 @@ This guide aims to show you on how to use **ATAS** by providing examples and ste
 Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2, "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
 ## 2. Quick Start
 ### 2.1. Setting up
-1.  Ensure you have Java 11 or above installed on your computer
+1.  Ensure you have Java 11 or above installed on your computer.
 
     1.  For **Windows** Users:
 
@@ -63,7 +64,7 @@ Interested in cultivating a habit of time management and plan your time more eff
 
         1.  Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
 
-        2.  Open up `Terminal`
+        2.  Open up `Terminal`.
 
         3.  Navigate to the directory containing downloaded jar file.
 
@@ -76,12 +77,10 @@ Interested in cultivating a habit of time management and plan your time more eff
 2.  Some example commands you can try to get familiar with **ATAS**:
 
     -   `help`: Lists the commands that **ATAS** supports.
-
     -   `assignment n/Assignment One m/CS2113T d/01/01/20 1600 c/Important Assignment`: Adds an assignment called **Assignment one** for the module **CS2113T**. This assignment is due on **01/01/2020 1600** and the comments for this assignment is that it is an **Important Assignment**.
-
     -   `exit`: Exits **ATAS**.
 
-A summary of all the features available in **ATAS** can be found in [Command Summary](#).  
+A summary of all the features available in **ATAS** can be found in [Command Summary](#41-list-of-available-atas-commands).  
 Refer to [Section 3, "Features"](#3-features) for the detailed instruction of the various commands of **ATAS**.
 
 ## 3. Features
@@ -95,17 +94,17 @@ Refer to [Section 3, "Features"](#3-features) for the detailed instruction of th
     ![Task Index Example](images/task_index_example.png)
 
 -   Dates supplied by the user must follow the format `DD/MM/YY`.  
-    Example: 01/03/20 represents the date 1st March 2020
+    Example: 01/03/20 represents the date 1st March 2020.
 
 -   Times supplied by the user must follow the 24h format `HHmm`.  
-    Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm
+    Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm.
 
 -   The parameters of a command cannot be reordered.  
     Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in the wrong position.
 
-> **Note**
-> Don’t worry if all of these seems overwhelming.  
-> There are plenty of examples provided to aid your understanding and learning of **ATAS** commands
+> **Note**: 
+> Don’t worry if all of these seems overwhelming. 
+> There are plenty of examples provided to aid your understanding and learning of **ATAS** commands.
 
 ### 3.1. Add Assignments: **`assignment`**
 
@@ -118,11 +117,11 @@ Format: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`
 
 -   `MODULE` is the module that your assignment is for.
 
--   `DATE TIME` is the deadline of your assignment.
+-   `DATE` `TIME` is the deadline of your assignment.
 
 -   `COMMENTS` will be any other notes relevant to your assignment.
 
-> **Note**
+> **Note**:
 > The new `assignment` added cannot have both the same `NAME` and `MODULE` as another existing `assignment`.
 
 Example: `assignment n/Final Reflection Draft m/GEQ1000 d/01/04/20 2359 c/Last chance to get feedback!`
@@ -146,13 +145,12 @@ Format: `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMME
 
 -   `LOCATION` is where your event will take place.
 
--   `DATE START_TIME - END_TIME` is the date and time when your event will take place  
+-   `DATE` `START_TIME - END_TIME` is the date and time when your event will take place.  
 
--   `COMMENTS` will be any other notes relevant to your `event`
+-   `COMMENTS` will be any other notes relevant to your `event`.
 
-> **Note**
->
-> The new `event` added cannot have the same `NAME` as another existing `event`
+> **Note**:
+> The new `event` added cannot have the same `NAME` as another existing `event`.
 
 Example: `event n/Lecture l/NUS LT19 d/25/03/20 0800 - 1000 c/Remember to bring a jacket`
 
@@ -163,6 +161,7 @@ Added task:
             notes: Remember to bring a jacket
 Now you have 2 tasks in the list!
 ```
+
 ### 3.3. List Tasks: **`list`**
 
 You can view the tasks that you have stored in **ATAS**.  
@@ -192,6 +191,11 @@ Here are the relevant tasks:
   7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
             notes: false
 ```
+
+> **Note**: <br/>
+> The first symbol in the square bracket stands for: `[A]` assignment, `[E]` event or `[R]` repeating event. <br/>
+> The second symbol in the square bracket stands for: `[X]` task is not done, `[/]` task is done.
+
 #### 3.3.2. List Today’s Tasks: **`list today`**
 
 You can view only the tasks you have today.
@@ -209,7 +213,7 @@ Here are the relevant tasks:
 
 #### 3.3.3. List Weekly Tasks: **`list week`**
 
-You can view all the tasks for the next 7 days
+You can view all the tasks for the next 7 days.
 
 Format: `list week`
 
@@ -258,22 +262,23 @@ Here are the relevant tasks:
   5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
             notes: Complete DG draft to get tutor comments
 ```
+
 ### 3.4. Edit Tasks: **`edit`**
-----------------------
 
 You can edit tasks in your existing list if there are any changes.
 
 Format: `edit [INDEX]`
 
-> **Tip**
->
-> Users can issue a `list` command to find the index of specific tasks.  
-> Refer to [???](#List Tasks: <emphasis role=)
+> **Tip**:
+> Users can issue a `list` command to find the index of specific tasks. <br/>
+> Refer to [Section 3.3, "List Tasks: `list`"](#33-list-tasks-list) for usage on the `list` commands.
 
 Example: `edit 1`
 
-After issuing the `edit` command, you can input the changes you want to make by entering in the `assignment` or `events` command.  
-Refer to [???](#Add Assignments: <emphasis role=)
+After issuing the `edit` command, you can input the changes you want to make by entering in the `assignment` or `events` command.
+Refer to [Section 3.1, "Add Assignments: `assignment`](#31-add-assignments-assignment) or 
+[Section 3.1, "Add Events: `event`"](#32-add-events-event) for usage of the commands.
+
 
 ### 3.5. Delete Tasks: **`delete`**
 
@@ -281,10 +286,9 @@ You can delete unwanted tasks in your existing list.
 
 Format: `delete [INDEX]`
 
-> **Tip**
->
-> Users can issue a `list` command to find the index of specific tasks.  
-> Refer to [???](#List Tasks: <emphasis role=)
+> **Tip**:
+> Users can issue a `list` command to find the index of specific tasks. <br/>
+> Refer to [Section 3.3, "List Tasks: `list`"](#33-list-tasks-list) for usage on the `list` commands.
 
 Example: `delete 1`
 
@@ -294,10 +298,9 @@ You can mark a completed task as done in your existing list.
 
 Format: `done [INDEX]`
 
-> **Tip**
->
-> Users can issue a `list` command to find the index of specific tasks.  
-> Refer to [???](#List Tasks: <emphasis role=)
+> **Tip**:
+> Users can issue a `list` command to find the index of specific tasks. <br/>
+> Refer to [Section 3.3, "List Tasks: `list`"](#33-list-tasks-list) for usage on the `list` commands.
 
 Example: `done 1`
 
@@ -323,16 +326,16 @@ Format: `clear all`
 Format: `clear done`
 
 ### 3.8. Repeating Events: **`repeat`**
-------------------------------
 
 #### 3.8.1. Set an event to repeat
 
 Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
 
-Format: `repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]`
+Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
 
-> **Note**
-> Available Period: Day \[d\], Week \[w\], Month \[m\], Year \[y\]
+> **Note**: <br/>
+> Available `[PERIOD_TYPE]`: Day `[d]`, Week `[w]`, Month `[m]`, Year `[y]` <br/>
+> `INDEX` of task specified has to be an **event** task. <br/>
 
 Example: `repeat id/6 p/11m`  
 This command will repeat task of index 6 every 11 months.
@@ -342,8 +345,15 @@ Expected outcome:
 [Online Career Fair] will repeat every 11 months.
 ```
 
-> **Note**
-> Index of task specified has to be an **event** task.
+> **Note**:
+> Listing after repeating an event will cause it to have the symbol `[R]` instead of `[E]` and its `PERIOD_NUM` and `PERIOD_TYPE` will also
+> be shown in a square bracket beside `notes` section. Below is an example:
+>
+> ```
+> Here are the search results:
+>  1.[R][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
+>      [3d]  notes: Test
+> ```
 
 #### 3.8.2. Unset Repeating Event
 
@@ -351,8 +361,7 @@ Stop a repeating event from continuing to repeat.
 
 Format: `repeat id/[INDEX] p/0`
 
-> **Tip**
->
+> **Tip**: 
 > You can think of this as repeating the task every 0 days and hence not repeating!
 
 Example: `repeat id/6 p/0`  
@@ -362,13 +371,21 @@ Expected outcome:
 ```
 [Online Career Fair] will no longer repeat.
 ```
+> **Note**:
+> The symbol `[R]` will be replaced by `[E]` and there will not be any symbols beside `notes` section. 
+> Below is an example: 
+> ```
+> Here are the relevant tasks: 
+>  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+>            notes: false
+> ```
 
 ### 3.9. Search tasks: **`search`**
 
 #### 3.9.1. Search by Name 
 You can search for tasks in the list by specifying the type and name of task you might be searching for.
 
-> **Tip**
+> **Tip**:
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
 
 Format: `search t/[TASK TYPE] n/[TASK NAME]`
@@ -378,15 +395,21 @@ Example: `search t/event n/te`
 Expected outcome:
 ```
 Here are the search results:
-  3.[E][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
-            notes: false
+  1.[R][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
+      [3d]  notes: Test
+  2.[R][X] Test2 (at: test2 | Wed 03 Jun 2020 13:00 - 14:00)
+      [1w]  notes: Test2
+  3.[R][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+      [1m]  notes: Test3
+  4.[R][X] Test4 (at: test4 | Wed 29 Apr 2020 11:00 - 12:00)
+      [1m]  notes: Test4
 ```
+
 #### 3.9.2. Search by Name and Date
 
 You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for.
 
-> **Tip**
->
+> **Tip**: 
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
 
 Format: `searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]`
@@ -396,12 +419,11 @@ Example: `searchd t/event n/te d/01/05/20`
 Expected outcome: 
 ```
 Here are the search results: 
-    1.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+    1.[R][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
         notes: Test3
 ```
 
 ### 3.10. Calendar View: **`calendar`**
------------------------------
 
 You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan for your free time as you can see your free slots at a glance.
 
@@ -551,5 +573,5 @@ A: In the folder where your **ATAS** jar file is located, look for a file named 
 Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days or the event repeats three days later?  
 A: Setting a repeat period of `3d` will mean that the event repeats **3 days later**. The numeric representation of the repeat command indicates the number of days before the event is repeated.  
 e.g. `repeat id/1 p/3d`  
-Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`  
-Refer to [Section 3.8, "Repeating Events: `repeat`"](#-38-repeating-events-repeat)
+Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`.  
+Refer to [Section 3.8, "Repeating Events: `repeat`"](#38-repeating-events-repeat).
