@@ -95,10 +95,10 @@ Note:
 
 <table>
  <tr>
-  <td><span>&#8505;</span>
-  <td>The help command is split into four different sections `(highlighted by the boxes)`.</td>
+   <td><span>&#8505;</span>
+   <td>The help command is split into four different sections `(highlighted by the boxes)`.</td>
  </tr>
- </table>
+</table>
 
  [&#8593; Return to Top](#Table-of-Content)
 
