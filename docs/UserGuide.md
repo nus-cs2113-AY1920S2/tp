@@ -117,37 +117,37 @@ Format:
 * `filter -s TAGNAME1 TAGNAME2`
 * `find -s keyword`
 
-## Graph Functions
-By using the command following commands , users can get a visual representation of the time spent on each activity. 
-There are 3 types of graphs supported by Jikan:
- * *Absolute time graph* - Total time spent on each activity: `graph`
- * *Activity progress graph* - Progress of each activity in relation to its allocated time: `graph targets`
- * *Tags progress graph* - Progress of each tag in relation to its allocated time: `graph tags`
+## Graphs
+By using the command following commands, users can get a visual representation of the time spent on each activity 
+and their progress. 
+There are 3 types of graphs supported are :
+ * *Activity time graph* - Total time spent on each activity: `graph`
+ * *Tags time graph* - Total time spent on each tag: `graph tags`
+ * *Activity targets graph* - Progress of each activity in relation to its targeted time: `graph targets`
 
 Tip: Use `find` and `filter` commands to reduce clutter as graphs are based on the last shown list of activities. 
 
-### Absolute time graph: `graph`
-**Usage:** Compare the time spent on activities based on the latest list displayed from calling `list`, `find` or
-`filter`. The parameter `SCALE` refers to the minutes represented by each point on the graph.
+### Activity time graph: `graph`
+**Usage:** View a comparison of the absolute time spent on each activity in the last shown list. 
+The parameter `SCALE` refers to the number of minutes represented by each point on the graph.
 
 **Format:** `graph SCALE`
 
 **Example:**  `graph 10`  
 
-### Activity progress graph: `graph targets`
-**Usage:** View the progress of activities in relation to their 
-`ALLOCATED_TIME`. 
+### Tags time graph: `graph tag`  
+**Usage:** View a comparison of the absolute time spent on each tag in the last shown list. 
 
-Note: Only activities with `ALLOCATED_TIME` will be shown.
+**Format:** `graph tag`
+
+### Activity targets graph: `graph targets`
+**Usage:** View the progress of activities in relation to their 
+targeted time. 
+
+Note: Only activities with an `ALLOCATED_TIME` will be shown.
 
 ![Continue command sequence diagram](./pictures/GraphTargets.png)
 
-### Tags Progress graph: `graph tag`  
-**Usage:** View the progress of tags in relation to their `goal`. 
-
-Note: Only tags with `goal` will be shown.
-
-**Format:** `graph tag`
 
 ## Usage of Automated Cleaning
 
