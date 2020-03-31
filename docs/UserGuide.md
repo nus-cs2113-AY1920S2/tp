@@ -41,7 +41,7 @@ Finally, when you're done and want to close the app, simply say `bye` and Jikan 
 
 This is just a quick overview of what Jikan can do for you. For more details on each individual command, read the command guide below.
 
-## Commands  
+## Basic Commands  
 ### Starting an activity: `start` 
 **Usage:** Starts recording the time for a new activity.  
   
