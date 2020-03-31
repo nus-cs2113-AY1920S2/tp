@@ -102,8 +102,8 @@ public class MeetingOrganizer {
                 //(eg. timetable 0 1 3)
                 CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyContactList());
                 break;
-            case "schedule": //schedule a model.meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
-                //(eg. schedule model.meeting 3 17:00 3 19:00)
+            case "schedule": //schedule a meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
+                //(eg. schedule meeting 3 17:00 3 19:00)
                 CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList());
                 break;
             case "delete": //delete a model.meeting slot. delete <Meeting Number>
