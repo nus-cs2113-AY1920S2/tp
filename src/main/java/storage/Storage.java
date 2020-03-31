@@ -103,7 +103,8 @@ public class Storage {
         while (reader.hasNext()) {
             String[] data = reader.nextLine().split(" ");
             Meeting entry = new Meeting(data[0], Integer.parseInt(data[1]),
-                    LocalTime.parse(data[2]), Integer.parseInt(data[3]), LocalTime.parse(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]));
+                    LocalTime.parse(data[2]), Integer.parseInt(data[3]),
+                    LocalTime.parse(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]));
             list.add(entry);
         }
         return list;

@@ -6,7 +6,13 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-import static common.Messages.*;
+import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
+import static common.Messages.MESSAGE_WEEK_RANGE_EMPTY;
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
+
+
 
 /**
  * This class contains information of a member's schedule in blocks of 30mins interval,
@@ -47,7 +53,7 @@ public class Contact {
      * @param startTime   start time of the model.meeting in LocalTime format. For eg, 11:30, 14:30, 00:00
      * @param endDay      end day of the model.meeting in integer.
      * @param endTime     end time of the model.meeting in LocalTime format: For eg, 11:30, 14:30, 00:00
-     * @param onWeeks
+     * @param onWeeks     weeks that are suppose to be made busy.
      * @return returns String of error message, else returns "Success" if schedule is successfully edited.
      */
     public String addBusyBlocks(String meetingName, Integer startDay,
@@ -106,7 +112,7 @@ public class Contact {
         }
 
         if (!startDay.equals(endDay)) {
-            for (int j = 0; j < startOnWeeks.length; j++){
+            for (int j = 0; j < startOnWeeks.length; j++) {
                 int startDayCopy = startDay; // prevent modifying param arguments
                 for (int i = startBlock; i < 48; i++) {
                     mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;

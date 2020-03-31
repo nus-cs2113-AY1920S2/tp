@@ -65,10 +65,10 @@ public class TextUI {
     public static void printTimetable(Boolean[][][] mySchedule, int weeksMoreToView, int weekNumber) {
         out.print("Date:  ");
         String[] tempDate = java.util.Calendar.getInstance().getTime().toString().split(" ");
-        String day_string = tempDate[0];
+        String dayString = tempDate[0];
         int day = 0;
         Calendar cal = Calendar.getInstance();
-        switch (day_string) {
+        switch (dayString) {
         case "Sun":
             cal.add(Calendar.DATE, -1);
             break;

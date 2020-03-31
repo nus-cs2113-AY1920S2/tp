@@ -15,7 +15,8 @@ public class Meeting {
     private int endDate;
 
 
-    public Meeting(String meetingName, Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime, int startDate, int endDate) {
+    public Meeting(String meetingName, Integer startDay, LocalTime startTime,
+                   Integer endDay, LocalTime endTime, int startDate, int endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.meetingName = meetingName;

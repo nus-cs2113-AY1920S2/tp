@@ -1,5 +1,6 @@
 package logic.schedulelogic;
 
+import exception.MoException;
 import model.contact.Contact;
 import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
@@ -35,12 +36,14 @@ public class ScheduleHandlerTest {
     }
 
     @Test
-    public void testScheduleHandler() {
+    public void testScheduleHandler() throws MoException {
         ArrayList<Contact> myScheduleList = new ArrayList<>();
         final Contact member1 = new Contact("member1");
         final Contact member2 = new Contact("member2");
-        member1.addBusyBlocks("schedule1", 0, "13:00", 0, "19:00", 1);
-        member1.addBusyBlocks("schedule2", 4, "16:00", 4, "18:00", 1);
+        String[] onWeek1 = {"1"};
+        String[] onWeek2 = {"2"};
+        member1.addBusyBlocks("schedule1", 0, "13:00", 0, "19:00", onWeek1);
+        member1.addBusyBlocks("schedule2", 4, "16:00", 4, "18:00", onWeek2);
 
         myScheduleList.add(member1);
         myScheduleList.add(member2);

@@ -236,8 +236,6 @@ public class CommandHandler {
     private static int getDateOfPreviousSunday(String[] data) {
         int date;
         Calendar cal = Calendar.getInstance();
-//        cal.add(Calendar.DATE, -);
-
         switch (data[0]) {
         case "Sun":
             date = Integer.parseInt(data[2]);
@@ -301,7 +299,8 @@ public class CommandHandler {
         return date;
     }
 
-    public static void displayTimetable(String[] userInputWords, Contact mainUser, ContactList contactList, int weekNumber, int weeksMoreToView) throws MoException {
+    public static void displayTimetable(String[] userInputWords, Contact mainUser,
+                                        ContactList contactList, int weekNumber, int weeksMoreToView) throws MoException {
 
         int memberNumber;
         Contact member;

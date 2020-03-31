@@ -7,7 +7,12 @@ import model.meeting.Meeting;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import static common.Messages.*;
+import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
+import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_INVALID_MEETING;
+import static common.Messages.MESSAGE_INVALID_MEETING_RANGE;
+
+
 
 /**
  * TESTING SUMMARY DOC.
@@ -232,7 +237,8 @@ public class ScheduleHandler {
     }
 
     public static boolean isValidMeeting(Contact mainUser, Integer startDay,
-                                         LocalTime startTime, Integer endDay, LocalTime endTime, int currentWeekNumber) throws MoException {
+                                         LocalTime startTime, Integer endDay, LocalTime endTime,
+                                         int currentWeekNumber) throws MoException {
         if (!(startDay >= 0 && startDay <= 13) || !(endDay >= 0 && endDay <= 13)) {
             throw new MoException(MESSAGE_STARTENDDAY_OUT_OF_RANGE);
         }
@@ -333,103 +339,7 @@ public class ScheduleHandler {
                 }
             }
         }
-
         return true;
     }
 
-//    public void updateMasterSchedule(Meeting myMeeting, String addOrDelete) throws MoException {
-//        Boolean toAddorDelete = null;
-//        if (addOrDelete == "add") {
-//            toAddorDelete = MYSCHEDULEBLOCKED;
-//        } else {
-//            toAddorDelete = MYSCHEDULEFREE;
-//        }
-//        LocalTime endTime = myMeeting.getEndTime();
-//        Integer endDay = myMeeting.getEndDay();
-//        LocalTime startTime = myMeeting.getStartTime();
-//        Integer startDay = myMeeting.getStartDay();
-//
-//        Integer startBlock = getBlocksFromStartTime(startTime);
-//        Integer endBlock = -1;
-//        if (endTime == LocalTime.parse("00:00")) {
-//            endBlock = 47;
-//            if (endDay == 0) {
-//                endDay = 6;
-//            } else {
-//                endDay = endDay - 1;
-//            }
-//        } else {
-//            endBlock = getBlocksFromEndTime(endTime);
-//        }
-//
-//        if (startDay.equals(endDay)) {
-//            if (startBlock.equals(endBlock)) {
-//                masterSchedule[startDay][startBlock] = toAddorDelete;
-//            } else if (startBlock < endBlock) {
-//                for (int i = startBlock; i <= endBlock; ++i) {
-//                    masterSchedule[startDay][i] = toAddorDelete;
-//                }
-//            } else if (startBlock > endBlock) {
-//                for (int i = startBlock; i <= 47; ++i) {
-//                    masterSchedule[startDay][i] = toAddorDelete;
-//                }
-//
-//                for (int i = startDay + 1; i <= 6; ++i) {
-//                    for (int j = 0; j <= 47; ++j) {
-//                        masterSchedule[i][j] = toAddorDelete;
-//                    }
-//                }
-//
-//                for (int i = 0; i <= endDay - 1; ++i) {
-//                    for (int j = 0; j <= 47; ++j) {
-//                        masterSchedule[i][j] = toAddorDelete;
-//                    }
-//                }
-//
-//                for (int i = 0; i <= endBlock; ++i) {
-//                    masterSchedule[endDay][i] = toAddorDelete;
-//                }
-//
-//            }
-//        }
-//
-//        if (startDay < endDay) {
-//            for (int i = startBlock; i <= 47; ++i) {
-//                masterSchedule[startDay][i] = toAddorDelete;
-//            }
-//            for (int i = startDay + 1; i <= endDay - 1; ++i) {
-//                for (int j = 0; j < 48; ++j) {
-//                    masterSchedule[i][j] = toAddorDelete;
-//                }
-//            }
-//
-//            for (int i = 0; i <= endBlock; ++i) {
-//                masterSchedule[endDay][i] = toAddorDelete;
-//            }
-//
-//        }
-//
-//        if (startDay > endDay) {
-//            for (int i = startBlock; i <= 47; ++i) {
-//                masterSchedule[startDay][i] = toAddorDelete;
-//            }
-//
-//            for (int i = startDay + 1; i <= 6; ++i) {
-//                for (int j = 0; j <= 47; ++j) {
-//                    masterSchedule[i][j] = toAddorDelete;
-//                }
-//            }
-//
-//            for (int i = 0; i <= endDay - 1; ++i) {
-//                for (int j = 0; j <= 47; ++j) {
-//                    masterSchedule[i][j] = toAddorDelete;
-//                }
-//            }
-//
-//            for (int i = 0; i <= endBlock; ++i) {
-//                masterSchedule[endDay][i] = toAddorDelete;
-//            }
-//        }
-//
-//    }
 }

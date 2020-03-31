@@ -36,8 +36,8 @@ public class MeetingOrganizer {
     private Contact mainUser;
     private int currentWeekNumber;
     private String day;
-    final int RECESS_WEEK = 14;
-    final int FREE_WEEK = 15;
+    public static final int RECESS_WEEK = 14;
+    public static final int FREE_WEEK = 15;
 
 
 
@@ -81,24 +81,11 @@ public class MeetingOrganizer {
     }
 
     public static void main(String[] args) {
-//        Calendar cal = Calendar.getInstance();
-//        for (int i = 0; i < 7; i++) {
-//            cal.add(Calendar.DATE, 1);
-//            out.println(cal.getTime());
-//        }
-//
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(Calendar.DATE, );
-//        calendar.add(Calendar.MONTH, 1);
-//        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
-//        Date nextMonthFirstDay = calendar.getTime();
-//        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-//        Date nextMonthLastDay = calendar.getTime();
-
         new MeetingOrganizer().run();
     }
 
-    void botResponse(String[] userInputWords, String previousUserInput) throws MoException, DateTimeParseException, NumberFormatException {
+    void botResponse(String[] userInputWords, String previousUserInput)
+            throws MoException, DateTimeParseException, NumberFormatException {
         Integer startDay = null;
         Integer endDay = null;
         String userCommand = userInputWords[0];
@@ -127,7 +114,8 @@ public class MeetingOrganizer {
                     throw new MoException("Nothing to see more of.");
                 } else if (previousUserInput.contains("timetable")) {
                     int weeksMoreToView = 1;
-                    CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyContactList(), currentWeekNumber, weeksMoreToView);
+                    CommandHandler.displayTimetable(userInputWords, getMainUser(),
+                            getMyContactList(), currentWeekNumber, weeksMoreToView);
                 } else if (previousUserInput.equals("more")) {
                     throw new MoException("No more :o");
                 } else {
@@ -144,7 +132,8 @@ public class MeetingOrganizer {
                 break;
             case "schedule": //schedule a meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
                 //(eg. schedule meeting 3 17:00 3 19:00)
-                CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList(), currentWeekNumber);
+                CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(),
+                        getMainUser(), getMyContactList(), currentWeekNumber);
                 break;
             case "delete": //delete a model.meeting slot. delete <Meeting Number>
                 CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList());
