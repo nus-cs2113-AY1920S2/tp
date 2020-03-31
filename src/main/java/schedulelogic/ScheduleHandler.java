@@ -21,11 +21,10 @@ public class ScheduleHandler {
 
 
     public ScheduleHandler(ArrayList<TeamMember> teamMemberList) {
-        boolean[][][] masterSchedule = new boolean[13][7][48];
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 7; j++) {
                 for (int k = 0; k < 48; k++) {
-                    masterSchedule[i][j][k] = MYSCHEDULEFREE; // fill every 48 index of the 7 days with 0 initially
+                    masterSchedule[i][j][k] = MYSCHEDULEFREE; // fill every 48 index of 7 days of 13 weeks with 0 initially
                 }
             }
         }
@@ -33,7 +32,7 @@ public class ScheduleHandler {
             Boolean[][][] memberSchedule = t.getSchedule();
             fillMasterSchedule(memberSchedule);
         }
-        updateFreeBlocks();
+        //updateFreeBlocks();
     }
 
     public static ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock) {
@@ -114,8 +113,8 @@ public class ScheduleHandler {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 7; j++) {
                 for (int k = 0; k < 48; k++) {
-                    if (s[i][j][k]) {
-                        masterSchedule[i][j][k] = MYSCHEDULEBLOCKED;
+                    if (s[i][j][k] == MYSCHEDULEBLOCKED) {
+                        this.masterSchedule[i][j][k] = MYSCHEDULEBLOCKED;
                     }
                 }
             }

@@ -50,7 +50,7 @@ public class TeamMember {
      * @return returns String of error message, else returns "Success" if schedule is successfully edited.
      */
     public String addBusyBlocks(String meetingName, Integer startDay,
-                                String startTime, Integer endDay, String endTime, String[] onWeeks) {
+                                String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
         LocalTime localTimeStart;
         LocalTime localTimeEnd;
         try {
@@ -87,33 +87,55 @@ public class TeamMember {
      * Used in addBusyBlocks().
      */
     private void addBusyBlocksLogic(Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
-                                    String meetingName, String[] onWeeks) {
+                                    String meetingName, String[] onWeeks) throws MoException {
+
+        String[] startOnWeeks = onWeeks.clone();
+        String[] endOnWeeks = onWeeks.clone();
+
+        if (startDay > 6 && endDay > 6) {
+            startDay -= 7;
+            endDay -= 7;
+            startOnWeeks[0] = Integer.toString(Integer.parseInt(startOnWeeks[0]) + 1);
+            endOnWeeks[0] = Integer.toString(Integer.parseInt(endOnWeeks[0]) + 1);
+        } else if (startDay < 7 && endDay > 6) {
+            endDay -= 7;
+            endOnWeeks[0] = Integer.toString(Integer.parseInt(endOnWeeks[0]) + 1);
+        } else if (startDay > 6 && endDay < 7) {
+            throw new MoException("Meeting ends before it starts?");
+        }
 
         if (!startDay.equals(endDay)) {
-            for (int j = 0; j < onWeeks.length; j++){
+            for (int j = 0; j < startOnWeeks.length; j++){
                 int startDayCopy = startDay; // prevent modifying param arguments
                 for (int i = startBlock; i < 48; i++) {
-                    mySchedule[Integer.parseInt(onWeeks[j])][startDayCopy][i] = MYSCHEDULEBLOCKED;
-                    this.myScheduleName[Integer.parseInt(onWeeks[j])][startDayCopy][i] = meetingName;
+                    mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
+                    this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
                 }
                 startDayCopy++;
+                if (startDayCopy > 6) {
+                    startDayCopy = 0;
+                }
                 while (startDayCopy != endDay) {
                     for (int i = 0; i < 48; i++) {
-                        mySchedule[Integer.parseInt(onWeeks[j])][startDayCopy][i] = MYSCHEDULEBLOCKED;
-                        this.myScheduleName[Integer.parseInt(onWeeks[j])][startDayCopy][i] = meetingName;
+                        mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
+                        this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
                     }
                     startDayCopy++;
+                    if (startDayCopy > 6) {
+                        startDayCopy = 0;
+                    }
+
                 }
                 for (int i = 0; i < endBlock; i++) {
-                    mySchedule[Integer.parseInt(onWeeks[j])][startDayCopy][i] = MYSCHEDULEBLOCKED;
-                    this.myScheduleName[Integer.parseInt(onWeeks[j])][startDayCopy][i] = meetingName;
+                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
+                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
                 }
             }
         } else {
-            for (int j = 0; j < onWeeks.length; j++) {
+            for (int j = 0; j < startOnWeeks.length; j++) {
                 for (int i = startBlock; i < endBlock; i++) {
-                    mySchedule[Integer.parseInt(onWeeks[j])][startDay][i] = MYSCHEDULEBLOCKED;
-                    this.myScheduleName[Integer.parseInt(onWeeks[j])][startDay][i] = meetingName;
+                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = MYSCHEDULEBLOCKED;
+                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = meetingName;
                 }
             }
         }

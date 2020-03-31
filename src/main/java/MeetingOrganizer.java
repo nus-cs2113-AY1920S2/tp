@@ -50,11 +50,13 @@ public class MeetingOrganizer {
             }
             assert getMainUser() != null;
             CommandHandler.listContacts(getMyTeamMemberList(), getMainUser());
-        } catch (FileNotFoundException | MoException e) {
+        } catch (FileNotFoundException e) {
             TextUI.introMsg();
             TextUI.showLoadingError();
             myMeetingList = new MeetingList();
             myTeamMemberList = new TeamMemberList(new ArrayList<>());
+        } catch (MoException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -81,7 +83,7 @@ public class MeetingOrganizer {
         Integer endDay = null;
         String userCommand = userInputWords[0];
 
-        //To adapt user input of format <name> <NUSMODS link> to fit into the following switch statements to allow
+        // To adapt user input of format <name> <NUSMODS link> to fit into the following switch statements to allow
         // for both link and manual input.
         // TODO member's name can only be 1 word at the moment.
         if (userInputWords.length == 2 && userInputWords[1].contains("http")) {
@@ -101,10 +103,13 @@ public class MeetingOrganizer {
         case "more":
             if (previousUserInput.equals("")) {
                 throw new MoException("Nothing to see more of.");
-            }
-            if (previousUserInput.contains("timetable")) {
+            } else if (previousUserInput.contains("timetable")) {
                 int weeksMoreToView = 1;
                 CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyTeamMemberList(), currentWeekNumber, weeksMoreToView);
+            } else if (previousUserInput.equals("more")) {
+                throw new MoException("No more :o");
+            } else {
+                throw new MoException("more does not work with this command.");
             }
             break;
         case "contacts":  //list all contacts. contacts
@@ -181,7 +186,6 @@ public class MeetingOrganizer {
     }
 
     private void getWeekNumber() {
-        //get week user is in
         String[] tempTime = java.util.Calendar.getInstance().getTime().toString().split(" "); //Thu Mar 26 08:22:02 IST 2015
         this.day = tempTime[0];
         String month = tempTime[1];

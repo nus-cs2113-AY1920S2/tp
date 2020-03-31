@@ -142,7 +142,7 @@ public class TextUI {
             out.print("     |");
             for (int z = 0; z <= weeksMoreToView; z++) {
                 for (int j = 0; j < 7; ++j) {
-                    out.print("  " + (mySchedule[weekNumber + z][j][2 * i] ?"X" :" ")+"  |");
+                    out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i]? "X" :" ")+"  |");
                 }
                 if (z < weeksMoreToView) {
                     out.print(" |");
@@ -159,8 +159,10 @@ public class TextUI {
             out.print("     |");
             for (int z = 0; z <= weeksMoreToView; z++) {
                 for (int j = 0; j < 7; ++j) {
-                out.print("  " + (mySchedule[weekNumber + z][j][2 * i + 1] ? "X" : " ") + "  |");
+                out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i + 1] ? "X" : " ") + "  |");
                 }
+
+
                 if (z < weeksMoreToView) {
                     out.print(" |");
                 }
@@ -287,7 +289,7 @@ public class TextUI {
     }
 
     public static void showLoadingError() {
-        System.out.println("There are no previous records of meetings, let's create a new one!");
+        System.out.println("There are no previous records, let's create a new one!");
     }
 
     public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList, String mainUser) {

@@ -50,7 +50,6 @@ public class CommandHandler {
                         break;
                     case 3:
                         weeks = myLessonDetails.get(k)[j].split(":");
-                        System.out.println(Arrays.toString(weeks));
                         //future improvement: since myLessonDetails.get(k)[3] contains data on the
                         // week number that this class occurs on, add capability of schedule to reflect
                         // schedule of the current week.
@@ -275,6 +274,7 @@ public class CommandHandler {
         int memberNumber;
         TeamMember member;
         try {
+            String todayDate = java.util.Calendar.getInstance().getTime().toString().substring(0,10).trim();
             if (userInputWords.length > 1) {
                 ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
                 for (int i = 1; i < userInputWords.length; i++) {
@@ -282,13 +282,18 @@ public class CommandHandler {
                     member = teamMemberList.getTeamMemberList().get(memberNumber);
                     myScheduleList.add(member);
                 }
+
                 ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
                 Boolean[][][] myMasterSchedule;
                 myMasterSchedule = myScheduleHandler.getMasterSchedule();
+                System.out.println("Today is " + todayDate + ", week " + weekNumber + ".");
                 System.out.println("Timetable of the selected team member/s this week:");
+                System.out.println();
                 TextUI.printTimetable(myMasterSchedule, weeksMoreToView, weekNumber);
             } else {
+                System.out.println("Today is " + todayDate + ", week " + weekNumber + ".");
                 System.out.println("Your timetable this week:");
+                System.out.println();
                 TextUI.printTimetable(mainUser.getSchedule(), weeksMoreToView, weekNumber);
             }
         } catch (IndexOutOfBoundsException e) {
@@ -304,7 +309,7 @@ public class CommandHandler {
         try {
             TextUI.teamMemberListMsg(teamMemberList.getTeamMemberList(), mainUser.getName());
         } catch (NullPointerException e) {
-          throw new MoException("You have no contacts.");
+          throw new MoException("You have no stored contacts.");
         }
     }
 
