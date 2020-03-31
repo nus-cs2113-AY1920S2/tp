@@ -1,9 +1,11 @@
 package seedu.happypills;
 
-import seedu.happypills.commands.Command;
-import seedu.happypills.data.PatientMap;
-import seedu.happypills.exception.HappyPillsException;
-import seedu.happypills.parser.Parser;
+import seedu.happypills.logic.commands.Command;
+import seedu.happypills.model.data.AppointmentMap;
+import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.PatientRecordMap;
+import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.logic.parser.Parser;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
@@ -20,23 +22,34 @@ import java.util.Scanner;
  * Main entry-point for the java.duke.Duke application.
  */
 public class HappyPills {
+    public static Scanner scanner;
     private TextUi ui;
     private PatientMap patients;
+    private AppointmentMap appointments;
+    private PatientRecordMap patientRecords;
     private static final Logger logger = Logger.getLogger(HappyPills.class.getName());
-    private static final String DATA_FILEPATH = "data/data.txt";
+
 
     /**
      * Sets up the required objects, loads up the data from the storage file.
      */
     public HappyPills() {
         ui = new TextUi();
-        //patients = new PatientList();
+        appointments = new AppointmentMap();
+        patients = new PatientMap();
+        patientRecords = new PatientRecordMap();
+        scanner = new Scanner(System.in);
         try {
             logger.info("loading patient data from file.");
-            patients = Storage.loadFromFile(DATA_FILEPATH);
+            patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
         } catch (FileNotFoundException e) {
             logger.info("No patient data file was found.");
-            patients = new PatientMap();
+        }
+        try {
+            logger.info("loading appointment data from file.");
+            appointments = Storage.loadAppointmentFromFile(Storage.APPOINTMENT_FILEPATH, patients);
+        } catch (FileNotFoundException e) {
+            logger.info("No appointment data file was found.");
         }
     }
 
@@ -66,25 +79,32 @@ public class HappyPills {
         logSetup();
 
         ui.printWelcomeMessage();
-        Scanner in = new Scanner(System.in);
 
-        while (in.hasNextLine()) {
+        while (scanner.hasNextLine()) {
             logger.info("going to start processing");
-            String fullCommand = in.nextLine();
+            String fullCommand = scanner.nextLine();
             System.out.println(TextUi.DIVIDER);
-            try {
-                Command c = Parser.parse(fullCommand);
-                String message = c.execute(patients);
-                if (!message.isEmpty()) {
-                    System.out.println(message);
-                }
-            } catch (HappyPillsException hpe) {
-                System.out.println(hpe.getMessage());
-                System.out.println(TextUi.DIVIDER);
-                logger.info(hpe.getMessage());
+            String message = getCommandType(fullCommand);
+            if (!message.isEmpty()) {
+                System.out.println(message);
             }
-
             logger.info("end of processing");
         }
+    }
+
+    private String getCommandType(String fullCommand) {
+        String message = "";
+        try {
+            Command c = Parser.parse(fullCommand);
+            message = c.execute(patients, appointments, patientRecords);
+        } catch (HappyPillsException hpe) {
+            System.out.println(hpe.getMessage());
+            System.out.println(TextUi.DIVIDER);
+            logger.info(hpe.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("    Command is incomplete. Please use the help command.\n"
+                    + TextUi.DIVIDER);
+        }
+        return message;
     }
 }
