@@ -59,13 +59,16 @@ public class CheckRecordCommand extends Command {
 
         switch (mealType) {
         case "morning":
-            this.result = date + " Morning: " + record.showBreakfast() + record.showDailyCalories(mealType);
+            this.result = date + " Morning: " + System.lineSeparator() + record.showBreakfast()
+                    + record.showDailyCalories(mealType);
             break;
         case "afternoon":
-            this.result = date + " Afternoon: " + record.showLunch() + record.showDailyCalories(mealType);
+            this.result = date + " Afternoon: " + System.lineSeparator() + record.showLunch()
+                    + record.showDailyCalories(mealType);
             break;
         case "night":
-            this.result = date + " Night: " + record.showDinner() + record.showDailyCalories(mealType);
+            this.result = date + " Night: " + System.lineSeparator() + record.showDinner()
+                    + record.showDailyCalories(mealType);
             break;
         default:
             this.result = MessageBank.MEAL_TYPE_ERROR;
