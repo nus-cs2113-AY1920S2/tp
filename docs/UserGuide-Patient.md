@@ -38,8 +38,15 @@ You can also add a new patient with the specified parameters in any order.
 >
 > Enter `/p 999` to add missing field.
 
-:information_source: | HappyPills will prompt you for missing details that are important.
----------------------|-------------------------------------------------------------------
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>HappyPills will prompt you for missing details that are important.</code>.</td>
+ </tr>
+</table>
+
 
 > ***Expected output:***
 >
@@ -47,8 +54,14 @@ You can also add a new patient with the specified parameters in any order.
 >
 > Enter `y` to confirm.
 
-:information_source: | Entering `n` will not save the patients' information when HappyPills prompt you for confirmation.
----------------------|--------------------------------------------------------------------------------------------------
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> Entering `n` will not save the patients' information when HappyPills prompt you for confirmation.</code>.</td>
+ </tr>
+</table>
 
 > ***Expected output:***
 >    
@@ -72,8 +85,14 @@ Edit information of the patient with the specified NRIC.
 >
 > ![editPatientOutput](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/EditCommandOutput.PNG "Edit Patient Ouput")
 
-:information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
----------------------|--------------------------------------------------------------------------
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> NRIC cannot be edited because it is what uniquely identifies the patient.</code>.</td>
+ </tr>
+</table>
 
  [&#8593; Return to Top](#Table-of-Content)
  
@@ -95,15 +114,28 @@ Delete a patient as specified by the NRIC.
 >
 > Enter `y` to confirm.
 
-:information_source: | HappyPills will prompt for confirmation before deleting patient in the patient list.  
----------------------|-------------------------------------------------------------------
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> HappyPills will prompt for confirmation before deleting patient in the patient list. </code>.</td>
+ </tr>
+</table>
+
 
 > ***Expected output:***
 >    
 >  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
-:heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
--------------------------|-------------------------------------------------------------------
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> Upon successful deletion, patient's information will not be able to be retrieved again. </code>.</td>
+ </tr>
+</table>
 
  [&#8593; Return to Top](#Table-of-Content)
 

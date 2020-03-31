@@ -137,7 +137,7 @@ public class PatientRecordParser {
         System.out.println(promptConformation(parseInput));
         while (!userConformation) {
             String conformation = promptUser();
-            System.out.println(TextUi.DIVIDER);
+            //System.out.println(TextUi.DIVIDER);
             if (conformation.equalsIgnoreCase("y")) {
                 userConformation = true;
             } else if (conformation.equalsIgnoreCase("n")) {
@@ -157,6 +157,7 @@ public class PatientRecordParser {
         System.out.println(TextUi.DIVIDER);
         Scanner in = new Scanner(System.in);
         String reInput = in.nextLine();
+        System.out.println(TextUi.DIVIDER);
         return reInput;
     }
 
@@ -167,8 +168,7 @@ public class PatientRecordParser {
      * @return string to be displayed to user for confirmation
      */
     public static String promptConformation(String[] parseInput) {
-        String text = TextUi.DIVIDER
-                + "\n        Are you sure all the listed details are correct?\n"
+        String text = "        Are you sure all the listed details are correct?\n"
                 + "        NRIC : " + parseInput[0].trim().toUpperCase() + "\n"
                 + "        Symptom : " + parseInput[1].trim() + "\n"
                 + "        Diagnosis : " + parseInput[2].trim() + "\n"

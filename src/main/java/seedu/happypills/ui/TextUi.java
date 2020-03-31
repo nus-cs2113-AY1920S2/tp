@@ -117,6 +117,10 @@ public class TextUi {
         return returnMessage;
     }
 
+    public static String emptyPatientRecordMessage() {
+        return "    There are no patient record.\n" + DIVIDER;
+    }
+
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
@@ -493,7 +497,7 @@ public class TextUi {
     }
 
     public static String patientNotExist(String nric) {
-        return "The patient you are looking for cannot be found";
+        return "    The patient you are looking for cannot be found";
     }
 
     /**
