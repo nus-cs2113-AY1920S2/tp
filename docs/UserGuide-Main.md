@@ -88,10 +88,8 @@ Format: `help`
 
 Note:
 
-<table border="1">
-<th>:information_source:</th> 
-<th>The help command is split into four different sections (highlighted by the boxes).</th>
-<table>
+:information_source: | The help command is split into four different sections `(highlighted by the boxes)`.
+---------------------|--------------------------------------------------------------------------------------------------
    
 #### 3.1.2. Exit program: `exit`
 
