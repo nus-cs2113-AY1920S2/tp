@@ -1,5 +1,6 @@
-package schedulelogic;
+package logic.schedulelogic;
 
+import model.contact.Contact;
 import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -35,15 +36,16 @@ public class ScheduleHandlerTest {
 
     @Test
     public void testScheduleHandler() {
-        ArrayList<TeamMember> myScheduleList = new ArrayList<>();
-        final TeamMember member1 = new TeamMember("member1");
-        final TeamMember member2 = new TeamMember("member2");
-        member1.addBusyBlocks("schedule1", 0, "13:00", 0, "19:00", onWeeks);
-        member1.addBusyBlocks("schedule2", 4, "16:00", 4, "18:00", onWeeks);
+        ArrayList<Contact> myScheduleList = new ArrayList<>();
+        final Contact member1 = new Contact("member1");
+        final Contact member2 = new Contact("member2");
+        member1.addBusyBlocks("schedule1", 0, "13:00", 0, "19:00", 1);
+        member1.addBusyBlocks("schedule2", 4, "16:00", 4, "18:00", 1);
+
         myScheduleList.add(member1);
         myScheduleList.add(member2);
         myScheduleHandler = new ScheduleHandler(myScheduleList);
-        Boolean[][] myMasterSchedule = myScheduleHandler.getMasterSchedule();
+        Boolean[][][] myMasterSchedule = myScheduleHandler.getMasterSchedule();
         final ArrayList<ArrayList<Integer>> myFreeBlocks = myScheduleHandler.getFreeBlocks();
 
         Boolean[][] myMasterScheduleAnswer = new Boolean[7][48];

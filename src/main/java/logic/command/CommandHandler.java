@@ -1,31 +1,43 @@
-package command;
+package logic.command;
 
 import exception.InvalidUrlException;
-import meeting.MeetingList;
+import model.meeting.MeetingList;
 import exception.MoException;
-import meeting.Meeting;
-import modulelogic.LessonsGenerator;
-import schedulelogic.ScheduleHandler;
-import schedulelogic.TeamMember;
-import schedulelogic.TeamMemberList;
+import model.meeting.Meeting;
+import logic.modulelogic.LessonsGenerator;
+import logic.schedulelogic.ScheduleHandler;
+import model.contact.Contact;
+import model.contact.ContactList;
 import ui.TextUI;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
+import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
+import static common.Messages.MESSAGE_WRONG_COMMAND_MEETING;
+import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
+
 public class CommandHandler {
 
-    public static TeamMember addContact(TeamMemberList myTeamMemberList, String[] userInputWords,
-                                        Integer startDay, Integer endDay) throws MoException {
-        TeamMember member;
-        checkRepeatedName(myTeamMemberList, userInputWords);
 
+    public static Contact addContact(ContactList myContactList, String[] userInputWords,
+                                     Integer startDay, Integer endDay) throws MoException {
+        Contact member;
+        int checkerForRepeatedName;
+        checkerForRepeatedName = myContactList.getContactList().stream()
+                .mapToInt(person -> check(person, userInputWords[0])).sum();
+        if (checkerForRepeatedName == 1) {
+            TextUI.showRepeatedPerson(userInputWords[0]);
+            throw new MoException("Repeated user");
+        }
+
+        member = new Contact(userInputWords[0]);
         String name = userInputWords[0];
         String url = userInputWords[1];
 
-        member = new TeamMember(name);
         LessonsGenerator myLessonGenerator;
         try {
             myLessonGenerator = new LessonsGenerator(url);
@@ -73,15 +85,6 @@ public class CommandHandler {
         return member;
     }
 
-    private static void checkRepeatedName(TeamMemberList myTeamMemberList, String[] userInputWords) throws MoException {
-        int checkerForRepeatedName;
-        checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream()
-                .mapToInt(person -> check(person, userInputWords[0])).sum();
-        if (checkerForRepeatedName == 1) {
-            TextUI.showRepeatedPerson(userInputWords[0]);
-            throw new MoException("Repeated user");
-        }
-    }
 
     private static Integer getNumberFromDay(String day) {
         int dayInNumber;
@@ -114,7 +117,7 @@ public class CommandHandler {
         return dayInNumber;
     }
 
-    private static int check(TeamMember person, String name) {
+    private static int check(Contact person, String name) {
         if (person.getName().equals(name)) {
             return 1;
         } else {
@@ -122,49 +125,48 @@ public class CommandHandler {
         }
     }
 
-    public static void listMeetings(MeetingList meetingList) {
-        meetingList.show();
+
+    public static void listMeetings(String[] userInputWords, MeetingList meetingList) {
+        try {
+            if (userInputWords.length != 1) {
+                throw new MoException(MESSAGE_WRONG_COMMAND_MEETING);
+            }
+            meetingList.show();
+        } catch (MoException e) {
+            System.out.println(e.getMessage());
+            TextUI.printFormatMeeting();
+        }
     }
 
-    public static void deleteMeeting(String userInputWord, MeetingList meetingList, TeamMember mainUser, TeamMemberList
-            teamMemberList) {
-        int index = Integer.parseInt(userInputWord) - 1;
+    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser, ContactList
+            contactList) {
         try {
+            if (userInputWords.length != 2) {
+                throw new MoException(MESSAGE_WRONG_COMMAND_DELETE);
+            }
+            int index = Integer.parseInt(userInputWords[1]) - 1;
             Meeting meetingToDelete = meetingList.getMeetingList().get(index);
             String meetingNameToDelete = meetingToDelete.getMeetingName();
             mainUser.deleteBlocksWithName(meetingNameToDelete);
             meetingList.delete(index);
-            teamMemberList.set(0, mainUser);
+            contactList.set(0, mainUser);
         } catch (IndexOutOfBoundsException e) {
             TextUI.displayInvalidDeleteTarget();
+        } catch (MoException e) {
+            System.out.println(e.getMessage());
+            TextUI.printFormatDelete();
         }
     }
 
-    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser,
-                                       TeamMemberList teamMemberList, int currentWeekNumber) {
-
+    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser,
+                                       ContactList contactList, int currentWeekNumber) {
 
         try {
+            if (userInputWords.length < 6) {
+                throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
+            }
             int endOfMonthDate = 0;
-            Calendar cal = Calendar.getInstance();
-            String day = (cal.getTime().toString().split(" "))[0];
-            String month = (cal.getTime().toString().split(" "))[1];
-            int distFromPreviousSunday = 0;
-            for (int i = 0; i < 6 && !day.equals("Sun"); distFromPreviousSunday++, i++) {
-                cal.add(Calendar.DATE, -1);
-                if (!(cal.getTime().toString().split(" "))[1].equals(month)) {
-                    endOfMonthDate = Integer.parseInt(cal.getTime().toString().split(" ")[2]);
-                }
-                day = (cal.getTime().toString().split(" "))[0];
-            }
-            Calendar cal2 = Calendar.getInstance();
-            for (int i = 0; i < (14 - distFromPreviousSunday); i++) {
-                if (!(cal2.getTime().toString().split(" "))[1].equals(month)) {
-                    break;
-                }
-                endOfMonthDate = Integer.parseInt(cal2.getTime().toString().split(" ")[2]);
-                cal2.add(Calendar.DATE, 1);
-            }
+            endOfMonthDate = getEndOfMonthDate(endOfMonthDate);
 
             Integer startDay;
             Integer endDay;
@@ -183,7 +185,6 @@ public class CommandHandler {
                 endDay = endDate - startOfWeekDate;
             }
 
-
             LocalTime startTime = LocalTime.parse(userInputWords[3]);
             LocalTime endTime = LocalTime.parse(userInputWords[5]);
             if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
@@ -196,10 +197,40 @@ public class CommandHandler {
                 System.out.println("Schedule is blocked at that timeslot");
             }
         } catch (MoException e) {
-            System.out.println(e.getMessage() + ", try again.");
+            System.out.println(e.getMessage());
+            TextUI.printFormatSchedule();
+        } catch (DateTimeParseException e) {
+            TextUI.timeOutOfRangeMsg();
+            TextUI.printFormatSchedule();
+        } catch (NumberFormatException e) {
+            TextUI.invalidNumberMsg();
+            TextUI.printFormatSchedule();
         }
-        // Replace main user's timetable with updated meeting blocks into TeamMember.TeamMemberList for storage purposes.
-        teamMemberList.set(0, mainUser);
+        // Replace main user's timetable with updated model.meeting blocks into TeamMember.TeamMemberList for model.storage purposes.
+        contactList.set(0, mainUser);
+    }
+
+    private static int getEndOfMonthDate(int endOfMonthDate) {
+        Calendar cal = Calendar.getInstance();
+        String day = (cal.getTime().toString().split(" "))[0];
+        String month = (cal.getTime().toString().split(" "))[1];
+        int distFromPreviousSunday = 0;
+        for (int i = 0; i < 6 && !day.equals("Sun"); distFromPreviousSunday++, i++) {
+            cal.add(Calendar.DATE, -1);
+            if (!(cal.getTime().toString().split(" "))[1].equals(month)) {
+                endOfMonthDate = Integer.parseInt(cal.getTime().toString().split(" ")[2]);
+            }
+            day = (cal.getTime().toString().split(" "))[0];
+        }
+        Calendar cal2 = Calendar.getInstance();
+        for (int i = 0; i < (14 - distFromPreviousSunday); i++) {
+            if (!(cal2.getTime().toString().split(" "))[1].equals(month)) {
+                break;
+            }
+            endOfMonthDate = Integer.parseInt(cal2.getTime().toString().split(" ")[2]);
+            cal2.add(Calendar.DATE, 1);
+        }
+        return endOfMonthDate;
     }
 
     private static int getDateOfPreviousSunday(String[] data) {
@@ -270,16 +301,17 @@ public class CommandHandler {
         return date;
     }
 
-    public static void displayTimetable(String[] userInputWords, TeamMember mainUser, TeamMemberList teamMemberList, int weekNumber, int weeksMoreToView) throws MoException {
+    public static void displayTimetable(String[] userInputWords, Contact mainUser, ContactList contactList, int weekNumber, int weeksMoreToView) throws MoException {
+
         int memberNumber;
-        TeamMember member;
+        Contact member;
         try {
-            String todayDate = java.util.Calendar.getInstance().getTime().toString().substring(0,10).trim();
+            String todayDate = java.util.Calendar.getInstance().getTime().toString().substring(0, 10).trim();
             if (userInputWords.length > 1) {
-                ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
+                ArrayList<Contact> myScheduleList = new ArrayList<Contact>();
                 for (int i = 1; i < userInputWords.length; i++) {
                     memberNumber = Integer.parseInt(userInputWords[i]);
-                    member = teamMemberList.getTeamMemberList().get(memberNumber);
+                    member = contactList.getContactList().get(memberNumber);
                     myScheduleList.add(member);
                 }
 
@@ -298,20 +330,19 @@ public class CommandHandler {
             }
         } catch (IndexOutOfBoundsException e) {
             TextUI.indexOutOfBoundsMsg();
-            System.out.println("Index should be within range 0 to " + (teamMemberList.getTeamMemberList().size() - 1) + ".");
-            listContacts(teamMemberList, mainUser);
+            TextUI.printFormatTimetable();
         } catch (NumberFormatException e) {
-            TextUI.invalidNumberTimetableMsg();
+            TextUI.invalidNumberMsg();
+            TextUI.printFormatTimetable();
         }
     }
 
-    public static void listContacts(TeamMemberList teamMemberList, TeamMember mainUser) throws MoException {
+    public static void listContacts(ContactList contactList) throws MoException {
         try {
-            TextUI.teamMemberListMsg(teamMemberList.getTeamMemberList(), mainUser.getName());
+            TextUI.teamMemberListMsg(contactList.getContactList());
         } catch (NullPointerException e) {
-          throw new MoException("You have no stored contacts.");
+            throw new MoException("You have no stored contacts.");
         }
     }
-
 
 }

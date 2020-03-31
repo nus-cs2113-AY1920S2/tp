@@ -1,9 +1,9 @@
 package ui;
 
 import exception.MoException;
-import meeting.Meeting;
-import meeting.MeetingList;
-import schedulelogic.TeamMember;
+import model.meeting.Meeting;
+import model.meeting.MeetingList;
+import model.contact.Contact;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,7 +11,6 @@ import java.util.Calendar;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_INDEX_OUT_OF_BOUNDS;
 import static common.Messages.MESSAGE_INVALID_NUMBER;
-import static common.Messages.FORMAT_TIMETABLE;
 import static java.lang.System.out;
 
 /**
@@ -21,17 +20,17 @@ import static java.lang.System.out;
 public class TextUI {
     public static void introMsg() {
         String logo = "  ___        _____                 __  .__                 ________                            "
-            + ".__                       ___     \n"
-            + " / _ \\_/\\   /     \\   ____   _____/  |_|__| ____    ____   \\_____  \\_______  _________    ___"
-            + "_ |__|_______ ___________  / _ \\_/\\ \n"
-            + " \\/ \\___/  /  \\ /  \\_/ __ \\_/ __ \\   __\\  |/    \\  / ___\\   /   |   \\"
-            + "_  __ \\/ ___\\__  \\  /    \\|  \\___   // __ \\_  __ \\ \\/ \\___/ \n"
-            + "          /    Y    \\  ___/\\  ___/|  | |  |   |  \\/ /_/  > /    |    \\  "
-            + "| \\/ /_/  > __ \\|   |  \\  |/    /\\  ___/|  | \\/          \n"
-            + "          \\____|__  /\\___  >\\___  >__| |__|___|  /\\___  /  \\_______  /__ "
-            + "|  \\___  (____  /___|  /__/_____ \\\\___  >__|             \n"
-            + "                  \\/     \\/     \\/             \\//_____/           \\/     "
-            + "/_____/     \\/     \\/         \\/    \\/                 ";
+                + ".__                       ___     \n"
+                + " / _ \\_/\\   /     \\   ____   _____/  |_|__| ____    ____   \\_____  \\_______  _________    ___"
+                + "_ |__|_______ ___________  / _ \\_/\\ \n"
+                + " \\/ \\___/  /  \\ /  \\_/ __ \\_/ __ \\   __\\  |/    \\  / ___\\   /   |   \\"
+                + "_  __ \\/ ___\\__  \\  /    \\|  \\___   // __ \\_  __ \\ \\/ \\___/ \n"
+                + "          /    Y    \\  ___/\\  ___/|  | |  |   |  \\/ /_/  > /    |    \\  "
+                + "| \\/ /_/  > __ \\|   |  \\  |/    /\\  ___/|  | \\/          \n"
+                + "          \\____|__  /\\___  >\\___  >__| |__|___|  /\\___  /  \\_______  /__ "
+                + "|  \\___  (____  /___|  /__/_____ \\\\___  >__|             \n"
+                + "                  \\/     \\/     \\/             \\//_____/           \\/     "
+                + "/_____/     \\/     \\/         \\/    \\/                 ";
         out.println(logo);
     }
 
@@ -40,9 +39,8 @@ public class TextUI {
                 + "______________________________________________________________________");
         out.println("[contacts] List all contacts.");
         out.println("[timetable] Display combined timetable of selected contacts.");
-        out.println("[edit] Edit contacts' timetable.");
-        out.println("[schedule] Schedule a new meeting.");
-        out.println("[delete] Delete a scheduled meeting.");
+        out.println("[schedule] Schedule a new model.meeting.");
+        out.println("[delete] Delete a scheduled model.meeting.");
         out.println("[meetings] List all scheduled meetings.");
         out.println("[exit] Exit application.");
         out.print(System.lineSeparator());
@@ -119,7 +117,7 @@ public class TextUI {
                 datePostFix = "th";
             }
             String output = datePrint + datePostFix;
-            System.out.print((output.length() == 3)? output + "   " : output + "  ");
+            System.out.print((output.length() == 3) ? output + "   " : output + "  ");
             if (i == 6 && weeksMoreToView == 1) {
                 out.print("  ");
             }
@@ -142,7 +140,7 @@ public class TextUI {
             out.print("     |");
             for (int z = 0; z <= weeksMoreToView; z++) {
                 for (int j = 0; j < 7; ++j) {
-                    out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i]? "X" :" ")+"  |");
+                    out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i] ? "X" : " ") + "  |");
                 }
                 if (z < weeksMoreToView) {
                     out.print(" |");
@@ -159,7 +157,7 @@ public class TextUI {
             out.print("     |");
             for (int z = 0; z <= weeksMoreToView; z++) {
                 for (int j = 0; j < 7; ++j) {
-                out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i + 1] ? "X" : " ") + "  |");
+                    out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i + 1] ? "X" : " ") + "  |");
                 }
 
 
@@ -177,17 +175,21 @@ public class TextUI {
     }
 
     public static void scheduleMeetingMsg() {
-        out.println("You have selected new scheduled meeting");
+        out.println("You have selected new scheduled model.meeting");
     }
 
 
     public static void meetingDetailsMsg() {
-        out.println("Enter meeting details: <Meeting.Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
+        out.println("Enter model.meeting details: <Meeting.Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
                 + "Type \"exit\" to go back to menu.");
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
-        out.println("You now have " + myMeetingList.getMeetingListSize() + " meeting/s in the list.");
+        out.println("You now have " + myMeetingList.getMeetingListSize() + " model/meeting(s) in the list.");
+    }
+
+    public static void listMeetings() {
+        out.println("Here are all your model.meeting slots.");
     }
 
     public static void timeOutOfRangeMsg() {
@@ -198,22 +200,16 @@ public class TextUI {
         out.println(MESSAGE_INVALID_NUMBER);
     }
 
-    public static void invalidNumberTimetableMsg() {
-        invalidNumberMsg();
-        out.println(FORMAT_TIMETABLE);
-    }
-
     public static void indexOutOfBoundsMsg() {
         out.println(MESSAGE_INDEX_OUT_OF_BOUNDS);
     }
 
     public static void listAllScheduledMeetings(ArrayList<Meeting> meetingList) {
-        System.out.println("The current scheduled meeting(s):");
+        System.out.println("The current scheduled model.meeting(s):");
         for (int i = 0; i < meetingList.size(); i++) {
             String startDay = getDayFromNumber(meetingList.get(i).getStartDay());
             String endDay = getDayFromNumber(meetingList.get(i).getEndDay());
             String meetingName = meetingList.get(i).getMeetingName();
-            out.println(endDay);
 
             String startDate = Integer.toString(meetingList.get(i).getStartDate());
             String endDate = Integer.toString(meetingList.get(i).getEndDate());
@@ -292,20 +288,21 @@ public class TextUI {
         System.out.println("There are no previous records, let's create a new one!");
     }
 
-    public static void teamMemberListMsg(ArrayList<TeamMember> teamMemberList, String mainUser) {
-            System.out.println("____________________________________________________________\n"
-                    + "Here are your stored contacts:");
-            int i = 0;
-            for (TeamMember teamMember : teamMemberList) {
-                out.print("\t " + i + ") " + teamMember.getName());
-                if (i == 0) {
-                    System.out.println(" (main user)");
-                } else {
-                    System.out.println();
-                }
-                i++;
+
+    public static void teamMemberListMsg(ArrayList<Contact> contactList) {
+        System.out.println("____________________________________________________________\n"
+                + "Here are your stored contacts:");
+        int i = 0;
+        for (Contact contact : contactList) {
+            out.print("\t " + i + ") " + contact.getName());
+            if (i == 0) {
+                System.out.println(" (main user)");
+            } else {
+                System.out.println();
             }
-            System.out.println("____________________________________________________________\n");
+            i++;
+        }
+        System.out.println("____________________________________________________________\n");
     }
 
     public static void showAddedMember(String memberName) {
@@ -315,5 +312,23 @@ public class TextUI {
     public static void showRepeatedPerson(String userInputWord) {
         out.println(userInputWord + " already exists!");
     }
+
+    public static void printFormatTimetable() {
+        out.println("\nTo display timetable:\ntimetable\ntimetable <Member Number 1>"
+                + "\ntimetable <Member Number 1> <Member Number 2>");
+    }
+
+    public static void printFormatSchedule() {
+        out.println("\nTo schedule a model.meeting:\nschedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>");
+    }
+
+    public static void printFormatDelete() {
+        out.println("\nTo delete contact:\ndelete <Member Number>");
+    }
+
+    public static void printFormatMeeting() {
+        out.println("\nTo list meetings:\nmodel.meeting");
+    }
 }
+
 

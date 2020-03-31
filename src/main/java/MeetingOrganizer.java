@@ -1,9 +1,23 @@
-import command.CommandHandler;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import logic.command.CommandHandler;
 import exception.MoException;
-import inputparser.CliParser;
-import meeting.MeetingList;
-import schedulelogic.TeamMember;
-import schedulelogic.TeamMemberList;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import model.meeting.MeetingList;
+import logic.modulelogic.ModuleHandler;
+import model.contact.Contact;
+import model.contact.ContactList;
 import storage.Storage;
 import ui.TextUI;
 
@@ -18,12 +32,14 @@ import java.util.Scanner;
 public class MeetingOrganizer {
     public static Storage storage;
     private MeetingList myMeetingList;
-    private TeamMemberList myTeamMemberList;
-    private TeamMember mainUser;
+    private ContactList myContactList;
+    private Contact mainUser;
     private int currentWeekNumber;
     private String day;
     final int RECESS_WEEK = 14;
     final int FREE_WEEK = 15;
+
+
 
     public MeetingOrganizer() {
         //declare objects here
@@ -33,28 +49,32 @@ public class MeetingOrganizer {
         try {
             storage = new Storage("data/meeting_list.txt");
             myMeetingList = new MeetingList(storage.loadMeetingListFromDisk());
-            myTeamMemberList = new TeamMemberList(storage.loadMemberListFromDisk());
+            myContactList = new ContactList(storage.loadMemberListFromDisk());
             TextUI.introMsg();
-            if (myTeamMemberList.getSize() > 0) {
-                myTeamMemberList.getTeamMemberList().forEach(member -> mainUser = member.isMainUser() ? member : null);
-                ArrayList<TeamMember> teamMemberList = myTeamMemberList.getTeamMemberList();
+            if (myContactList.getSize() > 0) {
+                for (int i = 0; i < myContactList.getSize(); i++) {
+                    if (myContactList.getContactList().get(i).isMainUser()) {
+                        mainUser = myContactList.getContactList().get(i);
+                    }
+                }
+                ArrayList<Contact> contactList = myContactList.getContactList();
                 // Shift mainUser to index 0
-                for (int j = 0; j < teamMemberList.size(); j++) {
-                    if (teamMemberList.get(j).isMainUser()) {
-                        TeamMember toSwap = teamMemberList.get(0);
-                        teamMemberList.set(0, teamMemberList.get(j));
-                        teamMemberList.set(j, toSwap);
+                for (int j = 0; j < contactList.size(); j++) {
+                    if (contactList.get(j).isMainUser()) {
+                        Contact toSwap = contactList.get(0);
+                        contactList.set(0, contactList.get(j));
+                        contactList.set(j, toSwap);
                         break;
                     }
                 }
             }
             assert getMainUser() != null;
-            CommandHandler.listContacts(getMyTeamMemberList(), getMainUser());
+            CommandHandler.listContacts(getMyContactList());
         } catch (FileNotFoundException e) {
             TextUI.introMsg();
             TextUI.showLoadingError();
             myMeetingList = new MeetingList();
-            myTeamMemberList = new TeamMemberList(new ArrayList<>());
+            myContactList = new ContactList(new ArrayList<>());
         } catch (MoException e) {
             System.out.println(e.getMessage());
         }
@@ -87,51 +107,54 @@ public class MeetingOrganizer {
         // for both link and manual input.
         // TODO member's name can only be 1 word at the moment.
         if (userInputWords.length == 2 && userInputWords[1].contains("http")) {
-            userCommand = "add using link";
-        }
-        switch (userCommand) {
-        case "add using link": //add new contact with NUSMODS link. <Contact name> <NUSMODS link>
+            userCommand = "add using link"; //add new contact with NUSMODS link. <Contact name> <NUSMODS link>
             //eg. xz https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
-            TeamMember newMember;
-            newMember = CommandHandler.addContact(myTeamMemberList, userInputWords, startDay, endDay);
-            if (checkMainUser(newMember)) {
+            Contact newMember;
+
+            newMember = CommandHandler.addContact(myContactList, userInputWords, startDay, endDay);
+            if (checkMainUser()) {
                 mainUser = newMember;
                 newMember.setMainUser();
             }
-            myTeamMemberList.add(newMember);
-            break;
-        case "more":
-            if (previousUserInput.equals("")) {
-                throw new MoException("Nothing to see more of.");
-            } else if (previousUserInput.contains("timetable")) {
-                int weeksMoreToView = 1;
-                CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyTeamMemberList(), currentWeekNumber, weeksMoreToView);
-            } else if (previousUserInput.equals("more")) {
-                throw new MoException("No more :o");
-            } else {
-                throw new MoException("more does not work with this command.");
+            myContactList.add(newMember);
+        } else {
+            if (checkMainUser()) {
+                throw new MoException("Please enter main user first.");
             }
-            break;
-        case "contacts":  //list all contacts. contacts
-            CommandHandler.listContacts(getMyTeamMemberList(), getMainUser());
-            break;
-        case "timetable": //timetable OR timetable <Member Number> OR timetable <Member Number1> <Member Number2>
-            //(eg. timetable 0 1 3)
-            int weeksMoreToView = 0;
-            CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyTeamMemberList(), currentWeekNumber, weeksMoreToView);
-            break;
-        case "schedule": //schedule a meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
-            //(eg. schedule meeting 3 17:00 3 19:00)
-            CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyTeamMemberList(), currentWeekNumber);
-            break;
-        case "delete": //delete a meeting slot. delete <Meeting Number>
-            CommandHandler.deleteMeeting(userInputWords[1], getMyMeetingList(), getMainUser(), getMyTeamMemberList());
-            break;
-        case "meetings": //list all scheduled meeting slots. meetings
-            CommandHandler.listMeetings(getMyMeetingList());
-            break;
-        default:
-            throw new MoException("Unknown command, please try again.");
+            switch (userCommand) {
+            case "more":
+                if (previousUserInput.equals("")) {
+                    throw new MoException("Nothing to see more of.");
+                } else if (previousUserInput.contains("timetable")) {
+                    int weeksMoreToView = 1;
+                    CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyContactList(), currentWeekNumber, weeksMoreToView);
+                } else if (previousUserInput.equals("more")) {
+                    throw new MoException("No more :o");
+                } else {
+                    throw new MoException("more does not work with this command.");
+                }
+                break;
+            case "contacts":  //list all contacts. contacts
+                CommandHandler.listContacts(getMyContactList());
+                break;
+            case "timetable": //timetable OR timetable <Member Number> OR timetable <Member Number1> <Member Number2>
+                //(eg. timetable 0 1 3)
+                int weeksMoreToView = 0;
+                CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyContactList(), currentWeekNumber, weeksMoreToView);
+                break;
+            case "schedule": //schedule a meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
+                //(eg. schedule meeting 3 17:00 3 19:00)
+                CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList(), currentWeekNumber);
+                break;
+            case "delete": //delete a model.meeting slot. delete <Meeting Number>
+                CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList());
+                break;
+            case "meetings": //list all scheduled model.meeting slots. meetings
+                CommandHandler.listMeetings(userInputWords, getMyMeetingList());
+                break;
+            default:
+                throw new MoException("Unknown logic.command, please try again.");
+            }
         }
     }
 
@@ -140,15 +163,15 @@ public class MeetingOrganizer {
      */
     public void run() {
         Scanner in = new Scanner(System.in);
-        TextUI.menuMsg(myTeamMemberList.getSize());
         String previousUserInput = "";
+        TextUI.menuMsg(myContactList.getSize());
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
             if (userInput.equals("exit")) {
                 break;
             }
 
-            String[] userInputWords = CliParser.splitWords(userInput);
+            String[] userInputWords = userInput.split(" ");
             try {
                 botResponse(userInputWords, previousUserInput);
                 storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
@@ -162,23 +185,23 @@ public class MeetingOrganizer {
             } catch (IndexOutOfBoundsException e) {
                 TextUI.indexOutOfBoundsMsg();
             } finally {
-                TextUI.menuMsg(myTeamMemberList.getSize());
+                TextUI.menuMsg(myContactList.getSize());
             }
         }
-        storage.updateMemberListToDisk(myTeamMemberList.getTeamMemberList());
+        storage.updateMemberListToDisk(myContactList.getContactList());
         TextUI.exitMsg();
     }
 
-    private Boolean checkMainUser(TeamMember newMember) {
-        return myTeamMemberList.getSize() == 0;
+    private Boolean checkMainUser() {
+        return myContactList.getSize() == 0;
     }
 
-    private TeamMember getMainUser() {
+    private Contact getMainUser() {
         return mainUser;
     }
 
-    private TeamMemberList getMyTeamMemberList() {
-        return myTeamMemberList;
+    private ContactList getMyContactList() {
+        return myContactList;
     }
 
     private MeetingList getMyMeetingList() {

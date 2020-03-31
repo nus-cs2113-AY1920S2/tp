@@ -1,4 +1,4 @@
-package schedulelogic;
+package model.contact;
 
 import exception.MoException;
 
@@ -14,7 +14,7 @@ import static common.Messages.*;
  * user input date to blocks from 0-47, inserted into mySchedule.
  */
 
-public class TeamMember {
+public class Contact {
     private static final Boolean MYSCHEDULEBLOCKED = true;
     private static final Boolean MYSCHEDULEFREE = false;
     private String memberName;
@@ -22,7 +22,7 @@ public class TeamMember {
     private String[][][] myScheduleName;
     private boolean isMainUser = false;
 
-    public TeamMember(String name) {
+    public Contact(String name) {
         if (name.contains("_main")) {
             isMainUser = true;
             name = name.replace("_main", "");
@@ -40,12 +40,13 @@ public class TeamMember {
         }
     }
 
-    /** Adds scheduled meeting in LocalTime into schedule[][] data structure.
-     * @param meetingName name of the scheduled meeting to be added.
-     * @param startDay    start day of the meeting in integer.
-     * @param startTime   start time of the meeting in LocalTime format. For eg, 11:30, 14:30, 00:00
-     * @param endDay      end day of the meeting in integer.
-     * @param endTime     end time of the meeting in LocalTime format: For eg, 11:30, 14:30, 00:00
+    /** Adds scheduled model.meeting in LocalTime into schedule[][][] data structure.
+     *
+     * @param meetingName name of the scheduled model.meeting to be added.
+     * @param startDay    start day of the model.meeting in integer.
+     * @param startTime   start time of the model.meeting in LocalTime format. For eg, 11:30, 14:30, 00:00
+     * @param endDay      end day of the model.meeting in integer.
+     * @param endTime     end time of the model.meeting in LocalTime format: For eg, 11:30, 14:30, 00:00
      * @param onWeeks
      * @return returns String of error message, else returns "Success" if schedule is successfully edited.
      */
@@ -83,7 +84,7 @@ public class TeamMember {
     }
 
     /**
-     * Defines the logic of converting from blocks of time and day of meeting to data structure.
+     * Defines the logic of converting from blocks of time and day of model.meeting to data structure.
      * Used in addBusyBlocks().
      */
     private void addBusyBlocksLogic(Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
@@ -146,14 +147,14 @@ public class TeamMember {
     }
 
 
-    /** Delete a scheduled meeting by changing mySchedule[][] via myScheduleName[][].
-     * @param meetingName name of meeting previously added to be deleted.
+    /** Delete a scheduled model.meeting by changing mySchedule[][] via myScheduleName[][].
+     * @param meetingName name of model.meeting previously added to be deleted.
      */
     public void deleteBlocksWithName(String meetingName) {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 7; j++) {
                 for (int k = 0; k < 48; k++) {
-                    if (myScheduleName[i][j][k] != null && myScheduleName[i][j].equals(meetingName)) {
+                    if (myScheduleName[i][j][k] != null && myScheduleName[i][j][k].equals(meetingName)) {
                         mySchedule[i][j][k] = MYSCHEDULEFREE;
                         myScheduleName[i][j][k] = null;
                     }
@@ -204,7 +205,7 @@ public class TeamMember {
     }
 
     /**
-     * To be used for storage purposes.
+     * To be used for model.storage purposes.
      * Sets mySchedule[][] to true/false depending on myScheduleName from disk.
      */
     public void setMyScheduleFromScheduleName() {

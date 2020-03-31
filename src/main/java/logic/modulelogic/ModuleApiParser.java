@@ -1,4 +1,4 @@
-package modulelogic;
+package logic.modulelogic;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
