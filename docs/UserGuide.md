@@ -105,10 +105,10 @@ Format: `help`
 > 
 > ![help](images/HelpOutput.PNG "help output")
 
-
-|:information_source: | The help command is split into four different sections `(highlighted by the boxes)`.|
-|---------------------|--------------------------------------------------------------------------------------------------|
-
+<table border="1">
+<th>:information_source:</th> 
+<th>The help command is split into four different sections (highlighted by the boxes).</th>
+<table>
 
 #### 3.1.2. Exit program: `exit`
 
@@ -148,8 +148,10 @@ You can also add a new patient with the specified parameters in any order.
 >
 > Enter `/p 999` to add missing field.
 
-:information_source: | HappyPills will prompt you for missing details that are important.
----------------------|-------------------------------------------------------------------
+<table border="1">
+<th>:information_source:</th> 
+<th>HappyPills will prompt you for missing details that are important.</th>
+<table>
 
 > ***Expected output:***
 >
