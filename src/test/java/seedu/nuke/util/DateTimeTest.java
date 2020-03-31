@@ -99,7 +99,7 @@ class DateTimeTest {
         assertEquals(today.getDateString() + " " + today.getTimeString(), today.toString());
 
         DateTime tomorrow = new DateTime(LocalDate.now().plusDays(1), LocalTime.now());
-        assertEquals(tomorrow.getDateString()+ " " + tomorrow.getTimeString(), tomorrow.toString());
+        assertEquals(tomorrow.getDateString() + " " + tomorrow.getTimeString(), tomorrow.toString());
 
         DateTime yesterday = new DateTime(LocalDate.now().minusDays(1), LocalTime.now());
         assertEquals(yesterday.getDateString() + " " + yesterday.getTimeString(), yesterday.toString());
