@@ -32,6 +32,7 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
@@ -73,7 +74,8 @@ public class Parser {
     private static final int PARAMETER_WORD_INDEX = 1;
 
     private static final String GENERIC_LIST_COMMAND = "ls";
-    private static final String GENERIC_MKDIR_COMMAND = "mkdir";
+    private static final String GENERIC_ADD_COMMAND = "mkdir";
+    private static final String GENERIC_DELETE_COMMAND = "rm";
 
     public static final String MODULE_PREFIX = "-m";
     public static final String CATEGORY_PREFIX = "-c";
@@ -125,8 +127,11 @@ public class Parser {
             case GENERIC_LIST_COMMAND:
                 return prepareGenericListCommand(parameters.trim());
 
-            case GENERIC_MKDIR_COMMAND:
+            case GENERIC_ADD_COMMAND:
                 return prepareGenericAddCommand(parameters);
+
+            case GENERIC_DELETE_COMMAND:
+                return prepareGenericDeleteCommand(parameters);
 
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
@@ -260,6 +265,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepare the command to add the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
     private Command prepareGenericAddCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
@@ -269,6 +282,28 @@ public class Parser {
             return prepareAddCategoryCommand(parameters);
         case CATEGORY:
             return prepareAddTaskCommand(parameters);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Prepare the command to delete the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericDeleteCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareDeleteAndListModuleCommand(parameters, true);
+        case MODULE:
+            return prepareDeleteAndListCategoryCommand(parameters, true);
+        case CATEGORY:
+            return prepareDeleteAndListTaskCommand(parameters, true);
         default:
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
