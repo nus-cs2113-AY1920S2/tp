@@ -59,7 +59,7 @@ You can also add a new patient with the specified parameters in any order.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> Entering </code>n</code> will not save the patients' information when HappyPills prompt you for confirmation.</td>
+   <td> Entering <code>n</code> will not save the patients' information when HappyPills prompt you for confirmation.</td>
  </tr>
 </table>
 
@@ -133,7 +133,7 @@ Delete a patient as specified by the NRIC.
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Upon </code>successful deletion </code>, patient's information will not be able to be retrieved again. </td>
+   <td> Upon <code>successful deletion </code>, patient's information will not be able to be retrieved again. </td>
  </tr>
 </table>
 
