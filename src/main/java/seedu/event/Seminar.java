@@ -1,12 +1,12 @@
 package seedu.event;
 
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 
 import java.time.Instant;
 
 public class Seminar extends Event {
 
-    public Seminar(String name, String datetime, String venue) throws DukeException {
+    public Seminar(String name, String datetime, String venue) throws PACException {
         super(name, datetime, venue);
     }
 
@@ -15,11 +15,11 @@ public class Seminar extends Event {
      * and the original name is also empty or {@code null},
      * the name will take the form: seminar_(secondsSinceEpoch)
      * @param name the new name for the seminar
-     * @throws DukeException when trying to overwrite a non-empty
+     * @throws PACException when trying to overwrite a non-empty
      *      and non-null name with an empty or null name
      */
     @Override
-    public void setName(String name) throws DukeException {
+    public void setName(String name) throws PACException {
         if (this.name == null || this.name.isEmpty()) {
             // if original name is empty or null
             if (name == null || name.isEmpty()) {
@@ -32,7 +32,7 @@ public class Seminar extends Event {
             // if original name is not empty and null
             if (name == null || name.isEmpty()) {
                 // if new name is empty or null
-                throw new DukeException("Empty name");
+                throw new PACException("Empty name");
             } else {
                 // if new name is not empty and not null
                 this.name = name;

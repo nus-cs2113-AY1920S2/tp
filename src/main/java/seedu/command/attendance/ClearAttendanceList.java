@@ -2,7 +2,7 @@ package seedu.command.attendance;
 
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.ui.UI;
 
 /**
@@ -22,19 +22,19 @@ public class ClearAttendanceList extends Command {
 
     /**
      * Method to clear an existing attendanceList in a specific event.
-     * @throws DukeException If attendanceList fail to clear.
+     * @throws PACException If attendanceList fail to clear.
      */
-    private void clear() throws DukeException {
+    private void clear() throws PACException {
         try {
             attendances.clearList();
             ui.clearAttendanceMessage(eventName);
         } catch (Exception e) {
-            throw new DukeException("Attendance List fail to clear");
+            throw new PACException("Attendance List fail to clear");
         }
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PACException {
         clear();
     }
 }

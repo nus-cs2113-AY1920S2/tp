@@ -15,7 +15,7 @@ import seedu.command.event.EditVenue;
 import seedu.command.event.ListEvent;
 import seedu.command.interpreter.EventCommandInterpreter;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 
 public class EventCommandInterpreterTest {
     EventCommandInterpreter eci;
@@ -26,77 +26,77 @@ public class EventCommandInterpreterTest {
     }
 
     @Test
-    void add() throws DukeException {
+    void add() throws PACException {
         assertTrue(eci.decideCommand("add n/hello") instanceof AddEvent);
-        assertThrows(DukeException.class, () -> eci.decideCommand("add n/1 n/2"));
+        assertThrows(PACException.class, () -> eci.decideCommand("add n/1 n/2"));
     }
 
     @Test
-    void editName() throws DukeException {
+    void editName() throws PACException {
         assertTrue(eci.decideCommand("editname i/1 n/new name") instanceof EditName);
-        assertThrows(DukeException.class, () -> eci.decideCommand("editname n/new name"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editname i/-5"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editname i/0"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editname i/1 i/2"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editname i/10000 2"));        
+        assertThrows(PACException.class, () -> eci.decideCommand("editname n/new name"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editname i/-5"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editname i/0"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editname i/1 i/2"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editname i/10000 2"));        
     }
 
     @Test
-    void editDateTime() throws DukeException {
+    void editDateTime() throws PACException {
         assertTrue(eci.decideCommand("editdatetime i/1 d/2020-11-11 t/1234") instanceof EditDateTime);
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime d/date t/time"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime i/1 d/date"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime i/1 t/time"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime d/date"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime t/time"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime i/-5"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime i/0"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime i/1 i/2"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime i/10000 2"));        
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime d/date t/time"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime i/1 d/date"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime i/1 t/time"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime d/date"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime t/time"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime i/-5"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime i/0"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime i/1 i/2"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime i/10000 2"));        
     }
 
     @Test
-    void editVenue() throws DukeException {
+    void editVenue() throws PACException {
         assertTrue(eci.decideCommand("editvenue i/1 v/new venue") instanceof EditVenue);
-        assertThrows(DukeException.class, () -> eci.decideCommand("editvenue v/new venue"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editvenue i/-5"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editvenue i/0"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editvenue i/1 i/2"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editvenue i/10000 2"));        
+        assertThrows(PACException.class, () -> eci.decideCommand("editvenue v/new venue"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editvenue i/-5"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editvenue i/0"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editvenue i/1 i/2"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editvenue i/10000 2"));        
     }
 
     @Test
-    void editEvent() throws DukeException {
+    void editEvent() throws PACException {
         assertTrue(eci.decideCommand("editevent i/1 n/new name v/new venue") instanceof EditEvent);
     }
 
     @Test
-    void delete() throws DukeException {
+    void delete() throws PACException {
         assertTrue(eci.decideCommand("delete i/1") instanceof DeleteEvent);
-        assertThrows(DukeException.class, () -> eci.decideCommand("delete i/-5"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("delete i/0"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("delete i/1 i/2"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("delete i/10000 2"));
+        assertThrows(PACException.class, () -> eci.decideCommand("delete i/-5"));
+        assertThrows(PACException.class, () -> eci.decideCommand("delete i/0"));
+        assertThrows(PACException.class, () -> eci.decideCommand("delete i/1 i/2"));
+        assertThrows(PACException.class, () -> eci.decideCommand("delete i/10000 2"));
     }
 
     @Test
-    void list() throws DukeException {
+    void list() throws PACException {
         assertTrue(eci.decideCommand("list") instanceof ListEvent);
     }
 
     @Test
-    void unknown() throws DukeException {
-        assertThrows(DukeException.class, () -> eci.decideCommand(""));
-        assertThrows(DukeException.class, () -> eci.decideCommand("..."));
+    void unknown() throws PACException {
+        assertThrows(PACException.class, () -> eci.decideCommand(""));
+        assertThrows(PACException.class, () -> eci.decideCommand("..."));
     }
 
     @Test
-    void missingArgument() throws DukeException {
-        assertThrows(DukeException.class, () -> eci.decideCommand("add"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editname"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editdatetime"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editvenue"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("editevent"));
-        assertThrows(DukeException.class, () -> eci.decideCommand("delete"));
+    void missingArgument() throws PACException {
+        assertThrows(PACException.class, () -> eci.decideCommand("add"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editname"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editdatetime"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editvenue"));
+        assertThrows(PACException.class, () -> eci.decideCommand("editevent"));
+        assertThrows(PACException.class, () -> eci.decideCommand("delete"));
     }
 }

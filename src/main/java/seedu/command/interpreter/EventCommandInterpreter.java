@@ -8,7 +8,7 @@ import seedu.command.event.EditVenue;
 import seedu.command.event.EditEvent;
 import seedu.command.event.DeleteEvent;
 import seedu.command.event.ListEvent;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.parser.EventParser;
@@ -40,7 +40,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
     }
 
     @Override
-    public Command decideCommand(String commandDescription) throws DukeException {
+    public Command decideCommand(String commandDescription) throws PACException {
         Command command;
         Event event;
         int index;
@@ -62,7 +62,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editname":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -71,7 +71,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editdatetime":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -80,7 +80,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editvenue":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -89,7 +89,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editevent":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
             }
             event = eventParser.parseEvent(commandParameters);
             index = eventParser.getIndex();
@@ -97,7 +97,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "delete":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new DukeException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -107,7 +107,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new ListEvent(this.eventList);
             break;
         default:
-            throw new DukeException("Event: Unknown command");
+            throw new PACException("Event: Unknown command");
         }
 
         return command;

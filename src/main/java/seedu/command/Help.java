@@ -1,6 +1,6 @@
 package seedu.command;
 
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 
 
 public class Help extends Command {
@@ -14,10 +14,10 @@ public class Help extends Command {
      * This method allows the user to select the help message to
      * be displayed by type of command.
      *
-     * @throws DukeException Throws DukeException when the user
+     * @throws PACException Throws PACException when the user
      *                       selects any command out of the list.
      */
-    public void selectHelpMessage() throws DukeException {
+    public void selectHelpMessage() throws PACException {
         help.printGetHelp();
         String typeOfHelp = help.getStringInput();
         switch (typeOfHelp) {
@@ -33,11 +33,11 @@ public class Help extends Command {
         case "4":
             help.printStudentListHelp();
             break;
-        default: throw new DukeException("Invalid help function selected.");
+        default: throw new PACException("Invalid help function selected.");
         }
     }
 
-    public void execute() throws DukeException {
+    public void execute() throws PACException {
         selectHelpMessage();
     }
 }

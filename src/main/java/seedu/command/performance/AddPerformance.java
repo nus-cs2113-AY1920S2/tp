@@ -2,14 +2,14 @@ package seedu.command.performance;
 
 import seedu.student.StudentList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.parser.PerformanceParser;
 import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 import seedu.ui.DisplayList;
 import seedu.ui.UI;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.PAC.studentListCollection;
 
 public class AddPerformance extends Command {
     private UI ui;
@@ -34,7 +34,7 @@ public class AddPerformance extends Command {
      * The user is to choose whether to add the performance by importing a list
      * or adding manually.
      */
-    public void addToList() throws DukeException {
+    public void addToList() throws PACException {
         boolean isByNameList = ui.isImportList();
         if (isByNameList) {
             addByList();
@@ -51,11 +51,11 @@ public class AddPerformance extends Command {
      * whether the performance is added successfully with a
      * reply message.
      *
-     * @throws DukeException A DukeException is thrown when the
+     * @throws PACException A PACException is thrown when the
      *                       performance format input is incorrect
      *                       and cannot be added successfully.
      */
-    private void addManually() throws DukeException {
+    private void addManually() throws PACException {
         int studentNumber = 0;
         String parameter = ui.getPerformanceParameter();
         while (!parameter.equals("done")) {
@@ -71,29 +71,29 @@ public class AddPerformance extends Command {
      * This method get the user to select the index of student list to import
      * and return the list.
      * @return The student list selected by user.
-     * @throws DukeException Throws DukeException when there is no student list
+     * @throws PACException Throws PACException when there is no student list
      *                       exist in the student list collection.
      */
-    private StudentList getList() throws DukeException {
+    private StudentList getList() throws PACException {
         if (studentListCollection.isEmpty()) {
-            throw new DukeException("There is no existing student list.");
+            throw new PACException("There is no existing student list.");
         }
         try {
             int listIndex = displayList.getStudentListIndex();
             return studentListCollection.get(listIndex - 1);
         } catch (Exception e) {
             ui.displayMessage("Fail to get list.");
-            throw new DukeException("Fail to get list");
+            throw new PACException("Fail to get list");
         }
     }
 
     /**
      * This method get the user to input student's performance one by one
      * with the student list imported.
-     * @throws DukeException Throws DukeException when there is no student list
+     * @throws PACException Throws PACException when there is no student list
      *      *                       exist in the student list collection.
      */
-    private void addByList() throws DukeException {
+    private void addByList() throws PACException {
         StudentList studentList = getList();
         for (String studentName : studentList.getStudentList()) {
             performances.addToList(new Performance(studentName,
@@ -105,15 +105,15 @@ public class AddPerformance extends Command {
      * It process the data input by student and returns
      * a Performance base on the input.
      * @return A Performance of student
-     * @throws DukeException throws DukeException when the user input
+     * @throws PACException throws PACException when the user input
      *                       is insufficient or incorrect.
      */
-    private Performance getPerformance(String parameter) throws DukeException {
+    private Performance getPerformance(String parameter) throws PACException {
         return new PerformanceParser().parsePerformance(parameter);
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PACException {
         addToList();
     }
 }

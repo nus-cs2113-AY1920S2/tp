@@ -2,13 +2,13 @@ package seedu.command.student;
 
 import seedu.student.StudentList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.ui.DisplayList;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.PAC.studentListCollection;
 
 /**
  * Class representing a student related command to find an existing studentList by list name.
@@ -23,9 +23,9 @@ public class FindStudentList extends Command {
 
     /**
      * Method to find an existing student list from studentListCollection by list name.
-     * @throws DukeException    DukeException is thrown when there is an out of bound index.
+     * @throws PACException    PACException is thrown when there is an out of bound index.
      */
-    protected void find() throws DukeException {
+    protected void find() throws PACException {
         ui.displayMessage("Please state the list name you are searching for");
         ui.readUserInput();
         name = ui.getUserInput();
@@ -44,7 +44,7 @@ public class FindStudentList extends Command {
 
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PACException {
         find();
     }
 }

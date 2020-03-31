@@ -7,7 +7,7 @@ import seedu.command.performance.ListStudentPerformance;
 import seedu.command.performance.SortPerformanceListByName;
 import seedu.command.performance.SortPerformanceListByGrade;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
@@ -26,9 +26,9 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
      * Execute the command from userInput.
      *
      * @param commandDescription The userInput from the Ui.
-     * @throws DukeException If the command is undefined.
+     * @throws PACException If the command is undefined.
      */
-    public Command decideCommand(String commandDescription) throws DukeException {
+    public Command decideCommand(String commandDescription) throws PACException {
         String commandType = getFirstWord(commandDescription);
         eventName = ui.getEventName(); // to know under which event the user want to edit the performance
         performances = getPerformances(eventName); //performance list to be edited
@@ -43,7 +43,7 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return getSortCommand();
         default:
             ui.displayMessage("Performance: Unknown command");
-            throw new DukeException("Performance: Unknown command.");
+            throw new PACException("Performance: Unknown command.");
         }
     }
 
@@ -52,10 +52,10 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
      * getting a String input and parse it to return respective sorting Command.
      *
      * @return A Command with respect to the type of sorting command the user intend to execute.
-     * @throws DukeException Throws DukeException when the user input a not recognizable sorting
+     * @throws PACException Throws PACException when the user input a not recognizable sorting
      *                       command.
      */
-    private Command getSortCommand() throws DukeException {
+    private Command getSortCommand() throws PACException {
         String type = ui.getSortType();
         if (type.equals("name")) {
             return new SortPerformanceListByName(performances, eventName);
@@ -63,16 +63,16 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return new SortPerformanceListByGrade(performances, eventName);
         }
         ui.displayMessage("Performance sort: Unknown command. Enter 'name' or 'student'.");
-        throw new DukeException("Performance sort: Unknown command. Enter 'name' or 'student'.");
+        throw new PACException("Performance sort: Unknown command. Enter 'name' or 'student'.");
     }
 
     /**
      * This get the performance list under the event input by user.
      * @return The PerformanceList under specific event.
-     * @throws DukeException Throws DukeException when the event is
+     * @throws PACException Throws PACException when the event is
      *                       not found in the EventList.
      */
-    private PerformanceList getPerformances(String eventName) throws DukeException {
+    private PerformanceList getPerformances(String eventName) throws PACException {
         return eventList.getEvent(eventName).getPerformanceList();
     }
 }

@@ -3,7 +3,7 @@ package seedu.parser;
 import seedu.student.StudentList;
 import seedu.student.StudentListCollection;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.PAC.studentListCollection;
 
 public class StudentListStorageParser {
 

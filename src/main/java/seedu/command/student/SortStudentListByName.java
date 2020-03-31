@@ -2,8 +2,8 @@ package seedu.command.student;
 
 import seedu.student.StudentList;
 import seedu.command.Command;
-import seedu.duke.Duke;
-import seedu.exception.DukeException;
+import seedu.pac.PAC;
+import seedu.exception.PACException;
 import seedu.ui.UI;
 
 import java.util.Collections;
@@ -23,12 +23,12 @@ public class SortStudentListByName extends Command {
      * Method to sort all student list in studentListCollection alphabetically.
      */
     private void sort() {
-        Collections.sort(Duke.studentListCollection, listNameComparator);
+        Collections.sort(PAC.studentListCollection, listNameComparator);
         ui.displayMessage("Student List is sorted by name within the Student List Collection");
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PACException {
         sort();
     }
 }

@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.pac;
 
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
@@ -12,12 +12,12 @@ import seedu.command.Bye;
 import seedu.command.interpreter.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.storage.Storage;
 import seedu.ui.UI;
 
-public class Duke {
-    public static final Logger logger = Logger.getLogger(Duke.class.getName());
+public class PAC {
+    public static final Logger logger = Logger.getLogger(PAC.class.getName());
 
     protected UI ui;
     protected CommandInterpreter interpreter;
@@ -26,7 +26,7 @@ public class Duke {
     protected Storage eventStorage;
     protected Storage studentListCollectionStorage;
 
-    public Duke() throws DukeException {
+    public PAC() throws PACException {
         setupLogger();
 
         ui = new UI();
@@ -53,7 +53,7 @@ public class Duke {
         ch.setLevel(Level.SEVERE);  // only print SEVERE log to console
         logger.addHandler(ch);
         try {
-            FileHandler fh = new FileHandler("Duke.log", true);
+            FileHandler fh = new FileHandler("PAC.log", true);
             fh.setLevel(Level.FINE);    // print FINE log and more severe log to log file
             logger.addHandler(fh);
         } catch (IOException m) {
@@ -62,7 +62,7 @@ public class Duke {
         }
     }
 
-    public void run() throws DukeException {
+    public void run() throws PACException {
         ui.setUserName();
         Command command = null;
         do {
@@ -70,13 +70,13 @@ public class Duke {
             try {
                 String input = ui.getUserInput().trim();
                 if (input.isEmpty()) {
-                    throw new DukeException("Please provide a valid command.");
+                    throw new PACException("Please provide a valid command.");
                 }
 
                 command = interpreter.decideCommand(input);
                 command.execute();
-            } catch (DukeException m) {
-                logger.log(Level.WARNING, "DukeException at Duke.run()");
+            } catch (PACException m) {
+                logger.log(Level.WARNING, "PACException at PAC.run()");
             }
         } while (isNotBye(command));
 
@@ -94,13 +94,13 @@ public class Duke {
     }
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the java.PAC.PAC application.
      */
     public static void main(String[] args) {
         try {
-            Duke pac = new Duke();
+            PAC pac = new PAC();
             pac.run();
-        } catch (DukeException m) {
+        } catch (PACException m) {
             UI.display(m.getMessage());
         }
     }

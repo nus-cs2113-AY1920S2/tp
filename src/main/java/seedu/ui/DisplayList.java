@@ -2,11 +2,11 @@ package seedu.ui;
 
 import seedu.student.StudentList;
 import seedu.event.Event;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.PAC.studentListCollection;
 
 public class DisplayList extends UI {
     public void printEventList(ArrayList<Event> list, String type) {
@@ -31,7 +31,7 @@ public class DisplayList extends UI {
         return Integer.parseInt(getStringInput());
     }
 
-    public void printSearchResults(ArrayList<StudentList> searchResults) throws DukeException {
+    public void printSearchResults(ArrayList<StudentList> searchResults) throws PACException {
         System.out.println("Here's the Search Results");
         try {
             int index = 1;
@@ -41,7 +41,7 @@ public class DisplayList extends UI {
                 index++;
             }
         } catch (Exception e) {
-            throw new DukeException("Search Failed");
+            throw new PACException("Search Failed");
         }
     }
 }

@@ -1,6 +1,6 @@
 package seedu.storage;
 
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.ui.UI;
 
 import java.io.File;
@@ -18,15 +18,15 @@ public class FileIO {
     /**
      * Open files to be modified, and scanner to read from file.
      * @param directory the file to be opened
-     * @throws DukeException if cannot initialise file
+     * @throws PACException if cannot initialise file
      */
-    public FileIO(String directory) throws DukeException {
+    public FileIO(String directory) throws PACException {
         this.file = open(directory);
 
         try {
             this.fileToReadFrom = new FileReader(file);
         } catch (IOException e) {
-            throw new DukeException("FileIO: cannot initialise file");
+            throw new PACException("FileIO: cannot initialise file");
         }
 
         this.scanner = new Scanner(fileToReadFrom);
@@ -36,9 +36,9 @@ public class FileIO {
      * Opens a file, creating its relevant directory if necessary.
      * @param directory the abstract pathname of the file
      * @return a File object pointing to the file
-     * @throws DukeException if directory already exists while creating it
+     * @throws PACException if directory already exists while creating it
      */
-    protected File open(String directory) throws DukeException {
+    protected File open(String directory) throws PACException {
         File f = new File(directory);
         ensurePathExist(f);
         return f;
@@ -48,9 +48,9 @@ public class FileIO {
      * Checks if the file denoted by this abstract pathname exists.
      * If it does not exist, create directories until that path.
      * @param f the abstract pathname
-     * @throws DukeException if directory already exists while creating it
+     * @throws PACException if directory already exists while creating it
      */
-    private void ensurePathExist(File f) throws DukeException {
+    private void ensurePathExist(File f) throws PACException {
         if (!f.exists()) {
             UI.display("Storage file not found.");
             try {
@@ -58,7 +58,7 @@ public class FileIO {
                 f.createNewFile();
                 UI.display("A storage file is created.");
             } catch (IOException m) {
-                throw new DukeException("FileIO: creating file that already exists");
+                throw new PACException("FileIO: creating file that already exists");
             }
         }
     }
@@ -67,20 +67,20 @@ public class FileIO {
     //  * Read in information that is required to reconstruct one Event
     //  * (which is three lines).
     //  * @return a String that consists of three lines
-    //  * @throws DukeException if EOF is encountered
+    //  * @throws PACException if EOF is encountered
     //  */
-    // public String readOneEvent() throws DukeException {
+    // public String readOneEvent() throws PACException {
     //     return this.read() + this.read() + this.read();
     // }
 
     /**
      * Read a line from current file.
      * @return the next line
-     * @throws DukeException if EOF is encountered
+     * @throws PACException if EOF is encountered
      */
-    public String read() throws DukeException {
+    public String read() throws PACException {
         if (!scanner.hasNext()) {
-            throw new DukeException("FileIO: nothing to read anymore");
+            throw new PACException("FileIO: nothing to read anymore");
         }
 
         return scanner.nextLine();
@@ -89,30 +89,30 @@ public class FileIO {
     /**
      * Write a string from start of file, replacing the content of file.
      * @param input the string to be written
-     * @throws DukeException if {@code IOException} occurs
+     * @throws PACException if {@code IOException} occurs
      */
-    public void write(String input) throws DukeException {
+    public void write(String input) throws PACException {
         try {
             if (this.fileToWriteTo == null) {
                 this.fileToWriteTo = new FileWriter(file);
             }
             fileToWriteTo.write(input);
         } catch (IOException m) {
-            throw new DukeException("FileIO.write: " + m.getMessage());
+            throw new PACException("FileIO.write: " + m.getMessage());
         }
     }
 
     /**
      * Close everything in FileIO.
-     * @throws DukeException if IOException occurs
+     * @throws PACException if IOException occurs
      */
-    public void close() throws DukeException {
+    public void close() throws PACException {
         try {
             this.fileToWriteTo.close();
             this.fileToReadFrom.close();
             this.scanner.close();
         } catch (IOException m) {
-            throw new DukeException("FileIO.close: " + m.getMessage());
+            throw new PACException("FileIO.close: " + m.getMessage());
         }
     }
 }

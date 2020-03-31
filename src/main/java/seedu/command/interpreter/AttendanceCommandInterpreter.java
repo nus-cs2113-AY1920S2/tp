@@ -8,7 +8,7 @@ import seedu.command.attendance.SortAttendanceListByName;
 import seedu.command.attendance.ViewAttendanceList;
 import seedu.command.attendance.SortAttendanceListByStatus;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.ui.UI;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
         this.ui = new UI();
     }
 
-    public static void setupLogger() throws DukeException {
+    public static void setupLogger() throws PACException {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
 
@@ -44,7 +44,7 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
             fh.setLevel(Level.FINE);
             logger.addHandler(fh);
         } catch (IOException e) {
-            throw new DukeException(e.getMessage());
+            throw new PACException(e.getMessage());
         }
 
     }
@@ -53,9 +53,9 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
      * Execute the command from userInput.
      *
      * @param commandDescription The userInput from the Ui.
-     * @throws DukeException If the command is undefined.
+     * @throws PACException If the command is undefined.
      */
-    public Command decideCommand(String commandDescription) throws DukeException {
+    public Command decideCommand(String commandDescription) throws PACException {
 
         String commandType = getFirstWord(commandDescription);
 
@@ -92,7 +92,7 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
                         return new SortAttendanceListByName(attendances, eventName);
                     } catch (Exception e) {
                         ui.displayMessage("Attendance Command Sory By Name failed.");
-                        throw new DukeException("Attendance Command Sort By Name failed.");
+                        throw new PACException("Attendance Command Sort By Name failed.");
                     }
                 case "status":
                     try {
@@ -101,23 +101,23 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
                         return new SortAttendanceListByStatus(attendances, eventName);
                     } catch (Exception e) {
                         ui.displayMessage("Attendance Command Sort By Status failed.");
-                        throw new DukeException("Attendance Command Sort By Status failed.");
+                        throw new PACException("Attendance Command Sort By Status failed.");
                     }
                 default:
                     ui.displayMessage("Unknown Attendance Sort Command");
-                    throw new DukeException("Unknown Attendance Sort Command");
+                    throw new PACException("Unknown Attendance Sort Command");
                 }
             } catch (Exception e) {
                 ui.displayMessage("Attendance Command Sort failed.");
-                throw new DukeException("Attendance Command Sort failed.");
+                throw new PACException("Attendance Command Sort failed.");
             }
         default:
             ui.displayMessage("Attendance: Unknown command.");
-            throw new DukeException("Attendance: Unknown command.");
+            throw new PACException("Attendance: Unknown command.");
         }
     }
 
-    private AttendanceList getAttendance(String eventName) throws DukeException {
+    private AttendanceList getAttendance(String eventName) throws PACException {
         return eventList.getEvent(eventName).getAttendanceList();
     }
 }

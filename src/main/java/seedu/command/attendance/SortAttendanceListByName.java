@@ -2,7 +2,7 @@ package seedu.command.attendance;
 
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PACException;
 import seedu.ui.UI;
 
 /**
@@ -34,7 +34,7 @@ public class SortAttendanceListByName extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PACException {
         sort();
     }
 }
