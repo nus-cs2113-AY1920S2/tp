@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import static common.BlacklistedModules.blacklistModule;
 import static common.Messages.MESSAGE_MODULECODE_IN_BLACKLIST;
 import static common.Messages.MESSAGE_RETURN_SUCCESS;
 import static common.Messages.MESSAGE_EMPTY_MODULE;
@@ -58,29 +59,8 @@ public class ModuleHandler {
             this.day.add(new ArrayList<>());
             this.weeks.add(new ArrayList<>());
         }
-        this.unformattedModules = new HashSet<>();
-        Scanner reader = null;
-        // Only try reading from UnformattedModules if it exist, to prevent infinite exceptions
-        // due to ModuleHandler constructor being called at runOnce() in MeetingOrganizer class.
-        if (Files.exists(Paths.get("UnformattedModules"))) {
-            try {
-                reader = new Scanner(new File("UnformattedModules"));
-            } catch (FileNotFoundException e) {
-                System.out.println("WARNING, UnformattedModules file not found, please re-download from source code.");
-            }
-        }
-        assert reader != null;
-        while (reader.hasNext()) {
-            String data = reader.nextLine();
-            unformattedModules.add(data);
-        }
+        this.unformattedModules = blacklistModule;
     }
-
-    /**
-     * Run this to retrieve all the modules that doesn't follow the conventional format and
-     * store it into /UnformattedModules file.
-     */
-
 
     /**
      * Format the JsonArray object returned from ModuleApiParser.parse into easy to use data structure.

@@ -1,4 +1,4 @@
-package logic.schedulelogic;
+package model.contact;
 
 import model.contact.Contact;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static common.Messages.MESSAGE_RETURN_SUCCESS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class contactTest {
+public class ContactTest {
     Contact myMember;
 
     @Test
