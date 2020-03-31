@@ -47,12 +47,14 @@ This is just a quick overview of what Jikan can do for you. For more details on 
   
 **Format:** `start ACTIVITY_NAME /a ALLOCATED_TIME /t TAGS`    
  * `ACTIVITY_NAME` can contains spaces and must be less than 25 characters.     
-* `ACTIVITY_NAME` must also be unique (should the user start an already existing activity, the option to `continue` will be given).  
-* `ALLOCATED_TIME` should be of the format [HH/MM/SS].  
-* `TAGS` are separated by spaces.  
-* `ALLOCATED_TIME` and `TAGS` are optional.  
+ * `ACTIVITY_NAME` must also be unique (should the user start an already existing activity, the option to `continue` will be given).  
+ * `ALLOCATED_TIME` should be of the format [HH/MM/SS].  
+ * `TAGS` are separated by spaces.  
+ * `ALLOCATED_TIME` and `TAGS` are optional.  
     
-**Example:** `start CS1010 assignment /a 01/30/00 /t CS1010 core` `start GER1000 quiz /t GER GEmod`  
+**Example:**  
+`start CS1010 assignment /a 01/30/00 /t CS1010 core`   
+`start GER1000 quiz /t GER GEmod`  
 `start revision`  
   
 ### Continuing an activity: `continue`  
@@ -74,12 +76,12 @@ This is just a quick overview of what Jikan can do for you. For more details on 
   
 **Format:** `abort`  
   
-### Deleteing an activity: `delete`  
+### Deleting an activity: `delete`  
 **Usage:** Deletes an activity in the activity list.  
   
 **Format:** `delete ACTIVITY_NAME`  
   
-### List activities: `list`  
+### Listing activities: `list`  
 **Usage:** Displays a list of the completed activities.  
   
 **Format:** `list TIME_PERIOD`  
@@ -94,6 +96,18 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 `list day` or `list daily` List all activities in the current day.  
 `list 01/01/2020` or `list 2020-01-01` List all activities on 1 Jan 2020.  
 `list 01/01/2020 20/02/2020` List all activities than fall within 1 Jan 2020 and 20 Feb 2020.  
+  
+### Editing an activity: `edit`
+**Usage:** Edits the name or allocated time of an activity in the activity list.
+
+**Format** 
+* `edit ACTIVITY_NAME /en NEW_NAME`
+* `edit ACTIVITY_NAME /ea NEW_ALLOCATED_TIME`
+    * `NEW_ALLOCATED_TIME` should be in the format [HH:MM:SS] 
+    
+**Example:**  
+`edit CS1010 assignment /en CS1010 assignment 2` Activity name is edited to `CS1010 assignment 2`  
+`edit CS1010 assignment /ea 10:00:00` Allocated time for activity is edited to `10:00:00` 
   
 ## Finding and Filtering
 By using `find` and `filter` commands, users can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent with minimal clutter is required.
@@ -156,6 +170,23 @@ Note: Only activities with an `ALLOCATED_TIME` will be shown.
 
 ![Continue command sequence diagram](./pictures/GraphTargets.png)
 
+## Tag Goals
+
+By using the `goal` command, users can set specific goals for how long they would like to spend on activities under a certain tags as well as view the amount of time they have spent in total for those activities as compared to their goal.
+
+### Set goal: `goal TAG_NAME /g DURATION`
+**Usage:** Sets a duration goal for a tag
+
+**Format:** `goal TAG_NAME /g DURATION`  
+* The duration should be in the format [HH:MM:SS]
+
+**Example:** `goal core /g 24:00:00` a goal of `24:00:00` is added for the tag `core`  
+
+### View goals: `goal`
+**Usage:** Displays the tags with their goals, actual time spent on activities with these tags and the difference between the 2 timings.
+
+**Format:** `goal`  
+![goal display](./pictures/GoalDisplay.png)  
 
 ## Usage of Automated Cleaning
 
