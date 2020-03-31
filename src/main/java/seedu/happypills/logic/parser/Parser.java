@@ -25,8 +25,7 @@ public class Parser {
         if (userCommand.length == 1) {
             // help & exit
             if (userCommand[0].equalsIgnoreCase("help")) {
-                // help command
-                return new HelpCommand("");
+                return new HelpCommand(fullCommand);
             } else if (userCommand[0].equalsIgnoreCase("exit")) {
                 // exit command
                 return new ExitCommand();
@@ -35,6 +34,8 @@ public class Parser {
                 return new IncorrectAppointmentCommand("    Command is invalid. "
                         + "Enter help to know how to use HappyPills.\n");
             }
+        } else if (userCommand[0].equalsIgnoreCase("help")) {
+            return new HelpCommand(fullCommand);
         } else if (userCommand[1].equalsIgnoreCase("patient")) {
             return PatientParser.parse(fullCommand);
         } else if (userCommand[1].equalsIgnoreCase("appt")) {
