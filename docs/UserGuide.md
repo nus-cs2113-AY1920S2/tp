@@ -431,31 +431,31 @@ to check for the appointmentID used for the other commands.
 
 **Command** | **Format**
 --------|----------
-Add a patient's information | `add patient` /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]
-Edit a patient's information |  `edit patient` NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
+Add a patient's information | `add patient /ic [NRIC] /n [NAME] /p [PHONE_NUMBER] /dob [DOB] /b [BLOOD_TYPE] /a [ALLERGIES] /rm [REMARKS]`
+Edit a patient's information |  `edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]`
 list all patients | `list patient`
-Retrieve a patient's information | `get patient` NRIC
+Retrieve a patient's information | `get patient NRIC`
 
 #### Patient Medical Records
 
 **Command** | **Format**
 --------|----------
- Add a Patient Record |`add pr` /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS
- Edit a Patient Record |`edit pr`
- Delete a Patient Record | `delete pr`
- List all Patient Records |`list pr`
- Find a Patient Record|`find pr`
+ Add a Patient Record |`add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME`
+ List all Patient Records |`list pr NRIC`
+ Find a Patient Record|`find pr NRIC INDEX`
+ Edit a Patient Record |`edit pr NRIC INDEX`
+ Delete a Patient Record | `delete pr NRIC INDEX`
 
 #### Appointments
 
 **Command** | **Format**
 --------|----------
-Add an appointment | `add appt` /ic NRIC /d DATE /t TIME /r REASON
-Edit an appointment | `edit appt` NRIC /d[DATE] /t[TIME] /r[REASON]
-Delete an appointment | `delete appt` APPOINTMENT_ID
-Mark an appointment as done | `done appt` APPOINTMENT_ID
+Add an appointment | `add appt /ic NRIC /d DATE /t TIME /r REASON`
+Edit an appointment | `edit appt NRIC /d DATE /t TIME /r REASON`
+Delete an appointment | `delete appt APPT_ID`
+Mark an appointment as done | `done appt APPT_ID`
 List all appointments | `list appt`
-Find an appointment| `find appt` NRIC
+Find an appointment| `find appt NRIC`
 
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
