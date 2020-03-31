@@ -170,6 +170,30 @@ Although the current implementation of the continue feature disallows users to h
 As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
 ![decision flowchart](./pictures/continue_flowchart.PNG)
 
+### 3.5 List feature
+This feature is used to list activities within a range specified by the user.
+If no parameter is passed to the `list` command, then all the stored activities will be displayed.
+By passing a single date, the command returns all activities within that date.
+By passing two dates, the command returns all activities that took place within the two dates.
+(for an activity to be included in the range, both its start and end time must be within the specified time range).
+The user can also provide a verbal command, such as `day`, `week`, or `month`, which
+will return all the activities for that day, week or month respectively.
+Additionally, the user can specify a specific week of month by including a date
+(e.g. `list month 2020-03-01` returns all the activities in March 2020.)
+
+#### 3.5.1 Current implementation
+* List all activities: `list`
+    * List today's activities: `list day` or `list daily`
+    * List this week's activities: `list week` or `list weekly`
+        * List a specific week's activities by day: `list week DATE` or `list weekly DATE`, 
+        where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+    * List this month's activities: `list month` or `list monthly`
+        * List a specific month's activities by day: `list month DATE` or `list monthly DATE`, 
+        where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+    * List a specific day's activities: `list DATE`, where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+    * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
+    in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+
 ### 3.6 Find Feature
 This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
 
