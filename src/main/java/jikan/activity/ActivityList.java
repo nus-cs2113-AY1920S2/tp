@@ -52,6 +52,7 @@ public class ActivityList {
     public ActivityList(Storage storage, File dataFile) {
         this.activities = new ArrayList<>();
         this.storage = storage;
+        this.storageHandler = new StorageHandler(storage);
         populateTaskList(dataFile);
     }
 
