@@ -10,7 +10,6 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
 
 <div align="left"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Main.html"> &#8592; Back to Main </a></div>
-
 <div align="right"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Records.html"> &#8594; Go to Medical Records </a></div>
 
 ### 3.2. General Patient Information
