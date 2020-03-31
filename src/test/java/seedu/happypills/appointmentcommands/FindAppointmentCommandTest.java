@@ -57,7 +57,7 @@ public class FindAppointmentCommandTest {
 
     @Test
     public void getAppointment_patientNotFound() throws HappyPillsException {
-        String expectedOutputNotfound = "The patient you are looking for cannot be found";
+        String expectedOutputNotfound = "    The patient you are looking for cannot be found";
         String message = new FindAppointmentCommand("S789C").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputNotfound, message);
