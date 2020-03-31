@@ -67,7 +67,7 @@ You can also add a new patient with the specified parameters in any order.
 >    
 >  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
  
 #### 3.2.2. Edit Patient: `edit patient`
 
@@ -94,7 +94,7 @@ Edit information of the patient with the specified NRIC.
  </tr>
 </table>
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
  
 #### 3.2.3. Delete Patient: `delete patient`
 
@@ -137,7 +137,7 @@ Delete a patient as specified by the NRIC.
  </tr>
 </table>
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.2.4. List All Patients: `list patient`
 
@@ -151,7 +151,7 @@ Displays all the patients in the patient list.
 >
 > ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
@@ -169,4 +169,4 @@ Retrieve details of the patient with the specified NRIC.
 >
 > ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)

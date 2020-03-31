@@ -38,8 +38,8 @@ Add patient's medical records to the database, to support the diagnosis and to j
 > ![cfmAddPR](images/PR/addprcfm.PNG "cfmAddPR")
 >
 
- [&#8593; Return to Top](#Table-of-Content)
-
+ [&#8593; Return to Top](#table-of-content)
+ 
 #### 3.3.2. List Patient Records: `list pr`
 
 Displays all the patients record for a particular patient. 
@@ -71,7 +71,7 @@ Displays all the patients record for a particular patient.
 > ![listPR not found](images/PR/listprfail.PNG "list PR not found")
 >
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
  
   
 #### 3.3.3. Find Patient Records: `find pr`
@@ -106,7 +106,7 @@ to check for the index used for the other commands.
 >
 >![PR not found](images/PR/prEmpty.PNG "PR not found")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
  
 #### 3.3.4. Edit Patient Records: `edit pr`
 
@@ -138,7 +138,7 @@ Edit patient's medical records when there is any error in previous inputs.
 >
 >![](images/PR/prEmpty.PNG "help output")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
  
 #### 3.3.5. Delete Patient Records: `delete pr`
 
@@ -168,4 +168,4 @@ Delete patient's medical records based on the given NRIC and the index of record
 >
 >![PR not found](images/PR/prEmpty.PNG "Delete PR not found")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
