@@ -53,11 +53,9 @@ public class EventList {
      */
     public void delete(int index) throws PacException {
         if (index < 0) {
-            ui.displayMessage("Invalid index, must start from 1.");
             throw new PacException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
-            ui.displayMessage("Index not found.");
             throw new PacException("Index not found.");
         }
 
@@ -77,11 +75,9 @@ public class EventList {
      */
     public Event find(int index) throws PacException {
         if (index < 0) {
-            ui.displayMessage("Invalid index, must start from 1.");
             throw new PacException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
-            ui.displayMessage("Index not found.");
             throw new PacException("Index not found.");
         }
         return list.get(index);
@@ -144,7 +140,6 @@ public class EventList {
      */
     public void editEvent(int index, Event event) throws PacException {
         if (index >= list.size()) {
-            ui.displayMessage("Index not found");
             throw new PacException("Index not found.");
         }
         if (event instanceof Seminar) {
@@ -162,7 +157,6 @@ public class EventList {
 
     public Event getEvent(String eventName) throws PacException {
         if (list.isEmpty()) {
-            ui.displayMessage("The event list is empty");
             throw new PacException("The event list is empty.");
         }
         for (Event event : list) {
@@ -170,7 +164,6 @@ public class EventList {
                 return event;
             }
         }
-        ui.displayMessage("Event is not found in the list.");
         throw new PacException("Event is not found in the list.");
     }
 
@@ -181,7 +174,6 @@ public class EventList {
      */
     public void listEvent() throws PacException {
         if (list.isEmpty()) {
-            ui.displayMessage("The event list is empty");
             throw new PacException("The event list is empty.");
         }
         displayList.printEventList(list, "event");
@@ -194,7 +186,6 @@ public class EventList {
      */
     public void listSeminar() throws PacException {
         if (list.isEmpty()) {
-            ui.displayMessage("The event list is empty");
             throw new PacException("The event list is empty.");
         }
         ArrayList<Event> seminarList = new ArrayList<>();

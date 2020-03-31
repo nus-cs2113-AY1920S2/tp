@@ -81,7 +81,7 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
 
         case "sort":
             try {
-                ui.displayMessage("Please Key in either 'name' or 'status'.");
+                UI.display("Please Key in either 'name' or 'status'.");
                 ui.readUserInput();
                 String sortType = ui.getUserInput();
                 switch (sortType) {
@@ -91,7 +91,6 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
                         attendances = getAttendance(eventName);
                         return new SortAttendanceListByName(attendances, eventName);
                     } catch (Exception e) {
-                        ui.displayMessage("Attendance Command Sory By Name failed.");
                         throw new PacException("Attendance Command Sort By Name failed.");
                     }
                 case "status":
@@ -100,19 +99,15 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
                         attendances = getAttendance(eventName);
                         return new SortAttendanceListByStatus(attendances, eventName);
                     } catch (Exception e) {
-                        ui.displayMessage("Attendance Command Sort By Status failed.");
                         throw new PacException("Attendance Command Sort By Status failed.");
                     }
                 default:
-                    ui.displayMessage("Unknown Attendance Sort Command");
                     throw new PacException("Unknown Attendance Sort Command");
                 }
             } catch (Exception e) {
-                ui.displayMessage("Attendance Command Sort failed.");
                 throw new PacException("Attendance Command Sort failed.");
             }
         default:
-            ui.displayMessage("Attendance: Unknown command.");
             throw new PacException("Attendance: Unknown command.");
         }
     }

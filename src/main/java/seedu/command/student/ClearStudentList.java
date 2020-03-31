@@ -11,14 +11,12 @@ import static seedu.pac.Pac.studentListCollection;
  */
 public class ClearStudentList extends Command {
 
-    private UI ui = new UI();
-
     /**
      * Method to clear the entire studentListCollection.
      */
     private void clear() {
         studentListCollection.clear();
-        ui.displayMessage("The Student List Collection is cleared");
+        UI.display("The Student List Collection is cleared");
     }
 
     @Override

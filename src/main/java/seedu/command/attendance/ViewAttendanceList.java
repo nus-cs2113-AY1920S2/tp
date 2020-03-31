@@ -10,18 +10,16 @@ import seedu.ui.UI;
  */
 public class ViewAttendanceList extends Command {
 
-    protected UI ui;
     protected AttendanceList attendances;
 
     public ViewAttendanceList(AttendanceList attendances) {
         this.attendances = attendances;
-        this.ui = new UI();
     }
 
     private void view() throws PacException {
         try {
             if (attendances.isEmpty()) {
-                ui.displayMessage("Attendance List is empty");
+                UI.display("Attendance List is empty");
             } else {
                 attendances.printList();
             }

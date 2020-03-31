@@ -28,13 +28,11 @@ public class AddStudentList extends Command {
     private void addToList() throws PacException {
         String listName = ui.getListName();
         if (listName.toLowerCase().equals("done")) {
-            ui.displayMessage("Student Add cancelled.");
             throw new PacException("Student Add cancelled");
         }
         StudentList studentList = new StudentList(listName);
         ui.addStudent(studentList);
         if (studentList.isEmpty()) {
-            ui.displayMessage("You cannot create an empty Student List.");
             throw new PacException("You cannot create an empty Student List");
 
         }

@@ -136,7 +136,7 @@ public class UI {
 
     public void printCalendarHeader(int semesterOneYear, int semesterTwoYear,
                                      int semester) {
-        UI.display();
+        UI.display("");
         printCalendarHeading(semesterOneYear, semesterTwoYear, semester);
         printCalendarMonthsHeading(semester);
     }
@@ -281,9 +281,5 @@ public class UI {
                 }
             }
         }
-    }
-
-    public void displayMessage(String message) {
-        UI.display(message);
     }
 }

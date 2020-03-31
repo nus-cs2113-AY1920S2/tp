@@ -36,7 +36,6 @@ public class StudentCommandInterpreter extends CommandInterpreter {
             try {
                 return new AddStudentList();
             } catch (Exception e) {
-                ui.displayMessage("Student Command Add failed.");
                 throw new PacException("Student Command Add failed.");
             }
 
@@ -44,19 +43,17 @@ public class StudentCommandInterpreter extends CommandInterpreter {
             try {
                 return new ViewStudentList();
             } catch (Exception e) {
-                ui.displayMessage("Student Command List failed.");
                 throw new PacException("Student Command List failed.");
             }
         case "delete":
             try {
                 return new DeleteStudentList();
             } catch (Exception e) {
-                ui.displayMessage("Student Command Delete failed.");
                 throw new PacException("Student Command Delete failed.");
             }
         case "sort":
             try {
-                ui.displayMessage("Please Key in either 'name' or 'list'.");
+                UI.display("Please Key in either 'name' or 'list'.");
                 ui.readUserInput();
                 String sortType = ui.getUserInput();
                 switch (sortType) {
@@ -64,40 +61,33 @@ public class StudentCommandInterpreter extends CommandInterpreter {
                     try {
                         return new SortStudentListByName();
                     } catch (Exception e) {
-                        ui.displayMessage("Student Command Sort By Name failed.");
                         throw new PacException("Student Command Sort By Name failed.");
                     }
                 case "list":
                     try {
                         return new SortStudentListByList();
                     } catch (Exception e) {
-                        ui.displayMessage("Student Command Sort By List failed.");
                         throw new PacException("Student Command Sort By List failed.");
                     }
                 default:
-                    ui.displayMessage("Unknown Student Sort Command");
                     throw new PacException("Unknown Student Sort Command");
                 }
             } catch (Exception e) {
-                ui.displayMessage("Student Command Sort failed.");
                 throw new PacException("Student Command Sort failed.");
             }
         case "find":
             try {
                 return new FindStudentList();
             } catch (Exception e) {
-                ui.displayMessage("Student Command Find failed.");
                 throw new PacException("Student Command Find failed.");
             }
         case "clear":
             try {
                 return new ClearStudentList();
             } catch (Exception e) {
-                ui.displayMessage("Student Command Clear failed.");
                 throw new PacException("Student Command Clear failed.");
             }
         default:
-            ui.displayMessage("Unknown Student Command.");
             throw new PacException("Unknown Student Command.");
         }
     }

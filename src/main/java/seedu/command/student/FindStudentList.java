@@ -26,7 +26,7 @@ public class FindStudentList extends Command {
      * @throws PacException    PacException is thrown when there is an out of bound index.
      */
     protected void find() throws PacException {
-        ui.displayMessage("Please state the list name you are searching for");
+        UI.display("Please state the list name you are searching for");
         ui.readUserInput();
         name = ui.getUserInput();
         for (int i = 0; i < studentListCollection.size(); i++) {
@@ -35,9 +35,9 @@ public class FindStudentList extends Command {
             }
         }
         if (searchResults.isEmpty()) {
-            ui.displayMessage("Nothing match you description : " + name);
+            UI.display("Nothing match you description : " + name);
         } else {
-            ui.displayMessage("You have " + searchResults.size() + " matches:");
+            UI.display("You have " + searchResults.size() + " matches:");
             displayList.printSearchResults(searchResults);
         }
     }

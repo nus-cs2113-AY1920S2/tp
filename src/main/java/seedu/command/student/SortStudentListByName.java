@@ -17,14 +17,13 @@ import static seedu.student.StudentList.listNameComparator;
 public class SortStudentListByName extends Command {
 
     protected StudentList studentList;
-    private UI ui = new UI();
 
     /**
      * Method to sort all student list in studentListCollection alphabetically.
      */
     private void sort() {
         Collections.sort(Pac.studentListCollection, listNameComparator);
-        ui.displayMessage("Student List is sorted by name within the Student List Collection");
+        UI.display("Student List is sorted by name within the Student List Collection");
     }
 
     @Override

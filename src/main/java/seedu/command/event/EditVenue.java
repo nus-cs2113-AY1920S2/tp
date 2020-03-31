@@ -3,6 +3,7 @@ package seedu.command.event;
 import seedu.command.Command;
 import seedu.event.EventList;
 import seedu.exception.PacException;
+import seedu.ui.UI;
 
 public class EditVenue extends Command {
     private Integer index;
@@ -18,6 +19,6 @@ public class EditVenue extends Command {
     @Override
     public void execute() throws PacException {
         eventList.editVenue(index, venue);
-        UI.display(eventList.list.get(index));
+        UI.display(eventList.list.get(index).toString());
     }
 }

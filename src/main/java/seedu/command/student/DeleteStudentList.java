@@ -22,17 +22,15 @@ public class DeleteStudentList extends Command {
      * @throws PacException    PacException is thrown when there is an out of bound index.
      */
     private void deleteFromExisting() throws PacException {
-        ui.displayMessage("Please state the index of the student list you wish to delete.");
+        UI.display("Please state the index of the student list you wish to delete.");
         ui.readUserInput();
         line = ui.getUserInput();
         try {
             index = Integer.parseInt(line);
             studentListCollection.remove(index - 1);
         } catch (NullPointerException e1) {
-            ui.displayMessage("Deletion Failed, out of bound");
             throw new PacException("Out of bound.");
         } catch (Exception e2) {
-            ui.displayMessage("Deletion Failed.");
             throw new PacException("Deletion Failed, out of bound.");
         }
         displayList.printStudentListCollection();

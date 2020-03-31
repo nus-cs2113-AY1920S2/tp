@@ -82,7 +82,6 @@ public class AddPerformance extends Command {
             int listIndex = displayList.getStudentListIndex();
             return studentListCollection.get(listIndex - 1);
         } catch (Exception e) {
-            ui.displayMessage("Fail to get list.");
             throw new PacException("Fail to get list");
         }
     }

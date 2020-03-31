@@ -13,7 +13,6 @@ import static seedu.pac.Pac.studentListCollection;
 public class SortStudentListByList extends Command {
 
     protected StudentList studentList;
-    private UI ui = new UI();
 
     /**
      * Method to sort all student list in studentListCollection alphabetically.
@@ -27,6 +26,6 @@ public class SortStudentListByList extends Command {
     @Override
     public void execute() throws PacException {
         sort();
-        ui.displayMessage("StudentList sorted by name within the lists");
+        UI.display("StudentList sorted by name within the lists");
     }
 }
