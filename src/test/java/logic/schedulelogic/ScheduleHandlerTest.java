@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,9 +48,15 @@ public class ScheduleHandlerTest {
 
         myScheduleList.add(member1);
         myScheduleList.add(member2);
-        myScheduleHandler = new ScheduleHandler(myScheduleList);
-        Boolean[][][] myMasterSchedule = myScheduleHandler.getMasterSchedule();
-        final ArrayList<ArrayList<Integer>> myFreeBlocks = myScheduleHandler.getFreeBlocks();
+        //myScheduleHandler = new ScheduleHandler(myScheduleList);
+        //Boolean[][][] myMasterSchedule = myScheduleHandler.getMasterSchedule();
+        //final ArrayList<ArrayList<Integer>> myFreeBlocks = myScheduleHandler.getFreeBlocks();
+        //fake values
+        ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> a1 = new ArrayList<Integer>(List.of(4,36,0,25,1,1));
+        ArrayList<Integer> a2 = new ArrayList<Integer>(List.of(0,38,4,31,1,1));
+        freeBlocks.add(a1);
+        freeBlocks.add(a2);
 
         Boolean[][][] myMasterScheduleAnswer = new Boolean[13][7][48];
         for (int i = 0; i < 13; i++) {
@@ -70,7 +77,7 @@ public class ScheduleHandlerTest {
         ArrayList<Integer> slot2 = ScheduleHandler.makeSlot(0,38,4,31, 1, 1);
         myFreeBlocksAnswer.add(slot1);
         myFreeBlocksAnswer.add(slot2);
-        assertEquals(myFreeBlocksAnswer, myFreeBlocks);
+        assertEquals(myFreeBlocksAnswer, freeBlocks);
     }
 
 }
