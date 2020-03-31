@@ -28,7 +28,7 @@ Add patient's medical records to the database, to support the diagnosis and to j
 
 > ***Expected output:***
 >
-> ![addPR](images/PR/AddPr.PNG "addPR")
+> ![addPR](images/PR/AddPR.PNG "addPR")
 >
 
 > Enter `y` to confirm.
