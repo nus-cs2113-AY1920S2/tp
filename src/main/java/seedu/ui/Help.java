@@ -20,10 +20,9 @@ public class Help extends UI {
         StringBuilder output = new StringBuilder(
             "To add an event, use this command the following format:\n"
             + "\tEvent add n/Event_name [v/Venue_name] [d/yyyy-MM-dd t/HHmm].\n"
+            + "\n"
             + "You may also replace 'Event' with one of the following type:\n"
             + "\t- Seminar\n"
-            + "\t- Exam\n"
-            + "\t- Tutorial\n"
             + "\n"
         );
         output.append(
@@ -40,7 +39,6 @@ public class Help extends UI {
             + "\n"
             + "To delete an event, use the command\n"
             + "\tevent delete i/Event_index\n"
-            + "\n"
         );
         display(output.toString());
     }
