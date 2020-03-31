@@ -368,7 +368,7 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 
 > ***Expected output:***
 >
-> [editSuccess](/docs/images/DeleteAppt.png)
+> ![editSuccess](/docs/images/DeleteAppt.png)
 
 #### 3.4.4. Mark Appointment as Done: `done appt` 
 
