@@ -78,7 +78,7 @@ public class StorageSemesterList {
         String name = moduleInfoWords[1];
         int mc = Integer.parseInt(moduleInfoWords[2]);
         String sem = moduleInfoWords[3];
-        boolean isDone = Boolean.valueOf(moduleInfoWords[4]).booleanValue();
+        boolean isDone = Boolean.parseBoolean(moduleInfoWords[4]);
         String grade = moduleInfoWords[5];
         SelectedModule selectedModule = new SelectedModule(id, name, sem, mc, isDone, grade);
         checkAvailableModulesList(selectedModule);

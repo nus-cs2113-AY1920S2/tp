@@ -14,9 +14,8 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.Person;
 import seedu.duke.data.SemesterList;
 import seedu.duke.exception.ModuleManagerException;
-import seedu.duke.exception.RuntimeException;
 import seedu.duke.exception.StorageException;
-import seedu.duke.parser.Parser;
+import seedu.duke.parser.Controller;
 import seedu.duke.storage.StorageAvailableModulesList;
 import seedu.duke.storage.StoragePersonInfo;
 import seedu.duke.storage.StorageSemesterList;
@@ -68,7 +67,7 @@ public class Duke {
         do {
             try {
                 fullCommand = in.nextLine();
-                Command command = Parser.parse(fullCommand);
+                Command command = Controller.control(fullCommand);
                 command.execute(semesterList, availableModulesList);
                 isExit = command.isExit();
             } catch (ModuleManagerException e) {

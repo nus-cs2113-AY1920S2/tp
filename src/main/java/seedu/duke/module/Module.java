@@ -2,8 +2,6 @@ package seedu.duke.module;
 
 import seedu.duke.data.ModuleList;
 
-import java.util.Collection;
-
 public abstract class Module {
     protected String name;
     protected String id;
@@ -61,6 +59,10 @@ public abstract class Module {
 
 
     public String getName() {
+        if (name == null || name.equals(null)) {
+            name = "unnamed";
+            return name;
+        }
         return name;
     }
 
@@ -85,18 +87,26 @@ public abstract class Module {
     }
 
     public String getPreReqModulesID() {
-        String preReqModulesList = "";
+        String preReqModulesStringList = "";
         boolean hasNoPreReqModules = preRequisiteModules.size() == 0;
         if (hasNoPreReqModules) {
-            preReqModulesList = ("None");
+            preReqModulesStringList = ("None");
         }
         for (Module preReqModule : preRequisiteModules) {
-            preReqModulesList += preReqModule.getId() + " ";
+            preReqModulesStringList += preReqModule.getId() + " ";
         }
-        return preReqModulesList;
+        return preReqModulesStringList;
     }
 
     public abstract String toStorageString();
+
+    public boolean isNameValid() {
+        return isNameValid;
+    }
+
+    public boolean isIdValid() {
+        return isIdValid;
+    }
 
 
 }
