@@ -98,7 +98,7 @@ Note:
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The help command is split into four different sections `(highlighted by the boxes)`.</td>
+   <td>The help command is split into four different sections <code>(highlighted by the boxes)</code>.</td>
  </tr>
 </table>
 
