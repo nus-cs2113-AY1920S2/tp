@@ -1,4 +1,4 @@
-package schedulelogic;
+package logic.schedulelogic;
 
 import static common.Messages.MESSAGE_INVALID_MEETING;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
@@ -6,7 +6,8 @@ import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 
 
 import exception.MoException;
-import meeting.Meeting;
+import model.contact.Contact;
+import model.meeting.Meeting;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +24,11 @@ public class ScheduleHandler {
     private static ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
 
 
-    public ScheduleHandler(ArrayList<TeamMember> teamMemberList) {
+    public ScheduleHandler(ArrayList<Contact> contactList) {
         for (int i = 0; i < 7; i++) {
             Arrays.fill(masterSchedule[i], MYSCHEDULEFREE); // fill every 48 index of the 7 days with 0 initially
         }
-        for (TeamMember t : teamMemberList) {
+        for (Contact t : contactList) {
             Boolean[][] memberSchedule = t.getSchedule();
             fillMasterSchedule(memberSchedule);
         }
@@ -225,7 +226,7 @@ public class ScheduleHandler {
         return minuteBlocks + hourBlocks - 1;
     }
 
-    public static boolean isValidMeeting(TeamMember mainUser, Integer startDay,
+    public static boolean isValidMeeting(Contact mainUser, Integer startDay,
                                          LocalTime startTime, Integer endDay, LocalTime endTime) throws MoException {
         if (!(startDay >= 0 && startDay <= 6) || !(endDay >= 0 && endDay <= 6)) {
             throw new MoException(MESSAGE_STARTENDDAY_OUT_OF_RANGE);

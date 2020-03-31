@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 group 'seedu.duke'
@@ -29,7 +29,7 @@ application {
 
 shadowJar {
     archiveBaseName = "MeetingOrganizer"
-    archiveVersion = "1.0"
+    archiveVersion = "2.0"
     archiveClassifier = null
     archiveAppendix = null
 }

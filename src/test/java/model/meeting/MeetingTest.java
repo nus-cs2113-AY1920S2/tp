@@ -1,6 +1,5 @@
-package meeting;
+package model.meeting;
 
-import meeting.Meeting;
 import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 

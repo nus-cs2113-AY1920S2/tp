@@ -1,4 +1,4 @@
-package modulelogic;
+package logic.modulelogic;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -15,7 +15,7 @@ import static common.Messages.MESSAGE_RETURN_SUCCESS;
 
 /**
  * This class retrieves information from both TimetableParser and ModuleHandler classes to generate a data structure
- * containing all the modules a user is taking and is to be used by the schedulelogic component.
+ * containing all the modules a user is taking and is to be used by the logic.schedulelogic component.
  * The data structure used is an ArrayList of String[] called myLessonDetails and
  * it contains an ArrayList of lessons in the form: startTime, endTime, day, weeks(delimited by ':').
  */

@@ -1,24 +1,19 @@
-package modulelogic;
+package logic.modulelogic;
 
 import exception.UnformattedModuleException;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import static common.BlacklistedModules.blacklistModule;
 import static common.Messages.MESSAGE_MODULECODE_IN_BLACKLIST;
 import static common.Messages.MESSAGE_RETURN_SUCCESS;
 import static common.Messages.MESSAGE_EMPTY_MODULE;
@@ -64,46 +59,8 @@ public class ModuleHandler {
             this.day.add(new ArrayList<>());
             this.weeks.add(new ArrayList<>());
         }
-        this.unformattedModules = new HashSet<>();
-        Scanner reader = null;
-        try {
-            reader = new Scanner(new File("UnformattedModules"));
-        } catch (FileNotFoundException e) {
-            System.out.println("WARNING, UnformattedModules file not found, please re-download from source code.");
-        }
-        assert reader != null;
-        while (reader.hasNext()) {
-            String data = reader.nextLine();
-            unformattedModules.add(data);
-        }
+        this.unformattedModules = blacklistModule;
     }
-
-    /**
-     * Run this to retrieve all the modules that doesn't follow the conventional format and
-     * store it into /UnformattedModules file.
-     */
-    public static void main(String[] args) throws IOException {
-        // RUN THIS TO FILTER UNFORMATTED MODULES INTO /UnformmattedModules file
-        FileWriter fw = new FileWriter("UnformattedModules", true);
-        URL url = new URL("https://api.nusmods.com/v2/2019-2020/moduleList.json");
-        HttpURLConnection request = (HttpURLConnection) url.openConnection();
-        request.connect();
-        //Convert the input stream to a json element
-        JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
-        JsonArray rootObj = root.getAsJsonArray();
-        for (int i = 0; i < rootObj.size(); i++) {
-            JsonObject module = rootObj.get(i).getAsJsonObject();
-            String moduleCode = module.get("moduleCode").toString().replaceAll("^.|.$", "");
-            try {
-                ModuleHandler myModuleHandler = new ModuleHandler(moduleCode);
-                myModuleHandler.generateModule();
-            } catch (Exception e) {
-                fw.write(moduleCode + "\n");
-            }
-        }
-        fw.close();
-    }
-
 
     /**
      * Format the JsonArray object returned from ModuleApiParser.parse into easy to use data structure.
