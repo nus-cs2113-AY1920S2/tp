@@ -305,11 +305,13 @@ Allow users to record their daily activities and track their time usage in a use
 ### Instructions for Manual Testing  
   
   #### Launch and Shutdown
-  1. Download the jar file and docs folder
-  2. Copy both into an empty folder
-  3. Run the jar file in your terminal using the command `java -jar jikan.jar`
+  1. Download the jar file and data.csv file.
+  2. Copy both into an empty folder.
+  3. Create a folder named `data` and put the data.csv file into this folder.
+  4. Ensure the folder `data` and `jikan.jar` are in the same folder.
+  5. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
   
-  It is important to include the docs folder to have data for testing!
+  It is important to include the data.csv file to have data for testing!
   
   #### Listing activities
   Test case: `list month april`

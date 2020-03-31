@@ -6,7 +6,10 @@ Jikan is a CLI time management tool that allows you to track the amount of time 
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `Jikan` from [here](https://github.com/AY1920S2-CS2113-T15-1/tp/releases).
+1. Download the jar file of the latest version of `Jikan` from [here](https://github.com/AY1920S2-CS2113-T15-1/tp/releases).
+3. Download the data.csv file.
+4. Create an empty folder and put the Jikan.jar file inside.
+6. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
 
 Features 
 =======
