@@ -1,2 +1,2 @@
-add patient
-add patient /icS123A /nP1 /p123 /d01/01/2000 /bO+ /aNone
+add patient /ic s123 /n nyan /dob 22/08/1995 /p 999
+/b O+

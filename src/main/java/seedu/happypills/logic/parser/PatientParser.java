@@ -1,5 +1,6 @@
 package seedu.happypills.logic.parser;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.patientcommands.AddPatientCommand;
 import seedu.happypills.logic.commands.patientcommands.DeletePatientCommand;
 import seedu.happypills.logic.commands.patientcommands.EditPatientCommand;
@@ -150,7 +151,7 @@ public class PatientParser {
 
     private static String promptUser() {
         System.out.println(TextUi.DIVIDER);
-        Scanner in = new Scanner(System.in);
+        Scanner in = HappyPills.scanner;
         String reInput = in.nextLine();
         return reInput;
     }
@@ -179,7 +180,7 @@ public class PatientParser {
      */
     public static String promptConformation(String[] parseInput) {
         String text = "        Are you sure all the listed details are correct?\n"
-                + "\n        Name : " + parseInput[0].trim() + "\n"
+                + "        Name : " + parseInput[0].trim() + "\n"
                 + "        NRIC : " + parseInput[1].toUpperCase().trim() + "\n"
                 + "        Phone Number : " + parseInput[2].trim() + "\n"
                 + "        DOB : " + parseInput[3].trim() + "\n"
