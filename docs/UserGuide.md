@@ -23,12 +23,16 @@ When you are done with the activity, or want to move onto something else, tell J
 
 You can view all your activities using the `list` command. Activities will be shown in this format:
 ![Continue command sequence diagram](./pictures/list.PNG)
+
 You can also view all your activities over a period of time by using `list` with extra parameters. For example `list week` will return a list of all activities this current week, as shown below.
 ![Continue command sequence diagram](./pictures/list_week.PNG)
+
 Filter out the activities you want to see using the `find` or `filter` command. This is our list after filtering out all our activities tagged as `core`. 
 ![Continue command sequence diagram](./pictures/list_core.PNG)
+
 To easily see what took up the most of your time, use the `graph` command to view a chart of your activities. 
 ![Continue command sequence diagram](./pictures/graph_core.PNG)
+
 Now it's clear that lab 3 ex3 took up the most of your time. 
 
 Not done with an activity and want to continue it? Use the `continue` command to continue recording time for a previously started activity.
@@ -125,6 +129,16 @@ Example of usage:
 * Stop an activity: `end`
 * Continue an activity: `continue ACTIVITY_NAME`
 * List all activities: `list`
+    * List today's activities: `list day` or `list daily`
+    * List this week's activities: `list week` or `list weekly`
+        * List a specific week's activities by day: `list week DATE` or `list weekly DATE`, 
+        where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+    * List this month's activities: `list month` or `list monthly`
+        * List a specific month's activities by day: `list month DATE` or `list monthly DATE`, 
+        where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+    * List a specific day's activities: `list DATE`, where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+    * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
+    in either `yyyy-MM-dd` or `dd/MM/yyyy` format
 * Edit an activity: `edit ACTIVITY_NAME [flag]`
     * Edit activity name: `edit ACTIVITY_NAME /en NEW_NAME`
     * Edit activity tags: `edit ACTIVITY_NAME /et NEW_TAG1 NEW_TAG2`

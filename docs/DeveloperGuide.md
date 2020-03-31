@@ -170,6 +170,13 @@ Although the current implementation of the continue feature disallows users to h
 As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
 ![decision flowchart](./pictures/continue_flowchart.PNG)
 
+### 3.5 List feature
+This feature accepts a 
+
+#### 3.5.1 Current implementation
+* `list`: without any parameters, the command displays the entire list.
+* `list day` or `list daily`: list today's 
+
 ### 3.6 Find Feature
 This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
 
