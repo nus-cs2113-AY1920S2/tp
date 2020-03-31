@@ -77,6 +77,7 @@ public class Pac {
                 command.execute();
             } catch (PacException m) {
                 logger.log(Level.WARNING, "PacException at Pac.run()");
+                UI.display(m.getMessage());
             }
         } while (isNotBye(command));
 
