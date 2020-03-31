@@ -9,7 +9,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.3.4. List Patient Records : `list pr`](#324-list-all-patients-list-patient)
     + [3.3.5. Find Patient Records : `find pr`](#325-retrieve-a-patients-information-get-patient)
     
- [Return to Main](/docs/UserGuide-Main.md)
+ [Return to Main](UserGuide-Main.md)
 
 
 ### 3.3. Patient Medical Records 
