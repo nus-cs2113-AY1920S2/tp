@@ -23,12 +23,15 @@ Add patient's medical records to the database, to support the diagnosis and to j
     add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d Date /t Time
     
 **Example:**
+    
+    add pr /ic S0618 /sym ddd /diag dsfs /d 22/02/1992 /t 22:22:22
 
 > ***Expected output:***
 >
 > ![addPR](images/pr/addpr.PNG "addPR")
 >
->
+
+> Enter `y` to confirm.
 
 > ***Expected output:***
 >
@@ -39,16 +42,29 @@ Add patient's medical records to the database, to support the diagnosis and to j
 
 #### 3.3.2. List Patient Records: `list pr`
 
+Displays all the patients record for a particular patient. 
+
 ##### Usage example:
 
     list pr NRIC
 
 **Example:**
-
+    
+    list pr S0618
+    
 > ***Expected output:***
 >
 > ![listPR](images/pr/listpr.PNG "list PR output")
 >
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>If the patient have no past record command. The message below will be printed instead.</td>
+ </tr>
+</table>
 
 > ***Expected output:***
 >
@@ -60,16 +76,30 @@ Add patient's medical records to the database, to support the diagnosis and to j
   
 #### 3.3.5. Find Patient Records: `find pr`
 
+Check all patient reports that the patient with the specified NRIC has. This can be used
+to check for the index used for the other commands.
+
 ##### Usage example:
 
     find pr NRIC INDEX
 
 **Example:**
 
+    find pr s0618 1
+
 > ***Expected output:***
 >
 >
 >![findPR](images/pr/findpr.PNG "find PR output")
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>If the record is not found with the given input. The message below will be printed instead.</td>
+ </tr>
+</table>
 
 > ***Expected output:***
 >
@@ -88,9 +118,20 @@ Edit patient's medical records when there is any error in previous inputs.
     
 **Example:**
 
+    edit pr s0618 1 /sym fever
+
 > ***Expected output:***
 >
 > ![](images/pr/editprsuccess.PNG "help output")
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>If the record is not found with the given input. The message below will be printed instead.</td>
+ </tr>
+</table>
 
 > ***Expected output:***
 >
@@ -112,6 +153,15 @@ Delete patient's medical records based on the given NRIC and the index of record
 > ***Expected output:***
 >
 > ![Delete PR](images/pr/deleteprsuccess.PNG "Delete PR output")
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>If the record is not found with the given input. The message below will be printed instead.</td>
+ </tr>
+</table>
 
 > ***Expected output:***
 >
