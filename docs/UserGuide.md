@@ -95,18 +95,59 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 `list 01/01/2020` or `list 2020-01-01` List all activities on 1 Jan 2020.  
 `list 01/01/2020 20/02/2020` List all activities than fall within 1 Jan 2020 and 20 Feb 2020.  
   
-### Graph the duration of your completed activities: `graph`  
-**Usage:** Gives a visual representation of the duration of all your past activities so that you can easily see what took up the most of your time.  
-  
-**Format:** `graph SCALE` or `graph tags`  
-  
-* Parameters for graph are either `SCALE` or `tags`.  
-* `SCALE` is the scale of the graph in minutes (i.e. how many minutes each unit in the graph represents) and should be an integer value.  
-* `graph tags` will graph the cumulative duration of individual tags (each unit represents 10 minutes)  
-* The graph will be based on the latest list displayed on the command prompt.  
-  
-**Example:**  
-`graph 10`  
+## Finding and Filtering Activities
+
+### Finding Activities by Name: `find`
+**Usage:** Users can request for a sub-list of activities that has names containing a given keyword to be printed.
+
+Format: `find KEYWORD`
+
+### Filtering Activities by Tags: `filter`
+**Usage:** Users can request for a sub-list of activities that has specific tags.
+
+Format: `filter TAGNAME1 TAGNAME2`
+
+### Further Finding/Filtering: `-s`
+Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. 
+This is can be particularly useful when the user wants to generate a `graph`.
+
+This flag applies to `find` and `filter` commands only. 
+
+Format: 
+* `filter -s TAGNAME1 TAGNAME2`
+* `find -s keyword`
+
+## Graphs
+By using the command following commands, users can get a visual representation of the time spent on each activity 
+and their progress. 
+There are 3 types of graphs supported are :
+ * *Activity time graph* - Total time spent on each activity: `graph`
+ * *Tags time graph* - Total time spent on each tag: `graph tags`
+ * *Activity targets graph* - Progress of each activity in relation to its targeted time: `graph targets`
+
+Tip: Use `find` and `filter` commands to reduce clutter as graphs are based on the last shown list of activities. 
+
+### Activity time graph: `graph`
+**Usage:** View a comparison of the absolute time spent on each activity in the last shown list. 
+The parameter `SCALE` refers to the number of minutes represented by each point on the graph.
+
+**Format:** `graph SCALE`
+
+**Example:**  `graph 10`  
+
+### Tags time graph: `graph tag`  
+**Usage:** View a comparison of the absolute time spent on each tag in the last shown list. 
+
+**Format:** `graph tag`
+
+### Activity targets graph: `graph targets`
+**Usage:** View the progress of activities in relation to their 
+targeted time. 
+
+Note: Only activities with an `ALLOCATED_TIME` will be shown.
+
+![Continue command sequence diagram](./pictures/GraphTargets.png)
+
 
 ## Usage of Automated Cleaning
 
@@ -138,53 +179,7 @@ is activated).
 Note:\
 Default value for `NUMBER` for data files : 3\
 Default value for `NUMBER` for log files : 10
-
-## Graph Functions
-
-### Graph out all targets and their progress: `graph targets`
-Using this command, the user will get a graphical representation of all activities with targets and their progress with respect to 
-the allocated time. 
-
-![Continue command sequence diagram](./pictures/GraphTargets.png)
   
-
-## Finding and Filtering Activities
-
-### Finding Activities by Name: `find`
-Users can request for a sub-list of activities that has names containing a given keyword to be printed.
-
-Format: `find KEYWORD`
-
-### Filtering Activities by Tags: `filter`
-Users can request for a sub-list of activities that has specific tags.
-
-Format: `filter TAGNAME1 TAGNAME2`
-
-### Further Finding/Filtering: `-s`
-Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. 
-This is can be particularly useful when the user wants to generate a `graph`.
-
-This flag applies to `find` and `filter` commands only. 
-
-Format: 
-* `filter -s TAGNAME1 TAGNAME2`
-* `find -s keyword`
-
-
-### Adding a to-do: `todo`
-Adds a to-do item to the list of to-dos.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
-
 ## FAQ
 
 
