@@ -6,6 +6,6 @@ All notes are neatly organised in HappyPills so that no information of the patie
 Say goodbye to messy desks, illegible handwriting, time-consuming handwritten notes with HappyPills!
 
 ## Useful links:
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
