@@ -11,13 +11,13 @@ package Parser {
 Interface Parser <<Interface>>
 Class PatientCommandParser
 Class AppointmentParser
-Class MedicalParser
+Class PatientRecordParser
 }
 
 package Command {
 Class PatientCommand
 Class AppointmentCommand
-Class MedicalCommand
+Class PatientRecordCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
@@ -37,12 +37,12 @@ LogicManager .up.|> Logic
 
 PatientCommandParser .down.> PatientCommand : creates >
 AppointmentParser .down.> AppointmentCommand : creates >
-MedicalParser .down.> MedicalCommand : creates >
+PatientRecordParser .down.> PatientRecordCommand : creates >
 
 
 PatientCommandParser ..up|> Parser
 AppointmentParser ..up|> Parser
-MedicalParser ..up|> Parser
+PatientRecordParser ..up|> Parser
 LogicManager .right.> Command : executes >
 
 LogicManager --> Model
@@ -53,6 +53,6 @@ LogicManager .down.> CommandResult
 Command .up.> CommandResult
 PatientCommand .up.|> Command
 AppointmentCommand .up.|> Command
-MedicalCommand .up.|> Command
+PatientRecordCommand .up.|> Command
 CommandResult -[hidden]-> Parser
 @enduml
