@@ -110,7 +110,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 `edit CS1010 assignment /ea 10:00:00` Allocated time for activity is edited to `10:00:00` 
   
 ## Finding and Filtering
-By using `find` and `filter` commands, users can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent with minimal clutter is required.
+By using `find` and `filter` commands, users can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent (`graph`) with minimal clutter is required.
 
 ### Finding Activities by Name: `find`
 **Usage:** Users can request for a sub-list of activities that has names which contain any of the given keywords. If there are more than one keyword, each keyword should be separated with ` / `.
@@ -216,8 +216,8 @@ Thus, `clean /n 5` will automatically clean the top 5 oldest activities from the
 is activated).
 
 Note:\
-Default value for `NUMBER` for data files : 3\
-Default value for `NUMBER` for log files : 10
+Default `NUMBER` value for data files : 3\
+Default `NUMBER` value for log files : 10
   
 ## FAQ
 
