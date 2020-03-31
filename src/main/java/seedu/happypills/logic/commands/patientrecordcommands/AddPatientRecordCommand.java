@@ -16,14 +16,14 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
     protected String time;
 
     /**
-     * Constructor for AddVisitCommand Class.
-     * It creates a new AddVisitCommand Object with the information provided.
+     * Constructor for PatientRecordCommand Class.
+     * It creates a new PatientCommand Object with the information provided.
      *
      * @param nric patient's nric.
      * @param symptom patient's symptom.
      * @param diagnosis patient's diagnosis.
-     * @param date date of visit.
-     * @param time time of visit.
+     * @param date date of record.
+     * @param time time of record.
      */
     public AddPatientRecordCommand(String nric, String symptom, String diagnosis, String date, String time) {
         this.nric = nric;
@@ -45,7 +45,7 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
             PatientRecord patientRecord = new PatientRecord(nric,symptom,diagnosis,date,time);
             patientRecords.addPersonalRecord(patientRecord, nric);
             //Patient patient = (Patient)patients.get(nric);
-            message = "    Visit has been added.\n"
+            message = "    Patient Record has been added.\n"
                     + TextUi.DIVIDER;
         }
         return message;

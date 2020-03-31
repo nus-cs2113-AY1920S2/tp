@@ -29,7 +29,7 @@ public class PatientRecordMap {
                 patientRecords.add(patientRecord);
                 argMultimap.put(patientRecord.getNric(), patientRecords);
             } else {
-                throw new HappyPillsException("    The visit is already in the database.\n"
+                throw new HappyPillsException("    The Patient Record is already in the database.\n"
                         + "    Please try again.");
             }
         }
