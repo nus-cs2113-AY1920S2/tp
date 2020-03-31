@@ -97,7 +97,7 @@ public class Ui {
             System.out.println(DIVIDER);
             System.out.println("Here are the matching activities in your list:\n");
             System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %s",
-                    "|", "Name", "|", "Duration", "|", "Date", "|", "Tags"));
+                    "|", "Name", "|", "Duration", "|", "Target","|", "Date", "|", "Tags"));
             for (int i = 0; i < resultsList.getSize(); i++) {
                 if (resultsList.get(i).getTags() != null && !resultsList.get(i).getTags().isEmpty()) {
                     printTableFormat(resultsList, i, true);
