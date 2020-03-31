@@ -96,6 +96,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 `list 01/01/2020 20/02/2020` List all activities than fall within 1 Jan 2020 and 20 Feb 2020.  
   
 ## Finding and Filtering Activities
+By using `find` and `filter`, users can reduce clutter and zoom-in to specific activities. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further de-clutter the results. These features are particularly useful when the visualisation of time spent is required without unnecessary clutter.
 
 ### Finding Activities by Name: `find`
 **Usage:** Users can request for a sub-list of activities that has names which contain any of the give keywords. Each keyword should be separated with ` / `.
