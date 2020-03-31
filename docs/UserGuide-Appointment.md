@@ -14,6 +14,27 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 
 #### 3.4.1. Add Appointment: `add appt`
 
+Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
+patient automatically.
+ 
+ ##### Usage example: 
+ 
+     add appt /ic[NRIC] /d[date] /t[time] /r[reason]
+         
+ **Example:**
+     
+    add appt /icS1234567F /d01/02/2020 /t 12:00:00 /rsick
+
+> ***Expected output:***
+>
+>![addSuccess](/docs/images/AddAppt.png)
+>
+>Confirm appointment details are correct by typing "y" or "Y"
+>
+>![addConfirmSuccess](/docs/images/confirmAddAppt.png)
+
+ [Return to Top](#Table-of-Content)
+
  [Return to Top](#Table-of-Content)
 
 #### 3.4.2. Edit Appointment: `edit appt`
