@@ -43,7 +43,7 @@ You can also add a new patient with the specified parameters in any order.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>HappyPills will prompt you for missing details that are important.</code>.</td>
+   <td>HappyPills will prompt you for missing details that are important.</td>
  </tr>
 </table>
 
@@ -59,7 +59,7 @@ You can also add a new patient with the specified parameters in any order.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> Entering `n` will not save the patients' information when HappyPills prompt you for confirmation.</code>.</td>
+   <td> Entering </code>n</code> will not save the patients' information when HappyPills prompt you for confirmation.</td>
  </tr>
 </table>
 
@@ -67,7 +67,7 @@ You can also add a new patient with the specified parameters in any order.
 >    
 >  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
  
 #### 3.2.2. Edit Patient: `edit patient`
 
@@ -90,11 +90,11 @@ Edit information of the patient with the specified NRIC.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> NRIC cannot be edited because it is what uniquely identifies the patient.</code>.</td>
+   <td> NRIC cannot be edited because it is what uniquely identifies the patient.</td>
  </tr>
 </table>
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
  
 #### 3.2.3. Delete Patient: `delete patient`
 
@@ -119,7 +119,7 @@ Delete a patient as specified by the NRIC.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> HappyPills will prompt for confirmation before deleting patient in the patient list. </code>.</td>
+   <td> HappyPills will prompt for confirmation before deleting patient in the patient list. </td>
  </tr>
 </table>
 
@@ -133,11 +133,11 @@ Delete a patient as specified by the NRIC.
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Upon successful deletion, patient's information will not be able to be retrieved again. </code>.</td>
+   <td> Upon </code>successful deletion </code>, patient's information will not be able to be retrieved again. </td>
  </tr>
 </table>
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.2.4. List All Patients: `list patient`
 
@@ -151,7 +151,7 @@ Displays all the patients in the patient list.
 >
 > ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
@@ -169,4 +169,4 @@ Retrieve details of the patient with the specified NRIC.
 >
 > ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
