@@ -4,12 +4,15 @@ import exception.MoException;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.Arrays;
+import java.util.ArrayList;
 
-import static common.Messages.MESSAGE_RETURN_SUCCESS;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
+import static common.Messages.MESSAGE_WEEK_RANGE_EMPTY;
 import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
+
+
 
 /**
  * This class contains information of a member's schedule in blocks of 30mins interval,
@@ -21,8 +24,8 @@ public class Contact {
     private static final Boolean MYSCHEDULEBLOCKED = true;
     private static final Boolean MYSCHEDULEFREE = false;
     private String memberName;
-    private Boolean[][] mySchedule; //String[7][48]; 7 days, separated into 30mins within 24 hours period.
-    private String[][] myScheduleName;
+    private Boolean[][][] mySchedule; //String[13][7][48]; 13 weeks, 7 days, separated into 30mins within 24 hours period.
+    private String[][][] myScheduleName;
     private boolean isMainUser = false;
 
     public Contact(String name) {
@@ -31,25 +34,30 @@ public class Contact {
             name = name.replace("_main", "");
         }
         this.memberName = name;
-        this.mySchedule = new Boolean[7][48];
-        this.myScheduleName = new String[7][48];
-        for (int i = 0; i < 7; i++) {
-            Arrays.fill(mySchedule[i], MYSCHEDULEFREE);
-            Arrays.fill(myScheduleName[i], null);
-
+        this.mySchedule = new Boolean[13][7][48];
+        this.myScheduleName = new String[13][7][48];
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 7; j++) {
+                for (int k = 0; k < 48; k++) {
+                    mySchedule[i][j][k] = MYSCHEDULEFREE;
+                    myScheduleName[i][j][k] = null;
+                }
+            }
         }
     }
 
-    /** Adds scheduled model.meeting in LocalTime into schedule[][] data structure.
+    /** Adds scheduled model.meeting in LocalTime into schedule[][][] data structure.
+     *
      * @param meetingName name of the scheduled model.meeting to be added.
      * @param startDay    start day of the model.meeting in integer.
      * @param startTime   start time of the model.meeting in LocalTime format. For eg, 11:30, 14:30, 00:00
      * @param endDay      end day of the model.meeting in integer.
      * @param endTime     end time of the model.meeting in LocalTime format: For eg, 11:30, 14:30, 00:00
+     * @param onWeeks     weeks that are suppose to be made busy.
      * @return returns String of error message, else returns "Success" if schedule is successfully edited.
      */
     public String addBusyBlocks(String meetingName, Integer startDay,
-                                String startTime, Integer endDay, String endTime) {
+                                String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
         LocalTime localTimeStart;
         LocalTime localTimeEnd;
         try {
@@ -73,7 +81,11 @@ public class Contact {
             return MESSAGE_STARTENDDAY_OUT_OF_RANGE;
         }
 
-        addBusyBlocksLogic(startBlock, endBlock, startDay, endDay, meetingName);
+        if (onWeeks.length == 0) {
+            return MESSAGE_WEEK_RANGE_EMPTY;
+        }
+
+        addBusyBlocksLogic(startBlock, endBlock, startDay, endDay, meetingName, onWeeks);
         return MESSAGE_RETURN_SUCCESS;
     }
 
@@ -82,35 +94,62 @@ public class Contact {
      * Used in addBusyBlocks().
      */
     private void addBusyBlocksLogic(Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
-                                    String meetingName) {
+                                    String meetingName, String[] onWeeks) throws MoException {
+
+        String[] startOnWeeks = onWeeks.clone();
+        String[] endOnWeeks = onWeeks.clone();
+
+        if (startDay > 6 && endDay > 6) {
+            startDay -= 7;
+            endDay -= 7;
+            startOnWeeks[0] = Integer.toString(Integer.parseInt(startOnWeeks[0]) + 1);
+            endOnWeeks[0] = Integer.toString(Integer.parseInt(endOnWeeks[0]) + 1);
+        } else if (startDay < 7 && endDay > 6) {
+            endDay -= 7;
+            endOnWeeks[0] = Integer.toString(Integer.parseInt(endOnWeeks[0]) + 1);
+        } else if (startDay > 6 && endDay < 7) {
+            throw new MoException("Meeting ends before it starts?");
+        }
+
         if (!startDay.equals(endDay)) {
-            int startDayCopy = startDay; // prevent modifying param arguments
-            for (int i = startBlock; i < 48; i++) {
-                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                this.myScheduleName[startDayCopy][i] = meetingName;
-            }
-            startDayCopy++;
-            while (startDayCopy != endDay) {
-                for (int i = 0; i < 48; i++) {
-                    mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                    this.myScheduleName[startDayCopy][i] = meetingName;
+            for (int j = 0; j < startOnWeeks.length; j++) {
+                int startDayCopy = startDay; // prevent modifying param arguments
+                for (int i = startBlock; i < 48; i++) {
+                    mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
+                    this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
                 }
                 startDayCopy++;
-            }
-            for (int i = 0; i < endBlock; i++) {
-                mySchedule[startDayCopy][i] = MYSCHEDULEBLOCKED;
-                this.myScheduleName[startDayCopy][i] = meetingName;
+                if (startDayCopy > 6) {
+                    startDayCopy = 0;
+                }
+                while (startDayCopy != endDay) {
+                    for (int i = 0; i < 48; i++) {
+                        mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
+                        this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
+                    }
+                    startDayCopy++;
+                    if (startDayCopy > 6) {
+                        startDayCopy = 0;
+                    }
+
+                }
+                for (int i = 0; i < endBlock; i++) {
+                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
+                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
+                }
             }
         } else {
-            for (int i = startBlock; i < endBlock; i++) {
-                mySchedule[startDay][i] = MYSCHEDULEBLOCKED;
-                this.myScheduleName[startDay][i] = meetingName;
+            for (int j = 0; j < startOnWeeks.length; j++) {
+                for (int i = startBlock; i < endBlock; i++) {
+                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = MYSCHEDULEBLOCKED;
+                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = meetingName;
+                }
             }
         }
     }
 
     boolean checkDay(Integer day) {
-        return day >= 0 && day <= 6;
+        return day >= 0 && day <= 13;
     }
 
 
@@ -118,12 +157,13 @@ public class Contact {
      * @param meetingName name of model.meeting previously added to be deleted.
      */
     public void deleteBlocksWithName(String meetingName) {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 48; j++) {
-                if (myScheduleName[i][j] != null && myScheduleName[i][j].equals(meetingName)) {
-                    mySchedule[i][j] = MYSCHEDULEFREE;
-                    myScheduleName[i][j] = null;
-
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 7; j++) {
+                for (int k = 0; k < 48; k++) {
+                    if (myScheduleName[i][j][k] != null && myScheduleName[i][j][k].equals(meetingName)) {
+                        mySchedule[i][j][k] = MYSCHEDULEFREE;
+                        myScheduleName[i][j][k] = null;
+                    }
                 }
             }
         }
@@ -158,15 +198,15 @@ public class Contact {
         return this.memberName;
     }
 
-    public Boolean[][] getSchedule() {
+    public Boolean[][][] getSchedule() {
         return this.mySchedule;
     }
 
-    public String[][] getMyScheduleName() {
+    public String[][][] getMyScheduleName() {
         return this.myScheduleName;
     }
 
-    public void setMyScheduleName(String[][] myScheduleName) {
+    public void setMyScheduleName(String[][][] myScheduleName) {
         this.myScheduleName = myScheduleName;
     }
 
@@ -175,12 +215,14 @@ public class Contact {
      * Sets mySchedule[][] to true/false depending on myScheduleName from disk.
      */
     public void setMyScheduleFromScheduleName() {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 48; j++) {
-                if (myScheduleName[i][j].equals("null")) {
-                    mySchedule[i][j] = false;
-                } else {
-                    mySchedule[i][j] = true;
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 7; j++) {
+                for (int k = 0; k < 48; k++) {
+                    if (myScheduleName[i][j][k].equals("null")) {
+                        mySchedule[i][j][k] = false;
+                    } else {
+                        mySchedule[i][j][k] = true;
+                    }
                 }
             }
         }

@@ -43,7 +43,7 @@ public class Storage {
             meetingList.forEach((n) -> {
                 try {
                     fw.write(n.getMeetingName() + " " + n.getStartDay() + " " + n.getStartTime() + " " + n.getEndDay()
-                        + " " + n.getEndTime() + System.lineSeparator());
+                            + " " + n.getEndTime() + " " + n.getStartDate() + " " + n.getEndDate() + System.lineSeparator());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -70,14 +70,17 @@ public class Storage {
 
             try {
                 FileWriter fw = new FileWriter(memberPath);
-                String[][] schedule = member.getMyScheduleName();
-                for (int i = 0; i < 7; i++) {
-                    for (int j = 0; j < 48; j++) {
-                        try {
-                            fw.write(schedule[i][j] + " ");
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                String[][][] schedule = member.getMyScheduleName();
+                for (int i = 0; i < 13; i++) {
+                    for (int j = 0; j < 7; j++) {
+                        for (int k = 0; k < 48; k++) {
+                            try {
+                                fw.write(schedule[i][j][k] + " ");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
+                        fw.write(System.lineSeparator());
                     }
                     fw.write(System.lineSeparator());
                 }
@@ -100,7 +103,8 @@ public class Storage {
         while (reader.hasNext()) {
             String[] data = reader.nextLine().split(" ");
             Meeting entry = new Meeting(data[0], Integer.parseInt(data[1]),
-                LocalTime.parse(data[2]), Integer.parseInt(data[3]), LocalTime.parse(data[4]));
+                    LocalTime.parse(data[2]), Integer.parseInt(data[3]),
+                    LocalTime.parse(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]));
             list.add(entry);
         }
         return list;
@@ -117,18 +121,19 @@ public class Storage {
                 if (entry.toString().contains("_schedule.txt")) {
                     String memberName = entry.toString().substring(5);
                     memberName = memberName.replaceAll("_schedule\\.txt", "");
+
+                    String[][][] myScheduleName = new String[13][7][48];
                     Contact member = new Contact(memberName);
-                    String[][] myScheduleName = new String[7][48];
-                    int i = 0;
-                    int j = 0;
+
                     Scanner reader = new Scanner(entry);
                     while (reader.hasNext()) {
-                        if (j >= 48) {
-                            i++;
-                            j = 0;
+                        for (int i = 0; i < 13; i++) {
+                            for (int j = 0; j < 7; j++) {
+                                for (int k = 0; k < 48; k++) {
+                                    myScheduleName[i][j][k] = reader.next();
+                                }
+                            }
                         }
-                        myScheduleName[i][j] = reader.next();
-                        j++;
                     }
                     member.setMyScheduleName(myScheduleName);
                     member.setMyScheduleFromScheduleName();
