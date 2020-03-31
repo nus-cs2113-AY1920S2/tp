@@ -61,11 +61,14 @@ DisplayList and DisplayTable, to specifically print the list and table interface
 ![event](images/event.png "Class diagram of Event component")           
 *Class diagram of the Event component*
 
+#### Program flow
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
 1. Once determined, the relevant information (e.g. index, name, time, date, venue) are extracted by 
 `EventParser`.
-1. Then, the relevant class that corresponds to the command is created, with the information extracted 
-from the previous step passed into it. It modifies `Event` or `EventList`.
+1. Then, the relevant class that corresponds to the requested command is 
+created, with the information extracted from the previous step passed into it. 
+    - e.g. Command `event delete i/1` will create a `DeleteEvent` object, with 
+    `index=1` as its argument.
 1. These commands are then returned to `Duke.run()` to `execute()`. 
 
 Note that:
@@ -75,7 +78,7 @@ and `time`, which corresponds to `d/` and `t/` flag respectively.
 `date` and/or `time` of an `Event` object.
 * `delete(Event)` method is currently not in use, but can be used to implement delete by event name, 
 either by complete match, or fuzzy match.
-* Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar control flow. 
+* Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar program flow. 
 
 ### Attendance
 ![attendance](images/Attendance.png "Class diagram of Attendance component")        
