@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import logic.command.CommandHandler;
 import exception.MoException;
-import logic.inputparser.CliParser;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -162,7 +161,7 @@ public class MeetingOrganizer {
                 break;
             }
 
-            String[] userInputWords = CliParser.splitWords(userInput);
+            String[] userInputWords = userInput.split(" ");
             try {
                 botResponse(userInputWords);
                 storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
