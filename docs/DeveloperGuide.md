@@ -6,27 +6,27 @@ PAC. The following groups are in particular the intended audience of the documen
 - PAC software testers
 ## Table of Contents
 1. [Setting Up](#1-setting-up)  
-1.1 [Requirements](#11-requirements)  
-1.2 [Startup using Command Line](#12-startup-using-command-line)  
-1.3 [Startup using Jar](#13-startup-using-jar)  
+    1.1 [Requirements](#11-requirements)  
+    1.2 [Startup using Command Line](#12-startup-using-command-line)  
+    1.3 [Startup using Jar](#13-startup-using-jar)  
 2. [Design](#2-design)  
-2.1 [Architecture](#21-overall-architecture)  
-2.2 [UI component](#22-ui-component)  
-2.3 [Command component](#23-command-component)  
-2.4 [Parse component](#24-parser-component)  
+    2.1 [Architecture](#21-overall-architecture)  
+    2.2 [UI component](#22-ui-component)  
+    2.3 [Command component](#23-command-component)  
+    2.4 [Parse component](#24-parser-component)  
 3. [Implementation](#3-implementation)  
-3.1 [Event](#31-event)  
-3.2 [Attendance](#32-attendance)  
-3.3 [Calendar](#33-calendar)  
-3.4 [Performance](#34-performance)  
-3.5 [Student List Collection](#35-student-list-collection)  
-4. [Testing](#4-instructions-for-manual-testing)  
-5. [Appendix](#5-appendix)  
-5.1 [Target User Profile](#51-target-user-profile)   
-5.2 [Value Proposition](#52-value-proposition)  
-5.3 [Non-functional requirements](#53-non-functional-requirements)  
-5.4 [User Stories](#54-user-stories)  
-6. [Glossary](#6-glossary)  
+    3.1 [Event](#31-event)  
+    3.2 [Attendance](#32-attendance)  
+    3.3 [Calendar](#33-calendar)  
+    3.4 [Performance](#34-performance)  
+    3.5 [Student List Collection](#35-student-list-collection)
+
+[Appendix A: Target User Profile](#appendix-a-target-user-profile)   
+[Appendix B: Value Proposition](#appendix-b-value-proposition)  
+[Appendix C: Non-functional requirements](#appendix-c-non-functional-requirements)  
+[Appendix D: User Stories](#appendix-d-user-stories)    
+[Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)  
+[Glossary](#glossary)  
 
 ## 1. Setting Up
 
@@ -169,38 +169,32 @@ Note that:
 
 * *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
 
-## 4. Instructions for Manual Testing
 
-1. Download the jar file and copy it into an empty folder.
-1. View the populated events by typing `event list`
-1. View the populated seminars by typing `seminar list`
-1. Delete an event by typing `delete i/INDEX`
-1. Edit an existing event's name by typing `event editname i/INDEX n/NAME`
-1. Edit an existing event's date and time by typing  
-`event editdatetime i/INDEX d/DATE t/TIME`
-1. Edit an existing event's venue by typing   
-`event editvenue i/INDEX v/VENUE`
-1. Display calendar by entering  
-`calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
+## Appendix
 
-## 5. Appendix
-
-### 5.1 Target user profile
+### Appendix A: Target user profile
 Our target audiences are professors who need help organizing their personal work schedule and need more time.
 The professors are pressed for time and they require a simple software to organize their monthly events
 and keep track of their students' attendance and performance. 
 
-### 5.2 Value proposition
+### Appendix B: Value proposition
 Our application will reduce the stress of the professor by allowing them to easily enter and store
 their work schedule as well as their students' records. After storing the data, the Professor can have
 quick access to the information in either a list or a calendar view. 
 
-## 5.3 Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
-{Give non-functional requirements}
-{To be added in future revisions}
+1. Should work on any mainstream OS as long as it has 
+[Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or above installed.
+1. Should be able to hold up to 100 events without a noticeable sluggishness in performance for 
+typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not 
+system admin commands) should be able to accomplish most of the tasks faster using commands 
+than using the mouse.
 
-## 5.4 User Stories
+{More to be added in future revisions}
+
+## Appendix D: User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -218,6 +212,21 @@ quick access to the information in either a list or a calendar view.
 |v2.0|professor|find an event by name|locate an event without having to go through the entire list|
 |v2.0|professor|view calendar of all my events|to see a overview of them|
 
-## 6. Glossary
+## Appendix E: Instructions for Manual Testing
+
+1. Download the jar file and copy it into an empty folder.
+1. View the populated events by typing `event list`
+1. View the populated seminars by typing `seminar list`
+1. Delete an event by typing `delete i/INDEX`
+1. Edit an existing event's name by typing `event editname i/INDEX n/NAME`
+1. Edit an existing event's date and time by typing  
+`event editdatetime i/INDEX d/DATE t/TIME`
+1. Edit an existing event's venue by typing   
+`event editvenue i/INDEX v/VENUE`
+1. Display calendar by entering  
+`calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
+
+
+## Glossary
 
 * *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
