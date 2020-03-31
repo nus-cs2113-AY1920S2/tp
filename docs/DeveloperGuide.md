@@ -2,10 +2,10 @@
 
 ## [Project TechToday](https://github.com/AY1920S2-CS2113-T14-2/tp) - Developer Guide
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Alaukik Pant`      Since: `Mar 2020`      Licence: `MIT`
 
 
-## Setting Up
+## 1. Setting Up
 
 Prerequisites: JDK 11, update Intellij to the most recent version
 
@@ -44,28 +44,51 @@ Type exit and press enter to let the execution proceed to the end. Also note how
 
 * Acknowledgement- The set-up portion is a direct adaptation of the set-up instructions given to us for this project.
 
-## Design 
+## 2. Design and Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+This section will describe the design and implementation of a notable feature in the project.
 
-## Implementation
-
-This section will describe details of implementation of features in TechToday.
-
-### `view` feature
+### `create` feature
 
 #### Overview
 
-The view feature adds articles, notes and jobs into the Article, Note and Job List respectively.
+The `create` feature helps the user create information objects that can be instances of `article`, `note` and `job` classes and automatically add them to the Article, Note and Job List respectively.
+
+The InformationCreator class is a standalone class with a static method called `execute`
+
+The mechanism in which the `InformationCreator.execute()` method works is given below:
+
+Step 1
+The user launches the app and loads the `SavedNoteList`, `SavedArticleList` and `SavedJobList` from the memory. 
+
+Step 2
+The user enters `create article`, for instance, into the command line. Method executeProgram() from the ProgramExecutor class parses the command provided and takes the first word of the command. Since the first word is `create`, it calls a static  `InformationCreator.execute(userResponse)` method, where "userResponse" is the original command provided by the user.
+
+Step 3
+The execute method of the InformationCreator class again parses the user command to check what kind of information the user is seeking to create. The following daigram illustrates the different possibilites of creatig different kinds of information peices.
+
+
+![Image of SwitchCase](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/docs/images/switchCase.png)
+
+
+Warning: If IndexOutOfBoundsException is caught, a "wrong command" message is shown to the user.
+
+Step 4
+Since our command was called `create article`, a static method called `ManualArticleCreator.execute()` is called from the standalone `ManualArticleCreator` class.
+
+Step 5
+The `ManualArticleCreator.execute()` method asks for variables including `title`, `url` and `category` from the user and fetches the current time and creates a timestamp of that time. The timestamp is assigned to a String variable called `epochSecond`. The four afformentioned variables are used to create an `article` object, which is then added to the `SavedArticleList` eventually.
+
+
+The following sequence diagram summarizes how create command operation works:
+
+"Sequence Diagram in Progress"
+
 
 
 ## Product Scope
 ### Target user profile
-
-* has a need to view and manage information on technology updates
-* prefers desktop apps over other types
-* prefers typing over mouse input
-* has access to internet to receive updates
+This product is aimed at a student majoring in Computer Science or closely related subject to manage so much information that there is to process about technology related news. 
 
 
 ### Value proposition
