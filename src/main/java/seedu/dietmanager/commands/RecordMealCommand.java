@@ -39,8 +39,8 @@ public class RecordMealCommand extends Command {
 
         try {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.date = descriptionArray[0].toUpperCase();
-            this.mealType = descriptionArray[1];
+            this.date = descriptionArray[0].trim().toUpperCase();
+            this.mealType = descriptionArray[1].trim().toLowerCase();
             this.foodDescription = descriptionArray[2].trim().split("/");
             this.isValidFoodFormat = true;
 
