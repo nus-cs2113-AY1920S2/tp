@@ -36,7 +36,9 @@
     - [Launch and Shutdown](#launch-and-shutdown)
     - [Listing activities](#listing-activities)
     - [Continuing activities](#continuing-activities)
+    - [Editing activities](#editing-activities)
     - [Graphing activities](#graphing-activities)
+    - [Setting tag goals](#setting-tag-goals)
 
 ## 1. Setting Up
    * Prerequisites
@@ -304,43 +306,69 @@ Allow users to record their daily activities and track their time usage in a use
 
 ### Instructions for Manual Testing  
   
-  #### Launch and Shutdown
-  1. Download the jar file and docs folder
-  2. Copy both into an empty folder
-  3. Run the jar file in your terminal using the command `java -jar jikan.jar`
-  
-  It is important to include the docs folder to have data for testing!
-  
-  #### Listing activities
-  Test case: `list month april`
-  
-  Expected: A list of activities completed in the month of April should be shown.
-  
-  Test case: `list 25/03/2020`
-  
-  Expected: A list of activities completed on 25th March 2020 should be shown.
-  
-  #### Continuing activities
-  Test case: `continue lab 4 ex2`
-  
-  Expected: Message "lab 4 ex2 was continued" will be displayed.
-  
-  Test case: `start lab 4 ex2`
-  
-  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
-  
-  #### Graphing activities
-  Test case: (to be done in succession)
-  
-  `find tutorial` then `graph 10`
-  
-  Expected: List of activities that contain 'tutorial' will be shown.
-  Then a chart of the duration of these activities will be shown.
-  
-  Test case: (to be done in succession)
-  
-  `list week` then `graph tags`
-  
-  Expected: List of activities completed this week will be shown. 
-  Then a chart of the duration of the tags of these activities will be shown.
+#### Launch and Shutdown
+1. Download the jar file and docs folder
+2. Copy both into an empty folder
+3. Run the jar file in your terminal using the command `java -jar jikan.jar`
+
+It is important to include the **docs folder** to have data for testing!
+
+#### Listing activities
+Test case: `list month april`
+
+Expected: A list of activities completed in the month of April should be shown.
+
+Test case: `list 25/03/2020`
+
+Expected: A list of activities completed on 25th March 2020 should be shown.
+
+#### Continuing activities
+Test case: `continue lab 4 ex2`
+
+Expected: Message "lab 4 ex2 was continued" will be displayed.
+
+Test case: `start lab 4 ex2`
+
+Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
+
+#### Editing activities
+Test case: `edit lab 4 ex2 /en lab 4 ex3`  
+
+Expected: Message "Activity named lab 4 ex2 has been updated!" will be displayed.  
+* The updated activity name can be seen by using the `list` command
+
+Test case: `edit lab 4 ex3 /ea 24:00:00`  
+
+Expected: Message "Activity named lab 4 ex3 has been updated!" will be displayed.  
+* The updated activity allocated time can be seen by using the `list` command.
+
+#### Graphing activities
+Test case: (to be done in succession)
+
+`find tutorial` then `graph 10`
+
+Expected: List of activities that contain 'tutorial' will be shown.
+Then a chart of the duration of these activities will be shown.
+
+Test case: (to be done in succession)
+
+`list week` then `graph tags`
+
+Expected: List of activities completed this week will be shown. 
+Then a chart of the duration of the tags of these activities will be shown.
+
+#### Setting tag goals
+Test case: `goal core /g 24:00:00`
+
+Expected: Message "The goal for core has been added!" will be displayed.
+
+Test case: `goal core /g 22:00:00`
+
+Expected: Message "The goal for this tag already exists, do you want to update the goal?" will be displayed.
+* If 'yes' is entered, the goal will be updated and the message "The goal for core was updated" will be displayed.
+* If 'no' is entered, the message "Okay then, what else can I do for you?" will be displayed and the program will wait for user's next command.
+
+Test case: `goal`
+
+Expected: List of tags and their associated goals will be displayed. 
   
