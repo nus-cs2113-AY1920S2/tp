@@ -68,7 +68,7 @@ This section provides a high-level overview of HappyPills.
 
 ### 3.1. Architecture
 
-![Architecture diagram](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/ArchitectureDiagram.PNG "Overview of the Application")
+![Architecture diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/Nyan-HappyPills/docs/images/ArchitectureDiagram.PNG "Overview of the Application")
 
 The **Architecture diagram** above explains the high-level design of HappyPills.
 
@@ -97,8 +97,6 @@ The architecture of HappyPills is broken down into seven main classes:
 * `Appointment`: This class manages the data of data type Appointment in memory.
 * `MedicalRecords`: This class manages the data of data type MedicalRecord in memory.
 
-
-
 ### 3.2. TextUi Component
 
 The `TextUi` component: 
@@ -106,6 +104,8 @@ The `TextUi` component:
 * Listens for changes and outputs messages accordingly from the Command component.
 
 ### 3.3. Logic Component
+
+![Logic Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/LogicDiagram.jpg)
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -115,8 +115,8 @@ The diagram above shows the logic flow of HappyPills.
 4. The result of the command is then passed back to the `TextUi` to display the message. 
 
 ### 3.4. Model Component
-1.
 
+![Model Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ModelDiagram.jpg)
 
 ### 3.5. Storage Component
 
@@ -177,11 +177,9 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 **Implementation** 
 
 The activity diagram below summarises the process of executing an `add` command.
-![Add Activity Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddCommandActivityDiagram.png)
+![Add Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddPatientSequenceDiagram.jpg)
 
-// insert diagram
-
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `add patient /ic S7777777Z /n Alice /p 98765432 /d 01/01/2000 /b B+ /a Peanuts`.
 
@@ -206,7 +204,9 @@ will edit the patient's allergies to `School`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![Edit Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/EditPatientSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `edit patient S7777777Z /a School` 
 
@@ -228,7 +228,9 @@ will delete the patient with NRIC `S7777777Z`, if found.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![Delete Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/DeletePatientSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `delete patient S7777777Z`. 
 
@@ -251,7 +253,7 @@ will list all the appointments in the `PatientMap`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `list patient`.
 
@@ -273,7 +275,9 @@ will retrieve the details of the patient with NRIC `S7777777Z`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![Get Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/GetPatientSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `get patient S7777777Z` .
 
@@ -309,9 +313,9 @@ An `appointmentId` will also be given when an appointment is successfully added.
 
 **Implementation** 
 
-// insert diagram
+![Add Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddAppointmentSequenceDiagram.jpg)
 
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `add appt /ic S7777777Z /d 01/04/2020 /t 12:00:00 /r Checkup` .
 
@@ -335,7 +339,7 @@ will delete the appointment with appointment ID `1`, if found.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `delete appt 1`. 
 
@@ -360,7 +364,9 @@ will list all the appointments in the `AppointmentMap`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![List Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ListAppointmentSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `list appt`.
 
@@ -373,6 +379,18 @@ The following steps explains the sequence diagram shown above:
 5. In `ListAppointmentCommand.execute()`, it calls `TextUi.getAppointmentList()` which is then returned as the display message. 
 
 #### 4.3.6. Find Appointments of Patient
+
+The user is able to find all the appointments a specific patient has.
+The command: 
+    
+    find appt S7777777Z
+    
+will list all the appointments that the patient with NRIC S7777777Z has. 
+
+**Implementation**
+
+![Find Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/FindAppointmentSequenceDiagram.jpg)
+
 
 ### 4.4. Storage
 
