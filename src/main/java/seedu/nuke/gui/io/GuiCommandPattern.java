@@ -100,6 +100,12 @@ public class GuiCommandPattern {
             + "(?<fileInfo>(?:\\s+" + FILE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)");
 
+    public static final Pattern DONE_FORMAT = Pattern.compile(
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<invalid>.*)");
+
     public static final Pattern OPEN_FILE_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"

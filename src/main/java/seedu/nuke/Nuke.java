@@ -15,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class Nuke {
-    private Root root;
     private CommandResult commandResult;
     private ModuleManager moduleManager;
     private HashMap<String, String> modulesMap;
@@ -28,14 +27,13 @@ public class Nuke {
      * @throws FileNotFoundException if file cannot be found when loading jSon file
      */
     public Nuke() throws FileNotFoundException {
-        root = new Root();
         ui = new Ui();
         modulesMap = ModuleLoader.load("moduleList.json");
         //storageManager = new StorageManager("data.json");
         storageManager = new StorageManager("save.txt");
-        moduleManager = ModuleManager.getInstance(root, modulesMap);
+        moduleManager = ModuleManager.getInstance(new Root(), modulesMap);
         //ModuleManager.setModuleList(storageManager.load());
-        storageManager.load2();
+        storageManager.loadList();
         ScreenShotManager.saveScreenShot();
     }
 
@@ -72,7 +70,7 @@ public class Nuke {
      */
     public void exit() {
         ui.showSystemMessage(Message.DIVIDER);
-        storageManager.save2();
+        storageManager.saveList();
     }
 
     /**
@@ -87,7 +85,7 @@ public class Nuke {
 
             ScreenShotManager.saveScreenShot();
             //storageManager.save();
-            storageManager.save2();
+            storageManager.saveList();
         } while (!ExitCommand.isExit());
     }
 

@@ -6,14 +6,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import seedu.nuke.data.storage.StorageManager;
+import seedu.nuke.data.storage.StoragePath;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.gui.component.AutoCompleteTextField;
+import seedu.nuke.gui.component.DailyTaskCounter;
 import seedu.nuke.gui.component.DirectoryTree;
 import seedu.nuke.gui.component.SyntaxConsole;
 import seedu.nuke.gui.io.GuiExecutor;
@@ -21,6 +23,7 @@ import seedu.nuke.gui.io.GuiParser;
 import seedu.nuke.gui.util.TextUtil;
 
 import java.net.URL;
+import java.time.DayOfWeek;
 import java.util.ResourceBundle;
 
 import static seedu.nuke.util.Message.DIVIDER;
@@ -31,26 +34,51 @@ import static seedu.nuke.util.Message.MESSAGE_WELCOME_2;
 
 public class MainController implements Initializable {
 
-    @FXML
-    private TextFlow consoleScreen;
+    /* Daily Task Counter Panel components */
+    public Label overdueTaskCount;
+    public VBox mondayBox;
+    public Label mondayTaskCount;
+    public Label mondayDate;
+    public VBox tuesdayBox;
+    public Label tuesdayTaskCount;
+    public Label tuesdayDate;
+    public VBox wednesdayBox;
+    public Label wednesdayTaskCount;
+    public Label wednesdayDate;
+    public VBox thursdayBox;
+    public Label thursdayTaskCount;
+    public Label thursdayDate;
+    public VBox fridayBox;
+    public Label fridayTaskCount;
+    public Label fridayDate;
+    public VBox saturdayBox;
+    public Label saturdayTaskCount;
+    public Label saturdayDate;
+    public VBox sundayBox;
+    public Label sundayTaskCount;
+    public Label sundayDate;
 
+    /* Directory Tree components */
     @FXML
-    private ScrollPane consoleScreenScrollPane;
+    private VBox directoryBox;
+    private DirectoryTree directoryTree;
 
+    /* Console components */
     @FXML
     private VBox consoleBox;
-
+    private SyntaxConsole syntaxConsole;
+    private AutoCompleteTextField console;
     @FXML
     private Label directoryPathLabel;
 
+    /* Screen components */
     @FXML
-    private VBox directoryBox;
+    private TextFlow consoleScreen;
+    @FXML
+    private ScrollPane consoleScreenScrollPane;
 
-    private SyntaxConsole consoleMask;
 
-    private AutoCompleteTextField console;
 
-    private DirectoryTree directoryTree;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,7 +87,7 @@ public class MainController implements Initializable {
         consoleScreen.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt");
 
         directoryTree = new DirectoryTree();
-        consoleMask = new SyntaxConsole();
+        syntaxConsole = new SyntaxConsole();
         console = new AutoCompleteTextField();
         directoryPathLabel.setTextFill(Color.BLACK);
 
@@ -68,14 +96,14 @@ public class MainController implements Initializable {
 
         console.textProperty().addListener((observable, oldValue, newValue) -> {
             String currentUserInput = console.getText();
-            consoleMask.getChildren().clear();
-            consoleMask.getChildren().add(new GuiParser(console).smartParse(currentUserInput));
+            syntaxConsole.getChildren().clear();
+            syntaxConsole.getChildren().add(new GuiParser(console).smartParse(currentUserInput));
         });
 
         console.addEventFilter(KeyEvent.ANY, this::onKeyType);
         console.setOnAction(this::onSubmitInput);
 
-        consoleBox.getChildren().addAll(consoleMask, console);
+        consoleBox.getChildren().addAll(syntaxConsole, console);
 
         refreshScene();
         welcomeUser();
@@ -98,6 +126,7 @@ public class MainController implements Initializable {
     private void onSubmitInput(ActionEvent actionEvent) {
         String userInput = console.getText().trim();
         new GuiExecutor(consoleScreen).executeAction(userInput);
+        new StorageManager(StoragePath.SAVE_PATH).saveList();
         refreshScene();
     }
 
@@ -125,7 +154,7 @@ public class MainController implements Initializable {
             break;
         case TAB:
             keyEvent.consume();
-            consoleMask.showCommandFormat(console.getText());
+            syntaxConsole.showCommandFormat(console.getText());
             break;
         default:
             break;
@@ -133,8 +162,20 @@ public class MainController implements Initializable {
     }
 
     private void refreshScene() {
-        console.clear();
+        refreshTaskCounterPanel();
         directoryTree.refresh();
         directoryPathLabel.setText(DirectoryTraverser.getFullPath());
+        console.clear();
+    }
+
+    private void refreshTaskCounterPanel() {
+        new DailyTaskCounter(overdueTaskCount).setOverdueTaskCount();
+        new DailyTaskCounter(mondayBox, mondayTaskCount, mondayDate, DayOfWeek.MONDAY).setDailyTaskCount();
+        new DailyTaskCounter(tuesdayBox, tuesdayTaskCount, tuesdayDate, DayOfWeek.TUESDAY).setDailyTaskCount();
+        new DailyTaskCounter(wednesdayBox, wednesdayTaskCount, wednesdayDate, DayOfWeek.WEDNESDAY).setDailyTaskCount();
+        new DailyTaskCounter(thursdayBox, thursdayTaskCount, thursdayDate, DayOfWeek.THURSDAY).setDailyTaskCount();
+        new DailyTaskCounter(fridayBox, fridayTaskCount, fridayDate, DayOfWeek.FRIDAY).setDailyTaskCount();
+        new DailyTaskCounter(saturdayBox, saturdayTaskCount, saturdayDate, DayOfWeek.SATURDAY).setDailyTaskCount();
+        new DailyTaskCounter(sundayBox, sundayTaskCount, sundayDate, DayOfWeek.SUNDAY).setDailyTaskCount();
     }
 }

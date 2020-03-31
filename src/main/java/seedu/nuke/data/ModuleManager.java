@@ -23,7 +23,6 @@ public class ModuleManager implements Iterable<Module> {
     private static ModuleManager moduleManager = null;
     private static Root root;
     private static ArrayList<Module> moduleList;
-    // private static ArrayList<Task> allTasks;
     private static HashMap<String, String> modulesMap;
 
     private static final String NO_KEYWORD = "";

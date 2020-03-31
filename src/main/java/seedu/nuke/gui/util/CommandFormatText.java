@@ -288,7 +288,6 @@ public class CommandFormatText {
                 createText(TASK_PREFIX, Color.GREEN),
                 createText(" <task description>", Color.BLUE)
         );
-        commandFormat.setStyle("-fx-font-size: 10pt");
         return commandFormat;
     }
 

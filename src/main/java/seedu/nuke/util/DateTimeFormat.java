@@ -154,16 +154,15 @@ public class DateTimeFormat {
     /**
      * Gets the closest date of a day of the week after the current date.
      *
-     * @param currentDate
-     *  The current date
      * @param dayOfWeek
      *  The day of the week for which its date is to be found
      * @return
      *  The closest date of the specified day of the week
      */
-    public static LocalDate getNextDateOfDay(LocalDate currentDate, DayOfWeek dayOfWeek) {
+    public static LocalDate getNextDateOfDay(DayOfWeek dayOfWeek) {
+        LocalDate currentDate = LocalDate.now();
         DayOfWeek currentDay = currentDate.getDayOfWeek();
-        int dayCount = (currentDay.ordinal() - dayOfWeek.ordinal() + 7) % 7;
+        int dayCount = (dayOfWeek.ordinal() - currentDay.ordinal() + 7) % 7;
 
         // Toggle between current day or week after
         // if (dayCount == 0) {
