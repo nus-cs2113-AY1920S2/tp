@@ -30,8 +30,6 @@ import static seedu.nuke.util.Message.MESSAGE_WELCOME_2;
 
 
 public class MainController implements Initializable {
-    @FXML
-    private TextField spareConsole;
 
     @FXML
     private TextFlow consoleScreen;
@@ -101,15 +99,6 @@ public class MainController implements Initializable {
         String userInput = console.getText().trim();
         new GuiExecutor(consoleScreen).executeAction(userInput);
         refreshScene();
-    }
-
-    /**
-     * Submits the user input to be processed by the parser.
-     */
-    public void submitInput() {
-        String userInput = spareConsole.getText().trim();
-        new GuiExecutor(consoleScreen).executeAction(userInput);
-        spareConsole.clear();
     }
 
 
