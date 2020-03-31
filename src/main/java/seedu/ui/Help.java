@@ -37,8 +37,10 @@ public class Help extends UI {
         output.append(
             "To list all events, use the command\n"
             + "\tevent list\n"
+            + "\n"
             + "To delete an event, use the command\n"
             + "\tevent delete i/Event_index\n"
+            + "\n"
         );
         display(output.toString());
     }
