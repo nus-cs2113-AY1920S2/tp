@@ -22,8 +22,17 @@ PAC. The following groups are in particular the intended audience of the documen
 This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
 ### Overall Architecture
-*Overall Class diagram*
-{To be added in future revisions}
+![Architecture](images/Architecture.png "Architecture of PAC")
+
+*Overall architecture design of PAC*
+
+The `PAC` component contains all other components in the application.
+
+- `UI`: reads user input, and prints output in pre-defined format.
+- `Storage`: loads/stores all events (in EventList) and all student lists (in StudentListCollection).
+- `CommandInterpreter`: Determines user input
+- `EventList`: stores all events during runtime
+- `StudentListCollection`: stores all student lists during runtime
 
 ### Command
 ![Command](images/Command.png "Class diagram of Command component")         
