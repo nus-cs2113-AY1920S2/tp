@@ -48,7 +48,7 @@ Type exit and press enter to let the execution proceed to the end. Also note how
 
 This section will describe the design and implementation of a notable feature in the project.
 
-### `create` feature
+### * `create` feature
 
 #### Overview
 
@@ -58,13 +58,13 @@ The InformationCreator class is a standalone class with a static method called `
 
 The mechanism in which the `InformationCreator.execute()` method works is given below:
 
-* Step 1
+* Step 1:
 The user launches the app and loads the `SavedNoteList`, `SavedArticleList` and `SavedJobList` from the memory. 
 
-* Step 2
+* Step 2:
 The user enters `create article`, for instance, into the command line. Method executeProgram() from the ProgramExecutor class parses the command provided and takes the first word of the command. Since the first word is `create`, it calls a static  `InformationCreator.execute(userResponse)` method, where "userResponse" is the original command provided by the user.
 
-* Step 3
+* Step 3:
 The execute method of the InformationCreator class again parses the user command to check what kind of information the user is seeking to create. The following daigram illustrates the different possibilites of creatig different kinds of information peices.
 
 
@@ -73,10 +73,10 @@ The execute method of the InformationCreator class again parses the user command
 
 Warning: If IndexOutOfBoundsException is caught, a "wrong command" message is shown to the user.
 
-* Step 4
+* Step 4:
 Since our command was called `create article`, a static method called `ManualArticleCreator.execute()` is called from the standalone `ManualArticleCreator` class.
 
-* Step 5
+* Step 5:
 The `ManualArticleCreator.execute()` method asks for variables including `title`, `url` and `category` from the user and fetches the current time and creates a timestamp of that time. The timestamp is assigned to a String variable called `epochSecond`. The four afformentioned variables are used to create an `article` object, which is then added to the `SavedArticleList` eventually.
 
 
@@ -88,7 +88,7 @@ The following sequence diagram summarizes how create command operation works:
 
 
 
-## Product Scope
+## 3. Product Scope
 ### Target user profile
 This product is aimed at a student majoring in Computer Science or closely related subject to manage so much information that there is to process about technology related news. 
 
@@ -97,22 +97,22 @@ This product is aimed at a student majoring in Computer Science or closely relat
 
 Receive and manage the most updated articles and jobs information specifically related to technology.
 
-## User Stories
+## 4. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 
-## Non-Functional Requirements
+## 5. Non-Functional Requirements
 
 {Give non-functional requirements}
 
-## Glossary
+## 6. Glossary
 
 * *glossary item* - Definition
 
-## Instructions for Manual Testing
+## 7. Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
