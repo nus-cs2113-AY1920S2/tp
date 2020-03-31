@@ -101,6 +101,19 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 
 #### 3.4.5. List All Appointments: `list appt` 
 
+List all the existing appointments. This can be used to check for appointmentID
+as used by other commands.
+ 
+ ##### Usage example: 
+ 
+     list appt
+         
+ **Example:**
+
+> ***Expected output:***
+>
+>![ListSuccess](/docs/images/ListAppt.png)
+
  [Return to Top](#Table-of-Content)
 
 #### 3.4.6. Find Patient's Appointments: `find appt`
