@@ -59,7 +59,6 @@ public class Jikan {
         cleaner.autoClean();
         logCleaner.autoClean();
         activityList = storage.createActivityList();
-        activityList.storage = storage;
         GoalCommand.createFile(TAG_FILE_PATH, tagFile);
 
         lastShownList.activities.addAll(activityList.activities);
