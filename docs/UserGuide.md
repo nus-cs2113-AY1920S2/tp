@@ -125,9 +125,8 @@ This flag applies to `find` and `filter` commands only.
 * `find -s KEYWORD1 / KEYWORD2 / KEYWORD3`
 
 ## Graphs
-By using the command following commands, users can get a visual representation of the time spent on each activity 
-and their progress. 
-There are 3 types of graphs supported are :
+By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 
+The 3 types of graphs are :
  * *Activity time graph* - Total time spent on each activity: `graph`
  * *Tags time graph* - Total time spent on each tag: `graph tags`
  * *Activity targets graph* - Progress of each activity in relation to its targeted time: `graph targets`
