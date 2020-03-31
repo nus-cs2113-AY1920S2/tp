@@ -47,7 +47,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 ## 2. Quick Start
 **Installation**
 1. Ensure that you have `Java 11` installed in your computer 
-2. Click [here](link to be added later?) to download the HappyPills JAR File
+2. Click [here](https://github.com/AY1920S2-CS2113T-T12-2/tp/releases) to download the HappyPills JAR File
 3. Copy the file to the folder you want to use as your home folder for HappyPills.
 
 **For all users**
