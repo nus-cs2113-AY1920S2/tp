@@ -55,7 +55,7 @@ You can also add a new patient with the specified parameters in any order.
 >    
 >  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.2.2. Edit Patient: `edit patient`
 
@@ -76,7 +76,7 @@ Edit information of the patient with the specified NRIC.
 :information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
 ---------------------|--------------------------------------------------------------------------
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.2.3. Delete Patient: `delete patient`
 
@@ -106,7 +106,7 @@ Delete a patient as specified by the NRIC.
 :heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
 -------------------------|-------------------------------------------------------------------
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
 
 #### 3.2.4. List All Patients: `list patient`
 
@@ -120,7 +120,7 @@ Displays all the patients in the patient list.
 >
 > ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG "List Ouput")  
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
@@ -138,4 +138,4 @@ Retrieve details of the patient with the specified NRIC.
 >
 > ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG "Get Ouput")
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)

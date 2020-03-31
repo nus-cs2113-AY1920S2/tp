@@ -47,7 +47,7 @@ Edit patient's medical records when there is any error in previous inputs.
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.3. Delete Patient Records: `delete pr`
 
@@ -64,7 +64,7 @@ Delete patient's medical records based on the given NRIC and the index of record
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.4. List Patient Records: `list pr`
 
@@ -79,7 +79,7 @@ Delete patient's medical records based on the given NRIC and the index of record
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.5. Find Patient Records: `find pr`
 
@@ -94,4 +94,4 @@ Delete patient's medical records based on the given NRIC and the index of record
 >
 >![]()
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
