@@ -17,7 +17,7 @@ To start, record your first activity using the `start ACTIVITY_NAME` command.
 
 Add some tags to your activities to group similar activities together using `/t`.
 
-Add allocated time to your activities using `/a`. Do note that the time allocated for an activity is represent by the target column in the diagram below. (These two words are used interchangeably).
+Add allocated time to your activities using `/a`. Do note that the time allocated for an activity is represented by the target column in the diagram below. (These two words are used interchangeably).
  
 When you are done with the activity, or want to move onto something else, tell Jikan to `end` and the Activity time will be recorded and saved to your list.
 
@@ -47,10 +47,11 @@ This is just a quick overview of what Jikan can do for you. For more details on 
   
 **Format:** `start ACTIVITY_NAME /a ALLOCATED_TIME /t TAGS`    
  * `ACTIVITY_NAME` can contains spaces and must be less than 25 characters.     
- * `ACTIVITY_NAME` must also be unique (should the user start an already existing activity, the option to `continue` will be given).  
- * `ALLOCATED_TIME` should be of the format [HH/MM/SS].  
- * `TAGS` are separated by spaces.  
- * `ALLOCATED_TIME` and `TAGS` are optional.  
+* `ACTIVITY_NAME` must also be unique (should the user start an already existing activity, the option to `continue` will be given).  
+* `ALLOCATED_TIME` should be of the format [HH/MM/SS].  
+* `TAGS` are separated by spaces.  
+* `ALLOCATED_TIME` and `TAGS` are optional.  
+* `ALLOCATED_TIME` must always come before `TAGS` if both are used.
     
 **Example:**  
 `start CS1010 assignment /a 01/30/00 /t CS1010 core`   
@@ -76,8 +77,9 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 **Usage:** Aborts the current activity and does not save it to the activity list.  
   
 **Format:** `abort`  
+* An activity must be started or continued before it can be ended.  
   
-### Deleting an activity: `delete`  
+### Delete an activity: `delete`  
 **Usage:** Deletes an activity in the activity list.  
   
 **Format:** `delete ACTIVITY_NAME`  
@@ -85,14 +87,16 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 ### Listing activities: `list`  
 **Usage:** Displays a list of the completed activities.  
   
-**Format:** `list TIME_PERIOD`  
+**Format:** `list TIME_PERIOD` 
 * If no `TIME_PERIOD` is given, all activities will be listed.  
-* `TIME_PERIOD` should be of the format [dd/MM/yyyy] or [yyyy-MM-dd]  
+* `TIME_PERIOD` can be `day` or `week`
+* To list activities in a specific month of the current year, use `list month MONTH_NAME` where `MONTH_NAME` must be spelled out in full (i.e. January and not Jan).
+* Otherwise, `TIME_PERIOD` should be of the format [dd/MM/yyyy] or [yyyy-MM-dd]  
 * `TIME_PERIOD` can either be a specific date or over a range.  
   
 **Example:**  
-`list` List all activities.  
-`list month` or `list monthly` Lists all activities in the current month.  
+`list` List all activities.    
+`list month april` Lists all activities in April.  
 `list week` or `list weekly` List all activities in the current week.  
 `list day` or `list daily` List all activities in the current day.  
 `list 01/01/2020` or `list 2020-01-01` List all activities on 1 Jan 2020.  
@@ -111,7 +115,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 `edit CS1010 assignment /ea 10:00:00` Allocated time for activity is edited to `10:00:00` 
   
 ## Finding and Filtering
-By using `find` and `filter` commands, users can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent (`graph`) with minimal clutter is required.
+By using `find` and `filter` commands, users can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent with minimal clutter is required.
 
 ### Finding Activities by Name: `find`
 **Usage:** Users can request for a sub-list of activities that has names which contain any of the given keywords. If there are more than one keyword, each keyword should be separated with ` / `.
@@ -128,8 +132,8 @@ By using `find` and `filter` commands, users can reduce clutter and zoom-in to s
 * `filter TAGNAME1 TAGNAME2`
 
 ### Chaining Finds & Filters: `-s`
-Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. 
-This is can be particularly useful when the user wants to generate a `graph`.
+Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. This sublist is generated based on the previously shown list and also works after a list command.
+This is can be particularly useful when the user wants to generate a graph.
 
 This flag applies to `find` and `filter` commands only. 
 
@@ -142,7 +146,7 @@ This flag applies to `find` and `filter` commands only.
 ## Graphs
 By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 
 The 3 types of graphs are :
- * *Activity time graph* - Total time spent on each activity: `graph`
+ * *Activity time graph* - Total time spent on each activity: `graph SCALE`
  * *Tags time graph* - Total time spent on each tag: `graph tags`
  * *Activity targets graph* - Progress of each activity in relation to its targeted time: `graph targets`
 
@@ -219,8 +223,6 @@ is activated).
 Note:\
 Default `NUMBER` value for data files : 3\
 Default `NUMBER` value for log files : 10
-  
-## FAQ
 
 
 ## Command Guide
