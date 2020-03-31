@@ -18,6 +18,16 @@ import java.util.List;
  * Class containing useful functions for modifying the data file.
  */
 public class StorageHandler {
+    Storage storage;
+
+    /**
+     * Constructs a StorageHandler object for the input Storage.
+     *
+     * @param storage The data file's file path.
+     */
+    public StorageHandler(Storage storage) {
+        this.storage = storage;
+    }
 
     /**
      * Removes the line whose index matches lineNumber from file at dataFilePath.
@@ -26,9 +36,9 @@ public class StorageHandler {
      * @param storage Storage object which contains path to save file.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void removeLine(int lineNumber, Storage storage) throws IOException {
+    public void removeLine(int lineNumber, Storage storage) throws IOException {
         // Read file into list of strings, where each string is a line in the file
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(Storage.dataFilePath),
+        List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(storage.dataFilePath),
                 StandardCharsets.UTF_8));
 
         //int removedIndex = 0;
@@ -56,7 +66,7 @@ public class StorageHandler {
      * @param storage Storage object to obtain file path.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void updateField(ArrayList<Activity> activities, Storage storage) throws IOException {
+    public void updateField(ArrayList<Activity> activities, Storage storage) throws IOException {
         List<String> fileContent = new ArrayList<>();
         for (Activity a : activities) {
             fileContent.add(a.toData());
@@ -71,7 +81,7 @@ public class StorageHandler {
      * @param dataFile The file to save to.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void saveNewList(List<String> newList, File dataFile) throws IOException {
+    public void saveNewList(List<String> newList, File dataFile) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(dataFile);
         PrintWriter printWriter = new PrintWriter(fileOutputStream);
 

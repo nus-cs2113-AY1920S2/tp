@@ -18,6 +18,7 @@ public class StorageHandlerTest {
         int random = (int )(Math.random() * 500 + 1);
         String filepath = "data/test" + random + ".txt";
         Storage storage = new Storage(filepath);
+        StorageHandler storageHandler = new StorageHandler(storage);
         storage.loadFile();
 
         String line1 = "a";
@@ -29,7 +30,7 @@ public class StorageHandlerTest {
         storage.writeToFile(line2);
         storage.writeToFile(line3);
 
-        StorageHandler.removeLine(1, storage);
+        storageHandler.removeLine(1, storage);
 
         int i = 0;
         Scanner dataScanner = new Scanner(storage.dataFile);

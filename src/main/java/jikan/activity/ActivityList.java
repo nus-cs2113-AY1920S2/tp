@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 public class ActivityList {
     public ArrayList<Activity> activities;
     public Storage storage; // Storage the list was loaded from
+    public StorageHandler storageHandler;
 
     /**
      * Constructor for a new activity list.
@@ -33,11 +34,23 @@ public class ActivityList {
     }
 
     /**
+     * Constructor for a new activity list to be saved to a file.
+     * @param storage the storage object to use.
+     */
+    public ActivityList(Storage storage) {
+        this.activities = new ArrayList<>();
+        this.storage = storage;
+        this.storageHandler = new StorageHandler(storage);
+    }
+
+    /**
      * Loads activityList from data file.
+     * @param storage the storage object to use.
      * @param dataFile the datafile to be read from.
      */
-    public ActivityList(File dataFile) {
+    public ActivityList(Storage storage, File dataFile) {
         this.activities = new ArrayList<>();
+        this.storage = storage;
         populateTaskList(dataFile);
     }
 
@@ -120,7 +133,7 @@ public class ActivityList {
      */
     public void deleteUpdateFile(int index) {
         try {
-            StorageHandler.removeLine(index, storage);
+            storageHandler.removeLine(index, storage);
         } catch (IOException e) {
             System.out.println("Error while deleting activity from data file.");
         }
@@ -128,7 +141,7 @@ public class ActivityList {
 
     private void fieldChangeUpdateFile() {
         try {
-            StorageHandler.updateField(activities, storage);
+            storageHandler.updateField(activities, storage);
         } catch (IOException e) {
             System.out.println("Error while updating activity from data file.");
         }
