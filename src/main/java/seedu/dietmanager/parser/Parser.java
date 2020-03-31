@@ -15,10 +15,11 @@ import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.DeleteWeightCommand;
 import seedu.dietmanager.commands.CalculateCaloriesCommand;
-import seedu.dietmanager.commands.WeightUpdateCommand;
-import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.CheckCaloriesCommand;
 import seedu.dietmanager.commands.ListFoodDatabaseCommand;
+import seedu.dietmanager.commands.AddFoodCommand;
+import seedu.dietmanager.commands.DeleteFoodCommand;
+
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.exceptions.InvalidGenderException;
@@ -161,6 +162,12 @@ public class Parser {
             break;
         case "delete-weight":
             command = new DeleteWeightCommand(commandPrompt, description);
+            break;
+        case "addf":
+            command = new AddFoodCommand(commandPrompt, description);
+            break;
+        case "delf":
+            command = new DeleteFoodCommand(commandPrompt, description);
             break;
         default:
             description = null;

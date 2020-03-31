@@ -37,8 +37,6 @@ public class CalculateCaloriesCommand extends Command {
 
     private boolean isInvalidDate;
 
-    private FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
-
     /**
      * Constructs the Command object.
      * @param command the command prompt entered by the user.
@@ -56,7 +54,7 @@ public class CalculateCaloriesCommand extends Command {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
             String[] timeDescription = descriptionArray[0].split("->");
 
-            this.begin = timeDescription[0].toUpperCase();
+            this.begin = timeDescription[0].trim().toUpperCase();
             Weekday.valueOf(this.begin);
 
             switch (timeDescription.length) {
@@ -64,7 +62,7 @@ public class CalculateCaloriesCommand extends Command {
                 isOneDay = true;
                 break;
             case 2:
-                this.end = timeDescription[1].toUpperCase();
+                this.end = timeDescription[1].trim().toUpperCase();
                 Weekday.valueOf(this.end);
                 isOneDay = false;
                 break;

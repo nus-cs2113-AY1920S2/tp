@@ -30,8 +30,8 @@ public class CheckRecordCommand extends Command {
 
         try {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.date = descriptionArray[0].toUpperCase();
-            this.mealType = descriptionArray[1];
+            this.date = descriptionArray[0].trim().toUpperCase();
+            this.mealType = descriptionArray[1].trim().toLowerCase();
             Weekday.valueOf(this.date);
         } catch (NullPointerException e) {
             this.noDescription = true;

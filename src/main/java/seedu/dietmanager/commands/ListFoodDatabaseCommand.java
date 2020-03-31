@@ -7,7 +7,7 @@ import seedu.dietmanager.ui.UI;
 
 public class ListFoodDatabaseCommand extends Command {
     private static final int ARGUMENTS_REQUIRED = 0;
-    private FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
+    private FoodNutritionInfo foodNutritionInfo = FoodNutritionInfo.getInstance();
 
     /**
      * Constructs the Command object.
