@@ -86,7 +86,7 @@ the new semester list will be added to `semesterList` as well.
 user
 
 The following sequence diagram shows how the `Add to Semester` operation works:
-![Sequence Diagram of Add to Semester](https://github.com/RenzoTsai/tp/blob/ReviseCode_UpdateDG/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
+![Sequence Diagram of Add to Semester](https://github.com/RenzoTsai/tp/blob/Update_DG/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
 
 
 #### Calculate CAP feature
