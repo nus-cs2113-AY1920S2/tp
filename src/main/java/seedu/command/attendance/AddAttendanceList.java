@@ -33,7 +33,7 @@ public class AddAttendanceList extends Command {
      * @throws PacException If studentNameList is empty.
      */
     public void addToList() throws PacException {
-        System.out.println("Would you like to import an existing student list? "
+        UI.display("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         if (isByNameList()) {
             if (studentListCollection.isEmpty()) {
@@ -57,19 +57,19 @@ public class AddAttendanceList extends Command {
         String name = "";
         String status = "";
         while (!status.equals("done")) {
-            System.out.println("Please key in student name.");
+            UI.display("Please key in student name.");
             ui.readUserInput();
             name = ui.getUserInput();
             if (name.equals("done")) {
                 break;
             }
-            System.out.println("Please key in the student's attendance status [Y/N].");
+            UI.display("Please key in the student's attendance status [Y/N].");
             ui.readUserInput();
             status = ui.getUserInput();
             attendances.addToList(new Attendance(name,status), eventName);
             studentNumber++;
         }
-        System.out.println("You have successfully added "
+        UI.display("You have successfully added "
                 + studentNumber + " to the attendance list.\n");
     }
 
@@ -82,7 +82,7 @@ public class AddAttendanceList extends Command {
             attendances.addToList(new Attendance(studentName,
                     ui.getAttendanceStatusOfStudent(studentName)), eventName);
         }
-        System.out.println("AttendanceList added");
+        UI.display("AttendanceList added");
     }
 
     /**

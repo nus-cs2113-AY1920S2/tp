@@ -63,7 +63,7 @@ public class AddPerformance extends Command {
             studentNumber++;
             parameter = ui.getStringInput();
         }
-        System.out.println("You have successfully added "
+        UI.display("You have successfully added "
                 + studentNumber + " result(s) to the performance list.");
     }
 

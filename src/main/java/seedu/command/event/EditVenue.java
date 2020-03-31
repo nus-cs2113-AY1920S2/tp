@@ -18,6 +18,6 @@ public class EditVenue extends Command {
     @Override
     public void execute() throws PacException {
         eventList.editVenue(index, venue);
-        System.out.println(eventList.list.get(index));
+        UI.display(eventList.list.get(index));
     }
 }

@@ -19,6 +19,6 @@ public class EditDateTime extends Command {
     @Override
     public void execute() throws PacException {
         eventList.editDatetime(index, datetime);
-        System.out.println(eventList.list.get(index));
+        UI.display(eventList.list.get(index));
     }
 }

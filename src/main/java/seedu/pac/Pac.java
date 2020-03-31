@@ -58,7 +58,7 @@ public class Pac {
             logger.addHandler(fh);
         } catch (IOException m) {
             logger.severe("File logger not working");
-            System.out.println(m.getMessage());
+            UI.display(m.getMessage());
         }
     }
 

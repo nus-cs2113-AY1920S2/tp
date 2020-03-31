@@ -10,14 +10,14 @@ import static seedu.pac.Pac.studentListCollection;
 
 public class DisplayList extends UI {
     public void printEventList(ArrayList<Event> list, String type) {
-        System.out.println("Here are all the " + type + "s in your list.");
+        UI.display("Here are all the " + type + "s in your list.");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
+            UI.display(i + 1 + ". " + list.get(i));
         }
     }
 
     public void printStudentList(StudentList studentList, String listName) {
-        System.out.println("Student List created, named : " + listName);
+        UI.display("Student List created, named : " + listName);
         studentList.showList();
     }
 
@@ -26,17 +26,17 @@ public class DisplayList extends UI {
         int index = 1;
         display("Please choose one of the following list.");
         for (StudentList studentList: studentListCollection) {
-            System.out.println(index + ". " + studentList.getListName());
+            UI.display(index + ". " + studentList.getListName());
         }
         return Integer.parseInt(getStringInput());
     }
 
     public void printSearchResults(ArrayList<StudentList> searchResults) throws PacException {
-        System.out.println("Here's the Search Results");
+        UI.display("Here's the Search Results");
         try {
             int index = 1;
             for (StudentList studentList : searchResults) {
-                System.out.println("\n[" + index + "]");
+                UI.display("\n[" + index + "]");
                 studentList.showList();
                 index++;
             }
