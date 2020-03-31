@@ -6,39 +6,51 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 //@@author joelczk
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
     public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
 
+    public static final String dCOMMAND_WORD = "searchd";
+    public static final String dCOMMAND_USAGE = "Search for tasks according to date: "
+            + "searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
+
+    protected static String CURRENT_COMMAND_WORD = "";
+    protected static String CURRENT_COMMAND_USAGE = "";
     protected static final String allTasks = "all";
     protected static final String eventTasks = "event";
     protected static final String assignmentTasks = "assignment";
     protected ArrayList<Integer> storeIndex;
     protected String taskType;
     protected String searchParam;
+    protected LocalDate date;
 
     /**
      * Constructor for search command.
      * @param searchParam search query that has to be searched
      * @param taskType type of task to search through
      */
-    public SearchCommand(String searchParam, String taskType) {
+    public SearchCommand(String searchParam, String taskType, LocalDate date) {
         this.searchParam = searchParam.toLowerCase();
         this.taskType = taskType;
         storeIndex = new ArrayList<>();
+        if (date == null) {
+            CURRENT_COMMAND_WORD = COMMAND_WORD;
+            CURRENT_COMMAND_USAGE = COMMAND_USAGE;
+        } else {
+            this.date = date;
+            CURRENT_COMMAND_WORD = dCOMMAND_WORD;
+            CURRENT_COMMAND_USAGE = dCOMMAND_USAGE;
+        }
     }
 
-    /**
-     * Returns an arrayList of all the tasks that matches the search query.
-     * @param taskList taskList object containing all the tasks
-     * @return arrayList of all tasks that match the search query
-     */
-    private ArrayList<Task> getSearchQueryAllTasks(TaskList taskList) {
-        ArrayList<Task> tasks = taskList.getTaskArray();
-        ArrayList<Task> results = new ArrayList<>();
+    private ArrayList<Task> loopArrayNoDateAllTasks(ArrayList<Task> tasks, ArrayList<Task> results) {
         int index = 1;
         for (Task task: tasks) {
             if (task.getName().toLowerCase().contains(searchParam)) {
@@ -50,22 +62,71 @@ public class SearchCommand extends Command {
         return results;
     }
 
+    private ArrayList<Task> loopArrayWithDateAllTasks(ArrayList<Task> tasks, ArrayList<Task> results, LocalDate date) {
+        int index = 1;
+        for (Task task: tasks) {
+            if (task.getName().toLowerCase().contains(searchParam) && task.getDate().equals(date)) {
+                results.add(task);
+                storeIndex.add(index);
+            }
+            index++;
+        }
+        return results;
+    }
+
+    private ArrayList<Task> loopArrayNoDateEventAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results) {
+        for (Map.Entry<Task,Integer> entry: tasks.entrySet()) {
+            Task task = entry.getKey();
+            if (task.getName().toLowerCase().contains(searchParam)) {
+                results.add(task);
+                storeIndex.add(tasks.get(task));
+            }
+        }
+        return results;
+    }
+
+    private ArrayList<Task> loopArrayWithDateEventAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results,
+                                                              LocalDate date) {
+        for (Map.Entry<Task,Integer> entry: tasks.entrySet()) {
+            Task task = entry.getKey();
+            if (task.getName().toLowerCase().contains(searchParam) && task.getDate().equals(date)) {
+                results.add(task);
+                storeIndex.add(tasks.get(task));
+            }
+        }
+        return results;
+    }
+
+    /**
+     * Returns an arrayList of all the tasks that matches the search query.
+     * @param taskList taskList object containing all the tasks
+     * @return arrayList of all tasks that match the search query
+     */
+    private ArrayList<Task> getSearchQueryAllTasks(TaskList taskList, LocalDate date) {
+        ArrayList<Task> tasks = taskList.getTaskArray();
+        ArrayList<Task> results = new ArrayList<>();
+        if (date == null) {
+            results = loopArrayNoDateAllTasks(tasks,results);
+        } else {
+            results = loopArrayWithDateAllTasks(tasks, results, date);
+        }
+        return results;
+    }
+
     /**
      * Returns an ArrayList of all event objects that matches the search query.
      * @param taskList taskList object containing all the tasks
      * @return ArrayList of all event objects that matches the search query
      */
-    private ArrayList<Task> getSearchQueryEvents(TaskList taskList) {
-        ArrayList<Task> events = taskList.getEventsArray();
-        assert events.size() == taskList.getEventsArray().size();
+    private ArrayList<Task> getSearchQueryEvents(TaskList taskList, LocalDate date) {
+        LinkedHashMap<Task, Integer> events = taskList.getEventsHashMap();
+        assert events.size() == taskList.getEventsHashMap().size();
         ArrayList<Task> results = new ArrayList<>();
-        int index = 1;
-        for (Task event: events) {
-            if (event.getName().toLowerCase().contains(searchParam)) {
-                results.add(event);
-                storeIndex.add(index);
-            }
-            index++;
+        if (date == null) {
+            results = loopArrayNoDateEventAssignments(events,results);
+        } else {
+
+            results = loopArrayWithDateEventAssignments(events, results, date);
         }
         return results;
     }
@@ -75,17 +136,14 @@ public class SearchCommand extends Command {
      * @param taskList taskList objects containing all assignment tasks
      * @return ArrayList of all assignment object that matches the search query
      */
-    private ArrayList<Task> getSearchQueryAssignments(TaskList taskList) {
-        ArrayList<Task> assignments = taskList.getAssignmentsArray();
+    private ArrayList<Task> getSearchQueryAssignments(TaskList taskList, LocalDate date) {
+        LinkedHashMap<Task, Integer> assignments = taskList.getAssignmentsHashMap();
         ArrayList<Task> results = new ArrayList<>();
-        int index = 1;
-        assert assignments.size() == taskList.getAssignmentsArray().size();
-        for (Task assignment: assignments) {
-            if (assignment.getName().toLowerCase().contains(searchParam)) {
-                results.add(assignment);
-                storeIndex.add(index);
-            }
-            index++;
+        assert assignments.size() == taskList.getAssignmentsHashMap().size();
+        if (date == null) {
+            results = loopArrayNoDateEventAssignments(assignments,results);
+        } else {
+            results = loopArrayWithDateEventAssignments(assignments, results, date);
         }
         return results;
     }
@@ -129,17 +187,17 @@ public class SearchCommand extends Command {
         }
         switch (taskType) {
         case allTasks:
-            ArrayList<Task> results = getSearchQueryAllTasks(taskList);
+            ArrayList<Task> results = getSearchQueryAllTasks(taskList, date);
             return new CommandResult(resultsList(results));
         case eventTasks:
-            ArrayList<Task> eventResults = getSearchQueryEvents(taskList);
+            ArrayList<Task> eventResults = getSearchQueryEvents(taskList, date);
             return new CommandResult(resultsList(eventResults));
         case assignmentTasks:
-            ArrayList<Task> assignmentResults = getSearchQueryAssignments(taskList);
+            ArrayList<Task> assignmentResults = getSearchQueryAssignments(taskList, date);
             return new CommandResult(resultsList(assignmentResults));
         default:
             return new CommandResult(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
-                    Parser.capitalize(COMMAND_WORD), COMMAND_USAGE));
+                    Parser.capitalize(CURRENT_COMMAND_WORD), CURRENT_COMMAND_USAGE));
         }
     }
 }
