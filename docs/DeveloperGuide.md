@@ -36,7 +36,9 @@
     - [Launch and Shutdown](#launch-and-shutdown)
     - [Listing activities](#listing-activities)
     - [Continuing activities](#continuing-activities)
+    - [Editing activities](#editing-activities)
     - [Graphing activities](#graphing-activities)
+    - [Setting tag goals](#setting-tag-goals)
 
 ## 1. Setting Up
    * Prerequisites
@@ -331,18 +333,34 @@ Allow users to record their daily activities and track their time usage in a use
   
   Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
   
-  #### Graphing activities
-  Test case: (to be done in succession)
-  
-  `find tutorial` then `graph 10`
-  
-  Expected: List of activities that contain 'tutorial' will be shown.
-  Then a chart of the duration of these activities will be shown.
-  
-  Test case: (to be done in succession)
-  
-  `list week` then `graph tags`
-  
-  Expected: List of activities completed this week will be shown. 
-  Then a chart of the duration of the tags of these activities will be shown.
+
+#### Graphing activities
+Test case: (to be done in succession)
+
+`find tutorial` then `graph 10`
+
+Expected: List of activities that contain 'tutorial' will be shown.
+Then a chart of the duration of these activities will be shown.
+
+Test case: (to be done in succession)
+
+`list week` then `graph tags`
+
+Expected: List of activities completed this week will be shown. 
+Then a chart of the duration of the tags of these activities will be shown.
+
+#### Setting tag goals
+Test case: `goal core /g 24:00:00`
+
+Expected: Message "The goal for core has been added!" will be displayed.
+
+Test case: `goal core /g 22:00:00`
+
+Expected: Message "The goal for this tag already exists, do you want to update the goal?" will be displayed.
+* If 'yes' is entered, the goal will be updated and the message "The goal for core was updated" will be displayed.
+* If 'no' is entered, the message "Okay then, what else can I do for you?" will be displayed and the program will wait for user's next command.
+
+Test case: `goal`
+
+Expected: List of tags and their associated goals will be displayed. 
   
