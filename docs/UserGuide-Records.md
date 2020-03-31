@@ -30,7 +30,7 @@ Add patient's medical records to the database, to support the diagnosis and to j
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.2. Edit Patient Records: `edit pr`
 
