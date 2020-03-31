@@ -12,6 +12,8 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 
 ### 3.4. Appointment Scheduling Commands 
 
+HappyPills helps to store appointment schedules. 
+
 #### 3.4.1. Add Appointment: `add appt`
 
 Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
