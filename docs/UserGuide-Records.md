@@ -74,7 +74,7 @@ Displays all the patients record for a particular patient.
  [&#8593; Return to Top](#Table-of-Content)
  
   
-#### 3.3.5. Find Patient Records: `find pr`
+#### 3.3.3. Find Patient Records: `find pr`
 
 Check all patient reports that the patient with the specified NRIC has. This can be used
 to check for the index used for the other commands.
@@ -108,7 +108,7 @@ to check for the index used for the other commands.
 
  [&#8593; Return to Top](#Table-of-Content)
  
-#### 3.3.2. Edit Patient Records: `edit pr`
+#### 3.3.4. Edit Patient Records: `edit pr`
 
 Edit patient's medical records when there is any error in previous inputs.
 
@@ -140,7 +140,7 @@ Edit patient's medical records when there is any error in previous inputs.
 
  [&#8593; Return to Top](#Table-of-Content)
  
-#### 3.3.3. Delete Patient Records: `delete pr`
+#### 3.3.5. Delete Patient Records: `delete pr`
 
 Delete patient's medical records based on the given NRIC and the index of records  . 
 
