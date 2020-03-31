@@ -14,20 +14,30 @@ public class Help extends UI {
     }
 
     public void printEventHelp() {
-        display("To add an event, use the following format:\n\t"
-                + "Event add n/Event_name v/Venue_name d/yyyy-MM-dd. "
-                + "You may also replace 'Event' with one of the following type:"
-                + "\n\t- Seminar\n\t- Exam\n\t- Tutorial\n\n");
-        display("To edit an event, use the following format:\n\t"
-                + "Event editDateTime i/index_of_Event, or\n\t"
-                + "Event editName i/index_of_Event, or\n\t"
-                + "Event editVenue i/index_of_Event, or\n\t"
-                + "Event editEvent (please edit these lines)\n\n");
-        display("To edit an event, use the following format:\n\t"
-                + "Event editDateTime i/index_of_Event, or\n\t"
-                + "Event editName i/index_of_Event, or\n\t"
-                + "Event editVenue i/index_of_Event, or\n\t"
-                + "Event editEvent (please edit these lines)\n\n");
+        StringBuilder output = new StringBuilder(
+            "To add an event, use this command the following format:\n"
+            + "\tEvent add n/Event_name [v/Venue_name] [d/yyyy-MM-dd t/HHmm].\n"
+            + "You may also replace 'Event' with one of the following type:\n"
+            + "\t- Seminar\n"
+            + "\t- Exam\n"
+            + "\t- Tutorial\n"
+            + "\n"
+        );
+        output.append(
+            "To edit an event, use these commands with the following format:\n"
+            + "\tEvent editDateTime i/Event_index d/yyyy-MM-dd t/HHmm, or\n"
+            + "\tEvent editName i/Event_index n/Event_name, or\n"
+            + "\tEvent editVenue i/Event_index v/Event_venue, or\n"
+            + "\tEvent editEvent i/Event_index n/Event_name [d/yyyy-MM-dd t/HHmm] [v/Event_venue]\n"
+            + "\n"
+        );
+        output.append(
+            "To list all events, use the command\n"
+            + "\tevent list\n"
+            + "To delete an event, use the command\n"
+            + "\tevent delete i/Event_index\n"
+        );
+        display(output.toString());
     }
 
     public void printPerformanceHelp() {
