@@ -152,10 +152,8 @@ You can also add a new patient with the specified parameters in any order.
 >
 > Enter `/p 999` to add missing field.
 
-<table border="1">
-<th>:information_source:</th> 
-<th>HappyPills will prompt you for missing details that are important.</th>
-<table>
+:information_source: | HappyPills will prompt you for missing details that are important.
+---------------------|-------------------------------------------------------------------
 
 > ***Expected output:***
 >
