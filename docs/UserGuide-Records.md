@@ -9,8 +9,9 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.3.4. List Patient Records : `list pr`](#324-list-all-patients-list-patient)
     + [3.3.5. Find Patient Records : `find pr`](#325-retrieve-a-patients-information-get-patient)
     
- [Return to Main](UserGuide-Main.md)
+<div align="left"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Main.html"> &#8592; Back to Main </a></div>
 
+<div align="right"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Appointment.html"> &#8594; Go to Appointments </a></div>
 
 ### 3.3. Patient Medical Records 
 
@@ -29,7 +30,7 @@ Add patient's medical records to the database, to support the diagnosis and to j
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.2. Edit Patient Records: `edit pr`
 
@@ -46,7 +47,7 @@ Edit patient's medical records when there is any error in previous inputs.
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.3. Delete Patient Records: `delete pr`
 
@@ -63,7 +64,7 @@ Delete patient's medical records based on the given NRIC and the index of record
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.4. List Patient Records: `list pr`
 
@@ -78,7 +79,7 @@ Delete patient's medical records based on the given NRIC and the index of record
 > ![]()
 >
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
  
 #### 3.3.5. Find Patient Records: `find pr`
 
@@ -93,4 +94,4 @@ Delete patient's medical records based on the given NRIC and the index of record
 >
 >![]()
 
- [Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#Table-of-Content)
