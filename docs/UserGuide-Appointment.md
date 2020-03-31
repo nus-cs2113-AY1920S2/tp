@@ -82,4 +82,19 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 
 #### 3.4.6. Find Patient's Appointments: `find appt`
 
+Check all appointments that the patient with the specified NRIC has. This can be used
+to check for the appointmentID used for the other commands.
+
+ ##### Usage example: 
+ 
+     find appt [NRIC]
+         
+ **Example:**
+     
+    find appt S1234567F
+
+> ***Expected output:***
+>
+>![findSuccess](/docs/images/FindAppt.png)
+
  [Return to Top](#Table-of-Content)
