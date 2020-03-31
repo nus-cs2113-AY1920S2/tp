@@ -21,7 +21,7 @@ HappyPills helps to store appointment schedules.
 Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
 patient automatically.
  
- ##### Usage example: 
+##### Usage example: 
  
      add appt /ic[NRIC] /d[date] /t[time] /r[reason]
          
@@ -37,14 +37,14 @@ patient automatically.
 >
 >![addConfirmSuccess](images/confirmAddAppt.png)
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.4.2. Edit Appointment: `edit appt`
 
 Edit information of the appointment with the specified appointmentID(apptID).
  The appointment should belong to the patient with the specified NRIC. 
  
- ##### Usage example: 
+##### Usage example:  
  
      edit appt [NRIC] [apptID] [Options][editedInput]
      Options:
@@ -60,13 +60,13 @@ Edit information of the appointment with the specified appointmentID(apptID).
 >
 >![editSuccess](images/EditAppt.png)
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.4.3. Delete Appointment: `delete appt`
 
 Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
 
-##### Usage example: 
+##### Usage example:  
 
     delete appt [NRIC] [apptID]
     
@@ -78,14 +78,14 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 >
 > ![editSuccess](images/DeleteAppt.png)
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.4.4. Mark Appointment as Done: `done appt` 
 
 Mark the appointment with the specified appointmentID(apptID) as done if arrived.
  The appointment should belong to the patient with the specified NRIC. 
  
- ##### Usage example: 
+##### Usage example:  
  
      done appt [NRIC] [apptID]
          
@@ -97,14 +97,14 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 >
 >![doneSuccess](images/DoneAppt.png)
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.4.5. List All Appointments: `list appt` 
 
 List all the existing appointments. This can be used to check for appointmentID
 as used by other commands.
  
- ##### Usage example: 
+##### Usage example:  
  
      list appt
          
@@ -114,14 +114,14 @@ as used by other commands.
 >
 >![ListSuccess](images/ListAppt.png)
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.4.6. Find Patient's Appointments: `find appt`
 
 Check all appointments that the patient with the specified NRIC has. This can be used
 to check for the appointmentID used for the other commands.
 
- ##### Usage example: 
+##### Usage example: 
  
      find appt [NRIC]
          
@@ -133,4 +133,4 @@ to check for the appointmentID used for the other commands.
 >
 >![findSuccess](images/FindAppt.png)
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
