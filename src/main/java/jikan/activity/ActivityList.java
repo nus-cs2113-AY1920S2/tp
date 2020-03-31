@@ -31,7 +31,7 @@ public class ActivityList {
      */
     public ActivityList() {
         this.activities = new ArrayList<>();
-        this.storageHandler = new StorageHandler(storage);
+        //this.storageHandler = new StorageHandler(storage);
     }
 
     /**
