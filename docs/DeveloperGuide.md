@@ -68,7 +68,7 @@ This section provides a high-level overview of HappyPills.
 
 ### 3.1. Architecture
 
-![Architecture diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ArchitectureDiagram.PNG "Overview of the Application")
+![Architecture diagram](images/ArchitectureDiagram.PNG "Overview of the Application")
 
 The **Architecture diagram** above explains the high-level design of HappyPills.
 
