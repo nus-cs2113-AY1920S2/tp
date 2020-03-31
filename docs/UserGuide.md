@@ -575,3 +575,5 @@ A: Setting a repeat period of `3d` will mean that the event repeats **3 days lat
 e.g. `repeat id/1 p/3d`  
 Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`.  
 Refer to [Section 3.8, "Repeating Events: `repeat`"](#38-repeating-events-repeat).
+
+[Back to Top](#)

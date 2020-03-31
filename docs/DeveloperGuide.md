@@ -837,5 +837,4 @@ Target user profile:
 
 3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
 
-
-
+[Back to Top](#)
