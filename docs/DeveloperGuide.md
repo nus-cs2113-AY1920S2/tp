@@ -306,41 +306,33 @@ Allow users to record their daily activities and track their time usage in a use
 
 ### Instructions for Manual Testing  
   
-#### Launch and Shutdown
-1. Download the jar file and docs folder
-2. Copy both into an empty folder
-3. Run the jar file in your terminal using the command `java -jar jikan.jar`
-
-It is important to include the **docs folder** to have data for testing!
-
-#### Listing activities
-Test case: `list month april`
-
-Expected: A list of activities completed in the month of April should be shown.
-
-Test case: `list 25/03/2020`
-
-Expected: A list of activities completed on 25th March 2020 should be shown.
-
-#### Continuing activities
-Test case: `continue lab 4 ex2`
-
-Expected: Message "lab 4 ex2 was continued" will be displayed.
-
-Test case: `start lab 4 ex2`
-
-Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
-
-#### Editing activities
-Test case: `edit lab 4 ex2 /en lab 4 ex3`  
-
-Expected: Message "Activity named lab 4 ex2 has been updated!" will be displayed.  
-* The updated activity name can be seen by using the `list` command
-
-Test case: `edit lab 4 ex3 /ea 24:00:00`  
-
-Expected: Message "Activity named lab 4 ex3 has been updated!" will be displayed.  
-* The updated activity allocated time can be seen by using the `list` command.
+  #### Launch and Shutdown
+  1. Download the jar file and data.csv file.
+  2. Copy both into an empty folder.
+  3. Create a folder named `data` and put the data.csv file into this folder.
+  4. Ensure the folder `data` and `jikan.jar` are in the same folder.
+  5. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
+  
+  It is important to include the data.csv file to have data for testing!
+  
+  #### Listing activities
+  Test case: `list month april`
+  
+  Expected: A list of activities completed in the month of April should be shown.
+  
+  Test case: `list 25/03/2020`
+  
+  Expected: A list of activities completed on 25th March 2020 should be shown.
+  
+  #### Continuing activities
+  Test case: `continue lab 4 ex2`
+  
+  Expected: Message "lab 4 ex2 was continued" will be displayed.
+  
+  Test case: `start lab 4 ex2`
+  
+  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
+  
 
 #### Graphing activities
 Test case: (to be done in succession)
