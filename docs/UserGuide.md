@@ -105,10 +105,8 @@ Format: `help`
 > 
 > ![help](images/HelpOutput.PNG "help output")
 
-<table border="1">
-<th>:information_source:</th> 
-<th>The help command is split into four different sections (highlighted by the boxes).</th>
-<table>
+:information_source: | HappyPills will prompt you for missing details that are important.
+---------------------|-------------------------------------------------------------------
 
 #### 3.1.2. Exit program: `exit`
 
