@@ -105,8 +105,14 @@ Format: `help`
 > 
 > ![help](images/HelpOutput.PNG "help output")
 
-:information_source: | The help command is split into four different sections `(highlighted by the boxes)`.
----------------------|--------------------------------------------------------------------------------------------------
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>The help command is split into four different sections <code>(highlighted by the boxes)</code>.</td>
+ </tr>
+</table>
 
 #### 3.1.2. Exit program: `exit`
 
