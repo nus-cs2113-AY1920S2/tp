@@ -34,7 +34,7 @@ You can also add a new patient with the specified parameters in any order.
     
 >***Expected output:***
 >
->![MissingInput](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/MissingAddPatientInput.PNG "Missing Add Ouput")
+>![MissingInput](images/MissingAddPatientInput.PNG "Missing Add Ouput")
 >
 > Enter `/p 999` to add missing field.
 
@@ -50,7 +50,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/addConfirm.PNG "Add Confirmation Ouput")
+>   ![CheckConfirmAdd](images/addConfirm.PNG "Add Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -65,7 +65,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
+>  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
  [&#8593; Return to Top](#Table-of-Content)
  
@@ -83,7 +83,7 @@ Edit information of the patient with the specified NRIC.
 
 > ***Expected output:***
 >
-> ![editPatientOutput](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/EditCommandOutput.PNG "Edit Patient Ouput")
+> ![editPatientOutput](images/EditCommandOutput.PNG "Edit Patient Ouput")
 
 <table>
   <col width="20">
@@ -110,7 +110,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+> ![confirmDelete](images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -126,7 +126,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
+>  ![SuccessfulDelete](images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
 <table>
   <col width="20">
@@ -149,7 +149,7 @@ Displays all the patients in the patient list.
     
 > ***Expected output:***
 >
-> ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG "List Ouput")  
+> ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
 
  [&#8593; Return to Top](#Table-of-Content)
 
@@ -167,6 +167,6 @@ Retrieve details of the patient with the specified NRIC.
     
 > ***Expected output:***
 >
-> ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG "Get Ouput")
+> ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
 
  [&#8593; Return to Top](#Table-of-Content)
