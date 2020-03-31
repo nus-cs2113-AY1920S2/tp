@@ -65,6 +65,17 @@ back to the user on command-line.
 Besides the normal command line messages, there are two subclasses of UI: 
 DisplayList and DisplayTable, to specifically print the list and table interface to professor. 
 
+### Storage
+![Storage](images/StorageClass.png "Class diagram of Storage component")
+*Class diagram of the Storage component*
+
+On startup, `Pac` instantiates two `Storage` objects (`eventStorage` and 
+`studentListStorage`) to load and save `Event` and `StudentList` objects respectively.
+
+All `Event` and `StudentList` objects are receiving `Bye` command. If the 
+program crashes (due to unhandled Exception or Interrupt), they *will not* be 
+saved.
+
 ## Feature Design and Implementation 
 ### Event
 ![event](images/event.png "Class diagram of Event component")           
