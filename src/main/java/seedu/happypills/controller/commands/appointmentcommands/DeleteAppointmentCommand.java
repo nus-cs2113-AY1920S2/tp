@@ -90,6 +90,6 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         } else {
             message = "    Appointment does not exist. Please try again.\n";
         }
-        return message;
+        return TextUi.appendDivider(message);
     }
 }

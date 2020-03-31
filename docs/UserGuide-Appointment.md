@@ -18,13 +18,61 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 
 #### 3.4.2. Edit Appointment: `edit appt`
 
+Edit information of the appointment with the specified appointmentID(apptID).
+ The appointment should belong to the patient with the specified NRIC. 
+ 
+ ##### Usage example: 
+ 
+     edit appt [NRIC] [apptID] [Options][editedInput]
+     Options:
+         /d edit date
+         /t edit time
+         /r edit reason
+         
+ **Example:**
+     
+    edit appt S1234567F 5 /d 12/02/2020
+
+> ***Expected output:***
+>
+>![editSuccess](/docs/images/EditAppt.png)
+
  [Return to Top](#Table-of-Content)
 
 #### 3.4.3. Delete Appointment: `delete appt`
 
+Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
+
+##### Usage example: 
+
+    delete appt [NRIC] [apptID]
+    
+**Example:**
+
+    delete appt S1234567F 6
+
+> ***Expected output:***
+>
+> [editSuccess](/docs/images/DeleteAppt.png)
+
  [Return to Top](#Table-of-Content)
 
 #### 3.4.4. Mark Appointment as Done: `done appt` 
+
+Mark the appointment with the specified appointmentID(apptID) as done if arrived.
+ The appointment should belong to the patient with the specified NRIC. 
+ 
+ ##### Usage example: 
+ 
+     done appt [NRIC] [apptID]
+         
+ **Example:**
+     
+    done appt S1234567F 5 
+
+> ***Expected output:***
+>
+>![doneSuccess](/docs/images/DoneAppt.png)
 
  [Return to Top](#Table-of-Content)
 
