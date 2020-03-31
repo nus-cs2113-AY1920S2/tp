@@ -486,7 +486,6 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-
 |v1.0|Doctor|add Patient's details|view their information in their subsequent visits|
 |v1.0|Doctor|have a quick overview of a list of all patients|check for their detailed information|
 |v1.0|Doctor|add Patient's details|view their information in their subsequent patientRecords.|
