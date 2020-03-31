@@ -24,7 +24,6 @@ public class HelpCommand implements Command {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecordMap) {
         String message;
         String[] userCommand = command.split(" ", 3);
-        System.out.println(command);
         if (userCommand[0].equalsIgnoreCase("help") && userCommand.length == 1) {
             message = TextUi.getHelp();
         } else if (userCommand[1].equalsIgnoreCase("exit")) {
@@ -32,7 +31,7 @@ public class HelpCommand implements Command {
         } else if (userCommand[2].equalsIgnoreCase("patient")) {
             message = getPatientHelp(userCommand[1]);
         } else if (userCommand[2].equalsIgnoreCase("pr")) {
-            message = getVisitHelp(userCommand[1]);
+            message = getPatientRecordHelp(userCommand[1]);
         } else if (userCommand[2].equalsIgnoreCase("appt")) {
             message = getAppointmentHelp(userCommand[1]);
         } else {
@@ -59,18 +58,18 @@ public class HelpCommand implements Command {
         return message;
     }
 
-    private String getVisitHelp(String pr) {
+    private String getPatientRecordHelp(String pr) {
         String message = "";
         if (pr.equalsIgnoreCase("add")) {
-            message = TextUi.printAddPatientHelp();
+            message = TextUi.printAddPatientRecordHelp();
         } else if (pr.equalsIgnoreCase("list")) {
-            message = TextUi.printListPatientHelp();
+            message = TextUi.printListPatientRecordHelp();
         } else if (pr.equalsIgnoreCase("find")) {
-            message = TextUi.printGetPatientHelp();
+            message = TextUi.printFindPatientRecordHelp();
         } else if (pr.equalsIgnoreCase("edit")) {
-            message = TextUi.printEditPatientHelp();
+            message = TextUi.printEditPatientRecordHelp();
         } else if (pr.equalsIgnoreCase("delete")) {
-            message = TextUi.printDeletePatientHelp();
+            message = TextUi.printDeletePatientRecordHelp();
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
