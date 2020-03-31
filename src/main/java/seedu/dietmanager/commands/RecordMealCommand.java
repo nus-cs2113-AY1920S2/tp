@@ -64,8 +64,8 @@ public class RecordMealCommand extends Command {
         ArrayList<Food> foodList = new ArrayList<>();
         String[] foodDescriptionSplit;
         String foodName;
-        int foodCalories;
-        FoodNutritionInfo foodInfo = new FoodNutritionInfo();
+        Double foodCalories;
+        FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
 
         for (String singleFoodDescription : foodDescription) {
             if (singleFoodDescription.equals("")) {
@@ -73,9 +73,10 @@ public class RecordMealCommand extends Command {
             }
 
             foodDescriptionSplit = singleFoodDescription.trim().split(" -- ");
+            foodName = foodDescriptionSplit[0].trim().toLowerCase();
+
             switch (foodDescriptionSplit.length) {
             case 1:
-                foodName = foodDescriptionSplit[0].trim();
                 Food food;
                 if (foodInfo.isInDatabase(foodName)) {
                     food = foodInfo.findFood(foodName).get();
@@ -86,8 +87,7 @@ public class RecordMealCommand extends Command {
                 break;
             case 2:
                 try {
-                    foodName = foodDescriptionSplit[0].trim();
-                    foodCalories = Integer.parseInt(foodDescriptionSplit[1].trim());
+                    foodCalories = Double.parseDouble(foodDescriptionSplit[1].trim());
                     foodList.add(new Food(foodName, foodCalories));
                 } catch (NumberFormatException e) {
                     isValidFoodFormat = false;

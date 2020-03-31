@@ -37,8 +37,6 @@ public class CalculateCaloriesCommand extends Command {
 
     private boolean isInvalidDate;
 
-    private FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
-
     /**
      * Constructs the Command object.
      * @param command the command prompt entered by the user.

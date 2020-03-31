@@ -52,7 +52,7 @@ public class DietManager {
 
     private static void initialiseApplication() {
         appLogger = new AppLogger();
-        foodNutritionInfo = new FoodNutritionInfo();
+        foodNutritionInfo = FoodNutritionInfo.getInstance();
         profile = new Profile();
         ui = new UI();
         storage = new Storage(ui, appLogger);
