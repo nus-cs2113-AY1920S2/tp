@@ -131,7 +131,7 @@ The 3 types of graphs are :
  * *Tags time graph* - Total time spent on each tag: `graph tags`
  * *Activity targets graph* - Progress of each activity in relation to its targeted time: `graph targets`
 
-Tip: Use `find` and `filter` commands to reduce clutter as graphs are based on the last shown list of activities. 
+Tip: Use `find` and `filter` commands to reduce clutter before graphing as the graphs are based on the last shown list of activities. 
 
 ### Activity time graph: `graph`
 **Usage:** View a comparison of the absolute time spent on each activity in the last shown list. 
@@ -215,9 +215,11 @@ Default value for `NUMBER` for log files : 10
     * Edit activity allocated time: `edit ACTIVITY_NAME /ea NEW_ALLOCATED_TIME`
 * Delete an activity: `delete ACTIVITY_NAME`
 * Find activities with keyword: `find KEYWORD`
+    * optional: `find KEYWORD1 / KEYWORD2` for multiple keywords
     * optional: `find -s KEYWORD` for more specific find
 * Filter activities by tags: `filter TAG_NAME`
-    * optional: `filter -s TAG1 TAG2` for more specific filter
+    * optional: `filter TAG1 TAG2` for multiple tags
+    * optional: `filter -s TAG_NAME` for more specific filter
 * Set a goal for tags: `goal TAG_NAME /g DURATION`
 * View goals for tags: `goal`
 * Display graph by tags: `graph tags`
