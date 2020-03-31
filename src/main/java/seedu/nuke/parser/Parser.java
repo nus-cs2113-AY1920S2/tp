@@ -404,7 +404,7 @@ public class Parser {
     private Command prepareAddTagCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         Matcher matcher = AddTagCommand.REGEX_FORMATS.matcher(parameters);
-        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX, TAG_PREFIX);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX);
 
         String info = matcher.group(IDENTIFIER_GROUP).trim();
         String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();

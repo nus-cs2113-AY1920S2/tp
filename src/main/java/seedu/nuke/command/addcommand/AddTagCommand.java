@@ -33,7 +33,7 @@ public class AddTagCommand extends Command {
             "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<taskdescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
     private final ArrayList<String> infos;
@@ -53,7 +53,7 @@ public class AddTagCommand extends Command {
      * @param categoryName
      *  The name of the parent category
      */
-    public AddTagCommand(ArrayList<String> infos, String taskDescription, String moduleCode, String categoryName) {
+    public AddTagCommand(ArrayList<String> infos, String moduleCode, String categoryName, String taskDescription) {
         this.infos = infos;
         this.taskDescription = taskDescription;
         this.moduleCode = moduleCode;
