@@ -106,7 +106,7 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![help](images/HelpOutput.PNG "help output")
+> ![help](images/Exit.PNG "exit output")
 
  [&#8593; Return to Top](#Table-of-Content)
 
