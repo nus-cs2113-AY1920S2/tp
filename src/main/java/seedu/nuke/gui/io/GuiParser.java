@@ -917,7 +917,7 @@ public class GuiParser {
     private boolean isValidPriority(String priorityString) {
         try {
             int priority = Integer.parseInt(priorityString);
-            return priority >= 0 && priority <= 100;
+            return priority >= 0 && priority <= 20;
         } catch (NumberFormatException e) {
             return false;
         }

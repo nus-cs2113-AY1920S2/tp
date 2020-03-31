@@ -7,22 +7,13 @@ import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.OpenFileCommand;
 import seedu.nuke.command.UndoCommand;
-import seedu.nuke.command.addcommand.AddCategoryCommand;
-import seedu.nuke.command.addcommand.AddFileCommand;
-import seedu.nuke.command.addcommand.AddModuleCommand;
-import seedu.nuke.command.addcommand.AddTaskCommand;
-import seedu.nuke.command.editcommand.EditCategoryCommand;
-import seedu.nuke.command.editcommand.EditFileCommand;
-import seedu.nuke.command.editcommand.EditModuleCommand;
-import seedu.nuke.command.editcommand.EditTaskCommand;
+import seedu.nuke.command.addcommand.*;
+import seedu.nuke.command.editcommand.*;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
+import seedu.nuke.command.filtercommand.listcommand.*;
 
 import static seedu.nuke.gui.io.GuiParser.*;
 import static seedu.nuke.gui.util.TextUtil.createText;
@@ -51,6 +42,8 @@ public class CommandFormatText {
             return getAddTaskFormat();
         case AddFileCommand.COMMAND_WORD:
             return getAddFileFormat();
+        case AddTagCommand.COMMAND_WORD:
+            return getAddTagFormat();
 
         case DeleteModuleCommand.COMMAND_WORD:
             return getDeleteModuleFormat();
@@ -69,6 +62,10 @@ public class CommandFormatText {
             return getListTaskFormat();
         case ListFileCommand.COMMAND_WORD:
             return getListFileFormat();
+        case ListAllTasksDeadlineCommand.COMMAND_WORD:
+            return getListTaskDeadlineFormat();
+        case ListModuleTasksDeadlineCommand.COMMAND_WORD:
+            return getListModuleTaskDeadlineFormat();
 
         case EditModuleCommand.COMMAND_WORD:
             return getEditModuleFormat();
@@ -78,6 +75,8 @@ public class CommandFormatText {
             return getEditTaskFormat();
         case EditFileCommand.COMMAND_WORD:
             return getEditFileFormat();
+        case MarkAsDoneCommand.COMMAND_WORD:
+            return getDoneFormat();
 
         case ChangeDirectoryCommand.COMMAND_WORD:
             return getChangeDirectoryFormat();
@@ -147,6 +146,20 @@ public class CommandFormatText {
                 createText(" <task description> ", Color.BLUE),
                 createText(FILE_PREFIX, Color.GREEN),
                 createText(" <file path>", Color.BLUE)
+        );
+        return commandFormat;
+    }
+
+    private static TextFlow getAddTagFormat() {
+        commandFormat.getChildren().addAll(
+                createText(AddTagCommand.COMMAND_WORD, Color.GREEN),
+                createText(" <tag name> ", Color.BLUE),
+                createText(MODULE_PREFIX, Color.GREEN),
+                createText(" <module code> ", Color.BLUE),
+                createText(CATEGORY_PREFIX, Color.GREEN),
+                createText(" <category name> ", Color.BLUE),
+                createText(TASK_PREFIX, Color.GREEN),
+                createText(" <task description> ", Color.BLUE)
         );
         return commandFormat;
     }
@@ -239,6 +252,21 @@ public class CommandFormatText {
         return commandFormat;
     }
 
+    private static TextFlow getListTaskDeadlineFormat() {
+        commandFormat.getChildren().add(
+                createText(ListAllTasksDeadlineCommand.COMMAND_WORD, Color.GREEN)
+        );
+        return commandFormat;
+    }
+
+    private static TextFlow getListModuleTaskDeadlineFormat() {
+        commandFormat.getChildren().addAll(
+                createText(ListModuleTasksDeadlineCommand.COMMAND_WORD, Color.GREEN),
+                createText(String.format(" %s %s %s", "[", "<module code>", "]"), Color.DARKGRAY)
+        );
+        return commandFormat;
+    }
+
     private static TextFlow getEditModuleFormat() {
         commandFormat.getChildren().addAll(
                 createText(EditModuleCommand.COMMAND_WORD, Color.GREEN),
@@ -287,6 +315,18 @@ public class CommandFormatText {
                 createText(" <category name> ", Color.BLUE),
                 createText(TASK_PREFIX, Color.GREEN),
                 createText(" <task description>", Color.BLUE)
+        );
+        return commandFormat;
+    }
+
+    private static TextFlow getDoneFormat() {
+        commandFormat.getChildren().addAll(
+                createText(MarkAsDoneCommand.COMMAND_WORD, Color.GREEN),
+                createText(" <task description> ", Color.BLUE),
+                createText(MODULE_PREFIX, Color.GREEN),
+                createText(" <module code> ", Color.BLUE),
+                createText(CATEGORY_PREFIX, Color.GREEN),
+                createText(" <category name> ", Color.BLUE)
         );
         return commandFormat;
     }

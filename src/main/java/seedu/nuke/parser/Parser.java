@@ -727,7 +727,7 @@ public class Parser {
      *  <code>TRUE</code> if the priority is within range, or <code>FALSE</code> otherwise
      */
     private boolean isPriorityWithinRange(int priority) {
-        return priority >= 0 && priority <= 100;
+        return priority >= 0 && priority <= 20;
     }
 
     /**
