@@ -6,6 +6,10 @@
 3. [Features](#features)
     1. [View user profile](#view-user-profile)
     2. [Exit application](#exit-application)
+    3. [Set user profile](#set-user-profile)
+    4. [Check meals](#check-meals)
+    5. [Record meals](#record-meals)
+    6. [Calculate calories](#calculate-calories)
 4. [FAQ](#faq)
 5. [Command Summary](#command-summary)
 
@@ -167,7 +171,34 @@ Food: egg prata, Calories: 5.00cal
 For morning, total calculable calories intake: 5.00cal.
 ```
 
+### Calculate calories
+Calculates calories intake on a day or during a time period.
 
+Format: 
+* Option 1: `calculate-calories {DATE}`
+* Option 2: `calculate-calories {DATE1}->{DATE2}`
+
+Attention:
+```
+`DATE` is restricted to the range of `Monday` to `Sunday`.
+```
+
+Expected Output:
+* First let's record some meals
+    ```
+    record-meal Monday morning /egg -- 2
+    You just record the meal in the morning of: MONDAY.
+    record-meal Monday night /Apple
+    You just record the meal in the night of: MONDAY.
+    record-meal Wednesday morning /prata -- 5 /beef -- 10
+    You just record the meal in the morning of: WEDNESDAY.
+    ```
+* Then we calculate calories intake from Monday to Wednesday
+    ```
+    calculate-calories Monday->Wednesday
+    Your Calories intake during the given period is 19.00.
+    ```
+    * Notice `Apple` is in out database with calories info: 2.00
 
 ## FAQ
 
