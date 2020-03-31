@@ -94,7 +94,7 @@ Format: `help`
  </tr>
 </table>
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 #### 3.1.2. Exit program: `exit`
 
