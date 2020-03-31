@@ -10,6 +10,8 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.4.5. List All Appointments: `list appt`](#345-list-all-appointments-list-appt)
     + [3.4.6. Find Patient's Appointments: `find appt`](#346-find-patients-appointments-find-appt)
 
+[&leftarrow; Return to Main](UserGuide-Main.md)
+
 ### 3.4. Appointment Scheduling Commands 
 
 HappyPills helps to store appointment schedules. 

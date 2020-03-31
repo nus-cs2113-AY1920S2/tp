@@ -9,7 +9,9 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
     + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
 
- [Return to Main](UserGuide-Main.md)
+[&leftarrow; Return to Main](UserGuide-Main.md) 
+
+<div align="right"><a href="UserGuide-Main.md"> &#8594; Go to Medical Records</a></div>
 
 ### 3.2. General Patient Information
 

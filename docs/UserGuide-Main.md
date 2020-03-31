@@ -98,7 +98,7 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![Exit](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/Exit.PNG "Exit Ouput")
+> ![help](images/HelpOutput.PNG "help output")
 
 
 ### 3.5. Saving Data
