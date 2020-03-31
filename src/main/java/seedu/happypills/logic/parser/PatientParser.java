@@ -178,8 +178,7 @@ public class PatientParser {
      * @return string to be displayed to user for confirmation
      */
     public static String promptConformation(String[] parseInput) {
-        String text = TextUi.DIVIDER
-                + "\n        Are you sure all the listed details are correct?\n"
+        String text = "        Are you sure all the listed details are correct?\n"
                 + "\n        Name : " + parseInput[0].trim() + "\n"
                 + "        NRIC : " + parseInput[1].toUpperCase().trim() + "\n"
                 + "        Phone Number : " + parseInput[2].trim() + "\n"
