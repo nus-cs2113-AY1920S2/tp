@@ -22,6 +22,7 @@ import java.util.Scanner;
  * Main entry-point for the java.duke.Duke application.
  */
 public class HappyPills {
+    public static Scanner scanner;
     private TextUi ui;
     private PatientMap patients;
     private AppointmentMap appointments;
@@ -37,6 +38,7 @@ public class HappyPills {
         appointments = new AppointmentMap();
         patients = new PatientMap();
         patientRecords = new PatientRecordMap();
+        scanner = new Scanner(System.in);
         try {
             logger.info("loading patient data from file.");
             patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
@@ -77,11 +79,10 @@ public class HappyPills {
         logSetup();
 
         ui.printWelcomeMessage();
-        Scanner in = new Scanner(System.in);
 
-        while (in.hasNextLine()) {
+        while (scanner.hasNextLine()) {
             logger.info("going to start processing");
-            String fullCommand = in.nextLine();
+            String fullCommand = scanner.nextLine();
             System.out.println(TextUi.DIVIDER);
             String message = getCommandType(fullCommand);
             if (!message.isEmpty()) {

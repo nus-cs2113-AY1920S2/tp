@@ -1,5 +1,6 @@
 package seedu.happypills.logic.parser;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.appointmentcommands.AppointmentCommand;
 
 import seedu.happypills.logic.commands.appointmentcommands.AddAppointmentCommand;
@@ -128,7 +129,7 @@ public class AppointmentParser {
 
     private static String promptUser() {
         System.out.println(TextUi.DIVIDER);
-        Scanner in = new Scanner(System.in);
+        Scanner in = HappyPills.scanner;
         String reInput = in.nextLine();
         return reInput;
     }

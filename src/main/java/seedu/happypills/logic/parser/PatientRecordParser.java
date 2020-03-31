@@ -1,5 +1,6 @@
 package seedu.happypills.logic.parser;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.patientrecordcommands.AddPatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.DeletePatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.EditPatientRecordCommand;
@@ -155,7 +156,7 @@ public class PatientRecordParser {
 
     private static String promptUser() {
         System.out.println(TextUi.DIVIDER);
-        Scanner in = new Scanner(System.in);
+        Scanner in = HappyPills.scanner;
         String reInput = in.nextLine();
         System.out.println(TextUi.DIVIDER);
         return reInput;
