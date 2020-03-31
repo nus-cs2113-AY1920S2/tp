@@ -23,7 +23,7 @@ public class ScheduleHandler {
     private static final Boolean MYSCHEDULEFREE = false;
     private static Boolean[][][] masterSchedule = new Boolean[13][7][48];
     // ArrayList of free slots in Integer type {startDay, startBlock, endDay, endBlock}
-    private static ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<ArrayList<Integer>>();
+    private static ArrayList<ArrayList<Integer>> freeBlocks = new ArrayList<>();
 
 
     public ScheduleHandler(ArrayList<Contact> contactList) {
@@ -38,15 +38,17 @@ public class ScheduleHandler {
             Boolean[][][] memberSchedule = t.getSchedule();
             fillMasterSchedule(memberSchedule);
         }
-        //updateFreeBlocks();
+        updateFreeBlocks();
     }
 
-    public static ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock) {
+    public static ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock, int startWeek, int endWeek) {
         ArrayList<Integer> freeSlot = new ArrayList<Integer>();
         freeSlot.add(startDay);
         freeSlot.add(startBlock);
         freeSlot.add(endDay);
         freeSlot.add(endBlock);
+        freeSlot.add(startWeek);
+        freeSlot.add(endWeek);
         return freeSlot;
     }
 
@@ -136,11 +138,12 @@ public class ScheduleHandler {
                         boolean end = false;
                         final int startDay = i;
                         final int startBlock = j;
+                        final int startWeek = k;
                         while (masterSchedule[k][i][j] == MYSCHEDULEFREE) {
                             if (change) {
                                 change = false;
                             }
-                            if (i == 6 && j == 47) {
+                            if (i == 6 && j == 47 && k == 12) {
                                 end = true;
                                 break;
                             }
@@ -150,7 +153,11 @@ public class ScheduleHandler {
                                 i++;
                             }
                             j++;
+                            if (i == 6){
+                                i = 0;
+                            }
                         }
+                        int endWeek = k;
                         int endDay = i;
                         int endBlock = j - 1;
                         if (change) {
@@ -159,8 +166,9 @@ public class ScheduleHandler {
                         if (end) {
                             endBlock = 47;
                             endDay = 0;
+                            endWeek = 13;
                         }
-                        ArrayList<Integer> freeSlot = makeSlot(startDay, startBlock, endDay, endBlock);
+                        ArrayList<Integer> freeSlot = makeSlot(startDay, startBlock, endDay, endBlock, startWeek, endWeek);
                         this.freeBlocks.add(freeSlot);
                     }
                 }
@@ -180,7 +188,9 @@ public class ScheduleHandler {
                 Integer newStartBlock = this.freeBlocks.get(size - 1).get(1);
                 Integer newEndDay = this.freeBlocks.get(0).get(2);
                 Integer newEndBlock = this.freeBlocks.get(0).get(3);
-                ArrayList<Integer> newFreeSlot = makeSlot(newStartDay, newStartBlock, newEndDay, newEndBlock);
+                Integer startWeek = this.freeBlocks.get(0).get(4);
+                Integer endWeek = this.freeBlocks.get(0).get(5);
+                ArrayList<Integer> newFreeSlot = makeSlot(newStartDay, newStartBlock, newEndDay, newEndBlock, startWeek, endWeek);
                 this.freeBlocks.set(0, newFreeSlot);
                 this.freeBlocks.remove(size - 1);
             }

@@ -31,7 +31,7 @@ public class ContactTest {
     @Test
     public void addBusyBlocks_outOfRangeDay() throws MoException {
         int validStartDay = 1;
-        int invalidOutOfRangeEndDay = 9;
+        int invalidOutOfRangeEndDay = 20;
         String validStartTime = "08:30";
         String validEndTime = "12:00";
         String meetingName = "TEST_MEETING";
