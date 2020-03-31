@@ -40,6 +40,23 @@ Example of usage:
 `profile`
 
 Expected Outcome:
+* If `profile` doesn't exist
+
+```
+No existing profile found. To create a new profile, enter:
+set-profile {name} {age} {gender} {height} {weight} {weight goal}
+```
+
+* If `profile` already exists
+
+```
+Welcome to Diet Manager! How may I assist you today?
+Age:          18 years old
+Gender:       Male
+Height:       180.00 centimetres
+Weight        65.00 kilograms
+Weight Goal:  75.00 kilograms
+```
 
 ### Exit application
 Terminates and exits the application
@@ -53,6 +70,102 @@ Example of usage:
 `exit`
 
 Expected Outcome:
+
+```
+Thanks for using Diet Manager! See you again soon :)
+```
+
+### Set user profile
+Creates a new profile
+
+Format: `set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL`
+
+* If profile doesn't exist, the command will generate a new `Profile` object.
+* If profile already exist, the command will automatically update profile info.
+
+Example of usage:
+
+`set-profile John 20 male 180 80 75`
+
+Expected Outcome:
+
+```
+Your profile has been successfully updated.
+```
+* If enter `profile` again, you will expect to see:
+
+```
+Welcome to Diet Manager! How may I assist you today?
+Age:          20 years old
+Gender:       Male
+Height:       180.00 centimetres
+Weight        80.00 kilograms
+Weight Goal:  75.00 kilograms
+```
+
+### Check meals
+Check what the `profile` had eaten for a meal.
+
+Format: `check-meal DATE TIMEPERIOD`
+
+Attention:
+* `DATE` is restricted to the range of `Monday` to `Sunday` and `TIMEPERIOD` is restricted to
+  `morning/afternoon/night`.
+  
+Example of usage:
+
+`check-meal Monday morning`
+
+Expected Output:
+
+* If the record doesn't exist:
+    ```
+    MONDAY Morning: 
+    Oops, you have no record for this meal.
+    For morning, there are no calculable calories data.
+    ```
+* If the record exists:
+    ```
+    MONDAY Morning: 
+    Food: egg prata, Calories: 5.00cal
+    Food: noodles, Calories: 2.00cal
+    For morning, total calculable calories intake: 7.00cal.
+    ```
+
+### Record meals
+Records meals for the user(so they can refer record history and calculate calories intake later).
+
+Format: `record-meal DATE TIMEPERIOD /FOOD1 {-- 10.0} /FOOD2 {-- 6.00} /...`
+
+Attention:
+* Parameters in `{}` is optional, it denotes the calories content of the `Food`.
+    * If a `Food` item can be found in our database, then no calories info needs to be 
+provided. 
+    * If no calories info is provided for a `Food` item not in our database, the `record`
+    operation can still go on, but that `Food` item doesn't have calories info.
+* You can record as many `Food` items as you want for a meal.
+* `DATE` is restricted to the range of `Monday` to `Sunday` and `TIMEPERIOD` is restricted to
+`morning/afternoon/night`.
+* If a `Food` item is provided with incorrect calories info(like `/egg -- wow`), then this `Food` item
+won't be recorded.
+
+Example of usage: 
+
+`record-meal Saturday morning /egg prata -- 5 /noodles -- xxx`
+
+Expected Output:
+
+```
+You just record the meal in the morning of: SATURDAY.
+Some food/foods are not added due to invalid format.
+```
+
+* If enter `check-meal Saturday morning` right now, you expect to see:
+```
+SATURDAY Morning: 
+Food: egg prata, Calories: 5.00cal
+For morning, total calculable calories intake: 5.00cal.
+```
 
 
 
