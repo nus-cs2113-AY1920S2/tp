@@ -43,8 +43,6 @@ public class Ui {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    private static final String REQUIRED_INPUT_USER_NAME = "What is your name? Please enter it over here:";
-
     private static final String BOX_EDGE = "--------------------------------------------------------------------------"
             + "--------------------------------------------------";
 
@@ -54,24 +52,28 @@ public class Ui {
     public static final String BOX_MARGIN = "|-----|----------|------------------------------------------------------"
             + "---------|---------------|-------------------------|";
 
-
-
-    private static final String REQUIRED_INPUT_USER_MATRIC_YEAR = ", please input your matric year:";
-
     private static final String HELP = "Here are the commands that I can do for you:\n"
             + "1. \"help\" to look at all the commands that I can do\n"
-            + "2. \"view\" to see all modules we have in our module list\n"
-            + "3. \"add id/[module code] s/[1-8]\" to add a module to your personal module manager\n"
-            + "4. \"add id/[module code] n/[name of module]\" to add a module to the list of available modules\n"
-            + "5. \"done id/[module code] g/[grade] c/[credit]\" or \"done n/[name of module] g/[grade] c/[credit]\" "
+            + "2. \"view\" to see all modules you have in your module list\n"
+            + "3. \"add id/[module code] s/[semester] mc/[credit] "
+            + "| add n/[module name] s/[semester] mc/[credit] "
+            + "| add id/[module code] n/[module name] s/[semester] mc/[credit]\""
+            + " to add a module to your personal module manager\n"
+            + "4. \"add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]\""
+            + " to add a module to the list of available modules\n"
+            + "5. \"done n/[module name] g/[grade] | done id/[module code] g/[grade]\" "
             + "to mark it as done\n"
             + "6. \"view /mp\" to view your module plan\n"
             + "7. \"view /dm\" to view all finished modules\n"
-            + "8. \"view /cc\" to view the number of modular credits u have completed";
+            + "8. \"view /cc\" to view the number of modular credits u have completed\n"
+            + "9. \"CAP\" to view your current cap\n"
+            + "10. \"view\" to view all available modules";
 
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
-    private static final String SHOW_CAP = "Your CAP:";
+    private static final String SHOW_CAP = "Your current CAP is:";
+    private static final String SHOW_INPUT_ERROR = "Input Error, please enter your comand again!"
+            + " Type \"help\" for help";
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
@@ -131,14 +133,6 @@ public class Ui {
         showToUser(errorMessage, LINE_SEPARATOR);
     }
 
-    public static void showInputUserMatricYearRequest() {
-        showToUser("Hello " + Person.getName() + REQUIRED_INPUT_USER_MATRIC_YEAR);
-    }
-
-    public static void showInputUserNameRequest() {
-        showToUser(REQUIRED_INPUT_USER_NAME);
-    }
-
     public static void showHelpMessage() {
         showToUser(HELP);
     }
@@ -150,4 +144,9 @@ public class Ui {
     public static void showCap(String cap) {
         showToUser(SHOW_CAP, cap, LINE_SEPARATOR);
     }
+
+    public static void showInputError() {
+        showToUser(SHOW_INPUT_ERROR);
+    }
+
 }
