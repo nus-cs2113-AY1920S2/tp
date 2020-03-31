@@ -71,7 +71,7 @@ This section will explain the fundamental structure of the **Nuke** application,
 <br>
 
 ```
-	// Maybe I will add a sample Directory Tree diagram here
+	// Todo add a sample Directory Tree diagram here
 ```
 
 ### Root   
@@ -215,11 +215,11 @@ Adds a _task_ into your **Task List**. The **Task List** contains all your added
 #### Format  
 `addt <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]`  
 
-- `task description` -- The _description_ of the _task_
-- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
-- `category name` -- The _name_ of the   _category_
-- `deadline` -- The _deadline_ of the _task_
-- `priority` -- A number indicating the  _priority_ of the _category_
+- `task description` -- The _description_ of the _task_  
+- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added  
+- `category name` -- The _name_ of the   _category_  
+- `deadline` -- The _deadline_ of the _task_  
+- `priority` -- A number indicating the  _priority_ of the _category_   
 > **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
 > **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the task. If the `priority` is not given, then it will be set to the same _priority_ as it's _category_.  
 > **Note**: The `deadline` provided consists of both a _date_ and a _time_. The `deadline` provided must adhere to the set of accepted [Date Time formats](#date-time-formats).   
@@ -534,42 +534,46 @@ Edits a _module_, _category_ or _task_ in their respective lists.<br>
 <br><br>  
 
 ## 5. Mark a Task as Done  
-Marks a **previously undone** task as *done*.<br>  
-    
-#### Format  
-```
-	// To do
-```
+Marks a task as *done*.
 
+#### Format  
+`done <task description> -m <module code> -c <category name>`  
+
+- `task description` -- The _description_ of the _task_
+- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
+- `category name` -- The _name_ of the   _category_
+    
 #### Example Usage    
 ```
-	// To do
+	done Tutorial 7 -m CS1231 -c Tutorial
 ```
 
 #### Expected Outcome    
+
 ```
-	// To do
+	SUCCESS!! Task has been updated.
 ```
 
 <br><br>  
 
 ## 6. Change Directory 
-Traverse up and down the Directory Tree from your current directory.<br>  
-    
+Traverse up and down the Directory Tree from your current directory.  
+
 #### Format  
-```
-	// To do
-```
+
+`cd <directory name>` to traverse down   
+`cd ..` to traverse up   
+
+- `directory name` -- The name of the next _directory_
+- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
+- `category name` -- The _name_ of the   _category  
 
 #### Example Usage    
-```
-	// To do
-```
 
-#### Expected Outcome    
-```
-	// To do
-```
+```  
+	cd Assignment
+```  
+
 <br><br>
 
 # Miscellaneous Information  
