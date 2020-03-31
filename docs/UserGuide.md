@@ -69,7 +69,8 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 ### Ending an activity: `end`  
 **Usage:** Stops recording the time for an ongoing activity and stores it into the activity list.  
   
-**Format:** `end` * An activity must be started or continued before it can be ended.  
+**Format:** `end` 
+* An activity must be started or continued before it can be ended.  
   
 ### Aborting an activity: `abort`  
 **Usage:** Aborts the current activity and does not save it to the activity list.  
@@ -186,7 +187,7 @@ By using the `goal` command, users can set specific goals for how long they woul
 **Usage:** Displays the tags with their goals, actual time spent on activities with these tags and the difference between the 2 timings.
 
 **Format:** `goal`  
-![goal display](./pictures/GoalDisplay.png)  
+![goal display](./pictures/GoalDisplay.PNG)  
 
 ## Usage of Automated Cleaning
 
@@ -242,7 +243,6 @@ Default `NUMBER` value for log files : 10
     in either `yyyy-MM-dd` or `dd/MM/yyyy` format
 * Edit an activity: `edit ACTIVITY_NAME [flag]`
     * Edit activity name: `edit ACTIVITY_NAME /en NEW_NAME`
-    * Edit activity tags: `edit ACTIVITY_NAME /et NEW_TAG1 NEW_TAG2`
     * Edit activity allocated time: `edit ACTIVITY_NAME /ea NEW_ALLOCATED_TIME`
 * Delete an activity: `delete ACTIVITY_NAME`
 * Find activities with keyword: `find KEYWORD`
