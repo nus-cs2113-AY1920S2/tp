@@ -53,7 +53,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG "Start of App")
+![Start of Application](images/StartOfApplication.PNG "Start of App")
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
@@ -103,7 +103,7 @@ Format: `help`
 
 >***Expected output:***
 > 
-> ![help](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/HelpOutput.PNG "help output")
+> ![help](images/HelpOutput.PNG "help output")
 
 :information_source: | The help command is split into four different sections `(highlighted by the boxes)`.
 ---------------------|--------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![Exit](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/Exit.PNG "Exit Ouput")
+> ![Exit](images/Exit.PNG "Exit Ouput")
 
 ### 3.2. General Patient Information
 
@@ -142,7 +142,7 @@ You can also add a new patient with the specified parameters in any order.
     
 >***Expected output:***
 >
->![MissingInput](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/MissingAddPatientInput.PNG "Missing Add Ouput")
+>![MissingInput](images/MissingAddPatientInput.PNG "Missing Add Ouput")
 >
 > Enter `/p 999` to add missing field.
 
@@ -151,7 +151,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/addConfirm.PNG "Add Confirmation Ouput")
+>   ![CheckConfirmAdd](images/addConfirm.PNG "Add Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -160,7 +160,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
+>  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
 #### 3.2.2. Edit Patient: `edit patient`
 
@@ -176,7 +176,7 @@ Edit information of the patient with the specified NRIC.
 
 > ***Expected output:***
 >
-> ![editPatientOutput](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/EditCommandOutput.PNG "Edit Patient Ouput")
+> ![editPatientOutput](images/EditCommandOutput.PNG "Edit Patient Ouput")
 
 :information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
 ---------------------|--------------------------------------------------------------------------
@@ -195,7 +195,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+> ![confirmDelete](images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -204,7 +204,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
+>  ![SuccessfulDelete](images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
 :heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
 -------------------------|-------------------------------------------------------------------
@@ -219,7 +219,7 @@ Displays all the patients in the patient list.
     
 > ***Expected output:***
 >
-> ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG "List Ouput")  
+> ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
@@ -235,7 +235,7 @@ Retrieve details of the patient with the specified NRIC.
     
 > ***Expected output:***
 >
-> ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG "Get Ouput")
+> ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
 
 ### 3.3. Patient Medical Records 
 
