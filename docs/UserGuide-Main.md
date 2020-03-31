@@ -83,14 +83,16 @@ Format: `help`
 
 >***Expected output:***
 > 
-> ![help](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/HelpOutput.PNG "help output")
+> ![help](images/HelpOutput.PNG "help output")
 >
 
 Note:
 
+
 -----------------------------------------------------------------------------------------------------------------------
 | :information_source: | The help command is split into four different sections `(highlighted by the boxes)`. |
 | ------------------- | -------------------------------------------------------------------------------------- |
+
 
 #### 3.1.2. Exit program: `exit`
 
