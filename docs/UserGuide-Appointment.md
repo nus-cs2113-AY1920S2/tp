@@ -74,7 +74,7 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 
 > ***Expected output:***
 >
-> [editSuccess](/docs/images/DeleteAppt.png)
+> ![editSuccess](/docs/images/DeleteAppt.png)
 
  [Return to Top](#Table-of-Content)
 
