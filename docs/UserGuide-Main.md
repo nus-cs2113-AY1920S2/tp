@@ -89,8 +89,8 @@ Format: `help`
 Note:
 
 -----------------------------------------------------------------------------------------------------------------------
-:information_source:| The help command is split into four different sections `(highlighted by the boxes)`.
----------------------|--------------------------------------------------------------------------------------------------
+| :information_source: | The help command is split into four different sections `(highlighted by the boxes)`. |
+| ------------------- | -------------------------------------------------------------------------------------- |
 
 #### 3.1.2. Exit program: `exit`
 
