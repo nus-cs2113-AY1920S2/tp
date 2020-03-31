@@ -29,7 +29,8 @@ public class StorageHandlerTest {
         storage.writeToFile(line2);
         storage.writeToFile(line3);
 
-        StorageHandler.removeLine(1, storage);
+        StorageHandler storageHandler = new StorageHandler(storage);
+        storageHandler.removeLine(1, storage);
 
         int i = 0;
         Scanner dataScanner = new Scanner(storage.dataFile);
