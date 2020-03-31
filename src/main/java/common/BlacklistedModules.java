@@ -1,10 +1,21 @@
 package common;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import logic.modulelogic.ModuleHandler;
 
 /**
  * Contains all modules in AY19/20 with ill-formated JSON data.
@@ -251,4 +262,31 @@ public class BlacklistedModules {
         "TSC3222"
     };
     public static final Set<String> blacklistModule = Set.of(arr);
+
+    /**
+     * Run this to retrieve all the modules that doesn't follow the conventional format and
+     * store it into /UnformattedModules file.
+     */
+    public static void main(String[] args) throws IOException {
+        // RUN THIS TO FILTER UNFORMATTED MODULES INTO /UnformmattedModules file
+        FileWriter fw = new FileWriter("UnformattedModules", true);
+        URL url = new URL("https://api.nusmods.com/v2/2019-2020/moduleList.json");
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.connect();
+        //Convert the input stream to a json element
+        JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
+        JsonArray rootObj = root.getAsJsonArray();
+        for (int i = 0; i < rootObj.size(); i++) {
+            JsonObject module = rootObj.get(i).getAsJsonObject();
+            String moduleCode = module.get("moduleCode").toString().replaceAll("^.|.$", "");
+            try {
+                ModuleHandler myModuleHandler = new ModuleHandler(moduleCode);
+                myModuleHandler.generateModule();
+            } catch (Exception e) {
+                fw.write(moduleCode + "\n");
+            }
+        }
+        fw.close();
+    }
 }
+
