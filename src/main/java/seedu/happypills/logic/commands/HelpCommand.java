@@ -23,19 +23,18 @@ public class HelpCommand implements Command {
      */
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecordMap) {
         String message;
-        String[] userCommand = command.split(" ", 2);
-        if (command.equals("")) {
+        String[] userCommand = command.split(" ", 3);
+        System.out.println(command);
+        if (userCommand[0].equalsIgnoreCase("help") && userCommand.length == 1) {
             message = TextUi.getHelp();
-        } else if (userCommand[0].equalsIgnoreCase("help")) {
-            message = TextUi.printHelpHelp();
-        } else if (userCommand[0].equalsIgnoreCase("exit")) {
+        } else if (userCommand[1].equalsIgnoreCase("exit")) {
             message = TextUi.printExitHelp();
-        } else if (userCommand[1].equalsIgnoreCase("patient")) {
-            message = getPatientHelp(userCommand[0]);
-        } else if (command.equalsIgnoreCase("pr")) {
-            message = getVisitHelp(userCommand[0]);
-        } else if (command.equalsIgnoreCase("appt")) {
-            message = getAppointmentHelp(userCommand[0]);
+        } else if (userCommand[2].equalsIgnoreCase("patient")) {
+            message = getPatientHelp(userCommand[1]);
+        } else if (userCommand[2].equalsIgnoreCase("pr")) {
+            message = getVisitHelp(userCommand[1]);
+        } else if (userCommand[2].equalsIgnoreCase("appt")) {
+            message = getAppointmentHelp(userCommand[1]);
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
