@@ -96,33 +96,18 @@ class DateTimeTest {
     @Test
     void testToString() {
         DateTime today = new DateTime(LocalDate.now(), LocalTime.now());
-<<<<<<< HEAD:src/test/java/seedu/nuke/util/DateTimeTest.java
         assertEquals(today.getDateString() + " " + today.getTimeString(), today.toString());
-=======
-        assertEquals("today " + today.getTime()
-                + " [OVER!!]", today.toShow());
->>>>>>> master:src/test/java/seedu/nuke/format/DateTimeTest.java
 
         DateTime tomorrow = new DateTime(LocalDate.now().plusDays(1), LocalTime.now());
         assertEquals(tomorrow.getDateString()+ " " + tomorrow.getTimeString(), tomorrow.toString());
 
         DateTime yesterday = new DateTime(LocalDate.now().minusDays(1), LocalTime.now());
-<<<<<<< HEAD:src/test/java/seedu/nuke/util/DateTimeTest.java
         assertEquals(yesterday.getDateString() + " " + yesterday.getTimeString(), yesterday.toString());
-=======
-        assertEquals(yesterday.getDate() + " " + yesterday.getTime()
-                + " [OVER!!]", yesterday.toShow());
->>>>>>> master:src/test/java/seedu/nuke/format/DateTimeTest.java
 
         DateTime weekAfter = new DateTime(LocalDate.now().plusWeeks(1), LocalTime.now());
         assertEquals(weekAfter.getDateString() + " " + weekAfter.getTimeString(), weekAfter.toString());
 
         DateTime weekBefore = new DateTime(LocalDate.now().minusWeeks(1), LocalTime.now());
-<<<<<<< HEAD:src/test/java/seedu/nuke/util/DateTimeTest.java
         assertEquals(weekBefore.getDateString() + " " + weekBefore.getTimeString(), weekBefore.toString());
-=======
-        assertEquals(weekBefore.getDate() + " " + weekBefore.getTime()
-                + " [OVER!!]", weekBefore.toShow());
->>>>>>> master:src/test/java/seedu/nuke/format/DateTimeTest.java
     }
 }
