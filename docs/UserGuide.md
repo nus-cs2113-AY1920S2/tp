@@ -64,13 +64,13 @@ Note:\
 When the application is executed for the first time, the automated cleaning is deactivated by default and will remain so until it is activated by the user.
 
 ### Specifying how much data to clean: `clean /n NUMBER | clean log /n NUMBER`
-At runtime, the user can manually set the amount of data to clean using these commands where NUMBER is an integer based on user input. 
+At runtime, the user can manually set the amount of data to clean using these commands where `NUMBER` is an integer based on user input. 
 Thus, `clean /n 5` will automatically clean the top 5 oldest activities from the activity list upon every startup (assuming automated cleaning
 is activated).
 
 Note:\
-Default value for NUMBER for data files : 3\
-Default value for NUMBER for log files : 10
+Default value for `NUMBER` for data files : 3\
+Default value for `NUMBER` for log files : 10
 
 ## Graph Functions
 
@@ -94,7 +94,7 @@ Users can request for a sub-list of activities that has specific tags.
 Format: `filter TAGNAME1 TAGNAME2`
 
 ### Further Finding/Filtering: `-s`
-Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on his/her needs. 
+Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. 
 This is can be particularly useful when the user wants to generate a `graph`.
 
 This flag applies to `find` and `filter` commands only. 
