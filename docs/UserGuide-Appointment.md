@@ -10,7 +10,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.4.5. List All Appointments: `list appt`](#345-list-all-appointments-list-appt)
     + [3.4.6. Find Patient's Appointments: `find appt`](#346-find-patients-appointments-find-appt)
 
-<div align="left"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Main.html"> &#8592; Back to Main </a></div>
+<div align="left"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html"> &#8592; Back to Main </a></div>
 
 ### 3.4. Appointment Scheduling Commands 
 
