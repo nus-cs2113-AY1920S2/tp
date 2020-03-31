@@ -128,9 +128,6 @@ Delete a patient as specified by the NRIC.
 >    
 >  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
-:heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
--------------------------|-------------------------------------------------------------------
-
 <table>
   <col width="20">
   <col width="200">
@@ -139,7 +136,6 @@ Delete a patient as specified by the NRIC.
    <td> Upon successful deletion, patient's information will not be able to be retrieved again. </code>.</td>
  </tr>
 </table>
-
 
  [&#8593; Return to Top](#Table-of-Content)
 
