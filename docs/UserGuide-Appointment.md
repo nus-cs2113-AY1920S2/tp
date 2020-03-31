@@ -37,8 +37,6 @@ patient automatically.
 
  [Return to Top](#Table-of-Content)
 
- [Return to Top](#Table-of-Content)
-
 #### 3.4.2. Edit Appointment: `edit appt`
 
 Edit information of the appointment with the specified appointmentID(apptID).

@@ -11,24 +11,86 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     
  [Return to Main](/docs/UserGuide-Main.md)
 
-### 3.3. Patient Medical Information Commands 
+
+### 3.3. Patient Medical Records 
 
 #### 3.3.1. Add Patient Records: `add pr`
 
- [Return to Top](#Table-of-Content)
+Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
 
+##### Usage example:
+
+    add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS
+    
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
+
+ [Return to Top](#Table-of-Content)
+ 
 #### 3.3.2. Edit Patient Records: `edit pr`
 
- [Return to Top](#Table-of-Content)
+Edit patient's medical records when there is any error in previous inputs.
 
+##### Usage example:
+
+    edit pr NRIC INDEX /sym [SYMPTOMS] /diag [DIAGNOSIS] /d [DATE] /t [TIME]
+    
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
+
+ [Return to Top](#Table-of-Content)
+ 
 #### 3.3.3. Delete Patient Records: `delete pr`
 
- [Return to Top](#Table-of-Content)
+Delete patient's medical records based on the given NRIC and the index of records  . 
 
+##### Usage example: 
+
+    delete pr NRIC INDEX
+
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
+
+ [Return to Top](#Table-of-Content)
+ 
 #### 3.3.4. List Patient Records: `list pr`
 
- [Return to Top](#Table-of-Content)
+##### Usage example:
 
+    list pr NRIC
+
+**Example:**
+
+> ***Expected output:***
+>
+> ![]()
+>
+
+ [Return to Top](#Table-of-Content)
+ 
 #### 3.3.5. Find Patient Records: `find pr`
+
+##### Usage example:
+
+    find pr NRIC INDEX
+
+**Example:**
+
+> ***Expected output:***
+>
+>
+>![]()
 
  [Return to Top](#Table-of-Content)

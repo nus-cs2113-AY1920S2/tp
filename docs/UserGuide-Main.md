@@ -7,8 +7,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 - [3. Features](#3-features)
     * [3.1. General Commands](#31-general-commands)
         + [3.1.1. View help: `help`](#311-view-help-help)
-        + [3.1.2. Exit program: `exit`](#312-exit-program-exit)
-        
+        + [3.1.2. Exit program: `exit`](#312-exit-program-exit)        
     * [3.2. General Patient Information Commands](/docs/UserGuide-Patient.md) 
     * [3.3. Patient Medical Records Commands](/docs/UserGuide-Records.md)    
     * [3.4. Appointment Scheduling Commands](/docs/UserGuide-Appointment.md)
@@ -18,11 +17,12 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 
 ## 1. Introduction 
 
-HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI). 
-The application replaces all physical papers and is highly optimised for fast typing users.
-If you can type fast, HappyPills can help to manage patients’ records faster than traditional Graphical User Interface (GUI) applications. 
-All notes are neatly organised in HappyPills so that all your important information are safely stored. 
-Say goodbye to messy desks, illegible handwriting, time-consuming handwritten notes with HappyPills!
+HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI).
+  
+The application replaces all physical papers and is highly optimised for fast typing users.    
+If you can type fast, HappyPills can help to manage patients’ records **faster** than traditional Graphical User Interface (GUI) applications.  
+All notes are **neatly organised** in HappyPills so that all your important information are **safely stored**.  
+Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! :relaxed:
 
 ## 2. Quick Start
 **Installation**
@@ -33,7 +33,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG)
+![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG "Start of App")
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
@@ -42,7 +42,7 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 ### Command Format
 - Words in `UPPER_CASE` are the parameters to be supplied by you **e.g.** in `add patient \ic NRIC`, `NRIC` is the input required from you.
 - In case a tag is used multiple times in a command then its first instance will be taken and the remaining instances will be treated as invalid input.
-- Items in square brackets are optional **e.g.** `/ic NRIC [/a ALLERGIES]` can be used as `/ic S1234567F` or as `/ic S1234567F /a Dust`
+- Items in square brackets are optional **e.g.** `/ic NRIC /a [ALLERGIES]` can be used as `/ic S1234567F` or as `/ic S1234567F /a Dust`
 - Parameters can be in any order **e.g.** if the command requires `/n NAME /ic NRIC` or `/ic NRIC /n NAME `
 - All commands are case insensitive **e.g.** `help` or `HELP` or `HeLp` will display all the commands and their usage.
 
@@ -67,45 +67,26 @@ Say goodbye to messy desks, illegible handwriting, time-consuming handwritten no
 
 - `/r` → Reason for the Patient's appointment
 
-- `/` → 
+- `/sym` → Patient's Symptoms
 
-- `/` →
-
-- `/` →
+- `/diag` → Patient's Diagnosis
 
 ### 3.1. General Commands 
 
 #### 3.1.1. View Help: `help`
 
-Displays the list of commands and their syntaxes.
-
-Format: `help`
+Displays the list of commands and their syntax.
 
 ###### Usage example:
 
-*For general help*
+Format: `help`
 
-    help
+>***Expected output:***
+> 
+> ![help](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/HelpOutput.PNG "help output")
 
-*For specific help*
-
-    help [COMMAND] 
-    
-**Example:**
-
-`help get`
-
-> ***Expected output:***
->
->     ===================================================
->     To retrieve a patient's information, run the following command:
->     Note: patient details are within the parenthesis [ ]
->       get [NRIC]
->     Example:
->       get S1234567Z
->     The command above will display information regarding the patient with NRIC S1234567Z.
->     ===================================================
->
+:information_source: | The help command is split into four different sections `(highlighted by the boxes)`.
+---------------------|--------------------------------------------------------------------------------------------------
 
 #### 3.1.2. Exit program: `exit`
 
@@ -117,14 +98,42 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![Exit](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/Exit.PNG)
+> ![Exit](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/Exit.PNG "Exit Ouput")
 
 
 ### 3.5. Saving Data
 
-
-
 ## 4. Command Summary
+
+#### General Patient Information
+
+**Command** | **Format**
+--------|----------
+Add a patient's information | `add patient` /ic [NRIC] /n [NAME] /p [PHONE_NUMBER] /dob [DOB] /b [BLOOD_TYPE] /a [ALLERGIES] /rm [REMARKS]
+Edit a patient's information |  `edit patient` NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
+list all patients | `list patient`
+Retrieve a patient's information | `get patient` NRIC
+
+#### Patient Medical Records
+
+**Command** | **Format**
+--------|----------
+ Add a Patient Record |`add pr` /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS
+ Edit a Patient Record |`edit pr`
+ Delete a Patient Record | `delete pr`
+ List all Patient Records |`list pr`
+ Find a Patient Record|`find pr`
+
+#### Appointments
+
+**Command** | **Format**
+--------|----------
+Add an appointment | `add appt`
+Edit an appointment | `edit appt`
+Delete an appointment | `delete appt`
+Mark an appointment as done | `done appt`
+List all appointments | `list appt`
+Find an appointment| `find appt`
 
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)

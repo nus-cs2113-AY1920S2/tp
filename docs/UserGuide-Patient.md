@@ -17,21 +17,23 @@ HappyPills can help users to manage their patients' information easily.
 
 #### 3.2.1. Add Patient: `add patient`
 
-This feature allows you to add more patients into the exisiting patients' list. <br>  
-HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list. You can also add a new patient with the specified parameters in any order.
+This feature allows you to add more patients into the existing patients' list.
+ 
+HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list.  
+You can also add a new patient with the specified parameters in any order.
 
 
 ###### Usage Example:   
 
-    add patient /ic[NRIC] /n[NAME] /p[PHONE_NUMBER] /d[DOB] /b[BLOOD_TYPE]
+    add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
     
 **Example:**
 
-    add patient /ic S9999999Z /n Bob /d 12-11-98 /b A+
+    add patient /ic S9999999Z /n Bob /dob 12-11-98 /b A+
     
 >***Expected output:***
 >
->![MissingInput](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/MissingAddPatientInput.PNG)
+>![MissingInput](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/MissingAddPatientInput.PNG "Missing Add Ouput")
 >
 > Enter `/p 999` to add missing field.
 
@@ -40,16 +42,7 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 
 > ***Expected output:***
 >
->     =====================================================
->         Name : Bob
->         NRIC : S9999999Z
->         Phone Number : 999
->         DOB : 12-11-98
->         Blood Type : A+
->         Allergies : NIL
->         Remarks : NIL
->                                                    (Y/N)?
->     =====================================================
+>   ![CheckConfirmAdd](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/addConfirm.PNG "Add Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -58,32 +51,38 @@ HappyPills will prompt you if there are any missing fields and ask for confirmat
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG)
+>  ![SuccessfulAdd](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
  [Return to Top](#Table-of-Content)
-
+ 
 #### 3.2.2. Edit Patient: `edit patient`
 
 Edit information of the patient with the specified NRIC. 
 
 ##### Usage example: 
+ 
+    edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
 
-```
-edit patient [NRIC] [Options][editedInput]
-  
-Options:
-    -p edit phone number
-    -a edit allergies
-    -r edit remarks
-```
+**Example:**
 
+    edit patient S0618 /p9111
+
+> ***Expected output:***
+>
+> ![editPatientOutput](https://github.com/NyanWunPaing/tp/blob/Nyan-HappyPills/docs/images/EditCommandOutput.PNG "Edit Patient Ouput")
+
+:information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
+---------------------|--------------------------------------------------------------------------
+
+ [Return to Top](#Table-of-Content)
+ 
 #### 3.2.3. Delete Patient: `delete patient`
 
 Delete a patient as specified by the NRIC. 
 
 ##### Usage example: 
 
-    delete patient [NRIC]
+    delete patient NRIC
     
 **Example:**
 
@@ -91,14 +90,16 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG)
+> ![confirmDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+>
+> Enter `y` to confirm.
 
 :information_source: | HappyPills will prompt for confirmation before deleting patient in the patient list.  
 ---------------------|-------------------------------------------------------------------
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG)
+>  ![SuccessfulDelete](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
 :heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
 -------------------------|-------------------------------------------------------------------
@@ -107,7 +108,7 @@ Delete a patient as specified by the NRIC.
 
 #### 3.2.4. List All Patients: `list patient`
 
-Displays all the patients in alphabetical order.
+Displays all the patients in the patient list. 
 
 ##### Usage example: 
 
@@ -115,17 +116,17 @@ Displays all the patients in alphabetical order.
     
 > ***Expected output:***
 >
-> ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG)  
+> ![ListPatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/ListPatientOutput.PNG "List Ouput")  
 
  [Return to Top](#Table-of-Content)
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
-Retrieve details of the patient with the specified NRIC
+Retrieve details of the patient with the specified NRIC.
 
 ##### Usage example: 
 
-    get patient [NRIC] 
+    get patient NRIC
     
 **Example:**
 
@@ -133,6 +134,6 @@ Retrieve details of the patient with the specified NRIC
     
 > ***Expected output:***
 >
-> ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG)
+> ![getpatient](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/GetPatientOutput.PNG "Get Ouput")
 
  [Return to Top](#Table-of-Content)
