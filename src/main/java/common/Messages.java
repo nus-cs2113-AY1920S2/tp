@@ -10,7 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_MEETING = "Range entered is not within free slots.";
     public static final String MESSAGE_INVALID_NUMBER = "You have entered an invalid number.";
     public static final String MESSAGE_INVALID_NUSMODLINK = "You have entered an invalid nusmods link!";
-    public static final String MESSAGE_MODULECODE_IN_BLACKLIST = "Module's information from NUSMOD API is ill-formatted.";
+    public static final String MESSAGE_MODULECODE_IN_BLACKLIST = " Module's information from NUSMOD API is ill-formatted.";
     public static final String MESSAGE_EMPTY_MODULE = "Module either can't be fetched from NUSMOD API or has been deprecated from NUS";
     public static final String MESSAGE_RETURN_SUCCESS = "SUCCESS";
     public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "You have entered an index out of bounds.";
