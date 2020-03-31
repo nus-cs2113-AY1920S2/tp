@@ -92,6 +92,12 @@ Note:
 | :information_source: | The help command is split into four different sections `(highlighted by the boxes)`. |
 | ------------------- | -------------------------------------------------------------------------------------- |
 
+-----------------------------------------------------------------------------------------------------------------------
+| <span>&#8505;</span> | The help command is split into four different sections `(highlighted by the boxes)`. |
+| ------------------- | -------------------------------------------------------------------------------------- |
+
+ [&#8593; Return to Top](#Table-of-Content)
+
 #### 3.1.2. Exit program: `exit`
 
 Exits the program and ends the current session. 
@@ -104,8 +110,11 @@ Format: `exit`
 > 
 > ![help](images/HelpOutput.PNG "help output")
 
+ [&#8593; Return to Top](#Table-of-Content)
 
 ### 3.5. Saving Data
+
+ [&#8593; Return to Top](#Table-of-Content)
 
 ## 4. Command Summary
 
@@ -139,6 +148,10 @@ Mark an appointment as done | `done appt`
 List all appointments | `list appt`
 Find an appointment| `find appt`
 
+ [&#8593; Return to Top](#Table-of-Content)
+
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
+
+ [&#8593; Return to Top](#Table-of-Content)
