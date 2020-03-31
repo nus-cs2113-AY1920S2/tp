@@ -7,31 +7,10 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 - [3. Features](#3-features)
     * [3.1. General Commands](#31-general-commands)
         + [3.1.1. View help: `help`](#311-view-help-help)
-        + [3.1.2. Exit program: `exit`](#312-exit-program-exit)
-        
-    * [3.2. General Patient Information](#32-general-patient-information)
-        + [3.2.1. Add Patient: `add patient`](#321-add-patient-add-patient)
-        + [3.2.2. Edit Patient: `edit patient`](#322-edit-patient-edit-patient)
-        + [3.2.3. Delete Patient: `delete patient`](#323-delete-patient-delete-patient)
-        + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
-        + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
-        
-    * [3.3. Patient Medical Records](#33-patient-medical-information-commands)
-        + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
-        + [3.3.2. Edit Patient Records : `edit pr`](#332-edit-patient-records-edit-pr)
-        + [3.3.3. Delete Patient Records : `delete pr`](#333-delete-patient-records-delete-pr)
-        + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-list-pr)
-        + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-find-pr)
-    
-    * [3.4. Appointments](#34-appointment-scheduling-commands)
-        + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
-        + [3.4.2. Edit Appointment: `edit appt`](#342-edit-appointment-edit-appt)
-        + [3.4.3. Delete Appointment: `delete appt`](#343-delete-appointment-delete-appt)
-        + [3.4.4. Mark Appointment as Done: `done appt`](#344-mark-appointment-as-done-done-appt)
-        + [3.4.5. List All Appointments: `list appt`](#345-list-all-appointments-list-appt)
-        + [3.4.6. Find Patient's Appointments: `find appt`](#346-find-patients-appointments-find-appt)
-      
-     * [3.5. Saving Data](#)
+        + [3.1.2. Exit program: `exit`](#312-exit-program-exit)        
+    * [3.2. General Patient Information Commands](UserGuide-Patient.md) 
+    * [3.3. Patient Medical Records Commands](UserGuide-Records.md)    
+    * [3.4. Appointment Scheduling Commands](UserGuide-Appointment.md)
 - [4. Command Summary](#4-command-summary)
 - [5. Useful Links](#5-useful-links)
 
@@ -53,7 +32,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application](images/StartOfApplication.PNG "Start of App")
+![Start of Application](https://github.com/itskesin/tp/blob/kesin-TextUi/docs/images/StartOfApplication.PNG "Start of App")
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
@@ -104,6 +83,7 @@ Format: `help`
 >***Expected output:***
 > 
 > ![help](images/HelpOutput.PNG "help output")
+>
 
 <table>
   <col width="20">
@@ -113,6 +93,8 @@ Format: `help`
    <td>The help command is split into four different sections <code>(highlighted by the boxes)</code>.</td>
  </tr>
 </table>
+
+ [&#8593; Return to Top](#Table-of-Content)
 
 #### 3.1.2. Exit program: `exit`
 
@@ -124,306 +106,15 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![Exit](images/Exit.PNG "Exit Ouput")
+> ![help](images/HelpOutput.PNG "help output")
 
-### 3.2. General Patient Information
+ [&#8593; Return to Top](#Table-of-Content)
 
-HappyPills can help users to manage their patients' information easily. 
+### [3.2. General Patient Information Commands](UserGuide-Patient.md) 
 
-#### 3.2.1. Add Patient: `add patient`
+### [3.3. Patient Medical Records Commands](UserGuide-Records.md)    
 
-This feature allows you to add more patients into the existing patients' list.
- 
-HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list.  
-You can also add a new patient with the specified parameters in any order.
-
-
-###### Usage Example:   
-
-    add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
-    
-**Example:**
-
-    add patient /ic S9999999Z /n Bob /dob 12-11-98 /b A+
-    
->***Expected output:***
->
->![MissingInput](images/MissingAddPatientInput.PNG "Missing Add Ouput")
->
-> Enter `/p 999` to add missing field.
-
-:information_source: | HappyPills will prompt you for missing details that are important.
----------------------|-------------------------------------------------------------------
-
-> ***Expected output:***
->
->   ![CheckConfirmAdd](images/addConfirm.PNG "Add Confirmation Ouput")
->
-> Enter `y` to confirm.
-
-:information_source: | Entering `n` will not save the patients' information when HappyPills prompt you for confirmation.
----------------------|--------------------------------------------------------------------------------------------------
-
-> ***Expected output:***
->    
->  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
-
-#### 3.2.2. Edit Patient: `edit patient`
-
-Edit information of the patient with the specified NRIC. 
-
-##### Usage example: 
- 
-    edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
-
-**Example:**
-
-    edit patient S0618 /p9111
-
-> ***Expected output:***
->
-> ![editPatientOutput](images/EditCommandOutput.PNG "Edit Patient Ouput")
-
-:information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
----------------------|--------------------------------------------------------------------------
-
-#### 3.2.3. Delete Patient: `delete patient`
-
-Delete a patient as specified by the NRIC. 
-
-##### Usage example: 
-
-    delete patient NRIC
-    
-**Example:**
-
-    delete patient S1234567F
-
-> ***Expected output:***
->
-> ![confirmDelete](images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
->
-> Enter `y` to confirm.
-
-:information_source: | HappyPills will prompt for confirmation before deleting patient in the patient list.  
----------------------|-------------------------------------------------------------------
-
-> ***Expected output:***
->    
->  ![SuccessfulDelete](images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
-
-:heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
--------------------------|-------------------------------------------------------------------
-
-#### 3.2.4. List All Patients: `list patient`
-
-Displays all the patients in the patient list. 
-
-##### Usage example: 
-
-    list patient
-    
-> ***Expected output:***
->
-> ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
-
-#### 3.2.5. Retrieve a Patient's Information: `get patient`
-
-Retrieve details of the patient with the specified NRIC.
-
-##### Usage example: 
-
-    get patient NRIC
-    
-**Example:**
-
-    get patient S9876543Z
-    
-> ***Expected output:***
->
-> ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
-
-### 3.3. Patient Medical Records 
-
-#### 3.3.1. Add Patient Records: `add pr`
-
-Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
-
-##### Usage example:
-
-    add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS
-    
-**Example:**
-
-> ***Expected output:***
->
-> ![]()
->
-
-#### 3.3.2. Edit Patient Records: `edit pr`
-
-Edit patient's medical records when there is any error in previous inputs.
-
-##### Usage example:
-
-    edit pr NRIC INDEX /sym [SYMPTOMS] /diag [DIAGNOSIS] /d [DATE] /t [TIME]
-    
-**Example:**
-
-> ***Expected output:***
->
-> ![]()
->
-
-#### 3.3.3. Delete Patient Records: `delete pr`
-
-Delete patient's medical records based on the given NRIC and the index of records  . 
-
-##### Usage example: 
-
-    delete pr NRIC INDEX
-
-**Example:**
-
-> ***Expected output:***
->
-> ![]()
->
-#### 3.3.4. List Patient Records: `list pr`
-
-##### Usage example:
-
-    list pr NRIC
-
-**Example:**
-
-> ***Expected output:***
->
-> ![]()
->
-#### 3.3.5. Find Patient Records: `find pr`
-
-##### Usage example:
-
-    find pr NRIC INDEX
-
-**Example:**
-
-> ***Expected output:***
->
->
->![]()
-
-### 3.4. Appointment Scheduling Commands 
-
-HappyPills helps to store appointment schedules. 
-
-#### 3.4.1. Add Appointment: `add appt`
-
-Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
-patient automatically.
- 
- ##### Usage example: 
- 
-     add appt /ic[NRIC] /d[date] /t[time] /r[reason]
-         
- **Example:**
-     
-    add appt /icS1234567F /d01/02/2020 /t 12:00:00 /rsick
-
-> ***Expected output:***
->
->![addSuccess](/docs/images/AddAppt.png)
->
->Confirm appointment details are correct by typing "y" or "Y"
->
->![addConfirmSuccess](/docs/images/confirmAddAppt.png)
-
-#### 3.4.2. Edit Appointment: `edit appt`
-
-Edit information of the appointment with the specified appointmentID(apptID).
- The appointment should belong to the patient with the specified NRIC. 
- 
- ##### Usage example: 
- 
-     edit appt [NRIC] [apptID] [Options][editedInput]
-     Options:
-         /d edit date
-         /t edit time
-         /r edit reason
-         
- **Example:**
-     
-    edit appt S1234567F 5 /d 12/02/2020
-
-> ***Expected output:***
->
->![editSuccess](/docs/images/EditAppt.png)
-
-#### 3.4.3. Delete Appointment: `delete appt`
-
-Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
-
-##### Usage example: 
-
-    delete appt [NRIC] [apptID]
-    
-**Example:**
-
-    delete appt S1234567F 6
-
-> ***Expected output:***
->
-> ![editSuccess](/docs/images/DeleteAppt.png)
-
-#### 3.4.4. Mark Appointment as Done: `done appt` 
-
-Mark the appointment with the specified appointmentID(apptID) as done if arrived.
- The appointment should belong to the patient with the specified NRIC. 
- 
- ##### Usage example: 
- 
-     done appt [NRIC] [apptID]
-         
- **Example:**
-     
-    done appt S1234567F 5 
-
-> ***Expected output:***
->
->![doneSuccess](/docs/images/DoneAppt.png)
-
-#### 3.4.5. List All Appointments: `list appt` 
-
-List all the existing appointments. This can be used to check for appointmentID
-as used by other commands.
- 
- ##### Usage example: 
- 
-     list appt
-         
- **Example:**
-
-> ***Expected output:***
->
->![ListSuccess](/docs/images/ListAppt.png)
-
-#### 3.4.6. Find Patient's Appointments: `find appt`
-
-Check all appointments that the patient with the specified NRIC has. This can be used
-to check for the appointmentID used for the other commands.
-
- ##### Usage example: 
- 
-     find appt [NRIC]
-         
- **Example:**
-     
-    find appt S1234567F
-
-> ***Expected output:***
->
->![findSuccess](/docs/images/FindAppt.png)
+### [3.4. Appointment Scheduling Commands](UserGuide-Appointment.md)
 
 ## 4. Command Summary
 
@@ -457,6 +148,10 @@ Mark an appointment as done | `done appt APPT_ID`
 List all appointments | `list appt`
 Find an appointment| `find appt NRIC`
 
+ [&#8593; Return to Top](#Table-of-Content)
+
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
+
+ [&#8593; Return to Top](#Table-of-Content)
