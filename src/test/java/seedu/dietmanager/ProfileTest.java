@@ -102,4 +102,12 @@ class ProfileTest {
         profile.setProfile("John Doe",20, "Male", 180, 80, 75);
         assertEquals("John Doe", profile.getName());
     }
+
+    @Test
+    void getRecordOfDay() {
+        Profile profile = new Profile();
+        profile.setProfile("John Doe",20, "Male", 180, 80, 75);
+        DailyFoodRecord record = profile.getRecordOfDay("WEDNESDAY");
+        assertEquals("WEDNESDAY", record.getDate());
+    }
 }

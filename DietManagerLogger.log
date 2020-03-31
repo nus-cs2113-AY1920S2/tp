@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-03-23T17:24:23.703400700Z</date>
-  <millis>1584984263703</millis>
-  <nanos>400700</nanos>
+  <date>2020-03-24T17:09:33.507266500Z</date>
+  <millis>1585069773507</millis>
+  <nanos>266500</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-03-23T17:24:23.797128800Z</date>
-  <millis>1584984263797</millis>
-  <nanos>128800</nanos>
+  <date>2020-03-24T17:09:33.631933600Z</date>
+  <millis>1585069773631</millis>
+  <nanos>933600</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-03-23T17:24:23.797128800Z</date>
-  <millis>1584984263797</millis>
-  <nanos>128800</nanos>
+  <date>2020-03-24T17:09:33.633928Z</date>
+  <millis>1585069773633</millis>
+  <nanos>928000</nanos>
   <sequence>2</sequence>
   <logger>seedu.dietmanager.AppLogger</logger>
   <level>INFO</level>
@@ -36,5 +36,17 @@
   <method>logExecuteProgramme</method>
   <thread>1</thread>
   <message>Starting Diet Manager</message>
+</record>
+<record>
+  <date>2020-03-24T17:10:06.980253500Z</date>
+  <millis>1585069806980</millis>
+  <nanos>253500</nanos>
+  <sequence>3</sequence>
+  <logger>seedu.dietmanager.AppLogger</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.AppLogger</class>
+  <method>logExitProgramme</method>
+  <thread>1</thread>
+  <message>Exiting Diet Manager</message>
 </record>
 </log>

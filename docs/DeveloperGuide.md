@@ -15,7 +15,7 @@
 
 ### Architecture
 
-![ArchitectureDiagram](/docs/images/Architecture.png)
+![ArchitectureDiagram](images/Architecture.png)
 
 The Architecture Diagram given above explains the high-level design of the Diet Manager Application.
 
@@ -99,7 +99,8 @@ Step 1.  The `ui` object gets user input and sends it to the `parser`. The `pars
 and returns it. The command type is decided by the `commandPrompt`. The `RecordMealCommand` has `record-meal` as its commandPrompt. 
 During the process a new`RecordMealCommand` object will be generated and returned to the `Logic` component.
 
-![Step1. Generate command](/docs/images/Record_step1.png)
+### Step1. Generate command
+![Step1. Diagram](images/Record_step1.png)
 
 Step 2.  The `Logic` composition calls the `execute()` method of the `RecordMealCommand` object. 
 
@@ -107,15 +108,31 @@ During the process of execution, the command object will generate a `ArrayList<F
 If a certain kind of `Food` can be found in the database of `FoodNuritionInfo`, then this food item will be fetched from the database. 
 Else a new food object will be generated simply with `foodName` without all the nutrition info.
 
-During execution, the command object will try to get a `record` object of the class `DailyFoodRecord`. The date of record specified by the user. 
-If no record of that day is found in profile, it will automatically generate a new record of that day. Then with `foodList` and `record`, can call 
+During execution, the command object will try to get a `record` object of the class `DailyFoodRecord`. The date of record is specified by the user. 
+If no record of that day is found in profile, it will automatically generate a new record of the day. Then with `foodList` and `record`, can call 
 the method `record.recordMeals()`.
 
-{To be finished by Chenghao}
+### Step2. Execute and Save Result
+![Step2. Diagram](images/Record_step2.png)
 
+#### 1.2 Design Considerations
+#### Aspect: How `RecordMealCommand` executes and save results
+* Alternative 1 (current choice): Directly operate on the `Profile` object, more specifically, the `DailyFoodRecord` attribute in `Profile` object.
+And save execution `results` in the `RecordMealCommand` object.
+    * Pros: Logic is clear and easy to implement.
+    * Cons: `Command` object has full access to `Profile` object, which is not safe. 
+* Alternative 2: `RecordMealCommand` can only operate on `DailyFoodRecord` of the `Profile`.
+    * Pros: Reduce dependency and potential risks. 
+    * Cons: Different types of `Command` need different declarations/interface for `command.execute()` method. 
 
-
-
+#### Aspect : Data structure to support the command
+* Alternative 1 (current choice): Use a list to store daily food record for a profile.
+    * Pros: Easy to implement and understand
+    * Cons: The list is maintained by a `Profile` object. Can lead to more duties for a `Profile` object.
+* Alternative 2: Use a `FoodHistoryManager` to keep record of daily meals.
+    * Pros: More OOP.
+    * Cons: Makes the execution procedure more complex.
+    
 ## Product Scope
 ### Target user profile
 

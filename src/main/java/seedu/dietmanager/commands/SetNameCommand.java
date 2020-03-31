@@ -10,6 +10,7 @@ public class SetNameCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private String name;
+    private boolean noDescription;
 
     /**
      * Constructs the Command object.
@@ -19,18 +20,30 @@ public class SetNameCommand extends Command {
 
     public SetNameCommand(String command, String description) throws InvalidFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.name = descriptionArray[0];
+        this.noDescription = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.name = descriptionArray[0];
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        profile.setName(this.name);
+        if (!this.noDescription) {
+            profile.setName(this.name);
+        }
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
-        this.result = MessageBank.NAME_CHANGE_MESSAGE + profile.getName() + ".";
+        if (!this.noDescription) {
+            this.result = MessageBank.NAME_CHANGE_MESSAGE + profile.getName() + ".";
+        } else {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+        }
     }
 }

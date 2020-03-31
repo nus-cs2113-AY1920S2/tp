@@ -14,13 +14,16 @@ import seedu.dietmanager.commands.CheckRecordCommand;
 import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.DeleteWeightCommand;
-import seedu.dietmanager.commands.WeightUpdateCommand;
-import seedu.dietmanager.commands.CheckWeightProgressCommand;
+import seedu.dietmanager.commands.CalculateCaloriesCommand;
 import seedu.dietmanager.commands.CheckCaloriesCommand;
 import seedu.dietmanager.commands.ListFoodDatabaseCommand;
+import seedu.dietmanager.commands.AddFoodCommand;
+import seedu.dietmanager.commands.DeleteFoodCommand;
+
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.exceptions.InvalidGenderException;
+
 
 
 /**
@@ -70,7 +73,8 @@ public class Parser {
      * @throws InvalidFormatException if user input has the wrong format.
      */
 
-    public static String[] parseDescription(String description, int argumentsRequired) throws InvalidFormatException {
+    public static String[] parseDescription(String description, int argumentsRequired) throws InvalidFormatException,
+            NullPointerException {
         String[] descriptionArray = description.trim().split(" ", argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
@@ -153,12 +157,23 @@ public class Parser {
         case "list-food-database":
             command = new ListFoodDatabaseCommand(commandPrompt);
             break;
+        case "calculate-calories":
+            command = new CalculateCaloriesCommand(commandPrompt, description);
+            break;
         case "delete-weight":
             command = new DeleteWeightCommand(commandPrompt, description);
             break;
+        case "addf":
+            command = new AddFoodCommand(commandPrompt, description);
+            break;
+        case "delf":
+            command = new DeleteFoodCommand(commandPrompt, description);
+            break;
         default:
+            description = null;
             throw new InvalidCommandException();
         }
+        description = null;
         return command;
     }
 

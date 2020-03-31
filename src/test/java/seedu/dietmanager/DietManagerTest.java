@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class DietManagerTest {
     @Test
-    public void sampleTest() {
+    void sampleTest() {
         assertTrue(true);
     }
 }

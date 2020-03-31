@@ -3,6 +3,7 @@ package seedu.dietmanager.commands;
 import seedu.dietmanager.DailyFoodRecord;
 import seedu.dietmanager.Food;
 import seedu.dietmanager.Profile;
+import seedu.dietmanager.Weekday;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.parser.Parser;
 import seedu.dietmanager.ui.MessageBank;
@@ -12,6 +13,8 @@ public class CheckRecordCommand extends Command {
     private static final int ARGUMENTS_REQUIRED = 2;
     private String date;
     private String mealType;
+    private boolean noDescription;
+    private boolean isInvalidDate;
 
     /**
      * Constructs the Command object.
@@ -22,9 +25,19 @@ public class CheckRecordCommand extends Command {
 
     public CheckRecordCommand(String command, String description) throws InvalidFormatException {
         super(command);
-        String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-        this.date = descriptionArray[0];
-        this.mealType = descriptionArray[1];
+        this.noDescription = false;
+        this.isInvalidDate = false;
+
+        try {
+            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            this.date = descriptionArray[0].trim().toUpperCase();
+            this.mealType = descriptionArray[1].trim().toLowerCase();
+            Weekday.valueOf(this.date);
+        } catch (NullPointerException e) {
+            this.noDescription = true;
+        } catch (IllegalArgumentException e) {
+            this.isInvalidDate = true;
+        }
     }
 
     @Override
@@ -34,16 +47,28 @@ public class CheckRecordCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
+        if (this.noDescription) {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return;
+        } else if (this.isInvalidDate) {
+            this.result = MessageBank.INVALID_DATE_MESSAGE;
+            return;
+        }
+
         DailyFoodRecord record = profile.getRecordOfDay(date);
+
         switch (mealType) {
-        case "breakfast":
-            this.result = date + " Morning: " + record.showBreakfast() + record.showDailyCalories(mealType);
+        case "morning":
+            this.result = date + " Morning: " + System.lineSeparator() + record.showBreakfast()
+                    + record.showDailyCalories(mealType);
             break;
-        case "lunch":
-            this.result = date + " Afternoon: " + record.showLunch() + record.showDailyCalories(mealType);
+        case "afternoon":
+            this.result = date + " Afternoon: " + System.lineSeparator() + record.showLunch()
+                    + record.showDailyCalories(mealType);
             break;
-        case "dinner":
-            this.result = date + " Night: " + record.showDinner() + record.showDailyCalories(mealType);
+        case "night":
+            this.result = date + " Night: " + System.lineSeparator() + record.showDinner()
+                    + record.showDailyCalories(mealType);
             break;
         default:
             this.result = MessageBank.MEAL_TYPE_ERROR;
