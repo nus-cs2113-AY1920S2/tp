@@ -98,24 +98,30 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 ## Finding and Filtering Activities
 
 ### Finding Activities by Name: `find`
-**Usage:** Users can request for a sub-list of activities that has names containing a given keyword to be printed.
+**Usage:** Users can request for a sub-list of activities that has names which contain any of the give keywords. Each keyword should be separated with ` / `.
 
-Format: `find KEYWORD`
+**Format:**
+* `find KEYWORD`
+* `find KEYWORD1 / KEYWORD2 / KEYWORD3`
 
 ### Filtering Activities by Tags: `filter`
-**Usage:** Users can request for a sub-list of activities that has specific tags.
+**Usage:** Users can request for a sub-list of activities that has specific tags. Each tag should be space separated.
 
-Format: `filter TAGNAME1 TAGNAME2`
+**Format:**
+* `filter TAGNAME`
+* `filter TAGNAME1 TAGNAME2`
 
-### Further Finding/Filtering: `-s`
+### Chaining Finds & Filters: `-s`
 Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. 
 This is can be particularly useful when the user wants to generate a `graph`.
 
 This flag applies to `find` and `filter` commands only. 
 
-Format: 
+**Format:** 
+* `find -s KEYWORD`
+* `filter -s TAGNAME`
 * `filter -s TAGNAME1 TAGNAME2`
-* `find -s keyword`
+* `find -s KEYWORD1 / KEYWORD2 / KEYWORD3`
 
 ## Graphs
 By using the command following commands, users can get a visual representation of the time spent on each activity 
@@ -145,6 +151,8 @@ The parameter `SCALE` refers to the number of minutes represented by each point 
 targeted time. 
 
 Note: Only activities with an `ALLOCATED_TIME` will be shown.
+
+**Format:** `graph targets`
 
 ![Continue command sequence diagram](./pictures/GraphTargets.png)
 
