@@ -10,7 +10,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.4.5. List All Appointments: `list appt`](#345-list-all-appointments-list-appt)
     + [3.4.6. Find Patient's Appointments: `find appt`](#346-find-patients-appointments-find-appt)
 
-[&leftarrow; Return to Main](UserGuide-Main.md)
+<div align="left"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Main.html"> &#8592; Back to Main </a></div>
 
 ### 3.4. Appointment Scheduling Commands 
 
@@ -31,11 +31,11 @@ patient automatically.
 
 > ***Expected output:***
 >
->![addSuccess](/docs/images/AddAppt.png)
+>![addSuccess](images/AddAppt.png)
 >
 >Confirm appointment details are correct by typing "y" or "Y"
 >
->![addConfirmSuccess](/docs/images/confirmAddAppt.png)
+>![addConfirmSuccess](images/confirmAddAppt.png)
 
  [Return to Top](#Table-of-Content)
 
@@ -58,7 +58,7 @@ Edit information of the appointment with the specified appointmentID(apptID).
 
 > ***Expected output:***
 >
->![editSuccess](/docs/images/EditAppt.png)
+>![editSuccess](images/EditAppt.png)
 
  [Return to Top](#Table-of-Content)
 
@@ -76,7 +76,7 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 
 > ***Expected output:***
 >
-> ![editSuccess](/docs/images/DeleteAppt.png)
+> ![editSuccess](images/DeleteAppt.png)
 
  [Return to Top](#Table-of-Content)
 
@@ -95,7 +95,7 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 
 > ***Expected output:***
 >
->![doneSuccess](/docs/images/DoneAppt.png)
+>![doneSuccess](images/DoneAppt.png)
 
  [Return to Top](#Table-of-Content)
 
@@ -112,7 +112,7 @@ as used by other commands.
 
 > ***Expected output:***
 >
->![ListSuccess](/docs/images/ListAppt.png)
+>![ListSuccess](images/ListAppt.png)
 
  [Return to Top](#Table-of-Content)
 
@@ -131,6 +131,6 @@ to check for the appointmentID used for the other commands.
 
 > ***Expected output:***
 >
->![findSuccess](/docs/images/FindAppt.png)
+>![findSuccess](images/FindAppt.png)
 
  [Return to Top](#Table-of-Content)
