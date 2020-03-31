@@ -185,8 +185,8 @@ Thus, `clean /n 5` will automatically clean the top 5 oldest activities from the
 is activated).
 
 Note:\
-Default value for `NUMBER` for data files : 3\
-Default value for `NUMBER` for log files : 10
+Default `NUMBER` value for data files : 3\
+Default `NUMBER` value for log files : 10
   
 ## FAQ
 
