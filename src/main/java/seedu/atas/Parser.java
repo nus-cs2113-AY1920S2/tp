@@ -14,7 +14,6 @@ import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
 import command.SearchCommand;
-import command.SearchdCommand;
 import common.Messages;
 
 import java.time.LocalDate;
@@ -33,19 +32,19 @@ public class Parser {
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<taskType>[^/]+)"
-            + "\\s+n/\\s*(?<assignmentName>[^/]+)"
-            + "\\s+m/\\s*(?<moduleName>[^/]+)"
-            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-            + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+n/\\s*(?<assignmentName>[^/]+)"
+                    + "\\s+m/\\s*(?<moduleName>[^/]+)"
+                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
+                    + "\\s+c/\\s*(?<comments>.+)$"
     );
 
     // regex for an add event command
     public static final Pattern EVENT_PARAMETERS_FORMAT = Pattern.compile(
             "(?<taskType>[^/]+)"
-            + "\\s+n/\\s*(?<eventName>[^/]+)"
-            + "\\s+l/\\s*(?<location>[^/]+)"
-            + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
-            + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+n/\\s*(?<eventName>[^/]+)"
+                    + "\\s+l/\\s*(?<location>[^/]+)"
+                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
+                    + "\\s+c/\\s*(?<comments>.+)$"
     );
 
     //regex for search command
@@ -99,7 +98,7 @@ public class Parser {
             return prepareListCommand(fullCommand);
         case SearchCommand.COMMAND_WORD:
             return prepareSearchCommand(fullCommand);
-        case SearchdCommand.COMMAND_WORD:
+        case SearchCommand.dCOMMAND_WORD:
             return prepareSearchdCommand(fullCommand);
         case EditCommand.COMMAND_WORD:
             return prepareEditCommand(fullCommand);
@@ -159,14 +158,14 @@ public class Parser {
         }
         String taskType = matcher.group("taskType");
         String taskName = matcher.group("name");
-        return new SearchCommand(taskName, taskType);
+        return new SearchCommand(taskName, taskType, null);
     }
 
     private static Command prepareSearchdCommand(String fullCommand) {
         final Matcher matcher = SEARCHD_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
-                    capitalize(SearchdCommand.COMMAND_WORD), SearchdCommand.COMMAND_USAGE));
+                    capitalize(SearchCommand.dCOMMAND_WORD), SearchCommand.dCOMMAND_USAGE));
         }
         String taskType = matcher.group("taskType");
         String taskName = matcher.group("taskName");
@@ -174,7 +173,7 @@ public class Parser {
         LocalDate date;
         try {
             date = LocalDate.parse(stringDate, INPUT_DATE_FORMAT);
-            return new SearchdCommand(taskType, taskName, date);
+            return new SearchCommand(taskName, taskType, date);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }

@@ -199,11 +199,13 @@ The following sequence diagram summarizes how delete command operation works:
 ### 3.2. Search task feature
 #### 3.2.1 Current Implementation
 
-The search task feature is currently implemented in both `SearchCommand` class and `SearchdCommand` class. Both classes inherit from the `Command` class.
-
--   `SearchCommand` initializes the `taskType` to check which tasks the search function to search from and `searchParam` to get the search query that the user inputs.
-
--   Similar to the `SearchCommand`, `SearchdCommand` initializes `taskType` to check the tasks that the search function has to search through and `searchParam` to get the search query that the user inputs. It also has a `date` parameter to check the date that the users wants to search from
+The search task feature is currently implemented in `SearchCommand` class that inherits from the `Command` class.
+-   `SearchCommand` initializes the `taskType`, `searchParam` and `date` in its constructor.
+    -   `taskType` refers to the type of task the user wants to search through.
+    -   `searchParam` refers to the search query that the user wants to find.
+    -   `date` refers to the date of the task that the user wants to find. It is set as a default value of NULL if it is a *search* command.
+    -   `SearchCommand` class contains `CURRENT_COMMAND_WORD` to store the command word used by the user(i.e. `search` or `searchd`)
+    -   `SearchCommand` class also contains `CURRENT_COMMAND_USAGE` to store the error messages for the respective commands.
 
 Given below is an example usage of the `Search` command:  
 
@@ -211,61 +213,44 @@ Given below is an example usage of the `Search` command:
 The user launches the app and retrieves the tasks that are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `search t\[TASK TYPE] n\[SEARCH QUERY]` into the command line. Method `parseCommand()` from the `Parser` class will be
- called to parse the command provided.
+The user enters the input into the command line. Method `Parser#parseCommand()` will be called to parse the command 
+provided to obtain the `taskType`, `searchParam` and `date` .
 
 **Step 3**  
-A new instance of `SearchCommand` with the `taskType`, `searchParam` and an ArrayList to store the index of search query , `storeIndex` will be initialized,
+A new instance of `SearchCommand` with the `taskType`, `searchParam` and `date` will be initialized.
+-   `SearchCommand` contains an ArrayList `storeIndex` to store the original index of the task containing the search query.
 
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
+-   Depending on the input that the user puts in, the `CURRENT_COMMAND_WORD` will be updated to the *command word* of the user and the 
+`CURRENT_COMMAND_USAGE` will be updated accordingly.
 
--   If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments` or `getSearchQueryEvents`, according to the `taskType`.
+    -   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
 
-    -   In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through the task list to store results matching the search query into an ArrayList.
+    -   Otherwise, If the `taskType` is an *assignment* or *event* , `getSearchQueryAssignments()` or `getSearchQueryEvents()`will be called respectively.
+    
+        -   In the method, a *linked hash map* will be used to store the results from `Parser#getEventsHashMap()` and `Parser#getAssignmentsHashMap()` respectively.
+        
+        -   We will iterate through the linked hash map to find the *events* or *assignments* matching the search query and date(if applicable) and add the
+        original index to the `storeIndex` and return an ArrayList containing the results.
+        
+    -   Lastly, If `taskType` is *all*, `getSearchQueryAllTasks` will be called.
+        
+        -   In the method, an *ArrayList* will be used to store the updated task list from `Parser#getTaskArray()`
+        
+        -   We will iterate through the *ArrayList* to find the tasks matching the search query and date(if applicable) and add the original index
+        to the `storeIndex` and return an ArrayList containing the results.
 
-        -   In the `getSearchQuery` method, we will first get the updated task list from the `getTaskArray` of the `TaskList` class and initialize a new ArrayList, `results` to store the results.
+**Step 4**  
+The ArrayList containing the results from Step 3 will be parsed into `SearchCommand#SearchList` to format the results into a String suitable 
+for printing out to the users.
 
-        -   We will then loop though the updated task array to find matching tasks. Matching tasks will be added to the `results` ArrayList and the corresponding index will be stored to the `storeIndex` ArrayList.
+**Step 5**  
+The String results from Step 5 will be parsed into `SearchCommand#resultsList` to print out the results.
 
-    -   Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a String format.
+-   If there are no matching search query, a new `CommandResult` class will be called to print out the error message, indicating no matching search query,
 
-    -   Lastly, the `searchList` method will call the `resultsList` method to return the search results.
-
-        -   If there are no matching search queries in the search results, `execute` method will then create a new `CommandResult` class to print an error message indicating an empty search results list.
-
-        -   If there are matching search queries in the search results, `execute` method will then create a new `CommandResults` class to print out the search results.
-
-Given below is an example usage of the `Searchd` command:  
-
-**Step 1**  
-The user launches the app and retrieves the tasks that are saved under a local file using `Storage`.
-
-**Step 2**  
-The user enters `searchd t\[TASK TYPE] n\[SEARCH QUERY] d\[DATE]` into the command line. Method `parseCommand()` from the `Parser` class
- will be called to parse the command provided.
-
-**Step 3**  
-A new instance of `SearchCommand` with the `taskType`, `searchParam`, `date` and an ArrayList to store the index of search query, `storeIndex` initialized will be created,
-
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
-
--   If there are tasks in the existing task list, it will call the `getSearchQueryAllTasks` or `getSearchQueryAssignments` or `getSearchQueryEvents`, according to the `taskType`.
-
-    -   In the `getSearchQuery` method, we will first get the updated task list from the `TaskList` class and parse through the task list to store results matching the search query and the provided date into an ArrayList.
-
-        -   In the `getSearchQuery` method, we will first get the updated task list from the `getTaskArray` of the `TaskList` class and initialize a new ArrayList, `results` to store the results.
-
-        -   We will then loop though the updated task array to find matching tasks. Matching tasks will be added to the `results` ArrayList and the corresponding index will be stored to the `storeIndex` ArrayList.
-
-    -   Following that, the `getSearchQuery` method will call the `searchList` method to convert the stored results into a String format.
-
-    -   Lastly, the `searchList` method will call the `resultsList` method to return the search results.
-
-        -   If there are no matching search queries in the search results, `execute` method will then create a new `CommandResult` class to print an error message indicating an empty search results list.
-
-        -   If there are matching search queries in the search results, `execute` method will then create a new `CommandResults` class to print out the search results.
-
-The following sequence diagram summarizes how the `SearchCommand` and `SearchdCommand` works:
+-   Otherwise, a new `CommandResult` class will be called to print out the search results.
+        
+The following sequence diagram summarizes how the *search* and *searchd* command works :
 
 ![Search operations](images/search.png)
 

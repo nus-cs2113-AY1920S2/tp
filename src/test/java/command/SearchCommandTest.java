@@ -40,62 +40,64 @@ public class SearchCommandTest {
         LocalDateTime testDateTime3 = LocalDateTime.parse(date3, dateTimeFormatter);
         LocalDateTime testDateTime4 = LocalDateTime.parse(date4, dateTimeFormatter);
 
-        Assignment testCaseOne = new Assignment("Assignment 3", "CS2102", testDateTime1, "-");
+        Assignment testCaseOne = new Assignment("Test 3", "CS2102", testDateTime1, "-");
         Assignment testCaseTwo = new Assignment("Assignment 5", "CS2102", testDateTime1, "-");
         Assignment testCaseThree = new Assignment("OP1", "CS2101", testDateTime3, "15%");
         Event testCaseFour = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, "-");
         Event testCaseFive = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
         Event testCaseSix = new Event("mid", "MPSH1A", testDateTime1, testDateTime2, "-");
+        Assignment testCaseSeven = new Assignment("Test 5", "CS2102", testDateTime1, "-");
         filledTaskList.addTask(testCaseOne);
         filledTaskList.addTask(testCaseTwo);
         filledTaskList.addTask(testCaseThree);
         filledTaskList.addTask(testCaseFour);
         filledTaskList.addTask(testCaseFive);
         filledTaskList.addTask(testCaseSix);
+        filledTaskList.addTask(testCaseSeven);
     }
 
-    private String eventSingleResultString() {
+    private String searchSingleEvent() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
-        searchString.append("  1.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
+        searchString.append("  4.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
         return searchString.toString();
     }
 
-    private String eventMultipleResultsString() {
+    private String searchMultipleEvents() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
-        searchString.append("  1.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
+        searchString.append("  4.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
-        searchString.append("  3.[E][X] mid (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
+        searchString.append("  6.[E][X] mid (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
         return searchString.toString();
     }
 
-    private String assignmentSingleResultString() {
+    private String searchSingleAssignment() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
-        searchString.append("  1.[A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
+        searchString.append("  1.[A][X] Test 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
         return searchString.toString();
     }
 
-    private String assignmentMultipleResultsString() {
+    private String searchMultipleAssignments() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
-        searchString.append("  1.[A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
+        searchString.append("  1.[A][X] Test 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
-        searchString.append("  2.[A][X] Assignment 5 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
+        searchString.append("  7.[A][X] Test 5 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
@@ -103,53 +105,53 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void executeMethod_emptyTaskList() {
-        assertEquals(new SearchCommand("test", "all").execute(emptyTaskList,ui).feedbackToUser,
+    public void searchExecuteMethod_emptyTaskList() {
+        assertEquals(new SearchCommand("test", "all",null).execute(emptyTaskList,ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
-        assertEquals(new SearchCommand("test", "assignment").execute(emptyTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("test", "assignment",null).execute(emptyTaskList, ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
-        assertEquals(new SearchCommand("test", "event").execute(emptyTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("test", "event",null).execute(emptyTaskList, ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
     }
 
     @Test
-    public void executeMethod_invalidSearchArgument() {
-        assertEquals(new SearchCommand("test", "abcd").execute(filledTaskList, ui).feedbackToUser,
+    public void searchExecuteMethod_invalidSearchArgument() {
+        assertEquals(new SearchCommand("test", "abcd",null).execute(filledTaskList, ui).feedbackToUser,
                 String.format(Messages.INCORRECT_ARGUMENT_ERROR,
                         Parser.capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE));
     }
 
     @Test
-    public void executeMethod_searchOneEvent_success() {
-        assertEquals(new SearchCommand("midterms", "event").execute(filledTaskList, ui).feedbackToUser,
-                eventSingleResultString());
+    public void searchExecuteMethod_searchOneEvent_success() {
+        assertEquals(new SearchCommand("midterms", "event",null).execute(filledTaskList, ui).feedbackToUser,
+                searchSingleEvent());
     }
 
     @Test
-    public void executeMethod_searchMultipleEvents_success() {
-        assertEquals(new SearchCommand("mid", "event").execute(filledTaskList, ui).feedbackToUser,
-                eventMultipleResultsString());
+    public void searchExecuteMethod_searchMultipleEvents_success() {
+        assertEquals(new SearchCommand("mid", "event",null).execute(filledTaskList, ui).feedbackToUser,
+                searchMultipleEvents());
     }
 
     @Test
-    public void executeMethod_searchOneAssignment_success() {
-        assertEquals(new SearchCommand("assignment 3", "assignment").execute(filledTaskList,ui).feedbackToUser,
-                assignmentSingleResultString());
+    public void searchExecuteMethod_searchOneAssignment_success() {
+        assertEquals(new SearchCommand("Test 3", "assignment",null).execute(filledTaskList,ui).feedbackToUser,
+                searchSingleAssignment());
     }
 
     @Test
-    public void executeMethod_searchMultipleAssignments_success() {
-        assertEquals(new SearchCommand("assignment", "assignment").execute(filledTaskList,ui).feedbackToUser,
-                assignmentMultipleResultsString());
+    public void searchExecuteMethod_searchMultipleAssignments_success() {
+        assertEquals(new SearchCommand("test", "assignment",null).execute(filledTaskList,ui).feedbackToUser,
+                searchMultipleAssignments());
     }
 
     @Test
     public void executeMethod_emptyResults() {
-        assertEquals(new SearchCommand("abcd", "event").execute(filledTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("abcd", "event",null).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
-        assertEquals(new SearchCommand("abcd", "assignment").execute(filledTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("abcd", "assignment",null).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
-        assertEquals(new SearchCommand("abcd", "all").execute(filledTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("abcd", "all",null).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
     }
 }

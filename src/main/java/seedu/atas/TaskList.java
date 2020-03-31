@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class TaskList {
 
@@ -141,12 +143,14 @@ public class TaskList {
      * Getter for all events tasks.
      * @return ArrayList object containing all events
      */
-    public ArrayList<Task> getEventsArray() {
-        ArrayList<Task> eventList = new ArrayList<>();
+    public LinkedHashMap<Task,Integer> getEventsHashMap() {
+        LinkedHashMap<Task,Integer> eventList = new LinkedHashMap<>();
+        int index = 1;
         for (Task task: tasks) {
             if (task instanceof Event) {
-                eventList.add(task);
+                eventList.put(task,index);
             }
+            index++;
         }
         return eventList;
     }
@@ -165,12 +169,14 @@ public class TaskList {
      * Getter for all assignment tasks.
      * @return ArrayList object containing all assignments
      */
-    public ArrayList<Task> getAssignmentsArray() {
-        ArrayList<Task> assignmentList = new ArrayList<>();
+    public LinkedHashMap<Task,Integer> getAssignmentsHashMap() {
+        LinkedHashMap<Task,Integer> assignmentList = new LinkedHashMap<>();
+        int index = 1;
         for (Task task: tasks) {
             if (task instanceof Assignment) {
-                assignmentList.add(task);
+                assignmentList.put(task,index);
             }
+            index++;
         }
         return assignmentList;
     }
