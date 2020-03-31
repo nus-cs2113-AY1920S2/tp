@@ -148,7 +148,7 @@ Mark an appointment as done | `done appt APPT_ID`
 List all appointments | `list appt`
 Find an appointment| `find appt NRIC`
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
