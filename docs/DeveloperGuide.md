@@ -105,7 +105,7 @@ The `TextUi` component:
 
 ### 3.3. Logic Component
 
-![Logic Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/LogicDiagram.jpg)
+![Logic Diagram](images/LogicDiagram.jpg)
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -116,7 +116,7 @@ The diagram above shows the logic flow of HappyPills.
 
 ### 3.4. Model Component
 
-![Model Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ModelDiagram.jpg)
+![Model Diagram](images/ModelDiagram.jpg)
 
 ### 3.5. Storage Component
 
@@ -177,7 +177,7 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 **Implementation** 
 
 The activity diagram below summarises the process of executing an `add` command.
-![Add Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddPatientSequenceDiagram.jpg)
+![Add Patient Sequence Diagram](images/AddPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -204,7 +204,7 @@ will edit the patient's allergies to `School`.
 
 **Implementation** 
 
-![Edit Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/EditPatientSequenceDiagram.jpg)
+![Edit Patient Sequence Diagram](images/EditPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -228,7 +228,7 @@ will delete the patient with NRIC `S7777777Z`, if found.
 
 **Implementation** 
 
-![Delete Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/DeletePatientSequenceDiagram.jpg)
+![Delete Patient Sequence Diagram](images/DeletePatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -275,7 +275,7 @@ will retrieve the details of the patient with NRIC `S7777777Z`.
 
 **Implementation** 
 
-![Get Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/GetPatientSequenceDiagram.jpg)
+![Get Patient Sequence Diagram](images/GetPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -313,7 +313,7 @@ An `appointmentId` will also be given when an appointment is successfully added.
 
 **Implementation** 
 
-![Add Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddAppointmentSequenceDiagram.jpg)
+![Add Appointment Sequence Diagram](images/AddAppointmentSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -364,7 +364,7 @@ will list all the appointments in the `AppointmentMap`.
 
 **Implementation** 
 
-![List Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ListAppointmentSequenceDiagram.jpg)
+![List Appointment Sequence Diagram](images/ListAppointmentSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -389,7 +389,7 @@ will list all the appointments that the patient with NRIC S7777777Z has.
 
 **Implementation**
 
-![Find Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/FindAppointmentSequenceDiagram.jpg)
+![Find Appointment Sequence Diagram](images/FindAppointmentSequenceDiagram.jpg)
 
 
 ### 4.4. Storage
@@ -420,7 +420,7 @@ closed in the terminal. This is achieved by storing all relevant information in 
   overwriting any existing strings in the file.
   This is implemented for edit and delete commands as they cannot be appended.
   
-  ![writing](/docs/images/StorageWriteAll.png)
+  ![writing](images/StorageWriteAll.png)
  
  *addSingleItemToFile*
  
