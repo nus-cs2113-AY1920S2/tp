@@ -9,7 +9,7 @@ By: `CS2113T-T12-2` Since: `March 2020`
 
 
 - [1. Introduction](#1-introduction)
-    * [1.1.  Purpose](#11-purpose)
+    * [1.1. Purpose](#11-purpose)
     * [1.2. Scope](#12-scope)
 - [2. Setting up](#2-setting-up)
 - [3. Design](#3-design)
@@ -68,7 +68,25 @@ This section provides a high-level overview of HappyPills.
 
 ### 3.1. Architecture
 
-The diagram above explains the design of HappyPills.
+![Architecture diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ArchitectureDiagram.PNG "Overview of the Application")
+
+The **Architecture diagram** above explains the high-level design of HappyPills.
+
+Main has one class called `HappyPills`.  
+It is responsible for:  
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components.
+
+The rest of the App consists of four components.
+
+- `UI`: The UI of the App.
+
+- `Logic`: The command executor.
+
+- `Model`: Holds the data of the App in-memory.
+
+- `Storage`: Reads data from and writes data to the text file.
+
 
 The architecture of HappyPills is broken down into seven main classes:
 * `Ui`: This class handles the User Interface of the application.
@@ -79,7 +97,6 @@ The architecture of HappyPills is broken down into seven main classes:
 * `Appointment`: This class manages the data of data type Appointment in memory.
 * `MedicalRecords`: This class manages the data of data type MedicalRecord in memory.
 
-
 ### 3.2. TextUi Component
 
 The `TextUi` component: 
@@ -87,6 +104,8 @@ The `TextUi` component:
 * Listens for changes and outputs messages accordingly from the Command component.
 
 ### 3.3. Logic Component
+
+![Logic Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/LogicDiagram.jpg)
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -97,7 +116,7 @@ The diagram above shows the logic flow of HappyPills.
 
 ### 3.4. Model Component
 
-
+![Model Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ModelDiagram.jpg)
 
 ### 3.5. Storage Component
 
@@ -128,7 +147,7 @@ The patient list feature is facilitated by PatientMap class which implements the
     - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
     
     
-** Design Considerations* 
+** Design Considerations ** 
 
 *Aspect: Data Structure of the Patient List* 
 
@@ -158,11 +177,9 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 **Implementation** 
 
 The activity diagram below summarises the process of executing an `add` command.
-![Add Activity Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddCommandActivityDiagram.png)
+![Add Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddPatientSequenceDiagram.jpg)
 
-// insert diagram
-
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `add patient /ic S7777777Z /n Alice /p 98765432 /d 01/01/2000 /b B+ /a Peanuts`.
 
@@ -187,7 +204,9 @@ will edit the patient's allergies to `School`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![Edit Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/EditPatientSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `edit patient S7777777Z /a School` 
 
@@ -209,7 +228,9 @@ will delete the patient with NRIC `S7777777Z`, if found.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![Delete Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/DeletePatientSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `delete patient S7777777Z`. 
 
@@ -232,7 +253,7 @@ will list all the appointments in the `PatientMap`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `list patient`.
 
@@ -254,7 +275,9 @@ will retrieve the details of the patient with NRIC `S7777777Z`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![Get Patient Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/GetPatientSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `get patient S7777777Z` .
 
@@ -290,9 +313,9 @@ An `appointmentId` will also be given when an appointment is successfully added.
 
 **Implementation** 
 
-// insert diagram
+![Add Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/AddAppointmentSequenceDiagram.jpg)
 
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `add appt /ic S7777777Z /d 01/04/2020 /t 12:00:00 /r Checkup` .
 
@@ -316,7 +339,7 @@ will delete the appointment with appointment ID `1`, if found.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+The following steps explains the sequence of events: 
 
 1. The user enters `delete appt 1`. 
 
@@ -341,7 +364,9 @@ will list all the appointments in the `AppointmentMap`.
 
 **Implementation** 
 
-The following steps explains the sequence diagram shown above: 
+![List Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/ListAppointmentSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
 
 1. The user enters `list appt`.
 
@@ -354,6 +379,18 @@ The following steps explains the sequence diagram shown above:
 5. In `ListAppointmentCommand.execute()`, it calls `TextUi.getAppointmentList()` which is then returned as the display message. 
 
 #### 4.3.6. Find Appointments of Patient
+
+The user is able to find all the appointments a specific patient has.
+The command: 
+    
+    find appt S7777777Z
+    
+will list all the appointments that the patient with NRIC S7777777Z has. 
+
+**Implementation**
+
+![Find Appointment Sequence Diagram](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/images/FindAppointmentSequenceDiagram.jpg)
+
 
 ### 4.4. Storage
 
@@ -440,7 +477,7 @@ Alternative 1 was chosen for now as the program is relatively new, and is more l
 
 ## 7. Useful links
 
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)
 
 ## Appendices 
@@ -467,14 +504,21 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|Doctor|add Patient's details|view their information in their subsequent visits.|
+|v1.0|Doctor|add Patient's details|view their information in their subsequent visits|
+|v1.0|Doctor|have a quick overview of a list of all patients|check for their detailed information|
+|v1.0|Doctor|add Patient's details|view their information in their subsequent patientRecords.|
 |v1.0|Doctor|have a quick overview of a list of all patients|check for their detailed information.|
 |v1.0|Doctor|retrieve my patient's detailed information|check for his/her allergies and provide a more accurate diagnosis|
 |v1.0|Doctor|edit a particular patient's information|the most up-to-date details in our patient records|
-|v2.0|Doctor|ensure that Patient's details are accurate before I add into the patient list|so that I can retify mistakes earlier|
-|v2.0|Doctor|?|?|
-|v2.0|Doctor|?|?|
-|v2.0|Doctor|?|?|
+|v2.0|Doctor|ensure that Patient's details are accurate before I add into the patient list|so that I can rectify mistakes earlier|
+|v2.0|Doctor|schedule appointments with my patients|ensure that I will prescribe enough medicine until the next appointment|
+|v2.0|Doctor|note down the prescription that I gave my patients|know what side effects are to be expected (based on the patient's current condition)|
+|v2.0|Doctor|record down the symptoms of my patients|check for any persistent health condition|
+|v2.0|Doctor|add Patient's medical records|view the previous reasons for doctor's visits|
+|v2.1|Doctor|?|?|
+|v2.1|Doctor|?|?|
+|v2.1|Doctor|?|?|
+|v2.1|Doctor|?|?|
 
 ### Appendix C: Non-functional Requirements
 
@@ -494,8 +538,14 @@ Windows, Linux, Unix, OS-X
 
 ### Appendix E: Instructions for Manual Testing
 
+Given below are instructions to test the application manually.
+
+:information_source: | These instructions only provide a starting point for tests to work on; testers are expected to do more exploratory testing
+---------------------|----------------------------------------------------------------------------------------------
+
+
 ## Useful links:
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)
 
 ------

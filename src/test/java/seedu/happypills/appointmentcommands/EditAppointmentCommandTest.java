@@ -2,12 +2,12 @@ package seedu.happypills.appointmentcommands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.happypills.controller.commands.appointmentcommands.EditAppointmentCommand;
+import seedu.happypills.logic.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
-import seedu.happypills.model.data.VisitMap;
+import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EditAppointmentCommandTest {
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
-    private static VisitMap newVisitMap;
+    private static PatientRecordMap newPatientRecordMap;
     public static final String DIVIDER = "    =====================================================";
 
     @BeforeAll
     public static void setup() {
         newPatientMap = new PatientMap();
         newAppointmentMap = new AppointmentMap();
-        newVisitMap = new VisitMap();
+        newPatientRecordMap = new PatientRecordMap();
 
         //Add test patient
         Patient patientOne = new Patient("P1", "S123A", 123,
@@ -64,7 +64,7 @@ class EditAppointmentCommandTest {
                 + "    The apptID can be found using \"find appt [NRIC]\"\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "2", "/r ").execute(
-                newPatientMap, newAppointmentMap, newVisitMap);
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputMissingInput, message);
     }
 
@@ -79,7 +79,7 @@ class EditAppointmentCommandTest {
                 + "        Attended : No\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "2",
-                "/r Very sick hehe").execute(newPatientMap, newAppointmentMap, newVisitMap);
+                "/r Very sick hehe").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputeditReason, message);
     }
 
@@ -88,7 +88,7 @@ class EditAppointmentCommandTest {
         String expectedOutputEditDateInvalid = "    Invalid date or date format(DD/MM/YYYY).\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "3",
-                "/d 01/01/202s").execute(newPatientMap, newAppointmentMap, newVisitMap);
+                "/d 01/01/202s").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditDateInvalid, message);
     }
 
@@ -103,7 +103,7 @@ class EditAppointmentCommandTest {
                 + "        Attended : No\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "3",
-                "/d 01/01/2020").execute(newPatientMap, newAppointmentMap, newVisitMap);
+                "/d 01/01/2020").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditDateValid, message);
     }
 
@@ -112,7 +112,7 @@ class EditAppointmentCommandTest {
         String expectedOutputEditTimeInvalid = "    Invalid time or time format(HH:MM).\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "1",
-                "/t 24:00").execute(newPatientMap, newAppointmentMap, newVisitMap);
+                "/t 24:00").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditTimeInvalid, message);
     }
 
@@ -127,7 +127,7 @@ class EditAppointmentCommandTest {
                 + "        Attended : No\n"
                 + "    =====================================================";
         String message = new EditAppointmentCommand("S123A", "1",
-                "/t 23:59").execute(newPatientMap, newAppointmentMap, newVisitMap);
+                "/t 23:59").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditTimeValid, message);
     }
 

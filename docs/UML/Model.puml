@@ -28,9 +28,9 @@ Class ApptDate
 Class Reason
 }
 
-Package Medical {
-Class MedicalList
-Class Med
+Package PatientRecord {
+Class PatientRecordList
+Class Pr
 Class Allergies
 Class Symptoms
 Class Prescription
@@ -57,17 +57,17 @@ Appt *--> Time
 Appt *--> ApptDate
 Appt *--> Reason
 
-MedicalList o--> "*" Med
-Med *--> Allergies
-Med *--> Symptoms
-Med *--> Prescription
-Med *--> VisitDate
+PatientRecordList o--> "*" Pr
+Pr *--> Allergies
+Pr *--> Symptoms
+Pr *--> Prescription
+Pr *--> VisitDate
 
-Person *-left-> "*" Med
+Person *-left-> "*" Pr
 
 Patient -up-> ModelManager
 Appointment -up-> ModelManager
-Medical -up-> ModelManager
+PatientRecord -up-> ModelManager
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> DOB

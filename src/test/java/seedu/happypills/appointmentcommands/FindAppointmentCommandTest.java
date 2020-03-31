@@ -2,12 +2,12 @@ package seedu.happypills.appointmentcommands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.happypills.controller.commands.appointmentcommands.FindAppointmentCommand;
+import seedu.happypills.logic.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
-import seedu.happypills.model.data.VisitMap;
+import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +16,7 @@ public class FindAppointmentCommandTest {
 
     private static PatientMap newPatientMap;
     private static AppointmentMap newAppointmentMap;
-    private static VisitMap newVisitMap;
+    private static PatientRecordMap newPatientRecordMap;
     public static final String DIVIDER = "    =====================================================";
 
     /**
@@ -26,7 +26,7 @@ public class FindAppointmentCommandTest {
     public static void setup() {
         newPatientMap = new PatientMap();
         newAppointmentMap = new AppointmentMap();
-        newVisitMap = new VisitMap();
+        newPatientRecordMap = new PatientRecordMap();
 
         //Add test patient
         Patient patientOne = new Patient("P1", "S123A", 123,
@@ -40,8 +40,10 @@ public class FindAppointmentCommandTest {
             e.printStackTrace();
         }
 
-        Appointment appointmentOne = new Appointment("1","S123A", "01/02/2020", "12:00:00","reason1",false);
-        Appointment appointmentTwo = new Appointment("2","S123A", "01/03/2020", "13:00:00","reason2", false);
+        Appointment appointmentOne = new Appointment(
+                "1","S123A", "01/02/2020", "12:00:00","reason1",false);
+        Appointment appointmentTwo = new Appointment(
+                "2","S123A", "01/03/2020", "13:00:00","reason2", false);
 
         patientOne.addAppointment(appointmentOne);
         patientOne.addAppointment(appointmentTwo);
@@ -56,14 +58,16 @@ public class FindAppointmentCommandTest {
     @Test
     public void getAppointment_patientNotFound() throws HappyPillsException {
         String expectedOutputNotfound = "The patient you are looking for cannot be found";
-        String message = new FindAppointmentCommand("S789C").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        String message = new FindAppointmentCommand("S789C").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputNotfound, message);
     }
 
     @Test
     public void getAppointment_EmptyList_notFound() throws HappyPillsException {
         String expectedOutputEmptyList = "    There are no appointments in the list.\n";
-        String message = new FindAppointmentCommand("S456B").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        String message = new FindAppointmentCommand("S456B").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEmptyList, message);
     }
 
@@ -74,7 +78,8 @@ public class FindAppointmentCommandTest {
                 + "     | 1 | S123A | reason1 | 01/02/2020 | 12:00:00 | \n"
                 + "     | 2 | S123A | reason2 | 01/03/2020 | 13:00:00 | \n"
                 + DIVIDER;
-        String message = new FindAppointmentCommand("S123A").execute(newPatientMap, newAppointmentMap, newVisitMap);
+        String message = new FindAppointmentCommand("S123A").execute(
+                newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputInList, message);
     }
 }

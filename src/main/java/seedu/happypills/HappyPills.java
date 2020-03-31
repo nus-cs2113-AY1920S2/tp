@@ -1,13 +1,13 @@
 package seedu.happypills;
 
-import seedu.happypills.controller.commands.Command;
+import seedu.happypills.logic.commands.Command;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
-import seedu.happypills.model.data.VisitMap;
+import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
-import seedu.happypills.controller.parser.Parser;
+import seedu.happypills.logic.parser.Parser;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.view.ui.TextUi;
+import seedu.happypills.ui.TextUi;
 
 import java.io.FileNotFoundException;
 import java.util.logging.ConsoleHandler;
@@ -25,7 +25,7 @@ public class HappyPills {
     private TextUi ui;
     private PatientMap patients;
     private AppointmentMap appointments;
-    private VisitMap visits;
+    private PatientRecordMap patientRecords;
     private static final Logger logger = Logger.getLogger(HappyPills.class.getName());
 
 
@@ -36,6 +36,7 @@ public class HappyPills {
         ui = new TextUi();
         appointments = new AppointmentMap();
         patients = new PatientMap();
+        patientRecords = new PatientRecordMap();
         try {
             logger.info("loading patient data from file.");
             patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
@@ -94,7 +95,7 @@ public class HappyPills {
         String message = "";
         try {
             Command c = Parser.parse(fullCommand);
-            message = c.execute(patients, appointments, visits);
+            message = c.execute(patients, appointments, patientRecords);
         } catch (HappyPillsException hpe) {
             System.out.println(hpe.getMessage());
             System.out.println(TextUi.DIVIDER);
