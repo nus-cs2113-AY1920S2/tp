@@ -45,7 +45,7 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
             PatientRecord patientRecord = new PatientRecord(nric,symptom,diagnosis,date,time);
             patientRecords.addPersonalRecord(patientRecord, nric);
             //Patient patient = (Patient)patients.get(nric);
-            message = "    Visit has been added.\n"
+            message = "    Visit has been recorded.\n"
                     + TextUi.DIVIDER;
         }
         return message;
