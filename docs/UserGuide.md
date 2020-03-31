@@ -99,7 +99,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 By using `find` and `filter` commands, users can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent with minimal clutter is required.
 
 ### Finding Activities by Name: `find`
-**Usage:** Users can request for a sub-list of activities that has names which contain any of the give keywords. Each keyword should be separated with ` / `.
+**Usage:** Users can request for a sub-list of activities that has names which contain any of the given keywords. If there are more than one keyword, each keyword should be separated with ` / `.
 
 **Format:**
 * `find KEYWORD`
