@@ -21,7 +21,7 @@ public class UI {
     }
 
     public static void display(String message) {
-        UI.display(message);
+        System.out.println(message);
     }
 
     /**
