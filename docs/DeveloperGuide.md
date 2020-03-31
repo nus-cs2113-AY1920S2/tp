@@ -15,7 +15,7 @@
      * Click Open as Project
      * Click OK to accept the default settings.
    * Verifying the setup
-     * Run the jikan.jikan and try a few commands
+     * Run `jikan.jikan` and try a few commands
      * Run the tests and ensure they all pass.
 
 ## 2. Design
@@ -31,9 +31,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 3.1.1 Current Implementation
 
-The storage cleanup mechanism is stored internally as a StorageCleaner java class. The StorageCleaner class has an association with the Storage class and thus it is able to access and edit the datafile which contains the list of activities. 
+The storage cleanup mechanism is stored internally as a StorageCleaner class. The StorageCleaner class has an association with the Storage class and thus it is able to access and edit the datafile which contains the list of activities. 
 
-Additionally, when the StorageCleaner class is first initialised, it will create two files namely a status file and a data file in the “recycled” folder under the “data” folder. The status file keeps track of the activation status of the storage cleaner while the data file serves as a recycle bin for deleted data. 
+Additionally, when the StorageCleaner class is first initialised, it will create two files, namely a status file and a data file in the “recycled” folder under the “data” folder. The status file keeps track of the activation status of the storage cleaner while the data file serves as a recycle bin for deleted data. 
 
 Moreover, the class also implements the following operations:
 
@@ -55,21 +55,21 @@ Step 2. Read the first line of the status file, if a character ‘0’ is found,
 
 ##### setStatus
 
-Step 1. Read the boolean parameter ‘status’.
+Step 1. Read the boolean parameter `status`.
 
-Step 2a. If ‘status’ is equal to true, activate the automated cleanup and write the character ‘1’ to the first line of the status file. (overwrite any existing value at the first line).
+Step 2a. If `status` is equal to true, activate the automated cleanup and write the character ‘1’ to the first line of the status file. (overwrite any existing value at the first line).
 
-Step 2b. If ‘status’ is equal to false, deactivate the automated cleanup and write the character ‘0’ to the first line of the status file.
+Step 2b. If `status` is equal to false, deactivate the automated cleanup and write the character ‘0’ to the first line of the status file.
 
 ![image_info](./pictures/FlowchartsetStatus.png)
 
 ##### autoClean
 
-Step 1. Check activation status of StorageCleaner through the class level attribute boolean toClean.
+Step 1. Check activation status of StorageCleaner through the class level attribute boolean `toClean`.
 
-Step 2a. If the attribute toClean is equal to false, return the operation and give control back to the caller.
+Step 2a. If the attribute `toClean` is equal to `false`, return the operation and give control back to the caller.
 
-Step 2b. If the attribute toClean is equal to true, access the storage data file and remove some of the activities starting from the oldest. Put these deleted activities into the data file under the ‘recycled’ folder.
+Step 2b. If the attribute `toClean` is equal to `true`, access the storage data file and remove some of the activities starting from the oldest. Put these deleted activities into the data file under the ‘recycled’ folder.
 
 ![image_info](./pictures/SDautoClean.png)
 
@@ -110,12 +110,12 @@ The edit feature allows the user to make changes to activities that have been sa
 #### 3.4.1 Current Implementation
 The following sequence diagram shows how the edit feature works.
 ![image_info](./pictures/EditSequenceDiagram.png)
-The current implementation of the edit feature allows the user to edit only the name parameter of the activity. When the user wants to edit an activity using the edit command, the Parser creates a new EditCommand object. The executeCommand() method of the EditCommand object is called and the specified parameters are updated accordingly.
+The current implementation of the edit feature allows the user to edit only the name parameter of the activity. When the user wants to edit an activity using the edit command, the Parser creates a new EditCommand object. The `executeCommand()` method of the EditCommand object is called and the specified parameters are updated accordingly.
 
-The order of method calls to edit the activity details is as follows if the specified activity exists (meaning index != -1) else an exception is thrown:
-1. The updateName() method of the ActivityList class is called, with the user-specified parameters of the activity index and new activity name
-2. The get() method is self-invoked by the ActivityList class to obtain the activity at the given index 
-3. The setName() method of the Activity class is called to edit the activity name to the user-specified name
+The order of method calls to edit the activity details is as follows if the specified activity exists (meaning `index >= 0`) else an exception is thrown:
+1. The `updateName()` method of the ActivityList class is called, with the user-specified parameters of the activity index and new activity name
+2. The `get()` method is self-invoked by the ActivityList class to obtain the activity at the given index 
+3. The `setName()` method of the Activity class is called to edit the activity name to the user-specified name
 4. The activity with the updated name is returned to the activityList  
 
 #### 3.4.2 Additional Implementations
@@ -136,38 +136,38 @@ The continue feature allows the user to continue a previously ended activity.
 
 **Continuing an activity:**
 
-When the user enters the command to continue an activity, a *ContinueCommand* object is created in *Parser*. The method *executeCommand()* of the *ContinueCommand* object is then called and does the following:
+When the user enters the command to continue an activity, a *ContinueCommand* object is created in *Parser*. The method `executeCommand()` of the *ContinueCommand* object is then called and does the following:
 
- 1. Checks if the given activity name exists in the activityList by calling *findActivity()* (if it doesn’t an exception is thrown, omitted in the sequence diagram above)
- 2. Gets the *name* and *tags* of the activity to be continued and saves it to a public static variable of *Parser* object
+ 1. Checks if the given activity name exists in the activityList by calling `findActivity()` (if it doesn’t an exception is thrown, omitted in the sequence diagram above)
+ 2. Gets the `name` and `tags` of the activity to be continued and saves it to a public static variable of *Parser* object
  3. Gets the current time and saves it to a public static variable of *Parser* object
  
  ![End command sequence diagram](./pictures/endActivity.PNG)
 
  **Ending a continued activity:**
  
-When the user wants to end the continued activity, an *EndCommand* object is created in *Parser.* The method *executeCommand()* of the *ContinueCommand* object is then called and it in turn executes the *saveActivity()* method of the *ActivityList* class. The continued activity is then saved by executing the following:
+When the user wants to end the continued activity, an *EndCommand* object is created in *Parser.* The method `executeCommand()` of the *ContinueCommand* object is then called and it in turn executes the `saveActivity()` method of the *ActivityList* class. The continued activity is then saved by executing the following:
 
  1. Gets the current time and saves it to a public static variable of *Parser* object
-2.  Calculates the elapsed time using *between()* method of *Duration* class
-3.  Adds the elapsed time with the previous duration of the activity to get the *newDuration* using *plus()* method of Duration class
-4.  Calls the *updateDuration()* method, which updates the *duration* attribute of the continued activity in the *activityList* as well as the data.csv file
+2.  Calculates the elapsed time using the `between()` method of *Duration* class
+3.  Adds the elapsed time with the previous duration of the activity to get the `newDuration` using the `plus()` method of Duration class
+4.  Calls the `updateDuration()` method, which updates the `duration` attribute of the continued activity in the `activityList` as well as the `data.csv` file
 
 #### 3.5.2 Design Considerations
 
 **Execution:**
- - Continue by activity name (current implementation)
- **Cons:** Activity names have to be unique.
- **Pros:** More versatile, resistant to changes in the activity list
- - Continue by activity index
- **Cons:** need to add an additional index field to the Activity class, 
+ * Continue by activity name (current implementation)
+   * **Cons:** Activity names have to be unique.
+   * **Pros:** More versatile, resistant to changes in the activity list
+ * Continue by activity index
+   * **Cons:** need to add an additional index field to the Activity class, 
  index is not fixed, changes when an activity is deleted
- **Pros:** Can reuse activity names.
+   * **Pros:** Can reuse activity names.
  
-Although the current implementation of the continue feature disallows users to have multiple activities with the same name, we felt that the versatility of this choice outweighed the cons. Firstly because if the activityList got too big, it would be hard for the user to get the index of the task he/she wanted to continue. Also, the index would constantly be changing when changes are made to the list.
+Although the current implementation of the continue feature disallows users to have multiple activities with the same name, we felt that the versatility of this choice outweighed the cons. Firstly because if the activityList got too big, it would be hard for the user to get the index of the task they wanted to continue. Also, the index would constantly be changing when changes are made to the list.
 
 #### 3.5.3 Additional Features
-As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, he/she will be given the option to continue the stated activity.
+As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, they will be given the option to continue the stated activity.
 ![decision flowchart](./pictures/continue_flowchart.PNG)
 
 ### 3.5 List feature
@@ -198,31 +198,32 @@ Additionally, the user can specify a specific week of month by including a date
 This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
 
 #### 3.6.1 Current Implementation
-* This feature is called by the user when the “find” command is entered into the command line. The string following the command is the keyword to match activity names to.
+* This feature is called by the user when the `find` command is entered into the command line. The string following the command is the keyword to match activity names to.
 * The Parser will create a FindCommand object.
-* The FindCommand will invoke its own executeCommand() method.
-    * The Parser's lastShownList will be cleared.
-    * Then it will loop through activityList to find activities with names that contain the keyword.
-    * If one is found, it will be added to lastShownList.
-    * printResults() of the Ui will be called:
-        * If lastShownList is not empty, it will print the matching activities.
+* The FindCommand will invoke its own `executeCommand()` method.
+    * The Parser's `lastShownList` will be cleared.
+    * Then it will loop through `activityList` to find activities with names that contain the keyword.
+    * If one is found, it will be added to `lastShownList`.
+    * `printResults()` of the Ui will be called:
+        * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
 
 ![find seq diagram](https://imgur.com/Icg5rdB.png)
+
 ### 3.7 Filter Feature
 This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
 
 #### 3.7.1 Current Implementation
-* This feature is called by the user when the “filter” command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
+* This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
 * The Parser will create a FilterCommand object.
-* The FindCommand will invoke its own executeCommand() method.
-* The Parser's lastShownList will be cleared.
+* The FindCommand will invoke its own `executeCommand()` method.
+* The Parser's `lastShownList` will be cleared.
 * For each keyword:
-    * Then it will loop through activityList to find activities with tags that contain the keyword.
-    * If one is found, it will be added to lastShownList.
-    * printResults() method of the Ui will be called
-        * If lastShownList is not empty, it will print the matching activities.
+    * Then it will loop through `activityList` to find activities with tags that contain the keyword.
+    * If one is found, it will be added to `lastShownList`.
+    * `printResults()` method of the Ui will be called
+        * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
 
@@ -272,12 +273,10 @@ Allow users to record their daily activities and track their time usage in a use
   
   It is important to include the docs folder to have data for testing!
   
-  #### Starting activities
-  
   #### Listing activities
   Test case: `list month april`
   
-  Expected: A list of activities completed in the month of april should be shown.
+  Expected: A list of activities completed in the month of April should be shown.
   
   Test case: `list 25/03/2020`
   
