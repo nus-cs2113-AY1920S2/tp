@@ -333,8 +333,6 @@ patient automatically.
 >
 >![addConfirmSuccess](/docs/images/confirmAddAppt.png)
 
- [Return to Top](#Table-of-Content)
-
 #### 3.4.2. Edit Appointment: `edit appt`
 
 Edit information of the appointment with the specified appointmentID(apptID).
@@ -356,8 +354,6 @@ Edit information of the appointment with the specified appointmentID(apptID).
 >
 >![editSuccess](/docs/images/EditAppt.png)
 
- [Return to Top](#Table-of-Content)
-
 #### 3.4.3. Delete Appointment: `delete appt`
 
 Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
@@ -373,8 +369,6 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 > ***Expected output:***
 >
 > [editSuccess](/docs/images/DeleteAppt.png)
-
- [Return to Top](#Table-of-Content)
 
 #### 3.4.4. Mark Appointment as Done: `done appt` 
 
@@ -393,8 +387,6 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 >
 >![doneSuccess](/docs/images/DoneAppt.png)
 
- [Return to Top](#Table-of-Content)
-
 #### 3.4.5. List All Appointments: `list appt` 
 
 List all the existing appointments. This can be used to check for appointmentID
@@ -409,8 +401,6 @@ as used by other commands.
 > ***Expected output:***
 >
 >![ListSuccess](/docs/images/ListAppt.png)
-
- [Return to Top](#Table-of-Content)
 
 #### 3.4.6. Find Patient's Appointments: `find appt`
 
