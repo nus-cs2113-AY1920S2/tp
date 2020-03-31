@@ -153,7 +153,7 @@ public class ScheduleHandler {
                                 i++;
                             }
                             j++;
-                            if (i == 6){
+                            if (i == 6) {
                                 i = 0;
                             }
                         }
