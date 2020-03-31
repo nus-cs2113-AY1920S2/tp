@@ -68,12 +68,10 @@ Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
 Lab -|||- 3
-<<<<<<< HEAD
-=======
 --- TASK ---
 --- END TASK ---
 --- END CATEGORY ---
-CS3235 -|||- Computer Security -|||- NIL
+CS3230 -|||- Design and Analysis of Algorithms -|||- NIL
 --- CATEGORY ---
 Lecture -|||- 1
 --- TASK ---
@@ -86,10 +84,9 @@ Assignment -|||- 4
 --- END TASK ---
 Lab -|||- 3
 --- TASK ---
---- END TASK ---
-Programming Assignment -|||- 0
->>>>>>> 17fa6f8aac4f933db8a1e04db43c8123db10cc78
---- TASK ---
+lab1 -|||- N -|||-  -|||- 3
+--- FILE ---
+--- END FILE ---
 --- END TASK ---
 --- END CATEGORY ---
 --- END MODULE ---
