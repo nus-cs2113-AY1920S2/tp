@@ -74,6 +74,7 @@ public class Parser {
 
     private static final String GENERIC_LIST_COMMAND = "ls";
     private static final String GENERIC_MKDIR_COMMAND = "mkdir";
+    private static final String GENERIC_DELETE_COMMAND = "rm";
 
     public static final String MODULE_PREFIX = "-m";
     public static final String CATEGORY_PREFIX = "-c";
@@ -127,6 +128,9 @@ public class Parser {
 
             case GENERIC_MKDIR_COMMAND:
                 return prepareGenericAddCommand(parameters);
+
+            case GENERIC_DELETE_COMMAND:
+                return prepareGenericDeleteCommand(parameters);
 
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
@@ -269,6 +273,28 @@ public class Parser {
             return prepareAddCategoryCommand(parameters);
         case CATEGORY:
             return prepareAddTaskCommand(parameters);
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Prepare the command to delete the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericDeleteCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareDeleteAndListModuleCommand(parameters, true);
+        case MODULE:
+            return prepareDeleteAndListCategoryCommand(parameters, true);
+        case CATEGORY:
+            return prepareDeleteAndListTaskCommand(parameters, true);
         default:
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
