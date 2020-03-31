@@ -1,3 +1,4 @@
+# ATAS (Amazing Task and Assignment System) Developer Guide
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 Content
@@ -12,39 +13,38 @@ Content
 	- [Model Component](#24-model-component)
 	- [Storage Component](#25-storage-component)
 	- [Atas Component](#26-atas-component)
-- [Setting Up](#3-setting-up)
-- [Implementation](#4-implementation)
-	- [Delete Task Feature](#41-delete-task-feature)
-		- [Design Considerations](#411-design-considerations)
-	- [Search task feature](#42-search-task-feature)
-		- [Current Implementation](#421-current-implementation)
-		- [Design Considerations:](#422-design-considerations)
-	- [Clear Task feature](#43-clear-task-feature)
-		- [Current Implementation](#431-current-implementation)
-		- [Design Considerations](#432-design-considerations)
-	- [Repeat event feature](#44-repeat-event-feature)
-		- [Current Implementation](#441-current-implementation)
-		- [`Event` and `RepeatEvent` Differences and Impact](#442-event-and-repeatevent-differences-and-impact)
-		- [Design Considerations](#443-design-considerations)
-	- [Edit Task Feature](#-45-edit-task-feature)
-		- [Implementation](#451-implementation)
-		- [Design Considerations](#452-design-considerations)
-	- [View Calendar feature](#46-view-calendar-feature)
-		- [Implementation](#461-implementation)
-		- [Design Considerations](#462-design-considerations)
-	- [Storage](#47-storage)
-		- [Implementation](#471-implementation)
-			- [Saving the current state of **ATAS** with `Storage#save()`:](#472-saving-the-current-state-of-atas-with-storagesave)
-			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#473-loading-previously-saved-tasklist-data-into-atas-with-storageload)
-		- [Design Considerations](#474-design-considerations)
-- [Testing](#5-testing)
-	- [Using IntelliJ JUnit Tests](#51-using-intellij-junit-tests)
-	- [Using Input-Output Tests](#52-using-input-output-tests)
-- [Appendices](#6-appendices)
-    - [Product Scope](#61-appendix-a-product-scope)
-    - [User Stories](#62-appendix-b-user-stories)
-    - [Use Cases](#63-appendix-c-use-cases)
-    - [Non-Functional Requirements](#64-appendex-d-non-functional-requirements)
+- [Implementation](#3-implementation)
+	- [Delete Task Feature](#31-delete-task-feature)
+		- [Design Considerations](#311-design-considerations)
+	- [Search task feature](#32-search-task-feature)
+		- [Current Implementation](#321-current-implementation)
+		- [Design Considerations:](#322-design-considerations)
+	- [Clear Task feature](#33-clear-task-feature)
+		- [Current Implementation](#331-current-implementation)
+		- [Design Considerations](#332-design-considerations)
+	- [Repeat event feature](#34-repeat-event-feature)
+		- [Current Implementation](#341-current-implementation)
+		- [`Event` and `RepeatEvent` Differences and Impact](#342-event-and-repeatevent-differences-and-impact)
+		- [Design Considerations](#343-design-considerations)
+	- [Edit Task Feature](#35-edit-task-feature)
+		- [Implementation](#351-implementation)
+		- [Design Considerations](#352-design-considerations)
+	- [View Calendar feature](#36-view-calendar-feature)
+		- [Implementation](#361-implementation)
+		- [Design Considerations](#362-design-considerations)
+	- [Storage](#37-storage)
+		- [Implementation](#371-implementation)
+			- [Saving the current state of **ATAS** with `Storage#save()`:](#372-saving-the-current-state-of-atas-with-storagesave)
+			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#373-loading-previously-saved-tasklist-data-into-atas-with-storageload)
+		- [Design Considerations](#374-design-considerations)
+- [Testing](#4-testing)
+	- [Using IntelliJ JUnit Tests](#41-using-intellij-junit-tests)
+	- [Using Input-Output Tests](#42-using-input-output-tests)
+- [Appendices](#5-appendices)
+    - [Product Scope](#51-appendix-a-product-scope)
+    - [User Stories](#52-appendix-b-user-stories)
+    - [Use Cases](#53-appendix-c-use-cases)
+    - [Non-Functional Requirements](#54-appendex-d-non-functional-requirements)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -155,21 +155,9 @@ The sequence diagram below shows how various components, broken down into the va
 
 5.  The `Storage` object is used to save the new state of the application.
 
-## 3. Setting Up
-- For **Windows** Users:
-    1. Download the latest release of ATAS [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
-    2. Open a ```cmd```(Command Prompt) window.
-    3. Navigate to the directory containing downloaded jar file.
-    4. Run the command ```java -jar atas.jar```. You will be greeted with the welcome screen of ATAS in a few seconds.
-- For **Mac** Users:
-    1. Download the latest release of ATAS [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
-    2. Open up ```Terminal```
-    3. Navigate to the directory containing downloaded jar file.
-    4. Run the command ```java -jar atas.jar```. You will be greeted with the welcome screen of ATAS in a few seconds.
-
-## 4. Implementation
+## 3. Implementation
 This section will detail how some noteworthy features are implemented.
-### 4.1. Delete Task Feature
+### 3.1. Delete Task Feature
 Current Implementation:  
 The `DeleteCommand` extends the `Command` class and initializes the `delete index` in its constructor. The `delete index` specifies the index of task that the user wants to delete.
 
@@ -198,7 +186,7 @@ The following sequence diagram summarizes how delete command operation works:
 
 ![delete task](images/delete.png)
 
-#### 4.1.1. Design Considerations
+#### 3.1.1. Design Considerations
 
 -   Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within the `execute()` method of the `DeleteCommand` class
 
@@ -208,8 +196,8 @@ The following sequence diagram summarizes how delete command operation works:
 
     -   Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
 
-### 4.2. Search task feature
-#### 4.2.1 Current Implementation
+### 3.2. Search task feature
+#### 3.2.1 Current Implementation
 
 The search task feature is currently implemented in both `SearchCommand` class and `SearchdCommand` class. Both classes inherit from the `Command` class.
 
@@ -223,7 +211,8 @@ Given below is an example usage of the `Search` command:
 The user launches the app and retrieves the tasks that are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `search t\{TASK TYPE} n\{SEARCH QUERY}` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+The user enters `search t\[TASK TYPE] n\[SEARCH QUERY]` into the command line. Method `parseCommand()` from the `Parser` class will be
+ called to parse the command provided.
 
 **Step 3**  
 A new instance of `SearchCommand` with the `taskType`, `searchParam` and an ArrayList to store the index of search query , `storeIndex` will be initialized,
@@ -252,7 +241,8 @@ Given below is an example usage of the `Searchd` command:
 The user launches the app and retrieves the tasks that are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `searchd t\{TASK TYPE} n\{SEARCH QUERY} d\{DATE}` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+The user enters `searchd t\[TASK TYPE] n\[SEARCH QUERY] d\[DATE]` into the command line. Method `parseCommand()` from the `Parser` class
+ will be called to parse the command provided.
 
 **Step 3**  
 A new instance of `SearchCommand` with the `taskType`, `searchParam`, `date` and an ArrayList to store the index of search query, `storeIndex` initialized will be created,
@@ -279,7 +269,7 @@ The following sequence diagram summarizes how the `SearchCommand` and `SearchdCo
 
 ![Search operations](images/search.png)
 
-#### 4.2.2. Design Considerations:
+#### 3.2.2. Design Considerations:
 
 -   Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
 
@@ -300,8 +290,8 @@ The following sequence diagram summarizes how the `SearchCommand` and `SearchdCo
 
             -   Cons: Makes the code for `Parser` unnecessarily long. Makes the code less OOP.
 
-### 4.3. Clear Task feature
-#### 4.3.1. Current Implementation
+### 3.3. Clear Task feature
+#### 3.3.1. Current Implementation
 
 The `ClearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function has to be executed
 
@@ -345,7 +335,7 @@ The following sequence diagram summarizes how the `ClearCommand` operation works
 
 ![clear command](images/clear.png)
 
-#### 4.3.2. Design Considerations
+#### 3.3.2. Design Considerations
 
 -   Creating another `clear done` command instead of just 1 `clear` command
 
@@ -366,35 +356,40 @@ The following sequence diagram summarizes how the `ClearCommand` operation works
 
             -   Cons: `ArrayList` will be filled up with unnecessary tasks that could have been removed. This might affect the time complexity of future addition or searching operations on the `ArrayList`.
 
-### 4.4. Repeat event feature
+### 3.4. Repeat event feature
 This feature allow users to repeat their events, removing the need to insert the same event multiple times with different dates.
 
-#### 4.4.1. Current Implementation
+#### 3.4.1. Current Implementation
 
 The `RepeatCommand` class extends the `Command` class and either allows the stated event to repeat or to stop repeating. To allow an event to repeat, it will replace the current `Event` object with a `RepeatEvent` object (`RepeatEvent` inherits from `Event`). Likewise, to stop repeating, it replaces the current `RepeatEvent` with a `Event` object. A detailed explanation and the difference between the 2 classes will be elaborated later.
 
-Given below is an example usage of the `repeat id/2 p/1w` command.
+Given below is an example usage of the `repeat id/2 p/1w` command given by a user.
 
 **Step 1**  
-Method `parseCommand()` from the `Parser` class will be called to parse the command provided. Through this method, we will be able to obtain information to get integers `eventID`, `numOfPeriod` and the string `typeOfPeriod`.  
+`Parser#parseCommand()` will be called to parse the command provided. Through this method, we will be able to
+ obtain information to get integers `eventID`, `numOfPeriod` and the string `typeOfPeriod`.  
 - `eventID` identifies the task that the user wishes to repeat.  
-- `numOfPeriod` and `typeOfPeriod` (`d`, `w`, `m`, or `y`) specifies how often the user wants to repeat the event.
+- `numOfPeriod` and `typeOfPeriod` specifies how often the user wants to repeat the event.
+
+> **Note:**
+> Available `typeOfPeriod`: Day `d`, Week `w`, Month `m`, Year `y` <br/>
 
 **Step 2**  
-After parsing, a new instance of RepeatCommand with `eventID`, `numOfPeriod` and `typeOfPeriod` initialized will be created. The `execute()` method of `RepeatCommand` will then be called.
+After parsing, a new instance of RepeatCommand with `eventID`, `numOfPeriod` and `typeOfPeriod` initialized will be created. `RepeatCommand#execute()` will then be called.
 
 **Step 3**  
 The `execute()` method will check 3 things after it calls `getTask()` method from `TaskList` class to get the user input task.
 
 -   It will check if the `eventID` provided refers to a valid `Event` task.
 
--   It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `unsetRepeat` method from `RepeatCommand` class.
+-   It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `RepeatCommand#unsetRepeat()`.
 
     -   `unsetRepeat()` method will check if the given task is indeed a `RepeatEvent` object and then create a new `Event` object using the variables from `RepeatEvent` and replace it in the `TaskList`.
 
--   If it is not 0, it will set the event to repeating by calling `setRepeat()` method from the `RepeatCommand` class.
+-   If it is not 0, it will set the event to repeating by calling `RepeatCommand#setRepeat()`.
 
-    -   `setRepeat` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object and replace the current `Event` object at the `eventID` in `TaskList`.
+    -   `setRepeat()` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object and replace
+     the current `Event` object at the `eventID` in `TaskList`.
 
 **Step 4**  
 After the `execute()` method completes, a new `CommandResult` class with a string containing the result of the execution. This string will be printed by calling `showToUser()` method in the `Ui` class. Then the event will be saved into local file by calling the `trySaveTaskList()` method from the `Atas` class.
@@ -403,7 +398,7 @@ The following sequence diagram summarizes how repeat command operation works:
 
 ![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
 
-#### 4.4.2. `Event` and `RepeatEvent` Differences and Impact
+#### 3.4.2. `Event` and `RepeatEvent` Differences and their Impact
 
 -   There are 4 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an event to repeat accurately.
 
@@ -416,13 +411,14 @@ The following sequence diagram summarizes how repeat command operation works:
     4.  `int periodCounter`: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods` with type `typeOfPeriod` has passed.  
         For example, if `numofPeriod` is `2` and `typeOfPeriod` is `d`, and 6 days has passed since `originalDateAndTime`, then `periodCounter` will be 3.
 
--   With this implementation in mind, every time the app is launched, after `load()` method in `Storage` class is called, the app will call a method `updateEventDate()` which will iterate through every task in the list and calls `updateDate()` method from the `RepeatEvent` class if the task is of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future date if today is not possible.
+-   With this implementation in mind, every time the app is launched, after `load()` method in `Storage` class is called, the app will
+ call a method `updateEventDate()` which will iterate through every task in the list and calls `RepeatEvent#updateDate()` if the task is of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future date if today is not possible.
 
 -   To users, apart from minor differences such as the icon and `RepeatEvent` listing how often it is being repeated, there will be no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and they can only add `Event` or `Assignment` to the app and would appear as if there are only 2 type of tasks.
 
-#### 4.4.3. Design Considerations
+#### 3.4.3. Design Considerations
 
--   Allowing only tasks that are `Event` to be repeated
+-   Allowing only tasks that are `Event` to be repeated.
 
     -   Rationale:  
         We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it makes sense for events to repeat since many events actually occur on a regular basis.
@@ -435,7 +431,7 @@ The following sequence diagram summarizes how repeat command operation works:
 
             -   Cons: Memory wastage as additional variables are set for repeating tasks. In the case of minimal assignments being repeated, the space is wasted.
 
--   Allowing an `Event` to repeat for any period by using `numOfPeriod` and `typeOfPeriod` (d, w, m ,y)
+-   Allowing an `Event` to repeat for any period by using `numOfPeriod` and `typeOfPeriod`.
 
     -   Rationale:  
         It provides great flexibility in allowing an event to repeat for any desired amount of time. For example, some classes occur every 2 weeks. Some events may happen every 10 days or any x period.
@@ -461,8 +457,8 @@ The following sequence diagram summarizes how repeat command operation works:
 
             -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the user’s list and increase the size of the local file that stores the `TaskList`.
 
-### 4.5. Edit Task Feature
-#### 4.5.1. Implementation
+### 3.5. Edit Task Feature
+#### 3.5.1. Implementation
 
 The `EditCommand` class extends the `Command` class by providing functions to edit specific tasks in the list of **ATAS**.
 
@@ -509,7 +505,7 @@ The following sequence diagram summarises what happens when the `EditCommand` cl
 
 ![EditCommand\_SequenceDiagram.png](images/EditCommand_SequenceDiagram.png)
 
-#### 4.5.2. Design Considerations
+#### 3.5.2. Design Considerations
 
 -   Placing invocation of new `Assignment` and `Event` class in `EditCommand` class
 
@@ -527,10 +523,10 @@ The following sequence diagram summarises what happens when the `EditCommand` cl
     -   Alternatives Considered:  
         Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However, this is not chosen as it is not intuitive for the user’s task index to shift after editing the task.
 
-### 4.6. View Calendar feature
+### 3.6. View Calendar feature
 ![Sample output of Calendar Command](images/calendar2.png)
 
-#### 4.6.1. Implementation
+#### 3.6.1. Implementation
 
 The `CalendarCommand` class extends the `Command` class with methods to implement the necessary pre-processing to display an overview of tasks in the given date. The following sequence diagram outlines an example execution of `CalendarCommand` when it is called and the interaction it has with the relevant components.
 
@@ -578,7 +574,7 @@ The method manages all pre-processing to get the details needed to formulate the
 **Step 4**  
 The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the `Calendar` view by calling `showToUser()` method of the `Ui` component.
 
-#### 4.6.2. Design Considerations
+#### 3.6.2. Design Considerations
 
 -   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
 
@@ -606,13 +602,13 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
     -   Alternative Considered:  
         Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
 
-## 4.7. Storage
-### 4.7.1. Implementation
+## 3.7. Storage
+### 3.7.1. Implementation
 
 The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
 Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
 
-#### 4.7.2. Saving the current state of **ATAS** with `Storage#save()`:  
+#### 3.7.2. Saving the current state of **ATAS** with `Storage#save()`:  
 
 **Step 1**  
 For each `Task` in the `TaskList`, `Task#encode()` is called, and the result is appended to a save string. Each encoded `Task` is separated by a newline.
@@ -620,7 +616,7 @@ For each `Task` in the `TaskList`, `Task#encode()` is called, and the result is 
 **Step 2**  
 The save string is written into the specified save file, which will be created if it does not already exist.
 
-#### 4.7.3. Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:  
+#### 3.7.3. Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:  
 
 **Step 1**  
 Read each line from the save file one by one. Each line corresponds to an encoded `Task`.
@@ -634,7 +630,7 @@ Add each decoded `Task` into a `TaskList`.
 **Step 4**  
 When all lines in the save file have been decoded, return the `TaskList`.
 
-#### 4.7.4. Design Considerations
+#### 3.7.4. Design Considerations
 
 -   Saving the `TaskList` after every `Command` executed  
 
@@ -647,18 +643,18 @@ When all lines in the save file have been decoded, return the `TaskList`.
     -   Conclusion  
         As the `TaskList` is expected to be small for most users, the drop in performance due to unnecessary saves is negligible. The first method is chosen to make the code easier to maintain.
 
-## 5. Testing
-### 5.1. Using IntelliJ JUnit Tests
+## 4. Testing
+### 4.1. Using IntelliJ JUnit Tests
 
 -   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 
 -   For individual tests, you can right-click on the test **package**, **class** or a single test and choose `Run 'TEST'`
 
-### 5.2. Using Input-Output Tests
--   Navigate to the `text-ui-test` folder and run the runtest.bat (Windows) or runtest.sh (Mac / Linux) script.
+### 4.2. Using Input-Output Tests
+-   Navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script.
 
-## 6. Appendices
-### 6.1. Appendix A: Product Scope
+## 5. Appendices
+### 5.1. Appendix A: Product Scope
 Target user profile:  
 
 -   manages many university assignments or events
@@ -673,7 +669,7 @@ Target user profile:
 
 **Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
 
-### 6.2. Appendix B: User Stories
+### 5.2. Appendix B: User Stories
 <table>
 <colgroup>
 <col width="20%" />
@@ -833,8 +829,8 @@ Target user profile:
 </tbody>
 </table>
 
-### 6.3. Appendix C: Use Cases
-### 6.4. Appendex D: Non-Functional Requirements
+### 5.3. Appendix C: Use Cases
+### 5.4. Appendex D: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.

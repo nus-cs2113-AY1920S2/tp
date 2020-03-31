@@ -1,4 +1,4 @@
-# A.T.A.S (Amazing Task and Assignment System) User Guide
+# ATAS (Amazing Task and Assignment System) User Guide
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 Contents:
@@ -334,7 +334,7 @@ Set an event to repeat indefinitely for every period specified by identifying th
 Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
 
 > **Note**: <br/>
-> Available `[PERIOD_TYPE]`: Day `[d]`, Week `[w]`, Month `[m]`, Year `[y]` <br/>
+> Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y` <br/>
 > `INDEX` of task specified has to be an **event** task. <br/>
 
 Example: `repeat id/6 p/11m`  
