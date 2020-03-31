@@ -3,14 +3,17 @@ package seedu.ui;
 public class Help extends UI {
 
     public void printGetHelp() {
-        display("Hello, please select the type of "
-                + "command that you wish to get the format for.");
-        display("1. Event");
-        display("2. Attendance");
-        display("3. Performance");
-        display("4. Student List");
-        display("To track any list, input: type_of_list list");
-        display("Note: All command are NOT case sensitive.");
+        StringBuilder output = new StringBuilder(
+            "Hello, please select 1-4 for its command format.\n"
+            + "1. Event-related\n"
+            + "2. Attendance\n"
+            + "3. Performance\n"
+            + "4. Student List\n"
+        );
+        output.append("To track any list, input: <type_of_list> list\n");
+        output.append("Note: All command are NOT case sensitive.\n");
+
+        display(output.toString());
     }
 
     public void printEventHelp() {
