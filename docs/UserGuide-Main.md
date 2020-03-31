@@ -86,7 +86,6 @@ Format: `help`
 > ![help](images/HelpOutput.PNG "help output")
 >
 
-Note:
 <table>
   <col width="20">
   <col width="200">
@@ -131,11 +130,11 @@ Retrieve a patient's information | `get patient` NRIC
 
 **Command** | **Format**
 --------|----------
- Add a Patient Record |`add pr` /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS
- Edit a Patient Record |`edit pr`
- Delete a Patient Record | `delete pr`
- List all Patient Records |`list pr`
- Find a Patient Record|`find pr`
+ Add a Patient Record |`add pr` /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME
+ List all Patient Records |`list pr NRIC`
+ Find a Patient Record|`find pr NRIC INDEX`
+ Edit a Patient Record |`edit pr NRIC INDEX`
+ Delete a Patient Record | `delete pr NRIC INDEX`
 
 #### Appointments
 
