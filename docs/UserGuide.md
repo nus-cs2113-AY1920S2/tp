@@ -346,9 +346,8 @@ Expected outcome:
 ```
 
 > **Note**:
-> Listing after repeating an event will cause it to have the symbol `[R]` instead of `[E]` and its `PERIOD_NUM` and `PERIOD_TYPE` will also
+> Repeating an event will cause the event to have the symbol `[R]` instead of `[E]` and its `PERIOD_NUM` and `PERIOD_TYPE` will also
 > be shown in a square bracket beside `notes` section. Below is an example:
->
 > ```
 > Here are the search results:
 >  1.[R][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
