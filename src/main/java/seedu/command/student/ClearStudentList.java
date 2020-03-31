@@ -1,10 +1,10 @@
 package seedu.command.student;
 
 import seedu.command.Command;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
-import static seedu.pac.PAC.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 /**
  * Class representing a student related command to clear all existing studentList in studentListCollection.
@@ -22,7 +22,7 @@ public class ClearStudentList extends Command {
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         clear();
     }
 }

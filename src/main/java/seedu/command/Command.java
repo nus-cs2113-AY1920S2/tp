@@ -1,7 +1,7 @@
 package seedu.command;
 
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 
 public abstract class Command {
-    public abstract void execute() throws PACException;
+    public abstract void execute() throws PacException;
 }

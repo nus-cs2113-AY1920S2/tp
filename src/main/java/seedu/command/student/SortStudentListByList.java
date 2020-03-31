@@ -2,10 +2,10 @@ package seedu.command.student;
 
 import seedu.student.StudentList;
 import seedu.command.Command;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
-import static seedu.pac.PAC.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 /**
  * Class representing a student related command to sort all studentList by alphabetical order.
@@ -25,7 +25,7 @@ public class SortStudentListByList extends Command {
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         sort();
         ui.displayMessage("StudentList sorted by name within the lists");
     }

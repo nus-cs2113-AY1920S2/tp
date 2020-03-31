@@ -13,20 +13,20 @@ quick access to the information in either a list or a calendar view.
 
 ### Audience 
 The design documentation is in general for anyone who wants to understand the system architecture and design of 
-PAC. The following groups are in particular the intended audience of the document.
-- PAC project managers
-- PAC developers
-- PAC software testers
+Pac. The following groups are in particular the intended audience of the document.
+- Pac project managers
+- Pac developers
+- Pac software testers
 
 ## Architecture
-This section presents the architecture of PAC. It explains the architecture of main components of PAC.
+This section presents the architecture of Pac. It explains the architecture of main components of Pac.
 
 ### Overall Architecture
-![Architecture](images/Architecture.png "Architecture of PAC")
+![Architecture](images/Architecture.png "Architecture of Pac")
 
-*Overall architecture design of PAC*
+*Overall architecture design of Pac*
 
-The `PAC` component contains all other components in the application.
+The `Pac` component contains all other components in the application.
 
 - `UI`: reads user input, and prints output in pre-defined format.
 - `Storage`: loads/stores all events (in EventList) and all student lists (in StudentListCollection).
@@ -38,14 +38,14 @@ The `PAC` component contains all other components in the application.
 ![Command](images/Command.png "Class diagram of Command component")         
 *Class diagram of the Command component*  
 
-Commands are the main classes to be executed in PAC. All of the specific Command classes inherit the 
+Commands are the main classes to be executed in Pac. All of the specific Command classes inherit the 
 base Command abstract class, and utilize its abstract execute() method.  
 A subclass of Command is created and executed when the professor input a corresponding command.
  
 ### Parser
 *Class diagram of the Parser component*  
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
-of PAC. 
+of Pac. 
 
 | Parser                    | Created in                                                    |
 |---------------------------|---------------------------------------------------------------|
@@ -78,7 +78,7 @@ DisplayList and DisplayTable, to specifically print the list and table interface
 created, with the information extracted from the previous step passed into it. 
     - e.g. Command `event delete i/1` will create a `DeleteEvent` object, with 
     `index=1` as its argument.
-1. These commands are then returned to `PAC.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
@@ -95,7 +95,7 @@ either by complete match, or fuzzy match.
 1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
 1. Then, the class will execute base on its function. It modifies `AttendanceList`.
-1. These commands are then returned to `PAC.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 ###Calendar Implementation
 
@@ -105,7 +105,7 @@ either by complete match, or fuzzy match.
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
 1. Then, either AddFirstSemester or AddSecondSemester class that corresponds the semester number is created. 
 1. Subsequently, it separates events by the required month and year in `CalendarList`
-1. These commands are then returned to `PAC.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * `acadamic year` is parsed into corresponding to only one year according to the semester in `EventParser` class.
@@ -129,7 +129,7 @@ create a new attendance list. `n/` and `p/` flags are used to insert new attenda
 DeletePerformance...), and ask for relevant information (e.g. event name, student name, student result) from the user. 
 1. Then, with the information extracted from the previous step passed into it. It modifies PerformanceList` under
 the event class correspond to the input event name.
-1. These commands are then returned to `PAC.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * All PerformanceList class should be created under an Event class. A PerformanceList class cannot exist 
@@ -143,7 +143,7 @@ prevent time wasted on key in wrong commands.
 1. When a user enters an studentList-related command, the command is analysed by `StudentCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
 1. Then, the class will execute base on its function. It modifies `AttendanceList`.
-1. These commands are then returned to `PAC.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * studentList-related commands can be executed without the existence of events.

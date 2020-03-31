@@ -2,7 +2,7 @@ package seedu.parser;
 
 import seedu.event.Event;
 import seedu.event.Seminar;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 
 public class EventParser {
     private String name;
@@ -20,7 +20,7 @@ public class EventParser {
         this.index = -1;
     }
 
-    public void parse(String parameters) throws PACException {
+    public void parse(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
     }
@@ -31,32 +31,32 @@ public class EventParser {
      * @param parameters original parameters
      * @return an Event object with the relevant information
      */
-    public Event parseEvent(String parameters) throws PACException {
+    public Event parseEvent(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new PACException("EventParser: Invalid arguments");
+            throw new PacException("EventParser: Invalid arguments");
         }
         return new Event(name, datetime, venue);
     }
 
-    public Seminar parseSeminar(String parameters) throws PACException {
+    public Seminar parseSeminar(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new PACException("EventParser: Invalid arguments");
+            throw new PacException("EventParser: Invalid arguments");
         }
         return new Seminar(name, datetime, venue);
     }
 
-    private void splitByEventFlags(String[] tokens) throws PACException {
+    private void splitByEventFlags(String[] tokens) throws PacException {
         String mostRecent = null;
         for (String token : tokens) {
             if (token.length() < 2) {
                 if (mostRecent == null) {
-                    throw new PACException("EventParser: Flag is too short");
+                    throw new PacException("EventParser: Flag is too short");
                 } else if (validFlagToAppend(mostRecent)) {
                     append(mostRecent, token);
                 }
@@ -87,17 +87,17 @@ public class EventParser {
                     try {
                         index = Integer.parseInt(token.substring(2));
                     } catch (NumberFormatException m) {
-                        throw new PACException("EventParser: Parameter is not an integer");
+                        throw new PacException("EventParser: Parameter is not an integer");
                     }
                     mostRecent = "index";
                     break;
                 default:
                     // assumes that all valid flags have been processed before this line
                     if (isUnknownFlag(token)) {
-                        throw new PACException("EventParser: Unknown flag");
+                        throw new PacException("EventParser: Unknown flag");
                     }
                     if (mostRecent == null) {
-                        throw new PACException("EventParser: Parameter is provided without flag");
+                        throw new PacException("EventParser: Parameter is provided without flag");
                     }
                     if (validFlagToAppend(mostRecent)) {
                         append(mostRecent, token);
@@ -116,7 +116,7 @@ public class EventParser {
      * @param mostRecent the most recently added parameter
      * @param token the string to be appended
      */
-    private void append(String mostRecent, String token) throws PACException {
+    private void append(String mostRecent, String token) throws PacException {
         if (token.isEmpty() || token.equals(" ")) {
             return;
         }
@@ -128,19 +128,19 @@ public class EventParser {
             venue += venue.isEmpty() ? token : (" " + token);
             break;
         default:
-            throw new PACException("EventParser: Invalid flag to append to");
+            throw new PacException("EventParser: Invalid flag to append to");
         }
     }
 
-    private void ensureNotDuplicateFlag(String name, String message) throws PACException {
+    private void ensureNotDuplicateFlag(String name, String message) throws PacException {
         if (!name.isEmpty()) {
-            throw new PACException(message);
+            throw new PacException(message);
         }
     }
 
-    private void ensureNotDuplicateFlag(int name, String message) throws PACException {
+    private void ensureNotDuplicateFlag(int name, String message) throws PacException {
         if (name != -1) {
-            throw new PACException(message);
+            throw new PacException(message);
         }
     }
 

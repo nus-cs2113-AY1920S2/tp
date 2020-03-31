@@ -8,7 +8,7 @@ import seedu.command.Bye;
 import seedu.command.Help;
 import seedu.command.interpreter.CommandInterpreter;
 import seedu.event.EventList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 
 public class CommandInterpreterTest {
     CommandInterpreter ci;
@@ -18,21 +18,21 @@ public class CommandInterpreterTest {
     }
 
     @Test
-    void byeCommand() throws PACException {
+    void byeCommand() throws PacException {
         assertTrue(ci.decideCommand("bye") instanceof Bye);
         assertTrue(ci.decideCommand("  bye  ") instanceof Bye);
         assertTrue(ci.decideCommand("bYe") instanceof Bye);
     }
 
     @Test
-    void helpCommand() throws PACException {
+    void helpCommand() throws PacException {
         assertTrue(ci.decideCommand("help") instanceof Help);
         assertTrue(ci.decideCommand("  help  ") instanceof Help);
         assertTrue(ci.decideCommand("heLp") instanceof Help);
     }
     
     void unknownCommand() {
-        assertThrows(PACException.class, () -> ci.decideCommand(""));
-        assertThrows(PACException.class, () -> ci.decideCommand("hi"));
+        assertThrows(PacException.class, () -> ci.decideCommand(""));
+        assertThrows(PacException.class, () -> ci.decideCommand("hi"));
     }
 }

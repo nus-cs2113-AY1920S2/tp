@@ -1,6 +1,6 @@
 package seedu.performance;
 
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
@@ -36,10 +36,10 @@ public class PerformanceList {
      *
      * @param performance The Performance of student to be deleted.
      */
-    public void deletePerformance(Performance performance, String eventName) throws PACException {
+    public void deletePerformance(Performance performance, String eventName) throws PacException {
         boolean hasDeleted = false;
         if (isEmpty()) {
-            throw new PACException("No performance list under this event");
+            throw new PacException("No performance list under this event");
         }
         for (Performance p : performanceList) {
             if (p != null && performance.getStudent().equals(p.getStudent())) {
@@ -51,9 +51,9 @@ public class PerformanceList {
         ui.deletePerformanceMessage(performance, eventName, hasDeleted);
     }
 
-    public void printList() throws PACException {
+    public void printList() throws PacException {
         if (isEmpty()) {
-            throw new PACException("No performance list under this event");
+            throw new PacException("No performance list under this event");
         }
         int i = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Result");
@@ -68,18 +68,18 @@ public class PerformanceList {
      * and returns the Performance when the two Strings are equal.
      * @param studentName A String input to be compared.
      * @return The Performance with studentName matches input String.
-     * @throws PACException Throws
+     * @throws PacException Throws
      */
-    public Performance getPerformance(String studentName) throws PACException {
+    public Performance getPerformance(String studentName) throws PacException {
         if (isEmpty()) {
-            throw new PACException("No performance list under this event");
+            throw new PacException("No performance list under this event");
         }
         for (Performance performance: performanceList) {
             if (performance.studentName.equals(studentName)) {
                 return performance;
             }
         }
-        throw new PACException("There is no record for " + studentName + "'s performance.");
+        throw new PacException("There is no record for " + studentName + "'s performance.");
     }
 
     public boolean isEmpty() {

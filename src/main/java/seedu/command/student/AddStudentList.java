@@ -1,12 +1,12 @@
 package seedu.command.student;
 
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.student.StudentList;
 import seedu.command.Command;
 import seedu.ui.DisplayList;
 import seedu.ui.UI;
 
-import static seedu.pac.PAC.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 /**
  * Class representing a student related command to add a new studentList to studentListCollection.
@@ -25,17 +25,17 @@ public class AddStudentList extends Command {
      * Method to add student names to a new list.
      * Once studentList is created, it will be appended to studentListCollection.
      */
-    private void addToList() throws PACException {
+    private void addToList() throws PacException {
         String listName = ui.getListName();
         if (listName.toLowerCase().equals("done")) {
             ui.displayMessage("Student Add cancelled.");
-            throw new PACException("Student Add cancelled");
+            throw new PacException("Student Add cancelled");
         }
         StudentList studentList = new StudentList(listName);
         ui.addStudent(studentList);
         if (studentList.isEmpty()) {
             ui.displayMessage("You cannot create an empty Student List.");
-            throw new PACException("You cannot create an empty Student List");
+            throw new PacException("You cannot create an empty Student List");
 
         }
         displayList.printStudentList(studentList, listName);
@@ -43,7 +43,7 @@ public class AddStudentList extends Command {
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         addToList();
     }
 }

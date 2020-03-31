@@ -2,7 +2,7 @@ package seedu.command.event;
 
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 
 public class DeleteEvent extends Command {
     private Integer index;
@@ -14,11 +14,11 @@ public class DeleteEvent extends Command {
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         if (eventList.getSize() == 0) {
-            throw new PACException("List is empty, unable to delete any items.");
+            throw new PacException("List is empty, unable to delete any items.");
         } else if (index > eventList.getSize()) {
-            throw new PACException("Index not found");
+            throw new PacException("Index not found");
         }
         eventList.delete(index);
     }

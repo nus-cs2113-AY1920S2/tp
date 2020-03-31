@@ -1,7 +1,7 @@
 package seedu.exception;
 
-public class PACException extends Exception {
-    public PACException(String message) {
+public class PacException extends Exception {
+    public PacException(String message) {
         super(message);
     }
 }

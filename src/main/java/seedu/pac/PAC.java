@@ -12,12 +12,12 @@ import seedu.command.Bye;
 import seedu.command.interpreter.CommandInterpreter;
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.storage.Storage;
 import seedu.ui.UI;
 
-public class PAC {
-    public static final Logger logger = Logger.getLogger(PAC.class.getName());
+public class Pac {
+    public static final Logger logger = Logger.getLogger(Pac.class.getName());
 
     protected UI ui;
     protected CommandInterpreter interpreter;
@@ -26,7 +26,7 @@ public class PAC {
     protected Storage eventStorage;
     protected Storage studentListCollectionStorage;
 
-    public PAC() throws PACException {
+    public Pac() throws PacException {
         setupLogger();
 
         ui = new UI();
@@ -53,7 +53,7 @@ public class PAC {
         ch.setLevel(Level.SEVERE);  // only print SEVERE log to console
         logger.addHandler(ch);
         try {
-            FileHandler fh = new FileHandler("PAC.log", true);
+            FileHandler fh = new FileHandler("Pac.log", true);
             fh.setLevel(Level.FINE);    // print FINE log and more severe log to log file
             logger.addHandler(fh);
         } catch (IOException m) {
@@ -62,7 +62,7 @@ public class PAC {
         }
     }
 
-    public void run() throws PACException {
+    public void run() throws PacException {
         ui.setUserName();
         Command command = null;
         do {
@@ -70,13 +70,13 @@ public class PAC {
             try {
                 String input = ui.getUserInput().trim();
                 if (input.isEmpty()) {
-                    throw new PACException("Please provide a valid command.");
+                    throw new PacException("Please provide a valid command.");
                 }
 
                 command = interpreter.decideCommand(input);
                 command.execute();
-            } catch (PACException m) {
-                logger.log(Level.WARNING, "PACException at PAC.run()");
+            } catch (PacException m) {
+                logger.log(Level.WARNING, "PacException at Pac.run()");
             }
         } while (isNotBye(command));
 
@@ -94,13 +94,13 @@ public class PAC {
     }
 
     /**
-     * Main entry-point for the java.PAC.PAC application.
+     * Main entry-point for the java.Pac.Pac application.
      */
     public static void main(String[] args) {
         try {
-            PAC pac = new PAC();
+            Pac pac = new Pac();
             pac.run();
-        } catch (PACException m) {
+        } catch (PacException m) {
             UI.display(m.getMessage());
         }
     }

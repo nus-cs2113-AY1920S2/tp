@@ -7,7 +7,7 @@ import seedu.command.performance.ListStudentPerformance;
 import seedu.command.performance.SortPerformanceListByName;
 import seedu.command.performance.SortPerformanceListByGrade;
 import seedu.event.EventList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
@@ -26,9 +26,9 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
      * Execute the command from userInput.
      *
      * @param commandDescription The userInput from the Ui.
-     * @throws PACException If the command is undefined.
+     * @throws PacException If the command is undefined.
      */
-    public Command decideCommand(String commandDescription) throws PACException {
+    public Command decideCommand(String commandDescription) throws PacException {
         String commandType = getFirstWord(commandDescription);
         eventName = ui.getEventName(); // to know under which event the user want to edit the performance
         performances = getPerformances(eventName); //performance list to be edited
@@ -43,7 +43,7 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return getSortCommand();
         default:
             ui.displayMessage("Performance: Unknown command");
-            throw new PACException("Performance: Unknown command.");
+            throw new PacException("Performance: Unknown command.");
         }
     }
 
@@ -52,10 +52,10 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
      * getting a String input and parse it to return respective sorting Command.
      *
      * @return A Command with respect to the type of sorting command the user intend to execute.
-     * @throws PACException Throws PACException when the user input a not recognizable sorting
+     * @throws PacException Throws PacException when the user input a not recognizable sorting
      *                       command.
      */
-    private Command getSortCommand() throws PACException {
+    private Command getSortCommand() throws PacException {
         String type = ui.getSortType();
         if (type.equals("name")) {
             return new SortPerformanceListByName(performances, eventName);
@@ -63,16 +63,16 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return new SortPerformanceListByGrade(performances, eventName);
         }
         ui.displayMessage("Performance sort: Unknown command. Enter 'name' or 'student'.");
-        throw new PACException("Performance sort: Unknown command. Enter 'name' or 'student'.");
+        throw new PacException("Performance sort: Unknown command. Enter 'name' or 'student'.");
     }
 
     /**
      * This get the performance list under the event input by user.
      * @return The PerformanceList under specific event.
-     * @throws PACException Throws PACException when the event is
+     * @throws PacException Throws PacException when the event is
      *                       not found in the EventList.
      */
-    private PerformanceList getPerformances(String eventName) throws PACException {
+    private PerformanceList getPerformances(String eventName) throws PacException {
         return eventList.getEvent(eventName).getPerformanceList();
     }
 }

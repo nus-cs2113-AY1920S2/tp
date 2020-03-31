@@ -3,7 +3,7 @@ package seedu.command.interpreter;
 import seedu.command.Command;
 import seedu.command.calendar.AddSemester;
 import seedu.event.EventList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.parser.CalendarParser;
 
 public class CalendarCommandInterpreter extends CommandInterpreter {
@@ -12,7 +12,7 @@ public class CalendarCommandInterpreter extends CommandInterpreter {
     }
 
     @Override
-    public Command decideCommand(String commandDescription) throws PACException {
+    public Command decideCommand(String commandDescription) throws PacException {
         Command command;
 
         int semester = CalendarParser.getSemester(commandDescription);
@@ -24,7 +24,7 @@ public class CalendarCommandInterpreter extends CommandInterpreter {
             command = new AddSemester(eventList, year, semester);
             break;
         default:
-            throw new PACException("Please give a valid semester number: s/1, s/2");
+            throw new PacException("Please give a valid semester number: s/1, s/2");
         }
         return command;
     }

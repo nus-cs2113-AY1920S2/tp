@@ -3,12 +3,12 @@ package seedu.command.attendance;
 import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
 
-import static seedu.pac.PAC.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 /**
  * Class representing an attendance related command to add an attendanceList for a specific event.
@@ -30,9 +30,9 @@ public class AddAttendanceList extends Command {
 
     /**
      * Method to decide whether user wants to create a new list or use an existing student list.
-     * @throws PACException If studentNameList is empty.
+     * @throws PacException If studentNameList is empty.
      */
-    public void addToList() throws PACException {
+    public void addToList() throws PacException {
         System.out.println("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         if (isByNameList()) {
@@ -50,9 +50,9 @@ public class AddAttendanceList extends Command {
 
     /**
      * Create new attendanceList.
-     * @throws PACException If parameter provided is invalid.
+     * @throws PacException If parameter provided is invalid.
      */
-    private void createNewList() throws PACException {
+    private void createNewList() throws PacException {
         int studentNumber = 0;
         String name = "";
         String status = "";
@@ -103,25 +103,25 @@ public class AddAttendanceList extends Command {
      * Method to fetch studentList from studentListCollection.
      * User can select base on the index given.
      * @return A studentList selected from the studentListCollection.
-     * @throws PACException If a string is given instead of an integer.
+     * @throws PacException If a string is given instead of an integer.
      */
-    private ArrayList<String> fetchAttendanceList() throws PACException {
+    private ArrayList<String> fetchAttendanceList() throws PacException {
         ui.displayMessage("Please state the index of the studentList that you wish to import");
         ui.readUserInput();
         try {
             int index = Integer.parseInt(ui.getUserInput());
             return studentListCollection.get(index - 1).getStudentList();
         } catch (Exception e) {
-            throw new PACException("Invalid Format");
+            throw new PacException("Invalid Format");
         }
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         try {
             addToList();
         } catch (Exception e) {
-            throw new PACException("Attendance List fail to add. If you wish to add attendance again,\n"
+            throw new PacException("Attendance List fail to add. If you wish to add attendance again,\n"
                     + "please type the command 'attendance add' again");
         }
 

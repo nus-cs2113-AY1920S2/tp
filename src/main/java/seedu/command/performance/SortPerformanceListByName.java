@@ -1,7 +1,7 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
@@ -33,7 +33,7 @@ public class SortPerformanceListByName extends Command {
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         sort();
     }
 }

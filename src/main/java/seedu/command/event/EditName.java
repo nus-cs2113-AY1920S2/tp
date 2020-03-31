@@ -2,7 +2,7 @@ package seedu.command.event;
 
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 
 public class EditName extends Command {
     private Integer index;
@@ -17,7 +17,7 @@ public class EditName extends Command {
 
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         eventList.editName(index, name);
     }
 }

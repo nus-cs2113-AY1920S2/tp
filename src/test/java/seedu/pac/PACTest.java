@@ -2,23 +2,23 @@ package seedu.pac;
 
 import org.junit.jupiter.api.Test;
 import seedu.command.Bye;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class PACTest {
-    PAC PAC;
+class PacTest {
+    Pac pac;
 
-    public PACTest() {
+    public PacTest() {
         try {
-            PAC = new PAC();
-        } catch (PACException m) {
+            pac = new Pac();
+        } catch (PacException m) {
             System.out.println(m.getMessage());
         }
     }
 
     @Test
     void checkBye() {
-        assertFalse(PAC.isNotBye(new Bye()));
+        assertFalse(pac.isNotBye(new Bye()));
     }
 }

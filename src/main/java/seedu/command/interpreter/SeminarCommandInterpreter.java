@@ -9,7 +9,7 @@ import seedu.command.event.EditVenue;
 import seedu.command.event.EditEvent;
 import seedu.command.event.DeleteEvent;
 import seedu.event.Seminar;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.event.EventList;
 import seedu.parser.EventParser;
 
@@ -40,7 +40,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
     }
 
     @Override
-    public Command decideCommand(String commandDescription) throws PACException {
+    public Command decideCommand(String commandDescription) throws PacException {
         Command command = null;
         Seminar seminar;
         int index;
@@ -62,7 +62,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editname":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -71,7 +71,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editdatetime":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -80,7 +80,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editvenue":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -89,7 +89,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editevent":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
             }
             seminar = eventParser.parseSeminar(commandParameters);
             index = eventParser.getIndex();
@@ -97,7 +97,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "delete":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PACException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -107,7 +107,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             command = new ListSeminar(this.eventList);
             break;
         default:
-            throw new PACException("Seminar: Unknown command");
+            throw new PacException("Seminar: Unknown command");
         }
         return command;
     }

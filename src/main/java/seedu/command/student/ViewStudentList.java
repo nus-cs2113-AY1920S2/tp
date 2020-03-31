@@ -1,7 +1,7 @@
 package seedu.command.student;
 
 import seedu.command.Command;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
 /**
@@ -19,7 +19,7 @@ public class ViewStudentList extends Command {
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         displayStudentList();
     }
 }

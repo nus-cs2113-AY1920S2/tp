@@ -13,7 +13,7 @@ java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.
 diff EXPECTED.TXT ACTUAL.TXT
 
 rm ACTUAL.TXT 
-rm PAC.log
+rm Pac.log
 rm -r data/*
 rmdir data
 

@@ -2,7 +2,7 @@ package seedu.command.attendance;
 
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
 /**
@@ -18,7 +18,7 @@ public class ViewAttendanceList extends Command {
         this.ui = new UI();
     }
 
-    private void view() throws PACException {
+    private void view() throws PacException {
         try {
             if (attendances.isEmpty()) {
                 ui.displayMessage("Attendance List is empty");
@@ -26,12 +26,12 @@ public class ViewAttendanceList extends Command {
                 attendances.printList();
             }
         } catch (Exception e) {
-            throw new PACException("Attendance List fail to view.");
+            throw new PacException("Attendance List fail to view.");
         }
     }
 
     @Override
-    public void execute() throws PACException {
+    public void execute() throws PacException {
         view();
     }
 }

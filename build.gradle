@@ -22,11 +22,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.pac.PAC"
+    mainClassName = "seedu.pac.Pac"
 }
 
 shadowJar {
-    archiveBaseName = "PAC"
+    archiveBaseName = "Pac"
     archiveVersion = "2.0"
     archiveClassifier = null
     archiveAppendix = null

@@ -4,7 +4,7 @@ import seedu.student.StudentList;
 import seedu.student.StudentListCollection;
 import seedu.event.Event;
 import seedu.event.EventList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 
 public class Storage {
     protected FileIO fileIO;
@@ -13,18 +13,18 @@ public class Storage {
      * Creates a Storage object that saves to the specified directory.
      * Note that an EventList object has to be passed for each relevant Storage function.
      * @param directory the filepath to save to
-     * @throws PACException if cannot initialise filepath
+     * @throws PacException if cannot initialise filepath
      */
-    public Storage(String directory) throws PACException {
+    public Storage(String directory) throws PacException {
         this.fileIO = new FileIO(directory);
     }
 
     /**
      * Load all events to EventList.
      * @return an EventList object with all events loaded
-     * @throws PACException if EOF is encountered
+     * @throws PacException if EOF is encountered
      */
-    public EventList loadEventList() throws PACException {
+    public EventList loadEventList() throws PacException {
         EventList eventList = new EventList();
         String input = null;
         do {
@@ -32,7 +32,7 @@ public class Storage {
                 input = fileIO.read();
                 Event newEvent = Event.parseStorable(input);
                 eventList.add(newEvent);
-            } catch (PACException m) {
+            } catch (PacException m) {
                 if (m.getMessage().equals("FileIO: nothing to read anymore")) {
                     break;
                 }
@@ -45,9 +45,9 @@ public class Storage {
     /**
      * Save all events to Storage.
      * @param eventList the list of events to be stored
-     * @throws PACException if IOException occurs
+     * @throws PacException if IOException occurs
      */
-    public void saveEventList(EventList eventList) throws PACException {
+    public void saveEventList(EventList eventList) throws PacException {
         for (Event event : eventList.list) {
             fileIO.write(event.toStorable() + System.lineSeparator());
         }
@@ -65,7 +65,7 @@ public class Storage {
                 input = fileIO.read();
                 StudentList newStudentList = StudentList.parseString(input);
                 studentListCollection.add(newStudentList);
-            } catch (PACException m) {
+            } catch (PacException m) {
                 if (m.getMessage().equals("FileIO: nothing to read anymore")) {
                     break;
                 }
@@ -78,18 +78,18 @@ public class Storage {
     /**
      * Save all studentLists to Storage.
      * @param studentListCollection the list of studentlLsts to be stored
-     * @throws PACException if IOException occurs
+     * @throws PacException if IOException occurs
      */
     public void saveStudentListCollection(StudentListCollection studentListCollection) 
-        throws PACException {
+        throws PacException {
         fileIO.write(studentListCollection.toString());
     }
 
     /**
      * Close every opened objects.
-     * @throws PACException if IOException occurs
+     * @throws PacException if IOException occurs
      */
-    public void close() throws PACException {
+    public void close() throws PacException {
         fileIO.close();
     }
 }

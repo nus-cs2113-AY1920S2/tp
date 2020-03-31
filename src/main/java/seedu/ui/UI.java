@@ -1,14 +1,14 @@
 package seedu.ui;
 
 import seedu.student.StudentList;
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.performance.Performance;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import static seedu.pac.PAC.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 public class UI {
     private static String userName;
@@ -167,9 +167,9 @@ public class UI {
      * @param performance The Performance deleted.
      */
     public void deletePerformanceMessage(Performance performance, String eventName,
-                                         boolean hasDeleted) throws PACException {
+                                         boolean hasDeleted) throws PacException {
         if (!hasDeleted) {
-            throw new PACException("Performance not found in list");
+            throw new PacException("Performance not found in list");
         }
         String studentName = performance.getStudent();
         System.out.printf("The result of student %s has been deleted "

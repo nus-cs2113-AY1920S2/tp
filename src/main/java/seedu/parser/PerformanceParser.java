@@ -1,6 +1,6 @@
 package seedu.parser;
 
-import seedu.exception.PACException;
+import seedu.exception.PacException;
 import seedu.performance.Performance;
 
 public class PerformanceParser {
@@ -14,10 +14,10 @@ public class PerformanceParser {
      *
      * @param commandParameters A String contains information of the Performance, to be parsed.
      * @return                  A Performance containing information parsed from commandParameters.
-     * @throws PACException    Throws PACException when the commandParameters contains wrong
+     * @throws PacException    Throws PacException when the commandParameters contains wrong
      *                          tokens or insufficient parameter.
      */
-    public Performance parsePerformance(String commandParameters) throws PACException {
+    public Performance parsePerformance(String commandParameters) throws PacException {
         String[] dataToRead = commandParameters.split(" ", 5);
         String studentName = "";
         String result = "";
@@ -25,7 +25,7 @@ public class PerformanceParser {
             if (s != null) {
                 String[] data = s.split("/");
                 if (data.length < 2) {
-                    throw new PACException("Insufficient parameter or wrong command.");
+                    throw new PacException("Insufficient parameter or wrong command.");
                 }
                 switch (data[0]) {
                 case "n":
@@ -35,12 +35,12 @@ public class PerformanceParser {
                     result = data[1];
                     break;
                 default:
-                    throw new PACException("Wrong type of Performance data token.");
+                    throw new PacException("Wrong type of Performance data token.");
                 }
             }
         }
         if (studentName.equals("") || result.equals("")) {
-            throw new PACException("Insufficient variables to be saved as performance");
+            throw new PacException("Insufficient variables to be saved as performance");
         }
         return new Performance(studentName, result);
     }
