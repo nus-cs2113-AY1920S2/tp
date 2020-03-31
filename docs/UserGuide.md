@@ -74,7 +74,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
   
 **Format:** `abort`  
   
-### Deleteing an activity: `delete`  
+### Deleting an activity: `delete`  
 **Usage:** Deletes an activity in the activity list.  
   
 **Format:** `delete ACTIVITY_NAME`  
