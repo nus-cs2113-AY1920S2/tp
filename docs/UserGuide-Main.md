@@ -93,12 +93,14 @@ Note:
 | :information_source: | The help command is split into four different sections `(highlighted by the boxes)`. |
 | ------------------- | -------------------------------------------------------------------------------------- |
 
+<body>
 <table>
  <tr>
    <td><span>&#8505;</span>
    <td>The help command is split into four different sections `(highlighted by the boxes)`.</td>
  </tr>
 </table>
+</body>
 
  [&#8593; Return to Top](#Table-of-Content)
 
