@@ -90,7 +90,7 @@ Edit information of the patient with the specified NRIC.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> NRIC cannot be edited because it is what uniquely identifies the patient.</td>
+   <td> NRIC <code>cannot</code> be edited because it is what uniquely identifies the patient.</td>
  </tr>
 </table>
 
@@ -119,7 +119,7 @@ Delete a patient as specified by the NRIC.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> HappyPills will prompt for confirmation before deleting patient in the patient list. </td>
+   <td> HappyPills will <code>prompt for confirmation</code> before deleting patient in the patient list. </td>
  </tr>
 </table>
 
