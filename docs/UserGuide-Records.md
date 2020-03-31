@@ -9,7 +9,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
     + [3.3.4. Edit Patient Records : `edit pr`](#334-edit-patient-records-edit-pr)
     + [3.3.5. Delete Patient Records : `delete pr`](#335-delete-patient-records-delete-pr)
     
-<div align="left"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Main.html"> &#8592; Back to Main </a></div>
+<div align="left"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html"> &#8592; Back to Main </a></div>
 <div align="right"><a href="https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide-Appointment.html"> &#8594; Go to Appointments </a></div>
 
 ### 3.3. Patient Medical Records 
