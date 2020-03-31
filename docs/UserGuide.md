@@ -310,20 +310,124 @@ Delete patient's medical records based on the given NRIC and the index of record
 
 ### 3.4. Appointment Scheduling Commands 
 
+HappyPills helps to store appointment schedules. 
+
 #### 3.4.1. Add Appointment: `add appt`
+
+Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
+patient automatically.
+ 
+ ##### Usage example: 
+ 
+     add appt /ic[NRIC] /d[date] /t[time] /r[reason]
+         
+ **Example:**
+     
+    add appt /icS1234567F /d01/02/2020 /t 12:00:00 /rsick
+
+> ***Expected output:***
+>
+>![addSuccess](/docs/images/AddAppt.png)
+>
+>Confirm appointment details are correct by typing "y" or "Y"
+>
+>![addConfirmSuccess](/docs/images/confirmAddAppt.png)
+
+ [Return to Top](#Table-of-Content)
 
 #### 3.4.2. Edit Appointment: `edit appt`
 
+Edit information of the appointment with the specified appointmentID(apptID).
+ The appointment should belong to the patient with the specified NRIC. 
+ 
+ ##### Usage example: 
+ 
+     edit appt [NRIC] [apptID] [Options][editedInput]
+     Options:
+         /d edit date
+         /t edit time
+         /r edit reason
+         
+ **Example:**
+     
+    edit appt S1234567F 5 /d 12/02/2020
+
+> ***Expected output:***
+>
+>![editSuccess](/docs/images/EditAppt.png)
+
+ [Return to Top](#Table-of-Content)
+
 #### 3.4.3. Delete Appointment: `delete appt`
+
+Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
+
+##### Usage example: 
+
+    delete appt [NRIC] [apptID]
+    
+**Example:**
+
+    delete appt S1234567F 6
+
+> ***Expected output:***
+>
+> [editSuccess](/docs/images/DeleteAppt.png)
+
+ [Return to Top](#Table-of-Content)
 
 #### 3.4.4. Mark Appointment as Done: `done appt` 
 
+Mark the appointment with the specified appointmentID(apptID) as done if arrived.
+ The appointment should belong to the patient with the specified NRIC. 
+ 
+ ##### Usage example: 
+ 
+     done appt [NRIC] [apptID]
+         
+ **Example:**
+     
+    done appt S1234567F 5 
+
+> ***Expected output:***
+>
+>![doneSuccess](/docs/images/DoneAppt.png)
+
+ [Return to Top](#Table-of-Content)
+
 #### 3.4.5. List All Appointments: `list appt` 
+
+List all the existing appointments. This can be used to check for appointmentID
+as used by other commands.
+ 
+ ##### Usage example: 
+ 
+     list appt
+         
+ **Example:**
+
+> ***Expected output:***
+>
+>![ListSuccess](/docs/images/ListAppt.png)
+
+ [Return to Top](#Table-of-Content)
 
 #### 3.4.6. Find Patient's Appointments: `find appt`
 
-### 3.5. Saving Data
+Check all appointments that the patient with the specified NRIC has. This can be used
+to check for the appointmentID used for the other commands.
 
+ ##### Usage example: 
+ 
+     find appt [NRIC]
+         
+ **Example:**
+     
+    find appt S1234567F
+
+> ***Expected output:***
+>
+>![findSuccess](/docs/images/FindAppt.png)
 
 ## 4. Command Summary
 
@@ -350,12 +454,12 @@ Retrieve a patient's information | `get patient` NRIC
 
 **Command** | **Format**
 --------|----------
-Add an appointment | `add appt`
-Edit an appointment | `edit appt`
-Delete an appointment | `delete appt`
-Mark an appointment as done | `done appt`
+Add an appointment | `add appt` /ic NRIC /d DATE /t TIME /r REASON
+Edit an appointment | `edit appt` NRIC /d[DATE] /t[TIME] /r[REASON]
+Delete an appointment | `delete appt` APPOINTMENT_ID
+Mark an appointment as done | `done appt` APPOINTMENT_ID
 List all appointments | `list appt`
-Find an appointment| `find appt`
+Find an appointment| `find appt` NRIC
 
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
