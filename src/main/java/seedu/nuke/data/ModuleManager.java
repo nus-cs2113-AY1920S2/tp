@@ -199,7 +199,7 @@ public class ModuleManager implements Iterable<Module> {
         //check duplicate
         if (contains(toAdd.getModuleCode())) {
             throw new DuplicateModuleException();
-        } else if (!modulesMap.containsKey(toAdd.getModuleCode())) {
+        } else if (modulesMap.size() > 0 && !modulesMap.containsKey(toAdd.getModuleCode())) {
             throw new ModuleNotProvidedException();
         } else {
             String moduleTitle = modulesMap.get(toAdd.getModuleCode());
@@ -226,14 +226,15 @@ public class ModuleManager implements Iterable<Module> {
 
     /**
      * sort all tasks of all modules in ascending order of deadlines.
+     * @return list of sorted tasks
      */
     public static ArrayList<Task> sortAllTasks() {
         ArrayList<Task> allTasks = getAllTasks();
         Collections.sort(allTasks, new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
-                String t1Deadline = t1.getDeadline().toString();
-                String t2Deadline = t2.getDeadline().toString();
+                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().getDateTimeSortFormat();
+                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().getDateTimeSortFormat();
                 return t1Deadline.compareToIgnoreCase(t2Deadline);
             }
         });

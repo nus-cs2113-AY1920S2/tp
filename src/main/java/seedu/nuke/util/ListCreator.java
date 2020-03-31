@@ -196,8 +196,7 @@ public class ListCreator {
      * @return
      *  The sorted task list table
      */
-    public static String createTaskListTable(ArrayList<Task> taskList) {
-        sortTaskList(taskList);
+    public static String createTaskListTable(ArrayList<Task> taskList, boolean isSorted) {
         StringBuilder taskListTable = new StringBuilder();
 
         taskListTable.append(createTaskListTableHeader());
@@ -227,6 +226,11 @@ public class ListCreator {
         taskListTable.append(LIST_DIVIDER);
 
         return taskListTable.toString();
+    }
+
+    public static String createTaskListTable(ArrayList<Task> taskList) {
+        sortTaskList(taskList);
+        return createTaskListTable(taskList, true);
     }
 
     /**

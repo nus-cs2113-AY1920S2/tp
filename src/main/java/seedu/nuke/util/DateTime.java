@@ -70,7 +70,7 @@ public class DateTime {
      * @return The <code>date</code> in a string format
      */
     public String getDateInSortFormat() {
-        return date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT));
+        return hasDate() ? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "";
     }
 
     /**
@@ -80,7 +80,11 @@ public class DateTime {
      * @return The <code>date</code> in a string format
      */
     public String getTimeInSortFormat() {
-        return time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT));
+        return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "";
+    }
+
+    public String getDateTimeSortFormat() {
+        return getDateInSortFormat() + getTimeInSortFormat();
     }
 
     /**
@@ -120,6 +124,10 @@ public class DateTime {
      */
     private boolean hasTime() {
         return time != null;
+    }
+
+    private boolean hasDate() {
+        return date != null;
     }
 
     /**
@@ -200,5 +208,4 @@ public class DateTime {
     public String toString() {
         return getDateString() + " " + timeToString();
     }
-
 }
