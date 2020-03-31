@@ -13,7 +13,6 @@ What can I do for you today, doctor?
     /b[BLOOD TYPE]
     =====================================================
         Are you sure all the listed details are correct?
-
         Name : nyan
         NRIC : S123
         Phone Number : 999
@@ -22,4 +21,14 @@ What can I do for you today, doctor?
         Allergies : NIL
         Remarks : NIL
                                                    (Y/N)?
+    =====================================================
+    =====================================================
+    Got it! I've added this patient:
+        Name : nyan
+        NRIC : S123
+        Phone Number : 999
+        DOB : 22/08/1995
+        Blood Type : O+
+        Allergies : NIL
+        Remarks : NIL
     =====================================================
