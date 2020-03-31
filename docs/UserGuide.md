@@ -131,9 +131,11 @@ By using `find` and `filter` commands, users can reduce clutter and zoom-in to s
 * `filter TAGNAME`
 * `filter TAGNAME1 TAGNAME2`
 
-### Chaining Finds & Filters: `-s`
-Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. This sublist is generated based on the previously shown list and also works after a list command.
-This is can be particularly useful when the user wants to generate a graph.
+### Chaining Lists, Finds & Filters: `-s`
+Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. This sublist is generated based on the previously shown list and also works after a `list` command.
+This is can be particularly useful when the user wants to generate a graph. 
+
+**Sample Use Case:** The user can chain a `list month MONTH` for a specfic date range, followed by `filter -s TAGNAME` for a specific tag and finally `find -s KEYWORD1 / KEYWORD2` for specfic activities containing either keyword.
 
 This flag applies to `find` and `filter` commands only. 
 
