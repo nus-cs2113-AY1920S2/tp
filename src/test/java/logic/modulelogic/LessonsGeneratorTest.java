@@ -1,4 +1,4 @@
-package modulelogic;
+package logic.modulelogic;
 
 import exception.InvalidUrlException;
 import org.junit.jupiter.api.Test;

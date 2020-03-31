@@ -1,4 +1,4 @@
-package meeting;
+package model.meeting;
 
 import ui.TextUI;
 import java.util.ArrayList;

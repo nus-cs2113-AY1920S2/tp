@@ -14,7 +14,7 @@ public class Messages {
     public static final String MESSAGE_EMPTY_MODULE = "Module either can't be fetched from NUSMOD API or has been deprecated from NUS";
     public static final String MESSAGE_RETURN_SUCCESS = "SUCCESS";
     public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "You have entered an index out of bounds.";
-    public static final String MESSAGE_WRONG_COMMAND_SCHEDULE = "Wrong format for schedule command!";
-    public static final String MESSAGE_WRONG_COMMAND_DELETE = "Wrong format for delete command!";
-    public static final String MESSAGE_WRONG_COMMAND_MEETING = "Wrong format for meeting command!";
+    public static final String MESSAGE_WRONG_COMMAND_SCHEDULE = "Wrong format for schedule logic.command!";
+    public static final String MESSAGE_WRONG_COMMAND_DELETE = "Wrong format for delete logic.command!";
+    public static final String MESSAGE_WRONG_COMMAND_MEETING = "Wrong format for model.meeting logic.command!";
 }

@@ -1,13 +1,13 @@
-package command;
+package logic.command;
 
 import exception.InvalidUrlException;
-import meeting.MeetingList;
+import model.meeting.MeetingList;
 import exception.MoException;
-import meeting.Meeting;
-import modulelogic.LessonsGenerator;
-import schedulelogic.ScheduleHandler;
-import schedulelogic.TeamMember;
-import schedulelogic.TeamMemberList;
+import model.meeting.Meeting;
+import logic.modulelogic.LessonsGenerator;
+import logic.schedulelogic.ScheduleHandler;
+import model.contact.Contact;
+import model.contact.ContactList;
 import ui.TextUI;
 
 import java.time.LocalTime;
@@ -20,18 +20,18 @@ import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
 
 public class CommandHandler {
 
-    public static TeamMember addContact(TeamMemberList myTeamMemberList, String[] userInputWords,
-                                        Integer startDay, Integer endDay) throws MoException {
-        TeamMember member;
+    public static Contact addContact(ContactList myContactList, String[] userInputWords,
+                                     Integer startDay, Integer endDay) throws MoException {
+        Contact member;
         int checkerForRepeatedName;
-        checkerForRepeatedName = myTeamMemberList.getTeamMemberList().stream()
+        checkerForRepeatedName = myContactList.getContactList().stream()
                 .mapToInt(person -> check(person, userInputWords[0])).sum();
         if (checkerForRepeatedName == 1) {
             TextUI.showRepeatedPerson(userInputWords[0]);
             throw new MoException("Repeated user");
         }
 
-        member = new TeamMember(userInputWords[0]);
+        member = new Contact(userInputWords[0]);
         String name = userInputWords[0];
         LessonsGenerator myLessonGenerator;
         try {
@@ -103,7 +103,7 @@ public class CommandHandler {
         return dayInNumber;
     }
 
-    private static int check(TeamMember person, String name) {
+    private static int check(Contact person, String name) {
         if (person.getName().equals(name)) {
             return 1;
         } else {
@@ -124,8 +124,8 @@ public class CommandHandler {
         }
     }
 
-    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser, TeamMemberList
-            teamMemberList) {
+    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser, ContactList
+        contactList) {
         try {
             if (userInputWords.length != 2) {
                 throw new MoException(MESSAGE_WRONG_COMMAND_DELETE);
@@ -135,7 +135,7 @@ public class CommandHandler {
             String meetingNameToDelete = meetingToDelete.getMeetingName();
             mainUser.deleteBlocksWithName(meetingNameToDelete);
             meetingList.delete(index);
-            teamMemberList.set(0, mainUser);
+            contactList.set(0, mainUser);
         } catch (IndexOutOfBoundsException e) {
             TextUI.displayInvalidDeleteTarget();
         } catch (MoException e) {
@@ -144,8 +144,8 @@ public class CommandHandler {
         }
     }
 
-    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, TeamMember mainUser,
-                                       TeamMemberList teamMemberList) {
+    public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser,
+                                       ContactList contactList) {
         try {
             if (userInputWords.length < 6) {
                 throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
@@ -177,19 +177,19 @@ public class CommandHandler {
             TextUI.invalidNumberMsg();
             TextUI.printFormatSchedule();
         }
-        // Replace main user's timetable with updated meeting blocks into TeamMember.TeamMemberList for storage purposes.
-        teamMemberList.set(0, mainUser);
+        // Replace main user's timetable with updated model.meeting blocks into TeamMember.TeamMemberList for model.storage purposes.
+        contactList.set(0, mainUser);
     }
 
-    public static void displayTimetable(String[] userInputWords, TeamMember mainUser, TeamMemberList teamMemberList) {
+    public static void displayTimetable(String[] userInputWords, Contact mainUser, ContactList contactList) {
         int memberNumber;
-        TeamMember member;
+        Contact member;
         try {
             if (userInputWords.length > 1) {
-                ArrayList<TeamMember> myScheduleList = new ArrayList<TeamMember>();
+                ArrayList<Contact> myScheduleList = new ArrayList<Contact>();
                 for (int i = 1; i < userInputWords.length; i++) {
                     memberNumber = Integer.parseInt(userInputWords[i]);
-                    member = teamMemberList.getTeamMemberList().get(memberNumber);
+                    member = contactList.getContactList().get(memberNumber);
                     myScheduleList.add(member);
                 }
                 ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
@@ -210,8 +210,8 @@ public class CommandHandler {
         }
     }
 
-    public static void listContacts(TeamMemberList teamMemberList) {
-        TextUI.teamMemberListMsg(teamMemberList.getTeamMemberList());
+    public static void listContacts(ContactList contactList) {
+        TextUI.teamMemberListMsg(contactList.getContactList());
     }
 
 

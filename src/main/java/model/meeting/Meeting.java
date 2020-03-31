@@ -1,4 +1,4 @@
-package meeting;
+package model.meeting;
 
 import java.time.LocalTime;
 

@@ -18,8 +18,8 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 - [Display contacts](#display-contacts-contacts)
 - [Display timetable](#display-timetable-timetable)
 - [Edit contact's timetable](#edit-contacts-timetable-edit)
-- [Schedule a new meeting](#schedule-a-new-meeting-schedule)
-- [Delete a scheduled meeting](#delete-a-scheduled-meeting-delete)
+- [Schedule a new model.meeting](#schedule-a-new-model.meeting-schedule)
+- [Delete a scheduled model.meeting](#delete-a-scheduled-model.meeting-delete)
 - [Display meetings](#display-meetings-meetings)
 - [Exit the application](#exit-the-application-exit)
 
@@ -98,15 +98,15 @@ Expected output:
 ```
 <br/><br/>
 
-### Schedule a new meeting `schedule`
-Schedules a new meeting and adds it into the meeting list.
+### Schedule a new model.meeting `schedule`
+Schedules a new model.meeting and adds it into the model.meeting list.
 
 Format: `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`
 
 Example of usage:
 
 `
-schedule meeting 3 17:00 3 19:00
+schedule model.meeting 3 17:00 3 19:00
 `
 
 Expected output:
@@ -115,8 +115,8 @@ Expected output:
 ```
 <br/><br/>
 
-### Delete a scheduled meeting `delete`
-Deletes a meeting from the meeting list.
+### Delete a scheduled model.meeting `delete`
+Deletes a model.meeting from the model.meeting list.
 
 Format: `delete <Meeting Index>`
 
