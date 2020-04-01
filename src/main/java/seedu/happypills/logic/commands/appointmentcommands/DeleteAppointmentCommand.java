@@ -8,6 +8,9 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.ApptTextUi;
+import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -88,24 +91,24 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         String message = "";
         Patient delPatient = findPatient(patients);
         if (delPatient == null) {
-            message = "    The patient does not exist.\n";
+            message = PatientTextUi.patientNotFoundMessage;
             return TextUi.appendDivider(message);
         }
         Appointment delAppt = findAppointment(appointments);
         if (delAppt == null) {
-            message = "    The appointment does not exist.\n";
+            message = ApptTextUi.appointmentNotFoundMessage;
             return TextUi.appendDivider(message);
         }
         Boolean isSuccess = deleteAppt(appointments,appointmentId) && deleteAppt(delPatient,appointmentId);
         if (isSuccess) {
             message = "    Appointment has been removed.\n";
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
-                logger.info("Adding patient list to file failed.");
+                logger.info(StorageTextUi.failToWriteAppointmentMsg);
             }
         } else {
-            message = "    Appointment does not exist. Please try again.\n";
+            message = ApptTextUi.appointmentNotFoundMessage;
         }
         return message;
     }

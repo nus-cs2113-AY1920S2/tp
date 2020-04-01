@@ -9,6 +9,7 @@ import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.PrTextUi;
+import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -88,7 +89,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         }
         if (output) {
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
                 logger.info("Adding patient list to file failed.");
             }

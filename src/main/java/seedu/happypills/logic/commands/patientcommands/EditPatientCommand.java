@@ -8,7 +8,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.PatientTextUi;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.StorageTextUi;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -169,7 +169,7 @@ public class EditPatientCommand extends PatientCommand {
                     + "\n    enter \"help edit\"");
         }
         try {
-            Storage.writeAllToFile(Storage.PATIENT_FILEPATH, TextUi.getFormattedPatientString(patients));
+            Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
             logger.info("Adding patient list to file failed.");
         }

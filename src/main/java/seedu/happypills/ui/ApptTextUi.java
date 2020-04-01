@@ -10,6 +10,9 @@ import java.util.Map;
 public class ApptTextUi extends TextUi {
 
     public static String getEmptyAppointmentListMessage = "    There are no appointments in the list.\n" + DIVIDER;
+    public static String appointmentNotFoundMessage = ""
+            + "    The appointment cannot be found. Please try again."
+            + DIVIDER;
 
     /**
      * Shows list of appointments in the program.
@@ -32,7 +35,19 @@ public class ApptTextUi extends TextUi {
     }
 
     /**
-     * Generate a success message upon finding the correct patient.
+     * Generate a success message upon adding the appointment.
+     * @param appointment the appointment which the program added.
+     * @return Appointment details if any, and a notification message otherwise.
+     */
+    public static String addAppointmentSuccessMessage(Appointment appointment) {
+        String message = "    Appointment has been added with Appointment ID "
+                + appointment.getAppointmentId() + ".\n"
+                + TextUi.DIVIDER;
+        return message;
+    }
+
+    /**
+     * Generate a success message upon finding the correct appointment.
      * @param patient the patient which the program have to find the appointment for.
      * @return Appointment details if any, and a notification message otherwise.
      */

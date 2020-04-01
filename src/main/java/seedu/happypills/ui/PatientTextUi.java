@@ -6,6 +6,10 @@ import seedu.happypills.model.data.PatientMap;
 import java.util.Map;
 
 public class PatientTextUi extends TextUi {
+
+    public static String patientNotFoundMessage = "    The patient cannot be found. Please try again."
+            + DIVIDER;
+
     /**
      * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
      * @param patients A patient list with all existing patients.

@@ -8,9 +8,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.ApptTextUi;
-import seedu.happypills.ui.HelpTextUi;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.*;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -206,11 +204,11 @@ public class EditAppointmentCommand extends AppointmentCommand {
         String field = newContent.substring(0,2).trim();
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
-            throw new HappyPillsException("    Patient not found. Please try again.");
+            throw new HappyPillsException(PatientTextUi.patientNotFoundMessage);
         }
         Appointment editAppt = findAppointment(appointments); //from the shared appointment map
         if (editAppt == null) {
-            throw new HappyPillsException("    Appointment not found. Please try again.");
+            throw new HappyPillsException(ApptTextUi.appointmentNotFoundMessage);
         }
         Boolean output = false;
         String errorMsg = "    Something went wrong, the edit could not be made.\n";
@@ -228,9 +226,9 @@ public class EditAppointmentCommand extends AppointmentCommand {
         }
         if (output) {
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
-                logger.info("Adding appointment list to file failed.");
+                logger.info(StorageTextUi.failToWriteAppointmentMsg);
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);

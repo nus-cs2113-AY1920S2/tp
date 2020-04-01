@@ -38,10 +38,6 @@ public class TextUi {
         System.out.println("See you again!\n" + DIVIDER);
     }
 
-    //General Strings
-    public static String patientNotExist = "    The patient you are looking for cannot be found"
-            + DIVIDER;
-
     //General methods
     /**
      * print any string as needed.
@@ -85,34 +81,4 @@ public class TextUi {
         String msg = "    Command is incomplete. Please use the " + helpString + " command.";
         return msg;
     }
-
-    //Storage
-    /**
-     * returns a list of patients' name and their details.
-     * @param patients A patient list with all existing patients.
-     * @return a message to be displayed to user.
-     */
-    public static String getFormattedPatientString(PatientMap patients) {
-        String formattedPatientString = "";
-        for (Map.Entry patient : patients.entrySet()) {
-            Patient p = (Patient)patient.getValue();
-            formattedPatientString += p.toSave();
-        }
-        return formattedPatientString;
-    }
-
-    /**
-     * Retuens a list of patients' NRIC and appointment details.
-     * @param appointments An appointment list with all existing patients.
-     * @return a message to be displayed to user.
-     */
-    public static String getFormattedApptString(AppointmentMap appointments) {
-        String formattedAppointmentString = "";
-        for (Map.Entry appointment : appointments.entrySet()) {
-            Appointment a = (Appointment) appointment.getValue();
-            formattedAppointmentString += a.toSave();
-        }
-        return formattedAppointmentString;
-    }
-
 }

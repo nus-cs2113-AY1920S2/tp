@@ -4,7 +4,7 @@ import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.ui.ApptTextUi;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.PatientTextUi;
 
 public class FindAppointmentCommand extends AppointmentCommand {
     protected String patientNric;
@@ -25,7 +25,7 @@ public class FindAppointmentCommand extends AppointmentCommand {
         if (patients.containsKey(patientNric)) {
             return ApptTextUi.getAppointmentSuccessMessage(patients.get(patientNric));
         } else {
-            return TextUi.patientNotExist;
+            return PatientTextUi.patientNotFoundMessage;
         }
     }
 

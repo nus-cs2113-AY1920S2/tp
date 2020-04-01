@@ -8,6 +8,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -70,7 +71,7 @@ public class DeletePatientCommand extends PatientCommand {
                 if (confirm.equalsIgnoreCase("y")) {
                     message = deletePatient(patient, patients);
                     try {
-                        Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
+                        Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
                     } catch (IOException e) {
                         logger.info("Adding patient list to file failed.");
                     }

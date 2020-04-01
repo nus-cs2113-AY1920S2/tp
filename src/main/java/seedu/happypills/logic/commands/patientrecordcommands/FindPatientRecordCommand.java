@@ -4,6 +4,7 @@ import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.PrTextUi;
 import seedu.happypills.ui.TextUi;
 
@@ -33,7 +34,7 @@ public class FindPatientRecordCommand extends PatientRecordCommand {
             }
             return PrTextUi.getPatientRecordSuccessMessage(patientRecordMap, patientNric, index);
         } else {
-            String message =  TextUi.patientNotExist
+            String message =  PatientTextUi.patientNotFoundMessage
                     + "\n"
                     + TextUi.DIVIDER;
             return message;
