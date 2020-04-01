@@ -228,7 +228,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
             try {
                 Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
-                logger.info("Adding patient list to file failed.");
+                logger.info("Adding appointment list to file failed.");
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);

@@ -1,16 +1,19 @@
 package seedu.happypills.storage;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.TextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 
 /**
@@ -20,6 +23,8 @@ public class Storage {
     public static final String PATIENT_FILEPATH = "data/patient.txt";
     public static final String APPOINTMENT_FILEPATH = "data/appointment.txt";
     public static final String SYMPTOM_FILEPATH = "data/symptoms.txt";
+
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
 
     /**
      * Overwrite file with a formatted string of the entire list provided. Creates file if it does not exist.
@@ -66,6 +71,44 @@ public class Storage {
         FileWriter fw = new FileWriter(filePath,true);
         fw.write(dataString);
         fw.close();
+    }
+
+    /**
+     * Load all items from file and verify parsed content by
+     * overwriting file with objects that can be correctly parsed.
+     *
+     * @param patients Shared map of all patients.
+     * @param appointments Shared map of all appointments.
+     * @return a String to describe load status.
+     */
+    public static String loadFromFile(PatientMap patients, AppointmentMap appointments) {
+        String returnMsg = "\n";
+        try {
+            patients = loadPatientsFromFile(PATIENT_FILEPATH);
+            returnMsg += "    Patient loaded from file.\n";
+        } catch (FileNotFoundException e) {
+            returnMsg += "    Patient file not found.\n";
+        }
+        try {
+            writeAllToFile(Storage.PATIENT_FILEPATH, TextUi.getFormattedPatientString(patients));
+        } catch (IOException e) {
+            returnMsg = "Adding patient list back to file failed.";
+            return returnMsg;
+        }
+        try {
+            appointments = loadAppointmentFromFile(APPOINTMENT_FILEPATH, patients);
+            returnMsg += "    Appointment loaded from file.\n";
+        } catch (FileNotFoundException e) {
+            returnMsg = "    Appointment file not found.\n";
+        }
+        try {
+            writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+        } catch (IOException e) {
+            returnMsg = "Adding appointment list back to file failed.";
+            return returnMsg;
+        }
+
+        return returnMsg;
     }
 
     /**
@@ -137,12 +180,12 @@ public class Storage {
     private static void parseAppointmentFileContent(String savedString,
                                                     AppointmentMap storedAppt, PatientMap patients) {
         String[] dataString = savedString.split("[|]", 7);
-        Boolean isDone = dataString[5].equals("T") ? true : false;
+        Boolean isDone = dataString[5].equals("T");
         Appointment tempAppt = new Appointment(dataString[0], dataString[1],
                 dataString[2], dataString[3], dataString[4], isDone);
         try {
             Patient patient = (Patient) patients.get(dataString[1]);
-            if (!patient.equals(null)) {
+            if (patient != null) {
                 patient.addAppointment(tempAppt);
                 storedAppt.addAppointment(tempAppt);
             }
