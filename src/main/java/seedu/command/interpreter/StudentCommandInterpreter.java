@@ -9,7 +9,7 @@ import seedu.command.student.AddStudentList;
 import seedu.command.student.DeleteStudentList;
 import seedu.command.student.ViewStudentList;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
 public class StudentCommandInterpreter extends CommandInterpreter {
@@ -26,9 +26,9 @@ public class StudentCommandInterpreter extends CommandInterpreter {
      * @param commandDescription the following parameter used.
      *                           Currently only used for delete command.
      * @return The student related command that the user calls.
-     * @throws DukeException If an invalid command Description is provided.
+     * @throws PacException If an invalid command Description is provided.
      */
-    public Command decideCommand(String commandDescription) throws DukeException {
+    public Command decideCommand(String commandDescription) throws PacException {
 
         String commandType = getFirstWord(commandDescription);
         switch (commandType) {
@@ -36,24 +36,24 @@ public class StudentCommandInterpreter extends CommandInterpreter {
             try {
                 return new AddStudentList();
             } catch (Exception e) {
-                throw new DukeException("Student Command Add failed.");
+                throw new PacException("Student Command Add failed.");
             }
 
         case "list":
             try {
                 return new ViewStudentList();
             } catch (Exception e) {
-                throw new DukeException("Student Command List failed.");
+                throw new PacException("Student Command List failed.");
             }
         case "delete":
             try {
                 return new DeleteStudentList();
             } catch (Exception e) {
-                throw new DukeException("Student Command Delete failed.");
+                throw new PacException("Student Command Delete failed.");
             }
         case "sort":
             try {
-                ui.displayStudentMessage("Please Key in either 'name' or 'list'.");
+                UI.display("Please Key in either 'name' or 'list'.");
                 ui.readUserInput();
                 String sortType = ui.getUserInput();
                 switch (sortType) {
@@ -61,34 +61,34 @@ public class StudentCommandInterpreter extends CommandInterpreter {
                     try {
                         return new SortStudentListByName();
                     } catch (Exception e) {
-                        throw new DukeException("Student Command Sort By Name failed.");
+                        throw new PacException("Student Command Sort By Name failed.");
                     }
                 case "list":
                     try {
                         return new SortStudentListByList();
                     } catch (Exception e) {
-                        throw new DukeException("Student Command Sort By List failed.");
+                        throw new PacException("Student Command Sort By List failed.");
                     }
                 default:
-                    throw new DukeException("Unknown Student Sort Command");
+                    throw new PacException("Unknown Student Sort Command");
                 }
             } catch (Exception e) {
-                throw new DukeException("Student Command Sort failed.");
+                throw new PacException("Student Command Sort failed.");
             }
         case "find":
             try {
                 return new FindStudentList();
             } catch (Exception e) {
-                throw new DukeException("Student Command Find failed.");
+                throw new PacException("Student Command Find failed.");
             }
         case "clear":
             try {
                 return new ClearStudentList();
             } catch (Exception e) {
-                throw new DukeException("Student Command Clear failed.");
+                throw new PacException("Student Command Clear failed.");
             }
         default:
-            throw new DukeException("Unknown Student Command.");
+            throw new PacException("Unknown Student Command.");
         }
     }
 }

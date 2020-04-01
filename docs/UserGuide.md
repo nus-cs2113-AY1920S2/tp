@@ -1,19 +1,19 @@
 # User Guide
 
-## Professor Assistant Console (PAC)
+## Professor Assistant Console (Pac)
 
-![alt text](images/PAC.png "PAC ver1")  
+![alt text](images/Pac.png "Pac ver1")  
 
 ## Content Page  
 1. [Introduction](#1-introduction)  
-    1.1. [What is PAC?](#11-what-is-pac)  
+    1.1. [What is Pac?](#11-what-is-pac)  
     1.2. [Who are our audience?](#12-who-are-our-audience)
 2. [Setting Up](#2-setting-up)  
     2.1. [Requirements](#21-requirements)   
     2.2. [Startup using Command Line](#22-startup-using-command-line)  
     2.3. [Startup using JAR](#23-startup-using-jar)   
 3. [Quick Start](#3-quick-start)  
-    3.1. [Using PAC](#31-using-pac)
+    3.1. [Using Pac](#31-using-pac)
 4. [Features](#4-features)  
 4.1. [Event](#41-event)  
 4.1.1. [Add New Event](#411-add-new-event)  
@@ -49,12 +49,12 @@
   
 ## 1. Introduction
 
-### 1.1. What is PAC?
+### 1.1. What is Pac?
 
-PAC is a professor assistant console which helps you keep track of your 
-upcoming events. PAC also allows you to add in attendance to keep track 
+Pac is a professor assistant console which helps you keep track of your 
+upcoming events. Pac also allows you to add in attendance to keep track 
 of your students and their grades. Being a simple Command Line Interface 
-(CLI) application, PAC ensures its usability and suitability regardless 
+(CLI) application, Pac ensures its usability and suitability regardless 
 of your expertise level.
 
 ### 1.2. Who are our audience?
@@ -68,21 +68,21 @@ As long as you need to keep track of upcoming events or class, you are our audie
 ### 2.1. Requirements 
 1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
 or above installed in your Computer.
-1.  Download the latest PAC.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
+1.  Download the latest Pac.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
 1.  Copy the file to the folder you want to use as the home folder for this application.
-1.  Type `java -jar PAC.jar` to start the application.
+1.  Type `java -jar Pac.jar` to start the application.
     <INSERT SCREENSHOT>
 1.  You should see this screen if everything is successful.
 
 ### 2.2 Startup using Command Line
 1.  Open your terminal.
-1.  Navigate to the home folder containing PAC.
+1.  Navigate to the home folder containing Pac.
 1.  cd followed by the file path into the terminal as shown below
     <INSERT IMAGE> 
 1.  Type `java -jar` followed by the name of the jar file and press **Enter**.
 
 ### 2.3 Startup using JAR
-1.  Open home folder containing PAC.
+1.  Open home folder containing Pac.
 1.  Run the packaged JAR file by double clicking it 
     and a window should appear in a few seconds.
     <INSERT IMAGE>
@@ -91,7 +91,7 @@ or above installed in your Computer.
 ##
 ## 3. Quick Start
 
-### 3.1. Using PAC
+### 3.1. Using Pac
 You can type any command, then press **Enter** to execute it.
 	
 e.g. typing help then pressing **Enter** will open the help window.
@@ -236,7 +236,7 @@ Example:
     >>> CS1010 Tutorial
     
 If the event is found, you can choose to add the student's attendance by manually key in each student, or you may choose
-the alternative provided by PAC: record using an existing name list located under StudentListCollection. 
+the alternative provided by Pac: record using an existing name list located under StudentListCollection. 
 Do note that you need to have an existing name list before you are using this shortcut.  
 The following will show a success example of *using an existing name list to add attendance*. 
 
@@ -337,7 +337,7 @@ Step by step guide:
     >>> event
     
 If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
-the alternative provided by PAC: record using a current name list. Do note that you have to have an existing name list 
+the alternative provided by Pac: record using a current name list. Do note that you have to have an existing name list 
 before you are using this short cut.  
 The following will show a success example of using a current name list to add performance. 
 
@@ -750,4 +750,4 @@ Future patches will allow users to save their data and use it on another compute
 * View calendar `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
 
 ## 8. Contact Us
-If you have further queries or feedback on PAC, please contact us at [contact_us@pac.com](contact_us@PAC.com)
+If you have further queries or feedback on Pac, please contact us at [contact_us@pac.com](contact_us@Pac.com)

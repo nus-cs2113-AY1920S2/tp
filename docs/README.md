@@ -1,9 +1,9 @@
-# Personal Assistance Console (PAC)
+# Personal Assistance Console (Pac)
 
-PAC helps you keep track of your upcoming events.
-PAC also allows you to add in attendance to keep track of your students and their grades. 
+Pac helps you keep track of your upcoming events.
+Pac also allows you to add in attendance to keep track of your students and their grades. 
 Being a simple Command Line Interface (CLI) application, 
-PAC ensures its usability and suitability regardless of your expertise level.
+Pac ensures its usability and suitability regardless of your expertise level.
 
 Useful links:
 * [User Guide](UserGuide.md)

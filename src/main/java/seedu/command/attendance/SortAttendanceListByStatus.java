@@ -2,7 +2,7 @@ package seedu.command.attendance;
 
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
 /**
@@ -26,7 +26,7 @@ public class SortAttendanceListByStatus extends Command {
      */
     private void sort() {
         if (attendances.isEmpty()) {
-            ui.displayAttendanceMessage("An empty list cannot be sorted");
+            UI.display("An empty list cannot be sorted");
         } else {
             attendances.sortByStatus();
             ui.sortAttendanceByStatus(eventName);
@@ -34,7 +34,7 @@ public class SortAttendanceListByStatus extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         sort();
     }
 }

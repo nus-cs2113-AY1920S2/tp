@@ -1,4 +1,4 @@
-package seedu;
+package seedu.student;
 
 import seedu.ui.DisplayTable;
 
@@ -93,5 +93,9 @@ public class StudentList {
             newStudentList.addToList(tokens[i]);
         }
         return newStudentList;
+    }
+
+    public boolean isEmpty() {
+        return studentList.isEmpty();
     }
 }

@@ -1,14 +1,14 @@
 package seedu.command.student;
 
-import seedu.StudentList;
+import seedu.student.StudentList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.DisplayList;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 /**
  * Class representing a student related command to find an existing studentList by list name.
@@ -23,10 +23,10 @@ public class FindStudentList extends Command {
 
     /**
      * Method to find an existing student list from studentListCollection by list name.
-     * @throws DukeException    DukeException is thrown when there is an out of bound index.
+     * @throws PacException    PacException is thrown when there is an out of bound index.
      */
-    protected void find() throws DukeException {
-        ui.displayStudentMessage("Please state the list name you are searching for");
+    protected void find() throws PacException {
+        UI.display("Please state the list name you are searching for");
         ui.readUserInput();
         name = ui.getUserInput();
         for (int i = 0; i < studentListCollection.size(); i++) {
@@ -35,16 +35,16 @@ public class FindStudentList extends Command {
             }
         }
         if (searchResults.isEmpty()) {
-            ui.displayStudentMessage("Nothing match you description : " + name);
+            UI.display("Nothing match you description : " + name);
         } else {
-            ui.displayStudentMessage("You have " + searchResults.size() + " matches:");
+            UI.display("You have " + searchResults.size() + " matches:");
             displayList.printSearchResults(searchResults);
         }
     }
 
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         find();
     }
 }

@@ -4,9 +4,12 @@ import seedu.command.Bye;
 import seedu.command.Command;
 import seedu.command.Help;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
+import seedu.ui.UI;
 
 public class CommandInterpreter {
+
+    protected UI ui = new UI();
     protected EventList eventList;
     private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"event", "seminar", 
         "attendance", "performance", "student", "calendar"};
@@ -21,6 +24,7 @@ public class CommandInterpreter {
      * @return the first word in lower cases
      */
     protected String getFirstWord(String userInput) {
+        userInput = userInput.trim();
         String commandType = userInput.split(" ")[0];
         commandType = commandType.trim();
         commandType = commandType.toLowerCase();
@@ -31,14 +35,13 @@ public class CommandInterpreter {
      * Returns the 2nd to last words.
      * @param userInput raw user input
      * @return the 2nd to last words
-     * @throws DukeException if there is only 1 word from the input
+     * @throws PacException if there is only 1 word from the input
      */
-    protected String getSubsequentWords(String userInput) throws DukeException {
-        userInput = userInput.trim();
+    protected String getSubsequentWords(String userInput) throws PacException {
         int startIndexOfSpace = userInput.indexOf(" ");
 
         if (startIndexOfSpace == -1) {
-            throw new DukeException("Argument is required for command '" + userInput + "'");
+            throw new PacException("Argument is required for command '" + userInput + "'");
         }
 
         int startIndexOfParameter = startIndexOfSpace + 1;
@@ -61,12 +64,26 @@ public class CommandInterpreter {
     }
 
     /**
+     * Check if a string contains the specified flags.
+     * @param string the string to check for flags
+     * @param flags any flags to be checked inside string
+     * @return {@code true} if at least one flag is not found
+     */
+    protected boolean flagDoesNotExist(String string, String... flags) {
+        boolean output = true;
+        for (String flag : flags) {
+            output = output && string.contains(flag);
+        }
+        return !output;
+    }
+
+    /**
      * Decide the command from userInput.
      *
      * @param userInput The userInput from the Ui.
-     * @throws DukeException If the command is undefined.
+     * @throws PacException If the command is undefined.
      */
-    public Command decideCommand(String userInput) throws DukeException {
+    public Command decideCommand(String userInput) throws PacException {
         Command command;
 
         String commandCategory = getFirstWord(userInput);
@@ -112,10 +129,10 @@ public class CommandInterpreter {
                     && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
                     && !commandCategory.equals("help") && !commandCategory.equals("student"))
                     : "accepted command category is not further interpreted!";
-            throw new DukeException("Unknown command category is provided");
+            throw new PacException("Unknown command category is provided");
         }
         if (command == null) {
-            throw new DukeException("Duke is null.");
+            throw new PacException("Pac is null.");
         }
         return command;
     }

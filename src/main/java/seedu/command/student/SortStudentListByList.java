@@ -1,11 +1,11 @@
 package seedu.command.student;
 
-import seedu.StudentList;
+import seedu.student.StudentList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 /**
  * Class representing a student related command to sort all studentList by alphabetical order.
@@ -13,7 +13,6 @@ import static seedu.duke.Duke.studentListCollection;
 public class SortStudentListByList extends Command {
 
     protected StudentList studentList;
-    private UI ui = new UI();
 
     /**
      * Method to sort all student list in studentListCollection alphabetically.
@@ -25,8 +24,8 @@ public class SortStudentListByList extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         sort();
-        ui.displayStudentMessage("StudentList sorted by name within the lists");
+        UI.display("StudentList sorted by name within the lists");
     }
 }

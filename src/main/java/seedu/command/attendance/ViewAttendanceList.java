@@ -2,7 +2,7 @@ package seedu.command.attendance;
 
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
 /**
@@ -10,28 +10,26 @@ import seedu.ui.UI;
  */
 public class ViewAttendanceList extends Command {
 
-    protected UI ui;
     protected AttendanceList attendances;
 
     public ViewAttendanceList(AttendanceList attendances) {
         this.attendances = attendances;
-        this.ui = new UI();
     }
 
-    private void view() throws DukeException {
+    private void view() throws PacException {
         try {
             if (attendances.isEmpty()) {
-                ui.displayAttendanceMessage("Attendance List is empty");
+                UI.display("Attendance List is empty");
             } else {
                 attendances.printList();
             }
         } catch (Exception e) {
-            throw new DukeException("Attendance List fail to view.");
+            throw new PacException("Attendance List fail to view.");
         }
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         view();
     }
 }
