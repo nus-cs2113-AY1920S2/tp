@@ -116,7 +116,7 @@ public class PatientParser {
                 input = "@" + input;
                 updates = input.split(" /");
             }
-            System.out.println(updates[0]);
+            
             for (String update : updates) {
                 if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
                     parseInput[0] = update.substring(1).trim();
@@ -198,8 +198,6 @@ public class PatientParser {
      */
     static boolean checkNric(String nric) {
         String pattern = "([S-T][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z])";
-        System.out.println(nric);
-        System.out.println(nric.matches(pattern));
         return nric.matches(pattern);
     }
 
