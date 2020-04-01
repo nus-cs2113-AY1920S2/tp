@@ -73,14 +73,14 @@ public class DeletePatientCommand extends PatientCommand {
                     try {
                         Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
                     } catch (IOException e) {
-                        logger.info("Adding patient list to file failed.");
+                        logger.info(StorageTextUi.failToWritePatientMsg);
                     }
                     isConfirmed = true;
                     logger.log(logLevel, "patient is deleted");
                 } else if (confirm.equalsIgnoreCase("n")) {
                     message = PatientTextUi.patientNotDeletedMessage;
                     isConfirmed = true;
-                    logger.log(logLevel, "patient is not deleted");
+                    logger.log(logLevel, PatientTextUi.patientNotDeletedMessage);
                 } else {
                     PatientTextUi.printDeleteConfirmationAgain(patient);
                     confirm = getPatientConfirmation();
@@ -91,7 +91,7 @@ public class DeletePatientCommand extends PatientCommand {
             return message;
 
         } else {
-            throw new HappyPillsException("    Patient does not exist. Please try again.");
+            throw new HappyPillsException(PatientTextUi.patientNotFoundMessage);
         }
     }
 }

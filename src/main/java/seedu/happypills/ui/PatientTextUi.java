@@ -104,6 +104,6 @@ public class PatientTextUi extends TextUi {
         printDeleteConfirmation(patient);
     }
 
-    public static String patientNotDeletedMessage = DIVIDER + "\n    Patient is not deleted.\n";
+    public static String patientNotDeletedMessage = "    Patient is not deleted.\n";
 
 }
