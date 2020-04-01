@@ -130,8 +130,12 @@ public class TextUI {
         }
         out.println();
 
-        for (int i = 0; i < 24; ++i) {
-            out.print(String.format("%04d", (0000 + 100 * i)) + " +-----+-----+-----+-----+-----+-----+-----+");
+        int earliestScheduledTime = getEarliestTime(mySchedule, weeksMoreToView, weekNumber, 47) / 2;
+        int latestScheduledTime = getLatestTime(mySchedule, weeksMoreToView, weekNumber, 0) / 2;
+
+        int counter = 0;
+        for (int i = earliestScheduledTime; i < latestScheduledTime + 1; ++i) {
+            out.print(String.format("%04d", (100 * i)) + " +-----+-----+-----+-----+-----+-----+-----+");
             if (weeksMoreToView == 1) {
                 out.print(" +-----+-----+-----+-----+-----+-----+-----+");
             }
@@ -160,18 +164,49 @@ public class TextUI {
                     out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i + 1] ? "X" : " ") + "  |");
                 }
 
-
                 if (z < weeksMoreToView) {
                     out.print(" |");
                 }
             }
             out.println();
+            counter = i;
         }
-        out.print("0000" + " +-----+-----+-----+-----+-----+-----+-----+");
+        counter++;
+        out.print(String.format("%04d", (100 * counter)) + " +-----+-----+-----+-----+-----+-----+-----+");
         if (weeksMoreToView == 1) {
             out.print(" +-----+-----+-----+-----+-----+-----+-----+");
         }
         out.println();
+    }
+
+    private static int getLatestTime(Boolean[][][] mySchedule, int weeksMoreToView, int weekNumber, int latestScheduledTime) {
+        for (int z = 0; z <= weeksMoreToView; z++) {
+            for (int j = 0; j < 7; ++j) {
+                for (int i = 0; i < 48; ++i) {
+                    if (mySchedule[weekNumber + z - 1][j][i] && i > latestScheduledTime) {
+                        latestScheduledTime = i;
+                    }
+                }
+            }
+        }
+        return (latestScheduledTime % 2 == 0) ? latestScheduledTime : latestScheduledTime - 1;
+    }
+
+    private static int getEarliestTime(Boolean[][][] mySchedule, int weeksMoreToView, int weekNumber, int earliestScheduledTime) {
+        for (int z = 0; z <= weeksMoreToView; z++) {
+            for (int j = 0; j < 7; ++j) {
+                for (int i = 0; i < 48; ++i) {
+                    if (mySchedule[weekNumber + z - 1][j][i] && i < earliestScheduledTime) {
+                        earliestScheduledTime = i;
+                        break;
+                    }
+                    if (i > earliestScheduledTime) {
+                        break;
+                    }
+                }
+            }
+        }
+        return earliestScheduledTime;
     }
 
     public static void scheduleMeetingMsg() {
@@ -281,7 +316,7 @@ public class TextUI {
     }
 
     public static void displayInvalidDeleteTarget() {
-        System.out.println("Item does not exist.");
+        System.out.println("Meeting does not exist for indicated index.");
     }
 
     public static void showLoadingError() {
@@ -322,12 +357,28 @@ public class TextUI {
         out.println("\nTo schedule a meeting:\nschedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>");
     }
 
-    public static void printFormatDelete() {
-        out.println("\nTo delete contact:\ndelete <Member Number>");
+    public static void printFormatDeleteMember() {
+        out.println("\nTo delete contact:\ndelete <Member Name>");
     }
 
     public static void printFormatMeeting() {
         out.println("\nTo list meetings:\nmeeting");
+    }
+
+    public static void displayRemovedPerson(String name) {
+        out.println("I have removed " + name + " from your contact list.");
+    }
+
+    public static void displayMainUserDeleteError(String name) {
+        out.println("Main user " + name + " cannot be deleted.");
+    }
+
+    public static void displayNoMemberFound(String name) {
+        out.println(name + " is not found in list of contacts.");
+    }
+
+    public static void printFormatDeleteMeeting() {
+        out.println("\nTo delete meeting:\ndelete <Meeting Index>");
     }
 }
 

@@ -29,7 +29,7 @@ public class Contact {
     private boolean isMainUser = false;
 
     public Contact(String name) {
-        if (name.contains("_main")) {
+        if (name.contains("_main") && !name.replaceFirst("_main","").contains("_main")) {
             isMainUser = true;
             name = name.replace("_main", "");
         }
