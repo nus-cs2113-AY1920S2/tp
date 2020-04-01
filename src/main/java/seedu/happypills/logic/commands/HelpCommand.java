@@ -56,7 +56,7 @@ public class HelpCommand implements Command {
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
-        return message + TextUi.DIVIDER;
+        return message;
     }
 
     private String getPatientRecordHelp(String pr) {

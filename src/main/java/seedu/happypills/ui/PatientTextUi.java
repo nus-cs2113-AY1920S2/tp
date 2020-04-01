@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class PatientTextUi extends TextUi {
 
-    public static String patientNotFoundMessage = "    The patient cannot be found. Please try again."
-            + DIVIDER;
+    public static String patientNotFoundMessage = "    The patient cannot be found. Please try again.\n";
+    public static String emptyPatientListMessage = "    There are no patients in the list.\n" + DIVIDER;
 
     /**
      * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
@@ -25,15 +25,6 @@ public class PatientTextUi extends TextUi {
         }
         message += DIVIDER;
         return message;
-    }
-
-    /**
-     * Displays empty list message when there are no patients in the list.
-     * @return a message to be displayed to user
-     */
-    public static String getEmptyPatientList() {
-        String emptyListMessage = "    There are no patients in the list.\n" + DIVIDER;
-        return emptyListMessage;
     }
 
     /**

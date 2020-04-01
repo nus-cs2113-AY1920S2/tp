@@ -21,7 +21,7 @@ public class ListPatientCommand extends PatientCommand {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
         String message = "";
         if (patients.isEmpty()) {
-            message = PatientTextUi.getEmptyPatientList();
+            message = PatientTextUi.emptyPatientListMessage;
             logger.log(logLevel, "no patient information is in list");
         } else {
             assert !patients.isEmpty();
