@@ -1,6 +1,7 @@
 # Developer Guide
 The design documentation is in general for anyone who wants to understand the system architecture and design of 
-PAC. The following groups are in particular the intended audience of the document.
+Pac. The following groups are in particular the intended audience of the document.
+
 - PAC project managers
 - PAC developers
 - PAC software testers
@@ -14,6 +15,7 @@ PAC. The following groups are in particular the intended audience of the documen
     2.2 [UI component](#22-ui-component)  
     2.3 [Command component](#23-command-component)  
     2.4 [Parse component](#24-parser-component)  
+    2.5 [Storage component](#25-storage-component)
 3. [Implementation](#3-implementation)  
     3.1 [Event](#31-event)  
     3.2 [Attendance](#32-attendance)  
@@ -57,8 +59,17 @@ or above installed in your Computer.
 ### 2.1 Overall Architecture
 This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
-*Overall Class diagram*
-{To be added in future revisions}
+![Architecture](images/Architecture.png "Architecture of Pac")
+
+*Overall architecture design of Pac*
+
+The `Pac` component contains all other components in the application.
+
+- `UI`: reads user input, and prints output in pre-defined format.
+- `Storage`: loads/stores all events (in EventList) and all student lists (in StudentListCollection).
+- `CommandInterpreter`: Determines user input
+- `EventList`: stores all events during runtime
+- `StudentListCollection`: stores all student lists during runtime
 
 ### 2.2 UI component
 ![Ui](images/Ui.png "Class diagram of Ui component")                
@@ -73,14 +84,14 @@ DisplayList and DisplayTable, to specifically print the list and table interface
 ![Command](images/Command.png "Class diagram of Command component")         
 *Class diagram of the Command component*  
 
-Commands are the main classes to be executed in PAC. All of the specific Command classes inherit the 
+Commands are the main classes to be executed in Pac. All of the specific Command classes inherit the 
 base Command abstract class, and utilize its abstract execute() method.  
 A subclass of Command is created and executed when the professor input a corresponding command.
  
 ### 2.4 Parser component
 *Class diagram of the Parser component*  
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
-of PAC. 
+of Pac. 
 
 | Parser                    | Created in                                                    |
 |---------------------------|---------------------------------------------------------------|
@@ -90,17 +101,31 @@ of PAC.
 
 A Parser class is created when a user input contains data to be stored or used in certain features.    
 
+### 2.5 Storage component
+![Storage](images/StorageClass.png "Class diagram of Storage component")
+*Class diagram of the Storage component*
+
+On startup, `Pac` instantiates two `Storage` objects (`eventStorage` and 
+`studentListStorage`) to load and save `Event` and `StudentList` objects respectively.
+
+All `Event` and `StudentList` objects are receiving `Bye` command. If the 
+program crashes (due to unhandled Exception or Interrupt), they *will not* be 
+saved.
+
 ## 3. Implementation 
 ### 3.1 Event
 ![event](images/event.png "Class diagram of Event component")           
 *Class diagram of the Event component*
 
+#### Program flow
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
 1. Once determined, the relevant information (e.g. index, name, time, date, venue) are extracted by 
 `EventParser`.
-1. Then, the relevant class that corresponds to the command is created, with the information extracted 
-from the previous step passed into it. It modifies `Event` or `EventList`.
-1. These commands are then returned to `Duke.run()` to `execute()`. 
+1. Then, the relevant class that corresponds to the requested command is 
+created, with the information extracted from the previous step passed into it. 
+    - e.g. Command `event delete i/1` will create a `DeleteEvent` object, with 
+    `index=1` as its argument.
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
@@ -109,7 +134,7 @@ and `time`, which corresponds to `d/` and `t/` flag respectively.
 `date` and/or `time` of an `Event` object.
 * `delete(Event)` method is currently not in use, but can be used to implement delete by event name, 
 either by complete match, or fuzzy match.
-* Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar control flow. 
+* Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar program flow. 
 
 ### 3.2 Attendance
 ![attendance](images/Attendance.png "Class diagram of Attendance component")        
@@ -117,7 +142,7 @@ either by complete match, or fuzzy match.
 1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
 1. Then, the class will execute base on its function. It modifies `AttendanceList`.
-1. These commands are then returned to `Duke.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * `attendance add` command requires a line-by-line insertion of the student attendance data. 
@@ -131,7 +156,7 @@ create a new attendance list. `n/` and `p/` flags are used to insert new attenda
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
 1. Then, either AddFirstSemester or AddSecondSemester class that corresponds the semester number is created. 
 1. Subsequently, it separates events by the required month and year in `CalendarList`
-1. These commands are then returned to `Duke.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * `acadamic year` is parsed into corresponding to only one year according to the semester in `EventParser` class.
@@ -147,7 +172,7 @@ it can be implement to truncate longer names to fit nicely
 DeletePerformance...), and ask for relevant information (e.g. event name, student name, student result) from the user. 
 1. Then, with the information extracted from the previous step passed into it. It modifies PerformanceList` under
 the event class correspond to the input event name.
-1. These commands are then returned to `Duke.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * All PerformanceList class should be created under an Event class. A PerformanceList class cannot exist 
@@ -161,7 +186,7 @@ prevent time wasted on key in wrong commands.
 1. When a user enters an studentList-related command, the command is analysed by `StudentCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
 1. Then, the class will execute base on its function. It modifies `AttendanceList`.
-1. These commands are then returned to `Duke.run()` to `execute()`. 
+1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * studentList-related commands can be executed without the existence of events.

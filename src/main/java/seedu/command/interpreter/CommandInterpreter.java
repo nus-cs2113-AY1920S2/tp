@@ -4,7 +4,7 @@ import seedu.command.Bye;
 import seedu.command.Command;
 import seedu.command.Help;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.UI;
 
 public class CommandInterpreter {
@@ -35,13 +35,13 @@ public class CommandInterpreter {
      * Returns the 2nd to last words.
      * @param userInput raw user input
      * @return the 2nd to last words
-     * @throws DukeException if there is only 1 word from the input
+     * @throws PacException if there is only 1 word from the input
      */
-    protected String getSubsequentWords(String userInput) throws DukeException {
+    protected String getSubsequentWords(String userInput) throws PacException {
         int startIndexOfSpace = userInput.indexOf(" ");
 
         if (startIndexOfSpace == -1) {
-            throw new DukeException("Argument is required for command '" + userInput + "'");
+            throw new PacException("Argument is required for command '" + userInput + "'");
         }
 
         int startIndexOfParameter = startIndexOfSpace + 1;
@@ -81,9 +81,9 @@ public class CommandInterpreter {
      * Decide the command from userInput.
      *
      * @param userInput The userInput from the Ui.
-     * @throws DukeException If the command is undefined.
+     * @throws PacException If the command is undefined.
      */
-    public Command decideCommand(String userInput) throws DukeException {
+    public Command decideCommand(String userInput) throws PacException {
         Command command;
 
         String commandCategory = getFirstWord(userInput);
@@ -129,12 +129,10 @@ public class CommandInterpreter {
                     && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
                     && !commandCategory.equals("help") && !commandCategory.equals("student"))
                     : "accepted command category is not further interpreted!";
-            ui.display("Unknown command category is provided.");
-            throw new DukeException("Unknown command category is provided");
+            throw new PacException("Unknown command category is provided");
         }
         if (command == null) {
-            ui.displayMessage("Duke is null.");
-            throw new DukeException("Duke is null.");
+            throw new PacException("Pac is null.");
         }
         return command;
     }

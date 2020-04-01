@@ -1,9 +1,10 @@
 package seedu.command;
 
+import seedu.ui.UI;
+
 public class Bye extends Command {
     @Override
     public void execute() {
-        //TODO: replace with an appropriate method from UI
-        System.out.println("Bye, see you again!");
+        UI.display("Bye, see you again!");
     }
 }
