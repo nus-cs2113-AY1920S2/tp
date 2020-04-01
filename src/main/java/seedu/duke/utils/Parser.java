@@ -25,7 +25,7 @@ public class Parser {
 
     private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z\\/])"
                 + "|i\\/(?<description>[a-zA-Z \\d]+[^ipq\\/\\n]+)"
-                + "|p\\/(?<price>[\\d .a-hj-or-zA-OQR-Z]+|[^ipq\\/\\n])+"
+                + "|p\\/(?<price>[\\d .a-hj-or-zA-OR-Z]+|[^ipq\\/\\n])+"
                 + "|q\\/(?<quantity>[\\d .a-or-zA-OR-Z]+|[^ipq\\/])|$";
 
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
@@ -491,14 +491,21 @@ public class Parser {
             }
 
             if (matcher.group("price") != null) {
-                itemPrice = matcher.group("price").trim();
-                testprice = Double.parseDouble(itemPrice);
+                if (matcher.group(0).contains("-")) {
+                    throw new NumberFormatException();
+                } else {
+                    itemPrice = matcher.group("price").trim();
+                    testprice = Double.parseDouble(itemPrice);
+                }
             }
 
             if (matcher.group("quantity") != null) {
-                itemQuantity = matcher.group("quantity").trim();
-                testQuantity = Integer.parseInt(itemQuantity);
-
+                if (matcher.group(0).contains("-")) {
+                    throw new NumberFormatException();
+                } else {
+                    itemQuantity = matcher.group("quantity").trim();
+                    testQuantity = Integer.parseInt(itemQuantity);
+                }
             }
         }
 
