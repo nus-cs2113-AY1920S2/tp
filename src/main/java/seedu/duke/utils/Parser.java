@@ -523,7 +523,7 @@ public class Parser {
                 validDescription = true;
             }
         }
-         if (!descriptionPresent) {
+        if (!descriptionPresent) {
             if (arrToCheck[1] == null) {
                 validDescription = true;
             }
