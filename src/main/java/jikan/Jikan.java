@@ -52,29 +52,39 @@ public class Jikan {
     /**
      * Main entry-point for the Jikan application.
      */
-    public static void main(String[] args) throws IOException, EmptyNameException {
+    public static void main(String[] args) {
         ui.printGreeting();
         storage = new Storage(DATA_FILE_PATH);
         cleaner = new StorageCleaner(storage);
-        cleaner.autoClean();
-        logCleaner.autoClean();
-        activityList = storage.createActivityList();
-        GoalCommand.createFile(TAG_FILE_PATH, tagFile);
+        try {
+            cleaner.autoClean();
+            logCleaner.autoClean();
+            activityList = storage.createActivityList();
+            GoalCommand.createFile(TAG_FILE_PATH, tagFile);
+        } catch (IOException e) {
+            Ui.printDivider("Error while preparing application.");
+        }
 
         lastShownList.activities.addAll(activityList.activities);
         parser.cleaner = cleaner;
         parser.logcleaner = logCleaner;
 
         while (true) {
-            Command command = parser.parseUserCommands(in,activityList,cleaner,tagFile);
-            if (command == null) {
-                continue;
-            }
-            if (ByeCommand.isExit(command)) {
+            try {
+                Command command = parser.parseUserCommands(in, activityList, cleaner, tagFile);
+                if (command == null) {
+                    continue;
+                }
+                if (ByeCommand.isExit(command)) {
+                    command.executeCommand(activityList);
+                    break;
+                }
                 command.executeCommand(activityList);
-                break;
+                // This block should theoretically never be entered (if command is empty, it just continues)
+                // However, you never know..
+            } catch (EmptyNameException e) {
+                Ui.printDivider("Error parsing command. Please try again.");
             }
-            command.executeCommand(activityList);
         }
     }
 }
