@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class PatientTextUi extends TextUi {
 
-    public static String patientNotFoundMessage = "    The patient cannot be found. Please try again.\n" + DIVIDER;
+    public static String patientNotFoundMessage = "    The patient cannot be found. Please try again.\n";
     public static String emptyPatientListMessage = "    There are no patients in the list.\n" + DIVIDER;
 
     /**
