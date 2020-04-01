@@ -74,31 +74,6 @@ public class Storage {
     }
 
     /**
-     * Load all items from file
-     *
-     * @param patients Shared map of all patients.
-     * @param appointments Shared map of all appointments.
-     * @return a String to describe load status.
-     */
-    public static String loadFromFile(PatientMap patients, AppointmentMap appointments) {
-        String returnMsg = "\n";
-        try {
-            patients = loadPatientsFromFile(PATIENT_FILEPATH);
-            returnMsg += "    Patient loaded from file.\n";
-        } catch (FileNotFoundException e) {
-            returnMsg += "    Patient file not found.\n";
-        }
-        try {
-            appointments = loadAppointmentFromFile(APPOINTMENT_FILEPATH, patients);
-            returnMsg += "    Appointment loaded from file.\n";
-        } catch (FileNotFoundException e) {
-            returnMsg = "    Appointment file not found.\n";
-        }
-
-        return returnMsg;
-    }
-
-    /**
      * Read and send file data to parse line by line as string.
      * Returns a list of historical patients patient list
      *

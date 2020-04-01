@@ -39,8 +39,18 @@ public class HappyPills {
         appointments = new AppointmentMap();
         patientRecords = new PatientRecordMap();
         scanner = new Scanner(System.in);
-        String status = Storage.loadFromFile(patients,appointments);
-        logger.info(status);
+        try {
+            patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
+            logger.info( "    Patient loaded from file.\n");
+        } catch (FileNotFoundException e) {
+            logger.info( "   No patients in file.\n");
+        }
+        try {
+            appointments = Storage.loadAppointmentFromFile(Storage.APPOINTMENT_FILEPATH, patients);
+            logger.info( "    Appointment loaded from file.\n");
+        } catch (FileNotFoundException e) {
+            logger.info( "   No appointment in file.\n");
+        }
 
     }
 
