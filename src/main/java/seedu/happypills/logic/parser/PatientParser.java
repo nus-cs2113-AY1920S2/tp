@@ -83,14 +83,14 @@ public class PatientParser {
         }
 
         while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
-                || parseInput[2].equalsIgnoreCase("") || !checkNRIC(parseInput[1])
+                || parseInput[2].equalsIgnoreCase("") || !checkNric(parseInput[1])
                 || parseInput[3].equalsIgnoreCase("") || !checkPhoneNum(parseInput[2].trim())
                 || !isInteger(parseInput[2].trim()) || parseInput[4].equalsIgnoreCase("")) {
             System.out.println("    Please input your missing detail listed below");
             if (parseInput[0].equalsIgnoreCase("")) {
                 System.out.println("    /n[NAME]");
             }
-            if (parseInput[1].equalsIgnoreCase("") || !checkNRIC(parseInput[1])) {
+            if (parseInput[1].equalsIgnoreCase("") || !checkNric(parseInput[1])) {
                 System.out.println("    /ic[NRIC] must follow standard nric format : S/T [7-digits] [A-Z]");
             }
             if (parseInput[2].equalsIgnoreCase("") || !checkPhoneNum(parseInput[2].trim())
@@ -190,7 +190,7 @@ public class PatientParser {
      * @param nric details of time
      * @return boolean true if the time format is correct otherwise false
      */
-    static boolean checkNRIC(String nric) {
+    static boolean checkNric(String nric) {
         String pattern = "([S-T][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z])";
         return nric.matches(pattern);
     }
