@@ -69,7 +69,7 @@ public class StoragePersonInfo {
             throw new StorageException("Invalid person information!");
         }
         String name = personWords[0];
-        int matricYear = Integer.parseInt(personWords[1]);
+        String matricYear = personWords[1];
         return new Person(name, matricYear);
     }
 

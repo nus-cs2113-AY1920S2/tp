@@ -15,7 +15,13 @@ public enum Grading {
     CS("PASS", 0.00),
     CU("FAIL", 0.00);
 
+    Grading(String grade, double gradePoint) {
+        this.grade = grade;
+        this.gradePoint = gradePoint;
+    }
+
     private String grade;
+
     private double gradePoint;
 
     public String getGrade() {
@@ -24,10 +30,5 @@ public enum Grading {
 
     public double getPoint() {
         return this.gradePoint;
-    }
-
-    Grading(String grade, double gradePoint) {
-        this.grade = grade;
-        this.gradePoint = gradePoint;
     }
 }

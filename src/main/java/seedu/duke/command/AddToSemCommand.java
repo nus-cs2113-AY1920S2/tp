@@ -53,16 +53,18 @@ public class AddToSemCommand extends AddCommand {
         }
     }
 
+    /**
+     *Allows users to add to data later(or not) and then it if users add a module to data,
+     *it will automatically update the information of the selected module.
+     * @param semesterList user's current semester list
+     * @return boolean value of true if the module is in the user's semester list, and false otherwise
+     */
     private boolean checkModuleExist(SemesterList semesterList) {
-        /* Allows users to add to data later(or not) and then it if users add a module to data,
-        it will automatically update the information of the selected module. */
-
         for (SemModulesList sem: semesterList) {
             if (sem.isInList(selectedModule.getName()) || sem.isInList(selectedModule.getId())) {
                 return true;
             }
         }
-
         return false;
     }
 }

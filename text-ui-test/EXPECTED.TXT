@@ -12,13 +12,15 @@ Hello from
 
 Here are the commands that I can do for you:
 1. "help" to look at all the commands that I can do
-2. "view" to see all modules we have in our module list
-3. "add id/[module code] s/[1-8]" to add a module to your personal module manager
-4. "add id/[module code] n/[name of module]" to add a module to the list of available modules
-5. "done id/[module code] g/[grade] c/[credit]" or "done n/[name of module] g/[grade] c/[credit]" to mark it as done
+2. "view" to see all modules you have in your module list
+3. "add id/[module code] s/[semester] mc/[credit] | add n/[module name] s/[semester] mc/[credit] | add id/[module code] n/[module name] s/[semester] mc/[credit]" to add a module to your personal module manager
+4. "add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]" to add a module to the list of available modules
+5. "done n/[module name] g/[grade] | done id/[module code] g/[grade]" to mark it as done
 6. "view /mp" to view your module plan
 7. "view /dm" to view all finished modules
 8. "view /cc" to view the number of modular credits u have completed
+9. "CAP" to view your current cap
+10. "view" to view all available modules
 Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
@@ -45,54 +47,38 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  11 | CS2102   | Database Systems                                              | 4             | CS2030                  |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  12 | CS2101   | Effective Communication for Computing Professionals           | 4             | None                    |
+|  12 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  13 | CS2102   | Database Systems                                              | 4             | CS2030                  |
+|  13 | GEH1002  | Economic Issues in Dev World                                  | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  14 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
+|  14 | GEH1004  | Chinese Heritage: Hist & Lit                                  | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  15 | GEH1002  | Economic Issues in Dev World                                  | 4             | None                    |
+|  15 | GEQ1000  | Asking Questions                                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  16 | GEH1004  | Chinese Heritage: Hist & Lit                                  | 4             | None                    |
+|  16 | GER1000  | Quantitative Reasoning                                        | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  17 | GEQ1000  | Asking Questions                                              | 4             | None                    |
+|  17 | GET1001  | Seeing the World Through Maps                                 | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  18 | GER1000  | Quantitative Reasoning                                        | 4             | None                    |
+|  18 | GET1002  | Bridging East and West: Exploring Chinese Communication       | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  19 | GET1001  | Seeing the World Through Maps                                 | 4             | None                    |
+|  19 | GET1003  | Home                                                          | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  20 | GET1002  | Bridging East and West: Exploring Chinese Communication       | 4             | None                    |
+|  20 | GES1000  | Singapore Employment Law                                      | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  21 | GET1003  | Home                                                          | 4             | None                    |
+|  21 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  22 | GES1000  | Singapore Employment Law                                      | 4             | None                    |
+|  22 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  23 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
+|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  24 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
+|  24 | CS1231   | Discrete Structures                                           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  25 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  26 | CS1231   | Discrete Structures                                           | 4             | None                    |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  27 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
+|  25 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
 ----------------------------------------------------------------------------------------------------------------------------
 
 
 Okay! I have added this module to your semester's module list:
-ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2
-
-
-Okay! I have added this module to the available modules to choose from:
-ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4 | Prerequisites: CS1010
-
-
-Okay! I have added this module to the available modules to choose from:
-ID: CS1231 Name: Discrete Structures | Modular Credit: 4
-
-
-Okay! I have added this module to the available modules to choose from:
-ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
+ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
 Okay! Here are your available modules in database:
@@ -121,59 +107,55 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  11 | CS2102   | Database Systems                                              | 4             | CS2030                  |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  12 | CS2101   | Effective Communication for Computing Professionals           | 4             | None                    |
+|  12 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  13 | CS2102   | Database Systems                                              | 4             | CS2030                  |
+|  13 | GEH1002  | Economic Issues in Dev World                                  | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  14 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
+|  14 | GEH1004  | Chinese Heritage: Hist & Lit                                  | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  15 | GEH1002  | Economic Issues in Dev World                                  | 4             | None                    |
+|  15 | GEQ1000  | Asking Questions                                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  16 | GEH1004  | Chinese Heritage: Hist & Lit                                  | 4             | None                    |
+|  16 | GER1000  | Quantitative Reasoning                                        | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  17 | GEQ1000  | Asking Questions                                              | 4             | None                    |
+|  17 | GET1001  | Seeing the World Through Maps                                 | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  18 | GER1000  | Quantitative Reasoning                                        | 4             | None                    |
+|  18 | GET1002  | Bridging East and West: Exploring Chinese Communication       | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  19 | GET1001  | Seeing the World Through Maps                                 | 4             | None                    |
+|  19 | GET1003  | Home                                                          | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  20 | GET1002  | Bridging East and West: Exploring Chinese Communication       | 4             | None                    |
+|  20 | GES1000  | Singapore Employment Law                                      | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  21 | GET1003  | Home                                                          | 4             | None                    |
+|  21 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  22 | GES1000  | Singapore Employment Law                                      | 4             | None                    |
+|  22 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  23 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
+|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  24 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
+|  24 | CS1231   | Discrete Structures                                           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  25 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  26 | CS1231   | Discrete Structures                                           | 4             | None                    |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  27 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
+|  25 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
 ----------------------------------------------------------------------------------------------------------------------------
 
 
 Okay! Here is your module plan:
-2018/2019 SEM1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
+Y2S1
+1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
-2018/2019 SEM2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
-2.[✗] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2
+Y2S2
+1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+2.[✗] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
 Okay, I've marked the module as done!
 
 
 Okay! Here are your completed modules:
-2018/2019 SEM1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
+Y2S1
+1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
 
-2018/2019 SEM2
-1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: 2018/2019 SEM2 | Grade: A-
+Y2S2
+1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 
 You have completed this amount of credits:
@@ -183,9 +165,9 @@ You have completed this amount of credits:
 Okay, this is the list of related modules:
 
 List of selected modules:
-[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
-[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
-[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
+[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 List of available modules
 ID: CS1010 Name: Programming Methodology | Modular Credit: 4
@@ -197,8 +179,6 @@ ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Modular Cr
 ID: CS2105 Name: Introduction to Computer Networks | Modular Credit: 4 | Prerequisites: CS2040
 ID: CS2101 Name: Effective Communication for Computing Professionals | Modular Credit: 4
 ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030
-ID: CS2101 Name: Effective Communication for Computing Professionals | Modular Credit: 4
-ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030
 ID: CS1231 Name: Discrete Structures | Modular Credit: 4
 ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
 
@@ -207,21 +187,21 @@ ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisit
 Okay, I've marked the module as done!
 
 
-Your CAP:
+Your current CAP is:
 4.75
 
 
 Okay, this module has been deleted from the corresponding semester
-Module IS4241 has been deleted from semester 2018/2019 SEM2
+Module IS4241 has been deleted from semester Y2S2
 
 
 Okay! Here is your module plan:
-2018/2019 SEM1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
+Y2S1
+1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
-2018/2019 SEM2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
+Y2S2
+1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 
 Okay, this module has been deleted from the list of available modules
@@ -258,43 +238,39 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  11 | CS2102   | Database Systems                                              | 4             | CS2030                  |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  12 | CS2101   | Effective Communication for Computing Professionals           | 4             | None                    |
+|  12 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  13 | CS2102   | Database Systems                                              | 4             | CS2030                  |
+|  13 | GEH1002  | Economic Issues in Dev World                                  | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  14 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
+|  14 | GEH1004  | Chinese Heritage: Hist & Lit                                  | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  15 | GEH1002  | Economic Issues in Dev World                                  | 4             | None                    |
+|  15 | GEQ1000  | Asking Questions                                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  16 | GEH1004  | Chinese Heritage: Hist & Lit                                  | 4             | None                    |
+|  16 | GER1000  | Quantitative Reasoning                                        | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  17 | GEQ1000  | Asking Questions                                              | 4             | None                    |
+|  17 | GET1001  | Seeing the World Through Maps                                 | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  18 | GER1000  | Quantitative Reasoning                                        | 4             | None                    |
+|  18 | GET1003  | Home                                                          | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  19 | GET1001  | Seeing the World Through Maps                                 | 4             | None                    |
+|  19 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  20 | GET1003  | Home                                                          | 4             | None                    |
+|  20 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  21 | GES1002  | Global EC Dimensions of S'pore                                | 4             | None                    |
+|  21 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  22 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
+|  22 | CS1231   | Discrete Structures                                           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  24 | CS1231   | Discrete Structures                                           | 4             | None                    |
-|-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  25 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
+|  23 | CS2104   | Programming Language Concepts                                 | 4             | CS2030                  |
 ----------------------------------------------------------------------------------------------------------------------------
 
 
 Okay! Here is your module plan:
-2018/2019 SEM1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: 2018/2019 SEM1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: 2018/2019 SEM1
+Y2S1
+1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
-2018/2019 SEM2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: 2018/2019 SEM2
+Y2S2
+1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 
 bye!
