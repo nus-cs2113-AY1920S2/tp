@@ -23,10 +23,10 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z/])"
-            + "|i/(?<description>[a-zA-Z \\d]+[^ipq/]+)"
-            + "|p/(?<price>[\\s?\\d+\\.?\\da-oqr-zA-OQR-Z]+[^ipq/])"
-            + "|q/(?<quantity>[\\d .a-oqr-zA-OQR-Z]+|[^ipq/])|$";
+    private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z\\/])"
+                + "|i\\/(?<description>[a-zA-Z \\d]+[^ipq\\/\\n]+)"
+                + "|p\\/(?<price>[\\d .a-hj-or-zA-OQR-Z]+|[^ipq\\/\\n])+"
+                + "|q\\/(?<quantity>[\\d .a-or-zA-OR-Z]+|[^ipq\\/])|$";
 
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -483,20 +483,20 @@ public class Parser {
         while (matcher.find()) {
 
             if (matcher.group("index") != null) {
-                indexOfItem = matcher.group("index");
+                indexOfItem = matcher.group("index").trim();
             }
 
             if (matcher.group("description") != null) {
-                itemDescription = matcher.group("description");
+                itemDescription = matcher.group("description").trim();
             }
 
             if (matcher.group("price") != null) {
-                itemPrice = matcher.group("price");
+                itemPrice = matcher.group("price").trim();
                 testprice = Double.parseDouble(itemPrice);
             }
 
             if (matcher.group("quantity") != null) {
-                itemQuantity = matcher.group("quantity");
+                itemQuantity = matcher.group("quantity").trim();
                 testQuantity = Integer.parseInt(itemQuantity);
 
             }
