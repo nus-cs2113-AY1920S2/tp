@@ -8,10 +8,10 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `MeetingOrganizer` from [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
+2. Download the .jar file from the latest release of `MeetingOrganizer` [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
 3. Copy the .jar file to an empty folder.
-4. Open Command Prompt and navigate to the folder using ```cd [folder path]```.
-5. Run the .jar file using ```java -jar [.jar file name]```.
+4. Open Command Prompt and navigate to the folder using ```cd <folder path>```.
+5. Run the .jar file using ```java -jar <.jar file name>```.
 
 ## Features 
 
@@ -20,8 +20,8 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
 - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
 - [Delete a scheduled meeting](#delete-a-scheduled-meeting-delete)
-- [Display meetings](#display-meetings-meetings)
-- [Exit the application](#exit-the-application-exit)
+- [List all scheduled meetings](#list-all-scheduled-meetings-meetings)
+- [Exit application](#exit-application-exit)
 
 <br/><br/>
 
@@ -52,19 +52,25 @@ Example of usage: `contacts`
 ### Display timetable of selected contacts: `timetable`
 1) Displays the main user's timetable.
     
-    Example of usage: `timetable` 
+    Format: `timetable` 
     
 ![](images/capture3.png)`
 
 2) Displays the timetable of the selected contact.
 
     Example of usage: `timetable 1 ` 
+    Format: `timetable <Member Index>`
+    
+    Example of usage: `timetable 1` 
     
 ![](images/capture4.png)
 
 3) Displays the combined timetable of the selected contacts.
    
    Example of usage: `timetable 0 1 2` 
+   Format: `timetable <Member A Index> <Member B index>`
+   
+   Example of usage: `timetable 0 1` 
    
 ![](images/capture5.png)
    <br/><br/>
@@ -85,7 +91,7 @@ schedule meeting 3 17:00 3 19:00
 <br/><br/>
 
 ### Delete a scheduled meeting `delete`
-Deletes a meeting from the meeting list.
+Deletes a scheduled meeting from the meeting list.
 
 Format: `delete <Meeting Index>`
 
@@ -98,8 +104,8 @@ delete 1
 ![](images/capture7.png)
 <br/><br/>
 
-### Display meetings: `meetings`
-Displays all scheduled meetings stored in program.
+### List all scheduled meetings: `meetings`
+List all scheduled meetings stored in program.
 
 Example of usage: `meetings`
 
@@ -122,6 +128,10 @@ Example of usage: `exit`
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add to-do `todo n/TODO_NAME d/DEADLINE`
+- **Adding a new contact**: `<name> <NUSMODS link>`
+- **List all contacts**: `contacts`
+- **Display timetable of selected contacts**: `timetable` OR `timetable <Member Index>` OR `timetable <Member A Index> <Member B Index>`
+- **Schedule a new meeting**: `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`
+- **Delete a scheduled meeting**: `delete <Meeting Index>`
+- **List all scheduled meetings**: `meetings`
+- **Exit application**: `exit`
