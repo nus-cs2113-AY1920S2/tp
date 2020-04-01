@@ -116,18 +116,23 @@ public class PatientParser {
                 input = "@" + input;
                 updates = input.split(" /");
             }
+            
             for (String update : updates) {
                 if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
-                    parseInput[0] = update.trim().substring(1).trim();
-                } else if (update.trim().startsWith("ic") && parseInput[1].equalsIgnoreCase("")) {
-                    parseInput[1] = update.trim().substring(2).toUpperCase();
-                } else if (update.trim().startsWith("p") && (parseInput[2].equalsIgnoreCase("")
-                        || !isInteger(parseInput[2].trim()))) {
-                    parseInput[2] = update.trim().substring(1);
-                } else if (update.trim().startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
+                    parseInput[0] = update.substring(1).trim();
+                } else if (update.trim().startsWith("ic") && (parseInput[1].equalsIgnoreCase(""))
+                        || !checkNric(parseInput[1].trim())) {
+                    System.out.println(update);
+                    parseInput[1] = update.trim().substring(2).toUpperCase().trim();
+                } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
+                        || !isInteger(parseInput[2].trim()) || !checkPhoneNum(parseInput[2].trim())))) {
+                    parseInput[2] = update.substring(1).trim();
+                } else if (update.trim().startsWith("dob") && (parseInput[3].equalsIgnoreCase("")
+                        || !checkDate(parseInput[3].trim()))) {
                     parseInput[3] = update.trim().substring(3).trim();
-                } else if (update.trim().startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
-                    parseInput[4] = update.trim().substring(1).toUpperCase();
+                } else if (update.trim().startsWith("b") && (parseInput[4].equalsIgnoreCase(""))
+                        || !checkType(parseInput[4].trim())) {
+                    parseInput[4] = update.trim().substring(1).trim();
                 }
             }
         }

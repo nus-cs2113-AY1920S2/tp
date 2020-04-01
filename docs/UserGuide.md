@@ -10,7 +10,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.1.2. Exit program: `exit`](#312-exit-program-exit)        
     * [3.2. General Patient Information Commands](UserGuide-Patient.md) 
     * [3.3. Patient Medical Records Commands](UserGuide-Records.md)    
-    * [3.4. Appointment Scheduling Commands](UserGuide-AppointmeFnt.md)
+    * [3.4. Appointment Scheduling Commands](UserGuide-Appointment.md)
 - [4. Command Summary](#4-command-summary)
 - [5. Useful Links](#5-useful-links)
 
@@ -135,7 +135,7 @@ Format: `exit`
 **Command** | **Format**
 --------|----------
 Add a patient's information | `add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]`
-Edit a patient's information |  `edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]`
+Edit a patient's information |  `edit patient NRIC /n[NAME] or /p[PHONE_NUMBER] or /dob[DOB] or /b[BLOOD_TYPE] or /a[ALLERGIES] or /rm[REMARKS]`
 list all patients | `list patient`
 Retrieve a patient's information | `get patient NRIC`
 
