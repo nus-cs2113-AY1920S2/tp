@@ -94,7 +94,6 @@ Edit information of the patient with the specified NRIC.
  </tr>
 </table>
 
-
  [&#8593; Return to Top](#table-of-content)
  
 #### 3.2.3. Delete Patient: `delete patient`
@@ -137,7 +136,6 @@ Delete a patient as specified by the NRIC.
    <td> Upon <code>successful deletion </code>, patient's information will not be able to be retrieved again. </td>
  </tr>
 </table>
-
 
  [&#8593; Return to Top](#table-of-content)
 
