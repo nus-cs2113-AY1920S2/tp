@@ -7,6 +7,8 @@ import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.HelpTextUi;
+import seedu.happypills.ui.PRTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -46,11 +48,11 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
         if (newContent.length() < 3) {
-            return TextUi.editAptHelpMessage();
+            return HelpTextUi.printEditAppointmentHelp();
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return TextUi.editAptHelpMessage();
+            return HelpTextUi.printEditAppointmentHelp();
         }
         String field = "";
         if (newContent.contains("/sym")) {
@@ -92,7 +94,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);
-        return output ? TextUi.editPatientRecordSuccessMessage(editPatientRecord) : errorMsg;
+        return output ? PRTextUi.editPatientRecordSuccessMessage(editPatientRecord) : errorMsg;
     }
 
     private Boolean editDiagnosis(PatientRecord editPatientRecord, String content) {

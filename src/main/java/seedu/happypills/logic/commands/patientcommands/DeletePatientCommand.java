@@ -7,6 +7,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class DeletePatientCommand extends PatientCommand {
      */
     private String deletePatient(Patient patient, PatientMap patients) {
         patients.remove(nric);
-        String message = TextUi.deletePatient(patient);
+        String message = PatientTextUi.deletePatientSuccessMessage(patient);
         return TextUi.prependDivider(message);
     }
 
@@ -61,7 +62,7 @@ public class DeletePatientCommand extends PatientCommand {
 
         if (patients.containsKey(nric)) {
             Patient patient = patients.get(nric);
-            TextUi.printDeleteConfirmation(patient);
+            PatientTextUi.printDeleteConfirmation(patient);
             String message = "";
             String confirm = getPatientConfirmation();
             boolean isConfirmed = false;
@@ -76,11 +77,11 @@ public class DeletePatientCommand extends PatientCommand {
                     isConfirmed = true;
                     logger.log(logLevel, "patient is deleted");
                 } else if (confirm.equalsIgnoreCase("n")) {
-                    message = TextUi.printNotDeleted();
+                    message = PatientTextUi.printNotDeleted();
                     isConfirmed = true;
                     logger.log(logLevel, "patient is not deleted");
                 } else {
-                    TextUi.printDeleteConfirmationAgain(patient);
+                    PatientTextUi.printDeleteConfirmationAgain(patient);
                     confirm = getPatientConfirmation();
                 }
             }

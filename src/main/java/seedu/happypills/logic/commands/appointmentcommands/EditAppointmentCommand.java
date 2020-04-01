@@ -8,6 +8,8 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.ApptTextUi;
+import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -99,7 +101,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      */
     private Boolean editDate(Appointment appointment, String newDate) {
         if (!checkDate(newDate)) {
-            TextUi.print(TextUi.editAptHelpMessage());
+            TextUi.print(HelpTextUi.printEditAppointmentHelp());
             return false;
         } else {
             appointment.setDate(newDate);
@@ -195,11 +197,11 @@ public class EditAppointmentCommand extends AppointmentCommand {
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
         if (newContent.length() < 3) {
-            return TextUi.editAptHelpMessage();
+            return HelpTextUi.printEditAppointmentHelp();
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return TextUi.editAptHelpMessage();
+            return HelpTextUi.printEditAppointmentHelp();
         }
         String field = newContent.substring(0,2).trim();
         Patient editPatient = findPatient(patients);
@@ -232,6 +234,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);
-        return output ? TextUi.editAppointmentSuccessMessage(editAppt) : errorMsg;
+        return output ? ApptTextUi.editAppointmentSuccessMessage(editAppt) : errorMsg;
     }
 }

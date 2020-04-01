@@ -8,6 +8,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.ApptTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -116,6 +117,6 @@ public class DoneAppointmentCommand extends AppointmentCommand {
             }
         }
 
-        return TextUi.doneAppointmentSuccessMessage(editAppt);
+        return ApptTextUi.doneAppointmentSuccessMessage(editAppt);
     }
 }

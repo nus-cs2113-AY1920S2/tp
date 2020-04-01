@@ -4,7 +4,7 @@ import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.PatientTextUi;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +21,11 @@ public class ListPatientCommand extends PatientCommand {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
         String message = "";
         if (patients.isEmpty()) {
-            message = TextUi.getEmptyPatientList();
+            message = PatientTextUi.getEmptyPatientList();
             logger.log(logLevel, "no patient information is in list");
         } else {
             assert !patients.isEmpty();
-            message = TextUi.getPatientList(patients);
+            message = PatientTextUi.getPatientList(patients);
             logger.log(logLevel, "retrieve patient's information");
         }
         return message;

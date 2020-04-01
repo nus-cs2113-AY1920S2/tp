@@ -7,6 +7,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -74,7 +75,7 @@ public class AddPatientCommand extends PatientCommand {
             logger.info("Patient not added to file.");
         }
         String message = "";
-        message = TextUi.getPatient(patients.get(nric));
+        message = PatientTextUi.addPatientSuccessMessage(patients.get(nric));
         logger.log(logLevel, "end of addCommand");
         return message;
     }

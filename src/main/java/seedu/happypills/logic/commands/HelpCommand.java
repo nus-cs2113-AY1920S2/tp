@@ -3,6 +3,7 @@ package seedu.happypills.logic.commands;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
+import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.TextUi;
 
 /**
@@ -25,9 +26,9 @@ public class HelpCommand implements Command {
         String message;
         String[] userCommand = command.split(" ", 3);
         if (userCommand[0].equalsIgnoreCase("help") && userCommand.length == 1) {
-            message = TextUi.getHelp();
+            message = HelpTextUi.generalHelpMessage;
         } else if (userCommand[1].equalsIgnoreCase("exit")) {
-            message = TextUi.printExitHelp();
+            message = HelpTextUi.exitHelpMessage;
         } else if (userCommand[2].equalsIgnoreCase("patient")) {
             message = getPatientHelp(userCommand[1]);
         } else if (userCommand[2].equalsIgnoreCase("pr")) {
@@ -43,57 +44,57 @@ public class HelpCommand implements Command {
     private String getPatientHelp(String patient) {
         String message = "";
         if (patient.equalsIgnoreCase("add")) {
-            message = TextUi.printAddPatientHelp();
+            message = HelpTextUi.AddPatientHelpMessage;
         } else if (patient.equalsIgnoreCase("list")) {
-            message = TextUi.printListPatientHelp();
+            message = HelpTextUi.listPatientHelpMessage;
         } else if (patient.equalsIgnoreCase("get")) {
-            message = TextUi.printGetPatientHelp();
+            message = HelpTextUi.getPatientHelpMessage;
         } else if (patient.equalsIgnoreCase("edit")) {
-            message = TextUi.printEditPatientHelp();
+            message = HelpTextUi.editPatientHelpMessage;
         } else if (patient.equalsIgnoreCase("delete")) {
-            message = TextUi.printDeletePatientHelp();
+            message = HelpTextUi.deletePatientHelpMessage;
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
-        return message;
+        return message + TextUi.DIVIDER;
     }
 
     private String getPatientRecordHelp(String pr) {
         String message = "";
         if (pr.equalsIgnoreCase("add")) {
-            message = TextUi.printAddPatientRecordHelp();
+            message = HelpTextUi.AddPatientRecordHelpMessage;
         } else if (pr.equalsIgnoreCase("list")) {
-            message = TextUi.printListPatientRecordHelp();
+            message = HelpTextUi.listPatientRecordHelpMessage;
         } else if (pr.equalsIgnoreCase("find")) {
-            message = TextUi.printFindPatientRecordHelp();
+            message = HelpTextUi.findPatientRecordHelpMessage;
         } else if (pr.equalsIgnoreCase("edit")) {
-            message = TextUi.printEditPatientRecordHelp();
+            message = HelpTextUi.editPatientRecordHelpMessage;
         } else if (pr.equalsIgnoreCase("delete")) {
-            message = TextUi.printDeletePatientRecordHelp();
+            message = HelpTextUi.deletePatientRecordHelpMessage;
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
-        return message;
+        return message + TextUi.DIVIDER;
     }
 
     private String getAppointmentHelp(String appt) {
         String message = "";
         if (appt.equalsIgnoreCase("add")) {
-            message = TextUi.printAddAppointmentHelp();
+            message = HelpTextUi.printAddAppointmentHelp;
         } else if (appt.equalsIgnoreCase("list")) {
-            message = TextUi.printListAppointmentHelp();
+            message = HelpTextUi.printListAppointmentHelp;
         } else if (appt.equalsIgnoreCase("find")) {
-            message = TextUi.printFindAppointmentHelp();
+            message = HelpTextUi.printFindAppointmentHelp;
         } else if (appt.equalsIgnoreCase("done")) {
-            message = TextUi.printDoneAppointmentHelp();
+            message = HelpTextUi.printDoneAppointmentHelp;
         } else if (appt.equalsIgnoreCase("edit")) {
-            message = TextUi.printEditAppointmentHelp();
+            message = HelpTextUi.printEditAppointmentHelp;
         } else if (appt.equalsIgnoreCase("delete")) {
-            message = TextUi.printDeleteAppointmentHelp();
+            message = HelpTextUi.printDeleteAppointmentHelp;
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
-        return message;
+        return message + TextUi.DIVIDER;
     }
 }
 
