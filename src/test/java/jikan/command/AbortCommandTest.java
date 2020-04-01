@@ -18,7 +18,7 @@ class AbortCommandTest {
         try {
             command.executeCommand(null);
             assertNull(Parser.startTime);
-        } catch (EmptyNameException | InvalidTimeFrameException e) {
+        } catch (EmptyNameException e) {
             System.out.println("Filed error.");
         }
     }
