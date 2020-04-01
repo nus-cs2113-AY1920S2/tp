@@ -52,7 +52,7 @@ public class Jikan {
     /**
      * Main entry-point for the Jikan application.
      */
-    public static void main(String[] args) throws InvalidTimeFrameException, IOException, EmptyNameException {
+    public static void main(String[] args) throws IOException, EmptyNameException {
         ui.printGreeting();
         storage = new Storage(DATA_FILE_PATH);
         cleaner = new StorageCleaner(storage);
