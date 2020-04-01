@@ -1,6 +1,7 @@
 package jikan.activity;
 
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NameTooLongException;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -30,13 +31,17 @@ public class Activity {
      * @param endTime the time that the activity ended
      */
     public Activity(String name, LocalDateTime startTime, LocalDateTime endTime, Duration duration,
-                    Set<String> tags, Duration allocatedTime) throws InvalidTimeFrameException {
+                    Set<String> tags, Duration allocatedTime) throws InvalidTimeFrameException, NameTooLongException {
 
         if (endTime.isBefore(startTime)) {
             throw new InvalidTimeFrameException();
         }
 
-        this.name = name.strip();
+        if (name.strip().length() <= 25) {
+            this.name = name.strip();
+        } else {
+            throw new NameTooLongException();
+        }
         this.startTime = startTime;
         this.tags = tags;
         this.endTime = endTime;

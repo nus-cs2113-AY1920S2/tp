@@ -1,6 +1,7 @@
 package jikan.activity;
 
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NameTooLongException;
 import jikan.storage.Storage;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ActivityListTest {
 
     @Test
-    void getIndex() throws InvalidTimeFrameException {
+    void getIndex() throws InvalidTimeFrameException, NameTooLongException {
         ActivityList activities = new ActivityList();
         activities.storage = new Storage("data/activityList_test.txt");
         HashSet<String> tags = new HashSet<String>();
