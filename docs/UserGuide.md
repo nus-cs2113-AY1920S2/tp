@@ -304,6 +304,13 @@ displayed which states by how much you have overrun your current budget. This me
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
 <!-- @@author -->
+
+&nbsp;
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+
+
+&nbsp;
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
