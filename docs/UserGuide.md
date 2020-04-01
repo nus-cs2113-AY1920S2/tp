@@ -7,17 +7,17 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `Duke` from [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
+2. Download the latest version of `MeetingOrganizer` from [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
+3. Copy the .jar file to an empty folder.
+4. Open Command Prompt and navigate to the folder using ```cd [folder path]```.
+5. Run the .jar file using ```java -jar [.jar file name]```.
 
 ## Features 
 
 - [Adding a new contact](#adding-a-new-contact)
-- [Display contacts](#display-contacts-contacts)
-- [Display timetable](#display-timetable-timetable)
-- [Edit contact's timetable](#edit-contacts-timetable-edit)
+- [List all contacts](#list-all-contacts-contacts)
+- [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
 - [Schedule a new model.meeting](#schedule-a-new-model.meeting-schedule)
 - [Delete a scheduled model.meeting](#delete-a-scheduled-model.meeting-delete)
 - [Display meetings](#display-meetings-meetings)
@@ -42,7 +42,7 @@ Expected output:
 ```
 <br/><br/>
 
-### Display contacts: `contacts`
+### List all contacts: `contacts`
 Displays names of all contacts that is stored in program.
 
 Example of usage: `contacts`
@@ -53,7 +53,7 @@ Expected output:
 ```
 <br/><br/>
 
-### Display timetable: `timetable`
+### Display timetable of selected contacts: `timetable`
 1) Displays the main user's timetable.
     
     Example of usage: `timetable` 
@@ -81,22 +81,6 @@ Expected output:
    ```
    <br/><br/>
    
-### Edit contact's timetable `edit`
-Edits the timetable of a contact from the list of contacts.
-
-Format: `edit <Member Number> <busy/free> <startDay> <startTime> <endDay> <endTime>`
-
-Example of usage:
-
-`
-edit 0 busy 2 22:00 2 23:00
-`
-
-Expected output:
-```
-{insert ui}
-```
-<br/><br/>
 
 ### Schedule a new model.meeting `schedule`
 Schedules a new model.meeting and adds it into the model.meeting list.
