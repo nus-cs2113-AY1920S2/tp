@@ -56,56 +56,6 @@ public class PatientTextUi extends TextUi {
     }
 
     /**
-     * Display message that patient is successfully deleted.
-     *
-     * @param patient Patient to be deleted.
-     * @return display message.
-     */
-    public static String deletePatientSuccessMessage(Patient patient) {
-        return "    Patient " + patient.getName() + " | " + patient.getNric()
-            + " has been deleted successfully.\n";
-    }
-
-
-    /**
-     * Displays confirmation message for deleting patients.
-     *
-     * @param patient The patient to be deleted.
-     */
-    public static void printDeleteConfirmation(Patient patient) {
-        System.out.println("    Are you sure you want to delete this patient:\n      "
-                + patient.getName()
-                + " | "
-                + patient.getNric()
-                + "\n                                                   (Y/N)?\n"
-                + DIVIDER);
-    }
-
-    /**
-     * Displays confirmation message for deleting patients.
-     *
-     * @param patient The patient to be deleted.
-     */
-    public static void printDeleteConfirmationAgain(Patient patient) {
-        System.out.println("    Please try again."
-                + "    Are you sure you want to delete this patient:\n      "
-                + patient.getName()
-                + " | "
-                + patient.getNric()
-                + "\n                                                   (Y/N)?\n"
-                + DIVIDER);
-    }
-
-    /**
-     * Displays message that patient is not deleted.
-     *
-     * @return display message.
-     */
-    public static String printNotDeleted() {
-        return DIVIDER + "\n    Patient is not deleted.\n";
-    }
-
-    /**
      * Display updated patient's records.
      *
      * @param patient The patient whose records were updated.
@@ -116,4 +66,40 @@ public class PatientTextUi extends TextUi {
                 + patient + DIVIDER;
         return message;
     }
+
+    /**
+     * Display message that patient is successfully deleted.
+     *
+     * @param patient Patient to be deleted.
+     * @return display message.
+     */
+    public static String deletePatientSuccessMessage(Patient patient) {
+        return "    Patient " + patient.getName() + " | " + patient.getNric()
+            + " has been deleted successfully.\n";
+    }
+
+    /**
+     * Displays confirmation message for deleting patients.
+     *
+     * @param patient The patient to be deleted.
+     */
+    public static void printDeleteConfirmation(Patient patient) {
+        print("    Are you sure you want to delete this patient:\n      "
+                + patient.getName() + " | " + patient.getNric() + "\n"
+                + "                                                   (Y/N)?\n"
+                + DIVIDER);
+    }
+
+    /**
+     * Displays confirmation message for deleting patients.
+     *
+     * @param patient The patient to be deleted.
+     */
+    public static void printDeleteConfirmationAgain(Patient patient) {
+        print("    Please try again. \n");
+        printDeleteConfirmation(patient);
+    }
+
+    public static String patientNotDeletedMessage = DIVIDER + "\n    Patient is not deleted.\n";
+
 }

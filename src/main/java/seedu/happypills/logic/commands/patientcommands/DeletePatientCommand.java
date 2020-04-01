@@ -77,7 +77,7 @@ public class DeletePatientCommand extends PatientCommand {
                     isConfirmed = true;
                     logger.log(logLevel, "patient is deleted");
                 } else if (confirm.equalsIgnoreCase("n")) {
-                    message = PatientTextUi.printNotDeleted();
+                    message = PatientTextUi.patientNotDeletedMessage;
                     isConfirmed = true;
                     logger.log(logLevel, "patient is not deleted");
                 } else {
