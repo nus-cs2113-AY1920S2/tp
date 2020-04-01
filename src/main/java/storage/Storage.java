@@ -89,6 +89,18 @@ public class Storage {
                 e.printStackTrace();
             }
         }
+
+        //remove deleted members' .txt file from hard disk
+        File folder = new File("data/");
+        for (File f : folder.listFiles()) {
+            for (Contact contact : myContactList) {
+                if (f.getName().contains(contact.getName())) {
+                    continue;
+                }
+                f.delete();
+            }
+        }
+
     }
 
     /**

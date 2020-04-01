@@ -1,5 +1,8 @@
 package model.contact;
 
+import org.w3c.dom.Text;
+import ui.TextUI;
+
 import java.util.ArrayList;
 
 /**
@@ -21,6 +24,21 @@ public class ContactList {
     public void add(Contact t) {
         this.contactList.add(t);
     }
+
+    public void remove(String name) {
+        for (Contact contact : contactList) {
+            if (contact.getName().equals(name) && !contact.isMainUser()) {
+                TextUI.displayRemovedPerson(name);
+                contactList.remove(contact);
+                return;
+            } else if (contact.getName().equals(name) && contact.isMainUser()) {
+                TextUI.displayMainUserDeleteError(name);
+                return;
+            }
+        }
+        TextUI.displayNoMemberFound(name);
+    }
+
 
     public void set(int index, Contact member) {
         this.contactList.set(index, member);

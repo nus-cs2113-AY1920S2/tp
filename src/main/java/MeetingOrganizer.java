@@ -1,21 +1,7 @@
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import logic.command.CommandHandler;
 import exception.MoException;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import model.meeting.MeetingList;
-import logic.modulelogic.ModuleHandler;
 import model.contact.Contact;
 import model.contact.ContactList;
 import storage.Storage;
@@ -25,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
 
 /**
  * TESTING SUMMARY DOC.
@@ -86,26 +74,23 @@ public class MeetingOrganizer {
 
     void botResponse(String[] userInputWords, String previousUserInput)
             throws MoException, DateTimeParseException, NumberFormatException {
-        Integer startDay = null;
-        Integer endDay = null;
         String userCommand = userInputWords[0];
 
         // To adapt user input of format <name> <NUSMODS link> to fit into the following switch statements to allow
         // for both link and manual input.
         // TODO member's name can only be 1 word at the moment.
         if (userInputWords.length == 2 && userInputWords[1].contains("http")) {
-            userCommand = "add using link"; //add new contact with NUSMODS link. <Contact name> <NUSMODS link>
             //eg. xz https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
             Contact newMember;
 
-            newMember = CommandHandler.addContact(myContactList, userInputWords, startDay, endDay);
-            if (checkMainUser()) {
+            newMember = CommandHandler.addContact(myContactList, userInputWords, null, null);
+            if (checkMainUserDoesNotExists()) {
                 mainUser = newMember;
                 newMember.setMainUser();
             }
             myContactList.add(newMember);
         } else {
-            if (checkMainUser()) {
+            if (checkMainUserDoesNotExists()) {
                 throw new MoException("Please enter main user first.");
             }
             switch (userCommand) {
@@ -136,7 +121,19 @@ public class MeetingOrganizer {
                         getMainUser(), getMyContactList(), currentWeekNumber);
                 break;
             case "delete": //delete a model.meeting slot. delete <Meeting Number>
-                CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList());
+                try {
+                    if (userInputWords.length != 2) {
+                        throw new MoException(MESSAGE_WRONG_COMMAND_DELETE);
+                    }
+                    int numCheck = Integer.parseInt(userInputWords[1]);
+                    CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList());
+                } catch (NumberFormatException e) {
+                    myContactList.remove(userInputWords[1]);
+                } catch (MoException e) {
+                    System.out.println(e.getMessage());
+                    TextUI.printFormatDeleteMember();
+                    TextUI.printFormatDeleteMeeting();
+                }
                 break;
             case "meetings": //list all scheduled model.meeting slots. meetings
                 CommandHandler.listMeetings(userInputWords, getMyMeetingList());
@@ -181,8 +178,8 @@ public class MeetingOrganizer {
         TextUI.exitMsg();
     }
 
-    private Boolean checkMainUser() {
-        return myContactList.getSize() == 0;
+    private Boolean checkMainUserDoesNotExists() {
+        return (myContactList.getSize() == 0);
     }
 
     private Contact getMainUser() {

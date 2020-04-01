@@ -13,7 +13,6 @@ import ui.TextUI;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
@@ -141,9 +140,6 @@ public class CommandHandler {
     public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser, ContactList
             contactList) {
         try {
-            if (userInputWords.length != 2) {
-                throw new MoException(MESSAGE_WRONG_COMMAND_DELETE);
-            }
             int index = Integer.parseInt(userInputWords[1]) - 1;
             Meeting meetingToDelete = meetingList.getMeetingList().get(index);
             String meetingNameToDelete = meetingToDelete.getMeetingName();
@@ -152,9 +148,6 @@ public class CommandHandler {
             contactList.set(0, mainUser);
         } catch (IndexOutOfBoundsException e) {
             TextUI.displayInvalidDeleteTarget();
-        } catch (MoException e) {
-            System.out.println(e.getMessage());
-            TextUI.printFormatDelete();
         }
     }
 
