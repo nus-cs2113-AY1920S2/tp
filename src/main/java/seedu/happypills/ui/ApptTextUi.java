@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ApptTextUi extends TextUi {
+
+    public static String getEmptyAppointmentListMessage = "    There are no appointments in the list.\n" + DIVIDER;
+
     /**
      * Shows list of appointments in the program.
      * @param appointments The list of appointments.
@@ -26,15 +29,6 @@ public class ApptTextUi extends TextUi {
         }
         message += DIVIDER;
         return message;
-    }
-
-    /**
-     * Displays empty list message when there are no appointments in the list.
-     * @return a message to be displayed to user
-     */
-    public static String getEmptyAppointmentList() {
-        String emptyListMessage = "    There are no appointments in the list.\n" + DIVIDER;
-        return emptyListMessage;
     }
 
     /**

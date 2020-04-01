@@ -101,7 +101,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      */
     private Boolean editDate(Appointment appointment, String newDate) {
         if (!checkDate(newDate)) {
-            TextUi.print(HelpTextUi.printEditAppointmentHelp());
+            TextUi.print(HelpTextUi.printEditAppointmentHelp);
             return false;
         } else {
             appointment.setDate(newDate);
@@ -197,11 +197,11 @@ public class EditAppointmentCommand extends AppointmentCommand {
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
         if (newContent.length() < 3) {
-            return HelpTextUi.printEditAppointmentHelp();
+            return HelpTextUi.printEditAppointmentHelp;
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return HelpTextUi.printEditAppointmentHelp();
+            return HelpTextUi.printEditAppointmentHelp;
         }
         String field = newContent.substring(0,2).trim();
         Patient editPatient = findPatient(patients);

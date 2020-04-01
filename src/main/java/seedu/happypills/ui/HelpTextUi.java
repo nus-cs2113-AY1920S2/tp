@@ -74,7 +74,7 @@ public class HelpTextUi extends TextUi {
             + "    Adding of allergies or remarks can be done with the add command.\n"
             + DIVIDER;
 
-    public static String deletePatientHelpMessage =""
+    public static String deletePatientHelpMessage = ""
             + "    To delete a patient, run the following command:\n"
             + "    Note: patient details are within the parenthesis [ ]\n"
             + "      delete patient [NRIC]\n"
@@ -83,7 +83,7 @@ public class HelpTextUi extends TextUi {
             + DIVIDER;
 
     //Patient Record Help Strings
-    public static String AddPatientRecordHelpMessage =""
+    public static String AddPatientRecordHelpMessage = ""
             + "    To add a new patient record into the program, use the following command:\n"
             + "    Note: patient record details are within the parenthesis [ ]\n"
             + "      add pr /ic[NRIC] /sym[SYMPTOMS] /diag[DIAGNOSIS] /d[DATE] /t[TIME]\n"
