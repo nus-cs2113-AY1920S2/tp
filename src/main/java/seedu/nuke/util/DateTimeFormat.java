@@ -43,16 +43,21 @@ public class DateTimeFormat {
      * <br> The attributes must be in accepted formats for successful conversion.
      * Otherwise, an <code>Exception</code> will be thrown.
      *
-     * @param datetime The string to be converted into its corresponding <code>DateTime</code> object
-     * @return The <code>DateTime</code> object converted from the string
-     * @throws InvalidDateTimeException If more than 2 attributes are present in the string
-     * @throws InvalidDateException     If the <i>date</i> attribute in the string is invalid
-     * @throws InvalidTimeException     If the <i>time</i> attribute in the string is invalid
+     * @param datetime
+     *  The string to be converted into its corresponding <code>DateTime</code> object
+     * @return
+     *  The <code>DateTime</code> object converted from the string
+     * @throws InvalidDateTimeException
+     *  If more than 2 attributes are present in the string
+     * @throws InvalidDateException
+     *  If the <i>date</i> attribute in the string is invalid
+     * @throws InvalidTimeException
+     *  If the <i>time</i> attribute in the string is invalid
      */
     public static DateTime stringToDateTime(String datetime)
             throws InvalidDateTimeException, InvalidDateException, InvalidTimeException {
         if (datetime.isBlank()) {
-            return null;
+            return new DateTime();
         }
         String[] dateTimeData = datetime.split("\\s+");
 
@@ -83,9 +88,12 @@ public class DateTimeFormat {
      *     <li><i>tomorrow</i> or <i>tmr</i></li>
      * </ul>
      *
-     * @param date The string to be converted into its corresponding <code>LocalDate</code> object
-     * @return The <code>LocalDate</code> object converted from the string
-     * @throws InvalidDateException If the <code>date</code> string is an invalid <i>date</i>
+     * @param date
+     *  The string to be converted into its corresponding <code>LocalDate</code> object
+     * @return
+     *  The <code>LocalDate</code> object converted from the string
+     * @throws InvalidDateException
+     *  If the <code>date</code> string is an invalid <i>date</i>
      */
     public static LocalDate stringToDate(String date) throws InvalidDateException {
         if (date == null) {

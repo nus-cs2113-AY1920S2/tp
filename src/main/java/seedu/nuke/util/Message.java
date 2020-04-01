@@ -43,7 +43,7 @@ public class Message {
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
     public static final String DIVIDER = "-".repeat(100);
 
-    public static final String MESSAGE_SHOW_LIST = "Here are what you are looking for...\n";
+    public static final String MESSAGE_SHOW_LIST = "Here is what you are looking for...\n";
 
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
     public static final String MESSAGE_NO_CATEGORIES_FOUND = "Sorry. No categories found.\n";
@@ -284,6 +284,8 @@ public class Message {
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
     public static final String MESSAGE_ILLEGAL_DELETE =
             "Attempting to delete the current or its parent's directory.\nMove out of the directory first.\n";
+
+    public static final String MESSAGE_INVALID_TIME_SPECIFIER = "Alert! Invalid time specifier.\n";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "SUCCESS!! Module has been updated.\n";
     public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! Category has been updated.\n";

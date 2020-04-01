@@ -25,17 +25,8 @@ group work -|||- Y -|||- 28/03/2020 06:00PM -|||- 20
 --- END CATEGORY ---
 CS2113 -|||- Software Engineering & Object-Oriented Programming -|||- NIL
 --- CATEGORY ---
-Lecture -|||- 1
+A -|||- 0
 --- TASK ---
-notes -|||- N -|||-  -|||- 1
---- FILE ---
---- END FILE ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
-tutorial worksheet 10 -|||- N -|||- 25/03/2020 12:00PM -|||- 5
---- FILE ---
---- END FILE ---
 --- END TASK ---
 Assignment -|||- 4
 --- TASK ---
@@ -49,6 +40,18 @@ Big Lab Work -|||- N -|||- 25/03/2020 06:00PM -|||- 7
 Lab -|||- 0
 --- TASK ---
 read -|||- N -|||-  -|||- 0
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Lecture -|||- 1
+--- TASK ---
+notes -|||- N -|||-  -|||- 1
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+tutorial worksheet 10 -|||- N -|||- 25/03/2020 12:00PM -|||- 5
 --- FILE ---
 --- END FILE ---
 --- END TASK ---
@@ -87,6 +90,21 @@ Lab -|||- 3
 lab1 -|||- N -|||-  -|||- 3
 --- FILE ---
 --- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+CS2113T -|||- Software Engineering & Object-Oriented Programming -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
 --- END TASK ---
 --- END CATEGORY ---
 --- END MODULE ---

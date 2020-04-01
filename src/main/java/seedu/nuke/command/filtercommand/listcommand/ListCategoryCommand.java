@@ -48,8 +48,9 @@ public class ListCategoryCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredCategoryList =
+        ArrayList<Category> filteredCategoryList =
                 createFilteredCategoryList(moduleKeyWord, categoryKeyword, isExact, isAll);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, filteredCategoryList);
+        sortCategoryList(filteredCategoryList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, new ArrayList<>(filteredCategoryList));
     }
 }

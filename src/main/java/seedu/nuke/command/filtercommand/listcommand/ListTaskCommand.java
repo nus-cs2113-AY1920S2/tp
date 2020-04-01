@@ -54,8 +54,9 @@ public class ListTaskCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredTaskList =
+        ArrayList<Task> filteredTaskList =
                 createFilteredTaskList(moduleKeyWord, categoryKeyword, taskKeyword, isExact, isAll);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.TASK, filteredTaskList);
+        sortTaskList(filteredTaskList, false, false);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.TASK, new ArrayList<>(filteredTaskList));
     }
 }
