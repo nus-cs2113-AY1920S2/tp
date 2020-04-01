@@ -29,7 +29,7 @@ public class FindPatientRecordCommand extends PatientRecordCommand {
         assert !patientNric.isEmpty() : "No NRIC was provided";
         if (patients.containsKey(patientNric)) {
             if (patientRecordMap.get(patientNric) == null) {
-                return PRTextUi.emptyPatientRecordMessage();
+                return PRTextUi.emptyPatientRecordMessage;
             }
             return PRTextUi.getPatientRecordSuccessMessage(patientRecordMap, patientNric, index);
         } else {

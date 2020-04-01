@@ -6,19 +6,9 @@ import seedu.happypills.model.data.PatientRecordMap;
 import java.util.ArrayList;
 
 public class PRTextUi extends TextUi {
-    public static String emptyPatientRecordMessage() {
-        return "    There are no patient record.\n" + DIVIDER;
-    }
 
-    /**
-     * Displays empty list message when there are no appointments in the list.
-     *
-     * @return a message to be displayed to user
-     */
-    public static String getEmptyPatientRecordList() {
-        String emptyListMessage = "    There are no patient record in the list.\n" + DIVIDER;
-        return emptyListMessage;
-    }
+    public static String emptyPatientRecordMessage = "    There are no patient record.\n" + DIVIDER;
+    public static String getEmptyPatientRecordList = "    There are no patient record in the list.\n" + DIVIDER;
 
     /**
      * format a list patient record success message for user.
