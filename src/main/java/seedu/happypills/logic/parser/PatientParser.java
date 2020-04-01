@@ -131,7 +131,7 @@ public class PatientParser {
                         || !checkDate(parseInput[3].trim()))) {
                     parseInput[3] = update.trim().substring(3).trim();
                 } else if (update.trim().startsWith("b") && (parseInput[4].equalsIgnoreCase(""))
-                        || !checkType(parseInput[4].trim())){
+                        || !checkType(parseInput[4].trim())) {
                     parseInput[4] = update.trim().substring(1).trim();
                 }
             }
