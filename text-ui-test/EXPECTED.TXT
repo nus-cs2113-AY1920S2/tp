@@ -115,15 +115,10 @@ Setting budget to $500.0
 
 Enter command:
 
-Invalid Command. Please provide a new description, price or quantity.
-
-Enter command:
-
 Oops! Invalid Command. Check if these are met:
  - Index of item must be a positive number.
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] must be present.
 || Example: EDIT 2 i/lollipop p/2.50 q/5
 
@@ -133,7 +128,6 @@ Oops! Invalid Command. Check if these are met:
  - Index of item must be a positive number.
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] must be present.
 || Example: EDIT 2 i/lollipop p/2.50 q/5
 
@@ -143,7 +137,6 @@ Oops! Invalid Command. Check if these are met:
  - Index of item must be a positive number.
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] must be present.
 || Example: EDIT 2 i/lollipop p/2.50 q/5
 
@@ -153,7 +146,6 @@ Oops! Invalid Command. Check if these are met:
  - Index of item must be a positive number.
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] must be present.
 || Example: EDIT 2 i/lollipop p/2.50 q/5
 
@@ -163,7 +155,6 @@ Oops! Invalid Command. Check if these are met:
  - Index of item must be a positive number.
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] must be present.
 || Example: EDIT 2 i/lollipop p/2.50 q/5
 
@@ -173,9 +164,21 @@ Oops! Invalid Command. Check if these are met:
  - Index of item must be a positive number.
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] must be present.
 || Example: EDIT 2 i/lollipop p/2.50 q/5
+
+Enter command:
+
+Oops! Invalid Command. Check if these are met:
+ - Index of item must be a positive number.
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], p/[NEW PRICE] or q/[QUANTITY] must be present.
+|| Example: EDIT 2 i/lollipop p/2.50 q/5
+
+Enter command:
+
+OOPS! I already have an item with that name. Perhaps try another description? :D
 
 Enter command:
 
@@ -194,12 +197,16 @@ Enter command:
 The item has been updated to: [0] lollipops $1.00 qty: 4
 
 Enter command:
+
+The item has been updated to: [0] candies $5.00 qty: 4
+
+Enter command:
 Please provide a single numerical index number!
 
 Enter command:
 
 Yes! I've marked this item as bought:
-[B] lollipops $1.00 qty: 4
+[B] candies $5.00 qty: 4
 
 
 Enter command:
@@ -214,7 +221,7 @@ Please provide a single numerical index number!
 Enter command:
 
 Yes! I've unmarked this item as bought:
-[0] lollipops $1.00 qty: 4
+[0] candies $5.00 qty: 4
 
 
 Enter command:
@@ -244,7 +251,7 @@ Example: DEL 3
 Enter command:
 
 Got it! I have removed the following item:
-[0] lollipops $1.00 qty: 4
+[0] candies $5.00 qty: 4
 
 Enter command:
 
