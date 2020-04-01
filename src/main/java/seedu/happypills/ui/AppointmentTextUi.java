@@ -7,7 +7,7 @@ import seedu.happypills.model.data.Patient;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ApptTextUi extends TextUi {
+public class AppointmentTextUi extends TextUi {
 
     public static String getEmptyAppointmentListMessage = "    There are no appointments in the list.\n" + DIVIDER;
     public static String appointmentNotFoundMessage = ""

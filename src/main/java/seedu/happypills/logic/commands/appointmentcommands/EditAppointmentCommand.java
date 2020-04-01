@@ -8,7 +8,11 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.*;
+import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.StorageTextUi;
+import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.HelpTextUi;
+import seedu.happypills.ui.AppointmentTextUi;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -208,7 +212,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
         }
         Appointment editAppt = findAppointment(appointments); //from the shared appointment map
         if (editAppt == null) {
-            throw new HappyPillsException(ApptTextUi.appointmentNotFoundMessage);
+            throw new HappyPillsException(AppointmentTextUi.appointmentNotFoundMessage);
         }
         Boolean output = false;
         String errorMsg = "    Something went wrong, the edit could not be made.\n";
@@ -226,12 +230,13 @@ public class EditAppointmentCommand extends AppointmentCommand {
         }
         if (output) {
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
+                        StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
                 logger.info(StorageTextUi.failToWriteAppointmentMsg);
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);
-        return output ? ApptTextUi.editAppointmentSuccessMessage(editAppt) : errorMsg;
+        return output ? AppointmentTextUi.editAppointmentSuccessMessage(editAppt) : errorMsg;
     }
 }

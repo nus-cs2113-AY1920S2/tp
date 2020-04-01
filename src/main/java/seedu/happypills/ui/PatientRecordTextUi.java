@@ -5,7 +5,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 
 import java.util.ArrayList;
 
-public class PrTextUi extends TextUi {
+public class PatientRecordTextUi extends TextUi {
 
     public static String emptyPatientRecordMessage = "    There are no patient record.\n" + DIVIDER;
     public static String getEmptyPatientRecordList = "    There are no patient record in the list.\n" + DIVIDER;

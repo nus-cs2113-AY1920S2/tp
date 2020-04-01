@@ -8,7 +8,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.ApptTextUi;
+import seedu.happypills.ui.AppointmentTextUi;
 import seedu.happypills.ui.StorageTextUi;
 
 import java.io.IOException;
@@ -111,12 +111,13 @@ public class DoneAppointmentCommand extends AppointmentCommand {
             throw new HappyPillsException(" An unknown error has occurred, please try again later.");
         } else {
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
+                        StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
                 logger.info(StorageTextUi.failToWriteAppointmentMsg);
             }
         }
 
-        return ApptTextUi.doneAppointmentSuccessMessage(editAppt);
+        return AppointmentTextUi.doneAppointmentSuccessMessage(editAppt);
     }
 }

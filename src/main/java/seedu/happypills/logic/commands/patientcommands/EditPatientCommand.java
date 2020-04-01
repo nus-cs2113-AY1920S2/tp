@@ -169,7 +169,8 @@ public class EditPatientCommand extends PatientCommand {
                     + "\n    enter \"help edit\"");
         }
         try {
-            Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
+            Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
+                    StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
             logger.info(StorageTextUi.failToWritePatientMsg);
         }

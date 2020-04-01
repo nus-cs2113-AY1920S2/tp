@@ -5,7 +5,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.PatientTextUi;
-import seedu.happypills.ui.PrTextUi;
+import seedu.happypills.ui.PatientRecordTextUi;
 import seedu.happypills.ui.TextUi;
 
 public class ListPatientRecordCommand extends PatientRecordCommand {
@@ -23,9 +23,9 @@ public class ListPatientRecordCommand extends PatientRecordCommand {
         assert !patientNric.isEmpty() : "No NRIC was provided";
         if (patients.containsKey(patientNric)) {
             if (patientRecords.get(patientNric) == null) {
-                return PrTextUi.emptyPatientRecordMessage;
+                return PatientRecordTextUi.emptyPatientRecordMessage;
             }
-            return PrTextUi.getPatientRecordListSuccessMessage(patientRecords.get(patientNric));
+            return PatientRecordTextUi.getPatientRecordListSuccessMessage(patientRecords.get(patientNric));
         } else {
             String message =  PatientTextUi.patientNotFoundMessage
                     + "\n"

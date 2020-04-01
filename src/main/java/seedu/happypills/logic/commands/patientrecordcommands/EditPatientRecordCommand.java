@@ -8,7 +8,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.HelpTextUi;
-import seedu.happypills.ui.PrTextUi;
+import seedu.happypills.ui.PatientRecordTextUi;
 import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
@@ -89,13 +89,14 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         }
         if (output) {
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
+                        StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
                 logger.info("Adding patient list to file failed.");
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);
-        return output ? PrTextUi.editPatientRecordSuccessMessage(editPatientRecord) : errorMsg;
+        return output ? PatientRecordTextUi.editPatientRecordSuccessMessage(editPatientRecord) : errorMsg;
     }
 
     private Boolean editDiagnosis(PatientRecord editPatientRecord, String content) {

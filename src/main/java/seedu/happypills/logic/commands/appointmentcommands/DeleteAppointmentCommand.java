@@ -8,7 +8,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.ApptTextUi;
+import seedu.happypills.ui.AppointmentTextUi;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
@@ -96,19 +96,20 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         }
         Appointment delAppt = findAppointment(appointments);
         if (delAppt == null) {
-            message = ApptTextUi.appointmentNotFoundMessage;
+            message = AppointmentTextUi.appointmentNotFoundMessage;
             return TextUi.appendDivider(message);
         }
         Boolean isSuccess = deleteAppt(appointments,appointmentId) && deleteAppt(delPatient,appointmentId);
         if (isSuccess) {
             message = "    Appointment has been removed.\n";
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
+                        StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
                 logger.info(StorageTextUi.failToWriteAppointmentMsg);
             }
         } else {
-            message = ApptTextUi.appointmentNotFoundMessage;
+            message = AppointmentTextUi.appointmentNotFoundMessage;
         }
         return message;
     }

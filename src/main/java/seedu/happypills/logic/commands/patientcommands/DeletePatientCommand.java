@@ -71,7 +71,8 @@ public class DeletePatientCommand extends PatientCommand {
                 if (confirm.equalsIgnoreCase("y")) {
                     message = deletePatient(patient, patients);
                     try {
-                        Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
+                        Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
+                                StorageTextUi.getFormattedPatientString(patients));
                     } catch (IOException e) {
                         logger.info(StorageTextUi.failToWritePatientMsg);
                     }

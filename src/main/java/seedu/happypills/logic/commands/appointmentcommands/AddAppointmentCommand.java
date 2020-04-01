@@ -8,10 +8,9 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.ApptTextUi;
+import seedu.happypills.ui.AppointmentTextUi;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
-import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -63,9 +62,9 @@ public class AddAppointmentCommand extends AppointmentCommand {
             try {
                 Storage.addSingleItemToFile(Storage.APPOINTMENT_FILEPATH, appointment.toSave());
             } catch (IOException e) {
-                logger.warning(StorageTextUi.failToAddPatientMsg);
+                logger.warning(StorageTextUi.failToAddAppointmentMsg);
             }
-            message = ApptTextUi.addAppointmentSuccessMessage(appointment);
+            message = AppointmentTextUi.addAppointmentSuccessMessage(appointment);
         }
         return message;
     }
