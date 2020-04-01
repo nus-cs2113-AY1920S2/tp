@@ -148,7 +148,7 @@ This tells the user the module that has been deleted from the corresponding seme
 
 The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
-![Sequence Diagram](https://github.com/chengTzeNing/tp/blob/DG/docs/images/Sequence%20Diagram%203%20-%20Copy.png)
+![Sequence Diagram](https://github.com/chengTzeNing/tp/blob/DG/docs/images/SequenceDiagram.png)
 
 
 #####
