@@ -47,20 +47,27 @@ public class FileIO {
     /**
      * Checks if the file denoted by this abstract pathname exists.
      * If it does not exist, create directories until that path.
+     * Prints messages to show what it does.
      * @param f the abstract pathname
      * @throws PacException if directory already exists while creating it
      */
     private void ensurePathExist(File f) throws PacException {
+        String output = "Storage file (" + f.getPath() + ") is ";
+
         if (!f.exists()) {
-            UI.display("Storage file not found.");
+            output += "not found... ";
             try {
                 new File(f.getParent()).mkdir();    // mkdir
                 f.createNewFile();
-                UI.display("A storage file is created.");
+                output += "created.";
             } catch (IOException m) {
                 throw new PacException("FileIO: creating file that already exists");
             }
+        } else {
+            output += "found...";
         }
+
+        UI.display(output);
     }
 
     // /**
