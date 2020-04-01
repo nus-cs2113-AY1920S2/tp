@@ -44,7 +44,7 @@ public class Validation {
     }
 
     /**
-     * Check string if is numeric
+     * Check string if is numeric.
      * @param s String to be validated
      * @return true if is numeric, false otherwise.
      */
@@ -54,7 +54,7 @@ public class Validation {
     }
 
     /**
-     * Check string if is valid NRIC
+     * Check string if is valid NRIC.
      * @param s String to be validated
      * @return true if is valid, false otherwise.
      */
@@ -62,5 +62,4 @@ public class Validation {
         String pattern = "(?i)^[STFG]\\d{7}[A-Z]$";
         return  s.matches(pattern);
     }
-
 }

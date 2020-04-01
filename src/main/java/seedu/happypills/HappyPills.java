@@ -41,17 +41,16 @@ public class HappyPills {
         scanner = new Scanner(System.in);
         try {
             patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
-            logger.info( "    Patient loaded from file.\n");
+            logger.info("    Patient loaded from file.\n");
         } catch (FileNotFoundException e) {
-            logger.info( "   No patients in file.\n");
+            logger.info("   No patients in file.\n");
         }
         try {
             appointments = Storage.loadAppointmentFromFile(Storage.APPOINTMENT_FILEPATH, patients);
-            logger.info( "    Appointment loaded from file.\n");
+            logger.info("    Appointment loaded from file.\n");
         } catch (FileNotFoundException e) {
-            logger.info( "   No appointment in file.\n");
+            logger.info("   No appointment in file.\n");
         }
-
     }
 
     /**

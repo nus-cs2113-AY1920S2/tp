@@ -28,8 +28,8 @@ public class EditPatientCommand extends PatientCommand {
      * @param newContent Contains the string that the attribute is to be updated to.
      */
     public EditPatientCommand(String nric, String newContent) {
-        this.nric = nric.toUpperCase();
-        this.newContent = newContent;
+        this.nric = nric.toUpperCase().trim();
+        this.newContent = newContent.trim();
     }
 
     /**
@@ -156,30 +156,30 @@ public class EditPatientCommand extends PatientCommand {
         }
         // assert editPatient != null : "Patient is not in PatientList";
         if (field.equals("/p")) {
-            if (checkPhoneNum(content)) {
+            if (checkPhoneNum(content.trim())) {
                 output = editPhone(editPatient, content);
             } else {
                 throw new HappyPillsException("    Please ensure that all the phone number is 8 digit");
             }
         } else if (field.equals("/rm")) {
-            output = editRemarks(editPatient, content);
+            output = editRemarks(editPatient, content.trim());
         } else if (field.equals("/a")) {
-            output = editAllergies(editPatient, content);
+            output = editAllergies(editPatient, content.trim());
         } else if (field.equals("/dob")) {
-            if (checkDate(content)) {
-                output = editDob(editPatient, content);
+            if (checkDate(content.trim())) {
+                output = editDob(editPatient, content.trim());
             } else {
                 throw new HappyPillsException("    Please ensure that the DATE is in DD/MM/YYYY ");
             }
         } else if (field.equals("/b")) {
-            if (checkType(content)) {
-                output = editBloodType(editPatient, content);
+            if (checkType(content.trim())) {
+                output = editBloodType(editPatient, content.trim());
             } else {
                 throw new HappyPillsException("    Please ensure that the DATE is in [A|B|AB|O][+-] ");
             }
-            output = editBloodType(editPatient, content);
+            output = editBloodType(editPatient, content.trim());
         } else if (field.equals("/n")) {
-            output = editName(editPatient, content);
+            output = editName(editPatient, content.trim());
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
                     + "\n    enter \"help edit patient\"");
