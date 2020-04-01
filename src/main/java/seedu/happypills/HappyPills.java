@@ -10,6 +10,7 @@ import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -35,22 +36,13 @@ public class HappyPills {
      */
     public HappyPills() {
         ui = new TextUi();
-        appointments = new AppointmentMap();
         patients = new PatientMap();
+        appointments = new AppointmentMap();
         patientRecords = new PatientRecordMap();
         scanner = new Scanner(System.in);
-        try {
-            logger.info("loading patient data from file.");
-            patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
-        } catch (FileNotFoundException e) {
-            logger.info("No patient data file was found.");
-        }
-        try {
-            logger.info("loading appointment data from file.");
-            appointments = Storage.loadAppointmentFromFile(Storage.APPOINTMENT_FILEPATH, patients);
-        } catch (FileNotFoundException e) {
-            logger.info("No appointment data file was found.");
-        }
+        String status = Storage.loadFromFile(patients,appointments);
+        logger.info(status);
+
     }
 
     /**

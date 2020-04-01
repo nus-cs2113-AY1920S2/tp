@@ -687,4 +687,14 @@ public class TextUi {
         return returnMessage;
     }
 
+    /**
+     * Construct a string for incomplete commands, probably missing something.
+     *
+     * @return a string for incomplete commands.
+     */
+    public  static String incompleteCommandString(String helpString) {
+        String msg = "    Command is incomplete. Please use the " + helpString + " command.";
+        return msg;
+    }
+
 }
