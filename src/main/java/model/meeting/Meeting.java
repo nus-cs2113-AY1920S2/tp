@@ -11,8 +11,14 @@ public class Meeting {
     private LocalTime startTime;
     private Integer endDay;
     private LocalTime endTime;
+    private int startDate;
+    private int endDate;
 
-    public Meeting(String meetingName, Integer startDay, LocalTime startTime, Integer endDay, LocalTime endTime) {
+
+    public Meeting(String meetingName, Integer startDay, LocalTime startTime,
+                   Integer endDay, LocalTime endTime, int startDate, int endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.meetingName = meetingName;
         this.startDay = startDay;
         this.endDay = endDay;
@@ -46,5 +52,13 @@ public class Meeting {
 
     public String toString() {
         return meetingName + ", " + startDay + ", " + startTime + ", " + endDay + ", " + endTime;
+    }
+
+    public int getStartDate() {
+        return startDate;
+    }
+
+    public int getEndDate() {
+        return endDate;
     }
 }
