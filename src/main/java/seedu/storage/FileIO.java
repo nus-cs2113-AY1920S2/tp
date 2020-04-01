@@ -108,7 +108,9 @@ public class FileIO {
      */
     public void close() throws PacException {
         try {
-            this.fileToWriteTo.close();
+            if (this.fileToWriteTo != null) {
+                this.fileToWriteTo.close();
+            }
             this.fileToReadFrom.close();
             this.scanner.close();
         } catch (IOException m) {
