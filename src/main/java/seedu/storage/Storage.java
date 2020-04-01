@@ -2,6 +2,7 @@ package seedu.storage;
 
 import seedu.student.StudentList;
 import seedu.student.StudentListCollection;
+import seedu.ui.UI;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.PacException;
@@ -39,6 +40,10 @@ public class Storage {
             }
         } while (!input.isBlank());
 
+        if (eventList.getSize() > 0) {
+            UI.display("... Loaded all events.");
+        }
+
         return eventList;
     }
 
@@ -71,6 +76,10 @@ public class Storage {
                 }
             }
         } while (!input.isBlank());
+
+        if (studentListCollection.size() > 0) {
+            UI.display("... Loaded all student lists.");
+        }
 
         return studentListCollection;
     }
