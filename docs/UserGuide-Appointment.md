@@ -23,11 +23,11 @@ patient automatically.
  
 ##### Usage example: 
  
-     add appt /ic[NRIC] /d[date] /t[time] /r[reason]
+     add appt /ic NRIC /d DATE /t TIME /r REASON
          
  **Example:**
      
-    add appt /icS1234567F /d01/02/2020 /t 12:00:00 /rsick
+    add appt /ic S1234567F /d 01/02/2020 /t 12:00:00 /r sick
 
 > ***Expected output:***
 >
@@ -46,7 +46,7 @@ Edit information of the appointment with the specified appointmentID(apptID).
  
 ##### Usage example:  
  
-     edit appt [NRIC] [apptID] [Options][editedInput]
+     edit appt NRIC apptID [Options][editedInput]
      Options:
          /d edit date
          /t edit time
@@ -68,7 +68,7 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 
 ##### Usage example:  
 
-    delete appt [NRIC] [apptID]
+    delete appt NRIC apptID
     
 **Example:**
 
@@ -87,7 +87,7 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
  
 ##### Usage example:  
  
-     done appt [NRIC] [apptID]
+     done appt NRIC apptID
          
  **Example:**
      
@@ -123,7 +123,7 @@ to check for the appointmentID used for the other commands.
 
 ##### Usage example: 
  
-     find appt [NRIC]
+     find appt NRIC
          
  **Example:**
      
