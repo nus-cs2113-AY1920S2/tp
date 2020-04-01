@@ -116,13 +116,12 @@ public class PatientParser {
                 input = "@" + input;
                 updates = input.split(" /");
             }
-            
+
             for (String update : updates) {
                 if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
                     parseInput[0] = update.substring(1).trim();
                 } else if (update.trim().startsWith("ic") && (parseInput[1].equalsIgnoreCase(""))
                         || !checkNric(parseInput[1].trim())) {
-                    System.out.println(update);
                     parseInput[1] = update.trim().substring(2).toUpperCase().trim();
                 } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
                         || !isInteger(parseInput[2].trim()) || !checkPhoneNum(parseInput[2].trim())))) {

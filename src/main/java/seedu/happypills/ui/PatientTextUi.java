@@ -1,13 +1,15 @@
 package seedu.happypills.ui;
 
+import javafx.scene.control.SplitPane;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 
+import java.util.Dictionary;
 import java.util.Map;
 
 public class PatientTextUi extends TextUi {
 
-    public static String patientNotFoundMessage = "    The patient cannot be found. Please try again.\n";
+    public static String patientNotFoundMessage = "    The patient cannot be found. Please try again.\n" + DIVIDER;
     public static String emptyPatientListMessage = "    There are no patients in the list.\n" + DIVIDER;
 
     /**
@@ -95,6 +97,6 @@ public class PatientTextUi extends TextUi {
         printDeleteConfirmation(patient);
     }
 
-    public static String patientNotDeletedMessage = "    Patient is not deleted.\n";
+    public static String patientNotDeletedMessage = DIVIDER + "\n    Patient is not deleted.\n";
 
 }
