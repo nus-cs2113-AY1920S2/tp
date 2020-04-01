@@ -38,8 +38,8 @@ public class TextUI {
                 + "______________________________________________________________________");
         out.println("[contacts] List all contacts.");
         out.println("[timetable] Display combined timetable of selected contacts.");
-        out.println("[schedule] Schedule a new model.meeting.");
-        out.println("[delete] Delete a scheduled model.meeting.");
+        out.println("[schedule] Schedule a new meeting.");
+        out.println("[delete] Delete a scheduled meeting.");
         out.println("[meetings] List all scheduled meetings.");
         out.println("[exit] Exit application.");
         out.print(System.lineSeparator());
@@ -84,21 +84,21 @@ public class TextUI {
     }
 
     public static void scheduleMeetingMsg() {
-        out.println("You have selected new scheduled model.meeting");
+        out.println("You have selected new scheduled meeting");
     }
 
 
     public static void meetingDetailsMsg() {
-        out.println("Enter model.meeting details: <Meeting.Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
+        out.println("Enter meeting details: <Meeting.Meeting Name> <Start Day> <Start Time> <End Day> <End Time>."
                 + "Type \"exit\" to go back to menu.");
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
-        out.println("You now have " + myMeetingList.getMeetingListSize() + "model/meeting/s in the list.");
+        out.println("You now have " + myMeetingList.getMeetingListSize() + "meeting/s in the list.");
     }
 
     public static void listMeetings() {
-        out.println("Here are all your model.meeting slots.");
+        out.println("Here are all your meeting slots.");
     }
 
     public static void timeOutOfRangeMsg() {
@@ -114,7 +114,7 @@ public class TextUI {
     }
 
     public static void listAllScheduledMeetings(ArrayList<Meeting> meetingList) {
-        System.out.println("The current scheduled model.meeting(s):");
+        System.out.println("The current scheduled meeting(s):");
         for (int i = 0; i < meetingList.size(); i++) {
             String startDay = getDayFromNumber(meetingList.get(i).getStartDay());
             String endDay = getDayFromNumber(meetingList.get(i).getEndDay());
@@ -204,7 +204,7 @@ public class TextUI {
     }
 
     public static void printFormatSchedule() {
-        out.println("\nTo schedule a model.meeting:\nschedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>");
+        out.println("\nTo schedule a meeting:\nschedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>");
     }
 
     public static void printFormatDelete() {
@@ -212,7 +212,7 @@ public class TextUI {
     }
 
     public static void printFormatMeeting() {
-        out.println("\nTo list meetings:\nmodel.meeting");
+        out.println("\nTo list meetings:\nmeeting");
     }
 }
 

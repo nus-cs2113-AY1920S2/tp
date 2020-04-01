@@ -143,7 +143,7 @@ the blacklist, resulting in time wasted everytime there's an update to module in
 blacklisted modules every semester.
 Pros: The blacklisted modules would be up to date and there is no need for developers to manually edit the ```common.BlacklistedModule``` class.
 Cons: The one-time set up of pulling the data is very time consuming(~2 minutes waiting time), resulting is bad user experience.
-Alternative 3: Requires user to download the list of blacklisted modules in addition to the JAR file. 
+* Alternative 3: Requires user to download the list of blacklisted modules in addition to the JAR file. 
 Pros: User do not have to wait for the one-time set up and the file would be up to date as long as the application is not deprecated.
 Cons: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
 Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
