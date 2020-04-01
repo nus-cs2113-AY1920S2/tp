@@ -13,6 +13,7 @@ import jikan.ui.Ui;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,22 +46,31 @@ public class EditCommand extends Command {
             Duration newAllocTime = null;
             Set<String> newTags = new HashSet<String>();
 
+            //edit name
             if (delimiter != -1)  {
                 Parser.activityName = parameters.substring(0, delimiter).strip();
                 newName = parameters.substring(delimiter + 4).strip();
+                if (newName.isEmpty()) {
+                    Ui.printDivider("New activity name cannot be empty!");
+                    throw new EmptyNameException();
+                }
 
+                //edit tag
             } else if (tagDelim != -1) {
                 Parser.activityName = parameters.substring(0, tagDelim).strip();
                 tmpTags = (parameters.substring(tagDelim + 4).split(" "));
                 newTags.addAll(Arrays.asList(tmpTags));
+
+            //edit allocated time
             } else if (allocDelim != -1) {
                 Parser.activityName = parameters.substring(0, allocDelim).strip();
-                tmpAlloc = parameters.substring(allocDelim + 4);
-                try {
-                    newAllocTime = parseDuration(tmpAlloc);
-                } catch (InvalidTimeFrameException e) {
-                    Ui.printDivider("Invalid time frame entered!");
+                tmpAlloc = parameters.substring(allocDelim + 4).strip();
+                if (tmpAlloc.isEmpty()) {
+                    throw new InvalidTimeFrameException();
                 }
+                newAllocTime = parseDuration(tmpAlloc);
+
+            //invalid format
             } else {
                 throw new InvalidEditFormatException();
             }
@@ -91,13 +101,8 @@ public class EditCommand extends Command {
                         }
                     }
                 } else {
-                    if (newName.isEmpty()) {
-                        Ui.printDivider("New activity name cannot be empty!");
-                        throw new EmptyNameException();
-                    } else {
-                        // no new details provided
-                        throw new InvalidEditFormatException();
-                    }
+                    // no new details provided
+                    throw new InvalidEditFormatException();
                 }
                 Ui.printDivider("Activity named " + Parser.activityName + " has been updated!");
 
@@ -109,11 +114,10 @@ public class EditCommand extends Command {
             Ui.printDivider("No activity with this name exists!");
             Log.makeInfoLog("Edit command failed as there was no such activity saved.");
         } catch (EmptyNameException e) {
-            //Ui.printDivider("Activity name cannot be empty!");
             Log.makeInfoLog("Edit command failed as there was no activity name provided.");
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | InvalidEditFormatException e) {
             Ui.printDivider("Incorrect edit command format entered!");
-            Log.makeInfoLog("Edit command failed as there was no updated activity detail provided.");
+            Log.makeInfoLog("Edit command failed as an incorrect format was provided.");
         } catch (ExistingTagGoalException e) {
             Ui.printDivider("Tag cannot be edited as there is an existing tag goal!");
             Log.makeInfoLog("Edit command failed as there was an existing tag goal tied to the tag.");
@@ -123,6 +127,12 @@ public class EditCommand extends Command {
         } catch (NegativeDurationException e) {
             Ui.printDivider("Please enter a positive target time!");
             Log.makeInfoLog("Edit command failed as a negative target time was provided.");
+        } catch (InvalidTimeFrameException e) {
+            Ui.printDivider("New target time cannot be empty!");
+            Log.makeInfoLog("Edit command failed as an empty target time was provided");
+        } catch (NumberFormatException e) {
+            Ui.printDivider("Please enter integers in the format HH:MM:SS");
+            Log.makeInfoLog("Edit command failed as an incorrect format for the target time was provided.");
         }
     }
 
