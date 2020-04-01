@@ -33,13 +33,12 @@ Format: `<name> <NUSMODS link>`
 Example of usage:
 
 `
-Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01&EG3301R=LAB:G8,LEC:1
+Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01
 `
 
-Expected output:
-```
-{insert ui}
-```
+[NOTE] You can add as many links as you want.
+
+![](images/capture.png)
 <br/><br/>
 
 ### List all contacts: `contacts`
@@ -47,10 +46,7 @@ Displays names of all contacts that is stored in program.
 
 Example of usage: `contacts`
 
-Expected output:
-```
-{insert ui}
-```
+![](images/capture2.png)
 <br/><br/>
 
 ### Display timetable of selected contacts: `timetable`
@@ -58,36 +54,30 @@ Expected output:
     
     Format: `timetable` 
     
-    Expected output:
-    ```
-    {insert ui}
-    ```
+![](images/capture3.png)`
+
 2) Displays the timetable of the selected contact.
 
+    Example of usage: `timetable 1 ` 
     Format: `timetable <Member Index>`
     
     Example of usage: `timetable 1` 
     
-    Expected output:
-    ```
-    {insert ui}
-    ```
+![](images/capture4.png)
 
 3) Displays the combined timetable of the selected contacts.
    
+   Example of usage: `timetable 0 1 2` 
    Format: `timetable <Member A Index> <Member B index>`
    
    Example of usage: `timetable 0 1` 
    
-   Expected output:
-   ```
-   {insert ui}
-   ```
+![](images/capture5.png)
    <br/><br/>
    
 
 ### Schedule a new meeting `schedule`
-Schedules a new model.meeting and adds it into the model.meeting list.
+Schedules a new meeting and adds it into the meeting list.
 
 Format: `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`
 
@@ -97,10 +87,7 @@ Example of usage:
 schedule meeting 3 17:00 3 19:00
 `
 
-Expected output:
-```
-{insert ui}
-```
+![](images/capture6.png)
 <br/><br/>
 
 ### Delete a scheduled meeting `delete`
@@ -114,10 +101,7 @@ Example of usage:
 delete 1
 `
 
-Expected output:
-```
-{insert ui}
-```
+![](images/capture7.png)
 <br/><br/>
 
 ### List all scheduled meetings: `meetings`
@@ -125,10 +109,7 @@ List all scheduled meetings stored in program.
 
 Example of usage: `meetings`
 
-Expected output:
-```
-{insert ui}
-```
+![](images/capture8.png)
 <br/><br/>
 
 ### Exit the application: `exit`
@@ -136,10 +117,7 @@ Exits the application and ends the current session.
 
 Example of usage: `exit`
 
-Expected output:
-```
-Thank you for using MeetingOrganizer, goodbye!
-```
+![](images/capture9.png)
 <br/><br/>
 
 ## FAQ

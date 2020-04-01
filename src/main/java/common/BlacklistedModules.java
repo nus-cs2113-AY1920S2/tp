@@ -268,7 +268,6 @@ public class BlacklistedModules {
      * store it into /UnformattedModules file.
      */
     public static void main(String[] args) throws IOException {
-        // RUN THIS TO FILTER UNFORMATTED MODULES INTO /UnformmattedModules file
         FileWriter fw = new FileWriter("UnformattedModules", true);
         URL url = new URL("https://api.nusmods.com/v2/2019-2020/moduleList.json");
         HttpURLConnection request = (HttpURLConnection) url.openConnection();

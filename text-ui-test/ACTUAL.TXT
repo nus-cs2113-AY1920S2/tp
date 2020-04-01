@@ -8,8 +8,8 @@ There are no previous records, let's create a new one!
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
-[schedule] Schedule a new model.meeting.
-[delete] Delete a scheduled model.meeting.
+[schedule] Schedule a new meeting.
+[delete] Delete a scheduled meeting.
 [meetings] List all scheduled meetings.
 [exit] Exit application.
 
