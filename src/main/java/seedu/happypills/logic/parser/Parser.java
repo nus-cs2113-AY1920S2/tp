@@ -21,7 +21,7 @@ public class Parser {
      * @throws HappyPillsException throws an exception for invalid commands.
      */
     public static Command parse(String fullCommand) throws HappyPillsException {
-        String[] userCommand = fullCommand.split(" ", 3);
+        String[] userCommand = fullCommand.trim().split(" ", 3); // leading spaces removed
         if (userCommand.length == 1) {
             // help & exit
             if (userCommand[0].equalsIgnoreCase("help")) {

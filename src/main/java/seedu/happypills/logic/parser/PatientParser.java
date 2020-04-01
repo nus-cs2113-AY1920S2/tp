@@ -25,16 +25,16 @@ public class PatientParser {
      * @throws HappyPillsException Errors base on invalid input or insufficient input
      */
     public static PatientCommand parse(String fullCommand) throws HappyPillsException {
-        String[] userCommand = fullCommand.split(" ", 3);
+        String[] userCommand = fullCommand.trim().split(" ", 3);
 
-        if (userCommand[0].equalsIgnoreCase("list")) {
+        if (userCommand[0].trim().equalsIgnoreCase("list")) {
             return new ListPatientCommand();
-        } else if (userCommand[0].equalsIgnoreCase("add")) {
+        } else if (userCommand[0].trim().equalsIgnoreCase("add")) {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
                 throw new HappyPillsException("    Patient's detail is empty.");
             }
             return parseAddCommand(userCommand[2]);
-        } else if (userCommand[0].equalsIgnoreCase("get")) {
+        } else if (userCommand[0].trim().equalsIgnoreCase("get")) {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
                 throw new HappyPillsException("    NRIC of the patient not provided");
             }
@@ -65,7 +65,7 @@ public class PatientParser {
             if (detail.startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
                 parseInput[0] = detail.substring(1).trim();
             } else if (detail.startsWith("ic") && parseInput[1].equalsIgnoreCase("")) {
-                parseInput[1] = detail.substring(2).trim();
+                parseInput[1] = detail.substring(2).trim().toUpperCase();
             } else if (detail.startsWith("p") && parseInput[2].equalsIgnoreCase("")) {
                 parseInput[2] = detail.substring(1).trim();
             } else if (detail.startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
@@ -83,17 +83,19 @@ public class PatientParser {
         }
 
         while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
-                || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")
+                || parseInput[2].equalsIgnoreCase("") || !checkNRIC(parseInput[1])
+                || parseInput[3].equalsIgnoreCase("") || !checkPhoneNum(parseInput[2].trim())
                 || !isInteger(parseInput[2].trim()) || parseInput[4].equalsIgnoreCase("")) {
             System.out.println("    Please input your missing detail listed below");
             if (parseInput[0].equalsIgnoreCase("")) {
                 System.out.println("    /n[NAME]");
             }
-            if (parseInput[1].equalsIgnoreCase("")) {
-                System.out.println("    /ic[NRIC]");
+            if (parseInput[1].equalsIgnoreCase("") || !checkNRIC(parseInput[1])) {
+                System.out.println("    /ic[NRIC] must follow standard nric format : S/T [7-digits] [A-Z]");
             }
-            if (parseInput[2].equalsIgnoreCase("") || !isInteger(parseInput[2].trim())) {
-                System.out.println("    /p[PHONE] only number");
+            if (parseInput[2].equalsIgnoreCase("") || !checkPhoneNum(parseInput[2].trim())
+                    || !isInteger(parseInput[2].trim())) {
+                System.out.println("    /p[PHONE] only number and must be 8 digit");
             }
             if (parseInput[3].equalsIgnoreCase("")) {
                 System.out.println("    /dob[DOB]");
@@ -117,7 +119,7 @@ public class PatientParser {
                 if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
                     parseInput[0] = update.trim().substring(1);
                 } else if (update.trim().startsWith("ic") && parseInput[1].equalsIgnoreCase("")) {
-                    parseInput[1] = update.trim().substring(2);
+                    parseInput[1] = update.trim().substring(2).toUpperCase();
                 } else if (update.trim().startsWith("p") && (parseInput[2].equalsIgnoreCase("")
                         || !isInteger(parseInput[2].trim()))) {
                     parseInput[2] = update.trim().substring(1);
@@ -164,12 +166,33 @@ public class PatientParser {
      */
     public static boolean isInteger(String input) {
         try {
-            Integer.parseInt(input);
+            int x = Integer.parseInt(input);
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
 
+    /**
+     * To check format for phone.
+     *
+     * @param phoneNum details of time
+     * @return boolean true if the time format is correct otherwise false
+     */
+    static boolean checkPhoneNum(String phoneNum) {
+        String pattern = "([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
+        return phoneNum.matches(pattern);
+    }
+
+    /**
+     * To check format for nric.
+     *
+     * @param nric details of time
+     * @return boolean true if the time format is correct otherwise false
+     */
+    static boolean checkNRIC(String nric) {
+        String pattern = "([S-T][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z])";
+        return nric.matches(pattern);
     }
 
     /**
