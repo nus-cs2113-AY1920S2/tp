@@ -147,12 +147,12 @@ Okay! Here are your available modules in database:
 
 Okay! Here is your module plan:
 Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+1.[v] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
 Y2S2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
-2.[✗] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+2.[x] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
 Okay, I've marked the module as done!
@@ -160,10 +160,10 @@ Okay, I've marked the module as done!
 
 Okay! Here are your completed modules:
 Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+1.[v] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
 
 Y2S2
-1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
+1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 
 You have completed this amount of credits:
@@ -173,9 +173,9 @@ You have completed this amount of credits:
 Okay, this is the list of related modules:
 
 List of selected modules:
-[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
-[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+[v] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 List of available modules
 ID: CS1010 Name: Programming Methodology | Modular Credit: 4
@@ -207,11 +207,11 @@ Module IS4241 has been deleted from semester Y2S2
 
 Okay! Here is your module plan:
 Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+1.[v] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
 Y2S2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 
 Okay, this module has been deleted from the list of available modules
@@ -280,11 +280,11 @@ Okay! Here are your available modules in database:
 
 Okay! Here is your module plan:
 Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+1.[v] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
 Y2S2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 
 bye!

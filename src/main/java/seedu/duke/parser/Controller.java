@@ -106,7 +106,7 @@ public class Controller {
             grading = Grading.CU;
             break;
         default:
-            throw new IllegalStateException("Unexpected value: " + grade);
+            throw new InputException("Unexpected value: " + grade);
         }
         if (module.contains("n/")) {                                            //N
             String moduleName = module.replace("n/","");        //N
