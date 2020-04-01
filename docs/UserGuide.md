@@ -66,6 +66,10 @@ grocery shopping disappear.
   
 * You can supply parameters for the `ADD` and `EDIT` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order.
   * e.g `ADD i/apple q/5` **AND** `ADD q/5 i/apple` should both produce the same result.
+  
+* The keyword for the `FIND` command is case-insensitive.
+  * e.g If you have an item named "apple" in the list, both `FIND APPLE` **AND** `FIND apple` will display this
+  entry to the user.
 <!-- @@author -->
 &nbsp;
 
