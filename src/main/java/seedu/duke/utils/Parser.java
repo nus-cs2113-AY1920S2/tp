@@ -24,8 +24,8 @@ import java.util.regex.Pattern;
 public class Parser {
 
     private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z/])"
-            + "|i/(?<description>[a-zA-Z ]+[^ipq/]+)"
-            + "|p/(?<price>[\\d*.?\\d* ]+|[^a-zA-Z/])"
+            + "|i/(?<description>[a-zA-Z\\d ]+[^ipq/]+)"
+            + "|p/(?<price>[\\d*.?\\d* ]+|[^a-zA-Z/.])"
             + "|q/(?<quantity>[\\d ]+|[^a-zA-Z/.])|$";
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -523,7 +523,7 @@ public class Parser {
                 validDescription = true;
             }
         }
-        if (!descriptionPresent) {
+         if (!descriptionPresent) {
             if (arrToCheck[1] == null) {
                 validDescription = true;
             }
