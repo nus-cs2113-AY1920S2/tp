@@ -39,7 +39,8 @@ public class FindCommand extends Command {
         for (int i = 0; i < size; i++) {
             Item unfilteredItem = items.getItem(i);
             assert unfilteredItem != null;
-            if (unfilteredItem.getDescription().contains(keyword)) {
+            String descriptionToCheck = unfilteredItem.getDescription().toLowerCase();
+            if (descriptionToCheck.contains(keyword.toLowerCase())) {
                 filteredItems.add(unfilteredItem);
                 indexArray[matches] = i + 1;
                 matches += 1;
