@@ -61,8 +61,7 @@ class EditAppointmentCommandTest {
                 + "      edit appt [NRIC] [APPTID] /t [HH:MM] to edit appointment's time,\n"
                 + "      edit appt [NRIC] [APPTID] /r [REASON] to edit appointment's reason\"\n"
                 + "    Do note that editing the patient's records will overwrite any previous information.\n"
-                + "    The apptID can be found using \"find appt [NRIC]\"\n"
-                + "    =====================================================";
+                + "    The apptID can be found using \"find appt [NRIC]\"\n";
         String message = new EditAppointmentCommand("S123A", "2", "/r ").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputMissingInput, message);

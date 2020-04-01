@@ -8,6 +8,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.HelpTextUi;
+import seedu.happypills.ui.TextUi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -40,50 +41,57 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_addCommandMessage() throws HappyPillsException {
+        String expectedOutput = HelpTextUi.AddPatientHelpMessage + TextUi.DIVIDER;
         String message = new HelpCommand("help add patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
-        assertEquals(HelpTextUi.AddPatientHelpMessage, message);
+        assertEquals(expectedOutput, message);
     }
 
     @Test
     public void helpCommand_listCommandMessage() throws HappyPillsException {
+        String expectedOutput = HelpTextUi.listPatientHelpMessage + TextUi.DIVIDER;
         String message = new HelpCommand("help list patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
-        assertEquals(HelpTextUi.listPatientHelpMessage, message);
+        assertEquals(expectedOutput, message);
     }
 
     @Test
     public void helpCommand_getCommandMessage() throws HappyPillsException {
+        String expectedOutput = HelpTextUi.getPatientHelpMessage + TextUi.DIVIDER;
         String message = new HelpCommand("help get patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
-        assertEquals(HelpTextUi.getPatientHelpMessage, message);
+        assertEquals(expectedOutput, message);
     }
 
     @Test
     public void helpCommand_editCommandMessage() throws HappyPillsException {
+        String expectedOutput = HelpTextUi.editPatientHelpMessage + TextUi.DIVIDER;
         String message = new HelpCommand("help edit patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
-        assertEquals(HelpTextUi.editPatientHelpMessage, message);
+        assertEquals(expectedOutput, message);
     }
 
     @Test
     public void helpCommand_deleteCommandMessage() throws HappyPillsException {
+        String expectedOutput = HelpTextUi.deletePatientHelpMessage + TextUi.DIVIDER;
         String message = new HelpCommand("help delete patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
-        assertEquals(HelpTextUi.deletePatientHelpMessage, message);
+        assertEquals(expectedOutput, message);
     }
 
     @Test
     public void helpCommand_helpCommandMessage() throws HappyPillsException {
+        String expectedOutput = HelpTextUi.generalHelpMessage + TextUi.DIVIDER;
         String message = new HelpCommand("help").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
-        assertEquals(HelpTextUi.generalHelpMessage, message);
+        assertEquals(expectedOutput, message);
     }
 
     @Test
     public void helpCommand_exitCommandMessage() throws HappyPillsException {
+        String expectedOutput = HelpTextUi.exitHelpMessage + TextUi.DIVIDER;
         String message = new HelpCommand("help exit").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
-        assertEquals(HelpTextUi.exitHelpMessage, message);
+        assertEquals(expectedOutput, message);
     }
 }

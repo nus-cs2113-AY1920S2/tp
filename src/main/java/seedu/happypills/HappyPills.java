@@ -69,7 +69,7 @@ public class HappyPills {
     private void run() {
         logSetup();
 
-        ui.printWelcomeMessage();
+        TextUi.printWelcomeMessage();
 
         while (scanner.hasNextLine()) {
             logger.info("going to start processing");

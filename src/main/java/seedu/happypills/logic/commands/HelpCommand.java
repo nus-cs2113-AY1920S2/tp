@@ -36,9 +36,9 @@ public class HelpCommand implements Command {
         } else if (userCommand[2].equalsIgnoreCase("appt")) {
             message = getAppointmentHelp(userCommand[1]);
         } else {
-            message = TextUi.printIncorrectCommand(command);
+            message = TextUi.printIncorrectCommand(userCommand[1] + " " + userCommand[2]);
         }
-        return message;
+        return message + TextUi.DIVIDER;
     }
 
     private String getPatientHelp(String patient) {
@@ -74,7 +74,7 @@ public class HelpCommand implements Command {
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
-        return message + TextUi.DIVIDER;
+        return message;
     }
 
     private String getAppointmentHelp(String appt) {
@@ -94,7 +94,7 @@ public class HelpCommand implements Command {
         } else {
             message = TextUi.printIncorrectCommand(command);
         }
-        return message + TextUi.DIVIDER;
+        return message;
     }
 }
 

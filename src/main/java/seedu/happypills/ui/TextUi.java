@@ -16,7 +16,7 @@ public class TextUi {
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
-    public void printWelcomeMessage() {
+    public static void printWelcomeMessage() {
         String logo = "\n"
                 + " __   __  _______  _______  _______  __   __  _______  ___   ___      ___      _______\n"
                 + "|  | |  ||   _   ||       ||       ||  | |  ||       ||   | |   |    |   |    |       |\n"
