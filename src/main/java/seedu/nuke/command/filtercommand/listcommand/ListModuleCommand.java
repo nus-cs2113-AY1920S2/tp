@@ -1,7 +1,6 @@
 package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Module;
 
@@ -40,7 +39,8 @@ public class ListModuleCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, filteredModuleList);
+        ArrayList<Module> filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
+        sortModuleList(filteredModuleList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, new ArrayList<>(filteredModuleList));
     }
 }

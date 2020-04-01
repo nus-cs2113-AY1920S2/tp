@@ -3,13 +3,16 @@ package seedu.nuke.util;
 public class ExceptionMessage {
     public static final String MESSAGE_MISSING_MODULE_CODE = "ALERT! Module code is missing.\n";
 
-    public static final String MESSAGE_EXCESS_PARAMETERS = "ALERT! Too many parameters.\n";
+    public static final String MESSAGE_EXCESS_PARAMETERS = "ALERT! There are too many parameters.\n";
 
     public static final String MESSAGE_INPUT_LENGTH_EXCEEDED = "ALERT! Enter less than 100 characters.\n";
 
     public static final String MESSAGE_EMPTY_INPUT = "ALERT! Enter a command.\n";
 
     public static final String MESSAGE_INVALID_COMMAND = "ALERT! Unrecognised command.\n";
+
+    public static final String MESSAGE_MISSING_DIRECTORY_NAME = "ALERT! Directory name is missing.\n";
+
 
     public static final String MESSAGE_MODULE_NOT_FOUND = "ALERT! Module is not found.\n";
     public static final String MESSAGE_MODULE_NOT_PROVIDED = "ALERT! The module is not provided by NUS currently.\n";
@@ -28,11 +31,14 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_INVALID_PRIORITY = "Alert! Priority should be a number between 0 and 100.\n";
 
-    public static final String MESSAGE_INVALID_DEADLINE_FORMAT = "Alert! Datetime format is invalid.\n";
+    public static final String MESSAGE_INVALID_DATETIME_FORMAT = "Alert! Datetime format is invalid.\n";
 
     public static final String MESSAGE_DELETE_ERROR = "ALERT! There was an error in the deletion.\n";
 
     public static final String MESSAGE_LIST_NUMBER_NOT_FOUND = "List number not found! Deletion is aborted.\n";
+
+
+
 
     public static final String MESSAGE_FAILED_DIRECTORY_TRAVERSAL = "Unable to traverse further.\n";
     public static final String MESSAGE_DIRECTORY_NOT_FOUND = "Alert! The next directory could not be found.\n";

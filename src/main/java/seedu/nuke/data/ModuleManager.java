@@ -10,8 +10,6 @@ import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -27,27 +25,14 @@ public class ModuleManager implements Iterable<Module> {
 
     private static final String NO_KEYWORD = "";
 
-    private ModuleManager(Root root, HashMap<String, String> modulesMap) {
-        ModuleManager.root = root;
-        ModuleManager.modulesMap = modulesMap;
+    public ModuleManager() {
+        root = new Root();
         moduleList = new ArrayList<>();
     }
 
-    /**
-     * Returns the instance of the Module Manager class.
-     *
-     * @param root
-     *  The root of the Directory Tree
-     * @param modulesMap
-     *  The modules provided by NUS
-     * @return
-     *  The instance of the Module Manager
-     */
-    public static ModuleManager getInstance(Root root, HashMap<String, String> modulesMap) {
-        if (moduleManager == null) {
-            moduleManager = new ModuleManager(root, modulesMap);
-        }
-        return moduleManager;
+    public ModuleManager(Root root, HashMap<String, String> modulesMap) {
+        ModuleManager.modulesMap = modulesMap;
+        ModuleManager.root = root;
     }
 
     public static Root getRoot() {
@@ -229,13 +214,10 @@ public class ModuleManager implements Iterable<Module> {
      */
     public static ArrayList<Task> sortAllTasks() {
         ArrayList<Task> allTasks = getAllTasks();
-        Collections.sort(allTasks, new Comparator<Task>() {
-            @Override
-            public int compare(Task t1, Task t2) {
-                String t1Deadline = t1.getDeadline() == null ? "" : t1.getDeadline().getDateTimeSortFormat();
-                String t2Deadline = t2.getDeadline() == null ? "" : t2.getDeadline().getDateTimeSortFormat();
-                return t1Deadline.compareToIgnoreCase(t2Deadline);
-            }
+        allTasks.sort((t1, t2) -> {
+            String t1Deadline = t1.getDeadline().isPresent() ? t1.getDeadline().getDateTimeSortFormat() : "";
+            String t2Deadline = t2.getDeadline().isPresent() ? t2.getDeadline().getDateTimeSortFormat() : "";
+            return t1Deadline.compareToIgnoreCase(t2Deadline);
         });
         return allTasks;
     }

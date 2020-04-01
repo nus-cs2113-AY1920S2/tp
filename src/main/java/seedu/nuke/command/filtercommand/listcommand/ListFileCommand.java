@@ -4,6 +4,7 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Task;
+import seedu.nuke.directory.TaskFile;
 
 import java.util.ArrayList;
 
@@ -56,8 +57,9 @@ public class ListFileCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredFileList =
+        ArrayList<TaskFile> filteredFileList =
                 createFilteredFileList(moduleKeyWord, categoryKeyword, taskKeyword, fileKeyword, isExact, isAll);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.FILE, filteredFileList);
+        sortFileList(filteredFileList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.FILE, new ArrayList<>(filteredFileList));
     }
 }

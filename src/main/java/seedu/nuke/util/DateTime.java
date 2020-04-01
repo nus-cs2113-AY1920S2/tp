@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-
-
 /**
  * <h3>Date Time</h3>
  * A <b>Date Time</b> contains both <i>date</i> and <i>time</i> information. This is used to hold the <i>datetime</i>
@@ -25,6 +23,38 @@ public class DateTime {
     public DateTime(LocalDate date, LocalTime time) {
         this.date = date;
         this.time = time;
+    }
+
+    public DateTime() {
+        this(null, null);
+    }
+
+    /**
+     * Returns the <code>date</code>.
+     *
+     * @return The <code>date</code>
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Returns the <code>time</code>.
+     *
+     * @return The <code>time</code>
+     */
+    public LocalTime getTime() {
+        return time;
+    }
+
+    /**
+     * Checks if datetime values are <b>NOT</b> <code>NULL</code>.
+     *
+     * @return
+     *  <code>TRUE</code> if datetime is <b>NOT</b> <code>NULL</code> and <code>FALSE</code> otherwise.
+     */
+    public boolean isPresent() {
+        return hasDate() && hasTime();
     }
 
     /**
@@ -69,8 +99,8 @@ public class DateTime {
      *
      * @return The <code>date</code> in a string format
      */
-    public String getDateInSortFormat() {
-        return hasDate() ? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "";
+    private String getDateInSortFormat() {
+        return hasDate() ? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "_";
     }
 
     /**
@@ -79,8 +109,8 @@ public class DateTime {
      *
      * @return The <code>date</code> in a string format
      */
-    public String getTimeInSortFormat() {
-        return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "";
+    private String getTimeInSortFormat() {
+        return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "_";
     }
 
     public String getDateTimeSortFormat() {
@@ -126,6 +156,11 @@ public class DateTime {
         return time != null;
     }
 
+    /**
+     * Checks if the <code>date</code> attribute is <b>not</b> <code>NULL</code>.
+     *
+     * @return <code>TRUE</code> if <code>date</code> is not <code>NULL</code>, and <code>FALSE</code> otherwise.
+     */
     private boolean hasDate() {
         return date != null;
     }
@@ -196,7 +231,6 @@ public class DateTime {
         String toShow = dateToString() + " " + timeToString();
         return (isDue()) ? toShow + " [OVER!!]" : toShow;
     }
-
 
     /**
      * Converts <b>Date Time</b> into its string representation, containing its <code>date</code> and

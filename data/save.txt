@@ -1,6 +1,7 @@
 --- MODULE ---
 CS1231 -|||- Discrete Structures -|||- NIL
 --- CATEGORY ---
+<<<<<<< HEAD
 Assignment -|||- 5
 --- TASK ---
 group work -|||- Y -|||- 28/03/2020 06:00PM -|||- 20
@@ -22,6 +23,8 @@ work -|||- N -|||- 31/03/2020 08:00PM -|||- 3
 --- FILE ---
 --- END FILE ---
 --- END TASK ---
+=======
+>>>>>>> abedb0e926f9e802c221680ab15db191241ab2a3
 Lecture -|||- 1
 --- TASK ---
 --- END TASK ---
@@ -31,6 +34,7 @@ Tutorial 6 -|||- N -|||- 24/03/2020 11:59PM -|||- 6
 --- FILE ---
 --- END FILE ---
 --- END TASK ---
+<<<<<<< HEAD
 --- END CATEGORY ---
 CS2100 -|||- Computer Organisation -|||- NIL
 --- CATEGORY ---
@@ -48,10 +52,29 @@ watch webcast -|||- N -|||-  -|||- 1
 --- END TASK ---
 Tutorial -|||- 2
 --- TASK ---
+=======
+Lab -|||- 3
+--- TASK ---
+work -|||- N -|||- 31/03/2020 08:00PM -|||- 3
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Assignment -|||- 5
+--- TASK ---
+group work -|||- Y -|||- 28/03/2020 06:00PM -|||- 20
+--- FILE ---
+--- END FILE ---
+>>>>>>> abedb0e926f9e802c221680ab15db191241ab2a3
 --- END TASK ---
 --- END CATEGORY ---
 CS2113 -|||- Software Engineering & Object-Oriented Programming -|||- NIL
 --- CATEGORY ---
+<<<<<<< HEAD
+=======
+A -|||- 0
+--- TASK ---
+--- END TASK ---
+>>>>>>> abedb0e926f9e802c221680ab15db191241ab2a3
 Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
@@ -80,22 +103,70 @@ tutorial worksheet 10 -|||- N -|||- 25/03/2020 12:00PM -|||- 5
 --- END FILE ---
 --- END TASK ---
 --- END CATEGORY ---
+<<<<<<< HEAD
 CS3235 -|||- Computer Security -|||- NIL
 --- CATEGORY ---
+=======
+CS2100 -|||- Computer Organisation -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+watch webcast -|||- N -|||-  -|||- 1
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+>>>>>>> abedb0e926f9e802c221680ab15db191241ab2a3
 Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
 Lab -|||- 3
 --- TASK ---
 --- END TASK ---
+<<<<<<< HEAD
 Lecture -|||- 1
 --- TASK ---
 --- END TASK ---
 Programming Assignment -|||- 0
+=======
+--- END CATEGORY ---
+CS3230 -|||- Design and Analysis of Algorithms -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
 --- TASK ---
 --- END TASK ---
 Tutorial -|||- 2
 --- TASK ---
 --- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+lab1 -|||- N -|||-  -|||- 3
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+CS2113T -|||- Software Engineering & Object-Oriented Programming -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+>>>>>>> abedb0e926f9e802c221680ab15db191241ab2a3
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+<<<<<<< HEAD
+=======
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+>>>>>>> abedb0e926f9e802c221680ab15db191241ab2a3
 --- END CATEGORY ---
 --- END MODULE ---
