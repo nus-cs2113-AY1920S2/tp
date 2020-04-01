@@ -56,6 +56,10 @@ public class Storage {
         for (Event event : eventList.list) {
             fileIO.write(event.toStorable() + System.lineSeparator());
         }
+
+        if (eventList.getSize() > 0) {
+            UI.display("All events are saved.");
+        }
     }
     
     /**
@@ -92,6 +96,10 @@ public class Storage {
     public void saveStudentListCollection(StudentListCollection studentListCollection) 
         throws PacException {
         fileIO.write(studentListCollection.toString());
+
+        if (studentListCollection.size() > 0) {
+            UI.display("All student lists are saved.");
+        }
     }
 
     /**
