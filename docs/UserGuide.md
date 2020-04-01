@@ -34,10 +34,16 @@ Example of usage:
 * `addsubject s/biology`
 * `addsubject s/CHEM`
 
+Screenshot showing addsubject:
+![](images/addsubject.png)
+
 ### Listing all Subjects
 Lists all the current subjects.
 
 Format & Usage: `listsubject`
+
+Screenshot showing listsubject:
+![](images/listsubject.png)
 
 ### Deleting a Subject
 Deletes the specified subject AND all the cards in the subject.
@@ -49,6 +55,9 @@ Format: `deletesubject s/<INDEX>`
 Example of usage:
 * `deletesubject s/1`
 * `deletesubject s/4`
+
+Screenshot showing deletesubject:
+![](images/deletesubject.png)
 
 <hr>
 
@@ -72,6 +81,9 @@ Example of Usage:
 * `listcard s/1`
 * `listcard s/2`
 
+Screenshot showing listcard:
+![](images/addcard.png)
+
 ### Deleting a Card
 Deletes the specified card from the specified category 
 
@@ -82,6 +94,9 @@ Format: `deletecard s/<S-INDEX> c/<C-INDEX>`
 Example of Usage:
 * `deletecard s/2 c/1`
 * `deletecard s/5 c/17`
+
+Screenshot showing deletecard:
+![](images/deletecard.png)
 
 <hr>
 
@@ -96,6 +111,9 @@ Example of Usage:
 * `quiz s/2 n/15`
 * `quiz s/1 n/5`
 
+Screenshot showing quiz:
+![](images/quiz.png)
+
 ### Viewing Past Scores
 Shows the previous scores of quizzes from the specified subject 
 
@@ -106,12 +124,18 @@ Example of Usage:
 * `score s/1`
 * `score s/2`
 
+Screenshot showing score:
+![](images/score.png)
+
 <hr>
 
 ### Displaying the Help Page
 Displays the list of available commands.
 
 Format & Usage: `help`
+
+Screenshot showing help:
+![](images/help.png)
 
 ### Exiting the Program
 Closes the program 
