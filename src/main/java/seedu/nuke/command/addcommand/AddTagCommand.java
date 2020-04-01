@@ -33,7 +33,7 @@ public class AddTagCommand extends Command {
             "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<taskdescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
     private final ArrayList<String> infos;

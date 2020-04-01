@@ -11,7 +11,6 @@ import seedu.nuke.util.ListCreator;
 
 import java.util.ArrayList;
 
-import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
 import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 
 
@@ -38,12 +37,9 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
         try {
             Module module = DirectoryTraverser.getModuleDirectory(moduleCode);
             ArrayList<Task> filteredTaskList = module.sortAllTasks();
-            if (filteredTaskList.size() == EMPTY) {
-                return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
-            }
-            assert filteredTaskList.size() != EMPTY : "make sure there are some tasks in the list";
             deadlines = ListCreator.createTaskListTable(new ArrayList<>(filteredTaskList), true);
-            return new CommandResult(messageTaskSuccessfullyList(ModuleManager.countAllTasks()) + deadlines);
+            return new CommandResult(messageTaskSuccessfullyList(ModuleManager.countAllTasks())
+                    + System.lineSeparator() + deadlines);
         } catch (IncorrectDirectoryLevelException e) {
             return new CommandResult(ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         } catch (ModuleManager.ModuleNotFoundException e) {

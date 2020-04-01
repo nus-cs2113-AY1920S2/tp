@@ -9,6 +9,33 @@ Tutorial -|||- 2
 --- END TASK ---
 Assignment -|||- 4
 --- TASK ---
+write -|||- N -|||-  -|||- 4
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+read -|||- N -|||-  -|||- 3
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+CS2100 -|||- Computer Organisation -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+listen -|||- N -|||-  -|||- 1
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+tut -|||- N -|||-  -|||- 2
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
 --- END TASK ---
 Lab -|||- 3
 --- TASK ---

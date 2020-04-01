@@ -1,7 +1,6 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
-
 import seedu.nuke.command.ChangeDirectoryCommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
@@ -32,10 +31,7 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
-import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryTraverser;
-import seedu.nuke.directory.Module;
-import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
 import seedu.nuke.util.DateTimeFormat;
@@ -49,12 +45,10 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DEADLINE_FORMAT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
@@ -369,7 +363,7 @@ public class Parser {
     private Command prepareAddTagCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         Matcher matcher = AddTagCommand.REGEX_FORMATS.matcher(parameters);
-        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX, TAG_PREFIX);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX);
 
         String info = matcher.group(IDENTIFIER_GROUP).trim();
         String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
