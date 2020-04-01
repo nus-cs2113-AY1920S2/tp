@@ -1,2 +1,1 @@
-Alice|S9876543G|99999999|22/09/1989|O-|NIL| nothing to edit
-Eve|S9876543F|91265432|22/05/1999|O-|School|Best Friend with Mallory
+kesin|S0618|912|22/08/1998|B-|meat|Weak
