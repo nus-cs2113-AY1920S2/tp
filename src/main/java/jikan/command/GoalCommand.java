@@ -4,6 +4,7 @@ import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyTagException;
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NegativeDurationException;
 import jikan.exception.NoSuchTagException;
 import jikan.ui.Ui;
 
@@ -45,14 +46,18 @@ public class GoalCommand extends Command {
     public void executeCommand(ActivityList activityList) {
         try {
             int delimiter = parameters.indexOf("/g");
-            String tagName = parameters.substring(0, delimiter - 1).strip();
-            if (tagName.isEmpty()) {
-                throw new EmptyTagException();
-            }
+            int deleteDelim = parameters.indexOf("/d");
+            String tagName = "";
+            int index;
             if (delimiter != -1) {
-                int index = checkIfExists(tagName);
+                tagName = parameters.substring(0, delimiter - 1).strip();
+                index = checkIfExists(tagName);
                 String tmpTime = parameters.substring(delimiter + 3);
                 Duration goalTime = parseDuration(tmpTime);
+
+                if (goalTime.isNegative()) {
+                    throw new NegativeDurationException();
+                }
 
                 if (index != -1) {
                     Ui.printDivider("The goal for this tag already exists, do you want to update the goal?");
@@ -68,9 +73,25 @@ public class GoalCommand extends Command {
                         Ui.printDivider("The goal for " + tagName + " has been added!");
                     }
                 }
+            } else if (deleteDelim != -1) {
+                tagName = parameters.substring(0, deleteDelim - 1).strip();
+                index = checkIfExists(tagName);
+                if (index != -1) {
+                    Ui.printDivider("The goal for this tag has been deleted!");
+                    removeLine(index);
+                } else {
+                    throw new NoSuchTagException();
+                }
             } else {
                 throw new InvalidTimeFrameException();
             }
+            if (tagName.isEmpty()) {
+                throw new EmptyTagException();
+            }
+            if (delimiter != -1) {
+
+            }
+
         } catch (EmptyTagException | StringIndexOutOfBoundsException e) {
             Ui.printDivider("Tag name cannot be empty!");
         } catch (InvalidTimeFrameException e) {
@@ -81,6 +102,8 @@ public class GoalCommand extends Command {
             Ui.printDivider("There is no such tag!");
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             Ui.printDivider("Please enter the goal in the format HH:MM:SS");
+        } catch (NegativeDurationException e) {
+            Ui.printDivider("Please enter a positive goal time!");
         }
     }
 

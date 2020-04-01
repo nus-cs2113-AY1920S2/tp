@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.exception.ExistingTagGoalException;
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NegativeDurationException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
@@ -48,7 +49,6 @@ public class EditCommand extends Command {
                 //edit allocatedTime
             } else {
                 Parser.activityName = parameters.substring(0, allocDelim).strip();
-
             }
 
             if (Parser.activityName.isEmpty()) {
@@ -98,7 +98,11 @@ public class EditCommand extends Command {
 
                     }
                     if (!tmpAlloc.isEmpty()) {
-                        activityList.updateAlloc(index, newAllocTime);
+                        if (newAllocTime.isNegative()) {
+                            throw new NegativeDurationException();
+                        } else {
+                            activityList.updateAlloc(index, newAllocTime);
+                        }
                     }
                 } else {
                     // no new details provided
@@ -125,6 +129,8 @@ public class EditCommand extends Command {
         } catch (IOException e) {
             Ui.printDivider("Error in loading the tag file!");
             Log.makeInfoLog("Edit command failed as there was an error in loading the tag file.");
+        } catch (NegativeDurationException e) {
+            Ui.printDivider("Please enter a positive target time!");
         }
     }
 
