@@ -135,7 +135,8 @@ public class HelpTextUi extends TextUi {
     public static String printDeleteAppointmentHelp = ""
             + "    To delete an appointment, run the following command:\n"
             + "    Note: appointment details are within the parenthesis [ ]\n"
-            + "      delete appt [APPT_ID]\n"
+            + "      delete appt [NRIC] [APPT_ID]\n"
+            + "      delete appt [NRIC] [APPT_ID]\n"
             + "    The user will be prompted to confirm if they would like to delete the patient's records.\n"
             + "    Do note that deletion cannot be undone.\n";
 
