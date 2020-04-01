@@ -150,10 +150,10 @@ Thank you for using MeetingOrganizer, goodbye!
 
 ## Command Summary
 
-- **Adding a new contact** (#adding-a-new-contact): `<name> <NUSMODS link>`
-- **List all contacts** (#list-all-contacts-contacts): `contacts`
-- **Display timetable of selected contacts** (#display-timetable-of-selected-contacts-timetable): `timetable` OR `timetable <Member Index>` OR `timetable <Member A Index> <Member B Index>`
-- **Schedule a new meeting** (#schedule-a-new-meeting-schedule): `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`
-- **Delete a scheduled meeting** (#delete-a-scheduled-meeting-delete): `delete <Meeting Index>`
-- **List all scheduled meetings** (#list-all-scheduled-meetings-meetings): `meetings`
-- **Exit application** (#exit-application-exit): `exit`
+- **Adding a new contact**: `<name> <NUSMODS link>`
+- **List all contacts**: `contacts`
+- **Display timetable of selected contacts**: `timetable` OR `timetable <Member Index>` OR `timetable <Member A Index> <Member B Index>`
+- **Schedule a new meeting**: `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`
+- **Delete a scheduled meeting**: `delete <Meeting Index>`
+- **List all scheduled meetings**: `meetings`
+- **Exit application**: `exit`
