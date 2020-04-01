@@ -10,7 +10,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.1.2. Exit program: `exit`](#312-exit-program-exit)        
     * [3.2. General Patient Information Commands](UserGuide-Patient.md) 
     * [3.3. Patient Medical Records Commands](UserGuide-Records.md)    
-    * [3.4. Appointment Scheduling Commands](UserGuide-AppointmeFnt.md)
+    * [3.4. Appointment Scheduling Commands](UserGuide-Appointment.md)
 - [4. Command Summary](#4-command-summary)
 - [5. Useful Links](#5-useful-links)
 
