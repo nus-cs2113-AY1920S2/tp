@@ -39,6 +39,19 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     }
 
     /**
+     * Retrieve the appointment from the patient provided.
+     *
+     * @param appointments Contains the appointment map to get appointment from.
+     * @return the appointment with the specified apptID or null if not found
+     */
+    private Appointment findAppointment(AppointmentMap appointments) {
+        if (appointments.containsKey(appointmentId)) {
+            return appointments.get(appointmentId);
+        }
+        return null;
+    }
+
+    /**
      * Delete an appointment of the patient from the shared map.
      *
      * @param appointments The shared appointment map.
@@ -74,9 +87,14 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     ) throws HappyPillsException {
         String message = "";
         Patient delPatient = findPatient(patients);
-        if (delPatient.equals(null)) {
-            message = "    Appointment has been removed.\n";
-            return message;
+        if (delPatient == null) {
+            message = "    The patient does not exist.\n";
+            return TextUi.appendDivider(message);
+        }
+        Appointment delAppt = findAppointment(appointments);
+        if (delAppt == null) {
+            message = "    The appointment does not exist.\n";
+            return TextUi.appendDivider(message);
         }
         Boolean isSuccess = deleteAppt(appointments,appointmentId) && deleteAppt(delPatient,appointmentId);
         if (isSuccess) {
