@@ -7,7 +7,8 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.StorageTextUi;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -53,7 +54,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editPhone(Patient patient, String content) {
         patient.setPhoneNumber(Integer.parseInt(content));
-        String message = TextUi.printEditPatientSuccess(patient);
+        String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
 
@@ -65,7 +66,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editAllergies(Patient patient, String content) {
         patient.setAllergies(content);
-        String message = TextUi.printEditPatientSuccess(patient);
+        String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
 
@@ -77,7 +78,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editRemarks(Patient patient, String content) {
         patient.setRemarks(content);
-        String message = TextUi.printEditPatientSuccess(patient);
+        String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
 
@@ -89,7 +90,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editDob(Patient patient, String content) {
         patient.setDateOfBirth(content);
-        String message = TextUi.printEditPatientSuccess(patient);
+        String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
 
@@ -101,7 +102,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editName(Patient patient, String content) {
         patient.setName(content);
-        String message = TextUi.printEditPatientSuccess(patient);
+        String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
 
@@ -113,7 +114,7 @@ public class EditPatientCommand extends PatientCommand {
      */
     private String editBloodType(Patient patient, String content) {
         patient.setBloodType(content);
-        String message = TextUi.printEditPatientSuccess(patient);
+        String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
 
@@ -148,7 +149,7 @@ public class EditPatientCommand extends PatientCommand {
         Patient editPatient = findPatient(patients);
         String output = "";
         if (editPatient == null) {
-            throw new HappyPillsException("    Patient not found. Please try again.");
+            throw new HappyPillsException(PatientTextUi.patientNotFoundMessage);
         }
         if (content.isEmpty()) {
             throw new HappyPillsException("    Please do not leave the field as empty string");
@@ -184,9 +185,10 @@ public class EditPatientCommand extends PatientCommand {
                     + "\n    enter \"help edit\"");
         }
         try {
-            Storage.writeAllToFile(Storage.PATIENT_FILEPATH, TextUi.getFormattedPatientString(patients));
+            Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
+                    StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
-            logger.info("Adding patient list to file failed.");
+            logger.info(StorageTextUi.failToWritePatientMsg);
         }
         assert output.length() > 0 : "output message is invalid";
         return output;

@@ -7,6 +7,9 @@ import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.HelpTextUi;
+import seedu.happypills.ui.PatientRecordTextUi;
+import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -46,11 +49,11 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
         if (newContent.length() < 3) {
-            return TextUi.editAptHelpMessage();
+            return HelpTextUi.editPatientRecordHelpMessage;
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return TextUi.editAptHelpMessage();
+            return HelpTextUi.editPatientRecordHelpMessage;
         }
         String field = "";
         if (newContent.contains("/sym")) {
@@ -86,13 +89,14 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         }
         if (output) {
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
+                        StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
                 logger.info("Adding patient list to file failed.");
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);
-        return output ? TextUi.editPatientRecordSuccessMessage(editPatientRecord) : errorMsg;
+        return output ? PatientRecordTextUi.editPatientRecordSuccessMessage(editPatientRecord) : errorMsg;
     }
 
     private Boolean editDiagnosis(PatientRecord editPatientRecord, String content) {

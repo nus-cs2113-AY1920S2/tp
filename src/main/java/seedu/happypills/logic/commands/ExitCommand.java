@@ -5,6 +5,7 @@ import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class ExitCommand implements Command {
     @Override
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
         try {
-            Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
+            Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
             logger.info("Adding patient list to file failed.");
         }

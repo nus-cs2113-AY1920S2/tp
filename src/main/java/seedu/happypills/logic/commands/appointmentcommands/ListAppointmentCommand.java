@@ -3,7 +3,7 @@ package seedu.happypills.logic.commands.appointmentcommands;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.AppointmentTextUi;
 
 public class ListAppointmentCommand extends AppointmentCommand {
 
@@ -11,10 +11,10 @@ public class ListAppointmentCommand extends AppointmentCommand {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
         String message;
         if (appointments.size() == 0) {
-            message = TextUi.getEmptyAppointmentList();
+            message = AppointmentTextUi.getEmptyAppointmentListMessage;
         } else {
             assert !appointments.isEmpty();
-            message = TextUi.getAppointmentList(appointments);
+            message = AppointmentTextUi.getAppointmentList(appointments);
         }
         return message;
     }

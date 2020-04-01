@@ -8,7 +8,9 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.AppointmentTextUi;
+import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.StorageTextUi;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -51,8 +53,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
     ) throws HappyPillsException {
         String message = "";
         if (!patients.containsKey(nric)) {
-            message = "    Patient does not exist. Please try again.\n"
-                    + TextUi.DIVIDER;
+            message = PatientTextUi.patientNotFoundMessage;
         } else {
             Appointment appointment = new Appointment(nric, reason, date, time);
             appointments.addAppointment(appointment);
@@ -61,11 +62,9 @@ public class AddAppointmentCommand extends AppointmentCommand {
             try {
                 Storage.addSingleItemToFile(Storage.APPOINTMENT_FILEPATH, appointment.toSave());
             } catch (IOException e) {
-                logger.warning("Patient's appointment not added to file.");
+                logger.warning(StorageTextUi.failToAddAppointmentMsg);
             }
-            message = "    Appointment has been added with Appointment ID "
-                    + appointment.getAppointmentId() + ".\n"
-                    + TextUi.DIVIDER;
+            message = AppointmentTextUi.addAppointmentSuccessMessage(appointment);
         }
         return message;
     }

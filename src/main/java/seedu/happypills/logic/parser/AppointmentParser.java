@@ -56,7 +56,7 @@ public class AppointmentParser {
         } else if (userCommand[0].equalsIgnoreCase("find")) {
             return new FindAppointmentCommand(userCommand[2]);
         } else {
-            throw new HappyPillsException("    Command is invalid. Please use the help command.");
+            throw new HappyPillsException(TextUi.printIncorrectCommand(userCommand[0]));
         }
     }
 

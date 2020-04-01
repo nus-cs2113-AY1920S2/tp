@@ -6,7 +6,7 @@ import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.exception.HappyPillsException;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.StorageTextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -90,7 +90,7 @@ public class Storage {
             returnMsg += "    Patient file not found.\n";
         }
         try {
-            writeAllToFile(Storage.PATIENT_FILEPATH, TextUi.getFormattedPatientString(patients));
+            writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
             returnMsg = "Adding patient list back to file failed.";
             return returnMsg;
@@ -102,7 +102,7 @@ public class Storage {
             returnMsg = "    Appointment file not found.\n";
         }
         try {
-            writeAllToFile(Storage.APPOINTMENT_FILEPATH, TextUi.getFormattedApptString(appointments));
+            writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
         } catch (IOException e) {
             returnMsg = "Adding appointment list back to file failed.";
             return returnMsg;

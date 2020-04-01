@@ -3,7 +3,8 @@ package seedu.happypills.logic.commands.appointmentcommands;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
-import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.AppointmentTextUi;
+import seedu.happypills.ui.PatientTextUi;
 
 public class FindAppointmentCommand extends AppointmentCommand {
     protected String patientNric;
@@ -22,9 +23,9 @@ public class FindAppointmentCommand extends AppointmentCommand {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
         assert !patientNric.isEmpty() : "No NRIC was provided";
         if (patients.containsKey(patientNric)) {
-            return TextUi.getAppointmentSuccessMessage(patients.get(patientNric));
+            return AppointmentTextUi.getAppointmentSuccessMessage(patients.get(patientNric));
         } else {
-            return TextUi.patientNotExist(patientNric);
+            return PatientTextUi.patientNotFoundMessage;
         }
     }
 

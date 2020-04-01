@@ -7,6 +7,8 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
@@ -44,7 +46,7 @@ public class DeletePatientCommand extends PatientCommand {
      */
     private String deletePatient(Patient patient, PatientMap patients) {
         patients.remove(nric);
-        String message = TextUi.deletePatient(patient);
+        String message = PatientTextUi.deletePatientSuccessMessage(patient);
         return TextUi.prependDivider(message);
     }
 
@@ -61,7 +63,7 @@ public class DeletePatientCommand extends PatientCommand {
 
         if (patients.containsKey(nric)) {
             Patient patient = patients.get(nric);
-            TextUi.printDeleteConfirmation(patient);
+            PatientTextUi.printDeleteConfirmation(patient);
             String message = "";
             String confirm = getPatientConfirmation();
             boolean isConfirmed = false;
@@ -69,18 +71,19 @@ public class DeletePatientCommand extends PatientCommand {
                 if (confirm.equalsIgnoreCase("y")) {
                     message = deletePatient(patient, patients);
                     try {
-                        Storage.writeAllToFile(Storage.PATIENT_FILEPATH,TextUi.getFormattedPatientString(patients));
+                        Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
+                                StorageTextUi.getFormattedPatientString(patients));
                     } catch (IOException e) {
-                        logger.info("Adding patient list to file failed.");
+                        logger.info(StorageTextUi.failToWritePatientMsg);
                     }
                     isConfirmed = true;
                     logger.log(logLevel, "patient is deleted");
                 } else if (confirm.equalsIgnoreCase("n")) {
-                    message = TextUi.printNotDeleted();
+                    message = PatientTextUi.patientNotDeletedMessage;
                     isConfirmed = true;
-                    logger.log(logLevel, "patient is not deleted");
+                    logger.log(logLevel, PatientTextUi.patientNotDeletedMessage);
                 } else {
-                    TextUi.printDeleteConfirmationAgain(patient);
+                    PatientTextUi.printDeleteConfirmationAgain(patient);
                     confirm = getPatientConfirmation();
                 }
             }
@@ -89,7 +92,7 @@ public class DeletePatientCommand extends PatientCommand {
             return message;
 
         } else {
-            throw new HappyPillsException("    Patient does not exist. Please try again.");
+            throw new HappyPillsException(PatientTextUi.patientNotFoundMessage);
         }
     }
 }

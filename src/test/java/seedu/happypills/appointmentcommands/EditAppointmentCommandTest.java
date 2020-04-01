@@ -57,12 +57,11 @@ class EditAppointmentCommandTest {
     @Test
     public void editAppointment_missingInput() throws HappyPillsException {
         String expectedOutputMissingInput = "    To edit a patient's appointment, run the following command:\n"
-                + "      edit appt [NRIC] [APPTID] /d [DD/MM/YYYY] to edit appointment's phone number,\n"
-                + "      edit appt [NRIC] [APPTID] /t [HH:MM] to edit appointment's allergies,\n"
-                + "      edit appt [NRIC] [APPTID] /r [REASON] to edit appointment's remarks\"\n"
+                + "      edit appt [NRIC] [APPTID] /d [DD/MM/YYYY] to edit appointment's date,\n"
+                + "      edit appt [NRIC] [APPTID] /t [HH:MM] to edit appointment's time,\n"
+                + "      edit appt [NRIC] [APPTID] /r [REASON] to edit appointment's reason\"\n"
                 + "    Do note that editing the patient's records will overwrite any previous information.\n"
-                + "    The apptID can be found using \"find appt [NRIC]\"\n"
-                + "    =====================================================";
+                + "    The apptID can be found using \"find appt [NRIC]\"\n";
         String message = new EditAppointmentCommand("S123A", "2", "/r ").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputMissingInput, message);

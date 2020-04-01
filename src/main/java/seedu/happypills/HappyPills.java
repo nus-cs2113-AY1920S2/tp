@@ -35,7 +35,6 @@ public class HappyPills {
      * Sets up the required objects, loads up the data from the storage file.
      */
     public HappyPills() {
-        ui = new TextUi();
         patients = new PatientMap();
         appointments = new AppointmentMap();
         patientRecords = new PatientRecordMap();
@@ -70,7 +69,7 @@ public class HappyPills {
     private void run() {
         logSetup();
 
-        ui.printWelcomeMessage();
+        TextUi.printWelcomeMessage();
 
         while (scanner.hasNextLine()) {
             logger.info("going to start processing");
