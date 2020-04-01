@@ -88,9 +88,8 @@ public class GoalCommand extends Command {
      * Creates a new tag file.
      * @param filePath the filepath of the tag file.
      * @param tagFile the File object.
-     * @throws IOException when there is an error loading/creating the file.
      */
-    public static void createFile(String filePath, File tagFile) throws IOException {
+    public static void createFile(String filePath, File tagFile) {
         tagFile = new File(filePath);
         try {
             if (!tagFile.exists()) {
