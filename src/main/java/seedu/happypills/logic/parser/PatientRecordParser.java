@@ -71,7 +71,7 @@ public class PatientRecordParser {
         String[] parseInput = {"", "", "", "", "", ""};
         for (String detail : details) {
             if (detail.startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
-                parseInput[0] = detail.substring(2).trim();
+                parseInput[0] = detail.substring(2).trim().toUpperCase();
             } else if (detail.startsWith("sym") && parseInput[1].equalsIgnoreCase("")) {
                 parseInput[1] = detail.substring(3).trim();
             } else if (detail.startsWith("diag") && parseInput[2].equalsIgnoreCase("")) {
@@ -79,7 +79,7 @@ public class PatientRecordParser {
             } else if (detail.startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
                 parseInput[3] = detail.substring(1).trim();
             } else if (detail.startsWith("t") && parseInput[4].equalsIgnoreCase("")
-                    && checkTime(detail.substring(1).trim())) {
+                    && isTime(detail.substring(1).trim())) {
                 parseInput[4] = detail.substring(1).trim();
             } else {
                 System.out.println("    " + detail + " is not a valid input.\n"
@@ -89,26 +89,27 @@ public class PatientRecordParser {
 
         while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
                 || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")
-                || parseInput[4].equalsIgnoreCase("")) {
+                || parseInput[4].equalsIgnoreCase("") || !isDate(parseInput[3].trim())
+                || !isNric(parseInput[0]) || !isTime(parseInput[4].trim())) {
             System.out.println("    Please input your missing detail listed below");
-            if (parseInput[0].equalsIgnoreCase("")) {
-                System.out.println("    /ic[NRIC]");
+            if (parseInput[0].equalsIgnoreCase("") || !isNric(parseInput[0])) {
+                System.out.println("    /ic NRIC (Format: S/T [7-digits] [A-Z])");
             }
             if (parseInput[1].equalsIgnoreCase("")) {
-                System.out.println("    /sym[SYMPTOMS]");
+                System.out.println("    /sym SYMPTOMS");
             }
             if (parseInput[2].equalsIgnoreCase("")) {
-                System.out.println("    /diag[DIAGNOSIS]");
+                System.out.println("    /diag DIAGNOSIS");
             }
-            if (parseInput[3].equalsIgnoreCase("")) {
-                System.out.println("    /d[DATE] in dd/mm/yyyy");
+            if (parseInput[3].equalsIgnoreCase("") || !isDate(parseInput[3])) {
+                System.out.println("    /d DATE  (Format: DD/MM/YYYY)");
             }
-            if (parseInput[4].equalsIgnoreCase("")) {
-                System.out.println("    /t[TIME] in HH:MM:SS");
+            if (parseInput[4].equalsIgnoreCase("") || !isTime(parseInput[4])) {
+                System.out.println("    /t TIME (Format: HH:MM)");
             }
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
-                return new IncorrectPatientRecordCommand(TextUi.DIVIDER + "\n    Command has been aborted.\n"
+                return new IncorrectPatientRecordCommand("\n    Command has been aborted.\n"
                         + TextUi.DIVIDER);
             }
             String[] updates;
@@ -119,28 +120,29 @@ public class PatientRecordParser {
                 updates = input.split(" /");
             }
             for (String update : updates) {
-                if (update.trim().startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
-                    parseInput[0] = update.trim().substring(2);
+                if (update.trim().startsWith("ic") && (parseInput[0].equalsIgnoreCase("")
+                        || !isNric(parseInput[0].trim()))) {
+                    parseInput[0] = update.trim().substring(2).toUpperCase().trim();
                 } else if (update.trim().startsWith("sym") && (parseInput[1].equalsIgnoreCase(""))) {
                     parseInput[1] = update.trim().substring(3);
                 } else if (update.trim().startsWith("diag") && parseInput[2].equalsIgnoreCase("")) {
                     parseInput[2] = update.trim().substring(4);
-                } else if (update.trim().startsWith("d") && parseInput[3].equalsIgnoreCase("")) {
+                } else if (update.trim().startsWith("d") && (parseInput[3].equalsIgnoreCase("")
+                        || !isDate(parseInput[3].trim()))) {
                     parseInput[3] = update.trim().substring(1);
-                } else if (update.trim().startsWith("t") && parseInput[4].equalsIgnoreCase("")
-                        && checkTime(update.substring(1).trim())) {
+                } else if (update.trim().startsWith("t") && (parseInput[4].equalsIgnoreCase("")
+                        || !isTime(parseInput[4].trim()))) {
                     parseInput[4] = update.trim().substring(1);
                 }
             }
         }
 
-        boolean userConformation = false;
+        boolean hasConfirmation = false;
         System.out.println(promptConformation(parseInput));
-        while (!userConformation) {
+        while (!hasConfirmation) {
             String conformation = promptUser();
-            //System.out.println(TextUi.DIVIDER);
             if (conformation.equalsIgnoreCase("y")) {
-                userConformation = true;
+                hasConfirmation = true;
             } else if (conformation.equalsIgnoreCase("n")) {
                 return new IncorrectPatientRecordCommand("    The current information is not added.\n"
                         + "    Please add all the details again! Thank you.\n"
@@ -185,8 +187,36 @@ public class PatientRecordParser {
      * @param time details of time
      * @return boolean true if the time format is correct otherwise false
      */
-    static boolean checkTime(String time) {
-        String pattern = "([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])";
+    static boolean isTime(String time) {
+        String pattern = "([01][0-9]|2[0-3]):([0-5][0-9])";
         return time.matches(pattern);
     }
+
+    /**
+     * To check format for date.
+     *
+     * @param date details of date
+     * @return boolean true if the date format is correct otherwise false
+     */
+    static boolean isDate(String date) {
+        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
+        boolean flag = false;
+        if (date.matches(pattern)) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    /**
+     * To check format for nric.
+     *
+     * @param nric details of nric
+     * @return boolean true if the time format is correct otherwise false
+     */
+    static boolean isNric(String nric) {
+        String pattern = "([S-T][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z])";
+        return nric.matches(pattern);
+    }
+
+
 }

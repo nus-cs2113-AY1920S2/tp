@@ -22,7 +22,7 @@ public class DeletePatientCommand extends PatientCommand {
     Level logLevel = Level.INFO;
 
     public DeletePatientCommand(String nric) {
-        this.nric = nric;
+        this.nric = nric.toUpperCase();
     }
 
 
@@ -32,7 +32,7 @@ public class DeletePatientCommand extends PatientCommand {
      * @return y to confirm deletion, n to stop deletion.
      */
     private String getPatientConfirmation() {
-        Scanner in = new Scanner(System.in);
+        Scanner in = HappyPills.scanner;
         String confirm = in.nextLine();
         return confirm;
     }
