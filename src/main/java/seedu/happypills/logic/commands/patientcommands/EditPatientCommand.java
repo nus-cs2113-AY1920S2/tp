@@ -150,7 +150,7 @@ public class EditPatientCommand extends PatientCommand {
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
         }
-        if(content.isEmpty()){
+        if (content.isEmpty()) {
             throw new HappyPillsException("    Please do not leave the field as empty string");
         }
         // assert editPatient != null : "Patient is not in PatientList";
@@ -191,6 +191,7 @@ public class EditPatientCommand extends PatientCommand {
         assert output.length() > 0 : "output message is invalid";
         return output;
     }
+
     /**
      * Check if the String can be converted to Integer.
      *
