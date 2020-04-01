@@ -10,7 +10,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.1.2. Exit program: `exit`](#312-exit-program-exit)        
     * [3.2. General Patient Information Commands](UserGuide-Patient.md) 
     * [3.3. Patient Medical Records Commands](UserGuide-Records.md)    
-    * [3.4. Appointment Scheduling Commands](UserGuide-Appointment.md)
+    * [3.4. Appointment Scheduling Commands](UserGuide-AppointmeFnt.md)
 - [4. Command Summary](#4-command-summary)
 - [5. Useful Links](#5-useful-links)
 
@@ -37,6 +37,18 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
 ## 3. Features
+
+HappyPills have three main features: Patient Details, Patient Records and Appointment Scheduling. 
+
+Patient Details notes down the general details of the patient such as their NRIC, name, phone number, date of birth, blood type and allergies. 
+
+Patient Records are previous visits to the doctors and the outcomes of it including their symptoms, the diagnosis and when the visit occurred. 
+
+Appointment Scheduling helps the users schedule future appointments with their patients. 
+
+These features come together to help users manage their patients' information and give their patients better service by being able to retrieve their patients' information quickly and easily while also being able to note down details of the visit as accurately as possible. 
+
+This section will elaborate more on how to use these features in HappyPills. 
 
 ### Command Format
 - Words in `UPPER_CASE` are the parameters to be supplied by you **e.g.** in `add patient \ic NRIC`, `NRIC` is the input required from you.
@@ -108,7 +120,7 @@ Format: `exit`
 > 
 > ![help](images/Exit.PNG "exit output")
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 ### [3.2. General Patient Information Commands](UserGuide-Patient.md) 
 
@@ -122,7 +134,7 @@ Format: `exit`
 
 **Command** | **Format**
 --------|----------
-Add a patient's information | `add patient /ic [NRIC] /n [NAME] /p [PHONE_NUMBER] /dob [DOB] /b [BLOOD_TYPE] /a [ALLERGIES] /rm [REMARKS]`
+Add a patient's information | `add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]`
 Edit a patient's information |  `edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]`
 list all patients | `list patient`
 Retrieve a patient's information | `get patient NRIC`
@@ -148,10 +160,10 @@ Mark an appointment as done | `done appt APPT_ID`
 List all appointments | `list appt`
 Find an appointment| `find appt NRIC`
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)
 
 ## 5. Useful links:
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
 
- [&#8593; Return to Top](#Table-of-Content)
+ [&#8593; Return to Top](#table-of-content)

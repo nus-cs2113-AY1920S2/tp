@@ -21,13 +21,13 @@ HappyPills helps to store appointment schedules.
 Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
 patient automatically.
  
- ##### Usage example: 
+##### Usage example: 
  
-     add appt /ic[NRIC] /d[date] /t[time] /r[reason]
+     add appt /ic NRIC /d DATE /t TIME /r REASON
          
  **Example:**
      
-    add appt /icS1234567F /d01/02/2020 /t 12:00:00 /rsick
+    add appt /ic S1234567F /d 01/02/2020 /t 12:00:00 /r sick
 
 > ***Expected output:***
 >
@@ -44,9 +44,9 @@ patient automatically.
 Edit information of the appointment with the specified appointmentID(apptID).
  The appointment should belong to the patient with the specified NRIC. 
  
- ##### Usage example: 
+##### Usage example:  
  
-     edit appt [NRIC] [apptID] [Options][editedInput]
+     edit appt NRIC apptID [Options][editedInput]
      Options:
          /d edit date
          /t edit time
@@ -66,9 +66,9 @@ Edit information of the appointment with the specified appointmentID(apptID).
 
 Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
 
-##### Usage example: 
+##### Usage example:  
 
-    delete appt [NRIC] [apptID]
+    delete appt NRIC apptID
     
 **Example:**
 
@@ -85,9 +85,9 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 Mark the appointment with the specified appointmentID(apptID) as done if arrived.
  The appointment should belong to the patient with the specified NRIC. 
  
- ##### Usage example: 
+##### Usage example:  
  
-     done appt [NRIC] [apptID]
+     done appt NRIC apptID
          
  **Example:**
      
@@ -104,7 +104,7 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 List all the existing appointments. This can be used to check for appointmentID
 as used by other commands.
  
- ##### Usage example: 
+##### Usage example:  
  
      list appt
          
@@ -121,9 +121,9 @@ as used by other commands.
 Check all appointments that the patient with the specified NRIC has. This can be used
 to check for the appointmentID used for the other commands.
 
- ##### Usage example: 
+##### Usage example: 
  
-     find appt [NRIC]
+     find appt NRIC
          
  **Example:**
      

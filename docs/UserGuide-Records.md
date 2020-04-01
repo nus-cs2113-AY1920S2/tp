@@ -39,7 +39,7 @@ Add patient's medical records to the database, to support the diagnosis and to j
 >
 
  [&#8593; Return to Top](#table-of-content)
- 
+
 #### 3.3.2. List Patient Records: `list pr`
 
 Displays all the patients record for a particular patient. 
@@ -164,7 +164,6 @@ Delete patient's medical records based on the given NRIC and the index of record
 </table>
 
 > ***Expected output:***
->
 >
 >![PR not found](images/PR/prEmpty.PNG "Delete PR not found")
 
