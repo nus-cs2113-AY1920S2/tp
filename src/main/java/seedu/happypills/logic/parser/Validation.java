@@ -62,4 +62,22 @@ public class Validation {
         String pattern = "(?i)^[STFG]\\d{7}[A-Z]$";
         return  s.matches(pattern);
     }
+
+    /**
+     * Check if the String can be converted to Integer.
+     *
+     * @param input value to check if is integer
+     * @return true if is an integer, false otherwise
+     */
+    public static boolean isInteger(String input) {
+        try {
+            int x = Integer.parseInt(input);
+            if (x < 1) {
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -70,6 +70,11 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         if (editPatientRecord == null) {
             throw new HappyPillsException("    Patient record not found. Please try again.");
         }
+        if (patientRecords.get(nric) == null) {
+            throw new HappyPillsException(PatientRecordTextUi.emptyPatientRecordMessage);
+        } else if (patientRecords.get(nric).size() < index) {
+            throw new HappyPillsException(PatientRecordTextUi.getEmptyPatientRecordList);
+        }
         Boolean output = false;
         String errorMsg = "    Something went wrong, the edit could not be made.\n";
         if (field.equals("/sym")) {

@@ -23,7 +23,7 @@ public class ListPatientRecordCommand extends PatientRecordCommand {
         assert !patientNric.isEmpty() : "No NRIC was provided";
         if (patients.containsKey(patientNric)) {
             if (patientRecords.get(patientNric) == null) {
-                return PatientRecordTextUi.emptyPatientRecordMessage;
+                throw new HappyPillsException(PatientRecordTextUi.emptyPatientRecordMessage);
             }
             return PatientRecordTextUi.getPatientRecordListSuccessMessage(patientRecords.get(patientNric));
         } else {
