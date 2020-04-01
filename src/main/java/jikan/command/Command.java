@@ -21,7 +21,7 @@ public class Command {
     /**
      * Executes the command and returns the result.
      */
-    public void executeCommand(ActivityList activityList) throws EmptyNameException, InvalidTimeFrameException {
+    public void executeCommand(ActivityList activityList) throws EmptyNameException {
     }
 
 

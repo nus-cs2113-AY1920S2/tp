@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
+import java.util.Date;
 
 import static jikan.Jikan.lastShownList;
 
@@ -36,7 +37,7 @@ public class ListCommand extends Command {
      * @param activityList The activity list to search for matching activities.
      */
     @Override
-    public void executeCommand(ActivityList activityList) throws InvalidTimeFrameException {
+    public void executeCommand(ActivityList activityList) {
         // If no time frame is specified, print the entire list
         if (parameters == null) {
             lastShownList.activities.clear();
@@ -47,13 +48,17 @@ public class ListCommand extends Command {
         } else {
             try {
                 listInterval(activityList);
-            } catch (ParseException e) {
-                System.out.println("invalid date.");
+            } catch (DateTimeParseException e) {
+                Ui.printDivider("Please enter a valid date in the format dd/MM/yyyy or yyyy-MM-dd\n"
+                        + "Or use day / week / month to view tasks in the respective time period.");
+            } catch (InvalidTimeFrameException e) {
+                Ui.printDivider("Please enter a valid time frame; the end date must come after the start date.");
             }
         }
     }
 
-    private void listInterval(ActivityList activityList) throws InvalidTimeFrameException, ParseException {
+    private void listInterval(ActivityList activityList)
+            throws InvalidTimeFrameException, DateTimeParseException {
         String[] listInputs;
         listInputs = parameters.split(" ", 2);
 
@@ -112,13 +117,8 @@ public class ListCommand extends Command {
             endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
             break;
         default:
-            try {
-                startDate = LocalDate.parse(listInputs[0], parser);
-            } catch (DateTimeParseException e) {
-                Ui.printDivider("Please enter a valid date in the format dd/MM/yyyy or yyyy-MM-dd\n"
-                        + "Or use day / week / month to view tasks in the respective time period.");
-                return;
-            }
+            startDate = LocalDate.parse(listInputs[0], parser);
+
             if (listInputs.length == 2) {
                 endDate = LocalDate.parse(listInputs[1], parser);
             }

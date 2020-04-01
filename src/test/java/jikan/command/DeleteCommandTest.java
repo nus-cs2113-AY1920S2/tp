@@ -52,7 +52,7 @@ class DeleteCommandTest {
         Command command = new DeleteCommand(parameters);
         try {
             command.executeCommand(activities);
-        } catch (EmptyNameException | InvalidTimeFrameException e) {
+        } catch (EmptyNameException e) {
             System.out.println("Field error.");
         }
 
