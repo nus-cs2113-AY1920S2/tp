@@ -43,7 +43,7 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
             }
             assert filteredTaskList.size() != EMPTY : "make sure there are some tasks in the list";
             deadlines = ListCreator.createTaskListTable(new ArrayList<>(filteredTaskList), true);
-            return new CommandResult(messageTaskSuccessfullyList(ModuleManager.countAllTasks()) + deadlines);
+            return new CommandResult(messageTaskSuccessfullyList(filteredTaskList.size()) + deadlines);
         } catch (IncorrectDirectoryLevelException e) {
             return new CommandResult(ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         } catch (ModuleManager.ModuleNotFoundException e) {
