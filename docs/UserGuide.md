@@ -8,7 +8,7 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `MeetingOrganizer` from [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
+2. Download the .jar file from the latest release of `MeetingOrganizer` [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
 3. Copy the .jar file to an empty folder.
 4. Open Command Prompt and navigate to the folder using ```cd <folder path>```.
 5. Run the .jar file using ```java -jar <.jar file name>```.
