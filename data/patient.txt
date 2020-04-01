@@ -1,0 +1,3 @@
+Alice|S9876543G|99999999|22/09/1989|O-|NIL|NIL
+Eve|S9876543F|91265432|22/05/1999|O-|School|Best Friend with Mallory
+Eve|S9876543F|91265432|22/05/1999|O-|School|Best Friend with Mallory

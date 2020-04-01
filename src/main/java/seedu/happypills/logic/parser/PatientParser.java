@@ -118,16 +118,16 @@ public class PatientParser {
             }
             for (String update : updates) {
                 if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
-                    parseInput[0] = update.trim().substring(1);
+                    parseInput[0] = update.trim().substring(1).trim();
                 } else if (update.trim().startsWith("ic") && parseInput[1].equalsIgnoreCase("")) {
                     parseInput[1] = update.trim().substring(2).toUpperCase();
                 } else if (update.trim().startsWith("p") && (parseInput[2].equalsIgnoreCase("")
                         || !isInteger(parseInput[2].trim()))) {
                     parseInput[2] = update.trim().substring(1);
                 } else if (update.trim().startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
-                    parseInput[3] = update.trim().substring(3);
+                    parseInput[3] = update.trim().substring(3).trim();
                 } else if (update.trim().startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
-                    parseInput[4] = update.trim().substring(1);
+                    parseInput[4] = update.trim().substring(1).toUpperCase();
                 }
             }
         }
