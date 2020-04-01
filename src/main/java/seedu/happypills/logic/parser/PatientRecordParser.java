@@ -90,7 +90,7 @@ public class PatientRecordParser {
         while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
                 || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")
                 || parseInput[4].equalsIgnoreCase("") || !isDate(parseInput[3].trim())
-                || !isNric(parseInput[0]) || !isTime(parseInput[4].trim()) ) {
+                || !isNric(parseInput[0]) || !isTime(parseInput[4].trim())) {
             System.out.println("    Please input your missing detail listed below");
             if (parseInput[0].equalsIgnoreCase("") || !isNric(parseInput[0])) {
                 System.out.println("    /ic NRIC (Format: S/T [7-digits] [A-Z])");
@@ -128,7 +128,7 @@ public class PatientRecordParser {
                 } else if (update.trim().startsWith("diag") && parseInput[2].equalsIgnoreCase("")) {
                     parseInput[2] = update.trim().substring(4);
                 } else if (update.trim().startsWith("d") && (parseInput[3].equalsIgnoreCase("")
-                        || !isDate(parseInput[3].trim())) ) {
+                        || !isDate(parseInput[3].trim()))) {
                     parseInput[3] = update.trim().substring(1);
                 } else if (update.trim().startsWith("t") && (parseInput[4].equalsIgnoreCase("")
                         || !isTime(parseInput[4].trim()))) {
