@@ -150,16 +150,32 @@ public class EditPatientCommand extends PatientCommand {
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
         }
+        if(content.isEmpty()){
+            throw new HappyPillsException("    Please do not leave the field as empty string");
+        }
         // assert editPatient != null : "Patient is not in PatientList";
         if (field.equals("/p")) {
-            output = editPhone(editPatient, content);
+            if (checkPhoneNum(content)) {
+                output = editPhone(editPatient, content);
+            } else {
+                throw new HappyPillsException("    Please ensure that all the phone number is 8 digit");
+            }
         } else if (field.equals("/rm")) {
             output = editRemarks(editPatient, content);
         } else if (field.equals("/a")) {
             output = editAllergies(editPatient, content);
         } else if (field.equals("/dob")) {
-            output = editDob(editPatient, content);
+            if (checkDate(content)) {
+                output = editDob(editPatient, content);
+            } else {
+                throw new HappyPillsException("    Please ensure that the DATE is in DD/MM/YYYY ");
+            }
         } else if (field.equals("/b")) {
+            if (checkType(content)) {
+                output = editBloodType(editPatient, content);
+            } else {
+                throw new HappyPillsException("    Please ensure that the DATE is in [A|B|AB|O][+-] ");
+            }
             output = editBloodType(editPatient, content);
         } else if (field.equals("/n")) {
             output = editName(editPatient, content);
@@ -175,4 +191,50 @@ public class EditPatientCommand extends PatientCommand {
         assert output.length() > 0 : "output message is invalid";
         return output;
     }
+    /**
+     * Check if the String can be converted to Integer.
+     *
+     * @param input value to check if is integer
+     * @return true if is an integer, false otherwise
+     */
+    public static boolean isInteger(String input) {
+        try {
+            int x = Integer.parseInt(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * To check format for nric.
+     *
+     * @param nric details of nric
+     * @return boolean true if the time format is correct otherwise false
+     */
+    static boolean checkType(String nric) {
+        String pattern = "([A|B|AB|O][+-])";
+        return nric.matches(pattern);
+    }
+
+    /**
+     * To check format for phone.
+     *
+     * @param phoneNum details of time
+     * @return boolean true if the time format is correct otherwise false
+     */
+    static boolean checkPhoneNum(String phoneNum) {
+        String pattern = "([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
+        return phoneNum.matches(pattern);
+    }
+
+    static boolean checkDate(String date) {
+        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
+        boolean flag = false;
+        if (date.matches(pattern)) {
+            flag = true;
+        }
+        return flag;
+    }
+
 }
