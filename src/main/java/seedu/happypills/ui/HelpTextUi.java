@@ -166,20 +166,4 @@ public class HelpTextUi extends TextUi {
             + "    Note: appointment details are within the parenthesis [ ]\n"
             + "      done appt [NRIC] [APPT_ID]\n"
             + DIVIDER;
-
-    //unused
-    /**
-     * Displays detailed Help command instruction.
-     *
-     * @return The Help command instruction.
-     */
-    public static String printHelpHelp() {
-        String message = "    To understand more of the program's features, run the following command:\n"
-                + "      help\n"
-                + "    The above command will list down all the commands of the program.\n"
-                + "    For more detailed usage of each command, enter help [COMMAND].\n"
-                + DIVIDER;
-        return message;
-    }
-
 }
