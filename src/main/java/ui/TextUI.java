@@ -130,8 +130,12 @@ public class TextUI {
         }
         out.println();
 
-        for (int i = 0; i < 24; ++i) {
-            out.print(String.format("%04d", (0000 + 100 * i)) + " +-----+-----+-----+-----+-----+-----+-----+");
+        int earliestScheduledTime = getEarliestTime(mySchedule, weeksMoreToView, weekNumber, 47) / 2;
+        int latestScheduledTime = getLatestTime(mySchedule, weeksMoreToView, weekNumber, 0) / 2;
+
+        int counter = 0;
+        for (int i = earliestScheduledTime; i < latestScheduledTime + 1; ++i) {
+            out.print(String.format("%04d", (100 * i)) + " +-----+-----+-----+-----+-----+-----+-----+");
             if (weeksMoreToView == 1) {
                 out.print(" +-----+-----+-----+-----+-----+-----+-----+");
             }
@@ -160,18 +164,49 @@ public class TextUI {
                     out.print("  " + (mySchedule[weekNumber + z - 1][j][2 * i + 1] ? "X" : " ") + "  |");
                 }
 
-
                 if (z < weeksMoreToView) {
                     out.print(" |");
                 }
             }
             out.println();
+            counter = i;
         }
-        out.print("0000" + " +-----+-----+-----+-----+-----+-----+-----+");
+        counter++;
+        out.print(String.format("%04d", (100 * counter)) + " +-----+-----+-----+-----+-----+-----+-----+");
         if (weeksMoreToView == 1) {
             out.print(" +-----+-----+-----+-----+-----+-----+-----+");
         }
         out.println();
+    }
+
+    private static int getLatestTime(Boolean[][][] mySchedule, int weeksMoreToView, int weekNumber, int latestScheduledTime) {
+        for (int z = 0; z <= weeksMoreToView; z++) {
+            for (int j = 0; j < 7; ++j) {
+                for (int i = 0; i < 48; ++i) {
+                    if (mySchedule[weekNumber + z - 1][j][i] && i > latestScheduledTime) {
+                        latestScheduledTime = i;
+                    }
+                }
+            }
+        }
+        return (latestScheduledTime % 2 == 0)? latestScheduledTime : latestScheduledTime - 1;
+    }
+
+    private static int getEarliestTime(Boolean[][][] mySchedule, int weeksMoreToView, int weekNumber, int earliestScheduledTime) {
+        for (int z = 0; z <= weeksMoreToView; z++) {
+            for (int j = 0; j < 7; ++j) {
+                for (int i = 0; i < 48; ++i) {
+                    if (mySchedule[weekNumber + z - 1][j][i] && i < earliestScheduledTime ) {
+                        earliestScheduledTime = i;
+                        break;
+                    }
+                    if (i > earliestScheduledTime) {
+                        break;
+                    }
+                }
+            }
+        }
+        return earliestScheduledTime;
     }
 
     public static void scheduleMeetingMsg() {

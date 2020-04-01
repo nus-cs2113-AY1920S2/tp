@@ -164,6 +164,7 @@ public class MeetingOrganizer {
             try {
                 botResponse(userInputWords, previousUserInput);
                 storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
+                storage.updateMemberListToDisk(myContactList.getContactList());
                 previousUserInput = userInput;
             } catch (MoException e) {
                 TextUI.errorMsg(e);
@@ -177,7 +178,6 @@ public class MeetingOrganizer {
                 TextUI.menuMsg(myContactList.getSize());
             }
         }
-        storage.updateMemberListToDisk(myContactList.getContactList());
         TextUI.exitMsg();
     }
 
