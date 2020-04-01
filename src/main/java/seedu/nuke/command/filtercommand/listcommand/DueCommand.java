@@ -9,20 +9,27 @@ import seedu.nuke.util.DateTime;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
+import static seedu.nuke.parser.Parser.*;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_TIME_SPECIFIER;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 /**
  * <h3>Due Command</h3>
  * A <b>Command</b> to show a filtered <b>Task List</b> to the user based on the <i>keyword</i> provided. The
- * <i>filtered list</i> contains <b>Deadline</b> and <b>Event</b> tasks that have their <i>date</i> <i>on</i>,
- * <i>before</i> or <i>after</i> the specified <i>date</i> provided by the user.
+ * <i>filtered list</i> contains tasks that have their <i>dates</i> <i>on</i>, <i>before</i> or <i>after</i> the
+ * specified <i>date</i> provided by the user.
  * @see Command
  */
 public class DueCommand extends ListCommand {
     public static final String COMMAND_WORD = "due";
-    public static final String FORMAT = "due (on/before/after) <date>";
+    public static final String FORMAT = "due [ on/before/after ] <date> [ -a ]";
+    public static final Pattern REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<invalid>.*)"
+    );
 
     private LocalDate searchDate;
     private String timeSpecifier;
@@ -39,7 +46,7 @@ public class DueCommand extends ListCommand {
      */
     public DueCommand(LocalDate searchDate, String timeSpecifier, boolean isAll) {
         this.searchDate = searchDate;
-        this.timeSpecifier = (timeSpecifier != null) ? timeSpecifier.toLowerCase() : "on";
+        this.timeSpecifier = (timeSpecifier != null) ? timeSpecifier.toLowerCase() : "";
         this.isAll = isAll;
     }
 
@@ -132,6 +139,7 @@ public class DueCommand extends ListCommand {
 
         switch (timeSpecifier) {
 
+        case "":
         case "on":
             filteredTasks = filterDate(allTasks);
             break;
