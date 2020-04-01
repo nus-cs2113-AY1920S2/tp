@@ -43,6 +43,13 @@ public class StartCommand extends Command {
 
             // check if there exists an activity with this name
             String activityName = getActivityName(tagDelimiter,allocateDelimiter);
+
+            if (activityName.length() > 25) {
+                Log.makeInfoLog("Activity name longer than 25 characters");
+                Ui.printDivider("Please input an activity name that is shorter than 25 characters.");
+                return;
+            }
+
             Parser.activityName = activityName;
             int index = activityList.findActivity(activityName);
             if (index != -1) {

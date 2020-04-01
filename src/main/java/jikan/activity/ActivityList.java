@@ -1,6 +1,7 @@
 package jikan.activity;
 
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NameTooLongException;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
 import jikan.storage.StorageHandler;
@@ -157,7 +158,7 @@ public class ActivityList {
      * @param activityList list to save to
      * @throws InvalidTimeFrameException if start time is before end time
      */
-    public void saveActivity(ActivityList activityList) throws InvalidTimeFrameException {
+    public void saveActivity(ActivityList activityList) throws InvalidTimeFrameException, NameTooLongException {
         if (Parser.continuedIndex != -1) {
             Ui.printDivider("Ended: " + Parser.activityName);
             Parser.endTime = LocalDateTime.now();
@@ -201,9 +202,11 @@ public class ActivityList {
                 parseDataLine(dataScanner.nextLine());
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Error: data file not found. Could not load into the current session's task list.");
+            Ui.printDivider("Error: data file not found. Could not load into the current session's task list.");
         } catch (InvalidTimeFrameException e) {
-            System.out.println("Error: Invalid time frame.");
+            Ui.printDivider("Error: Invalid time frame.");
+        } catch (NameTooLongException e) {
+            Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
     }
 
@@ -212,7 +215,7 @@ public class ActivityList {
      *
      * @param s String to parse.
      */
-    private void parseDataLine(String s) throws InvalidTimeFrameException {
+    private void parseDataLine(String s) throws InvalidTimeFrameException, NameTooLongException {
 
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));

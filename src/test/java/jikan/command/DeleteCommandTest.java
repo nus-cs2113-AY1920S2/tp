@@ -4,7 +4,10 @@ import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NameTooLongException;
+import jikan.log.Log;
 import jikan.storage.Storage;
+import jikan.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
@@ -19,7 +22,7 @@ class DeleteCommandTest {
     ActivityList activities = new ActivityList();
     HashSet<String> tags = new HashSet<>();
 
-    void populateActivityList() throws InvalidTimeFrameException {
+    void populateActivityList() throws InvalidTimeFrameException, NameTooLongException {
         activities.storage = new Storage("data/activityList_test.txt");
         try {
             activities.storage.clearFile();
@@ -46,6 +49,9 @@ class DeleteCommandTest {
             populateActivityList();
         } catch (InvalidTimeFrameException e) {
             System.out.println("Invalid time frame.");
+        } catch (NameTooLongException e) {
+            Log.makeInfoLog("Activity name longer than 25 characters");
+            Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
         String parameters = "Activity2";
 

@@ -1,6 +1,7 @@
 package jikan.activity;
 
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NameTooLongException;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -23,6 +24,8 @@ class ActivityTest {
             Duration allocatedTime = Duration.parse("PT0S");
             activity = new Activity("Activity", startTime, endTime, duration, tags, allocatedTime);
         } catch (InvalidTimeFrameException e) {
+            e.printStackTrace();
+        } catch (NameTooLongException e) {
             e.printStackTrace();
         }
     }

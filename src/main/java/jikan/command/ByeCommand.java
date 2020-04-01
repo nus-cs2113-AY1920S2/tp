@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.exception.NameTooLongException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.InvalidTimeFrameException;
@@ -46,7 +47,10 @@ public class ByeCommand extends Command {
             Ui.exitFromApp();
         } catch (InvalidTimeFrameException e) {
             Log.makeInfoLog("End date must be before start date");
-            Ui.printDivider("End date must be before start date.");
+            Ui.printDivider("Error: end date must be before start date.");
+        } catch (NameTooLongException e) {
+            Log.makeInfoLog("Activity name longer than 25 characters");
+            Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
     }
 

@@ -4,8 +4,11 @@ import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
 import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NameTooLongException;
+import jikan.log.Log;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
+import jikan.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -23,7 +26,7 @@ class StartCommandTest {
     ActivityList activities = new ActivityList();
     HashSet<String> tags = new HashSet<>();
 
-    void populateActivityList() throws InvalidTimeFrameException {
+    void populateActivityList() throws InvalidTimeFrameException, NameTooLongException {
         activities.storage = new Storage("data/activityList_test.txt");
         activities.activities.clear();
         try {
@@ -67,6 +70,9 @@ class StartCommandTest {
             command.executeCommand(activities);
         } catch (EmptyNameException | InvalidTimeFrameException e) {
             System.out.println("Field error.");
+        } catch (NameTooLongException e) {
+            Log.makeInfoLog("Activity name longer than 25 characters");
+            Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
     }
 
@@ -84,6 +90,9 @@ class StartCommandTest {
             assertNotNull(Parser.startTime);
         } catch (InvalidTimeFrameException | EmptyNameException e) {
             System.out.println("Field error.");
+        } catch (NameTooLongException e) {
+            Log.makeInfoLog("Activity name longer than 25 characters");
+            Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
     }
 
@@ -101,6 +110,9 @@ class StartCommandTest {
             assertNull(Parser.activityName);
         } catch (InvalidTimeFrameException | EmptyNameException e) {
             System.out.println("Field error.");
+        } catch (NameTooLongException e) {
+            Log.makeInfoLog("Activity name longer than 25 characters");
+            Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
 
     }
