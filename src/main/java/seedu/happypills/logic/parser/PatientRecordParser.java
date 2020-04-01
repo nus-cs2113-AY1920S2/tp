@@ -30,6 +30,9 @@ public class PatientRecordParser {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
                 throw new HappyPillsException("    NRIC of the patient not provided");
             }
+            if (!Validation.isNric(userCommand[2].toUpperCase().trim())) {
+                throw new HappyPillsException("    Invalid nric format.");
+            }
             return new ListPatientRecordCommand(userCommand[2].trim().toUpperCase());
         } else if (userCommand[0].equalsIgnoreCase("add")) {
             if (userCommand.length == 1 || userCommand[1].trim().isEmpty()) {
@@ -41,11 +44,23 @@ public class PatientRecordParser {
                 throw new HappyPillsException("    NRIC of the patient not provided");
             }
             String[] input = userCommand[2].split(" ", 2);
+            if (!Validation.isInteger(input[1].trim())) {
+                throw new HappyPillsException("    Invalid index.");
+            }
+            if (!Validation.isNric(input[0].toUpperCase().trim())) {
+                throw new HappyPillsException("    Invalid nric format.");
+            }
             return new FindPatientRecordCommand(input[0].trim().toUpperCase(), Integer.parseInt(input[1].trim()));
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
             String[] edit = fullCommand.split(" ", 5);
             if (edit.length < 4) {
                 throw new HappyPillsException("    Please input your patient's details correctly.");
+            }
+            if (!Validation.isInteger(edit[3].trim())) {
+                throw new HappyPillsException("    Invalid index.");
+            }
+            if (!Validation.isNric(edit[2].toUpperCase().trim())) {
+                throw new HappyPillsException("    Invalid nric format.");
             }
             return new EditPatientRecordCommand(
                     edit[2].trim().toUpperCase(), Integer.parseInt(edit[3].trim()), edit[4].trim());
@@ -54,6 +69,12 @@ public class PatientRecordParser {
                 throw new HappyPillsException("    NRIC of the patient not provided");
             }
             String[] input = userCommand[2].split(" ", 2);
+            if (!Validation.isInteger(input[1].trim())) {
+                throw new HappyPillsException("    Invalid index.");
+            }
+            if (!Validation.isNric(input[0].toUpperCase().trim())) {
+                throw new HappyPillsException("    Invalid nric format.");
+            }
             return new DeletePatientRecordCommand(input[0].trim().toUpperCase(), Integer.parseInt(input[1].trim()));
         } else {
             throw new HappyPillsException("    Invalid Command.");
