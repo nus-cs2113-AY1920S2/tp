@@ -24,9 +24,10 @@ import java.util.regex.Pattern;
 public class Parser {
 
     private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z/])"
-            + "|i/(?<description>[a-zA-Z\\d ]+[^ipq/]+)"
-            + "|p/(?<price>[\\d*.?\\d* ]+|[^a-zA-Z/.])"
-            + "|q/(?<quantity>[\\d ]+|[^a-zA-Z/.])|$";
+            + "|i/(?<description>[a-zA-Z \\d]+[^ipq/]+)"
+            + "|p/(?<price>[\\s?\\d+\\.?\\da-oqr-zA-OQR-Z]+[^ipq/])"
+            + "|q/(?<quantity>[\\d .a-oqr-zA-OQR-Z]+|[^ipq/])|$";
+
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static Command newCommand;
@@ -438,7 +439,7 @@ public class Parser {
                 LOGGER.log(Level.WARNING, "(Edit command) Rejecting user command, invalid command format entered.");
                 newCommand = new IncorrectCommand(EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT);
             }
-        } catch (NullPointerException npe) {
+        } catch (NullPointerException | NumberFormatException e) {
             newCommand = new IncorrectCommand(EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT);
         }
 
@@ -469,12 +470,15 @@ public class Parser {
      * @param matcher matcher object to match the entire input sequence against the regex pattern.
      * @return an array of the found matches.
      **/
-    private String[] splitArgsForEditCommand(Matcher matcher) {
+    private String[] splitArgsForEditCommand(Matcher matcher) throws NumberFormatException {
 
         String indexOfItem = null;
         String itemDescription = null;
         String itemPrice = null;
         String itemQuantity = null;
+        Double testprice = 0.0; //used to check price in acceptable format
+        int testQuantity = 0; //used to check if quantity is in acceptable format
+
 
         while (matcher.find()) {
 
@@ -488,12 +492,16 @@ public class Parser {
 
             if (matcher.group("price") != null) {
                 itemPrice = matcher.group("price");
+                testprice = Double.parseDouble(itemPrice);
             }
 
             if (matcher.group("quantity") != null) {
                 itemQuantity = matcher.group("quantity");
+                testQuantity = Integer.parseInt(itemQuantity);
+
             }
         }
+
         return new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
     }
 
