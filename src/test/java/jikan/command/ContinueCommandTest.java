@@ -19,11 +19,11 @@ import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ContinueCommandTest {
-    ActivityList activities = new ActivityList();
+    Storage storage = new Storage("data/activityList_test.txt");
+    ActivityList activities = new ActivityList(storage);
     HashSet<String> tags = new HashSet<>();
 
     void populateActivityList() throws InvalidTimeFrameException, NameTooLongException {
-        activities.storage = new Storage("data/activityList_test.txt");
         try {
             activities.storage.clearFile();
         } catch (FileNotFoundException e) {

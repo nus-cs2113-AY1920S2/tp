@@ -104,8 +104,6 @@ public class GoalCommand extends Command {
         }
     }
 
-
-
     /**
      * Creates a new tag file.
      * @param filePath the filepath of the tag file.
