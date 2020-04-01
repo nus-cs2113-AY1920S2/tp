@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author trishaangelica, jiajuinphoon, Shannonwje, kokjoon97, JLoh579
 public class Duke {
 
     private static Budget myBudget = new Budget();
@@ -119,3 +120,4 @@ public class Duke {
     }
 
 }
+//@@author
