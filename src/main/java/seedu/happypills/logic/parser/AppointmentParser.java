@@ -25,25 +25,38 @@ public class AppointmentParser {
      * @throws HappyPillsException throws an exception for invalid commands.
      */
     public static AppointmentCommand parse(String fullCommand) throws HappyPillsException {
-        String[] userCommand = fullCommand.split(" ", 3);
+        String[] userCommand = fullCommand.trim().split(" ", 3);
 
         if (userCommand[0].equalsIgnoreCase("add")) {
             return parseAddCommand(userCommand[2]);
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
-            String [] detailedCommand = userCommand[2].split(" ",3);
-            return new EditAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim(), detailedCommand[2]);
+            String[] detailedCommand = userCommand[2].trim().split(" ", 3);
+            if (detailedCommand.length == 3) {
+                return new EditAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim(),
+                        detailedCommand[2]);
+            } else {
+                throw new HappyPillsException(TextUi.incompleteCommandString(" help edit appt"));
+            }
         } else if (userCommand[0].equalsIgnoreCase("done")) {
-            String [] detailedCommand = userCommand[2].split(" ",2);
-            return new DoneAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim()); // change to done
+            String [] detailedCommand = userCommand[2].trim().split(" ",2);
+            if (detailedCommand.length == 2) {
+                return new DoneAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim());
+            } else {
+                throw new HappyPillsException(TextUi.incompleteCommandString(" help done appt"));
+            }
         } else if (userCommand[0].equalsIgnoreCase("list")) {
             return new ListAppointmentCommand();
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
-            String [] detailedCommand = userCommand[2].split(" ",2);
-            return new DeleteAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim());
+            String [] detailedCommand = userCommand[2].trim().split(" ",2);
+            if (detailedCommand.length == 2) {
+                return new DeleteAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim());
+            } else {
+                throw new HappyPillsException(TextUi.incompleteCommandString("help delete appt"));
+            }
         } else if (userCommand[0].equalsIgnoreCase("find")) {
-            return new FindAppointmentCommand(userCommand[2]); // change to edit
+            return new FindAppointmentCommand(userCommand[2]);
         } else {
-            throw new HappyPillsException("    Invalid Command.");
+            throw new HappyPillsException("    Command is invalid. Please use the help command.");
         }
     }
 
