@@ -1,6 +1,5 @@
 package seedu.happypills.ui;
 
-import javafx.scene.control.SplitPane;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 

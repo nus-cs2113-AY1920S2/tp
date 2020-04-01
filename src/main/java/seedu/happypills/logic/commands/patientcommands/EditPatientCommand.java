@@ -182,7 +182,7 @@ public class EditPatientCommand extends PatientCommand {
             output = editName(editPatient, content);
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
-                    + "\n    enter \"help edit\"");
+                    + "\n    enter \"help edit patient\"");
         }
         try {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH,

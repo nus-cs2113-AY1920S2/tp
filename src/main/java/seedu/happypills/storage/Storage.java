@@ -74,44 +74,6 @@ public class Storage {
     }
 
     /**
-     * Load all items from file and verify parsed content by
-     * overwriting file with objects that can be correctly parsed.
-     *
-     * @param patients Shared map of all patients.
-     * @param appointments Shared map of all appointments.
-     * @return a String to describe load status.
-     */
-    public static String loadFromFile(PatientMap patients, AppointmentMap appointments) {
-        String returnMsg = "\n";
-        try {
-            patients = loadPatientsFromFile(PATIENT_FILEPATH);
-            returnMsg += "    Patient loaded from file.\n";
-        } catch (FileNotFoundException e) {
-            returnMsg += "    Patient file not found.\n";
-        }
-        try {
-            writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
-        } catch (IOException e) {
-            returnMsg = "Adding patient list back to file failed.";
-            return returnMsg;
-        }
-        try {
-            appointments = loadAppointmentFromFile(APPOINTMENT_FILEPATH, patients);
-            returnMsg += "    Appointment loaded from file.\n";
-        } catch (FileNotFoundException e) {
-            returnMsg = "    Appointment file not found.\n";
-        }
-        try {
-            writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
-        } catch (IOException e) {
-            returnMsg = "Adding appointment list back to file failed.";
-            return returnMsg;
-        }
-
-        return returnMsg;
-    }
-
-    /**
      * Read and send file data to parse line by line as string.
      * Returns a list of historical patients patient list
      *
