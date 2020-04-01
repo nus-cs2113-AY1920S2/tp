@@ -15,6 +15,18 @@ public class ListCreator {
     private static final String LIST_DIVIDER = String.format("%s%s%s\n", "+", "-".repeat(98), "+");
     private static final String SEPARATOR = "|";
 
+    public static String createGeneralListTable(ArrayList<String> listToShow) {
+        StringBuilder listTable = new StringBuilder(String.format("%s\n", LIST_DIVIDER));
+
+        for (String listItem : listToShow) {
+            listTable.append(String.format("%s\n", listItem));
+        }
+
+        listTable.append(LIST_DIVIDER);
+        return listTable.toString();
+    }
+
+
     /**
      * Creates a sorted module list table from a list of modules.
      *

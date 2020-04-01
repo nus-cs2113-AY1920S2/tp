@@ -30,24 +30,6 @@ public class DateTime {
     }
 
     /**
-     * Returns the <code>date</code>.
-     *
-     * @return The <code>date</code>
-     */
-    public LocalDate getDate() {
-        return date;
-    }
-
-    /**
-     * Returns the <code>time</code>.
-     *
-     * @return The <code>time</code>
-     */
-    public LocalTime getTime() {
-        return time;
-    }
-
-    /**
      * Checks if datetime values are <b>NOT</b> <code>NULL</code>.
      *
      * @return

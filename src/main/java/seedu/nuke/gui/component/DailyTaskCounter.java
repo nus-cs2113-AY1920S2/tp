@@ -66,7 +66,7 @@ public class DailyTaskCounter {
         for (Task task : taskList) {
             DateTime deadline = task.getDeadline();
             // The task is undone and is due on that date
-            if (deadline != null && deadline.isOn(dateOfDay) && !task.isDone()) {
+            if (deadline.isPresent() && deadline.isOn(dateOfDay) && !task.isDone()) {
                 ++taskCount;
             }
         }
@@ -87,7 +87,7 @@ public class DailyTaskCounter {
         for (Task task : taskList) {
             DateTime deadline = task.getDeadline();
             // The task is undone and is overdue
-            if (deadline != null && deadline.isDue() && !task.isDone()) {
+            if (deadline.isPresent() && deadline.isDue() && !task.isDone()) {
                 ++taskCount;
             }
         }

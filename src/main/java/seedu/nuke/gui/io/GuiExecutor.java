@@ -53,7 +53,7 @@ public class GuiExecutor {
         if (result.getFeedbackToUser().isEmpty()) {
             return;
         }
-        Text feedbackToUser = TextUtil.createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.BLUE);
+        Text feedbackToUser = TextUtil.createText(String.format("%s\n\n", result.getFeedbackToUser()), Color.NAVY);
         consoleScreen.getChildren().add(feedbackToUser);
 
         DirectoryLevel dataType = result.getDirectoryLevel();
@@ -87,11 +87,19 @@ public class GuiExecutor {
             listTableToShow = ListCreator.createFileListTable(fileList);
             break;
 
+        case NONE:
+            if (result.getHelpGuide() == null) {
+                return;
+            }
+            ArrayList<String> helpList = result.getHelpGuide();
+            listTableToShow = ListCreator.createGeneralListTable(helpList);
+            break;
+
         default:
             return;
         }
 
-        Text taskListTable = TextUtil.createText(String.format("%s\n\n", listTableToShow), Color.DEEPSKYBLUE);
+        Text taskListTable = TextUtil.createText(String.format("%s\n\n", listTableToShow), Color.MIDNIGHTBLUE);
         consoleScreen.getChildren().add(taskListTable);
     }
 

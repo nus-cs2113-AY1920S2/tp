@@ -18,7 +18,6 @@ import java.util.Iterator;
  * Contains a Module List and performs operations related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private static ModuleManager moduleManager = null;
     private static Root root;
     private static ArrayList<Module> moduleList;
     private static HashMap<String, String> modulesMap;
@@ -31,6 +30,11 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     public ModuleManager(Root root, HashMap<String, String> modulesMap) {
+        ModuleManager.modulesMap = modulesMap;
+        ModuleManager.root = root;
+    }
+
+    public static void initialise(Root root, HashMap<String, String> modulesMap) {
         ModuleManager.modulesMap = modulesMap;
         ModuleManager.root = root;
     }
