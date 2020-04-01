@@ -88,9 +88,6 @@ public class GoalCommand extends Command {
             if (tagName.isEmpty()) {
                 throw new EmptyTagException();
             }
-            if (delimiter != -1) {
-
-            }
 
         } catch (EmptyTagException | StringIndexOutOfBoundsException e) {
             Ui.printDivider("Tag name cannot be empty!");
