@@ -71,7 +71,7 @@ public class PatientParser {
             } else if (detail.startsWith("dob") && parseInput[3].equalsIgnoreCase("")) {
                 parseInput[3] = detail.substring(3).trim();
             } else if (detail.startsWith("b") && parseInput[4].equalsIgnoreCase("")) {
-                parseInput[4] = detail.substring(1).trim();
+                parseInput[4] = detail.substring(1).trim().toUpperCase();
             } else if (detail.startsWith("a") && parseInput[5].equalsIgnoreCase("NIL")) {
                 parseInput[5] = detail.substring(1).trim();
             } else if (detail.startsWith("rm") && parseInput[6].equalsIgnoreCase("NIL")) {
@@ -84,8 +84,9 @@ public class PatientParser {
 
         while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
                 || parseInput[2].equalsIgnoreCase("") || !checkNric(parseInput[1])
-                || parseInput[3].equalsIgnoreCase("") || !checkPhoneNum(parseInput[2].trim())
-                || !isInteger(parseInput[2].trim()) || parseInput[4].equalsIgnoreCase("")) {
+                || !checkDate(parseInput[3].trim()) || parseInput[3].equalsIgnoreCase("")
+                || !checkPhoneNum(parseInput[2].trim()) || !isInteger(parseInput[2].trim())
+                || parseInput[4].equalsIgnoreCase("") || !checkType(parseInput[4].trim())) {
             System.out.println("    Please input your missing detail listed below");
             if (parseInput[0].equalsIgnoreCase("")) {
                 System.out.println("    /n[NAME]");
@@ -97,10 +98,10 @@ public class PatientParser {
                     || !isInteger(parseInput[2].trim())) {
                 System.out.println("    /p[PHONE] only number and must be 8 digit");
             }
-            if (parseInput[3].equalsIgnoreCase("")) {
-                System.out.println("    /dob[DOB]");
+            if (parseInput[3].equalsIgnoreCase("") || !checkDate(parseInput[3].trim())) {
+                System.out.println("    /dob[DOB] must follow date format: DD/MM/YYYY");
             }
-            if (parseInput[4].equalsIgnoreCase("")) {
+            if (parseInput[4].equalsIgnoreCase("") || !checkType(parseInput[4].trim())) {
                 System.out.println("    /b[BLOOD TYPE]");
             }
             String input = promptUser().trim();
@@ -187,12 +188,38 @@ public class PatientParser {
     /**
      * To check format for nric.
      *
-     * @param nric details of time
+     * @param nric details of nric
      * @return boolean true if the time format is correct otherwise false
      */
     static boolean checkNric(String nric) {
         String pattern = "([S-T][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z])";
         return nric.matches(pattern);
+    }
+
+    /**
+     * To check format for nric.
+     *
+     * @param nric details of nric
+     * @return boolean true if the time format is correct otherwise false
+     */
+    static boolean checkType(String nric) {
+        String pattern = "([A|B|AB|O][+-])";
+        return nric.matches(pattern);
+    }
+
+    /**
+     * To check format for date.
+     *
+     * @param date details of date
+     * @return boolean true if the date format is correct otherwise false
+     */
+    static boolean checkDate(String date) {
+        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
+        boolean flag = false;
+        if (date.matches(pattern)) {
+            flag = true;
+        }
+        return flag;
     }
 
     /**
