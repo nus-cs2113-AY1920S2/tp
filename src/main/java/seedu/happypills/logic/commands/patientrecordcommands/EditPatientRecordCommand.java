@@ -72,7 +72,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         }
         if (patientRecords.get(nric) == null) {
             throw new HappyPillsException(PatientRecordTextUi.emptyPatientRecordMessage);
-        } else if (patientRecords.get(nric).size() < index) {
+        } else if (patientRecords.get(nric).size() <= index) {
             throw new HappyPillsException(PatientRecordTextUi.getEmptyPatientRecordList);
         }
         Boolean output = false;
