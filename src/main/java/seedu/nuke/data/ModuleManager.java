@@ -22,12 +22,12 @@ import java.util.Iterator;
 public class ModuleManager implements Iterable<Module> {
     private static Root root;
     private static ArrayList<Module> moduleList = new ArrayList<>();
-    // private static ArrayList<Task> allTasks;
     private static HashMap<String, String> modulesMap;
 
     private static final String NO_KEYWORD = "";
 
     public ModuleManager() {
+        root = new Root();
         moduleList = new ArrayList<>();
     }
 
@@ -184,7 +184,7 @@ public class ModuleManager implements Iterable<Module> {
         //check duplicate
         if (contains(toAdd.getModuleCode())) {
             throw new DuplicateModuleException();
-        } else if (!modulesMap.containsKey(toAdd.getModuleCode())) {
+        } else if (modulesMap.size() > 0 && !modulesMap.containsKey(toAdd.getModuleCode())) {
             throw new ModuleNotProvidedException();
         } else {
             String moduleTitle = modulesMap.get(toAdd.getModuleCode());

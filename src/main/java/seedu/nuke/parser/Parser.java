@@ -17,6 +17,7 @@ import seedu.nuke.command.editcommand.EditCategoryCommand;
 import seedu.nuke.command.editcommand.EditFileCommand;
 import seedu.nuke.command.editcommand.EditModuleCommand;
 import seedu.nuke.command.editcommand.EditTaskCommand;
+import seedu.nuke.command.editcommand.MarkAsDoneCommand;
 import seedu.nuke.command.filtercommand.FilterCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
@@ -62,12 +63,10 @@ public class Parser {
             Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
     private static final String WHITESPACES = "\\s+";
     private static final String NONE = "";
-    private static final int COMMAND_PARAMETER_MAXIMUM_LIMIT = 2;
-    private static final int COMMAND_WORD_INDEX = 0;
-    private static final int PARAMETER_WORD_INDEX = 1;
 
     private static final String GENERIC_LIST_COMMAND = "ls";
-    private static final String GENERIC_MKDIR_COMMAND = "mkdir";
+    private static final String GENERIC_ADD_COMMAND = "mkdir";
+    private static final String GENERIC_DELETE_COMMAND = "rm";
 
     public static final String MODULE_PREFIX = "-m";
     public static final String CATEGORY_PREFIX = "-c";
@@ -119,65 +118,55 @@ public class Parser {
             case GENERIC_LIST_COMMAND:
                 return prepareGenericListCommand(parameters.trim());
 
-            case GENERIC_MKDIR_COMMAND:
+            case GENERIC_ADD_COMMAND:
                 return prepareGenericAddCommand(parameters);
+
+            case GENERIC_DELETE_COMMAND:
+                return prepareGenericDeleteCommand(parameters);
 
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
-
             case AddCategoryCommand.COMMAND_WORD:
                 return prepareAddCategoryCommand(parameters);
-
             case AddTaskCommand.COMMAND_WORD:
                 return prepareAddTaskCommand(parameters);
-
             case AddFileCommand.COMMAND_WORD:
                 return prepareAddFileCommand(parameters);
-
             case AddTagCommand.COMMAND_WORD:
                 return prepareAddTagCommand(parameters);
-                
+
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, true);
-
             case DeleteCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, true);
-
             case DeleteTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, true);
-
             case DeleteFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, true);
 
             case ListModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, false);
-
             case ListCategoryCommand.COMMAND_WORD:
                 return prepareDeleteAndListCategoryCommand(parameters, false);
-
             case ListTaskCommand.COMMAND_WORD:
                 return prepareDeleteAndListTaskCommand(parameters, false);
-
-            case ListModuleTasksDeadlineCommand.COMMAND_WORD:
-                return new ListModuleTasksDeadlineCommand(parameters.trim());
-
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
-            
+            case ListModuleTasksDeadlineCommand.COMMAND_WORD:
+                return new ListModuleTasksDeadlineCommand(parameters.trim());
             case ListAllTasksDeadlineCommand.COMMAND_WORD:
                 return new ListAllTasksDeadlineCommand();
 
             case EditModuleCommand.COMMAND_WORD:
                 return prepareEditModuleCommand(parameters);
-
             case EditCategoryCommand.COMMAND_WORD:
                 return prepareEditCategoryCommand(parameters);
-
             case EditTaskCommand.COMMAND_WORD:
                 return prepareEditTaskCommand(parameters);
-
             case EditFileCommand.COMMAND_WORD:
                 return prepareEditFileCommand(parameters);
+            case MarkAsDoneCommand.COMMAND_WORD:
+                return prepareMarkAsDoneCommand(parameters);
 
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
@@ -205,6 +194,7 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_PREFIX);
         }
     }
+
 
     /**
      * Prepares the command to change the current directory.
@@ -234,26 +224,41 @@ public class Parser {
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
         case ROOT:
-            if (parameters.length() == 0) {
+            if (parameters.isEmpty()) {
                 return prepareDeleteAndListModuleCommand(parameters, false);
             } else {
                 parameters = " " + MODULE_PREFIX + " " + parameters;
                 return prepareDeleteAndListCategoryCommand(parameters, false);
             }
         case MODULE:
-            if (parameters.length() == 0) {
+            if (parameters.isEmpty()) {
                 return prepareDeleteAndListCategoryCommand(parameters, false);
             } else {
                 parameters = " " + CATEGORY_PREFIX + " " + parameters;
                 return prepareDeleteAndListTaskCommand(parameters, false);
             }
         case CATEGORY:
-            return prepareDeleteAndListTaskCommand(parameters, false);
+            if (parameters.isEmpty()) {
+                return prepareDeleteAndListTaskCommand(parameters, false);
+            } else {
+                parameters = " " + TASK_PREFIX + " " + parameters;
+                return prepareDeleteAndListFileCommand(parameters, false);
+            }
+        case TASK:
+            return prepareDeleteAndListFileCommand(parameters, false);
         default:
-            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 
+    /**
+     * Prepare the command to add the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
     private Command prepareGenericAddCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
@@ -263,8 +268,34 @@ public class Parser {
             return prepareAddCategoryCommand(parameters);
         case CATEGORY:
             return prepareAddTaskCommand(parameters);
+        case TASK:
+            return prepareAddFileCommand(parameters);
         default:
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL + HelpCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Prepare the command to delete the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericDeleteCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareDeleteAndListModuleCommand(parameters, true);
+        case MODULE:
+            return prepareDeleteAndListCategoryCommand(parameters, true);
+        case CATEGORY:
+            return prepareDeleteAndListTaskCommand(parameters, true);
+        case TASK:
+            return prepareDeleteAndListFileCommand(parameters, true);
+        default:
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL + HelpCommand.MESSAGE_USAGE);
         }
     }
 
@@ -659,6 +690,18 @@ public class Parser {
         return new EditFileCommand(oldFileName, moduleCode, categoryName, taskDescription, newFileName);
     }
 
+    private Command prepareMarkAsDoneCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = MarkAsDoneCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX);
+
+        String taskDescription = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+
+        return new MarkAsDoneCommand(moduleCode, categoryName, taskDescription);
+    }
+
     /* Miscellaneous Commands */
 
     /**
@@ -682,11 +725,6 @@ public class Parser {
         return new OpenFileCommand(moduleCode, categoryName, taskDescription, fileName);
     }
 
-
-
-
-
-
     /**
      * Checks if the priority is between 0 and 100 inclusive.
      *
@@ -696,7 +734,7 @@ public class Parser {
      *  <code>TRUE</code> if the priority is within range, or <code>FALSE</code> otherwise
      */
     private boolean isPriorityWithinRange(int priority) {
-        return priority >= 0 && priority <= 100;
+        return priority >= 0 && priority <= 20;
     }
 
     /**
@@ -795,7 +833,7 @@ public class Parser {
         }
         return true;
     }
-    
+
     /**
      * Parses the input as a confirmation status to a confirmation prompt for the user, and prepares the
      * corresponding command.

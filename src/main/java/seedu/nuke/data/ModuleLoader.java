@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class ModuleLoader {
         String jsonStr;
         jsonStr = loadJsonStringFromFile(dataFileName);
         List<DummyModule> moduleList = JSON.parseArray(jsonStr, DummyModule.class);// extractModules(jsonStr);
+        if (moduleList == null) {
+            return new HashMap<String, String>();
+        }
         HashMap<String, String> modulesMap = convertToHashMap(moduleList);
         return modulesMap;
     }
@@ -76,7 +80,11 @@ public class ModuleLoader {
         try {
             URL url = new URL(filePath); // create URL
             URLConnection urlConn = url.openConnection(); // try to connect and get the status code
-            urlConn.connect();
+            try {
+                urlConn.connect();
+            } catch (UnknownHostException e) {
+                return "";
+            }
             HttpURLConnection httpConn = (HttpURLConnection) urlConn;
             httpResult = httpConn.getResponseCode();
             if (httpResult != HttpURLConnection.HTTP_OK) {
