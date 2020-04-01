@@ -4,7 +4,7 @@
           /    Y    \  ___/\  ___/|  | |  |   |  \/ /_/  > /    |    \  | \/ /_/  > __ \|   |  \  |/    /\  ___/|  | \/          
           \____|__  /\___  >\___  >__| |__|___|  /\___  /  \_______  /__ |  \___  (____  /___|  /__/_____ \\___  >__|             
                   \/     \/     \/             \//_____/           \/     /_____/     \/     \/         \/    \/                 
-There are no previous records of meetings, let's create a new one!
+There are no previous records, let's create a new one!
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
