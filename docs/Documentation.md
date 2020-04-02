@@ -19,7 +19,10 @@ own diagrams.
 
 ### 4. Publishing Documentation
 1. Push the new documents to your own repository on github
-2. Make a pull request to [here](https://github.com/AY1920S2-CS2113T-M16-1/tp) to request for changes to be made to the 
-documentation
+
+2. Make a pull request to [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/pulls) to request for changes to be made to the 
+documentation. (Click [here](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request))
+to learn how to make a pull request.
+
 3. The moderators will review your change and make a decision if they want to use your changes
 

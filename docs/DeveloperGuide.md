@@ -824,5 +824,5 @@ Target user profile:
 3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
 
 ### 5.5 Appendix E: Documentation
-Refer to [here]()
+Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
 [Back to Top](#)
