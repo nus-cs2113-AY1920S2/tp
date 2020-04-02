@@ -6,7 +6,7 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
 2. [Quick Start](#quick-start)
 3. [Features](#features)
     1. [Command Format](#command-format)
-        1. [Asking for help with valid commands : `help`](`help`-command)
+        1. [Asking for help with valid commands : `help`](#`help`-command)
         2. [Viewing articles or jobs : `view`](#viewing-articles-or-jobs----view-)
         3. [Saving an article or job: `save `](#saving-an-article-or-job---save--)
         4. [Creating an `article`, `job`, or `note`: `create`](#creating-an--article----job---or--note----create-)
