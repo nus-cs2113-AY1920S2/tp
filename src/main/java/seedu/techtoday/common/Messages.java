@@ -55,4 +55,14 @@ public class Messages {
         System.out.println("\n");
     }
 
+    /**
+     * Prints Exception Message when addInfo Command is incorrect.
+     * @param s - Message to be printed in the center.
+     */
+    public static void printAddInfoException(String s) {
+        System.out.println("addinfo should be of the following form: \n");
+        Messages.printInCenter(s);
+        Messages.printStraightLine();
+    }
+
 }

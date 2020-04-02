@@ -8,7 +8,7 @@ public class CommonMethods {
      * @param longer - String that can possibly be turned into an long type.
      * @return - Boolean value isValidInteger.
      */
-    public static boolean isLong(String longer) {
+    public static boolean checkIsLong(String longer) {
         boolean isValidInt = false;
         try {
             Long.parseLong(longer);
@@ -17,5 +17,20 @@ public class CommonMethods {
             // s is not a long type
         }
         return isValidInt;
+    }
+
+    /**
+     * Returns upto the first 100 characters of a sting.
+     * @param string - String that is to be formatted.
+     * @return - String that is reduced in size.
+     */
+    public static String returnUptoNcharacters(String string) {
+        String upToNCharacters;
+        if (string.length() <= 100) {
+            upToNCharacters = string;
+        } else {
+            upToNCharacters = string.substring(0, Math.min(string.length(), 100)) + "...";
+        }
+        return upToNCharacters;
     }
 }

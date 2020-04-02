@@ -8,6 +8,6 @@ public class Helper {
     /** Executes the printing of the help manual. */
     public static void execute() {
         Messages.printCommand();
-        System.out.println(Messages.SPLIT_LINE);
+        Messages.printStraightLine();
     }
 }

@@ -15,7 +15,7 @@ public class JobsCreator {
     public static Job rawToProcessedJob(JSONObject json) {
         String title = json.get("title").toString();
         String timeStamp = json.get("time").toString();
-        assert (CommonMethods.isLong(timeStamp)) : "Timestamp should be of long type";
+        assert (CommonMethods.checkIsLong(timeStamp)) : "Timestamp should be of long type";
         String text;
         try {
             text = json.get("text").toString();

@@ -4,9 +4,11 @@ import seedu.techtoday.api.apiviewjobs.JsonJobsReader;
 import seedu.techtoday.api.apiviewnews.JsonNewsReader;
 import seedu.techtoday.articlelist.ArticleListPrinter;
 import seedu.techtoday.articlelist.SavedArticleList;
+import seedu.techtoday.articlelist.ViewedArticleList;
 import seedu.techtoday.common.Messages;
 import seedu.techtoday.joblist.JobListPrinter;
 import seedu.techtoday.joblist.SavedJobList;
+import seedu.techtoday.joblist.ViewedJobList;
 import seedu.techtoday.storage.InBuiltArticleListGenerator;
 import seedu.techtoday.storage.InBuiltJobListGenerator;
 
@@ -30,7 +32,7 @@ public class InformationViewer {
                     System.out.println("Your device is not connected to the internet, "
                             + "we will load pre-existing jobs");
                     InBuiltJobListGenerator.execute();
-                    JobListPrinter.execute(SavedJobList.savedJobList);
+                    JobListPrinter.execute(ViewedJobList.viewedJobList);
                 }
             } else if (type.equals("article")) {
                 try {
@@ -39,18 +41,16 @@ public class InformationViewer {
                     System.out.println("Your device is not connected to the internet, "
                             + "we will load pre-existing articles \n");
                     InBuiltArticleListGenerator.execute();
-                    ArticleListPrinter.execute(SavedArticleList.savedArticleList);
+                    ArticleListPrinter.execute(ViewedArticleList.viewedArticleList);
                 }
             } else {
                 System.out.print("Sorry! You can only view article/job! "
                         + "Your command format is incorrect. Try again \n");
                 return;
             }
-            return;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("View command is incorrect. It should be of the following form: \n");
             Messages.printInCenter("1. view [article / job]");
-            return;
         }
     }
 }

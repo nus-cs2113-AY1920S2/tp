@@ -49,45 +49,81 @@ public class InformationAdder {
             String extract = userResponse.split(" ", 4)[3];
             switch (type) {
             case "article": {
-                Article article = SavedArticleList.savedArticleList.get(index);
-                article.setExtract(article, extract);
-                System.out.println("Done, the article description now looks like the following \n");
-                ArticlePrinter.printIsolatedArticle(article);
-                Messages.printStraightLine();
+                addInfoToArticle(index, extract);
                 break;
             }
             case "job": {
-                Job job = SavedJobList.savedJobList.get(index);
-                System.out.println("Done, the job description now looks like the following \n");
-                job.setExtract(job, extract);
-                JobPrinter.printIsolatedJob(job);
-                Messages.printStraightLine();
+                addInfoToJob(index, extract);
                 break;
             }
             case "note": {
-                Note note = SavedNoteList.savedNoteList.get(index);
-                System.out.println("Done, the note description now looks like the following \n");
-                note.setExtract(note, extract);
-                NotePrinter.printIsolatedNote(note);
-                Messages.printStraightLine();
+                addInfoToNote(index, extract);
                 break;
             }
             default: {
-                System.out.println("addinfo should be of the following form: \n");
-                Messages.printInCenter("5. addinfo [article / job / note] [index number] [extract]");
-                Messages.printStraightLine();
+                Messages.printAddInfoException(" addinfo [article / job / note] INDEX_NUMBER EXTRACT");
             }
             }
             LOGGER.log(Level.INFO, "\n Successful \n");
         } catch (IndexOutOfBoundsException e) {
             LOGGER.log(Level.INFO, "\n Index out of bounds for Information Adder. \n");
-            System.out.println("Sorry! You can only add extract to article/job/note with valid index number! "
-                    + "Your command format is incorrect. Try again ");
-            Messages.printStraightLine();
+            Messages.printAddInfoException(" addinfo [article / job / note] INDEX_NUMBER EXTRACT");
         } catch (NumberFormatException e) {
             LOGGER.log(Level.INFO, "\n Incorrect format alltogether for Information Adder.. \n");
-            System.out.println("Sorry! Incorrect command to add extract to "
-                    + "article/job/note with valid index number!");
+            Messages.printAddInfoException(" addinfo [article / job / note] INDEX_NUMBER EXTRACT");
+        }
+    }
+
+    /**
+     * Adds extract to an existing Note.
+     * @param index - Index of the article in the note list.
+     * @param extract - Extract to be added.
+     */
+    public static void addInfoToNote(int index, String extract) {
+        try {
+            Note note = SavedNoteList.savedNoteList.get(index);
+            System.out.println("Done, the note description now looks like the following \n");
+            note.setExtract(note, extract);
+            NotePrinter.printIsolatedNote(note);
+            Messages.printStraightLine();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Sorry, Index number is incorrect!");
+            Messages.printStraightLine();
+        }
+    }
+
+    /**
+     * Adds extract to an existing job.
+     * @param index - Index of the article in the job list.
+     * @param extract - Extract to be added.
+     */
+    public static void addInfoToJob(int index, String extract) {
+        try {
+            Job job = SavedJobList.savedJobList.get(index);
+            System.out.println("Done, the job description now looks like the following \n");
+            job.setExtract(job, extract);
+            JobPrinter.printIsolatedJob(job);
+            Messages.printStraightLine();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Sorry, Index number is incorrect!");
+            Messages.printStraightLine();
+        }
+    }
+
+    /**
+     * Adds extract to an existing article.
+     * @param index - Index of the article in the article list.
+     * @param extract - Extract to be added.
+     */
+    public static void addInfoToArticle(int index, String extract) {
+        try {
+            Article article = SavedArticleList.savedArticleList.get(index);
+            article.setExtract(article, extract);
+            System.out.println("Done, the article description now looks like the following \n");
+            ArticlePrinter.printIsolatedArticle(article);
+            Messages.printStraightLine();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Sorry, Index number is incorrect!");
             Messages.printStraightLine();
         }
     }

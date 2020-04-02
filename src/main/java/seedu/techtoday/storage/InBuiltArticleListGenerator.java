@@ -1,6 +1,7 @@
 package seedu.techtoday.storage;
 
 import seedu.techtoday.articlelist.SavedArticleList;
+import seedu.techtoday.articlelist.ViewedArticleList;
 import seedu.techtoday.objects.Article;
 import seedu.techtoday.articlelist.ArticleAdder;
 
@@ -51,11 +52,11 @@ public class InBuiltArticleListGenerator {
         Article article6 = new Article(title6, url6, "default");
         article6.setTime(timeStampToday);
 
-        ArticleAdder.execute(SavedArticleList.savedArticleList, article1);
-        ArticleAdder.execute(SavedArticleList.savedArticleList, article2);
-        ArticleAdder.execute(SavedArticleList.savedArticleList, article3);
-        ArticleAdder.execute(SavedArticleList.savedArticleList, article4);
-        ArticleAdder.execute(SavedArticleList.savedArticleList, article5);
-        ArticleAdder.execute(SavedArticleList.savedArticleList, article6);
+        ArticleAdder.execute(ViewedArticleList.viewedArticleList, article1);
+        ArticleAdder.execute(ViewedArticleList.viewedArticleList, article2);
+        ArticleAdder.execute(ViewedArticleList.viewedArticleList, article3);
+        ArticleAdder.execute(ViewedArticleList.viewedArticleList, article4);
+        ArticleAdder.execute(ViewedArticleList.viewedArticleList, article5);
+        ArticleAdder.execute(ViewedArticleList.viewedArticleList, article6);
     }
 }
