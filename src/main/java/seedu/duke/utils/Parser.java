@@ -23,10 +23,11 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z/])"
-            + "|i/(?<description>[a-zA-Z ]+[^ipq/]+)"
-            + "|p/(?<price>[\\d*.?\\d* ]+|[^a-zA-Z/])"
-            + "|q/(?<quantity>[\\d ]+|[^a-zA-Z/.])|$";
+    private static final String regex = "^(?<index>[ \\d]+[^a-zA-Z\\/])"
+                + "|i\\/(?<description>[a-zA-Z  \\d]+[^ipq\\/\\n]+)"
+                + "|p\\/(?<price>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipqIPQ\\/\\n])+"
+                + "|q\\/(?<quantity>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipqIPQ\\/])|$;";
+
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static Command newCommand;
@@ -438,7 +439,7 @@ public class Parser {
                 LOGGER.log(Level.WARNING, "(Edit command) Rejecting user command, invalid command format entered.");
                 newCommand = new IncorrectCommand(EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT);
             }
-        } catch (NullPointerException npe) {
+        } catch (NullPointerException | NumberFormatException e) {
             newCommand = new IncorrectCommand(EditCommand.MESSAGE_FAILURE_INCORRECT_FORMAT);
         }
 
@@ -476,24 +477,30 @@ public class Parser {
         String itemPrice = null;
         String itemQuantity = null;
 
+
         while (matcher.find()) {
 
             if (matcher.group("index") != null) {
-                indexOfItem = matcher.group("index");
+                indexOfItem = matcher.group("index").trim();
             }
 
             if (matcher.group("description") != null) {
-                itemDescription = matcher.group("description");
+                itemDescription = matcher.group("description").trim();
             }
 
             if (matcher.group("price") != null) {
-                itemPrice = matcher.group("price");
+                itemPrice = matcher.group("price").trim();
             }
 
             if (matcher.group("quantity") != null) {
-                itemQuantity = matcher.group("quantity");
+                if (matcher.group(0).contains("-")) {
+                    throw new NumberFormatException();
+                } else {
+                    itemQuantity = matcher.group("quantity").trim();
+                }
             }
         }
+
         return new String[]{indexOfItem, itemDescription, itemPrice, itemQuantity};
     }
 
@@ -531,7 +538,9 @@ public class Parser {
 
         if (pricePresent) {
             if (arrToCheck[2] != null) {
-                validPrice = true;
+                if (Double.parseDouble(arrToCheck[2]) > 0) {
+                    validPrice = true;
+                }
             }
         }
         if (!pricePresent) {
@@ -542,7 +551,9 @@ public class Parser {
 
         if (quantityPresent) {
             if (arrToCheck[3] != null) {
-                validQuantity = true;
+                if (Integer.parseInt(arrToCheck[3]) > 0) {
+                    validQuantity = true;
+                }
             }
         }
         if (!quantityPresent) {
