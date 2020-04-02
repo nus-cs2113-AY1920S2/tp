@@ -37,6 +37,8 @@ public class CalculateCaloriesCommand extends Command {
 
     private boolean isInvalidDate;
 
+    private boolean isCircle = false;
+
     /**
      * Constructs the Command object.
      * @param command the command prompt entered by the user.
@@ -105,6 +107,11 @@ public class CalculateCaloriesCommand extends Command {
             firstDay = Weekday.valueOf(this.begin);
             lastDay = Weekday.valueOf(this.end);
 
+            if (lastDay.getIndex() < firstDay.getIndex()) {
+                lastDay = Weekday.valueOf("SUNDAY");
+                isCircle = true;
+            }
+
             for (Weekday day : Weekday.values()) {
                 int curIndex = day.getIndex();
                 if (curIndex >= firstDay.getIndex() && curIndex <= lastDay.getIndex()) {
@@ -134,7 +141,11 @@ public class CalculateCaloriesCommand extends Command {
         } else if (this.isInvalidDate) {
             this.result = MessageBank.INVALID_DATE_MESSAGE;
         } else {
-            this.result = MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.",sum);
+            if (isCircle) {
+                this.result = String.format("%s is ahead of %s, so only calories from %s to SUNDAY is calculated",
+                        this.end, this.begin, this.begin) + System.lineSeparator();
+            }
+            this.result += MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.",sum);
         }
     }
 }

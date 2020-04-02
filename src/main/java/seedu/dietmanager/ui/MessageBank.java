@@ -70,7 +70,7 @@ public class MessageBank {
 
     public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
 
-    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid format.\n";
+    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid calories info.\n";
 
     public static String CALORIES_MESSAGE = "Total calculable calories intake for the entire day: ";
 
@@ -96,4 +96,6 @@ public class MessageBank {
 
     public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}! "
             + "Either uppercase or lowercase is supported!";
+
+    public static String SPLIT_LINE = "----------------------------------------------------------------";
 }

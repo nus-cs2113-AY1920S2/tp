@@ -75,7 +75,7 @@ public class Parser {
 
     public static String[] parseDescription(String description, int argumentsRequired) throws InvalidFormatException,
             NullPointerException {
-        String[] descriptionArray = description.trim().split(" ", argumentsRequired);
+        String[] descriptionArray = description.trim().split("\\s+", argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }
