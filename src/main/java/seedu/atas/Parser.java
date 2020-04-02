@@ -156,8 +156,8 @@ public class Parser {
             return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
                     capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE));
         }
-        String taskType = matcher.group("taskType");
-        String taskName = matcher.group("name");
+        String taskType = matcher.group("taskType").toLowerCase().trim();
+        String taskName = matcher.group("name").trim();
         return new SearchCommand(taskName, taskType, null);
     }
 
@@ -167,9 +167,9 @@ public class Parser {
             return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
                     capitalize(SearchCommand.dCOMMAND_WORD), SearchCommand.dCOMMAND_USAGE));
         }
-        String taskType = matcher.group("taskType");
-        String taskName = matcher.group("taskName");
-        String stringDate = matcher.group("dateTime");
+        String taskType = matcher.group("taskType").toLowerCase().trim();
+        String taskName = matcher.group("taskName").trim();
+        String stringDate = matcher.group("dateTime").trim();
         LocalDate date;
         try {
             date = LocalDate.parse(stringDate, INPUT_DATE_FORMAT);
