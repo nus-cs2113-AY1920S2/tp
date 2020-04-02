@@ -31,7 +31,7 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
         if (patients.containsKey(patientNric)) {
             if (patientRecordMap.get(patientNric) == null) {
                 throw new HappyPillsException(PatientRecordTextUi.emptyPatientRecordMessage);
-            } else if (patientRecordMap.get(patientNric).size() < index) {
+            } else if (patientRecordMap.get(patientNric).size() <= index) {
                 throw new HappyPillsException(PatientRecordTextUi.getEmptyPatientRecordList);
             }
             return PatientRecordTextUi.deletePatientRecordSuccessMessage(patientRecordMap, patientNric, index);
