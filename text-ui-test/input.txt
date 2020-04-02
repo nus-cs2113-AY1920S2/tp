@@ -23,4 +23,5 @@ delete id/CS1010
 delete id/GET1002
 view
 view /mp
+add id/CS9999 n/hello mc/4 pre/CS9999
 bye
