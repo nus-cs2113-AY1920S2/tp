@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 /**
  * Displays the shopping list, cost of items, and budget details.
  */
-public class ListCommand extends Command {
+public class DisplayCommand extends Command {
 
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 

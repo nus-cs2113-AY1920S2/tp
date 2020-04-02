@@ -1,7 +1,6 @@
 # SHOCO v2.0 - User Guide
 
-&nbsp;
-
+### Table of Contents
 * **[1. Introduction](#introduction)**
 * **[2. Quick Start](#quick-start)**
 * **[3. Features](#features)**
@@ -11,7 +10,7 @@
   * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
   * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
-  * [3.7 Display list and budget details: `DISPLAY`](#display-list-and-budget-details-display)
+  * [3.7 Displaying list and budget details: `DISPLAY`](#displaying-list-and-budget-details-display)
   * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
   * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
   * [3.10 Finding an item: `FIND`](#finding-an-item-find)
@@ -21,9 +20,8 @@
 * **[5. FAQ](#faq)**
 * **[6. Command Summary](#command-summary)**
 
-
 &nbsp;
-
+<!-- @@author kokjoon97 -->
 ## Introduction
 
 Have you ever encountered the problem of having to make multiple trips to the supermarket
@@ -37,10 +35,10 @@ SHOCO is a command-line interface (CLI) application that allows you to
 manage and plan your shopping list and budget. With better organisation and also a
 budget tracker, we are here to enhance your grocery-shopping experience and make the woes of
 grocery shopping disappear.
-
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
 
@@ -50,9 +48,9 @@ grocery shopping disappear.
    `java -jar SHOCO.jar`
 4. You are now all set to plan your shopping list!
 &nbsp;
+<!-- @@author -->
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
-
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ## Features 
 
@@ -62,15 +60,20 @@ grocery shopping disappear.
 
 * Items in square brackets are *optional* and you can omit them. 
   * e.g `EDIT 1 [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]` can be used as `EDIT 1 i/apple p/4.00` or as `EDIT 1 i/apple`.
-  
+<!-- @@author kokjoon97 -->
 * All command words are case-sensitive and you should always use uppercase.
   * e.g `ADD` in `ADD i/DESCRIPTION` consists of only uppercase letters.
   
-* You can supply parameters for the `ADD` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order. 
-However, note that for the `EDIT` command, the delimiters (i.e. `i/`, `q/` and `p/`) should come in alphabetical order.
-  * e.g `EDIT i/DESCRIPTION p/PRICE` is acceptable but `EDIT p/PRICE i/DESCRIPTION` is not.
-
+* You can supply parameters for the `ADD` and `EDIT` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order.
+  * e.g `ADD i/apple q/5` **AND** `ADD q/5 i/apple` should both produce the same result.
+  
+* The keyword for the `FIND` command is case-insensitive.
+  * e.g If you have an item named "apple" in the list, both `FIND APPLE` **AND** `FIND apple` will display this
+  entry to the user.
+<!-- @@author -->
 &nbsp;
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -82,9 +85,11 @@ Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * The `DESCRIPTION` must exist.
 * The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
-* At least one of two parameters (price/quantity) must be present.
-* i/, p/, q/ delimiters must be in **alphabetical** order.
+* `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
+  respective values or omit them. The system will set the price and quantity to 
+  the default values `0.0` and `1` 
 * note that you can rearrange the delimiters (more will shown in the example.)
+
 Example of usage: 
 
 1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
@@ -99,7 +104,8 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide"> &#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide"> &#129053; back to top</a></b>
+<!-- @@author trishaangelica -->
 
 ***
 
@@ -111,11 +117,11 @@ Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list.
 * The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
-* The `[PRICE]` must be in **numerical** form (decimal form accepted).
-* At least one of three parameters (description/price/quantity) must be present.
-* i/, p/, q/ delimiters must be in **alphabetical** order.
+* The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
+* **At least one** of the three parameters (description/price/quantity) must be present in the command.
+* i/, p/, q/ delimiters can be in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
-Example of usage: 
+Examples of usage: 
 
 1. `EDIT 3 i/potato p/5.00 q/3`
     * Edits the description, price and quantity of the 3rd item in the shopping list
@@ -129,10 +135,11 @@ Example of usage:
     
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<!-- @@author -->
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Deleting an item: `DEL`
 Removes an item from the list at the specified index.
 
@@ -144,10 +151,10 @@ Format: `DEL INDEX`
 Example of usage: 
 
 `DEL 3`
-
+<!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -158,7 +165,7 @@ Format: `CLEAR`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -176,7 +183,7 @@ Example of the usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -194,36 +201,36 @@ Example of the usage:
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
-### Display list and budget details: `DISPLAY`
+### Displaying list and budget details: `DISPLAY`
 Shows the shopping list, budget, cost of the items and the remaining budget.
 
 Format: `DISPLAY` 
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Setting a budget: `SET`
 Sets a budget for the user.
 
 Format: `SET b/AMOUNT`
 
-* The `AMOUNT` can be any double that is between 0 to 5000.
+* The `AMOUNT` can be any decimal number that is between 0 to 5000.
 * The `b/` substring should be present in the command.  
 
 Example of usage: 
 
 `SET b/3.00`
-
+<!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -234,10 +241,10 @@ Format: `RES`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author kokjoon97 -->
 ### Finding an item: `FIND`
 Filters the shopping list according to a keyword specified by the user.
 
@@ -249,10 +256,10 @@ Format: `FIND KEYWORD`
 Example of usage: 
 
 `FIND apple`
-
+<!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -263,7 +270,7 @@ Format: `HELP`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 
 ***
@@ -276,19 +283,19 @@ Format: `BYE`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
 &nbsp;
-
+<!-- @@author kokjoon97 -->
 ## Additional information
 
 ### 1. Loading and saving your shopping list
 
-All of the information stored in your shopping list is saved to a JSON file after you
-exit the application. This data is also retrieved from the same JSON file the next time you boot up
-Shoco. There is nothing that you have to do as this is an automatic process.
+All your shopping list and budget data are saved to JSON files after you
+exit the application. This data is also retrieved from the same JSON files the next time you boot up
+Shoco. No further action is required from you as this is an automatic process.
 
 ### 2. Automated budget tracker
 
@@ -296,24 +303,36 @@ When the total cost of the items in your shopping list exceeds the stored budget
 displayed which states by how much you have overrun your current budget. This message will only
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
+<!-- @@author -->
 
+&nbsp;
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+
+
+&nbsp;
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: Install the app in the other computer and replace the empty data file it creates with the file 
-that contains the data of your previous SHOCO shopping list.
+
+**A**: Simply transfer the JSON files that contain your SHOCO data onto the new computer and place them in the
+folder that contains the SHOCO app. If the folder already has the JSON files, replace them.
+
+<!-- @@author kokjoon97 -->
 
 **Q**: Is it possible to restore a list that I have deleted?
 
 **A**: Unfortunately, we are still working on this feature and there is no such functionality at this
-point in time. It is however possible to manually backup the shoppinglist.json file
+point in time. It is however, possible to manually backup the `shoppinglist.json` file
 from time to time so that if you unintentionally cleared your list, you can always replace the empty
-shoppinglist.json file with your backed up version.
+`shoppinglist.json` file with your backed up version.
+
+<!-- @@author -->
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -328,12 +347,11 @@ shoppinglist.json file with your backed up version.
 * Un-mark item `UNMARK INDEX`
 * Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
-* Reset Budget `RES`
+* Reset budget `RES`
 * Find item `FIND KEYWORD`
 * View help `HELP`
 * Exit program `BYE`
 
 &nbsp;
 
-<b><a href="#shoco-v10---user-guide">&#129053; back to top</a></b>
-
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
