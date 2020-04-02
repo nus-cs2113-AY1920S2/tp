@@ -23,10 +23,10 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private static final String regex = "^(?<index>[\\d ]+[^a-zA-Z\\/])"
-                + "|i\\/(?<description>[a-zA-Z \\d]+[^ipq\\/\\n]+)"
-                + "|p\\/(?<price>[\\d .a-hj-or-zA-OR-Z]+|[^ipq\\/\\n])+"
-                + "|q\\/(?<quantity>[\\d .a-or-zA-OR-Z]+|[^ipq\\/])|$";
+    private static final String regex = "^(?<index>[ \\d]+[^a-zA-Z\\/])"
+                + "|i\\/(?<description>[a-zA-Z  \\d]+[^ipq\\/\\n]+)"
+                + "|p\\/(?<price>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipq\\/\\n])+"
+                + "|q\\/(?<quantity>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipq\\/])|$;";
 
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -470,14 +470,12 @@ public class Parser {
      * @param matcher matcher object to match the entire input sequence against the regex pattern.
      * @return an array of the found matches.
      **/
-    private String[] splitArgsForEditCommand(Matcher matcher) throws NumberFormatException {
+    private String[] splitArgsForEditCommand(Matcher matcher) {
 
         String indexOfItem = null;
         String itemDescription = null;
         String itemPrice = null;
         String itemQuantity = null;
-        Double testprice = 0.0; //used to check price in acceptable format
-        int testQuantity = 0; //used to check if quantity is in acceptable format
 
 
         while (matcher.find()) {
@@ -491,12 +489,7 @@ public class Parser {
             }
 
             if (matcher.group("price") != null) {
-                if (matcher.group(0).contains("-")) {
-                    throw new NumberFormatException();
-                } else {
                     itemPrice = matcher.group("price").trim();
-                    testprice = Double.parseDouble(itemPrice);
-                }
             }
 
             if (matcher.group("quantity") != null) {
@@ -504,7 +497,6 @@ public class Parser {
                     throw new NumberFormatException();
                 } else {
                     itemQuantity = matcher.group("quantity").trim();
-                    testQuantity = Integer.parseInt(itemQuantity);
                 }
             }
         }
@@ -546,7 +538,9 @@ public class Parser {
 
         if (pricePresent) {
             if (arrToCheck[2] != null) {
-                validPrice = true;
+                if (Double.parseDouble(arrToCheck[2]) > 0) {
+                    validPrice = true;
+                }
             }
         }
         if (!pricePresent) {
@@ -557,7 +551,9 @@ public class Parser {
 
         if (quantityPresent) {
             if (arrToCheck[3] != null) {
-                validQuantity = true;
+                if (Integer.parseInt(arrToCheck[2]) > 0) {
+                    validQuantity = true;
+                }
             }
         }
         if (!quantityPresent) {
