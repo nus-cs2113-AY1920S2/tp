@@ -202,7 +202,7 @@ The process is as follows:
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Deletefinal.png)
+![alt text](images/Deletefinal2.png)
 
 #### 3.3.2 Design considerations
 
@@ -250,11 +250,11 @@ to check whether the <code>Item</code> at each specified index contains the give
 The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Findfinal.png)
+![alt text](images/Findfinal2.png)
 
 This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
 
-![alt text](images/Finditemsfinal.png)
+![alt text](images/Finditemsfinal2.png)
 
 #### 3.4.2 Design considerations
 
@@ -441,7 +441,7 @@ The process is as follows:
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Setfinal.png)
+![alt text](images/Setfinal2.png)
 
 
 #### 3.8.2 Design considerations
