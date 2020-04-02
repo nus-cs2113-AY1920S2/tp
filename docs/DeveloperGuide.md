@@ -27,7 +27,7 @@
 ### Purpose of this guide
 This guide describes the software architecture and design of the SHOCO application.
 It will evolve throughout the design and implementation of each SHOCO release. 
-Currently, this document is for the first public release of the application, SHOCO v1.0.
+Currently, this document is for the third public release of the application, SHOCO v2.1.
 
 ### Scope of this guide
 This document describes the software architecture and design for the implementation
@@ -45,24 +45,24 @@ Omitted are the classes for the features implemented, the <code>LoadData</code>
 class, <code>WriteData</code> class, <code>FileUtil</code> class and
 <code>CommandLineTable</code> class.
 
-![alt text](images/ClassDiag.png)
+![alt text](images/ClassDiagramFinal.png)
 
 <!-- @@author kokjoon97 -->
-The <code>Shoco</code> class manages all required resources in the execution of the application. These include
+The <code>Duke</code> class manages all required resources in the execution of the application. These include
 a <code>ShoppingList</code> object to keep track of the <code>Item</code> objects the user has added to his list and
 a <code>Budget</code> object to store the user's budget.
 
-<code>Shoco</code> also has a <code>Storage</code> object for saving and loading data from memory - this data includes
+<code>Duke</code> also has a <code>Storage</code> object for saving and loading data from memory - this data includes
 the latest saved <code>ShoppingList</code> and <code>Budget</code>.
 
-There is a dependency from <code>Shoco</code> to <code>Parser</code> as it only creates an instance of the <code>Parser</code>
+There is a dependency from <code>Duke</code> to <code>Parser</code> as it only creates an instance of the <code>Parser</code>
 every time user input is received by the <code>Ui</code> and does not keep track of the <code>Parser</code> which is deleted
 after it is done parsing the current user input. The <code>Parser</code> determines what command is being invoked by the
 user before creating a new <code>Command</code> object. It then returns the reference to the new <code>Command</code> object 
-to <code>Shoco</code>. 
+to <code>Duke</code>. 
 
-At any point in time, <code>Shoco</code> only stores up to one <code>Command</code> and no more. This
-<code>Command</code> has to be executed before <code>Shoco</code> can receive more user input.
+At any point in time, <code>Duke</code> only stores up to one <code>Command</code> and no more. This
+<code>Command</code> has to be executed before <code>Duke</code> can receive more user input.
 <!-- @@author -->
 &nbsp;
 
@@ -191,19 +191,18 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 The delete feature is implemented using a <code>DeleteCommand</code> class which extends the main
 <code>Command</code> class with an index representing that of the item to be deleted from the shopping
 list. 
- 
-The <code>Shoco</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>DeleteCommand</code> object based on that user input.
 
-The <code>Shoco</code> class then calls the <code>execute</code> method of the <code>DeleteCommand</code> object
-which makes another call to the <code>deleteItem</code> function of the <code>ShoppingList</code> object 
-with the specified index.
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DeleteCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>DeleteCommand#execute()</code>.
+4. <code>DeleteCommand#execute()</code> makes another call to <code>ShoppingList#deleteItem()</code>.
+5. The <code>Item</code> at the specified index is then removed from the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Delete.png)
+![alt text](images/Deletefinal2.png)
 
 #### 3.3.2 Design considerations
 
@@ -217,14 +216,16 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Might significantly increase the code base with another class being added
 
 
-- Alternative 2: Implement delete feature in the <code>Shoco</code> class
+- Alternative 2: Implement delete feature in the <code>Duke</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Shoco</code> class
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
   
-  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
 
-  
+- Reason for choosing alternative 1: By abstracting out different command types as separate classes, this allowed us
+to work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality.
+
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
@@ -235,27 +236,25 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 The find feature is implemented using a <code>FindCommand</code> class which extends the main
 <code>Command</code> class with a String representing the keyword specified by the user.
- 
-The <code>Shoco</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>FindCommand</code> object based on that user input.
 
-The <code>Shoco</code> class then calls the <code>execute</code> method of the <code>FindCommand</code> object
-which makes various calls to the <code>getItem</code> method of the <code>ShoppingList</code> object 
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>FindCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>FindCommand#execute()</code>.
+4. <code>FindCommand#execute()</code> makes various calls to <code>ShoppingList#getItem()</code>
 to check whether the <code>Item</code> at each specified index contains the given keyword.
+5. Each <code>Item</code> that contains the keyword is then added to a new <code>ArrayList</code> named
+ <code>filteredItems</code> that is maintained by the <code>FindCommand</code> object.
+6. This list of matching results is then printed to standard output.
 
-Each <code>Item</code> that contains the keyword is then added to a new <code>ArrayList</code> named
- <code>filteredItems</code> that is maintained by the <code>FindCommand</code>, which then prints the list to standard output once it is done
-creating the list.
-
-The following sequence diagram below shows how the <code>Shoco</code> object creates the <code>FindCommand</code> object. Note the <code>Ui</code> class is
+The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Find.png)
+![alt text](images/Findfinal2.png)
 
 This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
 
-![alt text](images/FindItem.png)
+![alt text](images/Finditemsfinal2.png)
 
 #### 3.4.2 Design considerations
 
@@ -269,12 +268,15 @@ This next sequence diagram will show how the <code>FindCommand</code> creates th
   - Cons: Might significantly increase the code base with another class being added
 
 
-- Alternative 2: Implement find feature in the <code>Shoco</code> class
+- Alternative 2: Implement find feature in the <code>Duke</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Shoco</code> class
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
   
-  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
+    
+- Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
+also be able to trace functionality bugs more easily if each command class deals with a different functionality.
 <!-- @@author -->
   
 &nbsp;
@@ -429,18 +431,17 @@ omitted to emphasise the other classes:
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
 
-The <code>Shoco</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>SetBudgetCommand</code> object based on that user input.
-
-The <code>Shoco</code> class then calls the <code>execute</code> method of the <code>SetBudgetCommand</code> object
-which makes another call to the <code>setBudget</code> function of the <code>Budget</code> object 
-with the amount specified by the user for the budget.
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>SetBudgetCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>SetBudgetCommand#execute()</code>.
+4. <code>SetBudgetCommand#execute()</code> makes another call to <code>Budget#setBudget()</code>.
+5. The amount in the <code>Budget</code> object is set to the amount specified by the user.
 
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/setdiagram.png)
+![alt text](images/Setfinal2.png)
 
 
 #### 3.8.2 Design considerations
@@ -455,12 +456,16 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Might significantly increase the code base with another class being added
 
 
-- Alternative 2: Implement set budget feature in the <code>Shoco</code> class
+- Alternative 2: Implement set budget feature in the <code>Duke</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Shoco</code> class
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
   
-  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Shoco</code> class
+  - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
+  
+- Reason for choosing alternative 1: By implementing each command type in a separate class, any bugs associated with a
+particular functionality will not affect other functionalities that significantly. It would also make it easier for us to 
+work in parallel.
 <!-- @@author -->
  
 &nbsp;
