@@ -10,9 +10,9 @@
     + [3.4 Find feature](#34-find-feature)
     + [3.5 Mark and Unmark feature](#35-mark-and-unmark-feature)
     + [3.6 Display feature](#36-display-feature)
-    + [3.7 Clear list feature](#37-clear-list-feature)
-    + [3.8 Set budget feature](#38-set-budget-feature)
-    + [3.9 Reset budget feature](#39-reset-budget-feature)
+    + [3.7 Set budget feature](#37-set-budget-feature)
+    + [3.8 Reset budget feature](#38-reset-budget-feature)
+    + [3.9 Clear list feature](#39-clear-list-feature)
     + [3.10 View help feature](#310-view-help-feature)
     + [3.11 Exit program feature](#311-exit-program-feature)
  * **[Appendix A: Product Scope](#appendix-a-product-scope)**
@@ -282,6 +282,7 @@ This next sequence diagram will show how the <code>FindCommand</code> creates th
 
 &nbsp;
 
+<!-- @@author Shannonwje --> 
 ### 3.5 Mark and Unmark feature
 #### 3.5.1 Current Implementation
   
@@ -302,11 +303,11 @@ This next sequence diagram will show how the <code>FindCommand</code> creates th
   
  Diagram 1:
  
-![alt text](images/Mark.png)
+![alt text](images/MarkFeature.png)
   
 Diagram 2:
 
-![alt text](images/Unmark.png)
+![alt text](images/UnmarkFeature.png)
   
 #### 3.5.2 Design Considerations
   
@@ -327,6 +328,7 @@ Diagram 2:
     
     - Cons: Code becomes harder to navigate and understand since the command is all handled under one class, thus makes
 having to edit the mark and unmark feature difficult.
+<!-- @@author -->
     
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -379,52 +381,9 @@ omitted to emphasise the other classes:
 
 &nbsp;
 
-### 3.7 Clear list feature
-This feature involves clearing all items in the shopping list. Remaining budget is also set to the user’s set budget.
-
-#### 3.7.1 Current implementation
-The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
-class. 
-
-The <code>Duke</code> class first receives user input from the <code>Ui</code> object before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>ClearCommand</code> object based on that user input.
-
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ClearCommand</code> object which 
-makes another call to the <code>clearList</code> method of the <code>ShoppingList</code> object.
-
-The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
-omitted to emphasise the other classes:
-  
-![alt text](images/Clear.png)
-  
-#### 3.7.2 Design considerations
-  
-##### Aspect: Data structure to support the clear list feature
-  
-- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ClearCommand</code>
- 
-  - Pros: Easy to add the clear list feature without having to change the logic of the code much as each command object
-  is treated as a black box
-  
-  - Cons: Might significantly increase the code base with another class being added
-
-
-- Alternative 2: Implement clear list feature in the <code>Duke</code> class
-
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
-  
-  - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
-  harder to navigate and understand. 
-  
-&nbsp;
-<b><a href="#developer-guide">&#129053; back to top</a></b>
-
-&nbsp;
-
 <!-- @@author kokjoon97 -->
-### 3.8 Set budget feature
-#### 3.8.1 Current implementation
+### 3.7 Set budget feature
+#### 3.7.1 Current implementation
 
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
@@ -443,7 +402,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 ![alt text](images/setdiagram.png)
 
 
-#### 3.8.2 Design considerations
+#### 3.7.2 Design considerations
 
 ##### Aspect: Data structure to support the set budget feature
 
@@ -468,8 +427,9 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 &nbsp;
 
-### 3.9 Reset budget feature
-#### 3.9.1 Current implementation
+<!-- @@author Shannonwje --> 
+### 3.8 Reset budget feature
+#### 3.8.1 Current implementation
 
 The reset budget feature is implemented using a <code>ResetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
@@ -484,10 +444,10 @@ which makes another call to the <code>resetBudget</code> function of the <code>B
 The following sequence diagram below shows how the reset budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Reset_Budget.png)
+![alt text](images/ResetBud.png)
 
 
-#### 3.9.2 Design considerations
+#### 3.8.2 Design considerations
 
 ##### Aspect: Data structure to support the reset budget feature
 
@@ -505,11 +465,55 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
+  <!-- @@author -->
   
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
 &nbsp;      
+ 
+### 3.9 Clear list feature
+This feature involves clearing all items in the shopping list. Remaining budget is also set to the user’s set budget.
+
+#### 3.9.1 Current implementation
+The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
+class. 
+
+The <code>Duke</code> class first receives user input from the <code>Ui</code> object before it creates a 
+<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
+<code>ClearCommand</code> object based on that user input.
+
+The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ClearCommand</code> object which 
+makes another call to the <code>clearList</code> method of the <code>ShoppingList</code> object.
+
+The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
+omitted to emphasise the other classes:
+  
+![alt text](images/Clear.png)
+  
+#### 3.9.2 Design considerations
+  
+##### Aspect: Data structure to support the clear list feature
+  
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ClearCommand</code>
+ 
+  - Pros: Easy to add the clear list feature without having to change the logic of the code much as each command object
+  is treated as a black box
+  
+  - Cons: Might significantly increase the code base with another class being added
+
+
+- Alternative 2: Implement clear list feature in the <code>Duke</code> class
+
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  
+  - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
+  harder to navigate and understand. 
+  
+&nbsp;
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+
+&nbsp;
  
 ### 3.10 View help feature
 #### 3.10.1 Current implementation
