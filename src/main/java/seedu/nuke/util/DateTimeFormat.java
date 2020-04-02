@@ -115,6 +115,34 @@ public class DateTimeFormat {
         case "tmr":
             return LocalDate.now().plusDays(1);
 
+        case "monday":
+        case "mon":
+            return getNextDateOfDay(DayOfWeek.MONDAY);
+
+        case "tuesday":
+        case "tue":
+            return getNextDateOfDay(DayOfWeek.TUESDAY);
+
+        case "wednesday":
+        case "wed":
+            return getNextDateOfDay(DayOfWeek.WEDNESDAY);
+
+        case "thursday":
+        case "thu":
+            return getNextDateOfDay(DayOfWeek.THURSDAY);
+
+        case "friday":
+        case "fri":
+            return getNextDateOfDay(DayOfWeek.FRIDAY);
+
+        case "saturday":
+        case "sat":
+            return getNextDateOfDay(DayOfWeek.SATURDAY);
+
+        case "sunday":
+        case "sun":
+            return getNextDateOfDay(DayOfWeek.SUNDAY);
+
         default:
             for (String formatPattern : ALL_DATE_FORMATS) {
                 try {
@@ -131,6 +159,8 @@ public class DateTimeFormat {
             throw new InvalidDateException();
         }
     }
+
+
 
     /**
      * Converts the specified <code>time</code> string into a <code>LocalTime</code> object.

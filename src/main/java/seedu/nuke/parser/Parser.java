@@ -581,6 +581,10 @@ public class Parser {
         String allFlag = matcher.group(ALL_GROUP).trim();
         boolean isAll = !allFlag.isEmpty();
 
+        if (dateFilter.equals("over")) {
+            return new DueCommand(dateFilter, isAll);
+        }
+
         String[] dateFilterData = dateFilter.trim().split("\\s+");
         try {
             if (dateFilterData.length == 1) {

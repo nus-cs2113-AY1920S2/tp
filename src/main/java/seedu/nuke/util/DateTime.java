@@ -25,6 +25,11 @@ public class DateTime {
         this.time = time;
     }
 
+    public DateTime(LocalTime time) {
+        this.date = LocalDate.now();
+        this.time = time;
+    }
+
     public DateTime() {
         this(null, null);
     }

@@ -2,11 +2,11 @@ package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Category;
-import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 
 import java.util.ArrayList;
 
+import static seedu.nuke.util.Message.MESSAGE_NO_CATEGORIES_TO_SHOW;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListCategoryCommand extends ListCommand {
@@ -50,6 +50,9 @@ public class ListCategoryCommand extends ListCommand {
     public CommandResult execute() {
         ArrayList<Category> filteredCategoryList =
                 createFilteredCategoryList(moduleKeyWord, categoryKeyword, isExact, isAll);
+        if (filteredCategoryList.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_CATEGORIES_TO_SHOW);
+        }
         sortCategoryList(filteredCategoryList);
         return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, new ArrayList<>(filteredCategoryList));
     }

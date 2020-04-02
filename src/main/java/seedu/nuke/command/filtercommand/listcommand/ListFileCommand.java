@@ -1,13 +1,13 @@
 package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 
 import java.util.ArrayList;
 
+import static seedu.nuke.util.Message.MESSAGE_NO_FILES_TO_SHOW;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListFileCommand extends ListCommand {
@@ -59,6 +59,9 @@ public class ListFileCommand extends ListCommand {
     public CommandResult execute() {
         ArrayList<TaskFile> filteredFileList =
                 createFilteredFileList(moduleKeyWord, categoryKeyword, taskKeyword, fileKeyword, isExact, isAll);
+        if (filteredFileList.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_FILES_TO_SHOW);
+        }
         sortFileList(filteredFileList);
         return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.FILE, new ArrayList<>(filteredFileList));
     }
