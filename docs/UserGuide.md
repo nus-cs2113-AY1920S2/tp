@@ -10,7 +10,7 @@
   * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
   * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
-  * [3.7 Display list and budget details: `DISPLAY`](#display-list-and-budget-details-display)
+  * [3.7 Displaying list and budget details: `DISPLAY`](#displaying-list-and-budget-details-display)
   * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
   * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
   * [3.10 Finding an item: `FIND`](#finding-an-item-find)
@@ -66,6 +66,10 @@ grocery shopping disappear.
   
 * You can supply parameters for the `ADD` and `EDIT` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order.
   * e.g `ADD i/apple q/5` **AND** `ADD q/5 i/apple` should both produce the same result.
+  
+* The keyword for the `FIND` command is case-insensitive.
+  * e.g If you have an item named "apple" in the list, both `FIND APPLE` **AND** `FIND apple` will display this
+  entry to the user.
 <!-- @@author -->
 &nbsp;
 
@@ -81,9 +85,11 @@ Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * The `DESCRIPTION` must exist.
 * The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **numerical** form (decimal form accepted).
-* At least one of two parameters (price/quantity) must be present.
-* i/, p/, q/ delimiters must be in **alphabetical** order.
+* `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
+  respective values or omit them. The system will set the price and quantity to 
+  the default values `0.0` and `1` 
 * note that you can rearrange the delimiters (more will shown in the example.)
+
 Example of usage: 
 
 1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
@@ -199,7 +205,7 @@ Example of the usage:
 
 ***
 
-### Display list and budget details: `DISPLAY`
+### Displaying list and budget details: `DISPLAY`
 Shows the shopping list, budget, cost of the items and the remaining budget.
 
 Format: `DISPLAY` 
@@ -298,6 +304,13 @@ displayed which states by how much you have overrun your current budget. This me
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
 <!-- @@author -->
+
+&nbsp;
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+
+
+&nbsp;
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?

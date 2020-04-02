@@ -7,6 +7,9 @@ ADD i/apple p/2.45 q/
 ADD i/apple p/2.45 q/1
 ADD i/banana p/3.00 q/3
 ADD i/cherry p/5.60 q/2
+FIND CHERRY
+FIND ChErRY
+FIND cHErry
 FIND cherry
 FIND nothing
 SET
