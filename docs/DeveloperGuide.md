@@ -191,12 +191,13 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 The delete feature is implemented using a <code>DeleteCommand</code> class which extends the main
 <code>Command</code> class with an index representing that of the item to be deleted from the shopping
 list. 
- 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it calls 
-<code>Parser#parseCommand()</code> to instantiate a <code>DeleteCommand</code> object based on that user input.
 
-The <code>Duke</code> class then calls <code>DeleteCommand#execute()</code> which makes another call to <code>ShoppingList#deleteItem()</code>
-with the specified index.
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DeleteCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>DeleteCommand#execute()</code>.
+4. <code>DeleteCommand#execute()</code> makes another call to <code>ShoppingList#deleteItem()</code>.
+5. The <code>Item</code> at the specified index is then removed from the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
@@ -235,16 +236,16 @@ to work better in parallel and also be able to spot bugs more easily as each cla
 
 The find feature is implemented using a <code>FindCommand</code> class which extends the main
 <code>Command</code> class with a String representing the keyword specified by the user.
- 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it calls
-<code>Parser#parseCommand()</code> function to instantiate a <code>FindCommand</code> object based on that user input.
 
-The <code>Duke</code> class then calls <code>FindCommand#execute()</code> which makes various calls to <code>ShoppingList#getItem()</code>
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>FindCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>FindCommand#execute()</code>.
+4. <code>FindCommand#execute()</code> makes various calls to <code>ShoppingList#getItem()</code>
 to check whether the <code>Item</code> at each specified index contains the given keyword.
-
-Each <code>Item</code> that contains the keyword is then added to a new <code>ArrayList</code> named
- <code>filteredItems</code> that is maintained by the <code>FindCommand</code>, which then prints the list to standard output once it is done
-creating the list.
+5. Each <code>Item</code> that contains the keyword is then added to a new <code>ArrayList</code> named
+ <code>filteredItems</code> that is maintained by the <code>FindCommand</code> object.
+6. This list of matching results is then printed to standard output.
 
 The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
@@ -430,11 +431,12 @@ omitted to emphasise the other classes:
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it calls 
-<code>Parser#parseCommand()</code> function to instantiate a <code>SetBudgetCommand</code> object based on that user input.
-
-The <code>Duke</code> class then calls <code>SetBudgetCommand#execute()</code>
-which makes another call to <code>Budget#setBudget()</code> with the amount specified by the user for the budget.
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>SetBudgetCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>SetBudgetCommand#execute()</code>.
+4. <code>SetBudgetCommand#execute()</code> makes another call to <code>Budget#setBudget()</code>.
+5. The amount in the <code>Budget</code> object is set to the amount specified by the user.
 
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
