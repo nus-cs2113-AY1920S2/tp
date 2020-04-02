@@ -44,7 +44,7 @@ TTIT utilizes [Hacker News](https://github.com/HackerNews/API) API to give the u
 * The user is required to supply one of `article`, `job`, `note` from the option of `[article / job / note]` or `[article / job]`. For example, `view article`, `list note`.
 * The `INDEX_NUMBER` is the interger index of a article/job/note to be saved, deleted, or edited from a saved article list, or a saved note list or a saved job list. It is of format `delete article INDEX_NUMBER`, `save job TASK_NUMBER`.
 * `EXTRACT` represents a string that can be composed of multiple words that you wish to add to an existing note, job or article. For example, `addinfo article INDEX_NUMBER EXTRACT`.
-
+* Note that if the input from the user is a valid command followed by arbitrary input, the programme will just ignore the arbitrary input and execute the valid command. For example, a command like `view article ls;dgljfg` will only read `view article` and ignore the gibberish command that follows the valid part.
 
 
 #### Asking for help with valid commands : `help`
