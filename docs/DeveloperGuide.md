@@ -192,12 +192,10 @@ The delete feature is implemented using a <code>DeleteCommand</code> class which
 <code>Command</code> class with an index representing that of the item to be deleted from the shopping
 list. 
  
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>DeleteCommand</code> object based on that user input.
+The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it calls 
+<code>Parser#parseCommand()</code> to instantiate a <code>DeleteCommand</code> object based on that user input.
 
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>DeleteCommand</code> object
-which makes another call to the <code>deleteItem</code> function of the <code>ShoppingList</code> object 
+The <code>Duke</code> class then calls <code>DeleteCommand#execute()</code> which makes another call to <code>ShoppingList#deleteItem()</code>
 with the specified index.
 
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
@@ -236,12 +234,10 @@ omitted in the sequence diagram to emphasise on the other classes:
 The find feature is implemented using a <code>FindCommand</code> class which extends the main
 <code>Command</code> class with a String representing the keyword specified by the user.
  
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>FindCommand</code> object based on that user input.
+The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it calls
+<code>Parser#parseCommand()</code> function to instantiate a <code>FindCommand</code> object based on that user input.
 
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>FindCommand</code> object
-which makes various calls to the <code>getItem</code> method of the <code>ShoppingList</code> object 
+The <code>Duke</code> class then calls <code>FindCommand#execute()</code> which makes various calls to <code>ShoppingList#getItem()</code>
 to check whether the <code>Item</code> at each specified index contains the given keyword.
 
 Each <code>Item</code> that contains the keyword is then added to a new <code>ArrayList</code> named
@@ -429,13 +425,11 @@ omitted to emphasise the other classes:
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>SetBudgetCommand</code> object based on that user input.
+The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it calls 
+<code>Parser#parseCommand()</code> function to instantiate a <code>SetBudgetCommand</code> object based on that user input.
 
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>SetBudgetCommand</code> object
-which makes another call to the <code>setBudget</code> function of the <code>Budget</code> object 
-with the amount specified by the user for the budget.
+The <code>Duke</code> class then calls <code>SetBudgetCommand#execute()</code>
+which makes another call to <code>Budget#setBudget()</code> with the amount specified by the user for the budget.
 
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
