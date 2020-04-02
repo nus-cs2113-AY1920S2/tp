@@ -254,7 +254,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
 
-![alt text](images/FindItem.png)
+![alt text](images/Finditemsfinal.png)
 
 #### 3.4.2 Design considerations
 
