@@ -154,10 +154,10 @@ public class Parser {
         case "check-calories-intake":
             command = new CheckCaloriesCommand(commandPrompt, description);
             break;
-        case "list-food-database":
+        case "list-food":
             command = new ListFoodDatabaseCommand(commandPrompt);
             break;
-        case "calculate-calories":
+        case "calculate":
             command = new CalculateCaloriesCommand(commandPrompt, description);
             break;
         case "delete-weight":
