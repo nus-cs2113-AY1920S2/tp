@@ -18,8 +18,8 @@ See [here](https://www.lucidchart.com/blog/getting-started-in-lucidchart) to lea
 own diagrams.
 
 ### 4. Publishing Documentation
-1. Push the new documents to your own repository on github
-2. Make a pull request to [here](https://github.com/AY1920S2-CS2113T-M16-1/tp) to request for changes to be made to the 
+#### Push the new documents to your own repository on github
+#### Make a pull request to [here](https://github.com/AY1920S2-CS2113T-M16-1/tp) to request for changes to be made to the 
 documentation
-3. The moderators will review your change and make a decision if they want to use your changes
+#### The moderators will review your change and make a decision if they want to use your changes
 
