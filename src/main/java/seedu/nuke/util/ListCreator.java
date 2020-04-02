@@ -15,6 +15,13 @@ public class ListCreator {
     private static final String LIST_DIVIDER = String.format("%s%s%s\n", "+", "-".repeat(98), "+");
     private static final String SEPARATOR = "|";
 
+    /**
+     * Creates a general list table from a list of Strings.
+     * @param listToShow
+     *  The list to be converted to a table
+     * @return
+     *  The list table to show to the user
+     */
     public static String createGeneralListTable(ArrayList<String> listToShow) {
         StringBuilder listTable = new StringBuilder(String.format("%s\n", LIST_DIVIDER));
 

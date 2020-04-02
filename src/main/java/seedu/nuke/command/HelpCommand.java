@@ -1,6 +1,10 @@
 package seedu.nuke.command;
 
-import seedu.nuke.command.addcommand.*;
+import seedu.nuke.command.addcommand.AddCategoryCommand;
+import seedu.nuke.command.addcommand.AddFileCommand;
+import seedu.nuke.command.addcommand.AddModuleCommand;
+import seedu.nuke.command.addcommand.AddTagCommand;
+import seedu.nuke.command.addcommand.AddTaskCommand;
 import seedu.nuke.command.editcommand.EditCategoryCommand;
 import seedu.nuke.command.editcommand.EditModuleCommand;
 import seedu.nuke.command.editcommand.EditTaskCommand;

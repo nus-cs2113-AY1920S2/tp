@@ -24,19 +24,20 @@ public class ModuleManager implements Iterable<Module> {
 
     private static final String NO_KEYWORD = "";
 
-    public ModuleManager() {
-        root = new Root();
+    /**
+     * Initialises the ModuleManager class.
+     *
+     * @param modulesMap
+     *  The hash map containing NUS provided modules
+     */
+    public static void initialise(HashMap<String, String> modulesMap) {
+        ModuleManager.root = new Root();
+        ModuleManager.modulesMap = modulesMap;
         moduleList = new ArrayList<>();
     }
 
-    public ModuleManager(Root root, HashMap<String, String> modulesMap) {
-        ModuleManager.modulesMap = modulesMap;
-        ModuleManager.root = root;
-    }
-
-    public static void initialise(Root root, HashMap<String, String> modulesMap) {
-        ModuleManager.modulesMap = modulesMap;
-        ModuleManager.root = root;
+    public static void initialise() {
+        ModuleManager.initialise(null);
     }
 
     public static Root getRoot() {

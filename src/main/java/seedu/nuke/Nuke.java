@@ -30,7 +30,7 @@ public class Nuke {
         ui = new Ui();
         modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
         storageManager = new StorageManager(StoragePath.SAVE_PATH);
-        ModuleManager.initialise(new Root(), modulesMap);
+        ModuleManager.initialise(modulesMap);
         storageManager.loadList();
         ScreenShotManager.saveScreenShot();
     }

@@ -27,7 +27,7 @@ public class InfiNuke extends Application {
         // Load modules and tasks
         HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
         StorageManager storageManager = new StorageManager(StoragePath.SAVE_PATH);
-        ModuleManager.initialise(new Root(), modulesMap);
+        ModuleManager.initialise(modulesMap);
         storageManager.loadList();
         Executor.setIsGui();
     }
