@@ -15,8 +15,12 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [2.6. Exception classes](#26-exception-classes)
 	* [2.7. Common classes](#27-common-classes)
 * [3. Implementation](#3-implementation)
-	* [3.1. Detailed implementation of logic.modulelogic component](#31-detailed-implementation-of-logic.modulelogic-component)
-	* [3.2. Design Considerations](#32-design-considerations)
+	* [3.1. Add new contact](#31-add-new-contact)
+	* [3.2. List all contacts](#32-list-all-contacts)
+	* [3.3. Display timetable of selected contacts](#33-display-timetable-of-selected-contacts)
+	* [3.4. Schedule a new meeting](#34-schedule-a-new-meeting)
+	* [3.5. Delete a scheduled meeting](#35-delete-a-scheduled-meeting)
+	* [3.6. List all scheduled meetings](#36-list-all-scheduled-meetings)
 * [4. Documentation](#4-documentation)
 * [5. Testing](#5-testing)
 * [6. Dev Ops](#6-dev-ops)
@@ -75,7 +79,7 @@ The logic component is the brain and backbone of our application. The logic comp
 ```schedulelogic``` and ```modulelogic``` sub-components work together to enable the generation of common time slots from NUSMODS links.
 The ```commands``` sub-component interprets the user command and calls the ```schedulelogic``` and ```modulelogic``` components.
 
-#### 2.3.1. logic.modulelogic component
+### 2.3.1. logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
@@ -107,7 +111,7 @@ the semester and the user's module information according to the timetable link p
  <br>
  The information from ```LessonsGenerator``` would then be included in the schedule of a particular ```TeamMember```.
  
-#### 2.3.2. logic.schedulelogic component
+### 2.3.2. logic.schedulelogic component
 
 The ```schedulelogic``` component finds common time slots from team members' schedules.
 The ```schedulelogic``` consists of the class ```ScheduleHandler```. 
@@ -117,7 +121,7 @@ The ```schedulelogic``` consists of the class ```ScheduleHandler```.
 **Detailed implementation of logic.modulelogic component**
 
 
-#### 2.3.3 logic.commands component
+### 2.3.3 logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
 The ```commands``` consists of the class ```CommandHandler```.
 
@@ -125,11 +129,11 @@ The ```commands``` consists of the class ```CommandHandler```.
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meeting```, ```contact```
 
-#### 2.4.1. model.meeting component
+### 2.4.1. model.meeting component
 The ```meeting``` component of our application consists of 2 classes: ```Meeting```, ```MeetingList```
 <br>
 
-#### 2.4.2. model.contact component
+### 2.4.2. model.contact component
 The ```contact``` component of our application consists of 2 classes: ```TeamMember```, ```TeamMemberList```
 1. ```TeamMember``` consists of information of a member's name and schedule.
 2. ```TeamMemberList``` is a ```Arraylist<TeamMember> ``` which new ```TeamMember``` can be added to.
@@ -149,14 +153,15 @@ There are 6 main features: add new contact, list all contacts, display combined 
 ### 3.1 Add new contact
 
 ### 3.1.1 Design Considerations
-**Aspect: Fetching of module information**
+**Aspect 1: Fetching of module information**
 * Alternative 1(current choice): Instantiate a ```ModuleHandler``` every time there's a request for a module information.
 Pros: The classes are intuitively separated and data structures returned is understandable.
 Cons: Program runs slower for every extra timetable or extra modules taken since its a new instantiation of a ```ModuleHandler```.
 * Alternative 2: Instantiate ```ModuleHandler``` once for every user. 
 Pros: Takes up less memory and setup time for every timetable provided compared to alternative 1.
 Cons: The data structure returned by ```ModuleHandler``` would be complicated and confusing for new developers.
-**Aspect: Storing blacklisted module information**
+
+**Aspect 2: Storing blacklisted module information**
 * Alternative 1(current choice): Create a ```common.BlacklistedModule``` and hash every hard-coded blacklisted module as a constant ```HashSet```.
 Pros: There is no need for user to download the blacklisted module, and only the JAR file is required to run this entire application.
 Also, user do not need to have a one time set-up where they would wait several minutes for the application to dynamically pull the blacklisted modules from Nusmods API server.
@@ -173,7 +178,7 @@ Alternative 1. Furthermore, users are required to download the blacklisted file 
 
 ### 3.2 List all contacts
 
-### 3.3 Display combined timetable of selected contacts
+### 3.3 Display timetable of selected contacts
 
 ### 3.4 Schedule a new meeting
 
