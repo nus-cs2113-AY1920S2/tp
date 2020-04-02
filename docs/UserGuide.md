@@ -66,6 +66,10 @@ grocery shopping disappear.
   
 * You can supply parameters for the `ADD` and `EDIT` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order.
   * e.g `ADD i/apple q/5` **AND** `ADD q/5 i/apple` should both produce the same result.
+  
+* The keyword for the `FIND` command is case-insensitive.
+  * e.g If you have an item named "apple" in the list, both `FIND APPLE` **AND** `FIND apple` will display this
+  entry to the user.
 <!-- @@author -->
 &nbsp;
 
@@ -300,6 +304,13 @@ displayed which states by how much you have overrun your current budget. This me
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
 <!-- @@author -->
+
+&nbsp;
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+
+
+&nbsp;
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?

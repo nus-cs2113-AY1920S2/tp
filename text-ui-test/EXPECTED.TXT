@@ -92,6 +92,39 @@ Here are the matching items:
 
 
 Enter command:
+
+Here are the matching items:
+
++---------------+-------+-----+
+| Item          | Price | Qty |
++---------------+-------+-----+
+| 3. [0] cherry | $5.60 | 2   |
++---------------+-------+-----+
+
+
+Enter command:
+
+Here are the matching items:
+
++---------------+-------+-----+
+| Item          | Price | Qty |
++---------------+-------+-----+
+| 3. [0] cherry | $5.60 | 2   |
++---------------+-------+-----+
+
+
+Enter command:
+
+Here are the matching items:
+
++---------------+-------+-----+
+| Item          | Price | Qty |
++---------------+-------+-----+
+| 3. [0] cherry | $5.60 | 2   |
++---------------+-------+-----+
+
+
+Enter command:
 Sorry, no results could be found!
 
 Enter command:
