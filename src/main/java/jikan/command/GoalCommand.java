@@ -2,10 +2,13 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyGoalException;
 import jikan.exception.EmptyTagException;
+import jikan.exception.InvalidGoalCommandException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NegativeDurationException;
 import jikan.exception.NoSuchTagException;
+import jikan.log.Log;
 import jikan.ui.Ui;
 
 import java.io.BufferedReader;
@@ -51,8 +54,14 @@ public class GoalCommand extends Command {
             int index;
             if (delimiter != -1) {
                 tagName = parameters.substring(0, delimiter - 1).strip();
+                if (tagName.isEmpty()) {
+                    throw new EmptyTagException();
+                }
                 index = checkIfExists(tagName);
                 String tmpTime = parameters.substring(delimiter + 3);
+                if (tmpTime.isEmpty()) {
+                    throw new EmptyGoalException();
+                }
                 Duration goalTime = parseDuration(tmpTime);
 
                 if (goalTime.isNegative()) {
@@ -83,24 +92,26 @@ public class GoalCommand extends Command {
                     throw new NoSuchTagException();
                 }
             } else {
-                throw new InvalidTimeFrameException();
-            }
-            if (tagName.isEmpty()) {
-                throw new EmptyTagException();
+                throw new InvalidGoalCommandException();
             }
 
-        } catch (EmptyTagException | StringIndexOutOfBoundsException e) {
+        } catch (EmptyTagException e) {
             Ui.printDivider("Tag name cannot be empty!");
-        } catch (InvalidTimeFrameException e) {
-            Ui.printDivider("Goal cannot be empty!");
+            Log.makeInfoLog("Goal command failed as no tag name was provided.");
+        } catch (InvalidGoalCommandException e) {
+            Ui.printDivider("Invalid command format entered!");
+            Log.makeInfoLog("Goal command failed as an incorrect format was provided.");
         } catch (IOException e) {
             Ui.printDivider("Error reading the file!");
         } catch (NoSuchTagException e) {
             Ui.printDivider("There is no such tag!");
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            Log.makeInfoLog("Goal command failed as there was no such tag saved.");
+        } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException | EmptyGoalException | NumberFormatException e) {
             Ui.printDivider("Please enter the goal in the format HH:MM:SS");
+            Log.makeInfoLog("Goal command failed as an incorrect format for the goal time was provided.");
         } catch (NegativeDurationException e) {
             Ui.printDivider("Please enter a positive goal time!");
+            Log.makeInfoLog("Goal command failed as a negative goal time was provided.");
         }
     }
 
@@ -232,7 +243,7 @@ public class GoalCommand extends Command {
      * @param input the user input.
      * @return the duration object.
      */
-    public static Duration parseDuration(String input) throws InvalidTimeFrameException,
+    public static Duration parseDuration(String input) throws
             ArrayIndexOutOfBoundsException {
         String[] fields = input.split(":");
         int colonIndex = input.indexOf(':');
