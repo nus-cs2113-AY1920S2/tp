@@ -72,7 +72,7 @@ public class RecordMealCommand extends Command {
                 continue;
             }
 
-            foodDescriptionSplit = singleFoodDescription.trim().split(" -- ");
+            foodDescriptionSplit = singleFoodDescription.trim().split("--");
             foodName = foodDescriptionSplit[0].trim().toLowerCase();
 
             switch (foodDescriptionSplit.length) {
@@ -88,6 +88,9 @@ public class RecordMealCommand extends Command {
             case 2:
                 try {
                     foodCalories = Double.parseDouble(foodDescriptionSplit[1].trim());
+                    if (foodCalories < 0) {
+                        throw new NumberFormatException();
+                    }
                     foodList.add(new Food(foodName, foodCalories));
                 } catch (NumberFormatException e) {
                     isValidFoodFormat = false;

@@ -31,12 +31,12 @@ public class SetProfileCommand extends Command {
 
         try {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.name = descriptionArray[0];
-            this.age = Integer.parseInt(descriptionArray[1]);
-            this.gender = Parser.parseGender(descriptionArray[2]);
-            this.height = Double.parseDouble(descriptionArray[3]);
-            this.weight = Double.parseDouble(descriptionArray[4]);
-            this.weightGoal = Double.parseDouble(descriptionArray[5]);
+            this.name = descriptionArray[0].trim();
+            this.age = Integer.parseInt(descriptionArray[1].trim());
+            this.gender = Parser.parseGender(descriptionArray[2].trim());
+            this.height = Double.parseDouble(descriptionArray[3].trim());
+            this.weight = Double.parseDouble(descriptionArray[4].trim());
+            this.weightGoal = Double.parseDouble(descriptionArray[5].trim());
         } catch (NullPointerException e) {
             this.noDescription = true;
         }
