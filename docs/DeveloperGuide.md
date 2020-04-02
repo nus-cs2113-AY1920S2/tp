@@ -1,4 +1,4 @@
-# MeetingOrganizer - Developer Guide
+# WhenFree - Developer Guide
 By: `AY1920S2-CS2113T-T12-1`
 
 ## Table of Contents
@@ -69,45 +69,26 @@ Here is q quick overview of each layer and the components residing in it.
 
 The UI consists of....
 ### 2.3. Logic component
-[Structure of logic layer]
-The logic component contains 3 sub-components: ```commands, schedulelogic modulelogic```. They are called as a result of
-user's input into the CLI.
+[Structure of logic layer (all sub components)]
 
-**Structure of the modulelogic component:**
-<br>
-The modulelogic of our application consists of 4 classes: ```TimetableParser ModuleApiParser ModuleHandler LessonsGenerator```.
-A detailed implementation would be explained in the implementation section.
-<br>
- API: ```logic.modulelogic.LessonsGenerator```
-<br>
+The logic component is the brain and backbone of our application. The logic component contains 3 sub-components. The
+```schedulelogic``` and ```modulelogic``` sub-components work together to enable the generation of common time slots from NUSMODS links.
+The ```commands``` sub-component interprets the user command and calls the ```schedulelogic``` and ```modulelogic``` components.
+
+#### 2.3.1. logic.modulelogic component
+
+The modulelogic component retrives modules and module information from NUSMODS links.
+The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
+
 1. ```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules a user is taking, including the timeslots of those modules.
 2. ```LessonsGenerator``` also uses ```Modulehandler``` to retrieve a set of information related to a specific module.
 3. With both information, ```LessonsGenerator``` is able to dynamically generate the user's time-slots stored in ```ArrayList<String[]>``` via a series of Key-Value pair hashing.
 4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
 <br>
 
-### 2.4. model component
-The model component contains 2 sub-components: ```meeting contact```
-
-**Structure of the Schedule component:**
-
-The Schedule component of our application consists of 3 classes ```TeamMember```, ```TeamMemberList``` and ```ScheduleHandler```. 
-
-1. ```TeamMember``` consists of information of a member's schedule.
-2. ```TeamMemberList``` is a ```Arraylist<TeamMember> ``` which new ```TeamMember``` can be added to.
-3. ```ScheduleHandler``` retrieves the schedule of selected ```TeamMember``` in the ```TeamMemberList```, to generate a combined schedule.
-### 2.5. Storage component
-The Meeting component of our application consists of 2 classes: ```Meeting MeetingList```
-<br>
-
-### 2.6. Exception classes
-
-### 2.7. Common classes
-
-
-## 3. Implementation
-This section describes some noteworthy details of how our application works in the backend.
-### 3.1. Detailed implementation of logic.modulelogic component TODO: redraw the UML sequence diagram
+**Detailed implementation of logic.modulelogic component**
+ 
+[TODO: redraw the UML sequence diagram]
 ![logic.modulelogic Component](images/TimetableParser.png)<br>
 The above figure shows```TimetableParser```, a private class called exclusively by ```LessonsGenerator```. It makes use of regex to sift through timetable link provided by user in the form of ```String``` object and stores
 the semester and the user's module information according to the timetable link provided. It depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
@@ -125,15 +106,57 @@ the semester and the user's module information according to the timetable link p
  Finally, ```LessonsGenerator``` collates the returned data structure from both ```ModuleHandler```(looped for as many modules the user takes) and ```TimetableParser```, calling```.lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
  <br>
  The information from ```LessonsGenerator``` would then be included in the schedule of a particular ```TeamMember```.
-### 3.2. Design Considerations
-#### 3.2.1. Aspect: Fetching of module information
+ 
+#### 2.3.2. logic.schedulelogic component
+
+The ```schedulelogic``` component finds common time slots from team members' schedules.
+The ```schedulelogic``` consists of the class ```ScheduleHandler```. 
+
+1. `ScheduleHandler``` retrieves the schedule of selected ```TeamMember``` in the ```TeamMemberList```, to generate a combined schedule.
+
+**Detailed implementation of logic.modulelogic component**
+
+
+#### 2.3.3 logic.commands component
+The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
+The ```commands``` consists of the class ```CommandHandler```.
+
+### 2.4. model component
+The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
+it when the application is running. The model component contains 2 sub-components: ```meeting```, ```contact```
+
+#### 2.4.1. model.meeting component
+The ```meeting``` component of our application consists of 2 classes: ```Meeting```, ```MeetingList```
+<br>
+
+#### 2.4.2. model.contact component
+The ```contact``` component of our application consists of 2 classes: ```TeamMember```, ```TeamMemberList```
+1. ```TeamMember``` consists of information of a member's name and schedule.
+2. ```TeamMemberList``` is a ```Arraylist<TeamMember> ``` which new ```TeamMember``` can be added to.
+
+### 2.5. Storage component
+
+
+### 2.6. Exception classes
+
+### 2.7. Common classes
+
+
+## 3. Implementation
+This section describes some noteworthy details of how the main features of our application works in the backend.
+
+There are 6 main features: add new contact, list all contacts, display combined timetable of selected contacts, schedule a new meeting, delete a scheduled meeting, list all scheduled meetings.
+### 3.1 Add new contact
+
+### 3.1.1 Design Considerations
+**Aspect: Fetching of module information**
 * Alternative 1(current choice): Instantiate a ```ModuleHandler``` every time there's a request for a module information.
 Pros: The classes are intuitively separated and data structures returned is understandable.
 Cons: Program runs slower for every extra timetable or extra modules taken since its a new instantiation of a ```ModuleHandler```.
 * Alternative 2: Instantiate ```ModuleHandler``` once for every user. 
 Pros: Takes up less memory and setup time for every timetable provided compared to alternative 1.
 Cons: The data structure returned by ```ModuleHandler``` would be complicated and confusing for new developers.
-#### 3.2.2. Aspect: Storing blacklisted module information
+**Aspect: Storing blacklisted module information**
 * Alternative 1(current choice): Create a ```common.BlacklistedModule``` and hash every hard-coded blacklisted module as a constant ```HashSet```.
 Pros: There is no need for user to download the blacklisted module, and only the JAR file is required to run this entire application.
 Also, user do not need to have a one time set-up where they would wait several minutes for the application to dynamically pull the blacklisted modules from Nusmods API server.
@@ -147,6 +170,16 @@ Cons: The one-time set up of pulling the data is very time consuming(~2 minutes 
 Pros: User do not have to wait for the one-time set up and the file would be up to date as long as the application is not deprecated.
 Cons: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
 Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
+
+### 3.2 List all contacts
+
+### 3.3 Display combined timetable of selected contacts
+
+### 3.4 Schedule a new meeting
+
+### 3.5 Delete a scheduled meeting
+
+### 3.6 List all scheduled meetings
 
 ## 4. Documentation
 
