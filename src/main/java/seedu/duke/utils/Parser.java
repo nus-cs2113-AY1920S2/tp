@@ -128,15 +128,91 @@ public class Parser {
 
     private void createAddCommand(String arguments) {
         try {
+            final boolean iPresent = arguments.contains("i/");
+            final boolean pPresent = arguments.contains("p/");
+            final boolean qPresent = arguments.contains("q/");
+            boolean delimiterPresent = iPresent | pPresent | qPresent;
+            boolean hasSingleDelimiter = singleDelimiterChecker(arguments);
             String[] args = splitArgsForAddCommand(arguments);
+            boolean validValues = validValuesChecker(args, iPresent, pPresent, qPresent);
             String description;
             String prices;
             String quantity;
-            description = args[0];
-            prices = args[1];
-            quantity = args[2];
+            if (delimiterPresent && hasSingleDelimiter && validValues) {
+                description = args[0];
+                prices = args[1];
+                quantity = args[2];
 
-            if (description != null && description.length() == 0) {
+                if (description != null && description.length() == 0) {
+                    newCommand = new IncorrectCommand(System.lineSeparator()
+                            + "Oops! Invalid Command. Check if these are met:"
+                            + System.lineSeparator()
+                            + " - Price of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - Quantity of an item should be in positive numerical form."
+                            + System.lineSeparator()
+                            + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                            + "p/[PRICE] or q/[QUANTITY] must be present."
+                            + System.lineSeparator()
+                            + "|| Example: ADD i/apples p/9.90 q/9");
+                } else {
+                    if (prices == null && quantity != null) {
+                        int quantityInInteger = Integer.parseInt(quantity);
+                        if (quantityInInteger < 0) {
+                            newCommand = new IncorrectCommand(System.lineSeparator()
+                                    + "Oops! Invalid Command. Check if these are met:"
+                                    + System.lineSeparator()
+                                    + " - Price of an item should be in positive numerical form."
+                                    + System.lineSeparator()
+                                    + " - Quantity of an item should be in positive numerical form."
+                                    + System.lineSeparator()
+                                    + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                                    + "p/[PRICE] or q/[QUANTITY] must be present."
+                                    + System.lineSeparator()
+                                    + "|| Example: ADD i/apples p/9.90 q/9");
+                        } else {
+                            newCommand = new AddCommand(description, 0.0, quantityInInteger);
+                        }
+                    } else if (prices != null && quantity == null) {
+                        double price = Double.parseDouble(prices);
+                        if (price < 0.0) {
+                            newCommand = new IncorrectCommand(System.lineSeparator()
+                                    + "Oops! Invalid Command. Check if these are met:"
+                                    + System.lineSeparator()
+                                    + " - Price of an item should be in positive numerical form."
+                                    + System.lineSeparator()
+                                    + " - Quantity of an item should be in positive numerical form."
+                                    + System.lineSeparator()
+                                    + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                                    + "p/[PRICE] or q/[QUANTITY] must be present."
+                                    + System.lineSeparator()
+                                    + "|| Example: ADD i/apples p/9.90 q/9");
+                        } else {
+                            newCommand = new AddCommand(description, price,1);
+                        }
+                    } else if (prices == null && quantity == null) {
+                        newCommand = new AddCommand(description,0.0,1);
+                    } else {
+                        double price = Double.parseDouble(prices);
+                        int quantityInInteger = Integer.parseInt(quantity);
+                        if (quantityInInteger < 0 || price < 0.0) {
+                            newCommand = new IncorrectCommand(System.lineSeparator()
+                                    + "Oops! Invalid Command. Check if these are met:"
+                                    + System.lineSeparator()
+                                    + " - Price of an item should be in positive numerical form."
+                                    + System.lineSeparator()
+                                    + " - Quantity of an item should be in positive numerical form."
+                                    + System.lineSeparator()
+                                    + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
+                                    + "p/[PRICE] or q/[QUANTITY] must be present."
+                                    + System.lineSeparator()
+                                    + "|| Example: ADD i/apples p/9.90 q/9");
+                        } else {
+                            newCommand = new AddCommand(description, price, quantityInInteger);
+                        }
+                    }
+                }
+            } else {
                 newCommand = new IncorrectCommand(System.lineSeparator()
                         + "Oops! Invalid Command. Check if these are met:"
                         + System.lineSeparator()
@@ -148,62 +224,6 @@ public class Parser {
                         + "p/[PRICE] or q/[QUANTITY] must be present."
                         + System.lineSeparator()
                         + "|| Example: ADD i/apples p/9.90 q/9");
-            } else {
-                if (prices == null && quantity != null) {
-                    int quantityInInteger = Integer.parseInt(quantity);
-                    if (quantityInInteger < 0) {
-                        newCommand = new IncorrectCommand(System.lineSeparator()
-                                + "Oops! Invalid Command. Check if these are met:"
-                                + System.lineSeparator()
-                                + " - Price of an item should be in positive numerical form."
-                                + System.lineSeparator()
-                                + " - Quantity of an item should be in positive numerical form."
-                                + System.lineSeparator()
-                                + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
-                                + "p/[PRICE] or q/[QUANTITY] must be present."
-                                + System.lineSeparator()
-                                + "|| Example: ADD i/apples p/9.90 q/9");
-                    } else {
-                        newCommand = new AddCommand(description, 0.0, quantityInInteger);
-                    }
-                } else if (prices != null && quantity == null) {
-                    double price = Double.parseDouble(prices);
-                    if (price < 0.0) {
-                        newCommand = new IncorrectCommand(System.lineSeparator()
-                                + "Oops! Invalid Command. Check if these are met:"
-                                + System.lineSeparator()
-                                + " - Price of an item should be in positive numerical form."
-                                + System.lineSeparator()
-                                + " - Quantity of an item should be in positive numerical form."
-                                + System.lineSeparator()
-                                + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
-                                + "p/[PRICE] or q/[QUANTITY] must be present."
-                                + System.lineSeparator()
-                                + "|| Example: ADD i/apples p/9.90 q/9");
-                    } else {
-                        newCommand = new AddCommand(description, price,1);
-                    }
-                } else if (prices == null && quantity == null) {
-                    newCommand = new AddCommand(description,0.0,1);
-                } else {
-                    double price = Double.parseDouble(prices);
-                    int quantityInInteger = Integer.parseInt(quantity);
-                    if (quantityInInteger < 0 || price < 0.0) {
-                        newCommand = new IncorrectCommand(System.lineSeparator()
-                                + "Oops! Invalid Command. Check if these are met:"
-                                + System.lineSeparator()
-                                + " - Price of an item should be in positive numerical form."
-                                + System.lineSeparator()
-                                + " - Quantity of an item should be in positive numerical form."
-                                + System.lineSeparator()
-                                + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
-                                + "p/[PRICE] or q/[QUANTITY] must be present."
-                                + System.lineSeparator()
-                                + "|| Example: ADD i/apples p/9.90 q/9");
-                    } else {
-                        newCommand = new AddCommand(description, price, quantityInInteger);
-                    }
-                }
             }
         } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException
                 | NumberFormatException e) {
@@ -238,6 +258,7 @@ public class Parser {
         boolean descriptionPresent = arguments.contains(descriptionDelimiter);
         boolean pricePresent = arguments.contains(priceDelimiter);
         boolean quantityPresent = arguments.contains(quantityDelimiter);
+
         String args = arguments.trim();
         try {
             if (descriptionPresent && !pricePresent && !quantityPresent) { //eg args: ADD i/apple
