@@ -45,7 +45,7 @@ Omitted are the classes for the features implemented, the <code>LoadData</code>
 class, <code>WriteData</code> class, <code>FileUtil</code> class and
 <code>CommandLineTable</code> class.
 
-![alt text](images/Classfinal.png)
+![alt text](images/ClassDiagramFinal.png)
 
 <!-- @@author kokjoon97 -->
 The <code>Duke</code> class manages all required resources in the execution of the application. These include
