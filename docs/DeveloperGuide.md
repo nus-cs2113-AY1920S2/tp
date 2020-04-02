@@ -27,7 +27,7 @@
 ### Purpose of this guide
 This guide describes the software architecture and design of the SHOCO application.
 It will evolve throughout the design and implementation of each SHOCO release. 
-Currently, this document is for the first public release of the application, SHOCO v1.0.
+Currently, this document is for the third public release of the application, SHOCO v2.1.
 
 ### Scope of this guide
 This document describes the software architecture and design for the implementation
@@ -45,7 +45,7 @@ Omitted are the classes for the features implemented, the <code>LoadData</code>
 class, <code>WriteData</code> class, <code>FileUtil</code> class and
 <code>CommandLineTable</code> class.
 
-![alt text](images/ClassDiag.png)
+![alt text](images/Class.png)
 
 <!-- @@author kokjoon97 -->
 The <code>Shoco</code> class manages all required resources in the execution of the application. These include
