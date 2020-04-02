@@ -18,3 +18,4 @@ bin/
 *.log
 *.json
 Logger.log.1
+Logger.log.lck
