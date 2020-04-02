@@ -1,6 +1,5 @@
 package seedu.duke.data;
 
-//@@author
 public class Item {
 
     private double price;
