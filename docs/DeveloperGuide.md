@@ -29,6 +29,7 @@ This guide describes the software architecture and design of the SHOCO applicati
 It will evolve throughout the design and implementation of each SHOCO release. 
 Currently, this document is for the third public release of the application, SHOCO v2.1.
 
+
 ### Scope of this guide
 This document describes the software architecture and design for the implementation
 of SHOCO and is tailored for the developers, designers, and software testers of SHOCO.
@@ -146,10 +147,10 @@ The process of object creation is as follows:
 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
 2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
 * The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
-3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>EditCommand</code> object.
-4. In the <code>execute</code> function, the <code>item</code> to be edited (based on the specified index of the 
-user input) is called from the <code>ShoppingList</code> object.The original description/price/quantity of the item is overwritten 
-with the new values from the user input.
+3. The <code>Duke</code> class calls the <code>EditCommand#execute</code> method.
+4. In the <code>EditCommand#execute</code> method, it first gets the <code>item</code> object through the <code>ShoppingList#getItem</code>
+The original description/price/quantity of the item is overwritten 
+with the new values from the user input. This is done through the use of the <code>Item</code> class setter methods.
 5. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
@@ -157,7 +158,7 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 
 ![alt text](images/EditFeature.png)
 
-![alt text](images/EditFeature_SD.jpg)
+![alt text](images/EditFeature_SD.png)
 
 
 #### 3.2.2 Design considerations
@@ -172,11 +173,14 @@ have been omitted from the diagram. Those details are shown in a separate sequen
     presence of the variable in user input.
  
  
-- Alternative 2: Require all values of an <code>item</code> object to be updated
-  - Pros: Will have less code to deal with having no additional parsing of input string needed.
+- Alternative 2: Require all values of an <code>item</code> object to be updated and parameters must be in alphabetical order.
+  - Pros: Will have less code to deal with having no additional parsing of the input string.
   
-  - Cons: Less user flexibility; user must input all parameters even if he/she does not want to update certain
+  - Cons: Less user flexibility; user must input all parameters even if he/she does not wish to update certain
   variables.
+
+
+- Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order". Futhermore, having greater freedom on input values makes it a hassle-free process for the users.
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
