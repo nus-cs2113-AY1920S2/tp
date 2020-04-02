@@ -7,15 +7,16 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
 3. [Features](#features)
     1. [Command Format](#command-format)
         1. [Asking for help with valid commands : `help`](#help-command)
-        2. [Viewing articles or jobs : `view`](#viewing-articles-or-jobs----view-)
-        3. [Saving an article or job: `save `](#saving-an-article-or-job---save--)
-        4. [Creating an `article`, `job`, or `note`: `create`](#creating-an--article----job---or--note----create-)
-        5. [Listing saved/created `article`, `job`, `note`: `list `](#listing-saved-created--article----job----note----list--)
-        5. [Deleting saved/created `article`, `job`, or `note`: `delete `](#deleting-saved-created--article----job---or--note----delete--)
-        7. [Adding an extract to `article`, `job`, or `note`: `list`](#adding-an-extract-to--article----job---or--note----list-)
-        8. [Exiting the program : `exit`](#exiting-the-program----exit-)
+        2. [Viewing articles or jobs : `view`](#view-command)
+        3. [Saving an article or job: `save `](#save-command)
+        4. [Creating an `article`, `job`, or `note`: `create`](#create-command)
+        5. [Listing saved/created `article`, `job`, `note`: `list `](#list-command)
+        5. [Deleting saved/created `article`, `job`, or `note`: `delete `](#delete-command)
+        7. [Adding an extract to `article`, `job`, or `note`: `list`](#add-command)
+        8. [Exiting the program : `exit`](#exit-command)
 4. [FAQ](#faq)
 5. [Command Summary](#command-summary)
+6. [Acknowledgement](#acknowledgement)
 
 ## Introduction
 
@@ -75,8 +76,8 @@ Expected Outcome:
 ****
 
 
-
-#### Viewing articles or jobs : `view`
+#### View Command
+##### Viewing articles or jobs : `view`
 
 * Displays a latest list articles or jobs from the internet. If device is not connected to the internet, pre-loaded articles or jobs is shown. Note that you cannot `view note` as notes are to to created by the user and not loaded from the internet.
 * Format: `view [article / job]`
@@ -142,7 +143,8 @@ Expected Outcome:
 
 ****
 
-#### Saving an article or job: `save `
+#### Save Command
+##### Saving an article or job: `save `
 
 * Saves an article/job you see from the internet/database through the view option into a seperate list of saved articles or jobs. The saved articles/jobs get saved into the memory and you can see them again using the `list` functionality when you load the application some other time.
 * Format: `save [article / job] INDEX_NUMBER`
@@ -170,8 +172,8 @@ Expected Outcome
 
 ****
 
-
-#### Creating an `article`, `job`, or `note`: `create`
+#### Create Command
+##### Creating an `article`, `job`, or `note`: `create`
 
 * Helps user manually create  an `article`, `job`, or `note` and add it to the list of saved articles, jobs or notes respectively.
 * Note that a created `article`, `job`, or `note` is saved to the list of saved articles/job/notes and not the one the user sees when she invokes the "view articles" command for example. The saved article/job list is composed of a list of individually *saved* articles from the view list and *created* articles.
@@ -209,7 +211,8 @@ Expected Outcome:
 
 ****
 
-#### Listing saved/created `article`, `job`, `note`: `list `
+#### List Command
+##### Listing saved/created `article`, `job`, `note`: `list `
 
 * Lists articles, jobs or notes that you have creaed or saved from the internet/database.
 * Format: `list [article / job / note]`
@@ -245,7 +248,8 @@ Expected Outcome:
 
 ****
 
-#### Deleting saved/created `article`, `job`, or `note`: `delete `
+#### Delete Command
+##### Deleting saved/created `article`, `job`, or `note`: `delete `
 
 * Deletes `article`, `job`, or `note` at the specified `INDEX_NUMBER`. 
 * When an `article`, `job`, or `note` is deleted, all subsequent ones in the resepective list will have their index reduced by 1.
@@ -268,7 +272,8 @@ Expected Outcome
     __________________________________________________________________________________________
 ****
 
-#### Adding an extract to `article`, `job`, or `note`: `addinfo`
+#### Add Command
+##### Adding an extract to `article`, `job`, or `note`: `addinfo`
 
 * Adds an extract to an `article`, `job`, or `note`.
 * Format: `addinfo [article / job / note] INDEX_NUMBER EXTRACT`
@@ -293,8 +298,8 @@ Expected outcome:
 
 ****
 
-
-#### Exiting the program : `exit`
+#### Exit Command
+##### Exiting the program : `exit`
 
 * Exits the program. 
 * Format: `exit`
