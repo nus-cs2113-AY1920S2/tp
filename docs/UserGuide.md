@@ -162,8 +162,8 @@ Expected Output:
 Calculates calories intake on a day or during a time period.
 
 Format: 
-* Option 1: `calculate-calories {DATE}`
-* Option 2: `calculate-calories {DATE1}->{DATE2}`
+* Option 1: `calculate {DATE}`
+* Option 2: `calculate {DATE1}->{DATE2}`
 
 Attention:
 ```
@@ -272,13 +272,12 @@ Simply copying and moving that specific folder would be sufficient.
 
 No. | Command | Description
 ----| ------- | -----------
-1  | `profile` | View user profile
-2  | `` | 
-3  | `` | 
-4  | `` | 
-5  | `` | 
-6  | `` | 
-7  | `` | 
-8  | `` | 
-9  | `help` | Display help menu
-10 | `exit` | Exit application
+1  | `set-profile` | Set up user profile
+2  | `profile` | View user profile
+3  | `record-meal` | Record a meal
+4  | `check-meal` | Check a meal 
+5  | `calculate` | Calculates calories intake on a day or during a time period
+6  | `list-food` | List all foods recorded in the database 
+7  | `addf` | Add a new food into database
+8  | `delf` | Delete a food from the database 
+9  | `exit` | Exit application
