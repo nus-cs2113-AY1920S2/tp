@@ -8,7 +8,7 @@ import seedu.dietmanager.ui.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class AddFoodCommand extends Command {
-    private static final int ARGUMENTS_REQUIRED = 2;
+    private static final int ARGUMENTS_REQUIRED = 1;
     private String foodName;
     private Double calories;
     private boolean noDescription;
@@ -28,8 +28,12 @@ public class AddFoodCommand extends Command {
 
         try {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.foodName = descriptionArray[0].toLowerCase();
-            this.calories = Double.parseDouble(descriptionArray[1]);
+            String[] foodDescription = descriptionArray[0].split("--");
+            this.foodName = foodDescription[0].trim().toLowerCase();
+            this.calories = Double.parseDouble(foodDescription[1].trim());
+            if (this.calories <= 0) {
+                throw new NumberFormatException();
+            }
             this.isInvalidCaloriesInfo = false;
         } catch (NullPointerException e) {
             this.noDescription = true;
@@ -52,7 +56,8 @@ public class AddFoodCommand extends Command {
         if (this.noDescription) {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (this.isInvalidCaloriesInfo) {
-            this.result = "Sorry, to add new food to database you must specify its calories content.";
+            this.result = "Sorry, to add new food to database you must input correct calories info."
+                    + System.lineSeparator() + "It has to be positive Integer or Float";
         } else if (!this.success) {
             this.result = "No need to add! We already have this food in our database!";
         } else {
