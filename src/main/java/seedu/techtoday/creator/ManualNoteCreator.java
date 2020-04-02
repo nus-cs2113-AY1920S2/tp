@@ -14,12 +14,12 @@ public class ManualNoteCreator {
     public static void execute() {
         System.out.println("Enter the title you would like to give this Note?");
         String title = Ui.getCommand();
-        System.out.println("What would you like to add to the extract of this note?");
-        String extract = Ui.getCommand();
         System.out.println("Paste any URLs associated with this note:");
         String url = Ui.getCommand();
         System.out.println("What is the category (type \"default\" if you don't know it)");
         String category = Ui.getCommand();
+        System.out.println("What would you like to add to the extract of this note?");
+        String extract = Ui.getCommand();
         String epochSecond = CurrentTimeFetcher.execute();
         Note note = new Note(title, extract, epochSecond);
         note.setUrl(url);

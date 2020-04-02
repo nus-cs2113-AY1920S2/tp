@@ -13,12 +13,15 @@ public class ManualJobCreator {
     public static void execute() {
         System.out.println("Enter the title of the job?");
         String title = Ui.getCommand();
-        System.out.println("What is the job description?");
+        System.out.println("What is the job description/details?");
         String text = Ui.getCommand();
         System.out.println("What is the category (type \"default\" if you don't know it)");
         String category = Ui.getCommand();
+        System.out.println("Would you like to add any extract?");
+        String extract = Ui.getCommand();
         String epochSecond = CurrentTimeFetcher.execute();
         Job job = new Job(title, text, category);
+        job.setExtract(extract);
         job.setTime(epochSecond);
         SavedJobList.savedJobList.add(job);
         System.out.println("Done, we have added the job to your list of saved jobs");
