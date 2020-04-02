@@ -171,6 +171,9 @@ Format: `CLEAR`
 
 ### Marking an item as bought: `MARK`
 Marks an item from the list at the specified index as bought.
+When first added initially, the item will have the status `[0]` 
+to indicate that it is unmarked. After marking the item as bought, 
+the status of item becomes `[B]`.
 
 Format: `MARK INDEX`
 
@@ -189,6 +192,9 @@ Example of the usage:
 
 ### Un-marking a marked item: `UNMARK`
 Un-marks a marked-as-bought item from the list at the specified index.
+After being marked as bought, the item will have the status `[B]`
+to indicate that it is marked as bought. After unmarking the marked-as-bought
+item, the status of the item becomes `[0]`.
 
 Format: `UNMARK INDEX`
 
