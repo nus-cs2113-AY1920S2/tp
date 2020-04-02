@@ -1,6 +1,6 @@
 package seedu.duke.data;
 
-//@@author trishaangelica, jiajuinphoon, Shannonwje, kokjoon97, JLoh579
+//@@author
 public class Item {
 
     private double price;
@@ -10,6 +10,7 @@ public class Item {
     private static final String BOUGHT = "B";
     private static final String NOT_BOUGHT = "0";
 
+    //@@author trishaangelica
     /**
      * Constructs an Item object with the provided description and price.
      *
@@ -37,6 +38,7 @@ public class Item {
         this.isBought = false;
     }
 
+    //@@author JLoh579
     public int getQuantity() {
         return quantity;
     }
@@ -45,22 +47,25 @@ public class Item {
         this.quantity = quantity;
     }
 
+    //@@author kokjoon97
+    public double getPrice() {
+        return price;
+    }
+
     public void setPrice(double price) {
         this.price = price;
     }
 
-    public double getPrice() {
-        return price;
+    //@@author jiajuinphoon
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
+    //@@author Shannonwje
     /**
      * Returns the status of the item to tell if it is bought or not bought yet.
      *
@@ -88,4 +93,3 @@ public class Item {
     }
 
 }
-//@@author

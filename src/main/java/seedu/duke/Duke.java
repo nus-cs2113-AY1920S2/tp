@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-//@@author trishaangelica, jiajuinphoon, Shannonwje, kokjoon97, JLoh579
+
 public class Duke {
 
     private static Budget myBudget = new Budget();
@@ -26,6 +26,7 @@ public class Duke {
     private static final String DEFAULT_FILEPATH = "Logger.log";
     private static final String LOG_FILE_ERROR = "Logging to file unsuccessful";
 
+    //@@author trishaangelica
     /**
      * Main entry-point for the java.duke.Duke application.
      *
@@ -57,8 +58,8 @@ public class Duke {
             LOGGER.log(Level.SEVERE,LOG_FILE_ERROR);
         }
     }
-    //@@author
 
+    //@@author trishaangelica
     /** Runs the program until termination.  */
     public void run() {
         start();
@@ -66,6 +67,7 @@ public class Duke {
         exit();
     }
 
+    //@@author JLoh579
     /**
      * Prints the welcome message.
      */
@@ -76,6 +78,7 @@ public class Duke {
         ui.greet();
     }
 
+    //@@author Shannonwje
     /** Prints the Goodbye message and exits. */
     private void exit() {
         storage.saveAll(items, myBudget);
@@ -84,6 +87,7 @@ public class Duke {
         System.exit(0);
     }
 
+    //@@author kokjoon97
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
@@ -103,6 +107,7 @@ public class Duke {
         } while (!command.isExit);
     }
 
+    //@@author jiajuinphoon
     /**
      * Executes the command and returns the result.
      *
@@ -120,4 +125,3 @@ public class Duke {
     }
 
 }
-//@@author
