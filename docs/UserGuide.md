@@ -9,7 +9,10 @@
     3. [Record meals](#33-record-meals)
     4. [Check meals](#34-check-meals)
     5. [Calculate calories](#35-calculate-calories)
-    6. [Exit application](#36-exit-application)
+    6. [List food database](#36-list-food-database)
+    7. [Add food into database](#37-add-food-into-database)
+    8. [Delete food from database](#38-delete-food-from-database)
+    9. [Exit application](#39-exit-application)
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -203,7 +206,7 @@ Food: Oil, Calories: 5.00cal
 Food: Tea, Calories: 6.00cal
 ```
 
-### 3.6 Add food into database
+### 3.7 Add food into database
 Adds a new food into database.
 
 Format: `addf FOODNAME --CALORIES`
@@ -222,7 +225,7 @@ Sorry, to add new food to database you must input correct calories info.
 It has to be positive Integer or Float
 ```
 
-### 3.7 Delete food from database
+### 3.8 Delete food from database
 Deletes a food from the database
 
 Format: `delf FOODNAME`
@@ -241,7 +244,7 @@ Example of usage:
     No need to delete! Referred Food doesn't exist in database
     ```
 
-### 3.6 Exit application
+### 3.9 Exit application
 Terminates and exits the application
 
 Format: `exit`
