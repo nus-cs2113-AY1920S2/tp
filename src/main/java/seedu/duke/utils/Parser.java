@@ -25,8 +25,8 @@ public class Parser {
 
     private static final String regex = "^(?<index>[ \\d]+[^a-zA-Z\\/])"
                 + "|i\\/(?<description>[a-zA-Z  \\d]+[^ipq\\/\\n]+)"
-                + "|p\\/(?<price>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipq\\/\\n])+"
-                + "|q\\/(?<quantity>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipq\\/])|$;";
+                + "|p\\/(?<price>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipqIPQ\\/\\n])+"
+                + "|q\\/(?<quantity>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipqIPQ\\/])|$;";
 
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -489,7 +489,7 @@ public class Parser {
             }
 
             if (matcher.group("price") != null) {
-                    itemPrice = matcher.group("price").trim();
+                itemPrice = matcher.group("price").trim();
             }
 
             if (matcher.group("quantity") != null) {
@@ -551,7 +551,7 @@ public class Parser {
 
         if (quantityPresent) {
             if (arrToCheck[3] != null) {
-                if (Integer.parseInt(arrToCheck[2]) > 0) {
+                if (Integer.parseInt(arrToCheck[3]) > 0) {
                     validQuantity = true;
                 }
             }
