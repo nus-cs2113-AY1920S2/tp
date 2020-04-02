@@ -23,6 +23,7 @@ public class AddToSemCommand extends AddCommand {
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
         addModule(semesterList);
         Ui.showAddedToSemMessage(selectedModule.announceAdded());
+        super.execute(semesterList, availableModulesList);
     }
 
     private void addModule(SemesterList semesterList) throws RuntimeException {

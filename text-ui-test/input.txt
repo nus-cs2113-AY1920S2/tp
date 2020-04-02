@@ -14,7 +14,12 @@ done id/IS4241 g/A-
 view /dm
 view /cc
 find cS
-done id/CS1010 g/A+
+add id/ACC1004 s/5 mc/4
+add id/GES003 s/5 mc/4
+done id/ACC1004 g/B+
+done id/GES003 g/F
+view /mp
+view /cc
 CAP
 delete id/IS4241 s/4
 view /mp

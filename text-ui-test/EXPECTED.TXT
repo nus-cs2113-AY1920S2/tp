@@ -20,7 +20,7 @@ Here are the commands that I can do for you:
 7. "view /dm" to view all finished modules
 8. "view /cc" to view the number of modular credits u have completed
 9. "CAP" to view your current cap
-10. "view" to view all available modules
+
 Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |

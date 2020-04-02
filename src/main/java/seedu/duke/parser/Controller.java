@@ -106,7 +106,9 @@ public class Controller {
             grading = Grading.CU;
             break;
         default:
-            throw new InputException("Unexpected value: " + grade);
+            throw new InputException("Unexpected value: " + grade
+                    + System.lineSeparator()
+                    + "Please use A+ | A | A-| B+ | B | B- | C+ | C | D+ | D | F | CS | CU.");
         }
         if (module.contains("n/")) {                                            //N
             String moduleName = module.replace("n/","");        //N
@@ -142,15 +144,15 @@ public class Controller {
                     "add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT "
                             + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
         }
-        semester = moduleDetails[0];                                    //.trim()
+        semester = moduleDetails[0].trim();
         try {
             int moduleCredit = Integer.parseInt(moduleDetails[1]);
-            if (module.contains("id/")) {                              //ID
-                String moduleId = module.replace("id/","");         //ID
+            if (module.contains("id/")) {                                               //ID
+                String moduleId = module.replace("id/","");          //ID
                 if (moduleId.contains("n/")) {                                          //N
-                    String[] idAndName = moduleId.split("n/");                      //N
-                    String id = idAndName[0];
-                    String name = idAndName[1];
+                    String[] idAndName = moduleId.split("n/");                   //N
+                    String id = idAndName[0].trim();
+                    String name = idAndName[1].trim();
                     return new AddToSemCommand(new SelectedModule("Both", id, name, semester, moduleCredit));
                 }
                 return new AddToSemCommand(new SelectedModule("id", moduleId, semester, moduleCredit));
