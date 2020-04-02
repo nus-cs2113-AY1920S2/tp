@@ -45,6 +45,7 @@ Content
     - [User Stories](#52-appendix-b-user-stories)
     - [Use Cases](#53-appendix-c-use-cases)
     - [Non-Functional Requirements](#54-appendex-d-non-functional-requirements)
+    - [Documentation](#55-appendix-e-documentation)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -184,7 +185,7 @@ The `execute()` method will do 2 things:
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete.png)
+![delete task](images/delete1.png)
 
 #### 3.1.1. Design Considerations
 
@@ -252,7 +253,7 @@ The String results from Step 5 will be parsed into `SearchCommand#resultsList` t
         
 The following sequence diagram summarizes how the *search* and *searchd* command works :
 
-![Search operations](images/search.png)
+![Search operations](images/search1.png)
 
 #### 3.2.2. Design Considerations:
 
@@ -318,7 +319,7 @@ The `execute()` method will then call the `clearDone()` method in the `ClearComm
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
-![clear command](images/clear.png)
+![clear command](images/clear1.png)
 
 #### 3.3.2. Design Considerations
 
@@ -815,11 +816,13 @@ Target user profile:
 </table>
 
 ### 5.3. Appendix C: Use Cases
-### 5.4. Appendex D: Non-Functional Requirements
+### 5.4. Appendix D: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
 
 3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
 
+### 5.5 Appendix E: Documentation
+Refer to [here]()
 [Back to Top](#)
