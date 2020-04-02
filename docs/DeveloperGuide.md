@@ -86,8 +86,8 @@ This section will describe how the main features of the application are implemen
  1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
  2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
- 3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>AddCommand</code> object.
- 4. In the <code>execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> 
+ 3. The <code>Duke</code> class calls the <code>AddCommand#execute</code> method of the <code>AddCommand</code> object.
+ 4. In the <code>AddCommand#execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> 
     object, using items.add().
  5. In the SD, the AddCommand will add <code>item</code> if the description is provided and one / both price and 
     quantity is provided. 
@@ -127,6 +127,10 @@ This section will describe how the main features of the application are implemen
   Also, duplicate items may confused the user, even though in some specific scenario, duplicate item may be useful to 
   the user.  
  
+ Reasons for choosing Alternative 1 over alternative 2: By allowing user to just add the item without price,
+ we can increase the flexibility. For instance, the user wants to buy milk but not sure how much does the milk
+ cost and not sure how many milk they want to buy. So they can just add it into the list,
+ and edit the price and quantity later when they knew the price and have decided the quantity. 
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -146,7 +150,7 @@ The process of object creation is as follows:
 
 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
 2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
-* The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
+   * The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
 3. The <code>Duke</code> class calls the <code>EditCommand#execute</code> method.
 4. In the <code>EditCommand#execute</code> method, it first gets the <code>item</code> object through the <code>ShoppingList#getItem</code>
 The original description/price/quantity of the item is overwritten 
