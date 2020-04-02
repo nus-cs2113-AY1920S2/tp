@@ -1,24 +1,22 @@
 package jikan.command;
 
-import jikan.exception.ExistingTagGoalException;
-import jikan.exception.InvalidTimeFrameException;
-import jikan.exception.NegativeDurationException;
-import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
+import jikan.exception.ExistingTagGoalException;
 import jikan.exception.InvalidEditFormatException;
+import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NegativeDurationException;
 import jikan.exception.NoSuchActivityException;
+import jikan.log.Log;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static jikan.Jikan.tagFile;
 import static jikan.command.GoalCommand.parseDuration;
 
 /**
