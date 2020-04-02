@@ -16,11 +16,14 @@ public class ManualArticleCreator {
         String url = Ui.getCommand();
         System.out.println("What is the category (type \"default\" if you don't know it)");
         String category = Ui.getCommand();
+        System.out.println("Would you like to add any extract?");
+        String extract = Ui.getCommand();
         String epochSecond = CurrentTimeFetcher.execute();
         Article article = new Article(title, url, category);
         article.setTime(epochSecond);
+        article.setExtract(extract);
         SavedArticleList.savedArticleList.add(article);
-        System.out.println("Done, we have added the following job to your list of saved jobs");
+        System.out.println("Done, we have added the following article to your list of saved articles");
         ArticlePrinter.printIsolatedArticle(article);
     }
 }

@@ -6,7 +6,7 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
 2. [Quick Start](#quick-start)
 3. [Features](#features)
     1. [Command Format](#command-format)
-        1. [Asking for help with valid commands : `help`](#asking-for-help-with-valid-commands----`help`-)
+        1. [Asking for help with valid commands : `help`](`help`-command)
         2. [Viewing articles or jobs : `view`](#viewing-articles-or-jobs----view-)
         3. [Saving an article or job: `save `](#saving-an-article-or-job---save--)
         4. [Creating an `article`, `job`, or `note`: `create`](#creating-an--article----job---or--note----create-)
@@ -46,7 +46,8 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 * Note that if the input from the user is a valid command followed by arbitrary input, the programme will just ignore the arbitrary input and execute the valid command. For example, a command like `view article ls;dgljfg` will only read `view article` and ignore the gibberish command that follows the valid part.
 
 
-#### Asking for help with valid commands : `help`
+#### `help` command
+##### Asking for help with valid commands : `help`
 
 * Loads all possible commands that the user can type.
 * Format: `help`
