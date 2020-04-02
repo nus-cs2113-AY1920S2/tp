@@ -35,12 +35,13 @@ class NoteDeleterTest {
                 + System.lineSeparator()
                 + "   Date: "
                 + System.lineSeparator()
-                + "   Text: "
-                + System.lineSeparator()
                 + "   Category: null"
                 + System.lineSeparator()
                 + "   URL: null"
+                + System.lineSeparator()
+                + "   Extract: "
                 + System.lineSeparator();
+
         assertEquals(expectedOutput, outContent.toString());
     }
 }
