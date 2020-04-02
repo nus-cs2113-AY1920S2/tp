@@ -1,5 +1,6 @@
 package seedu.techtoday.notelist;
 
+import seedu.techtoday.common.CommonMethods;
 import seedu.techtoday.common.TimeStampToDateConverter;
 import seedu.techtoday.objects.Note;
 
@@ -15,13 +16,14 @@ public class NotePrinter {
         String date = TimeStampToDateConverter.execute(timeStamp);
         String title = note.getTitle();
         String extract = note.getExtract();
+        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
         String category = note.getCategory();
         String url = note.getUrl();
         System.out.println(taskCounter + ". Title: " + title + System.lineSeparator()
                                 + "   Date: " + date + System.lineSeparator()
-                                + "   Text: " + extract + System.lineSeparator()
                                 + "   Category: " + category + System.lineSeparator()
-                                + "   URL: " + url);
+                                + "   URL: " + url + System.lineSeparator()
+                                + "   Extract: " + upToNCharacters);
     }
 
     /**
@@ -33,13 +35,14 @@ public class NotePrinter {
         String date = TimeStampToDateConverter.execute(timeStamp);
         String title = note.getTitle();
         String extract = note.getExtract();
+        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
         String category = note.getCategory();
         String url = note.getUrl();
         System.out.println("   Title: " + title + System.lineSeparator()
                 + "   Date: " + date + System.lineSeparator()
-                + "   Text: " + extract + System.lineSeparator()
                 + "   Category: " + category + System.lineSeparator()
-                + "   URL: " + url);
+                + "   URL: " + url + System.lineSeparator()
+                + "   Extract: " + upToNCharacters);
     }
 }
 

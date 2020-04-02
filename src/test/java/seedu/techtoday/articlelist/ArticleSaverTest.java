@@ -39,7 +39,7 @@ class ArticleSaverTest {
                 + System.lineSeparator()
                 + "   Url: www.test2.com"
                 + System.lineSeparator()
-                + "   Extract: ..."
+                + "   Extract: "
                 + System.lineSeparator();
         assertEquals(expectedOutput, outContent.toString());
     }

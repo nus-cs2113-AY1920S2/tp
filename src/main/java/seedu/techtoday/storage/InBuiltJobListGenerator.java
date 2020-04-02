@@ -1,6 +1,8 @@
 package seedu.techtoday.storage;
 
+import seedu.techtoday.articlelist.ViewedArticleList;
 import seedu.techtoday.joblist.JobAdder;
+import seedu.techtoday.joblist.ViewedJobList;
 import seedu.techtoday.objects.Job;
 import seedu.techtoday.joblist.SavedJobList;
 
@@ -10,7 +12,6 @@ public class InBuiltJobListGenerator {
      */
     public static void execute() {
 
-        String timeStampToday = "1584768812";
         String timeStampOfToday = "1584768812";
 
         // job 1
@@ -52,11 +53,11 @@ public class InBuiltJobListGenerator {
         jobSix.setTime(timeStampOfToday);
 
 
-        JobAdder.execute(SavedJobList.savedJobList, jobOne);
-        JobAdder.execute(SavedJobList.savedJobList, jobTwo);
-        JobAdder.execute(SavedJobList.savedJobList, jobThree);
-        JobAdder.execute(SavedJobList.savedJobList, jobFour);
-        JobAdder.execute(SavedJobList.savedJobList, jobFive);
-        JobAdder.execute(SavedJobList.savedJobList,jobSix);
+        JobAdder.execute(ViewedJobList.viewedJobList, jobOne);
+        JobAdder.execute(ViewedJobList.viewedJobList, jobTwo);
+        JobAdder.execute(ViewedJobList.viewedJobList, jobThree);
+        JobAdder.execute(ViewedJobList.viewedJobList, jobFour);
+        JobAdder.execute(ViewedJobList.viewedJobList, jobFive);
+        JobAdder.execute(ViewedJobList.viewedJobList, jobSix);
     }
 }

@@ -1,5 +1,6 @@
 package seedu.techtoday.joblist;
 
+import seedu.techtoday.common.CommonMethods;
 import seedu.techtoday.common.TimeStampToDateConverter;
 import seedu.techtoday.objects.Job;
 
@@ -18,12 +19,12 @@ public class JobPrinter {
         String upToNCharactersText = text.substring(0, Math.min(text.length(), 100)) + "...";
         String category = job.getCategory();
         String extract = job.getExtract();
-        String upToNCharactersExtarct = extract.substring(0, Math.min(extract.length(), 100)) + "...";
+        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
         System.out.println(taskCounter + ". Title: " + title + System.lineSeparator()
                             + "   Date: " + date + System.lineSeparator()
                             + "   Category: " + category + System.lineSeparator()
                             + "   Text: " + upToNCharactersText + System.lineSeparator()
-                            + "   Extract: " + upToNCharactersExtarct);
+                            + "   Extract: " + upToNCharacters);
     }
 
     /**
@@ -37,10 +38,11 @@ public class JobPrinter {
         String text = job.getText();
         String category = job.getCategory();
         String extract = job.getExtract();
+        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
         System.out.println("   Title: " + title + System.lineSeparator()
                 + "   Date: " + date + System.lineSeparator()
                 + "   Category: " + category + System.lineSeparator()
                 + "   Text: " + text + System.lineSeparator()
-                + "   Extract: " + extract);
+                + "   Extract: " + upToNCharacters);
     }
 }

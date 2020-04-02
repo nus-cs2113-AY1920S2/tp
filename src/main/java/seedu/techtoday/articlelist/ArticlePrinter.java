@@ -1,5 +1,6 @@
 package seedu.techtoday.articlelist;
 
+import seedu.techtoday.common.CommonMethods;
 import seedu.techtoday.common.TimeStampToDateConverter;
 import seedu.techtoday.objects.Article;
 
@@ -19,7 +20,7 @@ public class ArticlePrinter {
         String url = article.getUrl();
         String category = article.getCategory();
         String extract = article.getExtract();
-        String upToNCharacters = extract.substring(0, Math.min(extract.length(), 100)) + "...";
+        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
         System.out.println(taskCounter + ". Title: " + title + System.lineSeparator()
                                 + "   Date: " + date + System.lineSeparator()
                                 + "   Category: " + category + System.lineSeparator()
@@ -39,7 +40,7 @@ public class ArticlePrinter {
         String url = article.getUrl();
         String category = article.getCategory();
         String extract = article.getExtract();
-        String upToNCharacters = extract.substring(0, Math.min(extract.length(), 100)) + "...";
+        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
         System.out.println("   Title: " + title + System.lineSeparator()
                                 + "   Date: " + date + System.lineSeparator()
                                 + "   Category: " + category + System.lineSeparator()

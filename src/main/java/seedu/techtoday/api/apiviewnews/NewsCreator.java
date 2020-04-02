@@ -16,7 +16,7 @@ public class NewsCreator {
     public static Article rawToProcessedNews(JSONObject json) throws JSONException {
         String title = json.get("title").toString();
         String timeStamp = json.get("time").toString();
-        assert (CommonMethods.isLong(timeStamp)) : "Timestamp should be of long type";
+        assert (CommonMethods.checkIsLong(timeStamp)) : "Timestamp should be of long type";
         String url;
         try {
             url = json.get("url").toString();
