@@ -99,7 +99,7 @@ This section will describe how the main features of the application are implemen
  
  ![alt text](images/AddFeature_SD.png)
  
-#### 2.1.2 Design considerations
+#### 3.1.2 Design considerations
 
 ##### Aspect: Data structure to support the add feature
 
