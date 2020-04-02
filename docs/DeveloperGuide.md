@@ -153,7 +153,7 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 
 ![alt text](images/EditFeature.png)
 
-![alt text](images/EditFeature_SD.jpg)
+![alt text](images/EditFeature_SD.png)
 
 
 #### 3.2.2 Design considerations
