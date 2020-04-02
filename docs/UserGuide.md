@@ -46,7 +46,7 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 * Note that if the input from the user is a valid command followed by arbitrary input, the programme will just ignore the arbitrary input and execute the valid command. For example, a command like `view article ls;dgljfg` will only read `view article` and ignore the gibberish command that follows the valid part.
 
 
-# `help` command
+#### `help` command
 ##### Asking for help with valid commands : `help`
 
 * Loads all possible commands that the user can type.
