@@ -222,7 +222,9 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
 
-  
+- Reason for choosing alternative 1: By abstracting out different command types as separate classes, this allowed us
+to work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality.
+
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
@@ -271,6 +273,9 @@ This next sequence diagram will show how the <code>FindCommand</code> creates th
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
+    
+- Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
+also be able to trace functionality bugs more easily if each command class deals with a different functionality.
 <!-- @@author -->
   
 &nbsp;
@@ -455,6 +460,10 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
+  
+- Reason for choosing alternative 1: By implementing each command type in a separate class, any bugs associated with a
+particular functionality will not affect other functionalities that significantly. It would also make it easier for us to 
+work in parallel.
 <!-- @@author -->
  
 &nbsp;
