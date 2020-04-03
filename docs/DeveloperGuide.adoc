@@ -26,7 +26,7 @@ This document describes the software architecture and design for the implementat
 
 &nbsp;
 
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++ &nbsp;
 
 == 2. Overview of the SHOCO application
@@ -52,7 +52,7 @@ This `Command` has to be executed before `Duke` can receive more user input.
 // @@author
 &nbsp;
 
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++ &nbsp;
 
 == 3. Implementation
@@ -109,7 +109,7 @@ So they can just add it into the list,  and edit the price and quantity later wh
 // end::Add[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -162,7 +162,7 @@ Futhermore, having greater freedom on input values makes it a hassle-free proces
 // end::Edit[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 // @@author
 
@@ -206,7 +206,7 @@ image::Deletefinal2.png[]
 // end::Delete[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -254,7 +254,7 @@ image::Finditemsfinal2.png[]
 // end::Find[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -300,7 +300,7 @@ image::Unmark.png[]
 // end::MarkAndUnmark[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -345,7 +345,7 @@ Thus, the code becomes  harder to navigate and understand.
 // end::Display[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -386,7 +386,7 @@ Thus, the code becomes  harder to navigate and understand.
 // end::Clear[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -430,7 +430,7 @@ It would also make it easier for us to  work in parallel.
 // end::SetBudget[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -466,7 +466,7 @@ image::Reset_Budget.png[]
 // end::ResetBudget[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -508,7 +508,7 @@ image::HelpFeature.png[]
 // end::Help[]
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -546,7 +546,7 @@ image::ExitFeature.png[]
 
 // end::Exit[]
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -568,7 +568,7 @@ This section talks about who this product targets and what it aims to achieve.
 * Make grocery shopping a breeze by offering greater flexibility in managing shopping lists and also providing helpful features like budget tracking
 // @@author
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -672,7 +672,7 @@ This section contains the user stories for the different versions of our product
 |===
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -686,7 +686,7 @@ back to top>>+++</b>+++
 // @@author
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -696,7 +696,7 @@ back to top>>+++</b>+++
 * _glossary item_ - Definition
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -706,7 +706,7 @@ back to top>>+++</b>+++
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 &nbsp;
-+++<b>+++<<shoco-v21---user-guide,,&#129053;
++++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
