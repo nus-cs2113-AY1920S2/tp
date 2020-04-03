@@ -7,6 +7,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.logic.parser.Parser;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.TextUi;
 
 import java.io.FileNotFoundException;
@@ -95,15 +96,14 @@ public class HappyPills {
     private String getCommandType(String fullCommand) {
         String message = "";
         try {
-            Command c = Parser.parse(fullCommand);
-            message = c.execute(patients, appointments, patientRecords);
+            Command command = Parser.parse(fullCommand);
+            message = command.execute(patients, appointments, patientRecords);
         } catch (HappyPillsException hpe) {
             System.out.println(hpe.getMessage());
             System.out.println(TextUi.DIVIDER);
             logger.info(hpe.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("    Command is incomplete. Please use the help command.\n"
-                    + TextUi.DIVIDER);
+            System.out.println(Messages.MESSAGE_INCOMPLETE_COMMAND);
         }
         return message;
     }

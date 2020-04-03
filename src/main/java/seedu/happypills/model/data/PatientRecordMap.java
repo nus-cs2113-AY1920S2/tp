@@ -13,6 +13,7 @@ public class PatientRecordMap {
      * Adds an Visit into the VisitMap.
      *
      * @param patientRecord the appointment to be added into the map.
+     * @param nric nric for the patient
      * @throws HappyPillsException throws exception if there is already an appointment with the given datetime.
      */
     public void addPersonalRecord(PatientRecord patientRecord, String nric) throws HappyPillsException {

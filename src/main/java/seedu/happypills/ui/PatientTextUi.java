@@ -3,7 +3,6 @@ package seedu.happypills.ui;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 
-import java.util.Dictionary;
 import java.util.Map;
 
 public class PatientTextUi extends TextUi {

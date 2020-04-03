@@ -10,6 +10,7 @@ public class PatientRecordTextUi extends TextUi {
     public static String emptyPatientRecordMessage = "    There are no patient record.";
     public static String getEmptyPatientRecordList = "    There are no patient record in the list.";
 
+
     /**
      * format a list patient record success message for user.
      * Includes a specified string, requested patient details and a divider.
@@ -35,6 +36,8 @@ public class PatientRecordTextUi extends TextUi {
      * Includes a specified string, requested patient details and a divider.
      *
      * @param patientRecordMap patient object to be returned as a part of the string.
+     * @param patientNric      nric of the patient
+     * @param index            index for the record of the searched patient
      * @return a formatted success message string to be displayed to user.
      */
     public static String getPatientRecordSuccessMessage(
@@ -61,6 +64,8 @@ public class PatientRecordTextUi extends TextUi {
      * Includes a specified string, requested patient details and a divider.
      *
      * @param patientRecordMap patient object to be returned as a part of the string.
+     * @param patientNric      nric of the patient
+     * @param index            index for the record of the searched patient
      * @return a formatted success message string to be displayed to user.
      */
     public static String deletePatientRecordSuccessMessage(
@@ -71,5 +76,28 @@ public class PatientRecordTextUi extends TextUi {
         patientRecord.remove(index);
         patientRecordMap.removePersonalRecord(patientRecord, patientNric);
         return returnMessage;
+    }
+
+    public static void patientRecordNotAddedMessage(String detail) {
+        System.out.println("    " + detail + " is not a valid input.\n"
+                + "    " + detail + " will not be added\n" + TextUi.DIVIDER);
+    }
+
+
+    /**
+     * Prompt user for conformation with this message.
+     *
+     * @param parseInput details to be displayed to user for confirmation
+     * @return string to be displayed to user for confirmation
+     */
+    public static String promptConformation(String[] parseInput) {
+        String text = "        Are you sure all the listed details are correct?\n"
+                + "        NRIC : " + parseInput[0].trim().toUpperCase() + "\n"
+                + "        Symptom : " + parseInput[1].trim() + "\n"
+                + "        Diagnosis : " + parseInput[2].trim() + "\n"
+                + "        Date : " + parseInput[3].trim() + "\n"
+                + "        time : " + parseInput[4].trim() + "\n"
+                + "                                                   (Y/N)?";
+        return text;
     }
 }

@@ -6,13 +6,17 @@ import seedu.happypills.logic.commands.HelpCommand;
 import seedu.happypills.logic.commands.appointmentcommands.IncorrectAppointmentCommand;
 import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.Messages;
 
 import java.time.format.DateTimeFormatter;
 
 public class Parser {
-
     public static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("HH:mm");
     public static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final String PATIENT_TAG = "patient";
+    public static final String HELP_TAG = "help";
+    public static final String APPOINTMENT_TAG = "appt";
+    public static final String PATIENT_RECORD_TAG = "pr";
 
     /**
      * Parses the command given by the user to the other command parses.
@@ -23,28 +27,29 @@ public class Parser {
     public static Command parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.trim().split(" ", 3); // leading spaces removed
         if (userCommand.length == 1) {
-            // help & exit
-            if (userCommand[0].equalsIgnoreCase("help")) {
-                return new HelpCommand(fullCommand);
-            } else if (userCommand[0].equalsIgnoreCase("exit")) {
-                // exit command
-                return new ExitCommand();
-            } else {
-                // incorrect command
-                return new IncorrectAppointmentCommand("    Command is invalid. "
-                        + "Enter help to know how to use HappyPills.\n");
-            }
-        } else if (userCommand[0].equalsIgnoreCase("help")) {
+            return parseGeneralCommands(fullCommand, userCommand);
+        } else if (userCommand[0].equalsIgnoreCase(HELP_TAG)) {
             return new HelpCommand(fullCommand);
-        } else if (userCommand[1].equalsIgnoreCase("patient")) {
+        } else if (userCommand[1].equalsIgnoreCase(PATIENT_TAG)) {
             return PatientParser.parse(fullCommand);
-        } else if (userCommand[1].equalsIgnoreCase("appt")) {
+        } else if (userCommand[1].equalsIgnoreCase(APPOINTMENT_TAG)) {
             return AppointmentParser.parse(fullCommand);
-        } else if (userCommand[1].equalsIgnoreCase("pr")) {
+        } else if (userCommand[1].equalsIgnoreCase(PATIENT_RECORD_TAG)) {
             return PatientRecordParser.parse(fullCommand);
         } else {
-            return new IncorrectAppointmentCommand("    Command is invalid. "
-                   + "Enter help to know how to use HappyPills.\n");
+            throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    private static Command parseGeneralCommands(String fullCommand, String[] userCommand) throws HappyPillsException {
+        if (userCommand[0].equalsIgnoreCase("help")) {
+            return new HelpCommand(fullCommand);
+        } else if (userCommand[0].equalsIgnoreCase("exit")) {
+            // exit command
+            return new ExitCommand();
+        } else {
+            // incorrect command
+            throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }

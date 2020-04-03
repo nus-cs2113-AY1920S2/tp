@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class TextUi {
     public static final String DIVIDER = "    =====================================================";
+    public static final String NEWLINE = "\n";
 
     /**
      * Generates and prints the welcome message upon the start of the application.
