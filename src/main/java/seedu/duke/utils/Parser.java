@@ -134,11 +134,10 @@ public class Parser {
             boolean delimiterPresent = iPresent | pPresent | qPresent;
             boolean hasSingleDelimiter = singleDelimiterChecker(arguments);
             String[] args = splitArgsForAddCommand(arguments);
-            boolean validValues = validValuesChecker(args, iPresent, pPresent, qPresent);
             String description;
             String prices;
             String quantity;
-            if (delimiterPresent && hasSingleDelimiter && validValues) {
+            if (delimiterPresent && hasSingleDelimiter) {
                 description = args[0];
                 prices = args[1];
                 quantity = args[2];
