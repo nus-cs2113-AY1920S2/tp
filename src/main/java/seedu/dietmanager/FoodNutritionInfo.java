@@ -49,6 +49,10 @@ public class FoodNutritionInfo {
         return foodFound;
     }
 
+    public Food findFood(int index) {
+        return foods.get(index);
+    }
+
     /**
      * Search if a food exists in the database.
      * @param foodName The name of the food to be searched for.
@@ -108,5 +112,13 @@ public class FoodNutritionInfo {
         } else {
             return false;
         }
+    }
+
+    public int getListSize() {
+        return this.foods.size();
+    }
+
+    public double getFoodCalories(int index) {
+        return foods.get(index).getCalories().get();
     }
 }
