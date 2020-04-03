@@ -10,8 +10,6 @@ import seedu.nuke.exception.DuplicateDataException;
 import seedu.nuke.exception.ModuleNotProvidedException;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -21,20 +19,27 @@ import java.util.Iterator;
  */
 public class ModuleManager implements Iterable<Module> {
     private static Root root;
-    private static ArrayList<Module> moduleList = new ArrayList<>();
+    private static ArrayList<Module> moduleList;
     private static HashMap<String, String> modulesMap;
 
     private static final String NO_KEYWORD = "";
 
-    public ModuleManager() {
-        root = new Root();
+    /**
+     * Initialises the ModuleManager class.
+     *
+     * @param modulesMap
+     *  The hash map containing NUS provided modules
+     */
+    public static void initialise(HashMap<String, String> modulesMap) {
+        ModuleManager.root = new Root();
+        ModuleManager.modulesMap = modulesMap;
         moduleList = new ArrayList<>();
     }
 
-    public ModuleManager(Root root, HashMap<String, String> modulesMap) {
-        ModuleManager.modulesMap = modulesMap;
-        ModuleManager.root = root;
+    public static void initialise() {
+        ModuleManager.initialise(null);
     }
+
 
     public static Root getRoot() {
         return root;

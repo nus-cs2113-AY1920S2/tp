@@ -6,8 +6,9 @@ import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
+import static seedu.nuke.util.Message.MESSAGE_NO_TASKS_TO_SHOW;
 import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 
 /**
@@ -23,10 +24,11 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
     @Override
     public CommandResult execute() {
         // Get all tasks
-        ArrayList<Task> filteredTaskList = ModuleManager.getAllTasks();
+        ArrayList<Task> filteredTaskList = ModuleManager.getAllTasks().stream()
+                .filter(task -> !task.isDone()).collect(Collectors.toCollection(ArrayList::new));
         sortTaskList(filteredTaskList, true, false);
         if (filteredTaskList.isEmpty()) {
-            return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
+            return new CommandResult(MESSAGE_NO_TASKS_TO_SHOW);
         }
         assert filteredTaskList.isEmpty() : "make sure there are some tasks in the list";
 

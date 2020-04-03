@@ -6,6 +6,7 @@ import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 
+import static seedu.nuke.util.Message.MESSAGE_NO_MODULES_TO_SHOW;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListModuleCommand extends ListCommand {
@@ -40,6 +41,9 @@ public class ListModuleCommand extends ListCommand {
     @Override
     public CommandResult execute() {
         ArrayList<Module> filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
+        if (filteredModuleList.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_MODULES_TO_SHOW);
+        }
         sortModuleList(filteredModuleList);
         return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, new ArrayList<>(filteredModuleList));
     }

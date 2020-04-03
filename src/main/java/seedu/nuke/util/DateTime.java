@@ -25,8 +25,23 @@ public class DateTime {
         this.time = time;
     }
 
+    public DateTime(LocalTime time) {
+        this.date = LocalDate.now();
+        this.time = time;
+    }
+
     public DateTime() {
         this(null, null);
+    }
+
+    /**
+     * Checks if datetime values are <b>NOT</b> <code>NULL</code>.
+     *
+     * @return
+     *  <code>TRUE</code> if datetime is <b>NOT</b> <code>NULL</code> and <code>FALSE</code> otherwise.
+     */
+    public boolean isPresent() {
+        return hasDate() && hasTime();
     }
 
     /**
@@ -45,16 +60,6 @@ public class DateTime {
      */
     public LocalTime getTime() {
         return time;
-    }
-
-    /**
-     * Checks if datetime values are <b>NOT</b> <code>NULL</code>.
-     *
-     * @return
-     *  <code>TRUE</code> if datetime is <b>NOT</b> <code>NULL</code> and <code>FALSE</code> otherwise.
-     */
-    public boolean isPresent() {
-        return hasDate() && hasTime();
     }
 
     /**

@@ -24,7 +24,13 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.filtercommand.listcommand.*;
+import seedu.nuke.command.filtercommand.listcommand.DueCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
@@ -41,7 +47,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static seedu.nuke.util.ExceptionMessage.*;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_EXCESS_PARAMETERS;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DATETIME_FORMAT;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PREFIX;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_PARAMETERS;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
@@ -571,6 +585,10 @@ public class Parser {
         String dateFilter = matcher.group(IDENTIFIER_GROUP).trim();
         String allFlag = matcher.group(ALL_GROUP).trim();
         boolean isAll = !allFlag.isEmpty();
+
+        if (dateFilter.equals("over")) {
+            return new DueCommand(dateFilter, isAll);
+        }
 
         String[] dateFilterData = dateFilter.trim().split("\\s+");
         try {

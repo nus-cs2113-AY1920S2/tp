@@ -11,7 +11,7 @@ import seedu.nuke.util.ExceptionMessage;
 
 import java.util.ArrayList;
 
-import static seedu.nuke.util.Message.MESSAGE_NO_TASK_IN_LIST;
+import static seedu.nuke.util.Message.MESSAGE_NO_TASKS_TO_SHOW;
 import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 
 
@@ -40,7 +40,7 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
             ArrayList<Task> filteredTaskList = ModuleManager.filterExact(module.getModuleCode(), noKeyword, noKeyword);
             sortTaskList(filteredTaskList, true, false);
             if (filteredTaskList.isEmpty()) {
-                return new CommandResult(MESSAGE_NO_TASK_IN_LIST);
+                return new CommandResult(MESSAGE_NO_TASKS_TO_SHOW);
             }
             assert filteredTaskList.isEmpty() : "make sure there are some tasks in the list";
             return new CommandResult(messageTaskSuccessfullyList(filteredTaskList.size()),
