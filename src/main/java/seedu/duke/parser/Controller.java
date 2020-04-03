@@ -240,12 +240,12 @@ public class Controller {
         }
     }
 
-    private static ViewCommand processViewCommand(String args) {
-        if (args.contains("/cm")) {
+    private static ViewCommand processViewCommand(String args) throws InputException {
+        if (args.equalsIgnoreCase("/cm")) {
             return new ViewCommand(ViewCommand.VIEW_COMPULSORY_MODULES);
-        } else if (args.contains("/dm")) {
+        } else if (args.equalsIgnoreCase("/dm")) {
             return new ViewCommand(ViewCommand.VIEW_DONE_MODULES);
-        } else if (args.contains("/mp")) {
+        } else if (args.equalsIgnoreCase("/mp")) {
             return new ViewCommand(ViewCommand.VIEW_MODULE_PLAN);
         } else if (args.contains("n/")) {
             String moduleToBeViewed = args.replace("n/","").trim();
@@ -253,10 +253,14 @@ public class Controller {
         } else if (args.contains("id/")) {
             String moduleToBeViewed = args.replace("id/","").toUpperCase().trim();
             return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
-        } else if (args.contains("/cc")) {
+        } else if (args.equalsIgnoreCase("/cc")) {
             return new ViewCommand(ViewCommand.VIEW_COMPLETED_CREDITS);
+        } else if (args.equals("")) {
+            return new ViewCommand(ViewCommand.VIEW_AVAILABLE_MODULES);
         }
-        return new ViewCommand(ViewCommand.VIEW_AVAILABLE_MODULES);
+        throw new InputException("It seems like you are trying to view something, "
+                + "but your command is not completely right. "
+                + "Enter \"help\" to look at the possible view commands available");
     }
 
     private static ExitCommand processExitCommand() {
