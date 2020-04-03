@@ -15,11 +15,8 @@ public class AbortCommand extends Command {
     /**
      * Constructor to create a new abort command.
      */
-    public AbortCommand(String parameters) throws ExtraParametersException {
+    public AbortCommand(String parameters) {
         super(parameters);
-        if (parameters != null) {
-            throw new ExtraParametersException();
-        }
     }
 
     @Override

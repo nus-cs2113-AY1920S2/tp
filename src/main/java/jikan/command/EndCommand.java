@@ -22,11 +22,8 @@ public class EndCommand extends Command {
     /**
      * Constructor to create a new end command.
      */
-    public EndCommand(String parameters) throws ExtraParametersException {
+    public EndCommand(String parameters) {
         super(parameters);
-        if (parameters == null) {
-            throw new ExtraParametersException();
-        }
     }
 
     /** Method to parse the end activity command. */

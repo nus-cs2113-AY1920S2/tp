@@ -122,7 +122,7 @@ class StartCommandTest {
         } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException
                 | NameTooLongException e) {
             System.out.println("Field error.");
-        } 
+        }
         resetFields();
     }
 }

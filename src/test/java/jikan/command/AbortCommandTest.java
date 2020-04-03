@@ -15,12 +15,7 @@ class AbortCommandTest {
     @Test
     void executeAbort() {
         Parser.startTime = LocalDateTime.now();
-        Command command = null;
-        try {
-            command = new AbortCommand(null);
-        } catch (ExtraParametersException e) {
-            Ui.printDivider("Extra parameters detected!");
-        }
+        Command command = new AbortCommand(null);
         try {
             command.executeCommand(null);
             assertNull(Parser.startTime);
