@@ -15,6 +15,7 @@ public class CommonMethods {
             Long.parseLong(longer);
             isValidInt = true;
         } catch (NumberFormatException ex) {
+            // Case where a string representing an interger isn't fed as longer.
         }
         return isValidInt;
     }
