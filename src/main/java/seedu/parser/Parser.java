@@ -107,7 +107,7 @@ public class Parser {
         arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], AddSubjectCommand.MESSAGE_USAGE, SUBJECT_ARG);
 
-        String subjectName = arguments[1].replaceFirst(SUBJECT_ARG, "");
+        String subjectName = arguments[1].replaceFirst(SUBJECT_ARG, "").trim();
 
         if (subjectName.trim().isEmpty()) {
             throw new EscException("A subject name is required.");
