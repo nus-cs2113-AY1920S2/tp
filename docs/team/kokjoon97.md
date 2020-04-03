@@ -53,9 +53,9 @@ his budget
   - Developer Guide:
   
     - Wrote appendices A and C on product scope and non-functional requirements (Pull request [#93](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/93))
-    - Added a description of the class diagram to explain the main components of the application (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165/files))
-    - Wrote the sections outlining the interactions between different classes for the find, delete and set budget features, including design considerations for each feature (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165/files))
-    - Added sequence diagrams for the find, delete and set budget features (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165/files))
+    - Added a description of the class diagram to explain the main components of the application (Pull request [#140](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/140))
+    - Wrote the sections outlining the interactions between different classes for the find, delete and set budget features, including design considerations for each feature (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165))
+    - Added sequence diagrams for the find, delete and set budget features (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165))
     
   - Team-based tasks:
   
