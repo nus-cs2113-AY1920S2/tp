@@ -19,35 +19,14 @@ public class EventParser {
         this.index = -1;
     }
 
-    public void parse(String parameters) throws PacException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-    }
-
     /**
      * Parse parameters based on the following format:
      * n/EVENTNAME [t/EVENTTIME] [d/EVENTDATE] [v/EVENTVENUE].
      * @param parameters original parameters
-     * @return an Event object with the relevant information
      */
-    public Event parseEvent(String parameters) throws PacException {
+    public void parse(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
-        String datetime = date + " " + time;
-        if (name.equals("") && venue.equals("")) {
-            throw new PacException("Please at least provide a name or venue for event.");
-        }
-        return new Event(name, datetime, venue);
-    }
-
-    public Seminar parseSeminar(String parameters) throws PacException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        String datetime = date + " " + time;
-        if (name.equals("") && venue.equals("")) {
-            throw new PacException("Please at least provide a name or venue for seminar.");
-        }
-        return new Seminar(name, datetime, venue);
     }
 
     private void splitByEventFlags(String[] tokens) throws PacException {
@@ -155,23 +134,61 @@ public class EventParser {
         return input.charAt(1) == '/';
     }
 
+    /**
+     * Returns the value of name after parsing.
+     * @return name of event
+     */
     public String getName() {
         return name;
     }
 
-    public String getDate() {
-        return date;
+    /**
+     * Returns the value of datetime after parsing.
+     * @return datetime of event
+     */
+    public String getDateTime() {
+        return date + " " + time;
     }
 
-    public String getTime() {
-        return time;
-    }
-
+    /**
+     * Returns the value of venue after parsing.
+     * @return venue of event
+     */
     public String getVenue() {
         return venue;
     }
 
+    /**
+     * Returns the value of index after parsing.
+     * @return index of event
+     */
     public int getIndex() {
         return index;
+    }
+
+    /**
+     * Returns an Event object after parsing its parameters.
+     * @return an Event object
+     * @throws PacException if both name and venue are empty
+     */
+    public Event getEvent() throws PacException {
+        String datetime = date + " " + time;
+        if (name.equals("") && venue.equals("")) {
+            throw new PacException("Please at least provide a name or venue for event.");
+        }
+        return new Event(name, datetime, venue);
+    }
+
+    /**
+     * Returns an Seminar object after parsing its parameters.
+     * @return an Seminar object
+     * @throws PacException if both name and venue are empty
+     */
+    public Seminar getSeminar() throws PacException {
+        String datetime = date + " " + time;
+        if (name.equals("") && venue.equals("")) {
+            throw new PacException("Please at least provide a name or venue for seminar.");
+        }
+        return new Seminar(name, datetime, venue);
     }
 }
