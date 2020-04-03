@@ -191,6 +191,12 @@ public class Controller {
             }
             String[] preRequisiteModules;
             preRequisiteModules = moduleWords[1].split(" ");
+            for (String prereq : preRequisiteModules) {
+                if (prereq.equals(moduleId)) {
+                    throw new InputException("invalid 'add' command: Prerequisites of a module cannot be itself!",
+                            "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
+                }
+            }
             return new AddToDataCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
         } catch (NumberFormatException e) {
             Ui.showInputError();
