@@ -1,6 +1,7 @@
 package command;
 
 import common.Messages;
+import exceptions.AtasException;
 import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
@@ -71,24 +72,28 @@ public class EditCommand extends Command {
         ui.showToUser(Messages.DIVIDER);
         String userInput = ui.getUserInput();
         String commandType = userInput.split("\\s+", 2)[0].trim().toLowerCase();
-        switch (commandType) {
-        case AssignmentCommand.COMMAND_WORD:
-            Task editedAssignment = editAssignment(userInput, ui);
-            if (taskList.isRepeatTask(taskList, editedAssignment)) {
-                return new CommandResult(Messages.SAME_TASK_ERROR);
-            }
+        try {
+            switch (commandType) {
+            case AssignmentCommand.COMMAND_WORD:
+                Task editedAssignment = editAssignment(userInput, ui);
+                if (taskList.isRepeatTask(taskList, editedAssignment)) {
+                    return new CommandResult(Messages.SAME_TASK_ERROR);
+                }
 
-            taskList.editTask(editIndex, editedAssignment);
-            return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedAssignment));
-        case EventCommand.COMMAND_WORD:
-            Task editedEvent = editEvent(userInput, ui);
-            if (taskList.isRepeatTask(taskList, editedEvent)) {
-                return new CommandResult((Messages.SAME_TASK_ERROR));
+                taskList.editTask(editIndex, editedAssignment);
+                return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedAssignment));
+            case EventCommand.COMMAND_WORD:
+                Task editedEvent = editEvent(userInput, ui);
+                if (taskList.isRepeatTask(taskList, editedEvent)) {
+                    return new CommandResult((Messages.SAME_TASK_ERROR));
+                }
+                taskList.editTask(editIndex, editedEvent);
+                return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
+            default:
+                return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR);
             }
-            taskList.editTask(editIndex, editedEvent);
-            return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
-        default:
-            return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR);
+        } catch (AtasException e) {
+            return new CommandResult(e.toString());
         }
     }
 
@@ -96,21 +101,25 @@ public class EditCommand extends Command {
      * Creates an assignment object by formatting the string supplied by user.
      * @param userInput String supplied by user
      * @param ui Formats output to display error messages to user
-     * @return Assignment object
+     * @return Assignment Object
+     * @throws AtasException thrown when format of string supplied not recognised
      */
-    public Assignment editAssignment(String userInput, Ui ui) {
+    public Assignment editAssignment(String userInput, Ui ui) throws AtasException {
         final Matcher matcher = ASSIGNMENT_PARAMETERS_FORMAT.matcher(userInput);
         if (!matcher.matches()) {
-            ui.showToUser(String.format(Messages.INCORRECT_FORMAT_ERROR,
+            throw new AtasException(String.format(Messages.INCORRECT_FORMAT_ERROR,
                     Parser.capitalize(AssignmentCommand.COMMAND_WORD), AssignmentCommand.COMMAND_USAGE));
         }
 
         LocalDateTime dateTime = null;
+
         try {
             dateTime = Parser.parseDate(matcher.group("dateTime"));
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            ui.showToUser(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+            throw new AtasException(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
+
+
 
         String assignmentName = Parser.capitalize(matcher.group("assignmentName"));
         String moduleName = matcher.group("moduleName");
@@ -123,11 +132,12 @@ public class EditCommand extends Command {
      * @param userInput String supplied by user
      * @param ui Formats output to display error messages to user
      * @return Event object
+     * @throws AtasException thrown when format of string supplied not recognised
      */
-    public Event editEvent(String userInput, Ui ui) {
+    public Event editEvent(String userInput, Ui ui) throws AtasException {
         final Matcher matcher = EVENT_PARAMETERS_FORMAT.matcher(userInput);
         if (!matcher.matches()) {
-            ui.showToUser(String.format(Messages.INCORRECT_FORMAT_ERROR,
+            throw new AtasException(String.format(Messages.INCORRECT_FORMAT_ERROR,
                     Parser.capitalize(EventCommand.COMMAND_WORD), EventCommand.COMMAND_USAGE));
         }
 
@@ -140,11 +150,11 @@ public class EditCommand extends Command {
             startDateTime = Parser.parseDate(dateTimeTokens[0] + " " + timeTokens[0].trim());
             endDateTime = Parser.parseDate(dateTimeTokens[0] + " " + timeTokens[1].trim());
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            ui.showToUser(Messages.START_END_DATE_INCORRECT_OR_INVALID_ERROR);
+            throw new AtasException(Messages.START_END_DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
         if (!endDateTime.isAfter(startDateTime)) {
-            ui.showToUser(Messages.INCORRECT_START_END_TIME_ERROR);
+            throw new AtasException(Messages.INCORRECT_START_END_TIME_ERROR);
         }
 
         String eventName = Parser.capitalize(matcher.group("eventName"));
