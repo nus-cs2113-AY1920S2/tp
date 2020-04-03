@@ -167,6 +167,11 @@ Example of expected output:
 `Your current CAP is:`
 `4.75`
 
+### Clear
+Clears the current module plan
+
+Format: `clear`
+
 ### Help
 Display the list of commands that you can input.
 
@@ -234,3 +239,15 @@ or
 or
 
 `CAP`
+
+### Clear
+
+Command:
+
+`clear`
+
+### Bye
+
+Command:
+
+`bye`

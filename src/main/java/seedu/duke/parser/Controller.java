@@ -1,18 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.AddToDataCommand;
-import seedu.duke.command.AddToSemCommand;
-import seedu.duke.command.CalculateCapCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.DeleteFromAvailableCommand;
-import seedu.duke.command.DeleteFromSemCommand;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.FindCommand;
-import seedu.duke.command.HelpingCommand;
-import seedu.duke.command.MarkAsDoneCommand;
-import seedu.duke.command.ViewCommand;
+import seedu.duke.command.*;
 import seedu.duke.exception.InputException;
 import seedu.duke.module.Grading;
 import seedu.duke.module.NewModule;
@@ -53,9 +41,15 @@ public class Controller {
             return processCalculateCapCommand();
         case DeleteCommand.COMMAND_WORD:
             return processDeleteCommand(args);
+        case ClearCommand.COMMAND_WORD:
+            return processClearCommand();
         default:
             throw new InputException("invalid command");
         }
+    }
+
+    private static Command processClearCommand() {
+        return new ClearCommand();
     }
 
     private static MarkAsDoneCommand processMarkAsDone(String args) throws InputException {
@@ -64,9 +58,9 @@ public class Controller {
         if (moduleWords.length < 2) {
             throw new InputException("invalid 'done' command", "done n/NAME g/GRADE | done id/ID g/GRADE");
         }
-        String grade = moduleWords[1];                                  //.toUpperCase().trim()
+        String grade = moduleWords[1].toUpperCase();
         Grading grading;
-        String module = moduleWords[0];                                 //.toUpperCase().trim()
+        String module = moduleWords[0];
         switch (grade) {
         case "A+":
             grading = Grading.APLUS;
@@ -112,8 +106,8 @@ public class Controller {
                     + System.lineSeparator()
                     + "Please use A+ | A | A- | B+ | B | B- | C+ | C | D+ | D | F | CS | CU.");
         }
-        if (module.contains("n/")) {                                            //N
-            String moduleName = module.replace("n/","");        //N
+        if (module.contains("n/")) {
+            String moduleName = module.replace("n/","");
             return new MarkAsDoneCommand(moduleName, grading);
         } else if (module.contains("id/")) {
             String moduleId = module.replace("id/","").toUpperCase();
@@ -142,7 +136,7 @@ public class Controller {
                     "add id/ID s/SEMESTER mc/MODULE_CREDIT | " + "add n/Name s/SEMESTER mc/MODULE_CREDIT "
                             + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
         }
-        String module = moduleWords[0];                                 //.toUpperCase().trim()
+        String module = moduleWords[0];
         String semester;
         String[] moduleDetails = moduleWords[1].split(" mc/");
         if (moduleDetails.length < 2) {
@@ -173,6 +167,7 @@ public class Controller {
                 if (!isStandardCodeFormat(moduleId)) {
                     throw new InputException("invalid module code: " + moduleId);
                 }
+                moduleId = moduleId.toUpperCase();
                 return new AddToSemCommand(new SelectedModule("id", moduleId, semester, moduleCredit));
             } else if (module.contains("n/")) {
                 String moduleName = module.replace("n/","");
