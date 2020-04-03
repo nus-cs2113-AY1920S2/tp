@@ -172,6 +172,11 @@ Display the list of commands that you can input.
 
 Format: `help`
 
+### Exit
+Exits the app.
+
+Format: `bye`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 

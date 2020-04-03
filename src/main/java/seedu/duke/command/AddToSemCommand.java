@@ -34,6 +34,12 @@ public class AddToSemCommand extends AddCommand {
                     moduleIdentifier));
         }
 
+        if (selectedModule.getModuleCredit() <= 0) {
+            throw new RuntimeException("The module should not have non-positive module credit");
+        } else if (selectedModule.getModuleCredit() > 50 ) {
+            throw new RuntimeException("Are you sure the module is that large? :O");
+        }
+
         for (SemModulesList sem: semesterList) {
             if (sem.getSem().equals(selectedModule.getSem())) {
                 sem.add(selectedModule);
