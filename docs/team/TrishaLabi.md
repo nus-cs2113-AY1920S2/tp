@@ -40,6 +40,7 @@ SHOCO is a desktop application used for the managing and planning of shopping li
 
 ### Contributions to the User Guide
 > *Given below are sections that I have contributed to the User Guide. They showcase my ability to write documentation targeting end-users.*
+
 #### Editing an item: `EDIT`
 Edits the specified item in the shopping list.
 
@@ -76,8 +77,10 @@ Format: `HELP`
 
 ---
 
-### Contributions to the User Guide
+### Contributions to the Developer Guide
 > *Given below are sections that I have contributed to the User Guide. They showcase my ability to write documentation targeting end-users.*
+ 
+&nbsp;
 
 #### 3.2 Edit feature
 ##### 3.2.1 Current implementation
