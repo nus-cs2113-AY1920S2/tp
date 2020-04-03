@@ -160,9 +160,9 @@ with the new values from the user input. This is done through the use of the <co
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
-![alt text](images/EditFeature.png)
+![Edit Feature](images/EditFeature.png)
 
-![alt text](images/EditFeature_SD.png)
+![Edit Feature SD](images/EditFeature_SD.png)
 
 
 #### 3.2.2 Design considerations
@@ -541,7 +541,7 @@ Once instantiated, the <code>Duke</code> then class calls the <code>execute</cod
 The following sequence diagram below shows how the help feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/HelpFeature.png)
+![Help Feature](images/HelpFeature.png)
 
 #### 3.10.2 Design considerations
 
@@ -561,7 +561,9 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
-  
+
+- Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
+ 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
@@ -603,7 +605,9 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
-  
+
+- Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
+
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
