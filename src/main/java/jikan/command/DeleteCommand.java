@@ -21,10 +21,10 @@ public class DeleteCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            int index = activityList.findActivity(parameters);
+            int index = activityList.findActivity(parameters.trim());
             if (index != -1) {
                 // activity was found
-                Ui.printDivider("You have deleted " + parameters);
+                Ui.printDivider("You have deleted " + parameters.trim());
                 activityList.delete(index);
             } else {
                 if (parameters.isEmpty()) {
