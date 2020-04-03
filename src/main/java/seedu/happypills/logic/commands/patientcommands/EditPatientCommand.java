@@ -7,6 +7,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
 
@@ -19,6 +20,13 @@ public class EditPatientCommand extends PatientCommand {
     protected String newContent;
     Logger logger = Logger.getLogger(HappyPills.class.getName());
     Level logLevel = Level.INFO;
+
+    public static final String REMARKS_TAG = "/rm";
+    public static final String DATE_OF_BIRTH_TAG = "/dob";
+    public static final String NAME_TAG = "/n";
+    public static final String PHONE_NUMBER_TAG = "/p";
+    public static final String BLOOD_TYPE_TAG = "/b";
+    public static final String ALLERGIES_TAG = "/a";
 
     /**
      * Constructor for EditCommand Class.
@@ -131,15 +139,15 @@ public class EditPatientCommand extends PatientCommand {
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
         if (newContent.length() < 2) {
-            throw new HappyPillsException("    Content is invalid. Please try again");
+            throw new HappyPillsException(Messages.MESSAGE_INCOMPLETE_COMMAND);
         }
         // assert newContent.length() >= 2 : "Length of content has to be more than 2 characters.";
         String field = "";
         String content = "";
-        if (newContent.contains("/rm")) {
+        if (newContent.contains(REMARKS_TAG)) {
             field = newContent.substring(0, 3);
             content = newContent.substring(3);
-        } else if (newContent.contains("/dob")) {
+        } else if (newContent.contains(DATE_OF_BIRTH_TAG)) {
             field = newContent.substring(0, 4);
             content = newContent.substring(4);
         } else {
@@ -155,30 +163,30 @@ public class EditPatientCommand extends PatientCommand {
             throw new HappyPillsException("    Please do not leave the field as empty string");
         }
         // assert editPatient != null : "Patient is not in PatientList";
-        if (field.equals("/p")) {
+        if (field.equals(PHONE_NUMBER_TAG)) {
             if (checkPhoneNum(content.trim())) {
                 output = editPhone(editPatient, content);
             } else {
                 throw new HappyPillsException("    Please ensure that all the phone number is 8 digit");
             }
-        } else if (field.equals("/rm")) {
+        } else if (field.equals(REMARKS_TAG)) {
             output = editRemarks(editPatient, content.trim());
-        } else if (field.equals("/a")) {
+        } else if (field.equals(ALLERGIES_TAG)) {
             output = editAllergies(editPatient, content.trim());
-        } else if (field.equals("/dob")) {
+        } else if (field.equals(DATE_OF_BIRTH_TAG)) {
             if (checkDate(content.trim())) {
                 output = editDob(editPatient, content.trim());
             } else {
                 throw new HappyPillsException("    Please ensure that the DATE is in DD/MM/YYYY ");
             }
-        } else if (field.equals("/b")) {
+        } else if (field.equals(BLOOD_TYPE_TAG)) {
             if (checkType(content.trim())) {
                 output = editBloodType(editPatient, content.trim());
             } else {
                 throw new HappyPillsException("    Please ensure that the DATE is in [A|B|AB|O][+-] ");
             }
             output = editBloodType(editPatient, content.trim());
-        } else if (field.equals("/n")) {
+        } else if (field.equals(NAME_TAG)) {
             output = editName(editPatient, content.trim());
         } else {
             throw new HappyPillsException("    Please try again. To learn more about the Edit command, "

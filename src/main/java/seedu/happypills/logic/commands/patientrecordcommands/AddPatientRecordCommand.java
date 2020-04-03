@@ -5,6 +5,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.TextUi;
 
 public class AddPatientRecordCommand extends PatientRecordCommand {
@@ -39,14 +40,11 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
     ) throws HappyPillsException {
         String message = "";
         if (!patients.containsKey(nric)) {
-            message = "    Patient does not exist. Please try again.\n"
-                    + TextUi.DIVIDER;
+            message = Messages.MESSAGE_PATIENT_NOT_FOUND;
         } else {
             PatientRecord patientRecord = new PatientRecord(nric,symptom,diagnosis,date,time);
             patientRecords.addPersonalRecord(patientRecord, nric);
-            //Patient patient = (Patient)patients.get(nric);
-            message = "    Patient Record has been added.\n"
-                    + TextUi.DIVIDER;
+            message = Messages.MESSAGE_PATIENT_RECORD_ADDED;
         }
         return message;
     }
