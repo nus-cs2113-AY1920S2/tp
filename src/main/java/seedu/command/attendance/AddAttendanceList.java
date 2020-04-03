@@ -4,6 +4,7 @@ import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
 import seedu.exception.PacException;
+import seedu.student.StudentList;
 import seedu.parser.AttendanceParser;
 import seedu.ui.UI;
 
@@ -58,7 +59,9 @@ public class AddAttendanceList extends Command {
         int studentNumber = 0;
         String name = "";
         String status = "";
+        StudentList newStudentList = new StudentList(eventName);
         String input = "";
+
         UI.display("Do you wish to have line by line prompt? If so, please enter 'yes'");
         if (isNewUser()) {
             while (!input.toLowerCase().equals("done")) {
@@ -70,6 +73,7 @@ public class AddAttendanceList extends Command {
                     break;
                 }
                 attendances.addToList(attendanceParser.parseAttendance(input), eventName);
+                newStudentList.addToList(name);
                 studentNumber++;
             }
         } else {
@@ -84,9 +88,11 @@ public class AddAttendanceList extends Command {
                 ui.readUserInput();
                 status = ui.getUserInput();
                 attendances.addToList(new Attendance(name, status), eventName);
+                newStudentList.addToList(name);
                 studentNumber++;
             }
         }
+        studentListCollection.push(newStudentList);
         UI.display("You have successfully added "
                 + studentNumber + " to the attendance list.\n");
     }
