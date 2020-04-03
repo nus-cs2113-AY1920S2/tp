@@ -32,7 +32,7 @@ This section provides a high level overview of our application, Module Manager.
 ## Design & Implementation
 
 
-### Architecture
+### 3.1 Architecture
 
 ![Architecture Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Architecture.png)
 
@@ -51,7 +51,7 @@ The other components involved are:
 `Controller`: This class determines what to do with the parsed input of the user 
 `Storage`: Reads data from, and writes data to, the hard disk
 
-#### UI component
+#### 3.2 UI component
 ![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
 
 The `UI` component consists of a `Ui` class that stores all user interaction output data. 
@@ -61,9 +61,10 @@ The `UI` component,
 
 *   Executes user commands using the `Logic` component
 
-#### Logic component
-The `Logic` component 
+#### 3.3 Logic component
 
+
+The `Logic` component 
 1. `Logic` uses the `Parser` class to parse the user command.
 2. The parsed command is passed to `Controller` which then returns a specific command class 
 e.g. `AddCommand`, `FindCommand` etc. which is executed by the main class `Duke`.
@@ -73,20 +74,27 @@ All these command classes inherits from the abstract `Command` class.
 5. In addition, the command execution can also instruct the `Ui` to perform certain actions, 
 such as displaying help to the user.
 
-#### Model component
+#### 3.4 Model component
+
+
 The `Model` component
 * Stores a `Person` object that represents the user's details. (e.g. `totalCap`, `totalModuleCreditCompleted`)
 * Stores the `ModuleList` and `SemesterList` Data
 * Does not depend on any of the other three components
 
-#### Storage component
+#### 3.5 Storage component
+
+
 The `Storage` component,
 * can save `personInfo` objects in csv format and read it back
 * can save the available module list in csv format and read it back
 * can save the semester list in csv format and read it back 
 
 
-### Implementation
+### 4. Implementation
+This section describes some details on how the features are being implemented. 
+All features can be broken down into 4 distinct functionalities - addition, deletion, marking and searching.
+
 
 #### `Add to Semester` feature 
 The `Add to Semester` mechanism is facilitated by `AddtoSemCommand` which extends from an abstract class `Command`. 
