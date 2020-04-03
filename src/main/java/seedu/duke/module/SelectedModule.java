@@ -102,10 +102,10 @@ public class SelectedModule extends Module {
         case "F":
             this.grade = Grading.F;
             break;
-        case "PASS":
+        case "CS":
             this.grade = Grading.CS;
             break;
-        case "FAIL":
+        case "CU":
             this.grade = Grading.CU;
             break;
         default:
