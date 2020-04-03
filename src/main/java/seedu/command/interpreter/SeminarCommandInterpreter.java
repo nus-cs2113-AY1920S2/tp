@@ -62,7 +62,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editname":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("Please use i/ flag to indicate which event to edit.");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -71,7 +71,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editdatetime":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("Please use i/ flag to indicate which event to edit.");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -80,7 +80,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editvenue":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("Please use i/ flag to indicate which event to edit.");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -89,7 +89,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "editevent":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("Please use i/ flag to indicate which event to edit.");
             }
             seminar = eventParser.parseSeminar(commandParameters);
             index = eventParser.getIndex();
@@ -97,7 +97,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             break;
         case "delete":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("EventCommandInterpreter: i/ flag is necessary");
+                throw new PacException("Please use i/ flag to indicate which event to delete.");
             }
             eventParser.parse(commandParameters);
             index = eventParser.getIndex();
@@ -107,7 +107,7 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
             command = new ListSeminar(this.eventList);
             break;
         default:
-            throw new PacException("Seminar: Unknown command");
+            throw new PacException("Please provide a valid command type. Refer to 'help' for more info.");
         }
         return command;
     }
