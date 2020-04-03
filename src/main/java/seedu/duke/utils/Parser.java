@@ -568,7 +568,7 @@ public class Parser {
      */
     private void createDeleteCommand(String arguments) {
         try {
-            int index = Integer.parseInt(arguments);
+            int index = Integer.parseInt(arguments.trim());
             newCommand = new DeleteCommand(index);
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "(Delete command) Rejecting user command, "
@@ -624,7 +624,7 @@ public class Parser {
                         + "Example: SET b/300");
             } else {
                 assert arguments.indexOf("b/") != -1 : "Substring \"b/\" should be present";
-                double amount = Double.parseDouble(arguments.substring(2));
+                double amount = Double.parseDouble(arguments.trim().substring(2));
                 newCommand = new SetBudgetCommand(amount);
             }
 
@@ -681,7 +681,7 @@ public class Parser {
         } else {
             assert arguments != null;
             LOGGER.log(Level.INFO, "(Find command) User supplied keyword: " + arguments);
-            newCommand = new FindCommand(arguments);
+            newCommand = new FindCommand(arguments.trim());
         }
     }
     //@@author
