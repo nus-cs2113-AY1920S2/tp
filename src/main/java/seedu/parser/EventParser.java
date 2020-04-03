@@ -35,7 +35,7 @@ public class EventParser {
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new PacException("EventParser: Invalid arguments");
+            throw new PacException("Please at least provide a name or venue for event.");
         }
         return new Event(name, datetime, venue);
     }
@@ -45,7 +45,7 @@ public class EventParser {
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new PacException("EventParser: Invalid arguments");
+            throw new PacException("Please at least provide a name or venue for seminar.");
         }
         return new Seminar(name, datetime, venue);
     }
@@ -55,48 +55,48 @@ public class EventParser {
         for (String token : tokens) {
             if (token.length() < 2) {
                 if (mostRecent == null) {
-                    throw new PacException("EventParser: Flag is too short");
+                    throw new PacException("Flag is too short.");
                 } else if (validFlagToAppend(mostRecent)) {
                     append(mostRecent, token);
                 }
             } else {
                 switch (token.substring(0, 2).toLowerCase()) {
                 case "n/":
-                    ensureNotDuplicateFlag(name, "EventParser: Duplicate name flag");
+                    ensureNotDuplicateFlag(name, "name");
                     name += token.substring(2);
                     mostRecent = "name";
                     break;
                 case "t/":
-                    ensureNotDuplicateFlag(time, "EventParser: Duplicate time flag");
+                    ensureNotDuplicateFlag(time, "time");
                     time += token.substring(2);
                     mostRecent = "time";
                     break;
                 case "d/":
-                    ensureNotDuplicateFlag(date, "EventParser: Duplicate date flag");
+                    ensureNotDuplicateFlag(date, "date");
                     date += token.substring(2);
                     mostRecent = "date";
                     break;
                 case "v/":
-                    ensureNotDuplicateFlag(venue, "EventParser: Duplicate venue flag");
+                    ensureNotDuplicateFlag(venue, "venue");
                     venue += token.substring(2);
                     mostRecent = "venue";
                     break;
                 case "i/":
-                    ensureNotDuplicateFlag(index, "EventParser: Duplicate index flag");
+                    ensureNotDuplicateFlag(index, "index");
                     try {
                         index = Integer.parseInt(token.substring(2));
                     } catch (NumberFormatException m) {
-                        throw new PacException("EventParser: Parameter is not an integer");
+                        throw new PacException("Please provide a valid index.");
                     }
                     mostRecent = "index";
                     break;
                 default:
                     // assumes that all valid flags have been processed before this line
                     if (isUnknownFlag(token)) {
-                        throw new PacException("EventParser: Unknown flag");
+                        throw new PacException("Please provide a valid flag.");
                     }
                     if (mostRecent == null) {
-                        throw new PacException("EventParser: Parameter is provided without flag");
+                        throw new PacException("Please provide a flag for your parameter.");
                     }
                     if (validFlagToAppend(mostRecent)) {
                         append(mostRecent, token);
@@ -127,19 +127,19 @@ public class EventParser {
             venue += venue.isEmpty() ? token : (" " + token);
             break;
         default:
-            throw new PacException("EventParser: Invalid flag to append to");
+            throw new PacException("I am not sure '" + token + "' belongs to which flag. Is a flag provided beforehand?");
         }
     }
 
-    private void ensureNotDuplicateFlag(String name, String message) throws PacException {
-        if (!name.isEmpty()) {
-            throw new PacException(message);
+    private void ensureNotDuplicateFlag(String value, String name) throws PacException {
+        if (!value.isEmpty()) {
+            throw new PacException("Please provide only 1 " + name + " flag.");
         }
     }
 
-    private void ensureNotDuplicateFlag(int name, String message) throws PacException {
-        if (name != -1) {
-            throw new PacException(message);
+    private void ensureNotDuplicateFlag(int value, String name) throws PacException {
+        if (value != -1) {
+            throw new PacException("Please provide only 1 " + name + " flag.");
         }
     }
 
