@@ -228,4 +228,3 @@ public class DateTimeFormat {
     public static class InvalidTimeException extends InvalidDateTimeException {
     }
 }
-

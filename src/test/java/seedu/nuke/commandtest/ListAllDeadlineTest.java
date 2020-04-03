@@ -2,7 +2,6 @@ package seedu.nuke.commandtest;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Executor;
-import seedu.nuke.Nuke;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;

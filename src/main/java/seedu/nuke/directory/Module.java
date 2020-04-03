@@ -138,7 +138,6 @@ public class Module extends Directory {
         return this.moduleCode.equalsIgnoreCase(moduleCode);
     }
 
-
     /**
      * Returns a string containing the standard Module attributes.
      *

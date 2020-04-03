@@ -7,7 +7,6 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.data.storage.StoragePath;
-import seedu.nuke.directory.Root;
 import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
 import seedu.nuke.util.Message;
@@ -85,7 +84,6 @@ public class Nuke {
             storageManager.saveList();
         } while (!ExitCommand.isExit());
     }
-
 
     public CommandResult getCommandResult() {
         return commandResult;

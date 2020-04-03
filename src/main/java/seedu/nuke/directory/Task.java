@@ -175,7 +175,8 @@ public class Task extends Directory implements Tag {
     @Override
     public String toString() {
         StringBuilder taskString = new StringBuilder();
-        taskString.append(String.format("Task Description: %s\n", description));
+        taskString.append(String.format("Task Description: %s\nModule Code: %s\nCategory Name: %s\n",
+                description, getParent().getParent().getModuleCode(), getParent().getCategoryName()));
         taskString.append(String.format("Deadline: %s\n", deadline.isPresent() ? deadline.toShow() : "-"));
         taskString.append(String.format("Priority: %d\n", priority));
         taskString.append(String.format("Done Status: %s\n", isDone ? "Completed" : "Incomplete"));

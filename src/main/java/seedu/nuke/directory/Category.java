@@ -109,7 +109,7 @@ public class Category extends Directory {
      */
     @Override
     public String toString() {
-        return String.format("Category Name: %s\nPriority: %d\nNumber of Tasks: %d\n",
-                categoryName, categoryPriority, tasks.getTaskList().size());
+        return String.format("Category Name: %s\nModule Code: %s\nPriority: %d\nNumber of Tasks: %d\n",
+                categoryName, getParent().getModuleCode(), categoryPriority, tasks.getTaskList().size());
     }
 }

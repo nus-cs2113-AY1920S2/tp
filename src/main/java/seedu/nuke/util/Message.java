@@ -256,7 +256,7 @@ public class Message {
      *  The message to confirm deletion of files
      */
     public static String messageConfirmDeleteFile(ArrayList<TaskFile> filteredFiles,
-          ArrayList<Integer> toDeleteIndices) {
+                                                  ArrayList<Integer> toDeleteIndices) {
         StringBuilder promptMessage = new StringBuilder();
         promptMessage.append("Confirm delete these files?\n");
         for (int index : toDeleteIndices) {

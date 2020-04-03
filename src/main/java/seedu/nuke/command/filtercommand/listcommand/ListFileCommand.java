@@ -39,7 +39,7 @@ public class ListFileCommand extends ListCommand {
      *  Checks whether to show <b>all</b> tasks across modules and categories
      */
     public ListFileCommand(String moduleKeyWord, String categoryKeyword, String taskKeyword, String fileKeyword,
-               boolean isExact, boolean isAll) {
+                           boolean isExact, boolean isAll) {
         this.moduleKeyWord = moduleKeyWord;
         this.categoryKeyword = categoryKeyword;
         this.taskKeyword = taskKeyword;

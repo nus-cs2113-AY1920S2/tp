@@ -37,7 +37,7 @@ public class ListTaskCommand extends ListCommand {
      *  Checks whether to show <b>all</b> tasks across modules, categories and tasks
      */
     public ListTaskCommand(String moduleKeyWord, String categoryKeyword, String taskKeyword,
-               boolean isExact, boolean isAll) {
+                           boolean isExact, boolean isAll) {
         this.moduleKeyWord = moduleKeyWord;
         this.categoryKeyword = categoryKeyword;
         this.taskKeyword = taskKeyword;

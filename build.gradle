@@ -40,12 +40,17 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 test {
     useJUnitPlatform()
 }
 
 application {
-    mainClassName = "seedu.nuke.Nuke"
+    mainClassName = "seedu.nuke.gui.Launcher"
 }
 
 shadowJar {
@@ -68,4 +73,3 @@ javafx {
     version = "11.0.2"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
-

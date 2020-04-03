@@ -26,8 +26,8 @@ import static seedu.nuke.util.Message.MESSAGE_HELP;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
     public static final String FORMAT = COMMAND_WORD;
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Show helping guides"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "\nShow helping guides\n"
+            + FORMAT + "\n";
     private static final ArrayList<String> commands = new ArrayList<>(Arrays.asList(
             ChangeDirectoryCommand.MESSAGE_USAGE,
             AddModuleCommand.MESSAGE_USAGE,
