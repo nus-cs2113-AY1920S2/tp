@@ -26,6 +26,9 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_TASK_FILE_NOT_FOUND = "ALERT! File is not found.\n";
     public static final String MESSAGE_DUPLICATE_TASK_FILE = "ALERT! The file already exists.\n";
+    public static final String MESSAGE_IMPLICIT_FILE_EXCEED_LIMIT =
+            "Sorry, the name of the file you are adding exceeds 30 characters.\n"
+            + "Please enter a new file name.\n";
 
     public static final String MESSAGE_MISSING_PARAMETERS = "Alert! Some parameters are missing.\n";
 
@@ -59,6 +62,9 @@ public class ExceptionMessage {
     public static final String MESSAGE_FILE_SECURITY_EXCEPTION =
             "Alert! File access was denied by device's security program.\n";
     public static final String MESSAGE_DELETE_FILE_ERROR = "Alert! There was an error in deleting your file.\n";
-    public static final String MESSAGE_FILE_NOT_FOUND = "Alert! File does not exists.\n";
-    public static final String MESSAGE_MISSING_FILE_PATH = "Alert! File path is missing.\n";
+    public static final String MESSAGE_FILE_NOT_FOUND_OPEN =
+            "The following file(s) could not be opened as they cannot be found:\n";
+    public static final String MESSAGE_FILE_NOT_FOUND_DELETE =
+            "The following file(s) could not be deleted as they cannot be found:\n";
+    public static final String MESSAGE_MISSING_FILE_PATH = "Please enter a file path.\n";
 }

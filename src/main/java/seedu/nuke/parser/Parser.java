@@ -25,7 +25,7 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.DueCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
@@ -56,6 +56,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_PARAMETERS;
+import static seedu.nuke.util.Message.MESSAGE_DEADLINE_OR_PRIORITY;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
@@ -160,8 +161,8 @@ public class Parser {
                 return prepareDeleteAndListFileCommand(parameters, false);
             case ListModuleTasksDeadlineCommand.COMMAND_WORD:
                 return new ListModuleTasksDeadlineCommand(parameters.trim());
-            case ListAllTasksDeadlineCommand.COMMAND_WORD:
-                return new ListAllTasksDeadlineCommand();
+            case ListTaskSortedCommand.COMMAND_WORD:
+                return prepareListTaskSort(parameters);
             case DueCommand.COMMAND_WORD:
                 return prepareDueCommand(parameters);
 
@@ -564,6 +565,38 @@ public class Parser {
         } else {
             return new ListFileCommand(moduleKeyword, categoryKeyword, taskKeyword, fileKeyword, isExact, isAll);
         }
+    }
+
+    /**
+     * Prepares the command to show a list of undone tasks sorted by deadline or priority.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to show a list of undone tasks sorted by deadline or priority
+     */
+    private Command prepareListTaskSort(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = ListTaskSortedCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, DEADLINE_GROUP, PRIORITY_GROUP);
+
+        String priorityFlag = matcher.group(PRIORITY_GROUP).trim();
+        String deadlineFlag = matcher.group(DEADLINE_GROUP).trim();
+        // If user types -p after -d
+        String priorityFlagSecond = matcher.group("prioritySecond").trim();
+
+        // Contains both deadline and priority prefixes
+        if (!deadlineFlag.isEmpty()) {
+            if (!(priorityFlag.isEmpty() && priorityFlagSecond.isEmpty())) {
+                return new IncorrectCommand(MESSAGE_DEADLINE_OR_PRIORITY);
+            }
+        }
+
+        boolean isByPriority = !priorityFlag.isEmpty();
+        boolean isByPrioritySecond = !priorityFlagSecond.isEmpty();
+
+        return isByPriority ? new ListTaskSortedCommand(true)
+                : new ListTaskSortedCommand(isByPrioritySecond);
     }
 
     /**
