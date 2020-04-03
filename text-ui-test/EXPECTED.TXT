@@ -21,29 +21,9 @@
 
 Enter command:
 
-Error! Description of an item cannot be empty.
-Example: ADD i/apple p/4.50 q/9.90
-
-Enter command:
-
 Oops! Invalid Command. Check if these are met:
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
- - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
-|| Example: ADD i/apples p/9.90 q/9
-
-Enter command:
-
-Error! Description of an item cannot be empty.
-Example: ADD i/apple p/4.50 q/9.90
-
-Enter command:
-
-Oops! Invalid Command. Check if these are met:
- - Price of an item should be in positive numerical form.
- - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
@@ -52,7 +32,6 @@ Enter command:
 Oops! Invalid Command. Check if these are met:
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
@@ -61,68 +40,68 @@ Enter command:
 Oops! Invalid Command. Check if these are met:
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Added this item: [0] apple $2.45 qty: 1
-NOTE: You have exceeded your budget by 2.45
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Added this item: [0] banana $3.00 qty: 3
-NOTE: You have exceeded your budget by 11.45
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Added this item: [0] cherry $5.60 qty: 2
-NOTE: You have exceeded your budget by 22.65
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Here are the matching items:
-
-+---------------+-------+-----+
-| Item          | Price | Qty |
-+---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
-+---------------+-------+-----+
-
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Here are the matching items:
-
-+---------------+-------+-----+
-| Item          | Price | Qty |
-+---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
-+---------------+-------+-----+
-
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
 
-Here are the matching items:
-
-+---------------+-------+-----+
-| Item          | Price | Qty |
-+---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
-+---------------+-------+-----+
-
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
 
 Enter command:
+Sorry, no results could be found!
 
-Here are the matching items:
+Enter command:
+Sorry, no results could be found!
 
-+---------------+-------+-----+
-| Item          | Price | Qty |
-+---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
-+---------------+-------+-----+
+Enter command:
+Sorry, no results could be found!
 
+Enter command:
+Sorry, no results could be found!
 
 Enter command:
 Sorry, no results could be found!
@@ -211,50 +190,47 @@ Oops! Invalid Command. Check if these are met:
 
 Enter command:
 
-OOPS! I already have an item with that name. Perhaps try another description? :D
+OOPS! I don't have that item in the list yet. Try again? :D
 
 Enter command:
 
-OOPS! I already have an item with that name. Perhaps try another description? :D
+OOPS! I don't have that item in the list yet. Try again? :D
 
 Enter command:
 
-The item has been updated to: [0] lollipops $2.50 qty: 5
+OOPS! I don't have that item in the list yet. Try again? :D
 
 Enter command:
 
-The item has been updated to: [0] lollipops $1.00 qty: 5
+OOPS! I don't have that item in the list yet. Try again? :D
 
 Enter command:
 
-The item has been updated to: [0] lollipops $1.00 qty: 4
+OOPS! I don't have that item in the list yet. Try again? :D
 
 Enter command:
 
-The item has been updated to: [0] candies $5.00 qty: 4
-
-Enter command:
-Please provide a single numerical index number!
-
-Enter command:
-
-Yes! I've marked this item as bought:
-[B] candies $5.00 qty: 4
-
-
-Enter command:
-
-Yes! I've marked this item as bought:
-[B] banana $3.00 qty: 3
-
+OOPS! I don't have that item in the list yet. Try again? :D
 
 Enter command:
 Please provide a single numerical index number!
 
 Enter command:
 
-Yes! I've unmarked this item as bought:
-[0] candies $5.00 qty: 4
+Oh No! This item does not exist in the list
+
+
+Enter command:
+
+Oh No! This item does not exist in the list
+
+
+Enter command:
+Please provide a single numerical index number!
+
+Enter command:
+
+Oh No! This item does not exist in the list
 
 
 Enter command:
@@ -283,8 +259,7 @@ Example: DEL 3
 
 Enter command:
 
-Got it! I have removed the following item:
-[0] candies $5.00 qty: 4
+Please enter a valid index within the bounds
 
 Enter command:
 
@@ -350,22 +325,19 @@ Enter command:
 
 Your shopping list:
 
-+---------------+-------+-----+
-| Item          | Price | Qty |
-+---------------+-------+-----+
-| 1. [B] banana | $3.00 | 3   |
-| 2. [0] cherry | $5.60 | 2   |
-+---------------+-------+-----+
++------+-------+-----+
+| Item | Price | Qty |
++------+-------+-----+
++------+-------+-----+
 
 Budget:           $500.00
-Cost of items:    $20.20
-Remaining budget: $479.80
+Cost of items:    $0.00
+Remaining budget: $500.00
 
 
 Enter command:
 
 Budget has been reset to $0.00
-NOTE: You have exceeded your budget by 20.20
 
 Enter command:
 

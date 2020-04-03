@@ -27,8 +27,6 @@ public class AddCommand extends Command {
             + System.lineSeparator()
             + " - Quantity of an item should be in positive numerical form."
             + System.lineSeparator()
-            + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
-            + System.lineSeparator()
             + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
             + "p/[PRICE] or q/[QUANTITY] must be present."
             + System.lineSeparator()
