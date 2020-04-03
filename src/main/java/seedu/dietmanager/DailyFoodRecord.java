@@ -45,6 +45,9 @@ public class DailyFoodRecord {
 
     /**
      * Records the meals consumed into their respective categories.
+     *
+     * @param mealType type of this meal, divided by time period.
+     * @param foodList the list of foods.
      */
 
     public void recordMeals(String mealType, ArrayList<Food> foodList) {
@@ -57,6 +60,27 @@ public class DailyFoodRecord {
             break;
         case "night":
             dinner.addAll(foodList);
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Clear the records of a certain meal.
+     *
+     * @param mealType type of this meal, divided by time period.
+     */
+    public void clearRecords(String mealType) {
+        switch (mealType) {
+        case "morning":
+            breakfast.clear();
+            break;
+        case "afternoon":
+            lunch.clear();
+            break;
+        case "night":
+            dinner.clear();
             break;
         default:
             break;
@@ -235,19 +259,18 @@ public class DailyFoodRecord {
             message = message + food.getPair();
         }
         message = message.substring(0,message.length() - 1);
-        message = String.format("%1$-90s",message);
+        message = String.format("%1$-70s",message);
 
         for (Food food : lunch) {
             message = message + food.getPair();
         }
         message = message.substring(0,message.length() - 1);
-        message = String.format("%1$-170s",message);
+        message = String.format("%1$-130s",message);
 
         for (Food food : dinner) {
             message = message + food.getPair();
         }
         message = message.substring(0,message.length() - 1);
-        message = String.format("%1$-250s",message);
 
         return message;
     }

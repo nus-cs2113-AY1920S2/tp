@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class RecipeManager {
     private ArrayList<DailyFoodRecord> recipe;
     private static RecipeManager theOnlyOne = null;
+    private static final int MAX_FOOD_TYPES = 4;
 
     private RecipeManager() {
         recipe = new ArrayList<>();
@@ -36,6 +37,7 @@ public class RecipeManager {
     }
 
     private void setRecipe(int index, String mealType, ArrayList<Food> foodList) {
+        recipe.get(index).clearRecords(mealType);
         recipe.get(index).recordMeals(mealType,foodList);
     }
 
@@ -48,8 +50,8 @@ public class RecipeManager {
 
     public String getRecipe() {
         String recipeTable = String.format("%1$-10s"," ") + "morning";
-        recipeTable = String.format("%1$-90s",recipeTable) + "afternoon";
-        recipeTable = String.format("%1$-170s",recipeTable) + "night\n";
+        recipeTable = String.format("%1$-70s",recipeTable) + "afternoon";
+        recipeTable = String.format("%1$-130s",recipeTable) + "night\n";
 
         for (DailyFoodRecord record : recipe) {
             recipeTable = recipeTable + record.getRecipeEntry() + System.lineSeparator();
@@ -62,13 +64,17 @@ public class RecipeManager {
      *
      * @param cap calories cap for each meal
      * @param num maximum food types the user want to have in a meal.
+     * @return true if maximum food types is less than 5, else false.
      */
-    public void customRecipe(double cap, int num) {
+
+    public boolean customRecipe(double cap, int num) {
         FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
-        int maxNum = foodInfo.getListSize();
+        int maxNum = MAX_FOOD_TYPES;
+        boolean overflow = false;
 
         if (num > maxNum) {
             num = maxNum;
+            overflow = true;
         }
 
         int success = 0;
@@ -113,5 +119,6 @@ public class RecipeManager {
                 setRecipe((int) ((success - 1) / 3), mealType, foodList);
             }
         }
+        return overflow;
     }
 }

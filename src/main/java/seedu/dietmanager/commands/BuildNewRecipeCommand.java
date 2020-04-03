@@ -13,6 +13,7 @@ public class BuildNewRecipeCommand extends Command {
 
     private boolean noDescription;
     private boolean isInvalidFormat;
+    private boolean maxNumOverflow;
 
     private double caloriesCap;
     private int maxFoodNum;
@@ -51,19 +52,25 @@ public class BuildNewRecipeCommand extends Command {
     public void execute(Profile profile, UI ui) {
         if (!noDescription && !isInvalidFormat) {
             RecipeManager manager = RecipeManager.getInstance();
-            manager.customRecipe(caloriesCap,maxFoodNum);
+            maxNumOverflow = manager.customRecipe(caloriesCap,maxFoodNum);
         }
         saveResult(profile);
     }
 
     @Override
     public void saveResult(Profile profile) {
+        this.result = "";
+
         if (noDescription) {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (isInvalidFormat) {
             this.result = "You have given wrong format for parameters!!!";
         } else {
-            this.result = RecipeManager.getInstance().getRecipe();
+            if (maxNumOverflow) {
+                this.result = "We support at most 4 kinds of food in a meal, "
+                        + "otherwise it's not good for your health!\n\n";
+            }
+            this.result += RecipeManager.getInstance().getRecipe();
         }
     }
 }
