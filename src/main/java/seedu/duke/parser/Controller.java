@@ -216,7 +216,7 @@ public class Controller {
             }
             String[] preRequisiteModules;
             preRequisiteModules = moduleWords[1].toUpperCase().split(" ");
-            checkPreReqValidity(preRequisiteModules);
+            checkPreReqValidity(preRequisiteModules, moduleId);
             return new AddToDataCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
         } catch (NumberFormatException e) {
             Ui.showInputError();
@@ -224,12 +224,11 @@ public class Controller {
         return null;
     }
 
-    private static void checkPreReqValidity(String[] preRequisiteModules) throws InputException {
-        for (String preReq: preRequisiteModules) {
-            if (!isStandardCodeFormat(preReq)) {
-                throw new InputException("Prerequisites is invalid.");
+    private static void checkPreReqValidity(String[] preRequisiteModules, String moduleId) throws InputException {
+        for (String preReq : preRequisiteModules) {
+            if (preReq.equals(moduleId) || !isStandardCodeFormat(preReq)) {
+                throw new InputException(String.format("Prerequisites <%s> is invalid.", moduleId));
             }
-
         }
     }
 

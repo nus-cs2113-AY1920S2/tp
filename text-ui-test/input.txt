@@ -30,4 +30,5 @@ delete id/GET1002
 view
 view /mp
 CAP
+add id/CS9999 n/hello mc/4 pre/CS9999
 bye
