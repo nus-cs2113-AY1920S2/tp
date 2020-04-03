@@ -1,34 +1,16 @@
-= SHOCO v2.0 - User Guide
+= SHOCO v2.1 - User Guide
+:site-section: UserGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:xrefstyle: full
+:repoURL: https://github.com/AY1920S2-CS2113T-T13-1/tp/tree/master
 
-[discrete]
-=== Table of Contents
+By: `Team SHOCOTech`      Since: `Mar 2020`
 
-* *<<introduction,1.
-Introduction>>*
-* *<<quick-start,2.
-Quick Start>>*
-* *<<features,3.
-Features>>*
- ** <<adding-an-item-add,3.1 Adding an item: `ADD`>>
- ** <<editing-an-item-edit,3.2 Editing an item: `EDIT`>>
- ** <<deleting-an-item-del,3.3 Deleting an item: `DEL`>>
- ** <<clearing-the-list-clear,3.4 Clearing the list: `CLEAR`>>
- ** <<marking-an-item-as-bought-mark,3.5 Marking an item as bought: `MARK`>>
- ** <<un-marking-a-marked-item-unmark,3.6 Un-marking a marked item: `UNMARK`>>
- ** <<displaying-list-and-budget-details-display,3.7 Displaying list and budget details: `DISPLAY`>>
- ** <<setting-a-budget-set,3.8 Setting a budget: `SET`>>
- ** <<resetting-a-budget-res,3.9 Resetting a budget: `RES`>>
- ** <<finding-an-item-find,3.10 Finding an item: `FIND`>>
- ** <<viewing-help-help,3.11 Viewing help: `HELP`>>
- ** <<exiting-the-program-bye,3.12 Exiting the Program: `BYE`>>
-* *<<additional-information,4.
-Additional information>>*
-* *<<faq,5.
-FAQ>>*
-* *<<command-summary,6.
-Command Summary>>*
 
-&nbsp;
 // @@author kokjoon97
 
 == Introduction
@@ -43,7 +25,7 @@ SHOCO is a command-line interface (CLI) application that allows you to  manage a
 With better organisation and also a budget tracker, we are here to enhance your grocery-shopping experience and make the woes of grocery shopping disappear.
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 == Quick Start
@@ -55,7 +37,7 @@ back to top>>+++</b>+++
 &nbsp;
 // @@author
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 == Features
@@ -78,11 +60,12 @@ in `ADD i/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `ADD i
 // @@author
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
 
+// tag::add[]
 === Adding an item: `ADD`
 
 Add the specified item in the shopping list.
@@ -108,12 +91,15 @@ Example of usage:
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
+// end::add[]
+
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 // @@author trishaangelica
 
 '''
 
+// tag::edit[]
 === Editing an item: `EDIT`
 
 Edits the specified item in the shopping list.
@@ -144,13 +130,17 @@ Examples of usage:
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
+// end::edit[]
+
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 // @@author
 
 '''
 
+
 // @@author kokjoon97
+// tag::delete[]
 
 === Deleting an item: `DEL`
 
@@ -165,27 +155,32 @@ Example of usage:
 
 `DEL 3`
 // @@author
+// end::delete[]
+
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
+
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
 
+// tag::clear[]
 === Clearing the list: `CLEAR`
 
 Clears all items in the shopping list.
 Automatically resets remaining budget to the user's set budget.
 
 Format: `CLEAR`
+// end::clear[]
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
-
+// tag::mark[]
 === Marking an item as bought: `MARK`
 
 Marks an item from the list at the specified index as bought.
@@ -198,14 +193,16 @@ Format: `MARK INDEX`
 Example of the usage:
 
 `MARK 5`
+// end::mark[]
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
 
+// tag::unmark[]
 === Un-marking a marked item: `UNMARK`
 
 Un-marks a marked-as-bought item from the list at the specified index.
@@ -218,29 +215,32 @@ Format: `UNMARK INDEX`
 Example of the usage:
 
 `UNMARK 3`
+// end::unmark[]
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
 
+// tag::display[]
 === Displaying list and budget details: `DISPLAY`
 
 Shows the shopping list, budget, cost of the items and the remaining budget.
 
 Format: `DISPLAY`
+// end::display[]
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
 
 // @@author kokjoon97
-
+// tag::setbudget[]
 === Setting a budget: `SET`
 
 Sets a budget for the user.
@@ -254,28 +254,31 @@ Example of usage:
 
 `SET b/3.00`
 // @@author
+// end::setbudget[]
+
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
-
+// tag::resetbudget[]
 === Resetting a budget: `RES`
 
 Resets te budget to be 0.00 for the user.
 
 Format: `RES`
+// end::resetbudget[]
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
 
 // @@author kokjoon97
-
+// tag::find[]
 === Finding an item: `FIND`
 
 Filters the shopping list according to a keyword specified by the user.
@@ -289,35 +292,40 @@ Example of usage:
 
 `FIND apple`
 // @@author
+// end::find[]
+
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
-
+// tag::help[]
 === Viewing help: `HELP`
 
 Shows the available commands and how they are to be used.
 
 Format: `HELP`
+// end::help[]
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
 
+// tag::exit[]
 === Exiting the program: `BYE`
 
 Exits the program.
 
 Format: `BYE`
+// end::exit[]
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -341,7 +349,7 @@ This message will only stop appearing when you increase your budget amount suffi
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -364,7 +372,7 @@ It is however, possible to manually backup the `shoppinglist.json` file from tim
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -386,5 +394,5 @@ back to top>>+++</b>+++
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
