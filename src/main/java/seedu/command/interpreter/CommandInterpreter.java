@@ -129,7 +129,7 @@ public class CommandInterpreter {
                     && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
                     && !commandCategory.equals("help") && !commandCategory.equals("student"))
                     : "accepted command category is not further interpreted!";
-            throw new PacException("Unknown command category is provided");
+            throw new PacException("Please provide a valid command category. Refer to 'help' for more info.");
         }
         if (command == null) {
             throw new PacException("Pac is null.");
