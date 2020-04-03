@@ -1,39 +1,25 @@
-= Developer Guide
+= SHOCO - Developer Guide
+:site-section: DeveloperGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:xrefstyle: full
+:repoURL: https://github.com/AY1920S2-CS2113T-T13-1/tp/tree/master
 
-[discrete]
-=== Table of Contents
-
-* *<<1-introduction,1.
-Introduction>>*
-* *<<2-overview-of-the-shoco-application,2.
-Overview of the SHOCO application>>*
-* *<<3-implementation,3.
-Implementation>>*
- ** <<31-add-feature,3.1 Add feature>>
- ** <<32-edit-feature,3.2 Edit feature>>
- ** <<33-delete-feature,3.3 Delete feature>>
- ** <<34-find-feature,3.4 Find feature>>
- ** <<35-mark-and-unmark-feature,3.5 Mark and Unmark feature>>
- ** <<36-display-feature,3.6 Display feature>>
- ** <<37-clear-list-feature,3.7 Clear list feature>>
- ** <<38-set-budget-feature,3.8 Set budget feature>>
- ** <<39-reset-budget-feature,3.9 Reset budget feature>>
- ** <<310-view-help-feature,3.10 View help feature>>
- ** <<311-exit-program-feature,3.11 Exit program feature>>
-* *<<appendix-a-product-scope,Appendix A: Product Scope>>*
-* *<<appendix-b-user-stories,Appendix B: User Stories>>*
-* *<<appendix-c-non-functional-requirements,Appendix C: Non-Functional Requirements>>*
-* *<<appendix-d-glossary,Appendix D: Glossary>>*
-* *<<appendix-e-instructions-for-manual-testing,Appendix E: Instructions for Manual Testing>>*
+By: `Team SHOCOTech`      Since: `Mar 2020`
 
 == 1. Introduction
 
+[[Introduction-Purpose]]
 === Purpose of this guide
 
 This guide describes the software architecture and design of the SHOCO application.
 It will evolve throughout the design and implementation of each SHOCO release.
 Currently, this document is for the third public release of the application, SHOCO v2.1.
 
+[[Introduction-Scope]]
 === Scope of this guide
 
 This document describes the software architecture and design for the implementation of SHOCO and is tailored for the developers, designers, and software testers of SHOCO.
@@ -73,6 +59,7 @@ back to top>>+++</b>+++ &nbsp;
 
 This section will describe how the main features of the application are implemented.
 
+// tag::Add[]
 === 3.1 Add feature
 
 ==== 3.1.1 Current implementation
@@ -126,7 +113,7 @@ back to top>>+++</b>+++
 &nbsp;
 
 // @@author trishaangelica
-
+// tag::Edit[]
 === 3.2 Edit feature
 
 ==== 3.2.1 Current implementation
@@ -177,7 +164,7 @@ back to top>>+++</b>+++
 &nbsp;
 
 // @@author kokjoon97
-
+// tag::Delete[]
 === 3.3 Delete feature
 
 ==== 3.3.1 Current implementation
@@ -215,6 +202,7 @@ back to top>>+++</b>+++
 
 &nbsp;
 
+// tag::Find[]
 === 3.4 Find feature
 
 ==== 3.4.1 Current implementation
@@ -258,6 +246,7 @@ back to top>>+++</b>+++
 
 &nbsp;
 
+// tag::Mark and Unmark[]
 === 3.5 Mark and Unmark feature
 
 ==== 3.5.1 Current Implementation
@@ -299,6 +288,7 @@ back to top>>+++</b>+++
 
 &nbsp;
 
+// tag::Display[]
 === 3.6 Display feature
 
 This feature involves displaying the shopping list and budget details to the user.
@@ -339,6 +329,7 @@ back to top>>+++</b>+++
 
 &nbsp;
 
+// tag::Clear[]
 === 3.7 Clear list feature
 
 This feature involves clearing all items in the shopping list.
@@ -376,7 +367,7 @@ back to top>>+++</b>+++
 &nbsp;
 
 // @@author kokjoon97
-
+// tag::Set Budget[]
 === 3.8 Set budget feature
 
 ==== 3.8.1 Current implementation
@@ -416,6 +407,7 @@ back to top>>+++</b>+++
 
 &nbsp;
 
+// tag::Reset Budget[]
 === 3.9 Reset budget feature
 
 ==== 3.9.1 Current implementation
@@ -448,6 +440,8 @@ back to top>>+++</b>+++
 
 &nbsp;
 
+// @@author trishaangelica
+// tag::Help[]
 === 3.10 View help feature
 
 ==== 3.10.1 Current implementation
@@ -482,6 +476,8 @@ image::images/HelpFeature.png[alt text]
 back to top>>+++</b>+++
 
 &nbsp;
+
+// @@author
 
 === 3.11 Exit program feature
 
