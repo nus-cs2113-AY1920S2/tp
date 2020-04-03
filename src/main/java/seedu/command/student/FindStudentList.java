@@ -30,7 +30,7 @@ public class FindStudentList extends Command {
         ui.readUserInput();
         name = ui.getUserInput();
         for (int i = 0; i < studentListCollection.size(); i++) {
-            if (studentListCollection.get(i).getListName().contains(name)) {
+            if (studentListCollection.get(i).getListName().toLowerCase().contains(name.toLowerCase())) {
                 searchResults.add(studentListCollection.get(i));
             }
         }
@@ -42,9 +42,15 @@ public class FindStudentList extends Command {
         }
     }
 
+    private void displayStudentList() {
+        ui.printStudentListCollection();
+    }
 
     @Override
     public void execute() throws PacException {
+        displayStudentList();
         find();
     }
+
+
 }
