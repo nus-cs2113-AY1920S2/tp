@@ -53,9 +53,8 @@ public class SeminarCommandInterpreter extends CommandInterpreter {
         // only look for 2nd to last words if commandCategory requires.
         if (needArgument(commandType)) {
             commandParameters = getSubsequentWords(commandDescription);
+            eventParser.parse(commandParameters);
         }
-
-        eventParser.parse(commandParameters);
 
         switch (commandType) {
         case "add":
