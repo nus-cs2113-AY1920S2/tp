@@ -34,10 +34,10 @@ public class Parser {
             "(?<taskType>(?i)"
                     + AssignmentCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+n/\\s*(?<assignmentName>[^|/]+)"
-                    + "\\s+m/\\s*(?<moduleName>[^|/]+)"
+                    + "\\s+n/\\s*(?<assignmentName>[^|/\\s]+[^|/]*)"
+                    + "\\s+m/\\s*(?<moduleName>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-                    + "\\s+c/\\s*(?<comments>[^|/]+)$"
+                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
     );
 
     // regex for an add event command
@@ -45,10 +45,10 @@ public class Parser {
             "(?<taskType>(?i)"
                     + EventCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+n/\\s*(?<eventName>[^|/]+)"
-                    + "\\s+l/\\s*(?<location>[^|/]+)"
+                    + "\\s+n/\\s*(?<eventName>[^|/\\s]+[^|/]*)"
+                    + "\\s+l/\\s*(?<location>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
-                    + "\\s+c/\\s*(?<comments>[^|/]+)$"
+                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
     );
 
     //regex for search command
@@ -56,16 +56,16 @@ public class Parser {
             "(?<search>(?i)"
                     + SearchCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<name>[^/]+)");
+                    + "\\s+t/\\s*(?<taskType>[^|/\\s]+[^|/]*)"
+                    + "\\s+n/\\s*(?<name>[^|/\\s]+[^|/]*)");
 
     //regex for Searchd command
     public static final Pattern SEARCHD_PARAMETERS_FORMAT = Pattern.compile(
             "(?<search>(?i)"
                     + SearchCommand.dCOMMAND_WORD
                     + "\\b)"
-                    + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<taskName>[^/]+)"
+                    + "\\s+t/\\s*(?<taskType>[^|/\\s]+[^|/]*)"
+                    + "\\s+n/\\s*(?<taskName>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2})");
 
     //regex for repeat command
