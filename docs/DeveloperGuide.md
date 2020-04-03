@@ -1,7 +1,36 @@
 # Developer Guide
 
+# 1. Introduction
+## 1.1 Purpose
+The document contains the specified architecture and software design specifications for the application, Module Manager.
+
+## 1.2 Scope
+This describes the software architecture and software design requirements for Module Manager. 
+This guide is mainly for developers, designers and software engineers that are or going to work on Module Manager.
+
+# 2. Setting up
+## 2.1 Prerequisites
+1. JDK `11`.
+2. IntelliJ IDE.
+
+## 2.2 Setting up the project in your computer
+1. Fork this repository, and clone the fork repository to your computer.
+2. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project 
+dialog first).
+3. Set up the correct JDK version for Gradle
+    * Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`.
+    * If `JDK 11` is listed in the drop down, select it. Otherwise, click `New…` and select the directory where you 
+    installed `JDK 11`.
+    * Click `OK`.
+4. Click Import Project.
+5. Locate the build.gradle file and select it. Click OK.
+6. Click Open as Project.
+7. Click OK to accept the default settings if prompted.
+
+# 3. Design
+This section provides a high level overview of our application, Module Manager.
 ## Design & Implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
 
 ### Architecture
 
@@ -16,10 +45,15 @@ Module Manager consists of a main class called Duke responsible for
 The other components involved are:
 
 `UI`: The user interface of the application
-
+`Parser`: This class mainly handles the parsing and handling of user commands
+`Command`: This class handles the type of command
+`Person`: This class manages the data of the user in memory
+`Controller`: This class determines what to do with the parsed input of the user 
 `Storage`: Reads data from, and writes data to, the hard disk
 
 #### UI component
+![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
+
 The `UI` component consists of a `Ui` class that stores all user interaction output data. 
 It displays all user interactions to the user based on the command line inputs received.
 
@@ -55,35 +89,44 @@ The `Storage` component,
 ### Implementation
 
 #### `Add to Semester` feature 
-The `Add to Semester` mechanism is facilitated by `AddtoSemCommand` which extends from `Command`. 
+The `Add to Semester` mechanism is facilitated by `AddtoSemCommand` which extends from an abstract class `Command`. 
 It allows `ModuleManager` to assign a module to a semester by adding the module to a 
-`SemModulesList`, it implements the following operations:
+`SemModulesList`. 
 
+Definition:
+
+`SemModuleList` - An array list of `Module` objects, used to contain modules allocated to a specific semester. 
+Signifies a semester in the user's module plan.
+
+`SemesterList` - A priority queue of `SemModuleList`, used to contain `semModuleList` in an sorted order. 
+Signifies all semesters of the user's module plan.  
+
+This feature implements the following operations:
 Given below is an example how the `Add to Semester` behaves at each step.
 
 ##### Step 1:
-The user launches the application for the first time. The `SemesterList` will be initialized with the none 
-`SemModulesList` in it.
+The user launches the application for the first time. The `SemesterList` will initialize an empty 
+`SemModulesList`.
 
 ##### Step 2:
-When users enter a add to semester command, e.g `add id/CS2113 s/4 mc/4`, this command will be parsed in `Parser`
-and then `Parser` returns a `AddToSemCommand`. `AddToSemCommand` then calls `Command#execute(SemesterList semesterList,
+When users enter an add to semester command, e.g `add id/CS2113 s/4 mc/4`, the command will be parsed in `Parser`
+which will return an `AddToSemCommand`. `AddToSemCommand` then calls `Command#execute(SemesterList semesterList,
  AvailableModulesList availableModulesList) `
 `(AddToSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`
 
 ##### Step 3:
-`AddToSemCommand#execute()` then calls self method `AddToSemCommand#addModule()`.`AddToSemCommand#addModule()`
- then calls `AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected 
-module is already in the selected module list (i.e:`semesterList`, which is a `PriorityQueue<SemModulesList>`). 
+`AddToSemCommand#execute()` then calls self method `AddToSemCommand#addModule()` which calls 
+`AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected module is already in the 
+user's module plan (i.e:`semesterList`). 
 If the module is not in the list, `AddToSemCommand#addModule()` will check whether there is a semester list
-(i.e:`semesterModulesList`, which is a `ArrayList<SelectedModule>`) whose name is the module's semester name. 
-If the semester list exist, the module will be added to the list. 
-If not, `AddToSemCommand#addModule()` will create a new semester list and then add this module to the new list. and the
-the new semester list will be added to `semesterList` as well.
+(i.e:`semesterModulesList`) whose name is equal to the module's semester name. 
+If the semester list exists, the module will be added to the list. 
+If not, `AddToSemCommand#addModule()` will create a new semester list and then add this module to the new list. 
+Finally, this new semester list will be added to `semesterList`.
 
 #### Step 4:
-`AddToSemCommand#execute()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to show the result to the 
-user
+`AddToSemCommand#execute()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to tell the user that the
+command has been executed.
 
 The following sequence diagram shows how the `Add to Semester` operation works:
 ![Sequence Diagram of Add to Semester](https://github.com/RenzoTsai/tp/blob/Update_DG/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
