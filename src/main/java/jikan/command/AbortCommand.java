@@ -17,7 +17,7 @@ public class AbortCommand extends Command {
      */
     public AbortCommand(String parameters) throws ExtraParametersException {
         super(parameters);
-        if (parameters == null) {
+        if (parameters != null) {
             throw new ExtraParametersException();
         }
     }
