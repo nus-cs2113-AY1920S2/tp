@@ -107,7 +107,7 @@ public class ListCommand extends Command {
         case "month":
             // Fallthrough
         case "monthly":
-            // If user has input a specific date to obtain the month from, use that;
+            // If user has input a specific month, use that;
             // Otherwise get current date
             if (listInputs.length == 2) {
                 try {
@@ -118,10 +118,8 @@ public class ListCommand extends Command {
                 }
             } else {
                 startDate = LocalDate.now();
+                startDate = startDate.withDayOfMonth(1);
             }
-
-            // Set first and last day of month as time range
-            //startDate = startDate.withDayOfMonth(1);
             endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
             break;
         default:
