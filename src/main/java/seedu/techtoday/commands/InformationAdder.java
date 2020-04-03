@@ -22,23 +22,24 @@ import java.util.logging.SimpleFormatter;
 public class InformationAdder {
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getName());
-    private static final String FILE_PATH =  "command.log";
+    private static final String LOGGER_FILE_PATH =  "command.log";
 
     /**
-     * This method is used to initialize and set up LOGGER.
+     * Initializes the LOGGER.
      *
      * @throws IOException when logger set up fails.
      */
     public static void startLogger() throws IOException {
         LOGGER.setLevel(Level.ALL);
         LOGGER.setUseParentHandlers(false);
-        FileHandler fileHandler = new FileHandler(FILE_PATH, true);
+        FileHandler fileHandler = new FileHandler(LOGGER_FILE_PATH, true);
         fileHandler.setFormatter(new SimpleFormatter());
         LOGGER.addHandler(fileHandler);
     }
 
     /**
      * Executes the addinfo feature.
+     *
      * @param userResponse - Command that the user adds to the command line.
      */
     public static void execute(String userResponse) {
@@ -76,6 +77,7 @@ public class InformationAdder {
 
     /**
      * Adds extract to an existing Note.
+     *
      * @param index - Index of the article in the note list.
      * @param extract - Extract to be added.
      */
@@ -94,6 +96,7 @@ public class InformationAdder {
 
     /**
      * Adds extract to an existing job.
+     *
      * @param index - Index of the article in the job list.
      * @param extract - Extract to be added.
      */
@@ -112,6 +115,7 @@ public class InformationAdder {
 
     /**
      * Adds extract to an existing article.
+     *
      * @param index - Index of the article in the article list.
      * @param extract - Extract to be added.
      */

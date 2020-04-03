@@ -10,6 +10,7 @@ public class NewsCreator {
 
     /**
      * Returns an article object from a JSONObject representing a news article from the internet.
+     *
      * @param json JSON object representing a news article.
      * @return Article - article representing jsonObject from internet.
      */

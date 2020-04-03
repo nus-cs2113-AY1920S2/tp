@@ -27,13 +27,8 @@ public class ViewedArticleListCreator {
             String midUrl = Integer.toString(indicesArr[i]);
             String tailUrl = ".json?print=pretty";
             String finalUrl = headOfUrl + midUrl + tailUrl;
-
-            // Creating a news each time
             JSONObject rawNews = UrlJsonParser.readJsonFromUrl(finalUrl);
-            // System.out.println(rawNews.toString());
             Article processedArticle = NewsCreator.rawToProcessedNews(rawNews);
-
-            //Adding it to ArrayList articleList
             ViewedArticleList.viewedArticleList.add(processedArticle);
         }
     }

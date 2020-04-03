@@ -42,11 +42,9 @@ public class InformationLister {
                         + "the form \"list [article / job / note]\"");
             }
             }
-            return;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("List command is incorrect. It should be of the following form: \n");
             Messages.printInCenter("list [article / job / note]");
-            return;
         }
     }
 }

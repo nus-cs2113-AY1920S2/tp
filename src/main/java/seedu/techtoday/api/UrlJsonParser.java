@@ -24,6 +24,7 @@ public class UrlJsonParser {
 
     /**
      * Returns an array of the words in a string seperated by a comma.
+     *
      * @param array String of words that ill be converted into an array
      * @return arrOfIndices Array representing the indices of the news articles that are to be saved.
      */
@@ -58,6 +59,7 @@ public class UrlJsonParser {
 
     /**
      * Reads a JSON object from a url.
+     *
      * @param url url representing news
      * @return json JSON object representing news.
      * @throws IOException IO exception.

@@ -1,6 +1,5 @@
 package seedu.techtoday.storage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileReader;
 
@@ -9,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.JsonParser;
+import seedu.techtoday.common.Messages;
 import seedu.techtoday.notelist.SavedNoteList;
 import seedu.techtoday.objects.Job;
 import seedu.techtoday.objects.Note;
@@ -51,27 +51,25 @@ public class Loader {
 
 
     /**
-     * ADD JAVADOC HERE.
-     * @param fileName - ADD HERE.
-     * @return - ADD HERE.
+     * Returns Json Array from JsonFile.
+     * @param fileName - Name of JsonFile.
+     * @return - JsonArray that represents file.
      */
     public static JsonArray jsonReader(String fileName) {
 
         try (FileReader reader = new FileReader(fileName)) {
-            //Read JSON file
-            Object obj = JsonParser.parseReader(reader);
-
-            JsonArray objectList = (JsonArray) obj;
-            return objectList;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JsonParseException e) {
+            try {
+                Object obj = JsonParser.parseReader(reader);
+                JsonArray objectList = (JsonArray) obj;
+                return objectList;
+            } catch (JsonSyntaxException | ClassCastException e) {
+                System.out.println(String.format("\"%s\" is corrupted. We will clear this "
+                        + "file in particular and start fresh.", fileName));
+                Messages.printStraightLine();
+            }
+        } catch (IOException | JsonParseException e) {
             e.printStackTrace();
         }
-
         return new JsonArray();
 
     }
@@ -88,7 +86,7 @@ public class Loader {
         idxArticle += 1;
 
         //Get article title
-        String title = articleObject.get("title").toString().replaceAll("\"", "");;
+        String title = articleObject.get("title").toString().replaceAll("\"", "");
         String url = articleObject.get("url").toString().replaceAll("\"", "");;
         String timeStamp = articleObject.get("timestamp").toString().replaceAll("\"", "");;
         String extract = articleObject.get("extract").toString().replaceAll("\"", "");;

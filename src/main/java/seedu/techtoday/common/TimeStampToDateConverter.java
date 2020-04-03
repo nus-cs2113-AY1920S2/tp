@@ -8,6 +8,7 @@ public class TimeStampToDateConverter {
 
     /**
      * This method sets a date for an article.
+     *
      * @param timeStamp A string representing the timestamp of the article
      */
     public static String execute(String timeStamp) {
