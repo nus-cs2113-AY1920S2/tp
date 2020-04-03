@@ -16,7 +16,7 @@ public class FindCommand extends Command {
      * Constructor to create a new find command.
      */
     public FindCommand(String parameters) {
-        super(parameters);
+        super(parameters.trim());
     }
 
     /**

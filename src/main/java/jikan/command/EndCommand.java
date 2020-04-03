@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.exception.ExtraParametersException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;

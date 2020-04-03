@@ -3,6 +3,7 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
@@ -61,7 +62,7 @@ class ContinueCommandTest {
             Duration elapsed = initial.plus(Duration.between(startTime, LocalDateTime.now()));
             Duration duration = activities.get(1).getDuration();
             assertEquals(elapsed.toMinutes(), duration.toMinutes());
-        } catch (EmptyNameException | InvalidTimeFrameException e) {
+        } catch (EmptyNameException | InvalidTimeFrameException | ExtraParametersException e) {
             System.out.println("Error.");
         } catch (NameTooLongException e) {
             Log.makeInfoLog("Activity name longer than 25 characters");

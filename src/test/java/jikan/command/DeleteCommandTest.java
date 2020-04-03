@@ -3,6 +3,7 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
@@ -58,7 +59,7 @@ class DeleteCommandTest {
         Command command = new DeleteCommand(parameters);
         try {
             command.executeCommand(activities);
-        } catch (EmptyNameException e) {
+        } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
         }
 

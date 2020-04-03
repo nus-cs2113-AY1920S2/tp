@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.exception.ExtraParametersException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.NoSuchActivityException;

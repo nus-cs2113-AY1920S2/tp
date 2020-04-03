@@ -3,6 +3,7 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
@@ -48,6 +49,11 @@ class StartCommandTest {
         activities.add(activity3);
     }
 
+    private void resetFields() {
+        Parser.startTime = null;
+        Parser.tags.clear();
+    }
+
     @Test
     void executeStart() {
         try {
@@ -73,7 +79,10 @@ class StartCommandTest {
         } catch (NameTooLongException e) {
             Log.makeInfoLog("Activity name longer than 25 characters");
             Ui.printDivider("Error: activity name is longer than 25 characters.");
+        } catch (ExtraParametersException e) {
+            Ui.printDivider("Field error.");
         }
+        resetFields();
     }
 
     @Test
@@ -85,15 +94,17 @@ class StartCommandTest {
             Scanner scanner = new Scanner(System.in);
             String parameters = "Activity1";
             Command command = new StartCommand(parameters, scanner);
+            System.out.println(Parser.tags);
             command.executeCommand(activities);
             assertEquals(Parser.activityName, "Activity1");
             assertNotNull(Parser.startTime);
-        } catch (InvalidTimeFrameException | EmptyNameException e) {
+        } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
         } catch (NameTooLongException e) {
             Log.makeInfoLog("Activity name longer than 25 characters");
             Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
+        resetFields();
     }
 
     @Test
@@ -108,12 +119,10 @@ class StartCommandTest {
             command.executeCommand(activities);
             assertNull(Parser.startTime);
             assertNull(Parser.activityName);
-        } catch (InvalidTimeFrameException | EmptyNameException e) {
+        } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException
+                | NameTooLongException e) {
             System.out.println("Field error.");
-        } catch (NameTooLongException e) {
-            Log.makeInfoLog("Activity name longer than 25 characters");
-            Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
-
+        resetFields();
     }
 }

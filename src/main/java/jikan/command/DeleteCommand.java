@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
      * Constructor to create a new delete command.
      */
     public DeleteCommand(String parameters) {
-        super(parameters);
+        super(parameters.trim());
     }
 
     @Override
