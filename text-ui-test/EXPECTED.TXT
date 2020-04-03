@@ -99,6 +99,22 @@ _______________________________________________________________________
             notes: 15%
 
 _______________________________________________________________________
+> Here are the search results:
+  1.[A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+
+_______________________________________________________________________
+> Here are the search results:
+  1.[A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
+            notes: 15%
+
+_______________________________________________________________________
+> Oh no. Invalid arguments for Search Command
+Search for tasks: search t/[TASK TYPE] n/[TASK NAME]
+_______________________________________________________________________
+> Oh no. Invalid arguments for Searchd Command
+Search for tasks according to date: searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]
+_______________________________________________________________________
 > Please use a different name. Task already exists in list
 _______________________________________________________________________
 > All tasks have been deleted

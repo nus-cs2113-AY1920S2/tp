@@ -13,6 +13,10 @@ list
 list upcoming events
 list incomplete assignments
 search t/all n/OP1
+search t/ALL n/                         OP1
+searchd t/ASSIGNMENT n/           OP1 d/                01/01/20
+search
+searchd t/ n/ d/
 event n/Countdown l/TimeSquare d/13/03/22 1800 - 2300 c/new year new me
 clear all
 list
