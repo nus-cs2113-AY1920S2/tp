@@ -77,6 +77,7 @@ public class Duke {
                 command.execute();
             } catch (DukeException m) {
                 logger.log(Level.WARNING, "DukeException at Duke.run()");
+                System.out.println(m.getMessage());
             }
         } while (isNotBye(command));
 

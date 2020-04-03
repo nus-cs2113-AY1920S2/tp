@@ -103,6 +103,11 @@ public class Event {
         this.datetime = new DateTime(datetime);
     }
 
+    public boolean dateTimeIsParsed() {
+        return datetime.checkValidDateTime();
+    }
+
+
     /**
      * Returns the venue of the event.
      * @return the venue of the event
@@ -135,11 +140,12 @@ public class Event {
         this.performanceList = performanceList;
     }
 
+
     @Override
     public String toString() {
         String output = "Event: " + getName();
 
-        if (!getDatetime().equals("yyyy-MM-dd HHmm")) {
+        if (!getDatetime().equals("")) {
             output += (", time: " + getDatetime());
         }
         if (!getVenue().equals("")) {

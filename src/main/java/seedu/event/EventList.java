@@ -1,5 +1,6 @@
 package seedu.event;
 
+import seedu.duke.Duke;
 import seedu.exception.DukeException;
 import seedu.ui.DisplayList;
 import seedu.ui.UI;
@@ -24,12 +25,25 @@ public class EventList {
      * Add the specified event to the end of list.
      * @param event the event to be appended
      */
-    public void add(Event event) {
+    public void add(Event event) throws DukeException {
+        checkDuplicateName(event.getName());
+        if (!event.dateTimeIsParsed()) {
+            ui.displayMessage("Datetime is not set. If you wish to add datetime, please enter the correct format:"
+                    + "yyyy-MM-dd HHmm");
+        }
         list.add(event);
         if (event instanceof Seminar) {
             ui.addEventMessage("Seminar", event.getName());
         } else {
             ui.addEventMessage("Event", event.getName());
+        }
+    }
+
+    private void checkDuplicateName(String eventName) throws DukeException {
+        for (Event event : list) {
+            if (event.getName().equals(eventName)) {
+                throw new DukeException("Event already exists in the list. Please add a new Event.");
+            }
         }
     }
 
@@ -93,6 +107,10 @@ public class EventList {
      * @param name new name for the event
      */
     public void editName(int index, String name) throws DukeException {
+        if (name.isEmpty()) {
+            throw new DukeException("Event name is empty");
+        }
+        checkDuplicateName(name);
         Event event = this.find(index);
         if (event instanceof Seminar) {
             ui.editEventNameMessage(event.getName(), name, "Seminar");
@@ -111,13 +129,15 @@ public class EventList {
         Event event = this.find(index);
         String oldDateTime = event.getDatetime();
         event.setDatetime(datetime);
+        if (!event.dateTimeIsParsed()) {
+            throw new DukeException("Wrong format for date and time. Please enter: yyyy-MM-dd HHmm");
+        }
         String newDateTime = event.getDatetime();
         if (event instanceof Seminar) {
             ui.editEventDateTimeMessage(oldDateTime, newDateTime, "Seminar");
         } else {
             ui.editEventDateTimeMessage(oldDateTime, newDateTime, "Event");
         }
-
     }
 
     /**
@@ -126,6 +146,9 @@ public class EventList {
      * @param venue new venue for the event
      */
     public void editVenue(int index, String venue) throws DukeException {
+        if (venue.isEmpty()) {
+            throw new DukeException("Venue is empty");
+        }
         Event event = this.find(index);
         if (event instanceof Seminar) {
             ui.editEventVenueMessage(event.getVenue(), venue, "Seminar");
@@ -154,6 +177,10 @@ public class EventList {
         }
         list.remove(index);
         list.add(index, event);
+        if (!event.dateTimeIsParsed()) {
+            ui.displayMessage("Datetime is not set. If you wish to add datetime, please enter the correct format:"
+                    + "yyyy-MM-dd HHmm");
+        }
     }
 
     public int getSize() {
