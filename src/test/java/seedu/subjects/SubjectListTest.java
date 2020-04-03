@@ -25,7 +25,7 @@ public class SubjectListTest {
     }
 
     @Test
-    void getSubjects() {
+    void getSubjects() throws EscException {
         subjects.addSubject(subject1);
         subjects.addSubject(subject2);
         assertTrue(subjects.getSubjects().contains(subject1));
@@ -43,7 +43,7 @@ public class SubjectListTest {
     }
 
     @Test
-    void getSubject_indexOutOfRange_exceptionThrown() {
+    void getSubject_indexOutOfRange_exceptionThrown() throws EscException {
         subjects.addSubject(subject1);
         expectedException = new EscException("The subject item does not exist.");
         int[] getIndexes = {-1,2};
@@ -66,7 +66,7 @@ public class SubjectListTest {
     }
 
     @Test
-    void addSubject_SubjectSuccessfullyAdded() {
+    void addSubject_SubjectSuccessfullyAdded() throws EscException {
         subjects.addSubject(subject1);
         assertTrue(subjects.size() == 1);
         assertTrue(subjects.getSubjects().contains(subject1));
@@ -83,7 +83,7 @@ public class SubjectListTest {
     }
 
     @Test
-    void removeSubject_indexOutOfRange_exceptionThrown() {
+    void removeSubject_indexOutOfRange_exceptionThrown() throws EscException {
         subjects.addSubject(subject1);
         expectedException = new EscException("The subject item does not exist.");
         int[] deleteIndexes = {-1,1};

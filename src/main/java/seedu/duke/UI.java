@@ -90,11 +90,6 @@ public class UI {
 
         System.out.println(helpMessage);
     }
-
-
-
-
-
     /**
      * Exits the ESC program.
      */
