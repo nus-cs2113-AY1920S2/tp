@@ -59,7 +59,7 @@ back to top>>+++</b>+++ &nbsp;
 
 This section will describe how the main features of the application are implemented.
 
-// tag::Add[]
+// tag::add[]
 === 3.1 Add feature
 
 ==== 3.1.1 Current implementation
@@ -106,7 +106,7 @@ Reasons for choosing Alternative 1 over alternative 2: By allowing user to just 
 For instance, the user wants to buy milk but not sure how much does the milk  cost and not sure how many milk they want to buy.
 So they can just add it into the list,  and edit the price and quantity later when they knew the price and have decided the quantity.
 
-// end::Add[]
+// end::add[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -116,7 +116,7 @@ back to top>>+++</b>+++
 
 
 // @@author trishaangelica
-// tag::Edit[]
+// tag::edit[]
 === 3.2 Edit feature
 
 ==== 3.2.1 Current implementation
@@ -159,7 +159,7 @@ user must input all parameters even if he/she does not wish to update certain va
 * Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order".
 Futhermore, having greater freedom on input values makes it a hassle-free process for the users.
 
-// end::Edit[]
+// end::edit[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -171,7 +171,7 @@ back to top>>+++</b>+++
 
 
 // @@author kokjoon97
-// tag::Delete[]
+// tag::delete[]
 === 3.3 Delete feature
 
 ==== 3.3.1 Current implementation
@@ -203,7 +203,7 @@ image::Deletefinal2.png[]
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 * Reason for choosing alternative 1: By abstracting out different command types as separate classes, this allowed us to work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality.
 
-// end::Delete[]
+// end::delete[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -213,7 +213,7 @@ back to top>>+++</b>+++
 
 
 
-// tag::Find[]
+// tag::find[]
 === 3.4 Find feature
 
 ==== 3.4.1 Current implementation
@@ -251,7 +251,7 @@ image::Finditemsfinal2.png[]
 * Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and also be able to trace functionality bugs more easily if each command class deals with a different functionality.
 // @@author
 
-// end::Find[]
+// end::find[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -261,7 +261,7 @@ back to top>>+++</b>+++
 
 
 
-// tag::MarkAndUnmark[]
+// tag::markandunmark[]
 === 3.5 Mark and Unmark feature
 
 ==== 3.5.1 Current Implementation
@@ -297,7 +297,7 @@ image::Unmark.png[]
  ** Pros: Will have less code and classes to deal with, without having to create a whole new object to execute the command.
  ** Cons: Code becomes harder to navigate and understand since the command is all handled under one class, thus makes having to edit the mark and unmark feature difficult.
 
-// end::MarkAndUnmark[]
+// end::markandunmark[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -307,7 +307,7 @@ back to top>>+++</b>+++
 
 
 
-// tag::Display[]
+// tag::display[]
 === 3.6 Display feature
 
 This feature involves displaying the shopping list and budget details to the user.
@@ -342,7 +342,7 @@ image::Display_SD.png[]
  ** Cons: Handling the command under the `Duke` class results in longer methods.
 Thus, the code becomes  harder to navigate and understand.
 
-// end::Display[]
+// end::display[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -352,7 +352,7 @@ back to top>>+++</b>+++
 
 
 
-// tag::Clear[]
+// tag::clear[]
 === 3.7 Clear list feature
 
 This feature involves clearing all items in the shopping list.
@@ -383,7 +383,7 @@ image::Clear.png[]
  ** Cons: Handling the command under the `Duke` class results in longer methods.
 Thus, the code becomes  harder to navigate and understand.
 
-// end::Clear[]
+// end::clear[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -393,7 +393,7 @@ back to top>>+++</b>+++
 
 
 // @@author kokjoon97
-// tag::SetBudget[]
+// tag::setbudget[]
 === 3.8 Set budget feature
 
 ==== 3.8.1 Current implementation
@@ -427,7 +427,7 @@ image::Setfinal2.png[]
 It would also make it easier for us to  work in parallel.
 // @@author
 
-// end::SetBudget[]
+// end::setbudget[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -436,7 +436,7 @@ back to top>>+++</b>+++
 &nbsp;
 
 
-// tag::ResetBudget[]
+// tag::resetbudget[]
 === 3.9 Reset budget feature
 
 ==== 3.9.1 Current implementation
@@ -463,7 +463,7 @@ image::Reset_Budget.png[]
  ** Pros: Will have less code to deal with as a new function is simply created in the `Duke` class
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 
-// end::ResetBudget[]
+// end::resetbudget[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -475,7 +475,7 @@ back to top>>+++</b>+++
 
 
 // @@author trishaangelica
-// tag::Help[]
+// tag::help[]
 === 3.10 View help feature
 
 ==== 3.10.1 Current implementation
@@ -505,7 +505,7 @@ image::HelpFeature.png[]
  ** Pros: Will have less code to deal with as a new function is simply created in the `Duke` class
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 
-// end::Help[]
+// end::help[]
 
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
@@ -514,7 +514,7 @@ back to top>>+++</b>+++
 &nbsp;
 
 // @@author
-// tag::Exit[]
+// tag::exit[]
 === 3.11 Exit program feature
 
 ==== 3.11.1 Current implementation
@@ -544,7 +544,7 @@ image::ExitFeature.png[]
  ** Pros: Will have less code to deal with as a new function is simply created in the `Duke` class
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 
-// end::Exit[]
+// end::exit[]
 &nbsp;
 +++<b>+++<<shoco-v21---developer-guide,&#129053;
 back to top>>+++</b>+++
