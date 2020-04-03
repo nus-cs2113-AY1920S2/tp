@@ -51,7 +51,7 @@ public class Parser {
     public static Command parse(String userInput) throws EscException {
         String userInputTrimmed = userInput.trim();
         String[] arguments = userInputTrimmed.split(" ",2);
-        String command = arguments[0].trim();
+        String command = arguments[0].trim().toLowerCase();
 
         switch (command) {
         case AddSubjectCommand.COMMAND_WORD:
