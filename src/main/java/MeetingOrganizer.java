@@ -98,7 +98,7 @@ public class MeetingOrganizer {
                 if (previousUserInput.equals("")) {
                     throw new MoException("Nothing to see more of.");
                 } else if (previousUserInput.contains("timetable")) {
-                    int weeksMoreToView = 1;
+                    int weeksMoreToView = 0;
                     CommandHandler.displayTimetable(userInputWords, getMainUser(),
                             getMyContactList(), currentWeekNumber, weeksMoreToView);
                 } else if (previousUserInput.equals("more")) {
@@ -139,7 +139,7 @@ public class MeetingOrganizer {
                 CommandHandler.listMeetings(userInputWords, getMyMeetingList());
                 break;
             default:
-                throw new MoException("Unknown logic.command, please try again.");
+                throw new MoException("Unknown command, please try again.");
             }
         }
     }

@@ -6,6 +6,7 @@ import exception.MoException;
 import model.meeting.Meeting;
 import logic.modulelogic.LessonsGenerator;
 import logic.schedulelogic.ScheduleHandler;
+import logic.meetinglogic.MeetingHandler;
 import model.contact.Contact;
 import model.contact.ContactList;
 import ui.TextUI;
@@ -180,7 +181,7 @@ public class CommandHandler {
 
             LocalTime startTime = LocalTime.parse(userInputWords[3]);
             LocalTime endTime = LocalTime.parse(userInputWords[5]);
-            if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
+            if (MeetingHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
                 Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime, startDate, endDate);
                 meetingList.add(myMeeting);
                 String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
