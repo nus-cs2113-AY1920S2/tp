@@ -22,7 +22,7 @@ public class Messages {
         System.out.println(buff);
     }
 
-    /** Show a ASCII code message to user. **/
+    /** Shows message to user. **/
     public static void greet() {
         printInCenter(SPLIT_LINE_HELP);
         printInCenter("");
@@ -57,6 +57,7 @@ public class Messages {
 
     /**
      * Prints Exception Message when addInfo Command is incorrect.
+     *
      * @param s - Message to be printed in the center.
      */
     public static void printAddInfoException(String s) {

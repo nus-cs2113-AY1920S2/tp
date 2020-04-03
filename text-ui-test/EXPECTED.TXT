@@ -16,7 +16,7 @@ _                                                                               
 _ **_____________________________________________________________________________**_
      What can I do for you?
 
-No files with your data exits, we will create new files to save your data.
+All the required files do not exist. We will create completely new files to save your data.
 __________________________________________________________________________________________
 
 

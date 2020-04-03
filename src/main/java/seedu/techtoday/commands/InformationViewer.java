@@ -20,8 +20,8 @@ public class InformationViewer {
      * @param userResponse - Input of the user in the command line.
      */
     public static void execute(String userResponse) {
-        String type = userResponse.split(" ")[1];
         try {
+            String type = userResponse.split(" ")[1];
             if (type.equals("job") || type.equals("article")) {
                 System.out.println("Connecting to the internet and loading information... \n");
             }

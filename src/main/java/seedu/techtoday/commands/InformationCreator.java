@@ -36,12 +36,10 @@ public class InformationCreator {
                 Messages.printStraightLine();
             }
             }
-            return;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Create should be of the following form:");
             Messages.printInCenter("6. create [article / job / note]");
             Messages.printStraightLine();
-            return;
         }
     }
 }

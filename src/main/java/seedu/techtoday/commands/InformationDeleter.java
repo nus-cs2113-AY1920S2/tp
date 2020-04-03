@@ -39,16 +39,13 @@ public class InformationDeleter {
                 Messages.printStraightLine();
             }
             }
-            return;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Sorry! You can only delete article/job/note with valid index number! "
                     + "Your command format is incorrect. Try again ");
             Messages.printStraightLine();
-            return;
         } catch (NumberFormatException e) {
             System.out.println("Sorry! Please enter a valid index number for the delete command. Try again.");
             Messages.printStraightLine();
-            return;
         }
     }
 }

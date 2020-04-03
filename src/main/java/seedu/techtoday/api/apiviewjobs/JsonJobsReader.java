@@ -14,7 +14,6 @@ public class JsonJobsReader {
      * top stories for the user to view.
      *
      */
-
     public static void viewNewJobs() throws IOException, JSONException {
         ViewedJobListCreator.execute("https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty");
         JobListPrinter.execute(ViewedJobList.viewedJobList);

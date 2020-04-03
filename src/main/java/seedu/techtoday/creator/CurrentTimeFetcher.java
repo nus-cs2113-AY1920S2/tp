@@ -6,6 +6,7 @@ import java.time.Instant;
 public class CurrentTimeFetcher {
     /**
      * Retutns the timestamp associated with the current time.
+     *
      * @return - Current timestamp (epochSecond).
      */
     public static String execute() {

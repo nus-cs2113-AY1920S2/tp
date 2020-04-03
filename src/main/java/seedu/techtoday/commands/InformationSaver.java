@@ -13,6 +13,7 @@ public class InformationSaver {
 
     /**
      * Executes the saving of a note/article/job.
+     *
      * @param userResponse - Input of the user in the command line.
      */
     public static void execute(String userResponse) {
