@@ -81,7 +81,6 @@ public class Duke {
     //@@author Shannonwje
     /** Prints the Goodbye message and exits. */
     private void exit() {
-        storage.saveAll(items, myBudget);
         ui.bidFarewell();
         LOGGER.log(Level.INFO,"Application shutting down");
         System.exit(0);
@@ -93,7 +92,6 @@ public class Duke {
         Command command;
         do {
             ui.printline("\nEnter command:");
-
             String userInput = ui.readCommand();
             assert !userInput.isEmpty() : "Input should not be empty";
 
@@ -103,6 +101,7 @@ public class Duke {
             executeCommand(command);
             assert command.feedbackToUser != null : "Result should have been initialised";
 
+            storage.saveAll(items, myBudget);
             ui.printline(command.feedbackToUser);
         } while (!command.isExit);
     }
@@ -123,5 +122,4 @@ public class Duke {
             throw new RuntimeException(e);
         }
     }
-
 }
