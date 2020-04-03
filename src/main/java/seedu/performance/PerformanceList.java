@@ -1,14 +1,16 @@
 package seedu.performance;
 
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static seedu.performance.Performance.performanceListNameComparator;
+import static seedu.performance.Performance.performanceListGradeComparator;
 
 public class PerformanceList {
-    public static ArrayList<Performance> performanceList;
+    protected ArrayList<Performance> performanceList;
     UI ui;
     DisplayTable displayTable;
 
@@ -18,13 +20,13 @@ public class PerformanceList {
         performanceList = new ArrayList<>();
     }
 
-    public List<Performance> getPerformanceList() {
-        return performanceList;
-    }
-
     public void addToList(Performance performance, String eventName) {
         performanceList.add(performance);
         ui.addPerformanceMessage(performance.studentName, eventName);
+    }
+
+    public ArrayList<Performance> getPerformanceList() {
+        return performanceList;
     }
 
     /**
@@ -34,14 +36,13 @@ public class PerformanceList {
      *
      * @param performance The Performance of student to be deleted.
      */
-    public void deletePerformance(Performance performance, String eventName) throws DukeException {
+    public void deletePerformance(Performance performance, String eventName) throws PacException {
         boolean hasDeleted = false;
         if (isEmpty()) {
-            throw new DukeException("No performance list under this event");
+            throw new PacException("No performance list under this event");
         }
         for (Performance p : performanceList) {
-            if (p != null
-                    && performance.getStudent().equals(p.getStudent())) {
+            if (p != null && performance.getStudent().equals(p.getStudent())) {
                 performanceList.remove(p);
                 hasDeleted = true;
                 break;
@@ -50,9 +51,9 @@ public class PerformanceList {
         ui.deletePerformanceMessage(performance, eventName, hasDeleted);
     }
 
-    public void printList() throws DukeException {
+    public void printList() throws PacException {
         if (isEmpty()) {
-            throw new DukeException("No performance list under this event");
+            throw new PacException("No performance list under this event");
         }
         int i = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Result");
@@ -67,21 +68,29 @@ public class PerformanceList {
      * and returns the Performance when the two Strings are equal.
      * @param studentName A String input to be compared.
      * @return The Performance with studentName matches input String.
-     * @throws DukeException Throws
+     * @throws PacException Throws
      */
-    public Performance getPerformance(String studentName) throws DukeException {
+    public Performance getPerformance(String studentName) throws PacException {
         if (isEmpty()) {
-            throw new DukeException("No performance list under this event");
+            throw new PacException("No performance list under this event");
         }
         for (Performance performance: performanceList) {
             if (performance.studentName.equals(studentName)) {
                 return performance;
             }
         }
-        throw new DukeException("There is no record for " + studentName + "'s performance.");
+        throw new PacException("There is no record for " + studentName + "'s performance.");
     }
 
     public boolean isEmpty() {
         return performanceList.isEmpty();
+    }
+
+    public void sortByName() {
+        performanceList.sort(performanceListNameComparator);
+    }
+
+    public void sortByGrade() {
+        performanceList.sort(performanceListGradeComparator);
     }
 }

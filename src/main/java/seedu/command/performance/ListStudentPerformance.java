@@ -1,7 +1,7 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
@@ -19,7 +19,7 @@ public class ListStudentPerformance extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         performances.printList();
     }
 }

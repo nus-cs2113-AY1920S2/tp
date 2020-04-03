@@ -1,38 +1,24 @@
 package seedu.ui;
 
-import seedu.StudentList;
+import seedu.student.StudentList;
 import seedu.event.Event;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 public class DisplayList extends UI {
     public void printEventList(ArrayList<Event> list, String type) {
-        System.out.println("Here are all the " + type + "s in your list.");
+        UI.display("Here are all the " + type + "s in your list.");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
+            UI.display(i + 1 + ". " + list.get(i));
         }
     }
 
     public void printStudentList(StudentList studentList, String listName) {
-        System.out.println("Student List created, named : " + listName);
+        UI.display("Student List created, named : " + listName);
         studentList.showList();
-    }
-
-    public void printStudentListCollection() throws DukeException {
-        int index = 1;
-        try {
-            for (StudentList studentList : studentListCollection) {
-                System.out.print("[" + index + "] ");
-                studentList.showList();
-                System.out.println("--------------");
-                index++;
-            }
-        } catch (Exception e) {
-            throw new DukeException(e.getMessage());
-        }
     }
 
     public int getStudentListIndex() {
@@ -40,8 +26,22 @@ public class DisplayList extends UI {
         int index = 1;
         display("Please choose one of the following list.");
         for (StudentList studentList: studentListCollection) {
-            System.out.println(index + ". " + studentList.getListName());
+            UI.display(index + ". " + studentList.getListName());
         }
         return Integer.parseInt(getStringInput());
+    }
+
+    public void printSearchResults(ArrayList<StudentList> searchResults) throws PacException {
+        UI.display("Here's the Search Results");
+        try {
+            int index = 1;
+            for (StudentList studentList : searchResults) {
+                UI.display("\n[" + index + "]");
+                studentList.showList();
+                index++;
+            }
+        } catch (Exception e) {
+            throw new PacException("Search Failed");
+        }
     }
 }

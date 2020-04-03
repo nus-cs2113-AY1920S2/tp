@@ -2,7 +2,7 @@ package seedu.parser;
 
 import seedu.event.Event;
 import seedu.event.Seminar;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 
 public class EventParser {
     private String name;
@@ -19,53 +19,9 @@ public class EventParser {
         this.index = -1;
     }
 
-    /**
-     * Returns the index in a string of parameters with this format:
-     * [i/INDEX] ... .
-     * @param parameters original parameters
-     * @return the index in a string of parameters
-     */
-    public int parseIndex(String parameters) throws DukeException {
+    public void parse(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
-        return index;
-    }
-
-    /**
-     * Parses string passed in to obtain name of the event.
-     *
-     * @param parameters Input String by user in the format: i/[INDEX] n/[EVENTNAME]
-     * @return Name of event as a string.
-     */
-    public String parseEventName(String parameters) throws DukeException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        return name;
-    }
-
-    /**
-     * Parses input string to obtain date and time of the event.
-     *
-     * @param parameters Input String by user in the format: i/[INDEX] d/[EVENTDATE] t/[EVENTTIME]
-     * @return Date and time of the event as a string.
-     */
-    public String parseEventDateTime(String parameters) throws DukeException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        String datetime = date + " " + time;
-        return datetime;
-    }
-
-    /**
-     * Parses input string to obtain venue of the event.
-     *
-     * @param parameters Input String by user in the format: i/[INDEX] v/[EVENTVENUE]
-     * @return Venue of the event as a String
-     */
-    public String parseVenue(String parameters) throws DukeException {
-        String[] tokens = parameters.split(" ");
-        splitByEventFlags(tokens);
-        return venue;
     }
 
     /**
@@ -74,32 +30,32 @@ public class EventParser {
      * @param parameters original parameters
      * @return an Event object with the relevant information
      */
-    public Event parseEvent(String parameters) throws DukeException {
+    public Event parseEvent(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new DukeException("EventParser: Invalid arguments");
+            throw new PacException("EventParser: Invalid arguments");
         }
         return new Event(name, datetime, venue);
     }
 
-    public Seminar parseSeminar(String parameters) throws DukeException {
+    public Seminar parseSeminar(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         splitByEventFlags(tokens);
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new DukeException("EventParser: Invalid arguments");
+            throw new PacException("EventParser: Invalid arguments");
         }
         return new Seminar(name, datetime, venue);
     }
 
-    private void splitByEventFlags(String[] tokens) throws DukeException {
+    private void splitByEventFlags(String[] tokens) throws PacException {
         String mostRecent = null;
         for (String token : tokens) {
             if (token.length() < 2) {
                 if (mostRecent == null) {
-                    throw new DukeException("EventParser: Flag is too short");
+                    throw new PacException("EventParser: Flag is too short");
                 } else if (validFlagToAppend(mostRecent)) {
                     append(mostRecent, token);
                 }
@@ -126,21 +82,21 @@ public class EventParser {
                     mostRecent = "venue";
                     break;
                 case "i/":
-                    ensureNotDuplicateFlag(venue, "EventParser: Duplicate index flag");
+                    ensureNotDuplicateFlag(index, "EventParser: Duplicate index flag");
                     try {
                         index = Integer.parseInt(token.substring(2));
                     } catch (NumberFormatException m) {
-                        throw new DukeException("EventParser: Parameter is not an integer");
+                        throw new PacException("EventParser: Parameter is not an integer");
                     }
                     mostRecent = "index";
                     break;
                 default:
                     // assumes that all valid flags have been processed before this line
                     if (isUnknownFlag(token)) {
-                        throw new DukeException("EventParser: Unknown flag");
+                        throw new PacException("EventParser: Unknown flag");
                     }
                     if (mostRecent == null) {
-                        throw new DukeException("EventParser: Parameter is provided without flag");
+                        throw new PacException("EventParser: Parameter is provided without flag");
                     }
                     if (validFlagToAppend(mostRecent)) {
                         append(mostRecent, token);
@@ -159,7 +115,7 @@ public class EventParser {
      * @param mostRecent the most recently added parameter
      * @param token the string to be appended
      */
-    private void append(String mostRecent, String token) throws DukeException {
+    private void append(String mostRecent, String token) throws PacException {
         if (token.isEmpty() || token.equals(" ")) {
             return;
         }
@@ -171,13 +127,19 @@ public class EventParser {
             venue += venue.isEmpty() ? token : (" " + token);
             break;
         default:
-            throw new DukeException("EventParser: Invalid flag to append to");
+            throw new PacException("EventParser: Invalid flag to append to");
         }
     }
 
-    private void ensureNotDuplicateFlag(String name, String message) throws DukeException {
+    private void ensureNotDuplicateFlag(String name, String message) throws PacException {
         if (!name.isEmpty()) {
-            throw new DukeException(message);
+            throw new PacException(message);
+        }
+    }
+
+    private void ensureNotDuplicateFlag(int name, String message) throws PacException {
+        if (name != -1) {
+            throw new PacException(message);
         }
     }
 
@@ -190,5 +152,25 @@ public class EventParser {
      */
     private boolean isUnknownFlag(String input) {
         return input.charAt(1) == '/';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

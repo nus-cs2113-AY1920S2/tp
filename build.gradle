@@ -5,8 +5,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'seedu.duke'
-version '0.1.0'
+group 'seedu.pac'
+version '2.0'
 
 repositories {
     mavenCentral()
@@ -22,12 +22,12 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.pac.Pac"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveVersion = "0.0.1"
+    archiveBaseName = "Pac"
+    archiveVersion = "2.0"
     archiveClassifier = null
     archiveAppendix = null
 }
