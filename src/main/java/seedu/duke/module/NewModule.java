@@ -42,10 +42,10 @@ public class NewModule extends Module {
                 id, name, moduleCredit));
         boolean hasPreReqModule = false;
         StringBuilder prereq = new StringBuilder(" | Prerequisites: ");
-//        for (Module preReqModule : this.preRequisiteModules) {
-//            prereq.append(" ").append(preReqModule.getId());
-//            hasPreReqModule = true;
-//        }
+        //        for (Module preReqModule : this.preRequisiteModules) {
+        //            prereq.append(" ").append(preReqModule.getId());
+        //            hasPreReqModule = true;
+        //        }
         if (!getPreReqModulesString().equals("None")) {
             hasPreReqModule = true;
         }

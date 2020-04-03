@@ -98,7 +98,7 @@ public abstract class Module {
         return preReqModulesStringList;
     }
 
-    /** This method can return preReqs which are not in available modules list **/
+    /** This method can return preReqs which are not in available modules list. **/
     public String getPreReqModulesString() {
         return null;
     }
