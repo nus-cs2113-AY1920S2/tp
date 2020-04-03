@@ -67,18 +67,18 @@ public class Help extends UI {
 
     public void printStudentListHelp() {
         System.out.print("To create a new studentList for future events, input:\n\t"
-                + "student add\n\n");
+                + "student.list add\n\n");
         System.out.print("To delete an existing studentList, input:\n\t"
-                + "student delete (index)\n\n");
+                + "student.list delete (index)\n\n");
         System.out.print("To clear all existing studentList, input:\n\t"
-                + "student clear\n\n");
+                + "student.list clear\n\n");
         System.out.print("To find an existing studentList, input:\n\t"
-                + "student find\n\n");
+                + "student.list find\n\n");
         System.out.print("To list all existing studentList, input:\n\t"
-                + "student list\n\n");
+                + "student.list list\n\n");
         System.out.print("To sort all existing studentList by their names, input:\n\t"
-                + "student sort/by/name\n\n");
+                + "student.list sort/by/name\n\n");
         System.out.print("To sort all name within the existing studentList, input:\n\t"
-                + "student sort/by/list\n\n");
+                + "student.list sort/by/list\n\n");
     }
 }
