@@ -84,7 +84,9 @@ public class AddAttendanceList extends Command {
                 if (name.equals("done")) {
                     break;
                 }
-                UI.display("Please key in the student's attendance status [Y/N].");
+                UI.display("To mark the student as present, please use 'y' or 'Y'.");
+                UI.display("By default the student will be marked as absent,"
+                    + " if any other input is given.");
                 ui.readUserInput();
                 status = ui.getUserInput();
                 attendances.addToList(new Attendance(name, status), eventName);

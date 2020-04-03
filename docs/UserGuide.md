@@ -188,7 +188,7 @@ Delete a specific student list from the student list collection base on its inde
 lists in the student list collection, please use `student.list clear` instead.
 
 Command: 
-    
+
     >>> student.list delete
         
 Examples: 
