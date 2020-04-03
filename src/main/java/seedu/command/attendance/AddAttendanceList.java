@@ -84,14 +84,18 @@ public class AddAttendanceList extends Command {
                 if (name.equals("done")) {
                     break;
                 }
-                UI.display("To mark the student as present, please use 'y' or 'Y'.");
-                UI.display("By default the student will be marked as absent,"
-                    + " if any other input is given.");
-                ui.readUserInput();
-                status = ui.getUserInput();
-                attendances.addToList(new Attendance(name, status), eventName);
-                newStudentList.addToList(name);
-                studentNumber++;
+                if (attendances.isDuplicate(name)) {
+                    UI.display("Duplicated name found, student name : [ " + name + " ] not added");
+                } else {
+                    UI.display("To mark the student as present, please use 'y' or 'Y'.");
+                    UI.display("By default the student will be marked as absent,"
+                        + " if any other input is given.");
+                    ui.readUserInput();
+                    status = ui.getUserInput();
+                    attendances.addToList(new Attendance(name, status), eventName);
+                    newStudentList.addToList(name);
+                    studentNumber++;
+                }
             }
         }
         studentListCollection.push(newStudentList);

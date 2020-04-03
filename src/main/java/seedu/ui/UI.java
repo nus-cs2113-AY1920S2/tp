@@ -246,14 +246,16 @@ public class UI {
         return getStringInput().toLowerCase();
     }
 
-    public void addStudent(StudentList studentList) {
-        String studentName;
+    public void addStudent(StudentList studentList) throws PacException {
+        String studentName = "";
         do {
             UI.display("Please enter a student Name. If you are finished, enter done");
             readUserInput();
-            studentName = getUserInput();
+            studentName = getUserInput().trim();
             if (studentName.equals("done")) {
                 break;
+            } else if (studentList.isDuplicate(studentName)) {
+                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed");
             } else {
                 studentList.addToList(studentName);
             }
