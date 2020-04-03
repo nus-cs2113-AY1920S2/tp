@@ -86,6 +86,8 @@ public class TaskFile extends Directory {
      */
     @Override
     public String toString() {
-        return String.format("File Name: %s\nOriginal File Path: %s\n", fileName, originalFilePath);
+        return String.format("File Name: %s\nModule Code: %s\nCategory Name: %s\nTask Description: %s\n"
+                + "Original File Path: %s\n", fileName, getParent().getParent().getParent().getModuleCode(),
+                getParent().getParent().getCategoryName(), getParent().getDescription(), originalFilePath);
     }
 }

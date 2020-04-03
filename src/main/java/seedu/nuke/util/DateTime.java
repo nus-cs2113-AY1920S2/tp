@@ -216,7 +216,7 @@ public class DateTime {
      */
     public String toShow() {
         String toShow = dateToString() + " " + timeToString();
-        return (isDue()) ? toShow + " [OVER!!]" : toShow;
+        return (isDue()) ? toShow + " [OVER!]" : toShow;
     }
 
     /**
