@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 
 
@@ -21,7 +22,7 @@ public class Command {
     /**
      * Executes the command and returns the result.
      */
-    public void executeCommand(ActivityList activityList) throws EmptyNameException {
+    public void executeCommand(ActivityList activityList) throws EmptyNameException, ExtraParametersException {
         throw new EmptyNameException();
     }
 

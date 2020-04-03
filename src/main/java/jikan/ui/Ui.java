@@ -152,11 +152,11 @@ public class Ui {
      * Prints a graph based on activity tags.
      * @param tags The set of tags to be graphed.
      */
-    public static void printTagsGraph(HashMap<String, Duration> tags) {
+    public static void printTagsGraph(HashMap<String, Duration> tags, int interval) {
         System.out.println(DIVIDER);
         System.out.println(String.format("%-10s %s %s", "Tag", "|", "Duration"));
         tags.forEach((key,value) -> {
-            double minutes = value.toMinutes() / 10.0;
+            double minutes = value.toMinutes() / interval;
             int scaledMinutes = (int) Math.round(minutes);
             System.out.print(String.format("%-10s %s", key, "|"));
             for (int j = 0; j < scaledMinutes; j++) {

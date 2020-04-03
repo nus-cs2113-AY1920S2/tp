@@ -1,5 +1,6 @@
 package jikan.parser;
 
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
@@ -160,6 +161,9 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 Ui.printDivider("Please input an integer for the time interval.\n"
                         + "If you'd like to graph by tags, enter the command <graph tags>.");
+            } catch (ExtraParametersException e) {
+                Ui.printDivider("Extra parameters or invalid format detected!\n"
+                        + "Use activities / tags / targets to view the respective graphs.");
             }
             break;
         case "goal":

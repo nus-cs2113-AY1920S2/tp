@@ -48,7 +48,7 @@ public class ListCommand extends Command {
                 Ui.printDivider("Please enter a valid time frame; the end date must come after the start date.");
             } catch (ExtraParametersException e) {
                 Ui.printDivider("Extra parameters detected!\n"
-                        + "Use day / week / month to view tasks in the respective time period.\"");
+                        + "Use day / week / month to view tasks in the respective time period.");
             }
         }
     }

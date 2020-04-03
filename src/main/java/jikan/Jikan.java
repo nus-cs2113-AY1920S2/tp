@@ -6,6 +6,7 @@ import jikan.command.Command;
 import jikan.command.GoalCommand;
 import jikan.exception.EmptyNameException;
 import jikan.exception.EmptyQueryException;
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.log.LogCleaner;
 import jikan.parser.Parser;
@@ -82,7 +83,7 @@ public class Jikan {
                 command.executeCommand(activityList);
                 // This block should theoretically never be entered (if command is empty, it just continues)
                 // However, you never know..
-            } catch (EmptyNameException e) {
+            } catch (EmptyNameException | ExtraParametersException e) {
                 Ui.printDivider("Error parsing command. Please try again.");
             }
         }

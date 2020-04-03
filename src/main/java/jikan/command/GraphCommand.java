@@ -2,7 +2,9 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidGraphCommandException;
+import jikan.exception.MissingParametersException;
 import jikan.ui.Ui;
 
 import java.time.Duration;
@@ -17,38 +19,57 @@ public class GraphCommand extends Command {
      * @param parameters Either time interval for graph or 'tags' flag
      *                   to graph by tags
      */
-    public GraphCommand(String parameters) {
+    String[] inputs;
+
+    public GraphCommand(String parameters) throws ExtraParametersException {
         super(parameters);
+
+        this.inputs = parameters.split(" ");
+        if (inputs.length > 2) {
+            throw new ExtraParametersException();
+        }
     }
 
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            if (parameters.equals("targets")) {
+            if (inputs[0].equals("targets")) {
                 Ui.graphTargets(activityList);
-            } else if (parameters.equals("tags")) {
+            } else if (inputs[0].equals("tags")) {
                 graphTags();
+            } else if (inputs[0].equals("activities")){
+                graphDuration();
             } else {
-                if (parameters.isEmpty()) {
-                    throw new InvalidGraphCommandException();
-                } else {
-                    int interval = Integer.parseInt(parameters);
-                    Ui.printActivityGraph(interval);
-                }
+                Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
             }
         } catch (NumberFormatException | InvalidGraphCommandException e) {
-            Ui.printDivider("Please input an integer for the time interval.\n"
-                    + "If you'd like to graph by tags, enter the command <graph tags>.");
+            Ui.printDivider("Please input an integer for the time interval.");
+        } catch (MissingParametersException e) {
+            Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
         }
 
     }
 
-    private void graphTags() {
+    private void graphDuration() throws MissingParametersException {
+        if (inputs.length < 2) {
+            throw new MissingParametersException();
+        } else {
+            int interval = Integer.parseInt(inputs[1]);
+            Ui.printActivityGraph(interval);
+        }
+    }
+
+    private void graphTags() throws InvalidGraphCommandException {
         HashMap<String, Duration> tags = new HashMap<>();
         for (Activity activity : lastShownList.activities) {
             extractTags(tags, activity);
         }
-        Ui.printTagsGraph(tags);
+        if (inputs.length < 2) {
+            throw new InvalidGraphCommandException();
+        } else {
+            int interval = Integer.parseInt(inputs[1]);
+            Ui.printTagsGraph(tags, interval);
+        }
     }
 
     /**
