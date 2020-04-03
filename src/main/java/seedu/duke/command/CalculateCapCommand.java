@@ -52,8 +52,8 @@ public class CalculateCapCommand extends Command {
         if (totalGradeModuleCredit == 0) {
             throw new RuntimeException("Your CAP is currently 0. Please do some modules first.");
         } else if (!(cap >= 0.0 && cap <= 5.0)) {
-            throw new RuntimeException("Your CAP is invalid, please check to make sure " +
-                    "your grades are entered correctly");
+            throw new RuntimeException("Your CAP is invalid, please check to make sure "
+                    + "your grades are entered correctly");
         }
         assert cap <= 5.0 && cap >= 0.0 : "Invalid CAP";
         Person.setTotalCap(cap);

@@ -20,7 +20,8 @@ Here are the commands that I can do for you:
 7. "view /dm" to view all finished modules
 8. "view /cc" to view the number of modular credits u have completed
 9. "CAP" to view your current cap
-10. "bye" to exit
+10. "clear" to clear your module plan
+11. "bye" to exit
 
 Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
@@ -308,4 +309,4 @@ Y3S1
 1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
-bye!
+Bye bye! I hope to see you again soon ^.^
