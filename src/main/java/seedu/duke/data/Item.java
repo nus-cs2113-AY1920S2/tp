@@ -23,6 +23,7 @@ public class Item {
         this.quantity = quantity;
         this.isBought = false;
     }
+    //@@author
 
     /**
      * Constructs an Item object with the provided description and price.
@@ -36,24 +37,29 @@ public class Item {
         this.quantity = 1;
         this.isBought = false;
     }
+    //@@author
 
     //@@author JLoh579
     public int getQuantity() {
         return quantity;
     }
+    //@@author
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    //@@author
 
     //@@author kokjoon97
     public double getPrice() {
         return price;
     }
 
+    //@@author
     public void setPrice(double price) {
         this.price = price;
     }
+    //@@author
 
     //@@author jiajuinphoon
     public String getDescription() {
@@ -63,6 +69,7 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
+    //@@author
 
     //@@author Shannonwje
     /**
@@ -90,5 +97,5 @@ public class Item {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description + String.format(" $%.2f", price) + " qty: " + quantity;
     }
-
+    //@@author
 }
