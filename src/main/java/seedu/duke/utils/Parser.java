@@ -569,7 +569,7 @@ public class Parser {
         try {
             int index = Integer.parseInt(arguments.trim());
             newCommand = new DeleteCommand(index);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             LOGGER.log(Level.WARNING, "(Delete command) Rejecting user command, "
                     + "user did not enter a number for index.");
             newCommand = new IncorrectCommand(System.lineSeparator()
