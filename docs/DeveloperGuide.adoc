@@ -1,39 +1,25 @@
-= Developer Guide
+= SHOCO v2.1 - Developer Guide
+:site-section: DeveloperGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:xrefstyle: full
+:repoURL: https://github.com/AY1920S2-CS2113T-T13-1/tp/tree/master
 
-[discrete]
-=== Table of Contents
-
-* *<<1-introduction,1.
-Introduction>>*
-* *<<2-overview-of-the-shoco-application,2.
-Overview of the SHOCO application>>*
-* *<<3-implementation,3.
-Implementation>>*
- ** <<31-add-feature,3.1 Add feature>>
- ** <<32-edit-feature,3.2 Edit feature>>
- ** <<33-delete-feature,3.3 Delete feature>>
- ** <<34-find-feature,3.4 Find feature>>
- ** <<35-mark-and-unmark-feature,3.5 Mark and Unmark feature>>
- ** <<36-display-feature,3.6 Display feature>>
- ** <<37-clear-list-feature,3.7 Clear list feature>>
- ** <<38-set-budget-feature,3.8 Set budget feature>>
- ** <<39-reset-budget-feature,3.9 Reset budget feature>>
- ** <<310-view-help-feature,3.10 View help feature>>
- ** <<311-exit-program-feature,3.11 Exit program feature>>
-* *<<appendix-a-product-scope,Appendix A: Product Scope>>*
-* *<<appendix-b-user-stories,Appendix B: User Stories>>*
-* *<<appendix-c-non-functional-requirements,Appendix C: Non-Functional Requirements>>*
-* *<<appendix-d-glossary,Appendix D: Glossary>>*
-* *<<appendix-e-instructions-for-manual-testing,Appendix E: Instructions for Manual Testing>>*
+By: `Team SHOCOTech`      Since: `Mar 2020`
 
 == 1. Introduction
 
+[[Introduction-Purpose]]
 === Purpose of this guide
 
 This guide describes the software architecture and design of the SHOCO application.
 It will evolve throughout the design and implementation of each SHOCO release.
 Currently, this document is for the third public release of the application, SHOCO v2.1.
 
+[[Introduction-Scope]]
 === Scope of this guide
 
 This document describes the software architecture and design for the implementation of SHOCO and is tailored for the developers, designers, and software testers of SHOCO.
@@ -73,6 +59,7 @@ back to top>>+++</b>+++ &nbsp;
 
 This section will describe how the main features of the application are implemented.
 
+// tag::Add[]
 === 3.1 Add feature
 
 ==== 3.1.1 Current implementation
@@ -119,14 +106,17 @@ Reasons for choosing Alternative 1 over alternative 2: By allowing user to just 
 For instance, the user wants to buy milk but not sure how much does the milk  cost and not sure how many milk they want to buy.
 So they can just add it into the list,  and edit the price and quantity later when they knew the price and have decided the quantity.
 
+// end::Add[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
-// @@author trishaangelica
 
+// @@author trishaangelica
+// tag::Edit[]
 === 3.2 Edit feature
 
 ==== 3.2.1 Current implementation
@@ -169,6 +159,8 @@ user must input all parameters even if he/she does not wish to update certain va
 * Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order".
 Futhermore, having greater freedom on input values makes it a hassle-free process for the users.
 
+// end::Edit[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
@@ -176,8 +168,10 @@ back to top>>+++</b>+++
 
 &nbsp;
 
-// @@author kokjoon97
 
+
+// @@author kokjoon97
+// tag::Delete[]
 === 3.3 Delete feature
 
 ==== 3.3.1 Current implementation
@@ -209,12 +203,17 @@ image::images/Deletefinal2.png[alt text]
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 * Reason for choosing alternative 1: By abstracting out different command types as separate classes, this allowed us to work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality.
 
+// end::Delete[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
+
+
+// tag::Find[]
 === 3.4 Find feature
 
 ==== 3.4.1 Current implementation
@@ -252,12 +251,17 @@ image::images/Finditemsfinal2.png[alt text]
 * Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and also be able to trace functionality bugs more easily if each command class deals with a different functionality.
 // @@author
 
+// end::Find[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
+
+
+// tag::MarkAndUnmark[]
 === 3.5 Mark and Unmark feature
 
 ==== 3.5.1 Current Implementation
@@ -293,12 +297,17 @@ image::images/Unmark.png[alt text]
  ** Pros: Will have less code and classes to deal with, without having to create a whole new object to execute the command.
  ** Cons: Code becomes harder to navigate and understand since the command is all handled under one class, thus makes having to edit the mark and unmark feature difficult.
 
+// end::MarkAndUnmark[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
+
+
+// tag::Display[]
 === 3.6 Display feature
 
 This feature involves displaying the shopping list and budget details to the user.
@@ -333,12 +342,17 @@ image::images/Display_SD.png[alt text]
  ** Cons: Handling the command under the `Duke` class results in longer methods.
 Thus, the code becomes  harder to navigate and understand.
 
+// end::Display[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
+
+
+// tag::Clear[]
 === 3.7 Clear list feature
 
 This feature involves clearing all items in the shopping list.
@@ -369,14 +383,17 @@ image::images/Clear.png[alt text]
  ** Cons: Handling the command under the `Duke` class results in longer methods.
 Thus, the code becomes  harder to navigate and understand.
 
+// end::Clear[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
-// @@author kokjoon97
 
+// @@author kokjoon97
+// tag::SetBudget[]
 === 3.8 Set budget feature
 
 ==== 3.8.1 Current implementation
@@ -410,12 +427,16 @@ image::images/Setfinal2.png[alt text]
 It would also make it easier for us to  work in parallel.
 // @@author
 
+// end::SetBudget[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
+
+// tag::ResetBudget[]
 === 3.9 Reset budget feature
 
 ==== 3.9.1 Current implementation
@@ -442,12 +463,19 @@ image::images/Reset_Budget.png[alt text]
  ** Pros: Will have less code to deal with as a new function is simply created in the `Duke` class
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 
+// end::ResetBudget[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
+
+
+
+// @@author trishaangelica
+// tag::Help[]
 === 3.10 View help feature
 
 ==== 3.10.1 Current implementation
@@ -477,12 +505,16 @@ image::images/HelpFeature.png[alt text]
  ** Pros: Will have less code to deal with as a new function is simply created in the `Duke` class
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 
+// end::Help[]
+
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
 
+// @@author
+// tag::Exit[]
 === 3.11 Exit program feature
 
 ==== 3.11.1 Current implementation
@@ -512,11 +544,13 @@ image::images/ExitFeature.png[alt text]
  ** Pros: Will have less code to deal with as a new function is simply created in the `Duke` class
  ** Cons: Code becomes less organised since for every other command that we have implemented, `Duke` class simply executes those commands as black boxes, without worrying about their internal details
 
+// end::Exit[]
 &nbsp;
 +++<b>+++<<developer-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
+
 // @@author kokjoon97
 
 == Appendix A: Product Scope
