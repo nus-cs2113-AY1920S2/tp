@@ -7,10 +7,12 @@ ESC is a flashcard study program, where you are able to create cards and categor
 
 ESC is meant to help students be able to study more effectively using the medium that they prefer, providing a simple, easy to use interface for the timestrapped student who prefers using CLI based applications and are able to type quickly. 
 
+** Do note that for v2.0 release, the program is UNABLE to load your previous session
+
 ## Quick Start
 1. Ensure that you have Java 11 or above installed on your computer.
-2. Download the latest version of `ESC` from [here](http://link.to/duke).
-3. Run ESC on your command terminal using this command: `java -jar <directory>/duke.jar`
+2. Download the latest version of `ESC` from [here](https://github.com/AY1920S2-CS2113-T15-2/tp/releases/tag/v2.0).
+3. Run ESC on your command terminal using this command: `java -jar <directory>/duke-v2.0.jar`
 
 ## Quick Use
 1. Create a subject.
@@ -160,6 +162,32 @@ Format & Usage: `exit`
 **Q**: If I exit the program, will all my existing cards be saved?
 
 **A**: Yes! All your subjects, cards and scores are saved. To ensure that your data is not lost, do not delete the folder called 'data' that is created when you first run the program.
+
+<hr>
+
+**Q**: If I delete a subject, what happens to the cards?
+**A**: By deleting a subject, you'll delete everything in that subject. So be careful with this.
+
+<hr>
+
+**Q**: Can I create a card that does not belong to any subject?
+**A**: Sorry, you can't. You must need a subject for every card.
+
+<hr>
+
+**Q**: Can I create a card that belongs to multiple subject?
+**A**: Sorry, at current stage this is not supported.
+
+<hr>
+
+**Q**: Will I be able to export the cards to a external file i.e. a text file?
+**A**: Sorry, at current stage this is not supported.
+
+<hr>
+**Q**: Can I add something else other than exam date to the programm? 
+**A**: Feel free to add anything you'd like.
+
+
 
 ## Command Summary
 * Add a subject `addsubject s/<SUBJECTNAME>`
