@@ -11,19 +11,25 @@ SHOCO is a desktop application used for the managing and planning of shopping li
 == Summary of contributions
 
 * **Major enhancement 1:** Included the **ability to edit items** in the shopping lists.
-    * What it does: Allows the user to update values of the items in the shopping list. Such values are the description, price and quantity of the item.
-    * Justification: This feature improves the product significantly because a user can make mistakes when adding an item (e.g typos made) and the app should provide a convenient way to rectify these mistake.
-    * Highlights: This enhancement allows the user to update any value. The edit command does not require any order in it's input (e.g alphabetical ordering of delimiters).
+** What it does: Allows the user to update values of the items in the shopping list. Such values are the description, price and quantity of the item.
+** Justification: This feature improves the product significantly because a user can make mistakes when adding an item (e.g typos made) and the app should provide a convenient way to rectify these mistake.
+** Highlights: This enhancement allows the user to update any value. The edit command does not require any order in it's input (e.g alphabetical ordering of delimiters).
+
 * **Minor enhancement 1:** Negative values entered for price and quantity are not accepted. This is for a realistic approach as items will never have negative prices and/or quantities in real life.
 
+&nbsp;
+
 * **Major enhancement 2:** Added the **help function** for the SHOCO application.
-    * What it does: Lists all acceptable commands, their various purpose, valid parameters and examples of usage.
-    * Justification: This feature improves the product significantly because a user may forget how certain functions work and so the app should provide a convenient way for users to check the accepted format, instead of making them go through the SHOCO user guide.
-    * Highlights: This enhancement includes examples of command usages which makes it much more comprehensible to users._
+** What it does: Lists all acceptable commands, their various purpose, valid parameters and examples of usage.
+** Justification: This feature improves the product significantly because a user may forget how certain functions work and so the app should provide a convenient way for users to check the accepted format, instead of making them go through the SHOCO user guide.
+** Highlights: This enhancement includes examples of command usages which makes it much more comprehensible to users._
 
 * *Code contributed:*
 https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=trishaangelica&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=trishaangelica&tabRepo=AY1920S2-CS2113T-T13-1%2Ftp%5Bmaster%5D[[Functional
 code]]
+
+&nbsp;
+
 * *Other contributions:*
 ** Project Management:
 *** Closed milestones v1.0 - v2.0 on GitHub
@@ -39,7 +45,7 @@ https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/54/files#diff-f5a2a66f3d795321
 ** Documentation:
 *** Added a clickable table of contents and ``back to top'' links for
 both SHOCO user guide and developer guide:
-[#111]((https://github.com/AY1920S2-CS2113T-T
+https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/111/files)[#111]
 
 
 == Contributions to the User Guide
@@ -49,8 +55,8 @@ both SHOCO user guide and developer guide:
 |_Given below are sections that I have contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=Edit]
-include::../UserGuide.adoc[tag=Help]
+include::../UserGuide.adoc[tag=edit]
+include::../UserGuide.adoc[tag=help]
 
 
 
@@ -60,6 +66,6 @@ include::../UserGuide.adoc[tag=Help]
 |_Given below are sections that I have contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.md[tag=Edit]
+include::../DeveloperGuide.md[tag=edit]
 
-include::../DeveloperGuide.md[tag=Help]
+include::../DeveloperGuide.md[tag=help]

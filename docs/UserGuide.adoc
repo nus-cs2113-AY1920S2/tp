@@ -65,7 +65,7 @@ back to top>>+++</b>+++
 
 '''
 
-// tag::Add[]
+// tag::add[]
 === Adding an item: `ADD`
 
 Add the specified item in the shopping list.
@@ -91,7 +91,7 @@ Example of usage:
 
 &nbsp;
 
-// end::Add[]
+// end::add[]
 
 +++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
@@ -99,7 +99,7 @@ back to top>>+++</b>+++
 
 '''
 
-// tag::Edit[]
+// tag::edit[]
 === Editing an item: `EDIT`
 
 Edits the specified item in the shopping list.
@@ -130,7 +130,7 @@ Examples of usage:
 
 &nbsp;
 
-// end::Edit[]
+// end::edit[]
 
 +++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
@@ -140,7 +140,7 @@ back to top>>+++</b>+++
 
 
 // @@author kokjoon97
-// tag::Delete[]
+// tag::delete[]
 
 === Deleting an item: `DEL`
 
@@ -155,7 +155,7 @@ Example of usage:
 
 `DEL 3`
 // @@author
-// end::Delete[]
+// end::delete[]
 
 &nbsp;
 
@@ -165,14 +165,14 @@ back to top>>+++</b>+++
 
 '''
 
-// tag::Clear[]
+// tag::clear[]
 === Clearing the list: `CLEAR`
 
 Clears all items in the shopping list.
 Automatically resets remaining budget to the user's set budget.
 
 Format: `CLEAR`
-// end::Clear[]
+// end::clear[]
 
 &nbsp;
 
@@ -180,7 +180,7 @@ Format: `CLEAR`
 back to top>>+++</b>+++
 
 '''
-// tag::Mark[]
+// tag::mark[]
 === Marking an item as bought: `MARK`
 
 Marks an item from the list at the specified index as bought.
@@ -193,7 +193,7 @@ Format: `MARK INDEX`
 Example of the usage:
 
 `MARK 5`
-// end::Mark[]
+// end::mark[]
 
 &nbsp;
 
@@ -202,7 +202,7 @@ back to top>>+++</b>+++
 
 '''
 
-// tag::Unmark[]
+// tag::unmark[]
 === Un-marking a marked item: `UNMARK`
 
 Un-marks a marked-as-bought item from the list at the specified index.
@@ -215,7 +215,7 @@ Format: `UNMARK INDEX`
 Example of the usage:
 
 `UNMARK 3`
-// end::Unmark[]
+// end::unmark[]
 
 &nbsp;
 
@@ -224,13 +224,13 @@ back to top>>+++</b>+++
 
 '''
 
-// tag::Display[]
+// tag::display[]
 === Displaying list and budget details: `DISPLAY`
 
 Shows the shopping list, budget, cost of the items and the remaining budget.
 
 Format: `DISPLAY`
-// end::Display[]
+// end::display[]
 
 &nbsp;
 
@@ -240,7 +240,7 @@ back to top>>+++</b>+++
 '''
 
 // @@author kokjoon97
-// tag::SetBudget[]
+// tag::setbudget[]
 === Setting a budget: `SET`
 
 Sets a budget for the user.
@@ -254,7 +254,7 @@ Example of usage:
 
 `SET b/3.00`
 // @@author
-// end::SetBudget[]
+// end::setbudget[]
 
 &nbsp;
 
@@ -262,13 +262,13 @@ Example of usage:
 back to top>>+++</b>+++
 
 '''
-// tag::ResetBudget[]
+// tag::resetbudget[]
 === Resetting a budget: `RES`
 
 Resets te budget to be 0.00 for the user.
 
 Format: `RES`
-// end::ResetBudget[]
+// end::resetbudget[]
 
 &nbsp;
 
@@ -278,7 +278,7 @@ back to top>>+++</b>+++
 '''
 
 // @@author kokjoon97
-// tag::Find[]
+// tag::find[]
 === Finding an item: `FIND`
 
 Filters the shopping list according to a keyword specified by the user.
@@ -292,7 +292,7 @@ Example of usage:
 
 `FIND apple`
 // @@author
-// end::Find[]
+// end::find[]
 
 &nbsp;
 
@@ -300,13 +300,13 @@ Example of usage:
 back to top>>+++</b>+++
 
 '''
-// tag::Help[]
+// tag::help[]
 === Viewing help: `HELP`
 
 Shows the available commands and how they are to be used.
 
 Format: `HELP`
-// end::Help[]
+// end::help[]
 
 &nbsp;
 
@@ -315,13 +315,13 @@ back to top>>+++</b>+++
 
 '''
 
-// tag::Exit[]
+// tag::exit[]
 === Exiting the program: `BYE`
 
 Exits the program.
 
 Format: `BYE`
-// end::Exit[]
+// end::exit[]
 
 &nbsp;
 
