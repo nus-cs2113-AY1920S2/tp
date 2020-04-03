@@ -1,5 +1,4 @@
 = Trisha Labi - Project Portfolio
-:site-section: AboutUs
 :imagesDir: ../images
 
 == PROJECT: SHOCO
