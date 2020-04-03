@@ -8,5 +8,7 @@ user interfaces.
 
 Useful links:
 * [User Guide](UserGuide.md)
+* [User Guide Test](UserGuide.adoc)
 * [Developer Guide](DeveloperGuide.md)
+* [Developer Guide Test](DeveloperGuide.adoc)
 * [About Us](AboutUs.md)
