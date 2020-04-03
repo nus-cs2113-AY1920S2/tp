@@ -35,6 +35,7 @@ public class Duke {
         Duke.setUpLogger();
         new Duke().run();
     }
+    //@@author
 
     //@@author kokjoon97
     /**
@@ -58,6 +59,7 @@ public class Duke {
             LOGGER.log(Level.SEVERE,LOG_FILE_ERROR);
         }
     }
+    //@@author
 
     //@@author trishaangelica
     /** Runs the program until termination.  */
@@ -66,6 +68,7 @@ public class Duke {
         runCommandLoopUntilExitCommand();
         exit();
     }
+    //@@author
 
     //@@author JLoh579
     /**
@@ -77,6 +80,7 @@ public class Duke {
         LOGGER.log(Level.INFO,"Application starting.");
         ui.greet();
     }
+    //@@author
 
     //@@author Shannonwje
     /** Prints the Goodbye message and exits. */
@@ -85,6 +89,7 @@ public class Duke {
         LOGGER.log(Level.INFO,"Application shutting down");
         System.exit(0);
     }
+    //@@author
 
     //@@author kokjoon97
     /** Reads the user command and executes it, until the user issues the exit command.  */
@@ -105,6 +110,7 @@ public class Duke {
             ui.printline(command.feedbackToUser);
         } while (!command.isExit);
     }
+    //@@author
 
     //@@author jiajuinphoon
     /**
@@ -122,4 +128,5 @@ public class Duke {
             throw new RuntimeException(e);
         }
     }
+    //@@author
 }
