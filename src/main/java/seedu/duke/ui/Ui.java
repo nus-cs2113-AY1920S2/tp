@@ -66,7 +66,8 @@ public class Ui {
             + "6. \"view /mp\" to view your module plan\n"
             + "7. \"view /dm\" to view all finished modules\n"
             + "8. \"view /cc\" to view the number of modular credits u have completed\n"
-            + "9. \"CAP\" to view your current cap\n";
+            + "9. \"CAP\" to view your current cap\n"
+            + "10. \"bye\" to exit\n";
 
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 

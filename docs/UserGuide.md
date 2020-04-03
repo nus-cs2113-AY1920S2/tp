@@ -53,7 +53,7 @@ Format:​ `done n/[module name] g/[grade]` or `done id/[module code] g/[grade]`
 
 Example:​ done n/Software Engineering & Object-Oriented Programming g/A+
 
-Example:​ done id/CS2113 g/SU
+Example:​ done id/CS2113 g/CU
 
 ### Viewing modules: view
 

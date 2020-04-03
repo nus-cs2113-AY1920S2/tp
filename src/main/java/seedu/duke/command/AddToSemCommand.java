@@ -29,7 +29,9 @@ public class AddToSemCommand extends AddCommand {
     private void addModule(SemesterList semesterList) throws RuntimeException {
         boolean isModuleExist = checkModuleExist(semesterList);
         if (isModuleExist) {
-            throw new RuntimeException("The module is already exist in your semester list!");
+            String moduleIdentifier = selectedModule.isIdValid() ? selectedModule.getId() : selectedModule.getName();
+            throw new RuntimeException(String.format("The module <%s> is already exist in your semester list!",
+                    moduleIdentifier));
         }
 
         for (SemModulesList sem: semesterList) {

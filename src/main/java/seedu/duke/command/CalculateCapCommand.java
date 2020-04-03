@@ -4,6 +4,7 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.Person;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
+import seedu.duke.exception.RuntimeException;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 
@@ -16,7 +17,7 @@ public class CalculateCapCommand extends Command {
     public CalculateCapCommand() {
     }
 
-    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
         calculateCap(semesterList);
         DecimalFormat df = new DecimalFormat("#.00");
         String cap = df.format(Person.getTotalCap());
@@ -26,7 +27,7 @@ public class CalculateCapCommand extends Command {
     /** Calculate User's current Cumulative Average Point (CAP).
      * @param semesterList All modules selected by user
      */
-    public void calculateCap(SemesterList semesterList) {
+    public void calculateCap(SemesterList semesterList) throws RuntimeException {
         double totalGradePoint = 0;
         int totalGradeModuleCredit = 0;
         for (SemModulesList sem : semesterList) {
@@ -48,7 +49,11 @@ public class CalculateCapCommand extends Command {
             }
         }
         double cap = totalGradePoint / totalGradeModuleCredit;
-        assert cap > 5.0 : "Invalid CAP";
+        if (cap > 5.0 || totalGradeModuleCredit == 0) {
+            throw new RuntimeException("Now your CAP is invalid. Please done some modules first.");
+        }
+        //Have to change "assert cap > 5.0" to "assert cap <= 5.0" or it always stops running when CAP <= 5.0
+        assert cap <= 5.0 : "Valid CAP";
         Person.setTotalCap(cap);
     }
 }
