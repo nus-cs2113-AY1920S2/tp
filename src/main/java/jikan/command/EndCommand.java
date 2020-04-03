@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.exception.ExtraParametersException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
@@ -21,8 +22,11 @@ public class EndCommand extends Command {
     /**
      * Constructor to create a new end command.
      */
-    public EndCommand(String parameters) {
+    public EndCommand(String parameters) throws ExtraParametersException {
         super(parameters);
+        if (parameters == null) {
+            throw new ExtraParametersException();
+        }
     }
 
     /** Method to parse the end activity command. */

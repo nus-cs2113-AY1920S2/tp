@@ -106,7 +106,8 @@ public class GoalCommand extends Command {
         } catch (NoSuchTagException e) {
             Ui.printDivider("There is no such tag!");
             Log.makeInfoLog("Goal command failed as there was no such tag saved.");
-        } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException | EmptyGoalException | NumberFormatException e) {
+        } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException
+                | EmptyGoalException | NumberFormatException e) {
             Ui.printDivider("Please enter the goal in the format HH:MM:SS");
             Log.makeInfoLog("Goal command failed as an incorrect format for the goal time was provided.");
         } catch (NegativeDurationException e) {

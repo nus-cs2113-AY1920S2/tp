@@ -1,8 +1,10 @@
 package jikan.command;
 
 import jikan.exception.EmptyNameException;
+import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.parser.Parser;
+import jikan.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -10,15 +12,19 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AbortCommandTest {
-
     @Test
     void executeAbort() {
         Parser.startTime = LocalDateTime.now();
-        Command command = new AbortCommand(null);
+        Command command = null;
+        try {
+            command = new AbortCommand(null);
+        } catch (ExtraParametersException e) {
+            Ui.printDivider("Extra parameters detected!");
+        }
         try {
             command.executeCommand(null);
             assertNull(Parser.startTime);
-        } catch (EmptyNameException e) {
+        } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Filed error.");
         }
     }

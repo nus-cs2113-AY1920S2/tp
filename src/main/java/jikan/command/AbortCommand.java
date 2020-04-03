@@ -1,5 +1,6 @@
 package jikan.command;
 
+import jikan.exception.ExtraParametersException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.NoSuchActivityException;
@@ -14,8 +15,11 @@ public class AbortCommand extends Command {
     /**
      * Constructor to create a new abort command.
      */
-    public AbortCommand(String parameters) {
+    public AbortCommand(String parameters) throws ExtraParametersException {
         super(parameters);
+        if (parameters == null) {
+            throw new ExtraParametersException();
+        }
     }
 
     @Override

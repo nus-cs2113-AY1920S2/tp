@@ -8,7 +8,10 @@ import jikan.ui.Ui;
 
 import jikan.exception.InvalidTimeFrameException;
 
-import java.time.*;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
@@ -134,7 +137,8 @@ public class ListCommand extends Command {
         printList(activityList, startDate, endDate);
     }
 
-    private void printList(ActivityList activityList, LocalDate startDate, LocalDate endDate) throws InvalidTimeFrameException {
+    private void printList(ActivityList activityList, LocalDate startDate, LocalDate endDate)
+            throws InvalidTimeFrameException {
         // Only one date is specified; return all entries with start date coinciding with that date
         if (endDate == null) {
             for (Activity i : activityList.activities) {

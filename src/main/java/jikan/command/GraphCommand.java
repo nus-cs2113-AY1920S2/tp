@@ -14,13 +14,14 @@ import java.util.Set;
 import static jikan.Jikan.lastShownList;
 
 public class GraphCommand extends Command {
+
+    String[] inputs;
+
     /**
      * Constructor to create a new command.
      * @param parameters Either time interval for graph or 'tags' flag
      *                   to graph by tags
      */
-    String[] inputs;
-
     public GraphCommand(String parameters) throws ExtraParametersException {
         super(parameters);
 
@@ -37,7 +38,7 @@ public class GraphCommand extends Command {
                 Ui.graphTargets(activityList);
             } else if (inputs[0].equals("tags")) {
                 graphTags();
-            } else if (inputs[0].equals("activities")){
+            } else if (inputs[0].equals("activities")) {
                 graphDuration();
             } else {
                 Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");

@@ -93,16 +93,18 @@ public class Parser {
             }
             break;
         case "end":
-            if (tokenizedInputs.length > 1) {
-                parseDefault();
+            try {
+                command = new EndCommand(null);
+            } catch (ExtraParametersException e) {
+                Ui.printDivider("Extra parameters detected!");
             }
-            command = new EndCommand(null);
             break;
         case "abort":
-            if (tokenizedInputs.length > 1) {
-                parseDefault();
+            try {
+                command = new AbortCommand(null);
+            } catch (ExtraParametersException e) {
+                Ui.printDivider("Extra parameters detected!");
             }
-            command = new AbortCommand(null);
             break;
         case "list":
             if (tokenizedInputs.length == 1) {
