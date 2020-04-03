@@ -13,6 +13,7 @@ import command.ListCommand;
 import command.RepeatCommand;
 import common.Messages;
 import org.junit.jupiter.api.Test;
+import tasks.Event;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -100,6 +101,21 @@ public class ParserTest {
         );
     }
 
+    @Test
+    public void parseAssignmentCommand_nameContainsOnlySpaces_returnIncorrectCommand() {
+        Command parsedCommand = Parser.parseCommand(
+                AssignmentCommand.COMMAND_WORD
+                        + " n/    m/cs1010 d/30/02/20 1111 c/ comment"
+        );
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                capitalize(AssignmentCommand.COMMAND_WORD),
+                AssignmentCommand.COMMAND_USAGE
+                ),
+                ((IncorrectCommand)parsedCommand).getDescription()
+        );
+    }
+
     /** Event Command Tests. */
     @Test
     public void parseEventCommand_expectedInput_success() {
@@ -143,6 +159,21 @@ public class ParserTest {
         );
         assertTrue(parsedCommand instanceof IncorrectCommand);
         assertEquals(Messages.INCORRECT_START_END_TIME_ERROR, ((IncorrectCommand)parsedCommand).getDescription());
+    }
+
+    @Test
+    public void parseEventCommand_nameContainsOnlySpaces_returnIncorrectCommand() {
+        Command parsedCommand = Parser.parseCommand(
+                EventCommand.COMMAND_WORD
+                        + " n/    l/ location d/30/02/20 1111 - 1222 c/ comment"
+        );
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(String.format(Messages.INCORRECT_FORMAT_ERROR,
+                capitalize(EventCommand.COMMAND_WORD),
+                EventCommand.COMMAND_USAGE
+                ),
+                ((IncorrectCommand)parsedCommand).getDescription()
+        );
     }
 
     /** Delete Command Tests. */

@@ -155,9 +155,9 @@ public class Parser {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
-        String assignmentName = capitalize(matcher.group("assignmentName"));
-        String moduleName = matcher.group("moduleName");
-        String comments = capitalize(matcher.group("comments"));
+        String assignmentName = capitalize(matcher.group("assignmentName").replaceAll("\\s+", " ").trim());
+        String moduleName = matcher.group("moduleName").replaceAll("\\s+", " ").trim();
+        String comments = capitalize(matcher.group("comments").replaceAll("\\s+", " ").trim());
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
@@ -245,9 +245,9 @@ public class Parser {
             return new IncorrectCommand(Messages.INCORRECT_START_END_TIME_ERROR);
         }
 
-        String eventName = capitalize(matcher.group("eventName"));
-        String location = matcher.group("location");
-        String comments = capitalize(matcher.group("comments"));
+        String eventName = capitalize(matcher.group("eventName").replaceAll("\\s+", " ").trim());
+        String location = matcher.group("location").replaceAll("\\s+", " ").trim();
+        String comments = capitalize(matcher.group("comments").replaceAll("\\s+", " ").trim());
         return new EventCommand(eventName, location, startDateTime, endDateTime, comments);
     }
 
@@ -259,7 +259,7 @@ public class Parser {
             return new ListCommand(null);
         }
         assert tokens.length == 2;
-        return new ListCommand(tokens[1].trim());
+        return new ListCommand(tokens[1].replaceAll("\\s+", " ").trim());
     }
 
     //@@author joelczk
@@ -269,7 +269,7 @@ public class Parser {
             return new ClearCommand(null);
         }
         assert tokens.length == 2;
-        return new ClearCommand(tokens[1]);
+        return new ClearCommand(tokens[1].replaceAll("\\s+", " ").trim());
     }
 
     //@@author
