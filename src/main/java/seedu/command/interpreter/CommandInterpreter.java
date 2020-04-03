@@ -49,7 +49,7 @@ public class CommandInterpreter {
     }
 
     /**
-     * Check if the input is a command that requires any argument. It checks 
+     * Check if the input is a command that requires any argument. It checks
      * from COMMANDS_THAT_NEED_ARGUMENT, so that array must be set up properly first.
      * @param commandCategory the command to be checked
      * @return (@code true} if command category requires an argument
@@ -129,7 +129,7 @@ public class CommandInterpreter {
                     && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
                     && !commandCategory.equals("help") && !commandCategory.equals("student.list"))
                     : "accepted command category is not further interpreted!";
-            throw new PacException("Unknown command category is provided");
+            throw new PacException("Please provide a valid command category. Refer to 'help' for more info.");
         }
         if (command == null) {
             throw new PacException("Pac is null.");
