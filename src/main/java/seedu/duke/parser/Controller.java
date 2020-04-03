@@ -20,6 +20,8 @@ import seedu.duke.module.SelectedModule;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
 
+import java.util.regex.Pattern;
+
 public class Controller {
     /**
      * Parses user input into module.
@@ -106,23 +108,29 @@ public class Controller {
             grading = Grading.CU;
             break;
         default:
-            throw new IllegalStateException("Unexpected value: " + grade);
+            throw new InputException("Unexpected value: " + grade
+                    + System.lineSeparator()
+                    + "Please use A+ | A | A- | B+ | B | B- | C+ | C | D+ | D | F | CS | CU.");
         }
         if (module.contains("n/")) {                                            //N
             String moduleName = module.replace("n/","");        //N
             return new MarkAsDoneCommand(moduleName, grading);
-        } else if (module.contains("id/")) {                                        //ID
-            String moduleId = module.replace("id/","");             //ID
+        } else if (module.contains("id/")) {
+            String moduleId = module.replace("id/","").toUpperCase();
             return new MarkAsDoneCommand(moduleId, grading);
         }
         return null;
     }
 
     private static Command processAddCommand(String args) throws InputException {
-        if (args.contains("s/")) {
-            return processAddToSemCommand(args);
-        } else {
-            return processAddToDataCommand(args);
+        try {
+            if (args.contains("s/")) {
+                return processAddToSemCommand(args);
+            } else {
+                return processAddToDataCommand(args);
+            }
+        } catch (NullPointerException e) {
+            throw new InputException("Wrong add command!");
         }
     }
 
@@ -142,16 +150,28 @@ public class Controller {
                     "add id/ID s/SEMESTER mc/MODULE_CREDIT | add n/Name s/SEMESTER mc/MODULE_CREDIT "
                             + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
         }
-        semester = moduleDetails[0];                                    //.trim()
+        semester = moduleDetails[0].trim();
         try {
             int moduleCredit = Integer.parseInt(moduleDetails[1]);
-            if (module.contains("id/")) {                              //ID
-                String moduleId = module.replace("id/","");         //ID
-                if (moduleId.contains("n/")) {                                          //N
-                    String[] idAndName = moduleId.split("n/");                      //N
-                    String id = idAndName[0];
-                    String name = idAndName[1];
+            if (module.contains("id/")) {
+                String moduleId = module.replace("id/","");
+
+                /* if contains module name */
+                if (moduleId.contains("n/")) {
+                    String[] idAndName = moduleId.split("n/");
+                    String id = idAndName[0].toUpperCase().trim();
+
+                    /* if module code is invalid */
+                    if (!isStandardCodeFormat(id)) {
+                        throw new InputException("invalid module code: " + id);
+                    }
+
+                    String name = idAndName[1].trim();
                     return new AddToSemCommand(new SelectedModule("Both", id, name, semester, moduleCredit));
+                }
+                /* if module code is invalid */
+                if (!isStandardCodeFormat(moduleId)) {
+                    throw new InputException("invalid module code: " + moduleId);
                 }
                 return new AddToSemCommand(new SelectedModule("id", moduleId, semester, moduleCredit));
             } else if (module.contains("n/")) {
@@ -176,13 +196,18 @@ public class Controller {
             throw new InputException("invalid 'add' command",
                     "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
         }
-        String moduleId = moduleWords[0];                                           //.toUpperCase().trim()
+
+        String moduleId = moduleWords[0].toUpperCase().trim();
+        if (!isStandardCodeFormat(moduleId)) {
+            throw new InputException("invalid module code: " + moduleId);
+        }
+
         moduleWords = moduleWords[1].split(" mc/");
         if (moduleWords.length < 2) {
             throw new InputException("invalid 'add' command",
                     "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
         }
-        String moduleName = moduleWords[0];                                         //.toUpperCase().trim()
+        String moduleName = moduleWords[0].trim();
         moduleWords = moduleWords[1].split(" pre/");
         try {
             int moduleCredit = Integer.parseInt(moduleWords[0]);
@@ -190,18 +215,21 @@ public class Controller {
                 return new AddToDataCommand(new NewModule(moduleId, moduleName, moduleCredit));
             }
             String[] preRequisiteModules;
-            preRequisiteModules = moduleWords[1].split(" ");
-            for (String prereq : preRequisiteModules) {
-                if (prereq.equals(moduleId)) {
-                    throw new InputException("invalid 'add' command: Prerequisites of a module cannot be itself!",
-                            "add id/ID n/NAME mc/MODULE_CREDIT pre/PREREQMODULES");
-                }
-            }
+            preRequisiteModules = moduleWords[1].toUpperCase().split(" ");
+            checkPreReqValidity(preRequisiteModules, moduleId);
             return new AddToDataCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
         } catch (NumberFormatException e) {
             Ui.showInputError();
         }
         return null;
+    }
+
+    private static void checkPreReqValidity(String[] preRequisiteModules, String moduleId) throws InputException {
+        for (String preReq : preRequisiteModules) {
+            if (preReq.equals(moduleId) || !isStandardCodeFormat(preReq)) {
+                throw new InputException(String.format("Prerequisites <%s> is invalid.", moduleId));
+            }
+        }
     }
 
     private static ViewCommand processViewCommand(String args) {
@@ -212,10 +240,10 @@ public class Controller {
         } else if (args.contains("/mp")) {
             return new ViewCommand(ViewCommand.VIEW_MODULE_PLAN);
         } else if (args.contains("n/")) {
-            String moduleToBeViewed = args.replace("n/","");                    //.toUpperCase().trim()
+            String moduleToBeViewed = args.replace("n/","").trim();
             return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
         } else if (args.contains("id/")) {
-            String moduleToBeViewed = args.replace("id/","");                   //.toUpperCase().trim()
+            String moduleToBeViewed = args.replace("id/","").toUpperCase().trim();
             return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
         } else if (args.contains("/cc")) {
             return new ViewCommand(ViewCommand.VIEW_COMPLETED_CREDITS);
@@ -250,12 +278,12 @@ public class Controller {
     private static DeleteFromSemCommand processDeleteFromSemCommand(String args) throws InputException {
         String[] moduleWords = args.split(" s/");
         if (args.contains("id/")) {
-            String moduleId = moduleWords[0].replace("id/", "");      //.toUpperCase().trim()
-            String semester = moduleWords[1];                                           //.trim()
+            String moduleId = moduleWords[0].replace("id/", "").toUpperCase().trim();
+            String semester = moduleWords[1].trim();
             return new DeleteFromSemCommand(moduleId, semester, "id");
         } else if (args.contains("n/")) {
             String moduleName = moduleWords[0].replace("n/", "");       //.toUpperCase().trim()
-            String semester = moduleWords[1];                                              //.trim()
+            String semester = moduleWords[1].trim();
             return new DeleteFromSemCommand(moduleName, semester, "name");
         }
         throw new InputException("invalid 'delete' command to delete from Selected Modules",
@@ -268,13 +296,19 @@ public class Controller {
             throw new InputException("invalid 'delete' command to delete from Available Modules",
                     "delete id/ID OR delete n/NAME");
         }
-        String moduleIdentifier = moduleWords[1];                               //.toUpperCase().trim()
+        String moduleIdentifier = moduleWords[1];
         if (moduleWords[0].equals("id")) {
-            return new DeleteFromAvailableCommand(moduleIdentifier, "id");
+            return new DeleteFromAvailableCommand(moduleIdentifier.toUpperCase().trim(), "id");
         } else if (moduleWords[0].equals("n")) {
-            return new DeleteFromAvailableCommand(moduleIdentifier, "name");
+            return new DeleteFromAvailableCommand(moduleIdentifier.trim(), "name");
         }
         throw new InputException("invalid 'delete' command to delete from Available Modules",
                 "delete id/ID OR delete n/NAME");
+    }
+
+    public static boolean isStandardCodeFormat(String moduleId) {
+        String pattern = "^[A-Za-z]{2,3}\\d{4}[A-Za-z]?$";
+        boolean isMatch = Pattern.matches(pattern, moduleId);
+        return isMatch;
     }
 }

@@ -21,6 +21,7 @@ public class AddToDataCommand extends AddCommand {
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
         addModule(semesterList, availableModulesList);
         Ui.showAddedToDataMessage(newModule.toString());
+        super.execute(semesterList, availableModulesList);
     }
 
     /**

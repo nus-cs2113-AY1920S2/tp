@@ -4,6 +4,7 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
 import seedu.duke.exception.RuntimeException;
+import seedu.duke.exception.StorageException;
 import seedu.duke.ui.Ui;
 import seedu.duke.module.Module;
 
@@ -28,7 +29,7 @@ public class DeleteFromSemCommand extends DeleteCommand {
     }
 
     public void execute(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
-            throws RuntimeException {
+            throws RuntimeException, StorageException {
         boolean isModuleInSem = checkModuleExistInCorrectSem(selectedModulesList);
         if (!isModuleInSem) {
             throw new RuntimeException(String.format("Module %s not found in Semester %s",
@@ -46,6 +47,8 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
         Ui.showDeleteFromSemMessage(String.format("Module %s has been deleted from semester %s",
                 moduleIdentifier, yearSemester));
+
+        super.execute(selectedModulesList, availableModulesList);
 
     }
 

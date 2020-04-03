@@ -4,6 +4,7 @@ add n/Software Engineering & Object-Oriented Programming s/4 mc/4
 add id/CS1010 s/3 mc/4
 add id/IS4241 s/4 mc/4
 add id/IS4241 n/Social Media Network Analysis mc/4 pre/CS1010 IS1103
+add id/CS0000 n/Test PreReq mc/4 pre/CS0001 IS000
 add id/IS4241 s/4 mc/4
 add id/CS1231 n/Discrete Structures mc/4
 add id/CS2104 n/Programming Language Concepts mc/4 pre/CS2030
@@ -14,7 +15,12 @@ done id/IS4241 g/A-
 view /dm
 view /cc
 find cS
-done id/CS1010 g/A+
+add id/ACC1004 s/5 mc/4
+done id/ACC1004 g/CS
+add id/CS000T s/5 mc/4
+view /mp
+view /cc
+view /dm
 CAP
 delete id/IS4241 s/4
 view /mp
@@ -23,5 +29,6 @@ delete id/CS1010
 delete id/GET1002
 view
 view /mp
+CAP
 add id/CS9999 n/hello mc/4 pre/CS9999
 bye

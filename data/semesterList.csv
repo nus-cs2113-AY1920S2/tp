@@ -1,7 +1,5 @@
 id,name,mc,semester,isDone,grade
-cS1010,/,4,3,false,/
-cs0000,/,3,4,false,/
-CS0001,/,4,4,false,/
+CS1010,Programming Methodology,4,3,false,/
+CS1231,Discrete Structures,4,3,false,/
 CS2113,Software Engineering & Object-Oriented Programming,4,4,false,/
-cS1010,/,4,4,false,/
-cs2113,/,4,5,false,/
+ACC1004,/,4,5,true,A+

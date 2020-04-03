@@ -83,7 +83,7 @@ Example of expected output:
 
 Format: `done n/[module code] g/[grade]`
 
-Example:​ `done n/CS2113 g/SU`
+Example:​ `done n/CS2113 g/CU`
 
 Example of expected output:
 

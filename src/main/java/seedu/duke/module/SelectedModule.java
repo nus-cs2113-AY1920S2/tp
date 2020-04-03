@@ -157,9 +157,9 @@ public class SelectedModule extends Module {
      */
     public String getIcon() {
         if (this.isDone) {
-            return "[✓]";
+            return "[v]";
         } else {
-            return "[✗]";
+            return "[x]";
         }
     }
 
