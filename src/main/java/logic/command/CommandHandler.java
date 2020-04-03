@@ -73,7 +73,7 @@ public class CommandHandler {
                         break;
                     default:
                         //data only has four sections from api
-                        break;
+                        throw new AssertionError(j);
                     }
                 }
                 member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString, weeks);
@@ -295,7 +295,6 @@ public class CommandHandler {
 
     public static void displayTimetable(String[] userInputWords, Contact mainUser,
                                         ContactList contactList, int weekNumber, int weeksMoreToView) throws MoException {
-
         int memberNumber;
         Contact member;
         try {
