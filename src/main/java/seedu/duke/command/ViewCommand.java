@@ -67,7 +67,7 @@ public class ViewCommand extends Command {
             }
             viewList.append(System.lineSeparator());
         }
-        if (viewList.toString().trim().equals("")){
+        if (viewList.toString().trim().equals("")) {
             Ui.showEmptyModulePlan();
         } else {
             Ui.showViewMessage(viewList.toString().trim());
