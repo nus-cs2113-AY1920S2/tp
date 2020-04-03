@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.exams.Exam;
+import seedu.events.Event;
 import seedu.exception.EscException;
 import seedu.subjects.SubjectList;
 
@@ -33,18 +33,18 @@ public class ShowUpcomingCommand extends Command {
      */
     @Override
     public void execute(SubjectList subjectList) throws EscException {
-        ArrayList<Exam> exams = subjectList.getExamDates();
-        ArrayList<Exam> upcomingExams = new ArrayList<>();
+        ArrayList<Event> events = subjectList.getEvents();
+        ArrayList<Event> upcomingEvents = new ArrayList<>();
         LocalDate today = LocalDate.now();
-        for (Exam exam : exams) {
-            LocalDate date = exam.getDate();
+        for (Event event : events) {
+            LocalDate date = event.getDate();
             long period = today.until(date, ChronoUnit.DAYS);
             if (period <= dateRange && period >= 0) {
-                upcomingExams.add(exam);
+                upcomingEvents.add(event);
             }
         }
-        Collections.sort(upcomingExams);
-        subjectList.listUpcoming(upcomingExams);
+        Collections.sort(upcomingEvents);
+        subjectList.listUpcoming(upcomingEvents);
     }
 
 }

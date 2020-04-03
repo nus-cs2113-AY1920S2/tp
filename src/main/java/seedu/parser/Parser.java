@@ -13,9 +13,10 @@ import seedu.commands.QuizCommand;
 import seedu.commands.HelpCommand;
 import seedu.commands.ExitCommand;
 import seedu.commands.ShowUpcomingCommand;
-import seedu.commands.AddExamCommand;
-import seedu.commands.ListExamCommand;
-import seedu.exams.Exam;
+import seedu.commands.AddEventCommand;
+import seedu.commands.DeleteEventCommand;
+import seedu.commands.ListEventCommand;
+import seedu.events.Event;
 import seedu.exception.EscException;
 
 import java.time.LocalDate;
@@ -77,11 +78,14 @@ public class Parser {
         case ScoreCommand.COMMAND_WORD:
             return prepareScore(arguments);
 
-        case AddExamCommand.COMMAND_WORD:
-            return prepareAddExam(arguments);
+        case AddEventCommand.COMMAND_WORD:
+            return prepareAddEvent(arguments);
 
-        case ListExamCommand.COMMAND_WORD:
-            return new ListExamCommand();
+        case DeleteEventCommand.COMMAND_WORD:
+            return prepareDeleteEvent(arguments);
+
+        case ListEventCommand.COMMAND_WORD:
+            return new ListEventCommand();
 
         case ShowUpcomingCommand.COMMAND_WORD:
             return prepareShowUpcoming(arguments);
@@ -194,19 +198,31 @@ public class Parser {
     }
 
     /**
-     * Parses the user input into arguments for the AddExam command.
-     * @return AddExamDate Command.
+     * Parses the user input into arguments for the AddEvent command.
+     * @return AddEventDate Command.
      */
-    private static Command prepareAddExam(String[] arguments) throws EscException {
-        checkNumberOfArguments(arguments, AddExamCommand.MESSAGE_USAGE);
-        checkArgumentPrefixes(arguments[1], AddExamCommand.MESSAGE_USAGE, DATE_ARG, EVENT_ARG);
+    private static Command prepareAddEvent(String[] arguments) throws EscException {
+        checkNumberOfArguments(arguments, AddEventCommand.MESSAGE_USAGE);
+        checkArgumentPrefixes(arguments[1], AddEventCommand.MESSAGE_USAGE, DATE_ARG, EVENT_ARG);
 
-        String examTopic = getExamTopic(arguments[1]);
-        LocalDate examDate = getExamDate(arguments[1]);
+        String eventTopic = getEventTopic(arguments[1]);
+        LocalDate eventDate = getEventDate(arguments[1]);
 
-        Exam exam = new Exam(examTopic, examDate);
+        Event event = new Event(eventTopic, eventDate);
 
-        return new AddExamCommand(exam);
+        return new AddEventCommand(event);
+    }
+
+    /**
+     * Parses the user input into arguments for the DeleteEvent command.
+     * @return DeleteEvent Command.
+     */
+    private static Command prepareDeleteEvent(String[] arguments) throws EscException {
+        checkNumberOfArguments(arguments, DeleteEventCommand.MESSAGE_USAGE);
+        checkArgumentPrefixes(arguments[1], DeleteEventCommand.MESSAGE_USAGE, EVENT_ARG);
+        int eventIndex = getEventIndex(arguments[1]);
+
+        return new DeleteEventCommand(eventIndex);
     }
 
     /**
@@ -281,32 +297,51 @@ public class Parser {
     }
 
     /**
-     * Returns the exam topic from the user input.
-     * @return the exam topic.
-     * @throws EscException if the exam topic is absent.
+     * Returns the event topic from the user input.
+     * @return the event topic.
+     * @throws EscException if the event topic is absent.
      */
-    private static String getExamTopic(String argument) throws EscException {
+    private static String getEventTopic(String argument) throws EscException {
         String argWithoutPrefixes = argument.split(DATE_ARG)[0].split(EVENT_ARG)[1];
         String topicString = argWithoutPrefixes.replace(EVENT_ARG,"").trim();
 
         if (topicString.trim().isEmpty()) {
-            throw new EscException("The exam topic is required");
+            throw new EscException("The event topic is required");
         }
 
         return topicString;
     }
 
     /**
-     * Returns the exam date from the user input.
-     * @return the exam date.
-     * @throws EscException if the exam date format is wrong or absent.
+     * Returns the event index from the user input.
+     * @return the event index integer.
+     * @throws EscException if the event index is absent or non-integer.
      */
-    private static LocalDate getExamDate(String argument) throws EscException {
+    private static int getEventIndex(String argument) throws EscException {
+        String argWithoutPrefixes = argument.split(EVENT_ARG)[1];
+        String eventIndexString = argWithoutPrefixes.replace(EVENT_ARG,"").trim();
+
+        if (eventIndexString.trim().isEmpty()) {
+            throw new EscException("The event index is required.");
+        }
+        try {
+            return Integer.parseInt(eventIndexString);
+        } catch (NumberFormatException  e) {
+            throw new EscException("The event index has to be an integer.");
+        }
+    }
+
+    /**
+     * Returns the event date from the user input.
+     * @return the event date.
+     * @throws EscException if the event date format is wrong or absent.
+     */
+    private static LocalDate getEventDate(String argument) throws EscException {
         String argWithoutPrefixes = argument.split(DATE_ARG)[1];
         String dateString = argWithoutPrefixes.replace(DATE_ARG,"").trim();
 
         if (dateString.trim().isEmpty()) {
-            throw new EscException("The exam date is required");
+            throw new EscException("The event date is required");
         }
 
         DateTimeFormatter dateKey = DateTimeFormatter.ofPattern("[dd/MM/yyyy][d/M/yyyy][dd/MM/yy][d/M/yy]"
@@ -326,7 +361,7 @@ public class Parser {
     }
 
     /**
-     * Returns the date range of upcoming exams to show from the user input.
+     * Returns the date range of upcoming events to show from the user input.
      * @return the date range integer.
      * @throws EscException if the date range is absent or non-integer.
      */
