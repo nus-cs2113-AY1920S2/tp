@@ -186,7 +186,7 @@ Format: `bye`
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Well, write the User Guide in active voice anyway.
+**A**: Simply transfer the folder including your jar file and saved data to another computer, and run the jar file there
 
 ## Command Summary
 

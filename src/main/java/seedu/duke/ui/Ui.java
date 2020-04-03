@@ -76,6 +76,7 @@ public class Ui {
     private static final String SHOW_INPUT_ERROR = "Input Error, please enter your comand again!"
             + " Type \"help\" for help";
     private static final String CLEAR = "Your module plan has been cleared :)";
+    private static final String EMPTY_MODULE_PLAN = "Your module plan is empty." ;
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
@@ -153,5 +154,9 @@ public class Ui {
 
     public static void showClearMessage() {
         showToUser(CLEAR);
+    }
+
+    public static void showEmptyModulePlan() {
+        showToUser(EMPTY_MODULE_PLAN);
     }
 }
