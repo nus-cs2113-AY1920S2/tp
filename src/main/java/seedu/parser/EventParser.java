@@ -127,7 +127,8 @@ public class EventParser {
             venue += venue.isEmpty() ? token : (" " + token);
             break;
         default:
-            throw new PacException("I am not sure '" + token + "' belongs to which flag. Is a flag provided beforehand?");
+            throw new PacException("I am not sure '" + token + "' belongs to which flag. "
+                    + "Is a flag provided beforehand?");
         }
     }
 
