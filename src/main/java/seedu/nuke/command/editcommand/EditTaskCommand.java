@@ -115,7 +115,7 @@ public class EditTaskCommand extends EditCommand {
         if (newTaskDescription.isEmpty()) {
             newTaskDescription = toEdit.getDescription();
         }
-        if (newDeadline == null) {
+        if (!newDeadline.isPresent()) {
             newDeadline = toEdit.getDeadline();
         }
         if (newPriority < 0) {

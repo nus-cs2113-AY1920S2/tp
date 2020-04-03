@@ -105,8 +105,8 @@ public class StorageManager {
         } catch (IOException e) {
             //e.printStackTrace();
             ModuleManager.setModuleList(new ArrayList<>());
-        } catch (CorruptedFileException e) {
-            System.out.println("file is corrupted!\n");
+        } catch (CorruptedFileException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("File is corrupted!\n");
             ModuleManager.setModuleList(new ArrayList<>());
         }
     }

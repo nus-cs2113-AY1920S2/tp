@@ -2,6 +2,7 @@ package seedu.nuke.directory;
 
 public class TaskFile extends Directory {
     private String fileName;
+    private String originalFilePath;
     private String filePath;
 
     /**
@@ -17,7 +18,7 @@ public class TaskFile extends Directory {
     public TaskFile(Task task, String fileName, String filePath) {
         super(task);
         this.fileName = fileName;
-        this.filePath = filePath;
+        this.originalFilePath = filePath;
     }
 
     /**
@@ -77,4 +78,14 @@ public class TaskFile extends Directory {
         return this.fileName.equals(fileName);
     }
 
+    /**
+     * Returns a string containing the standard File attributes.
+     *
+     * @return
+     *  A string containing the standard File attributes
+     */
+    @Override
+    public String toString() {
+        return String.format("File Name: %s\nOriginal File Path: %s\n", fileName, originalFilePath);
+    }
 }

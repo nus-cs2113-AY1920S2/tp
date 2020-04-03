@@ -16,68 +16,23 @@ public class ListCreator {
     private static final String SEPARATOR = "|";
 
     /**
-     * Sorts modules in a list by their module codes.
-     * @param toSort
-     *  The list of modules to be sorted
+     * Creates a general list table from a list of Strings.
+     * @param listToShow
+     *  The list to be converted to a table
+     * @return
+     *  The list table to show to the user
      */
-    private static void sortModuleList(ArrayList<Module> toSort) {
-        Comparator<Module> sortByModule =
-                Comparator.comparing(Module::getModuleCode);
+    public static String createGeneralListTable(ArrayList<String> listToShow) {
+        StringBuilder listTable = new StringBuilder(String.format("%s\n", LIST_DIVIDER));
 
-        toSort.sort(sortByModule);
+        for (String listItem : listToShow) {
+            listTable.append(String.format("%s\n", listItem));
+        }
+
+        listTable.append(LIST_DIVIDER);
+        return listTable.toString();
     }
 
-    /**
-     * Sorts categories in a list by their names.
-     *
-     * @param toSort
-     *  The list of categories to be sorted
-     */
-    private static void sortCategoryList(ArrayList<Category> toSort) {
-        Comparator<Category> sortByModule =
-                Comparator.comparing(category -> category.getParent().getModuleCode());
-        Comparator<Category> sortByCategory =
-                Comparator.comparing(Category::getCategoryName);
-
-        toSort.sort(sortByModule.thenComparing(sortByCategory));
-    }
-
-
-    /**
-     * Sorts tasks in a list by their description.
-     *
-     * @param toSort
-     *  The list of tasks to be sorted
-     */
-    private static void sortTaskList(ArrayList<Task> toSort) {
-        Comparator<Task> sortByModule =
-                Comparator.comparing(task -> task.getParent().getParent().getModuleCode());
-        Comparator<Task> sortByCategory =
-                Comparator.comparing(task -> task.getParent().getCategoryName());
-        Comparator<Task> sortByTask =
-                Comparator.comparing(Task::getDescription);
-
-        toSort.sort(sortByModule.thenComparing(sortByCategory).thenComparing(sortByTask));
-    }
-
-    /**
-     * Sorts files in a list by their name.
-     *
-     * @param toSort
-     *  The list of files to be sorted
-     */
-    private static void sortFileList(ArrayList<TaskFile> toSort) {
-        Comparator<TaskFile> sortByModule =
-                Comparator.comparing(file -> file.getParent().getParent().getParent().getModuleCode());
-        Comparator<TaskFile> sortByCategory =
-                Comparator.comparing(file -> file.getParent().getParent().getCategoryName());
-        Comparator<TaskFile> sortByTask =
-                Comparator.comparing(file -> file.getParent().getDescription());
-        Comparator<TaskFile> sortByFile =
-                Comparator.comparing(TaskFile::getFileName);
-
-        toSort.sort(sortByModule.thenComparing(sortByCategory).thenComparing(sortByTask).thenComparing(sortByFile));
-    }
 
     /**
      * Creates a sorted module list table from a list of modules.
@@ -88,7 +43,6 @@ public class ListCreator {
      *  The sorted module list table
      */
     public static String createModuleListTable(ArrayList<Module> moduleList) {
-        sortModuleList(moduleList);
         StringBuilder moduleListTable = new StringBuilder();
 
         moduleListTable.append(createModuleListTableHeader());
@@ -141,7 +95,6 @@ public class ListCreator {
      *  The sorted category list table
      */
     public static String createCategoryListTable(ArrayList<Category> categoryList) {
-        sortCategoryList(categoryList);
         StringBuilder categoryListTable = new StringBuilder();
 
         categoryListTable.append(createCategoryListTableHeader());
@@ -196,10 +149,7 @@ public class ListCreator {
      * @return
      *  The sorted task list table
      */
-    public static String createTaskListTable(ArrayList<Task> taskList, boolean isSorted) {
-        if (!isSorted) {
-            sortTaskList(taskList);
-        }
+    public static String createTaskListTable(ArrayList<Task> taskList) {
         StringBuilder taskListTable = new StringBuilder();
 
         taskListTable.append(createTaskListTableHeader());
@@ -209,7 +159,7 @@ public class ListCreator {
             String moduleCode = task.getParent().getParent().getModuleCode();
             String categoryName = task.getParent().getCategoryName();
             String taskDescription = task.getDescription();
-            String deadline = (task.getDeadline() != null) ? task.getDeadline().toShow() : "-NIL-";
+            String deadline = task.getDeadline().isPresent() ? task.getDeadline().toShow() : "-NIL-";
             String priority = String.valueOf(task.getPriority());
             String statusIcon = task.getStatusIcon();
 
@@ -229,11 +179,6 @@ public class ListCreator {
         taskListTable.append(LIST_DIVIDER);
 
         return taskListTable.toString();
-    }
-
-    public static String createTaskListTable(ArrayList<Task> taskList) {
-        sortTaskList(taskList);
-        return createTaskListTable(taskList, true);
     }
 
     /**
@@ -270,7 +215,6 @@ public class ListCreator {
      *  The sorted file list table
      */
     public static String createFileListTable(ArrayList<TaskFile> fileList) {
-        sortFileList(fileList);
         StringBuilder fileListTable = new StringBuilder();
 
         fileListTable.append(createFileListTableHeader());
