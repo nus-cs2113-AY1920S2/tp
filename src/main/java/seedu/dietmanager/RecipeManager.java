@@ -69,11 +69,11 @@ public class RecipeManager {
 
     public boolean customRecipe(double cap, int num) {
         FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
-        int maxNum = MAX_FOOD_TYPES;
+        int maxNum = foodInfo.getListSize();
         boolean overflow = false;
 
-        if (num > maxNum) {
-            num = maxNum;
+        if (num > MAX_FOOD_TYPES) {
+            num = MAX_FOOD_TYPES;
             overflow = true;
         }
 

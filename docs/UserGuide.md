@@ -271,14 +271,14 @@ Example of usage:
     
     Expected Output: 
     ```
-              morning                                                     afternoon                                                   night
-    MONDAY    Chicken(1.00),Apple(2.00)                                   Apple(2.00),Carrots(3.00)                                   Carrots(3.00),Chicken(1.00)
-    TUESDAY   Rice(4.00),Chicken(1.00)                                    Carrots(3.00),Chicken(1.00)                                 Apple(2.00),Carrots(3.00)
-    WEDNESDAY Carrots(3.00),Apple(2.00)                                   Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Carrots(3.00)
-    THURSDAY  Apple(2.00),Chicken(1.00)                                   Chicken(1.00),Carrots(3.00)                                 Chicken(1.00),Apple(2.00)
-    FRIDAY    Rice(4.00),Chicken(1.00)                                    Apple(2.00),Chicken(1.00)                                   Carrots(3.00),Apple(2.00)
-    SATURDAY  Apple(2.00),Chicken(1.00)                                   Apple(2.00),Chicken(1.00)                                   Apple(2.00),Carrots(3.00)
-    SUNDAY    Apple(2.00),Carrots(3.00)                                   Chicken(1.00),Rice(4.00)                                    Chicken(1.00),Apple(2.00)
+               morning                                                     afternoon                                                   night
+     MONDAY    Chicken(1.00),Apple(2.00)                                   Rice(4.00),Chicken(1.00)                                    Apple(2.00),Chicken(1.00)
+     TUESDAY   Carrots(3.00),Chicken(1.00)                                 Rice(4.00),Chicken(1.00)                                    Oil(5.00)
+     WEDNESDAY Chicken(1.00),Carrots(3.00)                                 Apple(2.00),Chicken(1.00)                                   Chicken(1.00),Carrots(3.00)
+     THURSDAY  Rice(4.00),Chicken(1.00)                                    Oil(5.00)                                                   Carrots(3.00),Chicken(1.00)
+     FRIDAY    Oil(5.00)                                                   Rice(4.00),Chicken(1.00)                                    Apple(2.00),Carrots(3.00)
+     SATURDAY  Chicken(1.00),Carrots(3.00)                                 Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Carrots(3.00)
+     SUNDAY    Rice(4.00),Chicken(1.00)                                    Rice(4.00),Chicken(1.00)                                    Carrots(3.00),Chicken(1.00)
     ```
 * `CALORIES_CAP` is 50, `MAXIMUM_NUM` is 5:
 
@@ -289,13 +289,14 @@ Example of usage:
     We support at most 4 kinds of food in a meal, otherwise it's not good for your health!
     
               morning                                                     afternoon                                                   night
-    MONDAY    Apple(2.00),Carrots(3.00),Chicken(1.00),Rice(4.00)          Carrots(3.00),Chicken(1.00),Apple(2.00),Rice(4.00)          Carrots(3.00),Chicken(1.00),Apple(2.00),Rice(4.00)
-    TUESDAY   Carrots(3.00),Rice(4.00),Chicken(1.00),Apple(2.00)          Rice(4.00),Apple(2.00),Carrots(3.00),Chicken(1.00)          Rice(4.00),Chicken(1.00),Carrots(3.00),Apple(2.00)
-    WEDNESDAY Apple(2.00),Rice(4.00),Chicken(1.00),Carrots(3.00)          Rice(4.00),Apple(2.00),Carrots(3.00),Chicken(1.00)          Carrots(3.00),Apple(2.00),Rice(4.00),Chicken(1.00)
-    THURSDAY  Chicken(1.00),Carrots(3.00),Rice(4.00),Apple(2.00)          Carrots(3.00),Chicken(1.00),Rice(4.00),Apple(2.00)          Chicken(1.00),Apple(2.00),Rice(4.00),Carrots(3.00)
-    FRIDAY    Chicken(1.00),Rice(4.00),Apple(2.00),Carrots(3.00)          Chicken(1.00),Carrots(3.00),Apple(2.00),Rice(4.00)          Apple(2.00),Carrots(3.00),Rice(4.00),Chicken(1.00)
-    SATURDAY  Carrots(3.00),Rice(4.00),Chicken(1.00),Apple(2.00)          Apple(2.00),Chicken(1.00),Rice(4.00),Carrots(3.00)          Chicken(1.00),Apple(2.00),Rice(4.00),Carrots(3.00)
-    SUNDAY    Chicken(1.00),Apple(2.00),Rice(4.00),Carrots(3.00)          Apple(2.00),Rice(4.00),Carrots(3.00),Chicken(1.00)          Apple(2.00),Chicken(1.00),Carrots(3.00),Rice(4.00)
+    MONDAY    Tea(6.00),Chicken(1.00),Rice(4.00),Oil(5.00)                Tea(6.00),Oil(5.00),Apple(2.00),Carrots(3.00)               Apple(2.00),Oil(5.00),Rice(4.00),Chicken(1.00)
+    TUESDAY   Apple(2.00),Chicken(1.00),Rice(4.00),Carrots(3.00)          Carrots(3.00),Rice(4.00),Oil(5.00),Tea(6.00)                Oil(5.00),Apple(2.00),Chicken(1.00),Tea(6.00)
+    WEDNESDAY Carrots(3.00),Tea(6.00),Apple(2.00),Rice(4.00)              Tea(6.00),Carrots(3.00),Oil(5.00),Chicken(1.00)             Tea(6.00),Apple(2.00),Rice(4.00),Oil(5.00)
+    THURSDAY  Oil(5.00),Carrots(3.00),Apple(2.00),Tea(6.00)               Carrots(3.00),Rice(4.00),Chicken(1.00),Apple(2.00)          Oil(5.00),Chicken(1.00),Tea(6.00),Rice(4.00)
+    FRIDAY    Carrots(3.00),Oil(5.00),Apple(2.00),Chicken(1.00)           Apple(2.00),Oil(5.00),Carrots(3.00),Rice(4.00)              Tea(6.00),Apple(2.00),Rice(4.00),Chicken(1.00)
+    SATURDAY  Apple(2.00),Carrots(3.00),Chicken(1.00),Tea(6.00)           Apple(2.00),Rice(4.00),Carrots(3.00),Tea(6.00)              Rice(4.00),Apple(2.00),Carrots(3.00),Chicken(1.00)
+    SUNDAY    Chicken(1.00),Rice(4.00),Apple(2.00),Oil(5.00)              Oil(5.00),Rice(4.00),Apple(2.00),Chicken(1.00)              Rice(4.00),Tea(6.00),Chicken(1.00),Carrots(3.00)
+
     ```
 
 ### 3.10 View recipe
