@@ -158,6 +158,7 @@ The sequence diagram below shows how various components, broken down into the va
 
 ## 3. Implementation
 This section will detail how some noteworthy features are implemented.
+
 ### 3.1. Delete Task Feature
 Current Implementation:  
 The `DeleteCommand` extends the `Command` class and initializes the `delete index` in its constructor. The `delete index` specifies the index of task that the user wants to delete.
@@ -168,34 +169,38 @@ Given below is an example usage and how the `DeleteCommand` mechanism behaves at
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided. It will obtain information to get `delete index`.
+The user enters `delete 1` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided. It will obtain information to get `delete index`.
 
 > **Warning:**
-> If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new `IncorrectCommand` class will be called to print the respective error messages
+> If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new instance of `IncorrectCommand` class will be called to print the respective error messages
 
 **Step 3**  
-A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
+A new instance of `DeleteCommand` with `delete index` initialized will be created. The `DeleteCommand#execute()` will be called.
 
 **Step 4**  
-The `execute()` method will do 2 things:
+The `DeleteCommand#execute()` method will do 2 things:
 
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+-   If there are no tasks in the existing task list, it will create a new instance of `CommandResult` that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, the `DeleteCommand` class will call the `deleteTask()` method from the `TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will initialize a new `CommandResult` class that prints out the success message for task deletion.
+-   If there are tasks in the existing task list, the `DeleteCommand` class will call the `TaskList#deleteTask()` method to delete the task, based on the index. At the end of the execution, 
+the `DeleteCommand` class will create a new instance of `CommandResult` class that prints out the success message for task deletion.
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete1.png)
+![delete task](images/delete.png)
 
 #### 3.1.1. Design Considerations
 
 -   Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within the `execute()` method of the `DeleteCommand` class
 
-    -   Pros: Easier implementation for other classes that requires the same use.
+    -   Pros: Easier implementation for other classes that requires the same use. 
 
-    -   Cons: Increased coupling amongst classes, which makes it harder for testing.
+    -   Cons: Additional functional call to `TaskList#deleteTask` is needed to delete a task from the task list, which may increase time complexity of delete operation.
 
-    -   Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
+    -   Rationale: We decided to implement it in such a way because we feel that the increase is time complexity is not 
+    going to have a big impact on our code as this app is developed to be used as a CLI. Furthermore, such 
+    implementation also allows us to keep all the related commands to the list of tasks within a class which keeps our 
+    code cleaner.
 
 ### 3.2. Search task feature
 #### 3.2.1 Current Implementation
@@ -218,22 +223,22 @@ The user enters the input into the command line. Method `Parser#parseCommand()` 
 provided to obtain the `taskType`, `searchParam` and `date` .
 
 **Step 3**  
-A new instance of `SearchCommand` with the `taskType`, `searchParam` and `date` will be initialized.
+A new instance of `SearchCommand` with the `taskType`, `searchParam` and `date` will be created.
 -   `SearchCommand` contains an ArrayList `storeIndex` to store the original index of the task containing the search query.
 
--   Depending on the input that the user puts in, the `CURRENT_COMMAND_WORD` will be updated to the *command word* of the user and the 
-`CURRENT_COMMAND_USAGE` will be updated accordingly.
+-   Depending on the input that the user puts in, the `CURRENT_COMMAND_WORD` in the `SearchCommand` class will be updated to the *command word* of the user and the 
+`CURRENT_COMMAND_USAGE` in the `SearchCommand` class will be updated accordingly.
 
     -   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
 
-    -   Otherwise, If the `taskType` is an *assignment* or *event* , `getSearchQueryAssignments()` or `getSearchQueryEvents()`will be called respectively.
+    -   Otherwise, If the `taskType` is an *assignment* or *event* , `SearchCommand#getSearchQueryAssignments()` or `SearcCommand#getSearchQueryEvents()`will be called respectively.
     
         -   In the method, a *linked hash map* will be used to store the results from `Parser#getEventsHashMap()` and `Parser#getAssignmentsHashMap()` respectively.
         
         -   We will iterate through the linked hash map to find the *events* or *assignments* matching the search query and date(if applicable) and add the
         original index to the `storeIndex` and return an ArrayList containing the results.
         
-    -   Lastly, If `taskType` is *all*, `getSearchQueryAllTasks` will be called.
+    -   Lastly, If `taskType` is *all*, `SearchCommand#etSearchQueryAllTasks` will be called.
         
         -   In the method, an *ArrayList* will be used to store the updated task list from `Parser#getTaskArray()`
         
@@ -247,15 +252,28 @@ for printing out to the users.
 **Step 5**  
 The String results from Step 5 will be parsed into `SearchCommand#resultsList` to print out the results.
 
--   If there are no matching search query, a new `CommandResult` class will be called to print out the error message, indicating no matching search query,
+-   If there are no matching search query, a new instance of `CommandResult` class will be created to print out the error message, indicating no matching search query,
 
--   Otherwise, a new `CommandResult` class will be called to print out the search results.
+-   Otherwise, a new `CommandResult` class will be created to print out the search results.
         
 The following sequence diagram summarizes how the *search* and *searchd* command works :
 
-![Search operations](images/search1.png)
+![Search operations](images/search.png)
 
 #### 3.2.2. Design Considerations:
+
+-   Using Linked HashMap to store key-value pairs for *events* and *assignments*
+
+    -   Rationale:
+        To maintain an ordering among the events and assignments that we iterate through so that there is no need to sort through the list again to restore the original ordering
+        
+    -   Alternatives Considered:
+    
+        1.  Use a HashMap to store the key-value pairs
+        
+            -   Pros: HashMap does not maintain a doubly-linked list running though all entries so there is less overhead as compared to a Linked HashMap, leading to better performance in terms of memory usage
+            
+            -   Cons: HashMap does not maintain an iteration order so more sorting has to be done to restore the original order, which will incur additional time complexities
 
 -   Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
 
@@ -281,45 +299,45 @@ The following sequence diagram summarizes how the *search* and *searchd* command
 
 The `ClearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function has to be executed
 
-Given below is an example usage of the `clear all` command:
+Example 1: Given below is an example usage of the `clear all` command:
 
 **Step 1**  
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+The user enters `clear all` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
 
 **Step 3**  
 A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
 
 **Step 4**  
-The `execute()` method will then call the `clearAll()` method in the `ClearCommand` class :
+The `execute()` method will then call the `ClearCommand#clearAll()`.
 
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+-   If there are no tasks in the existing task list, it will create a new instance of `CommandResult` class that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, it will call the `clearList()` method from the `TaskList` class to clear the existing taskList
+-   If there are tasks in the existing task list, it will call the `TaskList#clearList()` method to clear the existing taskList
 
-Given below is an example usage of `clear done` command:
+Example 2: Given below is an example usage of `clear done` command:
 
 **Step 1**  
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+The user enters `clear all` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
 
 **Step 3**  
-A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
+A new instance of `ClearCommand` with `clearParam` initialized will be created. The `DeleteCommand#execute()` will then be called.
 
 **Step 4**  
-The `execute()` method will then call the `clearDone()` method in the `ClearCommand` class :
+The `execute()` method will then call the `ClearCommand#clearDone()` :
 
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+-   If there are no tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()` method in the `TaskList` class
+-   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method.
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
-![clear command](images/clear1.png)
+![clear command](images/clear.png)
 
 #### 3.3.2. Design Considerations
 
