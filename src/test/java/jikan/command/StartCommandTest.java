@@ -119,12 +119,10 @@ class StartCommandTest {
             command.executeCommand(activities);
             assertNull(Parser.startTime);
             assertNull(Parser.activityName);
-        } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException e) {
+        } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException
+                | NameTooLongException e) {
             System.out.println("Field error.");
-        } catch (NameTooLongException e) {
-            Log.makeInfoLog("Activity name longer than 25 characters");
-            Ui.printDivider("Error: activity name is longer than 25 characters.");
-        }
+        } 
         resetFields();
     }
 }
