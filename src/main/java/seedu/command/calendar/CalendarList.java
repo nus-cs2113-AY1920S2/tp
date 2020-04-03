@@ -3,7 +3,7 @@ package seedu.command.calendar;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.event.Seminar;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public class CalendarList {
      * @param eventList List of all the events.
      * @param year Year which the user input.
      * @param semester Semester which the user input.
-     * @throws DukeException If list is empty.
+     * @throws PacException If list is empty.
      */
-    public void showEvents(EventList eventList, int year, int semester) throws DukeException {
+    public void showEvents(EventList eventList, int year, int semester) throws PacException {
         ArrayList<Event> semesterList = getSemesterEvents(eventList, semester);
         ArrayList<Event> yearList = getAcademicYearEvents(semesterList, year);
         ArrayList<ArrayList<String>> monthList = getMonthEvents(yearList);
@@ -38,9 +38,9 @@ public class CalendarList {
      * @param eventList List of all the events.
      * @param semester Semester that user input.
      * @return Events under the required semester.
-     * @throws DukeException If no events can be found.
+     * @throws PacException If no events can be found.
      */
-    private ArrayList<Event> getSemesterEvents(EventList eventList, int semester) throws DukeException {
+    private ArrayList<Event> getSemesterEvents(EventList eventList, int semester) throws PacException {
         ArrayList<Event> list;
         switch (semester) {
         case 1:
@@ -50,7 +50,7 @@ public class CalendarList {
             list = getSemesterTwoEvents(eventList);
             break;
         default:
-            throw new DukeException("Could not find any events");
+            throw new PacException("Could not find any events");
         }
         return list;
     }
@@ -60,9 +60,9 @@ public class CalendarList {
      *
      * @param eventList List of all the events.
      * @return list of events that fall under semester 1, ie. jul - dec
-     * @throws DukeException If unable to find the index of the event.
+     * @throws PacException If unable to find the index of the event.
      */
-    private ArrayList<Event> getSemesterOneEvents(EventList eventList) throws DukeException {
+    private ArrayList<Event> getSemesterOneEvents(EventList eventList) throws PacException {
         ArrayList<Event> list = new ArrayList<>();
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
@@ -78,9 +78,9 @@ public class CalendarList {
      *
      * @param eventList List of all the events.
      * @return list of events that fall under semester 2, ie. jan - jun.
-     * @throws DukeException If unable to find the index of the event.
+     * @throws PacException If unable to find the index of the event.
      */
-    private ArrayList<Event> getSemesterTwoEvents(EventList eventList) throws DukeException {
+    private ArrayList<Event> getSemesterTwoEvents(EventList eventList) throws PacException {
         ArrayList<Event> list = new ArrayList<>();
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
@@ -99,7 +99,7 @@ public class CalendarList {
      * @param year Year that the user wants to see the events under.
      * @return List with events that fall under the correct year.
      */
-    private ArrayList<Event> getAcademicYearEvents(ArrayList<Event> semesterList, int year) throws DukeException {
+    private ArrayList<Event> getAcademicYearEvents(ArrayList<Event> semesterList, int year) throws PacException {
         ArrayList<Event> yearList = new ArrayList<>();
         for (Event event : semesterList) {
             if (event.getYear().equals(year)) {
@@ -107,7 +107,7 @@ public class CalendarList {
             }
         }
         if (yearList.isEmpty()) {
-            throw new DukeException("Unable to find any events for this time period.");
+            throw new PacException("Unable to find any events for this time period.");
         }
         return yearList;
     }
@@ -118,10 +118,10 @@ public class CalendarList {
      *
      * @param yearList list events that falls under the correct year.
      * @return 2d ArrayList monthList that has all the events sorted into the correct month.
-     * @throws DukeException If the month cannot be found.
+     * @throws PacException If the month cannot be found.
      */
     private ArrayList<ArrayList<String>> getMonthEvents(ArrayList<Event> yearList)
-            throws DukeException {
+            throws PacException {
 
         ArrayList<ArrayList<String>> monthList = initializeMonthList();
         for (Event event : yearList) {
@@ -153,7 +153,7 @@ public class CalendarList {
                 monthList.get(5).add(description);
                 break;
             default:
-                throw new DukeException("Month not found");
+                throw new PacException("Month not found");
             }
         }
         return monthList;

@@ -1,6 +1,6 @@
 package seedu.attendance;
 
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
@@ -34,9 +34,9 @@ public class AttendanceList {
         ui.addAttendanceMessage(attendance.studentName, attendance.getAttendanceStatus(), eventName);
     }
 
-    public void printList() throws DukeException {
+    public void printList() throws PacException {
         if (isEmpty()) {
-            throw new DukeException("No attendance list under this event");
+            throw new PacException("No attendance list under this event");
         }
         int i = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Status");
@@ -68,5 +68,14 @@ public class AttendanceList {
 
     public void sortByStatus() {
         Collections.sort(attendanceList,attendanceStatusComparator);
+    }
+
+    public boolean isDuplicate(String name) {
+        for (int i = 0; i < attendanceList.size(); i++) {
+            if (attendanceList.get(i).getStudentName().toLowerCase().equals(name.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

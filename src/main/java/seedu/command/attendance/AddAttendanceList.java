@@ -3,12 +3,14 @@ package seedu.command.attendance;
 import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
+import seedu.student.StudentList;
+import seedu.parser.AttendanceParser;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 /**
  * Class representing an attendance related command to add an attendanceList for a specific event.
@@ -18,6 +20,7 @@ import static seedu.duke.Duke.studentListCollection;
  */
 public class AddAttendanceList extends Command {
 
+    protected AttendanceParser attendanceParser = new AttendanceParser();
     protected AttendanceList attendances;
     protected String eventName;
     private UI ui;
@@ -30,14 +33,14 @@ public class AddAttendanceList extends Command {
 
     /**
      * Method to decide whether user wants to create a new list or use an existing student list.
-     * @throws DukeException If studentNameList is empty.
+     * @throws PacException If studentNameList is empty.
      */
-    public void addToList() throws DukeException {
-        System.out.println("Would you like to import an existing student list? "
+    public void addToList() throws PacException {
+        UI.display("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         if (isByNameList()) {
             if (studentListCollection.isEmpty()) {
-                ui.displayMessage("There is no existing student list to import");
+                UI.display("There is no existing student list to import");
             } else {
                 ui.printStudentListCollection();
                 ArrayList<String> studentNameList = fetchAttendanceList();
@@ -50,26 +53,53 @@ public class AddAttendanceList extends Command {
 
     /**
      * Create new attendanceList.
-     * @throws DukeException If parameter provided is invalid.
+     * @throws PacException If parameter provided is invalid.
      */
-    private void createNewList() throws DukeException {
+    private void createNewList() throws PacException {
         int studentNumber = 0;
         String name = "";
         String status = "";
-        while (!status.equals("done")) {
-            System.out.println("Please key in student name.");
-            ui.readUserInput();
-            name = ui.getUserInput();
-            if (name.equals("done")) {
-                break;
+        StudentList newStudentList = new StudentList(eventName);
+        String input = "";
+
+        UI.display("Do you wish to have line by line prompt? If so, please enter 'yes'");
+        if (isNewUser()) {
+            while (!input.toLowerCase().equals("done")) {
+                UI.display("Please key following format:\n"
+                    + "n/Name p/Status[Y/N]");
+                ui.readUserInput();
+                input = ui.getUserInput();
+                if (input.equals("done")) {
+                    break;
+                }
+                attendances.addToList(attendanceParser.parseAttendance(input), eventName);
+                newStudentList.addToList(name);
+                studentNumber++;
             }
-            System.out.println("Please key in the student's attendance status [Y/N].");
-            ui.readUserInput();
-            status = ui.getUserInput();
-            attendances.addToList(new Attendance(name,status), eventName);
-            studentNumber++;
+        } else {
+            while (!status.equals("done")) {
+                UI.display("Please key in student name.");
+                ui.readUserInput();
+                name = ui.getUserInput();
+                if (name.equals("done")) {
+                    break;
+                }
+                if (attendances.isDuplicate(name)) {
+                    UI.display("Duplicated name found, student name : [ " + name + " ] not added");
+                } else {
+                    UI.display("To mark the student as present, please use 'y' or 'Y'.");
+                    UI.display("By default the student will be marked as absent,"
+                        + " if any other input is given.");
+                    ui.readUserInput();
+                    status = ui.getUserInput();
+                    attendances.addToList(new Attendance(name, status), eventName);
+                    newStudentList.addToList(name);
+                    studentNumber++;
+                }
+            }
         }
-        System.out.println("You have successfully added "
+        studentListCollection.push(newStudentList);
+        UI.display("You have successfully added "
                 + studentNumber + " to the attendance list.\n");
     }
 
@@ -82,7 +112,7 @@ public class AddAttendanceList extends Command {
             attendances.addToList(new Attendance(studentName,
                     ui.getAttendanceStatusOfStudent(studentName)), eventName);
         }
-        System.out.println("AttendanceList added");
+        UI.display("AttendanceList added");
     }
 
     /**
@@ -92,7 +122,16 @@ public class AddAttendanceList extends Command {
      */
     private boolean isByNameList() {
         String reply = ui.getStringInput();
-        if (reply.contains("yes")) {
+        if (reply.toLowerCase().contains("yes")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isNewUser() {
+        String reply = ui.getStringInput();
+        if (reply.toLowerCase().contains("yes")) {
             return true;
         } else {
             return false;
@@ -103,25 +142,25 @@ public class AddAttendanceList extends Command {
      * Method to fetch studentList from studentListCollection.
      * User can select base on the index given.
      * @return A studentList selected from the studentListCollection.
-     * @throws DukeException If a string is given instead of an integer.
+     * @throws PacException If a string is given instead of an integer.
      */
-    private ArrayList<String> fetchAttendanceList() throws DukeException {
-        ui.displayMessage("Please state the index of the studentList that you wish to import");
+    private ArrayList<String> fetchAttendanceList() throws PacException {
+        UI.display("Please state the index of the studentList that you wish to import");
         ui.readUserInput();
         try {
             int index = Integer.parseInt(ui.getUserInput());
             return studentListCollection.get(index - 1).getStudentList();
         } catch (Exception e) {
-            throw new DukeException("Invalid Format");
+            throw new PacException("Invalid Format");
         }
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         try {
             addToList();
         } catch (Exception e) {
-            throw new DukeException("Attendance List fail to add. If you wish to add attendance again,\n"
+            throw new PacException("Attendance List fail to add. If you wish to add attendance again,\n"
                     + "please type the command 'attendance add' again");
         }
 

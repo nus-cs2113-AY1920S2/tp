@@ -1,7 +1,7 @@
 package seedu.command.performance;
 
 import seedu.command.Command;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
@@ -25,7 +25,7 @@ public class SortPerformanceListByGrade extends Command {
      */
     private void sort() {
         if (performances.isEmpty()) {
-            ui.displayMessage("An empty list cannot be sorted");
+            UI.display("An empty list cannot be sorted");
         } else {
             performances.sortByGrade();
             ui.sortPerformanceByName(eventName);
@@ -33,7 +33,7 @@ public class SortPerformanceListByGrade extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         sort();
     }
 }

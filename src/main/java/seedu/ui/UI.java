@@ -1,14 +1,14 @@
 package seedu.ui;
 
 import seedu.student.StudentList;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.performance.Performance;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import static seedu.duke.Duke.studentListCollection;
+import static seedu.pac.Pac.studentListCollection;
 
 public class UI {
     private static String userName;
@@ -118,6 +118,12 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
+    public void printInvalidDateTimeFormat() {
+        System.out.println("Datetime is not set. If you wish to add datetime, please enter the correct format:"
+                + "yyyy-MM-dd HHmm");
+    }
+
+
 
     public void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
         printCalendarHorizontalLine();
@@ -130,13 +136,13 @@ public class UI {
     public void printCalendarHorizontalLine() {
         Stream.generate(() -> " _").limit(1).forEach(System.out::print);
         Stream.generate(() -> "_").limit(130).forEach(System.out::print);
-        System.out.println(" ");
+        UI.display(" ");
     }
 
 
     public void printCalendarHeader(int semesterOneYear, int semesterTwoYear,
                                      int semester) {
-        System.out.println();
+        UI.display("");
         printCalendarHeading(semesterOneYear, semesterTwoYear, semester);
         printCalendarMonthsHeading(semester);
     }
@@ -167,9 +173,9 @@ public class UI {
      * @param performance The Performance deleted.
      */
     public void deletePerformanceMessage(Performance performance, String eventName,
-                                         boolean hasDeleted) throws DukeException {
+                                         boolean hasDeleted) throws PacException {
         if (!hasDeleted) {
-            throw new DukeException("Performance not found in list");
+            throw new PacException("Performance not found in list");
         }
         String studentName = performance.getStudent();
         System.out.printf("The result of student %s has been deleted "
@@ -177,20 +183,20 @@ public class UI {
     }
 
     public String getResultOfStudent(String studentName) {
-        System.out.println("Please key in the result for student " + studentName);
+        UI.display("Please key in the result for student " + studentName);
         readUserInput();
         return getUserInput();
     }
 
     public String getAttendanceStatusOfStudent(String studentName) {
-        System.out.println("Please key in the attendance status for student " + studentName + "[Y/N]");
+        UI.display("Please key in the attendance status for student " + studentName + "[Y/N]");
         readUserInput();
         return getUserInput();
     }
 
     public String getPerformanceParameter() {
-        System.out.println("Please key in student name and result in the following format:");
-        System.out.println("n/Student_Name r/result. If you are finished, enter done.");
+        UI.display("Please key in student name and result in the following format:");
+        UI.display("n/Student_Name r/result. If you are finished, enter done.");
         readUserInput();
         return getUserInput();
     }
@@ -202,7 +208,7 @@ public class UI {
     }
 
     public String getTypeOfAddPerformance() {
-        System.out.println("Would you like to import an existing student list? "
+        UI.display("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         return getStringInput();
     }
@@ -213,47 +219,49 @@ public class UI {
     }
 
     public String getEventName() {
-        System.out.println("Please key in the name of event that "
+        UI.display("Please key in the name of event that "
                 + "you wish to access to its student's performance.");
         readUserInput();
         return getUserInput();
     }
 
     public String getEventNameForAttendance() {
-        System.out.println("Please key in the name of event.");
+        UI.display("Please key in the name of event.");
         readUserInput();
         return getUserInput();
     }
 
     public void clearAttendanceMessage(String eventName) {
-        System.out.println("Attendance List cleared for Event: " + eventName);
+        UI.display("Attendance List cleared for Event: " + eventName);
     }
 
     public void sortAttendanceByStatus(String eventName) {
-        System.out.println("Attendance List is sorted by name for Event: " + eventName);
+        UI.display("Attendance List is sorted by name for Event: " + eventName);
     }
 
     public void sortAttendanceByName(String eventName) {
-        System.out.println("Attendance List is sorted by attendance status for Event:  " + eventName);
+        UI.display("Attendance List is sorted by attendance status for Event:  " + eventName);
     }
 
     public void sortPerformanceByName(String eventName) {
-        System.out.println("Performance List is sorted by Performance name for Event:  " + eventName);
+        UI.display("Performance List is sorted by Performance name for Event:  " + eventName);
     }
 
     public String getSortType() {
-        System.out.println("Do you want to sort by students' name or grade?");
+        UI.display("Do you want to sort by students' name or grade?");
         return getStringInput().toLowerCase();
     }
 
-    public void addStudent(StudentList studentList) {
-        String studentName;
+    public void addStudent(StudentList studentList) throws PacException {
+        String studentName = "";
         do {
-            System.out.println("Please enter a student Name. If you are finished, enter done");
+            UI.display("Please enter a student Name. If you are finished, enter done");
             readUserInput();
-            studentName = getUserInput();
+            studentName = getUserInput().trim();
             if (studentName.equals("done")) {
                 break;
+            } else if (studentList.isDuplicate(studentName)) {
+                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed");
             } else {
                 studentList.addToList(studentName);
             }
@@ -261,14 +269,14 @@ public class UI {
     }
 
     public String getListName() {
-        System.out.println("What is the name of your list?");
+        UI.display("What is the name of your list?");
         readUserInput();
         return getUserInput();
     }
 
     public void printStudentListCollection() {
         if (studentListCollection.isEmpty()) {
-            System.out.println("The student list collection is currently empty");
+            UI.display("The student list collection is currently empty");
         } else {
             DisplayTable displayTable = new DisplayTable();
             for (int i = 0; i < studentListCollection.size(); i++) {
@@ -281,9 +289,5 @@ public class UI {
                 }
             }
         }
-    }
-
-    public void displayMessage(String message) {
-        System.out.println(message);
     }
 }

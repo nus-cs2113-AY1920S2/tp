@@ -3,69 +3,82 @@ package seedu.ui;
 public class Help extends UI {
 
     public void printGetHelp() {
-        System.out.println("Hello, please select the type of "
-                + "command that you wish to get the format for.");
-        System.out.println("1. Event");
-        System.out.println("2. Attendance");
-        System.out.println("3. Performance");
-        System.out.println("4. Student List");
-        System.out.println("To track any list, input: type_of_list list");
-        System.out.println("Note: All command are NOT case sensitive.");
+        StringBuilder output = new StringBuilder(
+            "Hello, please select 1-4 for its command format.\n"
+            + "1. Event-related\n"
+            + "2. Attendance\n"
+            + "3. Performance\n"
+            + "4. Student List\n"
+        );
+        output.append("To track any list, input: <type_of_list> list\n");
+        output.append("Note: All command are NOT case sensitive.\n");
+
+        display(output.toString());
     }
 
     public void printEventHelp() {
-        System.out.print("To add an event, use the following format:\n\t"
-                + "Event add n/Event_name v/Venue_name d/yyyy-MM-dd. "
-                + "You may also replace 'Event' with one of the following type:"
-                + "\n\t- Seminar\n\t- Exam\n\t- Tutorial\n\n");
-        System.out.print("To edit an event, use the following format:\n\t"
-                + "Event editDateTime i/index_of_Event, or\n\t"
-                + "Event editName i/index_of_Event, or\n\t"
-                + "Event editVenue i/index_of_Event, or\n\t"
-                + "Event editEvent (please edit these lines)\n\n");
-        System.out.print("To edit an event, use the following format:\n\t"
-                + "Event editDateTime i/index_of_Event, or\n\t"
-                + "Event editName i/index_of_Event, or\n\t"
-                + "Event editVenue i/index_of_Event, or\n\t"
-                + "Event editEvent (please edit these lines)\n\n");
+        StringBuilder output = new StringBuilder(
+            "To add an event, use this command the following format:\n"
+            + "\tEvent add n/Event_name [v/Venue_name] [d/yyyy-MM-dd t/HHmm].\n"
+            + "\n"
+            + "You may also replace 'Event' with one of the following type:\n"
+            + "\t- Seminar\n"
+            + "\n"
+        );
+        output.append(
+            "To edit an event, use these commands with the following format:\n"
+            + "\tEvent editDateTime i/Event_index d/yyyy-MM-dd t/HHmm, or\n"
+            + "\tEvent editName i/Event_index n/Event_name, or\n"
+            + "\tEvent editVenue i/Event_index v/Event_venue, or\n"
+            + "\tEvent editEvent i/Event_index n/Event_name [d/yyyy-MM-dd t/HHmm] [v/Event_venue]\n"
+            + "\n"
+        );
+        output.append(
+            "To list all events, use the command\n"
+            + "\tevent list\n"
+            + "\n"
+            + "To delete an event, use the command\n"
+            + "\tevent delete i/Event_index\n"
+        );
+        display(output.toString());
     }
 
     public void printPerformanceHelp() {
-        System.out.println("All performance list should exist under an existing event."
+        display("All performance list should exist under an existing event."
                 + "Follow step-by-step commands after the following commands are input.");
-        System.out.println("To add students' performance, input:\n\t"
+        display("To add students' performance, input:\n\t"
                 + "performance add\n");
-        System.out.println("To delete a student's performance under an event, input:\n\t"
+        display("To delete a student's performance under an event, input:\n\t"
                 + "Performance delete\n");
-        System.out.println("To sort a student's performance list under an event, input:\n\t"
+        display("To sort a student's performance list under an event, input:\n\t"
                 + "Performance sort\n");
     }
 
     public void printAttendanceHelp() {
-        System.out.println("All attendance list should exist under an existing event."
+        display("All attendance list should exist under an existing event."
                 + "Follow step-by-step commands after the following commands are input.");
-        System.out.println("To add students' attendance, input:\n\t"
+        display("To add students' attendance, input:\n\t"
                 + "Attendance add\n");
-        System.out.println("To delete a student's attendance, input:\n\t"
+        display("To delete a student's attendance, input:\n\t"
                 + "Attendance delete\n");
-        System.out.println("To sort a student's attendance list, input:\n\t"
+        display("To sort a student's attendance list, input:\n\t"
                 + "Attendance sort\n");
     }
 
     public void printStudentListHelp() {
         System.out.print("To create a new studentList for future events, input:\n\t"
-                + "student add\n\n");
+                + "student.list add\n\n");
         System.out.print("To delete an existing studentList, input:\n\t"
-                + "student delete (index)\n\n");
+                + "student.list delete (index)\n\n");
         System.out.print("To clear all existing studentList, input:\n\t"
-                + "student clear\n\n");
+                + "student.list clear\n\n");
         System.out.print("To find an existing studentList, input:\n\t"
-                + "student find\n\n");
+                + "student.list find\n\n");
         System.out.print("To list all existing studentList, input:\n\t"
-                + "student list\n\n");
+                + "student.list list\n\n");
         System.out.print("To sort all existing studentList by their names, input:\n\t"
-                + "student sort/by/name\n\n");
+                + "student.list sort/by/name\n\n");
         System.out.print("To sort all name within the existing studentList, input:\n\t"
-                + "student sort/by/list\n\n");
+                + "student.list sort/by/list\n\n");
     }
 }

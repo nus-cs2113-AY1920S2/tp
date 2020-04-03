@@ -2,7 +2,7 @@ package seedu.command.calendar;
 
 import seedu.command.Command;
 import seedu.event.EventList;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 
 public class AddSemester extends Command {
     private EventList eventList;
@@ -18,7 +18,7 @@ public class AddSemester extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws PacException {
         calendarList.showEvents(eventList, year, semester);
     }
 }

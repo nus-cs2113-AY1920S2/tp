@@ -1,7 +1,6 @@
 package seedu.event;
 
-import seedu.duke.Duke;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 import seedu.ui.DisplayList;
 import seedu.ui.UI;
 
@@ -25,11 +24,10 @@ public class EventList {
      * Add the specified event to the end of list.
      * @param event the event to be appended
      */
-    public void add(Event event) throws DukeException {
+    public void add(Event event) throws PacException {
         checkDuplicateName(event.getName());
         if (!event.dateTimeIsParsed()) {
-            ui.displayMessage("Datetime is not set. If you wish to add datetime, please enter the correct format:"
-                    + "yyyy-MM-dd HHmm");
+            ui.printInvalidDateTimeFormat();
         }
         list.add(event);
         if (event instanceof Seminar) {
@@ -39,10 +37,11 @@ public class EventList {
         }
     }
 
-    private void checkDuplicateName(String eventName) throws DukeException {
+    private void checkDuplicateName(String newEventName) throws PacException {
         for (Event event : list) {
-            if (event.getName().equals(eventName)) {
-                throw new DukeException("Event already exists in the list. Please add a new Event.");
+            String oldEventName = event.getName().toLowerCase();
+            if (oldEventName.equals(newEventName.toLowerCase())) {
+                throw new PacException("Event already exists in the list. Please add a new Event.");
             }
         }
     }
@@ -65,14 +64,12 @@ public class EventList {
      *
      * @param index the index of the element to be removed
      */
-    public void delete(int index) throws DukeException {
+    public void delete(int index) throws PacException {
         if (index < 0) {
-            ui.displayMessage("Invalid index, must start from 1.");
-            throw new DukeException("Invalid index, must start from 1.");
+            throw new PacException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
-            ui.displayMessage("Index not found.");
-            throw new DukeException("Index not found.");
+            throw new PacException("Index not found.");
         }
 
         if (list.get(index) instanceof Seminar) {
@@ -87,16 +84,14 @@ public class EventList {
      * Returns the event at the specified position in this list.
      * @param index index of the event to find.
      * @return the event in the specified position.
-     * @throws DukeException If list is empty.
+     * @throws PacException If list is empty.
      */
-    public Event find(int index) throws DukeException {
+    public Event find(int index) throws PacException {
         if (index < 0) {
-            ui.displayMessage("Invalid index, must start from 1.");
-            throw new DukeException("Invalid index, must start from 1.");
+            throw new PacException("Invalid index, must start from 1.");
         }
         if (index >= list.size()) {
-            ui.displayMessage("Index not found.");
-            throw new DukeException("Index not found.");
+            throw new PacException("Index not found.");
         }
         return list.get(index);
     }
@@ -106,9 +101,9 @@ public class EventList {
      * @param index index of the event
      * @param name new name for the event
      */
-    public void editName(int index, String name) throws DukeException {
+    public void editName(int index, String name) throws PacException {
         if (name.isEmpty()) {
-            throw new DukeException("Event name is empty");
+            throw new PacException("Event name is empty");
         }
         checkDuplicateName(name);
         Event event = this.find(index);
@@ -125,12 +120,12 @@ public class EventList {
      * @param index index of the event
      * @param datetime new datetime for the event
      */
-    public void editDatetime(int index, String datetime) throws DukeException {
+    public void editDatetime(int index, String datetime) throws PacException {
         Event event = this.find(index);
         String oldDateTime = event.getDatetime();
         event.setDatetime(datetime);
         if (!event.dateTimeIsParsed()) {
-            throw new DukeException("Wrong format for date and time. Please enter: yyyy-MM-dd HHmm");
+            throw new PacException("Wrong format for date and time. Please enter: yyyy-MM-dd HHmm");
         }
         String newDateTime = event.getDatetime();
         if (event instanceof Seminar) {
@@ -145,9 +140,9 @@ public class EventList {
      * @param index index of the event
      * @param venue new venue for the event
      */
-    public void editVenue(int index, String venue) throws DukeException {
+    public void editVenue(int index, String venue) throws PacException {
         if (venue.isEmpty()) {
-            throw new DukeException("Venue is empty");
+            throw new PacException("Venue is empty");
         }
         Event event = this.find(index);
         if (event instanceof Seminar) {
@@ -163,12 +158,11 @@ public class EventList {
      *
      * @param index Index of the event to be edited.
      * @param event New event that user inputs.
-     * @throws DukeException If list is empty.
+     * @throws PacException If list is empty.
      */
-    public void editEvent(int index, Event event) throws DukeException {
+    public void editEvent(int index, Event event) throws PacException {
         if (index >= list.size()) {
-            ui.displayMessage("Index not found");
-            throw new DukeException("Index not found.");
+            throw new PacException("Index not found.");
         }
         if (event instanceof Seminar) {
             ui.editEventMessage(list.get(index).toString(), event.toString(), "Seminar");
@@ -178,8 +172,7 @@ public class EventList {
         list.remove(index);
         list.add(index, event);
         if (!event.dateTimeIsParsed()) {
-            ui.displayMessage("Datetime is not set. If you wish to add datetime, please enter the correct format:"
-                    + "yyyy-MM-dd HHmm");
+            ui.printInvalidDateTimeFormat();
         }
     }
 
@@ -187,29 +180,26 @@ public class EventList {
         return list.size();
     }
 
-    public Event getEvent(String eventName) throws DukeException {
+    public Event getEvent(String eventName) throws PacException {
         if (list.isEmpty()) {
-            ui.displayMessage("The event list is empty");
-            throw new DukeException("The event list is empty.");
+            throw new PacException("The event list is empty.");
         }
         for (Event event : list) {
             if (event.getName().equals(eventName)) {
                 return event;
             }
         }
-        ui.displayMessage("Event is not found in the list.");
-        throw new DukeException("Event is not found in the list.");
+        throw new PacException("Event is not found in the list.");
     }
 
     /**
      * Lists all types of events.
      *
-     * @throws DukeException If list is empty.
+     * @throws PacException If list is empty.
      */
-    public void listEvent() throws DukeException {
+    public void listEvent() throws PacException {
         if (list.isEmpty()) {
-            ui.displayMessage("The event list is empty");
-            throw new DukeException("The event list is empty.");
+            throw new PacException("The event list is empty.");
         }
         displayList.printEventList(list, "event");
     }
@@ -217,12 +207,11 @@ public class EventList {
     /**
      * Lists out events that are of seminar type only.
      *
-     * @throws DukeException If list is empty.
+     * @throws PacException If list is empty.
      */
-    public void listSeminar() throws DukeException {
+    public void listSeminar() throws PacException {
         if (list.isEmpty()) {
-            ui.displayMessage("The event list is empty");
-            throw new DukeException("The event list is empty.");
+            throw new PacException("The event list is empty.");
         }
         ArrayList<Event> seminarList = new ArrayList<>();
         for (Event item : list) {

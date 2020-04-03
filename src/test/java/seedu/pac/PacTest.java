@@ -1,24 +1,24 @@
-package seedu.duke;
+package seedu.pac;
 
 import org.junit.jupiter.api.Test;
 import seedu.command.Bye;
-import seedu.exception.DukeException;
+import seedu.exception.PacException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class DukeTest {
-    Duke duke;
+class PacTest {
+    Pac pac;
 
-    public DukeTest() {
+    public PacTest() {
         try {
-            duke = new Duke();
-        } catch (DukeException m) {
+            pac = new Pac();
+        } catch (PacException m) {
             System.out.println(m.getMessage());
         }
     }
 
     @Test
     void checkBye() {
-        assertFalse(duke.isNotBye(new Bye()));
+        assertFalse(pac.isNotBye(new Bye()));
     }
 }
