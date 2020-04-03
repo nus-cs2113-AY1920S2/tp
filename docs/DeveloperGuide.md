@@ -163,7 +163,8 @@ calculate CAP by looking for all the completed `SelectedModules` stored within `
 `SemesterList`. It will then assign a `double` type ranging from 0.00 to 5.00 to `Person.totalCap`.
 
 Step 4:
-After the CAP is assigned to `Person.totalCap`, `Person.totalCap` is then called and formatted using `DecimalFormat` into a `String`
+After the CAP is assigned to `Person.totalCap`, `Person.totalCap` is then called and formatted using `DecimalFormat` 
+into a `String`
 with a pattern of `#.00`. `Ui.showcap(cap)` is called to display the user's cap using the formatted `String`.
 
 The following diagram shows how the Calculate CAP operation works:
@@ -230,7 +231,8 @@ Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app
 |***|New user|see usage instructions|Refer to instructions when I forgot how to use the App|
 |***|User|Mark module as done|Update my study plan according to modules that I have completed|
 |**|User|Calculate cap|Check my current cap based on modules I have completed|
-|**|User|find a module by name or module code|Locate a module and its module code without having to go through all the modules|
+|**|User|find a module by name or module code|Locate a module and its module code without having to go through all the 
+modules|
 
 
 ## Non-Functional Requirements
