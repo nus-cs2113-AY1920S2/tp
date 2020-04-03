@@ -37,7 +37,8 @@ public class Parser {
      * @throws EscException An exception is issued if the command issued by the user is invalid.
      */
     public static Command parse(String userInput) throws EscException {
-        String[] arguments = userInput.split(" ",2);
+        String userInputTrimmed = userInput.trim();
+        String[] arguments = userInputTrimmed.split(" ",2);
         String command = arguments[0].trim();
 
         switch (command) {
