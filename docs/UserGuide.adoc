@@ -25,7 +25,7 @@ SHOCO is a command-line interface (CLI) application that allows you to  manage a
 With better organisation and also a budget tracker, we are here to enhance your grocery-shopping experience and make the woes of grocery shopping disappear.
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 == Quick Start
@@ -37,7 +37,7 @@ back to top>>+++</b>+++
 &nbsp;
 // @@author
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 == Features
@@ -60,7 +60,7 @@ in `ADD i/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `ADD i
 // @@author
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -93,7 +93,7 @@ Example of usage:
 
 // end::Add[]
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 // @@author trishaangelica
 
@@ -132,7 +132,7 @@ Examples of usage:
 
 // end::Edit[]
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 // @@author
 
@@ -160,7 +160,7 @@ Example of usage:
 &nbsp;
 
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -176,7 +176,7 @@ Format: `CLEAR`
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -197,7 +197,7 @@ Example of the usage:
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -219,7 +219,7 @@ Example of the usage:
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -234,7 +234,7 @@ Format: `DISPLAY`
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -258,7 +258,7 @@ Example of usage:
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -272,7 +272,7 @@ Format: `RES`
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -296,7 +296,7 @@ Example of usage:
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -310,7 +310,7 @@ Format: `HELP`
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -325,7 +325,7 @@ Format: `BYE`
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 '''
@@ -349,7 +349,7 @@ This message will only stop appearing when you increase your budget amount suffi
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -372,7 +372,7 @@ It is however, possible to manually backup the `shoppinglist.json` file from tim
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -394,5 +394,5 @@ back to top>>+++</b>+++
 
 &nbsp;
 
-+++<b>+++<<shoco-v20---user-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,&#129053;
 back to top>>+++</b>+++

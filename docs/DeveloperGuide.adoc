@@ -26,7 +26,7 @@ This document describes the software architecture and design for the implementat
 
 &nbsp;
 
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++ &nbsp;
 
 == 2. Overview of the SHOCO application
@@ -34,7 +34,7 @@ back to top>>+++</b>+++ &nbsp;
 The overview of the main classes in the application are shown in the class diagram below.
 Omitted are the classes for the features implemented, the `LoadData` class, `WriteData` class, `FileUtil` class and `CommandLineTable` class.
 
-image::images/ClassDiagramFinal.png[alt text]
+image::ClassDiagramFinal.png[]
 
 // @@author kokjoon97
 
@@ -52,7 +52,7 @@ This `Command` has to be executed before `Duke` can receive more user input.
 // @@author
 &nbsp;
 
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++ &nbsp;
 
 == 3. Implementation
@@ -83,9 +83,9 @@ Process of object creation:
 The following sequence diagram below shows how the add feature works.
 The details of the adding item's values  are shown in a separate sequence diagram below:
 
-image::images/AddFeature.png[alt text]
+image::AddFeature.png[]
 
-image::images/AddFeature_SD.png[alt text]
+image::AddFeature_SD.png[]
 
 ==== 3.1.2 Design considerations
 
@@ -109,7 +109,7 @@ So they can just add it into the list,  and edit the price and quantity later wh
 // end::Add[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -141,9 +141,9 @@ The following sequence diagram below shows how the edit feature works.
 The details of updating the items' values have been omitted from the diagram.
 Those details are shown in a separate sequence diagram below:
 
-image::images/EditFeature.png[alt text]
+image::EditFeature.png[]
 
-image::images/EditFeature_SD.png[alt text]
+image::EditFeature_SD.png[]
 
 ==== 3.2.2 Design considerations
 
@@ -162,7 +162,7 @@ Futhermore, having greater freedom on input values makes it a hassle-free proces
 // end::Edit[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 // @@author
 
@@ -189,7 +189,7 @@ The process is as follows:
 The following sequence diagram below shows how the delete feature works.
 Note the `Ui` class is omitted in the sequence diagram to emphasise on the other classes:
 
-image::images/Deletefinal2.png[alt text]
+image::Deletefinal2.png[]
 
 ==== 3.3.2 Design considerations
 
@@ -206,7 +206,7 @@ image::images/Deletefinal2.png[alt text]
 // end::Delete[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -232,11 +232,11 @@ The process is as follows:
 The following sequence diagram below shows how the `Duke` object creates the `FindCommand` object.
 Note the `Ui` class is omitted in the sequence diagram to emphasise on the other classes:
 
-image::images/Findfinal2.png[alt text]
+image::Findfinal2.png[]
 
 This next sequence diagram will show how the `FindCommand` creates the `filteredItems` list:
 
-image::images/Finditemsfinal2.png[alt text]
+image::Finditemsfinal2.png[]
 
 ==== 3.4.2 Design considerations
 
@@ -254,7 +254,7 @@ image::images/Finditemsfinal2.png[alt text]
 // end::Find[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -280,11 +280,11 @@ Note the `Ui` class is omitted in the sequence diagram to emphasise on the other
 
 Diagram 1:
 
-image::images/Mark.png[alt text]
+image::Mark.png[]
 
 Diagram 2:
 
-image::images/Unmark.png[alt text]
+image::Unmark.png[]
 
 ==== 3.5.2 Design Considerations
 
@@ -300,7 +300,7 @@ image::images/Unmark.png[alt text]
 // end::MarkAndUnmark[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -326,9 +326,9 @@ The results are then printed to console.
 The following sequence diagrams below show how the display feature works.
 Note the `Ui` class is omitted to emphasise the other classes:
 
-image::images/Display.png[alt text]
+image::Display.png[]
 
-image::images/Display_SD.png[alt text]
+image::Display_SD.png[]
 
 ==== 3.6.2 Design considerations
 
@@ -345,7 +345,7 @@ Thus, the code becomes  harder to navigate and understand.
 // end::Display[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -369,7 +369,7 @@ The `Duke` class then calls the `execute` method of the `ClearCommand` object wh
 The following sequence diagram below shows how the clear list feature works.
 Note the `Ui` class is omitted to emphasise the other classes:
 
-image::images/Clear.png[alt text]
+image::Clear.png[]
 
 ==== 3.7.2 Design considerations
 
@@ -386,7 +386,7 @@ Thus, the code becomes  harder to navigate and understand.
 // end::Clear[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -411,7 +411,7 @@ The process is as follows:
 The following sequence diagram below shows how the set budget feature works.
 Note the `Ui` class is omitted in the sequence diagram to emphasise on the other classes:
 
-image::images/Setfinal2.png[alt text]
+image::Setfinal2.png[]
 
 ==== 3.8.2 Design considerations
 
@@ -430,7 +430,7 @@ It would also make it easier for us to  work in parallel.
 // end::SetBudget[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -450,7 +450,7 @@ The `Duke` class then calls the `execute` method of the `ResetBudgetCommand` obj
 The following sequence diagram below shows how the reset budget feature works.
 Note the `Ui` class is omitted in the sequence diagram to emphasise on the other classes:
 
-image::images/Reset_Budget.png[alt text]
+image::Reset_Budget.png[]
 
 ==== 3.9.2 Design considerations
 
@@ -466,7 +466,7 @@ image::images/Reset_Budget.png[alt text]
 // end::ResetBudget[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -492,7 +492,7 @@ In this method, accepted command formats are displayed to the user.
 The following sequence diagram below shows how the help feature works.
 Note the `Ui` class is omitted in the sequence diagram to emphasise on the other classes:
 
-image::images/HelpFeature.png[alt text]
+image::HelpFeature.png[]
 
 ==== 3.10.2 Design considerations
 
@@ -508,7 +508,7 @@ image::images/HelpFeature.png[alt text]
 // end::Help[]
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -531,7 +531,7 @@ In this method, the program is terminated.
 The following sequence diagram below shows how the help feature works.
 Note the `Ui` class is omitted in the sequence diagram to emphasise on the other classes:
 
-image::images/ExitFeature.png[alt text]
+image::ExitFeature.png[]
 
 ==== 3.11.2 Design considerations
 
@@ -546,7 +546,7 @@ image::images/ExitFeature.png[alt text]
 
 // end::Exit[]
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -568,7 +568,7 @@ This section talks about who this product targets and what it aims to achieve.
 * Make grocery shopping a breeze by offering greater flexibility in managing shopping lists and also providing helpful features like budget tracking
 // @@author
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -672,7 +672,7 @@ This section contains the user stories for the different versions of our product
 |===
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -686,7 +686,7 @@ back to top>>+++</b>+++
 // @@author
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -696,7 +696,7 @@ back to top>>+++</b>+++
 * _glossary item_ - Definition
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
@@ -706,7 +706,7 @@ back to top>>+++</b>+++
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 &nbsp;
-+++<b>+++<<developer-guide,&#129053;
++++<b>+++<<shoco-v21---user-guide,,&#129053;
 back to top>>+++</b>+++
 
 &nbsp;
