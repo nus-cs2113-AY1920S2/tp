@@ -92,9 +92,15 @@ public class Parser {
             }
             break;
         case "end":
+            if (tokenizedInputs.length > 1) {
+                parseDefault();
+            }
             command = new EndCommand(null);
             break;
         case "abort":
+            if (tokenizedInputs.length > 1) {
+                parseDefault();
+            }
             command = new AbortCommand(null);
             break;
         case "list":
