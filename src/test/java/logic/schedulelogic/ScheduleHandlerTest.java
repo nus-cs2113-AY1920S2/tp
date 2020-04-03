@@ -22,21 +22,6 @@ public class ScheduleHandlerTest {
     }
 
     @Test
-    public void testGetTimeFromBlock_EndTime() {
-        assertEquals(LocalTime.of(23,30), ScheduleHandler.getTimeFromBlock(46,"END"));
-    }
-
-    @Test
-    public void testGetTimeFromBlock_EndTime_Midnight() {
-        assertEquals(LocalTime.of(0,0), ScheduleHandler.getTimeFromBlock(47,"END"));
-    }
-
-    @Test
-    public void testGetTimeFromBlock_StartTime() {
-        assertEquals(LocalTime.of(23,0), ScheduleHandler.getTimeFromBlock(46,"START"));
-    }
-
-    @Test
     public void testScheduleHandler() throws MoException {
         ArrayList<Contact> myScheduleList = new ArrayList<>();
         final Contact member1 = new Contact("member1");
@@ -73,11 +58,22 @@ public class ScheduleHandlerTest {
             myMasterScheduleAnswer[1][4][j] = myScheduleBlocked;
         }
         ArrayList<ArrayList<Integer>> myFreeBlocksAnswer = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> slot1 = ScheduleHandler.makeSlot(4,36,0,25, 1, 1);
-        ArrayList<Integer> slot2 = ScheduleHandler.makeSlot(0,38,4,31, 1, 1);
+        ArrayList<Integer> slot1 = makeSlot(4,36,0,25, 1, 1);
+        ArrayList<Integer> slot2 = makeSlot(0,38,4,31, 1, 1);
         myFreeBlocksAnswer.add(slot1);
         myFreeBlocksAnswer.add(slot2);
         assertEquals(myFreeBlocksAnswer, freeBlocks);
+    }
+
+    public ArrayList<Integer> makeSlot(int startDay, int startBlock, int endDay, int endBlock, int startWeek, int endWeek) {
+        ArrayList<Integer> freeSlot = new ArrayList<Integer>();
+        freeSlot.add(startDay);
+        freeSlot.add(startBlock);
+        freeSlot.add(endDay);
+        freeSlot.add(endBlock);
+        freeSlot.add(startWeek);
+        freeSlot.add(endWeek);
+        return freeSlot;
     }
 
 }
