@@ -36,20 +36,20 @@ public class StudentCommandInterpreter extends CommandInterpreter {
             try {
                 return new AddStudentList();
             } catch (Exception e) {
-                throw new PacException("Student Command Add failed.");
+                throw new PacException("Student List Command Add failed.");
             }
 
-        case "list":
+        case "view":
             try {
                 return new ViewStudentList();
             } catch (Exception e) {
-                throw new PacException("Student Command List failed.");
+                throw new PacException("Student List Command View failed.");
             }
         case "delete":
             try {
                 return new DeleteStudentList();
             } catch (Exception e) {
-                throw new PacException("Student Command Delete failed.");
+                throw new PacException("Student List Command Delete failed.");
             }
         case "sort":
             try {
@@ -61,34 +61,34 @@ public class StudentCommandInterpreter extends CommandInterpreter {
                     try {
                         return new SortStudentListByName();
                     } catch (Exception e) {
-                        throw new PacException("Student Command Sort By Name failed.");
+                        throw new PacException("Student List Command Sort By Name failed.");
                     }
                 case "list":
                     try {
                         return new SortStudentListByList();
                     } catch (Exception e) {
-                        throw new PacException("Student Command Sort By List failed.");
+                        throw new PacException("Student List Command Sort By List failed.");
                     }
                 default:
-                    throw new PacException("Unknown Student Sort Command");
+                    throw new PacException("Unknown Student List Sort Command");
                 }
             } catch (Exception e) {
-                throw new PacException("Student Command Sort failed.");
+                throw new PacException("Student List Command Sort failed.");
             }
         case "find":
             try {
                 return new FindStudentList();
             } catch (Exception e) {
-                throw new PacException("Student Command Find failed.");
+                throw new PacException("Student List Command Find failed.");
             }
         case "clear":
             try {
                 return new ClearStudentList();
             } catch (Exception e) {
-                throw new PacException("Student Command Clear failed.");
+                throw new PacException("Student List Command Clear failed.");
             }
         default:
-            throw new PacException("Unknown Student Command.");
+            throw new PacException("Unknown Student List Command.");
         }
     }
 }

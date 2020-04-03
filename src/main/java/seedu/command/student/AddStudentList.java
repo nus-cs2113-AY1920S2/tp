@@ -26,7 +26,10 @@ public class AddStudentList extends Command {
      * Once studentList is created, it will be appended to studentListCollection.
      */
     private void addToList() throws PacException {
-        String listName = ui.getListName();
+        String listName = ui.getListName().trim();
+        if (studentListCollection.isExistedListName(listName)) {
+            throw new PacException(("There is already an existing list name!"));
+        }
         if (listName.toLowerCase().equals("done")) {
             throw new PacException("Student Add cancelled");
         }

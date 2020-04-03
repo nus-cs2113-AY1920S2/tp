@@ -16,7 +16,7 @@ public class StudentList {
 
     public StudentList(String listName) {
         this.listName = listName;
-        studentList = new ArrayList<>();
+        this.studentList = new ArrayList<>();
     }
 
     /**
@@ -97,5 +97,14 @@ public class StudentList {
 
     public boolean isEmpty() {
         return studentList.isEmpty();
+    }
+
+    public boolean isDuplicate(String name) {
+        for (int i = 0; i < studentList.size(); i++) {
+            if (studentList.get(i).toLowerCase().equals(name.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
