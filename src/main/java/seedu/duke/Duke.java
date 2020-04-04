@@ -26,11 +26,11 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(subjectList);
                 isExit = c.isExit();
+                storage.saveSubs(subjectList.getSubjects(), subjectList.getExamDates());
             } catch (EscException e) {
                 System.out.println(e.getMessage());
             }
         }
-        storage.saveSubs(subjectList.getSubjects(), subjectList.getExamDates());
     }
 
     /**

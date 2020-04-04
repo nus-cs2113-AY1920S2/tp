@@ -21,7 +21,7 @@ public class SubjectList {
 
     /**
      * Constructor for loading SubjectList.
-     * @param returnObj
+     * @param returnObj Arraylist of subjects and exams.
      */
     public SubjectList(ArrayList returnObj) {
         this.subjects = (ArrayList<Subject>) returnObj.get(0);

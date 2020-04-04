@@ -57,6 +57,7 @@ public class Storage {
      * Loads any pre-existing cards & exams from the save file into an ArrayList to be initiated.
      * @return ArrayList of pre-existing subject & exam list (if any) or blank lists
      */
+    @SuppressWarnings("unchecked")
     public static ArrayList<Subject> loadObjects() throws EscException {
         ArrayList tempSub;
         ArrayList tempExam;
@@ -111,7 +112,7 @@ public class Storage {
             objWrite.flush();
             objWrite.close();
         } catch (IOException e) {
-            throw new EscException("Save error "+e);
+            throw new EscException("Save error ");
         }
     }
 }
