@@ -34,7 +34,7 @@ class DeleteSubjectCommandTest {
     }
 
     @Test
-    void execute_indexOutOfRange_exceptionThrown() {
+    void execute_indexOutOfRange_exceptionThrown() throws EscException {
         AddSubjectCommand addSubjectCommand = new AddSubjectCommand(subjectName);
         addSubjectCommand.execute(subjectList);
         expectedException = new EscException("The subject item does not exist.");
