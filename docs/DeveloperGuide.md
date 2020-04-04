@@ -45,12 +45,12 @@ Table of Contents
     - [Continuous Integration](#52-continuous-integration)
     - [Coverage Reporting](#53-coverage-reporting)
     - [Making a Release](#54-making-a-release)
-- [Appendices](#5-appendices)
-    - [Product Scope](#51-appendix-a-product-scope)
-    - [User Stories](#52-appendix-b-user-stories)
-    - [Use Cases](#53-appendix-c-use-cases)
-    - [Non-Functional Requirements](#54-appendex-d-non-functional-requirements)
-    - [Documentation](#55-appendix-e-documentation)
+- [Appendices](#6-appendices)
+    - [Product Scope](#61-appendix-a-product-scope)
+    - [User Stories](#62-appendix-b-user-stories)
+    - [Use Cases](#63-appendix-c-use-cases)
+    - [Non-Functional Requirements](#64-appendix-d-non-functional-requirements)
+    - [Documentation](#65-appendix-e-documentation)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -700,8 +700,8 @@ To make a new release:
 4. Tag the repository with the new version number (e.g. `v2.1`).
 5. Create a new release using Github and upload the JAR file found in step 3.
 
-## 5. Appendices
-### 5.1. Appendix A: Product Scope
+## 6. Appendices
+### 6.1. Appendix A: Product Scope
 Target user profile:  
 
 -   manages many university assignments or events
@@ -716,7 +716,7 @@ Target user profile:
 
 **Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
 
-### 5.2. Appendix B: User Stories
+### 6.2. Appendix B: User Stories
 <table>
 <colgroup>
 <col width="20%" />
@@ -876,15 +876,15 @@ Target user profile:
 </tbody>
 </table>
 
-### 5.3. Appendix C: Use Cases
-### 5.4. Appendix D: Non-Functional Requirements
+### 6.3. Appendix C: Use Cases
+### 6.4. Appendix D: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
 
 3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
 
-### 5.5 Appendix E: Documentation
+### 6.5 Appendix E: Documentation
 Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
 
 [Back to Top](#)
