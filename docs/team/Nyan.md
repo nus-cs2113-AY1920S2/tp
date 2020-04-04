@@ -81,5 +81,5 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
 [Architecture](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#31-architecture)  
-[Section 4.1 to 4.1.1](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#41-patient-details-feature)  
+[Section 4.5 to 4.5.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#41-patient-details-feature)  
 [Appendices](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-user-prompting)  

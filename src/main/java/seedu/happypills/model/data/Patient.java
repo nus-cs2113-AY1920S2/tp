@@ -1,6 +1,6 @@
 package seedu.happypills.model.data;
 
-import seedu.happypills.logic.parser.Validation;
+import seedu.happypills.logic.parser.Checker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -183,7 +183,7 @@ public class Patient {
 
     private static boolean dateValidation(String date) {
         boolean status = false;
-        if (Validation.isValidDate(date)) {
+        if (Checker.isValidDate(date)) {
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             dateFormat.setLenient(false);
             try {
