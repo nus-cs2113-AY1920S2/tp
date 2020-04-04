@@ -75,8 +75,22 @@ public class Loader {
     }
 
     /**
-     * ADD JAVADOC HERE.
-     * @param article - ADD HERE.
+     * Returns a parsed string from string read from Json.
+     *
+     * @param string - String extracted from Json object.
+     * @return String that user sees.
+     */
+    private static String parseString(String string) {
+        String stringWithoutQuotations = string.substring(1, string.length() - 1);
+        String stringWithSlashesProcessed = stringWithoutQuotations.replace("\\\"", "\"");
+        String finalString = stringWithSlashesProcessed.replace("\\\\", "\\");
+        return finalString;
+    }
+
+    /**
+     * Parses Json Object representing article into String.
+     *
+     * @param article - Json object representing article.
      */
     private static void parseArticleObject(JsonObject article) {
 
@@ -85,12 +99,11 @@ public class Loader {
         JsonObject articleObject = (JsonObject) article.get(index);
         idxArticle += 1;
 
-        //Get article title
-        String title = articleObject.get("title").toString().replaceAll("\"", "");
-        String url = articleObject.get("url").toString().replaceAll("\"", "");;
-        String timeStamp = articleObject.get("timestamp").toString().replaceAll("\"", "");;
-        String extract = articleObject.get("extract").toString().replaceAll("\"", "");;
-        String category = articleObject.get("category").toString().replaceAll("\"", "");;
+        String title = parseString(articleObject.get("title").toString());
+        String url = parseString(articleObject.get("url").toString());
+        String timeStamp = parseString(articleObject.get("timestamp").toString());
+        String extract = parseString(articleObject.get("extract").toString());
+        String category = parseString(articleObject.get("category").toString());
 
         if (category == null) {
             category = "default";
@@ -110,8 +123,9 @@ public class Loader {
     }
 
     /**
-     * ADD JAVADOC HERE.
-     * @param job - ADD HERE.
+     * Parses Json Object representing job into String.
+     *
+     * @param job - Json object representing job.
      */
     private static void parseJobObject(JsonObject job) {
 
@@ -121,12 +135,11 @@ public class Loader {
         idxJob += 1;
 
         //Get article title
-        String title = jobObject.get("title").toString().replaceAll("\"", "");;
-        String text = jobObject.get("text").toString().replaceAll("\"", "");;
-        String timeStamp = jobObject.get("timestamp").toString().replaceAll("\"", "");;
-        String extract = jobObject.get("extract").toString().replaceAll("\"", "");;
-        String category = jobObject.get("category").toString().replaceAll("\"", "");;
-
+        String title = parseString(jobObject.get("title").toString());
+        String text = parseString(jobObject.get("text").toString());
+        String timeStamp = parseString(jobObject.get("timestamp").toString());
+        String extract = parseString(jobObject.get("extract").toString());
+        String category = parseString(jobObject.get("category").toString());
         if (category == null) {
             category = "default";
         }
@@ -145,8 +158,9 @@ public class Loader {
     }
 
     /**
-     * ADD JAVADOC HERE.
-     * @param note - ADD HERE.
+     * Parses Json Object representing note into String.
+     *
+     * @param note - Json object representing note.
      */
     private static void parseNoteObject(JsonObject note) {
 
@@ -155,12 +169,11 @@ public class Loader {
         JsonObject noteObject = (JsonObject) note.get(index);
         idxNotes += 1;
 
-        // Get article title
-        String title = noteObject.get("title").toString().replaceAll("\"", "");;
-        String extract = noteObject.get("extract").toString().replaceAll("\"", "");;
-        String timeStamp = noteObject.get("timestamp").toString().replaceAll("\"", "");;
-        String url = noteObject.get("url").toString().replaceAll("\"", "");;
-        String category = noteObject.get("category").toString().replaceAll("\"", "");;
+        String title = parseString(noteObject.get("title").toString());
+        String extract = parseString(noteObject.get("extract").toString());
+        String timeStamp = parseString(noteObject.get("timestamp").toString());
+        String url = parseString(noteObject.get("url").toString());
+        String category = parseString(noteObject.get("category").toString());
 
         //Creates a note and a
         Note newNote = new Note(title, extract, timeStamp);

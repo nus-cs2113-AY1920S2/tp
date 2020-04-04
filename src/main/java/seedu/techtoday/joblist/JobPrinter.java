@@ -16,15 +16,15 @@ public class JobPrinter {
         String date = TimeStampToDateConverter.execute(timeStamp);
         String title = job.getTitle();
         String text = job.getText();
-        String upToNCharactersText = text.substring(0, Math.min(text.length(), 100)) + "...";
+        String upToNCharactersText = CommonMethods.returnUptoNcharacters(text);
         String category = job.getCategory();
         String extract = job.getExtract();
-        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
+        String upToNCharactersExtract = CommonMethods.returnUptoNcharacters(extract);
         System.out.println(taskCounter + ". Title: " + title + System.lineSeparator()
                             + "   Date: " + date + System.lineSeparator()
                             + "   Category: " + category + System.lineSeparator()
                             + "   Text: " + upToNCharactersText + System.lineSeparator()
-                            + "   Extract: " + upToNCharacters);
+                            + "   Extract: " + upToNCharactersExtract);
     }
 
     /**
@@ -36,13 +36,14 @@ public class JobPrinter {
         String date = TimeStampToDateConverter.execute(timeStamp);
         String title = job.getTitle();
         String text = job.getText();
+        String upToNCharactersText = CommonMethods.returnUptoNcharacters(text);
         String category = job.getCategory();
         String extract = job.getExtract();
-        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
+        String upToNCharactersExtract = CommonMethods.returnUptoNcharacters(extract);
         System.out.println("   Title: " + title + System.lineSeparator()
                 + "   Date: " + date + System.lineSeparator()
                 + "   Category: " + category + System.lineSeparator()
-                + "   Text: " + text + System.lineSeparator()
-                + "   Extract: " + upToNCharacters);
+                + "   Text: " + upToNCharactersText + System.lineSeparator()
+                + "   Extract: " + upToNCharactersExtract);
     }
 }

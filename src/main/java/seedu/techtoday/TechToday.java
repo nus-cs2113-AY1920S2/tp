@@ -20,7 +20,7 @@ import static seedu.techtoday.common.Messages.greet;
 public class TechToday {
 
     /** Version info of the program. */
-    public static final String VERSION = "Hiroshi Nagai - Version 1.0";
+    public static final String VERSION = "TechToday - Version 2.1";
 
     public static boolean isRunning = true;
 
@@ -31,7 +31,7 @@ public class TechToday {
     public SavedNoteList savedNoteList;
 
     /** Constructor that initializes the data structures that saves technology information. */
-    public TechToday() {
+    private TechToday() {
         viewedArticleList = new ViewedArticleList();
         savedArticleList = new SavedArticleList();
         viewedJobList = new ViewedJobList();
