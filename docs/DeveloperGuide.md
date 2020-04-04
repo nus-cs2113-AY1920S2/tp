@@ -98,9 +98,9 @@ This section will describe how the main features of the application are implemen
  The following sequence diagram below shows how the add feature works. The details of the adding item's values
  are shown in a separate sequence diagram below:
  
- ![alt text](images/AddFeature.png)
+ ![alt text](images/AddFinal.png)
  
- ![alt text](images/AddFeature_SD.png)
+ ![alt text](images/AddFeature_SDFinal.png)
  
 #### 3.1.2 Design considerations
 
@@ -162,7 +162,7 @@ with the new values from the user input. This is done through the use of the <co
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
-![Edit Feature](images/EditFeature.png)
+![Edit Feature](images/EditFeatureFinal.png)
 
 ![Edit Feature SD](images/EditFeature_SD.png)
 
@@ -372,9 +372,9 @@ class.
 The following sequence diagrams below show how the display feature works. Note the <code>Ui</code> class is
 omitted to emphasise the other classes:
 
-![alt text](images/Display.png)
+![alt text](images/DisplayFinal.png)
 
-![alt text](images/Display_SD.png)
+![alt text](images/Display_SDFinal.png)
 
 #### 3.6.2 Design considerations
 ##### Aspect: Data structure to support the display feature
@@ -517,7 +517,7 @@ work in parallel.
  The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
  omitted to emphasise the other classes:
    
- ![alt text](images/Clear.png)
+ ![alt text](images/ClearFinal.png)
    
  #### 3.9.2 Design considerations
    
@@ -564,7 +564,7 @@ Once instantiated, the <code>Duke</code> then class calls the <code>execute</cod
 The following sequence diagram below shows how the help feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![Help Feature](images/HelpFeature.png)
+![Help Feature](images/HelpFeatureFinal.png)
 
 #### 3.10.2 Design considerations
 
@@ -608,7 +608,7 @@ Once instantiated, the <code>Duke</code> then class calls the <code>execute</cod
 The following sequence diagram below shows how the help feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/ExitFeature.png)
+![alt text](images/ExitFinal.png)
 
 #### 3.11.2 Design considerations
 
