@@ -99,6 +99,7 @@ such as displaying help to the user.
 #### 3.4 Model component
 
 
+
 The `Model` component
 * Stores a `Person` object that represents the user's details. (e.g. `totalCap`, `totalModuleCreditCompleted`)
 * Stores the `ModuleList` and `SemesterList` Data
