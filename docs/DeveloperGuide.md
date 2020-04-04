@@ -1,7 +1,7 @@
 # ATAS (Amazing Task and Assignment System) Developer Guide
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
-Content
+Table of Contents
 - [Setting up](#1-setting-up)
 	- [Prerequisites](#11-prerequisites)
 	- [Setting up the project](#12-setting-up-the-project)
@@ -40,12 +40,17 @@ Content
 - [Testing](#4-testing)
 	- [Using IntelliJ JUnit Tests](#41-using-intellij-junit-tests)
 	- [Using Input-Output Tests](#42-using-input-output-tests)
-- [Appendices](#5-appendices)
-    - [Product Scope](#51-appendix-a-product-scope)
-    - [User Stories](#52-appendix-b-user-stories)
-    - [Use Cases](#53-appendix-c-use-cases)
-    - [Non-Functional Requirements](#54-appendex-d-non-functional-requirements)
-    - [Documentation](#55-appendix-e-documentation)
+- [DevOps](#5-devops)
+    - [Build Automation](#51-build-automation)
+    - [Continuous Integration](#52-continuous-integration)
+    - [Coverage Reporting](#53-coverage-reporting)
+    - [Making a Release](#54-making-a-release)
+- [Appendices](#6-appendices)
+    - [Product Scope](#61-appendix-a-product-scope)
+    - [User Stories](#62-appendix-b-user-stories)
+    - [Use Cases](#63-appendix-c-use-cases)
+    - [Non-Functional Requirements](#64-appendix-d-non-functional-requirements)
+    - [Documentation](#65-appendix-e-documentation)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -95,7 +100,7 @@ This section will guide you on how to set up this project on your own computer.
 This section will give a high-level overview of how various components in **ATAS** function and interact with each other.
 
 ### 2.1. Architecture
-![overall architecture](images/overall architecture.PNG)
+![overall architecture](images/overall_architecture.PNG)
 
 The architecture diagram above illustrates the high-level design of the **ATAS** application.  
 
@@ -129,7 +134,7 @@ The Logic component comprises the `Parser`, `Command`, and `CommandResult` class
 ### 2.4. Model Component
 The Model component contains the `Task` and `TaskList` classes, which store the user’s schedule.
 
-![TaskList and Tasks](images/TaskList Task class diagram.PNG)
+![TaskList and Tasks](images/TaskList_Task_class_diagram.PNG)
 
 ### 2.5. Storage Component
 ![Storage Class Diagram](images/storage.PNG)
@@ -144,7 +149,7 @@ The Model component contains the `Task` and `TaskList` classes, which store the 
 The `Atas` component integrates all the aforementioned components to run the overall application logic.  
 The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command  
 
-![Component interactions for help command](images/atas help command sequence diagram v3.PNG)
+![Component interactions for help command](images/atas_help_command_sequence_diagram_v3.PNG)
 
 1.  The `Ui` class is used to read user input.  
 
@@ -158,6 +163,13 @@ The sequence diagram below shows how various components, broken down into the va
 
 ## 3. Implementation
 This section will detail how some noteworthy features are implemented.
+
+> Note: 
+> You will need to create tasks to use the features mentioned below.  
+> Create an `assignment`: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`  
+> Create an `event`     : `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMMENTS]`  
+> Dates follow the `DD/MM/YY` format, and times follow the `HHmm` format.  
+> For more information, please refer to the user guide.
 
 ### 3.1. Delete Task Feature
 Current Implementation:  
@@ -606,8 +618,8 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
     -   Alternative Considered:  
         Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
 
-## 3.7. Storage
-### 3.7.1. Implementation
+### 3.7. Storage
+#### 3.7.1. Implementation
 
 The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
 Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
@@ -657,8 +669,39 @@ When all lines in the save file have been decoded, return the `TaskList`.
 ### 4.2. Using Input-Output Tests
 -   Navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script.
 
-## 5. Appendices
-### 5.1. Appendix A: Product Scope
+## 5. DevOps
+### 5.1 Build Automation
+We use Gradle for tasks related to build automation, such as running tests, and checking code for style compliance.  
+To run all build-related tasks: 
+1. Open a terminal in the project's root directory
+2. Run the command:
+    * Windows: `gradlew build`
+    * Mac/Linux: `./gradlew build`
+3. A message stating `BUILD SUCCESSFUL` will be shown in the terminal if all tasks were run successfully.
+4. Otherwise, use the error report provided to resolve the issue before trying again.
+
+### 5.2 Continuous Integration
+We use Github Actions for continuous integration. No setup will be required for users who fork from the main **ATAS** repository.
+* Whenever you create a pull request to the main repository for **ATAS**, various checks will automatically be executed on your pull request.
+* If any checks fail, click on it to view the cause of the error, and fix it in your branch before pushing it again.
+* Ensure that all checks pass before merging your pull request.
+
+### 5.3 Coverage Reporting
+We use the IntelliJ IDEA's coverage analysis tool for coverage reporting.
+A tutorial on how to install and use this tool can be found [here](https://www.youtube.com/watch?v=yNYzZvyA2ik).
+
+### 5.4 Making a Release
+To make a new release:
+1. Update the shadowJar `archiveVersion` in the build.gradle file
+2. Generate the JAR file using Gradle by opening a terminal in the project's root directory, and run the command:
+    * Windows: `gradlew clean shadowJar`
+    * Mac/Linux: `./gradlew clean shadowJar`
+3. Find the JAR file in the `build/libs` directory.
+4. Tag the repository with the new version number (e.g. `v2.1`).
+5. Create a new release using Github and upload the JAR file found in step 3.
+
+## 6. Appendices
+### 6.1. Appendix A: Product Scope
 Target user profile:  
 
 -   manages many university assignments or events
@@ -673,7 +716,7 @@ Target user profile:
 
 **Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
 
-### 5.2. Appendix B: User Stories
+### 6.2. Appendix B: User Stories
 <table>
 <colgroup>
 <col width="20%" />
@@ -833,15 +876,15 @@ Target user profile:
 </tbody>
 </table>
 
-### 5.3. Appendix C: Use Cases
-### 5.4. Appendix D: Non-Functional Requirements
+### 6.3. Appendix C: Use Cases
+### 6.4. Appendix D: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
 
 3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
 
-### 5.5 Appendix E: Documentation
+### 6.5 Appendix E: Documentation
 Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
 
 [Back to Top](#)
