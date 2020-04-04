@@ -57,7 +57,7 @@ public class AddPerformance extends Command {
      */
     private void addManually() throws PacException {
         int studentNumber = 0;
-        String parameter = ui.getPerformanceParameter();
+        String parameter = ui.getPerformanceParameterToAdd();
         while (!parameter.equals("done")) {
             performances.addToList(getPerformance(parameter), eventName);
             studentNumber++;

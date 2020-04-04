@@ -22,7 +22,7 @@ public class SortStudentListByName extends Command {
      * Method to sort all student list in studentListCollection alphabetically.
      */
     private void sort() {
-        Collections.sort(Pac.studentListCollection, listNameComparator);
+        Pac.studentListCollection.sort(listNameComparator);
         UI.display("Student List is sorted by name within the Student List Collection");
     }
 

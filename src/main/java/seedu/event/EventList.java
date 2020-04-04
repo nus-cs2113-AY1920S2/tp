@@ -160,8 +160,8 @@ public class EventList {
             throw new PacException("The event list is empty.");
         }
         for (Event event : list) {
-            String eventNameToCompare = eventName.toLowerCase();
-            String eventNameOriginal = event.getName().toLowerCase();
+            String eventNameToCompare = eventName.toLowerCase().trim();
+            String eventNameOriginal = event.getName().toLowerCase().trim();
             if (eventNameToCompare.equals(eventNameOriginal)) {
                 return event;
             }
