@@ -262,7 +262,9 @@ List all *module*s in your **Module List**. The **Module List** contains all you
 
 #### Format  
 
-`lsm`  
+`lsm [keyword]`   
+
+> **Note**: If keyword is provided, `lsm` will list out all modules with module code containing the keyword, otherwise, `lsm` will list out all modules.
 
 #### Example Usage    
 
