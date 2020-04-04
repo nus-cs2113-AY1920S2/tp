@@ -14,18 +14,33 @@ This guide is mainly for developers, designers and software engineers that are o
 2. IntelliJ IDE.
 
 ## 2.2 Setting up the project in your computer
-1. Fork this repository, and clone the fork repository to your computer.
+1. Fork this repository, and clone the fork repository to your computer
 2. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project 
-dialog first).
+dialog first)
 3. Set up the correct JDK version for Gradle
-    * Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`.
+    * Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`
     * If `JDK 11` is listed in the drop down, select it. Otherwise, click `New…` and select the directory where you 
-    installed `JDK 11`.
-    * Click `OK`.
-4. Click Import Project.
-5. Locate the build.gradle file and select it. Click OK.
-6. Click Open as Project.
-7. Click OK to accept the default settings if prompted.
+    installed `JDK 11`
+    * Click `OK`
+4. Click `Import Project`
+5. Locate the `build.gradle` file and select it. Click `OK`
+6. Click `Open as Project`
+7. Click `OK` to accept the default settings if prompted
+
+## 2.3 Verifying the setup
+1. Run Module Manager to verify and try a few commands. Do refer to the user guide for a list of commands to try out.
+2. Run the JUnit Tests/gradlew test command to ensure that all test case passes.
+
+## 2.4 Configurations to do before writing code
+**Configuring the coding style**
+* Module Manager uses CheckStyle to check for code quality violations.
+* To configure your project to use CheckStyle, add `id 'checkstyle'` under plugins for your `build.gradle` file.
+* Ensure that your CheckStyle toolVersion is 8.23 by adding `toolVersion = '8.23'` into your `build.gradle` file.
+Refer to Module Manager's `build.gradlew` file as a reference to set up CheckStyle correctly.
+
+**Getting started with coding**
+When you are ready to start coding, we recommend that you get a sense of the overall design by reading about 
+Module Manager's architecture in the next section.
 
 # 3. Design
 This section provides a high level overview of our application, Module Manager.
@@ -45,11 +60,17 @@ Module Manager consists of a main class called Duke responsible for
 The other components involved are:
 
 `UI`: The user interface of the application
+
 `Parser`: This class mainly handles the parsing and handling of user commands
+
 `Command`: This class handles the type of command
+
 `Person`: This class manages the data of the user in memory
+
 `Controller`: This class determines what to do with the parsed input of the user 
+
 `Storage`: Reads data from, and writes data to, the hard disk
+
 
 #### 3.2 UI component
 ![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
