@@ -46,6 +46,16 @@ public class Contact {
         }
     }
 
+    public void addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime,
+                              String[] onWeeks) throws MoException {
+        editBlocks(MYSCHEDULEBLOCKED, meetingName, startDay, startTime, endDay, endTime, onWeeks);
+    }
+
+    public void addFreeBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime,
+                              String[] onWeeks) throws MoException {
+        editBlocks(MYSCHEDULEFREE, meetingName, startDay, startTime, endDay, endTime, onWeeks);
+    }
+
     /** Adds scheduled model.meeting in LocalTime into schedule[][][] data structure.
      *
      * @param meetingName name of the scheduled model.meeting to be added.
@@ -56,8 +66,8 @@ public class Contact {
      * @param onWeeks     weeks that are suppose to be made busy.
      * @return returns String of error message, else returns "Success" if schedule is successfully edited.
      */
-    public String addBusyBlocks(String meetingName, Integer startDay,
-                                String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
+    public String editBlocks(Boolean blockedorfree, String meetingName, Integer startDay,
+                             String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
         LocalTime localTimeStart;
         LocalTime localTimeEnd;
         try {
@@ -85,7 +95,7 @@ public class Contact {
             return MESSAGE_WEEK_RANGE_EMPTY;
         }
 
-        addBusyBlocksLogic(startBlock, endBlock, startDay, endDay, meetingName, onWeeks);
+        editBlocksLogic(blockedorfree, startBlock, endBlock, startDay, endDay, meetingName, onWeeks);
         return MESSAGE_RETURN_SUCCESS;
     }
 
@@ -93,11 +103,17 @@ public class Contact {
      * Defines the logic of converting from blocks of time and day of model.meeting to data structure.
      * Used in addBusyBlocks().
      */
-    private void addBusyBlocksLogic(Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
+    private void editBlocksLogic(Boolean blockedorfree, Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
                                     String meetingName, String[] onWeeks) throws MoException {
 
         String[] startOnWeeks = onWeeks.clone();
         String[] endOnWeeks = onWeeks.clone();
+
+        Boolean myScheduleStatus = blockedorfree;
+        String myScheduleNameStatus = "null";
+        if (blockedorfree == MYSCHEDULEBLOCKED) {
+            myScheduleNameStatus = meetingName;
+        }
 
         if (startDay > 6 && endDay > 6) {
             startDay -= 7;
@@ -115,17 +131,18 @@ public class Contact {
             for (int j = 0; j < startOnWeeks.length; j++) {
                 int startDayCopy = startDay; // prevent modifying param arguments
                 for (int i = startBlock; i < 48; i++) {
-                    mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
-                    this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
+                    mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = myScheduleStatus;
+                    this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = myScheduleNameStatus;
                 }
                 startDayCopy++;
+
                 if (startDayCopy > 6) {
                     startDayCopy = 0;
                 }
                 while (startDayCopy != endDay) {
                     for (int i = 0; i < 48; i++) {
-                        mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
-                        this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
+                        mySchedule[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = myScheduleStatus;
+                        this.myScheduleName[Integer.parseInt(startOnWeeks[j]) - 1][startDayCopy][i] = myScheduleNameStatus;
                     }
                     startDayCopy++;
                     if (startDayCopy > 6) {
@@ -134,15 +151,15 @@ public class Contact {
 
                 }
                 for (int i = 0; i < endBlock; i++) {
-                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = MYSCHEDULEBLOCKED;
-                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = meetingName;
+                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = myScheduleStatus;
+                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDayCopy][i] = myScheduleNameStatus;
                 }
             }
         } else {
             for (int j = 0; j < startOnWeeks.length; j++) {
                 for (int i = startBlock; i < endBlock; i++) {
-                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = MYSCHEDULEBLOCKED;
-                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = meetingName;
+                    mySchedule[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = myScheduleStatus;
+                    this.myScheduleName[Integer.parseInt(endOnWeeks[j]) - 1][startDay][i] = myScheduleNameStatus;
                 }
             }
         }
