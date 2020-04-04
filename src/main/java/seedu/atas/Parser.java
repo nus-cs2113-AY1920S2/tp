@@ -81,7 +81,7 @@ public class Parser {
             "(?<calendar>(?i)"
                     + CalendarCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
+                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2})");
 
     //@@author lwxymere
     /**
@@ -331,7 +331,7 @@ public class Parser {
         }
     }
 
-    //@@author
+    //@@author Keith-JK
     private static Command prepareCalendarCommand(String fullCommand) {
         final Matcher matcher = CALENDAR_PARAMETERS_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
@@ -341,7 +341,7 @@ public class Parser {
 
         LocalDate date;
         try {
-            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_FORMAT);
+            date = LocalDate.parse(String.format("01/%s", matcher.group("date").trim()), INPUT_DATE_FORMAT);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
