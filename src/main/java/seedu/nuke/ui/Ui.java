@@ -1,6 +1,6 @@
 package seedu.nuke.ui;
 
-import seedu.nuke.command.ChangeDirectoryCommand;
+import seedu.nuke.command.misc.ChangeDirectoryCommand;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;

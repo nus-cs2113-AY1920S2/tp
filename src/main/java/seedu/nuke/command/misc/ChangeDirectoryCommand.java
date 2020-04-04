@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.misc;
 
+import seedu.nuke.command.Command;
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.DataNotFoundException;

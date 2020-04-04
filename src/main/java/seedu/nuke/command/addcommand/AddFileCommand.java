@@ -181,7 +181,7 @@ public class AddFileCommand extends AddCommand {
     private void retrieveFile() throws Exception {
         if (originalFilePath.isEmpty()) {
             assert Executor.isGui() : "Must be a Gui in order to retrieve file!";
-            
+
             String[] chosenFileInformation = GuiExecutor.executeFileChooser();
             if (chosenFileInformation == null) {
                 throw new Exception(MESSAGE_NO_FILE_CHOSEN);

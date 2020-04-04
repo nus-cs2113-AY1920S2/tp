@@ -2,15 +2,11 @@ package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
 
-import seedu.nuke.command.ChangeDirectoryCommand;
+import seedu.nuke.command.misc.*;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.InfoCommand;
-import seedu.nuke.command.OpenFileCommand;
-import seedu.nuke.command.RedoCommand;
-import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddFileCommand;
 import seedu.nuke.command.addcommand.AddModuleCommand;
@@ -203,11 +199,14 @@ public class Parser {
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
 
+            case ClearCommand.COMMAND_WORD:
+                return prepareClearCommand(parameters);
+
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
 
             default:
-                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
+                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
             }
         } catch (InvalidParameterException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
@@ -239,7 +238,7 @@ public class Parser {
 
     /**
      * Prepares the command to display the current directory's information.
-     * .
+     *
      * @param parameters
      *  The parameters given by the user
      * @return
@@ -250,6 +249,26 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_EXTRA_PARAMETERS);
         } else {
             return new InfoCommand();
+        }
+    }
+
+    /**
+     * Prepares the command to clear the GUI Console Screen.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to clear the GUI Console Screen
+     */
+    private Command prepareClearCommand(String parameters) {
+        // This is exclusive for Gui only
+        if (!Executor.isGui()) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        if (!parameters.isEmpty()) {
+            return new IncorrectCommand(MESSAGE_EXTRA_PARAMETERS);
+        } else {
+            return new ClearCommand();
         }
     }
 

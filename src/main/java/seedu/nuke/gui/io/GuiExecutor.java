@@ -139,4 +139,8 @@ public class GuiExecutor {
         }
         return chosenFileInformation;
     }
+
+    public static void clearScreen() {
+        consoleScreen.getChildren().clear();
+    }
 }
