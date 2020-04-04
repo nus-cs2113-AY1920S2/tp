@@ -14,9 +14,9 @@ public class CalendarCommandInterpreter extends CommandInterpreter {
     @Override
     public Command decideCommand(String commandDescription) throws PacException {
         Command command;
-
-        int semester = CalendarParser.getSemester(commandDescription);
-        int year = CalendarParser.getYear(commandDescription, semester);
+        String description = commandDescription.toLowerCase();
+        int semester = CalendarParser.getSemester(description);
+        int year = CalendarParser.getYear(description, semester);
 
         switch (semester) {
         case 1:
