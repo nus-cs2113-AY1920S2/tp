@@ -118,6 +118,11 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
+    public void printInvalidDateTimeFormat() {
+        System.out.println("Datetime is not set. If you wish to add datetime, please enter the correct format:"
+                + "yyyy-MM-dd HHmm");
+    }
+
     public void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
         printCalendarHorizontalLine();
         String line = "SEMESTER " + semester + " AY " + semesterOneYear + "/" + semesterTwoYear;
