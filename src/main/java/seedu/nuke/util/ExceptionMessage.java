@@ -65,6 +65,8 @@ public class ExceptionMessage {
     public static final String MESSAGE_FILE_NOT_FOUND_OPEN =
             "The following file(s) could not be opened as they cannot be found:\n";
     public static final String MESSAGE_FILE_NOT_FOUND_DELETE =
-            "The following file(s) could not be deleted as they cannot be found:\n";
+            "Deletion completed.\n"
+            + "However, note that the following file(s) could not be deleted completely from Nuke as they "
+            + "could not be found:\n";
     public static final String MESSAGE_MISSING_FILE_PATH = "Please enter a file path.\n";
 }

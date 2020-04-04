@@ -89,6 +89,9 @@ public class DeleteConfirmationPrompt extends Command {
      *  The file to be deleted
      */
     private void deleteSingleFile(TaskFile toDelete) throws IOException {
+        Task parentTask = toDelete.getParent();
+        parentTask.getFiles().delete(toDelete);
+
         File fileToDelete = new File(toDelete.getFilePath());
         if (!fileToDelete.exists()) {
             throw new FileNotFoundException(toDelete.getFileName());
@@ -101,9 +104,6 @@ public class DeleteConfirmationPrompt extends Command {
                 .forEach(File::delete);
 
         assert !Files.exists(filePathToDelete) : "Directory still exists";
-
-        Task parentTask = toDelete.getParent();
-        parentTask.getFiles().delete(toDelete);
     }
 
     /**
@@ -271,7 +271,7 @@ public class DeleteConfirmationPrompt extends Command {
                 deleteMultipleFiles(filteredFiles, toDeleteIndices);
                 return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
             } catch (FileNotFoundException e) {
-                return new CommandResult(String.format("Deletion completed.\n%s%s\n",
+                return new CommandResult(String.format("%s%s\n",
                         MESSAGE_FILE_NOT_FOUND_DELETE, e.getMessage()));
             } catch (FileSystemException e) {
                 return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);

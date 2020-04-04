@@ -7,6 +7,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.InfoCommand;
 import seedu.nuke.command.OpenFileCommand;
 import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
@@ -57,6 +58,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_PARAMETERS;
 import static seedu.nuke.util.Message.MESSAGE_DEADLINE_OR_PRIORITY;
+import static seedu.nuke.util.Message.MESSAGE_EXTRA_PARAMETERS;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
@@ -116,8 +118,8 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
-        String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase();
-        String parameters = matcher.group(PARAMETERS_GROUP);
+        String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase().trim();
+        String parameters = matcher.group(PARAMETERS_GROUP).trim();
 
         try {
             switch (commandWord) {
@@ -183,6 +185,9 @@ public class Parser {
             case OpenFileCommand.COMMAND_WORD:
                 return prepareOpenFileCommand(parameters);
 
+            case InfoCommand.COMMAND_WORD:
+                return prepareInfoCommand(parameters);
+
             case UndoCommand.COMMAND_WORD:
                 return new UndoCommand();
 
@@ -220,6 +225,22 @@ public class Parser {
             return new ChangeDirectoryCommand();
         } else {
             return new ChangeDirectoryCommand(parameters.trim());
+        }
+    }
+
+    /**
+     * Prepares the command to display the current directory's information.
+     * .
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to display the current directory's information
+     */
+    private Command prepareInfoCommand(String parameters) {
+        if (!parameters.isEmpty()) {
+            return new IncorrectCommand(MESSAGE_EXTRA_PARAMETERS);
+        } else {
+            return new InfoCommand();
         }
     }
 
@@ -296,17 +317,23 @@ public class Parser {
      */
     private Command prepareGenericDeleteCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        if (parameters.isEmpty()) {
+            return new IncorrectCommand("Please enter the name of the directory to delete.\n");
+        }
+
+        final String deleteString = String.format(" %s -e", parameters);
+
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
         case ROOT:
-            return prepareDeleteAndListModuleCommand(parameters, true);
+            return prepareDeleteAndListModuleCommand(deleteString, true);
         case MODULE:
-            return prepareDeleteAndListCategoryCommand(parameters, true);
+            return prepareDeleteAndListCategoryCommand(deleteString, true);
         case CATEGORY:
-            return prepareDeleteAndListTaskCommand(parameters, true);
+            return prepareDeleteAndListTaskCommand(deleteString, true);
         case TASK:
-            return prepareDeleteAndListFileCommand(parameters, true);
+            return prepareDeleteAndListFileCommand(deleteString, true);
         default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL + HelpCommand.MESSAGE_USAGE);
+            return new IncorrectCommand("Sorry, there is nothing else to delete here.\n");
         }
     }
 

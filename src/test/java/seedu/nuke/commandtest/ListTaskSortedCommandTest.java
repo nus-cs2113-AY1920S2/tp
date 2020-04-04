@@ -15,7 +15,7 @@ import static seedu.nuke.util.Message.MESSAGE_NO_TASKS_TO_SHOW;
 /**
  * Junit test class to test ListAllTasksDeadlineCommand.
  */
-public class ListAllDeadlineTest {
+public class ListTaskSortedCommandTest {
 
     @Test
     public void testTasksCounting() {

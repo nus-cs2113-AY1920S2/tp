@@ -45,6 +45,11 @@ public class TaskFile extends Directory {
         return (Task) this.parent;
     }
 
+    @Override
+    public DirectoryLevel getLevel() {
+        return DirectoryLevel.FILE;
+    }
+
     /**
      * Edit the file name of the task.
      *

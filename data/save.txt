@@ -44,7 +44,6 @@ read -|||- N -|||-  -|||- 0
 --- END FILE ---
 tp -|||- N -|||-  -|||- 0
 --- FILE ---
-Number_1 -|||- null
 --- END FILE ---
 --- END TASK ---
 Lecture -|||- 1

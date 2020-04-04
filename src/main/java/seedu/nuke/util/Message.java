@@ -39,6 +39,9 @@ public class Message {
     }
 
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
+    public static final String MESSAGE_EXTRA_PARAMETERS =
+            "There seems to be some extra parameters in the command.\n"
+            + "Please check the command format again or enter help to find out more.\n";
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
     public static final String DIVIDER = "-".repeat(100);
 
