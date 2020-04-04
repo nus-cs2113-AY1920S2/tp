@@ -519,12 +519,12 @@ The `CalendarCommand` class extends the `Command` class with methods to implemen
 
 In particular, the diagram below shows the explicit execution flow that `CalendarCommand` takes.
 
-![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar.png)
+![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar_v2.png)
 
 Given below is an example usage of the `calendar` command. The step by step execution is shown in the sequence diagram above.
 
 **Step 1**  
-The users enters the command `calendar d/05/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
+The users enters the command `calendar d/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
 
 **Step 2**  
 The `Parser` will construct a `CalendarCommand` object with the `LocalDate` provided by the user input.

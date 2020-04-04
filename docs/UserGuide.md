@@ -426,11 +426,11 @@ Here are the search results:
 
 You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan for your free time as you can see your free slots at a glance.
 
-Format: `calendar d/[DD/MM/YY]`
+Format: `calendar d/[MM/YY]`
 
 Expected outcome:
 
-![calendar.png](images/calendar.png)
+![calendar.png](images/calendar2.png)
 
 ## 4. Command Summary
 
