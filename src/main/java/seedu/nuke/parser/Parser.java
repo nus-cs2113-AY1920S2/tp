@@ -119,7 +119,7 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
         String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase().trim();
-        String parameters = matcher.group(PARAMETERS_GROUP).trim();
+        String parameters = matcher.group(PARAMETERS_GROUP);
 
         try {
             switch (commandWord) {
