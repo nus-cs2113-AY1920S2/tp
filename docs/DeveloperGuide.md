@@ -29,6 +29,7 @@ This guide describes the software architecture and design of the SHOCO applicati
 It will evolve throughout the design and implementation of each SHOCO release. 
 Currently, this document is for the third public release of the application, SHOCO v2.1.
 
+
 ### Scope of this guide
 This document describes the software architecture and design for the implementation
 of SHOCO and is tailored for the developers, designers, and software testers of SHOCO.
@@ -85,8 +86,8 @@ This section will describe how the main features of the application are implemen
  1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
  2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
- 3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>AddCommand</code> object.
- 4. In the <code>execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> 
+ 3. The <code>Duke</code> class calls the <code>AddCommand#execute</code> method of the <code>AddCommand</code> object.
+ 4. In the <code>AddCommand#execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> 
     object, using items.add().
  5. In the SD, the AddCommand will add <code>item</code> if the description is provided and one / both price and 
     quantity is provided. 
@@ -99,7 +100,7 @@ This section will describe how the main features of the application are implemen
  
  ![alt text](images/AddFeature_SD.png)
  
-#### 2.1.2 Design considerations
+#### 3.1.2 Design considerations
 
 ##### Aspect: Data structure to support the add feature
 
@@ -126,6 +127,10 @@ This section will describe how the main features of the application are implemen
   Also, duplicate items may confused the user, even though in some specific scenario, duplicate item may be useful to 
   the user.  
  
+ Reasons for choosing Alternative 1 over alternative 2: By allowing user to just add the item without price,
+ we can increase the flexibility. For instance, the user wants to buy milk but not sure how much does the milk
+ cost and not sure how many milk they want to buy. So they can just add it into the list,
+ and edit the price and quantity later when they knew the price and have decided the quantity. 
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -145,19 +150,19 @@ The process of object creation is as follows:
 
 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
 2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
-* The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
-3. The <code>Duke</code> class calls the <code>execute</code> method of the <code>EditCommand</code> object.
-4. In the <code>execute</code> function, the <code>item</code> to be edited (based on the specified index of the 
-user input) is called from the <code>ShoppingList</code> object.The original description/price/quantity of the item is overwritten 
-with the new values from the user input.
+   * The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
+3. The <code>Duke</code> class calls the <code>EditCommand#execute</code> method.
+4. In the <code>EditCommand#execute</code> method, it first gets the <code>item</code> object through the <code>ShoppingList#getItem</code>
+The original description/price/quantity of the item is overwritten 
+with the new values from the user input. This is done through the use of the <code>Item</code> class setter methods.
 5. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
-![alt text](images/EditFeature.png)
+![Edit Feature](images/EditFeature.png)
 
-![alt text](images/EditFeature_SD.jpg)
+![Edit Feature SD](images/EditFeature_SD.png)
 
 
 #### 3.2.2 Design considerations
@@ -172,11 +177,14 @@ have been omitted from the diagram. Those details are shown in a separate sequen
     presence of the variable in user input.
  
  
-- Alternative 2: Require all values of an <code>item</code> object to be updated
-  - Pros: Will have less code to deal with having no additional parsing of input string needed.
+- Alternative 2: Require all values of an <code>item</code> object to be updated and parameters must be in alphabetical order.
+  - Pros: Will have less code to deal with having no additional parsing of the input string.
   
-  - Cons: Less user flexibility; user must input all parameters even if he/she does not want to update certain
+  - Cons: Less user flexibility; user must input all parameters even if he/she does not wish to update certain
   variables.
+
+
+- Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order". Futhermore, having greater freedom on input values makes it a hassle-free process for the users.
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -335,6 +343,7 @@ having to edit the mark and unmark feature difficult.
 
 &nbsp;
 
+<!-- @@author JLoh579 -->
 ### 3.6 Display feature
 This feature involves displaying the shopping list and budget details to the user.
 #### 3.6.1 Current implementation
@@ -342,14 +351,13 @@ This feature involves displaying the shopping list and budget details to the use
 The display feature is implemented using a <code>DisplayCommand</code> class which extends the <code>Command</code> 
 class. 
  
-The <code>Duke</code> class first receives user input from the <code>Ui</code> object before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>DisplayCommand</code> object based on that user input.
-
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>DisplayCommand</code> object.
-This method makes a call to the <code>getTotalCost</code> method of the <code>ShoppingList</code> object to find the 
-cost of the items. It then calls the <code>getAmount</code> and <code>getRemainingBudget</code> methods of the 
-<code>Budget</code> object to find the current budget and the remaining budget. The results are then printed to console.
+ The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DisplayCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>DisplayCommand#execute()</code>.
+4. <code>DisplayCommand#execute()</code> makes a call to <code>ShoppingList#getTotalCost()</code> to find the cost of the items.
+5. <code>DisplayCommand#execute()</code> then calls  <code>Budget#getAmount()</code> and <code>Budget#getRemainingBudget()</code>  to find the current budget and the remaining budget. 
+6. The results are then printed to console.
 
 The following sequence diagrams below show how the display feature works. Note the <code>Ui</code> class is
 omitted to emphasise the other classes:
@@ -375,6 +383,9 @@ omitted to emphasise the other classes:
   
   - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
   harder to navigate and understand. 
+    
+- Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
+also be able to trace functionality bugs more easily if each command class deals with its own functionality.
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -388,12 +399,11 @@ This feature involves clearing all items in the shopping list. Remaining budget 
 The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
 class. 
 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> object before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>ClearCommand</code> object based on that user input.
-
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ClearCommand</code> object which 
-makes another call to the <code>clearList</code> method of the <code>ShoppingList</code> object.
+ The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>ClearCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>ClearCommand#execute()</code>.
+4. <code>ClearCommand#execute()</code> makes a call to <code>ShoppingList#clearList()</code>.
 
 The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
 omitted to emphasise the other classes:
@@ -419,10 +429,14 @@ omitted to emphasise the other classes:
   - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
   harder to navigate and understand. 
   
+- Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
+also be able to trace functionality bugs more easily if each command class deals with a different functionality.
+
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
+<!-- @@author -->
 
 <!-- @@author kokjoon97 -->
 ### 3.8 Set budget feature
@@ -533,7 +547,7 @@ Once instantiated, the <code>Duke</code> then class calls the <code>execute</cod
 The following sequence diagram below shows how the help feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/HelpFeature.png)
+![Help Feature](images/HelpFeature.png)
 
 #### 3.10.2 Design considerations
 
@@ -553,7 +567,9 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
-  
+
+- Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
+ 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
@@ -595,7 +611,9 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
-  
+
+- Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
+
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 

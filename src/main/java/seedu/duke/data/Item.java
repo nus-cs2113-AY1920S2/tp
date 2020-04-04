@@ -1,6 +1,5 @@
 package seedu.duke.data;
 
-//@@author trishaangelica, jiajuinphoon, Shannonwje, kokjoon97, JLoh579
 public class Item {
 
     private double price;
@@ -10,6 +9,7 @@ public class Item {
     private static final String BOUGHT = "B";
     private static final String NOT_BOUGHT = "0";
 
+    //@@author trishaangelica
     /**
      * Constructs an Item object with the provided description and price.
      *
@@ -23,6 +23,7 @@ public class Item {
         this.quantity = quantity;
         this.isBought = false;
     }
+    //@@author
 
     /**
      * Constructs an Item object with the provided description and price.
@@ -36,31 +37,41 @@ public class Item {
         this.quantity = 1;
         this.isBought = false;
     }
+    //@@author
 
+    //@@author JLoh579
     public int getQuantity() {
         return quantity;
     }
+    //@@author
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    //@@author
 
+    //@@author kokjoon97
+    public double getPrice() {
+        return price;
+    }
+
+    //@@author
     public void setPrice(double price) {
         this.price = price;
     }
+    //@@author
 
-    public double getPrice() {
-        return price;
+    //@@author jiajuinphoon
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
+    //@@author
 
-    public String getDescription() {
-        return description;
-    }
-
+    //@@author Shannonwje
     /**
      * Returns the status of the item to tell if it is bought or not bought yet.
      *
@@ -86,6 +97,5 @@ public class Item {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description + String.format(" $%.2f", price) + " qty: " + quantity;
     }
-
+    //@@author
 }
-//@@author

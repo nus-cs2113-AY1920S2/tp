@@ -117,11 +117,11 @@ Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list.
 * The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
-* The `[PRICE]` must be in **numerical** form (decimal form accepted).
-* At least one of three parameters (description/price/quantity) must be present.
-* i/, p/, q/ delimiters can be in any order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+* The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
+* **At least one** of the three parameters (description/price/quantity) must be present in the command.
+* i/, p/, q/ delimiters can be in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
-Example of usage: 
+Examples of usage: 
 
 1. `EDIT 3 i/potato p/5.00 q/3`
     * Edits the description, price and quantity of the 3rd item in the shopping list
