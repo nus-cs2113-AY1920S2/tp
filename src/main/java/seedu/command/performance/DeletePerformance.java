@@ -29,10 +29,6 @@ public class DeletePerformance extends Command {
     }
 
     private void deleteFromList() throws PacException {
-        if (performances.isEmpty()) {
-            throw new PacException("The performance list is empty. You are unable to delete a Performance.");
-        }
-
         performance = getPerformance();
         performances.deletePerformance(performance, eventName);
     }
