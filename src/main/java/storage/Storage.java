@@ -93,11 +93,17 @@ public class Storage {
         //remove deleted members' .txt file from hard disk
         File folder = new File("data/");
         for (File f : folder.listFiles()) {
+            String fileName = f.getName();
+            if (f.getName().equals("meeting_list.txt")) {
+                continue;
+            }
             for (Contact contact : myContactList) {
                 if (f.getName().contains(contact.getName())) {
-                    continue;
+                    break;
                 }
-                f.delete();
+                if (contact == myContactList.get(myContactList.size() - 1)) {
+                    f.delete();
+                }
             }
         }
 

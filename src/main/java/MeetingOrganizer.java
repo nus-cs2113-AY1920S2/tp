@@ -36,8 +36,8 @@ public class MeetingOrganizer {
 
         try {
             storage = new Storage("data/meeting_list.txt");
-            myMeetingList = new MeetingList(storage.loadMeetingListFromDisk());
             myContactList = new ContactList(storage.loadMemberListFromDisk());
+            myMeetingList = new MeetingList(storage.loadMeetingListFromDisk());
             TextUI.introMsg();
             if (myContactList.getSize() > 0) {
                 for (int i = 0; i < myContactList.getSize(); i++) {
