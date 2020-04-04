@@ -7,7 +7,7 @@ TechToday Information Tracker(TTIT) is a Command Line Application(CLI) designed 
 
 ## Summary of Contributions 
 
-###Code contributed: 
+### Code contributed: 
 * Designed and implemented most of the project (find code for my contributions here)
 
 ### Enhancements: 
