@@ -6,6 +6,7 @@ import seedu.techtoday.objects.Note;
 
 /** Represents command that is used to call a method to print note from noteList. */
 public class NotePrinter {
+
     /**
      * Prints a particular note.
      * @param taskCounter - Index of the note in noteList.
