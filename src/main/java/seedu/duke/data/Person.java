@@ -1,7 +1,5 @@
 package seedu.duke.data;
 
-import seedu.duke.ui.Ui;
-
 import java.util.Scanner;
 
 public class Person {
@@ -26,10 +24,10 @@ public class Person {
         isPersonExist = true;
     }
 
-    public static Person createNewUser(Scanner in) {
+    public static void createNewUser() {
         name = "User";
-        String matricYear = "2018";
-        return new Person(name, matricYear);
+        String matricYear = "2020";
+        new Person(name, matricYear);
     }
 
     public static String getName() {
