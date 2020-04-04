@@ -17,6 +17,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_CATEGORY_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.MESSAGE_EDIT_CATEGORY_SUCCESS;
 
 /**
@@ -95,6 +96,10 @@ public class EditCategoryCommand extends EditCommand {
         }
     }
 
+    private boolean exceedLengthLimit() {
+        return newCategoryName.length() > 15;
+    }
+
     /**
      * Executes the <b>Edit Category Command</b> to edit a <b>Category</b> with the <code>category name</code>
      * from the <b>Category List</b>.
@@ -106,6 +111,9 @@ public class EditCategoryCommand extends EditCommand {
      */
     @Override
     public CommandResult execute() {
+        if (exceedLengthLimit()) {
+            return new CommandResult(MESSAGE_CATEGORY_EXCEED_LIMIT);
+        }
         try {
             Category toEdit = DirectoryTraverser.getCategoryDirectory(moduleCode, oldCategoryName);
             fillAllAttributes(toEdit);

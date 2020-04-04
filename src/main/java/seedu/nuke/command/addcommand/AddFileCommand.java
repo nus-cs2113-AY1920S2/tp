@@ -68,6 +68,7 @@ public class AddFileCommand extends AddCommand {
     private String categoryName;
     private String taskDescription;
     private String fileName;
+    private String originalFilePath;
     private String filePath;
 
     /**
@@ -90,7 +91,7 @@ public class AddFileCommand extends AddCommand {
         this.categoryName = categoryName;
         this.taskDescription = taskDescription;
         this.fileName = fileName;
-        this.filePath = filePath;
+        this.originalFilePath = filePath;
     }
 
     /**
@@ -136,7 +137,7 @@ public class AddFileCommand extends AddCommand {
      */
     private void copyFile(Task task) throws IOException, ExceedLimitException,
             TaskFileManager.DuplicateTaskFileException {
-        File sourceFile = new File(filePath);
+        File sourceFile = new File(originalFilePath);
         if (!sourceFile.exists() || !sourceFile.isFile()) {
             throw new FileNotFoundException();
         }
@@ -186,13 +187,14 @@ public class AddFileCommand extends AddCommand {
         if (exceedLengthLimit()) {
             return new CommandResult(MESSAGE_FILE_EXCEED_LIMIT);
         }
-        if (filePath.isEmpty()) {
+        if (originalFilePath.isEmpty()) {
             return new CommandResult(MESSAGE_MISSING_FILE_PATH);
         }
         try {
             Task parentTask = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
             copyFile(parentTask);
-            TaskFile toAdd = new TaskFile(parentTask, fileName, filePath);
+            String fullFilePath = new File(originalFilePath).getAbsolutePath();
+            TaskFile toAdd = new TaskFile(parentTask, fileName, filePath, fullFilePath);
             parentTask.getFiles().add(toAdd);
             return new CommandResult(messageAddFileSuccess(fileName));
         } catch (ModuleManager.ModuleNotFoundException e) {
