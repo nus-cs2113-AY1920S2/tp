@@ -1,7 +1,6 @@
 package seedu.happypills.logic.commands.patientcommands;
 
 import org.junit.jupiter.api.Test;
-import seedu.happypills.logic.commands.patientcommands.AddPatientCommand;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
@@ -18,7 +17,7 @@ class AddPatientCommandTest {
         PatientMap patients = new PatientMap();
         AddPatientCommand testAddCommand = new AddPatientCommand(
                 "Eve", "S9876543F", 91234567, "22/09/1998",
-                "B-","", ""
+                "B-","-", "-"
         );
 
         try {

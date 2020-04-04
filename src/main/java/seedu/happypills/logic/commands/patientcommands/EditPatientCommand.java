@@ -157,17 +157,17 @@ public class EditPatientCommand extends PatientCommand {
         Patient editPatient = findPatient(patients);
         String output = "";
         if (editPatient == null) {
-            throw new HappyPillsException(PatientTextUi.patientNotFoundMessage);
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         }
         if (content.isEmpty()) {
-            throw new HappyPillsException("    Please do not leave the field as empty string");
+            throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
         // assert editPatient != null : "Patient is not in PatientList";
         if (field.equals(PHONE_NUMBER_TAG)) {
             if (checkPhoneNum(content.trim())) {
                 output = editPhone(editPatient, content);
             } else {
-                throw new HappyPillsException("    Please ensure that all the phone number is 8 digit");
+                throw new HappyPillsException(Messages.MESSAGE_INVALID_PHONE_NUMBER);
             }
         } else if (field.equals(REMARKS_TAG)) {
             output = editRemarks(editPatient, content.trim());
@@ -177,7 +177,7 @@ public class EditPatientCommand extends PatientCommand {
             if (checkDate(content.trim())) {
                 output = editDob(editPatient, content.trim());
             } else {
-                throw new HappyPillsException("    Please ensure that the DATE is in DD/MM/YYYY ");
+                throw new HappyPillsException(Messages.MESSAGE_INVALID_DATE_OF_BIRTH);
             }
         } else if (field.equals(BLOOD_TYPE_TAG)) {
             if (checkType(content.trim())) {
@@ -189,8 +189,7 @@ public class EditPatientCommand extends PatientCommand {
         } else if (field.equals(NAME_TAG)) {
             output = editName(editPatient, content.trim());
         } else {
-            throw new HappyPillsException("    Please try again. To learn more about the Edit command, "
-                    + "\n    enter \"help edit patient\"");
+            throw new HappyPillsException(Messages.MESSAGE_INVALID_TAG);
         }
         try {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH,

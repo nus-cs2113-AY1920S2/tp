@@ -72,13 +72,17 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             content = newContent.substring(2);
         }
         PatientRecord editPatientRecord = findPatientRecord(nric, index, patientRecords);
+        boolean isIndexOutOfBound = patientRecords.get(nric).size() <= index && index > 0;
         if (editPatientRecord == null) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
         if (patientRecords.get(nric) == null) {
-            throw new HappyPillsException(PatientRecordTextUi.emptyPatientRecordMessage);
-        } else if (patientRecords.get(nric).size() <= index) {
-            throw new HappyPillsException(PatientRecordTextUi.getEmptyPatientRecordList);
+            throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT);
+        } else if (isIndexOutOfBound) {
+            throw new HappyPillsException(Messages.MESSAGE_INDEX_OUT_OF_BOUND);
+        }
+        if (content.isEmpty()) {
+            throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
         boolean output = false;
         String errorMsg = Messages.MESSAGE_EDIT_ERROR + TextUi.NEWLINE;

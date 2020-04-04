@@ -18,7 +18,7 @@ class EditPatientCommandTest {
         PatientMap patients = new PatientMap();
         PatientRecordMap newPatientRecordMap = new PatientRecordMap();
         AddPatientCommand testAddCommand = new AddPatientCommand(
-                "kesin", "S0618", 912, "22/08/1998", "B-","meat", "Strong"
+                "kesin", "S1234567F", 912, "22/08/1998", "B-","meat", "Strong"
         );
         try {
             testAddCommand.execute(patients, newAppointmentMap, newPatientRecordMap);
@@ -27,15 +27,15 @@ class EditPatientCommandTest {
             e.printStackTrace();
         }
 
-        EditPatientCommand testEditCommand = new EditPatientCommand("S0618", "/rmWeak");
+        EditPatientCommand testEditCommand = new EditPatientCommand("S1234567F", "/rmWeak");
         try {
             testEditCommand.execute(patients, newAppointmentMap, newPatientRecordMap);
         } catch (HappyPillsException e) {
             // catch exception
         }
         assertEquals(1, patients.size());
-        if (patients.containsKey("S0618")) {
-            Patient patient = patients.get("S0618");
+        if (patients.containsKey("S1234567F")) {
+            Patient patient = patients.get("S1234567F");
             assertEquals("Weak", patient.getRemarks());
         }
     }

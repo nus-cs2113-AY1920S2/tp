@@ -1,5 +1,7 @@
 package seedu.happypills.model.data;
 
+import seedu.happypills.logic.parser.Checker;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -181,7 +183,7 @@ public class Patient {
 
     private static boolean dateValidation(String date) {
         boolean status = false;
-        if (checkDate(date)) {
+        if (Checker.isValidDate(date)) {
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             dateFormat.setLenient(false);
             try {
@@ -192,14 +194,5 @@ public class Patient {
             }
         }
         return status;
-    }
-
-    static boolean checkDate(String date) {
-        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
-        boolean flag = false;
-        if (date.matches(pattern)) {
-            flag = true;
-        }
-        return flag;
     }
 }
