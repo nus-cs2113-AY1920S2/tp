@@ -76,7 +76,7 @@ public class UI {
                 + "\n"
                 + "\taddcard s/<INDEX> q/<QUESTION> a/<ANSWER>  Add a card into the specified subject\n"
                 + "\tlistcard s/<INDEX>                         List all cards in specified subject\n"
-                + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified category\n"
+                + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified subject\n"
                 + "\n"
                 + "\tquiz s/<INDEX> n/<NUMBER>                  Start a quiz of the specified number of questions from"
                         + " the specified subject\n"
@@ -90,11 +90,6 @@ public class UI {
 
         System.out.println(helpMessage);
     }
-
-
-
-
-
     /**
      * Exits the ESC program.
      */

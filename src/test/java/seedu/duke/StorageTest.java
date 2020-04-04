@@ -6,6 +6,8 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.cards.Card;
 import seedu.cards.CardList;
 import seedu.exception.EscException;
+import seedu.subjects.Subject;
+import seedu.subjects.SubjectList;
 
 
 import java.io.File;
@@ -33,8 +35,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class StorageTest {
     private Storage storage;
     private CardList cardList;
-
     private ByteArrayOutputStream byteOut;
+    private Subject subject;
+    private SubjectList subjectList;
 
     @TempDir
     File tempDir;
@@ -43,7 +46,8 @@ class StorageTest {
     void setUp() throws IOException {
         cardList = new CardList();
         Card newCard = new Card("test question", "test answer");
-        cardList.addCard(newCard);
+        subject = new Subject("Junit");
+        cardList.addCard(newCard,subject);
 
         //create the file data
         byteOut = new ByteArrayOutputStream();

@@ -48,6 +48,6 @@ public class AddCardCommand extends AddCommand {
     public void execute(SubjectList subjectList) throws EscException {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
         CardList cardList = chosenSubject.getCardList();
-        cardList.addCard(this.card);
+        cardList.addCard(this.card, chosenSubject);
     }
 }
