@@ -23,6 +23,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_TASK_EXCEED_LIMIT;
 
 /**
  * <h3>Edit Task Command</h3>
@@ -123,6 +124,10 @@ public class EditTaskCommand extends EditCommand {
         }
     }
 
+    private boolean exceedLengthLimit() {
+        return newTaskDescription.length() > 25;
+    }
+
     /**
      * Executes the <b>Edit Task Command</b> to edit a <b>Task</b> with the <code>task description</code>
      * from the <b>Task List</b>.
@@ -134,6 +139,9 @@ public class EditTaskCommand extends EditCommand {
      */
     @Override
     public CommandResult execute() {
+        if (exceedLengthLimit()) {
+            return new CommandResult(MESSAGE_TASK_EXCEED_LIMIT);
+        }
         try {
             Task toEdit = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, oldTaskDescription);
             fillAllAttributes(toEdit);
