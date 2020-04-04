@@ -31,44 +31,56 @@ public class Parser {
 
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<assignmentName>[^/]+)"
-                    + "\\s+m/\\s*(?<moduleName>[^/]+)"
+            "(?<taskType>(?i)"
+                    + AssignmentCommand.COMMAND_WORD
+                    + "\\b)"
+                    + "\\s+n/\\s*(?<assignmentName>[^|/\\s]+[^|/]*)"
+                    + "\\s+m/\\s*(?<moduleName>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-                    + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
     );
 
     // regex for an add event command
     public static final Pattern EVENT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<eventName>[^/]+)"
-                    + "\\s+l/\\s*(?<location>[^/]+)"
+            "(?<taskType>(?i)"
+                    + EventCommand.COMMAND_WORD
+                    + "\\b)"
+                    + "\\s+n/\\s*(?<eventName>[^|/\\s]+[^|/]*)"
+                    + "\\s+l/\\s*(?<location>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
-                    + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
     );
 
     //regex for search command
     public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<search>[^/]+)"
-                    + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<name>[^/]+)");
+            "(?<search>(?i)"
+                    + SearchCommand.COMMAND_WORD
+                    + "\\b)"
+                    + "\\s+t/\\s*(?<taskType>[^|/\\s]+[^|/]*)"
+                    + "\\s+n/\\s*(?<name>[^|/\\s]+[^|/]*)");
 
     //regex for Searchd command
     public static final Pattern SEARCHD_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<search>[^/]+)"
-                    + "\\s+t/\\s*(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<taskName>[^/]+)"
+            "(?<search>(?i)"
+                    + SearchCommand.dCOMMAND_WORD
+                    + "\\b)"
+                    + "\\s+t/\\s*(?<taskType>[^|/\\s]+[^|/]*)"
+                    + "\\s+n/\\s*(?<taskName>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2})");
 
     //regex for repeat command
     public static final Pattern REPEAT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<repeat>[^/]+)"
+            "(?<repeat>(?i)"
+                    + RepeatCommand.COMMAND_WORD
+                    + "\\b)"
                     + "\\s+id/\\s*(?<eventIndex>\\d+)"
                     + "\\s+p/\\s*(?<numOfPeriod>\\d+)" + "(?<typeOfPeriod>[dwmy])?");
 
     //regex for calendar command
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<calendar>[^/]+)"
+            "(?<calendar>(?i)"
+                    + CalendarCommand.COMMAND_WORD
+                    + "\\b)"
                     + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
 
     //@@author lwxymere
@@ -143,9 +155,9 @@ public class Parser {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
-        String assignmentName = capitalize(matcher.group("assignmentName"));
-        String moduleName = matcher.group("moduleName");
-        String comments = capitalize(matcher.group("comments"));
+        String assignmentName = capitalize(matcher.group("assignmentName").replaceAll("\\s+", " ").trim());
+        String moduleName = matcher.group("moduleName").replaceAll("\\s+", " ").trim();
+        String comments = capitalize(matcher.group("comments").replaceAll("\\s+", " ").trim());
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
@@ -233,9 +245,9 @@ public class Parser {
             return new IncorrectCommand(Messages.INCORRECT_START_END_TIME_ERROR);
         }
 
-        String eventName = capitalize(matcher.group("eventName"));
-        String location = matcher.group("location");
-        String comments = capitalize(matcher.group("comments"));
+        String eventName = capitalize(matcher.group("eventName").replaceAll("\\s+", " ").trim());
+        String location = matcher.group("location").replaceAll("\\s+", " ").trim();
+        String comments = capitalize(matcher.group("comments").replaceAll("\\s+", " ").trim());
         return new EventCommand(eventName, location, startDateTime, endDateTime, comments);
     }
 
@@ -247,7 +259,7 @@ public class Parser {
             return new ListCommand(null);
         }
         assert tokens.length == 2;
-        return new ListCommand(tokens[1].trim());
+        return new ListCommand(tokens[1].replaceAll("\\s+", " ").trim());
     }
 
     //@@author joelczk
@@ -257,7 +269,7 @@ public class Parser {
             return new ClearCommand(null);
         }
         assert tokens.length == 2;
-        return new ClearCommand(tokens[1]);
+        return new ClearCommand(tokens[1].replaceAll("\\s+", " ").trim());
     }
 
     //@@author
