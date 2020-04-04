@@ -62,7 +62,7 @@ public class Duke {
             Person.createNewUser(in);
         }
         Ui.showHelpMessage();
-        String fullCommand;
+        String fullCommand = "";
         boolean isExit = false;
         do {
             try {
@@ -70,6 +70,10 @@ public class Duke {
                 Command command = Controller.control(fullCommand);
                 command.execute(semesterList, availableModulesList);
                 isExit = command.isExit();
+            } catch (NullPointerException e) {
+                logr.log(Level.WARNING, "Invalid input: " + fullCommand
+                        + System.lineSeparator()
+                        + "Please input your command again!");
             } catch (ModuleManagerException e) {
                 logr.log(Level.WARNING, e.getMessage());
             }

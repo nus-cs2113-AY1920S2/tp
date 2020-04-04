@@ -12,8 +12,8 @@ public enum Grading {
     DPLUS("D+", 1.50),
     D("D", 1.00),
     F("F", 0.00),
-    CS("PASS", 0.00),
-    CU("FAIL", 0.00);
+    CS("CS", 0.00),
+    CU("CU", 0.00);
 
     Grading(String grade, double gradePoint) {
         this.grade = grade;
