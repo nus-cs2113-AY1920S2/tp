@@ -84,6 +84,7 @@ The `UI` component,
 
 #### 3.3 Logic component
 
+![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
 
 The `Logic` component 
 1. `Logic` uses the `Parser` class to parse the user command.
@@ -97,6 +98,7 @@ such as displaying help to the user.
 
 #### 3.4 Model component
 
+![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component.png)
 
 The `Model` component
 * Stores a `Person` object that represents the user's details. (e.g. `totalCap`, `totalModuleCreditCompleted`)
