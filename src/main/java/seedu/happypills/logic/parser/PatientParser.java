@@ -17,12 +17,13 @@ import java.util.Scanner;
  * Parses user input.
  */
 public class PatientParser {
+
     /**
-     * Parses user input into command for execution.
+     * Parses user input for patient record into a command for execution.
      *
-     * @param fullCommand Full user input string
-     * @return the command Based on the user input
-     * @throws HappyPillsException Errors base on invalid input or insufficient input
+     * @param fullCommand the full command entered by the user
+     * @return the command that the user has entered
+     * @throws HappyPillsException if the user input does not conform the expected format
      */
     public static PatientCommand parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.trim().split(" ", 3);

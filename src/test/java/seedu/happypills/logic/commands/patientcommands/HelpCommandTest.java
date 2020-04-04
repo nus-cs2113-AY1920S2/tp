@@ -1,7 +1,8 @@
-package seedu.happypills.logic.commands;
+package seedu.happypills.logic.commands.patientcommands;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.happypills.logic.commands.HelpCommand;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;

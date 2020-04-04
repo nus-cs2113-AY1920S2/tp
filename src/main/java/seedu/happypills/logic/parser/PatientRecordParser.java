@@ -15,6 +15,9 @@ import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
 
+/**
+ * This class is used to parse the user input for patient record commands.
+ */
 public class PatientRecordParser {
     public static final String NRIC_TAG = "ic";
     public static final String SYMPTOM_TAG = "sym";
@@ -23,11 +26,11 @@ public class PatientRecordParser {
     public static final String TIME_TAG = "t";
 
     /**
-     * Parses the command given by the user to visit commands.
+     * Parses user input for patient record into a command for execution.
      *
-     * @param fullCommand the full command entered by the user.
-     * @return the command that the user has entered.
-     * @throws HappyPillsException throws an exception for invalid commands.
+     * @param fullCommand the full command entered by the user
+     * @return the command that the user has entered
+     * @throws HappyPillsException if the user input does not conform the expected format
      */
     public static PatientRecordCommand parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.split(" ", 3);
@@ -61,13 +64,13 @@ public class PatientRecordParser {
     }
 
     private static void checkNricValidity(String[] input) throws HappyPillsException {
-        if (!Validation.isValidNric(input[0].toUpperCase())) {
+        if (!Checker.isValidNric(input[0].toUpperCase())) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_NRIC);
         }
     }
 
     private static void checkIndexValidity(String[] input) throws HappyPillsException {
-        if (!Validation.isInteger(input[1])) {
+        if (!Checker.isInteger(input[1])) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_INDEX);
         }
     }
@@ -99,7 +102,7 @@ public class PatientRecordParser {
     private static PatientRecordCommand parsePatientRecordList(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
         checkEmptyNric(userCommand, isCommandLengthOne);
-        if (!Validation.isValidNric(userCommand[2].toUpperCase())) {
+        if (!Checker.isValidNric(userCommand[2].toUpperCase())) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_NRIC);
         }
         return new ListPatientRecordCommand(userCommand[2].toUpperCase());
@@ -118,10 +121,10 @@ public class PatientRecordParser {
         if (edit.length < 4) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_MISSING_FIELD);
         }
-        if (!Validation.isInteger(edit[3].trim())) {
+        if (!Checker.isInteger(edit[3].trim())) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_INDEX);
         }
-        if (!Validation.isValidNric(edit[2].toUpperCase().trim())) {
+        if (!Checker.isValidNric(edit[2].toUpperCase().trim())) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_NRIC);
         }
         return new EditPatientRecordCommand(
@@ -134,12 +137,12 @@ public class PatientRecordParser {
 
     private static boolean isValidDateInput(String input, String detail) {
         return isInputEmpty(input)
-                && Validation.isValidDate(detail.substring(1).trim());
+                && Checker.isValidDate(detail.substring(1).trim());
     }
 
     private static boolean isValidTimeInput(String input, String detail) {
         return isInputEmpty(input)
-                && Validation.isValidTime(detail.substring(1).trim());
+                && Checker.isValidTime(detail.substring(1).trim());
     }
 
     private static boolean hasMissingFields(String[] parseInput) {
@@ -148,8 +151,8 @@ public class PatientRecordParser {
                 return true;
             }
         }
-        boolean isIncorrectFormat = !Validation.isValidNric(parseInput[0])
-                || !Validation.isValidDate(parseInput[3]) || !Validation.isValidTime(parseInput[4]);
+        boolean isIncorrectFormat = !Checker.isValidNric(parseInput[0])
+                || !Checker.isValidDate(parseInput[3]) || !Checker.isValidTime(parseInput[4]);
         return isIncorrectFormat;
     }
 
@@ -186,7 +189,7 @@ public class PatientRecordParser {
         }
 
         boolean hasConfirmation = false;
-        System.out.println(PatientRecordTextUi.promptConformation(parseInput));
+        System.out.println(PatientRecordTextUi.promptConfirmation(parseInput));
 
         while (!hasConfirmation) {
             String confirmation = readUserInput();
@@ -208,17 +211,17 @@ public class PatientRecordParser {
     private static void updateInput(String[] parseInput, String[] updates) {
         for (String update : updates) {
             if (update.startsWith(NRIC_TAG) && (parseInput[0].equalsIgnoreCase("")
-                    || !Validation.isValidNric(parseInput[0]))) {
+                    || !Checker.isValidNric(parseInput[0]))) {
                 parseInput[0] = update.substring(2).toUpperCase().trim();
             } else if (update.startsWith(SYMPTOM_TAG) && (parseInput[1].equalsIgnoreCase(""))) {
                 parseInput[1] = update.substring(3);
             } else if (update.startsWith(DIAGNOSIS_TAG) && parseInput[2].equalsIgnoreCase("")) {
                 parseInput[2] = update.substring(4);
             } else if (update.startsWith(DATE_TAG) && (parseInput[3].equalsIgnoreCase("")
-                    || !Validation.isValidDate(parseInput[3]))) {
+                    || !Checker.isValidDate(parseInput[3]))) {
                 parseInput[3] = update.substring(1);
             } else if (update.startsWith(TIME_TAG) && (parseInput[4].equalsIgnoreCase("")
-                    || !Validation.isValidTime(parseInput[4]))) {
+                    || !Checker.isValidTime(parseInput[4]))) {
                 parseInput[4] = update.substring(1);
             }
         }
@@ -226,7 +229,7 @@ public class PatientRecordParser {
 
     private static void printMissingFields(String[] parseInput) {
         System.out.println(Messages.MESSAGE_INFORM_MISSING);
-        if (parseInput[0].equalsIgnoreCase("") || !Validation.isValidNric(parseInput[0])) {
+        if (parseInput[0].equalsIgnoreCase("") || !Checker.isValidNric(parseInput[0])) {
             System.out.println(Messages.MESSAGE_NRIC_FORMAT);
         }
         if (parseInput[1].equalsIgnoreCase("")) {
@@ -235,10 +238,10 @@ public class PatientRecordParser {
         if (parseInput[2].equalsIgnoreCase("")) {
             System.out.println(Messages.MESSAGE_DIAGNOSIS_FORMAT);
         }
-        if (parseInput[3].equalsIgnoreCase("") || !Validation.isValidDate(parseInput[3])) {
+        if (parseInput[3].equalsIgnoreCase("") || !Checker.isValidDate(parseInput[3])) {
             System.out.println(Messages.MESSAGE_DATE_FORMAT);
         }
-        if (parseInput[4].equalsIgnoreCase("") || !Validation.isValidTime(parseInput[4])) {
+        if (parseInput[4].equalsIgnoreCase("") || !Checker.isValidTime(parseInput[4])) {
             System.out.println(Messages.MESSAGE_TIME_FORMAT);
         }
     }

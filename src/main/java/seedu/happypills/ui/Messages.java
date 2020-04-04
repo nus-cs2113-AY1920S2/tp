@@ -7,7 +7,7 @@ import static seedu.happypills.ui.TextUi.DIVIDER;
  */
 public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "    Command is invalid. "
-            + "Enter help to know how to use HappyPills.\n";
+            + "Enter help to know how to use HappyPills.";
     public static final String MESSAGE_INCOMPLETE_COMMAND = "    Command is incomplete. Please use the help command.\n"
             + DIVIDER;
     public static final String MESSAGE_PATIENT_NOT_FOUND = "    Patient does not exist. Please try again.\n"
@@ -20,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_NRIC = "    Invalid NRIC format.";
     public static final String MESSAGE_NRIC_NOT_PROVIDED = "    NRIC of the patient not provided";
     public static final String MESSAGE_PATIENT_RECORD_DETAILS_NOT_PROVIDED =
-            "    Patient's record details are provided.";
+            "    Patient's record details are not provided.";
     public static final String MESSAGE_INFORM_MISSING = "    Please input your missing detail listed below";
     public static final String MESSAGE_NRIC_FORMAT = "    /ic NRIC (Format: [S/T][7-digits][A-Z])";
     public static final String MESSAGE_SYMPTOM_FORMAT = "    /sym SYMPTOMS";

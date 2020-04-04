@@ -1,20 +1,23 @@
 package seedu.happypills.logic.parser;
 
-public class Validation {
+public class Checker {
 
     /**
      * To check format for phone.
      *
-     * @param s string to be validated
+     * @param phoneNumber string to be validated
      * @return boolean true if the time format is correct otherwise false
      */
-    public static boolean isValidPhoneNum(String s) {
-        String pattern = "^[0-9]{9}$";
-        return s.matches(pattern);
+    public static boolean isValidPhoneNum(String phoneNumber) {
+        //String pattern = "^[0-9]{9}$";
+        //return phoneNumber.matches(pattern);
+        String pattern = "([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
+        return phoneNumber.matches(pattern);
     }
 
     /**
      * check string if fits date format. Only allows for year 2000 and beyond.
+     *
      * @param date string to be validated
      * @return true if correct date format, false otherwise
      */
@@ -29,6 +32,7 @@ public class Validation {
 
     /**
      * check string if fits time format. (HH:MM)
+     *
      * @param time string to be validated
      * @return true if correct date format, false otherwise.
      */
@@ -39,32 +43,35 @@ public class Validation {
 
     /**
      * Check string if is valid blood type.
-     * @param s String to be validated
+     *
+     * @param blood String to be validated
      * @return true if is valid, false otherwise.
      */
-    public static boolean isValidBloodType(String s) {
+    public static boolean isValidBloodType(String blood) {
         String pattern = "([A|B|AB|O][+-])";
-        return s.matches(pattern);
+        return blood.matches(pattern);
     }
 
     /**
      * Check string if is numeric.
-     * @param s String to be validated
+     *
+     * @param number String to be validated
      * @return true if is numeric, false otherwise.
      */
-    public static boolean isNumeric(String s) {
+    public static boolean isNumeric(String number) {
         String pattern = "^[0-9]*$";
-        return  s.matches(pattern);
+        return number.matches(pattern);
     }
 
     /**
      * Check string if is valid NRIC.
-     * @param s String to be validated
+     *
+     * @param nric String to be validated
      * @return true if is valid, false otherwise.
      */
-    public static boolean isValidNric(String s) {
+    public static boolean isValidNric(String nric) {
         String pattern = "(?i)^[STFG]\\d{7}[A-Z]$";
-        return  s.matches(pattern);
+        return nric.matches(pattern);
     }
 
     /**

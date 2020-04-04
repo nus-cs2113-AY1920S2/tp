@@ -1,7 +1,7 @@
 package seedu.happypills.logic.commands.patientrecordcommands;
 
 import seedu.happypills.HappyPills;
-import seedu.happypills.logic.parser.Validation;
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecord;
@@ -129,7 +129,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
      * @return the appointment with the specified apptID or null if not found
      */
     private Boolean editDate(PatientRecord patientRecord, String newDate) {
-        if (!Validation.isValidDate(newDate)) {
+        if (!Checker.isValidDate(newDate)) {
             return false;
         }
         patientRecord.setDate(newDate);
@@ -144,7 +144,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
      * @return the appointment with the specified apptID or null if not found.
      */
     private Boolean editTime(PatientRecord patientRecord, String newTime) {
-        if (!Validation.isValidTime(newTime)) {
+        if (!Checker.isValidTime(newTime)) {
             return false;
         }
         patientRecord.setTime(newTime);
