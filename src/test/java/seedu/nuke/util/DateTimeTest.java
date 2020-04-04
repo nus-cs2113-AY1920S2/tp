@@ -73,13 +73,13 @@ class DateTimeTest {
         assertEquals("tomorrow " + tomorrow.getTimeString(), tomorrow.toShow());
 
         DateTime yesterday = new DateTime(LocalDate.now().minusDays(1), LocalTime.now());
-        assertEquals(yesterday.getDateString() + " " + yesterday.getTimeString() + " [OVER!!]", yesterday.toShow());
+        assertEquals(yesterday.getDateString() + " " + yesterday.getTimeString() + " [OVER!]", yesterday.toShow());
 
         DateTime weekAfter = new DateTime(LocalDate.now().plusWeeks(1), LocalTime.now());
         assertEquals(weekAfter.getDateString() + " " + weekAfter.getTimeString(), weekAfter.toShow());
 
         DateTime weekBefore = new DateTime(LocalDate.now().minusWeeks(1), LocalTime.now());
-        assertEquals(weekBefore.getDateString() + " " + weekBefore.getTimeString() + " [OVER!!]", weekBefore.toShow());
+        assertEquals(weekBefore.getDateString() + " " + weekBefore.getTimeString() + " [OVER!]", weekBefore.toShow());
     }
 
     @Test

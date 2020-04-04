@@ -2,7 +2,6 @@ package seedu.nuke.directory;
 
 public class TaskFile extends Directory {
     private String fileName;
-    private String originalFilePath;
     private String filePath;
 
     /**
@@ -18,7 +17,7 @@ public class TaskFile extends Directory {
     public TaskFile(Task task, String fileName, String filePath) {
         super(task);
         this.fileName = fileName;
-        this.originalFilePath = filePath;
+        this.filePath = filePath;
     }
 
     /**
@@ -44,6 +43,11 @@ public class TaskFile extends Directory {
     @Override
     public Task getParent() {
         return (Task) this.parent;
+    }
+
+    @Override
+    public DirectoryLevel getLevel() {
+        return DirectoryLevel.FILE;
     }
 
     /**
@@ -86,6 +90,8 @@ public class TaskFile extends Directory {
      */
     @Override
     public String toString() {
-        return String.format("File Name: %s\nOriginal File Path: %s\n", fileName, originalFilePath);
+        return String.format("File Name: %s\nModule Code: %s\nCategory Name: %s\nTask Description: %s\n",
+                fileName, getParent().getParent().getParent().getModuleCode(),
+                getParent().getParent().getCategoryName(), getParent().getDescription());
     }
 }

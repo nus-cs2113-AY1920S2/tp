@@ -8,12 +8,15 @@ import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
-import seedu.nuke.util.ExceptionMessage;
 
 import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_CATEGORY_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.messageAddCategorySuccess;
 
 /**
@@ -67,6 +70,10 @@ public class AddCategoryCommand extends AddCommand {
         this(moduleCode, categoryName, 0);
     }
 
+    private boolean exceedLengthLimit() {
+        return categoryName.length() > 15;
+    }
+
     /**
      * Executes the <b>Add Category Command</b> to add a <b>Category</b> into the <b>Category List</b>.
      *
@@ -76,17 +83,20 @@ public class AddCategoryCommand extends AddCommand {
      */
     @Override
     public CommandResult execute() {
+        if (exceedLengthLimit()) {
+            return new CommandResult(MESSAGE_CATEGORY_EXCEED_LIMIT);
+        }
         try {
             Module parentModule = DirectoryTraverser.getModuleDirectory(moduleCode);
             Category toAdd = new Category(parentModule, categoryName, categoryPriority);
             parentModule.getCategories().add(toAdd);
             return new CommandResult(messageAddCategorySuccess(categoryName));
         } catch (ModuleManager.ModuleNotFoundException e) {
-            return new CommandResult(ExceptionMessage.MESSAGE_MODULE_NOT_FOUND);
+            return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         } catch (CategoryManager.DuplicateCategoryException e) {
-            return new CommandResult(ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY);
+            return new CommandResult(MESSAGE_DUPLICATE_CATEGORY);
         } catch (IncorrectDirectoryLevelException e) {
-            return new CommandResult(ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+            return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 }

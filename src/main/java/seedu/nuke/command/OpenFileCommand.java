@@ -23,7 +23,7 @@ import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.TASK_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_IO_EXCEPTION;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND_OPEN;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_FILE_NOT_FOUND;
@@ -108,18 +108,26 @@ public class OpenFileCommand extends FilterCommand {
         }
         Desktop desktop = Desktop.getDesktop();
 
+        ArrayList<String> nonExistentFiles = new ArrayList<>();
+
         for (TaskFile file : filesToOpen) {
             File[] filesInDirectory = new File(file.getFilePath()).listFiles();
             if (filesInDirectory == null || filesInDirectory.length == 0) {
-                throw new FileNotFoundException();
+                nonExistentFiles.add(file.getFileName());
+                continue;
             }
             // Get the first file in the list
             File toOpen = filesInDirectory[0];
             if (!toOpen.exists() || !toOpen.isFile()) {
-                throw new FileNotFoundException();
+                nonExistentFiles.add(file.getFileName());
             } else {
                 desktop.open(toOpen);
             }
+        }
+
+        if (!nonExistentFiles.isEmpty()) {
+            String fileNames = String.join(", ", nonExistentFiles);
+            throw new FileNotFoundException(fileNames);
         }
     }
 
@@ -151,7 +159,7 @@ public class OpenFileCommand extends FilterCommand {
         } catch (IncorrectDirectoryLevelException e) {
             return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         } catch (FileNotFoundException e) {
-            return new CommandResult(MESSAGE_FILE_NOT_FOUND);
+            return new CommandResult(String.format("%s%s\n", MESSAGE_FILE_NOT_FOUND_OPEN, e.getMessage()));
         } catch (IOException e) {
             return new CommandResult(MESSAGE_FILE_IO_EXCEPTION);
         }

@@ -21,13 +21,13 @@ public class DirectoryTraverser {
     private static final int MAXIMUM_LEVEL = 4;
 
     /**
-     * Returns the current subdirectory.
+     * Returns the current directory.
      *
      * @return
-     *  The current subdirectory
+     *  The current directory
      */
     public static Directory getCurrentDirectory() {
-        return directoryStack.peek();
+        return directoryStack.isEmpty() ? new Root() : directoryStack.peek();
     }
 
     /**
