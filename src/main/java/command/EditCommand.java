@@ -23,20 +23,24 @@ public class EditCommand extends Command {
 
     //Regex for Assignment Command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<assignmentName>[^/]+)"
-                    + "\\s+m/\\s*(?<moduleName>[^/]+)"
+            "(?<taskType>(?i)"
+                    + AssignmentCommand.COMMAND_WORD
+                    + "\\b)"
+                    + "\\s+n/\\s*(?<assignmentName>[^|/\\s]+[^|/]*)"
+                    + "\\s+m/\\s*(?<moduleName>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-                    + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
     );
 
     //Regex for Event Command
     public static final Pattern EVENT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<taskType>[^/]+)"
-                    + "\\s+n/\\s*(?<eventName>[^/]+)"
-                    + "\\s+l/\\s*(?<location>[^/]+)"
+            "(?<taskType>(?i)"
+                    + EventCommand.COMMAND_WORD
+                    + "\\b)"
+                    + "\\s+n/\\s*(?<eventName>[^|/\\s]+[^|/]*)"
+                    + "\\s+l/\\s*(?<location>[^|/\\s]+[^|/]*)"
                     + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
-                    + "\\s+c/\\s*(?<comments>.+)$"
+                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
     );
 
     protected int editIndex;
@@ -87,7 +91,7 @@ public class EditCommand extends Command {
                 if (taskList.isRepeatTask(taskList, editedEvent)) {
                     return new CommandResult((Messages.SAME_TASK_ERROR));
                 }
-                //Check if edited Event is repeating event.
+                //Check if Event to be edited is repeating event.
                 if (taskList.getTask(editIndex) instanceof RepeatEvent) {
                     Task editedRepeatEvent = editRepeatEvent(editedEvent, (RepeatEvent) taskList.getTask(editIndex));
                     taskList.editTask(editIndex, editedRepeatEvent);
