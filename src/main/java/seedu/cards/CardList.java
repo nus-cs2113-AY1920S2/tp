@@ -82,7 +82,8 @@ public class CardList implements Serializable {
             System.out.println("Here is the list of questions.");
             for (int i = 0; i < cards.size(); i++) {
                 int j = i + 1;
-                System.out.println(j + ". " + cards.get(i).getQuestion());
+                System.out.println(j + ".Q. " + cards.get(i).getQuestion());
+                System.out.println("  A. " + cards.get(i).getAnswer());
             }
         }
     }
