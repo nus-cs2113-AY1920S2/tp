@@ -1,15 +1,19 @@
 package seedu.dietmanager;
 
-import seedu.dietmanager.commands.Command;
-import seedu.dietmanager.exceptions.InvalidCommandException;
-import seedu.dietmanager.exceptions.InvalidFormatException;
-import seedu.dietmanager.exceptions.InvalidGenderException;
-import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.model.Profile;
+import seedu.dietmanager.commons.core.FoodNutritionInfo;
+import seedu.dietmanager.commons.core.LogsCentre;
+import seedu.dietmanager.logic.commands.Command;
+import seedu.dietmanager.commons.exceptions.InvalidCommandException;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.commons.exceptions.InvalidGenderException;
+import seedu.dietmanager.logic.parser.Parser;
+import seedu.dietmanager.storage.Storage;
 import seedu.dietmanager.ui.UI;
 
 public class DietManager {
 
-    private static AppLogger appLogger;
+    private static LogsCentre logsCentre;
     private static FoodNutritionInfo foodNutritionInfo;
     private static Profile profile;
     private static UI ui;
@@ -26,7 +30,7 @@ public class DietManager {
 
     private static void runApplication() {
 
-        appLogger.logExecuteProgramme();
+        logsCentre.logExecuteProgramme();
         ui.displayWelcomeMessage();
 
         while (!ui.isExitStatus()) {
@@ -47,15 +51,15 @@ public class DietManager {
         }
 
         ui.displayExitMessage();
-        appLogger.logExitProgramme();
+        logsCentre.logExitProgramme();
     }
 
     private static void initialiseApplication() {
-        appLogger = new AppLogger();
+        logsCentre = new LogsCentre();
         foodNutritionInfo = FoodNutritionInfo.getInstance();
         profile = new Profile();
         ui = new UI();
-        storage = new Storage(ui, appLogger);
+        storage = new Storage(ui, logsCentre);
 
         testAssertions();
     }

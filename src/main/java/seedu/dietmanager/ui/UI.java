@@ -1,5 +1,7 @@
 package seedu.dietmanager.ui;
 
+import seedu.dietmanager.commons.core.MessageBank;
+
 import java.util.Scanner;
 
 /**
