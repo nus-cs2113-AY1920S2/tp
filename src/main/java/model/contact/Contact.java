@@ -46,6 +46,16 @@ public class Contact {
         }
     }
 
+    public void addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime,
+                              String[] onWeeks) throws MoException {
+        editBlocks(MYSCHEDULEBLOCKED, meetingName, startDay, startTime, endDay, endTime, onWeeks);
+    }
+
+    public void addFreeBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime,
+                              String[] onWeeks) throws MoException {
+        editBlocks(MYSCHEDULEFREE, meetingName, startDay, startTime, endDay, endTime, onWeeks);
+    }
+
     /** Adds scheduled model.meeting in LocalTime into schedule[][][] data structure.
      *
      * @param meetingName name of the scheduled model.meeting to be added.
@@ -56,15 +66,6 @@ public class Contact {
      * @param onWeeks     weeks that are suppose to be made busy.
      * @return returns String of error message, else returns "Success" if schedule is successfully edited.
      */
-
-    public void addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
-        editBlocks(MYSCHEDULEBLOCKED, meetingName, startDay, startTime, endDay, endTime, onWeeks);
-    }
-
-    public void addFreeBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
-        editBlocks(MYSCHEDULEFREE, meetingName, startDay, startTime, endDay, endTime, onWeeks);
-    }
-
     public String editBlocks(Boolean blockedorfree, String meetingName, Integer startDay,
                              String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
         LocalTime localTimeStart;

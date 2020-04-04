@@ -85,7 +85,8 @@ public class CommandHandler {
         return member;
     }
 
-    public static void editContact(String[] userInputWords, Contact mainUser, ContactList contactList, int currentWeekNumber) throws MoException {
+    public static void editContact(String[] userInputWords, Contact mainUser, ContactList contactList,
+                                   int currentWeekNumber) throws MoException {
         if (userInputWords.length != 7) {
             throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
         }
