@@ -312,11 +312,11 @@ also be able to trace functionality bugs more easily if each command class deals
   
  Diagram 1:
  
-![alt text](images/Mark.png)
+![alt text](images/MarkFinal.png)
   
 Diagram 2:
 
-![alt text](images/Unmark.png)
+![alt text](images/UnmarkFinal.png)
   
 #### 3.5.2 Design Considerations
   
@@ -503,7 +503,7 @@ which makes another call to the <code>resetBudget</code> function of the <code>B
 The following sequence diagram below shows how the reset budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](images/Reset_Budget.png)
+![alt text](images/ResetBudgetFinal.png)
 
 
 #### 3.9.2 Design considerations
@@ -524,6 +524,10 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
+  
+- Reason for choosing alternative 1: By implementing each command type in a separate class, any bugs associated with a 
+particular functionality will not affect other functionalities that significantly. It would also make it easier for us to 
+work in parallel.
   
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
