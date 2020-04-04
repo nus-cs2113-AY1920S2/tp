@@ -63,7 +63,8 @@ public class PatientParser {
         return trimmedArray;
     }
 
-    private static PatientCommand parsePatientGet(String[] userCommand, boolean isCommandLengthOne) throws HappyPillsException {
+    private static PatientCommand parsePatientGet(String[] userCommand, boolean isCommandLengthOne)
+            throws HappyPillsException {
         if (isCommandLengthOne || userCommand[1].isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_NRIC_NOT_PROVIDED);
         }
@@ -78,7 +79,8 @@ public class PatientParser {
         return new EditPatientCommand(edit[2], edit[3]);
     }
 
-    private static PatientCommand parsePatientAdd(String[] userCommand, boolean isCommandLengthOne) throws HappyPillsException {
+    private static PatientCommand parsePatientAdd(String[] userCommand, boolean isCommandLengthOne)
+            throws HappyPillsException {
         if (userCommand.length == 1 || isCommandLengthOne) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_DETAILS_NOT_PROVIDED);
         }
