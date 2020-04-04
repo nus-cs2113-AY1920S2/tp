@@ -1,4 +1,6 @@
 # Developer Guide
+By: `Team SHOCOTech`
+Since: `Feb 2020`
 
 ### Table of Contents
 * **[1. Introduction](#1-introduction)**
