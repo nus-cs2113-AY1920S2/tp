@@ -159,6 +159,13 @@ The sequence diagram below shows how various components, broken down into the va
 ## 3. Implementation
 This section will detail how some noteworthy features are implemented.
 
+> Note: 
+> You will need to create tasks to use the features mentioned below.  
+> Create an `assignment`: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`  
+> Create an `event`     : `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMMENTS]`  
+> Dates follow the `DD/MM/YY` format, and times follow the `HHmm` format.  
+> For more information, please refer to the user guide.
+
 ### 3.1. Delete Task Feature
 Current Implementation:  
 The `DeleteCommand` extends the `Command` class and initializes the `delete index` in its constructor. The `delete index` specifies the index of task that the user wants to delete.
