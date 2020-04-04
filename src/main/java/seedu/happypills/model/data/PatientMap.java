@@ -1,6 +1,8 @@
 package seedu.happypills.model.data;
 
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.Messages;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ public class PatientMap {
         if (!argMultimap.containsKey(patient.nric)) {
             argMultimap.put(patient.nric, patient);
         } else {
-            throw new HappyPillsException("    Patient is already in the list. Please use help command.");
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_IS_IN_THE_MAP);
         }
     }
 

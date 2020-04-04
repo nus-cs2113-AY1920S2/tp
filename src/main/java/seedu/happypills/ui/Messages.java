@@ -35,12 +35,17 @@ public class Messages {
     public static final String MESSAGE_PATIENT_RECORD_NOT_FOUND = "    Patient record not found. Please try again.";
     public static final String MESSAGE_EDIT_ERROR = "    Something went wrong, the edit could not be made.";
     public static final String MESSAGE_INVALID_DATE = "    Invalid date or date format(DD/MM/YYYY).\n";
+    public static final String MESSAGE_INVALID_DATE_OF_BIRTH = "    Please ensure that the DATE is in DD/MM/YYYY ";
     public static final String MESSAGE_INVALID_TIME = "    Invalid time or time format(HH:MM).\n";
+    public static final String MESSAGE_INVALID_PHONE_NUMBER = "    Please ensure that all the phone number is 8 digit";
     public static final String MESSAGE_INVALID_TAG =
             "    Please try again. To learn more about the Edit appointment command, "
                     + "\n    enter \"help appt edit\"";
 
     public static final String MESSAGE_EMPTY_PATIENT = "    There are no patients in the list.\n" + DIVIDER;
     public static final String MESSAGE_INDEX_OUT_OF_BOUND = "    No record found with given Index";
+    public static final String MESSAGE_PATIENT_IS_IN_THE_MAP =
+            "    Patient is already in the list. Please use help command.";
+    public static final String MESSAGE_CONTENT_IS_EMPTY = "    Please do not leave the field as empty string";
 }
 
