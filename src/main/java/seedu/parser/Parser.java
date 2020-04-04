@@ -228,7 +228,9 @@ public class Parser {
      */
     private static Command prepareDeleteEvent(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, DeleteEventCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], DeleteEventCommand.MESSAGE_USAGE, EVENT_ARG);
+
         int eventIndex = getEventIndex(arguments[1]);
 
         return new DeleteEventCommand(eventIndex);
