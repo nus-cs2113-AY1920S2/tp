@@ -1,4 +1,4 @@
-package seedu.dietmanager.logic;
+package seedu.dietmanager;
 
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.commons.core.FoodNutritionInfo;
