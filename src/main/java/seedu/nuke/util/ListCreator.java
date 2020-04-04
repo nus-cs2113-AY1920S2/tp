@@ -167,10 +167,10 @@ public class ListCreator {
                     centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
                     centraliseText(fitText(moduleCode, 10), 10), SEPARATOR,
                     centraliseText(fitText(categoryName, 16), 16), SEPARATOR,
-                    centraliseText(fitText(taskDescription, 24), 24), SEPARATOR,
-                    centraliseText(fitText(deadline, 30), 30), SEPARATOR,
+                    centraliseText(fitText(taskDescription, 25), 25), SEPARATOR,
+                    centraliseText(fitText(deadline, 28), 28), SEPARATOR,
                     centraliseText(fitText(priority, 5), 5), SEPARATOR,
-                    centraliseText(fitText(statusIcon, 6), 5)
+                    centraliseText(fitText(statusIcon, 6), 6)
             ));
         }
 
@@ -195,8 +195,8 @@ public class ListCreator {
                 centraliseText("NO", 4), SEPARATOR,
                 centraliseText("MODULE", 10), SEPARATOR,
                 centraliseText("CATEGORY", 16), SEPARATOR,
-                centraliseText("TASK", 24), SEPARATOR,
-                centraliseText("DEADLINE", 30), SEPARATOR,
+                centraliseText("TASK", 25), SEPARATOR,
+                centraliseText("DEADLINE", 28), SEPARATOR,
                 centraliseText("PTY", 5), SEPARATOR,
                 centraliseText("DONE", 6)
         ));
@@ -228,10 +228,10 @@ public class ListCreator {
 
             fileListTable.append(String.format("%s%s%s%s%s%s%s%s%s\n",
                     centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
-                    centraliseText(fitText(moduleCode, 16), 16), SEPARATOR,
-                    centraliseText(fitText(categoryName, 24), 24), SEPARATOR,
-                    centraliseText(fitText(taskDescription, 28), 28), SEPARATOR,
-                    centraliseText(fitText(fileName, 24), 24)
+                    centraliseText(fitText(moduleCode, 15), 15), SEPARATOR,
+                    centraliseText(fitText(categoryName, 20), 20), SEPARATOR,
+                    centraliseText(fitText(taskDescription, 27), 27), SEPARATOR,
+                    centraliseText(fitText(fileName, 30), 30)
             ));
         }
 
@@ -254,10 +254,10 @@ public class ListCreator {
         header.append(LIST_DIVIDER);
         header.append(String.format("%s%s%s%s%s%s%s%s%s\n",
                 centraliseText("NO", 4), SEPARATOR,
-                centraliseText("MODULE", 16), SEPARATOR,
-                centraliseText("CATEGORY", 24), SEPARATOR,
-                centraliseText("TASK", 28), SEPARATOR,
-                centraliseText("FILE", 24)
+                centraliseText("MODULE", 15), SEPARATOR,
+                centraliseText("CATEGORY", 20), SEPARATOR,
+                centraliseText("TASK", 27), SEPARATOR,
+                centraliseText("FILE", 30)
         ));
         header.append(LIST_DIVIDER);
 

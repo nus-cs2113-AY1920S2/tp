@@ -80,7 +80,9 @@ public class StorageManager {
      */
     public void saveList() {
         try {
-            FileWriter fileWriter = new FileWriter(dataFileName);
+            File saveFile = new File(dataFileName);
+            saveFile.getParentFile().mkdirs();
+            FileWriter fileWriter = new FileWriter(saveFile);
             fileWriter.write(new Encoder(ModuleManager.getModuleList()).encode());
             fileWriter.flush();
             fileWriter.close();

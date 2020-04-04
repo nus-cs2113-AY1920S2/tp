@@ -34,7 +34,7 @@ public class EditTaskCommand extends EditCommand {
     public static final String COMMAND_WORD = "edt";
     public static final String FORMAT = COMMAND_WORD
             + " <task description> -m <module code> -c <category name>"
-            + " [ -t <new task description> -d <new deadline> -p <new priority> ]";
+            + " [ -t <new task description> -d <new deadline> -p <new priority> (must include at least one) ]";
     public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
             + "Edit description, deadline and priority of task"
             + System.lineSeparator() + FORMAT + System.lineSeparator();
