@@ -19,7 +19,7 @@ public class NewModule extends Module {
         for (String preRequisiteModule: preRequisiteModules) {
             preReq.append(preRequisiteModule).append(" ");
         }
-        this.preReqString = preReq.toString();
+        this.preReqString = preReq.toString().trim();
 
         this.preRequisiteModules = convertFromStringToModuleList(preRequisiteModules);
     }
@@ -41,11 +41,15 @@ public class NewModule extends Module {
         StringBuilder output = new StringBuilder(String.format("ID: %s Name: %s | Modular Credit: %d",
                 id, name, moduleCredit));
         boolean hasPreReqModule = false;
-        StringBuilder prereq = new StringBuilder(" | Prerequisites:");
-        for (Module preReqModule : this.preRequisiteModules) {
-            prereq.append(" ").append(preReqModule.getId());
+        StringBuilder prereq = new StringBuilder(" | Prerequisites: ");
+        //        for (Module preReqModule : this.preRequisiteModules) {
+        //            prereq.append(" ").append(preReqModule.getId());
+        //            hasPreReqModule = true;
+        //        }
+        if (!getPreReqModulesString().equals("None")) {
             hasPreReqModule = true;
         }
+        prereq.append(getPreReqModulesString());
         if (hasPreReqModule) {
             output.append(prereq);
         }
@@ -56,5 +60,13 @@ public class NewModule extends Module {
         StringBuilder output = new StringBuilder(String.format("%s,%s,%d,%s",
                 id, name, moduleCredit, preReqString));
         return output.toString();
+    }
+
+    @Override
+    public String getPreReqModulesString() {
+        if (preReqString.length() == 0) {
+            return "None";
+        }
+        return preReqString;
     }
 }
