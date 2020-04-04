@@ -95,7 +95,7 @@ This section will guide you on how to set up this project on your own computer.
 This section will give a high-level overview of how various components in **ATAS** function and interact with each other.
 
 ### 2.1. Architecture
-![overall architecture](images/overall architecture.PNG)
+![overall architecture](images/overall_architecture.PNG)
 
 The architecture diagram above illustrates the high-level design of the **ATAS** application.  
 
@@ -129,7 +129,7 @@ The Logic component comprises the `Parser`, `Command`, and `CommandResult` class
 ### 2.4. Model Component
 The Model component contains the `Task` and `TaskList` classes, which store the user’s schedule.
 
-![TaskList and Tasks](images/TaskList Task class diagram.PNG)
+![TaskList and Tasks](images/TaskList_Task_class_diagram.PNG)
 
 ### 2.5. Storage Component
 ![Storage Class Diagram](images/storage.PNG)
@@ -144,7 +144,7 @@ The Model component contains the `Task` and `TaskList` classes, which store the 
 The `Atas` component integrates all the aforementioned components to run the overall application logic.  
 The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command  
 
-![Component interactions for help command](images/atas help command sequence diagram v3.PNG)
+![Component interactions for help command](images/atas_help_command_sequence_diagram_v3.PNG)
 
 1.  The `Ui` class is used to read user input.  
 
