@@ -119,7 +119,7 @@ public class PatientRecordParser {
     private static PatientRecordCommand parsePatientRecordEdit(String fullCommand) throws HappyPillsException {
         String[] edit = fullCommand.split(" ", 5);
         if (edit.length < 4) {
-            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_MISSING_FIELD);
+            throw new HappyPillsException(Messages.MESSAGE_MISSING_FIELD);
         }
         if (!Checker.isInteger(edit[3].trim())) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_INDEX);
@@ -133,6 +133,11 @@ public class PatientRecordParser {
 
     private static boolean isInputEmpty(String input) {
         return input.equalsIgnoreCase("");
+    }
+
+    private static boolean isValidNric(String input, String detail) {
+        return isInputEmpty(input)
+                && Checker.isValidDate(detail.substring(2).trim().toUpperCase());
     }
 
     private static boolean isValidDateInput(String input, String detail) {
@@ -162,15 +167,15 @@ public class PatientRecordParser {
         String[] parseInput = {"", "", "", "", "", ""};
 
         for (String detail : details) {
-            if (detail.startsWith(NRIC_TAG) && isInputEmpty(parseInput[0])) {
+            if (detail.startsWith(NRIC_TAG) && isValidNric(parseInput[0],detail)) {
                 parseInput[0] = detail.substring(2).trim().toUpperCase();
             } else if (detail.startsWith(SYMPTOM_TAG) && isInputEmpty(parseInput[1])) {
                 parseInput[1] = detail.substring(3).trim();
             } else if (detail.startsWith(DIAGNOSIS_TAG) && isInputEmpty(parseInput[2])) {
                 parseInput[2] = detail.substring(4).trim();
-            } else if (detail.startsWith(DATE_TAG) && isValidDateInput(parseInput[3],detail)) {
+            } else if (detail.startsWith(DATE_TAG) && isValidDateInput(parseInput[3], detail)) {
                 parseInput[3] = detail.substring(1).trim();
-            } else if (detail.startsWith(TIME_TAG) && isValidTimeInput(parseInput[4],detail)) {
+            } else if (detail.startsWith(TIME_TAG) && isValidTimeInput(parseInput[4], detail)) {
                 parseInput[4] = detail.substring(1).trim();
             } else {
                 PatientRecordTextUi.patientRecordNotAddedMessage(detail);
@@ -229,7 +234,7 @@ public class PatientRecordParser {
 
     private static void printMissingFields(String[] parseInput) {
         System.out.println(Messages.MESSAGE_INFORM_MISSING);
-        if (parseInput[0].equalsIgnoreCase("") || !Checker.isValidNric(parseInput[0])) {
+        if (isInputEmpty(parseInput[0]) || !Checker.isValidNric(parseInput[0])) {
             System.out.println(Messages.MESSAGE_NRIC_FORMAT);
         }
         if (parseInput[1].equalsIgnoreCase("")) {

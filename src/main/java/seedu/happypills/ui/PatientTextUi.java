@@ -97,4 +97,8 @@ public class PatientTextUi extends TextUi {
 
     public static String patientNotDeletedMessage = DIVIDER + "\n    Patient is not deleted.\n";
 
+    public static void patientNotAddedMessage(String detail) {
+        System.out.println("    " + detail + " is not a valid input.\n"
+                + "    " + detail + " will not be added\n" + TextUi.DIVIDER);
+    }
 }
