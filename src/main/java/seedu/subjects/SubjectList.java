@@ -7,6 +7,7 @@ import seedu.exception.EscException;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SubjectList {
     private ArrayList<Subject> subjects;
@@ -18,14 +19,13 @@ public class SubjectList {
         this.exams = new ArrayList<Exam>();
     }
 
-    public SubjectList(ArrayList<Subject> subjects) {
-        this.subjects = subjects;
-        this.exams = new ArrayList<Exam>();
-    }
-
-    public SubjectList(ArrayList<Subject> subjects, ArrayList<Exam> examDates) {
-        this.subjects = subjects;
-        this.exams = examDates;
+    /**
+     * Constructor for loading SubjectList.
+     * @param returnObj
+     */
+    public SubjectList(ArrayList returnObj) {
+        this.subjects = (ArrayList<Subject>) returnObj.get(0);
+        this.exams = (ArrayList<Exam>) returnObj.get(1);
     }
 
     public ArrayList<Subject> getSubjects() {

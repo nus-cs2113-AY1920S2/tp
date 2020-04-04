@@ -1,8 +1,9 @@
 package seedu.exams;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Exam implements Comparable<Exam> {
+public class Exam implements Comparable<Exam>, Serializable {
     private String topic;
     private LocalDate examDate;
 
