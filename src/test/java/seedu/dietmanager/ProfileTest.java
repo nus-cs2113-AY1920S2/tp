@@ -1,6 +1,8 @@
 package seedu.dietmanager;
 
 import org.junit.jupiter.api.Test;
+import seedu.dietmanager.model.DailyFoodRecord;
+import seedu.dietmanager.model.Profile;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

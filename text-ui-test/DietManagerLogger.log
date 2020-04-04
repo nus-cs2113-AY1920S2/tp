@@ -6,9 +6,9 @@
   <millis>1585069864672</millis>
   <nanos>735700</nanos>
   <sequence>0</sequence>
-  <logger>seedu.dietmanager.AppLogger</logger>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.AppLogger</class>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
   <method>writeInfoLog</method>
   <thread>1</thread>
   <message>Existing Directory found: data</message>
@@ -18,9 +18,9 @@
   <millis>1585069864756</millis>
   <nanos>744900</nanos>
   <sequence>1</sequence>
-  <logger>seedu.dietmanager.AppLogger</logger>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.AppLogger</class>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
   <method>writeInfoLog</method>
   <thread>1</thread>
   <message>Existing Profile found: profile.txt</message>
@@ -30,9 +30,9 @@
   <millis>1585069864757</millis>
   <nanos>985800</nanos>
   <sequence>2</sequence>
-  <logger>seedu.dietmanager.AppLogger</logger>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.AppLogger</class>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
   <method>logExecuteProgramme</method>
   <thread>1</thread>
   <message>Starting Diet Manager</message>
@@ -42,9 +42,9 @@
   <millis>1585069864766</millis>
   <nanos>717600</nanos>
   <sequence>3</sequence>
-  <logger>seedu.dietmanager.AppLogger</logger>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
-  <class>seedu.dietmanager.AppLogger</class>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
   <method>logExitProgramme</method>
   <thread>1</thread>
   <message>Exiting Diet Manager</message>
