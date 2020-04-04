@@ -89,19 +89,37 @@ The following sequence diagram summarizes how create command operation works:
 
 
 ## 3. Product Scope
+
+### Value Proposition
+
+TechToday Information Tracker (TTIT) is for those who want to organise information about technology. It help one add details of articles, questions about jobs, and personal technology notes. TTIT also lets you view latest jobs/articles from HackerNews when you have access to the internet so that you can instantly save interesting ones without having to type details about the viewed job/article. It is important to note that TTIT isn't a news portal but simply an information organiser that helps you organise technology infomration into three forms: article, jobs and notes(miscellaneous). 
+
 ### Target user profile
-This product is aimed at a student majoring in Computer Science or closely related subject to manage so much information that there is to process about technology related news. 
 
+TechToday Information Tracker (TTIT) is targeted to lifelong followers of technology brekthroughs who wish to organise the information that they consume.
 
-### Value proposition
-
-Receive and manage the most updated articles and jobs information specifically related to technology.
-
-## 4. User Stories
+## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|student of technology|view latest articles|get updated about the latest heppenings in the tech space.|
+|v1.0|student of technology|save an article| can generate a summary/list of all the articles I have read.|
+|v1.0|student of technology|view latest information related to job|get updated about the latest heppenings in the job market.|
+|v1.0|student of technology|see the details of the article before I save it|see the details before I decide to archive it|
+|v1.0|student of technology|delete an article from a list of articles|only have the essential articles I need in my manager.|
+|v1.0|student of technology|create my own note|save information about technology that is not an article necessarily.|
+|v1.0|student of technology|list all my notes|keep track all the notes I have written so far.|
+|v1.0|student of technology|list all my articles|keep track all the articles I have saved so far.|
+|v1.0|student of technology|list all my jobs|keep track all the jobs I have saved so far.|
+|v1.0|student of technology|add an extract to a note|add more ideas to an exiting note.|
+|v2.0|student of technology|add an extract to an article|also add a short opinion I have about it.|
+|v2.0|student of technology|add an extract to a job|also skills I require to get the job.|
+|v2.0|student of technology|add an extract to an article|also add a short opinion I have about it.|
+|v2.0|student of technology|create my own custom article|save interesting articles I find from various sources.|
+|v2.0|student of technology|create my own custom job|save interesting job I find from various sources.|
+|v2.0|student of technology|save the time of the article I create|know when I saved this particular article.|
+|v2.0|student of technology|save the time of the note I create|know when I saved this particular note.|
+|v2.0|student of technology|save the time of the job I create|know when I saved this particular job.|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 
 ## 5. Non-Functional Requirements
