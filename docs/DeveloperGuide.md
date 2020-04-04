@@ -154,8 +154,8 @@ The process of object creation is as follows:
 2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
    * The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
 3. The <code>Duke</code> class calls the <code>EditCommand#execute</code> method.
-4. In the <code>EditCommand#execute</code> method, it first gets the <code>item</code> object through the <code>ShoppingList#getItem</code>
-The original description/price/quantity of the item is overwritten 
+4. In the <code>EditCommand#execute</code> method, it first gets the <code>item</code> object through the
+<code>ShoppingList#getItem</code>. The original description/price/quantity of the item is overwritten 
 with the new values from the user input. This is done through the use of the <code>Item</code> class setter methods.
 5. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
@@ -179,14 +179,17 @@ have been omitted from the diagram. Those details are shown in a separate sequen
     presence of the variable in user input.
  
  
-- Alternative 2: Require all values of an <code>item</code> object to be updated and parameters must be in alphabetical order.
+- Alternative 2: Require all values of an <code>item</code> object to be updated and parameters must be in alphabetical
+order.
   - Pros: Will have less code to deal with having no additional parsing of the input string.
   
   - Cons: Less user flexibility; user must input all parameters even if he/she does not wish to update certain
   variables.
 
 
-- Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order". Futhermore, having greater freedom on input values makes it a hassle-free process for the users.
+- Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with
+greater convenience and freedom as they do not need to follow strict command "rules/order". Furthermore, having greater
+freedom on input values makes it a hassle-free process for the users.
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -204,7 +207,8 @@ list.
 
 The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
-2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DeleteCommand</code> object based on that user input.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DeleteCommand</code> object based
+on that user input.
 3. <code>Duke</code> then calls <code>DeleteCommand#execute()</code>.
 4. <code>DeleteCommand#execute()</code> makes another call to <code>ShoppingList#deleteItem()</code>.
 5. The <code>Item</code> at the specified index is then removed from the <code>ShoppingList</code> object.
@@ -249,7 +253,8 @@ The find feature is implemented using a <code>FindCommand</code> class which ext
 
 The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
-2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>FindCommand</code> object based on that user input.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>FindCommand</code> object based on
+that user input.
 3. <code>Duke</code> then calls <code>FindCommand#execute()</code>.
 4. <code>FindCommand#execute()</code> makes various calls to <code>ShoppingList#getItem()</code>
 to check whether the <code>Item</code> at each specified index contains the given keyword.
@@ -257,8 +262,8 @@ to check whether the <code>Item</code> at each specified index contains the give
  <code>filteredItems</code> that is maintained by the <code>FindCommand</code> object.
 6. This list of matching results is then printed to standard output.
 
-The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object. Note the <code>Ui</code> class is
-omitted in the sequence diagram to emphasise on the other classes:
+The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object.
+Note the <code>Ui</code> class isomitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/Findfinal2.png)
 
@@ -363,10 +368,13 @@ class.
  
  The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
-2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DisplayCommand</code> object based on that user input.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DisplayCommand</code> object based
+on that user input.
 3. <code>Duke</code> then calls <code>DisplayCommand#execute()</code>.
-4. <code>DisplayCommand#execute()</code> makes a call to <code>ShoppingList#getTotalCost()</code> to find the cost of the items.
-5. <code>DisplayCommand#execute()</code> then calls  <code>Budget#getAmount()</code> and <code>Budget#getRemainingBudget()</code>  to find the current budget and the remaining budget. 
+4. <code>DisplayCommand#execute()</code> makes a call to <code>ShoppingList#getTotalCost()</code> to find the cost of
+the items.
+5. <code>DisplayCommand#execute()</code> then calls  <code>Budget#getAmount()</code> and
+<code>Budget#getRemainingBudget()</code>  to find the current budget and the remaining budget. 
 6. The results are then printed to console.
 
 The following sequence diagrams below show how the display feature works. Note the <code>Ui</code> class is
@@ -489,11 +497,12 @@ omitted in the sequence diagram to emphasise on the other classes:
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
-  <!-- @@author -->
+  
   
 - Reason for choosing alternative 1: By implementing each command type in a separate class, any bugs associated with a 
-particular functionality will not affect other functionalities that significantly. It would also make it easier for us to 
-work in parallel.
+particular functionality will not affect other functionalities that significantly. It would also make it easier for us
+to work in parallel.
+  <!-- @@author -->
   
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
