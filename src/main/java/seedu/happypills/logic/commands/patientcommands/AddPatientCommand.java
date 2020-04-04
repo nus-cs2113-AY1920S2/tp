@@ -66,7 +66,8 @@ public class AddPatientCommand extends PatientCommand {
     ) throws HappyPillsException {
         assert !patients.containsKey(nric) : "New nric can be added";
         Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
-        if (Checker.isValidNric(tempPatient.getNric())) {
+        logger.log(logLevel, "patient is added");
+        if (!Checker.isValidNric(tempPatient.getNric())) {
             return Messages.MESSAGE_INVALID_NRIC;
         }
         patients.add(tempPatient);
