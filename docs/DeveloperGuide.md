@@ -100,10 +100,15 @@ such as displaying help to the user.
 
 ![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component.png)
 
-The `Model` component
-* Stores a `Person` object that represents the user's details. (e.g. `totalCap`, `totalModuleCreditCompleted`)
-* Stores the `ModuleList` and `SemesterList` Data
-* Does not depend on any of the other three components
+The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
+component. 
+
+The responsibilities of the `Model` component includes
+* Storing the data in-memory during programme runtime. It stores all `SelectedModule` objects in an 
+`ArrayList<SelectedModule>` in a `SemModulesList` class. This represents a semester of the user's module plan.
+* All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
+in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
+
 
 #### 3.5 Storage component
 
