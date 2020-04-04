@@ -84,6 +84,7 @@ The `UI` component,
 
 #### 3.3 Logic component
 
+![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
 
 The `Logic` component 
 1. `Logic` uses the `Parser` class to parse the user command.
