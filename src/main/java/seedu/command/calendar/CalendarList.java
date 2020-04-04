@@ -25,7 +25,7 @@ public class CalendarList {
      * @param semester Semester which the user input.
      * @throws PacException If list is empty.
      */
-    public void showEvents(EventList eventList, int year, int semester) throws PacException {
+    public void separateEvents(EventList eventList, int year, int semester) throws PacException {
         ArrayList<Event> semesterList = getSemesterEvents(eventList, semester);
         ArrayList<Event> yearList = getAcademicYearEvents(semesterList, year);
         ArrayList<ArrayList<String>> monthList = getMonthEvents(yearList);
