@@ -12,6 +12,7 @@ import seedu.happypills.logic.commands.appointmentcommands.IncorrectAppointmentC
 import seedu.happypills.logic.commands.appointmentcommands.ListAppointmentCommand;
 
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
@@ -61,68 +62,29 @@ public class AppointmentParser {
     }
 
     private static AppointmentCommand parseAddCommand(String content) throws HappyPillsException {
-        String[] details;
-        if (content.startsWith("/")) {
-            details = content.substring(1).split(" /");
-        } else {
-            content = "@" + content;
-            details = content.split(" /");
-        }
+        String[] details = splitInput(content);
         String[] parseInput = {"", "", "", ""};
-        for (String detail : details) {
-            if (detail.startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
-                parseInput[0] = detail.substring(1).trim();
-            } else if (detail.startsWith("d") && parseInput[1].equalsIgnoreCase("")) {
-                parseInput[1] = detail.substring(1).trim();
-            } else if (detail.startsWith("t") && parseInput[2].equalsIgnoreCase("")) {
-                parseInput[2] = detail.substring(1).trim();
-            } else if (detail.startsWith("r") && parseInput[3].equalsIgnoreCase("")) {
-                parseInput[3] = detail.substring(1).trim();
-            }  else {
-                System.out.println("    " + detail + " is not a valid input.\n"
-                        + "    " + detail + " will not be added\n" + TextUi.DIVIDER);
-            }
-        }
+        parseInput = parseInput(details, parseInput);
 
+        // ensure that all details are not missing
         while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
                 || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")) {
-            System.out.println("    Please input your missing detail listed below");
-            if (parseInput[0].equalsIgnoreCase("")) {
-                System.out.println("    /ic[NRIC]");
-            }
-            if (parseInput[1].equalsIgnoreCase("")) {
-                System.out.println("    /d[DATE] DD-MM-YYYY format");
-            }
-            if (parseInput[2].equalsIgnoreCase("") || !isInteger(parseInput[2].trim())) {
-                System.out.println("    /t[TIME] HH:mm:ss format");
-            }
-            if (parseInput[3].equalsIgnoreCase("")) {
-                System.out.println("    /r[REASONS]");
-            }
+            printMissingInput(parseInput);
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
                 return new IncorrectAppointmentCommand("    Appointment is not added\n");
             }
-            String[] updates;
-            if (input.startsWith("/")) {
-                updates = input.substring(1).split(" /");
-            } else {
-                input = "@" + input;
-                updates = input.split(" /");
-            }
-            for (String update : updates) {
-                if (update.trim().startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
-                    parseInput[0] = update.trim().substring(1);
-                } else if (update.trim().startsWith("d") && parseInput[1].equalsIgnoreCase("")) {
-                    parseInput[1] = update.trim().substring(2);
-                } else if (update.trim().startsWith("t") && (parseInput[2].equalsIgnoreCase(""))) {
-                    parseInput[2] = update.trim().substring(1);
-                } else if (update.trim().startsWith("r") && parseInput[3].equalsIgnoreCase("")) {
-                    parseInput[3] = update.trim().substring(1);
-                }
-            }
+            String[] updates = splitInput(input);
+            parseInput = parseInput(updates, parseInput);
         }
+        if (!loopPrompt(parseInput)) {
+            return new IncorrectAppointmentCommand("    Appointment is not added.\n");
+        }
+        return new AddAppointmentCommand(parseInput[0].toUpperCase().substring(1).trim(), parseInput[1].trim(),
+                parseInput[2].trim(), parseInput[3].trim());
+    }
 
+    private static boolean loopPrompt(String[] parseInput) {
         boolean userConfirmation = false;
         System.out.println(promptConfirmation(parseInput));
         while (!userConfirmation) {
@@ -131,13 +93,54 @@ public class AppointmentParser {
             if (confirmation.equalsIgnoreCase("y")) {
                 userConfirmation = true;
             } else if (confirmation.equalsIgnoreCase("n")) {
-                return new IncorrectAppointmentCommand("    Appointment is not added.\n");
+                return false;
             } else {
                 System.out.println("    Please input [y] for yes or [n] for no");
             }
         }
-        return new AddAppointmentCommand(parseInput[0].toUpperCase().substring(1).trim(), parseInput[1].trim(),
-                parseInput[2].trim(), parseInput[3].trim());
+        return true;
+    }
+
+    private static String[] parseInput(String[] details, String[] parseInput) {
+        for (String detail : details) {
+            if (detail.trim().startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
+                parseInput[0] = detail.trim().substring(1);
+            } else if (detail.trim().startsWith("d") && parseInput[1].equalsIgnoreCase("")) {
+                parseInput[1] = detail.trim().substring(2);
+            } else if (detail.trim().startsWith("t") && (parseInput[2].equalsIgnoreCase(""))) {
+                parseInput[2] = detail.trim().substring(1);
+            } else if (detail.trim().startsWith("r") && parseInput[3].equalsIgnoreCase("")) {
+                parseInput[3] = detail.trim().substring(1);
+            }
+        }
+        return parseInput;
+    }
+
+    private static void printMissingInput(String[] parseInput) {
+        System.out.println("    Please input your missing detail listed below");
+        if (parseInput[0].equalsIgnoreCase("")) {
+            System.out.println(Messages.MESSAGE_NRIC_FORMAT);
+        }
+        if (parseInput[1].equalsIgnoreCase("")) {
+            System.out.println(Messages.MESSAGE_DATE_FORMAT);
+        }
+        if (parseInput[2].equalsIgnoreCase("") || !isInteger(parseInput[2].trim())) {
+            System.out.println(Messages.MESSAGE_TIME_FORMAT);
+        }
+        if (parseInput[3].equalsIgnoreCase("")) {
+            System.out.println("    /r[REASONS]");
+        }
+    }
+
+    private static String[] splitInput(String content) {
+        String[] details;
+        if (content.startsWith("/")) {
+            details = content.substring(1).split(" /");
+        } else {
+            content = "@" + content;
+            details = content.split(" /");
+        }
+        return details;
     }
 
     private static String promptUser() {

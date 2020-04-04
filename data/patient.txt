@@ -1,1 +1,2 @@
-Eve|S9876543F|91265432|22/05/1999|O-|School|Best Friend with Mallory
+kesin|S0618|912|22/08/1998|B-|meat|Weak
+Eve|S9876543F|91234567|22/09/1998|B-||
