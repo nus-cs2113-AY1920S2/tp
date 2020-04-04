@@ -63,7 +63,7 @@ public class EditCommand extends Command {
             return new CommandResult(Messages.NO_TASKS_MSG);
         }
 
-        if (editIndex + 1 > taskList.getListSize()) {
+        if (editIndex + 1 > taskList.getListSize() || editIndex <= 0) {
             return new CommandResult(String.format(Messages.INVALID_ID_ERROR,
                     taskList.getRangeOfValidIndex(taskList)));
         }
