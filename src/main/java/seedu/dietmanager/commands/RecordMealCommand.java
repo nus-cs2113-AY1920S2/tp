@@ -30,6 +30,7 @@ public class RecordMealCommand extends Command {
      *
      * @param command the command prompt entered by the user.
      * @param description the description of the command.
+     * @throws InvalidFormatException if the command doesn't contain correct number of parameters.
      */
 
     public RecordMealCommand(String command, String description) throws InvalidFormatException {
@@ -39,8 +40,8 @@ public class RecordMealCommand extends Command {
 
         try {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.date = descriptionArray[0].toUpperCase();
-            this.mealType = descriptionArray[1];
+            this.date = descriptionArray[0].trim().toUpperCase();
+            this.mealType = descriptionArray[1].trim().toLowerCase();
             this.foodDescription = descriptionArray[2].trim().split("/");
             this.isValidFoodFormat = true;
 
@@ -64,18 +65,19 @@ public class RecordMealCommand extends Command {
         ArrayList<Food> foodList = new ArrayList<>();
         String[] foodDescriptionSplit;
         String foodName;
-        int foodCalories;
-        FoodNutritionInfo foodInfo = new FoodNutritionInfo();
+        Double foodCalories;
+        FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
 
         for (String singleFoodDescription : foodDescription) {
             if (singleFoodDescription.equals("")) {
                 continue;
             }
 
-            foodDescriptionSplit = singleFoodDescription.trim().split(" -- ");
+            foodDescriptionSplit = singleFoodDescription.trim().split("--");
+            foodName = foodDescriptionSplit[0].trim().toLowerCase();
+
             switch (foodDescriptionSplit.length) {
             case 1:
-                foodName = foodDescriptionSplit[0].trim();
                 Food food;
                 if (foodInfo.isInDatabase(foodName)) {
                     food = foodInfo.findFood(foodName).get();
@@ -86,8 +88,10 @@ public class RecordMealCommand extends Command {
                 break;
             case 2:
                 try {
-                    foodName = foodDescriptionSplit[0].trim();
-                    foodCalories = Integer.parseInt(foodDescriptionSplit[1].trim());
+                    foodCalories = Double.parseDouble(foodDescriptionSplit[1].trim());
+                    if (foodCalories < 0) {
+                        throw new NumberFormatException();
+                    }
                     foodList.add(new Food(foodName, foodCalories));
                 } catch (NumberFormatException e) {
                     isValidFoodFormat = false;

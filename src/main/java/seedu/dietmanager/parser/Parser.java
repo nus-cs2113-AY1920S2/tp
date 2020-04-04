@@ -1,3 +1,4 @@
+
 package seedu.dietmanager.parser;
 
 import seedu.dietmanager.commands.Command;
@@ -15,10 +16,13 @@ import seedu.dietmanager.commands.SetWeightGoalCommand;
 import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.DeleteWeightCommand;
 import seedu.dietmanager.commands.CalculateCaloriesCommand;
-import seedu.dietmanager.commands.WeightUpdateCommand;
-import seedu.dietmanager.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.commands.CheckCaloriesCommand;
 import seedu.dietmanager.commands.ListFoodDatabaseCommand;
+import seedu.dietmanager.commands.AddFoodCommand;
+import seedu.dietmanager.commands.DeleteFoodCommand;
+import seedu.dietmanager.commands.BuildNewRecipeCommand;
+import seedu.dietmanager.commands.ShowRecipeCommand;
+
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
 import seedu.dietmanager.exceptions.InvalidGenderException;
@@ -74,7 +78,7 @@ public class Parser {
 
     public static String[] parseDescription(String description, int argumentsRequired) throws InvalidFormatException,
             NullPointerException {
-        String[] descriptionArray = description.trim().split(" ", argumentsRequired);
+        String[] descriptionArray = description.trim().split("\\s+", argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }
@@ -153,14 +157,26 @@ public class Parser {
         case "check-calories-intake":
             command = new CheckCaloriesCommand(commandPrompt, description);
             break;
-        case "list-food-database":
+        case "list-food":
             command = new ListFoodDatabaseCommand(commandPrompt);
             break;
-        case "calculate-calories":
+        case "calculate":
             command = new CalculateCaloriesCommand(commandPrompt, description);
             break;
         case "delete-weight":
             command = new DeleteWeightCommand(commandPrompt, description);
+            break;
+        case "addf":
+            command = new AddFoodCommand(commandPrompt, description);
+            break;
+        case "delf":
+            command = new DeleteFoodCommand(commandPrompt, description);
+            break;
+        case "new-recipe":
+            command = new BuildNewRecipeCommand(commandPrompt, description);
+            break;
+        case "show-recipe":
+            command = new ShowRecipeCommand(commandPrompt);
             break;
         default:
             description = null;

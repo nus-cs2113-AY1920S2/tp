@@ -15,7 +15,7 @@
 
 ### Architecture
 
-![ArchitectureDiagram](/docs/images/Architecture.png)
+![ArchitectureDiagram](images/Architecture.png)
 
 The Architecture Diagram given above explains the high-level design of the Diet Manager Application.
 
@@ -100,7 +100,7 @@ and returns it. The command type is decided by the `commandPrompt`. The `RecordM
 During the process a new`RecordMealCommand` object will be generated and returned to the `Logic` component.
 
 ### Step1. Generate command
-![Step1. Diagram](/docs/images/Record_step1.png)
+![Step1. Diagram](images/Record_step1.png)
 
 Step 2.  The `Logic` composition calls the `execute()` method of the `RecordMealCommand` object. 
 
@@ -113,7 +113,7 @@ If no record of that day is found in profile, it will automatically generate a n
 the method `record.recordMeals()`.
 
 ### Step2. Execute and Save Result
-![Step2. Diagram](/docs/images/Record_step2.png)
+![Step2. Diagram](images/Record_step2.png)
 
 #### 1.2 Design Considerations
 #### Aspect: How `RecordMealCommand` executes and save results

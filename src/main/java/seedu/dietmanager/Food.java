@@ -53,4 +53,9 @@ public class Food {
         return calories.map(value -> "Food: " + foodName + ", Calories: " + String.format("%.2f", value) + "cal\n")
                 .orElseGet(() -> "Food: " + foodName + ", Calories: " + "No value found.\n");
     }
+
+    public String getPair() {
+        return calories.map(value -> foodName + "(" + String.format("%.2f", value) + "),")
+                .orElseGet(() -> foodName + "(" + "Nan)" + ",");
+    }
 }

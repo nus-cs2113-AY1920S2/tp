@@ -45,6 +45,9 @@ public class DailyFoodRecord {
 
     /**
      * Records the meals consumed into their respective categories.
+     *
+     * @param mealType type of this meal, divided by time period.
+     * @param foodList the list of foods.
      */
 
     public void recordMeals(String mealType, ArrayList<Food> foodList) {
@@ -64,13 +67,34 @@ public class DailyFoodRecord {
     }
 
     /**
+     * Clear the records of a certain meal.
+     *
+     * @param mealType type of this meal, divided by time period.
+     */
+    public void clearRecords(String mealType) {
+        switch (mealType) {
+        case "morning":
+            breakfast.clear();
+            break;
+        case "afternoon":
+            lunch.clear();
+            break;
+        case "night":
+            dinner.clear();
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
      * Displays the Daily Food Record.
      */
 
     public void showDailyRecord() {
-        this.showBreakfast();
-        this.showLunch();
-        this.showDinner();
+        System.out.println(this.showBreakfast());
+        System.out.println(this.showLunch());
+        System.out.println(this.showDinner());
     }
 
     /**
@@ -219,5 +243,35 @@ public class DailyFoodRecord {
                 .map(calories -> "For " + timeFrame + ", " + MessageBank.TIME_CALORIES_MESSAGE
                         + String.format("%.2f", calories) + "cal.\n")
                 .orElse("For " + timeFrame + ", " + MessageBank.NO_TIME_CALORIES_MESSAGE);
+    }
+
+    /**
+     * Returns a record of one day.
+     *
+     * @return one entry of the weekly recipe
+     */
+
+    public String getRecipeEntry() {
+        String message = this.date;
+        message = String.format("%1$-10s",message);
+
+        for (Food food : breakfast) {
+            message = message + food.getPair();
+        }
+        message = message.substring(0,message.length() - 1);
+        message = String.format("%1$-70s",message);
+
+        for (Food food : lunch) {
+            message = message + food.getPair();
+        }
+        message = message.substring(0,message.length() - 1);
+        message = String.format("%1$-130s",message);
+
+        for (Food food : dinner) {
+            message = message + food.getPair();
+        }
+        message = message.substring(0,message.length() - 1);
+
+        return message;
     }
 }

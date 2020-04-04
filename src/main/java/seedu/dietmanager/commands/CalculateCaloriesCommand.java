@@ -37,7 +37,7 @@ public class CalculateCaloriesCommand extends Command {
 
     private boolean isInvalidDate;
 
-    private FoodNutritionInfo foodNutritionInfo = new FoodNutritionInfo();
+    private boolean isCircle = false;
 
     /**
      * Constructs the Command object.
@@ -56,7 +56,7 @@ public class CalculateCaloriesCommand extends Command {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
             String[] timeDescription = descriptionArray[0].split("->");
 
-            this.begin = timeDescription[0].toUpperCase();
+            this.begin = timeDescription[0].trim().toUpperCase();
             Weekday.valueOf(this.begin);
 
             switch (timeDescription.length) {
@@ -64,7 +64,7 @@ public class CalculateCaloriesCommand extends Command {
                 isOneDay = true;
                 break;
             case 2:
-                this.end = timeDescription[1].toUpperCase();
+                this.end = timeDescription[1].trim().toUpperCase();
                 Weekday.valueOf(this.end);
                 isOneDay = false;
                 break;
@@ -107,6 +107,11 @@ public class CalculateCaloriesCommand extends Command {
             firstDay = Weekday.valueOf(this.begin);
             lastDay = Weekday.valueOf(this.end);
 
+            if (lastDay.getIndex() < firstDay.getIndex()) {
+                lastDay = Weekday.valueOf("SUNDAY");
+                isCircle = true;
+            }
+
             for (Weekday day : Weekday.values()) {
                 int curIndex = day.getIndex();
                 if (curIndex >= firstDay.getIndex() && curIndex <= lastDay.getIndex()) {
@@ -136,7 +141,11 @@ public class CalculateCaloriesCommand extends Command {
         } else if (this.isInvalidDate) {
             this.result = MessageBank.INVALID_DATE_MESSAGE;
         } else {
-            this.result = MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.",sum);
+            if (isCircle) {
+                this.result = String.format("%s is ahead of %s, so only calories from %s to SUNDAY is calculated",
+                        this.end, this.begin, this.begin) + System.lineSeparator();
+            }
+            this.result += MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.",sum);
         }
     }
 }
