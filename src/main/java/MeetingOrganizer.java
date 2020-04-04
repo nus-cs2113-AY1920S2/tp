@@ -98,7 +98,7 @@ public class MeetingOrganizer {
                 if (previousUserInput.equals("")) {
                     throw new MoException("Nothing to see more of.");
                 } else if (previousUserInput.contains("timetable")) {
-                    int weeksMoreToView = 0;
+                    int weeksMoreToView = 1;
                     CommandHandler.displayTimetable(userInputWords, getMainUser(),
                             getMyContactList(), currentWeekNumber, weeksMoreToView);
                 } else if (previousUserInput.equals("more")) {
@@ -106,6 +106,9 @@ public class MeetingOrganizer {
                 } else {
                     throw new MoException("more does not work with this command.");
                 }
+                break;
+            case "edit": // edit <Member Number> <busy/free> <startDay> <startTime> <endDay> <endTime> (eg. edit 0 busy 2 22:00 2 23:00)
+                CommandHandler.editContact(userInputWords, getMainUser(), getMyContactList(), currentWeekNumber);
                 break;
             case "contacts":  //list all contacts. contacts
                 CommandHandler.listContacts(getMyContactList());

@@ -85,6 +85,35 @@ public class CommandHandler {
         return member;
     }
 
+    public static void editContact(String[] userInputWords, Contact mainUser, ContactList contactList, int currentWeekNumber) throws MoException {
+        if (userInputWords.length != 7) {
+            throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
+        }
+        int endOfMonthDate = 0;
+        endOfMonthDate = getEndOfMonthDate(endOfMonthDate);
+
+        Integer startDay;
+        Integer endDay;
+        int startDate = Integer.parseInt(userInputWords[3]);
+        int endDate = Integer.parseInt(userInputWords[5]);
+        int startOfWeekDate = getStartOfWeekDate();
+        startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
+        endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
+
+        String meetingName = userInputWords[1];
+
+        int memberNumber = Integer.parseInt(userInputWords[1]);
+        Contact member = contactList.getContactList().get(memberNumber);
+        String memberName = member.getName();
+        String startTimeString = userInputWords[4];
+        String endTimeString = userInputWords[6];
+        String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
+        if (userInputWords[2].equals("busy")) {
+            member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
+        } else if (userInputWords[2].equals("free")) {
+            member.addFreeBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
+        }
+    }
 
     private static Integer getNumberFromDay(String day) {
         int dayInNumber;
@@ -168,16 +197,9 @@ public class CommandHandler {
             String meetingName = userInputWords[1];
             int startDate = Integer.parseInt(userInputWords[2]);
             int endDate = Integer.parseInt(userInputWords[4]);
-            if (startDate - startOfWeekDate < 0) {
-                startDay = endOfMonthDate - startOfWeekDate + startDate;
-            } else {
-                startDay = startDate - startOfWeekDate;
-            }
-            if (endDate - startOfWeekDate < 0) {
-                endDay = endOfMonthDate - startOfWeekDate + endDate;
-            } else {
-                endDay = endDate - startOfWeekDate;
-            }
+            startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
+            endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
+
 
             LocalTime startTime = LocalTime.parse(userInputWords[3]);
             LocalTime endTime = LocalTime.parse(userInputWords[5]);
@@ -202,6 +224,16 @@ public class CommandHandler {
         }
         // Replace main user's timetable with updated model.meeting blocks into TeamMember.TeamMemberList for model.storage purposes.
         contactList.set(0, mainUser);
+    }
+
+    private static Integer getDay(int endOfMonthDate, int startOfWeekDate, int startDate) {
+        Integer day;
+        if (startDate - startOfWeekDate < 0) {
+            day = endOfMonthDate - startOfWeekDate + startDate;
+        } else {
+            day = startDate - startOfWeekDate;
+        }
+        return day;
     }
 
     private static int getEndOfMonthDate(int endOfMonthDate) {
