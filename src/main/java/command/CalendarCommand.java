@@ -248,15 +248,15 @@ public class CalendarCommand extends Command {
      * @param calendarRow Calendar row that is being worked on
      * @param currentDayRepresented Integer that represents date the calendar iterator is on
      */
-    private void appendTaskToView(ArrayList<Task> monthlyTaskList, StringBuilder calendarView,
+    public void appendTaskToView(ArrayList<Task> monthlyTaskList, StringBuilder calendarView,
                                   int calendarRow, int currentDayRepresented) {
         boolean hasPrintedTask = false;
         for (Task task : monthlyTaskList) {
             if (task.getDate().getDayOfMonth() == currentDayRepresented) {
+                hasPrintedTask = true;
                 if (calendarRow % CALENDAR_BOX_HEIGHT == 5) {
                     addTaskNotShownIndicator(calendarView);
                 } else {
-                    hasPrintedTask = true;
                     addTaskToCalendar(monthlyTaskList, calendarView, task);
                 }
                 break;
