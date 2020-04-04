@@ -606,8 +606,8 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
     -   Alternative Considered:  
         Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
 
-## 3.7. Storage
-### 3.7.1. Implementation
+### 3.7. Storage
+#### 3.7.1. Implementation
 
 The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
 Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
