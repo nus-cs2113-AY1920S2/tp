@@ -1,6 +1,7 @@
 package seedu.subjects;
 
 import seedu.events.Event;
+import seedu.duke.UI;
 import seedu.exception.EscException;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 public class SubjectList {
     private ArrayList<Subject> subjects;
     private ArrayList<Event> events;
+    UI ui = new UI();
 
     public SubjectList() {
         this.subjects = new ArrayList<Subject>();
@@ -36,9 +38,44 @@ public class SubjectList {
      * Adds a subject to the deck.
      * @param subject Subject to be added.
      */
-    public void addSubject(Subject subject) {
-        subjects.add(subject);
+    public void addSubject(Subject subject) throws EscException {
+        if (checkSubjectDuplicate(subject) == true) {
+            System.out.println("This subject already exists.");
+            subjectDuplicateRemind(subject);
+        } else {
+            subjects.add(subject);
+            System.out.println(subject.getSubject() + " has been added.");
+            listSubjects(subjects);
+        }
     }
+
+    /**
+     *Checks for duplicate subject.
+     * @param subject Subject to be checked.
+     */
+    public boolean checkSubjectDuplicate(Subject subject) {
+        String name = subject.getSubject().replace(" ","");
+        for (Subject oldSubject : subjects) {
+            if (name.toLowerCase().equals(oldSubject.getSubject().replace(" ","").toLowerCase())) {
+                return true;
+            }
+        }
+        return  false;
+    }
+
+    /**
+     *Checks for duplicate subject and reminds user of existing subjects.
+     * @param subject Subject to be checked.
+     */
+    public void subjectDuplicateRemind(Subject subject) {
+        String name = subject.getSubject().replace(" ","");
+        for (Subject oldSubject : subjects) {
+            if (name.toLowerCase().equals(oldSubject.getSubject().replace(" ","").toLowerCase())) {
+                System.out.println("Do you mean {" + oldSubject.getSubject() + "}");
+            }
+        }
+    }
+
 
     /**
      * Removes a subject from the deck.
@@ -49,7 +86,9 @@ public class SubjectList {
             throw new EscException("The subject list is empty.");
         }
         try {
+            System.out.print(subjects.get(index).getSubject() + " has been deleted");
             subjects.remove(index);
+            listSubjects(subjects);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The subject item does not exist.");
         }

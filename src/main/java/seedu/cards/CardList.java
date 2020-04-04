@@ -1,6 +1,7 @@
 package seedu.cards;
 
 import seedu.exception.EscException;
+import seedu.subjects.Subject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,8 +28,12 @@ public class CardList implements Serializable {
      * Adds a card to the deck.
      * @param card Card to be added.
      */
-    public void addCard(Card card) {
+    public void addCard(Card card, Subject subject) {
         cards.add(card);
+        System.out.println("Q:" + card.getQuestion());
+        System.out.println("A:" + card.getAnswer());
+        System.out.println("A new card has been added to subject {" + subject.getSubject() + "}");
+        listCards();
     }
 
     /**

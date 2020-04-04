@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.exception.EscException;
 import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
@@ -28,7 +29,7 @@ public class AddSubjectCommand extends AddCommand {
     /**
      * Adds a subject into the application.
      */
-    public void execute(SubjectList subjects) {
+    public void execute(SubjectList subjects) throws EscException {
         Subject newSubject = new Subject(this.subjectName);
         subjects.addSubject(newSubject);
     }

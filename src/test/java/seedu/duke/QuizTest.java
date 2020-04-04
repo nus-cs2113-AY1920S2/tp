@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import seedu.cards.Card;
 import seedu.cards.CardList;
 import seedu.exception.EscException;
+import seedu.subjects.Subject;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -23,6 +24,7 @@ public class QuizTest {
     private Card flashcard2;
     private Card flashcard3;
     private EscException expectedException;
+    private Subject subject;
 
     @BeforeEach
     void setUp() {
@@ -31,9 +33,10 @@ public class QuizTest {
         flashcard1 = new Card("What does HTTP stand for?", "HyperText Transfer Protocol");
         flashcard2 = new Card("What does HTML stand for?", "HyperText Markup Language");
         flashcard3 = new Card("What does CSS stand for?", "Cascading Style Sheets");
-        filledCardList.addCard(flashcard1);
-        filledCardList.addCard(flashcard2);
-        filledCardList.addCard(flashcard3);
+        subject = new Subject("Junit");
+        filledCardList.addCard(flashcard1,subject);
+        filledCardList.addCard(flashcard2,subject);
+        filledCardList.addCard(flashcard3,subject);
     }
 
     @Test

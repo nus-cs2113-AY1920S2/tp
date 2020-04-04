@@ -28,19 +28,19 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
 
-    private static final String QUESTION_ARG = "q/";
+    private static final String QUESTION_ARG = " q/";
 
-    private static final String ANSWER_ARG = "a/";
+    private static final String ANSWER_ARG = " a/";
 
-    private static final String SUBJECT_ARG = "s/";
+    private static final String SUBJECT_ARG = " s/";
 
-    private static final String CARD_ARG = "c/";
+    private static final String CARD_ARG = " c/";
 
-    private static final String QUIZ_ARG = "n/";
+    private static final String QUIZ_ARG = " n/";
 
-    private static final String EVENT_ARG = "e/";
+    private static final String EVENT_ARG = " e/";
 
-    private static final String DATE_ARG = "d/";
+    private static final String DATE_ARG = " d/";
 
     public static final String INCORRECT_COMMAND = "Incorrect Command\n";
 
@@ -50,8 +50,9 @@ public class Parser {
      * @throws EscException An exception is issued if the command issued by the user is invalid.
      */
     public static Command parse(String userInput) throws EscException {
-        String[] arguments = userInput.split(" ",2);
-        String command = arguments[0].trim();
+        String userInputTrimmed = userInput.trim();
+        String[] arguments = userInputTrimmed.split(" ",2);
+        String command = arguments[0].trim().toLowerCase();
 
         switch (command) {
         case AddSubjectCommand.COMMAND_WORD:
@@ -107,9 +108,10 @@ public class Parser {
      */
     private static Command prepareAddSubject(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, AddSubjectCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], AddSubjectCommand.MESSAGE_USAGE, SUBJECT_ARG);
 
-        String subjectName = arguments[1].replace(SUBJECT_ARG, "");
+        String subjectName = arguments[1].replaceFirst(SUBJECT_ARG, "").trim();
 
         if (subjectName.trim().isEmpty()) {
             throw new EscException("A subject name is required.");
@@ -124,6 +126,7 @@ public class Parser {
      */
     private static Command prepareAddCard(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, AddCardCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], AddCardCommand.MESSAGE_USAGE, SUBJECT_ARG, QUESTION_ARG, ANSWER_ARG);
 
         int subjectIndex = getSubjectIndex(arguments[1]);
@@ -141,6 +144,7 @@ public class Parser {
      */
     private static Command prepareDeleteSubject(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, DeleteSubjectCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], DeleteSubjectCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
 
@@ -153,6 +157,7 @@ public class Parser {
      */
     private static Command prepareDeleteCard(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, DeleteCardCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], DeleteCardCommand.MESSAGE_USAGE, SUBJECT_ARG, CARD_ARG);
 
         int subjectIndex = getSubjectIndex(arguments[1]);
@@ -166,6 +171,7 @@ public class Parser {
      */
     private static Command prepareListCard(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, ListCardCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], ListCardCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
 
@@ -178,6 +184,7 @@ public class Parser {
      */
     private static Command prepareQuiz(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, QuizCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG, QUIZ_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
         int numToQuiz = getNumberToQuiz(arguments[1]);
@@ -191,6 +198,7 @@ public class Parser {
      */
     private static Command prepareScore(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, ScoreCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], ScoreCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
 
@@ -203,6 +211,7 @@ public class Parser {
      */
     private static Command prepareAddEvent(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, AddEventCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], AddEventCommand.MESSAGE_USAGE, DATE_ARG, EVENT_ARG);
 
         String eventTopic = getEventTopic(arguments[1]);
@@ -231,6 +240,7 @@ public class Parser {
      */
     private static Command prepareShowUpcoming(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, ShowUpcomingCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], ShowUpcomingCommand.MESSAGE_USAGE, DATE_ARG);
 
         int dateRange = getDateRange(arguments[1]);
@@ -408,7 +418,7 @@ public class Parser {
      * @throws EscException if the user input is missing the question or answer.
      */
     private static String[] getQuestionAndAnswer(String argument, String errorMessage) throws EscException {
-        String secondaryArgs = argument.split(QUESTION_ARG)[1];
+        String secondaryArgs = argument.split(QUESTION_ARG,2)[1];
         String [] cardArgs = secondaryArgs.split(ANSWER_ARG);
 
         if (cardArgs.length < 2) {

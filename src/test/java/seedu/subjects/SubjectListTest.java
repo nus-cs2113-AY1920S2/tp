@@ -15,6 +15,8 @@ public class SubjectListTest {
     private SubjectList subjects;
     private Subject subject1;
     private Subject subject2;
+    private Subject subject3;
+    private Subject subject4;
     private EscException expectedException;
 
     @BeforeEach
@@ -22,14 +24,20 @@ public class SubjectListTest {
         subjects = new SubjectList();
         subject1 = new Subject("TEST 1");
         subject2 = new Subject("TEST 2");
+        subject3 = new Subject("TEST1");
+        subject4 = new Subject("    tEsT 1");
     }
 
     @Test
-    void getSubjects() {
+    void getSubjects() throws EscException {
         subjects.addSubject(subject1);
         subjects.addSubject(subject2);
+        subjects.addSubject(subject3);
+        subjects.addSubject(subject4);
         assertTrue(subjects.getSubjects().contains(subject1));
         assertTrue(subjects.getSubjects().contains(subject2));
+        assertFalse(subjects.getSubjects().contains(subject3));
+        assertFalse(subjects.getSubjects().contains(subject4));
     }
 
     @Test
@@ -43,7 +51,7 @@ public class SubjectListTest {
     }
 
     @Test
-    void getSubject_indexOutOfRange_exceptionThrown() {
+    void getSubject_indexOutOfRange_exceptionThrown() throws EscException {
         subjects.addSubject(subject1);
         expectedException = new EscException("The subject item does not exist.");
         int[] getIndexes = {-1,2};
@@ -65,12 +73,23 @@ public class SubjectListTest {
         assertEquals(subjects.getSubject(1), subject2);
     }
 
+
     @Test
-    void addSubject_SubjectSuccessfullyAdded() {
+    void addSubject_SubjectSuccessfullyAdded() throws EscException {
         subjects.addSubject(subject1);
         assertTrue(subjects.size() == 1);
         assertTrue(subjects.getSubjects().contains(subject1));
     }
+
+
+    @Test
+    void addSubject_UnSubjectSuccessfullyAdded() throws EscException {
+        subjects.addSubject(subject1);
+        subjects.addSubject(subject4);
+        assertTrue(subjects.size() == 1);
+        assertTrue(subjects.getSubjects().contains(subject1));
+    }
+
 
     @Test
     void removeSubject_emptySubjectList_exceptionThrown() {
@@ -83,7 +102,7 @@ public class SubjectListTest {
     }
 
     @Test
-    void removeSubject_indexOutOfRange_exceptionThrown() {
+    void removeSubject_indexOutOfRange_exceptionThrown() throws EscException {
         subjects.addSubject(subject1);
         expectedException = new EscException("The subject item does not exist.");
         int[] deleteIndexes = {-1,1};
