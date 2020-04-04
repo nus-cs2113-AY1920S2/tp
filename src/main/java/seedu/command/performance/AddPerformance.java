@@ -34,7 +34,7 @@ public class AddPerformance extends Command {
      * The user is to choose whether to add the performance by importing a list
      * or adding manually.
      */
-    public void addToList() throws PacException {
+    private void addToList() throws PacException {
         boolean isByNameList = ui.isImportList();
         if (isByNameList) {
             addByList();
