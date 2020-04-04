@@ -8,20 +8,20 @@ import java.util.EmptyStackException;
 
 import static seedu.nuke.util.Message.MESSAGE_UNDO_SUCCESS;
 
-public class UndoCommand extends Command {
-    public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_UNDO_UNSUCCESSFUL = "Something goes wrong here!\n";
-    public static final String MESSAGE_UNDO_AT_BEGINNING = "you are already at the initial state!\n";
+public class RedoCommand extends Command {
+    public static final String COMMAND_WORD = "redo";
+    public static final String MESSAGE_REDO_UNSUCCESSFUL = "Something goes wrong here!\n";
+    public static final String MESSAGE_REDO_AT_END = "you are already at the newest state!\n";
 
     @Override
     public CommandResult execute() {
         try {
-            ScreenShotManager.undo();
+            ScreenShotManager.redo();
             return new CommandResult(MESSAGE_UNDO_SUCCESS);
         } catch (IOException | CorruptedFileException e) {
-            return new CommandResult(MESSAGE_UNDO_UNSUCCESSFUL);
+            return new CommandResult(MESSAGE_REDO_UNSUCCESSFUL);
         } catch (EmptyStackException e) {
-            return new CommandResult(MESSAGE_UNDO_AT_BEGINNING);
+            return new CommandResult(MESSAGE_REDO_AT_END);
         }
     }
 }

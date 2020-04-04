@@ -1,8 +1,6 @@
 package seedu.nuke.data.storage;
 
 import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.CorruptedFileException;
