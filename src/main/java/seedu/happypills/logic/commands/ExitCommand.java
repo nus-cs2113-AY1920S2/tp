@@ -18,14 +18,14 @@ public class ExitCommand implements Command {
     }
 
     /**
-     * Adds a new task to the list with the information provided by calling.
-     * {} (or) {}
-     * (or) {} as require
+     * Execute the exit command and write data to the file.
      *
-     * @param patients Contains the list of tasks on which the commands are executed on.
+     * @param patients       the list of patients
+     * @param appointments  the list of appointments
+     * @param patientRecords the list of patient records
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
+    public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords) {
         try {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
