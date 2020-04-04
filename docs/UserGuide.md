@@ -102,6 +102,8 @@ Refer to [Section 3, "Features"](#3-features) for the detailed instruction of th
 -   The parameters of a command cannot be reordered.  
     Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in the wrong position.
 
+-   The special characters `|` and `/` cannot be used in the various parameters that you can pass to commands, unless explicitly required by the command's format.
+
 > **Note**: 
 > Don’t worry if all of these seems overwhelming. 
 > There are plenty of examples provided to aid your understanding and learning of **ATAS** commands.
