@@ -22,6 +22,4 @@ public class Storage {
     public Budget loadBudget() {
         return loadData.readBudget();
     }
-
 }
-//@@
