@@ -21,29 +21,9 @@
 
 Enter command:
 
-Error! Description of an item cannot be empty.
-Example: ADD i/apple p/4.50 q/9.90
-
-Enter command:
-
 Oops! Invalid Command. Check if these are met:
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
- - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
-|| Example: ADD i/apples p/9.90 q/9
-
-Enter command:
-
-Error! Description of an item cannot be empty.
-Example: ADD i/apple p/4.50 q/9.90
-
-Enter command:
-
-Oops! Invalid Command. Check if these are met:
- - Price of an item should be in positive numerical form.
- - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
@@ -52,7 +32,6 @@ Enter command:
 Oops! Invalid Command. Check if these are met:
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
@@ -61,7 +40,30 @@ Enter command:
 Oops! Invalid Command. Check if these are met:
  - Price of an item should be in positive numerical form.
  - Quantity of an item should be in positive numerical form.
- - 'i/', 'p/' and 'q/' must be in alphabetical order.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
+
+Enter command:
+
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
+
+Enter command:
+
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
+ - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
+|| Example: ADD i/apples p/9.90 q/9
+
+Enter command:
+
+Oops! Invalid Command. Check if these are met:
+ - Price of an item should be in positive numerical form.
+ - Quantity of an item should be in positive numerical form.
  - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], p/[PRICE] or q/[QUANTITY] must be present.
 || Example: ADD i/apples p/9.90 q/9
 
@@ -79,6 +81,39 @@ Enter command:
 
 Added this item: [0] cherry $5.60 qty: 2
 NOTE: You have exceeded your budget by 22.65
+
+Enter command:
+
+Here are the matching items:
+
++---------------+-------+-----+
+| Item          | Price | Qty |
++---------------+-------+-----+
+| 3. [0] cherry | $5.60 | 2   |
++---------------+-------+-----+
+
+
+Enter command:
+
+Here are the matching items:
+
++---------------+-------+-----+
+| Item          | Price | Qty |
++---------------+-------+-----+
+| 3. [0] cherry | $5.60 | 2   |
++---------------+-------+-----+
+
+
+Enter command:
+
+Here are the matching items:
+
++---------------+-------+-----+
+| Item          | Price | Qty |
++---------------+-------+-----+
+| 3. [0] cherry | $5.60 | 2   |
++---------------+-------+-----+
+
 
 Enter command:
 

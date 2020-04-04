@@ -66,6 +66,10 @@ grocery shopping disappear.
   
 * You can supply parameters for the `ADD` and `EDIT` command, namely `DESCRIPTION`, `QUANTITY` and `PRICE`, in any order.
   * e.g `ADD i/apple q/5` **AND** `ADD q/5 i/apple` should both produce the same result.
+  
+* The keyword for the `FIND` command is case-insensitive.
+  * e.g If you have an item named "apple" in the list, both `FIND APPLE` **AND** `FIND apple` will display this
+  entry to the user.
 <!-- @@author -->
 &nbsp;
 
@@ -113,11 +117,11 @@ Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list.
 * The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
-* The `[PRICE]` must be in **numerical** form (decimal form accepted).
-* At least one of three parameters (description/price/quantity) must be present.
-* i/, p/, q/ delimiters can be in any order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+* The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
+* **At least one** of the three parameters (description/price/quantity) must be present in the command.
+* i/, p/, q/ delimiters can be in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
-Example of usage: 
+Examples of usage: 
 
 1. `EDIT 3 i/potato p/5.00 q/3`
     * Edits the description, price and quantity of the 3rd item in the shopping list
@@ -300,6 +304,13 @@ displayed which states by how much you have overrun your current budget. This me
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
 <!-- @@author -->
+
+&nbsp;
+
+<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+
+
+&nbsp;
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
