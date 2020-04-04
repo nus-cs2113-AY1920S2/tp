@@ -185,7 +185,7 @@ public class Parser {
     private static Command prepareQuiz(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, QuizCommand.MESSAGE_USAGE);
         arguments[1] = " " + arguments[1];
-        checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG, QUIZ_ARG);
+        checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
         int numToQuiz = getNumberToQuiz(arguments[1]);
 
@@ -256,17 +256,23 @@ public class Parser {
      * @throws EscException if the input number is a non-integer.
      */
     private static int getNumberToQuiz(String argument) throws EscException {
-        String num = argument.split(QUIZ_ARG)[1].trim();
-        int numToQuiz = 0;
-        try {
-            numToQuiz = Integer.parseInt(num);
-        } catch (NumberFormatException e) {
-            throw new EscException("Number of questions to quiz has to be an integer.");
+        if (!argument.contains(QUIZ_ARG)) {
+            return -1;
+        } else {
+            int numToQuiz = 0;
+            try {
+                String num = argument.split(QUIZ_ARG)[1].trim();
+                numToQuiz = Integer.parseInt(num);
+            } catch (NumberFormatException e) {
+                throw new EscException("Number of questions to quiz has to be an integer.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new EscException("The number of questions to quiz is needed.");
+            }
+            if (numToQuiz == 0) {
+                throw new EscException("Number of questions to quiz has to be a positive integer.");
+            }
+            return numToQuiz;
         }
-        if (numToQuiz == 0) {
-            throw new EscException("Number of questions to quiz has to be a positive integer.");
-        }
-        return numToQuiz;
     }
 
     /**
