@@ -73,12 +73,23 @@ public class SubjectListTest {
         assertEquals(subjects.getSubject(1), subject2);
     }
 
+
     @Test
     void addSubject_SubjectSuccessfullyAdded() throws EscException {
         subjects.addSubject(subject1);
         assertTrue(subjects.size() == 1);
         assertTrue(subjects.getSubjects().contains(subject1));
     }
+
+
+    @Test
+    void addSubject_UnSubjectSuccessfullyAdded() throws EscException {
+        subjects.addSubject(subject1);
+        subjects.addSubject(subject4);
+        assertTrue(subjects.size() == 1);
+        assertTrue(subjects.getSubjects().contains(subject1));
+    }
+
 
     @Test
     void removeSubject_emptySubjectList_exceptionThrown() {
