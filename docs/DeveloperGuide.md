@@ -1,7 +1,7 @@
 # ATAS (Amazing Task and Assignment System) Developer Guide
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
-Content
+Table of Contents
 - [Setting up](#1-setting-up)
 	- [Prerequisites](#11-prerequisites)
 	- [Setting up the project](#12-setting-up-the-project)
@@ -40,11 +40,17 @@ Content
 - [Testing](#4-testing)
 	- [Using IntelliJ JUnit Tests](#41-using-intellij-junit-tests)
 	- [Using Input-Output Tests](#42-using-input-output-tests)
-- [Appendices](#5-appendices)
-    - [Product Scope](#51-appendix-a-product-scope)
-    - [User Stories](#52-appendix-b-user-stories)
-    - [Use Cases](#53-appendix-c-use-cases)
-    - [Non-Functional Requirements](#54-appendex-d-non-functional-requirements)
+- [DevOps](#5-devops)
+    - [Build Automation](#51-build-automation)
+    - [Continuous Integration](#52-continuous-integration)
+    - [Coverage Reporting](#53-coverage-reporting)
+    - [Making a Release](#54-making-a-release)
+- [Appendices](#6-appendices)
+    - [Product Scope](#61-appendix-a-product-scope)
+    - [User Stories](#62-appendix-b-user-stories)
+    - [Use Cases](#63-appendix-c-use-cases)
+    - [Non-Functional Requirements](#64-appendix-d-non-functional-requirements)
+    - [Documentation](#65-appendix-e-documentation)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -94,7 +100,7 @@ This section will guide you on how to set up this project on your own computer.
 This section will give a high-level overview of how various components in **ATAS** function and interact with each other.
 
 ### 2.1. Architecture
-![overall architecture](images/overall architecture.PNG)
+![overall architecture](images/overall_architecture.PNG)
 
 The architecture diagram above illustrates the high-level design of the **ATAS** application.  
 
@@ -128,7 +134,7 @@ The Logic component comprises the `Parser`, `Command`, and `CommandResult` class
 ### 2.4. Model Component
 The Model component contains the `Task` and `TaskList` classes, which store the user’s schedule.
 
-![TaskList and Tasks](images/TaskList Task class diagram.PNG)
+![TaskList and Tasks](images/TaskList_Task_class_diagram.PNG)
 
 ### 2.5. Storage Component
 ![Storage Class Diagram](images/storage.PNG)
@@ -143,7 +149,7 @@ The Model component contains the `Task` and `TaskList` classes, which store the 
 The `Atas` component integrates all the aforementioned components to run the overall application logic.  
 The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command  
 
-![Component interactions for help command](images/atas help command sequence diagram v3.PNG)
+![Component interactions for help command](images/atas_help_command_sequence_diagram_v3.PNG)
 
 1.  The `Ui` class is used to read user input.  
 
@@ -157,6 +163,14 @@ The sequence diagram below shows how various components, broken down into the va
 
 ## 3. Implementation
 This section will detail how some noteworthy features are implemented.
+
+> Note: 
+> You will need to create tasks to use the features mentioned below.  
+> Create an `assignment`: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`  
+> Create an `event`     : `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMMENTS]`  
+> Dates follow the `DD/MM/YY` format, and times follow the `HHmm` format.  
+> For more information, please refer to the user guide.
+
 ### 3.1. Delete Task Feature
 Current Implementation:  
 The `DeleteCommand` extends the `Command` class and initializes the `delete index` in its constructor. The `delete index` specifies the index of task that the user wants to delete.
@@ -167,20 +181,21 @@ Given below is an example usage and how the `DeleteCommand` mechanism behaves at
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `delete 2` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided. It will obtain information to get `delete index`.
+The user enters `delete 1` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided. It will obtain information to get `delete index`.
 
 > **Warning:**
-> If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new `IncorrectCommand` class will be called to print the respective error messages
+> If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new instance of `IncorrectCommand` class will be called to print the respective error messages
 
 **Step 3**  
-A new instance of `DeleteCommand` with `delete index` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
+A new instance of `DeleteCommand` with `delete index` initialized will be created. The `DeleteCommand#execute()` will be called.
 
 **Step 4**  
-The `execute()` method will do 2 things:
+The `DeleteCommand#execute()` method will do 2 things:
 
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+-   If there are no tasks in the existing task list, it will create a new instance of `CommandResult` that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, the `DeleteCommand` class will call the `deleteTask()` method from the `TaskList` class to delete the task, based on the index. At the end of the execution, the `DeleteCommand` class will initialize a new `CommandResult` class that prints out the success message for task deletion.
+-   If there are tasks in the existing task list, the `DeleteCommand` class will call the `TaskList#deleteTask()` method to delete the task, based on the index. At the end of the execution, 
+the `DeleteCommand` class will create a new instance of `CommandResult` class that prints out the success message for task deletion.
 
 The following sequence diagram summarizes how delete command operation works:  
 
@@ -190,11 +205,14 @@ The following sequence diagram summarizes how delete command operation works:
 
 -   Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within the `execute()` method of the `DeleteCommand` class
 
-    -   Pros: Easier implementation for other classes that requires the same use.
+    -   Pros: Easier implementation for other classes that requires the same use. 
 
-    -   Cons: Increased coupling amongst classes, which makes it harder for testing.
+    -   Cons: Additional functional call to `TaskList#deleteTask` is needed to delete a task from the task list, which may increase time complexity of delete operation.
 
-    -   Rationale: We decided to implement it in such a way because we feel that the effects of increased coupling in such a case is minimal and testing for related classes and methods are not affected much. Furthermore, such implementation also allows us to keep all the related commands to the list of tasks within a class which keeps our code cleaner.
+    -   Rationale: We decided to implement it in such a way because we feel that the increase is time complexity is not 
+    going to have a big impact on our code as this app is developed to be used as a CLI. Furthermore, such 
+    implementation also allows us to keep all the related commands to the list of tasks within a class which keeps our 
+    code cleaner.
 
 ### 3.2. Search task feature
 #### 3.2.1 Current Implementation
@@ -217,22 +235,22 @@ The user enters the input into the command line. Method `Parser#parseCommand()` 
 provided to obtain the `taskType`, `searchParam` and `date` .
 
 **Step 3**  
-A new instance of `SearchCommand` with the `taskType`, `searchParam` and `date` will be initialized.
+A new instance of `SearchCommand` with the `taskType`, `searchParam` and `date` will be created.
 -   `SearchCommand` contains an ArrayList `storeIndex` to store the original index of the task containing the search query.
 
--   Depending on the input that the user puts in, the `CURRENT_COMMAND_WORD` will be updated to the *command word* of the user and the 
-`CURRENT_COMMAND_USAGE` will be updated accordingly.
+-   Depending on the input that the user puts in, the `CURRENT_COMMAND_WORD` in the `SearchCommand` class will be updated to the *command word* of the user and the 
+`CURRENT_COMMAND_USAGE` in the `SearchCommand` class will be updated accordingly.
 
     -   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
 
-    -   Otherwise, If the `taskType` is an *assignment* or *event* , `getSearchQueryAssignments()` or `getSearchQueryEvents()`will be called respectively.
+    -   Otherwise, If the `taskType` is an *assignment* or *event* , `SearchCommand#getSearchQueryAssignments()` or `SearcCommand#getSearchQueryEvents()`will be called respectively.
     
         -   In the method, a *linked hash map* will be used to store the results from `Parser#getEventsHashMap()` and `Parser#getAssignmentsHashMap()` respectively.
         
         -   We will iterate through the linked hash map to find the *events* or *assignments* matching the search query and date(if applicable) and add the
         original index to the `storeIndex` and return an ArrayList containing the results.
         
-    -   Lastly, If `taskType` is *all*, `getSearchQueryAllTasks` will be called.
+    -   Lastly, If `taskType` is *all*, `SearchCommand#etSearchQueryAllTasks` will be called.
         
         -   In the method, an *ArrayList* will be used to store the updated task list from `Parser#getTaskArray()`
         
@@ -246,15 +264,28 @@ for printing out to the users.
 **Step 5**  
 The String results from Step 5 will be parsed into `SearchCommand#resultsList` to print out the results.
 
--   If there are no matching search query, a new `CommandResult` class will be called to print out the error message, indicating no matching search query,
+-   If there are no matching search query, a new instance of `CommandResult` class will be created to print out the error message, indicating no matching search query,
 
--   Otherwise, a new `CommandResult` class will be called to print out the search results.
+-   Otherwise, a new `CommandResult` class will be created to print out the search results.
         
 The following sequence diagram summarizes how the *search* and *searchd* command works :
 
 ![Search operations](images/search.png)
 
 #### 3.2.2. Design Considerations:
+
+-   Using Linked HashMap to store key-value pairs for *events* and *assignments*
+
+    -   Rationale:
+        To maintain an ordering among the events and assignments that we iterate through so that there is no need to sort through the list again to restore the original ordering
+        
+    -   Alternatives Considered:
+    
+        1.  Use a HashMap to store the key-value pairs
+        
+            -   Pros: HashMap does not maintain a doubly-linked list running though all entries so there is less overhead as compared to a Linked HashMap, leading to better performance in terms of memory usage
+            
+            -   Cons: HashMap does not maintain an iteration order so more sorting has to be done to restore the original order, which will incur additional time complexities
 
 -   Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
 
@@ -280,41 +311,41 @@ The following sequence diagram summarizes how the *search* and *searchd* command
 
 The `ClearCommand` inherits from the `Command` class and initializes the `clearParam` to check which clear function has to be executed
 
-Given below is an example usage of the `clear all` command:
+Example 1: Given below is an example usage of the `clear all` command:
 
 **Step 1**  
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+The user enters `clear all` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
 
 **Step 3**  
 A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
 
 **Step 4**  
-The `execute()` method will then call the `clearAll()` method in the `ClearCommand` class :
+The `execute()` method will then call the `ClearCommand#clearAll()`.
 
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+-   If there are no tasks in the existing task list, it will create a new instance of `CommandResult` class that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, it will call the `clearList()` method from the `TaskList` class to clear the existing taskList
+-   If there are tasks in the existing task list, it will call the `TaskList#clearList()` method to clear the existing taskList
 
-Given below is an example usage of `clear done` command:
+Example 2: Given below is an example usage of `clear done` command:
 
 **Step 1**  
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `clear all` into the command line. Method `parseCommand()` from the `Parser` class will be called to parse the command provided.
+The user enters `clear all` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
 
 **Step 3**  
-A new instance of `ClearCommand` with `clearParam` initialized will be created. The `execute()` method of `DeleteCommand` will then be called.
+A new instance of `ClearCommand` with `clearParam` initialized will be created. The `DeleteCommand#execute()` will then be called.
 
 **Step 4**  
-The `execute()` method will then call the `clearDone()` method in the `ClearCommand` class :
+The `execute()` method will then call the `ClearCommand#clearDone()` :
 
--   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message indicating an empty task list
+-   If there are no tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `deleteAllDone()` method in the `TaskList` class
+-   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method.
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
@@ -587,8 +618,8 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
     -   Alternative Considered:  
         Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
 
-## 3.7. Storage
-### 3.7.1. Implementation
+### 3.7. Storage
+#### 3.7.1. Implementation
 
 The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
 Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
@@ -638,8 +669,39 @@ When all lines in the save file have been decoded, return the `TaskList`.
 ### 4.2. Using Input-Output Tests
 -   Navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script.
 
-## 5. Appendices
-### 5.1. Appendix A: Product Scope
+## 5. DevOps
+### 5.1 Build Automation
+We use Gradle for tasks related to build automation, such as running tests, and checking code for style compliance.  
+To run all build-related tasks: 
+1. Open a terminal in the project's root directory
+2. Run the command:
+    * Windows: `gradlew build`
+    * Mac/Linux: `./gradlew build`
+3. A message stating `BUILD SUCCESSFUL` will be shown in the terminal if all tasks were run successfully.
+4. Otherwise, use the error report provided to resolve the issue before trying again.
+
+### 5.2 Continuous Integration
+We use Github Actions for continuous integration. No setup will be required for users who fork from the main **ATAS** repository.
+* Whenever you create a pull request to the main repository for **ATAS**, various checks will automatically be executed on your pull request.
+* If any checks fail, click on it to view the cause of the error, and fix it in your branch before pushing it again.
+* Ensure that all checks pass before merging your pull request.
+
+### 5.3 Coverage Reporting
+We use the IntelliJ IDEA's coverage analysis tool for coverage reporting.
+A tutorial on how to install and use this tool can be found [here](https://www.youtube.com/watch?v=yNYzZvyA2ik).
+
+### 5.4 Making a Release
+To make a new release:
+1. Update the shadowJar `archiveVersion` in the build.gradle file
+2. Generate the JAR file using Gradle by opening a terminal in the project's root directory, and run the command:
+    * Windows: `gradlew clean shadowJar`
+    * Mac/Linux: `./gradlew clean shadowJar`
+3. Find the JAR file in the `build/libs` directory.
+4. Tag the repository with the new version number (e.g. `v2.1`).
+5. Create a new release using Github and upload the JAR file found in step 3.
+
+## 6. Appendices
+### 6.1. Appendix A: Product Scope
 Target user profile:  
 
 -   manages many university assignments or events
@@ -654,7 +716,7 @@ Target user profile:
 
 **Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
 
-### 5.2. Appendix B: User Stories
+### 6.2. Appendix B: User Stories
 <table>
 <colgroup>
 <col width="20%" />
@@ -814,12 +876,15 @@ Target user profile:
 </tbody>
 </table>
 
-### 5.3. Appendix C: Use Cases
-### 5.4. Appendex D: Non-Functional Requirements
+### 6.3. Appendix C: Use Cases
+### 6.4. Appendix D: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
 
 3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
+
+### 6.5 Appendix E: Documentation
+Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
 
 [Back to Top](#)

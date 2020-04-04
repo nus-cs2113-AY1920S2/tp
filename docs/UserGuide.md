@@ -102,6 +102,8 @@ Refer to [Section 3, "Features"](#3-features) for the detailed instruction of th
 -   The parameters of a command cannot be reordered.  
     Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in the wrong position.
 
+-   The special characters `|` and `/` cannot be used in the various parameters that you can pass to commands, unless explicitly required by the command's format.
+
 > **Note**: 
 > Don’t worry if all of these seems overwhelming. 
 > There are plenty of examples provided to aid your understanding and learning of **ATAS** commands.
@@ -432,6 +434,15 @@ Expected outcome:
 
 ![calendar.png](images/calendar2.png)
 
+### 3.11. Storage
+
+Your schedule data will be automatically saved by **ATAS** whenever you run a command.
+When you run **ATAS** again the next time, you will be able to see the tasks from your past sessions.
+
+> **Warning**:
+> Do not manually edit the contents of the storage file, as an incorrect storage format may 
+> result in your data being lost.
+
 ## 4. Command Summary
 
 ### 4.1. List of available **ATAS** commands
@@ -487,73 +498,73 @@ Expected outcome:
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="even">
-<td><p>06</p></td>
+<td><p>07</p></td>
 <td><p>List This Week’s Tasks</p></td>
 <td><p><code>list week</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>07</p></td>
+<td><p>08</p></td>
 <td><p>List Upcoming Events</p></td>
 <td><p><code>list upcoming events</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="even">
-<td><p>08</p></td>
+<td><p>09</p></td>
 <td><p>List Incomplete Assignments</p></td>
 <td><p><code>list incomplete assignments</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>09</p></td>
+<td><p>10</p></td>
 <td><p>Mark a Task as Done</p></td>
 <td><p><code>done [INDEX]</code></p></td>
 <td><p><code>done 1</code></p></td>
 </tr>
 <tr class="even">
-<td><p>10</p></td>
+<td><p>11</p></td>
 <td><p>Edit a Task</p></td>
 <td><p><code>edit [INDEX]</code></p></td>
 <td><p><code>edit 1</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>11</p></td>
+<td><p>12</p></td>
 <td><p>Clear All Tasks</p></td>
 <td><p><code>clear all</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="even">
-<td><p>12</p></td>
+<td><p>13</p></td>
 <td><p>Clear All Completed Tasks</p></td>
 <td><p><code>clear done</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>13</p></td>
+<td><p>14</p></td>
 <td><p>Set Tasks to Repeat</p></td>
 <td><p><code>repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]</code></p></td>
 <td><p><code>repeat id/1 p/3d</code></p></td>
 </tr>
 <tr class="even">
-<td><p>14</p></td>
+<td><p>15</p></td>
 <td><p>Unset Repeating Tasks</p></td>
 <td><p><code>repeat id/[INDEX] p/0</code></p></td>
 <td><p><code>repeat id/1 p/0</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>15</p></td>
+<td><p>16</p></td>
 <td><p>Search for Tasks</p></td>
 <td><p><code>search t/[TASK TYPE] n/[TASK NAME]</code></p></td>
 <td><p><code>search t/assignment n/Assignment one</code></p></td>
 </tr>
 <tr class="even">
-<td><p>16</p></td>
+<td><p>17</p></td>
 <td><p>Search by Date</p></td>
 <td><p><code>searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]</code></p></td>
 <td><p><code>searchd t/assignment n/Assignment one d/01/01/20</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>17</p></td>
+<td><p>18</p></td>
 <td><p>Calendar View</p></td>
 <td><p><code>calendar d/[DD/MM/YY]</code></p></td>
 <td><p><code>calendar d/01/01/2020</code></p></td>
