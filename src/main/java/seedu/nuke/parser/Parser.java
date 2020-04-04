@@ -8,6 +8,7 @@ import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.OpenFileCommand;
+import seedu.nuke.command.RedoCommand;
 import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddFileCommand;
@@ -34,6 +35,7 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
+import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
@@ -118,6 +120,10 @@ public class Parser {
         String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase();
         String parameters = matcher.group(PARAMETERS_GROUP);
 
+        if (!commandWord.equals(RedoCommand.COMMAND_WORD)) {
+            ScreenShotManager.setIsLastCommandRedo(false);
+        }
+
         try {
             switch (commandWord) {
 
@@ -184,6 +190,9 @@ public class Parser {
 
             case UndoCommand.COMMAND_WORD:
                 return new UndoCommand();
+
+            case RedoCommand.COMMAND_WORD:
+                return new RedoCommand();
 
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();

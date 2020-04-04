@@ -82,7 +82,7 @@ public class Nuke {
             ui.showResult(commandResult);
 
             ScreenShotManager.saveScreenShot();
-            //storageManager.save();
+
             storageManager.saveList();
         } while (!ExitCommand.isExit());
     }
