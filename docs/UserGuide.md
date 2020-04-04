@@ -264,8 +264,6 @@ List all *module*s in your **Module List**. The **Module List** contains all you
 
 `lsm`  
 
-> **Note**: The _module code_ is **case-insensitive**. However, it must correspond to a valid **NUS module**. Only **NUS modules** can be added in this version of **Nuke**.
-
 #### Example Usage    
 
 ```
