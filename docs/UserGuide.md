@@ -432,6 +432,15 @@ Expected outcome:
 
 ![calendar.png](images/calendar.png)
 
+### 3.11. Storage
+
+Your schedule data will be automatically saved by **ATAS** whenever you run a command.
+When you run **ATAS** again the next time, you will be able to see the tasks from your past sessions.
+
+> **Warning**:
+> Do not manually edit the contents of the storage file, as an incorrect storage format may 
+> result in your data being lost.
+
 ## 4. Command Summary
 
 ### 4.1. List of available **ATAS** commands
