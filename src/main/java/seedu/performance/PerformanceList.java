@@ -79,10 +79,7 @@ public class PerformanceList {
      */
     public void edit(Performance performance, String type) {
         boolean hasEdited = false;
-        if (isEmpty()) {
-            UI.display("No performance list under this event");
-        }
-
+        assert performanceList.isEmpty() : "performance list should not be empty";
         for (Performance p : performanceList) {
             if (p != null && isSame(p.getStudent(), performance.getStudent()) && isSame(type, "name")) {
                 editName(p);
@@ -135,9 +132,7 @@ public class PerformanceList {
      * @return The Performance with studentName matches input String.
      */
     public Performance getPerformance(String studentName) throws PacException {
-        if (isEmpty()) {
-            throw new PacException("No performance list under this event");
-        }
+        assert performanceList.isEmpty() : "performance list should not be empty";
         for (Performance performance: performanceList) {
             if (performance.studentName.equals(studentName)) {
                 return performance;

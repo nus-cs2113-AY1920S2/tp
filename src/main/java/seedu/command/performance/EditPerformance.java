@@ -23,6 +23,10 @@ public class EditPerformance extends Command {
     }
 
     private void edit() throws PacException {
+        if (performances.isEmpty()) {
+            throw new PacException("The performance list is empty. You are unable to edit a Performance.");
+        }
+
         Performance performance = getPerformance();
         String editType = ui.getPerformanceParameter();
         if (editType.toLowerCase().trim().equals("name")) { // edit name
