@@ -168,7 +168,7 @@ Format: `CLEAR`
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author Shannonwje -->
 ### Marking an item as bought: `MARK`
 Marks an item from the list at the specified index as bought.
 
@@ -198,7 +198,7 @@ Format: `UNMARK INDEX`
 Example of the usage:
 
 `UNMARK 3`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
@@ -233,12 +233,12 @@ Example of usage:
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author Shannonwje -->
 ### Resetting a budget: `RES`
 Resets te budget to be 0.00 for the user.
 
 Format: `RES`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
