@@ -10,7 +10,6 @@ public class PatientRecordTextUi extends TextUi {
     public static String emptyPatientRecordMessage = "    There are no patient record.";
     public static String getEmptyPatientRecordList = "    There are no patient record in the list.";
 
-
     /**
      * format a list patient record success message for user.
      * Includes a specified string, requested patient details and a divider.
@@ -90,7 +89,7 @@ public class PatientRecordTextUi extends TextUi {
      * @param parseInput details to be displayed to user for confirmation
      * @return string to be displayed to user for confirmation
      */
-    public static String promptConformation(String[] parseInput) {
+    public static String promptConfirmation(String[] parseInput) {
         String text = "        Are you sure all the listed details are correct?\n"
                 + "        NRIC : " + parseInput[0].trim().toUpperCase() + "\n"
                 + "        Symptom : " + parseInput[1].trim() + "\n"
