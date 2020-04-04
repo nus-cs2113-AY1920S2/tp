@@ -41,21 +41,21 @@ public class SubjectList {
      * @param subject Subject to be added.
      */
     public void addSubject(Subject subject) throws EscException {
-        if(checkSubjectDuplicate(subject) == true){
+        if (checkSubjectDuplicate(subject) == true) {
             System.out.println("This subject already exists.");
             subjectDuplicateRemind(subject);
-        }else {
+        } else {
             subjects.add(subject);
-            System.out.println(subject.getSubject()+ " has been added.");
+            System.out.println(subject.getSubject() + " has been added.");
             listSubjects(subjects);
         }
     }
 
     /**
-     *Checks for duplicate subject
+     *Checks for duplicate subject.
      * @param subject Subject to be checked.
      */
-    public boolean checkSubjectDuplicate(Subject subject){
+    public boolean checkSubjectDuplicate(Subject subject) {
         String name = subject.getSubject().replace(" ","");
         for (Subject oldSubject : subjects) {
             if (name.toLowerCase().equals(oldSubject.getSubject().replace(" ","").toLowerCase())) {
@@ -66,14 +66,14 @@ public class SubjectList {
     }
 
     /**
-     *Checks for duplicate subject and reminds user of existing subjects
+     *Checks for duplicate subject and reminds user of existing subjects.
      * @param subject Subject to be checked.
      */
-    public void subjectDuplicateRemind(Subject subject){
+    public void subjectDuplicateRemind(Subject subject) {
         String name = subject.getSubject().replace(" ","");
         for (Subject oldSubject : subjects) {
             if (name.toLowerCase().equals(oldSubject.getSubject().replace(" ","").toLowerCase())) {
-                System.out.println("Do you mean {"+oldSubject.getSubject() + "}");
+                System.out.println("Do you mean {" + oldSubject.getSubject() + "}");
             }
         }
     }

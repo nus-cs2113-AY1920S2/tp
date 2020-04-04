@@ -32,7 +32,7 @@ public class CardList implements Serializable {
         cards.add(card);
         System.out.println("Q:" + card.getQuestion());
         System.out.println("A:" + card.getAnswer());
-        System.out.println("A new card has been added to subject {"+ subject.getSubject() + "}");
+        System.out.println("A new card has been added to subject {" + subject.getSubject() + "}");
         listCards();
     }
 
