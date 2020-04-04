@@ -40,6 +40,11 @@ Table of Contents
 - [Testing](#4-testing)
 	- [Using IntelliJ JUnit Tests](#41-using-intellij-junit-tests)
 	- [Using Input-Output Tests](#42-using-input-output-tests)
+- [DevOps](#5-devops)
+    - [Build Automation](#51-build-automation)
+    - [Continuous Integration](#52-continuous-integration)
+    - [Coverage Reporting](#53-coverage-reporting)
+    - [Making a Release](#54-making-a-release)
 - [Appendices](#5-appendices)
     - [Product Scope](#51-appendix-a-product-scope)
     - [User Stories](#52-appendix-b-user-stories)
@@ -663,6 +668,37 @@ When all lines in the save file have been decoded, return the `TaskList`.
 
 ### 4.2. Using Input-Output Tests
 -   Navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script.
+
+## 5. DevOps
+### 5.1 Build Automation
+We use Gradle for tasks related to build automation, such as running tests, and checking code for style compliance.  
+To run all build-related tasks: 
+1. Open a terminal in the project's root directory
+2. Run the command:
+    * Windows: `gradlew build`
+    * Mac/Linux: `./gradlew build`
+3. A message stating `BUILD SUCCESSFUL` will be shown in the terminal if all tasks were run successfully.
+4. Otherwise, use the error report provided to resolve the issue before trying again.
+
+### 5.2 Continuous Integration
+We use Github Actions for continuous integration. No setup will be required for users who fork from the main **ATAS** repository.
+* Whenever you create a pull request to the main repository for **ATAS**, various checks will automatically be executed on your pull request.
+* If any checks fail, click on it to view the cause of the error, and fix it in your branch before pushing it again.
+* Ensure that all checks pass before merging your pull request.
+
+### 5.3 Coverage Reporting
+We use the IntelliJ IDEA's coverage analysis tool for coverage reporting.
+A tutorial on how to install and use this tool can be found [here](https://www.youtube.com/watch?v=yNYzZvyA2ik).
+
+### 5.4 Making a Release
+To make a new release:
+1. Update the shadowJar `archiveVersion` in the build.gradle file
+2. Generate the JAR file using Gradle by opening a terminal in the project's root directory, and run the command:
+    * Windows: `gradlew clean shadowJar`
+    * Mac/Linux: `./gradlew clean shadowJar`
+3. Find the JAR file in the `build/libs` directory.
+4. Tag the repository with the new version number (e.g. `v2.1`).
+5. Create a new release using Github and upload the JAR file found in step 3.
 
 ## 5. Appendices
 ### 5.1. Appendix A: Product Scope
