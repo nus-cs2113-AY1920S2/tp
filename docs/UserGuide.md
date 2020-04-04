@@ -12,7 +12,9 @@
     6. [List food database](#36-list-food-database)
     7. [Add food into database](#37-add-food-into-database)
     8. [Delete food from database](#38-delete-food-from-database)
-    9. [Exit application](#39-exit-application)
+    9. [Get a recommended recipe](#39-get-a-recommended-recipe)
+    10.[View recipe](#310-view-recipe)
+    11. [Exit application](#311-exit-application)
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -244,7 +246,93 @@ Example of usage:
     No need to delete! Referred Food doesn't exist in database
     ```
 
-### 3.9 Exit application
+### 3.9 Get a recommended recipe
+Get a recommend recipe based on user's needs.
+
+Format: `new-recipe CALORIES_CAP MAXIMUM_FODD_TYPES`
+
+Explanation: 
+```
+CALORIES_CAP is the upper bound of total calories contained in a meal.
+MAXIMUM_FOOD_TYPES is the maximum number of food types the user want to have in a meal. 
+```
+
+Attention:
+```
+1.  The maximum number of allowed food types in a meal is 4.
+2.  The recipe is generated randomly, so the same input is expected to get different recipe.
+3.  If user is unsatisfied with the current recipe, just run the command again and get a new one.
+```
+
+Example of usage:
+* `CALORIES_CAP` is 5, `MAXIMUM_NUM` is 2:
+
+    Input: `new-recipe 5 2`
+    
+    Expected Output: 
+    ```
+               morning                                                     afternoon                                                   night
+     MONDAY    Chicken(1.00),Apple(2.00)                                   Rice(4.00),Chicken(1.00)                                    Apple(2.00),Chicken(1.00)
+     TUESDAY   Carrots(3.00),Chicken(1.00)                                 Rice(4.00),Chicken(1.00)                                    Oil(5.00)
+     WEDNESDAY Chicken(1.00),Carrots(3.00)                                 Apple(2.00),Chicken(1.00)                                   Chicken(1.00),Carrots(3.00)
+     THURSDAY  Rice(4.00),Chicken(1.00)                                    Oil(5.00)                                                   Carrots(3.00),Chicken(1.00)
+     FRIDAY    Oil(5.00)                                                   Rice(4.00),Chicken(1.00)                                    Apple(2.00),Carrots(3.00)
+     SATURDAY  Chicken(1.00),Carrots(3.00)                                 Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Carrots(3.00)
+     SUNDAY    Rice(4.00),Chicken(1.00)                                    Rice(4.00),Chicken(1.00)                                    Carrots(3.00),Chicken(1.00)
+    ```
+* `CALORIES_CAP` is 50, `MAXIMUM_NUM` is 5:
+
+    Input: `new-recipe 50 5`
+    
+    Expected Output:
+    ```
+    We support at most 4 kinds of food in a meal, otherwise it's not good for your health!
+    
+              morning                                                     afternoon                                                   night
+    MONDAY    Tea(6.00),Chicken(1.00),Rice(4.00),Oil(5.00)                Tea(6.00),Oil(5.00),Apple(2.00),Carrots(3.00)               Apple(2.00),Oil(5.00),Rice(4.00),Chicken(1.00)
+    TUESDAY   Apple(2.00),Chicken(1.00),Rice(4.00),Carrots(3.00)          Carrots(3.00),Rice(4.00),Oil(5.00),Tea(6.00)                Oil(5.00),Apple(2.00),Chicken(1.00),Tea(6.00)
+    WEDNESDAY Carrots(3.00),Tea(6.00),Apple(2.00),Rice(4.00)              Tea(6.00),Carrots(3.00),Oil(5.00),Chicken(1.00)             Tea(6.00),Apple(2.00),Rice(4.00),Oil(5.00)
+    THURSDAY  Oil(5.00),Carrots(3.00),Apple(2.00),Tea(6.00)               Carrots(3.00),Rice(4.00),Chicken(1.00),Apple(2.00)          Oil(5.00),Chicken(1.00),Tea(6.00),Rice(4.00)
+    FRIDAY    Carrots(3.00),Oil(5.00),Apple(2.00),Chicken(1.00)           Apple(2.00),Oil(5.00),Carrots(3.00),Rice(4.00)              Tea(6.00),Apple(2.00),Rice(4.00),Chicken(1.00)
+    SATURDAY  Apple(2.00),Carrots(3.00),Chicken(1.00),Tea(6.00)           Apple(2.00),Rice(4.00),Carrots(3.00),Tea(6.00)              Rice(4.00),Apple(2.00),Carrots(3.00),Chicken(1.00)
+    SUNDAY    Chicken(1.00),Rice(4.00),Apple(2.00),Oil(5.00)              Oil(5.00),Rice(4.00),Apple(2.00),Chicken(1.00)              Rice(4.00),Tea(6.00),Chicken(1.00),Carrots(3.00)
+
+    ```
+
+### 3.10 View recipe
+Show the recipe recommended for the user.
+
+Format: `show-recipe`
+
+Example of usage:`show-recipe`
+* If no recipe exists:
+
+    Expected Output:
+    ```
+              morning                                                     afternoon                                                   night
+    MONDAY                                                                                                                           
+    TUESDAY                                                                                                                          
+    WEDNESDAY                                                                                                                        
+    THURSDAY                                                                                                                         
+    FRIDAY                                                                                                                           
+    SATURDAY                                                                                                                         
+    SUNDAY                                                                                                                           
+
+    ```
+* If recipe exists:
+
+    Expected Output:
+    ```
+              morning                                                     afternoon                                                   night
+    MONDAY    Carrots(3.00),Apple(2.00)                                   Apple(2.00),Carrots(3.00)                                   Chicken(1.00),Rice(4.00)
+    TUESDAY   Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Rice(4.00)                                    Chicken(1.00),Apple(2.00)
+    WEDNESDAY Chicken(1.00),Rice(4.00)                                    Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Rice(4.00)
+    THURSDAY  Carrots(3.00),Chicken(1.00)                                 Chicken(1.00),Carrots(3.00)                                 Rice(4.00),Chicken(1.00)
+    FRIDAY    Carrots(3.00),Chicken(1.00)                                 Chicken(1.00),Rice(4.00)                                    Chicken(1.00),Rice(4.00)
+    SATURDAY  Chicken(1.00),Carrots(3.00)                                 Apple(2.00),Chicken(1.00)                                   Carrots(3.00),Apple(2.00)
+    SUNDAY    Chicken(1.00),Apple(2.00)                                   Rice(4.00),Chicken(1.00)                                    Rice(4.00),Chicken(1.00)
+    ```
+### 3.11 Exit application
 Terminates and exits the application
 
 Format: `exit`

@@ -1,3 +1,4 @@
+
 package seedu.dietmanager.parser;
 
 import seedu.dietmanager.commands.Command;
@@ -19,6 +20,8 @@ import seedu.dietmanager.commands.CheckCaloriesCommand;
 import seedu.dietmanager.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.commands.AddFoodCommand;
 import seedu.dietmanager.commands.DeleteFoodCommand;
+import seedu.dietmanager.commands.BuildNewRecipeCommand;
+import seedu.dietmanager.commands.ShowRecipeCommand;
 
 import seedu.dietmanager.exceptions.InvalidCommandException;
 import seedu.dietmanager.exceptions.InvalidFormatException;
@@ -168,6 +171,12 @@ public class Parser {
             break;
         case "delf":
             command = new DeleteFoodCommand(commandPrompt, description);
+            break;
+        case "new-recipe":
+            command = new BuildNewRecipeCommand(commandPrompt, description);
+            break;
+        case "show-recipe":
+            command = new ShowRecipeCommand(commandPrompt);
             break;
         default:
             description = null;
