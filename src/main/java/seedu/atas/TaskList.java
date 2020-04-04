@@ -244,7 +244,7 @@ public class TaskList {
         }
     }
 
-    //@@author
+    //@@author Keith-JK
     /**
      * Getter for tasks that falls within the provided time period.
      * @param startOfRange LocalDate representing start of time period

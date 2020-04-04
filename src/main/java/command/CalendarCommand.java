@@ -55,7 +55,7 @@ public class CalendarCommand extends Command {
     private static final int MIDDLE_JUSTIFIED_WIDTH_PADDING = MAX_CALENDAR_BOX_WIDTH / 2 - 3;
 
     public static final String COMMAND_WORD = "calendar";
-    public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/YY]";
+    public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[MM/YY]";
 
     private LocalDate date;
 
@@ -120,8 +120,6 @@ public class CalendarCommand extends Command {
         calendar.set(Calendar.YEAR, givenYear);
         calendar.set(Calendar.MONTH, givenMonth - 1); // month starts from 0 - 11
         calendar.set(Calendar.DATE, givenDay);
-
-        // set the day to the first day of given month
         calendar.set(Calendar.DAY_OF_MONTH, 1);
     }
 
@@ -196,7 +194,8 @@ public class CalendarCommand extends Command {
      * @param eventDate LocalDate that holds event date
      * @param daysToAdd frequency of repeating event
      */
-    private void addSeparateRepeatEvent(LocalDate endOfMonth, ArrayList<Task> resultTaskList, RepeatEvent event, LocalDate eventDate, int daysToAdd) {
+    private void addSeparateRepeatEvent(LocalDate endOfMonth, ArrayList<Task> resultTaskList,
+                                        RepeatEvent event, LocalDate eventDate, int daysToAdd) {
         for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
              timesRepeated++) {
             resultTaskList.add(new Event(event.getName(), event.getLocation(),
@@ -236,23 +235,35 @@ public class CalendarCommand extends Command {
                     continue;
                 }
 
-                boolean hasPrintedTask = false;
-                for (Task task : monthlyTaskList) {
-                    if (task.getDate().getDayOfMonth() == currentDayRepresented) {
-                        if (calendarRow % CALENDAR_BOX_HEIGHT == 5) {
-                            addTaskNotShownIndicator(calendarView);
-                        } else {
-                            hasPrintedTask = true;
-                            addTaskToCalendar(monthlyTaskList, calendarView, task);
-                        }
-                        break;
-                    }
-                }
-                if (!hasPrintedTask) {
-                    addEmptyCalendarBody(calendarView);
-                }
+                appendTaskToView(monthlyTaskList, calendarView, calendarRow, currentDayRepresented);
             }
             addCalendarNewLine(calendarView);
+        }
+    }
+
+    /**
+     * Appends Task Details to CalendarView if exist, appends formatted padded string otherwise.
+     * @param monthlyTaskList ArrayList of tasks that falls within the given month
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     * @param calendarRow Calendar row that is being worked on
+     * @param currentDayRepresented Integer that represents date the calendar iterator is on
+     */
+    private void appendTaskToView(ArrayList<Task> monthlyTaskList, StringBuilder calendarView,
+                                  int calendarRow, int currentDayRepresented) {
+        boolean hasPrintedTask = false;
+        for (Task task : monthlyTaskList) {
+            if (task.getDate().getDayOfMonth() == currentDayRepresented) {
+                if (calendarRow % CALENDAR_BOX_HEIGHT == 5) {
+                    addTaskNotShownIndicator(calendarView);
+                } else {
+                    hasPrintedTask = true;
+                    addTaskToCalendar(monthlyTaskList, calendarView, task);
+                }
+                break;
+            }
+        }
+        if (!hasPrintedTask) {
+            addEmptyCalendarBody(calendarView);
         }
     }
 

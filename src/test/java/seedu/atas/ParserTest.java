@@ -256,7 +256,7 @@ public class ParserTest {
 
     @Test
     public void parseCalendarCommand_expectedInput_success() {
-        Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/01/01/20");
+        Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/01/20");
         assertTrue(parsedCommand instanceof  CalendarCommand);
     }
 
@@ -271,7 +271,7 @@ public class ParserTest {
 
     @Test
     public void parseCalendarCommand_DateIncorrect() {
-        Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/00/00/00");
+        Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/00/00");
         assertTrue(parsedCommand instanceof IncorrectCommand);
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DATE_INCORRECT_OR_INVALID_ERROR));

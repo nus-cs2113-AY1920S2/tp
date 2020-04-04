@@ -69,7 +69,7 @@ public class Parser {
     //regex for calendar command
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
             "(?<calendar>[^/]+)"
-                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2}/\\d{2})");
+                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2})");
 
     //@@author lwxymere
     /**
@@ -329,7 +329,7 @@ public class Parser {
 
         LocalDate date;
         try {
-            date = LocalDate.parse(matcher.group("date").trim(), INPUT_DATE_FORMAT);
+            date = LocalDate.parse(String.format("01/%s", matcher.group("date").trim()), INPUT_DATE_FORMAT);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
