@@ -100,6 +100,7 @@ public class EditCommand extends Command {
                     taskList.editTask(editIndex, editedEvent);
                     return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
                 }
+                return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
             default:
                 return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR);
             }
@@ -176,7 +177,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates a RepeatEvent object by taking Event object supplied and Repeated Event
+     * Creates a RepeatEvent object by taking Event object supplied and Repeated Event.
      * @param editedEvent Event Object that is created
      * @param repeatedEvent RepeatedEvent Object that was on the list
      * @return RepeatedEvent object
