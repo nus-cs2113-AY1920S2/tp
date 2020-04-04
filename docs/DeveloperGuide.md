@@ -35,7 +35,8 @@ By: `CS2113T-T12-2` Since: `March 2020`
         + [4.3.5. List Appointments](#435-list-appointments)
         + [4.3.6. Find Appointments of Patient](#436-find-appointments-of-patient)
     * [4.4 Storage](#44-storage)
-    * [4.5 Logging](#45-logging)
+    * [4.5 User Prompting](#45-user-prompting)
+    * [4.6 Logging](#46-logging)
 - [5. Documentation](#5-documentation)
 - [6. Testing](#6-testing)
 - [7. Useful Links](#7-useful-links)
@@ -468,8 +469,57 @@ Alternative 1 was chosen for now as the program is relatively new, and is more l
           Pros: Delay deletion time cost so that the use of the program is faster and smoother during time of use.
           Cons: If the program was to terminate unexpectedly, the deletion may not be reflected in the respective files.
 
+### 4.5 User Prompting 
+    
+#### 4.5.1 Description
 
-### 4.5 Logging 
+When the user adds a patient’s details, the input could be missing a few compulsory fields. Instead of prompting the user to re-enter the entire input, HappyPills will only ask the user for the missing details.
+
+The user may choose to abort the command because of a lack of knowledge of the compulsory field or provide the requested details. The add command will only be executed when all the compulsory fields are provided. 
+
+#### 4.5.2 Implementation 
+
+Representing a prompt
+
+The prompting mechanism uses prefix to represent individual 
+
+#### 4.5.3 Design Consideration
+
+##### Representing a prompt
+
+The prompting mechanism uses tag such as `/ic[NRIC]` to represent individual field in patient's information. A list of tags is use to pass to the `Parser` which contains:
+
+        - Parser #addCommandParser(String input) — This method break down user input base on tags such as (/ic, /p)
+
+##### Passing the prompts
+
+Given below is an example scenario where the user command has missing compulsory fields
+
+Step 1: The `HappyPills` pass the user's command to `Parser`, which finds one or more missing compulsory fields.
+
+Step 2: The `Parser` call `Parser#parseAddCommand`, which prompt the corresponding missing field back to the user. And wait for user response
+
+Step 3: The new user input was than check again by `Parser#parseAddCommand` and repeat the process until all the compulsory fields is added correctly.
+
+Step 4: `Parser#parseAddCommand` will ask for conformation before passing the correct input into `AddCommand`.
+
+Step 5: `HappyPills` will execute the command.
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice): The `HappyPill` functions is unaware of prompting. The `Parser` keeps track of the incomplete command and sends back as `addCommand` objects.
+          Pros: Decrease coupling between `HappyPill` and `Parser` components
+          Cons: `HappyPill` has no way to know if it is currently handling prompting, so it cannot abort prompts, `Parser` return IncorrectCommand to act as abort.
+            
+        Alternative 2: The `Parser` componetnt keeps track of the incomplete command and throws an exception containing promts to the `HappyPills`.
+          Pros: Greater flexibility for `HappyPill` to handle prompt, e.g. aborting
+          Cons: A new class is required to keep track of the command entered, rather than simply acting as a bridge between the `Command` and `Parser` sub-component. Increase number of pontential points of failure and decrease maintainability.
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+### 4.6 Logging 
 
 ## 5. Documentation 
 

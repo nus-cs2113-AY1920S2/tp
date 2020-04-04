@@ -6,7 +6,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import java.util.ArrayList;
 
 public class PatientRecordTextUi extends TextUi {
-    
+
     /**
      * format a list patient record success message for user.
      * Includes a specified string, requested patient details and a divider.

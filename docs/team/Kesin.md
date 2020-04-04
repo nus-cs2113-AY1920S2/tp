@@ -29,15 +29,41 @@ This section shows a summary of my coding, documentation, and other helpful cont
     - To ensure our application maintains its robustness under extremely heavy load conditions, I did in-depth analysis 
     of different design alternatives.
     
-**Major enhancement:** I implemented `FindPatientRecord` 
+**Major enhancement:** I implemented the ability for user to filter Patient Record
   + What it does:
-    - `find pr NRIC`
+    - The `list pr NRIC` command list all the past patient records with index.
+    - The `find pr NRIC INDEX` command find a particular patient record with given index.
+    - The `edit pr NRIC INDEX [/sym or /diag or /date or /time]` command edit a particular patient record with given
+    index and tag.
+    - The `delete pr NRIC INDEX` command delete a particular patient record with given index.
   + Justification:
-    - ???
+    - In the case that the Patient Record grows, it will be difficult to find records. The `find pr NRIC INDEX` command 
+    allows users to easily find and filter the notes that they require. It also allow to edit wrongly added detail or
+    update the existing record.
+    
   + Highlights:
-    - ???
-
-
+    - The `list pr NRIC` will provide all the index of the past records. User are not require to provide their index,
+    and can always view the date/time of the patient record with the corresponding index.
+    - An in-depth analysis of design of using array indexing instead of hashmap and keyword is because
+    the number of time a particular patient visit the clinic are usually low. Arraylist have advantage such as
+    `auto indexing` and resizing of the array making the `space of the app low` and manageable.
+    
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> i prefer ^
+**Major enhancement:** I implemented `FindPatientRecord` to search for a particular Patient Record using NRIC and index.
+  + What it does:
+    - `find pr NRIC INDEX` uses NRIC as key to find the ArrayList of past Patient Record as value.
+    - `find pr NRIC INDEX` uses INDEX to find the particular Patient Record that the user is searching for.
+  + Justification:
+    - This feature benefits users because they can easily search for a particular Patient Record in the list of Records.
+  + Highlights:
+    - The `list pr NRIC` will provide all the index of the past records. User are not require to provide their index,
+    and can always view the date/time of the patient record with the corresponding index.
+    - An in-depth analysis of design of using array indexing instead of hashmap and keyword is because
+    the number of time a particular patient visit the clinic are usually low. 
+    Arraylist have advantage such as`auto indexing` and resizing of the array 
+    making the `space of the app low` and manageable.
+    
+    
 **Code contributed:** Please click these links to see a sample of my code: 
 [PatientMap](), [FindPatientRecord](), [DeletePatientRecord]()  
 
