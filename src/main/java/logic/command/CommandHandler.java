@@ -87,32 +87,52 @@ public class CommandHandler {
 
     public static void editContact(String[] userInputWords, Contact mainUser, ContactList contactList,
                                    int currentWeekNumber) throws MoException {
-        if (userInputWords.length != 7) {
-            throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
-        }
-        int endOfMonthDate = 0;
-        endOfMonthDate = getEndOfMonthDate(endOfMonthDate);
 
-        Integer startDay;
-        Integer endDay;
-        int startDate = Integer.parseInt(userInputWords[3]);
-        int endDate = Integer.parseInt(userInputWords[5]);
-        int startOfWeekDate = getStartOfWeekDate();
-        startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
-        endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
+        try {
+            if (userInputWords.length != 7) {
+                throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
+            }
+            int endOfMonthDate = 0;
+            endOfMonthDate = getEndOfMonthDate(endOfMonthDate);
 
-        String meetingName = userInputWords[1];
+            Integer startDay;
+            Integer endDay;
+            int startDate = Integer.parseInt(userInputWords[3]);
+            int endDate = Integer.parseInt(userInputWords[5]);
+            int startOfWeekDate = getStartOfWeekDate();
+            startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
+            endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
 
-        int memberNumber = Integer.parseInt(userInputWords[1]);
-        Contact member = contactList.getContactList().get(memberNumber);
-        String memberName = member.getName();
-        String startTimeString = userInputWords[4];
-        String endTimeString = userInputWords[6];
-        String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
-        if (userInputWords[2].equals("busy")) {
-            member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
-        } else if (userInputWords[2].equals("free")) {
-            member.addFreeBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
+            String meetingName = userInputWords[1];
+
+            int memberNumber = Integer.parseInt(userInputWords[1]);
+            Contact member = contactList.getContactList().get(memberNumber);
+            String memberName = member.getName();
+            LocalTime startTime = LocalTime.parse(userInputWords[4]);
+            LocalTime endTime = LocalTime.parse(userInputWords[6]);
+            String startTimeString = userInputWords[4];
+            String endTimeString = userInputWords[6];
+            String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
+
+            if (memberNumber != 0 || MeetingHandler.isValidEdit(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
+                if (userInputWords[2].equals("busy")) {
+                    member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
+                } else if (userInputWords[2].equals("free")) {
+                    member.addFreeBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
+                }
+                TextUI.showContactEdited(member.getName(),userInputWords[2]);
+            } else {
+                throw new AssertionError("isValidEdit() should not return false");
+            }
+        } catch (MoException e) {
+            System.out.println(e.getMessage());
+            TextUI.printFormatEdit();
+        } catch (DateTimeParseException e) {
+            TextUI.timeOutOfRangeMsg();
+            TextUI.printFormatEdit();
+        } catch (NumberFormatException e) {
+            TextUI.invalidNumberMsg();
+            TextUI.printFormatEdit();
         }
     }
 
@@ -208,7 +228,7 @@ public class CommandHandler {
                 Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime, startDate, endDate);
                 meetingList.add(myMeeting);
                 String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
-                mainUser.addBusyBlocks(meetingName, startDay, userInputWords[3], endDay, userInputWords[5], thisWeekNumber);
+                mainUser.addBusyBlocks("meeting", startDay, userInputWords[3], endDay, userInputWords[5], thisWeekNumber);
                 TextUI.meetingListSizeMsg(meetingList);
             } else {
                 System.out.println("Schedule is blocked at that timeslot");

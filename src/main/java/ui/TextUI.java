@@ -40,6 +40,7 @@ public class TextUI {
         out.println("[contacts] List all contacts.");
         out.println("[timetable] Display combined timetable of selected contacts.");
         out.println("[schedule] Schedule a new meeting.");
+        out.println("[edit] Edit a contact's timetable.");
         out.println("[delete] Delete a scheduled meeting.");
         out.println("[meetings] List all scheduled meetings.");
         out.println("[exit] Exit application.");
@@ -357,6 +358,11 @@ public class TextUI {
         out.println("\nTo schedule a meeting:\nschedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>");
     }
 
+    public static void printFormatEdit() {
+        out.println("\nTo edit a contact:\nedit <Contact Index> busy <Start Day> <Start Time> <End Day> <End Time>"
+                + "\nedit <Contact Index> free <Start Day> <Start Time> <End Day> <End Time>");
+    }
+
     public static void printFormatDeleteMember() {
         out.println("\nTo delete contact:\ndelete <Member Name>");
     }
@@ -380,6 +386,11 @@ public class TextUI {
     public static void printFormatDeleteMeeting() {
         out.println("\nTo delete meeting:\ndelete <Meeting Index>");
     }
+
+    public static void showContactEdited(String name, String busyOrFree) {
+        out.println(name + "'s timetable has been edited.");
+    }
+
 }
 
 
