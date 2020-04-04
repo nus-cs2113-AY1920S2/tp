@@ -21,8 +21,27 @@ public class PerformanceList {
     }
 
     public void addToList(Performance performance, String eventName) {
-        performanceList.add(performance);
-        ui.addPerformanceMessage(performance.studentName, eventName);
+        if (isRepeated(performance)) {
+            UI.display("You have already stored " + performance.studentName + "'s result. If you wish "
+                    + "to edit, please input: Performance edit");
+        } else {
+            performanceList.add(performance);
+            ui.addPerformanceMessage(performance.studentName, eventName);
+        }
+    }
+
+    private boolean isRepeated(Performance performance) {
+        if (isEmpty()) {
+            return false;
+        }
+        for (Performance p : performanceList) {
+            return isSame(p.getStudent(), performance.getStudent());
+        }
+        return false;
+    }
+
+    private boolean isSame(String string1, String string2) {
+        return string1.toLowerCase().equals(string2.toLowerCase());
     }
 
     public ArrayList<Performance> getPerformanceList() {
@@ -36,13 +55,13 @@ public class PerformanceList {
      *
      * @param performance The Performance of student to be deleted.
      */
-    public void deletePerformance(Performance performance, String eventName) throws PacException {
+    public void deletePerformance(Performance performance, String eventName) {
         boolean hasDeleted = false;
         if (isEmpty()) {
-            throw new PacException("No performance list under this event");
+            UI.display("No performance list under this event");
         }
         for (Performance p : performanceList) {
-            if (p != null && performance.getStudent().equals(p.getStudent())) {
+            if (p != null && isSame(p.getStudent(), performance.getStudent())) {
                 performanceList.remove(p);
                 hasDeleted = true;
                 break;
@@ -51,9 +70,55 @@ public class PerformanceList {
         ui.deletePerformanceMessage(performance, eventName, hasDeleted);
     }
 
-    public void printList() throws PacException {
+    /**
+     * This method edit the parameters in Performance. The type of parameter to change is
+     * determined by the String type passed into this method.
+     *
+     * @param performance The Performance to be edited.
+     * @param type        The type of parameter to be edited.
+     */
+    public void edit(Performance performance, String type) {
+        boolean hasEdited = false;
         if (isEmpty()) {
-            throw new PacException("No performance list under this event");
+            UI.display("No performance list under this event");
+        }
+
+        for (Performance p : performanceList) {
+            if (p != null && isSame(p.getStudent(), performance.getStudent()) && isSame(type, "name")) {
+                editName(p);
+                hasEdited = true;
+                break;
+            } else if (p != null && isSame(p.getStudent(), performance.getStudent()) && isSame(type, "result")) {
+                editResult(p);
+                hasEdited = true;
+            }
+        }
+
+        if (!hasEdited) {
+            UI.display("Performance not found in list");
+        }
+    }
+
+    private void editName(Performance performance) {
+        performance.studentName = ui.getPerformanceName("name");
+        ui.editPerformanceMessage(performance, "name");
+        performanceList.remove(performance);
+        performanceList.add(performance);
+    }
+
+    public void editResult(Performance performance) {
+        performance.result = ui.getPerformanceName("result");
+        ui.editPerformanceMessage(performance, "result");
+        performanceList.remove(performance);
+        performanceList.add(performance);
+    }
+
+    /**
+     * This method iterates and prints the Performance list in a table format.
+     */
+    public void printList() {
+        if (isEmpty()) {
+            UI.display("No performance list under this event");
         }
         int i = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Result");
@@ -68,7 +133,6 @@ public class PerformanceList {
      * and returns the Performance when the two Strings are equal.
      * @param studentName A String input to be compared.
      * @return The Performance with studentName matches input String.
-     * @throws PacException Throws
      */
     public Performance getPerformance(String studentName) throws PacException {
         if (isEmpty()) {
