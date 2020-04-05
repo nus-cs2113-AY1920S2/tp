@@ -5,6 +5,8 @@ import seedu.nuke.Executor;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
+import seedu.nuke.data.storage.StoragePath;
+
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +17,7 @@ class UndoCommandTest {
 
     @Test
     void execute() {
-        HashMap<String, String> modulesMap = ModuleLoader.load("");
+        HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
         ModuleManager.initialise(modulesMap);
         ScreenShotManager.saveScreenShot();
 
