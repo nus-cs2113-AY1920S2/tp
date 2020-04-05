@@ -44,7 +44,7 @@ public class AddReservationCommand extends ReservationCommand {
             parseInput(this.description);
             
             // reservationNumber
-            this.reservationNumber = reservations.getSize();
+            this.reservationNumber = reservations.getSize() + 1; // starting from 1
             assert this.reservationNumber >= 0 : "Invalid Reservation Number";
 
             Reservation reservation = new Reservation(reservationNumber, name, date, numberOfGuests, contact);
@@ -86,6 +86,13 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
         assert nameEndPos != -1 : "Semicolon Missing";
+
+        // enter no content for name
+        if (namePos + RES_PERSON_MARKER.length() == nameEndPos) {
+            throw new InputMissingException("name");
+        }
+        
+        assert namePos + RES_PERSON_MARKER.length() != nameEndPos : "Contact Name Missing";
 
         boolean delimiterMissing;
         String[] markers = {RES_PERSON_MARKER, RES_DATE_MARKER, RES_NUM_MARKER,
@@ -163,6 +170,13 @@ public class AddReservationCommand extends ReservationCommand {
             throw new DelimiterMissingException();
         }
         assert contactEndPos != -1 : "Semicolon Missing";
+
+        // enter no content for contact
+        if (contactPos + RES_CONTACT_MARKER.length() == contactEndPos) {
+            throw new InputMissingException("contact");
+        }
+
+        assert contactPos + RES_CONTACT_MARKER.length() != contactEndPos : "Contact Missing";
         
         delimiterMissing = hasDelimiterInBetween(contactPos + RES_CONTACT_MARKER.length(), contactEndPos,
                 markers, description);

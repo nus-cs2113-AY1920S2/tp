@@ -2,12 +2,11 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
-import exceptions.ReservationCannotMarkException;
+import exceptions.ReservationStatusException;
 import reservation.ReservationList;
 import ui.Ui;
 
-import static utils.Constants.DELIMITER;
-import static utils.Constants.RES_INDEX_MARKER;
+import static utils.Constants.*;
 
 /** Command object for "mark reservation" command. */
 public class MarkReservationCommand extends ReservationCommand {
@@ -29,7 +28,7 @@ public class MarkReservationCommand extends ReservationCommand {
     @Override
     public void execute(ReservationList reservations, Ui ui) {
         try {
-            validMaxRange = reservations.getSize() - 1;
+            validMaxRange = reservations.getSize();
             parseInput(this.description);
 
             // mark the reservation as done
@@ -42,9 +41,9 @@ public class MarkReservationCommand extends ReservationCommand {
             ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
             ui.showMessage(e.getMessage());
-        } catch (ReservationCannotMarkException e) {
-            ui.showMessage(String.format("Reservation[%d] is invalid, so it cannot be marked as served.", 
-                    this.reservationNumber));
+        } catch (ReservationStatusException e) {
+            ui.showMessage(String.format("Reservation[%d] is already %s. It cannot be marked as %s.",
+                    this.reservationNumber, e.getStatus(), SERVED));
         }
     }
 
@@ -73,9 +72,9 @@ public class MarkReservationCommand extends ReservationCommand {
         this.reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
                 numberEndPos).trim());
 
-        if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
+        if (this.reservationNumber <= 0 || this.reservationNumber > validMaxRange) {
             throw new NumberFormatException();
         }
-        assert 0 <= this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
+        assert 0 < this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
     }
 }

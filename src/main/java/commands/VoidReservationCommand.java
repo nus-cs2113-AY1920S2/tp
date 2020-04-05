@@ -2,11 +2,11 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
+import exceptions.ReservationStatusException;
 import reservation.ReservationList;
 import ui.Ui;
 
-import static utils.Constants.DELIMITER;
-import static utils.Constants.RES_INDEX_MARKER;
+import static utils.Constants.*;
 
 /** Command object for "void reservation" command. */
 public class VoidReservationCommand extends ReservationCommand {
@@ -28,7 +28,7 @@ public class VoidReservationCommand extends ReservationCommand {
     @Override
     public void execute(ReservationList reservations, Ui ui) {
         try {
-            validMaxRange = reservations.getSize() - 1;
+            validMaxRange = reservations.getSize();
             parseInput(this.description);
             
             // voids the reservation
@@ -41,6 +41,9 @@ public class VoidReservationCommand extends ReservationCommand {
             ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
             ui.showMessage(e.getMessage());
+        } catch (ReservationStatusException e) {
+            ui.showMessage(String.format("Reservation[%d] is already %s. You cannot void a %s reservation.",
+                    this.reservationNumber, e.getStatus(), e.getStatus()));
         }
     }
 
@@ -69,9 +72,9 @@ public class VoidReservationCommand extends ReservationCommand {
         this.reservationNumber = Integer.parseInt(description.substring(numberPos + RES_INDEX_MARKER.length(),
                 numberEndPos).trim());
         
-        if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
+        if (this.reservationNumber <= 0 || this.reservationNumber > validMaxRange) {
             throw new NumberFormatException();
         }
-        assert 0 <= this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
+        assert 0 < this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
     }
 }

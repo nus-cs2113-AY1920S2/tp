@@ -183,19 +183,19 @@ public class Reservation {
     public String toString() {
         return String.format("Reservation [%d]"
                 + ls
-                + "Status: %s" 
-                + ls 
-                + "contact person: %s" 
-                + ls 
-                + "date: %s" 
+                + "Status: %s"
                 + ls
-                + "number of guests: %d" 
+                + "contact person: %s"
                 + ls
-                + "table size: %c" 
+                + "date: %s"
                 + ls
-                + "contact details: %s" 
-                + ls 
-                + "comments: %s" 
+                + "number of guests: %d"
+                + ls
+                + "table size: %c"
+                + ls
+                + "contact details: %s"
+                + ls
+                + "comments: %s"
                 + ls, 
                 this.reservationNumber, this.status, this.name, 
                 this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),

@@ -1,8 +1,6 @@
 package reservation;
 
-import commands.MarkReservationCommand;
-import commands.VoidReservationCommand;
-import exceptions.ReservationCannotMarkException;
+import exceptions.ReservationStatusException;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
 
@@ -19,16 +17,16 @@ class ReservationListTest {
     public ReservationListTest() {
         ui = new Ui();
         reservationList = new ReservationList();
-        reservationList.addReservation(new Reservation(0, "Lisa",
+        reservationList.addReservation(new Reservation(1, "Lisa",
                 LocalDateTime.parse("2020-03-15 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 3, "12345678"));
     }
     
     @Test
     void addReservation_normalInput_success() {
-        Reservation reservation = reservationList.getReservation(0);
+        Reservation reservation = reservationList.getReservation(1);
         
-        assertEquals(0, reservation.getReservationNumber());
+        assertEquals(1, reservation.getReservationNumber());
         assertEquals("Lisa", reservation.getName());
         assertEquals(LocalDateTime.parse("2020-03-15 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 reservation.getDate());
@@ -41,28 +39,33 @@ class ReservationListTest {
     @Test
     void markReservationAsServed_normalInput_success() {
         try {
-            reservationList.markReservationAsServed(0);
-            Reservation reservation = reservationList.getReservation(0);
+            reservationList.markReservationAsServed(1);
+            Reservation reservation = reservationList.getReservation(1);
             assertEquals("Served", reservation.getStatus());
-        } catch (ReservationCannotMarkException e) {
+        } catch (ReservationStatusException e) {
             fail(); // the test should not reach this line
         }
     }
     
     @Test
     void voidReservation_normalInput_success() {
-        reservationList.voidReservation(0);
-        Reservation reservation = reservationList.getReservation(0);
-        assertEquals("Invalid", reservation.getStatus());
+        try {
+            reservationList.voidReservation(1);
+            Reservation reservation = reservationList.getReservation(1);
+            assertEquals("Invalid", reservation.getStatus());
+        } catch (ReservationStatusException e) {
+            fail(); // the test should not reach this line
+        }
+        
     }
 
     @Test
     void markReservationAsServed_invalidReservation_exceptionThrown() {
         try {
-            reservationList.voidReservation(0);
-            reservationList.markReservationAsServed(0);
+            reservationList.voidReservation(1);
+            reservationList.markReservationAsServed(1);
             fail(); // the test should not reach this line
-        } catch (ReservationCannotMarkException e) {
+        } catch (ReservationStatusException e) {
             ui.showMessage("Reservation[0] is invalid, so it cannot be marked as served.");
         }
     }
