@@ -1,3 +1,4 @@
+<!-- @@author trishaangelica -->
 # Trisha Labi - Project Portfolio
 # PROJECT: SHOCO 
 
@@ -102,10 +103,15 @@ with the new values from the user input. This is done through the use of the <co
 5. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
-have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
+have been omitted from the diagram. Those details are shown in a separate sequence diagram.
 
-![Edit Feature](../images/EditFeature.png)
+![Edit Feature](../images/EditFeatureFinal.png)
 
+
+&nbsp; 
+
+ The separate sequence diagram below shows how the item is updated with new values.
+ 
 ![Edit Feature SD](../images/EditFeature_SD.png)
 
 
@@ -149,7 +155,7 @@ Once instantiated, the <code>Duke</code> then class calls the <code>execute</cod
 The following sequence diagram below shows how the help feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![Help Feature](../images/HelpFeature.png)
+![Help Feature](../images/HelpFeatureFinal.png)
 
 ##### 3.10.2 Design considerations
 
@@ -175,6 +181,5 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 
 ---
-
-        
+<!-- @@author -->
         
