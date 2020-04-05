@@ -59,17 +59,21 @@ or above installed in your Computer.
 ### 2.1 Overall Architecture
 This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
-![Architecture](images/Architecture.png "Architecture of Pac")
-
+![Architecture](images/Architecture.png "Architecture of Pac")              
 *Overall architecture design of Pac*
 
 The `Pac` component contains all other components in the application.
 
 - `UI`: reads user input, and prints output in pre-defined format.
 - `Storage`: loads/stores all events (in EventList) and all student lists (in StudentListCollection).
-- `CommandInterpreter`: Determines user input
-- `EventList`: stores all events during runtime
-- `StudentListCollection`: stores all student lists during runtime
+- `CommandInterpreter`: Determines category and type of command from user input.
+- Various `Parser`: Breaks down user input to obtain command parameters.
+- Various `Features`: stores their respective objects during runtime.
+    - `EventList`: stores all events during runtime.
+    - `StudentListCollection`: stores all student lists during runtime.
+    - `AttendanceList`: stores all attendances related to an `Event`.
+    - `PerformanceList`: stores all performances related to an `Event`.
+    - `Calendar`: shows all events in calendar form.
 
 ### 2.2 UI component
 ![Ui](images/Ui.png "Class diagram of Ui component")                
@@ -102,7 +106,7 @@ of Pac.
 A Parser class is created when a user input contains data to be stored or used in certain features.    
 
 ### 2.5 Storage component
-![Storage](images/StorageClass.png "Class diagram of Storage component")
+![Storage](images/StorageClass.png "Class diagram of Storage component")            
 *Class diagram of the Storage component*
 
 On startup, `Pac` instantiates two `Storage` objects (`eventStorage` and 
@@ -114,7 +118,7 @@ saved.
 
 ## 3. Implementation 
 ### 3.1 Event
-![event](images/event.png "Class diagram of Event component")           
+![event](images/Event.png "Class diagram of Event component")               
 *Class diagram of the Event component*
 
 #### Program flow
