@@ -28,6 +28,7 @@ public class Person {
         name = "User";
         String matricYear = "2020";
         new Person(name, matricYear);
+
     }
 
     public static String getName() {

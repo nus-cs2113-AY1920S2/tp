@@ -25,7 +25,7 @@ public class Ui {
 
     private static final String VIEWED_MODULE_PLAN_MESSAGE = "Okay! Here is your module plan:";
 
-    private static final String VIEWED_AVAILABLE_MODULE_MESSAGE = "Okay! Here are your available modules in database:";
+    private static final String VIEWED_AVAILABLE_MODULE_MESSAGE = "Okay! Here are your available modules:";
 
     private static final String VIEWED_DONE_MODULE_MESSAGE = "Okay! Here are your completed modules:";
 

@@ -22,7 +22,7 @@ Here are the commands that I can do for you:
 9. "CAP" to view your current cap
 10. "bye" to exit
 
-Okay! Here are your available modules in database:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -82,7 +82,7 @@ Okay! I have added this module to your semester's module list:
 ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
-Okay! Here are your available modules in database:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -244,7 +244,7 @@ Okay, this module has been deleted from the list of available modules
 ID: GET1002 Name: Bridging East and West: Exploring Chinese Communication | Modular Credit: 4
 
 
-Okay! Here are your available modules in database:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|

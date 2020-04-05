@@ -66,6 +66,14 @@ Example of expected output:
 
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4 | Prerequisites: CS1010`
 
+Example:  `add id/GET1018 n/Mathemetics of Games mc/4 pre/`
+
+Example of expected output:
+
+`Okay! I have added this module to the available modules to choose from:`
+
+`ID: GET1018 Name: Mathemetics of Games | Modular Credit: 4`
+
 ### Marking as done: done
 Marks a module as done to show that it has been completed.
 You can do it based on a module code or the module name.
@@ -99,7 +107,7 @@ Format:​ `view`
 
 Example of expected output:
 
-`Okay! Here are your available modules in database:`
+`Okay! Here are your available modules:`
 
 `---------------------------------------------------`
 
@@ -180,7 +188,7 @@ Format: `help`
 
 ## Command Summary
 
-### Add
+### Add to module plan
 
 Command: 
 
@@ -189,6 +197,8 @@ Command:
 or
 
 `add n/[module name] s/[semester] mc/[credit]`
+
+### Add to available module list
 
 Command:
 
