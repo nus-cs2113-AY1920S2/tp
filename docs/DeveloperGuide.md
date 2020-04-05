@@ -9,15 +9,13 @@ By: `Alaukik Pant`      Since: `Mar 2020`      Licence: `MIT`
 
 You can find the set-up instructions [here](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/README.md).
 
-* Acknowledgement- The set-up portion is a direct adaptation of the set-up instructions given to us for this project.
-
 ## 2. Design 
 
-The design og the project from the point of view of the user can be described as follows:
+The design of the project from the point of view of the user can be described as follows:
 
 ![Image of Design](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/docs/images/design.png)
 
-The above figure demonstrates that once a user inputs a command through the **UI** component, the user response is sent to the **Command** component for processing. Depending on the user response, the command can either i) affect existing lists of jobs, news or articles or ii) give user access to new articles through the **API** component or iii) load pre-existing articles inputted into the program through the **Creator** component. More commands can be called on articles loaded through the **API** component or the **Creator** component. At the end, the lists of articles, jobs and notes are stored through the **Storage** component.
+The above figure demonstrates that once a user inputs a command through the **UI** component, the user response is sent to the **Command** component for processing. Depending on the user response, the command can either i) affect existing lists of jobs, news or articles or ii) give user access to new articles through the **API** component or iii) load pre-existing information pieces (articles, jobs) inputted into the program through the **Creator** component. More commands can be called on information pieces loaded through the **API** component or the **Creator** component. At the end, the lists of articles, jobs and notes are stored through the **Storage** component.
 
 ## 3. Implementation
 
@@ -60,9 +58,7 @@ As seen from the above diagram, since the user response was `create article`, th
 The `ManualArticleCreator#execute()` method asks the user for information including **title**, **url**, **category**, and **extract** of the article by calling the `Ui#getCommand()`. The `ManualArticleCreator#execute()` fetches the current time and creates a timestamp of that time. The timestamp is assigned to a String variable called **epochSecond**. The five afformentioned variables(in bold) are used to create an `article` object, which is then added to the `SavedArticleList` eventually.
 
 
-* Diagram representing the Process:
-
-The following sequence diagram summarizes how create command operation works:
+*The following sequence diagram summarizes how `create` command works:*
 
 ![Image of Sequence Diagram](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/docs/images/SD.png)
 
