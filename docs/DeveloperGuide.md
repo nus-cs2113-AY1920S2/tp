@@ -23,6 +23,10 @@ Since: `Feb 2020`
  * **[Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)**
  * **[Appendix D: Glossary](#appendix-d-glossary)**
  * **[Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)**
+    + [E.1. Launch and ShutDown](#e1-launch-and-shutdown)
+    + [E.2. Set a budget and Add an item](#e2-set-a-budget-and-add-an-item)
+    + [E.3. Find and Delete an item](#e3-find-and-delete-an-item)
+    
  <!-- @@author -->
 
 
@@ -89,12 +93,12 @@ This section will describe how the main features of the application are implemen
  default which is 0.0 if the user did not input any value for price. On the other hand, quantity will set to 
  default which is 1 if the user did not input any value for quantity. 
  
- Process of object creation:
+ The process is as follows:
  1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
  2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
- 3. The <code>Duke</code> class calls the <code>AddCommand#execute</code> method of the <code>AddCommand</code> object.
- 4. In the <code>AddCommand#execute</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> 
+ 3. The <code>Duke</code> class calls the <code>AddCommand#execute()</code> method of the <code>AddCommand</code> object.
+ 4. In the <code>AddCommand#execute()</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> 
     object, using items.add().
  5. In the SD, the AddCommand will add <code>item</code> if the description is provided and one / both price and 
     quantity is provided. 
@@ -151,17 +155,17 @@ This section will describe how the main features of the application are implemen
 
 The edit feature is implemented using an <code>EditCommand</code> class. This class extends from the main
 <code>Command</code> class. The <code>item</code> object to be edited is identified by the index number provided 
-in the user input. In addition to the index no. , the user input **must also contain at least one** of these parameters: 
+in the user input. In addition to the index number, the user input **must also contain at least one** of these parameters: 
 *description*, *price*, *quantity*. 
 
 The process is as follows:
 
 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
 2. A <code>Parser</code> object is created.
-3. <Duke></code> calls <code>Parser#parseCommand()</code> method instantiate an <code>EditCommand</code> object based on the user input.
+3. <code><Duke></code> calls <code>Parser#parseCommand()</code> method to instantiate an <code>EditCommand</code> object based on the user input.
 4. <code>Duke</code> class then calls the <code>EditCommand#execute()</code> method.
 5. In the <code>EditCommand#execute()</code> method, it first gets the <code>item</code> object through the
-<code>ShoppingList#getItem()</code>. The original description/price/quantity of the item is overwritten 
+<code>ShoppingList#getItem()</code>. The original description / price / quantity of the item is overwritten 
 with the new values from the user input. This is done through the use of the <code>Item</code> class setter methods.
 6. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
@@ -723,48 +727,120 @@ This section contains the user stories for the different versions of our product
 &nbsp;
 
 ## Appendix E: Instructions for Manual Testing
-Given below are instructions to test the app manually.
+> :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
 ### E.1. Launch and ShutDown
 1. Initial launch 
     
- i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases) and copy it into an empty folder on your desktop.
+      i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
         
- ii.   Rename the empty folder to "SHOCO".
+      ii.   Copy it into an empty folder on your desktop and rename the folder to "SHOCO.
         
- iii.  Open a command prompt window by typing <code>cmd</code> in the start menu.
+      iii.  Open a command prompt window by typing <code>cmd</code> in the start menu.
         
- iv.   Change your directory to where the jar file is located by running the command <code>cd desktop/SHOCO</code>
+      iv.   Change your directory to where the jar file is located by running the command <code>cd desktop/SHOCO</code>
         
- v.    Run the command java -jar SHOCO.jar
-       Expected: Shows a welcome message from SHOCO.
+      v.    Run the command <code>java -jar SHOCO.jar</code>
+            
+        Expected: Shows a welcome message from SHOCO.
+
+    &nbsp;
 
 2. Shut down
         
-        i.    Run the command "BYE" to exit the SHOCO application.
+      i.    Enter the command <code>BYE</code> to exit the SHOCO application.
                 
-        ii.   Close the command terminal.
+      ii.   Close the command terminal.
         
-              Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
+        Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
   
 
 &nbsp;
 
-### E.2. Add an item to the shopping list and set a budget for SHOCO
+### E.2. Set a budget and Add an item
 
-1. Add an item 
+1. Set a budget
+       
+    i. Test case: <code>SET b/500.00</code>
+
+       Expected: Budget is set to $500.00
+    
+     &nbsp;
+
+    ii. Test case: <code>SET b/10000</code>
+       
+        Expected: Budget is set to $5000.00, which is the maximum budget SHOCO allows.
+     
+     &nbsp;
+
+    iii. Test case: <code>SET b/-100</code>
+     
+        Expected: Budget is reset to $0.00, which is the minium budget SHOCO allows.
         
-    *Optional* List all items currently in the shopping list to prevent entering a duplicate item description : <code> DISPLAY </code>
-       
- i.  Test case: <code> ADD i/apple p/3.00 q/2 </code>
-     Expected: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
-          
- ii. Test case: <code> ADD p/3.00 </code>
-     Expected: No item is added. Error message is shown, a correct usage of the ADD command is also shown.
-       
-iv. Other incorrect ADD commands to try: ADD, ADD p/xxx, ADD q/xxx (where x is not a number) 
-    Expected: Similar to previous. 
+     &nbsp;
 
+    iv. Other incorrect set budget commands to try: <code>SET b/xxx</code> (where x is not a number).
+            
+        Expected: An error message and the correct usage of the SET command is shown.
+     
+     &nbsp;
+
+2. Add an item 
+        
+    *Optional:  List all items currently in the shopping list to prevent entering a duplicate item description : <code> DISPLAY </code>*
+       
+    i. Test case: <code> ADD i/apple p/3.00 q/2 </code>
+       
+       Expected: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
+         
+     > :bulb: You can run the <code>DISPLAY</code> command to check the newly added item.
+                                                           
+    &nbsp;
+
+    ii. Test case: <code> ADD p/3.00 </code>
+     
+        Expected: No item is added. Error message and a correct usage of the ADD command is shown.
+       
+     &nbsp;
+       
+    iii. Other incorrect ADD commands to try: <code>ADD</code>, <code>ADD p/xxx</code>, <code>ADD q/xxx</code> (where x is not a number).
+        
+        Expected: Similar to previous. 
+    
+    &nbsp;
+    
+  
+### E.3. Find and Delete an item
+
+1. Find an item based on keyword
+       
+    i. Test case: <code>FIND apple</code> 
+
+       Expected: A list of items that contains "apple" in their description is displayed.
+    
+     &nbsp;
+
+    ii. Test case: <code>FIND xxx</code> (where xxx is a keyword that is unmatched)
+       
+        Expected: A message that says "Sorry, no results could be found" is shown.
+     
+     &nbsp;
+ 
+2. Delete an item
+
+     > :bulb: You can run the <code>DISPLAY</code> command to check the index of the items.
+         
+    i. Test case: <code>DEL 1</code> 
+
+       Expected: The first item (if it exists), is deleted.
+    
+     &nbsp;
+
+    ii. Test case: <code>DEL xxx</code> (where xxx is a not a number / the item does not exist yet)
+       
+        Expected: An error message is shown. 
+     
+     &nbsp;
 
 
 <b><a href="#developer-guide">&#129053; back to top</a></b>
