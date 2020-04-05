@@ -32,6 +32,7 @@ Table of Contents
 	- [View Calendar feature](#36-view-calendar-feature)
 		- [Implementation](#361-implementation)
 		- [Design Considerations](#362-design-considerations)
+		- [Future Enhancements](#363-future-enhancements)
 	- [Storage](#37-storage)
 		- [Implementation](#371-implementation)
 			- [Saving the current state of **ATAS** with `Storage#save()`:](#372-saving-the-current-state-of-atas-with-storagesave)
@@ -548,9 +549,9 @@ The `CalendarCommand` class extends the `Command` class with methods to implemen
 
 ![Interaction of CalendarCommand and the various major components](images/calendar-diagram.png)
 
-In particular, the diagram below shows the explicit execution flow that `CalendarCommand` takes.
+In particular, the diagram below shows the explicit execution flow that `buildMonthCalendar()` method of the `CalendarCommand` takes.
 
-![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar_v2.png)
+![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar.png)
 
 Given below is an example usage of the `calendar` command. The step by step execution is shown in the sequence diagram above.
 
@@ -585,7 +586,7 @@ The method manages all pre-processing to get the details needed to formulate the
 
 > **Note**
 >
-> Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the design considerations subsection.
+> Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the [design considerations](#362-design-considerations) subsection.
 
 **Step 4**  
 The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the `Calendar` view by calling `showToUser()` method of the `Ui` component.
@@ -595,10 +596,10 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 -   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
 
     -   Rationale:  
-        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects, with each `RepeatEvent` being stored as a separate `Task` within the `ArrayList` of `Task` objects. Each `Task` can be removed from the `ArrayList` after it has been printed which makes the task simpler.
+        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects, with each `RepeatEvent` being stored as a separate `Task` within the `ArrayList` of `Task` objects. Each `Task` can be removed from the `ArrayList` after it has been printed which makes the task simpler. 
 
     -   Alternatives considered:  
-        Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`.
+        Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`. (See [Section 3.4.3, RepeatEvent design considerations](#343-design-considerations))
 
 -   Truncation of `Task` details instead of extending column size
 
@@ -617,6 +618,12 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 
     -   Alternative Considered:  
         Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
+        
+#### 3.6.3. Future Enhancements
+
+- Future enhancement to the Calendar feature of **ATAS** is inclusive but not limited to the following:
+
+    - Allowing users the ability to dictate their dimensions of the calendar view so that they are able to customise the size to their preference. Current implementation involves hardcoded dimensions that might not meet every users' requirements. 
 
 ### 3.7. Storage
 #### 3.7.1. Implementation
