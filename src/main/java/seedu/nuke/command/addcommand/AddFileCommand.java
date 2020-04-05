@@ -164,7 +164,7 @@ public class AddFileCommand extends AddCommand {
         Files.createDirectories(destinationPath.getParent());
 
         Files.copy(sourcePath, destinationPath, REPLACE_EXISTING);
-        filePath = String.format("%s/%s", StoragePath.TASK_FILE_DIRECTORY_PATH, randomHash);
+        filePath = randomHash;
     }
 
     private boolean exceedLengthLimit() {

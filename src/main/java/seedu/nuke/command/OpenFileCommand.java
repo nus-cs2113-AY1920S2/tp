@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Pattern;
 
+import static seedu.nuke.data.storage.StoragePath.TASK_FILE_DIRECTORY_PATH;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.TASK_PREFIX;
@@ -111,7 +112,8 @@ public class OpenFileCommand extends FilterCommand {
         ArrayList<String> nonExistentFiles = new ArrayList<>();
 
         for (TaskFile file : filesToOpen) {
-            File[] filesInDirectory = new File(file.getFilePath()).listFiles();
+            String filePath = String.format("%s/%s",  TASK_FILE_DIRECTORY_PATH, file.getFilePath());
+            File[] filesInDirectory = new File(filePath).listFiles();
             if (filesInDirectory == null || filesInDirectory.length == 0) {
                 nonExistentFiles.add(file.getFileName());
                 continue;
