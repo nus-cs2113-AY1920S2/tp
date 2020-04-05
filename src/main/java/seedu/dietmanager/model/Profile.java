@@ -7,9 +7,10 @@ public class Profile {
     private String name;
     private int age;
     private String gender;
-    private double height; //Height in meter
+    private double height; //Height in centimeter
     private double weight; //Weight in kg
     private double weightGoal;
+    private double bmi;
     private boolean profileExist;
     private List<DailyFoodRecord> personalFoodRecord;
     private List<Double> weightRecord;

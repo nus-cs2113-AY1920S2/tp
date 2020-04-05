@@ -19,7 +19,7 @@ public class HeightParser {
         } catch (NumberFormatException e) {
             throw new InvalidHeightException();
         }
-        if (height <= 0.00 || height >= 3.00) {
+        if (height <= 0.00 || height >= 300.00) {
             throw new InvalidHeightException();
         }
         testAssertions(height);
@@ -28,7 +28,7 @@ public class HeightParser {
 
     public static void testAssertions(double height) {
         assert (height > 0.00);
-        assert (height < 3.00);
+        assert (height < 300.00);
     }
 
 }

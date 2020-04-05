@@ -4,6 +4,9 @@ import seedu.dietmanager.commons.exceptions.InvalidGenderException;
 
 public class GenderParser {
 
+    private static final String MALE = "male";
+    private static final String FEMALE = "female";
+
     /**
      * Validate the user input gender and parse it into the standard gender accepted.
      *
@@ -14,7 +17,7 @@ public class GenderParser {
 
     public static String parseGender(String description) throws InvalidGenderException {
         String gender = description.trim().toLowerCase();
-        if (!(gender.equals("m") || gender.equals("f"))) {
+        if (!(gender.equals(MALE) || gender.equals(FEMALE))) {
             throw new InvalidGenderException();
         }
         testAssertions(gender);
@@ -22,7 +25,7 @@ public class GenderParser {
     }
 
     public static void testAssertions(String gender) {
-        assert ((gender.equals("m")) || (gender.equals("f")));
+        assert ((gender.equals(MALE)) || (gender.equals(FEMALE)));
     }
 
 }

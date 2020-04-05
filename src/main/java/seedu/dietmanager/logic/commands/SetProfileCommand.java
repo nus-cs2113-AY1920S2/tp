@@ -62,7 +62,7 @@ public class SetProfileCommand extends Command {
         if (this.isValidCommand) {
             this.result = MessageBank.PROFILE_UPDATE_MESSAGE;
         } else {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.result = MessageBank.INVALID_FORMAT_MESSAGE;
         }
     }
 }
