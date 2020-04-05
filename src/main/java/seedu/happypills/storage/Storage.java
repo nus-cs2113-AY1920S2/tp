@@ -1,9 +1,13 @@
 package seedu.happypills.storage;
 
 import seedu.happypills.HappyPills;
-import seedu.happypills.model.data.*;
+import seedu.happypills.model.data.Patient;
+import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.PatientRecord;
+import seedu.happypills.model.data.PatientRecordMap;
+import seedu.happypills.model.data.Appointment;
+import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.exception.HappyPillsException;
-import seedu.happypills.ui.StorageTextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +23,7 @@ import java.util.logging.Logger;
 public class Storage {
     public static final String PATIENT_FILEPATH = "data/patient.txt";
     public static final String APPOINTMENT_FILEPATH = "data/appointment.txt";
-    public static final String SYMPTOM_FILEPATH = "data/symptoms.txt";
+    public static final String PATIENT_RECORD_FILEPATH = "data/patientrecord.txt";
 
     Logger logger = Logger.getLogger(HappyPills.class.getName());
 

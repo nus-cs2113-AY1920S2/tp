@@ -82,6 +82,13 @@ public class PatientRecord {
                 + "        Date : " + date.trim() + "\n"
                 + "        time : " + time.trim() + "\n";
     }
+
+    /**
+     * Create a string with all the patient's record for storage to a text file.
+     * Each variable is separated with | as a divider.
+     *
+     * @return a formatted string with patient's records.
+     */
     public String toSave() {
         return  nric.trim().toUpperCase() + "|"
                 + symptom.trim() + "|"
