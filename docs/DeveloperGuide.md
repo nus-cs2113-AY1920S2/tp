@@ -2,6 +2,7 @@
 By: `Team SHOCOTech`
 Since: `Feb 2020`
 
+<!-- @@author trishaangelica -->
 ### Table of Contents
 * **[1. Introduction](#1-introduction)**
 * **[2. Overview of the SHOCO application](#2-overview-of-the-shoco-application)**
@@ -22,7 +23,8 @@ Since: `Feb 2020`
  * **[Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)**
  * **[Appendix D: Glossary](#appendix-d-glossary)**
  * **[Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)**
- 
+ <!-- @@author -->
+
 
 ## 1. Introduction
 
@@ -40,6 +42,8 @@ of SHOCO and is tailored for the developers, designers, and software testers of 
 
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 &nbsp;
+
+ <!-- @@author -->
 
 ## 2. Overview of the SHOCO application
 
@@ -75,6 +79,7 @@ At any point in time, <code>Duke</code> only stores up to one <code>Command</cod
 ## 3. Implementation
 This section will describe how the main features of the application are implemented.
 
+<!-- @@author jiajuinphoon -->
 ### 3.1 Add feature
 #### 3.1.1 Current implementation
  
@@ -136,6 +141,7 @@ This section will describe how the main features of the application are implemen
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
+<!-- @@author -->
 
 &nbsp;
 
@@ -555,7 +561,8 @@ to work in parallel.
  
  &nbsp;
  <!-- @@author -->
-
+ 
+<!-- @@author trishaangelica -->
 ### 3.10 View help feature
 #### 3.10.1 Current implementation
 
@@ -642,11 +649,12 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
+<!-- @@author -->
 
 &nbsp;
 <!-- @@author kokjoon97 -->
 ## Appendix A: Product Scope
-This section talks about who this product targets and what it aims to achieve.
+This section talks about who this product is specially designed for and what it aims to achieve.
 
 ### Target user profile
 
@@ -717,10 +725,51 @@ This section contains the user stories for the different versions of our product
 &nbsp;
 
 ## Appendix E: Instructions for Manual Testing
+Given below are instructions to test the app manually.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### E.1. Launch and ShutDown
+1. Initial launch 
+    
+        i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases) and copy it into an empty folder on your desktop.
+        
+        ii.   Rename the empty folder to "SHOCO".
+        
+        iii.  Open a command prompt window by typing <code>cmd</code> in the start menu.
+        
+        iv.   Change your directory to where the jar file is located by running the command <code>cd desktop/SHOCO</code>
+        
+        v.    Run the command java -jar SHOCO.jar
+      
+              Expected: Shows a welcome message from SHOCO.
+
+2. Shut down
+        
+        i.    Run the command "BYE" to exit the SHOCO application.
+                
+        ii.   Close the command terminal.
+        
+              Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
+  
 
 &nbsp;
+
+### E.2. Add an item to the shopping list and set a budget for SHOCO
+
+1. Add an item 
+        
+        *Optional* List all items currently in the shopping list to prevent entering a duplicate item description : <code> DISPLAY </code>
+       
+       i.  Test case: <code> ADD i/apple p/3.00 q/2 </code>
+           Expected: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
+          
+       ii. Test case: <code> ADD p/3.00 </code>
+           Expected: No item is added. Error message is shown, a correct usage of the ADD command is also shown.
+       
+       iv. Other incorrect ADD commands to try: ADD, ADD p/xxx, ADD q/xxx (where x is not a number) 
+           Expected: Similar to previous. 
+
+
+
 <b><a href="#developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
