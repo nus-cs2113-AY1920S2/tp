@@ -281,7 +281,7 @@ public class Controller {
             String semester = moduleWords[1].trim();
             return new DeleteFromSemCommand(moduleId, semester, "id");
         } else if (args.contains("n/")) {
-            String moduleName = moduleWords[0].replace("n/", "");       //.toUpperCase().trim()
+            String moduleName = moduleWords[0].replace("n/", "");
             String semester = moduleWords[1].trim();
             return new DeleteFromSemCommand(moduleName, semester, "name");
         }

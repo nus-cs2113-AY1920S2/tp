@@ -201,7 +201,8 @@ in the semesterList. If it exists, both its name and id attributes are updated.
 
 ### 4.2.1 `Delete from Semester` feature
 
-The `Delete from Semester` mechanism is facilitated by `DeleteFromSemCommand`, which extends extends from `AddCommand`.
+The `Delete from Semester` mechanism is facilitated by `DeleteFromSemCommand`, which extends from `DeleteCommand`.
+Whereas `DeleteCommand` extends from the abstract class `Commmand`.
 It allows `ModuleManager` to delete a module from a `SemModulesList`.
 By doing so, the following operations are carried out:
 
@@ -230,6 +231,33 @@ The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
 ![Sequence Diagram](https://github.com/chengTzeNing/tp/blob/DG/docs/images/Sequence%20Diagram.png)
 
+### 4.2.1 `Delete from Available` feature
+
+The `Delete from Available` mechanism is facilitated by `DeleteFromAvailableCommand`, 
+which extends from `DeleteCommand`. Whereas `DeleteCommand` extends from the abstract class `Commmand`.
+It allows `ModuleManager` to delete a module from a `AvailableModulesList`.
+By doing so, the following operations are carried out:
+
+##### Step 1:
+When a user enters a delete from available command, e.g `delete id/IS4241 s/4`, this command is being parsed in `Parser`.
+`Parser` then returns a `DeleteFromSemCommand`, which calls 
+`Command#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+`DeleteFromSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
+
+##### Step 2:
+`DeleteFromSemCommand.execute` then calls its own method `checkModuleExistInCorrectSem(selectedModulesList)`.
+`checkModuleExistInCorrectSem(selectedModulesList)` returns a boolean value regarding whether there is such 
+a module in the semester stated by the user.
+If the module does not exist in that semester, a `RuntimeException` is thrown.
+Otherwise, it will run through the `semModulesList` in the `selectedModulesList` to find the semester indicated.
+It then calls a method of `SemModulesList`, `getModule(moduleIdentifier)`, which returns the corresponding module,
+based on either the `moduleId` or `moduleName`.
+Following, it then calls another method of `SemModulesList`, `remove(module)`, which removes the corresponding module.
+
+##### Step 3:
+`DeleteFromSemCommand.execute` finally calls `Ui.showDeleteFromSemMessage(String.format(
+"Module %s has been deleted from semester %s", moduleIdentifier, yearSemester));`
+This tells the user the module that has been deleted from the corresponding semester.
 
 ## 4.3 Searching
 

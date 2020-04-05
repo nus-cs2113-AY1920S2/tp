@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
+import seedu.duke.exception.InputException;
 import seedu.duke.exception.RuntimeException;
 import seedu.duke.exception.StorageException;
 import seedu.duke.ui.Ui;
@@ -24,7 +25,7 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
     }
 
     public void execute(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
-            throws RuntimeException, StorageException {
+            throws RuntimeException, StorageException, InputException {
         boolean isModuleAvailable = checkIfModuleAvailable(availableModulesList);
         if (!isModuleAvailable) {
             throw new RuntimeException(String.format("Module %s not found in available modules", moduleIdentifier));

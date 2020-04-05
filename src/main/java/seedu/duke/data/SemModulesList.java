@@ -1,5 +1,6 @@
 package seedu.duke.data;
 
+import seedu.duke.exception.InputException;
 import seedu.duke.module.Module;
 import seedu.duke.module.SelectedModule;
 
@@ -52,13 +53,13 @@ public class SemModulesList extends ArrayList<SelectedModule> {
      * @param moduleIdentifier Id or Name of module.
      * @return Module that corresponds to the modules identifier inputted.
      */
-    public Module getModule(String moduleIdentifier) {
+    public Module getModule(String moduleIdentifier) throws InputException {
         for (Module module : this) {
-            if (module.getId().equals(moduleIdentifier) || module.getName().equals(moduleIdentifier)) {
+            if (module.getId().equalsIgnoreCase(moduleIdentifier) || module.getName().equalsIgnoreCase(moduleIdentifier)) {
                 return module;
             }
         }
-        return null;
+        throw new InputException("The module you seems incorrect");
     }
 
     public void deleteModule(String moduleIdentifier) {
