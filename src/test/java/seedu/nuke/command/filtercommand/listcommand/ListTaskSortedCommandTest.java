@@ -1,10 +1,9 @@
-package seedu.nuke.commandtest;
+package seedu.nuke.command.filtercommand.listcommand;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.parser.Parser;
