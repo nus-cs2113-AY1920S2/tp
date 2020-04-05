@@ -2,7 +2,6 @@ package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.commons.exceptions.InvalidGenderException;
 import seedu.dietmanager.logic.commands.AddFoodCommand;
 import seedu.dietmanager.logic.commands.BuildNewRecipeCommand;
 import seedu.dietmanager.logic.commands.CalculateCaloriesCommand;
@@ -29,7 +28,7 @@ import seedu.dietmanager.logic.commands.ShowRecipeCommand;
  * Parser is the public class responsible for parsing user input and generating the relevant commands.
  */
 
-public class Parser {
+public class CommandParser {
 
     /**
      * The command prompt entered by the user.
@@ -92,8 +91,7 @@ public class Parser {
      * @throws InvalidFormatException  if format for command is wrong.
      */
 
-    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException,
-            InvalidGenderException {
+    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException {
         prepareInput(input);
         Command command;
         switch (commandPrompt) {

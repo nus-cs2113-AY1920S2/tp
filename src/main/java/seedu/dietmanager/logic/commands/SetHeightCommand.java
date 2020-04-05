@@ -10,6 +10,7 @@ public class SetHeightCommand extends Command {
 
     private double height;
     private boolean isValidCommand;
+    private boolean isValidProfile;
 
     /**
      * Constructs the Command object.
@@ -20,7 +21,6 @@ public class SetHeightCommand extends Command {
     public SetHeightCommand(String command, String description) {
         super(command);
         this.isValidCommand = true;
-
         try {
             this.height = HeightParser.parseHeight(description);
         } catch (InvalidHeightException e) {
@@ -30,6 +30,10 @@ public class SetHeightCommand extends Command {
 
     @Override
     public void execute(Profile profile, UI ui) {
+        this.isValidProfile = profile.isProfileExist();
+        if (!this.isValidProfile) {
+            this.isValidCommand = false;
+        }
         if (this.isValidCommand) {
             profile.setHeight(this.height);
         }
@@ -38,7 +42,9 @@ public class SetHeightCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
-        if (this.isValidCommand) {
+        if (!this.isValidProfile) {
+            this.result = MessageBank.INVALID_PROFILE_MESSAGE;
+        } else if (this.isValidCommand) {
             this.result = MessageBank.HEIGHT_CHANGE_MESSAGE + String.format("%.2f.", profile.getHeight());
         } else {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;

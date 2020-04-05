@@ -10,6 +10,7 @@ public class SetGenderCommand extends Command {
 
     private String gender;
     private boolean isValidCommand;
+    private boolean isValidProfile;
 
     /**
      * Constructs the Command object.
@@ -30,6 +31,10 @@ public class SetGenderCommand extends Command {
 
     @Override
     public void execute(Profile profile, UI ui) {
+        this.isValidProfile = profile.isProfileExist();
+        if (!this.isValidProfile) {
+            this.isValidCommand = false;
+        }
         if (this.isValidCommand) {
             profile.setGender(this.gender);
         }
@@ -38,7 +43,9 @@ public class SetGenderCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
-        if (this.isValidCommand) {
+        if (!this.isValidProfile) {
+            this.result = MessageBank.INVALID_PROFILE_MESSAGE;
+        } else if (this.isValidCommand) {
             this.result = MessageBank.GENDER_CHANGE_MESSAGE + profile.getGender() + ".";
         } else {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;

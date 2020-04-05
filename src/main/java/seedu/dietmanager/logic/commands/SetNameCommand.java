@@ -10,6 +10,7 @@ public class SetNameCommand extends Command {
 
     private String name;
     private boolean isValidCommand;
+    private boolean isValidProfile;
 
     /**
      * Constructs the Command object.
@@ -29,6 +30,10 @@ public class SetNameCommand extends Command {
 
     @Override
     public void execute(Profile profile, UI ui) {
+        this.isValidProfile = profile.isProfileExist();
+        if (!this.isValidProfile) {
+            this.isValidCommand = false;
+        }
         if (this.isValidCommand) {
             profile.setName(this.name);
         }
@@ -37,7 +42,9 @@ public class SetNameCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
-        if (this.isValidCommand) {
+        if (!this.isValidProfile) {
+            this.result = MessageBank.INVALID_PROFILE_MESSAGE;
+        } else if (this.isValidCommand) {
             this.result = MessageBank.NAME_CHANGE_MESSAGE + profile.getName() + ".";
         } else {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;

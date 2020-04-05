@@ -98,4 +98,6 @@ public class MessageBank {
             + "Either uppercase or lowercase is supported!";
 
     public static String SPLIT_LINE = "----------------------------------------------------------------";
+
+    public static String INVALID_PROFILE_MESSAGE = "Invalid profile detected. Please set a new profile using the set-profile command.";
 }
