@@ -337,7 +337,7 @@ Example 2: Given below is an example usage of `clear done` command:
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `clear all` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
+The user enters `clear done` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
 
 **Step 3**  
 A new instance of `ClearCommand` with `clearParam` initialized will be created. The `DeleteCommand#execute()` will then be called.
@@ -347,7 +347,10 @@ The `execute()` method will then call the `ClearCommand#clearDone()` :
 
 -   If there are no tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method.
+-   If there are no completed tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating that there 
+are no completed tasks
+
+-   Otherwise, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method to delete all the completed tasks, excluding repeat events.
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 

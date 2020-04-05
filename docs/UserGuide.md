@@ -377,7 +377,10 @@ You can clear **all** tasks in the list if you want to start from a fresh list. 
 
 Format: `clear all`
 
-#### 3.8.2. Clear All Done Tasks
+#### 3.7.2. Clear All Done Tasks
+
+> **Note**: <br/>
+> `clear done` command only deletes completed events that is not set to repeat<br/>
 
 -   You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.  
 
@@ -412,7 +415,8 @@ Here are the search results:
 
 #### 3.9.2. Search by Name and Date
 
-You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for.
+You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for. However,
+you are only able to search for tasks that are on the task list(i.e. Future repeating events cannot be found using `searchd` command)
 
 > **Tip**: 
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.

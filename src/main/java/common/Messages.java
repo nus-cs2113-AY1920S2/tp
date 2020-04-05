@@ -44,7 +44,7 @@ public class Messages {
     public static final String DONE_SUCCESS_MESSAGE = "[%s] has been marked done!";
     public static final String DELETE_SUCCESS_MESSAGE = "[%s] has been deleted!";
     public static final String CLEAR_SUCCESS_MESSAGE = "All tasks have been deleted";
-    public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks have been removed";
+    public static final String CLEAR_DONE_SUCCESS_MESSAGE = "All completed tasks[Excluding repeated events] have been removed";
     public static final String SEARCH_SUCCESS_MESSAGE = "Here are the search results:";
     public static final String EDIT_SUCCESS_MESSAGE = "Task edited successfully:"
             + System.lineSeparator() + NEWLINE_INDENT + "%s.";

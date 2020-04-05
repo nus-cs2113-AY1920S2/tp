@@ -4,6 +4,7 @@ import common.Messages;
 import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
+import tasks.RepeatEvent;
 import tasks.Task;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class ClearCommand extends Command {
         int count = 0;
         ArrayList<Integer> doneIndex = new ArrayList<>();
         for (Task task: taskList.getTaskArray()) {
-            if (task.getIsDone()) {
+            if (task.getIsDone() && !(task instanceof RepeatEvent)) {
                 doneIndex.add(count);
             }
             count++;
