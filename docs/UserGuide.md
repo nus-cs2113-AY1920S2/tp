@@ -276,6 +276,7 @@ or
 `add n/[module name] s/[semester] mc/[credit]`
 
 or
+
 `add id/[module code] n/[module name] s/[semester] mc/[credit]`
 
 ### Add to available module list
