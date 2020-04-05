@@ -23,21 +23,21 @@ class AddModuleCommandTest {
         ModuleManager.initialise(modulesMap);
 
         CommandResult result = Executor.executeCommand("addm cs3235");
-        assertEquals(ModuleManager.getModuleList().size(), 1);
-        assertEquals(result.getFeedbackToUser(), messageAddModuleSuccess("CS3235", "Computer Security"));
+        assertEquals(1, ModuleManager.getModuleList().size());
+        assertEquals(messageAddModuleSuccess("CS3235", "Computer Security"), result.getFeedbackToUser());
 
         // duplicate module
         CommandResult result1 = Executor.executeCommand("addm cs3235");
-        assertEquals(ModuleManager.getModuleList().size(), 1);
+        assertEquals(1, ModuleManager.getModuleList().size());
         assertEquals(result1.getFeedbackToUser(), MESSAGE_DUPLICATE_MODULE);
 
         // non-exist module
         CommandResult result2 = Executor.executeCommand("addm cs12321");
-        assertEquals(ModuleManager.getModuleList().size(), 1);
+        assertEquals(1, ModuleManager.getModuleList().size());
         assertEquals(result2.getFeedbackToUser(), MESSAGE_MODULE_NOT_PROVIDED);
 
         // another valid module
         CommandResult result3 = Executor.executeCommand("addm cs3230");
-        assertEquals(ModuleManager.getModuleList().size(), 2);
+        assertEquals(2, ModuleManager.getModuleList().size());
     }
 }

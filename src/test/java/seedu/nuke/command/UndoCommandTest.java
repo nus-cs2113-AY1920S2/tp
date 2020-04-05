@@ -8,6 +8,8 @@ import seedu.nuke.data.ScreenShotManager;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.nuke.command.UndoCommand.MESSAGE_UNDO_AT_BEGINNING;
 
 class UndoCommandTest {
 
@@ -19,17 +21,18 @@ class UndoCommandTest {
 
         CommandResult result = Executor.executeCommand(UndoCommand.COMMAND_WORD);
         ScreenShotManager.saveScreenShot();
+        assertEquals(MESSAGE_UNDO_AT_BEGINNING, result.getFeedbackToUser());
 
         CommandResult result1 = Executor.executeCommand("addm cs3235");
         ScreenShotManager.saveScreenShot();
-        assertEquals(ModuleManager.getModuleList().size(), 1);
+        assertEquals(1, ModuleManager.getModuleList().size());
 
         CommandResult result2 = Executor.executeCommand("addm cs3230");
         ScreenShotManager.saveScreenShot();
-        assertEquals(ModuleManager.getModuleList().size(), 2);
+        assertEquals(2, ModuleManager.getModuleList().size());
 
         CommandResult result3 = Executor.executeCommand(UndoCommand.COMMAND_WORD);
         ScreenShotManager.saveScreenShot();
-        assertEquals(ModuleManager.getModuleList().size(), 1);
+        assertEquals(1, ModuleManager.getModuleList().size());
     }
 }
