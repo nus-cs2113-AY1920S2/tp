@@ -23,6 +23,7 @@ Here are the commands that I can do for you:
 10. "clear" to clear your module plan
 11. "bye" to exit
 
+Please input your command:
 Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
@@ -79,10 +80,20 @@ Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 
 
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
 Okay! I have added this module to your semester's module list:
 ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
 Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
@@ -139,6 +150,8 @@ Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 
 
+Please input your command:
+Please input your command:
 Okay! Here is your module plan:
 Y2S1
 1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
@@ -152,9 +165,11 @@ Y3S1
 1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 Okay, I've marked the module as done!
 
 
+Please input your command:
 Okay! Here are your completed modules:
 Y2S2
 1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
@@ -163,10 +178,12 @@ Y3S1
 1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 You have completed this amount of credits:
 4
 
 
+Please input your command:
 Okay, this is the list of related modules:
 
 List of selected modules:
@@ -189,9 +206,13 @@ ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisit
 
 
 
+Please input your command:
+Please input your command:
 Okay, I've marked the module as done!
 
 
+Please input your command:
+Please input your command:
 Okay! Here is your module plan:
 Y2S1
 1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
@@ -205,10 +226,12 @@ Y3S1
 1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 You have completed this amount of credits:
 8
 
 
+Please input your command:
 Okay! Here are your completed modules:
 Y2S2
 1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
@@ -217,14 +240,17 @@ Y3S1
 1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 Your current CAP is:
 4.50
 
 
+Please input your command:
 Okay, this module has been deleted from the corresponding semester
 Module IS4241 has been deleted from semester Y2S2
 
 
+Please input your command:
 Okay! Here is your module plan:
 Y2S1
 1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
@@ -237,14 +263,18 @@ Y3S1
 1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 Okay, this module has been deleted from the list of available modules
 ID: GES1000 Name: Singapore Employment Law | Modular Credit: 4
 
 
+Please input your command:
+Please input your command:
 Okay, this module has been deleted from the list of available modules
 ID: GET1002 Name: Bridging East and West: Exploring Chinese Communication | Modular Credit: 4
 
 
+Please input your command:
 Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
@@ -297,6 +327,7 @@ Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 
 
+Please input your command:
 Okay! Here is your module plan:
 Y2S1
 1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
@@ -309,4 +340,7 @@ Y3S1
 1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
+Please input your command:
+Please input your command:
 Bye bye! I hope to see you again soon ^.^
