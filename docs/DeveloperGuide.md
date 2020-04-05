@@ -117,18 +117,9 @@ The ```schedulelogic``` component finds common time slots from team members' sch
 The ```schedulelogic``` consists of the class ```ScheduleHandler```. 
 
 1. ```ScheduleHandler``` retrieves the schedule of selected ```Contact```s in the ```ContactList```, to generate a combined schedule.
+2. ```ScheduleHandler``` checks if a time slot fits in the main user's schedule.
 
 **Detailed implementation of logic.schedulelogic component**
-
-### 2.3.3. logic.meetinglogic component
-
-The ```meetinglogic``` checks if a meeting can fit in main user's schedule.
-The ```meetinglogic``` consists of the class ```MeetingHandler```. 
-
-1. ```MeetingHandler``` checks if a time slot fits in the main user's schedule.
-
-**Detailed implementation of logic.meetinglogic component**
-
 
 ### 2.3.4. logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
