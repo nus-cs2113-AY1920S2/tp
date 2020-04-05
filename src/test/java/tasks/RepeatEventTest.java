@@ -73,7 +73,7 @@ public class RepeatEventTest {
         RepeatCommand testRepeatCommand = new RepeatCommand(0, 1, "w");
         testRepeatCommand.execute(testTaskList, testUi);
         RepeatEvent repeatEvent = (RepeatEvent) testTaskList.getTask(0);
-        LocalDate taskDate = repeatEvent.getDate();
+        LocalDate taskDate = repeatEvent.getOriginalDateAndTime().toLocalDate();
         repeatEvent.updateDate();
         assertEquals(repeatEvent.getDate(), taskDate.plusWeeks(
                 repeatEvent.getPeriodCounter() * repeatEvent.getNumOfPeriod()));
