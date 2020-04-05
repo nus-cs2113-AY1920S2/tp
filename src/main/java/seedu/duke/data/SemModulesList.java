@@ -55,7 +55,8 @@ public class SemModulesList extends ArrayList<SelectedModule> {
      */
     public Module getModule(String moduleIdentifier) throws InputException {
         for (Module module : this) {
-            if (module.getId().equalsIgnoreCase(moduleIdentifier) || module.getName().equalsIgnoreCase(moduleIdentifier)) {
+            if (module.getId().equalsIgnoreCase(moduleIdentifier)
+                    || module.getName().equalsIgnoreCase(moduleIdentifier)) {
                 return module;
             }
         }

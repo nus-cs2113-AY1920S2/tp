@@ -11,8 +11,8 @@ import seedu.duke.storage.StorageSemesterList;
 
 public abstract class Command {
 
-    public void execute(SemesterList semesterList,
-                        AvailableModulesList availableModulesList) throws RuntimeException, StorageException, InputException {
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList)
+            throws RuntimeException, StorageException, InputException {
         StoragePersonInfo.save();
         StorageAvailableModulesList.save(availableModulesList);
         StorageSemesterList.save(semesterList);
