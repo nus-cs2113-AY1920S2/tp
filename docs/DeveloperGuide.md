@@ -707,14 +707,21 @@ When all lines in the save file have been decoded, return the `TaskList`.
         As the `TaskList` is expected to be small for most users, the drop in performance due to unnecessary saves is negligible. The first method is chosen to make the code easier to maintain.
 
 ## 4. Testing
+Testing is required to ensure that the code written is accurate, bug free (at least in the tests designed) and do not cause any existing
+ feature to fail. For ATAS, there are 2 ways to run automated testing.
+ 
 ### 4.1. Using IntelliJ JUnit Tests
 
 -   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 
--   For individual tests, you can right-click on the test **package**, **class** or a single test and choose `Run 'TEST'`
+-   To run all test using Gradle: Open a console and run the command `gradlew clean test`
+
+-   For individual test, navigate to folder `src/test/java`. From there, you can right-click any of the test **package**, **class** or a
+    single test and choose `Run 'TEST'` to run the corresponding test.
 
 ### 4.2. Using Input-Output Tests
--   Navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script.
+-   Open a console, navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script. <br/>
+    This will run ATAS with the commands written in `input.txt` and compare its output with the text file `EXPECTED.txt`. 
 
 ## 5. DevOps
 ### 5.1 Build Automation
