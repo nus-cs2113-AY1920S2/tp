@@ -48,8 +48,7 @@ This section shows a summary of my coding, documentation, and other helpful cont
     - Arraylist have advantage such as `auto indexing` and resizing of the array making the 
     space of the app low and manageable.
         
-**Code contributed:** Please click these links to see a sample of my code: 
-[PatientMap](), [FindPatientRecord](), [DeletePatientRecord]()  
+**Code contributed:** [Reposense Report](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=itskesin&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false)  
 
 **Other contributions:**
 - Project management:
