@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import java.util.Scanner;
 
+//@@author JLoh579
 public class Ui {
 
     private Scanner in = new Scanner(System.in);
@@ -26,7 +27,8 @@ public class Ui {
             + "\n"
             + "        _______________________/"
             + "\n          /\\              /\\"
-            + "\n          \\/              \\/\n";
+            + "\n          \\/              \\/\n"
+            + " Type 'HELP' to know more about the feature in SHOCO ^^";
 
     /**
      * Prints the welcome message.
@@ -61,3 +63,4 @@ public class Ui {
         System.out.println(str);
     }
 }
+//@@author
