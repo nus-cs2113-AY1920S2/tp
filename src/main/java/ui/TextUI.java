@@ -359,8 +359,8 @@ public class TextUI {
     }
 
     public static void printFormatEdit() {
-        out.println("\nTo edit a contact:\nedit <Contact Index> busy <Start Day> <Start Time> <End Day> <End Time>"
-                + "\nedit <Contact Index> free <Start Day> <Start Time> <End Day> <End Time>");
+        out.println("\nTo edit a contact:\nedit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>"
+                + "\nedit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>");
     }
 
     public static void printFormatDeleteMember() {

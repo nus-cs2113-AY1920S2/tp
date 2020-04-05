@@ -6,7 +6,6 @@ import exception.MoException;
 import model.meeting.Meeting;
 import logic.modulelogic.LessonsGenerator;
 import logic.schedulelogic.ScheduleHandler;
-import logic.meetinglogic.MeetingHandler;
 import model.contact.Contact;
 import model.contact.ContactList;
 import ui.TextUI;
@@ -103,9 +102,9 @@ public class CommandHandler {
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
 
-            String meetingName = userInputWords[1];
+            String meetingName = userInputWords[2];
 
-            int memberNumber = Integer.parseInt(userInputWords[1]);
+            int memberNumber = Integer.parseInt(userInputWords[2]);
             Contact member = contactList.getContactList().get(memberNumber);
             String memberName = member.getName();
             LocalTime startTime = LocalTime.parse(userInputWords[4]);
@@ -114,10 +113,10 @@ public class CommandHandler {
             String endTimeString = userInputWords[6];
             String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
 
-            if (memberNumber != 0 || MeetingHandler.isValidEdit(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
-                if (userInputWords[2].equals("busy")) {
+            if (memberNumber != 0 || ScheduleHandler.isValidEdit(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
+                if (userInputWords[1].equals("busy")) {
                     member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
-                } else if (userInputWords[2].equals("free")) {
+                } else if (userInputWords[1].equals("free")) {
                     member.addFreeBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
                 }
                 TextUI.showContactEdited(member.getName(),userInputWords[2]);
@@ -224,7 +223,7 @@ public class CommandHandler {
 
             LocalTime startTime = LocalTime.parse(userInputWords[3]);
             LocalTime endTime = LocalTime.parse(userInputWords[5]);
-            if (MeetingHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
+            if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
                 Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime, startDate, endDate);
                 meetingList.add(myMeeting);
                 String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
