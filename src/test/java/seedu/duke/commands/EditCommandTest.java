@@ -1,3 +1,5 @@
+//@@author trishaangelica
+
 package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
@@ -7,7 +9,6 @@ import seedu.duke.data.ShoppingList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//@@author trishaangelica
 public class EditCommandTest {
 
     ShoppingList items = new ShoppingList();
