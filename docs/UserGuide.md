@@ -94,39 +94,39 @@ Expected output:
 
 
 #### Based on module name
-Format: `add n/[module name] s/[semester]`
+Format: `delete n/[module name] s/[semester]`
 
-Example:​ `add n/Discrete Structure s/4`
+Example:​ `delete n/Discrete Structure s/4`
 
 Expected output: 
 
 `Okay, this module has been deleted from the corresponding semester`
 
-`Module  has been deleted from semester Y2S2`
+`Module Discrete Structure has been deleted from semester Y2S2`
 
 #### Delete a specific module from available module list
 
 #### Based on module name
-Format: `add id/[module code] s/[semester] mc/[credit]`
+Format: `delete id/[module code]`
 
-Example:​ `add id/IS4241 s/4 mc/4`
+Example:​ `delete id/IS4241`
 
 Expected output: 
 
-`Okay! I have added this module to your semester's module list:`
+`Okay, this module has been deleted from the list of available modules`
 
-`ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2`
+`ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
 
 #### Based on module code
-Format: `add id/[module code] s/[semester] mc/[credit]`
+Format: `delete n/[module name]`
 
-Example:​ `add id/IS4241 s/4 mc/4`
+Example:​ `delete n/Social Media Network Analysis`
 
 Expected output: 
 
-`Okay! I have added this module to your semester's module list:`
+`Okay, this module has been deleted from the list of available modules`
 
-`ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2`
+`ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
 
 ### Marking as done: done
 Marks a module as done to show that it has been completed.

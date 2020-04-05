@@ -31,6 +31,15 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
     public void execute(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
             throws RuntimeException, StorageException, InputException {
+        deleteModule(selectedModulesList);
+        Ui.showDeleteFromSemMessage(String.format("Module %s has been deleted from semester %s",
+                moduleIdentifier, yearSemester));
+
+        super.execute(selectedModulesList, availableModulesList);
+
+    }
+
+    private void deleteModule(SemesterList selectedModulesList) throws RuntimeException, InputException {
         boolean isModuleInSem = checkModuleExistInCorrectSem(selectedModulesList);
         if (!isModuleInSem) {
             throw new RuntimeException(String.format("Module %s not found in Semester %s",
@@ -45,12 +54,6 @@ public class DeleteFromSemCommand extends DeleteCommand {
                 break;
             }
         }
-
-        Ui.showDeleteFromSemMessage(String.format("Module %s has been deleted from semester %s",
-                moduleIdentifier, yearSemester));
-
-        super.execute(selectedModulesList, availableModulesList);
-
     }
 
     /**

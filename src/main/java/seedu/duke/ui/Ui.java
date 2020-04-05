@@ -63,11 +63,17 @@ public class Ui {
             + " to add a module to the list of available modules\n"
             + "5. \"done n/[module name] g/[grade] | done id/[module code] g/[grade]\" "
             + "to mark it as done\n"
-            + "6. \"view /mp\" to view your module plan\n"
-            + "7. \"view /dm\" to view all finished modules\n"
-            + "8. \"view /cc\" to view the number of modular credits u have completed\n"
-            + "9. \"CAP\" to view your current cap\n"
-            + "10. \"bye\" to exit\n";
+            + "6. \"delete id/[module code] s/[semester] "
+            + "| delete n/[module name] s/[semester] "
+            + " to delete a module from your personal module manager\n"
+            + "7. \"delete id/[module code] "
+            + "| delete n/[module name] "
+            + " to delete a module from your list of available modules\n"
+            + "8. \"view /mp\" to view your module plan\n"
+            + "9. \"view /dm\" to view all finished modules\n"
+            + "10. \"view /cc\" to view the number of modular credits u have completed\n"
+            + "11. \"CAP\" to view your current cap\n"
+            + "12. \"bye\" to exit\n";
 
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
