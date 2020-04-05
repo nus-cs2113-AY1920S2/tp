@@ -65,12 +65,12 @@ Pr *--> VisitDate
 
 Person *-left-> "*" Pr
 
-Patient -up-> ModelManager
-Appointment -up-> ModelManager
-PatientRecord -up-> ModelManager
+Patient ----up-> ModelManager
+Appointment --up-> ModelManager
+PatientRecord --up-> ModelManager
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> DOB
-DOB -[hidden]right-> BloodType
+Name --[hidden]right-> Phone
+Phone --[hidden]right-> DOB
+DOB --[hidden]right-> BloodType
 
 @enduml
