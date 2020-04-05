@@ -97,7 +97,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             output = editTime(editPatientRecord, content);
             errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_TIME;
         } else {
-            throw new HappyPillsException(Messages.MESSAGE_INVALID_TAG);
+            throw new HappyPillsException(Messages.MESSAGE_INVALID_EDIT_PR);
         }
         if (output) {
             try {

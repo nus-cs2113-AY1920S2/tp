@@ -63,10 +63,14 @@ public class HelpTextUi extends TextUi {
     public static String editPatientHelpMessage = ""
             + "    To edit a patient's information, run the following command:\n"
             + "    Note: patient details are in UPPER CASE and optional details are in parenthesis [ ]\n"
+            + "      edit patient NRIC /n[NAME] to edit patient's name\n"
+            + "      edit patient NRIC /dob[DOB] to edit patient's date of birth\n"
+            + "      edit patient NRIC /b[BLOOD_TYPE] to edit patient's blood type\n"
             + "      edit patient NRIC /p[PHONE_NUMBER] to edit patient's phone number,\n"
             + "      edit patient NRIC /a[ALLERGIES] to edit patient's allergies,\n"
-            + "      edit patient NRIC /r[REMARKS] to edit patient's remarks\"\n"
-            + "    Do note that editing the patient's records will overwrite any previous information.\n"
+            + "      edit patient NRIC /r[REMARKS] to edit patient's remarks\n"
+            + "    Do note that you can only edit one parameter at a time and " +
+            " editing the patient's records will overwrite any previous information.\n"
             + "    Adding of allergies or remarks can be done with the add command.\n";
 
     public static String deletePatientHelpMessage = ""

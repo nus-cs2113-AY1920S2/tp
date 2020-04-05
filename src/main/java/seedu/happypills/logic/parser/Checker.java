@@ -48,7 +48,7 @@ public class Checker {
      * @return true if is valid, false otherwise.
      */
     public static boolean isValidBloodType(String blood) {
-        String pattern = "([A|B|AB|O][+-])";
+        String pattern = "(A|B|AB|O)(\\+|-)";
         return blood.matches(pattern);
     }
 

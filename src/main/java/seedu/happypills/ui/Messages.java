@@ -38,9 +38,15 @@ public class Messages {
     public static final String MESSAGE_INVALID_DATE_OF_BIRTH = "    Please ensure that the DATE is in DD/MM/YYYY ";
     public static final String MESSAGE_INVALID_TIME = "    Invalid time or time format(HH:MM).\n";
     public static final String MESSAGE_INVALID_PHONE_NUMBER = "    Please ensure that all the phone number is 8 digit";
-    public static final String MESSAGE_INVALID_TAG =
+    public static final String MESSAGE_INVALID_EDIT_APPOINTMENT =
             "    Please try again. To learn more about the Edit appointment command, "
-                    + "\n    enter \"help appt edit\"";
+                    + "\n    enter \"help edit appt\"";
+    public static final String MESSAGE_INVALID_EDIT_PR =
+            "    Please try again. To learn more about the Edit patient record command, "
+                    + "\n    enter \"help edit pr\"";
+    public static final String MESSAGE_INVALID_EDIT_PATIENT =
+            "    Please try again. To learn more about the Edit patient command, "
+                    + "\n    enter \"help edit patient\"";
 
     public static final String MESSAGE_EMPTY_PATIENT = "    There are no patients in the list.\n" + DIVIDER;
     public static final String MESSAGE_INDEX_OUT_OF_BOUND = "    No record found with given Index";
