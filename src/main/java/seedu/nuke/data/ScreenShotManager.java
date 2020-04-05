@@ -93,6 +93,7 @@ public class ScreenShotManager {
             if (!isLastCommandRedo) {
                 popAllRedoStack();
             }
+            assert redoStack.size() == 0 : "didn't clear the redoStack!!!!";
         }
     }
 
