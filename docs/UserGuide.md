@@ -155,8 +155,8 @@ Retrieve a patient's information | `get patient NRIC`
 --------|----------
 Add an appointment | `add appt /ic NRIC /d DATE /t TIME /r REASON`
 Edit an appointment | `edit appt NRIC /d DATE /t TIME /r REASON`
-Delete an appointment | `delete appt APPT_ID`
-Mark an appointment as done | `done appt APPT_ID`
+Delete an appointment | `delete appt NRIC APPT_ID`
+Mark an appointment as done | `done appt NRIC APPT_ID`
 List all appointments | `list appt`
 Find an appointment| `find appt NRIC`
 
