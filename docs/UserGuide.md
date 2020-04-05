@@ -16,7 +16,7 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
 
 1. Ensure that you have Java 11 or later versions of Java installed on your computer. 
     - To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). 
-    - To download the latest version of Java on your computer follow the instructions [here](https://www.oracle.com/java/technologies/javase-jdk13-downloads.html).
+    - To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-jdk13-downloads.html).
 2. Download the .jar file of our latest release WhenFree 2.1 [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
 3. Copy the downloaded .jar file to an empty folder.
 4. Open Command Prompt or Terminal and navigate to the folder using ```cd <folder path>```.
