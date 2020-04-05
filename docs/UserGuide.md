@@ -12,22 +12,22 @@ Contents:
   * [Usage](#22-usage)
 - [Features](#3-features)
   * [Add Assignments: **`assignment`**](#31-add-assignments-assignment)
-  * [Add Events: **`event`**](#-32-add-events-event)
-  * [List Tasks: **`list`**](#33-list-tasks-list)
-    + [List All Tasks: **`list`**](#331-list-all-tasks-list)
-    + [List Today’s Tasks: **`list today`**](#332-list-todays-tasks-list-today)
-    + [List Weekly Tasks: **`list week`**](#333-list-weekly-tasks-list-week)
-    + [List Upcoming Events: **`list upcoming events`**](#334-list-upcoming-events-list-upcoming-events)
-    + [List Incomplete Assignments: **`list incomplete assignments`**](#335-list-incomplete-assignments-list-incomplete-assignments)
-  * [Edit Tasks: **`edit`**](#34-edit-tasks-edit)
-  * [Delete Tasks: **`delete`**](#35-delete-tasks-delete)
-  * [Mark Done: **`done`**](#36-mark-done-done)
-  * [Clear Tasks: **`clear`**](#37-clear-tasks-clear)
-    + [Clear All Tasks](#371-clear-all-tasks)
-    + [Clear All Done Tasks](#372-clear-all-done-tasks)
-  * [Repeating Events: **`repeat`**](#38-repeating-events-repeat)
-    + [Set an event to repeat](#381-set-an-event-to-repeat)
-    + [Unset Repeating Event](#382-unset-repeating-event)
+  * [Add Events: **`event`**](#32-add-events-event)
+  * [Repeating Events: **`repeat`**](#33-repeating-events-repeat)
+    + [Set an event to repeat](#331-set-an-event-to-repeat)
+    + [Unset Repeating Event](#332-unset-repeating-event)
+  * [List Tasks: **`list`**](#34-list-tasks-list)
+    + [List All Tasks: **`list`**](#341-list-all-tasks-list)
+    + [List Today’s Tasks: **`list today`**](#342-list-todays-tasks-list-today)
+    + [List Weekly Tasks: **`list week`**](#343-list-weekly-tasks-list-week)
+    + [List Upcoming Events: **`list upcoming events`**](#344-list-upcoming-events-list-upcoming-events)
+    + [List Incomplete Assignments: **`list incomplete assignments`**](#345-list-incomplete-assignments-list-incomplete-assignments)
+  * [Edit Tasks: **`edit`**](#35-edit-tasks-edit)
+  * [Delete Tasks: **`delete`**](#36-delete-tasks-delete)
+  * [Mark Done: **`done`**](#37-mark-done-done)
+  * [Clear Tasks: **`clear`**](#38-clear-tasks-clear)
+    + [Clear All Tasks](#381-clear-all-tasks)
+    + [Clear All Done Tasks](#382-clear-all-done-tasks)
   * [Search tasks: **`search`**](#39-search-tasks-search)
     + [Search by Name](#391-search-by-name)
     + [Search by Name and Date](#392-search-by-name-and-date)
@@ -71,8 +71,8 @@ Interested in cultivating a habit of time management and plan your time more eff
         4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
 
 ### 2.2. Usage
-1.  To use **ATAS**, simply type a valid command into the terminal and press kbd:\[Enter\] to run the command.  
-    e.g. Typing `help` command and pressing kbd:\[Enter\] will list the commands present
+1.  To use **ATAS**, simply type a valid command into the terminal and press `[Enter]` to run the command.  
+    e.g. Typing `help` command and pressing `[Enter]` will list the commands present
 
 2.  Some example commands you can try to get familiar with **ATAS**:
 
@@ -164,12 +164,67 @@ Added task:
 Now you have 2 tasks in the list!
 ```
 
-### 3.3. List Tasks: **`list`**
+### 3.3. Repeating Events: **`repeat`**
+
+#### 3.3.1. Set an event to repeat
+
+Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
+
+Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
+
+> **Note**:
+> Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y` <br/>
+> `INDEX` of task specified has to be an **event** task. Read on to `list` command to learn more about index of specific tasks. 
+> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
+
+Example: `repeat id/6 p/11m`  
+This command will repeat task of index 6 every 11 months.
+
+Expected outcome:
+```
+[Online Career Fair] will repeat every 11 months.
+```
+
+> **Note**:
+> Repeating an event will cause the event to have the symbol `[R]` instead of `[E]` and its `PERIOD_NUM` and `PERIOD_TYPE` will also
+> be shown in a square bracket beside `notes` section. Below is an example:
+> ```
+> Here are the search results:
+>  1.[R][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
+>      [3d]  notes: Test
+> ```
+
+#### 3.3.2. Unset Repeating Event
+
+Stop a repeating event from continuing to repeat.
+
+Format: `repeat id/[INDEX] p/0`
+
+> **Tip**: 
+> You can think of this as repeating the task every 0 days and hence not repeating!
+
+Example: `repeat id/6 p/0`  
+This command will cause task of index 6 to stop repeating.
+
+Expected outcome:
+```
+[Online Career Fair] will no longer repeat.
+```
+> **Note**:
+> The symbol `[R]` will be replaced by `[E]` and there will not be any symbols beside `notes` section. 
+> Below is an example: 
+> ```
+> Here are the relevant tasks: 
+>  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
+>            notes: false
+> ```
+
+### 3.4. List Tasks: **`list`**
 
 You can view the tasks that you have stored in **ATAS**.  
 Various keywords can be used to only show the tasks you are interested in.
 
-#### 3.3.1 List All Tasks: **`list`**
+#### 3.4.1 List All Tasks: **`list`**
 
 You can view all tasks stored in **ATAS** at once.
 
@@ -198,7 +253,7 @@ Here are the relevant tasks:
 > The first symbol in the square bracket stands for: `[A]` assignment, `[E]` event or `[R]` repeating event. <br/>
 > The second symbol in the square bracket stands for: `[X]` task is not done, `[/]` task is done.
 
-#### 3.3.2. List Today’s Tasks: **`list today`**
+#### 3.4.2. List Today’s Tasks: **`list today`**
 
 You can view only the tasks you have today.
 
@@ -213,7 +268,7 @@ Here are the relevant tasks:
             notes: false
 ```
 
-#### 3.3.3. List Weekly Tasks: **`list week`**
+#### 3.4.3. List Weekly Tasks: **`list week`**
 
 You can view all the tasks for the next 7 days.
 
@@ -234,9 +289,9 @@ Here are the relevant tasks:
             notes: false
 ```
 
-#### 3.3.4. List Upcoming Events: **`list upcoming events`**
+#### 3.4.4. List Upcoming Events: **`list upcoming events`**
 
-You can view all your **upcoming events** from the list of tasks.
+You can view **all** your **upcoming events** from the list of tasks regardless of how far it is from today.
 
 Format: `list upcoming events`
 
@@ -250,7 +305,7 @@ Here are the relevant tasks:
   7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
             notes: false
 ```
-#### 3.3.5. List Incomplete Assignments: **`list incomplete assignments`**
+#### 3.4.5. List Incomplete Assignments: **`list incomplete assignments`**
 
 You can view all your **incomplete assignments** from the list of tasks.
 
@@ -265,7 +320,7 @@ Here are the relevant tasks:
             notes: Complete DG draft to get tutor comments
 ```
 
-### 3.4. Edit Tasks: **`edit`**
+### 3.5. Edit Tasks: **`edit`**
 
 You can edit tasks in your existing list if there are any changes.
 
@@ -273,7 +328,7 @@ Format: `edit [INDEX]`
 
 > **Tip**:
 > Users can issue a `list` command to find the index of specific tasks. <br/>
-> Refer to [Section 3.3, "List Tasks: `list`"](#33-list-tasks-list) for usage on the `list` commands.
+> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
 
 Example: `edit 1`
 
@@ -282,7 +337,7 @@ Refer to [Section 3.1, "Add Assignments: `assignment`](#31-add-assignments-assig
 [Section 3.1, "Add Events: `event`"](#32-add-events-event) for usage of the commands.
 
 
-### 3.5. Delete Tasks: **`delete`**
+### 3.6. Delete Tasks: **`delete`**
 
 You can delete unwanted tasks in your existing list.
 
@@ -290,11 +345,11 @@ Format: `delete [INDEX]`
 
 > **Tip**:
 > Users can issue a `list` command to find the index of specific tasks. <br/>
-> Refer to [Section 3.3, "List Tasks: `list`"](#33-list-tasks-list) for usage on the `list` commands.
+> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
 
 Example: `delete 1`
 
-### 3.6. Mark Done: **`done`**
+### 3.7. Mark Done: **`done`**
 
 You can mark a completed task as done in your existing list.
 
@@ -302,7 +357,7 @@ Format: `done [INDEX]`
 
 > **Tip**:
 > Users can issue a `list` command to find the index of specific tasks. <br/>
-> Refer to [Section 3.3, "List Tasks: `list`"](#33-list-tasks-list) for usage on the `list` commands.
+> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
 
 Example: `done 1`
 
@@ -311,75 +366,24 @@ Expected outcome:
 [Final Reflection Draft] has been marked done!
 ```
 
-### 3.7. Clear Tasks: **`clear`**
+> **Note**: If a repeating event is marked done, it will automatically be marked undone once the date of the event passes today and 
+> is updated to the next one. 
 
-#### 3.7.1. Clear All Tasks
+### 3.8. Clear Tasks: **`clear`**
+
+#### 3.8.1. Clear All Tasks
 
 You can clear **all** tasks in the list if you want to start from a fresh list. The stored list will also be cleared.
 
 Format: `clear all`
 
-#### 3.7.2. Clear All Done Tasks
+#### 3.8.2. Clear All Done Tasks
 
 -   You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.  
 
 -   Format: `clear done` You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.
 
 Format: `clear done`
-
-### 3.8. Repeating Events: **`repeat`**
-
-#### 3.8.1. Set an event to repeat
-
-Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
-
-Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
-
-> **Note**: <br/>
-> Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y` <br/>
-> `INDEX` of task specified has to be an **event** task. <br/>
-
-Example: `repeat id/6 p/11m`  
-This command will repeat task of index 6 every 11 months.
-
-Expected outcome:
-```
-[Online Career Fair] will repeat every 11 months.
-```
-
-> **Note**:
-> Repeating an event will cause the event to have the symbol `[R]` instead of `[E]` and its `PERIOD_NUM` and `PERIOD_TYPE` will also
-> be shown in a square bracket beside `notes` section. Below is an example:
-> ```
-> Here are the search results:
->  1.[R][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
->      [3d]  notes: Test
-> ```
-
-#### 3.8.2. Unset Repeating Event
-
-Stop a repeating event from continuing to repeat.
-
-Format: `repeat id/[INDEX] p/0`
-
-> **Tip**: 
-> You can think of this as repeating the task every 0 days and hence not repeating!
-
-Example: `repeat id/6 p/0`  
-This command will cause task of index 6 to stop repeating.
-
-Expected outcome:
-```
-[Online Career Fair] will no longer repeat.
-```
-> **Note**:
-> The symbol `[R]` will be replaced by `[E]` and there will not be any symbols beside `notes` section. 
-> Below is an example: 
-> ```
-> Here are the relevant tasks: 
->  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
->            notes: false
-> ```
 
 ### 3.9. Search tasks: **`search`**
 
@@ -434,6 +438,8 @@ Expected outcome:
 
 ![calendar.png](images/calendar2.png)
 
+> **Note**: The calendar does not show past repeated events instances and will only show upcoming ones. 
+
 ### 3.11. Storage
 
 Your schedule data will be automatically saved by **ATAS** whenever you run a command.
@@ -487,69 +493,69 @@ When you run **ATAS** again the next time, you will be able to see the tasks fro
 </tr>
 <tr class="even">
 <td><p>05</p></td>
+<td><p>Set Tasks to Repeat</p></td>
+<td><p><code>repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]</code></p></td>
+<td><p><code>repeat id/1 p/3d</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>06</p></td>
+<td><p>Unset Repeating Tasks</p></td>
+<td><p><code>repeat id/[INDEX] p/0</code></p></td>
+<td><p><code>repeat id/1 p/0</code></p></td>
+</tr>
+<tr class="even">
+<td><p>07</p></td>
 <td><p>List All Tasks</p></td>
 <td><p><code>list</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>06</p></td>
+<td><p>08</p></td>
 <td><p>List Today’s Tasks</p></td>
 <td><p><code>list today</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="even">
-<td><p>07</p></td>
+<td><p>09</p></td>
 <td><p>List This Week’s Tasks</p></td>
 <td><p><code>list week</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>08</p></td>
+<td><p>10</p></td>
 <td><p>List Upcoming Events</p></td>
 <td><p><code>list upcoming events</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="even">
-<td><p>09</p></td>
+<td><p>11</p></td>
 <td><p>List Incomplete Assignments</p></td>
 <td><p><code>list incomplete assignments</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>10</p></td>
+<td><p>12</p></td>
 <td><p>Mark a Task as Done</p></td>
 <td><p><code>done [INDEX]</code></p></td>
 <td><p><code>done 1</code></p></td>
 </tr>
 <tr class="even">
-<td><p>11</p></td>
+<td><p>13</p></td>
 <td><p>Edit a Task</p></td>
 <td><p><code>edit [INDEX]</code></p></td>
 <td><p><code>edit 1</code></p></td>
 </tr>
 <tr class="odd">
-<td><p>12</p></td>
+<td><p>14</p></td>
 <td><p>Clear All Tasks</p></td>
 <td><p><code>clear all</code></p></td>
 <td><p><code>-</code></p></td>
 </tr>
 <tr class="even">
-<td><p>13</p></td>
+<td><p>15</p></td>
 <td><p>Clear All Completed Tasks</p></td>
 <td><p><code>clear done</code></p></td>
 <td><p><code>-</code></p></td>
-</tr>
-<tr class="odd">
-<td><p>14</p></td>
-<td><p>Set Tasks to Repeat</p></td>
-<td><p><code>repeat id/[INDEX] p/[PERIOD_NUM] [PERIOD_TYPE]</code></p></td>
-<td><p><code>repeat id/1 p/3d</code></p></td>
-</tr>
-<tr class="even">
-<td><p>15</p></td>
-<td><p>Unset Repeating Tasks</p></td>
-<td><p><code>repeat id/[INDEX] p/0</code></p></td>
-<td><p><code>repeat id/1 p/0</code></p></td>
 </tr>
 <tr class="odd">
 <td><p>16</p></td>
@@ -584,6 +590,6 @@ Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days o
 A: Setting a repeat period of `3d` will mean that the event repeats **3 days later**. The numeric representation of the repeat command indicates the number of days before the event is repeated.  
 e.g. `repeat id/1 p/3d`  
 Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`.  
-Refer to [Section 3.8, "Repeating Events: `repeat`"](#38-repeating-events-repeat).
+Refer to [Section 3.3, "Repeating Events: `repeat`"](#33-repeating-events-repeat).
 
 [Back to Top](#)

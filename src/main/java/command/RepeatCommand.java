@@ -92,11 +92,11 @@ public class RepeatCommand extends Command {
         boolean isDone = event.getIsDone();
         RepeatEvent newRepeatEvent = new RepeatEvent(event.getName(), event.getLocation(), event.getDateAndTime(),
                 event.getEndDateAndTime(), event.getComments(), numOfPeriod, typeOfPeriod, event.getDateAndTime(), 0);
-        taskList.editTask(eventIndex, newRepeatEvent);
+        newRepeatEvent.updateDate();
         if (isDone) {
-            taskList.getTask(eventIndex).setDone();
+            newRepeatEvent.setDone();
         }
-        ((RepeatEvent) taskList.getTask(eventIndex)).updateDate();
+        taskList.editTask(eventIndex, newRepeatEvent);
         return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, newRepeatEvent.getName(),
                 numOfPeriod == 1 ? "" : numOfPeriod + " ", iconToString(typeOfPeriod),
                 numOfPeriod <= 1 ? "" : "s"));
@@ -107,10 +107,11 @@ public class RepeatCommand extends Command {
             boolean isDone = event.getIsDone();
             Event newEvent = new Event(event.getName(), event.getLocation(), event.getDateAndTime(),
                     event.getEndDateAndTime(), event.getComments());
-            taskList.editTask(eventIndex, newEvent);
             if (isDone) {
                 taskList.getTask(eventIndex).setDone();
             }
+            taskList.editTask(eventIndex, newEvent);
+
             return new CommandResult(String.format(Messages.STOP_REPEATING_SUCCESS_MESSAGE, newEvent.getName()));
         }
         return new CommandResult(String.format(Messages.REPEAT_NOT_SET_ERROR, event.getName()));
