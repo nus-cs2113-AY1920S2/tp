@@ -5,7 +5,6 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
-import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.storage.StoragePath;
 
 import java.util.HashMap;
@@ -22,7 +21,6 @@ class AddModuleCommandTest {
     void execute() {
         HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
         ModuleManager.initialise(modulesMap);
-        ScreenShotManager.saveScreenShot();
 
         CommandResult result = Executor.executeCommand("addm cs3235");
         assertEquals(ModuleManager.getModuleList().size(), 1);
