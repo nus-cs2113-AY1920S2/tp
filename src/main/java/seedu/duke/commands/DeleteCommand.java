@@ -29,6 +29,9 @@ public class DeleteCommand extends Command {
         LOGGER.log(Level.INFO,"(Delete command) User entered index " + index);
     }
 
+    /**
+     * Executes the command which deletes the item from the list.
+     */
     @Override
     public void execute() {
         try {
