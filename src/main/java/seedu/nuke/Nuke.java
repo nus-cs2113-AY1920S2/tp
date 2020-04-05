@@ -24,9 +24,8 @@ public class Nuke {
     /**
      * constructor of nuke.
      *
-     * @throws FileNotFoundException if file cannot be found when loading jSon file
      */
-    public Nuke() throws FileNotFoundException {
+    public Nuke() {
         ui = new Ui();
         modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
         storageManager = new StorageManager(StoragePath.SAVE_PATH);
@@ -39,9 +38,8 @@ public class Nuke {
      * ScreenShot entry-point for the java.duke.Duke application.
      *
      * @param args arguments passed to the programme.
-     * @throws FileNotFoundException exception is thrown if the file is not found.
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         new Nuke().run();
     }
 

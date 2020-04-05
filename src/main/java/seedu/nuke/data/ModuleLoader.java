@@ -35,7 +35,7 @@ public class ModuleLoader {
      * @return a HashMapof String to String, which is a map that map all modules with its information
      * @throws FileNotFoundException when cannot find the jason file
      */
-    public static HashMap<String, String> load(String dataFileName) throws FileNotFoundException {
+    public static HashMap<String, String> load(String dataFileName) {
         String jsonStr;
         jsonStr = loadJsonStringFromFile(dataFileName);
         List<DummyModule> moduleList = JSON.parseArray(jsonStr, DummyModule.class);// extractModules(jsonStr);
@@ -54,7 +54,7 @@ public class ModuleLoader {
         return modulesMap;
     }
 
-    private static String loadJsonStringFromFile(String dataFileName) throws FileNotFoundException {
+    private static String loadJsonStringFromFile(String dataFileName) {
         String encoding = "utf8";
         File file = new File(dataFileName);
         Long fileLength = file.length();
