@@ -31,6 +31,9 @@ public class SetBudgetCommand extends Command {
         LOGGER.log(Level.INFO,"(Set budget) User entered budget: " + amount);
     }
 
+    /**
+     * Executes the command which sets the budget to the user-specified amount.
+     */
     @Override
     public void execute() {
         double correctBudget = myBudget.setBudget(amount);
