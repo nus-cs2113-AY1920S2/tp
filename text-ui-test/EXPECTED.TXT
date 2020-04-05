@@ -68,7 +68,7 @@ _______________________________________________________________________
 _______________________________________________________________________
 > [Assignment 3] has been marked done!
 _______________________________________________________________________
-> All completed tasks have been removed
+> All completed tasks[Excluding repeated events] have been removed
 _______________________________________________________________________
 > Here are the relevant tasks:
   1. [A][X] OP1 (by: Wed 01 Jan 2020 00:00 | mod: CS2101)
