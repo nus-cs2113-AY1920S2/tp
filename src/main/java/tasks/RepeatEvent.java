@@ -93,11 +93,14 @@ public class RepeatEvent extends Event {
     private void updateDateByDays(int numOfPeriod) {
         LocalDate currDate = LocalDate.now();
         LocalDate startDate = startDateAndTime.toLocalDate();
+        //Iterate through numOfPeriod of days to find the next date of task.
         while (startDate.compareTo(currDate) < 0) {
             startDate = startDate.plusDays(numOfPeriod);
             periodCounter += 1;
+            this.setNotDone();
         }
         startDateAndTime = originalDateAndTime.plusDays(periodCounter * numOfPeriod);
+        //Update date of endDateAndTime without changing time.
         endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
                 endDateAndTime.toLocalTime());
 
@@ -115,9 +118,11 @@ public class RepeatEvent extends Event {
     private void updateDateByMonth(int numOfPeriod) {
         LocalDate currDate = LocalDate.now();
         LocalDate startDate = startDateAndTime.toLocalDate();
+        //Iterate through numOfPeriod of months to find the next date of task.
         while (startDate.compareTo(currDate) < 0) {
             startDate = startDate.plusMonths(numOfPeriod);
             periodCounter += 1;
+            this.setNotDone();
         }
         startDateAndTime = startDateAndTime.plusMonths(periodCounter * numOfPeriod);
         endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
@@ -137,9 +142,11 @@ public class RepeatEvent extends Event {
     private void updateDateByYear(int numOfPeriod) {
         LocalDate currDate = LocalDate.now();
         LocalDate startDate = startDateAndTime.toLocalDate();
+        //Iterate through numOfPeriod of years to find the next date of task.
         while (startDate.compareTo(currDate) < 0) {
             startDate = startDate.plusYears(numOfPeriod);
             periodCounter += 1;
+            this.setNotDone();
         }
         startDateAndTime = startDateAndTime.plusYears(periodCounter * numOfPeriod);
         endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
@@ -188,12 +195,12 @@ public class RepeatEvent extends Event {
     /**
      * Converts an encoded RepeatEvent back to a RepeatEvent object.
      * @param encodedTask RepeatEvent encoded using encodedTask()
-     * @return RepeatEvent with the correct attributes set
+     * @return repeatEvent with the correct attributes set
      * @throws DateTimeParseException if encoded startDateAndTime or endDateAndTime cannot be parsed
      * @throws IndexOutOfBoundsException if encodedTask is not a String returned by calling encodeTask() on
      *              an RepeatEvent
      */
-    public static Event decodeTask(String encodedTask)
+    public static RepeatEvent decodeTask(String encodedTask)
             throws DateTimeParseException, IndexOutOfBoundsException {
         String[] tokens = encodedTask.split("\\" + STORAGE_DELIMITER);
         assert tokens[0].equals(REPEAT_ICON);

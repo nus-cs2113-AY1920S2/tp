@@ -26,6 +26,7 @@ Table of Contents
 		- [Current Implementation](#341-current-implementation)
 		- [`Event` and `RepeatEvent` Differences and Impact](#342-event-and-repeatevent-differences-and-impact)
 		- [Design Considerations](#343-design-considerations)
+		- [Future Enhancement](#344-future-enhancement)
 	- [Edit Task Feature](#35-edit-task-feature)
 		- [Implementation](#351-implementation)
 		- [Design Considerations](#352-design-considerations)
@@ -336,7 +337,7 @@ Example 2: Given below is an example usage of `clear done` command:
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `clear all` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
+The user enters `clear done` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
 
 **Step 3**  
 A new instance of `ClearCommand` with `clearParam` initialized will be created. The `DeleteCommand#execute()` will then be called.
@@ -346,7 +347,10 @@ The `execute()` method will then call the `ClearCommand#clearDone()` :
 
 -   If there are no tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method.
+-   If there are no completed tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating that there 
+are no completed tasks
+
+-   Otherwise, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method to delete all the completed tasks, excluding repeat events.
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
@@ -384,7 +388,7 @@ Given below is an example usage of the `repeat id/2 p/1w` command given by a use
 
 **Step 1**  
 `Parser#parseCommand()` will be called to parse the command provided. Through this method, we will be able to
- obtain information to get integers `eventID`, `numOfPeriod` and the string `typeOfPeriod`.  
+ obtain information to get integers `eventID`, `numOfPeriod` and string `typeOfPeriod`.  
 - `eventID` identifies the task that the user wishes to repeat.  
 - `numOfPeriod` and `typeOfPeriod` specifies how often the user wants to repeat the event.
 
@@ -401,17 +405,22 @@ The `execute()` method will check 3 things after it calls `getTask()` method fro
 
 -   It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `RepeatCommand#unsetRepeat()`.
 
-    -   `unsetRepeat()` method will check if the given task is indeed a `RepeatEvent` object and then create a new `Event` object using the variables from `RepeatEvent` and replace it in the `TaskList`.
+    -   `unsetRepeat()` method will check if the given task is indeed a `RepeatEvent` object and then create a new `Event` object using
+     the variables from `RepeatEvent` and replace it in the `TaskList` with no changes to any variables in `Event` object.
 
 -   If it is not 0, it will set the event to repeating by calling `RepeatCommand#setRepeat()`.
 
-    -   `setRepeat()` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object and replace
-     the current `Event` object at the `eventID` in `TaskList`.
-
+    -   `setRepeat()` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object, update its
+        date to the next upcoming date if the current date is in the past by calling `RepeatEvent#updateDate()` and replace the
+        current `Event` object at the `eventID` in`TaskList`. 
+     
 **Step 4**  
-After the `execute()` method completes, a new `CommandResult` class with a string containing the result of the execution. This string will be printed by calling `showToUser()` method in the `Ui` class. Then the event will be saved into local file by calling the `trySaveTaskList()` method from the `Atas` class.
+After the `execute()` method completes, a new `CommandResult` class with a string containing the result of the execution. This string will 
+be printed by calling `showToUser()` method in the `Ui` class. Then the event will be saved into local file by calling
+`Atas#trySaveTaskList()`.
 
-The following sequence diagram summarizes how repeat command operation works:  
+The following sequence diagram summarizes how repeat command operation works, from the parser creating an `RepeatCommand` to the end of
+ `execute()` method called by `Atas`:
 
 ![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
 
@@ -423,22 +432,31 @@ The following sequence diagram summarizes how repeat command operation works:
 
     2.  `String typeOfPeriod`: Set to `d` (days), `w` (weeks), `m` (months) or `y` (years) to indicate how often it will repeat.
 
-    3.  `LocalDateTime originalDateAndTime`: Set to be the event’s current Date and Time and will not change so that we can keep track of the original Date and Time for other usages later.
+    3.  `LocalDateTime originalDateAndTime`: Set to be the event’s current Date and Time and will not change so that we can keep track of 
+        the original Date and Time for other usages later.
 
-    4.  `int periodCounter`: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods` with type `typeOfPeriod` has passed.  
-        For example, if `numofPeriod` is `2` and `typeOfPeriod` is `d`, and 6 days has passed since `originalDateAndTime`, then `periodCounter` will be 3.
+    4.  `int periodCounter`: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods` with 
+        type `typeOfPeriod` has passed.  
+        For example, if `numofPeriod` is `2` and `typeOfPeriod` is `d`, and 6 days has passed since `originalDateAndTime`, then 
+        `periodCounter` will be 3.
 
 -   With this implementation in mind, every time the app is launched, after `load()` method in `Storage` class is called, the app will
- call a method `updateEventDate()` which will iterate through every task in the list and calls `RepeatEvent#updateDate()` if the task is of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future date if today is not possible.
+    call a method `updateEventDate()` which will iterate through every task in the list and calls `RepeatEvent#updateDate()` if the task is
+    of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also 
+    `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future
+    date if today is not possible.
 
--   To users, apart from minor differences such as the icon and `RepeatEvent` listing how often it is being repeated, there will be no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and they can only add `Event` or `Assignment` to the app and would appear as if there are only 2 type of tasks.
+-   To users, apart from minor differences such as the icon and listing of `RepeatEvent` shows how often it is being repeated, there will be
+ no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and 
+they can only add or edit `Event` or `Assignment` and would appear as if there are only 2 type of tasks.
 
 #### 3.4.3. Design Considerations
 
 -   Allowing only tasks that are `Event` to be repeated.
 
     -   Rationale:  
-        We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it makes sense for events to repeat since many events actually occur on a regular basis.
+        We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it 
+        makes sense for events to repeat since many events actually occur on a regular basis.
 
     -   Alternative Considered:  
 
@@ -465,15 +483,40 @@ The following sequence diagram summarizes how repeat command operation works:
 
     -   Rationale:  
         It allows the repeated events to be easily removed or un-repeated as a there will only be a single `RepeatEvent` present in the list.
+        However, this means that past instances of that event will not be kept and we feel that it is acceptable as the past events are not 
+        nearly as important as future events.
 
     -   Alternative considered:  
 
         1.  Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
 
-            -   Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
+            -   Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling will be
+             lower compared to current implementation.
 
-            -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the user’s list and increase the size of the local file that stores the `TaskList`.
+            -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood 
+            the user’s list and increase the size of the local file that stores the `TaskList`.
+            
+#### 3.4.4 Future Enhancements
+A list of possible future enhancements and implementations are provided below as ways to further enhance the user's experience with ATAS.
 
+- Allow users to add `RepeatEvent` directly instead of getting an event to repeat.
+    - Possible Implementation: 
+        1. Create new `RepeatEventCommand` class similar to `AssignmentCommand` and `EventCommand`. Then edit `Parser` class
+           to allow user to create an `RepeatEvent` from command line itself. <br/>
+           > **Note**: It is possible to reuse `EventCommand` and `RepeatCommand` current implementations for the new class but will 
+           increase coupling as it reuses code from the 2 classes.
+      
+- Allow users to keep track of past instances of repeated events for users to be able to reflect on how much time was spent on past
+ instances of the repeated event.
+    - Possible Implementation:
+        1. Store past events in current/another local file that could be retrieved later on by the calendar or the app.
+    
+- Allow users to find repeated events on `searchd` commands.
+    - Possible Implementation: 
+        1. Keep an array of future dates so that that array could be utilized by `searchd` commands if the task is an instance of
+         `RepeatEvent`.
+         
+         
 ### 3.5. Edit Task Feature
 #### 3.5.1. Implementation
 
@@ -667,14 +710,21 @@ When all lines in the save file have been decoded, return the `TaskList`.
         As the `TaskList` is expected to be small for most users, the drop in performance due to unnecessary saves is negligible. The first method is chosen to make the code easier to maintain.
 
 ## 4. Testing
+Testing is required to ensure that the code written is accurate, bug free (at least in the tests designed) and do not cause any existing
+ feature to fail. For ATAS, there are 2 ways to run automated testing.
+ 
 ### 4.1. Using IntelliJ JUnit Tests
 
 -   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 
--   For individual tests, you can right-click on the test **package**, **class** or a single test and choose `Run 'TEST'`
+-   To run all test using Gradle: Open a console and run the command `gradlew clean test`
+
+-   For individual test, navigate to folder `src/test/java`. From there, you can right-click any of the test **package**, **class** or a
+    single test and choose `Run 'TEST'` to run the corresponding test.
 
 ### 4.2. Using Input-Output Tests
--   Navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script.
+-   Open a console, navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script. <br/>
+    This will run ATAS with the commands written in `input.txt` and compare its output with the text file `EXPECTED.txt`. 
 
 ## 5. DevOps
 ### 5.1 Build Automation
