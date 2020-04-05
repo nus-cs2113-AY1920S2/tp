@@ -11,6 +11,7 @@ set up and use this application easily by following along this User Guide.
 
 Get ready the NUSMODS links of you and your friends, and let's get started!
 
+<br/>
 
 ## Quick Start
 
@@ -29,6 +30,8 @@ TODO: change image
 
 The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
 
+<br/>
+
 ## Features 
 
 - [Add a new contact](#add-a-new-contact)
@@ -41,7 +44,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 - [List all meetings](#list-all-meetings-meetings)
 - [Exit application](#exit-application-exit)
 
-<br/><br/>
+<br/>
 
 ### Add a new contact
 Adds you or your friend into the list of contacts. 
