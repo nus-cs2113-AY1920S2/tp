@@ -50,7 +50,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 
 ### Add a new contact
 Adds you or your friend into the list of contacts. 
-You will key in the **name** and **NUSMODS link** of the 
+You will need to key in **name** and **NUSMODS link** of the 
 contact.
 
 Format: 
@@ -59,6 +59,7 @@ Format:
 
 Example of usage:
 
+TODO: change image so that the words are the same font size
 
     Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01
 ![](images/capture.png)
