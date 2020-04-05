@@ -10,11 +10,11 @@ import seedu.duke.data.SemesterList;
 import seedu.duke.module.Module;
 import seedu.duke.module.NewModule;
 
-public class AddToDataCommand extends AddCommand {
+public class AddToAvailableCommand extends AddCommand {
 
     private NewModule newModule;
 
-    public AddToDataCommand(NewModule newModule) {
+    public AddToAvailableCommand(NewModule newModule) {
         this.newModule = newModule;
     }
 

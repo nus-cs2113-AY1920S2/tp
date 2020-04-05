@@ -29,8 +29,10 @@ module’s code which can be used as `add id/CS2113 s/4 mc/4`.
 You can add a module to a semester or to the list of available modules.
 
 #### Adds a specific module to a specific semester.
-You can do so by based on the module code or the module name.
-The module to be added must be in the existing list of available modules.
+You can do so using the module code or the module name.
+The module to be added could be in the existing list of available modules or not.\
+If you add a module which is in the list of available modules, then when you input code or name, the output
+will show both code and name of this module.
 
 ##### Based on module code
 Format: `add id/[module code] s/[semester] mc/[credit]`
@@ -41,7 +43,7 @@ Expected output:
 
 `Okay! I have added this module to your semester's module list:`
 
-`ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2`
+`ID: IS4241 | Module Credit: 4 | Sem: Y2S2`
 
 ##### Based on module name
 Format: `add n/[module name] s/[semester] mc/[credit]`
@@ -52,11 +54,21 @@ Example of expected output:
 
 `Okay! I have added this module to your semester's module list:`
 
+`Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S1`
+
+##### Based on module code and name
+Format: `add id/[module code] n/[module name] s/[semester] mc/[credit]`
+
+Example:​ `add id/IS4241 n/Social Media Network Analysis s/3 mc/4`
+
+Example of expected output:
+
+`Okay! I have added this module to your semester's module list:`
+
 `ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S1`
 
 #### Adds a specific module to available module list. 
-Format:
-`add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
+Format: `add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
 
 Example: `add id/IS4241 n/Social Media Network Analysis mc/4 pre/CS1010 IS1103`
 
@@ -66,9 +78,72 @@ Example of expected output:
 
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4 | Prerequisites: CS1010`
 
+Example:  `add id/GET1018 n/Mathemetics of Games mc/4 pre/`
+
+Example of expected output:
+
+`Okay! I have added this module to the available modules to choose from:`
+
+`ID: GET1018 Name: Mathemetics of Games | Modular Credit: 4`
+
+
+### Deleting module: delete
+You can delete a module from a semester of your module plan or from the list of available modules.
+
+#### Delete a specific module from a semester in module plan
+You can do so by using the module code or the module name.
+The module to be deleted must be in your module plan.
+ 
+#### Based on module code
+Format: `delete id/[module code] s/[semester]`
+
+Example:​ `delete id/IS4241 s/4`
+
+Expected output: 
+
+`Okay, this module has been deleted from the corresponding semester`
+
+`Module IS4241 has been deleted from semester Y2S2`
+
+
+#### Based on module name
+Format: `delete n/[module name] s/[semester]`
+
+Example:​ `delete n/Discrete Structure s/4`
+
+Expected output: 
+
+`Okay, this module has been deleted from the corresponding semester`
+
+`Module Discrete Structure has been deleted from semester Y2S2`
+
+#### Delete a specific module from available module list
+
+#### Based on module name
+Format: `delete id/[module code]`
+
+Example:​ `delete id/IS4241`
+
+Expected output: 
+
+`Okay, this module has been deleted from the list of available modules`
+
+`ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
+
+#### Based on module code
+Format: `delete n/[module name]`
+
+Example:​ `delete n/Social Media Network Analysis`
+
+Expected output: 
+
+`Okay, this module has been deleted from the list of available modules`
+
+`ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
+
 ### Marking as done: done
 Marks a module as done to show that it has been completed.
-You can do it based on a module code or the module name.
+This can be done based on a module code or module name.
 
 #### Based on module code
 Format:​ `done id/[module name] g/[grade]`
@@ -99,7 +174,7 @@ Format:​ `view`
 
 Example of expected output:
 
-`Okay! Here are your available modules in database:`
+`Okay! Here are your available modules:`
 
 `---------------------------------------------------`
 
@@ -190,7 +265,7 @@ Format: `bye`
 
 ## Command Summary
 
-### Add
+### Add to module plan
 
 Command: 
 
@@ -200,9 +275,34 @@ or
 
 `add n/[module name] s/[semester] mc/[credit]`
 
+or
+`add id/[module code] n/[module name] s/[semester] mc/[credit]`
+
+### Add to available module list
+
 Command:
 
 `add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
+
+### Delete a specific module from a semester in module plan
+
+Command: 
+
+`delete id/[module code] s/[semester]`
+
+or
+
+`delete n/[module name] s/[semester]`
+
+### Delete from available module list
+
+Command: 
+
+`delete id/[module code]`
+
+or
+
+`delete n/[module name]`
 
 ### Done
 
@@ -219,10 +319,6 @@ or
 Command: 
 
 `view`
-
-or
-
-`view /cm` 
 
 or
 

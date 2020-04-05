@@ -66,7 +66,7 @@ public class AvailableModulesList extends ModuleList {
 
     public boolean isModuleNameInList(String name) {
         for (Module module : availableModulesList) {
-            if (module.getName().equals(name)) {
+            if (module.getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -81,7 +81,8 @@ public class AvailableModulesList extends ModuleList {
      */
     public Module getModule(String moduleIdentifier) {
         for (Module module : availableModulesList) {
-            if (moduleIdentifier.equals(module.getId()) || moduleIdentifier.equals(module.getName())) {
+            if (moduleIdentifier.equalsIgnoreCase(module.getId())
+                    || moduleIdentifier.equalsIgnoreCase(module.getName())) {
                 return module;
             }
         }
