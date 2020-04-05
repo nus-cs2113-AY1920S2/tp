@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-04-05T12:56:39.682170100Z</date>
-  <millis>1586091399682</millis>
-  <nanos>170100</nanos>
+  <date>2020-04-05T18:44:41.461906200Z</date>
+  <millis>1586112281461</millis>
+  <nanos>906200</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-04-05T12:56:39.734031900Z</date>
-  <millis>1586091399734</millis>
-  <nanos>31900</nanos>
+  <date>2020-04-05T18:44:41.535708400Z</date>
+  <millis>1586112281535</millis>
+  <nanos>708400</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-04-05T12:56:39.734031900Z</date>
-  <millis>1586091399734</millis>
-  <nanos>31900</nanos>
+  <date>2020-04-05T18:44:41.536706400Z</date>
+  <millis>1586112281536</millis>
+  <nanos>706400</nanos>
   <sequence>2</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -37,16 +37,3 @@
   <thread>1</thread>
   <message>Starting Diet Manager</message>
 </record>
-<record>
-  <date>2020-04-05T15:57:46.855635700Z</date>
-  <millis>1586102266855</millis>
-  <nanos>635700</nanos>
-  <sequence>3</sequence>
-  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
-  <level>INFO</level>
-  <class>seedu.dietmanager.commons.core.LogsCentre</class>
-  <method>logExitProgramme</method>
-  <thread>1</thread>
-  <message>Exiting Diet Manager</message>
-</record>
-</log>

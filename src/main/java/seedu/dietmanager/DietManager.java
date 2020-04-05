@@ -32,13 +32,14 @@ public class DietManager {
 
         logsCentre.logExecuteProgramme();
         ui.displayWelcomeMessage();
+        ui.displayHelpMenu();
 
         while (!ui.isExitStatus()) {
             try {
                 String userInput = ui.readInput();
                 Command command = CommandParser.parseInput(userInput);
                 Result result = command.execute(profile, ui);
-                ui.showCommandMessage(result.toString());
+                ui.showMessage(result.toString());
             } catch (InvalidFormatException | NumberFormatException e) {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {
