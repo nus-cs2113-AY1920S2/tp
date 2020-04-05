@@ -27,7 +27,7 @@ class UndoCommandTest {
         ScreenShotManager.saveScreenShot();
         assertEquals(MESSAGE_UNDO_AT_BEGINNING, result.getFeedbackToUser());
         */
-        
+
         CommandResult result1 = Executor.executeCommand("addm cs3235");
         ScreenShotManager.saveScreenShot();
         assertEquals(1, ModuleManager.getModuleList().size());
