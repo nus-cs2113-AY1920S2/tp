@@ -106,13 +106,13 @@ public class AppointmentParser {
 
     private static String[] parseInput(String[] details, String[] parseInput) {
         for (String detail : details) {
-            if (detail.trim().startsWith("ic")) {
+            if (detail.trim().startsWith("ic") && detail.trim().length() > 3) {
                 parseInput[0] = detail.trim().substring(2).trim();
-            } else if (detail.trim().startsWith("d")) {
+            } else if (detail.trim().startsWith("d") && detail.trim().length() > 3) {
                 parseInput[1] = detail.trim().substring(2);
-            } else if (detail.trim().startsWith("t")) {
+            } else if (detail.trim().startsWith("t") && detail.trim().length() > 3) {
                 parseInput[2] = detail.trim().substring(1);
-            } else if (detail.trim().startsWith("r")) {
+            } else if (detail.trim().startsWith("r") && detail.trim().length() > 3) {
                 parseInput[3] = detail.trim().substring(1);
             }
         }
