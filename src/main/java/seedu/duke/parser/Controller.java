@@ -236,7 +236,7 @@ public class Controller {
     private static void checkPreReqValidity(String[] preRequisiteModules, String moduleId) throws InputException {
         for (String preReq : preRequisiteModules) {
             if (preReq.equals(moduleId) || !isStandardCodeFormat(preReq)) {
-                throw new InputException(String.format("Prerequisites of <%s> is invalid.", moduleId, preReq));
+                throw new InputException(String.format("Prerequisites of <%s> is invalid.", moduleId));
             }
         }
     }
