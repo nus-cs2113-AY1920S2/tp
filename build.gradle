@@ -50,7 +50,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.nuke.gui.Launcher"
+    mainClassName = "seedu.nuke.Nuke"
 }
 
 shadowJar {

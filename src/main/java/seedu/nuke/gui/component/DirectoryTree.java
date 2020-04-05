@@ -1,6 +1,5 @@
 package seedu.nuke.gui.component;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -10,6 +9,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
+import seedu.nuke.command.misc.InfoCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
@@ -63,7 +63,7 @@ public class DirectoryTree extends TreeView<Label> {
                 TreeItem<Label> categoryItem = new TreeItem<>();
                 styleTreeItem(categoryItem, moduleItem, category.getCategoryName(), Color.DARKSEAGREEN);
                 categoryItem.getValue().setOnMouseClicked(mouseEvent ->
-                        onClickCategory(mouseEvent, module.getModuleCode(), category)
+                        onClickCategory(mouseEvent, category)
                 );
 
                 // Get and sort Task List
@@ -90,7 +90,7 @@ public class DirectoryTree extends TreeView<Label> {
                         styleTreeItem(taskItem, categoryItem, task.getDescription(), Color.CORNFLOWERBLUE);
                     }
                     taskItem.getValue().setOnMouseClicked(mouseEvent ->
-                            onClickTask(mouseEvent, module.getModuleCode(), category.getCategoryName(), task)
+                            onClickTask(mouseEvent, task)
                     );
                 }
             }
@@ -113,27 +113,20 @@ public class DirectoryTree extends TreeView<Label> {
     }
 
     private void onClickModule(MouseEvent mouseEvent, Module module) {
-        final String listCategoryString = String.format("lsc -m %s -e -a", module.getModuleCode());
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            new GuiExecutor(consoleScreen).showMessage(module.toString());
-            new GuiExecutor(consoleScreen).executeAction(listCategoryString);
+            new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(module));
         }
     }
 
-    private void onClickCategory(MouseEvent mouseEvent, String moduleCode, Category category) {
-        final String listTaskString = String.format("lst -m %s -c %s -e -a", moduleCode, category.getCategoryName());
+    private void onClickCategory(MouseEvent mouseEvent, Category category) {
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            new GuiExecutor(consoleScreen).showMessage(category.toString());
-            new GuiExecutor(consoleScreen).executeAction(listTaskString);
+            new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(category));
         }
     }
 
-    private void onClickTask(MouseEvent mouseEvent, String moduleCode, String categoryName, Task task) {
-        final String listFileString =
-                String.format("lsf -m %s -c %s -t %s -e -a", moduleCode, categoryName, task.getDescription());
+    private void onClickTask(MouseEvent mouseEvent, Task task) {
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            new GuiExecutor(consoleScreen).showMessage(task.toString());
-            new GuiExecutor(consoleScreen).executeAction(listFileString);
+            new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(task));
         }
     }
 }

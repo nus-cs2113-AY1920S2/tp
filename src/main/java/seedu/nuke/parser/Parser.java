@@ -2,7 +2,6 @@ package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
 
-import seedu.nuke.command.misc.*;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
@@ -29,6 +28,12 @@ import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
+import seedu.nuke.command.misc.ChangeDirectoryCommand;
+import seedu.nuke.command.misc.ClearCommand;
+import seedu.nuke.command.misc.InfoCommand;
+import seedu.nuke.command.misc.OpenFileCommand;
+import seedu.nuke.command.misc.RedoCommand;
+import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
