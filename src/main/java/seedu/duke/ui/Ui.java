@@ -27,7 +27,8 @@ public class Ui {
             + "\n"
             + "        _______________________/"
             + "\n          /\\              /\\"
-            + "\n          \\/              \\/\n";
+            + "\n          \\/              \\/\n"
+            + " Type 'HELP' to know more about the feature in SHOCO ^^";
 
     /**
      * Prints the welcome message.

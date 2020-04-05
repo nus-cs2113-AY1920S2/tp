@@ -17,7 +17,7 @@
         _______________________/
           /\              /\
           \/              \/
-
+ Type 'HELP' to know more about the feature in SHOCO ^^
 
 Enter command:
 
