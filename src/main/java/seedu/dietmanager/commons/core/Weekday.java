@@ -1,9 +1,9 @@
 package seedu.dietmanager.commons.core;
 
 public enum Weekday {
-    MONDAY(1,"MONDAY"), TUESDAY(2,"TUESDAY"), WEDNESDAY(3,"WEDNESDAY"),
-    THURSDAY(4,"THURSDAY"), FRIDAY(5,"FRIDAY"), SATURDAY(6,"SATURDAY"),
-    SUNDAY(7,"SUNDAY");
+    MONDAY(1, "MONDAY"), TUESDAY(2, "TUESDAY"), WEDNESDAY(3, "WEDNESDAY"),
+    THURSDAY(4, "THURSDAY"), FRIDAY(5, "FRIDAY"), SATURDAY(6, "SATURDAY"),
+    SUNDAY(7, "SUNDAY");
 
     private int index;
     private String name;

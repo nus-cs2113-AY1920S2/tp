@@ -1,16 +1,17 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.parser.Parser;
 import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.exceptions.InvalidGenderException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.parser.GenderParser;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class SetGenderCommand extends Command {
 
-    private static final int ARGUMENTS_REQUIRED = 1;
     private String gender;
-    private boolean noDescription;
+    private boolean isValidCommand;
+    private boolean isValidProfile;
 
     /**
      * Constructs the Command object.
@@ -18,32 +19,39 @@ public class SetGenderCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetGenderCommand(String command, String description) throws InvalidFormatException {
+    public SetGenderCommand(String command, String description) {
         super(command);
-        this.noDescription = false;
+        this.isValidCommand = true;
 
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.gender = descriptionArray[0];
-        } catch (NullPointerException e) {
-            this.noDescription = true;
+            this.gender = GenderParser.parseGender(description);
+        } catch (InvalidGenderException e) {
+            this.isValidCommand = false;
         }
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
-        if (!this.noDescription) {
+    public Result execute(Profile profile, UI ui) {
+        this.isValidProfile = profile.isProfileExist();
+        if (!this.isValidProfile) {
+            this.isValidCommand = false;
+        }
+        if (this.isValidCommand) {
             profile.setGender(this.gender);
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
-        if (!this.noDescription) {
-            this.result = MessageBank.GENDER_CHANGE_MESSAGE + profile.getGender() + ".";
+    public Result getResult(Profile profile) {
+        if (!this.isValidProfile) {
+            this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
+        } else if (this.isValidCommand) {
+            this.resultString = MessageBank.GENDER_CHANGE_MESSAGE + profile.getGender() + ".";
         } else {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 }

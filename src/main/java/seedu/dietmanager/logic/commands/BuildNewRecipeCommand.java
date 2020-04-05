@@ -1,11 +1,12 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.commons.exceptions.NegativeNumberException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.model.RecipeManager;
-import seedu.dietmanager.commons.exceptions.NegativeNumberException;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.parser.Parser;
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class BuildNewRecipeCommand extends Command {
@@ -22,7 +23,7 @@ public class BuildNewRecipeCommand extends Command {
     /**
      * Constructs the command object.
      *
-     * @param command the command prompt entered by the user.
+     * @param command     the command prompt entered by the user.
      * @param description the description of the command.
      * @throws InvalidFormatException if the command doesn't contain correct number of parameters.
      */
@@ -34,7 +35,7 @@ public class BuildNewRecipeCommand extends Command {
         this.noProfileFound = false;
 
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
 
             this.maxFoodNum = Integer.parseInt(descriptionArray[0].trim());
             this.activityLevel = descriptionArray[1].trim().toLowerCase();
@@ -61,35 +62,37 @@ public class BuildNewRecipeCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (!profile.isProfileExist()) {
             noProfileFound = true;
         }
         if (!noDescription && !isInvalidFormat & !noProfileFound) {
             RecipeManager manager = RecipeManager.getInstance();
-            maxNumOverflow = manager.buildRecipe(profile,maxFoodNum,activityLevel);
+            maxNumOverflow = manager.buildRecipe(profile, maxFoodNum, activityLevel);
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
-        this.result = "";
+    public Result getResult(Profile profile) {
+        this.resultString = "";
 
         if (noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (noProfileFound) {
-            this.result = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
+            this.resultString = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
         } else if (isInvalidFormat) {
-            this.result = "You have given wrong format for parameters!!!\n"
+            this.resultString = "You have given wrong format for parameters!!!\n"
                     + "First parameter is maximum food types, need to provide an integer.\n"
                     + "Second parameter is activity level, choose from -- low/moderate/high.";
         } else {
             if (maxNumOverflow) {
-                this.result = "We support at most 4 kinds of food in a meal, "
+                this.resultString = "We support at most 4 kinds of food in a meal, "
                         + "otherwise it's not good for your health!\n\n";
             }
-            this.result += RecipeManager.getInstance().getRecipe();
+            this.resultString += RecipeManager.getInstance().getRecipe();
         }
+        return new Result(this.resultString);
     }
 }

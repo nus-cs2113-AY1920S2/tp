@@ -1,7 +1,8 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class ExitCommand extends Command {
@@ -20,13 +21,15 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile,UI ui) {
+    public Result execute(Profile profile, UI ui) {
         ui.setExitStatus(true);
-        this.saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
-        this.result = MessageBank.EXIT_COMMAMD_MESSAGE;
+    public Result getResult(Profile profile) {
+        this.resultString = MessageBank.EXIT_COMMAMD_MESSAGE;
+        return new Result(this.resultString);
     }
 }

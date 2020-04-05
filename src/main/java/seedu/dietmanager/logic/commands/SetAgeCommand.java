@@ -1,16 +1,17 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.parser.Parser;
 import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.exceptions.InvalidAgeException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.parser.AgeParser;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class SetAgeCommand extends Command {
 
-    private static final int ARGUMENTS_REQUIRED = 1;
     private int age;
-    private boolean noDescription;
+    private boolean isValidCommand;
+    private boolean isValidProfile;
 
     /**
      * Constructs the Command object.
@@ -18,32 +19,38 @@ public class SetAgeCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetAgeCommand(String command, String description) throws InvalidFormatException, NumberFormatException {
+    public SetAgeCommand(String command, String description) {
         super(command);
-        this.noDescription = false;
-
+        this.isValidCommand = true;
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.age = Integer.parseInt(descriptionArray[0]);
-        } catch (NullPointerException e) {
-            this.noDescription = true;
+            this.age = AgeParser.parseAge(description);
+        } catch (InvalidAgeException e) {
+            this.isValidCommand = false;
         }
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
-        if (!this.noDescription) {
+    public Result execute(Profile profile, UI ui) {
+        this.isValidProfile = profile.isProfileExist();
+        if (!this.isValidProfile) {
+            this.isValidCommand = false;
+        }
+        if (this.isValidCommand) {
             profile.setAge(this.age);
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
-        if (!this.noDescription) {
-            this.result = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
+    public Result getResult(Profile profile) {
+        if (!this.isValidProfile) {
+            this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
+        } else if (this.isValidCommand) {
+            this.resultString = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
         } else {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 }

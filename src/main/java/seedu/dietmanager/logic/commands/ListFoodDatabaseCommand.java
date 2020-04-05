@@ -1,6 +1,7 @@
 package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.FoodNutritionInfo;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
@@ -10,6 +11,7 @@ public class ListFoodDatabaseCommand extends Command {
 
     /**
      * Constructs the Command object.
+     *
      * @param command the command prompt entered by the user.
      */
     public ListFoodDatabaseCommand(String command) {
@@ -17,12 +19,14 @@ public class ListFoodDatabaseCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
-        saveResult(profile);
+    public Result execute(Profile profile, UI ui) {
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
-        this.result = foodNutritionInfo.showFoodDatabase();
+    public Result getResult(Profile profile) {
+        this.resultString = foodNutritionInfo.showFoodDatabase();
+        return new Result(this.resultString);
     }
 }

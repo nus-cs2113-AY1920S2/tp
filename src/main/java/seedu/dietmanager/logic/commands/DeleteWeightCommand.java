@@ -1,16 +1,16 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.parser.Parser;
 import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.parser.CommandParser;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class DeleteWeightCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private double weightDeleted;
-    private String weightDeletedDay;
     private int index;
     private boolean noDescription;
 
@@ -26,7 +26,7 @@ public class DeleteWeightCommand extends Command {
         this.noDescription = false;
 
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.index = Integer.parseInt(descriptionArray[0]) - 1;
         } catch (NullPointerException e) {
             this.noDescription = true;
@@ -34,24 +34,23 @@ public class DeleteWeightCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (!this.noDescription) {
-            weightDeleted = profile.getWeightProgress().get(index);
-            weightDeletedDay = profile.getWeightProgressDays().get(index);
-            profile.getWeightProgress().remove(index);
-            profile.getWeightProgressDays().remove(index);
+            weightDeleted = profile.getWeightRecord().get(index);
+            profile.getWeightRecord().remove(index);
         }
-
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (!this.noDescription) {
-            this.result = weightDeleted + "kg " + weightDeletedDay + MessageBank.WEIGHT_DELETED_MESSAGE;
+            this.resultString = "Weight Record: " + weightDeleted + "kg " + MessageBank.WEIGHT_DELETED_MESSAGE;
         } else {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 
 }

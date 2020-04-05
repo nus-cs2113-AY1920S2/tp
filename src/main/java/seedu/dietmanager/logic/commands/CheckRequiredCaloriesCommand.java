@@ -1,11 +1,12 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.parser.Parser;
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class CheckRequiredCaloriesCommand extends Command {
@@ -21,7 +22,8 @@ public class CheckRequiredCaloriesCommand extends Command {
 
     /**
      * Constructs the Command object.
-     * @param command The command prompt entered by the user.
+     *
+     * @param command     The command prompt entered by the user.
      * @param description The description of the command.
      * @throws InvalidFormatException If user input incorrect format for the command.
      */
@@ -29,7 +31,7 @@ public class CheckRequiredCaloriesCommand extends Command {
         super(command);
 
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.date = descriptionArray[0].trim().toUpperCase();
             this.activityLevel = descriptionArray[1];
             Weekday.valueOf(this.date);
@@ -45,25 +47,28 @@ public class CheckRequiredCaloriesCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (!profile.isProfileExist()) {
             noProfileFound = true;
-            saveResult(profile);
-            return;
+            getResult(profile);
+            Result result = getResult(profile);
+            return result;
         } else if (noDescription | isInvalidDate) {
-            saveResult(profile);
-            return;
+            getResult(profile);
+            Result result = getResult(profile);
+            return result;
         }
 
-        getRecommendedCaloriesIntake(profile,activityLevel);
+        getRecommendedCaloriesIntake(profile, activityLevel);
 
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     /**
      * Returns how much calories the profile need to consume in a day.
      *
-     * @param profile The user profile.
+     * @param profile       The user profile.
      * @param activityLevel the activity level of the user.
      * @return calories required to consume in a day based on user's personal info.
      */
@@ -98,36 +103,38 @@ public class CheckRequiredCaloriesCommand extends Command {
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (noProfileFound) {
-            this.result = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
+            this.resultString = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
         } else if (isInvalidDate) {
-            this.result = MessageBank.INVALID_DATE_MESSAGE;
+            this.resultString = MessageBank.INVALID_DATE_MESSAGE;
         } else if (!isInValidCommand) {
             DailyFoodRecord record = profile.getRecordOfDay(date);
-            this.result = String.format("Calories Intake and Requirement for %s:",date) + System.lineSeparator()
+            this.resultString = String.format("Calories Intake and Requirement for %s:", date) + System.lineSeparator()
                     + record.showDailyCalories()
-                    + String.format("Calories requirement for %s activity level: ",activityLevel)
+                    + String.format("Calories requirement for %s activity level: ", activityLevel)
                     + String.format("%.2f", caloriesRequired) + "cal." + System.lineSeparator();
             if (record.getDailyCalories().isPresent()) {
                 double caloriesIntake = record.getDailyCalories().get();
                 if (profile.getWeight() < profile.getWeightGoal() && caloriesIntake >= caloriesRequired) {
-                    this.result = this.result + MessageBank.SUFFICIENT_CALORIES_MESSAGE;
+                    this.resultString = this.resultString + MessageBank.SUFFICIENT_CALORIES_MESSAGE;
                 }
                 if (profile.getWeight() < profile.getWeightGoal() && caloriesIntake < caloriesRequired) {
-                    this.result = this.result + MessageBank.INSUFFICIENT_CALORIES_MESSAGE;
+                    this.resultString = this.resultString + MessageBank.INSUFFICIENT_CALORIES_MESSAGE;
                 }
                 if (profile.getWeight() >= profile.getWeightGoal() && caloriesIntake > caloriesRequired) {
-                    this.result = this.result + MessageBank.EXCESS_CALORIES_MESSAGE;
+                    this.resultString = this.resultString + MessageBank.EXCESS_CALORIES_MESSAGE;
                 }
                 if (profile.getWeight() >= profile.getWeightGoal() && caloriesIntake <= caloriesRequired) {
-                    this.result = this.result + MessageBank.SUFFICIENT_CALORIES_MESSAGE;
+                    this.resultString = this.resultString + MessageBank.SUFFICIENT_CALORIES_MESSAGE;
                 }
             }
         } else {
-            this.result = MessageBank.INVALID_CALORIES_REQUIREMENT_ERROR;
+            this.resultString = MessageBank.INVALID_CALORIES_REQUIREMENT_ERROR;
         }
+
+        return new Result(this.resultString);
     }
 }
