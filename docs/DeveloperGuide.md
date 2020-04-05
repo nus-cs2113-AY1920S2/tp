@@ -105,7 +105,7 @@ The `TextUi` component:
 
 ### 3.3. Logic Component
 
-![Logic Diagram](images/LogicDiagram.jpg)
+![Logic Diagram](images/Logic.png)
 
 The diagram above shows the logic flow of HappyPills.
 
