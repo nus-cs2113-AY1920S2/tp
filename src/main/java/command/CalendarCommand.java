@@ -14,7 +14,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-//@@author
+//@@author Keith-JK
 public class CalendarCommand extends Command {
     // ANSI text colour scheme
     public static final String ANSI_RESET = "\u001B[0m";
@@ -55,7 +55,7 @@ public class CalendarCommand extends Command {
     private static final int MIDDLE_JUSTIFIED_WIDTH_PADDING = MAX_CALENDAR_BOX_WIDTH / 2 - 3;
 
     public static final String COMMAND_WORD = "calendar";
-    public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[dd/MM/YY]";
+    public static final String COMMAND_USAGE = "Get a Calendar view: calendar d/[MM/YY]";
 
     private LocalDate date;
 
@@ -120,8 +120,6 @@ public class CalendarCommand extends Command {
         calendar.set(Calendar.YEAR, givenYear);
         calendar.set(Calendar.MONTH, givenMonth - 1); // month starts from 0 - 11
         calendar.set(Calendar.DATE, givenDay);
-
-        // set the day to the first day of given month
         calendar.set(Calendar.DAY_OF_MONTH, 1);
     }
 
@@ -174,29 +172,36 @@ public class CalendarCommand extends Command {
         switch (typeOfPeriod) {
         case RepeatCommand.DAILY_ICON:
             daysToAdd = numOfPeriod;
-            for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
-                 timesRepeated++) {
-                resultTaskList.add(new Event(event.getName(), event.getLocation(),
-                        event.getDateAndTime().plusDays(daysToAdd  * timesRepeated),
-                        event.getEndDateAndTime().plusDays(daysToAdd * timesRepeated),
-                        event.getComments()));
-            }
+            addSeparateRepeatEvent(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
             break;
         case RepeatCommand.WEEKLY_ICON:
             daysToAdd = numOfPeriod * DAYS_IN_WEEK;
-            for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
-                 timesRepeated++) {
-                resultTaskList.add(new Event(event.getName(), event.getLocation(),
-                        event.getDateAndTime().plusDays(daysToAdd * timesRepeated),
-                        event.getEndDateAndTime().plusDays(daysToAdd * timesRepeated),
-                        event.getComments()));
-            }
+            addSeparateRepeatEvent(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
             break;
         case RepeatCommand.MONTHLY_ICON:
         case RepeatCommand.YEARLY_ICON:
             break;
         default:
             assert false;
+        }
+    }
+
+    /**
+     * Add repeating Event as separate Event to resultTaskList according to the frequency of repeats given.
+     * @param endOfMonth LocalDate that represents the last day of the month
+     * @param resultTaskList ArrayList of Task that contains duplicated tasks of repeat events
+     * @param event Event to repeat and add to resultTaskList
+     * @param eventDate LocalDate that holds event date
+     * @param daysToAdd frequency of repeating event
+     */
+    private void addSeparateRepeatEvent(LocalDate endOfMonth, ArrayList<Task> resultTaskList,
+                                        RepeatEvent event, LocalDate eventDate, int daysToAdd) {
+        for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
+             timesRepeated++) {
+            resultTaskList.add(new Event(event.getName(), event.getLocation(),
+                    event.getDateAndTime().plusDays(daysToAdd * timesRepeated),
+                    event.getEndDateAndTime().plusDays(daysToAdd * timesRepeated),
+                    event.getComments()));
         }
     }
 
@@ -214,44 +219,51 @@ public class CalendarCommand extends Command {
                 addCalendarBorder(calendarView);
                 continue;
             }
-
-            // starting border for each calendar row
             addCalendarStartBorder(calendarView);
 
             for (int calendarBoxIndex = 1; calendarBoxIndex <= DAYS_IN_WEEK; calendarBoxIndex++) {
                 int currentDayRepresented = Math.floorDiv(calendarRow, CALENDAR_BOX_HEIGHT)
                         * DAYS_IN_WEEK + calendarBoxIndex - startingDayOfWeek + 1;
 
-                // print empty calendar box
                 if (currentDayRepresented <= 0 || currentDayRepresented > daysInMonth) {
                     addEmptyCalendarBody(calendarView);
                     continue;
                 }
 
-                // print date of calendar
                 if (calendarRow % CALENDAR_BOX_HEIGHT == 1) {
                     addCalendarDate(calendarView, currentDayRepresented);
                     continue;
                 }
 
-                boolean hasPrintedTask = false;
-                for (Task task : monthlyTaskList) {
-                    if (task.getDate().getDayOfMonth() == currentDayRepresented) {
-                        if (calendarRow % CALENDAR_BOX_HEIGHT == 5) {
-                            addTaskNotShownIndicator(calendarView);
-                        } else {
-                            hasPrintedTask = true;
-                            addTaskToCalendar(monthlyTaskList, calendarView, task);
-                        }
-                        break;
-                    }
-                }
-
-                if (!hasPrintedTask) {
-                    addEmptyCalendarBody(calendarView);
-                }
+                appendTaskToView(monthlyTaskList, calendarView, calendarRow, currentDayRepresented);
             }
             addCalendarNewLine(calendarView);
+        }
+    }
+
+    /**
+     * Appends Task Details to CalendarView if exist, appends formatted padded string otherwise.
+     * @param monthlyTaskList ArrayList of tasks that falls within the given month
+     * @param calendarView StringBuilder object that is used to format the calendar view
+     * @param calendarRow Calendar row that is being worked on
+     * @param currentDayRepresented Integer that represents date the calendar iterator is on
+     */
+    public void appendTaskToView(ArrayList<Task> monthlyTaskList, StringBuilder calendarView,
+                                  int calendarRow, int currentDayRepresented) {
+        boolean hasPrintedTask = false;
+        for (Task task : monthlyTaskList) {
+            if (task.getDate().getDayOfMonth() == currentDayRepresented) {
+                hasPrintedTask = true;
+                if (calendarRow % CALENDAR_BOX_HEIGHT == 5) {
+                    addTaskNotShownIndicator(calendarView);
+                } else {
+                    addTaskToCalendar(monthlyTaskList, calendarView, task);
+                }
+                break;
+            }
+        }
+        if (!hasPrintedTask) {
+            addEmptyCalendarBody(calendarView);
         }
     }
 
