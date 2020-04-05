@@ -289,7 +289,7 @@ Example of usage:
    **A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
 
 ## Command Summary
-| Feature&nbsp;&nbsp;&nbsp;&nbsp;     | Format&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      | Example usage |
+| Feature     | Format      | Example usage |
 | ----------- | ----------- | --------------|
 | Adding a new contact     | `<name> <NUSMODS link>`      | `Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01` |
 | List all contacts     | `contacts`      | `contacts` |
