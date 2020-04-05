@@ -1,12 +1,14 @@
 package seedu.happypills.logic.commands.patientcommands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
@@ -64,9 +66,9 @@ public class AddPatientCommand extends PatientCommand {
     ) throws HappyPillsException {
         assert !patients.containsKey(nric) : "New nric can be added";
         Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
-        if (tempPatient.getNric() == null) {
-            return "    Patient not added.\n"
-                    + TextUi.DIVIDER;
+        logger.log(logLevel, "patient is added");
+        if (!Checker.isValidNric(tempPatient.getNric())) {
+            return Messages.MESSAGE_INVALID_NRIC;
         }
         patients.add(tempPatient);
         assert patients.containsKey(nric) : "nric added successfully";
