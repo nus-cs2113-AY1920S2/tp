@@ -20,9 +20,11 @@ You can find the set-up instructions [here](https://github.com/AY1920S2-CS2113-T
 This section will describe the design and implementation of a notable feature in the project.
 
 Note: You will need to create an `article`, `job` or `note` for the feture.
-Create an article: `create article`
-Create an job : `create job`
-Create note : `create note`
+
+                        Create an article: `create article`
+                        Create an job : `create job`
+                        Create note : `create note`
+                        
 For more information, please refer to the user guide.
 
 ### `create` feature
