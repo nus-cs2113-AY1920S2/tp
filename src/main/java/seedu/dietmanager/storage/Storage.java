@@ -44,7 +44,7 @@ public class Storage {
      */
 
     /* To be implemented at a later stage
-    private static String FOOD_RECORD_FILE_PATH = DIRECTORY_PATH + File.separator + "food-record.csv";
+    private static String FOOD_RECORD_FILE_PATH = DIRECTORY_PATH + File.separator + "food-record.txt";
     */
 
     /* To be implemented at a later stage.
@@ -52,7 +52,7 @@ public class Storage {
      */
 
     /* To be implemented at a later stage.
-    private static String NUTRITION_INFO_FILE_PATH = "data" + File.separator + "nutrition-info.csv";
+    private static String NUTRITION_INFO_FILE_PATH = "data" + File.separator + "food-nutrition-record.txt";
      */
 
     /**
