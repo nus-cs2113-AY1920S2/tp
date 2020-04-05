@@ -141,7 +141,7 @@ public class Controller {
                     "add id/ID s/SEMESTER mc/MODULE_CREDIT | " + "add n/Name s/SEMESTER mc/MODULE_CREDIT "
                             + "| add id/ID n/Name s/SEMESTER mc/MODULE_CREDIT");
         }
-        String module = moduleWords[0];                                 //.toUpperCase().trim()
+        String module = moduleWords[0];
         String semester;
         String[] moduleDetails = moduleWords[1].split(" mc/");
         if (moduleDetails.length < 2) {
@@ -167,6 +167,8 @@ public class Controller {
 
                     String name = idAndName[1].trim();
                     return new AddToSemCommand(new SelectedModule("Both", id, name, semester, moduleCredit));
+                } else {
+                    moduleId = moduleId.toUpperCase();
                 }
                 /* if module code is invalid */
                 if (!isStandardCodeFormat(moduleId)) {
