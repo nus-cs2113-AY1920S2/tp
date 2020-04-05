@@ -1,9 +1,6 @@
 package seedu.happypills.ui;
 
-import seedu.happypills.model.data.Appointment;
-import seedu.happypills.model.data.AppointmentMap;
-import seedu.happypills.model.data.Patient;
-import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.*;
 
 import java.util.Map;
 
@@ -29,7 +26,7 @@ public class StorageTextUi extends TextUi {
     }
 
     /**
-     * Retuens a list of patients' NRIC and appointment details.
+     * Returns a list of patients' NRIC and appointment details.
      * @param appointments An appointment list with all existing patients.
      * @return a message to be displayed to user.
      */
@@ -40,5 +37,19 @@ public class StorageTextUi extends TextUi {
             formattedAppointmentString += a.toSave();
         }
         return formattedAppointmentString;
+    }
+
+    /**
+     * Returns a list of patients' NRIC and records.
+     * @param patientRecords A list with all existing patient record.
+     * @return a string to be used in storage.
+     */
+    public static String getFormattedPrString(PatientRecordMap patientRecords) {
+        String formattedPrString = "";
+        for (Map.Entry patientRecord : patientRecords.entrySet()) {
+            PatientRecord pr = (PatientRecord) patientRecord.getValue();
+            formattedPrString += pr.toSave();
+        }
+        return formattedPrString;
     }
 }
