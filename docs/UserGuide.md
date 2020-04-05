@@ -139,7 +139,7 @@ Note:
 <br/><br/>
    
 
-### Schedule a new meeting `schedule`
+### Schedule a new meeting: `schedule`
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
 **Meeting Name**, and specify the meeting time slot with **Start Day**, **Start Time**, **End Day**, **End Time**.
 
@@ -166,7 +166,7 @@ Timetables of other contacts will not be modified.
 
 </br></br>
 
-### Edit a contact's timetable `edit`
+### Edit a contact's timetable: `edit`
 1) Edit a contact's timetable to be **busy** for a specified time slot. You will need to key in **Contact Index**
 of the contact, and specify the time slot to be marked busy with **Start Day**, **Start Time**, **End Day**, **End Time**.
 
@@ -212,7 +212,7 @@ will remind you to check `meetings` if you try to edit over a scheduled meeting.
 </br></br>
 
 
-### Delete a meeting `delete -m`
+### Delete a meeting: `delete -m`
 Deletes a scheduled meeting from the meeting list. You will need to key in **Meeting Index** of the meeting you wish 
 to delete.
 
@@ -233,7 +233,7 @@ Note:
 - `delete -m` which is used to delete a meeting, should be differentiated from `delete -c` which is used to delete a contact.
 <br/><br/>
 
-### Delete a contact `delete -c`
+### Delete a contact: `delete -c`
 Deletes a contact from the contact list. You will need to key in **Contact Index** of the contact you wish 
 to delete.
 
