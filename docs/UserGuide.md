@@ -167,8 +167,8 @@ Timetables of other contacts will not be modified.
 </br></br>
 
 ### Edit a contact's timetable `edit`
-1) Edit a contact's timetable to be **busy** for a specified time slot. You will need to key in **<Contact Index>**
-of the contact, and specify the time slot to be marked busy with **<Start Day>**, **<Start Time>**, **<End Day>**, **<End Time>**.
+1) Edit a contact's timetable to be **busy** for a specified time slot. You will need to key in **Contact Index**
+of the contact, and specify the time slot to be marked busy with **Start Day**, **Start Time**, **End Day**, **End Time**.
 
     Format: 
     
@@ -181,8 +181,8 @@ of the contact, and specify the time slot to be marked busy with **<Start Day>**
     TODO change image
     ![](images/capture6.png)
 
-2) Edit a contact's timetable to be **free** for a specified time slot. You will need to key in the **<Contact Index>** of
- the contact, and specify the time slot to be marked free with **<Start Day>**, **<Start Time>**, **<End Day>**, **<End Time>**.
+2) Edit a contact's timetable to be **free** for a specified time slot. You will need to key in the **Contact Index** of
+ the contact, and specify the time slot to be marked free with **Start Day**, **Start Time**, **End Day**, **End Time**.
     
     Format: 
     
@@ -209,12 +209,11 @@ will remind you to check `meetings` if you try to edit over a scheduled meeting.
     TODO change image
     ![](images/capture6.png)
     
-<br/><br/>
-
+</br></br>
 
 
 ### Delete a meeting `delete -m`
-Deletes a scheduled meeting from the meeting list. You will need to key in the **Meeting Index** of the meeting you wish 
+Deletes a scheduled meeting from the meeting list. You will need to key in **Meeting Index** of the meeting you wish 
 to delete.
 
 Format: 
@@ -235,7 +234,7 @@ Note:
 <br/><br/>
 
 ### Delete a contact `delete -c`
-Deletes a contact from the contact list. You will need to key in the **Contact Index** of the contact you wish 
+Deletes a contact from the contact list. You will need to key in **Contact Index** of the contact you wish 
 to delete.
 
 Format: 
@@ -254,7 +253,7 @@ Note:
 
     TODO change image
     ![](images/capture7.png)
-<br/><br/>
+</br></br>
 
 ### List all meetings: `meetings`
 List all scheduled meetings stored in program.
@@ -268,7 +267,7 @@ Example of usage:
     meetings
 
 ![](images/capture8.png)
-<br/><br/>
+</br></br>
 
 ### Exit the application: `exit`
 Exits the application and ends the current session.
@@ -282,7 +281,7 @@ Example of usage:
     exit
 
 ![](images/capture9.png)
-<br/><br/>
+</br></br>
 
 ## FAQ
 -  **Q**: How do I transfer my data to another computer? 
@@ -290,7 +289,7 @@ Example of usage:
    **A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
 
 ## Command Summary
-| <div style="width:500px">Feature</div>     | <div style="width:500px">Format</div>      | Example usage |
+| Feature&nbsp&nbsp&nbsp&nbsp     | Format&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      | Example usage |
 | ----------- | ----------- | --------------|
 | Adding a new contact     | `<name> <NUSMODS link>`      | `Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01` |
 | List all contacts     | `contacts`      | `contacts` |
