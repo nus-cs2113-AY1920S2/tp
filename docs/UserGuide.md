@@ -150,7 +150,8 @@ Adds a _module_ into your **Module List**. The **Module List** contains all your
 - `module code` -- The _module code_ of the   _module_  
 > **Note**: The _module code_ is **case-insensitive**. However, it must correspond to a valid **NUS module**. Only **NUS modules** can be added in this version of **Nuke**.
 
-#### Example Usage    
+#### Example Usage
+
 ```
 	addm cs2113t
 ```
@@ -187,7 +188,8 @@ Adds a _category_ into your **Category List**. The **Category List** contains al
 > **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.  
 > **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the category. If the `priority` is not given, then it will be set to **0**.  
 
-#### Example Usage    
+#### Example Usage
+
 ```
 	addc Lecture -m cs2113t -p 3
 ```
@@ -207,7 +209,9 @@ SUCCESS!! Category Lecture is created.
 
 ![image-20200331000110946](images/ug_addc_after.png)
 
-<br>  
+
+
+#### <br>  
 
 #### c. Add a Task into your Task List  
 Adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the List Task command.
@@ -225,6 +229,7 @@ Adds a _task_ into your **Task List**. The **Task List** contains all your added
 > **Note**: The `deadline` provided consists of both a _date_ and a _time_. The `deadline` provided must adhere to the set of accepted [Date Time formats](#date-time-formats).   
 
 #### Example Usage    
+
 ```
 	addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 80
 ```
@@ -243,7 +248,85 @@ SUCCESS!! Task urgent assignment is created.
 
 ![image-20200331000315462](images/ug_addt_after.png)
 
-<br>
+
+
+#### <br>
+
+#### d. Add a File into your Task's File List  
+Adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ to the _task_ and can be viewed via the List File command.
+
+#### Format  
+`addf <file name> -m <module code> -c <category name> -t <task description> -f <file path>`  
+
+- `file name` -- The _name_ of the _file_  
+- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added  
+- `category name` -- The _name_ of the   _category_  
+- `task decription` -- The _description_ of the _task_  
+- `file path` -- the **Absolute** _path_ of the _file_   
+> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
+> **Note**: The `file path` that you give must exist. Otherwise, an error message will be displayed.
+> **Note**: The `file name` provided can be different from the real file name that is stored in the disk.   
+
+#### Example Usage
+
+```
+	addt save.txt -m CS2113t -c Lab -t tp -f C:\Users\JUNIOR\Downloads\save.txt
+```
+
+```
+	addt save.txt -t tp -f C:\Users\JUNIOR\Downloads\save.txt
+```
+
+```
+	addt save.txt -f C:\Users\JUNIOR\Downloads\save.txt
+```
+
+#### Expected Outcome    
+```
+root / CS2113T / Lab / tp :
+addt save.txt -m CS2113t -c Lab -t tp -f C:\Users\JUNIOR\Downloads\save.txt
+SUCCESS!! File save.txt is added.
+```
+
+
+
+#### <br>
+
+#### e. Add a Tag to your Task
+Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List File command. not available now).
+
+#### Format  
+`addg <tag info> -m <module code> -c <category name> -t <task description>`  
+
+- `tag info` -- The _tag_ to be added  
+- `module code` -- The _module code_ of the _module_ to contain the _category_ to be added  
+- `category name` -- The _name_ of the   _category_  
+- `task decription` -- The _description_ of the _task_  
+> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
+
+#### Example Usage
+
+```
+	addg urgent -m CS2113t -c Lab -t tp
+```
+
+```
+	addt urgent -t tp
+```
+
+```
+	addt urgent
+```
+
+#### Expected Outcome    
+```
+root / CS2113T / Lab / tp :
+addg urgent -m CS2113t -c Lab -t tp
+Tag added!
+```
+
+
+#### <br>
 
 ## 2. List  
 Lists the _modules_, _categories_ or _tasks_ in their respective lists.<br>
@@ -269,7 +352,7 @@ List all *module*s in your **Module List**. The **Module List** contains all you
 #### Example Usage    
 
 ```
-lsm
+	lsm
 ```
 
 #### Expected Outcome 
@@ -290,11 +373,15 @@ List all *category*s in your **Category List**. The **Category List** contains a
 
 > **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.
 
-#### Example Usage    
+#### Example Usage
 
-`lsc -m c3235` when not in the _module_'s directory
+```
+	lsc -m c3235
+```
 
-`lsc` when in the _module_'s directory
+```
+	lsc
+```
 
 #### Expected Outcome
 
@@ -314,18 +401,75 @@ lst [ -m <module code> -c <category name>]
 
 > **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
 
-#### Example Usage    
+#### Example Usage 
 
-`lst -m cs3235 -c Assignment` when not in the *module*'s  directory
+```
+	lst -m cs3235 -c Assignment
+```
 
-`lst -c Assignment` when not in the *category*'s directory
+```
+	lst -c Assignment
+```
 
-`lst` when in the category's directory
+```
+	lst
+```
 
 #### Expected Outcome    
 ![image-20200401012942212](images/ug_lst.png)
 
-  
+
+#### d. List your undo tasks in sorted order  
+
+List all the undo *task*s in your **Task List**. The *task*s will be sorted in ascending order of `deadline` by deafault. User can also specify in the command to sort *task*s in descending order of `priority` by adding `-p` prefix.
+
+#### Format  
+
+```
+lsts [ -d -p (choose 1; default -d) ]
+```
+
+> **Note**: You need **not** include the `-d` if you want to sort tasks in terms of `deadline`. You are supposed to choose only one prefix between `-d` and `-p`. 
+
+#### Example Usage
+
+```
+	lsts
+```
+
+```
+	lsts -p
+```
+
+#### Expected Outcome
+
+
+
+#### e. List your tasks under specific module in sorted order 
+
+List all the *task*s in one of added *module*s. The *task*s will be sorted in ascending order of `deadline` by deafault.
+
+#### Format  
+
+```
+lsmtd <module code>
+```
+
+> **Note**: You need **not** include the `module code` if you are currently in that *module*'s directory. Sepcifying a `module code` will make the command to list tasks in that *module*.
+
+#### Example Usage
+
+```
+	lsmtd
+```
+
+```
+	lsmtd CS2113
+```
+
+#### Expected Outcome
+
+
 
 ## 3. Delete  
 Deletes _modules_, _categories_ or _tasks_ from their respective lists.<br>

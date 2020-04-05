@@ -6,7 +6,6 @@ import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * A utility class to create a sorted list table from an Array List.
