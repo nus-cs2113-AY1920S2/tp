@@ -1,17 +1,26 @@
 package seedu.happypills.logic.commands.patientrecordcommands;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
-import seedu.happypills.ui.Messages;
-import seedu.happypills.ui.PatientTextUi;
-import seedu.happypills.ui.PatientRecordTextUi;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.PatientRecordTextUi;
+import seedu.happypills.ui.StorageTextUi;
+import seedu.happypills.ui.Messages;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class DeletePatientRecordCommand extends PatientRecordCommand {
     protected String patientNric;
     protected int index;
+
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
 
     /**
      * Constructor for FindAppointmentCommand Class.
@@ -23,6 +32,11 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
     public DeletePatientRecordCommand(String patientNric, int index) {
         this.patientNric = patientNric;
         this.index = index - 1;
+    }
+
+    private void deletePr(PatientRecordMap patientRecordMap, ArrayList<PatientRecord> patientRecords) {
+        patientRecordMap.removePersonalRecord(patientRecords, patientNric);
+        patientRecords.remove(index);
     }
 
     @Override
@@ -37,7 +51,16 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
             } else if (isIndexOutOfBound) {
                 throw new HappyPillsException(Messages.MESSAGE_INDEX_OUT_OF_BOUND);
             }
-            return PatientRecordTextUi.deletePatientRecordSuccessMessage(patientRecordMap, patientNric, index);
+            ArrayList<PatientRecord> patientRecords = patientRecordMap.get(patientNric);
+            PatientRecord patientRecord = patientRecords.get(index);
+            deletePr(patientRecordMap,patientRecords);
+            try {
+                Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
+                        StorageTextUi.getFormattedPrString(patientRecordMap));
+            } catch (IOException e) {
+                logger.info("Adding patient list to file failed.");
+            }
+            return PatientRecordTextUi.deletePatientRecordSuccessMessage(patientRecord, patientNric);
         } else {
             String message = Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND
                     + "\n"

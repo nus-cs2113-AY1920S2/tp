@@ -59,18 +59,15 @@ public class PatientRecordTextUi extends TextUi {
      * format a delete patient success message for user.
      * Includes a specified string, requested patient details and a divider.
      *
-     * @param patientRecordMap patient object to be returned as a part of the string.
+     * @param patientRecord    patient record object to be returned as a part of the string.
      * @param patientNric      nric of the patient
-     * @param index            index for the record of the searched patient
+     *
      * @return a formatted success message string to be displayed to user.
      */
     public static String deletePatientRecordSuccessMessage(
-            PatientRecordMap patientRecordMap, String patientNric, int index) {
-        ArrayList<PatientRecord> patientRecord = patientRecordMap.get(patientNric);
+            PatientRecord patientRecord, String patientNric) {
         String returnMessage = "    " + patientNric + "'s patient record will be deleted.\n"
-                + patientRecord.get(index) + DIVIDER;
-        patientRecord.remove(index);
-        patientRecordMap.removePersonalRecord(patientRecord, patientNric);
+                + patientRecord + DIVIDER;
         return returnMessage;
     }
 

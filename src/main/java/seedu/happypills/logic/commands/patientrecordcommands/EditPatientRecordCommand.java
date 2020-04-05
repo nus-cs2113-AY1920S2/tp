@@ -101,8 +101,8 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         }
         if (output) {
             try {
-                Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
-                        StorageTextUi.getFormattedApptString(appointments));
+                Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
+                        StorageTextUi.getFormattedPrString(patientRecords));
             } catch (IOException e) {
                 logger.info("Adding patient list to file failed.");
             }
