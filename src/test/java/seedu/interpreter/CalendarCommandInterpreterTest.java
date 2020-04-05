@@ -1,14 +1,11 @@
 package seedu.interpreter;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import seedu.command.calendar.EventsSeparator;
 import seedu.command.interpreter.CalendarCommandInterpreter;
 import seedu.event.EventList;
 import seedu.exception.PacException;
-import seedu.pac.Pac;
 
 public class CalendarCommandInterpreterTest {
     CalendarCommandInterpreter cci;
