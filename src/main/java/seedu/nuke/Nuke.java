@@ -32,7 +32,7 @@ public class Nuke {
         storageManager = new StorageManager(StoragePath.SAVE_PATH);
         ModuleManager.initialise(modulesMap);
         storageManager.loadList();
-        ScreenShotManager.saveScreenShot();
+        ScreenShotManager.initialise();
     }
 
     /**
@@ -72,7 +72,12 @@ public class Nuke {
             ui.showSystemMessage(e.getMessage());
         }
         ui.showSystemMessage(Message.DIVIDER);
-        storageManager.saveList();
+
+        try {
+            storageManager.saveList();
+        } catch (IOException e) {
+            ui.showSystemMessage(e.getMessage());
+        }
     }
 
     /**
@@ -85,9 +90,16 @@ public class Nuke {
             commandResult = Executor.executeCommand(userInput);
             ui.showResult(commandResult);
 
-            ScreenShotManager.saveScreenShot();
+            // Save list
+            if (StorageManager.isToSave()) {
+                try {
+                    storageManager.saveList();
+                } catch (IOException e) {
+                    ui.showSystemMessage(e.getMessage());
+                }
+                ScreenShotManager.saveScreenShot();
+            }
 
-            storageManager.saveList();
         } while (!ExitCommand.isExit());
     }
 

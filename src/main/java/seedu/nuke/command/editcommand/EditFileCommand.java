@@ -6,6 +6,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -96,6 +97,7 @@ public class EditFileCommand extends EditCommand {
             TaskFile toEdit =
                     DirectoryTraverser.getFileDirectory(moduleCode, categoryName, taskDescription, oldFileName);
             toEdit.getParent().getFiles().edit(toEdit, newFileName);
+            StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

@@ -24,7 +24,26 @@ import java.util.stream.Stream;
 import static seedu.nuke.data.storage.StoragePath.TASK_FILE_DIRECTORY_PATH;
 
 public class StorageManager {
+    private static boolean isToSave = false;
+
     private String dataFileName;
+
+    /**
+     * Checks whether to save the list.
+     *
+     * @return
+     *  The indication to save the list
+     */
+    public static boolean isToSave() {
+        return isToSave;
+    }
+
+    /**
+     * Indicates to the storage manager that a change is made to the list and needs to be saved.
+     */
+    public static void setIsSave() {
+        isToSave = true;
+    }
 
     /**
      * Constructor with name of the data file as argument.
@@ -86,7 +105,7 @@ public class StorageManager {
     /**
      * Saves the Module List into a file.
      */
-    public void saveList() {
+    public void saveList() throws IOException {
         try {
             File saveFile = new File(dataFileName);
             saveFile.getParentFile().mkdirs();
@@ -95,8 +114,10 @@ public class StorageManager {
             fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException("There was an error when saving the list...");
         }
+
+        isToSave = false;
     }
 
     /**

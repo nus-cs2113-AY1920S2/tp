@@ -4,6 +4,7 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
@@ -330,8 +331,10 @@ public class DeleteConfirmationPrompt extends Command {
                 return new CommandResult("Error in deletion.");
             }
             if (filteredList.size() == 1) {
+                StorageManager.setIsSave();
                 return executeSingleDelete(filteredList.get(0));
             } else {
+                StorageManager.setIsSave();
                 return executeMultipleDelete(filteredList);
             }
         case ABORT:
