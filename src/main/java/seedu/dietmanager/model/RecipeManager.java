@@ -2,6 +2,7 @@ package seedu.dietmanager.model;
 
 import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.Weekday;
+import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 
 import java.util.ArrayList;
 
@@ -65,12 +66,14 @@ public class RecipeManager {
     /**
      * Creates a recipe for the week based on user's needs.
      *
-     * @param cap calories cap for each meal
      * @param num maximum food types the user want to have in a meal.
      * @return true if maximum food types is less than 5, else false.
      */
 
-    public boolean customRecipe(double cap, int num) {
+    public boolean buildRecipe(Profile profile, int num, String activityLevel) {
+        CheckRequiredCaloriesCommand command = new CheckRequiredCaloriesCommand("check-required-cal");
+        double cap = command.getRecommendedCaloriesIntake(profile,activityLevel);
+
         FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
         int maxNum = foodInfo.getListSize();
         boolean overflow = false;
