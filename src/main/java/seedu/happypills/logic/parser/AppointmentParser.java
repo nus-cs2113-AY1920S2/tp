@@ -68,7 +68,10 @@ public class AppointmentParser {
 
         // ensure that all details are not missing
         while (parseInput[0].equalsIgnoreCase("") || parseInput[1].equalsIgnoreCase("")
-                || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")) {
+                || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")
+                || !Checker.isValidDate(parseInput[1].trim()) || !Checker.isValidTime(parseInput[2].trim())
+                || !Checker.isValidNric(parseInput[0].trim())) {
+            System.out.println("nric: " + Checker.isValidNric(parseInput[0].trim()) + " " + parseInput[0].trim());
             printMissingInput(parseInput);
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
@@ -80,7 +83,7 @@ public class AppointmentParser {
         if (!loopPrompt(parseInput)) {
             return new IncorrectAppointmentCommand("    Appointment is not added.\n");
         }
-        return new AddAppointmentCommand(parseInput[0].toUpperCase().substring(1).trim(), parseInput[1].trim(),
+        return new AddAppointmentCommand(parseInput[0].toUpperCase().trim(), parseInput[1].trim(),
                 parseInput[2].trim(), parseInput[3].trim());
     }
 
@@ -103,13 +106,13 @@ public class AppointmentParser {
 
     private static String[] parseInput(String[] details, String[] parseInput) {
         for (String detail : details) {
-            if (detail.trim().startsWith("ic") && parseInput[0].equalsIgnoreCase("")) {
-                parseInput[0] = detail.trim().substring(1);
-            } else if (detail.trim().startsWith("d") && parseInput[1].equalsIgnoreCase("")) {
+            if (detail.trim().startsWith("ic")) {
+                parseInput[0] = detail.trim().substring(2).trim();
+            } else if (detail.trim().startsWith("d")) {
                 parseInput[1] = detail.trim().substring(2);
-            } else if (detail.trim().startsWith("t") && (parseInput[2].equalsIgnoreCase(""))) {
+            } else if (detail.trim().startsWith("t")) {
                 parseInput[2] = detail.trim().substring(1);
-            } else if (detail.trim().startsWith("r") && parseInput[3].equalsIgnoreCase("")) {
+            } else if (detail.trim().startsWith("r")) {
                 parseInput[3] = detail.trim().substring(1);
             }
         }
@@ -117,14 +120,14 @@ public class AppointmentParser {
     }
 
     private static void printMissingInput(String[] parseInput) {
-        System.out.println("    Please input your missing detail listed below");
-        if (parseInput[0].equalsIgnoreCase("")) {
+        System.out.println("    Please input your missing/incorrect detail listed below");
+        if (parseInput[0].equalsIgnoreCase("") || !Checker.isValidNric(parseInput[0].trim())) {
             System.out.println(Messages.MESSAGE_NRIC_FORMAT);
         }
-        if (parseInput[1].equalsIgnoreCase("")) {
+        if (parseInput[1].equalsIgnoreCase("") || !Checker.isValidDate(parseInput[1].trim())) {
             System.out.println(Messages.MESSAGE_DATE_FORMAT);
         }
-        if (parseInput[2].equalsIgnoreCase("") || !isInteger(parseInput[2].trim())) {
+        if (parseInput[2].equalsIgnoreCase("") || !Checker.isValidTime(parseInput[2].trim())) {
             System.out.println(Messages.MESSAGE_TIME_FORMAT);
         }
         if (parseInput[3].equalsIgnoreCase("")) {
@@ -174,7 +177,7 @@ public class AppointmentParser {
      */
     public static String promptConfirmation(String[] parseInput) {
         String text = "        Are you sure all the listed details are correct?\n"
-                + "        NRIC : " + parseInput[0].toUpperCase().trim().substring(1) + "\n"
+                + "        NRIC : " + parseInput[0].toUpperCase().trim() + "\n"
                 + "        Date : " + parseInput[1].trim() + "\n"
                 + "        Time : " + parseInput[2].trim() + "\n"
                 + "        Reason : " + parseInput[3].trim() + "\n"
