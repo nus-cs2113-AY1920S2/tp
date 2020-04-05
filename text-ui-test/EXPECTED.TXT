@@ -1,4 +1,4 @@
-  _____   _        _     __  __
+ _____   _        _     __  __
  |  __ \ (_)      | |   |  \/  |
  | |  | | _   ___ | |_  | \  / |  __ _  _ __    __ _   __ _   ___  _ __
  | |  | || | / _ \| __| | |\/| | / _` || '_ \  / _` | / _` | / _ \| '__|
@@ -7,4 +7,26 @@
                                                        __/ |
                                                       |___/
 Welcome to Diet Manager! How may I assist you today?
+ ______________________________________________________________________________________________________________________________________________________________________________
+|                          Functions:                        |                 Descriptions:                  |                             Example:                           |
+|____________________________________________________________|________________________________________________|________________________________________________________________|
+|   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       | (eg. set-profile John 20 male 180 80 75 )                      |
+|   profile                                                  |  View user profile details                     | (eg. profile)                                                  |
+|   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              | (eg. record-meal Monday morning /prata -- 10.0 /milk -- 6.00 ) |
+|   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             | (eg. check-meal Monday morning )                               |
+|   calculate DATE                                           |  Calculate Calorie intake for the day          | (eg.calculate Monday)                                          |
+|   calculate DATE1->DATE2                                   |  Calculate Calorie intake from DATE1 to DATE2  | (eg. calculate Monday->Wednesday )                             |
+|   list-food                                                |  Lists all foods info in database.             | (eg. list-food )                                               |
+|   addf FOOD_NAME --CALORIES                                |  Add new food info into database               | (eg. addf beef noodles -- 7.0 )                                |
+|   delf FOOD_NAME                                           |  Delete food info from database                | (eg. delf beef noodles )                                       |
+|   set-weight                                               |  Set/Update weight in user profile             | (eg. set-weight 70 )                                           |
+|   check-weight-progress NAME                               |  List index of weight progress                 | (eg. check-weight-progress John )                              |
+|   delete-weight INDEX                                      |  Delete weight from the weight progress list   | (eg. delete-weight 2 )                                         |
+|   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       | (eg. new-recipe 2 low )                                        |
+|   show-recipe                                              |  Show recommended recipe to user               | (eg. show-recipe )                                             |
+|   help                                                     |  Show this function help table                 | (eg. help )                                                    |
+|   exit                                                     |  Exit the application                          | (eg. exit )                                                    |
+|____________________________________________________________|________________________________________________|________________________________________________________________|
+Please key in your command:
 Thank you and see you again soon!
+Thanks for using Diet Manager! See you again soon. :)
