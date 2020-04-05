@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+//@@author JLoh579
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "BYE";

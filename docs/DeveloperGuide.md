@@ -154,16 +154,16 @@ The edit feature is implemented using an <code>EditCommand</code> class. This cl
 in the user input. In addition to the index no. , the user input **must also contain at least one** of these parameters: 
 *description*, *price*, *quantity*. 
 
-The process of object creation is as follows:
+The process is as follows:
 
 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
-2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
-   * The <code>Parser</code> object instantiates an <code>EditCommand</code> object based on the user input.
-3. The <code>Duke</code> class calls the <code>EditCommand#execute</code> method.
-4. In the <code>EditCommand#execute</code> method, it first gets the <code>item</code> object through the
-<code>ShoppingList#getItem</code>. The original description/price/quantity of the item is overwritten 
+2. A <code>Parser</code> object is created.
+3. <Duke></code> calls <code>Parser#parseCommand()</code> method instantiate an <code>EditCommand</code> object based on the user input.
+4. <code>Duke</code> class then calls the <code>EditCommand#execute()</code> method.
+5. In the <code>EditCommand#execute()</code> method, it first gets the <code>item</code> object through the
+<code>ShoppingList#getItem()</code>. The original description/price/quantity of the item is overwritten 
 with the new values from the user input. This is done through the use of the <code>Item</code> class setter methods.
-5. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
+6. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
@@ -611,17 +611,15 @@ omitted in the sequence diagram to emphasise on the other classes:
 ### 3.11 Exit program feature
 #### 3.11.1 Current implementation
 
-The program termination feature is implemented using a <code>ExitCommand</code> class which extends the main
+The program termination feature is implemented using an <code>ExitCommand</code> class which extends the main
 <code>Command</code> class. The <code>ExitCommand</code> class terminates the program when instantiated.
 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function. If the user input matches the exit command
-keyword: <code>"BYE"</code>, a <code>HelpCommand</code> object will be instantiated.
+1. <code>Duke</code> class receives user input from the <code>Ui</code> class.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>ExitCommand</code> object based on that user input. 
+3. <code>Duke</code> then calls the <code>ExitCommand#execute()</code> method of the 
+4. The program is terminated.
 
-Once instantiated, the <code>Duke</code> then class calls the <code>execute</code> method of the 
-<code>Exit Command</code> object. In this method, the program is terminated.
-
-The following sequence diagram below shows how the help feature works. Note the <code>Ui</code> class is
+The following sequence diagram below shows how the exit feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/ExitFinal.png)
@@ -632,7 +630,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 - Alternative 1 (current choice): Object-oriented style with a separate class for <code>ExitCommand</code>
  
-  - Pros: Easy to add the exit feature without having to change the logic of the code much as each command
+  - Pros: Easy to add the exit feature without having to change much of the code logic as each command
   object is treated as a black box
   
   - Cons: Might significantly increase the code base with another class being added
@@ -730,17 +728,16 @@ Given below are instructions to test the app manually.
 ### E.1. Launch and ShutDown
 1. Initial launch 
     
-        i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases) and copy it into an empty folder on your desktop.
+ i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases) and copy it into an empty folder on your desktop.
         
-        ii.   Rename the empty folder to "SHOCO".
+ ii.   Rename the empty folder to "SHOCO".
         
-        iii.  Open a command prompt window by typing <code>cmd</code> in the start menu.
+ iii.  Open a command prompt window by typing <code>cmd</code> in the start menu.
         
-        iv.   Change your directory to where the jar file is located by running the command <code>cd desktop/SHOCO</code>
+ iv.   Change your directory to where the jar file is located by running the command <code>cd desktop/SHOCO</code>
         
-        v.    Run the command java -jar SHOCO.jar
-      
-              Expected: Shows a welcome message from SHOCO.
+ v.    Run the command java -jar SHOCO.jar
+       Expected: Shows a welcome message from SHOCO.
 
 2. Shut down
         
@@ -757,16 +754,16 @@ Given below are instructions to test the app manually.
 
 1. Add an item 
         
-        *Optional* List all items currently in the shopping list to prevent entering a duplicate item description : <code> DISPLAY </code>
+    *Optional* List all items currently in the shopping list to prevent entering a duplicate item description : <code> DISPLAY </code>
        
-       i.  Test case: <code> ADD i/apple p/3.00 q/2 </code>
-           Expected: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
+ i.  Test case: <code> ADD i/apple p/3.00 q/2 </code>
+     Expected: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
           
-       ii. Test case: <code> ADD p/3.00 </code>
-           Expected: No item is added. Error message is shown, a correct usage of the ADD command is also shown.
+ ii. Test case: <code> ADD p/3.00 </code>
+     Expected: No item is added. Error message is shown, a correct usage of the ADD command is also shown.
        
-       iv. Other incorrect ADD commands to try: ADD, ADD p/xxx, ADD q/xxx (where x is not a number) 
-           Expected: Similar to previous. 
+iv. Other incorrect ADD commands to try: ADD, ADD p/xxx, ADD q/xxx (where x is not a number) 
+    Expected: Similar to previous. 
 
 
 
