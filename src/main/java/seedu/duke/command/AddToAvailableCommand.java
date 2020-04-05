@@ -32,7 +32,6 @@ public class AddToAvailableCommand extends AddCommand {
      */
     private void addModule(SemesterList semesterList, AvailableModulesList availableModulesList)
             throws RuntimeException {
-
         for (Module module : availableModulesList) {
             boolean hasSameId = newModule.getId().equals(module.getId());
             boolean hasSameName = newModule.getName().equals(module.getName());
@@ -40,9 +39,19 @@ public class AddToAvailableCommand extends AddCommand {
                 throw new RuntimeException("This module's name and Id has already "
                         + "been added to the available modules list");
             } else if (hasSameId) {
+                String oldName = module.getName();
+                String id = module.getId();
                 module.updateName(newModule.getName());
+                throw new RuntimeException(String.format("This module's ID <%s> is in available modules list.", id)
+                        + System.lineSeparator()
+                        + String.format("So we update the module's name: <%s> -> <%s>", oldName, module.getName()));
             } else if (hasSameName) {
+                String oldId = module.getId();
+                String name = module.getName();
                 module.updateId(newModule.getId());
+                throw new RuntimeException(String.format("This module's name <%s> is in available modules list.", name)
+                        + System.lineSeparator()
+                        + String.format("So we update the module's ID: <%s> -> <%s>", oldId, module.getId()));
             }
         }
         availableModulesList.add(newModule);

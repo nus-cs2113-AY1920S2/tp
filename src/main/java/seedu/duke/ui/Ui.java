@@ -16,7 +16,7 @@ public class Ui {
 
     private static final String START_MESSAGE = "Hello from\n" + LOGO;
 
-    private static final String FAREWELL_MESSAGE = "bye!";
+    private static final String FAREWELL_MESSAGE = "Bye bye! I hope to see you again soon ^.^";
 
     private static final String ADDED_TO_SEM_MESSAGE = "Okay! I have added this module to your semester's module list:";
 
@@ -75,11 +75,14 @@ public class Ui {
             + "11. \"CAP\" to view your current cap\n"
             + "12. \"bye\" to exit\n";
 
+
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
     private static final String SHOW_CAP = "Your current CAP is:";
     private static final String SHOW_INPUT_ERROR = "Input Error, please enter your comand again!"
             + " Type \"help\" for help";
+    private static final String CLEAR = "Your module plan has been cleared :)";
+    private static final String EMPTY_MODULE_PLAN = "Your module plan is empty.";
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
@@ -155,4 +158,11 @@ public class Ui {
         showToUser(SHOW_INPUT_ERROR);
     }
 
+    public static void showClearMessage() {
+        showToUser(CLEAR);
+    }
+
+    public static void showEmptyModulePlan() {
+        showToUser(EMPTY_MODULE_PLAN);
+    }
 }

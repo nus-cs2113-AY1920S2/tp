@@ -67,7 +67,11 @@ public class ViewCommand extends Command {
             }
             viewList.append(System.lineSeparator());
         }
-        Ui.showViewMessage(viewList.toString().trim());
+        if (viewList.toString().trim().equals("")) {
+            Ui.showEmptyModulePlan();
+        } else {
+            Ui.showViewMessage(viewList.toString().trim());
+        }
     }
 
     /**
@@ -119,7 +123,7 @@ public class ViewCommand extends Command {
             viewList.append(module.getModuleCredit());
             alignModuleCredit(viewList, module);
 
-            viewList.append(module.getPreReqModulesID());
+            viewList.append(module.getPreReqModulesString());
             alignPreReqModules(viewList, module);
         }
 
@@ -134,7 +138,7 @@ public class ViewCommand extends Command {
     private void alignPreReqModules(StringBuilder viewList, Module module) {
         int lengthOfPreReqModulesColumn = 24;
         viewList.append(" ".repeat(Math.max(0,
-                (lengthOfPreReqModulesColumn - module.getPreReqModulesID().length()))));
+                (lengthOfPreReqModulesColumn - module.getPreReqModulesString().length()))));
         viewList.append("|").append(System.lineSeparator());
     }
 

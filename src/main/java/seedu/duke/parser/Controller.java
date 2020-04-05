@@ -4,6 +4,7 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.AddToAvailableCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.CalculateCapCommand;
+import seedu.duke.command.ClearCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.DeleteFromAvailableCommand;
@@ -52,9 +53,15 @@ public class Controller {
             return processCalculateCapCommand();
         case DeleteCommand.COMMAND_WORD:
             return processDeleteCommand(args);
+        case ClearCommand.COMMAND_WORD:
+            return processClearCommand();
         default:
             throw new InputException("invalid command");
         }
+    }
+
+    private static Command processClearCommand() {
+        return new ClearCommand();
     }
 
     private static MarkAsDoneCommand processMarkAsDone(String args) throws InputException {
@@ -63,9 +70,9 @@ public class Controller {
         if (moduleWords.length < 2) {
             throw new InputException("invalid 'done' command", "done n/NAME g/GRADE | done id/ID g/GRADE");
         }
-        String grade = moduleWords[1];                                  //.toUpperCase().trim()
+        String grade = moduleWords[1].toUpperCase();
         Grading grading;
-        String module = moduleWords[0];                                 //.toUpperCase().trim()
+        String module = moduleWords[0];
         switch (grade) {
         case "A+":
             grading = Grading.APLUS;
@@ -111,8 +118,8 @@ public class Controller {
                     + System.lineSeparator()
                     + "Please use A+ | A | A- | B+ | B | B- | C+ | C | D+ | D | F | CS | CU.");
         }
-        if (module.contains("n/")) {                                            //N
-            String moduleName = module.replace("n/","");        //N
+        if (module.contains("n/")) {
+            String moduleName = module.replace("n/","");
             return new MarkAsDoneCommand(moduleName, grading);
         } else if (module.contains("id/")) {
             String moduleId = module.replace("id/","").toUpperCase();
@@ -174,6 +181,7 @@ public class Controller {
                 if (!isStandardCodeFormat(moduleId)) {
                     throw new InputException("invalid module code: " + moduleId);
                 }
+                moduleId = moduleId.toUpperCase();
                 return new AddToSemCommand(new SelectedModule("id", moduleId, semester, moduleCredit));
             } else if (module.contains("n/")) {
                 String moduleName = module.replace("n/","");
@@ -233,12 +241,12 @@ public class Controller {
         }
     }
 
-    private static ViewCommand processViewCommand(String args) {
-        if (args.contains("/cm")) {
+    private static ViewCommand processViewCommand(String args) throws InputException {
+        if (args.equalsIgnoreCase("/cm")) {
             return new ViewCommand(ViewCommand.VIEW_COMPULSORY_MODULES);
-        } else if (args.contains("/dm")) {
+        } else if (args.equalsIgnoreCase("/dm")) {
             return new ViewCommand(ViewCommand.VIEW_DONE_MODULES);
-        } else if (args.contains("/mp")) {
+        } else if (args.equalsIgnoreCase("/mp")) {
             return new ViewCommand(ViewCommand.VIEW_MODULE_PLAN);
         } else if (args.contains("n/")) {
             String moduleToBeViewed = args.replace("n/","").trim();
@@ -246,10 +254,14 @@ public class Controller {
         } else if (args.contains("id/")) {
             String moduleToBeViewed = args.replace("id/","").toUpperCase().trim();
             return new ViewCommand(ViewCommand.VIEW_SPECIFIC_MODULE, moduleToBeViewed);
-        } else if (args.contains("/cc")) {
+        } else if (args.equalsIgnoreCase("/cc")) {
             return new ViewCommand(ViewCommand.VIEW_COMPLETED_CREDITS);
+        } else if (args.equals("")) {
+            return new ViewCommand(ViewCommand.VIEW_AVAILABLE_MODULES);
         }
-        return new ViewCommand(ViewCommand.VIEW_AVAILABLE_MODULES);
+        throw new InputException("It seems like you are trying to view something, "
+                + "but your command is not completely right. "
+                + "Enter \"help\" to look at the possible view commands available");
     }
 
     private static ExitCommand processExitCommand() {

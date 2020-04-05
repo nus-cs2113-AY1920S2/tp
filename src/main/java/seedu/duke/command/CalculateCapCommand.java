@@ -49,11 +49,13 @@ public class CalculateCapCommand extends Command {
             }
         }
         double cap = totalGradePoint / totalGradeModuleCredit;
-        if (cap > 5.0 || totalGradeModuleCredit == 0) {
-            throw new RuntimeException("Now your CAP is invalid. Please done some modules first.");
+        if (totalGradeModuleCredit == 0) {
+            throw new RuntimeException("Your CAP is currently 0. Please do some modules first.");
+        } else if (!(cap >= 0.0 && cap <= 5.0)) {
+            throw new RuntimeException("Your CAP is invalid, please check to make sure "
+                    + "your grades are entered correctly");
         }
-        //Have to change "assert cap > 5.0" to "assert cap <= 5.0" or it always stops running when CAP <= 5.0
-        assert cap <= 5.0 : "Valid CAP";
+        assert cap <= 5.0 && cap >= 0.0 : "Invalid CAP";
         Person.setTotalCap(cap);
     }
 }
