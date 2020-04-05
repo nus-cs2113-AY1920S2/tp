@@ -1,6 +1,5 @@
 package seedu.dietmanager.model;
 
-import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 
@@ -74,7 +73,7 @@ public class RecipeManager {
         CheckRequiredCaloriesCommand command = new CheckRequiredCaloriesCommand("check-required-cal");
         double cap = command.getRecommendedCaloriesIntake(profile, activityLevel);
 
-        FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
+        FoodNutritionRecord foodInfo = FoodNutritionRecord.getInstance();
         int maxNum = foodInfo.getListSize();
         boolean overflow = false;
 

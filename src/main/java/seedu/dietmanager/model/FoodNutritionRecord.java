@@ -1,25 +1,32 @@
-package seedu.dietmanager.commons.core;
+package seedu.dietmanager.model;
 
-import seedu.dietmanager.model.Food;
+import seedu.dietmanager.commons.core.MessageBank;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-// To be edited to add more Food items
-public class FoodNutritionInfo {
-    private ArrayList<Food> foods = new ArrayList<>();
-    private static FoodNutritionInfo theOnlyOne = null;
+public class FoodNutritionRecord {
+
+    private List<Food> foodNutritionList = new ArrayList<>();
+    private static FoodNutritionRecord theOne = null;
 
     /**
      * Public constructor for FoodNutritionInfo of Food from our database.
      */
-    private FoodNutritionInfo() {
-        foods.add(new Food("Chicken", 1)); // Not accurate yet
-        foods.add(new Food("Apple", 2)); // Not accurate yet
-        foods.add(new Food("Carrots", 3)); // Not accurate yet
-        foods.add(new Food("Rice", 4)); // Not accurate yet
-        foods.add(new Food("Oil", 5)); // Not accurate yet
-        foods.add(new Food("Tea", 6)); // Not accurate yet
+
+    private FoodNutritionRecord() {
+        foodNutritionList.add(new Food("chicken-rice", 702));
+        foodNutritionList.add(new Food("fried-rice", 508));
+        foodNutritionList.add(new Food("chicken-curry", 450));
+        foodNutritionList.add(new Food("prawn-noodles-dry", 459));
+        foodNutritionList.add(new Food("fishball-noodles-soup", 330));
+        foodNutritionList.add(new Food("cheeseburger", 300));
+        foodNutritionList.add(new Food("white-bread", 77));
+        foodNutritionList.add(new Food("french-fries", 450));
+        foodNutritionList.add(new Food("orange-juice", 80));
+        foodNutritionList.add(new Food("soft-drink", 120));
+        foodNutritionList.add(new Food("fresh-milk", 163));
     }
 
     /**
@@ -27,11 +34,12 @@ public class FoodNutritionInfo {
      *
      * @return the only instance of FoodNutritionInfo
      */
-    public static FoodNutritionInfo getInstance() {
-        if (theOnlyOne == null) {
-            theOnlyOne = new FoodNutritionInfo();
+
+    public static FoodNutritionRecord getInstance() {
+        if (theOne == null) {
+            theOne = new FoodNutritionRecord();
         }
-        return theOnlyOne;
+        return theOne;
     }
 
     /**
@@ -42,7 +50,7 @@ public class FoodNutritionInfo {
      */
     public Optional<Food> findFood(String foodName) {
         Optional<Food> foodFound = Optional.empty();
-        for (Food food : foods) {
+        for (Food food : foodNutritionList) {
             if (food.getFoodName().toLowerCase().equals(foodName.toLowerCase())) {
                 foodFound = Optional.of(food);
             }
@@ -51,7 +59,7 @@ public class FoodNutritionInfo {
     }
 
     public Food findFood(int index) {
-        return foods.get(index);
+        return foodNutritionList.get(index);
     }
 
     /**
@@ -62,7 +70,7 @@ public class FoodNutritionInfo {
      */
     public boolean isInDatabase(String foodName) {
         boolean isFoodFound = false;
-        for (Food food : foods) {
+        for (Food food : foodNutritionList) {
             if (food.getFoodName().toLowerCase().equals(foodName.toLowerCase())) {
                 isFoodFound = true;
                 break;
@@ -76,7 +84,7 @@ public class FoodNutritionInfo {
      */
     public String showFoodDatabase() {
         StringBuilder foodDatabase = new StringBuilder(MessageBank.FOOD_DATABASE_MESSAGE);
-        for (Food food : foods) {
+        for (Food food : foodNutritionList) {
             foodDatabase.append(food);
         }
         return foodDatabase.toString();
@@ -90,9 +98,9 @@ public class FoodNutritionInfo {
      * @return true if operation succeeds, false if food already exists in database
      */
 
-    public boolean addNewFood(String foodName, Double calories) {
+    public boolean addFoodNutritionRecord(String foodName, Double calories) {
         if (!isInDatabase(foodName)) {
-            foods.add(new Food(foodName, calories));
+            foodNutritionList.add(new Food(foodName, calories));
             return true;
         } else {
             return false;
@@ -106,10 +114,10 @@ public class FoodNutritionInfo {
      * @return true if operation succeeds, false if referred food doesn't exist
      */
 
-    public boolean deleteFood(String foodName) {
+    public boolean deleteFoodNutritionRecord(String foodName) {
         if (findFood(foodName).isPresent()) {
             Food toBeDeleted = findFood(foodName).get();
-            foods.remove(toBeDeleted);
+            foodNutritionList.remove(toBeDeleted);
             return true;
         } else {
             return false;
@@ -117,10 +125,10 @@ public class FoodNutritionInfo {
     }
 
     public int getListSize() {
-        return this.foods.size();
+        return this.foodNutritionList.size();
     }
 
     public double getFoodCalories(int index) {
-        return foods.get(index).getCalories().get();
+        return foodNutritionList.get(index).getCalories().get();
     }
 }

@@ -1,7 +1,7 @@
 package seedu.dietmanager.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Profile {
     private String name;
@@ -40,6 +40,7 @@ public class Profile {
 
     /**
      * Returns a daily record of a certain date.
+     *
      * @param date the date of the wanted record.
      * @return a record of wanted date.
      */

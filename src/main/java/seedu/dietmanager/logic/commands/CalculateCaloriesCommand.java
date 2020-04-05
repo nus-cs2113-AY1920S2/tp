@@ -82,7 +82,8 @@ public class CalculateCaloriesCommand extends Command {
 
     /**
      * Calculates the calories intake during given time period.
-     *  @param profile the object containing user profile information.
+     *
+     * @param profile the object containing user profile information.
      * @param ui      the object containing user interface functions.
      * @return
      */

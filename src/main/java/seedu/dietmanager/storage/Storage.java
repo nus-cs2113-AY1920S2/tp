@@ -2,6 +2,7 @@ package seedu.dietmanager.storage;
 
 import seedu.dietmanager.commons.core.LogsCentre;
 import seedu.dietmanager.ui.UI;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;

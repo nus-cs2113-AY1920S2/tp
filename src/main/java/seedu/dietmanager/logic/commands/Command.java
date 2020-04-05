@@ -56,7 +56,8 @@ public abstract class Command {
 
     /**
      * Abstract method to execute the Command.
-     *  @param profile the object containing user profile information.
+     *
+     * @param profile the object containing user profile information.
      * @param ui      the object containing user interface functions.
      * @return
      */
