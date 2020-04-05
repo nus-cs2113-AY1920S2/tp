@@ -1,3 +1,4 @@
+<!-- @@author jiajuinphoon -->
 # JiaJuinPhoon - Project Portfolio
 # PROJECT: SHOCO 
 
@@ -94,9 +95,9 @@ Example of usage:
  The following sequence diagram below shows how the add feature works. The details of the adding item's values
  are shown in a separate sequence diagram below:
  
- ![alt text](images/AddFeature.png)
+ ![alt text](../images/AddFinal.png)
  
- ![alt text](images/AddFeature_SD.png)
+ ![alt text](../images/AddFeature_SDFinal.png)
  
 #### 3.1.2 Design considerations
 
@@ -131,3 +132,5 @@ Example of usage:
  and edit the price and quantity later when they knew the price and have decided the quantity. 
 
 &nbsp;
+
+<!-- @@author -->
