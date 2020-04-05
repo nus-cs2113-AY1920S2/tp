@@ -35,7 +35,7 @@ public class SetWeightCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         if (!this.noDescription) {
-            profile.addWeightProgress(weight, day);
+            profile.setWeight(weight);
         }
         saveResult(profile);
     }

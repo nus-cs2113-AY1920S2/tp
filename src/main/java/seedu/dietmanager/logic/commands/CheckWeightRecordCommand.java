@@ -7,20 +7,19 @@ import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.abs;
 
-public class CheckWeightProgressCommand extends Command {
+public class CheckWeightRecordCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private String profileName;
-    private ArrayList<Double> weightRecord = new ArrayList<>();
-    private ArrayList<String> weightRecordDays = new ArrayList<>();
+    private List<Double> weightRecord = new ArrayList<>();
     private double initialWeight;
     private double currentWeight;
     private double weightDifference;
     private boolean noDescription;
-
 
     /**
      * Constructs the Command object.
@@ -28,7 +27,7 @@ public class CheckWeightProgressCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public CheckWeightProgressCommand(String command, String description)
+    public CheckWeightRecordCommand(String command, String description)
             throws InvalidFormatException, NumberFormatException {
         super(command);
         this.noDescription = false;
@@ -44,11 +43,10 @@ public class CheckWeightProgressCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         if (!this.noDescription) {
-            weightRecord = profile.getWeightProgress();
-            weightRecordDays = profile.getWeightProgressDays();
+            weightRecord = profile.getWeightRecord();
             ui.showCommandMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE); //Wil change this part later on
             for (int i = 0; i < weightRecord.size(); i++) {
-                ui.showCommandMessage(i + 1 + ". " + weightRecord.get(i) + "kg " + weightRecordDays.get(i));
+                ui.showCommandMessage(i + 1 + ". " + weightRecord.get(i) + "kg ");
             }
         }
 

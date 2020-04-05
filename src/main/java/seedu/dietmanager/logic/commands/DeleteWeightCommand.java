@@ -10,7 +10,6 @@ public class DeleteWeightCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private double weightDeleted;
-    private String weightDeletedDay;
     private int index;
     private boolean noDescription;
 
@@ -36,10 +35,8 @@ public class DeleteWeightCommand extends Command {
     @Override
     public void execute(Profile profile, UI ui) {
         if (!this.noDescription) {
-            weightDeleted = profile.getWeightProgress().get(index);
-            weightDeletedDay = profile.getWeightProgressDays().get(index);
-            profile.getWeightProgress().remove(index);
-            profile.getWeightProgressDays().remove(index);
+            weightDeleted = profile.getWeightRecord().get(index);
+            profile.getWeightRecord().remove(index);
         }
 
         saveResult(profile);
@@ -48,7 +45,7 @@ public class DeleteWeightCommand extends Command {
     @Override
     public void saveResult(Profile profile) {
         if (!this.noDescription) {
-            this.result = weightDeleted + "kg " + weightDeletedDay + MessageBank.WEIGHT_DELETED_MESSAGE;
+            this.result = "Weight Record: " + weightDeleted + "kg " + MessageBank.WEIGHT_DELETED_MESSAGE;
         } else {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
         }

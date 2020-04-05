@@ -1,8 +1,18 @@
 package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.commons.exceptions.*;
-import seedu.dietmanager.logic.parser.*;
+import seedu.dietmanager.commons.exceptions.InvalidAgeException;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.commons.exceptions.InvalidGenderException;
+import seedu.dietmanager.commons.exceptions.InvalidHeightException;
+import seedu.dietmanager.commons.exceptions.InvalidNameException;
+import seedu.dietmanager.commons.exceptions.InvalidWeightException;
+import seedu.dietmanager.logic.parser.AgeParser;
+import seedu.dietmanager.logic.parser.GenderParser;
+import seedu.dietmanager.logic.parser.HeightParser;
+import seedu.dietmanager.logic.parser.NameParser;
+import seedu.dietmanager.logic.parser.SetProfileParser;
+import seedu.dietmanager.logic.parser.WeightParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
@@ -28,7 +38,7 @@ public class SetProfileCommand extends Command {
         this.noDescription = false;
 
         try {
-            String[] descriptionArray = SetProfileParser.parseDescription(description);
+            String[] descriptionArray = SetProfileParser.parseProfileDescription(description);
             this.name = NameParser.parseName(descriptionArray[0]);
             this.age = AgeParser.parseAge(descriptionArray[1].trim());
             this.gender = GenderParser.parseGender(descriptionArray[2].trim());

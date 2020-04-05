@@ -13,7 +13,7 @@ public class SetProfileParser {
      * @throws InvalidFormatException if user input has the wrong format.
      */
 
-    public static String[] parseDescription(String description) throws InvalidFormatException {
+    public static String[] parseProfileDescription(String description) throws InvalidFormatException {
         String[] descriptionArray = description.trim().split("\\s+", ARGUMENTS_REQUIRED);
         if (descriptionArray.length != ARGUMENTS_REQUIRED) {
             throw new InvalidFormatException();
