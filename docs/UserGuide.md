@@ -27,7 +27,7 @@ You will see this welcome message if you have done the above steps correctly.
 TODO: change image
 ![](images/capture.png)
 
-The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#add-a-new-contact) to see the commands of all features.
+The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
 
 ## Features 
 
