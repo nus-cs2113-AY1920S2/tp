@@ -71,7 +71,6 @@ public class AppointmentParser {
                 || parseInput[2].equalsIgnoreCase("") || parseInput[3].equalsIgnoreCase("")
                 || !Checker.isValidDate(parseInput[1].trim()) || !Checker.isValidTime(parseInput[2].trim())
                 || !Checker.isValidNric(parseInput[0].trim())) {
-            System.out.println("nric: " + Checker.isValidNric(parseInput[0].trim()) + " " + parseInput[0].trim());
             printMissingInput(parseInput);
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
