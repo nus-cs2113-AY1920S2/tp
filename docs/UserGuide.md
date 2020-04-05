@@ -30,7 +30,7 @@ You will see this welcome message if you have done the above steps correctly.
 TODO: change image
 ![](images/capture.png)
 
-The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
+The following part of the User Guide will explain the features of When Free in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
 
 <br/>
 
@@ -66,7 +66,7 @@ TODO: change image so that the words are the same font size
 
 Note:
 - You must add in your (main user's) contact before you can use the application. 
-If you try to enter a command before adding in your contact, Whenfree will remind
+If you try to enter a command before adding in your contact, When Free will remind
 you to key in your contact first.
 TODO: change image
 ![](images/capture.png)
@@ -102,7 +102,7 @@ Example of usage:
     TODO: update image
     ![](images/capture3.png)`
 
-2) Displays the timetable of a selected contact. You will need to key in the **Contact Index** of the selected contact.
+2) Displays the timetable of a selected contact. You will need to key in **Contact Index** of the selected contact.
 
     Format: 
     
@@ -114,7 +114,7 @@ Example of usage:
     TODO: update image
     ![](images/capture4.png)
 
-3) Displays the combined timetable of multiple selected contacts. You will need to key in the **Contact Index** of 
+3) Displays the combined timetable of multiple selected contacts. You will need to key in **Contact Index** of 
 each of the selected contacts.
    
    Format: 
@@ -128,7 +128,7 @@ each of the selected contacts.
     ![](images/capture5.png)
     
 Note:
-- You can check `<Contact Index>` of the contacts whose timetable you wish to display, by listing all contacts using 
+- You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
 `contacts`.
 - Both `timetable` and `timetable 0 ` display your (main user's) timetable.
 
@@ -151,8 +151,8 @@ Example of usage:
 <br/><br/>
 
 Note:
-- Scheduling a meeting will modify your (main user's) timetable to be busy at the specified time slot. 
-Timetables of other contacts will not be affected.
+- Scheduling a meeting will modify only your (main user's) timetable, to be busy at the specified time slot. 
+Timetables of other contacts will not be modified.
 - You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
 `timetable` if you try to schedule a meeting during a time slot which you are busy for.
 
@@ -160,6 +160,7 @@ Timetables of other contacts will not be affected.
     
     ![](images/capture6.png)
 
+</br></br>
 
 ### Edit a contact's timetable `edit`
 1) Edit a contact's timetable to be busy for a specified time slot. You will need to key in the **Contact Index**
