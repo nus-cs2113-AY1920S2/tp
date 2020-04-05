@@ -247,14 +247,14 @@ Example of usage:
     ```
 
 ### 3.9 Get a recommended recipe
-Get a recommend recipe based on user's needs.
+Get a recommend recipe based on user's physical conditions and activity level.
 
-Format: `new-recipe CALORIES_CAP MAXIMUM_FODD_TYPES`
+Format: `new-recipe MAXIMUM_FODD_TYPES ACTIVITY_LEVEL`
 
 Explanation: 
 ```
-CALORIES_CAP is the upper bound of total calories contained in a meal.
 MAXIMUM_FOOD_TYPES is the maximum number of food types the user want to have in a meal. 
+ACTIVITY_LEVEL has three levels : low/moderate/high. Based on different activity levels the app recommends different recipes.
 ```
 
 Attention:
@@ -265,24 +265,24 @@ Attention:
 ```
 
 Example of usage:
-* `CALORIES_CAP` is 5, `MAXIMUM_NUM` is 2:
+* `MAXIMUM_NUM` is 2, `ACTIVITY_LEVEL` is low:
 
-    Input: `new-recipe 5 2`
+    Input: `new-recipe 2 low`
     
     Expected Output: 
     ```
                morning                                                     afternoon                                                   night
-     MONDAY    Chicken(1.00),Apple(2.00)                                   Rice(4.00),Chicken(1.00)                                    Apple(2.00),Chicken(1.00)
-     TUESDAY   Carrots(3.00),Chicken(1.00)                                 Rice(4.00),Chicken(1.00)                                    Oil(5.00)
-     WEDNESDAY Chicken(1.00),Carrots(3.00)                                 Apple(2.00),Chicken(1.00)                                   Chicken(1.00),Carrots(3.00)
-     THURSDAY  Rice(4.00),Chicken(1.00)                                    Oil(5.00)                                                   Carrots(3.00),Chicken(1.00)
-     FRIDAY    Oil(5.00)                                                   Rice(4.00),Chicken(1.00)                                    Apple(2.00),Carrots(3.00)
-     SATURDAY  Chicken(1.00),Carrots(3.00)                                 Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Carrots(3.00)
-     SUNDAY    Rice(4.00),Chicken(1.00)                                    Rice(4.00),Chicken(1.00)                                    Carrots(3.00),Chicken(1.00)
+     MONDAY    Carrots(3.00),Tea(6.00)                                     Tea(6.00),Chicken(1.00)                                     Chicken(1.00),Carrots(3.00)
+     TUESDAY   Oil(5.00),Rice(4.00)                                        Chicken(1.00),Oil(5.00)                                     Apple(2.00),Rice(4.00)
+     WEDNESDAY Rice(4.00),Tea(6.00)                                        Oil(5.00),Carrots(3.00)                                     Oil(5.00),Chicken(1.00)
+     THURSDAY  Carrots(3.00),Rice(4.00)                                    Chicken(1.00),Rice(4.00)                                    Oil(5.00),Apple(2.00)
+     FRIDAY    Chicken(1.00),Rice(4.00)                                    Carrots(3.00),Oil(5.00)                                     Tea(6.00),Oil(5.00)
+     SATURDAY  Carrots(3.00),Chicken(1.00)                                 Oil(5.00),Apple(2.00)                                       Apple(2.00),Tea(6.00)
+     SUNDAY    Apple(2.00),Oil(5.00)                                       Rice(4.00),Oil(5.00)                                        Rice(4.00),Carrots(3.00)
     ```
-* `CALORIES_CAP` is 50, `MAXIMUM_NUM` is 5:
+* `MAXIMUM_NUM` is 5, `ACTIVITY_LEVEL` is high:
 
-    Input: `new-recipe 50 5`
+    Input: `new-recipe 5 high`
     
     Expected Output:
     ```

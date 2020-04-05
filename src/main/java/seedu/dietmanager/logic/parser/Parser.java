@@ -16,7 +16,7 @@ import seedu.dietmanager.logic.commands.SetWeightGoalCommand;
 import seedu.dietmanager.logic.commands.CheckWeightProgressCommand;
 import seedu.dietmanager.logic.commands.DeleteWeightCommand;
 import seedu.dietmanager.logic.commands.CalculateCaloriesCommand;
-import seedu.dietmanager.logic.commands.CheckCaloriesCommand;
+import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 import seedu.dietmanager.logic.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.logic.commands.AddFoodCommand;
 import seedu.dietmanager.logic.commands.DeleteFoodCommand;
@@ -154,8 +154,8 @@ public class Parser {
         case "check-weight-progress":
             command = new CheckWeightProgressCommand(commandPrompt, description);
             break;
-        case "check-calories-intake":
-            command = new CheckCaloriesCommand(commandPrompt, description);
+        case "check-required-cal":
+            command = new CheckRequiredCaloriesCommand(commandPrompt, description);
             break;
         case "list-food":
             command = new ListFoodDatabaseCommand(commandPrompt);
