@@ -73,11 +73,11 @@ public class DirectoryTree extends TreeView<Label> {
                 for (Task task : taskList) {
                     // Add task to tree
                     TreeItem<Label> taskItem = new TreeItem<>();
-                    if (!task.getDeadline().isPresent()) {
-                        styleTreeItem(taskItem, categoryItem, task.getDescription(), Color.CORNFLOWERBLUE);
-                    } else if (task.isDone()) {
-                        // Task is done but not deleted yet
+                    if (task.isDone()) {
                         styleTreeItem(taskItem, categoryItem, task.getDescription(), Color.LIGHTGRAY);
+                    } else if (!task.getDeadline().isPresent()) {
+                        // Task is done but not deleted yet
+                        styleTreeItem(taskItem, categoryItem, task.getDescription(), Color.CORNFLOWERBLUE);
                     } else if (task.getDeadline().isDue()) {
                         // Highlight if task is due
                         styleTreeItem(taskItem, categoryItem, task.getDescription(), Color.CRIMSON);

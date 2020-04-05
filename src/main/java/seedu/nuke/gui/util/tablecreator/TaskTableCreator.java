@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -18,6 +19,7 @@ import seedu.nuke.exception.DataNotFoundException;
 import seedu.nuke.gui.io.GuiExecutor;
 import seedu.nuke.gui.util.tablecreator.basicdirectory.BasicTask;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static seedu.nuke.common.Constants.CHECK_ICON;
@@ -131,8 +133,40 @@ public class TaskTableCreator {
         TableColumn<BasicTask, String> deadlineColumn = new TableColumn<>("Deadline");
         deadlineColumn.setCellValueFactory(new PropertyValueFactory<>("deadline"));
         deadlineColumn.setPrefWidth(DEADLINE_WIDTH);
-        deadlineColumn.setStyle("-fx-alignment: CENTER");
+        // Color table rows depending on the proximity to deadline
+        deadlineColumn.setCellFactory(column -> new TableCell<BasicTask, String>() {
+            @Override
+            protected void updateItem(String deadlineString, boolean empty) {
+                super.updateItem(deadlineString, empty);
+                TableRow<BasicTask> row = getTableRow();
 
+                if (deadlineString == null || empty) {
+                    row.setStyle("");
+                    return;
+                }
+                setText(deadlineString);
+                BasicTask basicTask = row.getItem();
+                try {
+                    Task task = ModuleManager.getTask(basicTask.getModuleCode(), basicTask.getCategoryName(),
+                            basicTask.getDescription());
+                    if (task.isDone()) {
+                        // Highlight if task is done
+                        row.setStyle("-fx-background-color: Gainsboro");
+                    } else if (task.getDeadline().isPresent() && task.getDeadline().isDue()) {
+                        // Highlight if task is due
+                        row.setStyle("-fx-background-color: PeachPuff");
+                    } else if (task.getDeadline().isPresent()
+                            && task.getDeadline().isBefore(LocalDate.now().plusDays(3))) {
+                        // Highlight if task is near deadline (within 2 days)
+                        row.setStyle("-fx-background-color: CornSilk");
+                    }
+                } catch (DataNotFoundException e) {
+                    // Do nothing
+                }
+            }
+        });
+
+        deadlineColumn.setStyle("-fx-alignment: CENTER");
         return deadlineColumn;
     }
 

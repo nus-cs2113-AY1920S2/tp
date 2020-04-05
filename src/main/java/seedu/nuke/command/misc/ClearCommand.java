@@ -22,6 +22,6 @@ public class ClearCommand extends Command {
         GuiExecutor.clearScreen();
 
         // No feedback to user; simply clears the screen
-        return new CommandResult("");
+        return new CommandResult(null);
     }
 }
