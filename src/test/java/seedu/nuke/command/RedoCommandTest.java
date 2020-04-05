@@ -2,6 +2,8 @@ package seedu.nuke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Executor;
+import seedu.nuke.command.misc.RedoCommand;
+import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
@@ -10,7 +12,7 @@ import seedu.nuke.data.storage.StoragePath;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.nuke.command.RedoCommand.MESSAGE_REDO_AT_END;
+import static seedu.nuke.command.misc.RedoCommand.MESSAGE_REDO_AT_END;
 
 class RedoCommandTest {
 

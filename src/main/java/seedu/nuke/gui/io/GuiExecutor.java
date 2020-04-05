@@ -10,6 +10,9 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.ExitCommand;
+import seedu.nuke.data.ScreenShotManager;
+import seedu.nuke.data.storage.StorageManager;
+import seedu.nuke.data.storage.StoragePath;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Module;
@@ -27,6 +30,7 @@ import seedu.nuke.gui.util.tablecreator.basicdirectory.BasicTask;
 import seedu.nuke.util.ListCreator;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -48,6 +52,16 @@ public class GuiExecutor {
     public void executeAction(String userInput) {
         CommandResult result = Executor.executeCommand(userInput);
         displayResult(result);
+
+        // Save list
+        if (StorageManager.isToSave()) {
+            try {
+                new StorageManager(StoragePath.SAVE_PATH).saveList();
+            } catch (IOException e) {
+                showMessage(e.getMessage());
+            }
+            ScreenShotManager.saveScreenShot();
+        }
 
         if (ExitCommand.isExit()) {
             Stage window = (Stage) consoleScreen.getScene().getWindow();
@@ -80,7 +94,7 @@ public class GuiExecutor {
     public void showMessage(String message) {
         if (!message.isEmpty()) {
             Text feedbackToUser = TextUtil.createText(String.format("%s", message), Color.NAVY);
-            consoleScreen.getChildren().add(feedbackToUser);
+            consoleScreen.getChildren().addAll(feedbackToUser);
         }
     }
 
