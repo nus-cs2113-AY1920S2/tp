@@ -1,5 +1,6 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
@@ -22,7 +23,7 @@ public abstract class Command {
      * The last execution result of the command.
      */
 
-    protected String result;
+    protected String resultString;
 
     /**
      * Constructs the Command object.
@@ -45,30 +46,21 @@ public abstract class Command {
     }
 
     /**
-     * Returns the last execution result of the command.
-     *
-     * @return the last execution result of the command.
-     */
-
-    public String getResult() {
-        return this.result;
-    }
-
-    /**
      * Abstract method to save execution result of the command.
      *
      * @param profile the profile that the command is dealing with.
+     * @return
      */
 
-    public abstract void saveResult(Profile profile);
+    public abstract Result getResult(Profile profile);
 
     /**
      * Abstract method to execute the Command.
-     *
-     * @param profile the object containing user profile information.
+     *  @param profile the object containing user profile information.
      * @param ui      the object containing user interface functions.
+     * @return
      */
 
-    public abstract void execute(Profile profile, UI ui);
+    public abstract Result execute(Profile profile, UI ui);
 
 }

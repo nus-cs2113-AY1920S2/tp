@@ -1,15 +1,15 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.parser.Parser;
+import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.ui.UI;
+import seedu.dietmanager.commons.core.Weekday;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Food;
-import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.core.Weekday;
-
+import seedu.dietmanager.ui.UI;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class RecordMealCommand extends Command {
     /**
      * Constructs the Command object.
      *
-     * @param command the command prompt entered by the user.
+     * @param command     the command prompt entered by the user.
      * @param description the description of the command.
      * @throws InvalidFormatException if the command doesn't contain correct number of parameters.
      */
@@ -36,7 +36,7 @@ public class RecordMealCommand extends Command {
         this.isInvalidDate = false;
 
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
+            String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.date = descriptionArray[0].trim().toUpperCase();
             this.mealType = descriptionArray[1].trim().toLowerCase();
             this.foodDescription = descriptionArray[2].trim().split("/");
@@ -52,10 +52,10 @@ public class RecordMealCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (this.noDescription | this.isInvalidDate) {
-            saveResult(profile);
-            return;
+            Result result = getResult(profile);
+            return result;
         }
 
         DailyFoodRecord record = profile.getRecordOfDay(date);
@@ -99,41 +99,43 @@ public class RecordMealCommand extends Command {
                 break;
             }
         }
-        record.recordMeals(mealType,foodList);
-        saveResult(profile);
+        record.recordMeals(mealType, foodList);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (this.noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
-            return;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return new Result(this.resultString);
         } else if (this.isInvalidDate) {
-            this.result = MessageBank.INVALID_DATE_MESSAGE;
-            return;
+            this.resultString = MessageBank.INVALID_DATE_MESSAGE;
+            return new Result(this.resultString);
         }
 
         boolean isValidType = true;
         switch (mealType) {
         case "morning":
-            this.result = MessageBank.BREAKFAST_RECORD_MESSAGE;
+            this.resultString = MessageBank.BREAKFAST_RECORD_MESSAGE;
             break;
         case "afternoon":
-            this.result = MessageBank.LUNCH_RECORD_MESSAGE;
+            this.resultString = MessageBank.LUNCH_RECORD_MESSAGE;
             break;
         case "night":
-            this.result = MessageBank.DINNER_RECORD_MESSAGE;
+            this.resultString = MessageBank.DINNER_RECORD_MESSAGE;
             break;
         default:
             isValidType = false;
-            this.result = MessageBank.MEAL_TYPE_ERROR;
+            this.resultString = MessageBank.MEAL_TYPE_ERROR;
             break;
         }
         if (isValidType) {
-            this.result = this.result + date + ".";
+            this.resultString = this.resultString + date + ".";
         }
         if (!isValidFoodFormat) {
-            this.result = this.result + System.lineSeparator() + MessageBank.INVALID_FOOD_FORMAT_ERROR;
+            this.resultString = this.resultString + System.lineSeparator() + MessageBank.INVALID_FOOD_FORMAT_ERROR;
         }
+        return new Result(this.resultString);
     }
 }

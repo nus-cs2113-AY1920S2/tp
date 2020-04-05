@@ -37,12 +37,12 @@ public class RecipeManager {
     private void setRecipe(String date, String mealType, ArrayList<Food> foodList) {
         Weekday weekday = Weekday.valueOf(date.toUpperCase());
         int index = weekday.getIndex();
-        recipe.get(index).recordMeals(mealType,foodList);
+        recipe.get(index).recordMeals(mealType, foodList);
     }
 
     private void setRecipe(int index, String mealType, ArrayList<Food> foodList) {
         recipe.get(index).clearRecords(mealType);
-        recipe.get(index).recordMeals(mealType,foodList);
+        recipe.get(index).recordMeals(mealType, foodList);
     }
 
     /**
@@ -53,9 +53,9 @@ public class RecipeManager {
      */
 
     public String getRecipe() {
-        String recipeTable = String.format("%1$-10s"," ") + "morning";
-        recipeTable = String.format("%1$-70s",recipeTable) + "afternoon";
-        recipeTable = String.format("%1$-130s",recipeTable) + "night\n";
+        String recipeTable = String.format("%1$-10s", " ") + "morning";
+        recipeTable = String.format("%1$-70s", recipeTable) + "afternoon";
+        recipeTable = String.format("%1$-130s", recipeTable) + "night\n";
 
         for (DailyFoodRecord record : recipe) {
             recipeTable = recipeTable + record.getRecipeEntry() + System.lineSeparator();
@@ -72,7 +72,7 @@ public class RecipeManager {
 
     public boolean buildRecipe(Profile profile, int num, String activityLevel) {
         CheckRequiredCaloriesCommand command = new CheckRequiredCaloriesCommand("check-required-cal");
-        double cap = command.getRecommendedCaloriesIntake(profile,activityLevel);
+        double cap = command.getRecommendedCaloriesIntake(profile, activityLevel);
 
         FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
         int maxNum = foodInfo.getListSize();

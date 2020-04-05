@@ -36,6 +36,7 @@ public class FoodNutritionInfo {
 
     /**
      * Search for a food in the database.
+     *
      * @param foodName The name of the food to be searched for.
      * @return Optional Food that contains the food if exist, and is empty otherwise.
      */
@@ -55,6 +56,7 @@ public class FoodNutritionInfo {
 
     /**
      * Search if a food exists in the database.
+     *
      * @param foodName The name of the food to be searched for.
      * @return True if food exist in database, false otherwise.
      */
@@ -90,7 +92,7 @@ public class FoodNutritionInfo {
 
     public boolean addNewFood(String foodName, Double calories) {
         if (!isInDatabase(foodName)) {
-            foods.add(new Food(foodName,calories));
+            foods.add(new Food(foodName, calories));
             return true;
         } else {
             return false;

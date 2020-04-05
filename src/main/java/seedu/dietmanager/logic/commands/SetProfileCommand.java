@@ -1,22 +1,31 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
+import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.exceptions.InvalidAgeException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.commons.exceptions.InvalidGenderException;
-import seedu.dietmanager.logic.parser.Parser;
-import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.exceptions.InvalidHeightException;
+import seedu.dietmanager.commons.exceptions.InvalidNameException;
+import seedu.dietmanager.commons.exceptions.InvalidWeightException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.parser.AgeParser;
+import seedu.dietmanager.logic.parser.GenderParser;
+import seedu.dietmanager.logic.parser.HeightParser;
+import seedu.dietmanager.logic.parser.NameParser;
+import seedu.dietmanager.logic.parser.SetProfileParser;
+import seedu.dietmanager.logic.parser.WeightParser;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class SetProfileCommand extends Command {
 
-    private static final int ARGUMENTS_REQUIRED = 6;
     private String name;
     private int age;
     private String gender;
     private double height;
     private double weight;
     private double weightGoal;
-    private boolean noDescription;
+    private boolean isValidCommand;
 
     /**
      * Constructs the Command object.
@@ -24,38 +33,39 @@ public class SetProfileCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetProfileCommand(String command, String description) throws InvalidFormatException,
-            NumberFormatException, InvalidGenderException {
+    public SetProfileCommand(String command, String description) {
         super(command);
-        this.noDescription = false;
-
+        this.isValidCommand = true;
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.name = descriptionArray[0].trim();
-            this.age = Integer.parseInt(descriptionArray[1].trim());
-            this.gender = Parser.parseGender(descriptionArray[2].trim());
-            this.height = Double.parseDouble(descriptionArray[3].trim());
-            this.weight = Double.parseDouble(descriptionArray[4].trim());
-            this.weightGoal = Double.parseDouble(descriptionArray[5].trim());
-        } catch (NullPointerException e) {
-            this.noDescription = true;
+            String[] descriptionArray = SetProfileParser.parseProfileDescription(description);
+            this.name = NameParser.parseName(descriptionArray[0]);
+            this.age = AgeParser.parseAge(descriptionArray[1]);
+            this.gender = GenderParser.parseGender(descriptionArray[2]);
+            this.height = HeightParser.parseHeight(descriptionArray[3]);
+            this.weight = WeightParser.parseWeight(descriptionArray[4]);
+            this.weightGoal = WeightParser.parseWeight(descriptionArray[5]);
+        } catch (NullPointerException | InvalidHeightException | InvalidWeightException | InvalidAgeException
+                | InvalidNameException | InvalidGenderException | InvalidFormatException e) {
+            this.isValidCommand = false;
         }
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
-        if (!this.noDescription) {
+    public Result execute(Profile profile, UI ui) {
+        if (this.isValidCommand) {
             profile.setProfile(this.name, this.age, this.gender, this.height, this.weight, this.weightGoal);
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
-        if (this.noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+    public Result getResult(Profile profile) {
+        if (this.isValidCommand) {
+            this.resultString = MessageBank.PROFILE_UPDATE_MESSAGE;
         } else {
-            this.result = MessageBank.PROFILE_UPDATE_MESSAGE;
+            this.resultString = MessageBank.INVALID_FORMAT_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 }

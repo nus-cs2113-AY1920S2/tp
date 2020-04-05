@@ -32,6 +32,7 @@ public class DailyFoodRecord {
 
     /**
      * Returns the date of this record.
+     *
      * @return the date of this record
      */
 
@@ -144,6 +145,7 @@ public class DailyFoodRecord {
 
     /**
      * Provide a ArrayList of all the foods consumed in a day.
+     *
      * @return ArrayList of all the foods consumed in a day
      */
     public ArrayList<Food> getDailyFood() {
@@ -156,6 +158,7 @@ public class DailyFoodRecord {
 
     /**
      * Provide a ArrayList of the foods consumed in a specific time frame of a day.
+     *
      * @return ArrayList of all the foods consumed in a day
      */
     public ArrayList<Food> getDailyFood(String timeFrame) {
@@ -173,6 +176,7 @@ public class DailyFoodRecord {
 
     /**
      * Calculate the total recorded calories for all the meals.
+     *
      * @return Optional double of the calories intake if exist, and Optional empty otherwise.
      */
     public Optional<Double> getDailyCalories() {
@@ -185,6 +189,7 @@ public class DailyFoodRecord {
 
     /**
      * Calculate the total recorded calories for meals in a specific time frame of a day .
+     *
      * @return Optional double of the calories intake if exist, and Optional empty otherwise.
      */
     public Optional<Double> getDailyCalories(String timeFrame) {
@@ -197,6 +202,7 @@ public class DailyFoodRecord {
 
     /**
      * Check if the DailyFoodRecord has any Food with missing calories data.
+     *
      * @return False if there exist food without calories, true otherwise.
      */
     public boolean isCaloriesPresent() {
@@ -209,6 +215,7 @@ public class DailyFoodRecord {
 
     /**
      * Check if the DailyFoodRecord has any Food in a specific time frame of a day with missing calories data.
+     *
      * @return False if there exist food without calories, true otherwise.
      */
     public boolean isCaloriesPresent(String timeFrame) {
@@ -221,6 +228,7 @@ public class DailyFoodRecord {
 
     /**
      * Express the calculable calories intake for all the meals as a String.
+     *
      * @return String representation of the calculable calories.
      */
     public String showDailyCalories() {
@@ -232,6 +240,7 @@ public class DailyFoodRecord {
 
     /**
      * Express the calculable calories intake for meals within a time frame of the day as a String.
+     *
      * @return String representation of the calculable calories within a time frame.
      */
     public String showDailyCalories(String timeFrame) {
@@ -249,24 +258,24 @@ public class DailyFoodRecord {
 
     public String getRecipeEntry() {
         String message = this.date;
-        message = String.format("%1$-10s",message);
+        message = String.format("%1$-10s", message);
 
         for (Food food : breakfast) {
             message = message + food.getPair();
         }
-        message = message.substring(0,message.length() - 1);
-        message = String.format("%1$-70s",message);
+        message = message.substring(0, message.length() - 1);
+        message = String.format("%1$-70s", message);
 
         for (Food food : lunch) {
             message = message + food.getPair();
         }
-        message = message.substring(0,message.length() - 1);
-        message = String.format("%1$-130s",message);
+        message = message.substring(0, message.length() - 1);
+        message = String.format("%1$-130s", message);
 
         for (Food food : dinner) {
             message = message + food.getPair();
         }
-        message = message.substring(0,message.length() - 1);
+        message = message.substring(0, message.length() - 1);
 
         return message;
     }

@@ -2,7 +2,6 @@ package seedu.dietmanager.storage;
 
 import seedu.dietmanager.commons.core.LogsCentre;
 import seedu.dietmanager.ui.UI;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,6 +56,7 @@ public class Storage {
 
     /**
      * Constructs the Storage object.
+     *
      * @param ui the object containing user interface functions.
      */
 

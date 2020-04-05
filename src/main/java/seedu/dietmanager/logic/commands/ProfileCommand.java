@@ -1,7 +1,8 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class ProfileCommand extends Command {
@@ -18,21 +19,23 @@ public class ProfileCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
-        saveResult(profile);
+    public Result execute(Profile profile, UI ui) {
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (profile.isProfileExist()) {
-            this.result = MessageBank.WELCOME_MESSAGE + System.lineSeparator()
+            this.resultString = MessageBank.WELCOME_MESSAGE + System.lineSeparator()
                     + String.format("Age:          %d years old", profile.getAge()) + System.lineSeparator()
                     + String.format("Gender:       %s", profile.getGender()) + System.lineSeparator()
                     + String.format("Height:       %.2f centimetres", profile.getHeight()) + System.lineSeparator()
                     + String.format("Weight        %.2f kilograms", profile.getWeight()) + System.lineSeparator()
                     + String.format("Weight Goal:  %.2f kilograms", profile.getWeightGoal());
         } else {
-            this.result = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
+            this.resultString = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 }
