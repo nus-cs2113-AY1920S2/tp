@@ -4,6 +4,7 @@ import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.LogsCentre;
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.Profile;
@@ -36,8 +37,8 @@ public class DietManager {
             try {
                 String userInput = ui.readInput();
                 Command command = CommandParser.parseInput(userInput);
-                command.execute(profile, ui);
-                ui.showCommandMessage(command.getResult());
+                Result result = command.execute(profile, ui);
+                ui.showCommandMessage(result.toString());
             } catch (InvalidFormatException | NumberFormatException e) {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {

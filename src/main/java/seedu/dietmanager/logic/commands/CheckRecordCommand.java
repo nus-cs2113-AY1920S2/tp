@@ -3,6 +3,7 @@ package seedu.dietmanager.logic.commands;
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Profile;
@@ -40,38 +41,40 @@ public class CheckRecordCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
-        saveResult(profile);
+    public Result execute(Profile profile, UI ui) {
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (this.noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
-            return;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return new Result(this.resultString);
         } else if (this.isInvalidDate) {
-            this.result = MessageBank.INVALID_DATE_MESSAGE;
-            return;
+            this.resultString = MessageBank.INVALID_DATE_MESSAGE;
+            return new Result(this.resultString);
         }
 
         DailyFoodRecord record = profile.getRecordOfDay(date);
 
         switch (mealType) {
         case "morning":
-            this.result = date + " Morning: " + System.lineSeparator() + record.showBreakfast()
+            this.resultString = date + " Morning: " + System.lineSeparator() + record.showBreakfast()
                     + record.showDailyCalories(mealType);
             break;
         case "afternoon":
-            this.result = date + " Afternoon: " + System.lineSeparator() + record.showLunch()
+            this.resultString = date + " Afternoon: " + System.lineSeparator() + record.showLunch()
                     + record.showDailyCalories(mealType);
             break;
         case "night":
-            this.result = date + " Night: " + System.lineSeparator() + record.showDinner()
+            this.resultString = date + " Night: " + System.lineSeparator() + record.showDinner()
                     + record.showDailyCalories(mealType);
             break;
         default:
-            this.result = MessageBank.MEAL_TYPE_ERROR;
+            this.resultString = MessageBank.MEAL_TYPE_ERROR;
             break;
         }
+        return new Result(this.resultString);
     }
 }

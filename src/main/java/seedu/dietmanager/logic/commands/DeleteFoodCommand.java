@@ -3,6 +3,7 @@ package seedu.dietmanager.logic.commands;
 import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -33,23 +34,25 @@ public class DeleteFoodCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (!this.noDescription) {
             FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
             this.success = foodInfo.deleteFood(foodName);
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (this.noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (!this.success) {
-            this.result = "No need to delete! Referred Food doesn't exist in database";
+            this.resultString = "No need to delete! Referred Food doesn't exist in database";
         } else {
-            this.result = String.format("You have just deleted %s from the database.", foodName);
+            this.resultString = String.format("You have just deleted %s from the database.", foodName);
         }
+        return new Result(this.resultString);
     }
 }
 

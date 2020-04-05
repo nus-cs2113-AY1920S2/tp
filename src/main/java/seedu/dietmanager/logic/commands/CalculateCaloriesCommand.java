@@ -3,6 +3,7 @@ package seedu.dietmanager.logic.commands;
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Profile;
@@ -81,18 +82,17 @@ public class CalculateCaloriesCommand extends Command {
 
     /**
      * Calculates the calories intake during given time period.
-     *
-     * @param profile the object containing user profile information.
+     *  @param profile the object containing user profile information.
      * @param ui      the object containing user interface functions.
+     * @return
      */
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (this.noDescription | this.isInvalidDate) {
-            saveResult(profile);
-            return;
-        }
-        if (this.isOneDay) {
+            Result result = getResult(profile);
+            return result;
+        } else if (this.isOneDay) {
             DailyFoodRecord record = profile.getRecordOfDay(this.begin);
 
             if (record.getDailyCalories().isPresent()) {
@@ -126,27 +126,30 @@ public class CalculateCaloriesCommand extends Command {
                 }
             }
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     /**
      * Saves the execution result to the command.
      *
      * @param profile the profile that the command is dealing with.
+     * @return
      */
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (this.noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (this.isInvalidDate) {
-            this.result = MessageBank.INVALID_DATE_MESSAGE;
+            this.resultString = MessageBank.INVALID_DATE_MESSAGE;
         } else {
             if (isCircle) {
-                this.result = String.format("%s is ahead of %s, so only calories from %s to SUNDAY is calculated",
+                this.resultString = String.format("%s is ahead of %s, so only calories from %s to SUNDAY is calculated",
                         this.end, this.begin, this.begin) + System.lineSeparator();
             }
-            this.result += MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.", sum);
+            this.resultString += MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.", sum);
         }
+        return new Result(this.resultString);
     }
 }

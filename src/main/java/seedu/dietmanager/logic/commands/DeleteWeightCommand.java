@@ -2,6 +2,7 @@ package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -33,22 +34,23 @@ public class DeleteWeightCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (!this.noDescription) {
             weightDeleted = profile.getWeightRecord().get(index);
             profile.getWeightRecord().remove(index);
         }
-
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (!this.noDescription) {
-            this.result = "Weight Record: " + weightDeleted + "kg " + MessageBank.WEIGHT_DELETED_MESSAGE;
+            this.resultString = "Weight Record: " + weightDeleted + "kg " + MessageBank.WEIGHT_DELETED_MESSAGE;
         } else {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 
 }

@@ -7,6 +7,7 @@ import seedu.dietmanager.commons.exceptions.InvalidGenderException;
 import seedu.dietmanager.commons.exceptions.InvalidHeightException;
 import seedu.dietmanager.commons.exceptions.InvalidNameException;
 import seedu.dietmanager.commons.exceptions.InvalidWeightException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.AgeParser;
 import seedu.dietmanager.logic.parser.GenderParser;
 import seedu.dietmanager.logic.parser.HeightParser;
@@ -50,19 +51,21 @@ public class SetProfileCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (this.isValidCommand) {
             profile.setProfile(this.name, this.age, this.gender, this.height, this.weight, this.weightGoal);
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (this.isValidCommand) {
-            this.result = MessageBank.PROFILE_UPDATE_MESSAGE;
+            this.resultString = MessageBank.PROFILE_UPDATE_MESSAGE;
         } else {
-            this.result = MessageBank.INVALID_FORMAT_MESSAGE;
+            this.resultString = MessageBank.INVALID_FORMAT_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 }

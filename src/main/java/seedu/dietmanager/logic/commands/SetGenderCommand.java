@@ -2,6 +2,7 @@ package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidGenderException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.GenderParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -30,7 +31,7 @@ public class SetGenderCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         this.isValidProfile = profile.isProfileExist();
         if (!this.isValidProfile) {
             this.isValidCommand = false;
@@ -38,17 +39,19 @@ public class SetGenderCommand extends Command {
         if (this.isValidCommand) {
             profile.setGender(this.gender);
         }
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (!this.isValidProfile) {
-            this.result = MessageBank.INVALID_PROFILE_MESSAGE;
+            this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (this.isValidCommand) {
-            this.result = MessageBank.GENDER_CHANGE_MESSAGE + profile.getGender() + ".";
+            this.resultString = MessageBank.GENDER_CHANGE_MESSAGE + profile.getGender() + ".";
         } else {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
+        return new Result(this.resultString);
     }
 }

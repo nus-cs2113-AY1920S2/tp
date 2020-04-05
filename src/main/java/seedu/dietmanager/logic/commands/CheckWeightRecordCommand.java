@@ -2,6 +2,7 @@ package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -41,7 +42,7 @@ public class CheckWeightRecordCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile, UI ui) {
+    public Result execute(Profile profile, UI ui) {
         if (!this.noDescription) {
             weightRecord = profile.getWeightRecord();
             ui.showCommandMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE); //Wil change this part later on
@@ -50,26 +51,28 @@ public class CheckWeightRecordCommand extends Command {
             }
         }
 
-        saveResult(profile);
+        Result result = getResult(profile);
+        return result;
     }
 
     @Override
-    public void saveResult(Profile profile) {
+    public Result getResult(Profile profile) {
         if (this.noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
-            return;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
+            return new Result(this.resultString);
         }
 
         initialWeight = weightRecord.get(0);
         currentWeight = weightRecord.get(weightRecord.size() - 1);
         weightDifference = initialWeight - currentWeight;
         if (weightDifference > 0) {
-            this.result = String.format(MessageBank.WEIGHT_LOSS_MESSAGE, weightDifference);
+            this.resultString = String.format(MessageBank.WEIGHT_LOSS_MESSAGE, weightDifference);
         } else if (weightDifference == 0) {
-            this.result = MessageBank.WEIGHT_NO_CHANGE_MESSAGE;
+            this.resultString = MessageBank.WEIGHT_NO_CHANGE_MESSAGE;
         } else {
-            this.result = String.format(MessageBank.WEIGHT_GAIN_MESSAGE, abs(weightDifference));
+            this.resultString = String.format(MessageBank.WEIGHT_GAIN_MESSAGE, abs(weightDifference));
         }
+        return new Result(this.resultString);
     }
 
 }
