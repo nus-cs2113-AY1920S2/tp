@@ -150,4 +150,13 @@ public class HelpTextUi extends TextUi {
             + "    To make an appointment as done, run the following command:\n"
             + "    Note: appointment details are within the parenthesis [ ]\n"
             + "      done appt [NRIC] [APPT_ID]\n";
+
+    //List
+    public static String printListHelp = ""
+            + "    To list all patients, run:\n"
+            + "      list patient\n"
+            + "    To list all patient records of a particular patient, run:\n"
+            + "      list pr NRIC\n"
+            + "    To list all appointments, run:\n"
+            + "      list appt\n";
 }

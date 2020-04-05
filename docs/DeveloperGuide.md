@@ -26,7 +26,6 @@ By: `CS2113T-T12-2` Since: `March 2020`
         + [4.1.4. List Patients](#414-list-patients)
         + [4.1.5. Retrieve Patient Details](#415-retrieve-patient-details)
     * [4.2. Patient Medical Records Feature](#42-patient-medical-records-feature)
-        
     * [4.3. Appointment Scheduling Feature](#43-appointment-scheduling-feature)
         + [4.3.1. Add Appointment](#431-add-appointment)
         + [4.3.2. Edit Appointment](#432-edit-appointment)

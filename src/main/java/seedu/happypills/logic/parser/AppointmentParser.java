@@ -52,7 +52,7 @@ public class AppointmentParser {
             if (detailedCommand.length == 2) {
                 return new DeleteAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim());
             } else {
-                throw new HappyPillsException(TextUi.incompleteCommandString("help delete appt"));
+                throw new HappyPillsException(TextUi.incompleteCommandString(" help delete appt"));
             }
         } else if (userCommand[0].equalsIgnoreCase("find")) {
             return new FindAppointmentCommand(userCommand[2]);
