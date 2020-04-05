@@ -2,6 +2,7 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
+import jikan.exception.EmptyTagException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.ui.Ui;
 import static jikan.Jikan.tagFile;
@@ -44,7 +45,14 @@ public class ViewGoalsCommand extends Command {
         for (Activity activity : activityList.activities) {
             GraphCommand.extractTags(tagsActual, activity);
         }
-        Ui.printGoals(tagsGoals, tagsActual);
+        try {
+            if (tagsActual.isEmpty() || tagsGoals.isEmpty()) {
+                throw new EmptyTagException();
+            }
+            Ui.printGoals(tagsGoals, tagsActual);
+        } catch (NullPointerException | EmptyTagException e) {
+            Ui.printDivider("There are no tags to display!");
+        }
     }
 
     /**
