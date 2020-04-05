@@ -110,8 +110,7 @@ public class ModuleLoader {
                 }
                 content = buffer.toString();
 
-                URL httpUrl = new URL(getModuleListUrlFromNusmods());
-                FileUtils.copyURLToFile(httpUrl, new File(StoragePath.NUS_MODULE_LIST_PATH));
+                saveModuleListToDisk();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -119,6 +118,11 @@ public class ModuleLoader {
             e.printStackTrace();
         }
         return content;
+    }
+
+    private static void saveModuleListToDisk() throws IOException {
+        URL httpUrl = new URL(getModuleListUrlFromNusmods());
+        FileUtils.copyURLToFile(httpUrl, new File(StoragePath.NUS_MODULE_LIST_PATH));
     }
 
     private static String getModuleListUrlFromNusmods() {
