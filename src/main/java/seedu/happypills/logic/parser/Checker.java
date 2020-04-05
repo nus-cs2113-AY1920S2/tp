@@ -11,7 +11,7 @@ public class Checker {
     public static boolean isValidPhoneNum(String phoneNumber) {
         //String pattern = "^[0-9]{9}$";
         //return phoneNumber.matches(pattern);
-        String pattern = "([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
+        String pattern = "([8-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
         return phoneNumber.matches(pattern);
     }
 

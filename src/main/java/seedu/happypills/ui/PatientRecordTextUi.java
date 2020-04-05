@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 public class PatientRecordTextUi extends TextUi {
 
-    public static String emptyPatientRecordMessage = "    There are no patient record.";
-    public static String getEmptyPatientRecordList = "    There are no patient record in the list.";
-
     /**
      * format a list patient record success message for user.
      * Includes a specified string, requested patient details and a divider.
