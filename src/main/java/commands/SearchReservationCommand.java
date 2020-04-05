@@ -2,6 +2,7 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
+import exceptions.InvalidReservationNumberException;
 import reservation.Reservation;
 import reservation.ReservationList;
 import ui.Ui;
@@ -52,7 +53,7 @@ public class SearchReservationCommand extends ReservationCommand {
             } else if (date != null) { // only have date
                 ui.showMessage(String.format("Here comes the reservations on the date %s:", date));
                 boolean emptyList = true;
-                for (int i = 0; i < reservations.getSize(); i++) {
+                for (int i = 1; i <= reservations.getSize(); i++) {
                     Reservation reservation = reservations.getReservation(i);
                     if (reservation.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                             .equals(date.toString())) {
@@ -65,12 +66,14 @@ public class SearchReservationCommand extends ReservationCommand {
                 }
             }
         } catch (NumberFormatException e) {
-            ui.showMessage("Please enter a valid non-positive reservation number.");
+            ui.showMessage("Please enter a valid positive reservation number.");
         } catch (DateTimeException e) {
             ui.showMessage("Please follow the date time format strictly: yyyy-MM-dd; eg. 2000-01-01");
         } catch (InputMissingException e) {
             ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
+            ui.showMessage(e.getMessage());
+        } catch (InvalidReservationNumberException e) {
             ui.showMessage(e.getMessage());
         }
     }
@@ -81,9 +84,11 @@ public class SearchReservationCommand extends ReservationCommand {
      * @param description Input from the user excluding the command.
      * @throws InputMissingException If there is input missing.
      * @throws DelimiterMissingException If there is delimiter missing.
+     * @throws InvalidReservationNumberException If there is no such reservation number in the list.
      */
     @Override
-    protected void parseInput(String description) throws InputMissingException, DelimiterMissingException {
+    protected void parseInput(String description) 
+            throws InputMissingException, DelimiterMissingException, InvalidReservationNumberException {
         boolean delimiterMissing;
         boolean inputMissing = true; // to see if the command has either "number" input or "date" input
         String[] markers = {RES_INDEX_MARKER, RES_DATE_MARKER};
@@ -108,9 +113,10 @@ public class SearchReservationCommand extends ReservationCommand {
             this.reservationNumber = Integer.parseInt(description.substring(
                     numberPos + RES_INDEX_MARKER.length(), numberEndPos).trim());
 
-            if (this.reservationNumber < 0 || this.reservationNumber > validMaxRange) {
-                throw new NumberFormatException();
+            if (this.reservationNumber <= 0 || this.reservationNumber > validMaxRange) {
+                throw new InvalidReservationNumberException(this.reservationNumber);
             }
+            assert 0 < this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
         }        
         
         // date: yyyy-MM-dd

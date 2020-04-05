@@ -22,7 +22,7 @@ class AddReservationCommandTest {
     void execute_normalAddReservationCommand_success() {
         new AddReservationCommand("p/Peter; d/2020-03-12 12:00; n/3; c/98955555;")
                 .execute(reservationList, ui);
-        Reservation reservation = reservationList.getReservation(reservationList.getSize() - 1);
+        Reservation reservation = reservationList.getReservation(reservationList.getSize());
         assertEquals("Peter", reservation.getName());
         assertEquals(LocalDateTime.parse("2020-03-12 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), 
                 reservation.getDate());
@@ -35,7 +35,7 @@ class AddReservationCommandTest {
     void execute_normalAddReservationCommandwithCommentnDifferentSequence_success() {
         new AddReservationCommand("p/Lisa; m/no spicy food please; d/2020-03-13 12:00; c/98889999; n/9; ")
                 .execute(reservationList, ui);
-        Reservation reservation = reservationList.getReservation(reservationList.getSize() - 1);
+        Reservation reservation = reservationList.getReservation(reservationList.getSize());
         assertEquals("Lisa", reservation.getName());
         assertEquals(LocalDateTime.parse("2020-03-13 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 reservation.getDate());
@@ -53,6 +53,20 @@ class AddReservationCommandTest {
         } catch (InputMissingException e) {
             assertEquals("name p/", e.getInput());
             assertEquals("Input Missing: name p/ is missing.", e.getMessage());
+        } catch (DelimiterMissingException e) {
+            fail(); // the test should not reach this line
+        }
+    }
+
+    @Test
+    void parseInput_nameContentMissingAddReservationCommand_exceptionThrown() {
+        try {
+            new AddReservationCommand("p/; d/2020-03-12 12:00; n/3; c/98887777;")
+                    .parseInput("p/; d/2020-03-12 12:00; n/3; c/98887777;");
+            fail(); // the test should not reach this line
+        } catch (InputMissingException e) {
+            assertEquals("name", e.getInput());
+            assertEquals("Input Missing: name is missing.", e.getMessage());
         } catch (DelimiterMissingException e) {
             fail(); // the test should not reach this line
         }
@@ -188,6 +202,20 @@ class AddReservationCommandTest {
         } catch (InputMissingException e) {
             assertEquals("contact c/", e.getInput());
             assertEquals("Input Missing: contact c/ is missing.", e.getMessage());
+        } catch (DelimiterMissingException e) {
+            fail(); // the test should not reach this line
+        }
+    }
+
+    @Test
+    void parseInput_contactContentMissingAddReservationCommand_exceptionThrown() {
+        try {
+            new AddReservationCommand("p/David; d/2020-03-12 12:00; n/3; c/;")
+                    .parseInput("p/David; d/2020-03-12 12:00; n/3; c/;");
+            fail(); // the test should not reach this line
+        } catch (InputMissingException e) {
+            assertEquals("contact", e.getInput());
+            assertEquals("Input Missing: contact is missing.", e.getMessage());
         } catch (DelimiterMissingException e) {
             fail(); // the test should not reach this line
         }

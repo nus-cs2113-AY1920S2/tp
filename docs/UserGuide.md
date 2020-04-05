@@ -62,9 +62,9 @@ Add menu items, ingredients, and reservations.
 
 #### Add reservation into list: add reservation 
 * Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
-  + Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;<br/>
+  + Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;`<br/>
 
-*The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be an integer.*
+*The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be a non-negative integer.*
 
 <a name="delete"></a>
 
@@ -125,7 +125,7 @@ Search items in the menu, stock and reservations.
   + Example: `search reservation; d/2020-02-02;`
   + Example: `search reservation; r/0; d/2020-02-02;`
 
-*The `DATE` must be in **yyyy-mm-dd** format. The `NUMBER_OF_GUESTS` must be an integer.*
+*The `DATE` must be in **yyyy-mm-dd** format. The `RESERVATION_NUMBER` must be a non-negative integer.*
 
 
 <a name="sales"></a>
