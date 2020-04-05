@@ -1,6 +1,7 @@
 package reservation;
 
-import exceptions.ReservationCannotMarkException;
+import exceptions.ReservationException;
+import exceptions.ReservationStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,23 +42,39 @@ public class ReservationList {
      * Marks the reservation as served.
      * 
      * @param reservationNumber The index number of the reservation.
-     * @throws ReservationCannotMarkException If the reservation is originally invalid.
+     * @throws ReservationStatusException If the reservation is originally invalid.
      */
-    public void markReservationAsServed(int reservationNumber) throws ReservationCannotMarkException {
-        Reservation reservation = reservations.get(reservationNumber);
+    public void markReservationAsServed(int reservationNumber) throws ReservationStatusException {
+        Reservation reservation = reservations.get(reservationNumber - 1);
         if (reservation.getStatus().equals(INVALID)) {
-            throw new ReservationCannotMarkException();
+            throw new ReservationStatusException(INVALID);
         }
-        reservations.get(reservationNumber).setStatus(SERVED);
+        
+        assert !reservation.getStatus().equals(INVALID) : "Reservation Status Exception";
+        
+        reservation.setStatus(SERVED);
     }
 
     /**
      * Marks the reservation as invalid, etc. the customer wants to cancel the reservation or wrong reservation
      * 
      * @param reservationNumber The index number of the reservation.
+     * @throws ReservationStatusException If the reservation is originally invalid or served.
      */
-    public void voidReservation(int reservationNumber) {
-        reservations.get(reservationNumber).setStatus(INVALID);
+    public void voidReservation(int reservationNumber) throws ReservationStatusException {
+        Reservation reservation = reservations.get(reservationNumber - 1);
+        if (reservation.getStatus().equals(INVALID)) {
+            throw new ReservationStatusException(INVALID);
+        }
+        
+        if (reservation.getStatus().equals(SERVED)) {
+            throw new ReservationStatusException(SERVED);
+        }
+        
+        assert !reservation.getStatus().equals(INVALID) & !reservation.getStatus().equals(SERVED) 
+                : "Reservation Status Exception";
+        
+        reservation.setStatus(INVALID);
     }
 
     /**
@@ -72,10 +89,10 @@ public class ReservationList {
     /**
      * Gets the reservation with the target reservation number.
      * 
-     * @param reservationNumber Target reservation number.
+     * @param reservationNumber Target reservation number (starting from 1).
      * @return Reservation indexed with the target number.
      */
     public Reservation getReservation(int reservationNumber) {
-        return reservations.get(reservationNumber);
+        return reservations.get(reservationNumber - 1);
     }
 }
