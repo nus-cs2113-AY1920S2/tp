@@ -5,7 +5,6 @@ import jikan.activity.ActivityList;
 import jikan.exception.EmptyGoalException;
 import jikan.exception.EmptyTagException;
 import jikan.exception.InvalidGoalCommandException;
-import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NegativeDurationException;
 import jikan.exception.NoSuchTagException;
 import jikan.log.Log;
@@ -13,6 +12,7 @@ import jikan.ui.Ui;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Integer.valueOf;
+import static jikan.Jikan.tagFile;
 
 
 /**
@@ -87,7 +88,7 @@ public class GoalCommand extends Command {
                 index = checkIfExists(tagName);
                 if (index != -1) {
                     Ui.printDivider("The goal for this tag has been deleted!");
-                    removeLine(index);
+                    deleteLine(index);
                 } else {
                     throw new NoSuchTagException();
                 }
@@ -178,11 +179,13 @@ public class GoalCommand extends Command {
      */
     private static void updateGoal(String userInput, String tagName, Duration goalTime, int index) throws IOException {
         if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
-            removeLine(index);
+            deleteLine(index);
             writeToFile(tagName + "," + goalTime);
             Ui.printDivider("The goal for " + tagName + " was updated");
-        } else {
+        } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")) {
             Ui.printDivider("Okay then, what else can I do for you?");
+        } else {
+            Ui.printDivider("Incorrect format entered, please only enter yes or no!");
         }
     }
 
@@ -205,11 +208,39 @@ public class GoalCommand extends Command {
      * @param lineNumber Index of line to remove.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void removeLine(int lineNumber) throws IOException {
+    public static void deleteLine(int lineNumber) throws IOException {
         // Read file into list of strings, where each string is a line in the file
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(TAG_FILE_PATH),
                 StandardCharsets.UTF_8));
         fileContent.remove(lineNumber);
+        saveNewTags(fileContent, tagFile);
+    }
+
+    /**
+     * Saves the updated tags to the csv file.
+     *
+     * @param newList The list containing the updated data.
+     * @param dataFile The file to save to.
+     * @throws IOException If an error occurs while writing the new list to file.
+     */
+    public static void saveNewTags(List<String> newList, File dataFile) throws IOException {
+        clearFile();
+        FileWriter fw = new FileWriter(TAG_FILE_PATH, true);
+
+        for (String s : newList) {
+            fw.write(s + System.lineSeparator());
+        }
+        fw.close();
+    }
+
+    /**
+     * Clears the data file.
+     * @throws FileNotFoundException If file is not found.
+     */
+    public static void clearFile() throws IOException {
+        FileWriter fw = new FileWriter(TAG_FILE_PATH, false);
+        fw.write("");
+        fw.close();
     }
 
     /**
