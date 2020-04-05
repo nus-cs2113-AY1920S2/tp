@@ -1,10 +1,10 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.parser.CommandParser;
+import seedu.dietmanager.model.FoodNutritionRecord;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
@@ -36,8 +36,8 @@ public class DeleteFoodCommand extends Command {
     @Override
     public Result execute(Profile profile, UI ui) {
         if (!this.noDescription) {
-            FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
-            this.success = foodInfo.deleteFood(foodName);
+            FoodNutritionRecord foodInfo = FoodNutritionRecord.getInstance();
+            this.success = foodInfo.deleteFoodNutritionRecord(foodName);
         }
         Result result = getResult(profile);
         return result;

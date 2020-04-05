@@ -1,12 +1,12 @@
 package seedu.dietmanager;
 
-import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.LogsCentre;
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.CommandParser;
+import seedu.dietmanager.model.FoodNutritionRecord;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.storage.Storage;
 import seedu.dietmanager.ui.UI;
@@ -14,7 +14,7 @@ import seedu.dietmanager.ui.UI;
 public class DietManager {
 
     private static LogsCentre logsCentre;
-    private static FoodNutritionInfo foodNutritionInfo;
+    private static FoodNutritionRecord foodNutritionRecord;
     private static Profile profile;
     private static UI ui;
     private static Storage storage;
@@ -54,7 +54,7 @@ public class DietManager {
 
     private static void initialiseApplication() {
         logsCentre = new LogsCentre();
-        foodNutritionInfo = FoodNutritionInfo.getInstance();
+        foodNutritionRecord = FoodNutritionRecord.getInstance();
         profile = new Profile();
         ui = new UI();
         storage = new Storage(ui, logsCentre);

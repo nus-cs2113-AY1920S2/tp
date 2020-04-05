@@ -2,6 +2,7 @@ package seedu.dietmanager.storage;
 
 import seedu.dietmanager.commons.core.LogsCentre;
 import seedu.dietmanager.ui.UI;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,7 +44,7 @@ public class Storage {
      */
 
     /* To be implemented at a later stage
-    private static String FOOD_RECORD_FILE_PATH = DIRECTORY_PATH + File.separator + "food-record.csv";
+    private static String FOOD_RECORD_FILE_PATH = DIRECTORY_PATH + File.separator + "food-record.txt";
     */
 
     /* To be implemented at a later stage.
@@ -51,7 +52,7 @@ public class Storage {
      */
 
     /* To be implemented at a later stage.
-    private static String NUTRITION_INFO_FILE_PATH = "data" + File.separator + "nutrition-info.csv";
+    private static String NUTRITION_INFO_FILE_PATH = "data" + File.separator + "food-nutrition-record.txt";
      */
 
     /**

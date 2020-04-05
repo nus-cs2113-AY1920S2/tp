@@ -37,3 +37,16 @@
   <thread>1</thread>
   <message>Starting Diet Manager</message>
 </record>
+<record>
+  <date>2020-04-05T15:57:46.855635700Z</date>
+  <millis>1586102266855</millis>
+  <nanos>635700</nanos>
+  <sequence>3</sequence>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
+  <method>logExitProgramme</method>
+  <thread>1</thread>
+  <message>Exiting Diet Manager</message>
+</record>
+</log>
