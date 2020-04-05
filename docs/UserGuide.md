@@ -1,5 +1,7 @@
 # User Guide
 
+</br>
+
 ## Introduction
 
 WhenFree is a chatbot that helps you find common free time among your and your friends, 
