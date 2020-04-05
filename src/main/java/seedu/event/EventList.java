@@ -24,12 +24,25 @@ public class EventList {
      * Add the specified event to the end of list.
      * @param event the event to be appended
      */
-    public void add(Event event) {
+    public void add(Event event) throws PacException {
+        checkDuplicateName(event.getName());
+        if (!event.dateTimeIsParsed()) {
+            ui.printInvalidDateTimeFormat();
+        }
         list.add(event);
         if (event instanceof Seminar) {
             ui.addEventMessage("Seminar", event.getName());
         } else {
             ui.addEventMessage("Event", event.getName());
+        }
+    }
+
+    private void checkDuplicateName(String newEventName) throws PacException {
+        for (Event event : list) {
+            String oldEventName = event.getName().toLowerCase();
+            if (oldEventName.equals(newEventName.toLowerCase())) {
+                throw new PacException("Event already exists in the list. Please add a new Event.");
+            }
         }
     }
 
@@ -89,6 +102,10 @@ public class EventList {
      * @param name new name for the event
      */
     public void editName(int index, String name) throws PacException {
+        if (name.isEmpty()) {
+            throw new PacException("Event name is empty");
+        }
+        checkDuplicateName(name);
         Event event = this.find(index);
         if (event instanceof Seminar) {
             ui.editEventNameMessage(event.getName(), name, "Seminar");
@@ -107,13 +124,15 @@ public class EventList {
         Event event = this.find(index);
         String oldDateTime = event.getDatetime();
         event.setDatetime(datetime);
+        if (!event.dateTimeIsParsed()) {
+            throw new PacException("Wrong format for date and time. Please enter: yyyy-MM-dd HHmm");
+        }
         String newDateTime = event.getDatetime();
         if (event instanceof Seminar) {
             ui.editEventDateTimeMessage(oldDateTime, newDateTime, "Seminar");
         } else {
             ui.editEventDateTimeMessage(oldDateTime, newDateTime, "Event");
         }
-
     }
 
     /**
@@ -122,6 +141,9 @@ public class EventList {
      * @param venue new venue for the event
      */
     public void editVenue(int index, String venue) throws PacException {
+        if (venue.isEmpty()) {
+            throw new PacException("Venue is empty");
+        }
         Event event = this.find(index);
         if (event instanceof Seminar) {
             ui.editEventVenueMessage(event.getVenue(), venue, "Seminar");
@@ -149,6 +171,9 @@ public class EventList {
         }
         list.remove(index);
         list.add(index, event);
+        if (!event.dateTimeIsParsed()) {
+            ui.printInvalidDateTimeFormat();
+        }
     }
 
     public int getSize() {
@@ -160,7 +185,9 @@ public class EventList {
             throw new PacException("The event list is empty.");
         }
         for (Event event : list) {
-            if (event.getName().equals(eventName)) {
+            String eventNameToCompare = eventName.toLowerCase().trim();
+            String eventNameOriginal = event.getName().toLowerCase().trim();
+            if (eventNameToCompare.equals(eventNameOriginal)) {
                 return event;
             }
         }

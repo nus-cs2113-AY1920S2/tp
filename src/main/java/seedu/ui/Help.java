@@ -50,6 +50,8 @@ public class Help extends UI {
                 + "performance add\n");
         display("To delete a student's performance under an event, input:\n\t"
                 + "Performance delete\n");
+        display("To edit a student's performance under an event, input:\n\t"
+                + "Performance edit\n");
         display("To sort a student's performance list under an event, input:\n\t"
                 + "Performance sort\n");
     }
@@ -66,19 +68,19 @@ public class Help extends UI {
     }
 
     public void printStudentListHelp() {
-        System.out.print("To create a new studentList for future events, input:\n\t"
-                + "student add\n\n");
-        System.out.print("To delete an existing studentList, input:\n\t"
-                + "student delete (index)\n\n");
-        System.out.print("To clear all existing studentList, input:\n\t"
-                + "student clear\n\n");
-        System.out.print("To find an existing studentList, input:\n\t"
-                + "student find\n\n");
-        System.out.print("To list all existing studentList, input:\n\t"
-                + "student list\n\n");
-        System.out.print("To sort all existing studentList by their names, input:\n\t"
-                + "student sort/by/name\n\n");
-        System.out.print("To sort all name within the existing studentList, input:\n\t"
-                + "student sort/by/list\n\n");
+        display("To create a new studentList for future events, input:\n\t"
+                + "student.list add\n\n");
+        display("To delete an existing studentList, input:\n\t"
+                + "student.list delete (index)\n\n");
+        display("To clear all existing studentList, input:\n\t"
+                + "student.list clear\n\n");
+        display("To find an existing studentList, input:\n\t"
+                + "student.list find\n\n");
+        display("To list all existing studentList, input:\n\t"
+                + "student.list list\n\n");
+        display("To sort all existing studentList by their names, input:\n\t"
+                + "student.list sort/by/name\n\n");
+        display("To sort all name within the existing studentList, input:\n\t"
+                + "student.list sort/by/list\n\n");
     }
 }

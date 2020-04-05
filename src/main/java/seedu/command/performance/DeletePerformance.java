@@ -25,8 +25,7 @@ public class DeletePerformance extends Command {
 
     private Performance getPerformance() throws PacException {
         String studentName = ui.getStudentName("delete his/her performance");
-        Performance performance = performances.getPerformance(studentName);
-        return performance;
+        return performances.getPerformance(studentName);
     }
 
     private void deleteFromList() throws PacException {

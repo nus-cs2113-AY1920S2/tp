@@ -69,4 +69,13 @@ public class AttendanceList {
     public void sortByStatus() {
         Collections.sort(attendanceList,attendanceStatusComparator);
     }
+
+    public boolean isDuplicate(String name) {
+        for (int i = 0; i < attendanceList.size(); i++) {
+            if (attendanceList.get(i).getStudentName().toLowerCase().equals(name.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

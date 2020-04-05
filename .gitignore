@@ -20,7 +20,10 @@ bin/
 *.log
 *.lck
 
-/text-ui-test/ACTUAL.txtdebug.log 
+# storage data
+data/
+# output file from text-ui-test
+text-ui-test/ACTUAL.txt
 .classpath
 .project
 .settings/org.eclipse.buildship.core.prefs

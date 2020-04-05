@@ -66,8 +66,10 @@ public class CalendarList {
         ArrayList<Event> list = new ArrayList<>();
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
-            if (event.getMonth() > 6) {
-                list.add(event);
+            if (event.dateTimeIsParsed()) {
+                if (event.getMonth() > 6) {
+                    list.add(event);
+                }
             }
         }
         return list;
@@ -84,8 +86,10 @@ public class CalendarList {
         ArrayList<Event> list = new ArrayList<>();
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
-            if (event.getMonth() > 0 && event.getMonth() < 7) {
-                list.add(event);
+            if (event.dateTimeIsParsed()) {
+                if (event.getMonth() > 0 && event.getMonth() < 7) {
+                    list.add(event);
+                }
             }
         }
         return list;
