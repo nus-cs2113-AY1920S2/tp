@@ -46,6 +46,8 @@ public class Ui {
     private static final String BOX_EDGE = "--------------------------------------------------------------------------"
             + "--------------------------------------------------";
 
+    private static final String INPUT_MARK = "Please input your command:";
+
     private static final String BOX_HEADER = "| S/N |    ID    | Name                                                 "
             + "         | Module Credit | Prerequisites           |";
 
@@ -164,5 +166,9 @@ public class Ui {
 
     public static void showEmptyModulePlan() {
         showToUser(EMPTY_MODULE_PLAN);
+    }
+
+    public static void showReadyToInput() {
+        showToUser(INPUT_MARK);
     }
 }
