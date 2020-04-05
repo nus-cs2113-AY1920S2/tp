@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_TASK;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_TASK_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.messageAddTaskSuccess;
 
 class AddTaskCommandTest {
@@ -62,6 +63,10 @@ class AddTaskCommandTest {
         // add a duplicate task
         CommandResult result6 = Executor.executeCommand("addt asdf -m cs3235 -c Lecture");
         assertEquals(MESSAGE_DUPLICATE_TASK, result6.getFeedbackToUser());
+
+        CommandResult result7 = Executor.executeCommand("addt aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + " -m cs3235 -c Lecture");
+        assertEquals(MESSAGE_TASK_EXCEED_LIMIT, result7.getFeedbackToUser());
 
     }
 }
