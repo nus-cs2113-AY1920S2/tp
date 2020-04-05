@@ -1,9 +1,7 @@
-package seedu.nuke.commandtest;
+package seedu.nuke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Executor;
-import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.UndoCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
