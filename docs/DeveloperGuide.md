@@ -8,11 +8,11 @@ By: `Alaukik Pant`      Since: `Mar 2020`      Licence: `MIT`
 1. [Setting Up](#1-setting-up)
 1. [Design](#2-design)
 1. [Implementation](#3-implementation)
-  * [`create` feature](#-create--feature)
+     * [`create` feature](#-create--feature)
 1. [Product Scope](#3-product-scope)
-  * [Value Proposition](#value-proposition)
-  * [Target user profile](#target-user-profile)
-  * [User Stories](#user-stories)
+     * [Value Proposition](#value-proposition)
+     * [Target user profile](#target-user-profile)
+     * [User Stories](#user-stories)
 1. [Non-Functional Requirements](#5-non-functional-requirements)
 1. [Glossary](#6-glossary)
 1. [Instructions for Manual Testing](#7-instructions-for-manual-testing)
@@ -121,10 +121,3 @@ TechToday Information Tracker (TTIT) is targeted to lifelong followers of techno
 ## 7. Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
-
-
-
-
-
-
