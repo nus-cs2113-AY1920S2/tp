@@ -66,6 +66,7 @@ public class Duke {
         boolean isExit = false;
         do {
             try {
+                Ui.showReadyToInput();
                 fullCommand = in.nextLine();
                 Command command = Controller.control(fullCommand);
                 command.execute(semesterList, availableModulesList);
