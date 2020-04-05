@@ -6,7 +6,7 @@ package seedu.duke.exception;
 public class InputException extends ModuleManagerException {
 
     public InputException(String message, String format) {
-        super("Input Error: " + message
+        super("Input Exception: " + message
                 + System.lineSeparator()
                 + "Please enter your command again! Format:"
                 + System.lineSeparator()
@@ -14,7 +14,7 @@ public class InputException extends ModuleManagerException {
     }
 
     public InputException(String message) {
-        super("Input Error: " + message
+        super("Input Exception: " + message
                 + System.lineSeparator()
                 + "Please enter your command again!");
     }

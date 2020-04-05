@@ -16,12 +16,16 @@ Here are the commands that I can do for you:
 3. "add id/[module code] s/[semester] mc/[credit] | add n/[module name] s/[semester] mc/[credit] | add id/[module code] n/[module name] s/[semester] mc/[credit]" to add a module to your personal module manager
 4. "add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]" to add a module to the list of available modules
 5. "done n/[module name] g/[grade] | done id/[module code] g/[grade]" to mark it as done
-6. "view /mp" to view your module plan
-7. "view /dm" to view all finished modules
-8. "view /cc" to view the number of modular credits u have completed
-9. "CAP" to view your current cap
-10. "view" to view all available modules
-Okay! Here are your available modules in database:
+6. "delete id/[module code] s/[semester] | delete n/[module name] s/[semester]  to delete a module from your personal module manager
+7. "delete id/[module code] | delete n/[module name]  to delete a module from your list of available modules
+8. "view /mp" to view your module plan
+9. "view /dm" to view all finished modules
+10. "view /cc" to view the number of modular credits u have completed
+11. "CAP" to view your current cap
+12. "bye" to exit
+
+Please input your command:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -45,7 +49,7 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  10 | CS2101   | Effective Communication for Computing Professionals           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  11 | CS2102   | Database Systems                                              | 4             | CS2030                  |
+|  11 | CS2102   | Database Systems                                              | 4             | CS2030 CS1231           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  12 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -69,7 +73,7 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  22 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
+|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010 IS1103           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  24 | CS1231   | Discrete Structures                                           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -77,11 +81,21 @@ Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 
 
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
 Okay! I have added this module to your semester's module list:
 ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
-Okay! Here are your available modules in database:
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
+Please input your command:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -105,7 +119,7 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  10 | CS2101   | Effective Communication for Computing Professionals           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  11 | CS2102   | Database Systems                                              | 4             | CS2030                  |
+|  11 | CS2102   | Database Systems                                              | 4             | CS2030 CS1231           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  12 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -129,7 +143,7 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  22 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
+|  23 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010 IS1103           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  24 | CS1231   | Discrete Structures                                           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -137,37 +151,46 @@ Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 
 
+Please input your command:
+Please input your command:
 Okay! Here is your module plan:
 Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
 Y2S2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
-2.[✗] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+2.[x] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
+
+Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 Okay, I've marked the module as done!
 
 
+Please input your command:
 Okay! Here are your completed modules:
-Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-
 Y2S2
-1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
+1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
+
+Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 You have completed this amount of credits:
 4
 
 
+Please input your command:
 Okay, this is the list of related modules:
 
 List of selected modules:
-[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
-[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
+[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 List of available modules
 ID: CS1010 Name: Programming Methodology | Modular Credit: 4
@@ -178,41 +201,82 @@ ID: CS2106 Name: Introduction to Operating Systems | Modular Credit: 4 | Prerequ
 ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Modular Credit: 4 | Prerequisites: CS2040
 ID: CS2105 Name: Introduction to Computer Networks | Modular Credit: 4 | Prerequisites: CS2040
 ID: CS2101 Name: Effective Communication for Computing Professionals | Modular Credit: 4
-ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030
+ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030 CS1231
 ID: CS1231 Name: Discrete Structures | Modular Credit: 4
 ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
 
 
 
+Please input your command:
+Please input your command:
 Okay, I've marked the module as done!
 
 
+Please input your command:
+Please input your command:
+Okay! Here is your module plan:
+Y2S1
+1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+
+Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+2.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
+
+Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+
+
+Please input your command:
+You have completed this amount of credits:
+8
+
+
+Please input your command:
+Okay! Here are your completed modules:
+Y2S2
+1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
+
+Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+
+
+Please input your command:
 Your current CAP is:
-4.75
+4.50
 
 
+Please input your command:
 Okay, this module has been deleted from the corresponding semester
 Module IS4241 has been deleted from semester Y2S2
 
 
+Please input your command:
 Okay! Here is your module plan:
 Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
 Y2S2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+
+Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
+Please input your command:
 Okay, this module has been deleted from the list of available modules
 ID: GES1000 Name: Singapore Employment Law | Modular Credit: 4
 
 
+Please input your command:
+Please input your command:
 Okay, this module has been deleted from the list of available modules
 ID: GET1002 Name: Bridging East and West: Exploring Chinese Communication | Modular Credit: 4
 
 
-Okay! Here are your available modules in database:
+Please input your command:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -236,7 +300,7 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  10 | CS2101   | Effective Communication for Computing Professionals           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  11 | CS2102   | Database Systems                                              | 4             | CS2030                  |
+|  11 | CS2102   | Database Systems                                              | 4             | CS2030 CS1231           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  12 | GEH1001  | Globalisation and New Media                                   | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -256,7 +320,7 @@ Okay! Here are your available modules in database:
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  20 | GES1003  | Changing Landscapes of Singapore                              | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
-|  21 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010                  |
+|  21 | IS4241   | Social Media Network Analysis                                 | 4             | CS1010 IS1103           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
 |  22 | CS1231   | Discrete Structures                                           | 4             | None                    |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -264,13 +328,20 @@ Okay! Here are your available modules in database:
 ----------------------------------------------------------------------------------------------------------------------------
 
 
+Please input your command:
 Okay! Here is your module plan:
 Y2S1
-1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+
-2.[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 
 Y2S2
-1.[✗] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+
+Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
 
 
-bye!
+Please input your command:
+Please input your command:
+Please input your command:
+Bye bye! I hope to see you again soon ^.^

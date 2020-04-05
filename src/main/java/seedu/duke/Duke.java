@@ -59,17 +59,22 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         Ui.greetUser();
         if (!Person.isPersonExist()) {
-            Person.createNewUser(in);
+            Person.createNewUser();
         }
         Ui.showHelpMessage();
-        String fullCommand;
+        String fullCommand = "";
         boolean isExit = false;
         do {
             try {
+                Ui.showReadyToInput();
                 fullCommand = in.nextLine();
                 Command command = Controller.control(fullCommand);
                 command.execute(semesterList, availableModulesList);
                 isExit = command.isExit();
+            } catch (NullPointerException e) {
+                logr.log(Level.WARNING, "Invalid input: " + fullCommand
+                        + System.lineSeparator()
+                        + "Please input your command again!");
             } catch (ModuleManagerException e) {
                 logr.log(Level.WARNING, e.getMessage());
             }

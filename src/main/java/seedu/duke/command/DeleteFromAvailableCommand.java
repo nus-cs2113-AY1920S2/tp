@@ -3,7 +3,9 @@ package seedu.duke.command;
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
+import seedu.duke.exception.InputException;
 import seedu.duke.exception.RuntimeException;
+import seedu.duke.exception.StorageException;
 import seedu.duke.ui.Ui;
 import seedu.duke.module.Module;
 
@@ -18,38 +20,45 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
      * @param type To determine if the moduleIdentifier is an Id or the Name of the module.
      */
     public DeleteFromAvailableCommand(String moduleIdentifier, String type) {
-        this.moduleIdentifier = moduleIdentifier;
+        this.moduleIdentifier = moduleIdentifier.trim();
         this.type = type;
     }
 
     public void execute(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
+            throws RuntimeException, StorageException, InputException {
+        deleteModule(selectedModulesList, availableModulesList);
+        super.execute(selectedModulesList, availableModulesList);
+    }
+
+    private void deleteModule(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
             throws RuntimeException {
         boolean isModuleAvailable = checkIfModuleAvailable(availableModulesList);
         if (!isModuleAvailable) {
             throw new RuntimeException(String.format("Module %s not found in available modules", moduleIdentifier));
         }
 
-        Module moduleChosen = availableModulesList.getModule(moduleIdentifier);
-        boolean isPreReq = checkIfIsPreReq(moduleChosen, availableModulesList);
+        Module moduleToBeDeleted = availableModulesList.getModule(moduleIdentifier);
+        boolean isPreReq = checkIfIsPreReq(moduleToBeDeleted, availableModulesList);
         if (isPreReq) {
             throw new RuntimeException(String.format(
                     "Module %s cannot be deleted because it is a prerequisite to other modules.",
                     moduleIdentifier));
         }
-        availableModulesList.remove(moduleChosen);
-        Ui.showDeleteFromAvailableMessage(moduleChosen.toString());
+        availableModulesList.remove(moduleToBeDeleted);
+        Ui.showDeleteFromAvailableMessage(moduleToBeDeleted.toString());
 
-        boolean isInModulePlan = checkIfInModulePlan(moduleChosen.getId(), selectedModulesList);
+        boolean isInModulePlan = checkIfInModulePlan(moduleToBeDeleted.getId(), selectedModulesList);
         if (isInModulePlan) {
             for (SemModulesList sem : selectedModulesList) {
-                if (sem.isInList(moduleChosen.getId())) {
+                if (sem.isInList(moduleToBeDeleted.getId())) {
                     sem.deleteModule(moduleIdentifier);
-                    Ui.showDeleteFromAvailableFollowUpMessage(moduleChosen.toString());
+                    Ui.showDeleteFromAvailableFollowUpMessage(moduleToBeDeleted.toString());
                     break;
                 }
             }
         }
     }
+
 
     public boolean checkIfModuleAvailable(AvailableModulesList availableModulesList) {
         if (type.equals("id")) {
@@ -62,7 +71,7 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
         for (Module module : availableModulesList) {
             if (module.getPreRequisiteModules().size() > 0) {
                 for (Module preReqModule : module.getPreRequisiteModules()) {
-                    if (preReqModule.getId().equals(moduleToCheck.getId())) {
+                    if (preReqModule.getId().equalsIgnoreCase(moduleToCheck.getId())) {
                         return true;
                     }
                 }

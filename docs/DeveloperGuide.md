@@ -1,9 +1,53 @@
 # Developer Guide
 
-## Design & Implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+# 1. Introduction
+## 1.1 Purpose
+The document contains the specified architecture and software design specifications for the application, Module Manager.
 
-### Architecture
+## 1.2 Scope
+This describes the software architecture and software design requirements for Module Manager. 
+This guide is mainly for developers, designers and software engineers that are or going to work on Module Manager.
+
+# 2. Setting up
+## 2.1 Prerequisites
+1. JDK `11`.
+2. IntelliJ IDE.
+
+## 2.2 Setting up the project in your computer
+1. Fork this repository, and clone the fork repository to your computer
+2. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project 
+dialog first)
+3. Set up the correct JDK version for Gradle
+    * Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`
+    * If `JDK 11` is listed in the drop down, select it. Otherwise, click `New…` and select the directory where you 
+    installed `JDK 11`
+    * Click `OK`
+4. Click `Import Project`
+5. Locate the `build.gradle` file and select it. Click `OK`
+6. Click `Open as Project`
+7. Click `OK` to accept the default settings if prompted
+
+## 2.3 Verifying the setup
+1. Run Module Manager to verify and try a few commands. Do refer to the user guide for a list of commands to try out.
+2. Run the JUnit Tests/gradlew test command to ensure that all test case passes.
+
+## 2.4 Configurations to do before writing code
+**Configuring the coding style**
+* Module Manager uses CheckStyle to check for code quality violations.
+* To configure your project to use CheckStyle, add `id 'checkstyle'` under plugins for your `build.gradle` file.
+* Ensure that your CheckStyle toolVersion is 8.23 by adding `toolVersion = '8.23'` into your `build.gradle` file.
+Refer to Module Manager's `build.gradlew` file as a reference to set up CheckStyle correctly.
+
+**Getting started with coding**
+When you are ready to start coding, we recommend that you get a sense of the overall design by reading about 
+Module Manager's architecture in the next section.
+
+# 3. Design
+This section provides a high level overview of our application, Module Manager.
+## Design & Implementation
+
+
+### 3.1 Architecture
 
 ![Architecture Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Architecture.png)
 
@@ -17,9 +61,20 @@ The other components involved are:
 
 `UI`: The user interface of the application
 
+`Parser`: This class mainly handles the parsing and handling of user commands
+
+`Command`: This class handles the type of command
+
+`Person`: This class manages the data of the user in memory
+
+`Controller`: This class determines what to do with the parsed input of the user 
+
 `Storage`: Reads data from, and writes data to, the hard disk
 
-#### UI component
+
+#### 3.2 UI component
+![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
+
 The `UI` component consists of a `Ui` class that stores all user interaction output data. 
 It displays all user interactions to the user based on the command line inputs received.
 
@@ -27,9 +82,11 @@ The `UI` component,
 
 *   Executes user commands using the `Logic` component
 
-#### Logic component
-The `Logic` component 
+#### 3.3 Logic component
 
+![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
+
+The `Logic` component 
 1. `Logic` uses the `Parser` class to parse the user command.
 2. The parsed command is passed to `Controller` which then returns a specific command class 
 e.g. `AddCommand`, `FindCommand` etc. which is executed by the main class `Duke`.
@@ -39,57 +96,160 @@ All these command classes inherits from the abstract `Command` class.
 5. In addition, the command execution can also instruct the `Ui` to perform certain actions, 
 such as displaying help to the user.
 
-#### Model component
-The `Model` component
-* Stores a `Person` object that represents the user's details. (e.g. `totalCap`, `totalModuleCreditCompleted`)
-* Stores the `ModuleList` and `SemesterList` Data
-* Does not depend on any of the other three components
+#### 3.4 Model component
 
-#### Storage component
+![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component.png)
+
+The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
+component. 
+
+The responsibilities of the `Model` component includes
+* Storing the data in-memory during programme runtime. It stores all `SelectedModule` objects in an 
+`ArrayList<SelectedModule>` in a `SemModulesList` class. This represents a semester of the user's module plan.
+* All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
+in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
+
+
+#### 3.5 Storage component
+
+
 The `Storage` component,
 * can save `personInfo` objects in csv format and read it back
 * can save the available module list in csv format and read it back
 * can save the semester list in csv format and read it back 
 
 
-### Implementation
+# 4. Implementation
+This section describes some details on how the features are being implemented. 
+All features can be broken down into 4 distinct functionalities - addition, deletion, searching and others.
 
-#### `Add to Semester` feature 
-The `Add to Semester` mechanism is facilitated by `AddtoSemCommand` which extends from `Command`. 
+Definition:
+
+`SemModuleList` - An array list of `Module` objects, used to contain modules allocated to a specific semester. 
+Signifies a semester in the user's module plan.
+
+`SemesterList` - A priority queue of `SemModuleList`, used to contain `semModuleList` in an sorted order. 
+Signifies all semesters of the user's module plan.  
+
+## 4.1 Addition
+
+### 4.1.1 `Add to Semester` feature 
+The `Add to Semester` mechanism is facilitated by `AddtoSemCommand` which extends from an abstract class `Command`. 
 It allows `ModuleManager` to assign a module to a semester by adding the module to a 
-`SemModulesList`, it implements the following operations:
+`SemModulesList`. 
 
+This feature implements the following operations:
 Given below is an example how the `Add to Semester` behaves at each step.
 
 ##### Step 1:
-The user launches the application for the first time. The `SemesterList` will be initialized with the none 
-`SemModulesList` in it.
+The user launches the application for the first time. The `SemesterList` will initialize an empty 
+`SemModulesList`.
 
 ##### Step 2:
-When users enter a add to semester command, e.g `add id/CS2113 s/4 mc/4`, this command will be parsed in `Parser`
-and then `Parser` returns a `AddToSemCommand`. `AddToSemCommand` then calls `Command#execute(SemesterList semesterList,
- AvailableModulesList availableModulesList) `
+When users enter an add to semester command, e.g `add id/CS2113 s/4 mc/4`, the command will be parsed in `Parser`
+which will return an `AddToSemCommand`. `AddToSemCommand` then calls `Command#execute(SemesterList semesterList,
+ AvailableModulesList availableModulesList) `, in this context,
 `(AddToSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`
 
 ##### Step 3:
-`AddToSemCommand#execute()` then calls self method `AddToSemCommand#addModule()`.`AddToSemCommand#addModule()`
- then calls `AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected 
-module is already in the selected module list (i.e:`semesterList`, which is a `PriorityQueue<SemModulesList>`). 
+`AddToSemCommand#execute()` then calls self method `AddToSemCommand#addModule()` which calls 
+`AddToSemCommand#checkModuleExist(semesterList)` to check whether the selected module is already in the 
+user's module plan (i.e:`semesterList`). 
 If the module is not in the list, `AddToSemCommand#addModule()` will check whether there is a semester list
-(i.e:`semesterModulesList`, which is a `ArrayList<SelectedModule>`) whose name is the module's semester name. 
-If the semester list exist, the module will be added to the list. 
-If not, `AddToSemCommand#addModule()` will create a new semester list and then add this module to the new list. and the
-the new semester list will be added to `semesterList` as well.
+(i.e:`semesterModulesList`) whose name is equal to the module's semester name. 
+If the semester list exists, the module will be added to the list. 
+If not, `AddToSemCommand#addModule()` will create a new semester list and then add this module to the new list. 
+Finally, this new semester list will be added to `semesterList`.
 
 #### Step 4:
-`AddToSemCommand#execute()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to show the result to the 
-user
+`AddToSemCommand#execute()` calls `Ui.showAddedToSemMessage(selectedModule.announceAdded())` to tell the user that the
+command has been executed.
 
 The following sequence diagram shows how the `Add to Semester` operation works:
 ![Sequence Diagram of Add to Semester](https://github.com/RenzoTsai/tp/blob/Update_DG/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
 
+### 4.1.1 `Add to available` feature 
+The `Add to available` mechanism is facilitated by `AddtoAvailableCommand` which extends from an abstract class 
+`Command`. 
+It allows `ModuleManager` to add a module to the `AvailableModulesList` so that users may access its data or add it
+to their module plan in the future. 
 
-#### Calculate CAP feature
+This feature implements the following operations:
+Given below is an example how the `Add to available` behaves at each step.
+
+##### Step 1:
+When users enter an add to available command, 
+e.g `add id/CS1231 n/Discrete Structures mc/4 pre/`, the command will be parsed in `Parser`
+which will return an `AddToAvailableCommand`. `AddToAvailableCommand` then calls `Command#execute(SemesterList semesterList,
+ AvailableModulesList availableModulesList) `, in this context,
+`(AddToAvailableCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`
+
+##### Step 2:
+`AddToAvailableCommand#execute()` then calls self method `AddToAvailableCommand#addModule()` which iterates through
+the availableModulesList to check if there exists a module which has the same name, same id, or both.
+If there is already a module with the same name and id, the program throws a `RuntimeException` to tell the user 
+that the module is already in the list.
+If only the name attribute of the module exists, the id attribute will be updated, and vice versa.
+If there is no module that shares the name and id of the newly added module, the `newModule` object will be passed 
+into `AvailableModulesList#add()` method to add it into the `availableModulesList`. 
+
+#### Step 3:
+Finally, the `AddToAvailableCommand#checkSemesterList()` method is called to check if the `newModule` object is also
+in the semesterList. If it exists, both its name and id attributes are updated.
+
+## 4.2 Deletion
+
+### 4.2.1 `Delete from Semester` feature
+
+The `Delete from Semester` mechanism is facilitated by `DeleteFromSemCommand`, which extends from `DeleteCommand`.
+Whereas `DeleteCommand` extends from the abstract class `Commmand`.
+It allows `ModuleManager` to delete a module from a `SemModulesList`.
+By doing so, the following operations are carried out:
+
+##### Step 1:
+When a user enters a delete from semester command, e.g `delete id/IS4241 s/4`, this command is being parsed in `Parser`.
+`Parser` then returns a `DeleteFromSemCommand`, which calls 
+`Command#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+`DeleteFromSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
+
+##### Step 2:
+`DeleteFromSemCommand.execute` then calls its own method `checkModuleExistInCorrectSem(selectedModulesList)`.
+`checkModuleExistInCorrectSem(selectedModulesList)` returns a boolean value regarding whether there is such 
+a module in the semester stated by the user.
+If the module does not exist in that semester, a `RuntimeException` is thrown.
+Otherwise, it will run through the `semModulesList` in the `selectedModulesList` to find the semester indicated.
+It then calls a method of `SemModulesList`, `getModule(moduleIdentifier)`, which returns the corresponding module,
+based on either the `moduleId` or `moduleName`.
+Following, it then calls another method of `SemModulesList`, `remove(module)`, which removes the corresponding module.
+
+##### Step 3:
+`DeleteFromSemCommand.execute` finally calls `Ui.showDeleteFromSemMessage(String.format(
+"Module %s has been deleted from semester %s", moduleIdentifier, yearSemester));`
+This tells the user the module that has been deleted from the corresponding semester.
+
+The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
+
+![Sequence Diagram](https://github.com/chengTzeNing/tp/blob/DG/docs/images/Sequence%20Diagram.png)
+
+### 4.2.1 `Delete from Available` feature
+
+The `Delete from Available` mechanism is facilitated by `DeleteFromAvailableCommand`, 
+which extends from `DeleteCommand`. Whereas `DeleteCommand` extends from the abstract class `Commmand`.
+It allows `ModuleManager` to delete a module from a `AvailableModulesList`.
+By doing so, the following operations are carried out:
+
+##### Step 1:
+
+
+
+
+## 4.3 Searching
+
+
+
+## 4.4 Others
+
+### 4.4.1 Calculate CAP feature
 
 The Calculate CAP mechanism is executed by `CalculateCapCommand`.  
 `CalculateCapCommand` is extended from `Command` and this implementation calculates the CAP using completed 
@@ -97,31 +257,57 @@ The Calculate CAP mechanism is executed by `CalculateCapCommand`.
 
 Given below is the behaviour of the Calculate CAP mechanism at each step:
 
-Step 1: 
+#### Step 1: 
 User launches the application. `SelectedModules` are added to `SemModuleList` through either of the following methods:
 1) Imported from `semesterList.csv` using `StorageSemesterList.load()`
 2) Added using `add id/ID s/SEMESTER mc/MODULE_CREDIT` command
 
-Step 2:
+#### Step 2:
 User executes `CAP` command to view his own CAP. The `CAP` commands is parsed through `Parser`, which would then return 
 `CalculateCapCommand()`. `CalculateCapCommand.execute()` is then called.
 
-Step 3:
+#### Step 3:
 `CalculateCapCommand.execute()` will call `CalculateCapCommand.calculateCap(SemesterList semesterList)`, which will
 calculate CAP by looking for all the completed `SelectedModules` stored within `SemModuleList`, which are stored within 
 `SemesterList`. It will then assign a `double` type ranging from 0.00 to 5.00 to `Person.totalCap`.
 
-Step 4:
-After the CAP is assigned to `Person.totalCap`, `Person.totalCap` is then called and formatted using `DecimalFormat` into a `String`
+#### Step 4:
+After the CAP is assigned to `Person.totalCap`, `Person.totalCap` is then called and formatted using `DecimalFormat` 
+into a `String`
 with a pattern of `#.00`. `Ui.showcap(cap)` is called to display the user's cap using the formatted `String`.
 
 The following diagram shows how the Calculate CAP operation works:
 ![Calculate CAP feature](https://github.com/bennychanya/tp/blob/master/CalculateCap.png?raw=true)
 
+### 4.4.2 Marking module as done
 
-#####
+The Marking as done 
 
+The Marking as done mechanism is executed by `MarkAsDoneCommand`.
+`MarkAsDoneCommand` is extended from the abstract class `Command`, and this implementation marks the module that has
+been added to a `SemModuleList` in the `SemesterList` as done, and updates the respective grade to the `Module` object.  
 
+Given below is the behaviour of the Marking module as done mechanism at each step:
+
+#### Step 1:
+User launches the application. `SelectedModules` are added to `SemModuleList` through either of the following methods:
+1) Imported from `semesterList.csv` using `StorageSemesterList.load()`
+2) Added using `add id/ID s/SEMESTER mc/MODULE_CREDIT` command
+
+#### Step 2:
+User enters a mark as done command e.g. `done id/CS2113 g/A+ `. The command will be parsed in `Parser`, which will then
+returns a `MarkAsDoneCommand`, which calls 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context, 
+`(MarkAsDoneCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`.
+
+#### Step 3:
+`MarkAsDoneCommand#execute()` then calls self method `MarkAsDone#markAsDone()` which iterates through the 
+`semesterList` to check all `SemModulesList` and compare module name and id to see if the module that has
+been marked as done exists in the `semesterList`. 
+If the module exists in the list, the grade of the module will be passed to the `Module` object to update the grade
+attribute, and the `isDone` attribute of the module will be updated to be `true`. 
+If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
+ exist in the user's module plan.
 
 ## Product Scope
 ### Target user profile
@@ -147,7 +333,8 @@ Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app
 |***|New user|see usage instructions|Refer to instructions when I forgot how to use the App|
 |***|User|Mark module as done|Update my study plan according to modules that I have completed|
 |**|User|Calculate cap|Check my current cap based on modules I have completed|
-|**|User|find a module by name or module code|Locate a module and its module code without having to go through all the modules|
+|**|User|find a module by name or module code|Locate a module and its module code without having to go through all the 
+modules|
 
 
 ## Non-Functional Requirements

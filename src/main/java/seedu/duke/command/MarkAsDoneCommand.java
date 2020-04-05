@@ -4,7 +4,9 @@ import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemesterList;
 import seedu.duke.data.Person;
 import seedu.duke.data.SemModulesList;
+import seedu.duke.exception.InputException;
 import seedu.duke.exception.RuntimeException;
+import seedu.duke.exception.StorageException;
 import seedu.duke.module.Grading;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
@@ -25,10 +27,11 @@ public class MarkAsDoneCommand extends Command {
     }
 
     @Override
-    public void execute(SemesterList semesterList,
-                        AvailableModulesList availableModulesList) throws RuntimeException {
+    public void execute(SemesterList semesterList, AvailableModulesList availableModulesList)
+            throws RuntimeException, StorageException, InputException {
         markAsDoneCommand(semesterList);
         Ui.showDoneMessage();
+        super.execute(semesterList, availableModulesList);
     }
 
     private void markAsDoneCommand(SemesterList semesterList) throws RuntimeException {
