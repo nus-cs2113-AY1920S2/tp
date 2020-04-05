@@ -169,7 +169,8 @@ public class ParserTest {
 
     @Test
     public void parse_editCommandInvalidArgs_errorMessage() {
-        final String[] inputs = {"EDIT", "EDIT ", "EDIT wrong args format", "EDIT i/apple", "EDIT 1 i/", "EDIT 1 p/", "EDIT 1 q/",
+        final String[] inputs = {"EDIT", "EDIT ", "EDIT wrong args format", "EDIT i/apple",
+            "EDIT 1 i/", "EDIT 1 p/", "EDIT 1 q/",
             "EDIT 1 i/p/q", "EDIT 1 i/p/", "EDIT 1 i/p/q", "EDIT 1 i/p/2.50", "EDIT 1 p/q/5", "EDIT 1 p/20/q/",
             "EDIT 1 i/apple p/", "EDIT 1 i/apple p/WERT", "EDIT 1 i/apple p/23 q/QWERTY" };
 
