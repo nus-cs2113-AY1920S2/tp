@@ -167,16 +167,26 @@ Example of expected output:
 `Your current CAP is:`
 `4.75`
 
+### Clear
+Clears the current module plan
+
+Format: `clear`
+
 ### Help
 Display the list of commands that you can input.
 
 Format: `help`
 
+### Exit
+Exits the app.
+
+Format: `bye`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Well, write the User Guide in active voice anyway.
+**A**: Simply transfer the folder including your jar file and saved data to another computer, and run the jar file there
 
 ## Command Summary
 
@@ -229,3 +239,15 @@ or
 or
 
 `CAP`
+
+### Clear
+
+Command:
+
+`clear`
+
+### Bye
+
+Command:
+
+`bye`
