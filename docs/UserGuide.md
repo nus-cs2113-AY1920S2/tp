@@ -30,7 +30,7 @@ You will see this welcome message if you have done the above steps correctly.
 TODO: change image
 ![](images/capture.png)
 
-The following part of the User Guide will explain the features of When Free in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
+The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
 
 <br/>
 
@@ -66,7 +66,7 @@ TODO: change image so that the words are the same font size
 
 Note:
 - You must add in your (main user's) contact before you can use the application. 
-If you try to enter a command before adding in your contact, When Free will remind
+If you try to enter a command before adding in your contact, WhenFree will remind
 you to key in your contact first.
 TODO: change image
 ![](images/capture.png)
@@ -101,6 +101,8 @@ Example of usage:
         timetable
     TODO: update image
     ![](images/capture3.png)`
+    
+    A cross in a 30-minute square of the timetable represents "busy", while an empty square represents "free".
 
 2) Displays the timetable of a selected contact. You will need to key in **Contact Index** of the selected contact.
 
@@ -128,6 +130,8 @@ each of the selected contacts.
     ![](images/capture5.png)
     
 Note:
+- The `timetable` feature displays your timetable only for the current week. 
+- **To see next week's timetable, use the command  `more` after the `timetable` command** You can use the command `more` only once, i.e. you can display up to 2 weeks of timetable.
 - You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
 `contacts`.
 - Both `timetable` and `timetable 0 ` display your (main user's) timetable.
@@ -136,7 +140,7 @@ Note:
    
 
 ### Schedule a new meeting `schedule`
-Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in the 
+Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
 **Meeting Name**, and specify the meeting time slot with **Start Day**, **Start Time**, **End Day**, **End Time**.
 
 Format: 
@@ -163,8 +167,8 @@ Timetables of other contacts will not be modified.
 </br></br>
 
 ### Edit a contact's timetable `edit`
-1) Edit a contact's timetable to be busy for a specified time slot. You will need to key in the **Contact Index**
-of the contact, and specify the time slot to be marked busy with **Start Day**, **Start Time**, **End Day**, **End Time**.
+1) Edit a contact's timetable to be **busy** for a specified time slot. You will need to key in **<Contact Index>**
+of the contact, and specify the time slot to be marked busy with **<Start Day>**, **<Start Time>**, **<End Day>**, **<End Time>**.
 
     Format: 
     
@@ -177,8 +181,8 @@ of the contact, and specify the time slot to be marked busy with **Start Day**, 
     TODO change image
     ![](images/capture6.png)
 
-2) Edit a contact's timetable to be free for a specified time slot. You will need to key in the **Contact Index** of
- the contact, and specify the time slot to be marked free with **Start Day**, **Start Time**, **End Day**, **End Time**.
+2) Edit a contact's timetable to be **free** for a specified time slot. You will need to key in the **<Contact Index>** of
+ the contact, and specify the time slot to be marked free with **<Start Day>**, **<Start Time>**, **<End Day>**, **<End Time>**.
     
     Format: 
     
@@ -196,7 +200,7 @@ Note:
 - You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
 `contacts`.
 
-- You can check the timetable of the contact you wish to edit, by display his/her timetable using 
+- You can check the timetable of the contact you wish to edit, by displaying his/her timetable using 
 `timetable <Contact Index>`
 
 - When editing your (main user's) timetable, be careful not to edit over a scheduled meeting's time slot. WhenFree 
