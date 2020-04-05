@@ -131,7 +131,7 @@ each of the selected contacts.
     
 Note:
 - The `timetable` feature displays your timetable only for the current week. 
-- **To see next week's timetable, use the command  `more` after the `timetable` command** You can use the command `more` only once, i.e. you can display up to 2 weeks of timetable.
+- **To see next week's timetable, use the command  `more` after the `timetable` command.** You can use the command `more` only once i.e. you can display up to 2 weeks of timetable.
 - You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
 `contacts`.
 - Both `timetable` and `timetable 0 ` display your (main user's) timetable.
