@@ -49,7 +49,7 @@ public class EditCardCommand extends AddCommand{
         CardList cardList = chosenSubject.getCardList();
         cardList.cards.remove(cardIndex);
         cardList.cards.add(cardIndex,card);
-        System.out.println("Card has been edited");
+        System.out.println("The selected card has been edited");
         System.out.println("Q: " + cardList.cards.get(cardIndex).getQuestion() +" / " +
                             "A: "+ cardList.cards.get(cardIndex).getQuestion());
     }
