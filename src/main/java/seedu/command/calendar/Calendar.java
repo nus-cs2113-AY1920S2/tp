@@ -8,11 +8,11 @@ import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 import java.util.ArrayList;
 
-public class CalendarList {
+public class Calendar {
     private static final int NO_OF_MONTHS = 6;
     private UI ui;
 
-    public CalendarList() {
+    public Calendar() {
         this.ui = new UI();
     }
 
