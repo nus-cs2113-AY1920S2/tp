@@ -1,7 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.AddCommand;
-import seedu.duke.command.AddToDataCommand;
+import seedu.duke.command.AddToAvailableCommand;
 import seedu.duke.command.AddToSemCommand;
 import seedu.duke.command.CalculateCapCommand;
 import seedu.duke.command.ClearCommand;
@@ -18,7 +18,6 @@ import seedu.duke.exception.InputException;
 import seedu.duke.module.Grading;
 import seedu.duke.module.NewModule;
 import seedu.duke.module.SelectedModule;
-import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
 
 import java.util.regex.Pattern;
@@ -175,6 +174,8 @@ public class Controller {
 
                     String name = idAndName[1].trim();
                     return new AddToSemCommand(new SelectedModule("Both", id, name, semester, moduleCredit));
+                } else {
+                    moduleId = moduleId.toUpperCase();
                 }
                 /* if module code is invalid */
                 if (!isStandardCodeFormat(moduleId)) {
@@ -192,7 +193,7 @@ public class Controller {
         return null;
     }
 
-    private static AddToDataCommand processAddToDataCommand(String args) throws InputException {
+    private static AddToAvailableCommand processAddToDataCommand(String args) throws InputException {
         String[] moduleWords;
         moduleWords = args.split("id/");
         if (moduleWords.length < 2) {
@@ -220,12 +221,12 @@ public class Controller {
         try {
             int moduleCredit = Integer.parseInt(moduleWords[0]);
             if (moduleWords.length < 2) {
-                return new AddToDataCommand(new NewModule(moduleId, moduleName, moduleCredit));
+                return new AddToAvailableCommand(new NewModule(moduleId, moduleName, moduleCredit));
             }
             String[] preRequisiteModules;
             preRequisiteModules = moduleWords[1].toUpperCase().split(" ");
             checkPreReqValidity(preRequisiteModules, moduleId);
-            return new AddToDataCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
+            return new AddToAvailableCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
         } catch (NumberFormatException e) {
             Ui.showInputError();
         }
@@ -294,7 +295,7 @@ public class Controller {
             String semester = moduleWords[1].trim();
             return new DeleteFromSemCommand(moduleId, semester, "id");
         } else if (args.contains("n/")) {
-            String moduleName = moduleWords[0].replace("n/", "");       //.toUpperCase().trim()
+            String moduleName = moduleWords[0].replace("n/", "");
             String semester = moduleWords[1].trim();
             return new DeleteFromSemCommand(moduleName, semester, "name");
         }

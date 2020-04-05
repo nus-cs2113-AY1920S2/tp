@@ -16,14 +16,15 @@ Here are the commands that I can do for you:
 3. "add id/[module code] s/[semester] mc/[credit] | add n/[module name] s/[semester] mc/[credit] | add id/[module code] n/[module name] s/[semester] mc/[credit]" to add a module to your personal module manager
 4. "add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]" to add a module to the list of available modules
 5. "done n/[module name] g/[grade] | done id/[module code] g/[grade]" to mark it as done
-6. "view /mp" to view your module plan
-7. "view /dm" to view all finished modules
-8. "view /cc" to view the number of modular credits u have completed
-9. "CAP" to view your current cap
-10. "clear" to clear your module plan
-11. "bye" to exit
+6. "delete id/[module code] s/[semester] | delete n/[module name] s/[semester]  to delete a module from your personal module manager
+7. "delete id/[module code] | delete n/[module name]  to delete a module from your list of available modules
+8. "view /mp" to view your module plan
+9. "view /dm" to view all finished modules
+10. "view /cc" to view the number of modular credits u have completed
+11. "CAP" to view your current cap
+12. "bye" to exit
 
-Okay! Here are your available modules in database:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -83,7 +84,7 @@ Okay! I have added this module to your semester's module list:
 ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 
-Okay! Here are your available modules in database:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
@@ -245,7 +246,7 @@ Okay, this module has been deleted from the list of available modules
 ID: GET1002 Name: Bridging East and West: Exploring Chinese Communication | Modular Credit: 4
 
 
-Okay! Here are your available modules in database:
+Okay! Here are your available modules:
 ----------------------------------------------------------------------------------------------------------------------------
 | S/N |    ID    | Name                                                          | Module Credit | Prerequisites           |
 |-----|----------|---------------------------------------------------------------|---------------|-------------------------|
