@@ -6,7 +6,7 @@ WhenFree is a chatbot that helps you find common free time among your and your f
 using just the NUSMODS links to your school timetable. 
 
 WhenFree is for NUS students who want to save time gathering their friends' schedules to set up a 
-meeting, whether a long project discussion or a quick meal. With an easy-to-use command line interface, anyone can
+meeting, whether for a long project discussion or a quick meal. With an easy-to-use command line interface, anyone can
 set up and use this application easily by following along this User Guide.
 
 Get ready the NUSMODS links of you and your friends, and let's get started!
