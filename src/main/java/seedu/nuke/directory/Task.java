@@ -15,26 +15,7 @@ public class Task extends Directory implements Tag {
     private int priority;
     private DateTime deadline;
     private TaskFileManager files;
-    // private String moduleCode;
     private ArrayList<String> tags;
-
-
-    ///**
-    // * constructor for the simplest task.
-    // *
-    // * @param description the description of the task
-    // * @param moduleCode the module code of the module which the task belongs to
-    // */
-    //public Task(Module module, String description, String moduleCode) {
-    //    super(module);
-    //    this.description = description;
-    //    this.files = new TaskFileManager();
-    //    this.deadline = null;
-    //    this.priority = -1;
-    //    this.isDone = false;
-    //    this.moduleCode = moduleCode;
-    //    this.tags = null;
-    //}
 
 
     public ArrayList<String> getTags() {
@@ -152,6 +133,11 @@ public class Task extends Directory implements Tag {
         return (Category) this.parent;
     }
 
+    @Override
+    public DirectoryLevel getLevel() {
+        return DirectoryLevel.TASK;
+    }
+
     /**
      * Checks if one task has the same description as another.
      *
@@ -162,17 +148,6 @@ public class Task extends Directory implements Tag {
      */
     public boolean isSameTask(String taskDescription) {
         return this.description.equals(taskDescription);
-    }
-
-    /**
-     * Prints the task as a string.
-     *
-     * @return
-     *  The string that contains all the task information
-     */
-    @Override
-    public String toString() {
-        return String.format("%s %s by %s\n Files:\n%s", getStatusIcon(), getDescription(), getDeadline(), files);
     }
 
     @Override
@@ -193,5 +168,31 @@ public class Task extends Directory implements Tag {
     @Override
     public String getTag() {
         return this.tags == null ? "" : tags.toString();
+    }
+
+
+    /**
+     * Returns a string containing the standard Task attributes.
+     *
+     * @return
+     *  A string containing the standard Task attributes
+     */
+    @Override
+    public String toString() {
+        StringBuilder taskString = new StringBuilder();
+        taskString.append(String.format("Task Description: %s\nModule Code: %s\nCategory Name: %s\n",
+                description, getParent().getParent().getModuleCode(), getParent().getCategoryName()));
+        taskString.append(String.format("Deadline: %s\n", deadline.isPresent() ? deadline.toShow() : "-"));
+        taskString.append(String.format("Priority: %d\n", priority));
+        taskString.append(String.format("Done Status: %s\n", isDone ? "Completed" : "Incomplete"));
+        taskString.append("Tags: ");
+        if (tags.isEmpty()) {
+            taskString.append("-\n");
+        } else {
+            tags.stream().map(tag -> String.format("%s ", tag)).forEach(taskString::append);
+            taskString.append("\n");
+        }
+        taskString.append(String.format("Number of Files: %d\n", files.getFileList().size()));
+        return taskString.toString();
     }
 }

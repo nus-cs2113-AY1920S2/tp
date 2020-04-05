@@ -6,7 +6,9 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
+import seedu.nuke.command.InfoCommand;
 import seedu.nuke.command.OpenFileCommand;
+import seedu.nuke.command.RedoCommand;
 import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddFileCommand;
@@ -23,7 +25,8 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.DueCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
@@ -32,6 +35,7 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
+import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
@@ -46,10 +50,16 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DEADLINE_FORMAT;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_EXCESS_PARAMETERS;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PREFIX;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_PARAMETERS;
+import static seedu.nuke.util.Message.MESSAGE_DEADLINE_OR_PRIORITY;
+import static seedu.nuke.util.Message.MESSAGE_EXTRA_PARAMETERS;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
@@ -109,8 +119,12 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT + HelpCommand.MESSAGE_USAGE);
         }
-        String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase();
+        String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase().trim();
         String parameters = matcher.group(PARAMETERS_GROUP);
+
+        if (!commandWord.equals(RedoCommand.COMMAND_WORD)) {
+            ScreenShotManager.setIsLastCommandRedo(false);
+        }
 
         try {
             switch (commandWord) {
@@ -154,8 +168,10 @@ public class Parser {
                 return prepareDeleteAndListFileCommand(parameters, false);
             case ListModuleTasksDeadlineCommand.COMMAND_WORD:
                 return new ListModuleTasksDeadlineCommand(parameters.trim());
-            case ListAllTasksDeadlineCommand.COMMAND_WORD:
-                return new ListAllTasksDeadlineCommand();
+            case ListTaskSortedCommand.COMMAND_WORD:
+                return prepareListTaskSort(parameters);
+            case DueCommand.COMMAND_WORD:
+                return prepareDueCommand(parameters);
 
             case EditModuleCommand.COMMAND_WORD:
                 return prepareEditModuleCommand(parameters);
@@ -174,8 +190,14 @@ public class Parser {
             case OpenFileCommand.COMMAND_WORD:
                 return prepareOpenFileCommand(parameters);
 
+            case InfoCommand.COMMAND_WORD:
+                return prepareInfoCommand(parameters);
+
             case UndoCommand.COMMAND_WORD:
                 return new UndoCommand();
+
+            case RedoCommand.COMMAND_WORD:
+                return new RedoCommand();
 
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
@@ -205,10 +227,28 @@ public class Parser {
      *  The command to change the current directory
      */
     private Command prepareChangeDirectoryCommand(String parameters) {
-        if (parameters.trim().equals("..")) {
+        if (parameters.isBlank()) {
+            return new IncorrectCommand(MESSAGE_MISSING_DIRECTORY_NAME);
+        } else if (parameters.trim().equals("..")) {
             return new ChangeDirectoryCommand();
         } else {
             return new ChangeDirectoryCommand(parameters.trim());
+        }
+    }
+
+    /**
+     * Prepares the command to display the current directory's information.
+     * .
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to display the current directory's information
+     */
+    private Command prepareInfoCommand(String parameters) {
+        if (!parameters.isEmpty()) {
+            return new IncorrectCommand(MESSAGE_EXTRA_PARAMETERS);
+        } else {
+            return new InfoCommand();
         }
     }
 
@@ -285,17 +325,23 @@ public class Parser {
      */
     private Command prepareGenericDeleteCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        if (parameters.isEmpty()) {
+            return new IncorrectCommand("Please enter the name of the directory to delete.\n");
+        }
+
+        final String deleteString = String.format(" %s -e", parameters);
+
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
         case ROOT:
-            return prepareDeleteAndListModuleCommand(parameters, true);
+            return prepareDeleteAndListModuleCommand(deleteString, true);
         case MODULE:
-            return prepareDeleteAndListCategoryCommand(parameters, true);
+            return prepareDeleteAndListCategoryCommand(deleteString, true);
         case CATEGORY:
-            return prepareDeleteAndListTaskCommand(parameters, true);
+            return prepareDeleteAndListTaskCommand(deleteString, true);
         case TASK:
-            return prepareDeleteAndListFileCommand(parameters, true);
+            return prepareDeleteAndListFileCommand(deleteString, true);
         default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL + HelpCommand.MESSAGE_USAGE);
+            return new IncorrectCommand("Sorry, there is nothing else to delete here.\n");
         }
     }
 
@@ -376,7 +422,7 @@ public class Parser {
         try {
             deadlineToSet = DateTimeFormat.stringToDateTime(deadline);
         } catch (DateTimeFormat.InvalidDateTimeException e) {
-            return new IncorrectCommand(MESSAGE_INVALID_DEADLINE_FORMAT);
+            return new IncorrectCommand(MESSAGE_INVALID_DATETIME_FORMAT);
         }
 
         if (priority.isEmpty()) {
@@ -556,6 +602,76 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the command to show a list of undone tasks sorted by deadline or priority.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to show a list of undone tasks sorted by deadline or priority
+     */
+    private Command prepareListTaskSort(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = ListTaskSortedCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, DEADLINE_GROUP, PRIORITY_GROUP);
+
+        String priorityFlag = matcher.group(PRIORITY_GROUP).trim();
+        String deadlineFlag = matcher.group(DEADLINE_GROUP).trim();
+        // If user types -p after -d
+        String priorityFlagSecond = matcher.group("prioritySecond").trim();
+
+        // Contains both deadline and priority prefixes
+        if (!deadlineFlag.isEmpty()) {
+            if (!(priorityFlag.isEmpty() && priorityFlagSecond.isEmpty())) {
+                return new IncorrectCommand(MESSAGE_DEADLINE_OR_PRIORITY);
+            }
+        }
+
+        boolean isByPriority = !priorityFlag.isEmpty();
+        boolean isByPrioritySecond = !priorityFlagSecond.isEmpty();
+
+        return isByPriority ? new ListTaskSortedCommand(true)
+                : new ListTaskSortedCommand(isByPrioritySecond);
+    }
+
+    /**
+     * Prepares the command to show filtered tasks by a time period.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to show tasks due on a certain time period
+     */
+    private Command prepareDueCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        if (parameters.isBlank()) {
+            return new IncorrectCommand(MESSAGE_MISSING_PARAMETERS);
+        }
+        Matcher matcher = DueCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, ALL_FLAG);
+
+        String dateFilter = matcher.group(IDENTIFIER_GROUP).trim();
+        String allFlag = matcher.group(ALL_GROUP).trim();
+        boolean isAll = !allFlag.isEmpty();
+
+        if (dateFilter.equals("over")) {
+            return new DueCommand(dateFilter, isAll);
+        }
+
+        String[] dateFilterData = dateFilter.trim().split("\\s+");
+        try {
+            if (dateFilterData.length == 1) {
+                return new DueCommand(DateTimeFormat.stringToDate(dateFilterData[0]), null, isAll);
+            } else if (dateFilterData.length == 2) {
+                return new DueCommand(DateTimeFormat.stringToDate(dateFilterData[1]), dateFilterData[0], isAll);
+            } else {
+                return new IncorrectCommand(MESSAGE_EXCESS_PARAMETERS);
+            }
+        } catch (DateTimeFormat.InvalidDateException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_DATETIME_FORMAT);
+        }
+    }
+
     /* Prepare Edit Commands */
 
     /**
@@ -648,7 +764,7 @@ public class Parser {
         try {
             newDeadlineToSet = DateTimeFormat.stringToDateTime(newDeadline);
         } catch (DateTimeFormat.InvalidDateTimeException e) {
-            return new IncorrectCommand(MESSAGE_INVALID_DEADLINE_FORMAT);
+            return new IncorrectCommand(MESSAGE_INVALID_DATETIME_FORMAT);
         }
 
         if (newPriority.isEmpty()) {

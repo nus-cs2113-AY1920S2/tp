@@ -17,7 +17,7 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTagCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListAllTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
@@ -65,7 +65,7 @@ public class Ui {
         commands.add(ListCategoryCommand.MESSAGE_USAGE);
         commands.add(ListTaskCommand.MESSAGE_USAGE);
         commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
-        commands.add(ListAllTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(ListTaskSortedCommand.MESSAGE_USAGE);
         commands.add(HelpCommand.MESSAGE_USAGE);
         commands.add(ExitCommand.MESSAGE_USAGE);
     }
@@ -98,12 +98,12 @@ public class Ui {
     public void showResult(CommandResult result) {
         out.println(result.getFeedbackToUser().replace("\n", LS));
 
-        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getHelpGuides() == null) {
+        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getHelpGuide() == null) {
             return;
         }
 
-        if (result.getHelpGuides() != null) {
-            printShownList(result.getHelpGuides());
+        if (result.getHelpGuide() != null) {
+            printShownList(result.getHelpGuide());
             return;
         }
 

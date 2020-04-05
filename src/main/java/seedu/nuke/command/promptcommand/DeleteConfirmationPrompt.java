@@ -24,7 +24,7 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DELETE_FILE_ERROR;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND_DELETE;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SECURITY_EXCEPTION;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_ABORTED;
@@ -89,9 +89,12 @@ public class DeleteConfirmationPrompt extends Command {
      *  The file to be deleted
      */
     private void deleteSingleFile(TaskFile toDelete) throws IOException {
+        Task parentTask = toDelete.getParent();
+        parentTask.getFiles().delete(toDelete);
+
         File fileToDelete = new File(toDelete.getFilePath());
         if (!fileToDelete.exists()) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(toDelete.getFileName());
         }
 
         Path filePathToDelete = fileToDelete.toPath();
@@ -101,9 +104,6 @@ public class DeleteConfirmationPrompt extends Command {
                 .forEach(File::delete);
 
         assert !Files.exists(filePathToDelete) : "Directory still exists";
-
-        Task parentTask = toDelete.getParent();
-        parentTask.getFiles().delete(toDelete);
     }
 
     /**
@@ -161,9 +161,19 @@ public class DeleteConfirmationPrompt extends Command {
      */
     private void deleteMultipleFiles(ArrayList<TaskFile> files, ArrayList<Integer> toDeleteIndices)
             throws IOException {
+        ArrayList<String> nonExistentFiles = new ArrayList<>();
         for (int index : toDeleteIndices) {
             TaskFile toDelete = files.get(index);
-            deleteSingleFile(toDelete);
+            try {
+                deleteSingleFile(toDelete);
+            } catch (FileNotFoundException e) {
+                nonExistentFiles.add(toDelete.getFileName());
+            }
+        }
+
+        if (!nonExistentFiles.isEmpty()) {
+            String fileNames = String.join(", ", nonExistentFiles);
+            throw new FileNotFoundException(fileNames);
         }
     }
 
@@ -198,7 +208,7 @@ public class DeleteConfirmationPrompt extends Command {
                 deleteSingleFile(((TaskFile) toDelete));
                 return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
             } catch (FileNotFoundException e) {
-                return new CommandResult(MESSAGE_FILE_NOT_FOUND);
+                return new CommandResult(String.format("%s%s\n", MESSAGE_FILE_NOT_FOUND_DELETE, e.getMessage()));
             } catch (FileSystemException e) {
                 return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
             } catch (IOException e) {
@@ -261,7 +271,8 @@ public class DeleteConfirmationPrompt extends Command {
                 deleteMultipleFiles(filteredFiles, toDeleteIndices);
                 return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
             } catch (FileNotFoundException e) {
-                return new CommandResult(MESSAGE_FILE_NOT_FOUND);
+                return new CommandResult(String.format("%s%s\n",
+                        MESSAGE_FILE_NOT_FOUND_DELETE, e.getMessage()));
             } catch (FileSystemException e) {
                 return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
             } catch (IOException e) {
@@ -289,7 +300,7 @@ public class DeleteConfirmationPrompt extends Command {
     private boolean isCurrentDirectoryInList(ArrayList<Directory> filteredList)
             throws IncorrectDirectoryLevelException {
         // Current directory is of a higher level than the directories to be deleted
-        if (DirectoryTraverser.getCurrentDirectoryLevel().ordinal() > directoryLevel.ordinal()) {
+        if (DirectoryTraverser.getCurrentDirectoryLevel().ordinal() < directoryLevel.ordinal()) {
             return false;
         }
         // Checks if current directory or parent directory is to be deleted

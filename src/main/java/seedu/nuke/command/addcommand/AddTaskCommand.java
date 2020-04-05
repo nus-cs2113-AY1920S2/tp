@@ -21,6 +21,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_TASK;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_TASK_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.messageAddTaskSuccess;
 
 /**
@@ -94,6 +95,10 @@ public class AddTaskCommand extends AddCommand {
         this(moduleCode, categoryName, description, deadline, -1);
     }
 
+    private boolean exceedLengthLimit() {
+        return description.length() > 25;
+    }
+
     /**
      * Executes the <b>Add Task Command</b> to add a <b>Task</b> into the <b>Task List</b>.
      *
@@ -103,6 +108,9 @@ public class AddTaskCommand extends AddCommand {
      */
     @Override
     public CommandResult execute() {
+        if (exceedLengthLimit()) {
+            return new CommandResult(MESSAGE_TASK_EXCEED_LIMIT);
+        }
         try {
             Category parentCategory = DirectoryTraverser.getCategoryDirectory(moduleCode, categoryName);
             if (priority < 0) {

@@ -21,7 +21,7 @@ import static seedu.nuke.util.Message.messagePromptDeleteTaskIndices;
  */
 public class DeleteTaskCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delt";
-    public static final String FORMAT = COMMAND_WORD + " <task description> + -m <module code> "
+    public static final String FORMAT = COMMAND_WORD + " <task description> -m <module code> "
             + "-c <category name> [ -e -a ]";
     public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Delete a task of module"
             + System.lineSeparator() + FORMAT + System.lineSeparator();
@@ -92,8 +92,9 @@ public class DeleteTaskCommand extends DeleteCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredTasks =
+        ArrayList<Task> filteredTasks =
                 createFilteredTaskList(moduleCode, categoryName, taskDescription, isExact, isAll);
-        return executeInitialDelete(filteredTasks);
+        sortTaskList(filteredTasks, false, false);
+        return executeInitialDelete(new ArrayList<>(filteredTasks));
     }
 }

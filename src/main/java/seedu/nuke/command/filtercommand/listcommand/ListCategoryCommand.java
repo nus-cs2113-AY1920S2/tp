@@ -2,17 +2,18 @@ package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Category;
-import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 
 import java.util.ArrayList;
 
+import static seedu.nuke.util.Message.MESSAGE_NO_CATEGORIES_TO_SHOW;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListCategoryCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsc";
     public static final String FORMAT = COMMAND_WORD + " [ <category keyword> -m <module keyword> -e -a ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "List all categories of module"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
+            + "Filters and lists your categories"
             + System.lineSeparator() + FORMAT + System.lineSeparator();
 
     private String moduleKeyWord;
@@ -48,8 +49,12 @@ public class ListCategoryCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredCategoryList =
+        ArrayList<Category> filteredCategoryList =
                 createFilteredCategoryList(moduleKeyWord, categoryKeyword, isExact, isAll);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, filteredCategoryList);
+        if (filteredCategoryList.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_CATEGORIES_TO_SHOW);
+        }
+        sortCategoryList(filteredCategoryList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.CATEGORY, new ArrayList<>(filteredCategoryList));
     }
 }

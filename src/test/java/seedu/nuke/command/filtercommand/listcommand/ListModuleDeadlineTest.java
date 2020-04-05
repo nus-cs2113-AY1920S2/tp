@@ -1,11 +1,8 @@
-package seedu.nuke.commandtest;
+package seedu.nuke.command.filtercommand.listcommand;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Nuke;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
-
-import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

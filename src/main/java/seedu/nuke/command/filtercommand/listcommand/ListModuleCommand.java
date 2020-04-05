@@ -1,18 +1,19 @@
 package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Module;
 
 import java.util.ArrayList;
 
+import static seedu.nuke.util.Message.MESSAGE_NO_MODULES_TO_SHOW;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListModuleCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsm";
     public static final String FORMAT = COMMAND_WORD + " [ <module keyword> -e -a ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "List all modules"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
+            + "Filters and lists your modules"
             + System.lineSeparator() + FORMAT + System.lineSeparator();
 
     private String moduleKeyWord;
@@ -40,7 +41,11 @@ public class ListModuleCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Directory> filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
-        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, filteredModuleList);
+        ArrayList<Module> filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
+        if (filteredModuleList.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_MODULES_TO_SHOW);
+        }
+        sortModuleList(filteredModuleList);
+        return new CommandResult(MESSAGE_SHOW_LIST, DirectoryLevel.MODULE, new ArrayList<>(filteredModuleList));
     }
 }

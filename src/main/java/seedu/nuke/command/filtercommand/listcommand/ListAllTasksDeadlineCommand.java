@@ -2,11 +2,12 @@ package seedu.nuke.command.filtercommand.listcommand;
 
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Task;
-import seedu.nuke.util.ListCreator;
 
 import java.util.ArrayList;
 
+import static seedu.nuke.util.Message.MESSAGE_NO_TASKS_TO_SHOW;
 import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 
 /**
@@ -27,8 +28,12 @@ public class ListAllTasksDeadlineCommand extends ListCommand {
     public CommandResult execute() {
         //get the large task list
         ArrayList<Task> filteredTaskList = ModuleManager.sortAllTasks();
-        deadlines = ListCreator.createTaskListTable(new ArrayList<>(filteredTaskList), true);
-        return new CommandResult(messageTaskSuccessfullyList(ModuleManager.countAllTasks())
-                + System.lineSeparator() + deadlines);
+        sortTaskList(filteredTaskList, true, false);
+        if (filteredTaskList.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_TASKS_TO_SHOW);
+        }
+        assert filteredTaskList.isEmpty() : "make sure there are some tasks in the list";
+        return new CommandResult(messageTaskSuccessfullyList(filteredTaskList.size()),
+                DirectoryLevel.TASK, new ArrayList<>(filteredTaskList));
     }
 }

@@ -25,6 +25,25 @@ public class DateTime {
         this.time = time;
     }
 
+    public DateTime(LocalTime time) {
+        this.date = LocalDate.now();
+        this.time = time;
+    }
+
+    public DateTime() {
+        this(null, null);
+    }
+
+    /**
+     * Checks if datetime values are <b>NOT</b> <code>NULL</code>.
+     *
+     * @return
+     *  <code>TRUE</code> if datetime is <b>NOT</b> <code>NULL</code> and <code>FALSE</code> otherwise.
+     */
+    public boolean isPresent() {
+        return hasDate() && hasTime();
+    }
+
     /**
      * Returns the <code>date</code>.
      *
@@ -67,8 +86,8 @@ public class DateTime {
      *
      * @return The <code>date</code> in a string format
      */
-    public String getDateInSortFormat() {
-        return hasDate() ? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "";
+    private String getDateInSortFormat() {
+        return hasDate() ? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "_";
     }
 
     /**
@@ -77,8 +96,8 @@ public class DateTime {
      *
      * @return The <code>date</code> in a string format
      */
-    public String getTimeInSortFormat() {
-        return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "";
+    private String getTimeInSortFormat() {
+        return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "_";
     }
 
     public String getDateTimeSortFormat() {
@@ -124,6 +143,11 @@ public class DateTime {
         return time != null;
     }
 
+    /**
+     * Checks if the <code>date</code> attribute is <b>not</b> <code>NULL</code>.
+     *
+     * @return <code>TRUE</code> if <code>date</code> is not <code>NULL</code>, and <code>FALSE</code> otherwise.
+     */
     private boolean hasDate() {
         return date != null;
     }
@@ -192,7 +216,7 @@ public class DateTime {
      */
     public String toShow() {
         String toShow = dateToString() + " " + timeToString();
-        return (isDue()) ? toShow + " [OVER!!]" : toShow;
+        return (isDue()) ? toShow + " [OVER!]" : toShow;
     }
 
     /**

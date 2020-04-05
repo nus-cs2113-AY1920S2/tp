@@ -2,9 +2,18 @@ package seedu.nuke.directory;
 
 public enum DirectoryLevel {
     NONE,
-    FILE,
-    TASK,
-    CATEGORY,
+    ROOT,
     MODULE,
-    ROOT
+    CATEGORY,
+    TASK,
+    FILE {
+        @Override
+        public DirectoryLevel next() {
+            return null;
+        }
+    };
+
+    public DirectoryLevel next() {
+        return values()[ordinal() + 1];
+    }
 }

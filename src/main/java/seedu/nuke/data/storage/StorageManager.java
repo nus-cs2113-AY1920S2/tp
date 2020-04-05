@@ -1,8 +1,6 @@
 package seedu.nuke.data.storage;
 
 import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.CorruptedFileException;
@@ -82,7 +80,9 @@ public class StorageManager {
      */
     public void saveList() {
         try {
-            FileWriter fileWriter = new FileWriter(dataFileName);
+            File saveFile = new File(dataFileName);
+            saveFile.getParentFile().mkdirs();
+            FileWriter fileWriter = new FileWriter(saveFile);
             fileWriter.write(new Encoder(ModuleManager.getModuleList()).encode());
             fileWriter.flush();
             fileWriter.close();
@@ -105,8 +105,8 @@ public class StorageManager {
         } catch (IOException e) {
             //e.printStackTrace();
             ModuleManager.setModuleList(new ArrayList<>());
-        } catch (CorruptedFileException e) {
-            System.out.println("file is corrupted!\n");
+        } catch (CorruptedFileException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("File is corrupted!\n");
             ModuleManager.setModuleList(new ArrayList<>());
         }
     }
