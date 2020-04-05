@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
@@ -90,6 +91,7 @@ public class AddCategoryCommand extends AddCommand {
             Module parentModule = DirectoryTraverser.getModuleDirectory(moduleCode);
             Category toAdd = new Category(parentModule, categoryName, categoryPriority);
             parentModule.getCategories().add(toAdd);
+            StorageManager.setIsSave();
             return new CommandResult(messageAddCategorySuccess(categoryName));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

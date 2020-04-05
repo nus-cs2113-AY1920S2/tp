@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -118,6 +119,7 @@ public class EditCategoryCommand extends EditCommand {
             Category toEdit = DirectoryTraverser.getCategoryDirectory(moduleCode, oldCategoryName);
             fillAllAttributes(toEdit);
             toEdit.getParent().getCategories().edit(toEdit, newCategoryName, newPriority);
+            StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_CATEGORY_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

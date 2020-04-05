@@ -35,7 +35,7 @@ public class ModuleLoader {
      * @return a HashMapof String to String, which is a map that map all modules with its information
      * @throws FileNotFoundException when cannot find the jason file
      */
-    public static HashMap<String, String> load(String dataFileName) throws FileNotFoundException {
+    public static HashMap<String, String> load(String dataFileName) {
         String jsonStr;
         jsonStr = loadJsonStringFromFile(dataFileName);
         List<DummyModule> moduleList = JSON.parseArray(jsonStr, DummyModule.class);// extractModules(jsonStr);
@@ -54,7 +54,7 @@ public class ModuleLoader {
         return modulesMap;
     }
 
-    private static String loadJsonStringFromFile(String dataFileName) throws FileNotFoundException {
+    private static String loadJsonStringFromFile(String dataFileName) {
         String encoding = "utf8";
         File file = new File(dataFileName);
         Long fileLength = file.length();
@@ -110,8 +110,7 @@ public class ModuleLoader {
                 }
                 content = buffer.toString();
 
-                URL httpUrl = new URL(getModuleListUrlFromNusmods());
-                FileUtils.copyURLToFile(httpUrl, new File(StoragePath.NUS_MODULE_LIST_PATH));
+                saveModuleListToDisk();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -119,6 +118,11 @@ public class ModuleLoader {
             e.printStackTrace();
         }
         return content;
+    }
+
+    private static void saveModuleListToDisk() throws IOException {
+        URL httpUrl = new URL(getModuleListUrlFromNusmods());
+        FileUtils.copyURLToFile(httpUrl, new File(StoragePath.NUS_MODULE_LIST_PATH));
     }
 
     private static String getModuleListUrlFromNusmods() {

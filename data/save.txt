@@ -71,7 +71,8 @@ read -|||- N -|||-  -|||- 0
 --- END FILE ---
 tp -|||- N -|||-  -|||- 0
 --- FILE ---
-Number_2 -|||- data/files/zpNbS6YtMIQgq8sz -|||- C:\Users\icecl\Desktop\CS2113T\tP Diagrams\Number_2.png
+Number_2 -|||- zpNbS6YtMIQgq8sz -|||- C:\Users\icecl\Desktop\CS2113T\tP Diagrams\Number_2.png
+Number_1 -|||- fwDbf0OsCZSUwyxH -|||- C:\Users\icecl\Desktop\CS2113T\tP Diagrams\Number_1.png
 --- END FILE ---
 --- END TASK ---
 Lecture -|||- 1

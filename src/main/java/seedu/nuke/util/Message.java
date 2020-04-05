@@ -39,6 +39,8 @@ public class Message {
     }
 
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
+    public static final String MESSAGE_UNKNOWN_COMMAND_WORD =
+            "Sorry, the command word at the start of your input is unrecognised.\n";
     public static final String MESSAGE_EXTRA_PARAMETERS =
             "There seems to be some extra parameters in the command.\n"
             + "Please check the command format again or enter help to find out more.\n";
@@ -306,7 +308,8 @@ public class Message {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
 
-    public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to last state.\n";
+    public static final String MESSAGE_REDO_SUCCESS = "SUCCESS!! Data has been reverted back to next state.\n";
+    public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to previous state.\n";
 
     public static final String MESSAGE_OPEN_FILE_SUCCESS = "SUCCESS!! The files are opening now...\n";
     public static final String MESSAGE_NO_FILE_CHOSEN = "No file was chosen.\n";

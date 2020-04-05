@@ -15,94 +15,111 @@ import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
- * a screen shot manager that manages all scree shots and deals with operations such as save screen shots and undo.
+ * A screen shot manager that stores the previous states of the list and performs operations to move about the states;
+ * i.e. undo and redo.
  */
 public class ScreenShotManager {
     private static Stack<ScreenShot> undoStack = new Stack<>();
     private static Stack<ScreenShot> redoStack = new Stack<>();
 
-    public static void setIsLastCommandRedo(boolean isLastCommandRedo) {
-        ScreenShotManager.isLastCommandRedo = isLastCommandRedo;
+    // public static void setIsLastCommandRedo(boolean isLastCommandRedo) {
+    //     ScreenShotManager.isLastCommandRedo = isLastCommandRedo;
+    // }
+    //
+    // private static boolean isLastCommandRedo = false;
+
+    /**
+     * Initialises the screen shot manager with its first screen shot of the starting list.
+     */
+    public static void initialise() {
+        String encodedSavedList = new Encoder(ModuleManager.getModuleList()).encode();
+        ScreenShot screenShot = new ScreenShot(encodedSavedList);
+        assert undoStack.isEmpty() : "Undo stack should be empty!";
+        assert redoStack.isEmpty() : "Redo stack should be empty!";
+        undoStack.push(screenShot);
     }
 
-    private static boolean isLastCommandRedo = false;
-
-    private static ScreenShot popLastScreenShot() throws EmptyStackException {
-        ScreenShot tmp = undoStack.pop();
-        redoStack.push(tmp);
+    private static ScreenShot popPreviousScreenShot() throws EmptyStackException {
+        // There should be at least 2 screen shots to allow undo
+        if (undoStack.size() < 2) {
+            throw new EmptyStackException();
+        }
+        ScreenShot currentState = undoStack.pop();
+        redoStack.push(currentState);
         return undoStack.peek();
     }
 
-    private static ScreenShot peekLastScreenShot() {
+    private static ScreenShot peekPreviousScreenShot() {
         return undoStack.peek();
     }
 
     /**
-     * revert to the last changed state for moduleList for undo feature.
+     * Revert to the previous changed state of the list.
      *
      * @throws IOException exception is thrown when error occurred during IO operation.
      * @throws CorruptedFileException exception is thrown when converting a corrupted string to moduleList.
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
      */
     public static void undo() throws IOException, CorruptedFileException, EmptyStackException {
-        ScreenShot lastScreenShot = popLastScreenShot();
-        String moduleListString = lastScreenShot.getModuleListString();
-        InputStream is = new ByteArrayInputStream(moduleListString.getBytes());
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+        ScreenShot previousState = popPreviousScreenShot();
+        String encodedSavedList = previousState.getEncodedSavedList();
+
+        InputStream stream = new ByteArrayInputStream(encodedSavedList.getBytes());
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
+
         ArrayList<Module> moduleList = new Decoder(bufferedReader).decode();
         ModuleManager.setModuleList(moduleList);
         bufferedReader.close();
     }
 
     /**
-     * redo the command which was undo by the user.
+     * Revert back to the next changed state which had been undone by the user.
      *
      * @throws IOException exception is thrown when error occurred during IO operation.
      * @throws CorruptedFileException exception is thrown when converting a corrupted string to moduleList.
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
      */
-    public static void redo() throws IOException, CorruptedFileException {
+    public static void redo() throws IOException, CorruptedFileException, EmptyStackException {
         ScreenShot redoScreenShot = popRedoScreenShot();
-        String moduleListString = redoScreenShot.getModuleListString();
-        InputStream is = new ByteArrayInputStream(moduleListString.getBytes());
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+        String encodedSavedList = redoScreenShot.getEncodedSavedList();
+
+        InputStream stream = new ByteArrayInputStream(encodedSavedList.getBytes());
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
+
         ArrayList<Module> moduleList = new Decoder(bufferedReader).decode();
         ModuleManager.setModuleList(moduleList);
         bufferedReader.close();
-        isLastCommandRedo = true;
+        // isLastCommandRedo = true;
     }
 
-    private static ScreenShot popRedoScreenShot() {
-        return redoStack.pop();
+    private static ScreenShot popRedoScreenShot() throws EmptyStackException {
+        ScreenShot nextState = redoStack.pop();
+        undoStack.push(nextState);
+        return nextState;
     }
 
     /**
      * Save the moduleList as a string if it was changed.
      */
     public static void saveScreenShot() {
-        String currentModuleListString = new Encoder(ModuleManager.getModuleList()).encode();
-        ScreenShot screenShot = new ScreenShot(currentModuleListString);
-        if (getScreenShotSize() == 0) {
+        String encodedSavedList = new Encoder(ModuleManager.getModuleList()).encode();
+        ScreenShot screenShot = new ScreenShot(encodedSavedList);
+        if (getUndoStackSize() == 0) {
             undoStack.push(screenShot);
             return;
         }
-        ScreenShot lastScreenShot = peekLastScreenShot();
-        String lastModuleListString = lastScreenShot.getModuleListString();
-        if (!lastModuleListString.equals(currentModuleListString)) {
+        ScreenShot previousScreenShot = peekPreviousScreenShot();
+        String previousEncodedSavedList = previousScreenShot.getEncodedSavedList();
+        if (!previousEncodedSavedList.equals(encodedSavedList)) {
             undoStack.push(screenShot);
-            if (!isLastCommandRedo) {
-                popAllRedoStack();
+            if (!redoStack.isEmpty()) {
+                redoStack.clear();
             }
+            assert redoStack.isEmpty() : "Didn't clear the redo stack!!";
         }
     }
 
-    private static void popAllRedoStack() {
-        while (!redoStack.isEmpty()) {
-            redoStack.pop();
-        }
-    }
-
-    private static int getScreenShotSize() {
+    private static int getUndoStackSize() {
         return undoStack.size();
     }
 

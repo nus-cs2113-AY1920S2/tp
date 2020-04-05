@@ -1,3 +1,4 @@
+
 package seedu.nuke.command.misc;
 
 import seedu.nuke.command.Command;
@@ -12,8 +13,8 @@ import static seedu.nuke.util.Message.MESSAGE_UNDO_SUCCESS;
 
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_UNDO_UNSUCCESSFUL = "Something goes wrong here!\n";
-    public static final String MESSAGE_UNDO_AT_BEGINNING = "you are already at the initial state!\n";
+    public static final String MESSAGE_UNDO_UNSUCCESSFUL = "Sorry, there was an IO error when undoing the state.\n";
+    public static final String MESSAGE_UNDO_AT_BEGINNING = "You are already at the initial state!\n";
 
     @Override
     public CommandResult execute() {

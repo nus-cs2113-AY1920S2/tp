@@ -37,7 +37,6 @@ import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
-import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.util.DateTime;
@@ -65,6 +64,7 @@ import static seedu.nuke.util.Message.MESSAGE_EXTRA_PARAMETERS;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_EDIT;
+import static seedu.nuke.util.Message.MESSAGE_UNKNOWN_COMMAND_WORD;
 
 
 public class Parser {
@@ -123,10 +123,6 @@ public class Parser {
         }
         String commandWord = matcher.group(COMMAND_WORD_GROUP).toLowerCase().trim();
         String parameters = matcher.group(PARAMETERS_GROUP);
-
-        if (!commandWord.equals(RedoCommand.COMMAND_WORD)) {
-            ScreenShotManager.setIsLastCommandRedo(false);
-        }
 
         try {
             switch (commandWord) {
@@ -193,25 +189,25 @@ public class Parser {
                 return prepareOpenFileCommand(parameters);
 
             case InfoCommand.COMMAND_WORD:
-                return prepareInfoCommand(parameters);
+                return prepareCommandWithoutParameters(new InfoCommand(), parameters);
 
             case UndoCommand.COMMAND_WORD:
-                return new UndoCommand();
+                return prepareCommandWithoutParameters(new UndoCommand(), parameters);
 
             case RedoCommand.COMMAND_WORD:
-                return new RedoCommand();
+                return prepareCommandWithoutParameters(new RedoCommand(), parameters);
 
             case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+                return prepareCommandWithoutParameters(new HelpCommand(), parameters);
 
             case ClearCommand.COMMAND_WORD:
                 return prepareClearCommand(parameters);
 
             case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+                return prepareCommandWithoutParameters(new ExitCommand(), parameters);
 
             default:
-                return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+                return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND_WORD);
             }
         } catch (InvalidParameterException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
@@ -242,18 +238,20 @@ public class Parser {
     }
 
     /**
-     * Prepares the command to display the current directory's information.
+     * Prepares the command that has no parameters.
      *
+     * @param command
+     *  The command to be executed later if it passes the check
      * @param parameters
      *  The parameters given by the user
      * @return
-     *  The command to display the current directory's information
+     *  The command
      */
-    private Command prepareInfoCommand(String parameters) {
+    private Command prepareCommandWithoutParameters(Command command, String parameters) {
         if (!parameters.isEmpty()) {
             return new IncorrectCommand(MESSAGE_EXTRA_PARAMETERS);
         } else {
-            return new InfoCommand();
+            return command;
         }
     }
 

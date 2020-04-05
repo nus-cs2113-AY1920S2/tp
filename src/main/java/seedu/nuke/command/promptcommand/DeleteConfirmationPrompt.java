@@ -4,6 +4,7 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryLevel;
@@ -13,14 +14,10 @@ import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystemException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DELETE_FILE_ERROR;
@@ -88,22 +85,9 @@ public class DeleteConfirmationPrompt extends Command {
      * @param toDelete
      *  The file to be deleted
      */
-    private void deleteSingleFile(TaskFile toDelete) throws IOException {
+    private void deleteSingleFile(TaskFile toDelete) {
         Task parentTask = toDelete.getParent();
         parentTask.getFiles().delete(toDelete);
-
-        File fileToDelete = new File(toDelete.getFilePath());
-        if (!fileToDelete.exists()) {
-            throw new FileNotFoundException(toDelete.getFileName());
-        }
-
-        Path filePathToDelete = fileToDelete.toPath();
-        Files.walk(filePathToDelete)
-                .sorted(Comparator.reverseOrder())
-                .map(Path::toFile)
-                .forEach(File::delete);
-
-        assert !Files.exists(filePathToDelete) : "Directory still exists";
     }
 
     /**
@@ -161,19 +145,9 @@ public class DeleteConfirmationPrompt extends Command {
      */
     private void deleteMultipleFiles(ArrayList<TaskFile> files, ArrayList<Integer> toDeleteIndices)
             throws IOException {
-        ArrayList<String> nonExistentFiles = new ArrayList<>();
         for (int index : toDeleteIndices) {
             TaskFile toDelete = files.get(index);
-            try {
-                deleteSingleFile(toDelete);
-            } catch (FileNotFoundException e) {
-                nonExistentFiles.add(toDelete.getFileName());
-            }
-        }
-
-        if (!nonExistentFiles.isEmpty()) {
-            String fileNames = String.join(", ", nonExistentFiles);
-            throw new FileNotFoundException(fileNames);
+            deleteSingleFile(toDelete);
         }
     }
 
@@ -204,18 +178,8 @@ public class DeleteConfirmationPrompt extends Command {
         }
 
         case FILE: {
-            try {
-                deleteSingleFile(((TaskFile) toDelete));
-                return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
-            } catch (FileNotFoundException e) {
-                return new CommandResult(String.format("%s%s\n", MESSAGE_FILE_NOT_FOUND_DELETE, e.getMessage()));
-            } catch (FileSystemException e) {
-                return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
-            } catch (IOException e) {
-                return new CommandResult(MESSAGE_DELETE_FILE_ERROR);
-            } catch (SecurityException e) {
-                return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
-            }
+            deleteSingleFile(((TaskFile) toDelete));
+            return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
         }
 
         default:
@@ -367,8 +331,10 @@ public class DeleteConfirmationPrompt extends Command {
                 return new CommandResult("Error in deletion.");
             }
             if (filteredList.size() == 1) {
+                StorageManager.setIsSave();
                 return executeSingleDelete(filteredList.get(0));
             } else {
+                StorageManager.setIsSave();
                 return executeMultipleDelete(filteredList);
             }
         case ABORT:

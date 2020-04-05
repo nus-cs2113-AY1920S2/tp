@@ -7,6 +7,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.data.storage.StoragePath;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
@@ -167,7 +168,7 @@ public class AddFileCommand extends AddCommand {
         Files.createDirectories(destinationPath.getParent());
 
         Files.copy(sourcePath, destinationPath, REPLACE_EXISTING);
-        filePath = String.format("%s/%s", StoragePath.TASK_FILE_DIRECTORY_PATH, randomHash);
+        filePath = randomHash;
     }
 
     private boolean exceedLengthLimit() {
@@ -217,6 +218,7 @@ public class AddFileCommand extends AddCommand {
             String fullFilePath = new File(originalFilePath).getAbsolutePath();
             TaskFile toAdd = new TaskFile(parentTask, fileName, filePath, fullFilePath);
             parentTask.getFiles().add(toAdd);
+            StorageManager.setIsSave();
             return new CommandResult(messageAddFileSuccess(fileName));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

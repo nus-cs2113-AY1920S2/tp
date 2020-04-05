@@ -5,6 +5,7 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
@@ -117,6 +118,7 @@ public class AddTaskCommand extends AddCommand {
             }
             Task toAdd = new Task(parentCategory, description, deadline, priority);
             parentCategory.getTasks().add(toAdd);
+            StorageManager.setIsSave();
             return new CommandResult(messageAddTaskSuccess(description));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
