@@ -310,7 +310,7 @@ Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your a
 	addg urgent -m CS2113t -c Lab -t tp
 ```
 
-````
+```
 	addt urgent -t tp
 ```
 
