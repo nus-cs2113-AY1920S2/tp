@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="reservation.ReservationListTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-03-30T14:41:58" hostname="LAPTOP-44LCAOD7" time="0.019">
+<testsuite name="reservation.ReservationListTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-04-05T15:28:10" hostname="DESKTOP-FPGAEA4" time="0.007">
   <properties/>
-  <testcase name="addReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.002"/>
+  <testcase name="voidReservation_servedReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.0"/>
+  <testcase name="addReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
   <testcase name="getSize_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
-  <testcase name="markReservationAsServed_normalInput_success()" classname="reservation.ReservationListTest" time="0.004"/>
-  <testcase name="voidReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
-  <testcase name="markReservationAsServed_invalidReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.003"/>
-  <system-out><![CDATA[Reservation[0] is invalid, so it cannot be marked as served.
-]]></system-out>
+  <testcase name="markReservationAsServed_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
+  <testcase name="voidReservation_invalidReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.001"/>
+  <testcase name="voidReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.0"/>
+  <testcase name="markReservationAsServed_invalidReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
