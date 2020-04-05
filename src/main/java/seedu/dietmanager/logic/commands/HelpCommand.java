@@ -22,13 +22,13 @@ public class HelpCommand extends Command {
 
     @Override
     public Result execute(Profile profile, UI ui) {
-            Result result = getResult(profile);
+        Result result = getResult(profile);
         return result;
     }
 
     @Override
     public Result getResult(Profile profile) {
-            this.resultString = MessageBank.FUNCTION_LIST;
-            return new Result(this.resultString);
+        this.resultString = MessageBank.FUNCTION_LIST;
+        return new Result(this.resultString);
     }
 }

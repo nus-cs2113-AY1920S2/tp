@@ -1,10 +1,16 @@
 package seedu.dietmanager.ui;
 
-import seedu.dietmanager.commons.core.MessageBank;
-
 import java.util.Scanner;
 
-import static seedu.dietmanager.commons.core.MessageBank.*;
+import static seedu.dietmanager.commons.core.MessageBank.EXIT_APP_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.FILE_ERROR_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.FUNCTION_LIST;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_COMMAND_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_FORMAT_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_GENDER_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_INDEX;
+import static seedu.dietmanager.commons.core.MessageBank.LOGO;
+import static seedu.dietmanager.commons.core.MessageBank.WELCOME_MESSAGE;
 
 /**
  * UI is the public class responsible for managing all user interface functions.
@@ -36,7 +42,7 @@ public class UI {
             WELCOME_MESSAGE);
     }
 
-    public void displayHelpMenu(){
+    public void displayHelpMenu() {
         showMessage(
             FUNCTION_LIST);
     }
@@ -108,7 +114,7 @@ public class UI {
     }
 
     /**
-     * Printer to print out strings of messages to user
+     * Printer to print out strings of messages to user.
      *
      * @param message String of message to be shown to user
      */
