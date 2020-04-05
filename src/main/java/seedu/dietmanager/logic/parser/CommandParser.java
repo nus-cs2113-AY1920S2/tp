@@ -12,6 +12,7 @@ import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.commands.DeleteFoodCommand;
 import seedu.dietmanager.logic.commands.DeleteWeightCommand;
 import seedu.dietmanager.logic.commands.ExitCommand;
+import seedu.dietmanager.logic.commands.HelpCommand;
 import seedu.dietmanager.logic.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.logic.commands.ProfileCommand;
 import seedu.dietmanager.logic.commands.RecordMealCommand;
@@ -23,6 +24,7 @@ import seedu.dietmanager.logic.commands.SetProfileCommand;
 import seedu.dietmanager.logic.commands.SetWeightCommand;
 import seedu.dietmanager.logic.commands.SetWeightGoalCommand;
 import seedu.dietmanager.logic.commands.ShowRecipeCommand;
+import seedu.dietmanager.logic.commands.HelpCommand;
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.
@@ -154,6 +156,9 @@ public class CommandParser {
             break;
         case "show-recipe":
             command = new ShowRecipeCommand(commandPrompt);
+            break;
+        case "help" :
+            command = new HelpCommand(commandPrompt);
             break;
         default:
             description = null;

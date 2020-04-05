@@ -101,4 +101,27 @@ public class MessageBank {
 
     public static String INVALID_PROFILE_MESSAGE = "Invalid profile detected. "
             + "Please set a new profile using the set-profile command.";
+
+    public static final String FUNCTION_LIST =
+            " ______________________________________________________________________________________________________________________________________________________________________________\n"
+                    + "|                          Functions:                        |                 Descriptions:                  |                             Example:                           |\n"
+                    + "|____________________________________________________________|________________________________________________|________________________________________________________________|\n"
+                    + "|   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       | (eg. set-profile John 20 male 180 80 75 )                      |\n"
+                    + "|   profile                                                  |  View user profile details                     | (eg. profile)                                                  |\n"
+                    + "|   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              | (eg. record-meal Monday morning /prata -- 10.0 /milk -- 6.00 ) |\n"
+                    + "|   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             | (eg. check-meal Monday morning )                               |\n"
+                    + "|   calculate DATE                                           |  Calculate Calorie intake for the day          | (eg.calculate Monday)                                          |\n"
+                    + "|   calculate DATE1->DATE2                                   |  Calculate Calorie intake from DATE1 to DATE2  | (eg. calculate Monday->Wednesday )                             |\n"
+                    + "|   list-food                                                |  Lists all foods info in database.             | (eg. list-food )                                               |\n"
+                    + "|   addf FOOD_NAME --CALORIES                                |  Add new food info into database               | (eg. addf beef noodles -- 7.0 )                                |\n"
+                    + "|   delf FOOD_NAME                                           |  Delete food info from database                | (eg. delf beef noodles )                                       |\n"
+                    + "|   set-weight                                               |  Set/Update weight in user profile             | (eg. set-weight 70 )                                           |\n"
+                    + "|   check-weight-progress NAME                               |  List index of weight progress                 | (eg. check-weight-progress John )                              |\n"
+                    + "|   delete-weight INDEX                                      |  Delete weight from the weight progress list   | (eg. delete-weight 2 )                                         |\n"
+                    + "|   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       | (eg. new-recipe 2 low )                                        |\n"
+                    + "|   show-recipe                                              |  Show recommended recipe to user               | (eg. show-recipe )                                             |\n"
+                    + "|   help                                                     |  Show this function help table                 | (eg. help )                                                    |\n"
+                    + "|   exit                                                     |  Exit the application                          | (eg. exit )                                                    |\n"
+                    + "|____________________________________________________________|________________________________________________|________________________________________________________________|\n"
+                    + "Please key in your command: ";
 }
