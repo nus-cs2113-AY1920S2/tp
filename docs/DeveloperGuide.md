@@ -146,7 +146,7 @@ Step 3. The user can generate the profit by inputting `profit`.
 <a name="search-reservation"></a>
 
 ### 1.4 [Proposed] Search reservation
-#### 1.4.1. Propose Implementation
+#### 1.4.1. Proposed Implementation
 
 In the restaurant daily report, users can search against the reservation category by supplying either a reservation number or a date.
 
@@ -156,41 +156,57 @@ The feature implements the following operations:
 
 The following class diagram shows the structures relevant to the "search reservation" feature:
 <p align="center">
-    <img src="documentations\Sibing\ClassDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\ClassDiagramforSearchReservation.png" width="900">
 </p>
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. An empty `reservation` will be initialized.
+Step 1. The user launches the application for the first time. An empty `reservations` will be initialized.
 
-Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservation` list.  
-Further, the user may add more reservations into the current `reservation` list.  
+Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservations` list.  
+Further, the user may add more reservations into the current `reservations` list.  
 Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
 and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
 
-Step 3. The user can now search against the current `reservation` list to see if an reservation is stored in the `reservation` list.  
-If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
-
+The following object diagram illustrates how the `reservations` list looks like:
 <p align="center">
-    <img src="documentations\Sibing\SearchByIndex.png">
+    <img src="documentations\Sibing\ObjectDiagramforSearchReservation.png" width="900">
 </p>
 
-If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
+Step 3. The user can now search against the current `reservations` list to see if an reservation is stored in the `reservations` list.  
+If the user executes `search reservation; r/1;`, the mechanism is shown as follows:
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with only valid reservation number will be executed, calling `ReservationList#getReservation(reservationNumber)` to fetch the target `Reservation` object.
+* The following result with formatted information will be displayed in the image:
 
 <p align="center">
-    <img src="documentations\Sibing\SearchByDate.png">
+    <img src="documentations\Sibing\SearchByIndex.png" width="300">
 </p>
 
-If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
+If the user executes `search reservation; d/2020-03-12;`, the mechanism is shown as follows:  
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with only valid date will be executed, doing a linear search along the whole `reservations` list to pick out the `Reservation` objects with the same date.
+* The following result will with formatted information be displayed in the image:
 
 <p align="center">
-    <img src="documentations\Sibing\SearchByIndexnDate.png">
+    <img src="documentations\Sibing\SearchByDate.png" width="500">
 </p>
 
-The following sequence diagram shows the relevant interactions behind `search reservation`:
+If the user executes `search reservation; r/1; d/2020-03-13;`, the mechanism is shown as follows:  
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with both valid date and reservation number will be executed.
+* `SearchReservationCommand#execute()` is called to fetch the `Reservation` object in that reservation number.
+* Date of the `Reservation` object is checked to see whether it matches the target date or not.
+* In this case, the date does not match, so the following result will be displayed in the image:
 
 <p align="center">
-    <img src="documentations\Sibing\SequenceDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\SearchByIndexnDate.png" width="300">
+</p>
+
+The following sequence diagram shows how `search reservation` operation works:
+
+<p align="center">
+    <img src="documentations\Sibing\SequenceDiagramforSearchReservation.png" width="900">
 </p>
 
 #### 1.4.2 Design Considerations

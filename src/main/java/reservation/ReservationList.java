@@ -11,7 +11,7 @@ import static utils.Constants.SERVED;
 
 /** Contains the reservation list e.g., it has operations to add/delete/list reservations in the list. */
 public class ReservationList {
-    List<Reservation> reservations;
+    private List<Reservation> reservations;
 
     /**
      * Defines the constructor and starts with an empty list.
