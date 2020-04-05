@@ -59,13 +59,14 @@ Format:
 
 Example of usage:
 
-TODO: change image so that the words are the same font size
-
     Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01
+
+TODO: change image so that the words are the same font size
 ![](images/capture.png)
 
 Note:
 - You must add in your (main user's) contact before you can use the application. 
+If you try to enter a command before adding in your contact, you will see this message.
 - You can add as many contacts as you want thereafter.
 
 
