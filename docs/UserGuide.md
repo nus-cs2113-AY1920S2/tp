@@ -566,8 +566,8 @@ When you run **ATAS** again the next time, you will be able to see the tasks fro
 <tr class="odd">
 <td><p>18</p></td>
 <td><p>Calendar View</p></td>
-<td><p><code>calendar d/[DD/MM/YY]</code></p></td>
-<td><p><code>calendar d/01/01/2020</code></p></td>
+<td><p><code>calendar d/[MM/YY]</code></p></td>
+<td><p><code>calendar d/01/2020</code></p></td>
 </tr>
 </tbody>
 </table>
