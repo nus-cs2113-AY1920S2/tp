@@ -1,10 +1,7 @@
 package seedu.happypills.storage;
 
 import seedu.happypills.HappyPills;
-import seedu.happypills.model.data.Appointment;
-import seedu.happypills.model.data.AppointmentMap;
-import seedu.happypills.model.data.Patient;
-import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.*;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.StorageTextUi;
 
@@ -113,10 +110,10 @@ public class Storage {
 
     /**
      * Read and send file data to parse line by line as string.
-     * Returns a list of historical patients patient list
+     * Returns a list of historical appointment list
      *
      * @param filePath location of file to read from.
-     * @param patients Shared map of all patients
+     * @param patients Shared map of all patient
      * @return patientList of all patients found in the file.
      * @throws FileNotFoundException if the file specified by directory/filename does not exist.
      */
@@ -150,6 +147,50 @@ public class Storage {
             if (patient != null) {
                 patient.addAppointment(tempAppt);
                 storedAppt.addAppointment(tempAppt);
+            }
+        } catch (HappyPillsException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Read and send file data to parse line by line as string.
+     * Returns a list of historical patients record list
+     *
+     * @param filePath location of file to read from.
+     * @param patients Shared map of all patients
+     * @return patientList of all patients found in the file.
+     * @throws FileNotFoundException if the file specified by directory/filename does not exist.
+     */
+    public static PatientRecordMap loadPatientRecordFromFile(String filePath, PatientMap patients)
+            throws FileNotFoundException {
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
+        PatientRecordMap storedPr = new PatientRecordMap();
+
+        while (s.hasNext()) {
+            String stringInput = s.nextLine();
+            parsePatientRecordFileContent(stringInput, storedPr, patients);
+        }
+
+        return storedPr;
+    }
+
+    /**
+     * convert a single line data into values of an appointment and add it back to the provided apptList.
+     * @param savedString a single string with all the data required for a appointment.
+     * @param storedPr a list which the patient record details retrieved should be added into.
+     */
+    private static void parsePatientRecordFileContent(String savedString,
+                                                    PatientRecordMap storedPr, PatientMap patients) {
+        String[] dataString = savedString.split("[|]", 5);
+        Boolean isDone = dataString[5].equals("T");
+        PatientRecord tempPr = new PatientRecord(dataString[0], dataString[1],
+                dataString[2], dataString[3], dataString[4]);
+        try {
+            Patient patient = (Patient) patients.get(dataString[1]);
+            if (patient != null) {
+                storedPr.addPersonalRecord(tempPr,dataString[1]);
             }
         } catch (HappyPillsException e) {
             e.printStackTrace();

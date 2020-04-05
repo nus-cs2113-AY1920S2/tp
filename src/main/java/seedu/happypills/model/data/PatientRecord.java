@@ -82,4 +82,11 @@ public class PatientRecord {
                 + "        Date : " + date.trim() + "\n"
                 + "        time : " + time.trim() + "\n";
     }
+    public String toSave() {
+        return  nric.trim().toUpperCase() + "|"
+                + symptom.trim() + "|"
+                + diagnosis.trim() + "|"
+                + date.trim() + "|"
+                + time.trim() + System.lineSeparator();
+    }
 }
