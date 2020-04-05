@@ -22,18 +22,18 @@ public class EditPerformance extends Command {
         return performances.getPerformance(studentName);
     }
 
-    private void edit() throws PacException {
+    private void editPerformance() throws PacException {
         Performance performance = getPerformance();
         String editType = ui.getPerformanceParameter();
         if (editType.toLowerCase().trim().equals("name")) { // edit name
-            performances.edit(performance, "name");
+            performances.editPerformance(performance, "name");
         } else if (editType.toLowerCase().trim().equals("result")) { // edit result
-            performances.edit(performance, "result");
+            performances.editPerformance(performance, "result");
         }
     }
 
     @Override
     public void execute() throws PacException {
-        edit();
+        editPerformance();
     }
 }

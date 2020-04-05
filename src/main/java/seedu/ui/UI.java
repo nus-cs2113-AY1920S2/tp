@@ -224,12 +224,6 @@ public class UI {
         return getStringInput();
     }
 
-    public String getTypeOfParameterToEdit() {
-        display("Would you like to import an existing student list? "
-                + "If yes, input 'yes'. Else, input anything.");
-        return getStringInput();
-    }
-
     public boolean isImportList() {
         String userInput = getTypeOfAddPerformance();
         return userInput.equals("yes");

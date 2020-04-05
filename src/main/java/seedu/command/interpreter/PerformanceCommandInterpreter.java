@@ -40,7 +40,7 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return new DeletePerformance(performances, eventName);
         case "edit":
             return new EditPerformance(performances, eventName);
-        case "list":
+        case "view":
             return new ViewStudentPerformance(performances);
         case "sort":
             return getSortCommand();
