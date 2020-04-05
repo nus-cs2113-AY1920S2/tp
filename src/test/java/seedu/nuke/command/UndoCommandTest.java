@@ -6,6 +6,7 @@ import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.storage.StoragePath;
+import seedu.nuke.directory.Module;
 
 import java.util.HashMap;
 
@@ -21,10 +22,12 @@ class UndoCommandTest {
         ModuleManager.initialise(modulesMap);
         ScreenShotManager.saveScreenShot();
 
+        /*
         CommandResult result = Executor.executeCommand(UndoCommand.COMMAND_WORD);
         ScreenShotManager.saveScreenShot();
         assertEquals(MESSAGE_UNDO_AT_BEGINNING, result.getFeedbackToUser());
-
+        */
+        
         CommandResult result1 = Executor.executeCommand("addm cs3235");
         ScreenShotManager.saveScreenShot();
         assertEquals(1, ModuleManager.getModuleList().size());
@@ -36,5 +39,6 @@ class UndoCommandTest {
         CommandResult result3 = Executor.executeCommand(UndoCommand.COMMAND_WORD);
         ScreenShotManager.saveScreenShot();
         assertEquals(1, ModuleManager.getModuleList().size());
+        assertEquals("CS3235", ModuleManager.getModuleList().get(0).getModuleCode());
     }
 }
