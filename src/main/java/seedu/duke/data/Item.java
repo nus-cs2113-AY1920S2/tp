@@ -43,7 +43,6 @@ public class Item {
     public int getQuantity() {
         return quantity;
     }
-    //@@author
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -55,7 +54,6 @@ public class Item {
         return price;
     }
 
-    //@@author
     public void setPrice(double price) {
         this.price = price;
     }
