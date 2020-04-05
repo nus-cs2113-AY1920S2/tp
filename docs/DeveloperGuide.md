@@ -1,8 +1,22 @@
 
 
-## [Project TechToday](https://github.com/AY1920S2-CS2113-T14-2/tp) - Developer Guide
+# [Project TechToday](https://github.com/AY1920S2-CS2113-T14-2/tp) - Developer Guide
 
 By: `Alaukik Pant`      Since: `Mar 2020`      Licence: `MIT`
+
+## Table Of Contents
+- [1. Setting Up](#1-setting-up)
+- [2. Design](#2-design)
+- [3. Implementation](#3-implementation)
+  * [`create` feature](#-create--feature)
+- [3. Product Scope](#3-product-scope)
+  * [Value Proposition](#value-proposition)
+  * [Target user profile](#target-user-profile)
+- [User Stories](#user-stories)
+- [5. Non-Functional Requirements](#5-non-functional-requirements)
+- [6. Glossary](#6-glossary)
+- [7. Instructions for Manual Testing](#7-instructions-for-manual-testing)
+
 
 
 ## 1. Setting Up
@@ -31,9 +45,8 @@ For more information, please refer to the user guide.
 
 ### `create` feature
 
-#### Overview
+**Current Implementation:**
 
-Current Implementation:
 The `InformationCreator` is a standalone class inside the `commands` package. The `create` feature helps the user create information objects that can be instances of `article`, `note` and `job` classes and automatically add them to the Article, Note and Job List respectively. 
 
 Given below is an example usage and how the `CreateCommand` mechanism behaves at each step:
