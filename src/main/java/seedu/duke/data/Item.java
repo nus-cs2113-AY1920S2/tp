@@ -50,10 +50,21 @@ public class Item {
     //@@author
 
     //@@author kokjoon97
+
+    /**
+     * Returns the price of the <code>Item</code>.
+     *
+     * @return Price of the <code>Item</code>.
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Sets the price of the <code>Item</code> to the value provided as argument.
+     *
+     * @param price The new price of the <code>Item</code>.
+     */
     public void setPrice(double price) {
         this.price = price;
     }
