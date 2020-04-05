@@ -31,6 +31,119 @@ public class StartCommand extends Command {
 
     @Override
     public void executeCommand(ActivityList activityList) {
+        boolean hasStarted = hasStarted(Parser.startTime);
+        if (hasStarted) {
+            stopExecution();
+        } else {
+            continueExecution();
+        }
+    }
+
+    private boolean hasStarted(LocalDateTime startTime) {
+        if (startTime != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void stopExecution() {
+        String line = Parser.activityName + " is ongoing!";
+        Log.makeInfoLog("Could not start activity due to already ongoing activity.");
+        Ui.printDivider(line);
+    }
+
+    private void continueExecution() {
+        boolean commandIsEmpty = hasParameter(this.parameters);
+        String activityName = "";
+        if (commandIsEmpty) {
+            Ui.printDivider("Start command cannot be empty");
+        } else {
+            activityName = parseActivityName(this.parameters);
+        }
+        if (activityName.isEmpty()) {
+            Ui.printDivider("Activity name cannot be empty");
+        } else {
+            System.out.println(activityName);
+        }
+    }
+
+    private boolean hasParameter(String parameters) {
+        if (parameters.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    private String parseActivityName(String parameters) {
+        String scenario;
+        String activityName;
+        int tagDelimiter = parameters.indexOf("/t");
+        int allocateDelimiter = parameters.indexOf("/a");
+        scenario = getScenario(tagDelimiter, allocateDelimiter);
+        switch (scenario) {
+        case "hasTagAndTarget":
+            activityName = handleTagAndTarget(this.parameters, tagDelimiter, allocateDelimiter);
+            break;
+        case "hasTagOnly":
+            activityName = handleTagOrTarget(this.parameters, tagDelimiter);
+            break;
+        case "hasTargetOnly":
+            activityName = handleTagOrTarget(this.parameters, allocateDelimiter);
+            break;
+        case "hasNoTagAndTarget":
+            activityName = this.parameters.trim();
+            break;
+        default:
+            activityName = "";
+            break;
+        }
+        return activityName;
+    }
+
+    private String getScenario(int tagDelimiter, int allocateDelimiter) {
+        if (tagDelimiter != -1 && allocateDelimiter != -1) {
+            return "hasTagAndTarget";
+        } else if (tagDelimiter != -1) {
+            return "hasTagOnly";
+        } else if (allocateDelimiter != -1) {
+            return "hasTargetOnly";
+        } else {
+            return "hasNoTagAndTarget";
+        }
+    }
+
+    private String handleTagAndTarget(String parameters, int tagDelimiter, int allocateDelimiter) {
+        String activityName = "";
+        int delimiter = 0;
+        if (tagDelimiter < allocateDelimiter) {
+            delimiter = tagDelimiter;
+        } else if (allocateDelimiter < tagDelimiter) {
+            delimiter = allocateDelimiter;
+        }
+        activityName = parameters.substring(0, delimiter);
+        activityName = activityName.trim();
+        if (activityName.isEmpty()) {
+            return "";
+        } else {
+            return activityName;
+        }
+    }
+
+    private String handleTagOrTarget(String parameters, int delimiter) {
+        String activityName = parameters.substring(0, delimiter);
+        activityName = activityName.trim();
+        if (activityName.isEmpty()) {
+            return "";
+        } else {
+            return activityName;
+        }
+    }
+
+
+
+    /*@Override
+    public void executeCommand(ActivityList activityList) {
         if (Parser.startTime != null) {
             String line = Parser.activityName + " is ongoing!";
             Log.makeInfoLog("Could not start activity due to already ongoing activity.");
@@ -71,7 +184,7 @@ public class StartCommand extends Command {
                 }
             }
         }
-    }
+    }*/
 
     /**
      * Received user input on whether or not to continue the activity.
@@ -79,7 +192,7 @@ public class StartCommand extends Command {
      * @param activityList List of activities.
      * @param scanner Parse user input.
      */
-    private static void continueActivity(ActivityList activityList, Scanner scanner, int index) {
+    /*private static void continueActivity(ActivityList activityList, Scanner scanner, int index) {
         String userInput = scanner.nextLine();
         if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
             Parser.activityName = activityList.get(index).getName();
@@ -92,7 +205,7 @@ public class StartCommand extends Command {
             Parser.activityName = null;
             Ui.printDivider("Okay then, what else can I do for you?");
         }
-    }
+    }*/
 
     /**
      * Parses the started activity for name and tags.
@@ -100,7 +213,7 @@ public class StartCommand extends Command {
      * @param tagDelimiter the index of the tag delimiter.
      * @param allocateDelimiter the index of the allocation delimiter.
      */
-    private void parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
+    /*private void parseActivity(int tagDelimiter, int allocateDelimiter) throws EmptyNameException,
             WrongDateFormatException, EmptyTagException {
         String activityName = getActivityName(tagDelimiter, allocateDelimiter);
         if (activityName.isBlank()) {
@@ -139,9 +252,9 @@ public class StartCommand extends Command {
 
         }
         //return "Started: " + Parser.activityName;
-    }
+    }*/
 
-    private String getActivityName(int tagDelimiter, int allocateDelimiter) {
+    /*private String getActivityName(int tagDelimiter, int allocateDelimiter) {
         if (tagDelimiter != -1) {
             return this.parameters.substring(0,tagDelimiter).strip();
         } else if (allocateDelimiter != -1) {
@@ -150,9 +263,9 @@ public class StartCommand extends Command {
             return this.parameters;
         }
 
-    }
+    }*/
 
-    private void parseDuration(String allocatedTime) throws WrongDateFormatException {
+    /*private void parseDuration(String allocatedTime) throws WrongDateFormatException {
         String[] tokenizedInputs;
         tokenizedInputs = allocatedTime.split("/");
         if (tokenizedInputs.length != 3) {
@@ -164,5 +277,5 @@ public class StartCommand extends Command {
             String duration = "PT" + hours + minutes + seconds;
             Parser.allocatedTime = Duration.parse(duration);
         }
-    }
+    }*/
 }
