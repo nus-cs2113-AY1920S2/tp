@@ -2,24 +2,38 @@
 
 ## Introduction
 
-Meeting Organizer is a friendly chatbot that helps you find common free time among you and your friends, using just the NUSMODS links to your school timetable.
+WhenFree is a chatbot that helps you find common free time among your and your friends, 
+using just the NUSMODS links to your school timetable. 
+
+WhenFree is for NUS students who want to save time gathering their friends' schedules to set up a 
+meeting, whether a long project discussion or a quick meal. With an easy-to-use command line interface, anyone can
+set up and use this application easily by following along this User Guide.
+
+Get ready the NUSMODS links of you and your friends, and let's get started!
 
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed.
-2. Download the .jar file from the latest release of `MeetingOrganizer` [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
-3. Copy the .jar file to an empty folder.
-4. Open Command Prompt and navigate to the folder using ```cd <folder path>```.
+1. Ensure that you have Java 11 or later versions of Java installed on your computer. 
+    - To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). 
+    - To download the latest version of Java on your computer follow the instructions [here](https://www.oracle.com/java/technologies/javase-jdk13-downloads.html).
+2. Download the .jar file of our latest release WhenFree 2.1 [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
+3. Copy the downloaded .jar file to an empty folder.
+4. Open Command Prompt or Terminal and navigate to the folder using ```cd <folder path>```.
 5. Run the .jar file using ```java -jar <.jar file name>```.
+
+You will see this welcome message if you have done the above steps correctly.
+
+TODO: change image
+![](images/capture.png)
 
 ## Features 
 
-- [Adding a new contact](#adding-a-new-contact)
+- [Add a new contact](#add-a-new-contact)
 - [List all contacts](#list-all-contacts-contacts)
 - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
 - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
-- [Edit a contact's timetable](#edit-a-contact's timetable-edit)
+- [Edit a contact's timetable](#edit-a-contact's-timetable-edit)
 - [Delete a meeting](#delete-a-meeting-delete--m)
 - [Delete a contact](#delete-a-contact-delete--c)
 - [List all meetings](#list-all-meetings-meetings)
@@ -27,8 +41,10 @@ Meeting Organizer is a friendly chatbot that helps you find common free time amo
 
 <br/><br/>
 
-### Adding a new contact
-Adds a new person and their class schedule into our list of contacts.
+### Add a new contact
+Adds you or your friend into the list of contacts. 
+You will key in the **name** and **NUSMODS link** of the 
+contact.
 
 Format: 
     
@@ -41,7 +57,7 @@ Example of usage:
 ![](images/capture.png)
 
 Note:
-- You must add the main user's contact before you can use the application. 
+- You must add in your (main user's) contact before you can use the application. 
 - You can add as many contacts as you want thereafter.
 
 
@@ -62,7 +78,7 @@ Example of usage:
 <br/><br/>
 
 ### Display timetable of selected contacts: `timetable`
-1) Displays the main user's timetable.
+1) Displays your (main user's) timetable.
     
     Format: 
     
@@ -71,10 +87,10 @@ Example of usage:
     Example of usage: 
     
         timetable
-    
+    TODO: update image
     ![](images/capture3.png)`
 
-2) Displays the timetable of the selected contact.
+2) Displays the timetable of a selected contact. You will need to key in the **Contact Index** of the selected contact.
 
     Format: 
     
@@ -83,14 +99,15 @@ Example of usage:
     Example of usage: 
     
         timetable 1
-    
+    TODO: update image
     ![](images/capture4.png)
     
     Note:
     
-    - Both `timetable` and `timetable 0 ` will display the main user's timetable.
+    - Both `timetable` and `timetable 0 ` display your (main user's) timetable.
 
-3) Displays the combined timetable of the selected contacts.
+3) Displays the combined timetable of multiple selected contacts. You will need to key in the **Contact Index** of 
+each of the selected contacts.
    
    Format: 
    
@@ -99,7 +116,7 @@ Example of usage:
    Example of usage: 
    
        timetable 0 1 2
-   
+    TODO: update image
     ![](images/capture5.png)
     
     Note:
@@ -110,7 +127,8 @@ Example of usage:
    
 
 ### Schedule a new meeting `schedule`
-Schedules a new meeting at a specified time slot and adds it into the meeting list.
+Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in the 
+**Meeting Name**, and specify the meeting time slot with **Start Day**, **Start Time**, **End Day**, **End Time**.
 
 Format: 
 
@@ -130,11 +148,13 @@ Timetables of other contacts will not be affected.
 `timetable` if you try to schedule a meeting during a time slot which you are busy for.
 
     TODO change image
+    
     ![](images/capture6.png)
 
 
 ### Edit a contact's timetable `edit`
-1) Edit a contact's timetable to be busy for a specified time slot.
+1) Edit a contact's timetable to be busy for a specified time slot. You will need to key in the **Contact Index**
+of the contact, and specify the time slot to be marked busy with **Start Day**, **Start Time**, **End Day**, **End Time**.
 
     Format: 
     
@@ -147,7 +167,8 @@ Timetables of other contacts will not be affected.
     TODO change image
     ![](images/capture6.png)
 
-2) Edit a contact's timetable to be free for a specified time slot.
+2) Edit a contact's timetable to be free for a specified time slot. You will need to key in the **Contact Index** of
+ the contact, and specify the time slot to be marked free with **Start Day**, **Start Time**, **End Day**, **End Time**.
     
     Format: 
     
@@ -162,9 +183,13 @@ Timetables of other contacts will not be affected.
     
 Note:
     
-- You can check `<Contact Index>` of the contact whose timetable you wish to edit, by first listing all contacts using `contacts`.
+- You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
+`contacts`.
 
-- When editing your (main user's) timetable, be careful not edit over a scheduled meeting's time slot. WhenFree 
+- You can check the timetable of the contact you wish to edit, by display his/her timetable using 
+`timetable <Contact Index>`
+
+- When editing your (main user's) timetable, be careful not to edit over a scheduled meeting's time slot. WhenFree 
 will remind you to check `meetings` if you try to edit over a scheduled meeting.
 
     TODO change image
@@ -175,7 +200,8 @@ will remind you to check `meetings` if you try to edit over a scheduled meeting.
 
 
 ### Delete a meeting `delete -m`
-Deletes a scheduled meeting from the meeting list.
+Deletes a scheduled meeting from the meeting list. You will need to key in the **Meeting Index** of the meeting you wish 
+to delete.
 
 Format: 
     
@@ -195,7 +221,8 @@ Note:
 <br/><br/>
 
 ### Delete a contact `delete -c`
-Deletes a contact from the contact list.
+Deletes a contact from the contact list. You will need to key in the **Contact Index** of the contact you wish 
+to delete.
 
 Format: 
     
@@ -249,7 +276,7 @@ Example of usage:
    **A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
 
 ## Command Summary
-| Feature     | Format      | Example usage |
+| <div style="width:500px">Feature</div>     | <div style="width:500px">Format</div>      | Example usage |
 | ----------- | ----------- | --------------|
 | Adding a new contact     | `<name> <NUSMODS link>`      | `Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01` |
 | List all contacts     | `contacts`      | `contacts` |
