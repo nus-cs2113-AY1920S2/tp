@@ -86,14 +86,15 @@ public class Parser {
             break;
         //@@author
 
+        //@@author JLoh579
         case DisplayCommand.COMMAND_WORD:
             createDisplayCommand(arguments);
             break;
 
-
         case ClearCommand.COMMAND_WORD:
             createClearCommand(arguments);
             break;
+        //@@author
 
         //@@author Shannonwje
         case ResetBudgetCommand.COMMAND_WORD:

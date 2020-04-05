@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+//@@author JLoh579
 /**
  * File utility class.
  */
@@ -57,3 +58,4 @@ public class FileUtil {
         return bufferedReader;
     }
 }
+//@@author

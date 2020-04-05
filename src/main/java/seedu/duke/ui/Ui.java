@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import java.util.Scanner;
 
+//@@author JLoh579
 public class Ui {
 
     private Scanner in = new Scanner(System.in);
@@ -61,3 +62,4 @@ public class Ui {
         System.out.println(str);
     }
 }
+//@@author

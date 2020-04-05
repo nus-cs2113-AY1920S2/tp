@@ -1,5 +1,8 @@
 # SHOCO v2.0 - User Guide
+By: `Team SHOCOTech`
+Since: `Feb 2020`
 
+<!-- @@author trishaangelica -->
 ### Table of Contents
 * **[1. Introduction](#introduction)**
 * **[2. Quick Start](#quick-start)**
@@ -19,8 +22,10 @@
 * **[4. Additional information](#additional-information)**
 * **[5. FAQ](#faq)**
 * **[6. Command Summary](#command-summary)**
+<!-- @@author -->
 
 &nbsp;
+
 <!-- @@author kokjoon97 -->
 ## Introduction
 
@@ -76,7 +81,7 @@ grocery shopping disappear.
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author jiajuinphoon -->
 ### Adding an item: `ADD`
 Add the specified item in the shopping list.
 
@@ -101,6 +106,7 @@ Example of usage:
     
 3. `ADD i/potato chips` 
     * Add only description of the item in the shopping list
+<!-- @@author -->
 
 &nbsp;
 
@@ -204,7 +210,7 @@ Example of the usage:
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author JLoh579 -->
 ### Displaying list and budget details: `DISPLAY`
 Shows the shopping list, budget, cost of the items and the remaining budget.
 
@@ -213,6 +219,7 @@ Format: `DISPLAY`
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<!-- @@author -->
 
 ***
 <!-- @@author kokjoon97 -->
@@ -262,6 +269,7 @@ Example of usage:
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
+<!-- @@author trishaangelica -->
 
 ### Viewing help: `HELP`
 Shows the available commands and how they are to be used.
@@ -284,6 +292,7 @@ Format: `BYE`
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<!-- @@author -->
 
 ***
 
@@ -337,6 +346,8 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
+<!-- @@author trishaangelica -->
+
 ## Command Summary
 
 * Add item `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
@@ -351,6 +362,7 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 * Find item `FIND KEYWORD`
 * View help `HELP`
 * Exit program `BYE`
+<!-- @@author -->
 
 &nbsp;
 

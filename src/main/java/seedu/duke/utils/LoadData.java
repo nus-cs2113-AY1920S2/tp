@@ -9,6 +9,7 @@ import seedu.duke.data.ShoppingList;
 import java.io.BufferedReader;
 import java.lang.reflect.Type;
 
+//@@author JLoh579
 public class LoadData {
     private static final String SHOPPING_LIST_FILENAME = "shoppinglist.json";
     private static final String BUDGET_FILENAME = "budget.json";
@@ -50,3 +51,4 @@ public class LoadData {
         return budget;
     }
 }
+//@@author
