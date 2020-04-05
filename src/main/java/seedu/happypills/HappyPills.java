@@ -3,6 +3,7 @@ package seedu.happypills;
 import seedu.happypills.logic.commands.Command;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
+import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.logic.parser.Parser;
@@ -51,6 +52,12 @@ public class HappyPills {
             logger.info("    Appointment loaded from file.\n");
         } catch (FileNotFoundException e) {
             logger.info("   No appointment in file.\n");
+        }
+        try {
+            patientRecords = Storage.loadPatientRecordFromFile(Storage.PATIENT_RECORD_FILEPATH,patients );
+            logger.info("    Patient Records loaded from file.\n");
+        } catch (FileNotFoundException e) {
+            logger.info("   No patient record in file.\n");
         }
     }
 
