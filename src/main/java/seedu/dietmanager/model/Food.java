@@ -8,6 +8,7 @@ public class Food {
 
     /**
      * Public constructor for Food with the food name and calories value.
+     *
      * @param foodName Name of the food.
      * @param calories Amount of calories the food has.
      */
@@ -18,6 +19,7 @@ public class Food {
 
     /**
      * Public constructor for Food with the food name.
+     *
      * @param foodName Name of the food.
      */
     public Food(String foodName) {
@@ -27,6 +29,7 @@ public class Food {
 
     /**
      * Getter for food name.
+     *
      * @return Name of the food.
      */
     public String getFoodName() {
@@ -35,6 +38,7 @@ public class Food {
 
     /**
      * Getter for the calories of the food.
+     *
      * @return Amount of calories the food has
      */
     public Optional<Double> getCalories() {
@@ -43,6 +47,7 @@ public class Food {
 
     /**
      * Check if the food has calories.
+     *
      * @return True if food has calories, False otherwise.
      */
     public boolean hasCaloriesData() {

@@ -1,9 +1,18 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
+import seedu.dietmanager.commons.exceptions.InvalidAgeException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.commons.exceptions.InvalidGenderException;
-import seedu.dietmanager.logic.parser.Parser;
+import seedu.dietmanager.commons.exceptions.InvalidHeightException;
+import seedu.dietmanager.commons.exceptions.InvalidNameException;
+import seedu.dietmanager.commons.exceptions.InvalidWeightException;
+import seedu.dietmanager.logic.parser.AgeParser;
+import seedu.dietmanager.logic.parser.GenderParser;
+import seedu.dietmanager.logic.parser.HeightParser;
+import seedu.dietmanager.logic.parser.NameParser;
+import seedu.dietmanager.logic.parser.SetProfileParser;
+import seedu.dietmanager.logic.parser.WeightParser;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.ui.UI;
 
@@ -24,20 +33,20 @@ public class SetProfileCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetProfileCommand(String command, String description) throws InvalidFormatException,
-            NumberFormatException, InvalidGenderException {
+    public SetProfileCommand(String command, String description) {
         super(command);
         this.noDescription = false;
 
         try {
-            String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
-            this.name = descriptionArray[0].trim();
-            this.age = Integer.parseInt(descriptionArray[1].trim());
-            this.gender = Parser.parseGender(descriptionArray[2].trim());
-            this.height = Double.parseDouble(descriptionArray[3].trim());
-            this.weight = Double.parseDouble(descriptionArray[4].trim());
-            this.weightGoal = Double.parseDouble(descriptionArray[5].trim());
-        } catch (NullPointerException e) {
+            String[] descriptionArray = SetProfileParser.parseDescription(description);
+            this.name = NameParser.parseName(descriptionArray[0]);
+            this.age = AgeParser.parseAge(descriptionArray[1].trim());
+            this.gender = GenderParser.parseGender(descriptionArray[2].trim());
+            this.height = HeightParser.parseHeight(descriptionArray[3].trim());
+            this.weight = WeightParser.parseWeight(descriptionArray[4].trim());
+            this.weightGoal = WeightParser.parseWeight(descriptionArray[5].trim());
+        } catch (NullPointerException | InvalidHeightException | InvalidWeightException | InvalidAgeException
+                | InvalidNameException | InvalidGenderException | InvalidFormatException e) {
             this.noDescription = true;
         }
     }

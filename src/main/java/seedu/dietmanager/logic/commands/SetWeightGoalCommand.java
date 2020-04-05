@@ -42,7 +42,7 @@ public class SetWeightGoalCommand extends Command {
     @Override
     public void saveResult(Profile profile) {
         if (!this.noDescription) {
-            this.result = MessageBank.WEIGHT_GOAL_CHANGE_MESSAGE + String.format("%.2f.",profile.getWeightGoal());
+            this.result = MessageBank.WEIGHT_GOAL_CHANGE_MESSAGE + String.format("%.2f.", profile.getWeightGoal());
         } else {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
         }

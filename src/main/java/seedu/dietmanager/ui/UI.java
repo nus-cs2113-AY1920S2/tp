@@ -64,6 +64,7 @@ public class UI {
 
     /**
      * Returns the exit status.
+     *
      * @return the exit status.
      */
 
@@ -73,6 +74,7 @@ public class UI {
 
     /**
      * Updates the exit status.
+     *
      * @param update the updated exit status.
      */
 
@@ -82,6 +84,7 @@ public class UI {
 
     /**
      * Returns the next line of user input.
+     *
      * @return the next line of user input.
      */
 
@@ -92,6 +95,7 @@ public class UI {
 
     /**
      * Show messages from executing commands.
+     *
      * @param message String fo message to be shown to user
      */
     public void showCommandMessage(String... message) {

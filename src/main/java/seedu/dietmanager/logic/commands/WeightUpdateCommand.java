@@ -40,11 +40,11 @@ public class WeightUpdateCommand extends Command {
         }
         saveResult(profile);
     }
-    
+
     @Override
     public void saveResult(Profile profile) {
         if (!this.noDescription) {
-            this.result = MessageBank.WEIGHT_UPDATE_MESSAGE + String.format("%.2f.",weightUpdate);
+            this.result = MessageBank.WEIGHT_UPDATE_MESSAGE + String.format("%.2f.", weightUpdate);
         } else {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
         }

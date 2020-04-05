@@ -25,7 +25,7 @@ public class RecordMealCommand extends Command {
     /**
      * Constructs the Command object.
      *
-     * @param command the command prompt entered by the user.
+     * @param command     the command prompt entered by the user.
      * @param description the description of the command.
      * @throws InvalidFormatException if the command doesn't contain correct number of parameters.
      */
@@ -99,7 +99,7 @@ public class RecordMealCommand extends Command {
                 break;
             }
         }
-        record.recordMeals(mealType,foodList);
+        record.recordMeals(mealType, foodList);
         saveResult(profile);
     }
 

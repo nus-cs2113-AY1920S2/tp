@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-04-04T16:44:57.198249600Z</date>
-  <millis>1586018697198</millis>
-  <nanos>249600</nanos>
+  <date>2020-04-05T10:14:19.868193800Z</date>
+  <millis>1586081659868</millis>
+  <nanos>193800</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-04-04T16:44:57.259629200Z</date>
-  <millis>1586018697259</millis>
-  <nanos>629200</nanos>
+  <date>2020-04-05T10:14:19.936013100Z</date>
+  <millis>1586081659936</millis>
+  <nanos>13100</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-04-04T16:44:57.260627300Z</date>
-  <millis>1586018697260</millis>
-  <nanos>627300</nanos>
+  <date>2020-04-05T10:14:19.937071400Z</date>
+  <millis>1586081659937</millis>
+  <nanos>71400</nanos>
   <sequence>2</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -38,9 +38,9 @@
   <message>Starting Diet Manager</message>
 </record>
 <record>
-  <date>2020-04-04T16:44:57.269769800Z</date>
-  <millis>1586018697269</millis>
-  <nanos>769800</nanos>
+  <date>2020-04-05T10:14:19.947981300Z</date>
+  <millis>1586081659947</millis>
+  <nanos>981300</nanos>
   <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>

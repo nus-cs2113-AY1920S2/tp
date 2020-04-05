@@ -40,7 +40,8 @@ public class CalculateCaloriesCommand extends Command {
 
     /**
      * Constructs the Command object.
-     * @param command the command prompt entered by the user.
+     *
+     * @param command     the command prompt entered by the user.
      * @param description the command description entered by the user.
      */
 
@@ -130,6 +131,7 @@ public class CalculateCaloriesCommand extends Command {
 
     /**
      * Saves the execution result to the command.
+     *
      * @param profile the profile that the command is dealing with.
      */
 
@@ -144,7 +146,7 @@ public class CalculateCaloriesCommand extends Command {
                 this.result = String.format("%s is ahead of %s, so only calories from %s to SUNDAY is calculated",
                         this.end, this.begin, this.begin) + System.lineSeparator();
             }
-            this.result += MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.",sum);
+            this.result += MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.", sum);
         }
     }
 }

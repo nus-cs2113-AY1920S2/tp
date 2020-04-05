@@ -20,7 +20,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(Profile profile,UI ui) {
+    public void execute(Profile profile, UI ui) {
         ui.setExitStatus(true);
         this.saveResult(profile);
     }

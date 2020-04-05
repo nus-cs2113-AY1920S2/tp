@@ -18,7 +18,7 @@ public class AddFoodCommand extends Command {
     /**
      * Constructs the Command object.
      *
-     * @param command the command prompt entered by the user.
+     * @param command     the command prompt entered by the user.
      * @param description the description of the command.
      */
 
@@ -46,7 +46,7 @@ public class AddFoodCommand extends Command {
     public void execute(Profile profile, UI ui) {
         if (!this.noDescription && !this.isInvalidCaloriesInfo) {
             FoodNutritionInfo foodInfo = FoodNutritionInfo.getInstance();
-            this.success = foodInfo.addNewFood(foodName,calories);
+            this.success = foodInfo.addNewFood(foodName, calories);
         }
         saveResult(profile);
     }

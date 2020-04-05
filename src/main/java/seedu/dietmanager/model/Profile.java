@@ -61,9 +61,11 @@ public class Profile {
         this.profileExist = true;
     }
 
-    /** Method to add weight into list.
+    /**
+     * Method to add weight into list.
+     *
      * @param newWeight Weight to be added into list
-     * @param day String containing the day of the weight to be stored
+     * @param day       String containing the day of the weight to be stored
      */
     public void addWeightProgress(Double newWeight, String day) {
         weightRecord.add(newWeight);
@@ -105,6 +107,7 @@ public class Profile {
 
     /**
      * Returns a daily record of a certain date.
+     *
      * @param date the date of the wanted record.
      * @return a record of wanted date.
      */
@@ -131,6 +134,7 @@ public class Profile {
 
     /**
      * Creates a new record of a certain date.
+     *
      * @param date the date of the new record.
      * @return a newly generated daily record.
      */
@@ -146,7 +150,7 @@ public class Profile {
     }
 
     public void setRecordOfDay(DailyFoodRecord record, String mealType, ArrayList<Food> foodList) {
-        record.recordMeals(mealType,foodList);
+        record.recordMeals(mealType, foodList);
     }
 
     public void showRecordOfDay(DailyFoodRecord record) {

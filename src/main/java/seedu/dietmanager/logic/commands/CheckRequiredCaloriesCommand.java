@@ -21,7 +21,8 @@ public class CheckRequiredCaloriesCommand extends Command {
 
     /**
      * Constructs the Command object.
-     * @param command The command prompt entered by the user.
+     *
+     * @param command     The command prompt entered by the user.
      * @param description The description of the command.
      * @throws InvalidFormatException If user input incorrect format for the command.
      */
@@ -55,7 +56,7 @@ public class CheckRequiredCaloriesCommand extends Command {
             return;
         }
 
-        getRecommendedCaloriesIntake(profile,activityLevel);
+        getRecommendedCaloriesIntake(profile, activityLevel);
 
         saveResult(profile);
     }
@@ -63,7 +64,7 @@ public class CheckRequiredCaloriesCommand extends Command {
     /**
      * Returns how much calories the profile need to consume in a day.
      *
-     * @param profile The user profile.
+     * @param profile       The user profile.
      * @param activityLevel the activity level of the user.
      * @return calories required to consume in a day based on user's personal info.
      */
@@ -107,9 +108,9 @@ public class CheckRequiredCaloriesCommand extends Command {
             this.result = MessageBank.INVALID_DATE_MESSAGE;
         } else if (!isInValidCommand) {
             DailyFoodRecord record = profile.getRecordOfDay(date);
-            this.result = String.format("Calories Intake and Requirement for %s:",date) + System.lineSeparator()
+            this.result = String.format("Calories Intake and Requirement for %s:", date) + System.lineSeparator()
                     + record.showDailyCalories()
-                    + String.format("Calories requirement for %s activity level: ",activityLevel)
+                    + String.format("Calories requirement for %s activity level: ", activityLevel)
                     + String.format("%.2f", caloriesRequired) + "cal." + System.lineSeparator();
             if (record.getDailyCalories().isPresent()) {
                 double caloriesIntake = record.getDailyCalories().get();

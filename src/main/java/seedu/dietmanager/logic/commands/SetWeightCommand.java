@@ -43,7 +43,7 @@ public class SetWeightCommand extends Command {
     @Override
     public void saveResult(Profile profile) {
         if (!this.noDescription) {
-            this.result = MessageBank.WEIGHT_CHANGE_MESSAGE + String.format("%.2f.",profile.getWeight());
+            this.result = MessageBank.WEIGHT_CHANGE_MESSAGE + String.format("%.2f.", profile.getWeight());
         } else {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
         }

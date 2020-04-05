@@ -17,7 +17,7 @@ public class DeleteFoodCommand extends Command {
     /**
      * Constructs the Command object.
      *
-     * @param command the command prompt entered by the user.
+     * @param command     the command prompt entered by the user.
      * @param description the description of the command.
      */
 
@@ -49,7 +49,7 @@ public class DeleteFoodCommand extends Command {
         } else if (!this.success) {
             this.result = "No need to delete! Referred Food doesn't exist in database";
         } else {
-            this.result = String.format("You have just deleted %s from the database.",foodName);
+            this.result = String.format("You have just deleted %s from the database.", foodName);
         }
     }
 }

@@ -10,6 +10,7 @@ public class ListFoodDatabaseCommand extends Command {
 
     /**
      * Constructs the Command object.
+     *
      * @param command the command prompt entered by the user.
      */
     public ListFoodDatabaseCommand(String command) {

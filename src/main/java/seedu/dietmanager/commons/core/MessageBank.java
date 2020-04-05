@@ -66,7 +66,7 @@ public class MessageBank {
 
     public static String WEIGHT_NO_CHANGE_MESSAGE = "No Pain No Gain! You have not lost weight yet! Strive on!";
 
-    public static String  WEIGHT_GAIN_MESSAGE = "Maintain your diet! You have gained %.2f kg since the beginning!";
+    public static String WEIGHT_GAIN_MESSAGE = "Maintain your diet! You have gained %.2f kg since the beginning!";
 
     public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
 

@@ -22,7 +22,7 @@ public class BuildNewRecipeCommand extends Command {
     /**
      * Constructs the command object.
      *
-     * @param command the command prompt entered by the user.
+     * @param command     the command prompt entered by the user.
      * @param description the description of the command.
      * @throws InvalidFormatException if the command doesn't contain correct number of parameters.
      */
@@ -67,7 +67,7 @@ public class BuildNewRecipeCommand extends Command {
         }
         if (!noDescription && !isInvalidFormat & !noProfileFound) {
             RecipeManager manager = RecipeManager.getInstance();
-            maxNumOverflow = manager.buildRecipe(profile,maxFoodNum,activityLevel);
+            maxNumOverflow = manager.buildRecipe(profile, maxFoodNum, activityLevel);
         }
         saveResult(profile);
     }

@@ -18,7 +18,7 @@ public class CheckRecordCommand extends Command {
     /**
      * Constructs the Command object.
      *
-     * @param command the command prompt entered by the user.
+     * @param command     the command prompt entered by the user.
      * @param description the description of the command.
      */
 
