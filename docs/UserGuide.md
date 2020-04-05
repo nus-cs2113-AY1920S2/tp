@@ -66,7 +66,10 @@ TODO: change image so that the words are the same font size
 
 Note:
 - You must add in your (main user's) contact before you can use the application. 
-If you try to enter a command before adding in your contact, you will see this message.
+If you try to enter a command before adding in your contact, Whenfree will remind
+you to key in your contact first.
+TODO: change image
+![](images/capture.png)
 - You can add as many contacts as you want thereafter.
 
 
@@ -110,10 +113,6 @@ Example of usage:
         timetable 1
     TODO: update image
     ![](images/capture4.png)
-    
-    Note:
-    
-    - Both `timetable` and `timetable 0 ` display your (main user's) timetable.
 
 3) Displays the combined timetable of multiple selected contacts. You will need to key in the **Contact Index** of 
 each of the selected contacts.
@@ -128,11 +127,12 @@ each of the selected contacts.
     TODO: update image
     ![](images/capture5.png)
     
-    Note:
-    
-    - Remember to include 0 as a contact index, if you want to display your (main user's) timetable combined with other 
-    contacts.
-   <br/><br/>
+Note:
+- You can check `<Contact Index>` of the contacts whose timetable you wish to display, by listing all contacts using 
+`contacts`.
+- Both `timetable` and `timetable 0 ` display your (main user's) timetable.
+
+<br/><br/>
    
 
 ### Schedule a new meeting `schedule`
