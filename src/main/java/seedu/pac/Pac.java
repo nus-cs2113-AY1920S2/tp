@@ -18,6 +18,11 @@ import seedu.ui.UI;
 
 public class Pac {
     public static final Logger logger = Logger.getLogger(Pac.class.getName());
+    private static final String INVALID_COMMAND_ERROR_MESSAGE = "Please provide a valid command.";
+    private static final String EVENTLIST_DIRECTORY = "./data/eventlist.txt";
+    private static final String STUDENTLIST_DIRECTORY = "./data/studentlist.txt";
+    private static final String FILE_LOGGER_ERROR_MESSAGE = "File logger not working";
+    private static final String PAC_EXCEPTION_ERROR_MESSAGE = "PacException at Pac.run()";
 
     protected UI ui;
     protected CommandInterpreter interpreter;
@@ -31,13 +36,13 @@ public class Pac {
 
         ui = new UI();
 
-        eventStorage = new Storage("./data/eventlist.txt");
+        eventStorage = new Storage(EVENTLIST_DIRECTORY);
         eventList = eventStorage.loadEventList();
         if (eventList == null) {
             eventList = new EventList();
         }
 
-        studentListCollectionStorage = new Storage("./data/studentlist.txt");
+        studentListCollectionStorage = new Storage(STUDENTLIST_DIRECTORY);
         studentListCollection = studentListCollectionStorage.loadStudentListCollection();
         if (studentListCollection == null) {
             studentListCollection = new StudentListCollection();
@@ -57,7 +62,7 @@ public class Pac {
             fh.setLevel(Level.FINE);    // print FINE log and more severe log to log file
             logger.addHandler(fh);
         } catch (IOException m) {
-            logger.severe("File logger not working");
+            logger.severe(FILE_LOGGER_ERROR_MESSAGE);
             UI.display(m.getMessage());
         }
     }
@@ -70,13 +75,13 @@ public class Pac {
             try {
                 String input = ui.getUserInput().trim();
                 if (input.isEmpty()) {
-                    throw new PacException("Please provide a valid command.");
+                    throw new PacException(INVALID_COMMAND_ERROR_MESSAGE);
                 }
 
                 command = interpreter.decideCommand(input);
                 command.execute();
             } catch (PacException m) {
-                logger.log(Level.WARNING, "PacException at Pac.run()");
+                logger.log(Level.WARNING, PAC_EXCEPTION_ERROR_MESSAGE);
                 UI.display(m.getMessage());
             }
         } while (isNotBye(command));

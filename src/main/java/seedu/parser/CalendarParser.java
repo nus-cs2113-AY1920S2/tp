@@ -22,8 +22,8 @@ public class CalendarParser {
 
     private static String[] parseDescription(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
-        if (tokens.length != SEMESTER_AND_AY || tokens[0].length() != CHARACTERS_IN_SEMESTER ||
-                tokens[1].length() != CHARACTERS_IN_AY) {
+        if (tokens.length != SEMESTER_AND_AY || tokens[0].length() != CHARACTERS_IN_SEMESTER
+                || tokens[1].length() != CHARACTERS_IN_AY) {
             throw new PacException(INPUT_ERROR_MESSAGE);
         }
         return tokens;
