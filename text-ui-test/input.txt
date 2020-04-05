@@ -65,18 +65,22 @@ add reservation; p/Peter; d/2020-03-12 12:00    ; n/1; c/;
 list reservation
 delete reservation; r/;
 delete reservation; r/0;
+delete reservation; r/1.0;
+delete reservation; r/1.2;
 delete reservation; r/1;
 delete reservation; r/1;
 delete reservation; r/1
 delete reservation; r/-1;
 delete reservation; r/5;
 list reservation
+search reservation; r/1.3;
 search reservation; r/1;
 search reservation; r/1; d/2020-03-13;
 search reservation; d/2020-03-12
 search reservation; d/2020-03-12;
 search reservation; r/5;
 search reservation;
+mark reservation; r/2.3;
 mark reservation; r/5;
 mark reservation; r/-1;
 mark reservation; r/4;

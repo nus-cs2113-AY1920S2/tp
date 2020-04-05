@@ -2,11 +2,13 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
+import exceptions.InvalidReservationNumberException;
 import exceptions.ReservationStatusException;
 import reservation.ReservationList;
 import ui.Ui;
 
-import static utils.Constants.*;
+import static utils.Constants.DELIMITER;
+import static utils.Constants.RES_INDEX_MARKER;
 
 /** Command object for "void reservation" command. */
 public class VoidReservationCommand extends ReservationCommand {
@@ -41,6 +43,8 @@ public class VoidReservationCommand extends ReservationCommand {
             ui.showMessage(e.getMessage());
         } catch (DelimiterMissingException e) {
             ui.showMessage(e.getMessage());
+        } catch (InvalidReservationNumberException e) {
+            ui.showMessage(e.getMessage());
         } catch (ReservationStatusException e) {
             ui.showMessage(String.format("Reservation[%d] is already %s. You cannot void a %s reservation.",
                     this.reservationNumber, e.getStatus(), e.getStatus()));
@@ -53,9 +57,11 @@ public class VoidReservationCommand extends ReservationCommand {
      * @param description Input from the user excluding the command.
      * @throws InputMissingException If there is input missing.
      * @throws DelimiterMissingException If there is delimiter missing.
+     * @throws InvalidReservationNumberException If there is no such reservation number in the list.
      */
     @Override
-    protected void parseInput(String description) throws InputMissingException, DelimiterMissingException {
+    protected void parseInput(String description) 
+            throws InputMissingException, DelimiterMissingException, InvalidReservationNumberException {
         // specifies the reservation number
         int numberPos = description.indexOf(RES_INDEX_MARKER);
         if (numberPos == -1) {
@@ -73,7 +79,7 @@ public class VoidReservationCommand extends ReservationCommand {
                 numberEndPos).trim());
         
         if (this.reservationNumber <= 0 || this.reservationNumber > validMaxRange) {
-            throw new NumberFormatException();
+            throw new InvalidReservationNumberException(this.reservationNumber);
         }
         assert 0 < this.reservationNumber && this.reservationNumber <= validMaxRange : "Invalid Reservation Number";
     }

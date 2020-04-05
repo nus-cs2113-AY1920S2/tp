@@ -46,6 +46,17 @@ class ReservationListTest {
             fail(); // the test should not reach this line
         }
     }
+
+    @Test
+    void markReservationAsServed_invalidReservation_exceptionThrown() {
+        try {
+            reservationList.voidReservation(1);
+            reservationList.markReservationAsServed(1);
+            fail(); // the test should not reach this line
+        } catch (ReservationStatusException e) {
+            assertEquals("Invalid", e.getStatus());
+        }
+    }
     
     @Test
     void voidReservation_normalInput_success() {
@@ -56,17 +67,27 @@ class ReservationListTest {
         } catch (ReservationStatusException e) {
             fail(); // the test should not reach this line
         }
-        
+    }
+    
+    @Test
+    void voidReservation_invalidReservation_exceptionThrown() {
+        try {
+            reservationList.voidReservation(1);
+            reservationList.voidReservation(1);
+            fail(); // the test should not reach this line
+        } catch (ReservationStatusException e) {
+            assertEquals("Invalid", e.getStatus());
+        }
     }
 
     @Test
-    void markReservationAsServed_invalidReservation_exceptionThrown() {
+    void voidReservation_servedReservation_exceptionThrown() {
         try {
-            reservationList.voidReservation(1);
             reservationList.markReservationAsServed(1);
+            reservationList.voidReservation(1);
             fail(); // the test should not reach this line
         } catch (ReservationStatusException e) {
-            ui.showMessage("Reservation[0] is invalid, so it cannot be marked as served.");
+            assertEquals("Served", e.getStatus());
         }
     }
     

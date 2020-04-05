@@ -314,6 +314,10 @@ comments: no spicy food please
 Input next command:
 Please enter a valid positive integer.
 Input next command:
+There is no Reservation[0] in the list.
+Input next command:
+Please enter a valid positive integer.
+Input next command:
 Please enter a valid positive integer.
 Input next command:
 Successfully void Reservation[1]
@@ -322,9 +326,9 @@ Reservation[1] is already Invalid. You cannot void a Invalid reservation.
 Input next command:
 Delimiter Missing.
 Input next command:
-Please enter a valid positive integer.
+There is no Reservation[-1] in the list.
 Input next command:
-Please enter a valid positive integer.
+There is no Reservation[5] in the list.
 Input next command:
 Reservation [1]
 Status: Invalid
@@ -362,6 +366,8 @@ table size: S
 contact details: 98889999
 comments: no spicy food please
 
+Input next command:
+Please enter a valid positive reservation number.
 Input next command:
 Reservation [1]
 Status: Invalid
@@ -403,11 +409,13 @@ Input Missing: either reservation number r/ or date d/ is missing.
 Input next command:
 Please enter a valid positive integer.
 Input next command:
-Please enter a valid positive integer.
+There is no Reservation[5] in the list.
+Input next command:
+There is no Reservation[-1] in the list.
 Input next command:
 Successfully mark Reservation[4] as served.
 Input next command:
-Please enter a valid positive integer.
+There is no Reservation[0] in the list.
 Input next command:
 Reservation[1] is already Invalid. It cannot be marked as Served.
 Input next command:

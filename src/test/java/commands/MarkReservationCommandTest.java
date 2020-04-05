@@ -2,6 +2,7 @@ package commands;
 
 import exceptions.DelimiterMissingException;
 import exceptions.InputMissingException;
+import exceptions.InvalidReservationNumberException;
 import org.junit.jupiter.api.Test;
 import reservation.Reservation;
 import reservation.ReservationList;
@@ -24,9 +25,9 @@ class MarkReservationCommandTest {
 
     @Test
     void execute_normalMarkReservationCommand_success() {
-        Reservation reservation = reservationList.getReservation(reservationList.getSize() - 1);
+        Reservation reservation = reservationList.getReservation(reservationList.getSize());
         assertEquals("Unserved", reservation.getStatus());
-        new MarkReservationCommand("r/0;").execute(reservationList, ui);
+        new MarkReservationCommand("r/1;").execute(reservationList, ui);
         assertEquals("Served", reservation.getStatus());
     }
     
@@ -40,18 +41,22 @@ class MarkReservationCommandTest {
             assertEquals("Input Missing: reservation number r/ is missing.", e.getMessage());
         } catch (DelimiterMissingException e) {
             assertEquals("Delimiter Missing.", e.getMessage());
+        } catch (InvalidReservationNumberException e) {
+            fail(); // the test should not reach this line
         }
     }
     
     @Test
     void parseInput_delimiterMissingMarkReservationCommand_exceptionThrown() {
         try {
-            new MarkReservationCommand("r/0").parseInput("r/0");
+            new MarkReservationCommand("r/1").parseInput("r/1");
             fail(); // the test should not reach this line
         } catch (InputMissingException e) {
             fail(); // the test should not reach this line
         } catch (DelimiterMissingException e) {
             assertEquals("Delimiter Missing.", e.getMessage());
+        } catch (InvalidReservationNumberException e) {
+            fail(); // the test should not reach this line
         }
     }
     
@@ -60,12 +65,12 @@ class MarkReservationCommandTest {
         try {
             new MarkReservationCommand("r/-1;").parseInput("r/-1;");
             fail(); // the test should not reach this line
-        } catch (NumberFormatException e) {
-            ui.showMessage("Please enter a valid positive integer.");
         } catch (InputMissingException e) {
             fail(); // the test should not reach this line
         } catch (DelimiterMissingException e) {
             fail(); // the test should not reach this line
+        } catch (InvalidReservationNumberException e) {
+            assertEquals("There is no Reservation[-1] in the list.", e.getMessage());
         }
     }
 }
