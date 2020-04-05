@@ -13,7 +13,7 @@ to store all information in a single place and users can always have quick acces
 ### Summary of Contributions
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
-**Major enhancement:** I implemented `PatientMap` to store all patients' details.
+#### Major enhancement: I implemented `PatientMap` to store all patients' details.
   + What it does:
     - The PatientMap uses HashMap from Java Collection framework to store the patient objects.
     - The PatientMap maps the Patient object to the Patient's NRIC. Each Patient's NRIC (key) is associated with a 
@@ -29,41 +29,25 @@ This section shows a summary of my coding, documentation, and other helpful cont
     - To ensure our application maintains its robustness under extremely heavy load conditions, I did in-depth analysis 
     of different design alternatives.
     
-**Major enhancement:** I implemented the ability for user to filter Patient Record
+#### Major enhancement: I implemented the ability for user to `filter` patient records.
   + What it does:
-    - The `list pr NRIC` command list all the past patient records with index.
+    - The `list pr NRIC` command will display a list of past patient records with index for the searched patient.
     - The `find pr NRIC INDEX` command find a particular patient record with given index.
     - The `edit pr NRIC INDEX [/sym or /diag or /date or /time]` command edit a particular patient record with given
     index and tag.
     - The `delete pr NRIC INDEX` command delete a particular patient record with given index.
   + Justification:
     - In the case that the Patient Record grows, it will be difficult to find records. The `find pr NRIC INDEX` command 
-    allows users to easily find and filter the notes that they require. It also allow to edit wrongly added detail or
-    update the existing record.
-    
+    allows users to easily find and filter the notes that they require. It also allows users to edit wrongly added 
+    detail or update the existing records.
   + Highlights:
-    - The `list pr NRIC` will provide all the index of the past records. User are not require to provide their index,
-    and can always view the date/time of the patient record with the corresponding index.
-    - An in-depth analysis of design of using array indexing instead of hashmap and keyword is because
-    the number of time a particular patient visit the clinic are usually low. Arraylist have advantage such as
-    `auto indexing` and resizing of the array making the `space of the app low` and manageable.
-    
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> i prefer ^
-**Major enhancement:** I implemented `FindPatientRecord` to search for a particular Patient Record using NRIC and index.
-  + What it does:
-    - `find pr NRIC INDEX` uses NRIC as key to find the ArrayList of past Patient Record as value.
-    - `find pr NRIC INDEX` uses INDEX to find the particular Patient Record that the user is searching for.
-  + Justification:
-    - This feature benefits users because they can easily search for a particular Patient Record in the list of Records.
-  + Highlights:
-    - The `list pr NRIC` will provide all the index of the past records. User are not require to provide their index,
-    and can always view the date/time of the patient record with the corresponding index.
-    - An in-depth analysis of design of using array indexing instead of hashmap and keyword is because
-    the number of time a particular patient visit the clinic are usually low. 
-    Arraylist have advantage such as`auto indexing` and resizing of the array 
-    making the `space of the app low` and manageable.
-    
-    
+    - The `list pr NRIC` will provide all the index of the past records. User can always view the date/time of the 
+    patient record with the corresponding index.
+    - Array indexing was used to store the list of patient record for the particular patient instead of HashMap 
+    and Keyword is because patients do not usually visit the doctor unless they are sick. 
+    - Arraylist have advantage such as `auto indexing` and resizing of the array making the 
+    space of the app low and manageable.
+        
 **Code contributed:** Please click these links to see a sample of my code: 
 [PatientMap](), [FindPatientRecord](), [DeletePatientRecord]()  
 
