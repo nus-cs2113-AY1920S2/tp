@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 
+//@@author JLoh579
 public class WriteData {
     private static final String SHOPPING_LIST_FILENAME = "shoppinglist.json";
     private static final String BUDGET_FILENAME = "budget.json";
@@ -20,3 +21,4 @@ public class WriteData {
         FileUtil.writeFile(jsonStr, BUDGET_FILENAME);
     }
 }
+//@@author

@@ -3,6 +3,8 @@ package seedu.duke.commands;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author JLoh579
+
 /**
  * Displays the shopping list, cost of items, and budget details.
  */
@@ -48,3 +50,4 @@ public class DisplayCommand extends Command {
         feedbackToUser = "";
     }
 }
+//@@author
