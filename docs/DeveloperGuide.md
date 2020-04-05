@@ -7,23 +7,27 @@ By: `Alaukik Pant`      Since: `Mar 2020`      Licence: `MIT`
 
 ## 1. Setting Up
 
-You can find the set-up instructions [here](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/README.md)).
+You can find the set-up instructions [here](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/README.md).
 
 * Acknowledgement- The set-up portion is a direct adaptation of the set-up instructions given to us for this project.
 
 ## 2. Design 
 
+The design og the project from the point of view of the user can be described as follows:
 
+![Image of Design](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/docs/images/design.png)
+
+The above figure demonstrates that once a user inputs a command through the **UI** component, the user response is sent to the **Command** component for processing. Depending on the user response, the command can either i) affect existing lists of jobs, news or articles or ii) give user access to new articles through the **API** component or iii) load pre-existing articles inputted into the program through the **Creator** component. More commands can be called on articles loaded through the **API** component or the **Creator** component. At the end, the lists of articles, jobs and notes are stored through the **Storage** component.
 
 ## 3. Implementation
 
 This section will describe the design and implementation of a notable feature in the project.
 
-Note: You will need to create an `article`, `job` or `note` for the feture.
+Note: You will need to create an `article`, `job` or `note` for the feture. It can be done through the following commands.
 
-                        Create an article: `create article`
-                        Create an job : `create job`
-                        Create note : `create note`
+     1. create article
+     2. create job
+     3. create note
                         
 For more information, please refer to the user guide.
 
