@@ -5,17 +5,17 @@
 By: `Alaukik Pant`      Since: `Mar 2020`      Licence: `MIT`
 
 ## Table Of Contents
-- [1. Setting Up](#1-setting-up)
-- [2. Design](#2-design)
-- [3. Implementation](#3-implementation)
+1. [Setting Up](#1-setting-up)
+1. [Design](#2-design)
+1. [Implementation](#3-implementation)
   * [`create` feature](#-create--feature)
-- [3. Product Scope](#3-product-scope)
+1. [Product Scope](#3-product-scope)
   * [Value Proposition](#value-proposition)
   * [Target user profile](#target-user-profile)
-- [User Stories](#user-stories)
-- [5. Non-Functional Requirements](#5-non-functional-requirements)
-- [6. Glossary](#6-glossary)
-- [7. Instructions for Manual Testing](#7-instructions-for-manual-testing)
+  * [User Stories](#user-stories)
+1. [Non-Functional Requirements](#5-non-functional-requirements)
+1. [Glossary](#6-glossary)
+1. [Instructions for Manual Testing](#7-instructions-for-manual-testing)
 
 
 
@@ -86,7 +86,7 @@ TechToday Information Tracker (TTIT) is for those who want to organise informati
 
 TechToday Information Tracker (TTIT) is targeted to lifelong followers of technology brekthroughs who wish to organise the information that they consume.
 
-## User Stories
+### User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
