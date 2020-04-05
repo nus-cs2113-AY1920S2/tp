@@ -7,13 +7,13 @@
   * [3.1 Adding an item: `ADD`](#adding-an-item-add)
   * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
   * [3.3 Deleting an item: `DEL`](#deleting-an-item-del)
-  * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
+  * [3.4 Finding an item: `FIND`](#finding-an-item-find)
   * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
   * [3.7 Displaying list and budget details: `DISPLAY`](#displaying-list-and-budget-details-display)
   * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
   * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
-  * [3.10 Finding an item: `FIND`](#finding-an-item-find)
+  * [3.10 Clearing the list: `CLEAR`](#clearing-the-list-clear)
   * [3.11 Viewing help: `HELP`](#viewing-help-help)
   * [3.12 Exiting the Program: `BYE`](#exiting-the-program-bye)
 * **[4. Additional information](#additional-information)**
@@ -151,18 +151,25 @@ Format: `DEL INDEX`
 Example of usage: 
 
 `DEL 3`
-<!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
-### Clearing the list: `CLEAR`
-Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
+### Finding an item: `FIND`
+Filters the shopping list according to a keyword specified by the user.
 
-Format: `CLEAR`
+Format: `FIND KEYWORD`
 
+* The `KEYWORD` can be any character or string.
+* The `KEYWORD` field should not be left empty.  
+
+Example of usage: 
+
+`FIND apple`
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
@@ -250,19 +257,12 @@ Format: `RES`
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-<!-- @@author kokjoon97 -->
-### Finding an item: `FIND`
-Filters the shopping list according to a keyword specified by the user.
 
-Format: `FIND KEYWORD`
+### Clearing the list: `CLEAR`
+Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
 
-* The `KEYWORD` can be any character or string.
-* The `KEYWORD` field should not be left empty.  
+Format: `CLEAR`
 
-Example of usage: 
-
-`FIND apple`
-<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
@@ -348,13 +348,13 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 * Add item `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Delete item `DEL INDEX`
-* Clear list `CLEAR`
+* Find item `FIND KEYWORD`
 * Mark item `MARK INDEX`
 * Un-mark item `UNMARK INDEX`
 * Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
 * Reset budget `RES`
-* Find item `FIND KEYWORD`
+* Clear list `CLEAR`
 * View help `HELP`
 * Exit program `BYE`
 
