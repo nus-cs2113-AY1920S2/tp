@@ -1,7 +1,7 @@
 package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class ProfileCommand extends Command {

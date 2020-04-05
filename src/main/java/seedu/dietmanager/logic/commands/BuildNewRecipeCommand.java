@@ -1,11 +1,11 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.commons.exceptions.NegativeNumberException;
+import seedu.dietmanager.logic.parser.Parser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.model.RecipeManager;
-import seedu.dietmanager.commons.exceptions.NegativeNumberException;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.parser.Parser;
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class BuildNewRecipeCommand extends Command {

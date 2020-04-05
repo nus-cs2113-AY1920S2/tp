@@ -1,15 +1,14 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.commons.core.FoodNutritionInfo;
+import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.parser.Parser;
-import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.ui.UI;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Food;
-import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.core.Weekday;
-
+import seedu.dietmanager.ui.UI;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,9 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidAgeException;
 import seedu.dietmanager.logic.parser.AgeParser;
 import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetAgeCommand extends Command {

@@ -1,8 +1,5 @@
 package seedu.dietmanager.model;
 
-import seedu.dietmanager.model.DailyFoodRecord;
-import seedu.dietmanager.model.Food;
-
 import java.util.ArrayList;
 
 public class Profile {

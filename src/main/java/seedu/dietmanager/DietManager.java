@@ -1,13 +1,13 @@
 package seedu.dietmanager;
 
-import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.commons.core.FoodNutritionInfo;
 import seedu.dietmanager.commons.core.LogsCentre;
-import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.commons.exceptions.InvalidGenderException;
+import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.Parser;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.storage.Storage;
 import seedu.dietmanager.ui.UI;
 

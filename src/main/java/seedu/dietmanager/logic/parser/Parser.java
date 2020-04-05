@@ -1,29 +1,9 @@
 package seedu.dietmanager.logic.parser;
 
-import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.commands.ExitCommand;
-import seedu.dietmanager.logic.commands.ProfileCommand;
-import seedu.dietmanager.logic.commands.SetAgeCommand;
-import seedu.dietmanager.logic.commands.SetGenderCommand;
-import seedu.dietmanager.logic.commands.SetHeightCommand;
-import seedu.dietmanager.logic.commands.SetNameCommand;
-import seedu.dietmanager.logic.commands.SetProfileCommand;
-import seedu.dietmanager.logic.commands.SetWeightCommand;
-import seedu.dietmanager.logic.commands.RecordMealCommand;
-import seedu.dietmanager.logic.commands.CheckRecordCommand;
-import seedu.dietmanager.logic.commands.SetWeightGoalCommand;
-import seedu.dietmanager.logic.commands.CheckWeightProgressCommand;
-import seedu.dietmanager.logic.commands.DeleteWeightCommand;
-import seedu.dietmanager.logic.commands.CalculateCaloriesCommand;
-import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
-import seedu.dietmanager.logic.commands.ListFoodDatabaseCommand;
-import seedu.dietmanager.logic.commands.AddFoodCommand;
-import seedu.dietmanager.logic.commands.DeleteFoodCommand;
-import seedu.dietmanager.logic.commands.BuildNewRecipeCommand;
-import seedu.dietmanager.logic.commands.ShowRecipeCommand;
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.commons.exceptions.InvalidGenderException;
+import seedu.dietmanager.logic.commands.*;
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.

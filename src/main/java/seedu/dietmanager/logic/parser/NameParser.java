@@ -1,6 +1,5 @@
 package seedu.dietmanager.logic.parser;
 
-import seedu.dietmanager.commons.exceptions.InvalidHeightException;
 import seedu.dietmanager.commons.exceptions.InvalidNameException;
 
 public class NameParser {

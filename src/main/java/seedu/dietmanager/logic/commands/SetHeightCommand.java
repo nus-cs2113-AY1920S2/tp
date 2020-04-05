@@ -1,9 +1,9 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidHeightException;
 import seedu.dietmanager.logic.parser.HeightParser;
 import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.ui.UI;
 
 public class SetHeightCommand extends Command {

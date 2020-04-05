@@ -1,13 +1,10 @@
 package seedu.dietmanager.logic.commands;
 
+import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidNameException;
 import seedu.dietmanager.logic.parser.NameParser;
 import seedu.dietmanager.model.Profile;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.ui.UI;
-
-import javax.naming.Name;
 
 public class SetNameCommand extends Command {
 
