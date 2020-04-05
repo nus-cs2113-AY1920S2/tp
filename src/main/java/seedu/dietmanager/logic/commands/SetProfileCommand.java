@@ -18,14 +18,13 @@ import seedu.dietmanager.ui.UI;
 
 public class SetProfileCommand extends Command {
 
-    private static final int ARGUMENTS_REQUIRED = 6;
     private String name;
     private int age;
     private String gender;
     private double height;
     private double weight;
     private double weightGoal;
-    private boolean noDescription;
+    private boolean isValidCommand;
 
     /**
      * Constructs the Command object.
@@ -35,25 +34,24 @@ public class SetProfileCommand extends Command {
 
     public SetProfileCommand(String command, String description) {
         super(command);
-        this.noDescription = false;
-
+        this.isValidCommand = true;
         try {
             String[] descriptionArray = SetProfileParser.parseProfileDescription(description);
             this.name = NameParser.parseName(descriptionArray[0]);
-            this.age = AgeParser.parseAge(descriptionArray[1].trim());
-            this.gender = GenderParser.parseGender(descriptionArray[2].trim());
-            this.height = HeightParser.parseHeight(descriptionArray[3].trim());
-            this.weight = WeightParser.parseWeight(descriptionArray[4].trim());
-            this.weightGoal = WeightParser.parseWeight(descriptionArray[5].trim());
+            this.age = AgeParser.parseAge(descriptionArray[1]);
+            this.gender = GenderParser.parseGender(descriptionArray[2]);
+            this.height = HeightParser.parseHeight(descriptionArray[3]);
+            this.weight = WeightParser.parseWeight(descriptionArray[4]);
+            this.weightGoal = WeightParser.parseWeight(descriptionArray[5]);
         } catch (NullPointerException | InvalidHeightException | InvalidWeightException | InvalidAgeException
                 | InvalidNameException | InvalidGenderException | InvalidFormatException e) {
-            this.noDescription = true;
+            this.isValidCommand = false;
         }
     }
 
     @Override
     public void execute(Profile profile, UI ui) {
-        if (!this.noDescription) {
+        if (this.isValidCommand) {
             profile.setProfile(this.name, this.age, this.gender, this.height, this.weight, this.weightGoal);
         }
         saveResult(profile);
@@ -61,10 +59,10 @@ public class SetProfileCommand extends Command {
 
     @Override
     public void saveResult(Profile profile) {
-        if (this.noDescription) {
-            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
-        } else {
+        if (this.isValidCommand) {
             this.result = MessageBank.PROFILE_UPDATE_MESSAGE;
+        } else {
+            this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
     }
 }

@@ -53,7 +53,6 @@ public class UI {
         System.out.println(MessageBank.INVALID_INDEX);
     }
 
-
     public void displayInvalidGenderMessage() {
         System.out.println(MessageBank.INVALID_GENDER_MESSAGE);
     }

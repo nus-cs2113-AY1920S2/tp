@@ -19,6 +19,9 @@ public class SetProfileParser {
             throw new InvalidFormatException();
         }
         testAssertions(descriptionArray);
+        for (String arg : descriptionArray) {
+            arg.trim();
+        }
         return descriptionArray;
     }
 

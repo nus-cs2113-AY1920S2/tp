@@ -14,11 +14,7 @@ public class NameParser {
 
     public static String parseName(String description) throws InvalidNameException {
         String name = "";
-        try {
-            name = description.trim();
-        } catch (Exception e) {
-            throw new InvalidNameException();
-        }
+        name = description.trim();
         if (name.equals("")) {
             throw new InvalidNameException();
         }
