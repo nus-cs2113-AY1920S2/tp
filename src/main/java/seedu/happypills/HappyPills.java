@@ -54,7 +54,7 @@ public class HappyPills {
             logger.info("   No appointment in file.\n");
         }
         try {
-            patientRecords = Storage.loadPatientRecordFromFile(Storage.PATIENT_RECORD_FILEPATH,patients );
+            patientRecords = Storage.loadPatientRecordFromFile(Storage.PATIENT_RECORD_FILEPATH,patients);
             logger.info("    Patient Records loaded from file.\n");
         } catch (FileNotFoundException e) {
             logger.info("   No patient record in file.\n");
