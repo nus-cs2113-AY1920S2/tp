@@ -32,7 +32,7 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_MISSING_PARAMETERS = "Alert! Some parameters are missing.\n";
 
-    public static final String MESSAGE_INVALID_PRIORITY = "Alert! Priority should be a number between 0 and 100.\n";
+    public static final String MESSAGE_INVALID_PRIORITY = "Alert! Priority should be a number between 0 and 20.\n";
 
     public static final String MESSAGE_INVALID_DATETIME_FORMAT = "Alert! Datetime format is invalid.\n";
 
