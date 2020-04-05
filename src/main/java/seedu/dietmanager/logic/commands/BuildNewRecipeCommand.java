@@ -14,8 +14,9 @@ public class BuildNewRecipeCommand extends Command {
     private boolean noDescription;
     private boolean isInvalidFormat;
     private boolean maxNumOverflow;
+    private boolean noProfileFound;
 
-    private double caloriesCap;
+    private String activityLevel;
     private int maxFoodNum;
 
     /**
@@ -30,14 +31,25 @@ public class BuildNewRecipeCommand extends Command {
         super(command);
         this.noDescription = false;
         this.isInvalidFormat = false;
+        this.noProfileFound = false;
 
         try {
             String[] descriptionArray = Parser.parseDescription(description, ARGUMENTS_REQUIRED);
 
-            this.caloriesCap = Double.parseDouble(descriptionArray[0].trim());
-            this.maxFoodNum = Integer.parseInt(descriptionArray[1].trim());
+            this.maxFoodNum = Integer.parseInt(descriptionArray[0].trim());
+            this.activityLevel = descriptionArray[1].trim().toLowerCase();
 
-            if (caloriesCap <= 0 || maxFoodNum <= 0) {
+            switch (activityLevel) {
+            case "low":
+            case "high":
+            case "moderate":
+                break;
+            default:
+                isInvalidFormat = true;
+                break;
+            }
+
+            if (maxFoodNum <= 0) {
                 throw new NegativeNumberException();
             }
 
@@ -50,9 +62,12 @@ public class BuildNewRecipeCommand extends Command {
 
     @Override
     public void execute(Profile profile, UI ui) {
-        if (!noDescription && !isInvalidFormat) {
+        if (!profile.isProfileExist()) {
+            noProfileFound = true;
+        }
+        if (!noDescription && !isInvalidFormat & !noProfileFound) {
             RecipeManager manager = RecipeManager.getInstance();
-            maxNumOverflow = manager.customRecipe(caloriesCap,maxFoodNum);
+            maxNumOverflow = manager.buildRecipe(profile,maxFoodNum,activityLevel);
         }
         saveResult(profile);
     }
@@ -63,8 +78,12 @@ public class BuildNewRecipeCommand extends Command {
 
         if (noDescription) {
             this.result = MessageBank.NO_DESCRIPTION_MESSAGE;
+        } else if (noProfileFound) {
+            this.result = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
         } else if (isInvalidFormat) {
-            this.result = "You have given wrong format for parameters!!!";
+            this.result = "You have given wrong format for parameters!!!\n"
+                    + "First parameter is maximum food types, need to provide an integer.\n"
+                    + "Second parameter is activity level, choose from -- low/moderate/high.";
         } else {
             if (maxNumOverflow) {
                 this.result = "We support at most 4 kinds of food in a meal, "
