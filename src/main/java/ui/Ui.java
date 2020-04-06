@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -50,12 +51,15 @@ public class Ui {
      * @throws IOException When logger set up failed.
      */
     public static void setLogger() throws IOException {
+        Locale.setDefault(Locale.UK);
+        
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.ALL);
 
         FileHandler fileHandler = new FileHandler(FILE_PATH, true); // let it append
         fileHandler.setLevel(Level.INFO);
         fileHandler.setFormatter(new SimpleFormatter());
+        fileHandler.setEncoding("UTF-8");
         LOGGER.addHandler(fileHandler);
     }
     

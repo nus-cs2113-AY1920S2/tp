@@ -3,6 +3,7 @@ package reservation;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -56,12 +57,15 @@ public class Reservation {
      * @throws IOException When logger set up failed.
      */
     public static void setLogger() throws IOException {
+        Locale.setDefault(Locale.UK);
+        
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.ALL);
 
         FileHandler fileHandler = new FileHandler(FILE_PATH, true); // let it append
         fileHandler.setLevel(Level.INFO);
         fileHandler.setFormatter(new SimpleFormatter());
+        fileHandler.setEncoding("UTF-8");
         LOGGER.addHandler(fileHandler);
     }
 
