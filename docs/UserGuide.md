@@ -75,10 +75,11 @@ or above installed in your Computer.
 ### 2.2 Startup using Command Line
 1.  Open your terminal.
 1.  Navigate to the home folder containing Pac.
-1.  cd followed by the file path into the terminal as shown below
-    <INSERT IMAGE> 
+1.  cd followed by the file path into the terminal as shown below:  
+    ![cdImage](images/filepath.PNG)
 1.  Type `java -jar` followed by the name of the jar file and press **Enter**.
-1.  You should see this screen if everything is successful.
+1.  You should see this screen if everything is successful:    
+    ![screen](images/Startupscreen.PNG)
 
 ### 2.3 Startup using JAR
 1.  Open home folder containing Pac.
