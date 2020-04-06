@@ -274,45 +274,6 @@ public class Parser {
     }
 
     /**
-     * Prepare the command to list the content based on the directory of the user is currently in.
-     * @param parameters The parameters given by the user
-     * @return The command to change the current directory
-     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
-     * @throws InvalidParameterException exception is thrown when parameter is invalid.
-     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
-     */
-    private Command prepareGenericListCommand(String parameters)
-            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
-        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-        case ROOT:
-            if (parameters.isEmpty()) {
-                return prepareDeleteAndListModuleCommand(parameters, false);
-            } else {
-                parameters = " " + MODULE_PREFIX + " " + parameters;
-                return prepareDeleteAndListCategoryCommand(parameters, false);
-            }
-        case MODULE:
-            if (parameters.isEmpty()) {
-                return prepareDeleteAndListCategoryCommand(parameters, false);
-            } else {
-                parameters = " " + CATEGORY_PREFIX + " " + parameters;
-                return prepareDeleteAndListTaskCommand(parameters, false);
-            }
-        case CATEGORY:
-            if (parameters.isEmpty()) {
-                return prepareDeleteAndListTaskCommand(parameters, false);
-            } else {
-                parameters = " " + TASK_PREFIX + " " + parameters;
-                return prepareDeleteAndListFileCommand(parameters, false);
-            }
-        case TASK:
-            return prepareDeleteAndListFileCommand(parameters, false);
-        default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
-        }
-    }
-
-    /**
      * Prepare the command to add the content based on the directory of the user is currently in.
      * @param parameters The parameters given by the user
      * @return The command to change the current directory
@@ -332,7 +293,46 @@ public class Parser {
         case TASK:
             return prepareAddFileCommand(parameters);
         default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL + HelpCommand.MESSAGE_USAGE);
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+        }
+    }
+
+    /**
+     * Prepare the command to list the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericListCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            if (parameters.isEmpty()) {
+                return prepareDeleteAndListModuleCommand(parameters, false);
+            } else {
+                String listCategoriesString = String.format(" %s %s", MODULE_PREFIX, parameters);
+                return prepareDeleteAndListCategoryCommand(listCategoriesString, false);
+            }
+        case MODULE:
+            if (parameters.isEmpty()) {
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            } else {
+                String listTasksString = String.format(" %s %s", CATEGORY_PREFIX, parameters);
+                return prepareDeleteAndListTaskCommand(listTasksString, false);
+            }
+        case CATEGORY:
+            if (parameters.isEmpty()) {
+                return prepareDeleteAndListTaskCommand(parameters, false);
+            } else {
+                String listFilesString = String.format(" %s %s", TASK_PREFIX, parameters);
+                return prepareDeleteAndListFileCommand(listFilesString, false);
+            }
+        case TASK:
+            return prepareDeleteAndListFileCommand(parameters, false);
+        default:
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 
@@ -350,7 +350,7 @@ public class Parser {
             return new IncorrectCommand("Please enter the name of the directory to delete.\n");
         }
 
-        final String deleteString = String.format(" %s -e", parameters);
+        final String deleteString = String.format(" %s", parameters);
 
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
         case ROOT:

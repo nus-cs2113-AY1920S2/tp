@@ -5,6 +5,7 @@ import javafx.scene.shape.DrawMode;
 import javafx.scene.text.TextFlow;
 import javafx.util.Pair;
 import seedu.nuke.Executor;
+import seedu.nuke.command.IncorrectCommand;
 import seedu.nuke.command.filtercommand.listcommand.*;
 import seedu.nuke.command.misc.*;
 import seedu.nuke.command.ExitCommand;
@@ -167,8 +168,13 @@ public class GuiParser {
         switch (commandWord) {
 
         case GENERIC_ADD_COMMAND:
+            smartParseGenericAddCommand(parameters);
+            break;
         case GENERIC_DELETE_COMMAND:
         case GENERIC_LIST_COMMAND:
+            smartParseGenericDeleteAndListCommand(parameters, startIndexOfParameters);
+            break;
+
         case AddTagCommand.COMMAND_WORD:
         case ListModuleTask.COMMAND_WORD:
             addText(new Pair<>(parameters, Color.BLUE));
@@ -275,6 +281,44 @@ public class GuiParser {
                 addText(new Pair<>(parameters, Color.CRIMSON));
             }
         }
+    }
+
+    private void smartParseGenericAddCommand(String parameters) {
+        addText(new Pair<>(parameters, Color.BLUE));
+    }
+
+    private void smartParseGenericDeleteAndListCommand(String parameters, int startIndex) throws ParseFailureException {
+        final String noKeyword = "";
+        int endIndex = parameters.length() + startIndex;
+
+        ArrayList<String> suggestedDirectories = new ArrayList<>();
+        try {
+            switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+            case ROOT:
+                suggestedDirectories = generateSuggestedModules();
+                break;
+
+            case MODULE:
+                suggestedDirectories = generateSuggestedCategories(noKeyword, true);
+                break;
+
+            case CATEGORY:
+                suggestedDirectories = generateSuggestedTasks(noKeyword, noKeyword, true );
+                break;
+
+            case TASK:
+                suggestedDirectories = generateSuggestedFiles(noKeyword, noKeyword, noKeyword, true );
+                break;
+
+            default:
+                break;
+            }
+        } catch (IncorrectDirectoryLevelException e) {
+            // Ignore error; popup will have no entries
+        }
+
+        highlightInput(parameters.trim(), parameters, NONE, endIndex, suggestedDirectories, false);
+        populateSuggestions(parameters.trim(), suggestedDirectories, startIndex, endIndex, NONE);
     }
 
     private void smartParseAddModuleCommand(String parameters, int startIndex)
