@@ -172,7 +172,7 @@ However, by allowing the user to edit the start date and time, there may be pote
 The continue feature allows the user to continue a previously ended activity.
 
 #### 3.5.1 Current Implementation
-![Continue command sequence diagram](./pictures/continueActivity.png)
+![Continue command sequence diagram](./pictures/continue.png)
 
 **Continuing an activity:**
 
@@ -182,7 +182,7 @@ When the user enters the command to continue an activity, a *ContinueCommand* ob
  2. Gets the `name` and `tags` of the activity to be continued and saves it to a public static variable of *Parser* object
  3. Gets the current time and saves it to a public static variable of *Parser* object
  
- ![End command sequence diagram](./pictures/endActivity.PNG)
+ ![End command sequence diagram](./pictures/end.png)
 
  **Ending a continued activity:**
  
@@ -210,7 +210,7 @@ Although the current implementation of the continue feature disallows users to h
 As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, they will be given the option to continue the stated activity.
 ![decision flowchart](./pictures/continue_flowchart.PNG)
 
-### 3.5 List feature
+### 3.6 List feature
 This feature is used to list activities within a range specified by the user.
 If no parameter is passed to the `list` command, then all the stored activities will be displayed.
 By passing a single date, the command returns all activities within that date.
@@ -221,7 +221,7 @@ will return all the activities for that day, week or month respectively.
 Additionally, the user can specify a specific week of month by including a date
 (e.g. `list month 2020-03-01` returns all the activities in March 2020.)
 
-#### 3.5.1 Current implementation
+#### 3.6.1 Current implementation
 * List all activities: `list`
     * List today's activities: `list day` or `list daily`
     * List this week's activities: `list week` or `list weekly`
@@ -234,10 +234,10 @@ Additionally, the user can specify a specific week of month by including a date
     * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
     in either `yyyy-MM-dd` or `dd/MM/yyyy` format
 
-### 3.6 Find Feature
+### 3.7 Find Feature
 This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
 
-#### 3.6.1 Current Implementation
+#### 3.7.1 Current Implementation
 * This feature is called by the user when the `find` command is entered into the command line. The string following the command is the keyword to match activity names to.
 * The Parser will create a FindCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
@@ -251,10 +251,10 @@ This command accepts a keyword and searches the activity list for activities wit
 
 ![find seq diagram](https://imgur.com/Icg5rdB.png)
 
-### 3.7 Filter Feature
+### 3.8 Filter Feature
 This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
 
-#### 3.7.1 Current Implementation
+#### 3.8.1 Current Implementation
 * This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
 * The Parser will create a FilterCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
@@ -266,8 +266,29 @@ This feature accepts multiple space-separated keywords to search for activities 
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-
 ![filter seq diagram](https://imgur.com/hybT3R9.png)
+
+### 3.9 Graph Feature
+This feature gives the user a visual representation of their activity duration and activity goals.  
+Graph can be used along with List, Find and Filter to sieve out the data to be graphed.
+
+#### 3.9.1 Current Implementation
+![graph seq diagram](./pictures/graph.png)
+* This feature is called by the user when the `graph` command is entered into the command line. The user will then have to specify what he would like to graph (goals progress bar / tag duration / activity duration).
+* The Parser will create a GraphCommand object.
+* The GraphCommand will invoke its own `executeCommand()` method.  
+
+**Graph targets**  
+This displays a progress bar for the activities in the activity list 
+* If the user indicated `targets`, Ui calss will be called to execute graphTargets.
+
+**Graph tags**
+* If the user indicated `tags`, `GraphCommand` will call it's own `graphTags` method.
+* A HashMap of tags to duration is created. The duration of every activity associated with the same tag is summed to get a 
+  * Example: If tw
+*  which in turn calls `extractTags` in a loop that iterates through every activity in `lastshownlist`.
+* `extractTags` loops through the tags of that activity. It checks if the tag exists in a HashMap of tags. 
+
 ## 4. Appendix
 ### Product Scope
 #### Target user profile

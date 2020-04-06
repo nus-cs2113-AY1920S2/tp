@@ -41,7 +41,7 @@ public class ByeCommand extends Command {
                 Scanner scanner = new Scanner(System.in);
                 String userInput = scanner.nextLine();
                 if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
-                    activityList.saveActivity(activityList);
+                    activityList.saveActivity();
                 }
             }
             Ui.exitFromApp();

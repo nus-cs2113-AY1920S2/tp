@@ -34,6 +34,20 @@ public class GraphCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
+            switch (inputs[0]) {
+            case "targets":
+                Ui.graphTargets(lastShownList);
+                break;
+            case "tags":
+                graphTags();
+                break;
+            case "activities":
+                graphDuration();
+                break;
+            default:
+                Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
+            }
+            /*
             if (inputs[0].equals("targets")) {
                 Ui.graphTargets(activityList);
             } else if (inputs[0].equals("tags")) {
@@ -43,6 +57,7 @@ public class GraphCommand extends Command {
             } else {
                 Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
             }
+             */
         } catch (NumberFormatException | InvalidGraphCommandException e) {
             Ui.printDivider("Please input an integer for the time interval.");
         } catch (MissingParametersException e) {

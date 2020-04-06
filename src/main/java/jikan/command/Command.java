@@ -9,7 +9,7 @@ import jikan.exception.InvalidTimeFrameException;
 /**
  * Represents an executable command.
  */
-public class Command {
+public abstract class Command {
     protected String parameters;
 
     /**
@@ -22,9 +22,7 @@ public class Command {
     /**
      * Executes the command and returns the result.
      */
-    public void executeCommand(ActivityList activityList) throws EmptyNameException, ExtraParametersException {
-        throw new EmptyNameException();
-    }
+    public abstract void executeCommand(ActivityList activityList) throws EmptyNameException, ExtraParametersException;
 
 
 }

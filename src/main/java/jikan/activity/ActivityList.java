@@ -158,28 +158,29 @@ public class ActivityList {
      * @param activityList list to save to
      * @throws InvalidTimeFrameException if start time is before end time
      */
-    public void saveActivity(ActivityList activityList) throws InvalidTimeFrameException, NameTooLongException {
+    public void saveActivity() throws InvalidTimeFrameException, NameTooLongException {
         if (Parser.continuedIndex != -1) {
             Ui.printDivider("Ended: " + Parser.activityName);
             Parser.endTime = LocalDateTime.now();
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
-            Duration oldDuration = activityList.get(Parser.continuedIndex).getDuration();
+            Duration oldDuration = this.get(Parser.continuedIndex).getDuration();
             Duration newDuration = duration.plus(oldDuration);
-            Duration allocatedTime = activityList.get(Parser.continuedIndex).getAllocatedTime();
-            activityList.updateDuration(newDuration, Parser.endTime, Parser.continuedIndex);
+            Duration allocatedTime = this.get(Parser.continuedIndex).getAllocatedTime();
+            this.updateDuration(newDuration, Parser.endTime, Parser.continuedIndex);
 
             if (allocatedTime != Duration.parse("PT0S")) {
-                Ui.printProgressMessage(activityList.get(Parser.continuedIndex).getProgressPercent());
+                Ui.printProgressMessage(this.get(Parser.continuedIndex).getProgressPercent());
             }
             Parser.continuedIndex = -1;
             Parser.resetInfo();
+
         } else {
             Ui.printDivider("Ended: " + Parser.activityName);
             Parser.endTime = LocalDateTime.now();
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
             Activity newActivity = new Activity(Parser.activityName, Parser.startTime,
                     Parser.endTime, duration, Parser.tags, Parser.allocatedTime);
-            activityList.add(newActivity);
+            this.add(newActivity);
 
             if (newActivity.getAllocatedTime() != Duration.parse("PT0S")) {
                 Ui.printProgressMessage(newActivity.getProgressPercent());
