@@ -1,10 +1,7 @@
 package jikan.command;
 
-import jikan.exception.EmptyTagException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
-import jikan.exception.EmptyNameException;
-import jikan.exception.WrongDateFormatException;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
 
@@ -13,7 +10,6 @@ import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 

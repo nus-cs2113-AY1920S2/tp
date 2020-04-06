@@ -34,8 +34,8 @@ public class GraphCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            if (inputs[0].equals("targets")) {
-                Ui.graphTargets(activityList);
+            if (inputs[0].equals("allocations")) {
+                Ui.graphAllocation(activityList);
             } else if (inputs[0].equals("tags")) {
                 graphTags();
             } else if (inputs[0].equals("activities")) {
