@@ -83,6 +83,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Error loading/creating data file.");
         }
+        assert activityList instanceof ActivityList : "Method should return an ActivityList";
         return activityList;
     }
 
