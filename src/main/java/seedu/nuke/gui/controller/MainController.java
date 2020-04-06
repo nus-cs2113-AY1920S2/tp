@@ -90,7 +90,7 @@ public class MainController implements Initializable {
         consoleScreenScrollPane.vvalueProperty().bind(consoleScreen.heightProperty());
         consoleScreen.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt");
 
-        directoryTree = new DirectoryTree(consoleScreen);
+        directoryTree = new DirectoryTree(consoleScreen, directoryPathLabel);
         syntaxConsole = new SyntaxConsole();
         console = new AutoCompleteTextField();
         directoryPathLabel.setTextFill(Color.BLACK);

@@ -9,9 +9,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
+import seedu.nuke.command.misc.ChangeDirectoryCommand;
 import seedu.nuke.command.misc.InfoCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.gui.io.GuiExecutor;
@@ -23,13 +25,15 @@ import java.util.Comparator;
 public class DirectoryTree extends TreeView<Label> {
 
     private TextFlow consoleScreen;
+    private Label directoryPathLabel;
 
     /**
      * Constructs the Directory Tree class.
      */
-    public DirectoryTree(TextFlow consoleScreen) {
+    public DirectoryTree(TextFlow consoleScreen, Label directoryPathLabel) {
         super();
         this.consoleScreen = consoleScreen;
+        this.directoryPathLabel = directoryPathLabel;
 
         setStyle("-fx-font-family: Consolas; -fx-font-size: 11pt; -fx-font-weight: bold; "
                 + "-fx-focus-color: transparent; -fx-faint-focus-color: transparent; "
@@ -114,19 +118,34 @@ public class DirectoryTree extends TreeView<Label> {
 
     private void onClickModule(MouseEvent mouseEvent, Module module) {
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(module));
+            if (mouseEvent.getClickCount() == 1) {
+                new GuiExecutor(consoleScreen).executeCommand(new ChangeDirectoryCommand(module));
+                directoryPathLabel.setText(DirectoryTraverser.getFullPath()); // Reset path
+            } else if (mouseEvent.getClickCount() == 2) {
+                new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(module));
+            }
         }
     }
 
     private void onClickCategory(MouseEvent mouseEvent, Category category) {
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(category));
+            if (mouseEvent.getClickCount() == 1) {
+                new GuiExecutor(consoleScreen).executeCommand(new ChangeDirectoryCommand(category));
+                directoryPathLabel.setText(DirectoryTraverser.getFullPath()); // Reset path
+            } else if (mouseEvent.getClickCount() == 2) {
+                new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(category));
+            }
         }
     }
 
     private void onClickTask(MouseEvent mouseEvent, Task task) {
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(task));
+            if (mouseEvent.getClickCount() == 1) {
+                new GuiExecutor(consoleScreen).executeCommand(new ChangeDirectoryCommand(task));
+                directoryPathLabel.setText(DirectoryTraverser.getFullPath()); // Reset path
+            } else if (mouseEvent.getClickCount() == 2) {
+                new GuiExecutor(consoleScreen).executeCommand(new InfoCommand(task));
+            }
         }
     }
 }
