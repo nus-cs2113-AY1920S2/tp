@@ -97,7 +97,7 @@ public class Ui {
             System.out.println(DIVIDER);
             System.out.println("Here are the matching activities in your list:\n");
             System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %s",
-                    "|", "Name", "|", "Duration", "|", "Target","|", "Date", "|", "Tags"));
+                    "|", "Name", "|", "Duration", "|", "Allocation","|", "Date", "|", "Tags"));
             for (int i = 0; i < resultsList.getSize(); i++) {
                 if (resultsList.get(i).getTags() != null && !resultsList.get(i).getTags().isEmpty()) {
                     printTableFormat(resultsList, i, true);
@@ -116,7 +116,7 @@ public class Ui {
         System.out.println(DIVIDER);
         System.out.println("Your completed activities:");
         System.out.println(String.format("   %s %-25s %s %-10s %s %-10s %s %-10s %s %s",
-                "|", "Name", "|", "Duration", "|", "Target", "|", "Date", "|", "Tags"));
+                "|", "Name", "|", "Duration", "|", "Allocation", "|", "Date", "|", "Tags"));
         for (int i = 0; i < activityList.getSize(); i++) {
             if (activityList.get(i).getTags() != null && !activityList.get(i).getTags().isEmpty()) {
                 printTableFormat(activityList, i, true);
@@ -247,10 +247,10 @@ public class Ui {
     }
 
     /**
-     * Method to graph out all the targets.
+     * Method to graph out all the allocations.
      * @param activityList a list of all activities.
      */
-    public static void graphTargets(ActivityList activityList) {
+    public static void graphAllocation(ActivityList activityList) {
         System.out.println(DIVIDER);
         for (int i = 0; i < activityList.getSize(); i++) {
             if (activityList.get(i).getAllocatedTime() == Duration.parse("PT0S")) {

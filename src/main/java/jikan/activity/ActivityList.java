@@ -155,7 +155,6 @@ public class ActivityList {
 
     /**
      * Saves a new activity to the list of activities.
-     * @param activityList list to save to
      * @throws InvalidTimeFrameException if start time is before end time
      */
     public void saveActivity() throws InvalidTimeFrameException, NameTooLongException {

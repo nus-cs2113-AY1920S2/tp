@@ -35,8 +35,8 @@ public class GraphCommand extends Command {
     public void executeCommand(ActivityList activityList) {
         try {
             switch (inputs[0]) {
-            case "targets":
-                Ui.graphTargets(lastShownList);
+            case "allocations":
+                Ui.graphAllocation(lastShownList);
                 break;
             case "tags":
                 graphTags();
@@ -47,21 +47,10 @@ public class GraphCommand extends Command {
             default:
                 Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
             }
-            /*
-            if (inputs[0].equals("targets")) {
-                Ui.graphTargets(activityList);
-            } else if (inputs[0].equals("tags")) {
-                graphTags();
-            } else if (inputs[0].equals("activities")) {
-                graphDuration();
-            } else {
-                Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
-            }
-             */
         } catch (NumberFormatException | InvalidGraphCommandException e) {
             Ui.printDivider("Please input an integer for the time interval.");
         } catch (MissingParametersException e) {
-            Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
+            Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
         }
 
     }
