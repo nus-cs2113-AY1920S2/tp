@@ -12,19 +12,8 @@ public class JobPrinter {
      * @param job - Job object representing a job.
      */
     public static void execute(int taskCounter, Job job) {
-        String timeStamp = job.getTimeStamp();
-        String date = TimeStampToDateConverter.execute(timeStamp);
-        String title = job.getTitle();
-        String text = job.getText();
-        String upToNCharactersText = CommonMethods.returnUptoNcharacters(text);
-        String category = job.getCategory();
-        String extract = job.getExtract();
-        String upToNCharactersExtract = CommonMethods.returnUptoNcharacters(extract);
-        System.out.println(taskCounter + ". Title: " + title + System.lineSeparator()
-                            + "   Date: " + date + System.lineSeparator()
-                            + "   Category: " + category + System.lineSeparator()
-                            + "   Text: " + upToNCharactersText + System.lineSeparator()
-                            + "   Extract: " + upToNCharactersExtract);
+        String jobToPrint = taskCounter + ". " + returnJobString(job);
+        System.out.println("   " + jobToPrint);
     }
 
     /**
@@ -32,6 +21,17 @@ public class JobPrinter {
      * @param job - Job object representing a job.
      */
     public static void printIsolatedJob(Job job) {
+        String jobToPrint = returnJobString(job);
+        System.out.println("   " + jobToPrint);
+    }
+
+    /**
+     * Retuns a string with the details of the note to be printed.
+     *
+     * @param job - Note under consideration.
+     * @return String representing job.
+     */
+    private static String returnJobString(Job job) {
         String timeStamp = job.getTimeStamp();
         String date = TimeStampToDateConverter.execute(timeStamp);
         String title = job.getTitle();
@@ -40,10 +40,12 @@ public class JobPrinter {
         String category = job.getCategory();
         String extract = job.getExtract();
         String upToNCharactersExtract = CommonMethods.returnUptoNcharacters(extract);
-        System.out.println("   Title: " + title + System.lineSeparator()
+        String jobToPrint = "Title: " + title + System.lineSeparator()
                 + "   Date: " + date + System.lineSeparator()
                 + "   Category: " + category + System.lineSeparator()
                 + "   Text: " + upToNCharactersText + System.lineSeparator()
-                + "   Extract: " + upToNCharactersExtract);
+                + "   Extract: " + upToNCharactersExtract;
+        return jobToPrint;
     }
+
 }
