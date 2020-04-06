@@ -775,7 +775,7 @@ This section contains the user stories for the different versions of our product
 
     iii. Test case: <code>SET b/-100</code>
      
-        Expected: Budget is reset to $0.00, which is the minium budget SHOCO allows.
+        Expected: Budget is reset to $0.00, which is the minimum budget SHOCO allows.
         
      &nbsp;
 
@@ -808,9 +808,79 @@ This section contains the user stories for the different versions of our product
         Expected: Similar to previous. 
     
     &nbsp;
+<!-- @@author Shannonwje -->    
+### E.3. Reset the budget and Marking & Unmarking an item
+
+1. Reset the budget
+       
+    i. Test case: <code>RES</code> 
+
+       Expected: Budget has been reset to $0.00
+    
+     &nbsp;
+
+2. Marking an item
+
+    i. Test case: <code>MARK</code> 
+
+       Expected: Please provide a single numerical index number!
+    
+     &nbsp;
+
+    ii. Test case: <code>MARK 5</code> 
+
+       Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'
+       
+       Expected: Yes! I've marked this item as bought:
+                 [B] lemons $4.00 qty: 6
+    
+     &nbsp;
+
+    iii. Test case: <code>MARK -10</code> 
+
+       Expected: Oh No! This item does not exist in the list
+    
+     &nbsp;
+
+    iv. Test case: <code>MARK 100</code> 
+
+       Expected: Oh No! This item does not exist in the list
+    
+     &nbsp;
+     
+2. Unmarking an item
+
+    i. Test case: <code>UNMARK</code> 
+
+       Expected: Please provide a single numerical index number!
+    
+     &nbsp;
+
+    ii. Test case: <code>UNMARK 5</code> 
+
+       Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'
+       
+       Expected: Yes! I've unmarked this item as bought:
+                 [0] lemons $4.00 qty: 6
+    
+     &nbsp;
+
+    iii. Test case: <code>UNMARK -10</code> 
+
+       Expected: Oh No! This item does not exist in the list
+    
+     &nbsp;
+
+    iv. Test case: <code>UNMARK 100</code> 
+
+       Expected: Oh No! This item does not exist in the list
+    
+     &nbsp;
+     
+<!-- @@author -->
     
   
-### E.3. Find and Delete an item
+### E.4. Find and Delete an item
 
 1. Find an item based on keyword
        

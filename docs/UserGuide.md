@@ -1,6 +1,11 @@
 # SHOCO v2.0 - User Guide
+<!-- @@author Shannonwje -->
 By: `Team SHOCOTech`
+
 Since: `Feb 2020`
+
+Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
+<!-- @@author -->
 
 <!-- @@author trishaangelica -->
 ### Table of Contents
@@ -46,10 +51,9 @@ grocery shopping disappear.
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
-
 1. Ensure that you have Java 11 or above installed. Otherwise download it from
 [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
-2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
+2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases), named `SHOCO.jar` under version 2.0.
 3. Open the command prompt in the directory of the executable SHOCO and type in the following command:
    `java -jar SHOCO.jar`
 4. You are now all set to plan your shopping list!
@@ -191,12 +195,17 @@ the status of item becomes `[B]`.
 
 Format: `MARK INDEX`
 
-* The `INDEX` should be an integer.
+* The `INDEX` should be a number.
 * The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
+* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+* Marking an item whose status was previously `[B]` will be successful, assuring the success of the mark command executed.
 
 Example of the usage: 
 
-`MARK 5`
+1. `MARK 5`
+   * This marks the 5th item in your list as bought.
+   * The status of the 5th item is now `[B]`
 
 &nbsp;
 
@@ -212,12 +221,17 @@ item, the status of the item becomes `[0]`.
 
 Format: `UNMARK INDEX`
 
-* The `INDEX` should be an integer
+* The `INDEX` should be an number.
 * The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
+* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+* Unmarking an item whose status was previously `[0]` will be successful, assuring the success of the unmark command executed.
 
 Example of the usage:
 
-`UNMARK 3`
+1. `UNMARK 3`
+   * This unmarks the 3rd item in your list as unbought.
+   * The status of the 3rd item is now `[0]`
 <!-- @@author -->
 &nbsp;
 
@@ -256,7 +270,7 @@ Example of usage:
 ***
 <!-- @@author Shannonwje -->
 ### Resetting a budget: `RES`
-Resets te budget to be 0.00 for the user.
+Resets the budget to be $0.00 for the user.
 
 Format: `RES`
 <!-- @@author -->
@@ -287,9 +301,7 @@ Format: `HELP`
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
-
 ***
-
 
 ### Exiting the program: `BYE`
 Exits the program.
