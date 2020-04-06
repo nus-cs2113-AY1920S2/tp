@@ -1,5 +1,7 @@
 package seedu.nuke.gui.io;
 
+import seedu.nuke.parser.Parser;
+
 import java.util.regex.Pattern;
 
 import static seedu.nuke.gui.io.GuiParser.ALL_FLAG;
@@ -71,9 +73,16 @@ public class GuiCommandPattern {
             + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<invalid>.*)");
 
+    public static final Pattern DUE_FORMAT = Pattern.compile(
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
+            + "(?<all>(?:\\s+" + Parser.ALL_FLAG + ")?)"
+            + "(?<invalid>.*)"
+    );
+
     public static final Pattern EDIT_MODULE_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
-            + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<all>(?:\\s+" + Parser.ALL_FLAG + ")?)"
             + "(?<invalid>.*)");
 
     public static final Pattern EDIT_CATEGORY_FORMAT = Pattern.compile(

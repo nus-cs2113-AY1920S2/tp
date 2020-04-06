@@ -673,7 +673,7 @@ public class Parser {
         Matcher matcher = DueCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, ALL_FLAG);
 
-        String dateFilter = matcher.group(IDENTIFIER_GROUP).trim();
+        String dateFilter = matcher.group(IDENTIFIER_GROUP).trim().toLowerCase();
         String allFlag = matcher.group(ALL_GROUP).trim();
         boolean isAll = !allFlag.isEmpty();
 
@@ -683,6 +683,9 @@ public class Parser {
 
         String[] dateFilterData = dateFilter.trim().split("\\s+");
         try {
+            if (dateFilterData[0].equals("over")) {
+                return new IncorrectCommand(MESSAGE_EXCESS_PARAMETERS);
+            }
             if (dateFilterData.length == 1) {
                 return new DueCommand(DateTimeFormat.stringToDate(dateFilterData[0]), null, isAll);
             } else if (dateFilterData.length == 2) {

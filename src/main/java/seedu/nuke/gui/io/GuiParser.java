@@ -3,11 +3,10 @@ package seedu.nuke.gui.io;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import seedu.nuke.Executor;
-import seedu.nuke.command.misc.ChangeDirectoryCommand;
+import seedu.nuke.command.filtercommand.listcommand.*;
+import seedu.nuke.command.misc.*;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.misc.OpenFileCommand;
-import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddFileCommand;
 import seedu.nuke.command.addcommand.AddModuleCommand;
@@ -22,12 +21,6 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
@@ -51,23 +44,8 @@ import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.directory.DirectoryTraverser.getBaseTask;
 import static seedu.nuke.directory.DirectoryTraverser.getCurrentDirectory;
 import static seedu.nuke.directory.DirectoryTraverser.getCurrentDirectoryLevel;
-import static seedu.nuke.gui.io.GuiCommandPattern.ADD_CATEGORY_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.ADD_FILE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.ADD_MODULE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.ADD_TASK_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.BASIC_COMMAND_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_CATEGORY_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_FILE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_MODULE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_TASK_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.DONE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_CATEGORY_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_FILE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_MODULE_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_TASK_FORMAT;
-import static seedu.nuke.gui.io.GuiCommandPattern.OPEN_FILE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.*;
 import static seedu.nuke.gui.util.TextUtil.createText;
-
 
 public class GuiParser {
     private static final String NONE = "";
@@ -111,6 +89,7 @@ public class GuiParser {
             AddFileCommand.COMMAND_WORD, DeleteModuleCommand.COMMAND_WORD, DeleteCategoryCommand.COMMAND_WORD,
             DeleteTaskCommand.COMMAND_WORD, DeleteFileCommand.COMMAND_WORD, ListModuleCommand.COMMAND_WORD,
             ListCategoryCommand.COMMAND_WORD, ListTaskCommand.COMMAND_WORD, ListFileCommand.COMMAND_WORD,
+            DueCommand.COMMAND_WORD,
             EditModuleCommand.COMMAND_WORD, EditCategoryCommand.COMMAND_WORD, EditTaskCommand.COMMAND_WORD,
             EditFileCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD, ChangeDirectoryCommand.COMMAND_WORD,
             OpenFileCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
@@ -221,6 +200,9 @@ public class GuiParser {
         case ListFileCommand.COMMAND_WORD:
             smartParseDeleteAndListFileCommand(parameters, startIndexOfParameters);
             break;
+        case DueCommand.COMMAND_WORD:
+            smartParseDueCommand(parameters, startIndexOfParameters);
+            break;
 
         case EditModuleCommand.COMMAND_WORD:
             smartParseEditModuleCommand(parameters, startIndexOfParameters);
@@ -246,10 +228,23 @@ public class GuiParser {
             smartParseOpenFileCommand(parameters, startIndexOfParameters);
             break;
 
+        case InfoCommand.COMMAND_WORD:
+        case UndoCommand.COMMAND_WORD:
+        case RedoCommand.COMMAND_WORD:
+        case HelpCommand.COMMAND_WORD:
+        case ClearCommand.COMMAND_WORD:
+        case ExitCommand.COMMAND_WORD:
+           smartParseEmptyParameterCommand(parameters);
+           break;
+
         default:
             highlightedInput.getChildren().add(createText(parameters, Color.CRIMSON));
             break;
         }
+    }
+
+    private void smartParseEmptyParameterCommand(String parameters) {
+        highlightedInput.getChildren().add(createText(parameters, Color.CRIMSON));
     }
 
     private void smartParseChangeDirectoryCommand(String parameters, int startIndex) {
@@ -321,7 +316,7 @@ public class GuiParser {
 
         smartParseModule(matcher, parameters, startIndex, true);
         smartParseCategory(matcher, parameters, startIndex, true);
-        smartParseDeadline(matcher, parameters);
+        smartParseDeadline(matcher, parameters, startIndex);
         smartParsePriority(matcher, parameters);
 
         String invalid = matcher.group(INVALID_GROUP);
@@ -397,6 +392,102 @@ public class GuiParser {
         highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
     }
 
+    private void smartParseDueCommand(String parameters, int startIndex) throws ParseFailureException {
+        final Matcher matcher = matchPattern(parameters, DUE_FORMAT);
+
+        smartParseTimeSpecifier(matcher, parameters, startIndex);
+        smartParseFlag(matcher, ALL_GROUP);
+
+        String invalid = matcher.group(INVALID_GROUP);
+        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+    }
+
+    private void smartParseTimeSpecifier(Matcher matcher, String parameters, int startIndex)
+            throws ParseFailureException {
+        String rawFilter = matcher.group(IDENTIFIER_GROUP);
+        String filter = rawFilter.trim().toLowerCase();
+
+        if (filter.equals("over")) {
+            highlightedInput.getChildren().add(createText(rawFilter, Color.GREEN));
+            return;
+        }
+
+        String[] filterData = filter.split("\\s+", 2);
+        assert filterData.length <= 3 : "Should have at most 2 sections.";
+        String timeSpecifier = "";
+        String date = "";
+
+        if (filterData.length == 1) {
+            date = filterData[0];
+        } else if (filterData.length == 2) {
+            timeSpecifier = filterData[0];
+            date = filterData[1];
+        }
+
+        int startIndexOfDate = rawFilter.indexOf(timeSpecifier) + timeSpecifier.length() + startIndex;
+        int endIndexOfDate = matcher.end(IDENTIFIER_GROUP) + startIndex;
+        String rawTimeSpecifier = rawFilter.substring(0, startIndexOfDate - startIndex);
+        String rawDate = rawFilter.substring(startIndexOfDate - startIndex);
+        String parametersAfterIncludeDate = parameters.substring(startIndexOfDate - startIndex);
+        String parametersAfterExcludeDate = parameters.substring(endIndexOfDate - startIndex);
+
+        if (timeSpecifier.isEmpty()) {
+            ArrayList<String> suggestedTimeSpecifiers = generateSuggestedTimeSpecifier();
+            populateSuggestions(date, suggestedTimeSpecifiers, startIndexOfDate, endIndexOfDate, NONE);
+
+            if (isNotTypingAttribute(startIndexOfDate, endIndexOfDate)) {
+                console.getEntriesPopup().hide();
+            }
+        }
+
+        // Parse time specifier
+        if (!timeSpecifier.isEmpty()) {
+            if (isValidTimeSpecifier(timeSpecifier)) {
+                highlightedInput.getChildren().add(createText(rawTimeSpecifier, Color.GREEN));
+            } else {
+                if (isNotTypingAttribute(startIndex, startIndexOfDate)) {
+                    highlightedInput.getChildren().addAll(
+                            createText(rawTimeSpecifier, Color.CRIMSON),
+                            createText(parametersAfterIncludeDate, Color.DARKGRAY));
+                } else {
+                    highlightedInput.getChildren().addAll(
+                            createText(rawTimeSpecifier, Color.DARKGRAY),
+                            createText(parametersAfterIncludeDate, Color.DARKGRAY));
+                }
+                throw new ParseFailureException();
+            }
+
+            if (timeSpecifier.equalsIgnoreCase("over")) {
+                if (!date.isEmpty()) {
+                    highlightedInput.getChildren().addAll(
+                            createText(rawDate, Color.CRIMSON),
+                            createText(parametersAfterExcludeDate, Color.DARKGRAY));
+                    throw new ParseFailureException();
+                }
+            }
+        }
+
+        // Parse date
+        if (isValidDate(date)) {
+            highlightedInput.getChildren().add(createText(rawDate, Color.GREEN));
+        } else {
+            if (isNotTypingAttribute(startIndexOfDate, endIndexOfDate)) {
+                highlightedInput.getChildren().addAll(
+                        createText(rawDate, Color.CRIMSON),
+                        createText(parametersAfterExcludeDate, Color.DARKGRAY));
+            } else {
+                highlightedInput.getChildren().addAll(
+                        createText(rawDate, Color.ORANGE),
+                        createText(parametersAfterExcludeDate, Color.DARKGRAY));
+            }
+            throw new ParseFailureException();
+        }
+    }
+
+    private boolean isNotTypingAttribute(int startIndex, int endIndex) {
+        return console.getCaretPosition() < startIndex || console.getCaretPosition() > endIndex;
+    }
+
     private void smartParseEditModuleCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, EDIT_MODULE_FORMAT);
 
@@ -426,7 +517,7 @@ public class GuiParser {
         smartParseModule(matcher, parameters, startIndex, true);
         smartParseCategory(matcher, parameters, startIndex, true);
         checkDuplicateTask(matcher, parameters);
-        smartParseDeadline(matcher, parameters);
+        smartParseDeadline(matcher, parameters, startIndex);
         smartParsePriority(matcher, parameters);
 
         String invalid = matcher.group(INVALID_GROUP);
@@ -639,7 +730,7 @@ public class GuiParser {
         ArrayList<String> suggestedModules = generateSuggestedModules();
         populateSuggestions(moduleCode, suggestedModules, startIndexOfModule, endIndexOfModule, NONE);
 
-        if (console.getCaretPosition() < startIndexOfModule || console.getCaretPosition() > endIndexOfModule) {
+        if (isNotTypingAttribute(startIndexOfModule, endIndexOfModule)) {
             console.getEntriesPopup().hide();
         }
 
@@ -671,7 +762,7 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (console.getCaretPosition() < startIndexOfCategory || console.getCaretPosition() > endIndexOfCategory) {
+        if (isNotTypingAttribute(startIndexOfCategory, endIndexOfCategory)) {
             console.getEntriesPopup().hide();
         }
 
@@ -705,7 +796,7 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (console.getCaretPosition() < startIndexOfTask || console.getCaretPosition() > endIndexOfTask) {
+        if (isNotTypingAttribute(startIndexOfTask, endIndexOfTask)) {
             console.getEntriesPopup().hide();
         }
 
@@ -739,7 +830,7 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (console.getCaretPosition() < startIndexOfFile || console.getCaretPosition() > endIndexOfFile) {
+        if (isNotTypingAttribute(startIndexOfFile, endIndexOfFile)) {
             console.getEntriesPopup().hide();
         }
 
@@ -766,7 +857,7 @@ public class GuiParser {
         ArrayList<String> suggestedModules = generateSuggestedModules();
         populateSuggestions(moduleCode, suggestedModules, startIndexOfModule, endIndexOfModule, MODULE_PREFIX);
 
-        if (console.getCaretPosition() < startIndexOfModule || console.getCaretPosition() > endIndexOfModule) {
+        if (isNotTypingAttribute(startIndexOfModule, endIndexOfModule)) {
             console.getEntriesPopup().hide();
         }
 
@@ -806,7 +897,7 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (console.getCaretPosition() < startIndexOfCategory || console.getCaretPosition() > endIndexOfCategory) {
+        if (isNotTypingAttribute(startIndexOfCategory, endIndexOfCategory)) {
             console.getEntriesPopup().hide();
         }
 
@@ -846,7 +937,7 @@ public class GuiParser {
             throw new ParseFailureException();
         }
 
-        if (console.getCaretPosition() < startIndexOfTask || console.getCaretPosition() > endIndexOfTask) {
+        if (isNotTypingAttribute(startIndexOfTask, endIndexOfTask)) {
             console.getEntriesPopup().hide();
         }
 
@@ -854,11 +945,14 @@ public class GuiParser {
                 suggestedTasks, isExact);
     }
 
-    private void smartParseDeadline(Matcher matcher, String parameters) throws ParseFailureException {
+    private void smartParseDeadline(Matcher matcher, String parameters, int startIndex) throws ParseFailureException {
         String deadlineGroup = matcher.group(DEADLINE_GROUP);
         if (deadlineGroup.isBlank()) {
             return;
         }
+
+        int startIndexOfDeadline =  matcher.start(DEADLINE_GROUP) + startIndex;
+        int endIndexOfDeadline =  matcher.end(DEADLINE_GROUP) + startIndex;
 
         int endIndexOfPrefix = deadlineGroup.indexOf(DEADLINE_PREFIX) + 2;
         String prefix = deadlineGroup.substring(0, endIndexOfPrefix);
@@ -871,10 +965,17 @@ public class GuiParser {
         if (isValidDeadline(deadline)) {
             highlightedInput.getChildren().add(createText(rawDeadline, Color.GREEN));
         } else {
-            highlightedInput.getChildren().addAll(
-                    createText(rawDeadline, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY)
-            );
+            if (isNotTypingAttribute(startIndexOfDeadline, endIndexOfDeadline)) {
+                highlightedInput.getChildren().addAll(
+                        createText(rawDeadline, Color.CRIMSON),
+                        createText(parametersAfter, Color.DARKGRAY)
+                );
+            } else {
+                highlightedInput.getChildren().addAll(
+                        createText(rawDeadline, Color.ORANGE),
+                        createText(parametersAfter, Color.DARKGRAY)
+                );
+            }
             throw new ParseFailureException();
         }
     }
@@ -919,6 +1020,23 @@ public class GuiParser {
             int priority = Integer.parseInt(priorityString);
             return priority >= 0 && priority <= 20;
         } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean isValidTimeSpecifier(String timeSpecifier) {
+        final ArrayList<String> acceptedTimeSpecifiers = new ArrayList<>(
+                Arrays.asList("after", "a", "before", "b", "on", "over")
+        );
+        return acceptedTimeSpecifiers.contains(timeSpecifier.toLowerCase());
+    }
+
+    private boolean isValidDate(String dateString) {
+        try {
+            // A valid date can be successfully parsed as a date
+            DateTimeFormat.stringToDate(dateString);
+            return true;
+        } catch (DateTimeFormat.InvalidDateException e) {
             return false;
         }
     }
@@ -1102,6 +1220,10 @@ public class GuiParser {
                     .map(TaskFile::getFileName) // Get all file names in the File List of the category's tasks
                     .collect(Collectors.toCollection(ArrayList::new)); // And convert into an Array List
         }
+    }
+
+    private ArrayList<String> generateSuggestedTimeSpecifier() {
+        return new ArrayList<>(Arrays.asList("before", "after", "on", "over"));
     }
 
     private void populateSuggestions(String keyword, ArrayList<String> suggestions,
