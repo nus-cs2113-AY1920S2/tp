@@ -3,8 +3,8 @@ package jikan.command;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.InvalidCleanCommandException;
-import jikan.log.LogCleaner;
-import jikan.storage.StorageCleaner;
+import jikan.cleaner.LogCleaner;
+import jikan.cleaner.StorageCleaner;
 import jikan.ui.Ui;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class CleanCommand extends Command {
 
-    StorageCleaner cleaner;
+    StorageCleaner storageCleaner;
     LogCleaner logCleaner;
 
     /**
@@ -22,7 +22,7 @@ public class CleanCommand extends Command {
      */
     public CleanCommand(String parameters, StorageCleaner cleaner, LogCleaner logCleaner) {
         super(parameters);
-        this.cleaner = cleaner;
+        this.storageCleaner = cleaner;
         this.logCleaner = logCleaner;
     }
 
@@ -72,14 +72,14 @@ public class CleanCommand extends Command {
     private void handleOnFunction() throws IOException {
         String line = this.parameters;
         if (line.contains("log")) {
-            logCleaner.setStatus(true);
+            logCleaner.setStatus(true, logCleaner.numberOfLogsToClean);
             assert logCleaner.toClean;
             line = "Auto cleaning enabled for logs";
             Ui.printDivider(line);
             Log.makeInfoLog("User has turned on automated cleaning for logs");
         } else {
-            cleaner.setStatus(true);
-            assert cleaner.toClean;
+            storageCleaner.setStatus(true, storageCleaner.numberOfActivitiesToClean);
+            assert storageCleaner.toClean;
             line = "Auto cleaning enabled";
             Ui.printDivider(line);
             Log.makeInfoLog("User has turned on automated cleaning");
@@ -89,14 +89,14 @@ public class CleanCommand extends Command {
     private void handleOffFunction() throws IOException {
         String line = this.parameters;
         if (line.contains("log")) {
-            logCleaner.setStatus(false);
+            logCleaner.setStatus(false, logCleaner.numberOfLogsToClean);
             assert !logCleaner.toClean;
             line = "Auto cleaning disabled for logs";
             Ui.printDivider(line);
             Log.makeInfoLog("User has turned off automated cleaning for logs");
         } else {
-            cleaner.setStatus(false);
-            assert !cleaner.toClean;
+            storageCleaner.setStatus(false, storageCleaner.numberOfActivitiesToClean);
+            assert !storageCleaner.toClean;
             line = "Auto cleaning disabled";
             Ui.printDivider(line);
             Log.makeInfoLog("User has turned off automated cleaning");
@@ -108,9 +108,13 @@ public class CleanCommand extends Command {
         if (line.contains("log")) {
             try {
                 int value = getNumberFromCommand(line);
-                logCleaner.setNumberOfLogsToClean(value);
-                line = "Number of activities to clean is set to " + value;
-                Ui.printDivider(line);
+                if (value > 0) {
+                    logCleaner.setNumberOfLogsToClean(value);
+                    line = "Number of activities to clean is set to " + value;
+                    Ui.printDivider(line);
+                } else {
+                    Ui.printDivider("Please provide a positive number");
+                }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new NumberFormatException();
             } catch (IOException e) {
@@ -119,9 +123,13 @@ public class CleanCommand extends Command {
         } else {
             try {
                 int value = getNumberFromCommand(line);
-                cleaner.setNumberOfActivitiesToClean(value);
-                line = "Number of activities to clean is set to " + value;
-                Ui.printDivider(line);
+                if (value > 0) {
+                    storageCleaner.setNumberOfActivitiesToClean(value);
+                    line = "Number of activities to clean is set to " + value;
+                    Ui.printDivider(line);
+                } else {
+                    Ui.printDivider("Please provide a positive number");
+                }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new NumberFormatException();
             } catch (IOException e) {
