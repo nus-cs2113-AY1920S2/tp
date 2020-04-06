@@ -27,8 +27,10 @@ public class Storage {
      * @param dataFilePath The data file's file path.
      */
     public Storage(String dataFilePath) {
+        assert dataFilePath != null : "dataFilePath must not be null";
         this.dataFilePath = dataFilePath;
         dataFile = new File(dataFilePath);
+        assert dataFile instanceof File;
     }
 
     /**
@@ -83,6 +85,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Error loading/creating data file.");
         }
+        assert activityList instanceof ActivityList : "Method should return an ActivityList";
         return activityList;
     }
 

@@ -39,6 +39,7 @@ public class ActivityList {
      * @param storage the storage object to use.
      */
     public ActivityList(Storage storage) {
+        assert storage != null : "Input Storage must not be a null pointer";
         this.activities = new ArrayList<>();
         this.storage = storage;
         this.storageHandler = new StorageHandler(storage);
@@ -50,6 +51,7 @@ public class ActivityList {
      * @param dataFile the datafile to be read from.
      */
     public ActivityList(Storage storage, File dataFile) {
+        assert storage != null : "Input Storage must not be a null pointer";
         this.activities = new ArrayList<>();
         this.storage = storage;
         this.storageHandler = new StorageHandler(storage);
