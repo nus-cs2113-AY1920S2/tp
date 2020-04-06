@@ -8,7 +8,7 @@
 SHOCO is a Command Line Interface (CLI) application used to manage shopping lists and related information.
 It is written in Java and has about 4 kLoC.
 
-### Summary of Contributions
+## Summary of Contributions
 
 - **Major enhancements:**
     - Added the ability to display user-entered data to the user
@@ -84,9 +84,9 @@ the items.
 The following sequence diagrams below show how the display feature works. Note the <code>Ui</code> class is
 omitted to emphasise the other classes:
 
-![alt text](images/DisplayFinal.png)
+![alt text](../images/DisplayFinal.png)
 
-![alt text](images/Display_SDFinal.png)
+![alt text](../images/Display_SDFinal.png)
 
 #### 3.6.2 Design considerations
 ##### Aspect: Data structure to support the display feature
@@ -125,7 +125,7 @@ also be able to trace functionality bugs more easily if each command class deals
  The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
  omitted to emphasise the other classes:
    
- ![alt text](images/ClearFinal.png)
+ ![alt text](../images/ClearFinal.png)
    
  #### 3.9.2 Design considerations
    
