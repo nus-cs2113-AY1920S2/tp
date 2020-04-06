@@ -19,7 +19,7 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteTagCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
@@ -64,7 +64,7 @@ public class Ui {
         commands.add(DeleteTagCommand.MESSAGE_USAGE);
         commands.add(ListCategoryCommand.MESSAGE_USAGE);
         commands.add(ListTaskCommand.MESSAGE_USAGE);
-        commands.add(ListModuleTasksDeadlineCommand.MESSAGE_USAGE);
+        commands.add(ListModuleTask.MESSAGE_USAGE);
         commands.add(ListTaskSortedCommand.MESSAGE_USAGE);
         commands.add(HelpCommand.MESSAGE_USAGE);
         commands.add(ExitCommand.MESSAGE_USAGE);

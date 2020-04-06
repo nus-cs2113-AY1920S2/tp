@@ -1,7 +1,9 @@
 package seedu.nuke.gui.io;
 
 import javafx.scene.paint.Color;
+import javafx.scene.shape.DrawMode;
 import javafx.scene.text.TextFlow;
+import javafx.util.Pair;
 import seedu.nuke.Executor;
 import seedu.nuke.command.filtercommand.listcommand.*;
 import seedu.nuke.command.misc.*;
@@ -31,6 +33,7 @@ import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 import seedu.nuke.exception.ParseFailureException;
 import seedu.nuke.gui.component.AutoCompleteTextField;
+import seedu.nuke.gui.component.SyntaxConsole;
 import seedu.nuke.util.DateTimeFormat;
 
 import java.util.ArrayList;
@@ -62,6 +65,7 @@ public class GuiParser {
     public static final String DEADLINE_PREFIX = "-d";
     public static final String ALL_FLAG = "-a";
     public static final String EXACT_FLAG = "-e";
+    private static final int PREFIX_LENGTH = 2;
 
     private static final String COMMAND_WORD_GROUP = "commandWord";
     private static final String PARAMETERS_GROUP = "parameters";
@@ -72,29 +76,33 @@ public class GuiParser {
     private static final String FILE_GROUP = "fileInfo";
     private static final String DEADLINE_GROUP = "deadline";
     private static final String PRIORITY_GROUP = "priority";
+    private static final String PRIORITY_GROUP_SECOND = "prioritySecond";
     private static final String EXACT_GROUP = "exact";
     private static final String ALL_GROUP = "all";
+    private static final String ALL_GROUP_SECOND = "allSecond";
     private static final String INVALID_GROUP = "invalid";
 
     private AutoCompleteTextField console;
-    private TextFlow highlightedInput;
+    private SyntaxConsole syntaxConsole;
 
-    public GuiParser(AutoCompleteTextField console) {
+    public GuiParser(AutoCompleteTextField console, SyntaxConsole syntaxConsole) {
         this.console = console;
-        this.highlightedInput = new TextFlow();
+        this.syntaxConsole = syntaxConsole;
     }
 
     private static final ArrayList<String> COMMAND_WORDS = new ArrayList<>(Arrays.asList(
             AddModuleCommand.COMMAND_WORD, AddCategoryCommand.COMMAND_WORD, AddTaskCommand.COMMAND_WORD,
-            AddFileCommand.COMMAND_WORD, DeleteModuleCommand.COMMAND_WORD, DeleteCategoryCommand.COMMAND_WORD,
-            DeleteTaskCommand.COMMAND_WORD, DeleteFileCommand.COMMAND_WORD, ListModuleCommand.COMMAND_WORD,
-            ListCategoryCommand.COMMAND_WORD, ListTaskCommand.COMMAND_WORD, ListFileCommand.COMMAND_WORD,
-            DueCommand.COMMAND_WORD,
+            AddFileCommand.COMMAND_WORD,
+            DeleteModuleCommand.COMMAND_WORD, DeleteCategoryCommand.COMMAND_WORD, DeleteTaskCommand.COMMAND_WORD,
+            DeleteFileCommand.COMMAND_WORD,
+            ListModuleCommand.COMMAND_WORD, ListCategoryCommand.COMMAND_WORD, ListTaskCommand.COMMAND_WORD,
+            ListFileCommand.COMMAND_WORD, ListTaskSortedCommand.COMMAND_WORD, DueCommand.COMMAND_WORD,
             EditModuleCommand.COMMAND_WORD, EditCategoryCommand.COMMAND_WORD, EditTaskCommand.COMMAND_WORD,
-            EditFileCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD, ChangeDirectoryCommand.COMMAND_WORD,
-            OpenFileCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
-            AddTagCommand.COMMAND_WORD, ListModuleTasksDeadlineCommand.COMMAND_WORD,
-            ListTaskSortedCommand.COMMAND_WORD, GENERIC_ADD_COMMAND, GENERIC_DELETE_COMMAND, GENERIC_LIST_COMMAND
+            EditFileCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD,
+            ChangeDirectoryCommand.COMMAND_WORD, OpenFileCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD,
+            RedoCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
+            AddTagCommand.COMMAND_WORD,
+            GENERIC_ADD_COMMAND, GENERIC_DELETE_COMMAND, GENERIC_LIST_COMMAND
     ));
 
     /**
@@ -102,10 +110,8 @@ public class GuiParser {
      *
      * @param input
      *  The input being typed by the user
-     * @return
-     *  The highlighted correspondent of the input
      */
-    public TextFlow smartParse(String input) {
+    public void smartParse(String input) {
         console.getEntriesPopup().hide();
         try {
             switch (Executor.getPromptType()) {
@@ -122,9 +128,8 @@ public class GuiParser {
                 smartParseParameters(matcher);
             }
         } catch (ParseFailureException e) {
-            return highlightedInput;
+            // Exit
         }
-        return highlightedInput;
     }
 
     /**
@@ -145,8 +150,7 @@ public class GuiParser {
 
         populateSuggestions(commandWord, COMMAND_WORDS, startIndexOfCommandWord, endIndexOfCommandWord, NONE);
 
-        if (console.getCaretPosition() < startIndexOfCommandWord
-                || console.getCaretPosition() > endIndexOfCommandWord) {
+        if (isNotTypingAttribute(startIndexOfCommandWord, endIndexOfCommandWord)) {
             console.getEntriesPopup().hide();
         }
 
@@ -166,9 +170,8 @@ public class GuiParser {
         case GENERIC_DELETE_COMMAND:
         case GENERIC_LIST_COMMAND:
         case AddTagCommand.COMMAND_WORD:
-        case ListModuleTasksDeadlineCommand.COMMAND_WORD:
-        case ListTaskSortedCommand.COMMAND_WORD:
-            highlightedInput.getChildren().add(createText(parameters, Color.BLUE));
+        case ListModuleTask.COMMAND_WORD:
+            addText(new Pair<>(parameters, Color.BLUE));
             break;
 
         case AddModuleCommand.COMMAND_WORD:
@@ -199,6 +202,9 @@ public class GuiParser {
         case DeleteFileCommand.COMMAND_WORD:
         case ListFileCommand.COMMAND_WORD:
             smartParseDeleteAndListFileCommand(parameters, startIndexOfParameters);
+            break;
+        case ListTaskSortedCommand.COMMAND_WORD:
+            smartParseListTaskSortedCommand(parameters, startIndexOfParameters);
             break;
         case DueCommand.COMMAND_WORD:
             smartParseDueCommand(parameters, startIndexOfParameters);
@@ -238,13 +244,13 @@ public class GuiParser {
            break;
 
         default:
-            highlightedInput.getChildren().add(createText(parameters, Color.CRIMSON));
+            addText(new Pair<>(parameters, Color.CRIMSON));
             break;
         }
     }
 
     private void smartParseEmptyParameterCommand(String parameters) {
-        highlightedInput.getChildren().add(createText(parameters, Color.CRIMSON));
+        addText(new Pair<>(parameters, Color.CRIMSON));
     }
 
     private void smartParseChangeDirectoryCommand(String parameters, int startIndex) {
@@ -256,17 +262,17 @@ public class GuiParser {
         }
 
         if (nextDirectory.equals("..")) {
-            highlightedInput.getChildren().add(createText(parameters, Color.GREEN));
+            addText(new Pair<>(parameters, Color.GREEN));
         } else {
             ArrayList<String> suggestedDirectories = generateSuggestedDirectories();
             populateSuggestions(nextDirectory, suggestedDirectories, startIndex, endIndex, NONE);
 
             if (isMatchingWord(nextDirectory, suggestedDirectories)) {
-                highlightedInput.getChildren().add(createText(parameters, Color.GREEN));
+                addText(new Pair<>(parameters, Color.GREEN));
             } else if (isPartOfWord(nextDirectory, suggestedDirectories)) {
-                highlightedInput.getChildren().add(createText(parameters, Color.ORANGE));
+                addText(new Pair<>(parameters, Color.ORANGE));
             } else {
-                highlightedInput.getChildren().add(createText(parameters, Color.CRIMSON));
+                addText(new Pair<>(parameters, Color.CRIMSON));
             }
         }
     }
@@ -276,8 +282,8 @@ public class GuiParser {
         final Matcher matcher = matchPattern(parameters, ADD_MODULE_FORMAT);
 
         String moduleCode = matcher.group(IDENTIFIER_GROUP);
-        int startIndexOfModule =  matcher.start(IDENTIFIER_GROUP) + startIndex;
-        int endIndexOfModule =  matcher.end(IDENTIFIER_GROUP) + startIndex;
+        int startIndexOfModule = matcher.start(IDENTIFIER_GROUP) + startIndex;
+        int endIndexOfModule = matcher.end(IDENTIFIER_GROUP) + startIndex;
 
         ArrayList<String> suggestedModules = generateSuggestedNewModules();
         populateSuggestions(moduleCode.trim(), suggestedModules, startIndexOfModule, endIndexOfModule, NONE);
@@ -286,24 +292,25 @@ public class GuiParser {
             console.getEntriesPopup().hide();
         }
 
-        highlightInput(moduleCode.trim().toUpperCase(), moduleCode, NONE, endIndexOfModule,
-                suggestedModules, true);
+        if (!moduleCode.isEmpty()) {
+            String parametersAfter = parameters.substring(matcher.end(IDENTIFIER_GROUP));
+            highlightInput(moduleCode.trim().toUpperCase(), moduleCode, parametersAfter, endIndexOfModule,
+                    suggestedModules, true);
+        }
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     void smartParseAddCategoryCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, ADD_CATEGORY_FORMAT);
 
         String categoryName = matcher.group(IDENTIFIER_GROUP);
-        highlightedInput.getChildren().add(createText(categoryName, Color.BLUE));
+        addText(new Pair<>(categoryName, Color.BLUE));
 
         smartParseModule(matcher, parameters, startIndex, true);
         smartParsePriority(matcher, parameters);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
 
     }
 
@@ -312,15 +319,14 @@ public class GuiParser {
 
         String taskDescription = matcher.group(IDENTIFIER_GROUP);
 
-        highlightedInput.getChildren().add(createText(taskDescription, Color.BLUE));
+        addText(new Pair<>(taskDescription, Color.BLUE));
 
         smartParseModule(matcher, parameters, startIndex, true);
         smartParseCategory(matcher, parameters, startIndex, true);
         smartParseDeadline(matcher, parameters, startIndex);
         smartParsePriority(matcher, parameters);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     void smartParseAddFileCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -328,28 +334,32 @@ public class GuiParser {
 
         String fileName = matcher.group(IDENTIFIER_GROUP);
 
-        highlightedInput.getChildren().add(createText(fileName, Color.BLUE));
+        addText(new Pair<>(fileName, Color.BLUE));
 
         smartParseModule(matcher, parameters, startIndex, true);
         smartParseCategory(matcher, parameters, startIndex, true);
         smartParseTask(matcher, parameters, startIndex, true);
+        smartParseFile(matcher);
 
-        String filePath = matcher.group(FILE_GROUP);
-        highlightedInput.getChildren().add(createText(filePath, Color.BLUE));
-
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
+
 
     private void smartParseDeleteAndListModuleCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, DELETE_AND_LIST_MODULE_FORMAT);
 
         smartParseIdentityModule(matcher, parameters, startIndex, false);
-        smartParseFlag(matcher, EXACT_GROUP);
-        smartParseFlag(matcher, ALL_GROUP);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        boolean hasAllFlag = smartParseFlag(matcher, ALL_GROUP, ALL_FLAG);
+        smartParseFlag(matcher, EXACT_GROUP, EXACT_FLAG);
+
+        if (hasAllFlag) {
+            highlightIncorrect(matcher, ALL_GROUP_SECOND);
+        } else {
+            smartParseFlag(matcher, ALL_GROUP_SECOND, ALL_FLAG);
+        }
+
+        checkInvalid(matcher);
     }
 
     private void smartParseDeleteAndListCategoryCommand(String parameters, int startIndex)
@@ -358,11 +368,17 @@ public class GuiParser {
 
         smartParseIdentityCategory(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, false);
-        smartParseFlag(matcher, EXACT_GROUP);
-        smartParseFlag(matcher, ALL_GROUP);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        boolean hasAllFlag = smartParseFlag(matcher, ALL_GROUP, ALL_FLAG);
+        smartParseFlag(matcher, EXACT_GROUP, EXACT_FLAG);
+
+        if (hasAllFlag) {
+            highlightIncorrect(matcher, ALL_GROUP_SECOND);
+        } else {
+            smartParseFlag(matcher, ALL_GROUP_SECOND, ALL_FLAG);
+        }
+
+        checkInvalid(matcher);
     }
 
     private void smartParseDeleteAndListTaskCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -371,11 +387,17 @@ public class GuiParser {
         smartParseIdentityTask(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, false);
         smartParseCategory(matcher, parameters, startIndex, false);
-        smartParseFlag(matcher, EXACT_GROUP);
-        smartParseFlag(matcher, ALL_GROUP);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        boolean hasAllFlag = smartParseFlag(matcher, ALL_GROUP, ALL_FLAG);
+        smartParseFlag(matcher, EXACT_GROUP, EXACT_FLAG);
+
+        if (hasAllFlag) {
+            highlightIncorrect(matcher, ALL_GROUP_SECOND);
+        } else {
+            smartParseFlag(matcher, ALL_GROUP_SECOND, ALL_FLAG);
+        }
+
+        checkInvalid(matcher);
     }
 
     private void smartParseDeleteAndListFileCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -385,30 +407,64 @@ public class GuiParser {
         smartParseModule(matcher, parameters, startIndex, false);
         smartParseCategory(matcher, parameters, startIndex, false);
         smartParseTask(matcher, parameters, startIndex, false);
-        smartParseFlag(matcher, EXACT_GROUP);
-        smartParseFlag(matcher, ALL_GROUP);
+        smartParseIdentityModule(matcher, parameters, startIndex, true);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        boolean hasAllFlag = smartParseFlag(matcher, ALL_GROUP, ALL_FLAG);
+        smartParseFlag(matcher, EXACT_GROUP, EXACT_FLAG);
+
+        if (hasAllFlag) {
+            highlightIncorrect(matcher, ALL_GROUP_SECOND);
+        } else {
+            smartParseFlag(matcher, ALL_GROUP_SECOND, ALL_FLAG);
+        }
+
+        checkInvalid(matcher);
+    }
+
+    private void smartParseListTaskSortedCommand(String parameters, int startIndex) throws ParseFailureException {
+        final Matcher matcher = matchPattern(parameters, LIST_TASK_SORTED_FORMAT);
+
+        smartParseIdentityModule(matcher, parameters, startIndex, true);
+
+        // Check if have only either deadline or priority
+        boolean hasPriority = smartParseFlag(matcher, PRIORITY_GROUP, PRIORITY_PREFIX);
+        if (hasPriority) {
+            highlightIncorrect(matcher, DEADLINE_GROUP);
+            highlightIncorrect(matcher, PRIORITY_GROUP_SECOND);
+            checkInvalid(matcher);
+            return;
+        }
+
+        boolean hasDeadline = smartParseFlag(matcher, DEADLINE_GROUP, DEADLINE_PREFIX);
+
+        if (hasDeadline) {
+            highlightIncorrect(matcher, PRIORITY_GROUP_SECOND);
+        } else {
+            smartParseFlag(matcher, PRIORITY_GROUP_SECOND, PRIORITY_PREFIX);
+        }
+
+        checkInvalid(matcher);
     }
 
     private void smartParseDueCommand(String parameters, int startIndex) throws ParseFailureException {
         final Matcher matcher = matchPattern(parameters, DUE_FORMAT);
 
         smartParseTimeSpecifier(matcher, parameters, startIndex);
-        smartParseFlag(matcher, ALL_GROUP);
+        smartParseFlag(matcher, ALL_GROUP, ALL_FLAG);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     private void smartParseTimeSpecifier(Matcher matcher, String parameters, int startIndex)
             throws ParseFailureException {
         String rawFilter = matcher.group(IDENTIFIER_GROUP);
+        if (rawFilter.isBlank()) {
+            return;
+        }
         String filter = rawFilter.trim().toLowerCase();
 
         if (filter.equals("over")) {
-            highlightedInput.getChildren().add(createText(rawFilter, Color.GREEN));
+            syntaxConsole.getChildren().add(createText(rawFilter, Color.GREEN));
             return;
         }
 
@@ -443,25 +499,21 @@ public class GuiParser {
         // Parse time specifier
         if (!timeSpecifier.isEmpty()) {
             if (isValidTimeSpecifier(timeSpecifier)) {
-                highlightedInput.getChildren().add(createText(rawTimeSpecifier, Color.GREEN));
+                addText(new Pair<>(rawTimeSpecifier, Color.GREEN));
             } else {
                 if (isNotTypingAttribute(startIndex, startIndexOfDate)) {
-                    highlightedInput.getChildren().addAll(
-                            createText(rawTimeSpecifier, Color.CRIMSON),
-                            createText(parametersAfterIncludeDate, Color.DARKGRAY));
+                    addText(new Pair<>(rawTimeSpecifier, Color.CRIMSON),
+                            new Pair<>(parametersAfterIncludeDate, Color.DARKGRAY));
                 } else {
-                    highlightedInput.getChildren().addAll(
-                            createText(rawTimeSpecifier, Color.DARKGRAY),
-                            createText(parametersAfterIncludeDate, Color.DARKGRAY));
+                    addText(new Pair<>(rawTimeSpecifier, Color.DARKGRAY),
+                            new Pair<>(parametersAfterIncludeDate, Color.DARKGRAY));
                 }
                 throw new ParseFailureException();
             }
 
             if (timeSpecifier.equalsIgnoreCase("over")) {
                 if (!date.isEmpty()) {
-                    highlightedInput.getChildren().addAll(
-                            createText(rawDate, Color.CRIMSON),
-                            createText(parametersAfterExcludeDate, Color.DARKGRAY));
+                    addText(new Pair<>(rawDate, Color.CRIMSON), new Pair<>(parametersAfterExcludeDate, Color.DARKGRAY));
                     throw new ParseFailureException();
                 }
             }
@@ -469,23 +521,15 @@ public class GuiParser {
 
         // Parse date
         if (isValidDate(date)) {
-            highlightedInput.getChildren().add(createText(rawDate, Color.GREEN));
+            addText(new Pair<>(rawDate, Color.GREEN));
         } else {
             if (isNotTypingAttribute(startIndexOfDate, endIndexOfDate)) {
-                highlightedInput.getChildren().addAll(
-                        createText(rawDate, Color.CRIMSON),
-                        createText(parametersAfterExcludeDate, Color.DARKGRAY));
+                addText(new Pair<>(rawDate, Color.CRIMSON), new Pair<>(parametersAfterExcludeDate, Color.DARKGRAY));
             } else {
-                highlightedInput.getChildren().addAll(
-                        createText(rawDate, Color.ORANGE),
-                        createText(parametersAfterExcludeDate, Color.DARKGRAY));
+                addText(new Pair<>(rawDate, Color.ORANGE), new Pair<>(parametersAfterExcludeDate, Color.DARKGRAY));
             }
             throw new ParseFailureException();
         }
-    }
-
-    private boolean isNotTypingAttribute(int startIndex, int endIndex) {
-        return console.getCaretPosition() < startIndex || console.getCaretPosition() > endIndex;
     }
 
     private void smartParseEditModuleCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -494,8 +538,7 @@ public class GuiParser {
         smartParseIdentityModule(matcher, parameters, startIndex, true);
         checkDuplicateModule(matcher, parameters);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     private void smartParseEditCategoryCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -506,8 +549,7 @@ public class GuiParser {
         checkDuplicateCategory(matcher, parameters);
         smartParsePriority(matcher, parameters);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     private void smartParseEditTaskCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -520,8 +562,7 @@ public class GuiParser {
         smartParseDeadline(matcher, parameters, startIndex);
         smartParsePriority(matcher, parameters);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     private void smartParseEditFileCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -533,8 +574,7 @@ public class GuiParser {
         smartParseTask(matcher, parameters, startIndex, true);
         checkDuplicateFile(matcher, parameters);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     private void smartParseMarkAsDoneCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -544,8 +584,7 @@ public class GuiParser {
         smartParseModule(matcher, parameters, startIndex, true);
         smartParseCategory(matcher, parameters, startIndex, true);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     private void smartParseOpenFileCommand(String parameters, int startIndex) throws ParseFailureException {
@@ -556,8 +595,7 @@ public class GuiParser {
         smartParseCategory(matcher, parameters, startIndex, true);
         smartParseTask(matcher, parameters, startIndex, true);
 
-        String invalid = matcher.group(INVALID_GROUP);
-        highlightedInput.getChildren().add(createText(invalid, Color.CRIMSON));
+        checkInvalid(matcher);
     }
 
     private void checkDuplicateModule(Matcher matcher, String parameters) throws ParseFailureException {
@@ -568,28 +606,26 @@ public class GuiParser {
 
         String moduleCode = moduleGroup.replace(MODULE_PREFIX, NONE).trim().toUpperCase();
 
-        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_PREFIX) + 2;
+        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_PREFIX) + PREFIX_LENGTH;
         String prefix = moduleGroup.substring(0, endIndexOfPrefix);
         String rawModuleName = moduleGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(MODULE_GROUP));
 
         // Highlight the prefix first
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         // Retrieves Module List and checks if new module code is repeated
         ArrayList<String> suggestedModules = generateSuggestedModules();
         if (suggestedModules.contains(moduleCode)) {
             // Repeated module code
-            highlightedInput.getChildren().addAll(
-                    createText(rawModuleName, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawModuleName, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         } else if (!ModuleManager.getModulesMap().containsKey(moduleCode)) {
             // Module code is not an NUS module
-            highlightedInput.getChildren().add(createText(rawModuleName, Color.ORANGE));
+            addText(new Pair<>(rawModuleName, Color.ORANGE));
         } else {
             // Valid module code
-            highlightedInput.getChildren().add(createText(rawModuleName, Color.BLUE));
+            addText(new Pair<>(rawModuleName, Color.BLUE));
         }
     }
 
@@ -601,13 +637,13 @@ public class GuiParser {
 
         String categoryName = categoryGroup.replace(CATEGORY_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_PREFIX) + 2;
+        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_PREFIX) + PREFIX_LENGTH;
         String prefix = categoryGroup.substring(0, endIndexOfPrefix);
         String rawCategoryName = categoryGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(CATEGORY_GROUP));
 
         // Highlight the prefix first
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         // Retrieves Category List and checks if new category name is repeated
         String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
@@ -615,19 +651,15 @@ public class GuiParser {
             ArrayList<String> suggestedCategories = generateSuggestedCategories(moduleCode, true);
             if (suggestedCategories.contains(categoryName)) {
                 // Repeated category name
-                highlightedInput.getChildren().addAll(
-                        createText(rawCategoryName, Color.CRIMSON),
-                        createText(parametersAfter, Color.DARKGRAY));
+                addText(new Pair<>(rawCategoryName, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
                 throw new ParseFailureException();
             } else {
                 // Valid new category name
-                highlightedInput.getChildren().add(createText(rawCategoryName, Color.BLUE));
+                addText(new Pair<>(rawCategoryName, Color.BLUE));
             }
         } catch (IncorrectDirectoryLevelException e) {
             // Unable to get missing module code
-            highlightedInput.getChildren().addAll(
-                    createText(rawCategoryName, Color.ORANGE),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawCategoryName, Color.ORANGE), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
     }
@@ -640,13 +672,13 @@ public class GuiParser {
 
         String taskDescription = taskGroup.replace(TASK_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = taskGroup.indexOf(TASK_PREFIX) + 2;
+        int endIndexOfPrefix = taskGroup.indexOf(TASK_PREFIX) + PREFIX_LENGTH;
         String prefix = taskGroup.substring(0, endIndexOfPrefix);
         String rawTaskDescription = taskGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(TASK_GROUP));
 
         // Highlight the prefix first
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         // Retrieves Task List and checks if new task description is repeated
         String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
@@ -655,19 +687,15 @@ public class GuiParser {
             ArrayList<String> suggestedTasks = generateSuggestedTasks(moduleCode, categoryName, true);
             if (suggestedTasks.contains(taskDescription)) {
                 // Repeated task description
-                highlightedInput.getChildren().addAll(
-                        createText(rawTaskDescription, Color.CRIMSON),
-                        createText(parametersAfter, Color.DARKGRAY));
+                addText(new Pair<>(rawTaskDescription, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
                 throw new ParseFailureException();
             } else {
                 // Valid new task description
-                highlightedInput.getChildren().add(createText(rawTaskDescription, Color.BLUE));
+                addText(new Pair<>(rawTaskDescription, Color.BLUE));
             }
         } catch (IncorrectDirectoryLevelException e) {
             // Unable to get missing module code or category name
-            highlightedInput.getChildren().addAll(
-                    createText(rawTaskDescription, Color.ORANGE),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawTaskDescription, Color.ORANGE), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
     }
@@ -680,13 +708,13 @@ public class GuiParser {
 
         String fileName = fileGroup.replace(TASK_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = fileGroup.indexOf(TASK_PREFIX) + 2;
+        int endIndexOfPrefix = fileGroup.indexOf(TASK_PREFIX) + PREFIX_LENGTH;
         String prefix = fileGroup.substring(0, endIndexOfPrefix);
         String rawFileName = fileGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(FILE_GROUP));
 
         // Highlight the prefix first
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         // Retrieves File List and checks if new file name is repeated
         String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
@@ -697,19 +725,15 @@ public class GuiParser {
                     taskDescription, false);
             if (suggestedFiles.contains(fileName)) {
                 // Repeated file name
-                highlightedInput.getChildren().addAll(
-                        createText(rawFileName, Color.CRIMSON),
-                        createText(parametersAfter, Color.DARKGRAY));
+                addText(new Pair<>(rawFileName, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
                 throw new ParseFailureException();
             } else {
                 // Valid new file name
-                highlightedInput.getChildren().add(createText(rawFileName, Color.BLUE));
+                addText(new Pair<>(rawFileName, Color.BLUE));
             }
         } catch (IncorrectDirectoryLevelException e) {
             // Unable to get missing module code or category name or task description
-            highlightedInput.getChildren().addAll(
-                    createText(rawFileName, Color.ORANGE),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawFileName, Color.ORANGE), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
     }
@@ -757,8 +781,7 @@ public class GuiParser {
             suggestedCategories = generateSuggestedCategories(moduleCode, false);
             populateSuggestions(categoryName, suggestedCategories, startIndexOfCategory, endIndexOfCategory, NONE);
         } catch (IncorrectDirectoryLevelException e) {
-            highlightedInput.getChildren().addAll(createText(rawCategoryName, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawCategoryName, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
 
@@ -791,8 +814,7 @@ public class GuiParser {
             suggestedTasks = generateSuggestedTasks(moduleCode, categoryName, false);
             populateSuggestions(taskDescription, suggestedTasks, startIndexOfTask, endIndexOfTask, NONE);
         } catch (IncorrectDirectoryLevelException e) {
-            highlightedInput.getChildren().addAll(createText(rawTaskDescription, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawTaskDescription, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
 
@@ -825,8 +847,7 @@ public class GuiParser {
             suggestedFiles = generateSuggestedFiles(moduleCode, categoryName, taskDescription, false);
             populateSuggestions(fileName, suggestedFiles, startIndexOfFile, endIndexOfFile, NONE);
         } catch (IncorrectDirectoryLevelException e) {
-            highlightedInput.getChildren().addAll(createText(rawFileName, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawFileName, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
 
@@ -849,10 +870,10 @@ public class GuiParser {
 
         String moduleCode = moduleGroup.replace(MODULE_PREFIX, NONE).trim().toUpperCase();
 
-        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_PREFIX) + 2;
+        int endIndexOfPrefix = moduleGroup.indexOf(MODULE_PREFIX) + PREFIX_LENGTH;
         String prefix = moduleGroup.substring(0, endIndexOfPrefix);
 
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         ArrayList<String> suggestedModules = generateSuggestedModules();
         populateSuggestions(moduleCode, suggestedModules, startIndexOfModule, endIndexOfModule, MODULE_PREFIX);
@@ -878,12 +899,12 @@ public class GuiParser {
 
         String categoryName = categoryGroup.replace(CATEGORY_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_PREFIX) + 2;
+        int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_PREFIX) + PREFIX_LENGTH;
         String prefix = categoryGroup.substring(0, endIndexOfPrefix);
         String rawCategoryName = categoryGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(CATEGORY_GROUP));
 
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
         ArrayList<String> suggestedCategories;
@@ -892,8 +913,7 @@ public class GuiParser {
             populateSuggestions(categoryName, suggestedCategories, startIndexOfCategory,
                     endIndexOfCategory, CATEGORY_PREFIX);
         } catch (IncorrectDirectoryLevelException e) {
-            highlightedInput.getChildren().addAll(createText(rawCategoryName, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawCategoryName, Color.CRIMSON), new Pair<>(parameters, Color.DARKGRAY));
             throw new ParseFailureException();
         }
 
@@ -917,23 +937,21 @@ public class GuiParser {
 
         String taskDescription = taskGroup.replace(TASK_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = taskGroup.indexOf(TASK_PREFIX) + 2;
+        int endIndexOfPrefix = taskGroup.indexOf(TASK_PREFIX) + PREFIX_LENGTH;
         String prefix = taskGroup.substring(0, endIndexOfPrefix);
         String rawTaskDescription = taskGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(TASK_GROUP));
 
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
         String categoryName = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
         ArrayList<String> suggestedTasks;
         try {
             suggestedTasks = generateSuggestedTasks(moduleCode, categoryName, isExact);
-            populateSuggestions(taskDescription, suggestedTasks, startIndexOfTask,
-                    endIndexOfTask, TASK_PREFIX);
+            populateSuggestions(taskDescription, suggestedTasks, startIndexOfTask, endIndexOfTask, TASK_PREFIX);
         } catch (IncorrectDirectoryLevelException e) {
-            highlightedInput.getChildren().addAll(createText(rawTaskDescription, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY));
+            addText(new Pair<>(rawTaskDescription, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
 
@@ -945,6 +963,21 @@ public class GuiParser {
                 suggestedTasks, isExact);
     }
 
+    private void smartParseFile(Matcher matcher) {
+        String fileGroup = matcher.group(FILE_GROUP);
+        if (fileGroup.isBlank()) {
+            return;
+        }
+
+        int endIndexOfPrefix = fileGroup.indexOf(FILE_PREFIX) + PREFIX_LENGTH;
+        String prefix = fileGroup.substring(0, endIndexOfPrefix);
+
+        addText(new Pair<>(prefix, Color.GREEN));
+
+        String rawFileName = fileGroup.substring(endIndexOfPrefix);
+        addText(new Pair<>(rawFileName, Color.BLUE));
+    }
+
     private void smartParseDeadline(Matcher matcher, String parameters, int startIndex) throws ParseFailureException {
         String deadlineGroup = matcher.group(DEADLINE_GROUP);
         if (deadlineGroup.isBlank()) {
@@ -954,39 +987,23 @@ public class GuiParser {
         int startIndexOfDeadline =  matcher.start(DEADLINE_GROUP) + startIndex;
         int endIndexOfDeadline =  matcher.end(DEADLINE_GROUP) + startIndex;
 
-        int endIndexOfPrefix = deadlineGroup.indexOf(DEADLINE_PREFIX) + 2;
+        int endIndexOfPrefix = deadlineGroup.indexOf(DEADLINE_PREFIX) + PREFIX_LENGTH;
         String prefix = deadlineGroup.substring(0, endIndexOfPrefix);
         String rawDeadline = deadlineGroup.substring(endIndexOfPrefix);
         String deadline = rawDeadline.trim();
         String parametersAfter =  parameters.substring(matcher.end(DEADLINE_GROUP));
 
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         if (isValidDeadline(deadline)) {
-            highlightedInput.getChildren().add(createText(rawDeadline, Color.GREEN));
+            addText(new Pair<>(rawDeadline, Color.GREEN));
         } else {
             if (isNotTypingAttribute(startIndexOfDeadline, endIndexOfDeadline)) {
-                highlightedInput.getChildren().addAll(
-                        createText(rawDeadline, Color.CRIMSON),
-                        createText(parametersAfter, Color.DARKGRAY)
-                );
+                addText(new Pair<>(rawDeadline, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             } else {
-                highlightedInput.getChildren().addAll(
-                        createText(rawDeadline, Color.ORANGE),
-                        createText(parametersAfter, Color.DARKGRAY)
-                );
+                addText(new Pair<>(rawDeadline, Color.ORANGE), new Pair<>(parametersAfter, Color.DARKGRAY));
             }
             throw new ParseFailureException();
-        }
-    }
-
-    private boolean isValidDeadline(String deadlineString) {
-        try {
-            // A valid deadline can be successfully parsed as a datetime
-            DateTimeFormat.stringToDateTime(deadlineString);
-            return true;
-        } catch (DateTimeFormat.InvalidDateTimeException e) {
-            return false;
         }
     }
 
@@ -996,22 +1013,45 @@ public class GuiParser {
             return;
         }
 
-        int endIndexOfPrefix = priorityGroup.indexOf(PRIORITY_PREFIX) + 2;
+        int endIndexOfPrefix = priorityGroup.indexOf(PRIORITY_PREFIX) + PREFIX_LENGTH;
         String prefix = priorityGroup.substring(0, endIndexOfPrefix);
         String rawPriority = priorityGroup.substring(endIndexOfPrefix);
         String priority = rawPriority.trim();
         String parametersAfter =  parameters.substring(matcher.end(PRIORITY_GROUP));
 
-        highlightedInput.getChildren().add(createText(prefix, Color.GREEN));
+        addText(new Pair<>(prefix, Color.GREEN));
 
         if (isValidPriority(priority)) {
-            highlightedInput.getChildren().add(createText(rawPriority, Color.GREEN));
+            addText(new Pair<>(rawPriority, Color.GREEN));
         } else {
-            highlightedInput.getChildren().addAll(
-                    createText(rawPriority, Color.CRIMSON),
-                    createText(parametersAfter, Color.DARKGRAY)
-            );
+            addText(new Pair<>(rawPriority, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
+        }
+    }
+
+    private boolean smartParseFlag(Matcher matcher, String flagName, String flagPrefix) {
+        String flagGroup = matcher.group(flagName);
+        if (flagGroup.isBlank()) {
+            return false;
+        }
+
+        int endIndexOfPrefix = flagGroup.indexOf(flagPrefix) + PREFIX_LENGTH;
+        String prefix = flagGroup.substring(0, endIndexOfPrefix);
+
+        addText(new Pair<>(prefix, Color.GREEN));
+
+        String rest = flagGroup.substring(endIndexOfPrefix);
+        addText(new Pair<>(rest, Color.GREEN));
+        return true;
+    }
+
+    private boolean isValidDeadline(String deadlineString) {
+        try {
+            // A valid deadline can be successfully parsed as a datetime
+            DateTimeFormat.stringToDateTime(deadlineString);
+            return true;
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
+            return false;
         }
     }
 
@@ -1041,17 +1081,12 @@ public class GuiParser {
         }
     }
 
-    private void smartParseFlag(Matcher matcher, String flagName) {
-        String flag = matcher.group(flagName);
-        highlightedInput.getChildren().add(createText(flag, Color.GREEN));
-    }
-
     private Matcher matchPattern(String parameters, Pattern format)
             throws ParseFailureException {
         final Matcher matcher = format.matcher(parameters);
 
         if (!matcher.matches()) {
-            highlightedInput.getChildren().add(createText(parameters, Color.CRIMSON));
+            addText(new Pair<>(parameters, Color.CRIMSON));
             throw new ParseFailureException();
         }
 
@@ -1063,36 +1098,50 @@ public class GuiParser {
         if (!isPartOfWord(parameter, suggestions)) {
             // Does not match a suggestion at all
             if (isExact) {
-                highlightedInput.getChildren().addAll(
-                        createText(rawParameter, Color.CRIMSON),
-                        createText(parametersAfter, Color.DARKGRAY));
+                addText(new Pair<>(rawParameter, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
                 throw new ParseFailureException();
             } else {
-                highlightedInput.getChildren().add(createText(rawParameter, Color.ORANGE));
+                addText(new Pair<>(rawParameter, Color.ORANGE));
             }
             return;
         }
 
         if (isMatchingWord(parameter, suggestions)) {
             // Completely matches a suggestion
-            highlightedInput.getChildren().add(createText(rawParameter, Color.GREEN));
+            addText(new Pair<>(rawParameter, Color.GREEN));
         } else if (console.getCaretPosition() > endIndex) {
             // Partially matches a suggestion but not typing
             if (isExact) {
-                highlightedInput.getChildren().addAll(
-                        createText(rawParameter, Color.CRIMSON),
-                        createText(parametersAfter, Color.DARKGRAY));
+                addText(new Pair<>(rawParameter, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
                 throw new ParseFailureException();
             } else {
-                highlightedInput.getChildren().add(createText(rawParameter, Color.ORANGE));
+                addText(new Pair<>(rawParameter, Color.ORANGE));
             }
         } else {
             // Partially matches a suggestion and still typing
-            highlightedInput.getChildren().add(createText(rawParameter, Color.DARKGRAY));
+            addText(new Pair<>(rawParameter, Color.DARKGRAY));
             if (isExact) {
-                highlightedInput.getChildren().add(createText(parametersAfter, Color.DARKGRAY));
+                addText(new Pair<>(parametersAfter, Color.DARKGRAY));
                 throw new ParseFailureException();
             }
+        }
+    }
+
+    private void highlightIncorrect(Matcher matcher, String groupName) {
+        String group = matcher.group(groupName);
+        addText(new Pair<>(group, Color.CRIMSON));
+    }
+
+    /**
+     * Adds colored texts into the syntax console.
+     *
+     * @param texts
+     *  The colored texts to be added
+     */
+    @SafeVarargs
+    private final void addText(Pair<String, Color>... texts) {
+        for (Pair<String, Color> stringColorPair : texts) {
+            syntaxConsole.getChildren().add(createText(stringColorPair.getKey(), stringColorPair.getValue()));
         }
     }
 
@@ -1234,6 +1283,15 @@ public class GuiParser {
         console.displaySuggestions();
     }
 
+    private boolean isNotTypingAttribute(int startIndex, int endIndex) {
+        return console.getCaretPosition() < startIndex || console.getCaretPosition() > endIndex;
+    }
+
+    private void checkInvalid(Matcher matcher) {
+        String invalid = matcher.group(INVALID_GROUP);
+        syntaxConsole.getChildren().add(createText(invalid, Color.CRIMSON));
+    }
+
     private boolean isPartOfWord(String givenWord, ArrayList<String> acceptedWords) {
         for (String word : acceptedWords) {
             if (word.contains(givenWord)) {
@@ -1281,14 +1339,12 @@ public class GuiParser {
                 String correctSegment = input.substring(0, indexBefore);
                 String incorrectSegment = input.substring(indexBefore, i);
                 String afterSegment = (i < input.length()) ? input.substring(i) : "";
-                highlightedInput.getChildren().addAll(
-                        createText(correctSegment, Color.GREEN),
-                        createText(incorrectSegment, Color.CRIMSON),
-                        createText(afterSegment, Color.DARKGRAY));
+                addText(new Pair<>(correctSegment, Color.GREEN), new Pair<>(incorrectSegment, Color.CRIMSON),
+                        new Pair<>(afterSegment, Color.DARKGRAY));
                 throw new ParseFailureException();
             }
         }
-        highlightedInput.getChildren().add(createText(input, Color.GREEN));
+        addText(new Pair<>(input, Color.GREEN));
     }
 
     private boolean isInvalidListNumber(int listNumber, int limit) {
@@ -1301,11 +1357,11 @@ public class GuiParser {
         case "y":
         case "no":
         case "n":
-            highlightedInput.getChildren().add(createText(input, Color.GREEN));
+            addText(new Pair<>(input, Color.GREEN));
             break;
 
         default:
-            highlightedInput.getChildren().add(createText(input, Color.CRIMSON));
+            addText(new Pair<>(input, Color.CRIMSON));
             break;
         }
     }

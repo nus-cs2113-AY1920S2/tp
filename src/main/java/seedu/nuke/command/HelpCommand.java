@@ -15,7 +15,7 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteTagCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.misc.ChangeDirectoryCommand;
 
@@ -46,7 +46,7 @@ public class HelpCommand extends Command {
             DeleteTagCommand.MESSAGE_USAGE,
             ListCategoryCommand.MESSAGE_USAGE,
             ListTaskCommand.MESSAGE_USAGE,
-            ListModuleTasksDeadlineCommand.MESSAGE_USAGE,
+            ListModuleTask.MESSAGE_USAGE,
             ListTaskSortedCommand.MESSAGE_USAGE,
             HelpCommand.MESSAGE_USAGE,
             ExitCommand.MESSAGE_USAGE

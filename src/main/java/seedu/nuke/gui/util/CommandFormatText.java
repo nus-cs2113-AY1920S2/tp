@@ -25,7 +25,7 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 
 import static seedu.nuke.gui.io.GuiParser.ALL_FLAG;
@@ -84,7 +84,7 @@ public class CommandFormatText {
             return getListFileFormat();
         case ListTaskSortedCommand.COMMAND_WORD:
             return getListTaskDeadlineFormat();
-        case ListModuleTasksDeadlineCommand.COMMAND_WORD:
+        case ListModuleTask.COMMAND_WORD:
             return getListModuleTaskDeadlineFormat();
 
         case EditModuleCommand.COMMAND_WORD:
@@ -281,7 +281,7 @@ public class CommandFormatText {
 
     private static TextFlow getListModuleTaskDeadlineFormat() {
         commandFormat.getChildren().addAll(
-                createText(ListModuleTasksDeadlineCommand.COMMAND_WORD, Color.GREEN),
+                createText(ListModuleTask.COMMAND_WORD, Color.GREEN),
                 createText(String.format(" %s %s %s", "[", "<module code>", "]"), Color.DARKGRAY)
         );
         return commandFormat;

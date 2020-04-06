@@ -101,7 +101,7 @@ public class MainController implements Initializable {
         console.textProperty().addListener((observable, oldValue, newValue) -> {
             String currentUserInput = console.getText();
             syntaxConsole.getChildren().clear();
-            syntaxConsole.getChildren().add(new GuiParser(console).smartParse(currentUserInput));
+            new GuiParser(console, syntaxConsole).smartParse(currentUserInput);
         });
 
         console.addEventFilter(KeyEvent.ANY, this::onKeyType);

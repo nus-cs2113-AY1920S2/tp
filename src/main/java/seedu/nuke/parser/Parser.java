@@ -26,7 +26,7 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.misc.ChangeDirectoryCommand;
 import seedu.nuke.command.misc.ClearCommand;
@@ -127,12 +127,10 @@ public class Parser {
         try {
             switch (commandWord) {
 
-            case GENERIC_LIST_COMMAND:
-                return prepareGenericListCommand(parameters.trim());
-
             case GENERIC_ADD_COMMAND:
                 return prepareGenericAddCommand(parameters);
-
+            case GENERIC_LIST_COMMAND:
+                return prepareGenericListCommand(parameters.trim());
             case GENERIC_DELETE_COMMAND:
                 return prepareGenericDeleteCommand(parameters);
 
@@ -164,10 +162,10 @@ public class Parser {
                 return prepareDeleteAndListTaskCommand(parameters, false);
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
-            case ListModuleTasksDeadlineCommand.COMMAND_WORD:
-                return new ListModuleTasksDeadlineCommand(parameters.trim());
+            case ListModuleTask.COMMAND_WORD:
+                return new ListModuleTask(parameters.trim());
             case ListTaskSortedCommand.COMMAND_WORD:
-                return prepareListTaskSort(parameters);
+                return prepareListTaskSortedCommand(parameters);
             case DueCommand.COMMAND_WORD:
                 return prepareDueCommand(parameters);
 
@@ -633,11 +631,12 @@ public class Parser {
      * @return
      *  The command to show a list of undone tasks sorted by deadline or priority
      */
-    private Command prepareListTaskSort(String parameters)
+    private Command prepareListTaskSortedCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         Matcher matcher = ListTaskSortedCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, DEADLINE_GROUP, PRIORITY_GROUP);
 
+        String moduleCode = matcher.group(IDENTIFIER_GROUP).trim();
         String priorityFlag = matcher.group(PRIORITY_GROUP).trim();
         String deadlineFlag = matcher.group(DEADLINE_GROUP).trim();
         // If user types -p after -d
@@ -653,8 +652,8 @@ public class Parser {
         boolean isByPriority = !priorityFlag.isEmpty();
         boolean isByPrioritySecond = !priorityFlagSecond.isEmpty();
 
-        return isByPriority ? new ListTaskSortedCommand(true)
-                : new ListTaskSortedCommand(isByPrioritySecond);
+        return isByPriority ? new ListTaskSortedCommand(moduleCode, true)
+                : new ListTaskSortedCommand(moduleCode, isByPrioritySecond);
     }
 
     /**
