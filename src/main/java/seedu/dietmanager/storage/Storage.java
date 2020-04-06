@@ -1,6 +1,8 @@
 package seedu.dietmanager.storage;
 
 import seedu.dietmanager.commons.core.LogsCentre;
+import seedu.dietmanager.model.FoodNutritionRecord;
+import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 import java.io.BufferedWriter;
@@ -20,40 +22,41 @@ import java.util.Scanner;
 
 public class Storage {
 
-    private LogsCentre logsCentre;
     /**
      * The object containing the list containing all current tasks.
      */
 
     private UI ui;
 
+    private LogsCentre logsCentre;
+
+    private Profile profile;
+
+    private FoodNutritionRecord foodNutritionRecord;
+
     /**
      * The file path of the directory that contains the data file.
      */
 
-    private static String DIRECTORY_PATH = "data";
+    private static String DATA_DIRECTORY_PATH = "data";
 
     /**
      * The file path of the data file that contains profile information.
      */
 
-    private static String PROFILE_FILE_PATH = DIRECTORY_PATH + File.separator + "profile.txt";
+    private static String PROFILE_FILE_PATH = DATA_DIRECTORY_PATH + File.separator + "profile.txt";
 
-    /* To be implemented at a later stage
+    /**
      * The file path of the data file that contains food record information.
      */
 
-    /* To be implemented at a later stage
-    private static String FOOD_RECORD_FILE_PATH = DIRECTORY_PATH + File.separator + "food-record.txt";
-    */
+    private static String DAILY_FOOD_RECORD_FILE_PATH = DATA_DIRECTORY_PATH + File.separator + "daily-food-record.txt";
 
-    /* To be implemented at a later stage.
+    /** To be implemented at a later stage.
      * The file path of the data file that contains food nutritional information.
      */
-
-    /* To be implemented at a later stage.
-    private static String NUTRITION_INFO_FILE_PATH = "data" + File.separator + "food-nutrition-record.txt";
-     */
+    
+    private static String FOOD_NUTRITION_RECORD_FILE_PATH = DATA_DIRECTORY_PATH + File.separator + "food-nutrition-record.txt";
 
     /**
      * Constructs the Storage object.
@@ -61,9 +64,11 @@ public class Storage {
      * @param ui the object containing user interface functions.
      */
 
-    public Storage(UI ui, LogsCentre logsCentre) {
+    public Storage(UI ui, LogsCentre logsCentre, Profile profile, FoodNutritionRecord foodNutritionRecord) {
         this.ui = ui;
         this.logsCentre = logsCentre;
+        this.profile = profile;
+        this.foodNutritionRecord = foodNutritionRecord;
         this.loadDataDirectory();
         this.loadProfileFile();
         //this.loadFoodRecordFile();
@@ -74,7 +79,7 @@ public class Storage {
      */
 
     public void loadDataDirectory() {
-        Path directoryPath = Paths.get(DIRECTORY_PATH);
+        Path directoryPath = Paths.get(DATA_DIRECTORY_PATH);
         if (!Files.exists(directoryPath)) {
             try {
                 Files.createDirectory(directoryPath);

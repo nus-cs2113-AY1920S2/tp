@@ -54,11 +54,11 @@ public class DietManager {
     }
 
     private static void initialiseApplication() {
-        logsCentre = new LogsCentre();
-        foodNutritionRecord = FoodNutritionRecord.getInstance();
-        profile = new Profile();
         ui = new UI();
-        storage = new Storage(ui, logsCentre);
+        logsCentre = new LogsCentre();
+        profile = new Profile();
+        foodNutritionRecord = FoodNutritionRecord.getInstance();
+        storage = new Storage(ui, logsCentre, profile, foodNutritionRecord);
 
         testAssertions();
     }
