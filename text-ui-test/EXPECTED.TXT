@@ -21,6 +21,9 @@ What can I do for you today, doctor?
     Command is invalid. Enter help to know how to use HappyPills.
     =====================================================
     =====================================================
+    ic is not a valid input.
+    ic will not be added
+    =====================================================
     Please input your missing detail listed below
     /n[NAME]
     /ic NRIC (Format: [S/T][7-digits][A-Z])
@@ -51,6 +54,23 @@ What can I do for you today, doctor?
     The current information is not added.
     Please add all the details again! Thank you.
     =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Eve
+        NRIC : S9876543F
+        Phone Number : 91265432
+        DOB : 22/05/1999
+        Blood Type : O-
+        Allergies : School
+        Remarks : Best Friend with Mallory
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Patient is already in the list. Please use help command.
+    =====================================================
+    =====================================================
+    ic is not a valid input.
+    ic will not be added
     =====================================================
     blah is not a valid input.
     blah will not be added
@@ -87,17 +107,6 @@ What can I do for you today, doctor?
     Please add all the details again! Thank you.
     =====================================================
     =====================================================
-    n Eve is not a valid input.
-    n Eve will not be added
-    =====================================================
-    Please input your missing detail listed below
-    /n[NAME]
-    =====================================================
-    =====================================================
-    Please input your missing detail listed below
-    /n[NAME]
-    =====================================================
-    =====================================================
         Are you sure all the listed details are correct?
         Name : Alice
         NRIC : S9876543F
@@ -109,12 +118,27 @@ What can I do for you today, doctor?
                                                    (Y/N)?
     =====================================================
     =====================================================
+    Patient is already in the list. Please use help command.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Alice
+        NRIC : S9876543G
+        Phone Number : 99999999
+        DOB : 22/09/1989
+        Blood Type : O-
+        Allergies : NIL
+        Remarks : NIL
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
     The current information is not added.
     Please add all the details again! Thank you.
     =====================================================
     =====================================================
     Please input your missing detail listed below
     /n[NAME]
+    =====================================================
     =====================================================
         Are you sure all the listed details are correct?
         Name : Alice

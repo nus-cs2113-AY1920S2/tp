@@ -7,6 +7,8 @@ add patinet /ic /blah /p 123456 /dob /b /a /rm
 91265432
 add /p91265432
 n
+ add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
+y
 add patient /ic /blah /p 123456 /dob /b /a /rm
 /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
 n

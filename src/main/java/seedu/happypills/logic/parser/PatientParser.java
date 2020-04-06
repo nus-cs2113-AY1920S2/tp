@@ -118,7 +118,7 @@ public class PatientParser {
 
     private static boolean isValidNric(String input, String detail) {
         return isInputEmpty(input)
-                && Checker.isValidDate(detail.substring(2).trim().toUpperCase());
+                && Checker.isValidNric(detail.substring(2).trim().toUpperCase());
     }
 
     private static boolean hasMissingFields(String[] parseInput) {
@@ -158,9 +158,9 @@ public class PatientParser {
         String[] parseInput = {"", "", "", "", "", "NIL", "NIL"};
 
         for (String detail : details) {
-            if (detail.startsWith(NAME_TAG) && isValidNric(parseInput[0],detail)) {
+            if (detail.startsWith(NAME_TAG) && isInputEmpty(parseInput[0])) {
                 parseInput[0] = detail.substring(1).trim();
-            } else if (detail.startsWith(NRIC_TAG) && isInputEmpty(parseInput[1])) {
+            } else if (detail.startsWith(NRIC_TAG) && isValidNric(parseInput[1],detail)) {
                 parseInput[1] = detail.substring(2).trim().toUpperCase();
             } else if (detail.startsWith(PHONE_NUMBER_TAG) && isValidPhoneNum(parseInput[2], detail)) {
                 parseInput[2] = detail.substring(1).trim();
