@@ -188,7 +188,6 @@ public class Storage {
     private static void parsePatientRecordFileContent(String savedString,
                                                     PatientRecordMap storedPr, PatientMap patients) {
         String[] dataString = savedString.split("[|]", 5);
-        Boolean isDone = dataString[5].equals("T");
         PatientRecord tempPr = new PatientRecord(dataString[0], dataString[1],
                 dataString[2], dataString[3], dataString[4]);
         try {

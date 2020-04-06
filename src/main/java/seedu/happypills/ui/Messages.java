@@ -14,13 +14,14 @@ public class Messages {
             + DIVIDER;
     public static final String MESSAGE_PATIENT_RECORD_ADDED = "    Patient Record has been added.\n"
             + DIVIDER;
-    public static final String MESSAGE_PATIENT_RECORD_MISSING_FIELD =
+    public static final String MESSAGE_MISSING_FIELD =
             "    Please input all necessary fields for the edit command.";
     public static final String MESSAGE_INVALID_INDEX = "    Invalid index.";
     public static final String MESSAGE_INVALID_NRIC = "    Invalid NRIC format.";
     public static final String MESSAGE_NRIC_NOT_PROVIDED = "    NRIC of the patient not provided";
     public static final String MESSAGE_PATIENT_RECORD_DETAILS_NOT_PROVIDED =
             "    Patient's record details are not provided.";
+    public static final String MESSAGE_PATIENT_DETAILS_NOT_PROVIDED = "    Patient's detail is empty.";
     public static final String MESSAGE_INFORM_MISSING = "    Please input your missing detail listed below";
     public static final String MESSAGE_NRIC_FORMAT = "    /ic NRIC (Format: [S/T][7-digits][A-Z])";
     public static final String MESSAGE_SYMPTOM_FORMAT = "    /sym SYMPTOMS";
@@ -53,5 +54,9 @@ public class Messages {
     public static final String MESSAGE_PATIENT_IS_IN_THE_MAP =
             "    Patient is already in the list. Please use help command.";
     public static final String MESSAGE_CONTENT_IS_EMPTY = "    Please do not leave the field as empty string";
+    public static final String MESSAGE_NAME_FORMAT = "    /n[NAME]";
+    public static final String MESSAGE_PHONE_NUMBER_FORMAT = "    /p[PHONE] only number and must be 8 digit";
+    public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "    /b[BLOOD TYPE]";
+    public static final String MESSAGE_INCORRECT_INPUT_FORMAT = "    Incorrect input format. Sorry please try again";
 }
 

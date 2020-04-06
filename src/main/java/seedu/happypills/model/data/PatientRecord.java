@@ -2,8 +2,9 @@ package seedu.happypills.model.data;
 
 import static java.lang.String.valueOf;
 
+//@@author NyanWunPaing
 /**
- * Represents an vist.
+ * Represents an patient record.
  * It also functions as base class for visit from which specialised tasks are inherited from.
  */
 public class PatientRecord {
