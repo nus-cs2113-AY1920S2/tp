@@ -1,5 +1,5 @@
 <!-- @@author Shannonwje -->
-# JiaJuinPhoon - Project Portfolio
+# ShannonWong - Project Portfolio
 # PROJECT: SHOCO 
 
 ## Overview
@@ -27,31 +27,31 @@ Users interact with it through the use of a command-line interface (CLI) and the
 * **Other contributions:** 
     * Documentation:
 
-	* Wrote details about user guide (creators & date) (Pull request [#167](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/167))
-	* Rearranged and synced the order of both developer and user guide (Pull request [#167](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/167) and [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
+	    * Wrote details about user guide (creators & date) (Pull request [#167](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/167))
+	    * Rearranged and synced the order of both developer and user guide (Pull request [#167](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/167) and [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
 
     * Developer Guide:
 
-	* Wrote the overview description for the developer guide (Pull request [#131](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/131))
-	* Wrote the sections outlining the interactions between different classes for the mark, unmark and reset budget features, including design considerations for the features mentioned (Pull request [#103](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/103) and [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
-	* Added sequence diagrams to mark, unmark and reset budget features (Pull request [#103](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/103) and [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
-	* Wrote to appendix B (Pull request [#103](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/103))
-	* Edited Help feature sequence diagram, removed activation bar. (Pull request [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
-	* Wrote test instructions for mark, unmark and reset budget features. 
+	    * Wrote the overview description for the developer guide (Pull request [#131](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/131))
+        * Wrote the sections outlining the interactions between different classes for the mark, unmark and reset budget features, including design considerations for the features mentioned (Pull request [#103](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/103) and [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
+        * Added sequence diagrams to mark, unmark and reset budget features (Pull request [#103](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/103) and [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
+        * Wrote to appendix B (Pull request [#103](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/103))
+        * Edited Help feature sequence diagram, removed activation bar. (Pull request [#166](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/166))
+        * Wrote test instructions for mark, unmark and reset budget features. (Pull request [#167](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/167))
 
     * Team-based tasks:
 
-	* Resolved Checkstyle violations in some parts of the code. (Pull request [#46](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/46))
-	* Added in the Display feature inside the Help Command. (Pull request [#81](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/81))
-	* Edited the expected output test file to reflect the change of the help command output. (Pull request [#81](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/81))
+        * Resolved Checkstyle violations in some parts of the code. (Pull request [#46](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/46))
+        * Added in the Display feature inside the Help Command. (Pull request [#81](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/81))
+        * Edited the expected output test file to reflect the change of the help command output. (Pull request [#81](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/81))
 
     * Review/Mentoring contribution:
 
-	* PRs reviewed, some with suggestions for changes. (Pull requests [#38](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/38), [#92](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/92) and [#120](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/120))
+        * PRs reviewed, some with suggestions for changes. (Pull requests [#38](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/38), [#92](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/92) and [#120](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/120))
 
     * Beyond the project team:
 
-	*Reported feature flaws, documentation bugs and functionality bugs of varying severity for other project teams. (Pull requests [#1 - #7](https://github.com/Shannonwje/ped/issues))
+	    *Reported feature flaws, documentation bugs and functionality bugs of varying severity for other project teams. (Pull requests [#1 - #7](https://github.com/Shannonwje/ped/issues))
 
 
 ## Contributions to the User Guide
@@ -62,6 +62,7 @@ By: `Team SHOCOTech`
 Since: `Feb 2020`
 
 Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
+
 
 ### Marking an item as bought: `MARK`
 Marks an item from the list at the specified index as bought.
@@ -84,7 +85,6 @@ Example of the usage:
    * The status of the 5th item is now `[B]`
 
 
-***
 
 ### Un-marking a marked item: `UNMARK`
 Un-marks a marked-as-bought item from the list at the specified index.
@@ -105,6 +105,7 @@ Example of the usage:
 1. `UNMARK 3`
    * This unmarks the 3rd item in your list as unbought.
    * The status of the 3rd item is now `[0]`
+
 
 ### Resetting a budget: `RES`
 Resets the budget to be $0.00 for the user.
@@ -229,63 +230,46 @@ to work in parallel.
 
        Expected: Budget has been reset to $0.00
     
-
 2. Marking an item
 
-    i. Test case: <code>MARK</code> 
+   i. Test case: <code>MARK</code> 
 
        Expected: Please provide a single numerical index number!
-    
-
-
-    ii. Test case: <code>MARK 5</code> 
+ 
+   ii. Test case: <code>MARK 5</code> 
 
        Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'
        
        Expected: Yes! I've marked this item as bought:
                  [B] lemons $4.00 qty: 6
     
-
-
-    iii. Test case: <code>MARK -10</code> 
+   iii. Test case: <code>MARK -10</code> 
 
        Expected: Oh No! This item does not exist in the list
     
-
-
-    iv. Test case: <code>MARK 100</code> 
+   iv. Test case: <code>MARK 100</code> 
 
        Expected: Oh No! This item does not exist in the list
     
+3. Unmarking an item
 
-     
-2. Unmarking an item
-
-    i. Test case: <code>UNMARK</code> 
+   i. Test case: <code>UNMARK</code> 
 
        Expected: Please provide a single numerical index number!
     
-
-
-    ii. Test case: <code>UNMARK 5</code> 
+   ii. Test case: <code>UNMARK 5</code> 
 
        Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'
        
        Expected: Yes! I've unmarked this item as bought:
                  [0] lemons $4.00 qty: 6
     
-
-
-    iii. Test case: <code>UNMARK -10</code> 
+   iii. Test case: <code>UNMARK -10</code> 
 
        Expected: Oh No! This item does not exist in the list
     
-
-
-    iv. Test case: <code>UNMARK 100</code> 
+   iv. Test case: <code>UNMARK 100</code> 
 
        Expected: Oh No! This item does not exist in the list
     
-     
- 
 <!-- @@author -->
