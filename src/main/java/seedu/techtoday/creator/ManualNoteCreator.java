@@ -47,7 +47,7 @@ public class ManualNoteCreator {
      * Function that asks and gets category of note.
      * @return String representation of category from user input.
      */
-    public static String getCategory () {
+    public static String getCategory() {
         System.out.println("What is the category (type \"default\" if you don't know it)");
         return Ui.getCommand();
     }

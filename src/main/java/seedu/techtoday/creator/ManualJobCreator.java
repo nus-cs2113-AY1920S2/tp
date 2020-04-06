@@ -52,7 +52,7 @@ public class ManualJobCreator {
     }
 
     /**
-     * Function that asks and gets job extract
+     * Function that asks and gets job extract.
      * @return String representation of extract form user input.
      */
     public static String getExtract() {
