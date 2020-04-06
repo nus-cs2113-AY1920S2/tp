@@ -5,10 +5,12 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.exception.CorruptedFileException;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.io.IOException;
 import java.util.EmptyStackException;
 
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_TRAVERSE_ERROR;
 import static seedu.nuke.util.Message.MESSAGE_UNDO_SUCCESS;
 
 public class UndoCommand extends Command {
@@ -25,6 +27,8 @@ public class UndoCommand extends Command {
             return new CommandResult(MESSAGE_UNDO_UNSUCCESSFUL);
         } catch (EmptyStackException e) {
             return new CommandResult(MESSAGE_UNDO_AT_BEGINNING);
+        } catch (IncorrectDirectoryLevelException e) {
+            return new CommandResult(MESSAGE_TRAVERSE_ERROR);
         }
     }
 }

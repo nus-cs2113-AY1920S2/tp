@@ -96,14 +96,16 @@ public class Ui {
      *  The result after executing a command given by the user input
      */
     public void showResult(CommandResult result) {
-        out.println(result.getFeedbackToUser().replace("\n", LS));
-
-        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getHelpGuide() == null) {
+        if (result.getFeedbackToUser() == null) {
+            showMessage("");
             return;
         }
 
-        if (result.getHelpGuide() != null) {
-            printShownList(result.getHelpGuide());
+        if (!result.getFeedbackToUser().isEmpty()) {
+            showMessage(result.getFeedbackToUser());
+        }
+
+        if ((result.getDirectoryLevel() == DirectoryLevel.NONE) && result.getHelpGuide() == null) {
             return;
         }
 
@@ -138,11 +140,19 @@ public class Ui {
             listTableToShow = ListCreator.createFileListTable(fileList);
             break;
 
+        case NONE:
+            if (result.getHelpGuide() == null) {
+                return;
+            }
+            ArrayList<String> helpList = result.getHelpGuide();
+            listTableToShow = ListCreator.createGeneralListTable(helpList);
+            break;
+
         default:
             return;
         }
 
-        out.println(listTableToShow);
+        showMessage(listTableToShow);
     }
 
     /**
@@ -150,7 +160,7 @@ public class Ui {
      *
      * @param message Message to be shown
      */
-    public void showSystemMessage(String message) {
+    public void showMessage(String message) {
         out.println(message.replace("\n", LS));
     }
 
@@ -169,5 +179,4 @@ public class Ui {
 
         System.out.println(divider + "\n");
     }
-
 }

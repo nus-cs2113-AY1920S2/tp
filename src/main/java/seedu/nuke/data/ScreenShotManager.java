@@ -2,8 +2,11 @@ package seedu.nuke.data;
 
 import seedu.nuke.data.storage.Decoder;
 import seedu.nuke.data.storage.Encoder;
+import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Root;
 import seedu.nuke.exception.CorruptedFileException;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -60,7 +63,8 @@ public class ScreenShotManager {
      * @throws CorruptedFileException exception is thrown when converting a corrupted string to moduleList.
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
      */
-    public static void undo() throws IOException, CorruptedFileException, EmptyStackException {
+    public static void undo() throws IOException, CorruptedFileException, EmptyStackException,
+            IncorrectDirectoryLevelException {
         ScreenShot previousState = popPreviousScreenShot();
         String encodedSavedList = previousState.getEncodedSavedList();
 
@@ -70,6 +74,9 @@ public class ScreenShotManager {
         ArrayList<Module> moduleList = new Decoder(bufferedReader).decode();
         ModuleManager.setModuleList(moduleList);
         bufferedReader.close();
+
+        // Move back to Root for now to avoid "unusual" situations
+        DirectoryTraverser.traverseTo(new Root());
     }
 
     /**
