@@ -1,7 +1,7 @@
 add
 add patient
 add /ic
-add patinet /ic /blah /p 123456 /dob /b /a /rm
+add patinet /ic /blah /p 123456 /dob /b
  add patient /ic
 /ic S9876543F /n Eve /p 9126543 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
 91265432
@@ -9,7 +9,7 @@ add /p91265432
 n
  add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
 y
-add patient /ic /blah /p 123456 /dob /b /a /rm
+add patient /ic /blah /p 123456 /dob /b
 /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
 n
 add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory

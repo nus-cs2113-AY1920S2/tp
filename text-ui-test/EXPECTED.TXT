@@ -98,8 +98,8 @@ What can I do for you today, doctor?
         Phone Number : 91265432
         DOB : 22/05/1999
         Blood Type : O-
-        Allergies :
-        Remarks :
+        Allergies : NIL
+        Remarks : NIL
                                                    (Y/N)?
     =====================================================
     =====================================================
@@ -108,7 +108,7 @@ What can I do for you today, doctor?
     =====================================================
     =====================================================
         Are you sure all the listed details are correct?
-        Name : Alice
+        Name : Eve
         NRIC : S9876543F
         Phone Number : 91265432
         DOB : 22/05/1999
