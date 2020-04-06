@@ -20,7 +20,7 @@ public class ListTaskSortedCommandTest {
     @Test
     public void testTasksCounting() {
         ModuleManager.initialise();
-        Command command = new ListTaskSortedCommand(true);
+        Command command = new ListTaskSortedCommand("", true);
         CommandResult result = Executor.execute(command);
         if (result.getDirectoryLevel() == DirectoryLevel.TASK) {
             assertEquals(ModuleManager.countAllTasks(), result.getShownList().size());

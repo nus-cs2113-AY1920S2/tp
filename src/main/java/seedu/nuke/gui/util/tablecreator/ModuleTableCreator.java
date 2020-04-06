@@ -78,6 +78,7 @@ public class ModuleTableCreator {
         moduleTable.setMinWidth(TABLE_WIDTH);
         moduleTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        moduleTable.setCursor(Cursor.HAND);
         moduleTable.setPlaceholder(new Label("No modules to show"));
     }
 

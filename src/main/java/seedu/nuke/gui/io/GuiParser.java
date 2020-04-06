@@ -1,13 +1,15 @@
 package seedu.nuke.gui.io;
 
 import javafx.scene.paint.Color;
-import javafx.scene.shape.DrawMode;
-import javafx.scene.text.TextFlow;
 import javafx.util.Pair;
 import seedu.nuke.Executor;
-import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.filtercommand.listcommand.*;
-import seedu.nuke.command.misc.*;
+import seedu.nuke.command.filtercommand.listcommand.DueCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
@@ -24,6 +26,12 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.misc.ChangeDirectoryCommand;
+import seedu.nuke.command.misc.ClearCommand;
+import seedu.nuke.command.misc.InfoCommand;
+import seedu.nuke.command.misc.OpenFileCommand;
+import seedu.nuke.command.misc.RedoCommand;
+import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
@@ -48,7 +56,23 @@ import static seedu.nuke.directory.DirectoryTraverser.getBaseModule;
 import static seedu.nuke.directory.DirectoryTraverser.getBaseTask;
 import static seedu.nuke.directory.DirectoryTraverser.getCurrentDirectory;
 import static seedu.nuke.directory.DirectoryTraverser.getCurrentDirectoryLevel;
-import static seedu.nuke.gui.io.GuiCommandPattern.*;
+import static seedu.nuke.gui.io.GuiCommandPattern.ADD_CATEGORY_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.ADD_FILE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.ADD_MODULE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.ADD_TASK_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.BASIC_COMMAND_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_CATEGORY_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_FILE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_MODULE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DELETE_AND_LIST_TASK_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DONE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.DUE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_CATEGORY_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_FILE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_MODULE_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.EDIT_TASK_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.LIST_TASK_SORTED_FORMAT;
+import static seedu.nuke.gui.io.GuiCommandPattern.OPEN_FILE_FORMAT;
 import static seedu.nuke.gui.util.TextUtil.createText;
 
 public class GuiParser {
@@ -100,10 +124,10 @@ public class GuiParser {
             ListFileCommand.COMMAND_WORD, ListTaskSortedCommand.COMMAND_WORD, DueCommand.COMMAND_WORD,
             EditModuleCommand.COMMAND_WORD, EditCategoryCommand.COMMAND_WORD, EditTaskCommand.COMMAND_WORD,
             EditFileCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD,
-            ChangeDirectoryCommand.COMMAND_WORD, OpenFileCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD,
-            RedoCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
-            AddTagCommand.COMMAND_WORD,
-            GENERIC_ADD_COMMAND, GENERIC_DELETE_COMMAND, GENERIC_LIST_COMMAND
+            ChangeDirectoryCommand.COMMAND_WORD, OpenFileCommand.COMMAND_WORD, InfoCommand.COMMAND_WORD,
+            UndoCommand.COMMAND_WORD, RedoCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            AddTagCommand.COMMAND_WORD, GENERIC_ADD_COMMAND, GENERIC_DELETE_COMMAND, GENERIC_LIST_COMMAND
     ));
 
     /**
@@ -246,8 +270,8 @@ public class GuiParser {
         case HelpCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
-           smartParseEmptyParameterCommand(parameters);
-           break;
+            smartParseEmptyParameterCommand(parameters);
+            break;
 
         default:
             addText(new Pair<>(parameters, Color.CRIMSON));
@@ -303,11 +327,11 @@ public class GuiParser {
                 break;
 
             case CATEGORY:
-                suggestedDirectories = generateSuggestedTasks(noKeyword, noKeyword, true );
+                suggestedDirectories = generateSuggestedTasks(noKeyword, noKeyword, true);
                 break;
 
             case TASK:
-                suggestedDirectories = generateSuggestedFiles(noKeyword, noKeyword, noKeyword, true );
+                suggestedDirectories = generateSuggestedFiles(noKeyword, noKeyword, noKeyword, true);
                 break;
 
             default:
@@ -946,7 +970,6 @@ public class GuiParser {
         int endIndexOfPrefix = categoryGroup.indexOf(CATEGORY_PREFIX) + PREFIX_LENGTH;
         String prefix = categoryGroup.substring(0, endIndexOfPrefix);
         String rawCategoryName = categoryGroup.substring(endIndexOfPrefix);
-        String parametersAfter =  parameters.substring(matcher.end(CATEGORY_GROUP));
 
         addText(new Pair<>(prefix, Color.GREEN));
 
@@ -965,6 +988,7 @@ public class GuiParser {
             console.getEntriesPopup().hide();
         }
 
+        String parametersAfter = parameters.substring(matcher.end(CATEGORY_GROUP));
         highlightInput(categoryName, rawCategoryName, parametersAfter, endIndexOfCategory,
                 suggestedCategories, isExact);
     }
@@ -1396,17 +1420,11 @@ public class GuiParser {
     }
 
     private void smartParseConfirmation(String input) {
-        switch (input.trim().toLowerCase()) {
-        case "yes":
-        case "y":
-        case "no":
-        case "n":
+        final ArrayList<String> acceptedConfirmations = new ArrayList<>(Arrays.asList("yes", "y", "no", "n"));
+        if (acceptedConfirmations.contains(input.trim().toLowerCase())) {
             addText(new Pair<>(input, Color.GREEN));
-            break;
-
-        default:
+        } else {
             addText(new Pair<>(input, Color.CRIMSON));
-            break;
         }
     }
 }

@@ -90,6 +90,7 @@ public class TaskTableCreator {
         taskTable.setMinWidth(TABLE_WIDTH);
         taskTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        taskTable.setCursor(Cursor.HAND);
         taskTable.setPlaceholder(new Label("No modules to show"));
     }
 

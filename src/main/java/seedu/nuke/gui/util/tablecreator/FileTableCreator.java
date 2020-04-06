@@ -83,6 +83,7 @@ public class FileTableCreator {
         fileTable.setMinWidth(TABLE_WIDTH);
         fileTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        fileTable.setCursor(Cursor.HAND);
         fileTable.setPlaceholder(new Label("No modules to show"));
     }
 

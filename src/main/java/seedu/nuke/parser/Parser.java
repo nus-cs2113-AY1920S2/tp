@@ -350,7 +350,7 @@ public class Parser {
             return new IncorrectCommand("Please enter the name of the directory to delete.\n");
         }
 
-        final String deleteString = String.format(" %s", parameters);
+        final String deleteString = String.format(" %s -e", parameters);
 
         switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
         case ROOT:

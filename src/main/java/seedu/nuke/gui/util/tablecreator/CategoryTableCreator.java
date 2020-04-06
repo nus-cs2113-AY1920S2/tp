@@ -81,6 +81,7 @@ public class CategoryTableCreator {
         categoryTable.setMinWidth(TABLE_WIDTH);
         categoryTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        categoryTable.setCursor(Cursor.HAND);
         categoryTable.setPlaceholder(new Label("No modules to show"));
     }
 

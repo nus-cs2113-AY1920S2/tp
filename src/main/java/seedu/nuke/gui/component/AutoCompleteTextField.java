@@ -24,6 +24,8 @@ public class AutoCompleteTextField extends TextField {
     private int endIndex;
     private String prefix;
 
+    private static final int CHARACTER_LIMIT = 100;
+
     /**
      * Constructs the Auto Complete Text Field.
      */
@@ -188,6 +190,19 @@ public class AutoCompleteTextField extends TextField {
 
         entriesPopup.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; "
                 + "-fx-border-color: lightgrey; -fx-border-radius: 3");
+
+        // Set character limit
+        this.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (this.getText().length() >= CHARACTER_LIMIT) {
+                String limitedString = this.getText().substring(0, CHARACTER_LIMIT);
+                this.setText(limitedString);
+                this.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-background-color: OldLace;"
+                        + "-fx-border-color: lightgrey; -fx-border-radius: 3");
+            } else {
+                this.setStyle("-fx-font-family: Consolas; -fx-font-size: 12pt; -fx-background-color: white;"
+                        + "-fx-border-color: lightgrey; -fx-border-radius: 3");
+            }
+        });
     }
 }
 
