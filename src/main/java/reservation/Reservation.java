@@ -1,14 +1,20 @@
 package reservation;
 
-import java.time.LocalDate;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
+import static utils.Constants.LARGE_TABLE;
+import static utils.Constants.LOG_FOLDER;
+import static utils.Constants.MEDIUM_TABLE;
 import static utils.Constants.NOT_SERVED;
 import static utils.Constants.SMALL_TABLE;
-import static utils.Constants.MEDIUM_TABLE;
-import static utils.Constants.LARGE_TABLE;
-
 
 /** Reservation of the restaurant. */
 public class Reservation {
@@ -23,6 +29,9 @@ public class Reservation {
     private Character tableSize;
     
     private final String ls = System.lineSeparator();
+
+    private static final Logger LOGGER = Logger.getLogger(Reservation.class.getName());
+    private static final String FILE_PATH = LOG_FOLDER + "Reservation.log";
 
     /**
      * Defines the constructor for a Reservation.
@@ -39,6 +48,25 @@ public class Reservation {
         this.status = NOT_SERVED;
         
         setTableSize(this.numberOfGuests);
+    }
+
+    /**
+     * Sets up the logger. 
+     * Calls once at the start of the program.
+     *
+     * @throws IOException When logger set up failed.
+     */
+    public static void setLogger() throws IOException {
+        Locale.setDefault(Locale.UK);
+        
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.ALL);
+
+        FileHandler fileHandler = new FileHandler(FILE_PATH, true); // let it append
+        fileHandler.setLevel(Level.INFO);
+        fileHandler.setFormatter(new SimpleFormatter());
+        fileHandler.setEncoding("UTF-8");
+        LOGGER.addHandler(fileHandler);
     }
 
     /**
@@ -183,19 +211,19 @@ public class Reservation {
     public String toString() {
         return String.format("Reservation [%d]"
                 + ls
-                + "Status: %s" 
-                + ls 
-                + "contact person: %s" 
-                + ls 
-                + "date: %s" 
+                + "Status: %s"
                 + ls
-                + "number of guests: %d" 
+                + "contact person: %s"
                 + ls
-                + "table size: %c" 
+                + "date: %s"
                 + ls
-                + "contact details: %s" 
-                + ls 
-                + "comments: %s" 
+                + "number of guests: %d"
+                + ls
+                + "table size: %c"
+                + ls
+                + "contact details: %s"
+                + ls
+                + "comments: %s"
                 + ls, 
                 this.reservationNumber, this.status, this.name, 
                 this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),

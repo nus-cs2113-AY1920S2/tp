@@ -68,7 +68,6 @@ public class CommandParser {
             } else if (splitCommands[1].equals("reservation")) {
                 // Add reservation.
                 new AddReservationCommand(commands[1]).execute(reservations, ui);
-                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -90,7 +89,6 @@ public class CommandParser {
             } else if (splitCommands[1].equals("reservation")) {
                 // Delete reservation.
                 new VoidReservationCommand(commands[1]).execute(reservations, ui);
-                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -111,15 +109,12 @@ public class CommandParser {
             } else if (splitCommands[1].equals("reservation")) {
                 // List all reservation.
                 new ListReservationCommand().execute(reservations, ui);
-                successfulCommand();
             } else if (splitCommands[1].equals("served reservation")) {
                 // List served reservation.
                 new ListServedCommand().execute(reservations, ui);
-                successfulCommand();
             } else if (splitCommands[1].equals("unserved reservation")) {
                 // List unserved reservation.
                 new ListUnservedCommand().execute(reservations, ui);
-                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -134,20 +129,27 @@ public class CommandParser {
                     printErrorMessage(e.getMessage());
                 }
             } else if (splitCommands[1].equals("reservation")) {
+                // Search reservation
                 new SearchReservationCommand(commands[1]).execute(reservations, ui);
             } else if (splitCommands[1].equals("dish")) {
+                // Search dish
                 SearchDishCommand.searchDish(commands[1]);
+                successfulCommand();
             } else {
                 errorCommand();
             }
         } else if (splitCommands[0].equals("help")) {
             new HelpCommand().execute();
+            successfulCommand();
         } else if (splitCommands[0].equals("sell")) {
             sales.addSale(commands[1]);
+            successfulCommand();
         } else if (splitCommands[0].equals("profit")) {
             sales.calculateProfit();
+            successfulCommand();
         } else if (splitCommands[0].equals("popular")) {
             sales.mostPopularDish();
+            successfulCommand();
         } else {
             errorCommand();
         }

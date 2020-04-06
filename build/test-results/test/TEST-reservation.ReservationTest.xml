@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="reservation.ReservationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-05T15:28:10" hostname="DESKTOP-FPGAEA4" time="0.015">
+  <properties/>
+  <testcase name="testGetterandSetter_normalInput_success()" classname="reservation.ReservationTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -105,6 +105,9 @@ Input next command:
 Ingredient rice successfully added!
 The command has been successfully executed.
 Input next command:
+Ingredient salt successfully added!
+The command has been successfully executed.
+Input next command:
 Ingredient vege successfully added!
 The command has been successfully executed.
 Input next command:
@@ -117,10 +120,11 @@ Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [50][$0.50] tomato
-2. [11][$0.40] rice
-3. [10][$0.40] vege
-4. [1][$0.40] toxic greens
-5. [0][$0.40] greenie
+2. [20][$0.20] salt
+3. [11][$0.40] rice
+4. [10][$0.40] vege
+5. [1][$0.40] toxic greens
+6. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -137,10 +141,11 @@ Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [39][$0.50] tomato
-2. [11][$0.40] rice
-3. [10][$0.40] vege
-4. [1][$0.40] toxic greens
-5. [0][$0.40] greenie
+2. [20][$0.20] salt
+3. [11][$0.40] rice
+4. [10][$0.40] vege
+5. [1][$0.40] toxic greens
+6. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -175,10 +180,11 @@ The user's input given cannot be parsed into ingredient arguments.
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
-1. [11][$0.40] rice
-2. [10][$0.40] vege
-3. [1][$0.40] toxic greens
-4. [0][$0.40] greenie
+1. [20][$0.20] salt
+2. [11][$0.40] rice
+3. [10][$0.40] vege
+4. [1][$0.40] toxic greens
+5. [0][$0.40] greenie
 ============================================================================================================================
 All ingredients listed successfully!
 The command has been successfully executed.
@@ -249,31 +255,27 @@ Incorrect command
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
 Input next command:
-Reservation[0] has been added into the list
-The command has been successfully executed.
-Input next command:
 Reservation[1] has been added into the list
-The command has been successfully executed.
 Input next command:
 Reservation[2] has been added into the list
-The command has been successfully executed.
 Input next command:
 Reservation[3] has been added into the list
-The command has been successfully executed.
+Input next command:
+Reservation[4] has been added into the list
 Input next command:
 Delimiter Missing.
-The command has been successfully executed.
 Input next command:
 Input Missing: number of guests n/ is missing.
-The command has been successfully executed.
 Input next command:
 Please follow the date time format strictly: yyyy-MM-dd HH:mm; eg. 2000-01-01 12:00
-The command has been successfully executed.
 Input next command:
 Please enter a valid positive integer.
-The command has been successfully executed.
 Input next command:
-Reservation [0]
+Input Missing: name is missing.
+Input next command:
+Input Missing: contact is missing.
+Input next command:
+Reservation [1]
 Status: Unserved
 contact person: Peter
 date: 2020-03-12 12:00
@@ -282,7 +284,7 @@ table size: S
 contact details: 98955555
 comments: No comments
 
-Reservation [1]
+Reservation [2]
 Status: Unserved
 contact person: Mary
 date: 2020-03-11 12:00
@@ -291,7 +293,7 @@ table size: M
 contact details: 99998888
 comments: No comments
 
-Reservation [2]
+Reservation [3]
 Status: Unserved
 contact person: David
 date: 2020-03-12 12:00
@@ -300,7 +302,7 @@ table size: L
 contact details: 98887777
 comments: No comments
 
-Reservation [3]
+Reservation [4]
 Status: Unserved
 contact person: Lisa
 date: 2020-03-13 12:00
@@ -309,24 +311,26 @@ table size: S
 contact details: 98889999
 comments: no spicy food please
 
-The command has been successfully executed.
 Input next command:
 Please enter a valid positive integer.
-The command has been successfully executed.
 Input next command:
-Successfully void Reservation[0]
-The command has been successfully executed.
+There is no Reservation[0] in the list.
+Input next command:
+Please enter a valid positive integer.
+Input next command:
+Please enter a valid positive integer.
+Input next command:
+Successfully void Reservation[1]
+Input next command:
+Reservation[1] is already Invalid. You cannot void a Invalid reservation.
 Input next command:
 Delimiter Missing.
-The command has been successfully executed.
 Input next command:
-Please enter a valid positive integer.
-The command has been successfully executed.
+There is no Reservation[-1] in the list.
 Input next command:
-Please enter a valid positive integer.
-The command has been successfully executed.
+There is no Reservation[5] in the list.
 Input next command:
-Reservation [0]
+Reservation [1]
 Status: Invalid
 contact person: Peter
 date: 2020-03-12 12:00
@@ -335,7 +339,7 @@ table size: S
 contact details: 98955555
 comments: No comments
 
-Reservation [1]
+Reservation [2]
 Status: Unserved
 contact person: Mary
 date: 2020-03-11 12:00
@@ -344,7 +348,7 @@ table size: M
 contact details: 99998888
 comments: No comments
 
-Reservation [2]
+Reservation [3]
 Status: Unserved
 contact person: David
 date: 2020-03-12 12:00
@@ -353,7 +357,7 @@ table size: L
 contact details: 98887777
 comments: No comments
 
-Reservation [3]
+Reservation [4]
 Status: Unserved
 contact person: Lisa
 date: 2020-03-13 12:00
@@ -362,9 +366,10 @@ table size: S
 contact details: 98889999
 comments: no spicy food please
 
-The command has been successfully executed.
 Input next command:
-Reservation [0]
+Please enter a valid positive reservation number.
+Input next command:
+Reservation [1]
 Status: Invalid
 contact person: Peter
 date: 2020-03-12 12:00
@@ -379,7 +384,7 @@ Input next command:
 Delimiter Missing.
 Input next command:
 Here comes the reservations on the date 2020-03-12:
-Reservation [0]
+Reservation [1]
 Status: Invalid
 contact person: Peter
 date: 2020-03-12 12:00
@@ -388,7 +393,7 @@ table size: S
 contact details: 98955555
 comments: No comments
 
-Reservation [2]
+Reservation [3]
 Status: Unserved
 contact person: David
 date: 2020-03-12 12:00
@@ -397,18 +402,26 @@ table size: L
 contact details: 98887777
 comments: No comments
 
+Input next command:
+There is no Reservation[5] in the list.
 Input next command:
 Input Missing: either reservation number r/ or date d/ is missing.
 Input next command:
 Please enter a valid positive integer.
 Input next command:
-Please enter a valid positive integer.
+There is no Reservation[5] in the list.
 Input next command:
-Successfully mark Reservation[3] as served.
+There is no Reservation[-1] in the list.
 Input next command:
-Reservation[0] is invalid, so it cannot be marked as served.
+Successfully mark Reservation[4] as served.
 Input next command:
-Reservation [3]
+There is no Reservation[0] in the list.
+Input next command:
+Reservation[1] is already Invalid. It cannot be marked as Served.
+Input next command:
+Reservation[4] is already Served. You cannot void a Served reservation.
+Input next command:
+Reservation [4]
 Status: Served
 contact person: Lisa
 date: 2020-03-13 12:00
@@ -417,9 +430,8 @@ table size: S
 contact details: 98889999
 comments: no spicy food please
 
-The command has been successfully executed.
 Input next command:
-Reservation [1]
+Reservation [2]
 Status: Unserved
 contact person: Mary
 date: 2020-03-11 12:00
@@ -428,7 +440,7 @@ table size: M
 contact details: 99998888
 comments: No comments
 
-Reservation [2]
+Reservation [3]
 Status: Unserved
 contact person: David
 date: 2020-03-12 12:00
@@ -437,9 +449,8 @@ table size: L
 contact details: 98887777
 comments: No comments
 
-The command has been successfully executed.
 Input next command:
-Reservation [0]
+Reservation [1]
 Status: Invalid
 contact person: Peter
 date: 2020-03-12 12:00
@@ -448,7 +459,7 @@ table size: S
 contact details: 98955555
 comments: No comments
 
-Reservation [1]
+Reservation [2]
 Status: Unserved
 contact person: Mary
 date: 2020-03-11 12:00
@@ -457,7 +468,7 @@ table size: M
 contact details: 99998888
 comments: No comments
 
-Reservation [2]
+Reservation [3]
 Status: Unserved
 contact person: David
 date: 2020-03-12 12:00
@@ -466,7 +477,7 @@ table size: L
 contact details: 98887777
 comments: No comments
 
-Reservation [3]
+Reservation [4]
 Status: Served
 contact person: Lisa
 date: 2020-03-13 12:00
@@ -475,6 +486,14 @@ table size: S
 contact details: 98889999
 comments: no spicy food please
 
+Input next command:
+The command has been successfully executed.
+Input next command:
+The total profit for the day is: $57.0
+The command has been successfully executed.
+Input next command:
+The most popular dish today is: rice
+This has sales of: 5
 The command has been successfully executed.
 Input next command:
 The menu, stock and reservations have been saved to report.txt

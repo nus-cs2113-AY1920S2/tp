@@ -7,7 +7,7 @@
     + [1.2. [Proposed] List stock in descending quantities](#list-stock)
     + [1.3. [Proposed] Generate profit for the day](#generate-profit)
     + [1.4. [Proposed] Search reservation](#search-reservation)
-    + [1.5  [Proposed] Search dish](#search-dish)
+    + [1.5. [Proposed] Search dish](#search-dish)
 * [2. Product Scope](#product-scope)
 * [3. User Stories](#user-stories)
 * [4. Non-Functional Requirements](#nonfunctional-requirement)
@@ -36,33 +36,33 @@ Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a
 Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; k/tomato;`, which will display the following result in the image. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77285807-d9d6f580-6d0c-11ea-8716-b4cb55877662.PNG">
+  <img src="https://user-images.githubusercontent.com/59989652/77921374-47b58b00-72d2-11ea-84bd-fe0c790b1d59.PNG">
 </p>
 
 The following sequence diagram shows how the search operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77437099-36c2d080-6e1f-11ea-8241-9000a65e3bb6.png">
+  <img src="https://user-images.githubusercontent.com/59989652/77916616-e8ed1300-72cb-11ea-9ba0-79e1ccc119ab.png">
 </p>
 
 #### 1.1.2 Design Considerations
 ##### Aspect: How search stock executes
 * **Alternative 1 (current choice)**: List all ingredients that contains the keyword supplied.
-+ Pros: Easy to implement.
-+ Cons: All ingredients containing the keyword will be listed. This means that even if the keyword doesn't make sense, such as supplying "to", both potato and tomato will be listed since it contains "to".
+  + Pros: Easy to implement.
+  + Cons: All ingredients containing the keyword will be listed. This means that even if the keyword doesn't make sense, such as supplying "to", both potato and tomato will be listed since it contains "to".
 
 * **Alternative 2**: The user supplies the exact ingredient name.
-+ Pros: The ingredient that matches exactly with the keyword supplied will be listed.
-+ Cons: The user have to input the ingredient name correctly each time he/she uses the search stock feature.
+  + Pros: The ingredient that matches exactly with the keyword supplied will be listed.
+  + Cons: The user have to input the ingredient name correctly each time he/she uses the search stock feature.
 
 ##### Aspect: Data structure to support the search stock feature.
 * **Alternative 1 (current choice)**: Use a `List` to store all possible ingredient names that contain the keyword supplied.
-+ Pros: Easy to understand.
-+ Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
+  + Pros: Easy to understand.
+  + Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
 
 * **Alternative 2**: Use the existing `HashMap` data structure employed by the `stock` object.
-+ Pros: We do not need to create a new `List` to display the relevant results.
-+ Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. These, compared to `List`, is much less straightforward.
+  + Pros: We do not need to create a new `List` to display the relevant results.
+  + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. These, compared to `List`, is much less straightforward.
 
 <a name="list-stock"></a>
 
@@ -86,35 +86,35 @@ Step 3. The user can now view the current `stock` to see what ingredients are th
 The following class diagram shows how the listing operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77317533-54703700-6d46-11ea-8fa7-1085ce028f55.png">
+  <img src="https://user-images.githubusercontent.com/59989652/77920226-cc070e80-72d0-11ea-82a5-b285173d4844.png">
 </p>
 
-* 1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
-* 2. Through its `runCommandUntilExit()` method, it then instructs the ui object to scan and read for user input. A CommandParser object is then initialized to parse this user input into a command.
-* 3. The CommandParser object detects `list stock` as the user input, in which it will then create a ListStockCommand object.
-* 4. The ListStockCommand object is then executed via its `execute(stock)` method, which takes in the stock object initialized previously and instruct it to list all ingredients through its `listIngredient()` method.
-* 5. Within  the `listIngredient()` method, a temporary `List` data structure is used to convert from the `HashMap` in the stock object. The list is then sorted by supplying a `new Comparator` that compares the ingredient's quantity. Afterwards, the sorted list is then printed to be displayed to the user.
+1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
+2. Through its `runCommandUntilExit()` method, it then instructs the ui object to scan and read for user input. A CommandParser object is then initialized to parse this user input into a command.
+3. The CommandParser object detects `list stock` as the user input, in which it will then create a ListStockCommand object.
+4. The ListStockCommand object is then executed via its `execute(stock)` method, which takes in the stock object initialized previously and instruct it to list all ingredients through its `listIngredient()` method.
+5. Within  the `listIngredient()` method, a temporary `List` data structure is used to convert from the `HashMap` in the stock object. The list is then sorted by supplying a `new Comparator` that compares the ingredient's quantity. Afterwards, the sorted list is then printed to be displayed to the user.
 
 
 #### 1.2.2 Design Considerations
 
 ##### Aspect: How listing stock executes
 * **Alternative 1 (current choice)**: List all ingredients in the stock in descending quantities.
-+ Pros: The user is able to tell which ingredients are the least/most quickly. This can help to facilitate quicker decision making in terms of what ingredients to re-stock.
-+ Cons: The current ingredients are listed in a specific ordering. A change in the ordering requirement would mean that a change in the implementation of the `comparator`.
+  + Pros: The user is able to tell which ingredients are the least/most quickly. This can help to facilitate quicker decision making in terms of what ingredients to re-stock.
+  + Cons: The current ingredients are listed in a specific ordering. A change in the ordering requirement would mean that a change in the implementation of the `comparator`.
 
 * **Alternative 2**: List all ingredients in the stock without any ordering.
-+ Pros: Easy to implement.
-+ Cons: Hard to identity which ingredients that require re-stocking quickly.
+  + Pros: Easy to implement.
+  + Cons: Hard to identity which ingredients that require re-stocking quickly.
 
 ##### Aspect: Data structure to support the search stock feature.
 * **Alternative 1 (current choice)**: Use a `List` to store all possible ingredient names.
-+ Pros: Easy to understand.
-+ Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
+  + Pros: Easy to understand.
+  + Cons: The `List` is derived by converting the existing stock (which is a `HashMap`) into an ArrayList. In order to print out the ingredient's name, quantity and price, methods such as `getKey()` and `getValue()` have to be used.
 
 * **Alternative 2**: Use the existing `HashMap` data structure employed by the `stock` object.
-+ Pros: We do not need to create a new `List` to display the relevant results.
-+ Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. Sorting it, however, as compared to `List`, is much less straightforward.
+  + Pros: We do not need to create a new `List` to display the relevant results.
+  + Cons: Iterating a HashMap can be done by converting it to an EntrySet or by using an iterator. Sorting it, however, as compared to `List`, is much less straightforward.
 
 <a name="generate-profit"></a>
 
@@ -124,7 +124,7 @@ In the restaurant daily report, the user can input the amount of items sold each
 
 Below is an example usage scenario for the user.
 
-Step 1. The user opens the program and an empty `sales` is initalized.
+Step 1. The user opens the program and an empty `sales` is initialized.
 
 Step 2. The user can add sold items by inputting `sell dish; d/DISH; q/QUANTITY`. An example would be `sell dish; d/pasta; q/15;`.
 The user can input as many sales as they like as long as the dish exists in the menu.
@@ -132,10 +132,21 @@ The user can input as many sales as they like as long as the dish exists in the 
 Step 3. The user can generate the profit by inputting `profit`.
 
 
+#### 1.3.2 Design Considerations
+##### Aspect: Using a separate class to perform sale commands
+**Current Implementation**: Methods are stored in the sales class
+* Pros: Easy to understand and implement.
+* Cons: May make the sales class long and convoluted and may become difficult to find certain features or methods
+
+**Alternative**: Commands are stored in separate classes
+* Pros: Easier for a person who hasn't worked on the project to understand the structure
+* Cons: Takes longer to implement
+
+
 <a name="search-reservation"></a>
 
 ### 1.4 [Proposed] Search reservation
-#### 1.4.1. Propose Implementation
+#### 1.4.1. Proposed Implementation
 
 In the restaurant daily report, users can search against the reservation category by supplying either a reservation number or a date.
 
@@ -145,61 +156,81 @@ The feature implements the following operations:
 
 The following class diagram shows the structures relevant to the "search reservation" feature:
 <p align="center">
-    <img src="ClassDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\ClassDiagramforSearchReservation.png" width="900">
 </p>
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. An empty `reservation` will be initialized.
+Step 1. The user launches the application for the first time. An empty `reservations` will be initialized.
 
-Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservation` list.  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Further, the user may add more reservations into the current `reservation` list.  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
+Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservations` list.  
+Further, the user may add more reservations into the current `reservations` list.  
+Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
+and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
 
-Step 3. The user can now search against the current `reservation` list to see if an reservation is stored in the `reservation` list.  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
-
+The following object diagram illustrates how the `reservations` list looks like:
 <p align="center">
-    <img src="SearchByIndex.png">
+    <img src="documentations\Sibing\ObjectDiagramforSearchReservation.png" width="900">
 </p>
 
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
+Step 3. The user can now search against the current `reservations` list to see if an reservation is stored in the `reservations` list.  
+If the user executes `search reservation; r/1;`, the mechanism is shown as follows:
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with only valid reservation number will be executed, calling `ReservationList#getReservation(reservationNumber)` to fetch the target `Reservation` object.
+* The following result with formatted information will be displayed in the image:
 
 <p align="center">
-    <img src="SearchByDate.png">
+    <img src="documentations\Sibing\SearchByIndex.png" width="300">
 </p>
 
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
+If the user executes `search reservation; d/2020-03-12;`, the mechanism is shown as follows:  
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with only valid date will be executed, doing a linear search along the whole `reservations` list to pick out the `Reservation` objects with the same date.
+* The following result will with formatted information be displayed in the image:
 
 <p align="center">
-    <img src="SearchByIndexnDate.png">
+    <img src="documentations\Sibing\SearchByDate.png" width="500">
 </p>
 
-The following sequence diagram shows the relevant interactions behind `search reservation`:
+If the user executes `search reservation; r/1; d/2020-03-13;`, the mechanism is shown as follows:  
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with both valid date and reservation number will be executed.
+* `SearchReservationCommand#execute()` is called to fetch the `Reservation` object in that reservation number.
+* Date of the `Reservation` object is checked to see whether it matches the target date or not.
+* In this case, the date does not match, so the following result will be displayed in the image:
 
 <p align="center">
-    <img src="SequenceDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\SearchByIndexnDate.png" width="300">
+</p>
+
+The following sequence diagram shows how `search reservation` operation works:
+
+<p align="center">
+    <img src="documentations\Sibing\SequenceDiagramforSearchReservation.png" width="900">
 </p>
 
 #### 1.4.2 Design Considerations
 ##### Aspect: How search reservation executes
-* **Alternative 1 (current choice)**: List all reservations that contains the reservation number or date provided.
-+ Pros: Easy to implement.
-+ Cons: 
+* **Alternative 1 (current choice)**: Access reservation by `ReservationList#getReservation(reservationNumber)` if reservation number is provided,
+or do linear search along the reservation list for reservations with date matched.
+  + Pros: Easy to implement and understand.
+  + Cons: May have performance issues in terms of time usage when searching along the reservation list.
 
-* **Alternative 2**: 
-+ Pros:
-+ Cons:
+* **Alternative 2**: Create a `HashMap` with date as the key and all Reservation objects in that date as the value.
+Once a new Reservation object is created, it will be added into the `HashMap` according to its date.
+  + Pros: Easier for searching in terms of date.
+  + Cons: Extra memory space is needed.
+
 
 ##### Aspect: Data structure to support the search reservation feature.
 * **Alternative 1 (current choice)**: Display all all `Reservation` objects that contain the reservation number or date provided to the screen directly.
-+ Pros: Easy to implement and understand.
-+ Cons: 
+  + Pros: Easy to implement and understand.
+  + Cons: The target objects are not really "contained" in a data structure.
 
 * **Alternative 2**: Use a `List` to store all `Reservation` objects that contain the reservation number or date provided.
-+ Pros: 
-+ Cons: 
+  + Pros: Objects are stored in a data structure, which is easier to do operation on that specific collections of objects.
+  + Cons: Extra memory space is needed.
+
 
 <a name="search-dish"></a>
 
@@ -227,23 +258,24 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 #### 1.5.2 Design Considerations
 ##### Aspect: Execution of search dish
 * **Alternative 1 (current choice)**: Search dish names for keyword
-+ Pros: Intuitive use of search, easy to implement
-+ Cons: If dishes are not named intuitively, such as `pasta with bacon`, feature becomes less useful
+  + Pros: Intuitive use of search, easy to implement
+  + Cons: If dishes are not named intuitively, such as `pasta with bacon`, feature becomes less useful
 
 * **Alternative 2**: Search dish ingredients for keyword
-+ Pros: Can find all dishes with a certain ingredient, which is useful if you really like something like `bacon` or are allergic to something like `cilantro`
-+ Cons: Cannot easily find if the menu contains your favorite dish by name, like `ratatouille`
+  + Pros: Can find all dishes with a certain ingredient, which is useful if you really like something like `bacon` or are allergic to something like `cilantro`
+  + Cons: Cannot easily find if the menu contains your favorite dish by name, like `ratatouille`
 
 ##### Aspect: Data structure in search dish
 * **Alternative 1 (current choice)**: Create a new temporary `HashMap<String, Dish>` that contains all dishes that match the search
-+ Pros: Flexible to use later on, easy to implement
-+ Cons: Potentially duplicate work as similar functionality could be accomplished without creating a new HashMap
+  + Pros: Flexible to use later on, easy to implement
+  + Cons: Potentially duplicate work as similar functionality could be accomplished without creating a new HashMap
 
 * **Alternative 2**: Use original dish HashMap to identify dishes matching search
-+ Pros: No duplicate work and we're always using the same HashMap
-+ Cons: If we choose to further develop this feature later on, we'll have to do the search again because we did not save the matching items any way
+  + Pros: No duplicate work and we're always using the same HashMap
+  + Cons: If we choose to further develop this feature later on, we'll have to do the search again because we did not save the matching items any way
 
 <a name="product-scope"></a>
+
 
 ## 2. Product Scope
 ### Target user profile
