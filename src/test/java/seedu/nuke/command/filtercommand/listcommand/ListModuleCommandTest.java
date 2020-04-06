@@ -35,7 +35,7 @@ public class ListModuleCommandTest {
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("addm CS3235");
-        result = Executor.executeCommand("addm LAK32O2");
+        result = Executor.executeCommand("addm LAK3202");
 
         ArrayList<Module> modules = new ArrayList<>();
         try {
