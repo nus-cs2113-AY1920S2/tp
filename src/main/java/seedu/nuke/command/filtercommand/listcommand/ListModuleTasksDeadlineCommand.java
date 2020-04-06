@@ -43,7 +43,7 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
             if (filteredTaskList.isEmpty()) {
                 return new CommandResult(MESSAGE_NO_TASKS_TO_SHOW);
             }
-            assert filteredTaskList.isEmpty() : "make sure there are some tasks in the list";
+            assert !filteredTaskList.isEmpty() : "make sure there are some tasks in the list";
             return new CommandResult(messageTaskSuccessfullyList(filteredTaskList.size()),
                     DirectoryLevel.TASK, new ArrayList<>(filteredTaskList));
         } catch (IncorrectDirectoryLevelException e) {

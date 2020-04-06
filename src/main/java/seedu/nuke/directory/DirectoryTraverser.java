@@ -41,6 +41,13 @@ public class DirectoryTraverser {
     }
 
     /**
+     * Set the current level to root(for test usage).
+     */
+    public static void setCurrentLevelToRoot() {
+        currentLevel = 0;
+    }
+
+    /**
      * Traverse one level down in the directory.
      *
      * @param nextLevel
