@@ -1,6 +1,11 @@
 # SHOCO v2.0 - User Guide
+<!-- @@author Shannonwje -->
 By: `Team SHOCOTech`
+
 Since: `Feb 2020`
+
+Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
+<!-- @@author -->
 
 <!-- @@author trishaangelica -->
 ### Table of Contents
@@ -10,13 +15,13 @@ Since: `Feb 2020`
   * [3.1 Adding an item: `ADD`](#adding-an-item-add)
   * [3.2 Editing an item: `EDIT`](#editing-an-item-edit)
   * [3.3 Deleting an item: `DEL`](#deleting-an-item-del)
-  * [3.4 Clearing the list: `CLEAR`](#clearing-the-list-clear)
+  * [3.4 Finding an item: `FIND`](#finding-an-item-find)
   * [3.5 Marking an item as bought: `MARK`](#marking-an-item-as-bought-mark)
   * [3.6 Un-marking a marked item: `UNMARK`](#un-marking-a-marked-item-unmark)
   * [3.7 Displaying list and budget details: `DISPLAY`](#displaying-list-and-budget-details-display)
   * [3.8 Setting a budget: `SET`](#setting-a-budget-set)
   * [3.9 Resetting a budget: `RES`](#resetting-a-budget-res)
-  * [3.10 Finding an item: `FIND`](#finding-an-item-find)
+  * [3.10 Clearing the list: `CLEAR`](#clearing-the-list-clear)
   * [3.11 Viewing help: `HELP`](#viewing-help-help)
   * [3.12 Exiting the Program: `BYE`](#exiting-the-program-bye)
 * **[4. Additional information](#additional-information)**
@@ -46,10 +51,10 @@ grocery shopping disappear.
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
-
-1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
-3. Open the command prompt in the directory of the executable and type in the following command:
+1. Ensure that you have Java 11 or above installed. Otherwise download it from
+[here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases), named `SHOCO.jar` under version 2.0.
+3. Open the command prompt in the directory of the executable SHOCO and type in the following command:
    `java -jar SHOCO.jar`
 4. You are now all set to plan your shopping list!
 &nbsp;
@@ -157,18 +162,25 @@ Format: `DEL INDEX`
 Example of usage: 
 
 `DEL 3`
-<!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
 
-### Clearing the list: `CLEAR`
-Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
+### Finding an item: `FIND`
+Filters the shopping list according to a keyword specified by the user.
 
-Format: `CLEAR`
+Format: `FIND KEYWORD`
 
+* The `KEYWORD` can be any character or string.
+* The `KEYWORD` field should not be left empty.  
+
+Example of usage: 
+
+`FIND apple`
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
@@ -177,15 +189,23 @@ Format: `CLEAR`
 <!-- @@author Shannonwje -->
 ### Marking an item as bought: `MARK`
 Marks an item from the list at the specified index as bought.
+When first added initially, the item will have the status `[0]` 
+to indicate that it is unmarked. After marking the item as bought, 
+the status of item becomes `[B]`.
 
 Format: `MARK INDEX`
 
-* The `INDEX` should be an integer.
+* The `INDEX` should be a number.
 * The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
+* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+* Marking an item whose status was previously `[B]` will be successful, assuring the success of the mark command executed.
 
 Example of the usage: 
 
-`MARK 5`
+1. `MARK 5`
+   * This marks the 5th item in your list as bought.
+   * The status of the 5th item is now `[B]`
 
 &nbsp;
 
@@ -195,15 +215,23 @@ Example of the usage:
 
 ### Un-marking a marked item: `UNMARK`
 Un-marks a marked-as-bought item from the list at the specified index.
+After being marked as bought, the item will have the status `[B]`
+to indicate that it is marked as bought. After unmarking the marked-as-bought
+item, the status of the item becomes `[0]`.
 
 Format: `UNMARK INDEX`
 
-* The `INDEX` should be an integer
+* The `INDEX` should be an number.
 * The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
+* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+* Unmarking an item whose status was previously `[0]` will be successful, assuring the success of the unmark command executed.
 
 Example of the usage:
 
-`UNMARK 3`
+1. `UNMARK 3`
+   * This unmarks the 3rd item in your list as unbought.
+   * The status of the 3rd item is now `[0]`
 <!-- @@author -->
 &nbsp;
 
@@ -242,7 +270,7 @@ Example of usage:
 ***
 <!-- @@author Shannonwje -->
 ### Resetting a budget: `RES`
-Resets te budget to be 0.00 for the user.
+Resets the budget to be $0.00 for the user.
 
 Format: `RES`
 <!-- @@author -->
@@ -251,19 +279,12 @@ Format: `RES`
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-<!-- @@author kokjoon97 -->
-### Finding an item: `FIND`
-Filters the shopping list according to a keyword specified by the user.
 
-Format: `FIND KEYWORD`
+### Clearing the list: `CLEAR`
+Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
 
-* The `KEYWORD` can be any character or string.
-* The `KEYWORD` field should not be left empty.  
+Format: `CLEAR`
 
-Example of usage: 
-
-`FIND apple`
-<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
@@ -280,9 +301,7 @@ Format: `HELP`
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
-
 ***
-
 
 ### Exiting the program: `BYE`
 Exits the program.
@@ -353,13 +372,13 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 * Add item `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * Edit item `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Delete item `DEL INDEX`
-* Clear list `CLEAR`
+* Find item `FIND KEYWORD`
 * Mark item `MARK INDEX`
 * Un-mark item `UNMARK INDEX`
 * Display list and budget details `DISPLAY`
 * Set budget `SET b/AMOUNT`
 * Reset budget `RES`
-* Find item `FIND KEYWORD`
+* Clear list `CLEAR`
 * View help `HELP`
 * Exit program `BYE`
 <!-- @@author -->
