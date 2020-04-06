@@ -25,11 +25,15 @@ class InBuiltArticleListGeneratorTest {
     @Test
     public void testExecute_articleTitles() {
         assertEquals(ViewedArticleList.viewedArticleList.get(0).getTitle(), "How Tailscale Works");
-        assertEquals(ViewedArticleList.viewedArticleList.get(1).getTitle(), "Tesla Model 3 Vulnerability – Disable Autopilot Notifications, Speedometer, etc.");
-        assertEquals(ViewedArticleList.viewedArticleList.get(2).getTitle(), "It never makes sense to use foldl on lists");
+        assertEquals(ViewedArticleList.viewedArticleList.get(1).getTitle(), "Tesla Model 3 Vulnerability – "
+                + "Disable Autopilot Notifications, Speedometer, etc.");
+        assertEquals(ViewedArticleList.viewedArticleList.get(2).getTitle(), "It never makes "
+                 + "sense to use foldl on lists");
         assertEquals(ViewedArticleList.viewedArticleList.get(3).getTitle(), "George Gershwin, Then and Now");
-        assertEquals(ViewedArticleList.viewedArticleList.get(4).getTitle(), "AI for generative design: Plain text to 3D Designs");
-        assertEquals(ViewedArticleList.viewedArticleList.get(5).getTitle(), "Furstenberg and Margulis awarded 2020 Abel Prize");
+        assertEquals(ViewedArticleList.viewedArticleList.get(4).getTitle(), "AI for generative "
+                + "design: Plain text to 3D Designs");
+        assertEquals(ViewedArticleList.viewedArticleList.get(5).getTitle(), "Furstenberg and " 
+                + "Margulis awarded 2020 Abel Prize");
     }
 
     @Test
