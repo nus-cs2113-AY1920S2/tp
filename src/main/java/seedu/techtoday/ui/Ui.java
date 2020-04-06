@@ -24,13 +24,4 @@ public class Ui {
         return userResponse.trim();
     }
 
-    /**
-     * Prints specified list of articles.
-     * @param articles - array of articles given.
-     */
-    public void printArticles(ArrayList<Article> articles) {
-        for (Article article : articles) {
-            System.out.println(article);
-        }
-    }
 }

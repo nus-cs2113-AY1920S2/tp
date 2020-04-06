@@ -10,14 +10,10 @@ public class ManualArticleCreator {
 
     /** Executes the method used to create an article object using user inputs. */
     public static void execute() {
-        System.out.println("Enter the title of the article?");
-        String title = Ui.getCommand();
-        System.out.println("What is the URl of the article (type \"No URL\")?");
-        String url = Ui.getCommand();
-        System.out.println("What is the category (type \"default\" if you don't know it)");
-        String category = Ui.getCommand();
-        System.out.println("Would you like to add any extract?");
-        String extract = Ui.getCommand();
+        String title = getArticle();
+        String url = getUrl();
+        String category = getCategory();
+        String extract = getExtract();
         String epochSecond = CurrentTimeFetcher.execute();
         Article article = new Article(title, url, category);
         article.setTime(epochSecond);
@@ -25,6 +21,42 @@ public class ManualArticleCreator {
         SavedArticleList.savedArticleList.add(article);
         System.out.println("Done, we have added the following article to your list of saved articles");
         ArticlePrinter.printIsolatedArticle(article);
+    }
+
+    /**
+     * Function that gets article name from the user.
+     * @return String representation of the title from user input.
+     */
+    public static String getArticle() {
+        System.out.println("Enter the title of the article?");
+        return Ui.getCommand();
+    }
+
+    /**
+     * Function that gets the URL from the user.
+     * @return String representation of url from user input.
+     */
+    public static String getUrl() {
+        System.out.println("What is the URl of the article (type \"No URL\")?");
+        return Ui.getCommand();
+    }
+
+    /**
+     * Function that gets category from the user.
+     * @return String representation of category from user input.
+     */
+    public static String getCategory() {
+        System.out.println("What is the category (type \"default\" if you don't know it)");
+        return Ui.getCommand();
+    }
+
+    /**
+     * Function that asks and gets extract from the user.
+     * @return String representation of category from user input.
+     */
+    public static String getExtract() {
+        System.out.println("Would you like to add any extract?");
+        return Ui.getCommand();
     }
 }
 
