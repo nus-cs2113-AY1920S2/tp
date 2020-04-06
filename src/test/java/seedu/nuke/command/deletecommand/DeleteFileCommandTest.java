@@ -26,6 +26,9 @@ public class DeleteFileCommandTest {
         assertEquals(MESSAGE_NO_FILES_FOUND, result.getFeedbackToUser());
     }
 
+    /**
+     * A JunitTest of DeleteFileCommand when the file list of all tasks of all modules is empty.
+     */
     public void testEmptyFileList() {
         ModuleManager.initialise();
         DirectoryTraverser.setCurrentLevelToRoot();
