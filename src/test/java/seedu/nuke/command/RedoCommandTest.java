@@ -22,18 +22,18 @@ class RedoCommandTest {
 
         CommandResult result = Executor.executeCommand(RedoCommand.COMMAND_WORD);
         ScreenShotManager.saveScreenShot();
-        assertEquals(result.getFeedbackToUser(), MESSAGE_REDO_AT_END);
+        assertEquals(MESSAGE_REDO_AT_END, result.getFeedbackToUser());
 
         CommandResult result1 = Executor.executeCommand("addm cs3235");
         ScreenShotManager.saveScreenShot();
-        assertEquals(ModuleManager.getModuleList().size(), 1);
+        assertEquals(1, ModuleManager.getModuleList().size());
 
         CommandResult result2 = Executor.executeCommand(UndoCommand.COMMAND_WORD);
         ScreenShotManager.saveScreenShot();
-        assertEquals(ModuleManager.getModuleList().size(), 0);
+        assertEquals(0, ModuleManager.getModuleList().size());
 
         CommandResult result3 = Executor.executeCommand(RedoCommand.COMMAND_WORD);
         ScreenShotManager.saveScreenShot();
-        assertEquals(ModuleManager.getModuleList().size(), 1);
+        assertEquals(1, ModuleManager.getModuleList().size());
     }
 }

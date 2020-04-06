@@ -1,18 +1,15 @@
-package seedu.nuke.commandtest;
+package seedu.nuke.command.filtercommand.listcommand;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Nuke;
 import seedu.nuke.command.Command;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
-
-import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Junit test class to test ListModuleTasksDeadlineCommand.
  */
-public class ListModuleDeadlineTest {
+public class ListModuleTasksDeadlineTest {
 
     private Nuke nuke;
     private Command command;
@@ -20,7 +17,7 @@ public class ListModuleDeadlineTest {
     /**
      * constructor of this class.
      */
-    public ListModuleDeadlineTest() {
+    public ListModuleTasksDeadlineTest() {
         //try {
         //        //    nuke = new Nuke();
         //        //    command = new ListModuleTasksDeadlineCommand();

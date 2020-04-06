@@ -9,7 +9,6 @@ import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;

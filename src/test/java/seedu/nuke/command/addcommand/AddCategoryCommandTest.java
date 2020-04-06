@@ -10,7 +10,6 @@ import seedu.nuke.data.storage.StoragePath;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.messageAddCategorySuccess;
@@ -26,22 +25,22 @@ class AddCategoryCommandTest {
         // base case
         assertEquals(ModuleManager.getModuleList().get(0).getCategories().getCategoryList().size(), 4);
         CommandResult result1 = Executor.executeCommand("addc test -m cs3235");
-        assertEquals(ModuleManager.getModuleList().get(0).getCategories().getCategoryList().size(), 5);
-        assertEquals(result1.getFeedbackToUser(), messageAddCategorySuccess("test"));
+        assertEquals(5, ModuleManager.getModuleList().get(0).getCategories().getCategoryList().size());
+        assertEquals(messageAddCategorySuccess("test"), result1.getFeedbackToUser());
 
         // duplicate category
         CommandResult result2 = Executor.executeCommand("addc test -m cs3235");
         assertEquals(ModuleManager.getModuleList().get(0).getCategories().getCategoryList().size(), 5);
-        assertEquals(result2.getFeedbackToUser(), MESSAGE_DUPLICATE_CATEGORY);
+        assertEquals(MESSAGE_DUPLICATE_CATEGORY, result2.getFeedbackToUser());
 
         // wrong module
         CommandResult result3 = Executor.executeCommand("addc test -m cs3230");
         assertEquals(ModuleManager.getModuleList().get(0).getCategories().getCategoryList().size(), 5);
-        assertEquals(result3.getFeedbackToUser(), MESSAGE_MODULE_NOT_FOUND);
+        assertEquals(MESSAGE_MODULE_NOT_FOUND, result3.getFeedbackToUser());
 
         // a new category
         CommandResult result4 = Executor.executeCommand("addc asdf -m cs3235");
         assertEquals(ModuleManager.getModuleList().get(0).getCategories().getCategoryList().size(), 6);
-        assertEquals(result4.getFeedbackToUser(), messageAddCategorySuccess("asdf"));
+        assertEquals(messageAddCategorySuccess("asdf"), result4.getFeedbackToUser());
     }
 }
