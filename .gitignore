@@ -15,5 +15,7 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 
+/build/libs/data
+
 # data files
 data/
