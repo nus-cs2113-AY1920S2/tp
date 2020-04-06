@@ -1,9 +1,7 @@
 package seedu.nuke.command.addcommand;
 
-import com.sun.org.apache.bcel.internal.ExceptionConst;
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Executor;
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleLoader;
