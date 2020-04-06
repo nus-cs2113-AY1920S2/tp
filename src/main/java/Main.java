@@ -49,6 +49,7 @@ public class Main {
         LoggerUtils.createLogFolder(LOG_FOLDER);
         
         try {
+            Ui.setLogger();
             Reservation.setLogger();
             ReservationCommand.setLogger();
             ReservationList.setLogger();
