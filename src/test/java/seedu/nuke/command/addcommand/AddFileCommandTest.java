@@ -17,7 +17,7 @@ import static seedu.nuke.util.Message.MESSAGE_FILE_EXCEED_LIMIT;
 public class AddFileCommandTest {
 
     @Test
-    public void TestEmptyModuleList() {
+    public void testEmptyModuleList() {
         ModuleManager.initialise();
         DirectoryTraverser.setCurrentLevelToRoot();
 
@@ -35,7 +35,7 @@ public class AddFileCommandTest {
     }
 
     @Test
-    public void TestEmptyTaskList() {
+    public void testEmptyTaskList() {
         ModuleManager.initialise();
         DirectoryTraverser.setCurrentLevelToRoot();
 
@@ -53,7 +53,7 @@ public class AddFileCommandTest {
     }
 
     @Test
-    public void TestLengthExceedFile() {
+    public void testLengthExceedFile() {
         ModuleManager.initialise();
         DirectoryTraverser.setCurrentLevelToRoot();
 
@@ -68,7 +68,7 @@ public class AddFileCommandTest {
     }
 
     @Test
-    public void TestNoFilePath() {
+    public void testNoFilePath() {
         ModuleManager.initialise();
         DirectoryTraverser.setCurrentLevelToRoot();
 
@@ -83,7 +83,7 @@ public class AddFileCommandTest {
     }
 
     @Test
-    public void TestInvalidPath() {
+    public void testInvalidPath() {
         ModuleManager.initialise();
         DirectoryTraverser.setCurrentLevelToRoot();
 
