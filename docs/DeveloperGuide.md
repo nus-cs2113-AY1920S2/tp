@@ -717,19 +717,10 @@ This section contains the user stories for the different versions of our product
 
 &nbsp;
 
-## Appendix D: Glossary
-
-* *glossary item* - Definition
-
-&nbsp;
-<b><a href="#developer-guide">&#129053; back to top</a></b>
-
-&nbsp;
-
-## Appendix E: Instructions for Manual Testing
+## Appendix D: Instructions for Manual Testing
 > :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
-### E.1. Launch and ShutDown
+### D.1. Launch and ShutDown
 1. Initial launch 
     
       i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
@@ -757,7 +748,7 @@ This section contains the user stories for the different versions of our product
 
 &nbsp;
 
-### E.2. Set a budget and Add an item
+### D.2. Set a budget and Add an item
 
 1. Set a budget
        
@@ -809,7 +800,7 @@ This section contains the user stories for the different versions of our product
     
     &nbsp;
 <!-- @@author Shannonwje -->    
-### E.3. Reset the budget and Marking & Unmarking an item
+### D.3. Reset the budget and Marking & Unmarking an item
 
 1. Reset the budget
        
@@ -880,7 +871,7 @@ This section contains the user stories for the different versions of our product
 <!-- @@author -->
     
   
-### E.4. Find and Delete an item
+### D.4. Find and Delete an item
 
 1. Find an item based on keyword
        

@@ -279,7 +279,7 @@ Format: `RES`
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author JLoh579 -->
 ### Clearing the list: `CLEAR`
 Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
 
@@ -288,7 +288,7 @@ Format: `CLEAR`
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
-
+<!-- @@author -->
 ***
 <!-- @@author trishaangelica -->
 
@@ -342,7 +342,6 @@ your budget.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
-
 
 **A**: Simply transfer the JSON files that contain your SHOCO data onto the new computer and place them in the
 folder that contains the SHOCO app. If the folder already has the JSON files, replace them.
