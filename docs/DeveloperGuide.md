@@ -50,12 +50,12 @@ of SHOCO and is tailored for the developers, designers, and software testers of 
  <!-- @@author -->
 
 ## 2. Overview of the SHOCO application
-
+<!-- @@author Shannonwje -->
 The overview of the main classes in the application are shown in the class diagram below.
 Omitted are the classes for the features implemented, the <code>LoadData</code>
 class, <code>WriteData</code> class, <code>FileUtil</code> class and
 <code>CommandLineTable</code> class.
-
+<!-- @@author -->
 ![alt text](images/ClassDiagramFinal.png)
 
 <!-- @@author kokjoon97 -->
