@@ -1,11 +1,10 @@
 package jikan.parser;
 
 import jikan.exception.ExtraParametersException;
-import jikan.exception.InvalidTimeFrameException;
 import jikan.log.Log;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
-import jikan.storage.StorageCleaner;
+import jikan.cleaner.StorageCleaner;
 import jikan.ui.Ui;
 
 import jikan.command.AbortCommand;
@@ -26,18 +25,11 @@ import jikan.command.ViewGoalsCommand;
 
 
 import java.io.File;
-import jikan.exception.EmptyNameException;
-import jikan.activity.ActivityList;
-import jikan.log.LogCleaner;
-import jikan.storage.StorageCleaner;
-import jikan.ui.Ui;
-import jikan.log.Log;
 
-import java.text.ParseException;
+import jikan.cleaner.LogCleaner;
+
 import java.time.Duration;
-import java.io.File;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;

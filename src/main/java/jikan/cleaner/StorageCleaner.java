@@ -1,4 +1,6 @@
-package jikan.storage;
+package jikan.cleaner;
+
+import jikan.storage.Storage;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,13 +14,15 @@ import java.util.Scanner;
  * A storage cleaner class that does automated cleaning
  * for data files under the user's request.
  */
-public class StorageCleaner {
-    private static final String STATUS_FILE_PATH = "data/recycled/status.txt";
-    private static final String DATA_FILE_PATH = "data/recycled/data.csv";
-    private File status;
-    private File recycledData;
-    public boolean toClean;
-    private int numberOfActivitiesToClean;
+public class StorageCleaner extends Cleaner {
+    //private static final String STATUS_FILE_PATH = "data/recycled/status.txt";
+    //private static final String DATA_FILE_PATH = "data/recycled/data.csv";
+    //private File status;
+    //private File recycledData;
+    //public boolean toClean;
+
+
+    public int numberOfActivitiesToClean;
     public Storage storage;
 
     /**
@@ -27,27 +31,26 @@ public class StorageCleaner {
      */
     public StorageCleaner(Storage storage) {
         this.storage = storage;
+        super.STATUS_FILE_PATH = "data/recycled/status.txt";
+        super.status = new File(STATUS_FILE_PATH);
+        super.DATA_FILE_PATH = "data/recycled/data.csv";
+        super.recycledData = new File(DATA_FILE_PATH);
+        initialiseDataFile();
+        int value = initialiseCleaner();
+        if (value != -1) {
+            this.numberOfActivitiesToClean = value;
+        }
+        /*this.storage = storage;
         status = new File(STATUS_FILE_PATH);
         recycledData = new File(DATA_FILE_PATH);
         initialiseCleaner();
-        initialiseDataFile();
-    }
-
-    /**
-     * Initialises a data file containing the deleted entries.
-     */
-    private void initialiseDataFile() {
-        try {
-            loadFile(recycledData);
-        } catch (IOException e) {
-            System.out.println("Error loading/creating recycled file");
-        }
+        initialiseDataFile();*/
     }
 
     /**
      * Activates/De-activates the auto cleanup by checking the status file.
      */
-    private void initialiseCleaner() {
+    /*private void initialiseCleaner() {
         try {
             if (loadCleaner(status)) {
                 Scanner sc = new Scanner(status);
@@ -70,50 +73,14 @@ public class StorageCleaner {
         } catch (IOException e) {
             System.out.println("Error loading/creating cleaning file.");
         }
-    }
-
-    /**
-     * Loads the status file and checks if the file exists or not.
-     * @param file status file.
-     * @return true if the file exists and false otherwise.
-     * @throws IOException if there is an error with the creation/loading of the status file.
-     */
-    private boolean loadCleaner(File file) throws IOException {
-        if (!file.exists()) {
-            createFile(file);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Loads the data file that contains deleted entries.
-     * @param file data file with the deleted entries.
-     * @throws IOException if there is an error with the creation/loading of the data file.
-     */
-    private void loadFile(File file) throws IOException {
-        if (!file.exists()) {
-            createFile(file);
-        }
-    }
-
-    /**
-     * Creates a new file if the specified file cannot be found in the given path.
-     * @param file the file to be created if it does not exist.
-     * @throws IOException if there is an error with the creation of the file.
-     */
-    private void createFile(File file) throws IOException {
-        file.getParentFile().mkdirs();
-        file.createNewFile();
-    }
+    }*/
 
     /**
      * Method to activate/de-activate the auto cleanup.
      * @param status a boolean specifying whether the cleaner should be activated or not.
      * @throws IOException if there is an error with reading/writing to the status file.
      */
-    public void setStatus(boolean status) throws IOException {
+    /*public void setStatus(boolean status) throws IOException {
         this.toClean = status;
         File dataFile = new File(STATUS_FILE_PATH);
         if (!dataFile.exists()) {
@@ -127,7 +94,7 @@ public class StorageCleaner {
         }
         writer.write(Integer.toString(this.numberOfActivitiesToClean) + "\n");
         writer.close();
-    }
+    }*/
 
     /**
      * Method to set a value for the number of activities to clean.

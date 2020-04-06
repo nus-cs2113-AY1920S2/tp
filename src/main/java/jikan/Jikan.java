@@ -6,10 +6,10 @@ import jikan.command.Command;
 import jikan.command.GoalCommand;
 import jikan.exception.EmptyNameException;
 import jikan.exception.ExtraParametersException;
-import jikan.log.LogCleaner;
+import jikan.cleaner.LogCleaner;
 import jikan.parser.Parser;
 import jikan.storage.Storage;
-import jikan.storage.StorageCleaner;
+import jikan.cleaner.StorageCleaner;
 import jikan.ui.Ui;
 
 import java.io.File;
@@ -40,7 +40,7 @@ public class Jikan {
     private static Parser parser = new Parser();
 
     /** CLeaner to delete entries in data.csv when it gets too long */
-    private static StorageCleaner cleaner;
+    private static StorageCleaner storageCleaner;
 
     private static LogCleaner logCleaner = new LogCleaner();
 
@@ -54,9 +54,9 @@ public class Jikan {
     public static void main(String[] args) {
         ui.printGreeting();
         storage = new Storage(DATA_FILE_PATH);
-        cleaner = new StorageCleaner(storage);
+        storageCleaner = new StorageCleaner(storage);
         try {
-            cleaner.autoClean();
+            storageCleaner.autoClean();
             logCleaner.autoClean();
             activityList = storage.createActivityList();
             GoalCommand.createFile(TAG_FILE_PATH, tagFile);
@@ -65,12 +65,12 @@ public class Jikan {
         }
 
         lastShownList.activities.addAll(activityList.activities);
-        parser.cleaner = cleaner;
+        parser.cleaner = storageCleaner;
         parser.logcleaner = logCleaner;
 
         while (true) {
             try {
-                Command command = parser.parseUserCommands(in, activityList, cleaner, tagFile);
+                Command command = parser.parseUserCommands(in, activityList, storageCleaner, tagFile);
                 if (command == null) {
                     continue;
                 }

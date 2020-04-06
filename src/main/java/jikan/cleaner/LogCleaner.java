@@ -1,4 +1,4 @@
-package jikan.log;
+package jikan.cleaner;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,41 +13,41 @@ import java.util.Scanner;
  * A log cleaner class that does automated cleaning
  * for log files under the user's request.
  */
-public class LogCleaner {
-    private static final String STATUS_FILE_PATH = "data/recycled/logStatus.txt";
-    private static final String DATA_FILE_PATH = "data/recycled/logData.txt";
+public class LogCleaner extends Cleaner {
+    //private static final String STATUS_FILE_PATH = "data/recycled/logStatus.txt";
+    //private static final String DATA_FILE_PATH = "data/recycled/logData.txt";
+    //private File status;
+    //private File recycledData;
+    //public boolean toClean;
+
     private static final String LOG_FILE_PATH = "data/LogRecord.txt";
-    private File status;
-    private File recycledData;
-    public boolean toClean;
-    private int numberOfLogsToClean;
+    public int numberOfLogsToClean;
 
 
     /**
      * Constructor for the log cleaner.
      */
     public LogCleaner() {
-        status = new File(STATUS_FILE_PATH);
+        super.STATUS_FILE_PATH = "data/recycled/logStatus.txt";
+        super.status = new File(STATUS_FILE_PATH);
+        super.DATA_FILE_PATH = "data/recycled/logData.txt";
+        super.recycledData = new File(DATA_FILE_PATH);
+        initialiseDataFile();
+        int value = initialiseCleaner();
+        if (value != -1) {
+            this.numberOfLogsToClean = value;
+        }
+        /*status = new File(STATUS_FILE_PATH);
         recycledData = new File(DATA_FILE_PATH);
         initialiseCleaner();
-        initialiseDataFile();
+        initialiseDataFile();*/
     }
 
-    /**
-     * Initialise a data file containing the deleted logs.
-     */
-    private void initialiseDataFile() {
-        try {
-            loadFile(recycledData);
-        } catch (IOException e) {
-            System.out.println("Error loading/creating recycled file");
-        }
-    }
 
     /**
      * Activates/De-activates the auto cleanup of logs by checking the status file.
      */
-    private void initialiseCleaner() {
+    /*private void initialiseCleaner() {
         try {
             if (loadCleaner(status)) {
                 Scanner sc = new Scanner(status);
@@ -70,50 +70,20 @@ public class LogCleaner {
         } catch (IOException e) {
             System.out.println("Error loading/creating cleaning file.");
         }
-    }
+    }*/
 
-    /**
-     * Loads the status file and checks if it exists or not.
-     * @param file status file.
-     * @return true if the file exists and false otherwise.
-     * @throws IOException if there is an error with the creation/loading of the status file.
-     */
-    private boolean loadCleaner(File file) throws IOException {
-        if (!file.exists()) {
-            createFile(file);
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    /**
-     * Loads the data file that contains deleted logs.
-     * @param file data file with the deleted logs.
-     * @throws IOException if there is an error with the creation/loading of the data file.
-     */
-    private void loadFile(File file) throws IOException {
-        if (!file.exists()) {
-            createFile(file);
-        }
-    }
 
-    /**
-     * Creates a new file if the specified file cannot be found in the given path.
-     * @param file the file to be created if it does not exist.
-     * @throws IOException if there is an error with the creation of the file.
-     */
-    private void createFile(File file) throws IOException {
-        file.getParentFile().mkdirs();
-        file.createNewFile();
-    }
+
+
+
 
     /**
      * Method to activate/de-activate the auto cleanup for logs.
      * @param status a boolean specifying whether the log cleaner should be activated or not.
      * @throws IOException if there is an error with reading/writing to the status file.
      */
-    public void setStatus(boolean status) throws IOException {
+    /*public void setStatus(boolean status) throws IOException {
         this.toClean = status;
         File dataFile = new File(STATUS_FILE_PATH);
         if (!dataFile.exists()) {
@@ -127,7 +97,7 @@ public class LogCleaner {
         }
         writer.write(Integer.toString(this.numberOfLogsToClean) + "\n");
         writer.close();
-    }
+    }*/
 
     /**
      * Method to set a value for the number of logs to clean.
