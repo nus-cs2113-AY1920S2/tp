@@ -42,7 +42,7 @@ class InformationDeleterTest {
     }
 
     @Test
-    void execute_article_success() {
+    void execute_articleSizeList_success() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         InformationDeleter.execute("delete article 1");
@@ -51,7 +51,7 @@ class InformationDeleterTest {
     }
 
     @Test
-    void execute_job_success() {
+    void execute_jobSizeList_success() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         InformationDeleter.execute("delete job 1");
@@ -59,7 +59,7 @@ class InformationDeleterTest {
     }
 
     @Test
-    void execute_note_success() {
+    void execute_noteSizeList_success() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         InformationDeleter.execute("delete note 1");
