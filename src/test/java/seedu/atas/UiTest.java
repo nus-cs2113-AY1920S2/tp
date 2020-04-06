@@ -1,7 +1,6 @@
 package seedu.atas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import common.Messages;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ import java.io.PrintStream;
 public class UiTest {
     private PrintStream consoleOut;
     private InputStream consoleIn;
-    private final String EOL = System.lineSeparator();
+    private final String lineSeparator = System.lineSeparator();
 
     public UiTest() {
         consoleOut = System.out;
@@ -33,7 +32,7 @@ public class UiTest {
         } finally {
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.DIVIDER + EOL, testOutput.toString());
+        assertEquals(Messages.DIVIDER + lineSeparator, testOutput.toString());
     }
 
     @Test
@@ -47,7 +46,8 @@ public class UiTest {
         } finally {
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.LOGO + EOL + Messages.DIVIDER + EOL, testOutput.toString());
+        assertEquals(Messages.LOGO + lineSeparator
+                + Messages.DIVIDER + lineSeparator, testOutput.toString());
     }
 
     @Test
@@ -82,9 +82,9 @@ public class UiTest {
         String exampleUserIn = "testing line 1";
         String exampleUserIn2 = "testing line 2";
         String exampleUserIn3 = "testing line 3";
-        String expectedUserIn = exampleUserIn + EOL
-                + exampleUserIn2 + EOL
-                + exampleUserIn3 + EOL;
+        String expectedUserIn = exampleUserIn + lineSeparator
+                + exampleUserIn2 + lineSeparator
+                + exampleUserIn3 + lineSeparator;
 
         try {
             testOutput = new ByteArrayOutputStream();

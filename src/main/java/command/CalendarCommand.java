@@ -164,7 +164,7 @@ public class CalendarCommand extends Command {
         int numOfPeriod = event.getNumOfPeriod();
         String typeOfPeriod = event.getTypeOfPeriod();
         LocalDate eventDate = event.getDateAndTime().toLocalDate();
-        int daysToAdd = 0;
+        int daysToAdd;
 
         switch (typeOfPeriod) {
         case RepeatCommand.DAILY_ICON:
