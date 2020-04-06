@@ -11,8 +11,10 @@ import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.AppointmentTextUi;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
+import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class AddAppointmentCommand extends AppointmentCommand {

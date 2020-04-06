@@ -37,7 +37,7 @@ public class Checker {
      * @return true if correct date format, false otherwise.
      */
     public static boolean isValidTime(String time) {
-        String pattern = "([01][0-9]|2[0-3]):([0-5][0-9])";
+        String pattern = "([0-1][0-9]|2[0-3]):([0-5][0-9])";
         return time.matches(pattern);
     }
 
@@ -48,7 +48,7 @@ public class Checker {
      * @return true if is valid, false otherwise.
      */
     public static boolean isValidBloodType(String blood) {
-        String pattern = "([A|B|AB|O][+-])";
+        String pattern = "(A|B|AB|O)(\\+|-)";
         return blood.matches(pattern);
     }
 

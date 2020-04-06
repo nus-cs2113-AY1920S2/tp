@@ -1,6 +1,7 @@
 package seedu.happypills.logic.commands.patientcommands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
@@ -61,7 +62,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param content The patient's new phone number.
      */
     private String editPhone(Patient patient, String content) {
-        patient.setPhoneNumber(Integer.parseInt(content));
+        patient.setPhoneNumber(Integer.parseInt(content.trim()));
         String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
@@ -73,7 +74,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param content The patient's updated allergies.
      */
     private String editAllergies(Patient patient, String content) {
-        patient.setAllergies(content);
+        patient.setAllergies(content.trim());
         String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
@@ -85,7 +86,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param content The patient's new remarks.
      */
     private String editRemarks(Patient patient, String content) {
-        patient.setRemarks(content);
+        patient.setRemarks(content.trim());
         String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
@@ -97,7 +98,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param content The patient's new DOB.
      */
     private String editDob(Patient patient, String content) {
-        patient.setDateOfBirth(content);
+        patient.setDateOfBirth(content.trim());
         String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
@@ -109,7 +110,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param content The patient's new name.
      */
     private String editName(Patient patient, String content) {
-        patient.setName(content);
+        patient.setName(content.trim());
         String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
@@ -121,7 +122,7 @@ public class EditPatientCommand extends PatientCommand {
      * @param content The patient's new blood type.
      */
     private String editBloodType(Patient patient, String content) {
-        patient.setBloodType(content);
+        patient.setBloodType(content.trim());
         String message = PatientTextUi.editPatientSuccessMessage(patient);
         return message;
     }
@@ -162,9 +163,8 @@ public class EditPatientCommand extends PatientCommand {
         if (content.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
-        // assert editPatient != null : "Patient is not in PatientList";
         if (field.equals(PHONE_NUMBER_TAG)) {
-            if (checkPhoneNum(content.trim())) {
+            if (Checker.isValidPhoneNum(content.trim())) {
                 output = editPhone(editPatient, content);
             } else {
                 throw new HappyPillsException(Messages.MESSAGE_INVALID_PHONE_NUMBER);
@@ -174,22 +174,22 @@ public class EditPatientCommand extends PatientCommand {
         } else if (field.equals(ALLERGIES_TAG)) {
             output = editAllergies(editPatient, content.trim());
         } else if (field.equals(DATE_OF_BIRTH_TAG)) {
-            if (checkDate(content.trim())) {
+            if (Checker.isValidDate(content.trim())) {
                 output = editDob(editPatient, content.trim());
             } else {
                 throw new HappyPillsException(Messages.MESSAGE_INVALID_DATE_OF_BIRTH);
             }
         } else if (field.equals(BLOOD_TYPE_TAG)) {
-            if (checkType(content.trim())) {
+            if (Checker.isValidBloodType(content.trim())) {
                 output = editBloodType(editPatient, content.trim());
             } else {
-                throw new HappyPillsException("    Please ensure that the DATE is in [A|B|AB|O][+-] ");
+                throw new HappyPillsException("    Please ensure that the BLOOD TYPE is in [A|B|AB|O][+-] ");
             }
             output = editBloodType(editPatient, content.trim());
         } else if (field.equals(NAME_TAG)) {
             output = editName(editPatient, content.trim());
         } else {
-            throw new HappyPillsException(Messages.MESSAGE_INVALID_TAG);
+            throw new HappyPillsException(Messages.MESSAGE_INVALID_EDIT_PATIENT);
         }
         try {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
@@ -200,51 +200,4 @@ public class EditPatientCommand extends PatientCommand {
         assert output.length() > 0 : "output message is invalid";
         return output;
     }
-
-    /**
-     * Check if the String can be converted to Integer.
-     *
-     * @param input value to check if is integer
-     * @return true if is an integer, false otherwise
-     */
-    public static boolean isInteger(String input) {
-        try {
-            int x = Integer.parseInt(input);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
-     * To check format for nric.
-     *
-     * @param nric details of nric
-     * @return boolean true if the time format is correct otherwise false
-     */
-    static boolean checkType(String nric) {
-        String pattern = "([A|B|AB|O][+-])";
-        return nric.matches(pattern);
-    }
-
-    /**
-     * To check format for phone.
-     *
-     * @param phoneNum details of time
-     * @return boolean true if the time format is correct otherwise false
-     */
-    static boolean checkPhoneNum(String phoneNum) {
-        String pattern = "([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
-        return phoneNum.matches(pattern);
-    }
-
-    static boolean checkDate(String date) {
-        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
-        boolean flag = false;
-        if (date.matches(pattern)) {
-            flag = true;
-        }
-        return flag;
-    }
-
 }

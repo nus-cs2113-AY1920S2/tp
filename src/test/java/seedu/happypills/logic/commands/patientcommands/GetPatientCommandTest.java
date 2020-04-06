@@ -40,7 +40,7 @@ public class GetPatientCommandTest {
 
     @Test
     public void getList_notInList_notFound() throws HappyPillsException {
-        String expectedOutputNotInList = "    The patient cannot be found. Please try again.";
+        String expectedOutputNotInList = "    The patient cannot be found. Please try again.\n" + DIVIDER;
         try {
             new GetPatientCommand("S789C").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         } catch (HappyPillsException hpe) {

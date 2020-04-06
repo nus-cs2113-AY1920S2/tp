@@ -26,7 +26,6 @@ By: `CS2113T-T12-2` Since: `March 2020`
         + [4.1.4. List Patients](#414-list-patients)
         + [4.1.5. Retrieve Patient Details](#415-retrieve-patient-details)
     * [4.2. Patient Medical Records Feature](#42-patient-medical-records-feature)
-        
     * [4.3. Appointment Scheduling Feature](#43-appointment-scheduling-feature)
         + [4.3.1. Add Appointment](#431-add-appointment)
         + [4.3.2. Edit Appointment](#432-edit-appointment)
@@ -106,7 +105,7 @@ The `TextUi` component:
 
 ### 3.3. Logic Component
 
-![Logic Diagram](images/LogicDiagram.jpg)
+![Logic Diagram](images/Logic.png)
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -431,7 +430,7 @@ closed in the terminal. This is achieved by storing all relevant information in 
  it needs to save, by appending it to the back of the text file. 
  This provides improved performance as compared to using writeAllToFile().
  
- ![saving](/docs/images/StorageSave.png)
+ ![saving](images/StorageSave.png)
  
  *loading and parsing file content to HappyPills*
  
@@ -440,7 +439,7 @@ For example, `loadingPatientsFromFile` retrieves the entire string from the pati
 `parsePatientFileContent` to convert each line into a patient object and adds it back to the patient map. 
 `loadAppointmentFromFile` and `parseAppointmentFileContent` does the same with the appointment file.
  
- ![loading](/docs/images/StorageLoad.png)
+ ![loading](images/StorageLoad.png)
  
 **Design Considerations**
 
@@ -565,10 +564,7 @@ Value proposition: Note taking application built for doctors to manage notes fas
 |v2.0|Doctor|note down the prescription that I gave my patients|know what side effects are to be expected (based on the patient's current condition)|
 |v2.0|Doctor|record down the symptoms of my patients|check for any persistent health condition|
 |v2.0|Doctor|add Patient's medical records|view the previous reasons for doctor's visits|
-|v2.1|Doctor|?|?|
-|v2.1|Doctor|?|?|
-|v2.1|Doctor|?|?|
-|v2.1|Doctor|?|?|
+|v2.1|Doctor|reduce the number of typing errors|ensure all information recorded are accurate|
 
 ### Appendix C: Non-functional Requirements
 
@@ -578,7 +574,7 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 3. Should be able to hold up to 1000 patients' information without a noticeable sluggishness in performance for typical usage.
 
-4. Should be able to display large amount of inforamtion quickly. 
+4. Should be able to display large amount of information quickly. 
 
 ### Appendix D: Glossary 
 
@@ -590,9 +586,14 @@ Windows, Linux, Unix, OS-X
 
 Given below are instructions to test the application manually.
 
-:information_source: | These instructions only provide a starting point for tests to work on; testers are expected to do more exploratory testing
----------------------|----------------------------------------------------------------------------------------------
-
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>These instructions only provide a starting point for tests to work on; testers are expected to do more exploratory testing.</td>
+ </tr>
+</table>
 
 ## Useful links:
 * [User Guide](UserGuide.md)

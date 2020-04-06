@@ -1,12 +1,18 @@
 package seedu.happypills.logic.commands.patientrecordcommands;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.Messages;
+import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
+
+import java.io.IOException;
+import java.util.logging.Logger;
 
 public class AddPatientRecordCommand extends PatientRecordCommand {
 
@@ -15,6 +21,8 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
     protected String diagnosis;
     protected String date;
     protected String time;
+
+    Logger logger = Logger.getLogger(HappyPills.class.getName());
 
     /**
      * Constructor for PatientRecordCommand Class.
@@ -44,6 +52,11 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
         } else {
             PatientRecord patientRecord = new PatientRecord(nric,symptom,diagnosis,date,time);
             patientRecords.addPersonalRecord(patientRecord, nric);
+            try {
+                Storage.addSingleItemToFile(Storage.PATIENT_RECORD_FILEPATH, patientRecord.toSave());
+            } catch (IOException e) {
+                logger.warning(StorageTextUi.failToAddPrMsg);
+            }
             message = Messages.MESSAGE_PATIENT_RECORD_ADDED;
         }
         return message;
