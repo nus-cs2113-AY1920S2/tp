@@ -41,12 +41,12 @@ public class GraphCommand extends Command {
             } else if (inputs[0].equals("activities")) {
                 graphDuration();
             } else {
-                Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
+                Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
             }
         } catch (NumberFormatException | InvalidGraphCommandException e) {
             Ui.printDivider("Please input an integer for the time interval.");
         } catch (MissingParametersException e) {
-            Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
+            Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
         }
 
     }

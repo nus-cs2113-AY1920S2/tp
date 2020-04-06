@@ -19,9 +19,9 @@ import java.util.Scanner;
 public class StartCommand extends Command {
 
     private Scanner scanner;
-    private boolean hasTarget = false;
+    private boolean hasAllocation = false;
     private boolean hasTag = false;
-    private boolean hasTargetAndTag = false;
+    private boolean hasAllocationAndTag = false;
     private static final int maxActivityLength = 25;
 
     /**
@@ -108,16 +108,16 @@ public class StartCommand extends Command {
         int allocateDelimiter = parameters.indexOf("/a");
         scenario = getScenario(tagDelimiter, allocateDelimiter);
         switch (scenario) {
-        case "hasTagAndTarget":
-            activityName = handleTagAndTarget(this.parameters, tagDelimiter, allocateDelimiter);
+        case "hasTagAndAllocation":
+            activityName = handleTagAndAllocation(this.parameters, tagDelimiter, allocateDelimiter);
             break;
         case "hasTagOnly":
-            activityName = handleTagOrTarget(this.parameters, tagDelimiter);
+            activityName = handleTagOrAllocation(this.parameters, tagDelimiter);
             break;
-        case "hasTargetOnly":
-            activityName = handleTagOrTarget(this.parameters, allocateDelimiter);
+        case "hasAllocationOnly":
+            activityName = handleTagOrAllocation(this.parameters, allocateDelimiter);
             break;
-        case "hasNoTagAndTarget":
+        case "hasNoTagAndAllocation":
             activityName = this.parameters.trim();
             break;
         default:
@@ -135,16 +135,16 @@ public class StartCommand extends Command {
      */
     private String getScenario(int tagDelimiter, int allocateDelimiter) {
         if (tagDelimiter != -1 && allocateDelimiter != -1) {
-            this.hasTargetAndTag = true;
-            return "hasTagAndTarget";
+            this.hasAllocationAndTag = true;
+            return "hasTagAndAllocation";
         } else if (tagDelimiter != -1) {
             this.hasTag = true;
             return "hasTagOnly";
         } else if (allocateDelimiter != -1) {
-            this.hasTarget = true;
-            return "hasTargetOnly";
+            this.hasAllocation = true;
+            return "hasAllocationOnly";
         } else {
-            return "hasNoTagAndTarget";
+            return "hasNoTagAndAllocation";
         }
     }
 
@@ -155,7 +155,7 @@ public class StartCommand extends Command {
      * @param allocateDelimiter index where allocate flag is found.
      * @return activity name
      */
-    private String handleTagAndTarget(String parameters, int tagDelimiter, int allocateDelimiter) {
+    private String handleTagAndAllocation(String parameters, int tagDelimiter, int allocateDelimiter) {
         String activityName = "";
         int delimiter = 0;
         if (tagDelimiter < allocateDelimiter) {
@@ -178,7 +178,7 @@ public class StartCommand extends Command {
      * @param delimiter index where tag flag or allocate flag is found.
      * @return activity name.
      */
-    private String handleTagOrTarget(String parameters, int delimiter) {
+    private String handleTagOrAllocation(String parameters, int delimiter) {
         String activityName = parameters.substring(0, delimiter);
         activityName = activityName.trim();
         if (activityName.isEmpty()) {
@@ -211,10 +211,10 @@ public class StartCommand extends Command {
      * @param activityName the string representing activity name.
      */
     private void addActivityToList(String activityName) {
-        if (hasTargetAndTag) {
+        if (hasAllocationAndTag) {
             parseActivityWithBothField(activityName, this.parameters);
-        } else if (hasTarget) {
-            addActivityWithTarget(activityName, this.parameters);
+        } else if (hasAllocation) {
+            addActivityWithAllocation(activityName, this.parameters);
         } else if (hasTag) {
             addActivityWithTag(activityName, this.parameters);
         } else {
@@ -283,7 +283,7 @@ public class StartCommand extends Command {
      * @param activityName the string representing activity name.
      * @param line a line with information about allocated time.
      */
-    private void addActivityWithTarget(String activityName, String line) {
+    private void addActivityWithAllocation(String activityName, String line) {
         int index = line.indexOf("/a");
         String durationInfo = line.substring(index + 2);
         durationInfo = durationInfo.trim();

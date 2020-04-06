@@ -247,7 +247,7 @@ public class Ui {
     }
 
     /**
-     * Method to graph out all the targets.
+     * Method to graph out all the allocations.
      * @param activityList a list of all activities.
      */
     public static void graphAllocation(ActivityList activityList) {
