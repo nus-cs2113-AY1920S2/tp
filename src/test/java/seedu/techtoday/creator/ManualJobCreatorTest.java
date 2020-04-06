@@ -7,51 +7,52 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class ManualArticleCreatorTest {
+class ManualJobCreatorTest {
 
     @Test
-    void getArticle_TestArticle_success() {
+    void getTitle() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String input = "TestArticle";
+        String input = "testJob";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getArticle();
-        assertEquals("TestArticle", actualOutput);
+        String actualOutput = ManualJobCreator.getTitle();
+        assertEquals("testJob", actualOutput);
     }
 
     @Test
-    void getUrl_TestUrl_success() {
+    void getText() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String input = "www.testarticle.com";
+        String input = "Testing text";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getUrl();
-        assertEquals("www.testarticle.com", actualOutput);
+        String actualOutput = ManualJobCreator.getText();
+        assertEquals("Testing text", actualOutput);
     }
 
     @Test
-    void getCategory_default_success() {
+    void getCategory() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String input = "default";
+        String input = "testCategory";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getCategory();
-        assertEquals("default", actualOutput);
+        String actualOutput = ManualJobCreator.getCategory();
+        assertEquals("testCategory", actualOutput);
     }
 
     @Test
-    void getExtract_No_success() {
+    void getExtract() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String input = "no";
+        String input = "testExtract";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getExtract();
-        assertEquals("no", actualOutput);
+        String actualOutput = ManualJobCreator.getExtract();
+        assertEquals("testExtract", actualOutput);
     }
+
 }
