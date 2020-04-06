@@ -758,6 +758,7 @@ This section contains the user stories for the different versions of our product
      
 &nbsp;
 
+
 ### D.2. Set and Reset a budget
 
 1. Set a budget
@@ -829,7 +830,7 @@ This section contains the user stories for the different versions of our product
         Expected: Similar to previous. 
     
     &nbsp;
-    
+
 2. Edit an item
      
     > :bulb: You can run the <code>DISPLAY</code> command to check if the item has been correctly updated.
@@ -864,6 +865,7 @@ This section contains the user stories for the different versions of our product
 <b><a href="#developer-guide">&#129053; back to top</a></b>
      
 &nbsp;    
+
 <!-- @@author Shannonwje -->    
 ### D.4. Mark and Un-mark an item
 
@@ -926,11 +928,11 @@ This section contains the user stories for the different versions of our product
 <b><a href="#developer-guide">&#129053; back to top</a></b>
      
 &nbsp;
-
      
 <!-- @@author -->
     
-### D.5. Find and Delete an item
+  
+### D.4. Find and Delete an item
 
 1. Find an item based on keyword
        
