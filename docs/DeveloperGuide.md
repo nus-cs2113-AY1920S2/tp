@@ -231,6 +231,9 @@ The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
 ![Sequence Diagram](https://github.com/chengTzeNing/tp/blob/DG/docs/images/Sequence%20Diagram.png)
 
+##### Design Consideration
+
+
 ### 4.2.1 `Delete from Available` feature
 
 The `Delete from Available` mechanism is facilitated by `DeleteFromAvailableCommand`, 
