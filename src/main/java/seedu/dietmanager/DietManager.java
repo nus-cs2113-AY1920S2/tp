@@ -47,6 +47,9 @@ public class DietManager {
             } catch (IndexOutOfBoundsException e) {
                 ui.displayIndexOutOfBoundMessage();
             }
+            if (profile.isProfileExist()) {
+                storage.writeProfileFile();
+            }
         }
 
         ui.displayExitMessage();
@@ -65,7 +68,6 @@ public class DietManager {
 
     private static void testAssertions() {
         assert !ui.isExitStatus();
-        assert !profile.isProfileExist();
     }
 
 }
