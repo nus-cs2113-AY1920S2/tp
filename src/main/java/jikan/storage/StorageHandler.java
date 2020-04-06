@@ -26,6 +26,7 @@ public class StorageHandler {
      * @param storage The data file's file path.
      */
     public StorageHandler(Storage storage) {
+        assert storage != null : "Input Storage must not be a null pointer";
         this.storage = storage;
     }
 
@@ -37,6 +38,8 @@ public class StorageHandler {
      * @throws IOException If an error occurs while writing the new list to file.
      */
     public void removeLine(int lineNumber, Storage storage) throws IOException {
+        assert storage != null : "Input Storage must not be a null pointer";
+        assert lineNumber >= 0 : "lineNumber cannot be negative";
         // Read file into list of strings, where each string is a line in the file
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(storage.dataFilePath),
                 StandardCharsets.UTF_8));
@@ -67,6 +70,7 @@ public class StorageHandler {
      * @throws IOException If an error occurs while writing the new list to file.
      */
     public void updateField(ArrayList<Activity> activities, Storage storage) throws IOException {
+        assert storage != null : "Input Storage must not be a null pointer";
         List<String> fileContent = new ArrayList<>();
         for (Activity a : activities) {
             fileContent.add(a.toData());
@@ -82,6 +86,7 @@ public class StorageHandler {
      * @throws IOException If an error occurs while writing the new list to file.
      */
     public void saveNewList(List<String> newList, File dataFile) throws IOException {
+        assert dataFile != null;
         FileOutputStream fileOutputStream = new FileOutputStream(dataFile);
         PrintWriter printWriter = new PrintWriter(fileOutputStream);
 
@@ -101,6 +106,7 @@ public class StorageHandler {
      * @return Index of the removed line.
      */
     private static int removeLineFromList(int lineNumber, List<String> list, int removedIndex) {
+        assert lineNumber >= 0 : "lineNumber cannot be negative";
         // Iterate through the lines
         for (int i = 0; i < list.size(); i++) {
             // If the current line matches the taskId
@@ -124,6 +130,7 @@ public class StorageHandler {
      */
     private static void updateIndexes(List<String> fileContent, int removedIndex, String dataFilePath)
             throws IOException {
+        assert dataFilePath != null : "dataFilePath cannot be null.";
         // Update indexes of subsequent tasks (e.g. if you remove task 2, task 3 becomes task 2)
         for (int i = removedIndex; i < fileContent.size(); i++) {
             // Get current comma separated string
@@ -144,6 +151,7 @@ public class StorageHandler {
      * @return Original string with its index decremented by 1.
      */
     private static String decrementIndex(String currString, int i) {
+        assert i >= 0 : "i cannot be negative.";
 
         // Split into different cells
         List<String> cells = Arrays.asList(currString.split(","));
@@ -165,6 +173,7 @@ public class StorageHandler {
      * @throws IOException If an error occurs while writing to file.
      */
     public static void replaceLine(int lineNumber, String newString, String dataFilePath) throws IOException {
+        assert dataFilePath != null : "dataFilePath cannot be null.";
         // Read file into list of strings, where each string is a line in the file
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(dataFilePath), StandardCharsets.UTF_8));
 
@@ -183,6 +192,7 @@ public class StorageHandler {
      * @param list List of strings.
      */
     private static void replaceLineInList(int lineNumber, String newString, List<String> list) {
+        assert lineNumber >= 0 : "lineNumber cannot be negative";
         // Iterate through the lines
         for (int i = 0; i < list.size(); i++) {
             // If the current line matches the taskId

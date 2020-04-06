@@ -27,8 +27,10 @@ public class Storage {
      * @param dataFilePath The data file's file path.
      */
     public Storage(String dataFilePath) {
+        assert dataFilePath != null : "dataFilePath must not be null";
         this.dataFilePath = dataFilePath;
         dataFile = new File(dataFilePath);
+        assert dataFile instanceof File;
     }
 
     /**
