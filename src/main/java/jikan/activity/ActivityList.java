@@ -173,6 +173,7 @@ public class ActivityList {
             }
             Parser.continuedIndex = -1;
             Parser.resetInfo();
+
         } else {
             Ui.printDivider("Ended: " + Parser.activityName);
             Parser.endTime = LocalDateTime.now();

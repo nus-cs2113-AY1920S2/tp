@@ -34,8 +34,8 @@ public class ContinueCommand extends Command {
             if (index != -1) {
                 // activity is found
                 Parser.activityName = activityList.get(index).getName();
-                Parser.startTime = LocalDateTime.now();
                 Parser.tags = activityList.get(index).getTags();
+                Parser.startTime = LocalDateTime.now();
                 Parser.continuedIndex = index;
                 String line = Parser.activityName + " was continued";
                 Ui.printDivider(line);
