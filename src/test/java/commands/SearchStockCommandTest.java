@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Map.Entry;
 
 import exceptions.InvalidStockCommandException;
 import org.junit.jupiter.api.Test;
@@ -160,37 +163,57 @@ class SearchStockCommandTest {
         assertEquals(createSearchStockOutputCopy(), executeSearch(stock, "potato"));
         assertEquals(createSearchStockOutputCopyTwo(), executeSearch(stock, "to"));
         assertEquals(createSearchStockOutputCopyThree(), executeSearch(stock, "t"));       
-    }
+    }   
+     
+    
     
     /**
      * Utility functions ===========================================================================
      */
+   
     
     /**
-     * Returns a string representation once a StockCommand is executed.
+     * Returns a string representation of output when a search function is executed.
+     * @param keyword
      */
-    @Test
-    public String executeSearch(Stock stock, String keyword) {
+    private String executeSearch(Stock stock, String keyword) {  
         String outputMessage = "";
-        outputMessage += printSearchStockToString(stock, keyword);           
+        boolean hasIngredientWithKeyword = checkIngredientInStock(keyword, stock);
+        
+        if (!hasIngredientWithKeyword) {
+            outputMessage += ("There is no ingredient that matches the keyword given.");
+        } else {
+            outputMessage += printSearchResult(stock, keyword);
+        }
+        
         return outputMessage;
     }
     
     /**
-     * A String representation of printing the ingredients in the stock that contains
-     * a supplied keyword. This method has the same implementation of searchStock() in 
-     * the Stock class, except that this returns a string instead of void.
+     * Returns a string representation of the search results of ingredients within the stock that matches 
+     * the keyword given.
      */
-    private String printStock(Stock stock, String keyword) {
-        String outputMessage = "";
-        int ingredientCounter = 1;
+    private String printSearchResult(Stock stock, String keyword) {
+        String outputMessage = ("Here are the ingredients in the stock that matches the keyword:"
+                + ls
+                + "=============================================================="
+                + "==============================================================");
+    
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(
+                stock.getStock().entrySet());
         
-        for (Map.Entry<String, Pair<Integer, Double>> ingredient : stock.getStock().entrySet()) {
+        int ingredientCounter = 1;
+
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
             String ingredientName = ingredient.getKey();
-            if (ingredientName.contains(keyword)) {
+            
+            if (ingredientName.contains(keyword) || ingredientName
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase())) {
+                
                 int quantity = ingredient.getValue().first();
                 double price = ingredient.getValue().second();
-                outputMessage += (ls 
+                outputMessage += (ls
                         + ingredientCounter 
                         + ". "
                         + "[" 
@@ -201,14 +224,43 @@ class SearchStockCommandTest {
                         + "]"
                         + " " 
                         + ingredientName);
-            } else {
-                continue;
-            }           
-            ingredientCounter++;
+                
+                ingredientCounter++;
+            } 
         }
+
+        outputMessage += (ls
+                + "=============================================================="
+                + "=============================================================="
+                + ls);
         
         return outputMessage;
     }
+    
+    /**
+     * A utility function to check against stock if any of the ingredient within the stock
+     * matches the keyword supplied by the user.
+     */
+    private boolean checkIngredientInStock(String keyword, Stock stock) {
+        boolean hasIngredientWithKeyword = false;
+        
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(
+                stock.getStock().entrySet());
+        
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            
+            if (ingredientName.contains(keyword) || ingredientName
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase())) {
+                
+                hasIngredientWithKeyword = true;
+            }
+        }
+        
+        return hasIngredientWithKeyword;
+    }
+    
     
     private String createSearchStockOutputCopy() {
         String outputMessage = "";
@@ -271,27 +323,7 @@ class SearchStockCommandTest {
         
         return outputMessage;
     }
-    
-    /**
-     * A String representation of printing the stock as to when user input 'search stock'.
-     */
-    private String printSearchStockToString(Stock stock, String keyword) {
-        String outputMessage = "";
-        outputMessage += ("Here are the ingredients in the stock that matches the keyword:"
-                + ls)
-                + ("============================================================"
-                + "================================================================");
-        
-        outputMessage += printStock(stock, keyword) 
-                + ls;
-        
-        outputMessage += ("============================================================"
-                + "================================================================"
-                + ls);
-        
-        return outputMessage;
-    }
-    
+       
     /**
      * A utility function of similar implementation of parseIntoSearchKeyword()
      * in SearchStockCommand.                                      

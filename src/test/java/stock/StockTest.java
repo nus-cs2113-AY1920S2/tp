@@ -6,9 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Map.Entry;
 
 import ingredient.Ingredient;
 import exceptions.IngredientNotFoundException;
@@ -116,17 +121,50 @@ class StockTest {
     @Test
     public void list_ListIngredient_ListInSameOrder() {
         Stock stock = new Stock();
-        final Stock stockCopyB = new Stock();
+        final Stock stockCopyG = new Stock();
         
         stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
         stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
         stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         
-        stockCopyB.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
-        stockCopyB.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
-        stockCopyB.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        stockCopyG.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stockCopyG.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockCopyG.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         
-        assertTrue(areEqualMap(stock.getStock(), stockCopyB.getStock()));
+        assertTrue(areEqualMap(stock.getStock(), stockCopyG.getStock()));
+    }
+    
+    @Test
+    public void search_searchIngredientInStock_IngredientIsFoundOutput() {
+        Stock stock = new Stock();
+        
+        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        
+        assertEquals(createSearchStockOutputCopyOne(), executeSearch(stock, "tomato"));
+    }
+    
+    @Test
+    public void search_searchIngredientInStock_IngredientNotFoundOutput() {
+        Stock stock = new Stock();
+        
+        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        
+        assertEquals(createSearchStockOutputCopyTwo(), executeSearch(stock, "apple"));
+    }
+    
+    @Test
+    public void search_searchIngredientInStock_testCaseSensitivity() {
+        Stock stock = new Stock();
+        
+        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        
+        assertEquals(createSearchStockOutputCopyOne(), executeSearch(stock, "TOMATO"));
     }
     
     @Test 
@@ -141,9 +179,9 @@ class StockTest {
         
         String stockCopyOutput = "1. [10][$1.00] chicken"
                 + ls
-                + "2. [0][$0.50] tomato"
+                + "2. [1][$0.50] rice"
                 + ls
-                + "3. [1][$0.50] rice"
+                + "3. [0][$0.50] tomato"
                 + ls;
  
         assertEquals(printStockOutput(stock), stockCopyOutput);
@@ -161,9 +199,9 @@ class StockTest {
 
         String stockCopyOutput = "1. [10][$1.00] chicken"
                 + ls
-                + "2. [0][$0.50] tomato"
+                + "2. [1][$0.50] rice"
                 + ls
-                + "3. [1][$0.50] rice"
+                + "3. [0][$0.50] tomato"
                 + ls;
  
         assertEquals(printStockOutput(stock), stockCopyOutput);
@@ -181,6 +219,121 @@ class StockTest {
      * Utility functions ====================================================================================.
      */
     
+    private String createSearchStockOutputCopyOne() {
+        String outputMessage = "";
+        outputMessage += ("Here are the ingredients in the stock that matches the keyword:"
+                + ls)
+                + ("============================================================"
+                + "================================================================"
+                + ls);
+        
+        outputMessage += ("1. [3][$0.50] tomato"
+                + ls); 
+                
+        outputMessage += ("============================================================"
+                + "================================================================"
+                + ls);
+        
+        return outputMessage;
+    }
+    
+    private String createSearchStockOutputCopyTwo() {
+        String outputMessage = "";
+        outputMessage += ("There is no ingredient that matches the keyword given.");
+        
+        return outputMessage;
+    }
+    
+    /**
+     * Returns a string representation of output when a search function is executed.
+     * @param keyword
+     */
+    private String executeSearch(Stock stock, String keyword) {  
+        String outputMessage = "";
+        boolean hasIngredientWithKeyword = checkIngredientInStock(keyword, stock);
+        
+        if (!hasIngredientWithKeyword) {
+            outputMessage += ("There is no ingredient that matches the keyword given.");
+        } else {
+            outputMessage += printSearchResult(stock, keyword);
+        }
+        
+        return outputMessage;
+    }
+    
+    /**
+     * Returns a string representation of the search results of ingredients within the stock that matches 
+     * the keyword given.
+     */
+    private String printSearchResult(Stock stock, String keyword) {
+        String outputMessage = ("Here are the ingredients in the stock that matches the keyword:"
+                + ls
+                + "=============================================================="
+                + "==============================================================");
+    
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(
+                stock.getStock().entrySet());
+        
+        int ingredientCounter = 1;
+
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            
+            if (ingredientName.contains(keyword) || ingredientName
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase())) {
+                
+                int quantity = ingredient.getValue().first();
+                double price = ingredient.getValue().second();
+                outputMessage += (ls
+                        + ingredientCounter 
+                        + ". "
+                        + "[" 
+                        + quantity 
+                        + "]"
+                        + "[$" 
+                        + String.format("%.2f", price) 
+                        + "]"
+                        + " " 
+                        + ingredientName);
+                
+                ingredientCounter++;
+            } 
+        }
+
+        outputMessage += (ls
+                + "=============================================================="
+                + "=============================================================="
+                + ls);
+        
+        return outputMessage;
+    }
+    
+    /**
+     * A utility function to check against stock if any of the ingredient within the stock
+     * matches the keyword supplied by the user.
+     */
+    private boolean checkIngredientInStock(String keyword, Stock stock) {
+        boolean hasIngredientWithKeyword = false;
+        
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(
+                stock.getStock().entrySet());
+        
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            
+            if (ingredientName.contains(keyword) || ingredientName
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase())) {
+                
+                hasIngredientWithKeyword = true;
+            }
+        }
+        
+        return hasIngredientWithKeyword;
+    }
+    
+    
     private Map<String, Pair<Integer, Double>> createStockCopy() {
         Map<String, Pair<Integer, Double>> stockCopy = new HashMap<>();
         stockCopy.put("tomato", Pair.of(1, 0.40));
@@ -197,7 +350,20 @@ class StockTest {
         String output = "";
         int ingredientCounter = 1;
         
-        for (Map.Entry<String, Pair<Integer, Double>> ingredient : stock.getStock().entrySet()) {
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.getStock().entrySet());
+        
+        Collections.sort(tempList, new Comparator<Entry<String, Pair<Integer, Double>>>() {
+            @Override
+            public int compare(Entry<String, Pair<Integer, Double>> firstEntry, 
+                    Entry<String, Pair<Integer, Double>> secondEntry) {
+                
+                int firstEntryQuantity = firstEntry.getValue().first();
+                int secondEntryQuantity = secondEntry.getValue().first();
+                return secondEntryQuantity - firstEntryQuantity;
+            }
+        }); 
+        
+        for (Map.Entry<String, Pair<Integer, Double>> ingredient : tempList) {
             String ingredientName = ingredient.getKey();
             int quantity = ingredient.getValue().first();
             double price = ingredient.getValue().second();
@@ -231,6 +397,5 @@ class StockTest {
      
         return firstMap.entrySet().stream()
           .allMatch(e -> e.getValue().equals(secondMap.get(e.getKey())));
-    }      
-    
+    } 
 }
