@@ -47,6 +47,12 @@ tp -|||- N -|||-  -|||- 0
 --- FILE ---
 save.txt -|||- data/files/z1meeDWHnD9GGk3t
 --- END FILE ---
+read handouts -|||- N -|||- 28/03/2020 11:59PM -|||- 0
+--- FILE ---
+--- END FILE ---
+write -|||- N -|||- 07/04/2020 11:59PM -|||- 0
+--- FILE ---
+--- END FILE ---
 --- END TASK ---
 Lecture -|||- 1
 --- TASK ---
