@@ -1,14 +1,19 @@
 package reservation;
 
-import java.time.LocalDate;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
+import static utils.Constants.LARGE_TABLE;
+import static utils.Constants.LOG_FOLDER;
+import static utils.Constants.MEDIUM_TABLE;
 import static utils.Constants.NOT_SERVED;
 import static utils.Constants.SMALL_TABLE;
-import static utils.Constants.MEDIUM_TABLE;
-import static utils.Constants.LARGE_TABLE;
-
 
 /** Reservation of the restaurant. */
 public class Reservation {
@@ -23,6 +28,9 @@ public class Reservation {
     private Character tableSize;
     
     private final String ls = System.lineSeparator();
+
+    private static final Logger LOGGER = Logger.getLogger(Reservation.class.getName());
+    private static final String FILE_PATH = LOG_FOLDER + "Reservation.log";
 
     /**
      * Defines the constructor for a Reservation.
@@ -39,6 +47,22 @@ public class Reservation {
         this.status = NOT_SERVED;
         
         setTableSize(this.numberOfGuests);
+    }
+
+    /**
+     * Sets up the logger. 
+     * Calls once at the start of the program.
+     *
+     * @throws IOException When logger set up failed.
+     */
+    public static void setLogger() throws IOException {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.ALL);
+
+        FileHandler fileHandler = new FileHandler(FILE_PATH, true); // let it append
+        fileHandler.setLevel(Level.INFO);
+        fileHandler.setFormatter(new SimpleFormatter());
+        LOGGER.addHandler(fileHandler);
     }
 
     /**

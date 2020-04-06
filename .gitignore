@@ -3,3 +3,4 @@ build/
 .idea/
 .gradle/
 report.txt
+logs/

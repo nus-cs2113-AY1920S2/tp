@@ -4,7 +4,35 @@ import exceptions.ReservationException;
 import reservation.ReservationList;
 import ui.Ui;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+import static utils.Constants.LOG_FOLDER;
+
 public abstract class ReservationCommand {
+    private static final Logger LOGGER = Logger.getLogger(ReservationCommand.class.getName());
+    private static final String FILE_PATH = LOG_FOLDER + "ReservationCommand.log";
+
+    /**
+     * Sets up the logger. 
+     * Calls once at the start of the program.
+     * 
+     * @throws IOException When logger set up failed.
+     */
+    public static void setLogger() throws IOException {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.ALL);
+
+        FileHandler fileHandler = new FileHandler(FILE_PATH, true); // let it append
+        fileHandler.setLevel(Level.INFO);
+        fileHandler.setFormatter(new SimpleFormatter());
+        LOGGER.addHandler(fileHandler);
+    }
+    
     public abstract void execute(ReservationList reservations, Ui ui);
     
     protected abstract void parseInput(String description) throws ReservationException;

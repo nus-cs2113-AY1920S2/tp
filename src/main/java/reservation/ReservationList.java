@@ -1,16 +1,26 @@
 package reservation;
 
-import exceptions.ReservationException;
 import exceptions.ReservationStatusException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import static utils.Constants.INVALID;
+import static utils.Constants.LOG_FOLDER;
 import static utils.Constants.SERVED;
+
 
 /** Contains the reservation list e.g., it has operations to add/delete/list reservations in the list. */
 public class ReservationList {
+    private static final Logger LOGGER = Logger.getLogger(ReservationList.class.getName());
+    private static final String FILE_PATH = LOG_FOLDER + "ReservationList.log";
+    
     private List<Reservation> reservations;
 
     /**
@@ -30,12 +40,31 @@ public class ReservationList {
     }
 
     /**
+     * Sets up the logger. 
+     * Calls once at the start of the program.
+     *
+     * @throws IOException When logger set up failed.
+     */
+    public static void setLogger() throws IOException {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.ALL);
+
+        FileHandler fileHandler = new FileHandler(FILE_PATH, true); // let it append
+        fileHandler.setLevel(Level.INFO);
+        fileHandler.setFormatter(new SimpleFormatter());
+        LOGGER.addHandler(fileHandler);
+    }
+
+    /**
      * Adds the reservation into the list.
      * 
      * @param reservation Reservation that needs to be added into the list.
      */
     public void addReservation(Reservation reservation) {
+        assert reservation != null : "Invalid Reservation!";
+        
         reservations.add(reservation);
+        LOGGER.info(String.format("Add Reservation[%d] to the list.", reservation.getReservationNumber()));
     }
     
     /**
@@ -53,6 +82,7 @@ public class ReservationList {
         assert !reservation.getStatus().equals(INVALID) : "Reservation Status Exception";
         
         reservation.setStatus(SERVED);
+        LOGGER.info(String.format("Mark Reservation[%d] as Served.", reservationNumber));
     }
 
     /**
@@ -75,6 +105,7 @@ public class ReservationList {
                 : "Reservation Status Exception";
         
         reservation.setStatus(INVALID);
+        LOGGER.info(String.format("Void Reservation[%d] as Invalid.", reservationNumber));
     }
 
     /**
