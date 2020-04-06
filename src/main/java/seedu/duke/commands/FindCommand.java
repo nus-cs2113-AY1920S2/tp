@@ -26,10 +26,18 @@ public class FindCommand extends Command {
             + System.lineSeparator() + "|| Parameters: FIND [KEYWORD]"
             + System.lineSeparator() + "|| Example: FIND apples" + System.lineSeparator();
 
+    /**
+     * Constructs the find command with the user-specified keyword.
+     *
+     * @param keyword The keyword specified by the user.
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Executes the command which displays to the user the matching results, if any.
+     */
     @Override
     public void execute() {
         ArrayList<Item> filteredItems = new ArrayList<>();

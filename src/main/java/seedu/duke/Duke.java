@@ -62,7 +62,9 @@ public class Duke {
     //@@author
 
     //@@author trishaangelica
-    /** Runs the program until termination.  */
+    /**
+     * Runs the program until termination.
+     */
     public void run() {
         start();
         runCommandLoopUntilExitCommand();
@@ -83,7 +85,9 @@ public class Duke {
     //@@author
 
     //@@author Shannonwje
-    /** Prints the Goodbye message and exits. */
+    /**
+     * Prints the goodbye message and exits.
+     */
     private void exit() {
         ui.bidFarewell();
         LOGGER.log(Level.INFO,"Application shutting down");
@@ -92,7 +96,9 @@ public class Duke {
     //@@author
 
     //@@author kokjoon97
-    /** Reads the user command and executes it, until the user issues the exit command.  */
+    /**
+     * Reads user commands and executes them, until the user issues the exit command.
+     */
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
