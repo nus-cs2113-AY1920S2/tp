@@ -36,23 +36,24 @@ HiddenOutside ..> Logic
 LogicManager .up.|> Logic
 
 PatientCommandParser .down.> PatientCommand : creates >
-AppointmentParser .down.> AppointmentCommand : creates >
-PatientRecordParser .down.> PatientRecordCommand : creates >
-
+AppointmentParser ....down.> AppointmentCommand : creates >
+PatientRecordParser .down.> PatientRecordCommand: creates >
+PatientRecordParser ..left[hidden].>PatientCommandParser
 
 PatientCommandParser ..up|> Parser
 AppointmentParser ..up|> Parser
 PatientRecordParser ..up|> Parser
-LogicManager .right.> Command : executes >
-
-LogicManager --> Model
-Command .right.> Model
+LogicManager ..right.> Command : executes >
 
 Logic ..> CommandResult
+CommandResult-left[hidden]-LogicManager
 LogicManager .down.> CommandResult
-Command .up.> CommandResult
-PatientCommand .up.|> Command
+Command ..up.> CommandResult
+PatientCommand ......up.|> Command
 AppointmentCommand .up.|> Command
-PatientRecordCommand .up.|> Command
-CommandResult -[hidden]-> Parser
+PatientRecordCommand ....up.|> Command
+CommandResult -[hidden]->Parser
+
+Command .right.> Model
+LogicManager -----> Model
 @enduml

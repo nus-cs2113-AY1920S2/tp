@@ -6,6 +6,7 @@ import seedu.happypills.ui.Messages;
 import java.util.HashMap;
 import java.util.Map;
 
+//@@author itskesin
 public class PatientMap {
 
     private final Map<String, Patient> argMultimap = new HashMap<String, Patient>();
