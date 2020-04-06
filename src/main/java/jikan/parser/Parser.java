@@ -165,7 +165,7 @@ public class Parser {
                         + "If you'd like to graph by tags, enter the command <graph tags>.");
             } catch (ExtraParametersException e) {
                 Ui.printDivider("Extra parameters or invalid format detected!\n"
-                        + "Use activities / tags / targets to view the respective graphs.");
+                        + "Use activities / tags / allocations to view the respective graphs.");
             }
             break;
         case "goal":

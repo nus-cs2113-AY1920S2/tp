@@ -34,19 +34,23 @@ public class GraphCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            if (inputs[0].equals("targets")) {
-                Ui.graphTargets(activityList);
-            } else if (inputs[0].equals("tags")) {
+            switch (inputs[0]) {
+            case "allocations":
+                Ui.graphAllocation(lastShownList);
+                break;
+            case "tags":
                 graphTags();
-            } else if (inputs[0].equals("activities")) {
+                break;
+            case "activities":
                 graphDuration();
-            } else {
+                break;
+            default:
                 Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
             }
         } catch (NumberFormatException | InvalidGraphCommandException e) {
             Ui.printDivider("Please input an integer for the time interval.");
         } catch (MissingParametersException e) {
-            Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
+            Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
         }
 
     }

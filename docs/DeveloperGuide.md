@@ -287,7 +287,7 @@ E.g. if 3 activities in the `lastshownlist` are tagged `CS2113`, the durations o
 * `extractTags` loops through the tags of that activity. Tag is added to the `tags` if it is not found. Else, the duration of the activity is added to the corresponding tag in `tags`.
 * `tags` and `interval` (how many minutes each point in the graph represents) is passed to the method printTagGraphs in Ui to print the graph.
 
-**Graph activities**
+**Graph activities**  
 This displays a bar graph of the durations of each activity in the `lastShownList`.
 * If the user indicated `activities`, `GraphCommand` will call it's own `graphDuration` method.
 * `graphDuration` calls `printActivityGraph` of the Ui class and passes the `interval` parameter, which is how many minutes each point in the graph represents.
