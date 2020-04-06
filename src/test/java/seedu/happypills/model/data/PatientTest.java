@@ -52,17 +52,17 @@ class PatientTest {
     }
 
 
-    /*@Test
+    @Test
     void testToString() {
-        String correctOutput = "        Name : Eve\n"
-                + "        NRIC : S9876543F\n"
-                + "        Phone Number : 91265432\n"
-                + "        DOB : 22/08/1996\n"
-                + "        Blood Type :  O+\n"
-                + "        Allergies : Peanuts\n"
-                + "        Remarks : Friend with Mallory\n";
+        String correctOutput = "        Name : " + "Eve" + "\n"
+                + "        NRIC : " + "S9876543F" + "\n"
+                + "        Phone Number : " + 91265432 + "\n"
+                + "        DOB : " + "22/08/1996" + "\n"
+                + "        Blood Type : " + "O+" + "\n"
+                + "        Allergies : " + "Peanuts" + "\n"
+                + "        Remarks : " + "Friend with Mallory" + "\n";
 
-        assertEquals(correctOutput, patientOne);
-    }*/
+        assertEquals(correctOutput, patientOne.toString());
+    }
 
 }
