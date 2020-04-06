@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NoteTest {
 
     @Test
-    void constructorTest () {
+    void constructorTest() {
         Note note = new Note("testTitle", "testExtract", "testEpoch");
         assertEquals(note.title, "testTitle");
         assertEquals(note.extract, "testExtract");

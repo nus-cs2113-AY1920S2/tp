@@ -1,6 +1,5 @@
 package seedu.techtoday.ui;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -10,9 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UiTest {
 
-    @BeforeEach
-    void setUp() {
-    }
+
 
     @Test
     void getCommand_DeleteArticle1_success() {
@@ -30,5 +27,5 @@ class UiTest {
         System.setIn(in);
         String actualOutput = Ui.getCommand();
         assertEquals("delete", actualOutput);
-        }
+    }
 }
