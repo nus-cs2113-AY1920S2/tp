@@ -102,16 +102,20 @@ public class Parser {
             break;
         //@@author
 
+        //JLoh579
         case ExitCommand.COMMAND_WORD:
-            createExitCommand();
+            createExitCommand(arguments);
             break;
+        //@@author
 
         //@@author trishaangelica
-        case HelpCommand.COMMAND_WORD: //fall through
+        case HelpCommand.COMMAND_WORD:
+            createHelpCommand(arguments);
+            break;
             // @@author
 
         default:
-            createHelpCommand();
+            newCommand = new HelpCommand();
         }
         assert newCommand != null : "newCommand should have been initialised";
         return newCommand;
@@ -659,15 +663,33 @@ public class Parser {
     /**
      * Initialises the HelpCommand.
      */
-    private void createHelpCommand() {
-        newCommand = new HelpCommand();
+    private void createHelpCommand(String arguments) {
+        if (arguments != null) {
+            LOGGER.log(Level.WARNING,
+                    "(Help command) Rejecting user command, should not have arguments.");
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "For the help command, just input \"HELP\".");
+        } else {
+            newCommand = new HelpCommand();
+        }
     }
 
     /**
      * Initialises the ExitCommand.
      */
-    private void createExitCommand() {
-        newCommand = new ExitCommand();
+    private void createExitCommand(String arguments) {
+        if (arguments != null) {
+            LOGGER.log(Level.WARNING,
+                    "(Exit command) Rejecting user command, should not have arguments.");
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To exit SHOCO, just input \"BYE\".");
+        } else {
+            newCommand = new ExitCommand();
+        }
     }
 
     //@@author kokjoon97

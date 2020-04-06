@@ -17,7 +17,8 @@
         _______________________/
           /\              /\
           \/              \/
- Type 'HELP' to know more about the feature in SHOCO ^^
+
+ Type 'HELP' to know more about the features of SHOCO ^^
 
 Enter command:
 
@@ -376,6 +377,11 @@ Your shopping list has been cleared.
 
 Enter command:
 
+Invalid command.
+For the help command, just input "HELP".
+
+Enter command:
+
 ADD: Adds an item to the list.
 || Parameters: ADD i/[DESCRIPTION] p/[PRICE]
 || Example: ADD i/apple p/3.00 q/2
@@ -428,6 +434,11 @@ BYE: Exits the program.
 || Example: BYE
 
 
+
+Enter command:
+
+Invalid command.
+To exit SHOCO, just input "BYE".
 
 Enter command:
 
