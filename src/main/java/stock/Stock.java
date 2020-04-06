@@ -102,14 +102,28 @@ public class Stock {
     }
     
     /**
-     * Search the current stock against a given keyword and lists all ingredients
-     * that contains the keyword.
+     * Searches the current stock against a given keyword and lists all ingredients
+     * that contains the keyword. 
      */
-    public void searchStock(String keyword) {
+    public void searchStock(String keyword) {       
+        boolean hasIngredientWithKeyword = checkIngredientInStock(keyword);
+        
+        if (!hasIngredientWithKeyword) {
+            System.out.println("There is no ingredient that matches the keyword given.");
+        } else {
+            printSearchResult(keyword);
+        }
+    }
+    
+    /**
+     * A utility function to print the search results of ingredients within the stock that matches 
+     * the keyword given.
+     */
+    private void printSearchResult(String keyword) {
         System.out.println("Here are the ingredients in the stock that matches the keyword:");
         System.out.println("============================================================"
                 + "================================================================");
-        
+    
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet());
         
         int ingredientCounter = 1;
@@ -117,7 +131,10 @@ public class Stock {
         for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
             String ingredientName = ingredient.getKey();
             
-            if (ingredientName.contains(keyword)) {
+            if (ingredientName.contains(keyword) || ingredientName
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase())) {
+                
                 int quantity = ingredient.getValue().first();
                 double price = ingredient.getValue().second();
                 System.out.println(ingredientCounter 
@@ -130,16 +147,36 @@ public class Stock {
                         + "]"
                         + " " 
                         + ingredientName);
-           
+                
                 ingredientCounter++;
-            } else {
-                continue;
+            } 
+        }
+
+        System.out.println("============================================================"
+                + "================================================================");
+    }
+    
+    /**
+     * A utility function to check against stock if any of the ingredient within the stock
+     * matches the keyword supplied by the user.
+     */
+    private boolean checkIngredientInStock(String keyword) {
+        boolean hasIngredientWithKeyword = false;
+        
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet());
+        
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            
+            if (ingredientName.contains(keyword) || ingredientName
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase())) {
+                
+                hasIngredientWithKeyword = true;
             }
         }
         
-        System.out.println("============================================================"
-                + "================================================================"); 
-        
+        return hasIngredientWithKeyword;
     }
     
     /**
