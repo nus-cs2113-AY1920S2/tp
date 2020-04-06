@@ -79,7 +79,7 @@ It is responsible for:
 
 The rest of the App consists of four components.
 
-- `UI`: The UI of the App.
+- `TextUi`: The UI of the App.
 
 - `Logic`: The command executor.
 
@@ -89,7 +89,7 @@ The rest of the App consists of four components.
 
 
 The architecture of HappyPills is broken down into seven main classes:
-* `Ui`: This class handles the User Interface of the application.
+* `TextUi`: This class handles the User Interface of the application.
 * `Parser`: This class handles the parsing and handling of user commands.
 * `Command`: This class handles all the commands the application has.
 * `Storage`: This class reads and writes data to and from text files for future use.
