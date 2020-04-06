@@ -35,7 +35,6 @@ Lab -|||- 0
 --- TASK ---
 tp -|||- N -|||-  -|||- 0
 --- FILE ---
-save.txt -|||- data/files/z1meeDWHnD9GGk3t
 --- END FILE ---
 read handouts -|||- N -|||- 28/03/2020 11:59PM -|||- 0
 --- FILE ---
@@ -64,6 +63,21 @@ Lecture -|||- 1
 watch webcast -|||- N -|||-  -|||- 1
 --- FILE ---
 --- END FILE ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+--- END CATEGORY ---
+LAK3202 -|||- Korean 4 -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
 --- END TASK ---
 Tutorial -|||- 2
 --- TASK ---

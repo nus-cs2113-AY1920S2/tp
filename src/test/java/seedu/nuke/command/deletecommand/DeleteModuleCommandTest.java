@@ -36,7 +36,7 @@ public class DeleteModuleCommandTest {
         DirectoryTraverser.setCurrentLevelToRoot();
 
         CommandResult result = Executor.executeCommand("addm CS2113");
-        result = Executor.executeCommand ("addm CS3235");
+        result = Executor.executeCommand("addm CS3235");
 
         ArrayList<Module> modules = new ArrayList<>();
         try {
