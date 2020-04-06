@@ -8,6 +8,7 @@ import seedu.happypills.logic.commands.patientcommands.PatientCommand;
 import seedu.happypills.logic.commands.patientcommands.IncorrectPatientCommand;
 import seedu.happypills.logic.commands.patientcommands.ListPatientCommand;
 import seedu.happypills.logic.commands.patientcommands.GetPatientCommand;
+import seedu.happypills.logic.commands.patientrecordcommands.IncorrectPatientRecordCommand;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
@@ -15,6 +16,7 @@ import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
 
+//@@author NyanWunPaing
 /**
  * Parses user input.
  */
@@ -41,7 +43,7 @@ public class PatientParser {
         userCommand = trimArray(userCommand);
 
         if (userCommand[0].trim().equalsIgnoreCase("list")) {
-            return new ListPatientCommand();
+            return parsePatientList(userCommand, isCommandLengthOne);
         } else if (userCommand[0].trim().equalsIgnoreCase("add")) {
             return parsePatientAdd(userCommand, isCommandLengthOne);
         } else if (userCommand[0].trim().equalsIgnoreCase("get")) {
@@ -53,6 +55,14 @@ public class PatientParser {
         } else {
             throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    private static PatientCommand parsePatientList(String[] userCommand, boolean isCommandLengthOne)
+            throws HappyPillsException {
+        if (userCommand.length != 2 || isCommandLengthOne) {
+            throw new HappyPillsException(Messages.MESSAGE_INCORRECT_INPUT_FORMAT);
+        }
+        return new ListPatientCommand();
     }
 
     private static String[] trimArray(String[] array) {
@@ -81,7 +91,7 @@ public class PatientParser {
 
     private static PatientCommand parsePatientAdd(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
-        if (userCommand.length == 1 || isCommandLengthOne) {
+        if (userCommand[1].isEmpty() || isCommandLengthOne) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_DETAILS_NOT_PROVIDED);
         }
         return parseAddCommand(userCommand[2]);
@@ -148,11 +158,11 @@ public class PatientParser {
         String[] parseInput = {"", "", "", "", "", "NIL", "NIL"};
 
         for (String detail : details) {
-            if (detail.startsWith(NAME_TAG) && isInputEmpty(parseInput[0])) {
+            if (detail.startsWith(NAME_TAG) && isValidNric(parseInput[0],detail)) {
                 parseInput[0] = detail.substring(1).trim();
             } else if (detail.startsWith(NRIC_TAG) && isInputEmpty(parseInput[1])) {
                 parseInput[1] = detail.substring(2).trim().toUpperCase();
-            } else if (detail.startsWith(PHONE_NUMBER_TAG) && isValidPhoneNum(parseInput[1], detail)) {
+            } else if (detail.startsWith(PHONE_NUMBER_TAG) && isValidPhoneNum(parseInput[2], detail)) {
                 parseInput[2] = detail.substring(1).trim();
             } else if (detail.startsWith(DATE_OF_BIRTH_TAG) && isValidDateOfBirth(parseInput[3],detail)) {
                 parseInput[3] = detail.substring(3).trim();
@@ -168,54 +178,54 @@ public class PatientParser {
         }
 
         while (hasMissingFields(parseInput)) {
-            System.out.println(parseInput[1]);
-            System.out.println(Checker.isValidNric(parseInput[1]));
             printMissingFields(parseInput);
-            String input = promptUser().trim();
+            String input = readUserInput().trim();
             if (input.equalsIgnoreCase("clear")) {
-                return new IncorrectPatientCommand(TextUi.DIVIDER + "\n    Command has been aborted.\n"
-                        + TextUi.DIVIDER);
+                throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
             String[] updates = checkInput(input);
             updates = trimArray(updates);
-
-            for (String update : updates) {
-                if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
-                    parseInput[0] = update.substring(1).trim();
-                } else if (update.trim().startsWith("ic") && (parseInput[1].equalsIgnoreCase(""))
-                        || !checkNric(parseInput[1].trim())) {
-                    parseInput[1] = update.trim().substring(2).toUpperCase().trim();
-                } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
-                        || !isInteger(parseInput[2].trim()) || !checkPhoneNum(parseInput[2].trim())))) {
-                    parseInput[2] = update.substring(1).trim();
-                } else if (update.trim().startsWith("dob") && (parseInput[3].equalsIgnoreCase("")
-                        || !checkDate(parseInput[3].trim()))) {
-                    parseInput[3] = update.trim().substring(3).trim();
-                } else if (update.trim().startsWith("b") && (parseInput[4].equalsIgnoreCase(""))
-                        || !checkType(parseInput[4].trim())) {
-                    parseInput[4] = update.trim().substring(1).trim();
-                }
-            }
+            updateInput(parseInput, updates);
         }
 
-        boolean userConformation = false;
+        boolean hasConfirmation = false;
         System.out.println(promptConformation(parseInput));
-        while (!userConformation) {
-            String conformation = promptUser();
-            System.out.println(TextUi.DIVIDER);
-            if (conformation.equalsIgnoreCase("y")) {
-                userConformation = true;
-            } else if (conformation.equalsIgnoreCase("n")) {
-                return new IncorrectPatientCommand("    The current information is not added.\n"
-                        + "    Please add all the details again! Thank you.\n"
-                        + TextUi.DIVIDER);
+
+        while (!hasConfirmation) {
+            String confirmation = readUserInput();
+            boolean isConfirmed = confirmation.equalsIgnoreCase("y");
+            boolean isNotConfirmed = confirmation.equalsIgnoreCase("n");
+            if (isConfirmed) {
+                hasConfirmation = true;
+            } else if (isNotConfirmed) {
+                return new IncorrectPatientCommand(Messages.MESSAGE_PATIENT_RECORD_NOT_ADDED);
             } else {
-                System.out.println("    Please input [y] for yes or [n] for no");
+                System.out.println(Messages.MESSAGE_USER_CONFIRMATION);
             }
         }
-        return new AddPatientCommand(parseInput[0].trim(), parseInput[1].toUpperCase().trim(),
-                Integer.parseInt(parseInput[2].trim()), parseInput[3].trim(), parseInput[4].trim(),
-                parseInput[5].trim(), parseInput[6].trim());
+        return new AddPatientCommand(parseInput[0], parseInput[1].toUpperCase(),
+                Integer.parseInt(parseInput[2]), parseInput[3], parseInput[4],
+                parseInput[5], parseInput[6]);
+    }
+
+    private static void updateInput(String[] parseInput, String[] updates) {
+        for (String update : updates) {
+            if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
+                parseInput[0] = update.substring(1).trim();
+            } else if (update.trim().startsWith("ic") && (parseInput[1].equalsIgnoreCase(""))
+                    || !Checker.isValidNric(parseInput[1].trim())) {
+                parseInput[1] = update.trim().substring(2).toUpperCase().trim();
+            } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
+                    || !Checker.isInteger(parseInput[2].trim()) || !Checker.isValidPhoneNum(parseInput[2].trim())))) {
+                parseInput[2] = update.substring(1).trim();
+            } else if (update.trim().startsWith("dob") && (parseInput[3].equalsIgnoreCase("")
+                    || !Checker.isValidDate(parseInput[3].trim()))) {
+                parseInput[3] = update.trim().substring(3).trim();
+            } else if (update.trim().startsWith("b") && (parseInput[4].equalsIgnoreCase(""))
+                    || !Checker.isValidBloodType(parseInput[4].trim())) {
+                parseInput[4] = update.trim().substring(1).trim();
+            }
+        }
     }
 
     private static String[] checkInput(String content) {
@@ -229,74 +239,12 @@ public class PatientParser {
         return details;
     }
 
-    private static String promptUser() {
+    private static String readUserInput() {
         System.out.println(TextUi.DIVIDER);
         Scanner in = HappyPills.scanner;
         String reInput = in.nextLine();
+        System.out.println(TextUi.DIVIDER);
         return reInput;
-    }
-
-    /**
-     * Check if the String can be converted to Integer.
-     *
-     * @param input value to check if is integer
-     * @return true if is an integer, false otherwise
-     */
-    public static boolean isInteger(String input) {
-        try {
-            int x = Integer.parseInt(input);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
-     * To check format for phone.
-     *
-     * @param phoneNum details of time
-     * @return boolean true if the time format is correct otherwise false
-     */
-    static boolean checkPhoneNum(String phoneNum) {
-        String pattern = "([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
-        return phoneNum.matches(pattern);
-    }
-
-    /**
-     * To check format for nric.
-     *
-     * @param nric details of nric
-     * @return boolean true if the time format is correct otherwise false
-     */
-    static boolean checkNric(String nric) {
-        String pattern = "([S-T][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z])";
-        return nric.matches(pattern);
-    }
-
-    /**
-     * To check format for nric.
-     *
-     * @param nric details of nric
-     * @return boolean true if the time format is correct otherwise false
-     */
-    static boolean checkType(String nric) {
-        String pattern = "([A|B|AB|O][+-])";
-        return nric.matches(pattern);
-    }
-
-    /**
-     * To check format for date.
-     *
-     * @param date details of date
-     * @return boolean true if the date format is correct otherwise false
-     */
-    static boolean checkDate(String date) {
-        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
-        boolean flag = false;
-        if (date.matches(pattern)) {
-            flag = true;
-        }
-        return flag;
     }
 
     /**

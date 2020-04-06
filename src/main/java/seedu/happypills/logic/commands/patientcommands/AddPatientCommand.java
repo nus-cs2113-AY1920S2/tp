@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+//@@author NyanWunPaing
 public class AddPatientCommand extends PatientCommand {
     protected String name;
     protected String nric;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+//@@author NyanWunPaing
 public class PatientRecordMap {
     private final Map<String, ArrayList<PatientRecord>> argMultimap = new HashMap<String, ArrayList<PatientRecord>>();
 

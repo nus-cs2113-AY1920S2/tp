@@ -57,5 +57,6 @@ public class Messages {
     public static final String MESSAGE_NAME_FORMAT = "    /n[NAME]";
     public static final String MESSAGE_PHONE_NUMBER_FORMAT = "    /p[PHONE] only number and must be 8 digit";
     public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "    /b[BLOOD TYPE]";
+    public static final String MESSAGE_INCORRECT_INPUT_FORMAT = "    Incorrect input format. Sorry please try again";
 }
 

@@ -15,6 +15,7 @@ import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
 
+//@@author NyanWunPaing
 /**
  * This class is used to parse the user input for patient record commands.
  */
@@ -219,15 +220,15 @@ public class PatientRecordParser {
                     || !Checker.isValidNric(parseInput[0]))) {
                 parseInput[0] = update.substring(2).toUpperCase().trim();
             } else if (update.startsWith(SYMPTOM_TAG) && (parseInput[1].equalsIgnoreCase(""))) {
-                parseInput[1] = update.substring(3);
+                parseInput[1] = update.substring(3).trim();
             } else if (update.startsWith(DIAGNOSIS_TAG) && parseInput[2].equalsIgnoreCase("")) {
-                parseInput[2] = update.substring(4);
+                parseInput[2] = update.substring(4).trim();
             } else if (update.startsWith(DATE_TAG) && (parseInput[3].equalsIgnoreCase("")
                     || !Checker.isValidDate(parseInput[3]))) {
-                parseInput[3] = update.substring(1);
+                parseInput[3] = update.substring(1).trim();
             } else if (update.startsWith(TIME_TAG) && (parseInput[4].equalsIgnoreCase("")
                     || !Checker.isValidTime(parseInput[4]))) {
-                parseInput[4] = update.substring(1);
+                parseInput[4] = update.substring(1).trim();
             }
         }
     }

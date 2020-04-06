@@ -3,14 +3,16 @@
 ## `PROJECT: HappyPills`
 
 ## About the project
+
 Our team consists of 4 software engineering students were tasked to build a basic command line interface desktop 
 application for our Software Engineering project.
 
-Our team chose to develop a note management application called HappyPills. HappyPills is specially designed for 
-Doctors to record patient's details, past medical records and future appointments. HappyPills allows users
-to store all information in a single place and users can always have quick access to the saved information.
+Our team chose to develop a note management application called HappyPills. Happy Pills is a fast and intuitive 
+note-taking app designed specially for doctors. With Happy Pills, you can safely store patients’ details, past medical 
+records as well as their future appointment details in a single place.
 
 ### Summary of Contributions
+
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
 *Major enhancement:* I added `User Prompting` for commands in HappyPills.
@@ -49,14 +51,13 @@ This section shows a summary of my coding, documentation, and other helpful cont
 >   allowing flexibility to the user
 
     
-**Code contributed:** Please click these links to see a sample of my code: 
-[addPatient](),[addPatientRecord](), [PatientParser](), [PatientRecordParser]()  
+**Code contributed:** [RepoSense](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=nyanwunpaing&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false)
 
 **Other contributions:**
 - Project management:
-    + Handled releases `v1.0 - v2.1` (3 releases) on GitHub
-    + Created tags on GitHub Issues
+    + Handled releases `v2` (1 release) on GitHub
     + Maintaining the issue tracker on GitHub
+    + Used my iP project as base for tP.
 - Enhancements to existing features:
     + Refactor messages used to a common Messages class in `PatientParser`
     + JUnit tests to test on Patient command.
