@@ -43,94 +43,26 @@ class InformationDeleterTest {
 
     @Test
     void execute_article_success() {
-        // All system.out.println statements will be in outContent
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        // execute command
         InformationDeleter.execute("delete article 1");
-
-        String expectedOutput = "Deleting the following article:"
-                + System.lineSeparator()
-                + "   Title: Test1"
-                + System.lineSeparator()
-                + "   Date: "
-                + System.lineSeparator()
-                + "   Category: article"
-                + System.lineSeparator()
-                + "   Url: www.test1.com"
-                + System.lineSeparator()
-                + "   Extract: "
-                + System.lineSeparator()
-                + "__________________________________________________________________________________________"
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator();
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(2,SavedArticleList.savedArticleList.size());
+;
     }
 
     @Test
     void execute_job_success() {
-        // All system.out.println statements will be in outContent
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        // execute command
         InformationDeleter.execute("delete job 1");
-
-        String expectedOutput = "Deleting the following job:"
-                + System.lineSeparator()
-                + "   Title: Test1"
-                + System.lineSeparator()
-                + "   Date: "
-                + System.lineSeparator()
-                + "   Category: job"
-                + System.lineSeparator()
-                + "   Text: www.test1.com"
-                + System.lineSeparator()
-                + "   Extract: "
-                + System.lineSeparator()
-                + "__________________________________________________________________________________________"
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator();
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(2, SavedJobList.savedJobList.size());
     }
 
     @Test
     void execute_note_success() {
-        // All system.out.println statements will be in outContent
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        // execute command
         InformationDeleter.execute("delete note 1");
-
-        String expectedOutput = "Deleting the following note:"
-                + System.lineSeparator()
-                + "   Title: Test1"
-                + System.lineSeparator()
-                + "   Date: "
-                + System.lineSeparator()
-                + "   Category: null"
-                + System.lineSeparator()
-                + "   URL: null"
-                + System.lineSeparator()
-                + "   Extract: "
-                + System.lineSeparator()
-                + "__________________________________________________________________________________________"
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator()
-                + ""
-                + System.lineSeparator();
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(2,SavedNoteList.savedNoteList.size());
     }
 }

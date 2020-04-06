@@ -31,7 +31,7 @@ public class TechToday {
     public SavedNoteList savedNoteList;
 
     /** Constructor that initializes the data structures that saves technology information. */
-    private TechToday() {
+    TechToday() {
         viewedArticleList = new ViewedArticleList();
         savedArticleList = new SavedArticleList();
         viewedJobList = new ViewedJobList();

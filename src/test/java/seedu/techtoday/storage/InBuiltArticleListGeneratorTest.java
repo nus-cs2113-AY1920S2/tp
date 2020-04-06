@@ -32,7 +32,7 @@ class InBuiltArticleListGeneratorTest {
         assertEquals(ViewedArticleList.viewedArticleList.get(3).getTitle(), "George Gershwin, Then and Now");
         assertEquals(ViewedArticleList.viewedArticleList.get(4).getTitle(), "AI for generative "
                 + "design: Plain text to 3D Designs");
-        assertEquals(ViewedArticleList.viewedArticleList.get(5).getTitle(), "Furstenberg and " 
+        assertEquals(ViewedArticleList.viewedArticleList.get(5).getTitle(), "Furstenberg and "
                 + "Margulis awarded 2020 Abel Prize");
     }
 
