@@ -56,8 +56,8 @@ public class Jikan {
         storage = new Storage(DATA_FILE_PATH);
         storageCleaner = new StorageCleaner(storage);
         try {
-            storageCleaner.autoClean();
-            logCleaner.autoClean();
+            storageCleaner.storageAutoClean();
+            logCleaner.logAutoClean();
             activityList = storage.createActivityList();
             GoalCommand.createFile(TAG_FILE_PATH, tagFile);
         } catch (IOException e) {

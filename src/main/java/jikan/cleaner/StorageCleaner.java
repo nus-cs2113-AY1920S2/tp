@@ -4,8 +4,10 @@ import jikan.storage.Storage;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,12 +17,6 @@ import java.util.Scanner;
  * for data files under the user's request.
  */
 public class StorageCleaner extends Cleaner {
-    //private static final String STATUS_FILE_PATH = "data/recycled/status.txt";
-    //private static final String DATA_FILE_PATH = "data/recycled/data.csv";
-    //private File status;
-    //private File recycledData;
-    //public boolean toClean;
-
 
     public int numberOfActivitiesToClean;
     public Storage storage;
@@ -40,61 +36,7 @@ public class StorageCleaner extends Cleaner {
         if (value != -1) {
             this.numberOfActivitiesToClean = value;
         }
-        /*this.storage = storage;
-        status = new File(STATUS_FILE_PATH);
-        recycledData = new File(DATA_FILE_PATH);
-        initialiseCleaner();
-        initialiseDataFile();*/
     }
-
-    /**
-     * Activates/De-activates the auto cleanup by checking the status file.
-     */
-    /*private void initialiseCleaner() {
-        try {
-            if (loadCleaner(status)) {
-                Scanner sc = new Scanner(status);
-                String status = sc.nextLine();
-                int value = Integer.parseInt(status);
-                assert value == 0 || value == 1;
-                if (value == 1) {
-                    this.toClean = true;
-                } else {
-                    this.toClean = false;
-                }
-                String line = sc.nextLine();
-                this.numberOfActivitiesToClean = Integer.parseInt(line);
-            } else {
-                FileWriter fw = new FileWriter(status);
-                fw.write("0" + "\n");
-                fw.write("3" + "\n");
-                fw.close();
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading/creating cleaning file.");
-        }
-    }*/
-
-    /**
-     * Method to activate/de-activate the auto cleanup.
-     * @param status a boolean specifying whether the cleaner should be activated or not.
-     * @throws IOException if there is an error with reading/writing to the status file.
-     */
-    /*public void setStatus(boolean status) throws IOException {
-        this.toClean = status;
-        File dataFile = new File(STATUS_FILE_PATH);
-        if (!dataFile.exists()) {
-            dataFile.createNewFile();
-        }
-        BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));
-        if (this.toClean) {
-            writer.write("1" + "\n");
-        } else {
-            writer.write("0" + "\n");
-        }
-        writer.write(Integer.toString(this.numberOfActivitiesToClean) + "\n");
-        writer.close();
-    }*/
 
     /**
      * Method to set a value for the number of activities to clean.
@@ -123,30 +65,11 @@ public class StorageCleaner extends Cleaner {
      * @throws IOException if there is an error with reading/writing to the live data file and
      *         recycled data file.
      */
-    public void autoClean() throws IOException {
+    public void storageAutoClean() throws IOException {
         List<String> activitiesForRecycling = new ArrayList<>();
         List<String> activitiesLeftInData = new ArrayList<>();
         if (this.toClean) {
-            String filePath = storage.dataFilePath;
-            File liveData = new File(filePath);
-            Scanner recycledDataScanner = new Scanner(recycledData);
-            Scanner liveDataScanner = new Scanner(liveData);
-            while (recycledDataScanner.hasNext()) {
-                String line = recycledDataScanner.nextLine();
-                activitiesForRecycling.add(line);
-            }
-            while (numberOfActivitiesToClean != 0) {
-                if (!liveDataScanner.hasNext()) {
-                    break;
-                }
-                String line = liveDataScanner.nextLine();
-                activitiesForRecycling.add(line);
-                numberOfActivitiesToClean -= 1;
-            }
-            while (liveDataScanner.hasNext()) {
-                String line = liveDataScanner.nextLine();
-                activitiesLeftInData.add(line);
-            }
+            File liveData = recycleData(activitiesForRecycling, activitiesLeftInData);
 
             BufferedWriter recycledDataWriter = new BufferedWriter(new FileWriter(recycledData));
             for (String line : activitiesForRecycling) {
@@ -158,6 +81,57 @@ public class StorageCleaner extends Cleaner {
                 liveDataWriter.write(line + "\n");
             }
             liveDataWriter.close();
+        }
+    }
+
+    /**
+     * Method to clean up data file and move them to the recycled folder.
+     * @param activitiesForRecycling an array list consisting of data to be written to recycled folder.
+     * @param activitiesLeftInData an array list consisting of the data left after clean up.
+     * @return a storage file that holds the activity list at run time.
+     * @throws FileNotFoundException if file could not be found at the filepath.
+     */
+    private File recycleData(List<String> activitiesForRecycling, List<String> activitiesLeftInData)
+            throws FileNotFoundException {
+        String filePath = storage.dataFilePath;
+        File liveData = new File(filePath);
+        Scanner recycledDataScanner = new Scanner(recycledData);
+        Scanner liveDataScanner = new Scanner(liveData);
+        while (recycledDataScanner.hasNext()) {
+            String line = recycledDataScanner.nextLine();
+            activitiesForRecycling.add(line);
+        }
+        parseLiveData(activitiesForRecycling, activitiesLeftInData, liveDataScanner);
+        return liveData;
+    }
+
+    /**
+     * Method to check the activities in storage line by line and see if they should be cleaned or not.
+     * @param activitiesForRecycling an array list consisting of data to be written to recycled folder.
+     * @param activitiesLeftInData an array list consisting of the data left after clean up.
+     * @param liveDataScanner used to scan the activities in storage line by line.
+     */
+    private void parseLiveData(List<String> activitiesForRecycling, List<String> activitiesLeftInData,
+                               Scanner liveDataScanner) {
+        while (numberOfActivitiesToClean != 0) {
+            if (!liveDataScanner.hasNext()) {
+                break;
+            }
+            String line = liveDataScanner.nextLine();
+            String[] tokenizedLine = line.split(",");
+            Duration duration = Duration.parse(tokenizedLine[3]);
+            Duration allocatedTime = Duration.parse(tokenizedLine[4]);
+            int result = duration.compareTo(allocatedTime);
+            if (result >= 0 && allocatedTime != Duration.parse("PT0S")) {
+                activitiesForRecycling.add(line);
+                numberOfActivitiesToClean -= 1;
+            } else {
+                activitiesLeftInData.add(line);
+            }
+        }
+        while (liveDataScanner.hasNext()) {
+            String line = liveDataScanner.nextLine();
+            activitiesLeftInData.add(line);
         }
     }
 }

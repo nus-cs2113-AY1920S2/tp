@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Cleaner {
-    protected String STATUS_FILE_PATH;
-    protected String DATA_FILE_PATH;
+    protected static String STATUS_FILE_PATH;
+    protected static String DATA_FILE_PATH;
     protected File status;
     protected File recycledData;
     public boolean toClean;
@@ -61,6 +61,10 @@ public abstract class Cleaner {
         file.createNewFile();
     }
 
+    /**
+     * Activates/De-activates the auto clean up by checking the status file.
+     * @return the number of lines of data to automatically clean.
+     */
     protected int initialiseCleaner() {
         try {
             if (loadCleaner(status)) {
@@ -88,6 +92,12 @@ public abstract class Cleaner {
         }
     }
 
+    /**
+     * Method to activate/de-activate the auto cleanup.
+     * @param status a boolean specifying whether the cleaner should be activated or not.
+     * @param number an integer specifying the number of lines of data to automatically clean.
+     * @throws IOException if there is an error with reading/writing to the status file.
+     */
     public void setStatus(boolean status, int number) throws IOException {
         this.toClean = status;
         File dataFile = new File(STATUS_FILE_PATH);
@@ -103,4 +113,5 @@ public abstract class Cleaner {
         writer.write(Integer.toString(number) + "\n");
         writer.close();
     }
+
 }

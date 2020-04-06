@@ -108,9 +108,13 @@ public class CleanCommand extends Command {
         if (line.contains("log")) {
             try {
                 int value = getNumberFromCommand(line);
-                logCleaner.setNumberOfLogsToClean(value);
-                line = "Number of activities to clean is set to " + value;
-                Ui.printDivider(line);
+                if (value > 0) {
+                    logCleaner.setNumberOfLogsToClean(value);
+                    line = "Number of activities to clean is set to " + value;
+                    Ui.printDivider(line);
+                } else {
+                    Ui.printDivider("Please provide a positive number");
+                }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new NumberFormatException();
             } catch (IOException e) {
@@ -119,9 +123,13 @@ public class CleanCommand extends Command {
         } else {
             try {
                 int value = getNumberFromCommand(line);
-                storageCleaner.setNumberOfActivitiesToClean(value);
-                line = "Number of activities to clean is set to " + value;
-                Ui.printDivider(line);
+                if (value > 0) {
+                    storageCleaner.setNumberOfActivitiesToClean(value);
+                    line = "Number of activities to clean is set to " + value;
+                    Ui.printDivider(line);
+                } else {
+                    Ui.printDivider("Please provide a positive number");
+                }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new NumberFormatException();
             } catch (IOException e) {
