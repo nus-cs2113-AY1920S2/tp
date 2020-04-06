@@ -1,25 +1,15 @@
 package seedu.techtoday.creator;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.techtoday.articlelist.SavedArticleList;
-import seedu.techtoday.objects.Article;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ManualArticleCreatorTest {
-
-    @BeforeEach
-    void setUp() {
-        SavedArticleList.savedArticleList = new ArrayList<Article>();
-    }
-
 
     @Test
     void getArticle_TestArticle_success() {
