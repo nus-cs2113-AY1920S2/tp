@@ -165,7 +165,7 @@ The process is as follows:
 
 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
 2. A <code>Parser</code> object is created.
-3. <code><Duke></code> calls <code>Parser#parseCommand()</code> method to instantiate an <code>EditCommand</code> object based on the user input.
+3. <code>Duke</code> calls <code>Parser#parseCommand()</code> method to instantiate an <code>EditCommand</code> object based on the user input.
 4. <code>Duke</code> class then calls the <code>EditCommand#execute()</code> method.
 5. In the <code>EditCommand#execute()</code> method, it first gets the <code>item</code> object through the
 <code>ShoppingList#getItem()</code>. The original description / price / quantity of the item is overwritten 
@@ -176,6 +176,8 @@ The following sequence diagram below shows how the edit feature works. The detai
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
 ![Edit Feature](images/EditFeatureFinal.png)
+
+ The separate sequence diagram below shows how the item is updated with new values.
 
 ![Edit Feature SD](images/EditFeature_SD.png)
 
@@ -200,9 +202,8 @@ order.
   variables.
 
 
-- Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with
-greater convenience and freedom as they do not need to follow strict command "rules/order". Furthermore, having greater
-freedom on input values makes it a hassle-free process for the users.
+ - Reason for choosing alternative 1: By allowing users to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order". Furthermore, having greater freedom on input values makes it a hassle-free process for the users.
+
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -750,6 +751,11 @@ This section contains the user stories for the different versions of our product
         Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
   
 
+   &nbsp;
+
+    
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
 &nbsp;
 
 ### D.2. Set and Reset a budget
@@ -791,7 +797,12 @@ This section contains the user stories for the different versions of our product
     ii. Other incorrect reset budget commands to try: <code>RES xxx</code> (where xxx is not a number).
                      
         Expected: An error message and the correct usage of the RES command is shown.
-        
+     
+     &nbsp;
+     
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
+&nbsp;        
     
 ### D.3. Add and Edit an item
 
@@ -849,7 +860,10 @@ This section contains the user stories for the different versions of our product
          
      &nbsp;
     
-    
+ 
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
+&nbsp;    
 <!-- @@author Shannonwje -->    
 ### D.4. Mark and Un-mark an item
 
@@ -907,6 +921,12 @@ This section contains the user stories for the different versions of our product
         Expected: An error message stating to provide a single numerical index number is shown.
          
      &nbsp;
+     
+     
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
+&nbsp;
+
      
 <!-- @@author -->
     
