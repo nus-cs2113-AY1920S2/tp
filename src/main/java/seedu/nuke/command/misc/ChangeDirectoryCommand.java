@@ -37,8 +37,8 @@ public class ChangeDirectoryCommand extends Command {
      * Constructs the command to traverse up from the current directory.
      */
     public ChangeDirectoryCommand() {
-       nextDirectoryName = null;
-       directory = null;
+        nextDirectoryName = null;
+        directory = null;
     }
 
     /**
