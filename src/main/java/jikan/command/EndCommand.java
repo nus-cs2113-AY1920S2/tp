@@ -33,7 +33,7 @@ public class EndCommand extends Command {
             if (Parser.startTime == null) {
                 throw new NoSuchActivityException();
             } else {
-                activityList.saveActivity(activityList);
+                activityList.saveActivity();
             }
         } catch (NoSuchActivityException e) {
             Log.makeInfoLog("End command failed as no activity was ongoing");
