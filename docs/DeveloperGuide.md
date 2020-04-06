@@ -25,7 +25,7 @@ Since: `Feb 2020`
     + [D.1. Launch and ShutDown](#d1-launch-and-shutdown)
     + [D.2. Set and Reset a budget](#d2-set-and-reset-a-budget)
     + [D.3. Add and Edit an item](#d3-add-and-edit-an-item)
-    + [D.4. Mark and Un-Mark an item](#d4-mark-and-unmark-an-item)
+    + [D.4. Mark and Un-Mark an item](#d4-mark-and-un-mark-an-item)
     + [D.5. Find and Delete an item](#d5-find-and-delete-an-item)
     + [D.6. Display and Clear the shopping list](#d6-display-and-clear-the-shopping-list)
   
@@ -932,7 +932,7 @@ This section contains the user stories for the different versions of our product
 <!-- @@author -->
     
   
-### D.4. Find and Delete an item
+### D.5. Find and Delete an item
 
 1. Find an item based on keyword
        
