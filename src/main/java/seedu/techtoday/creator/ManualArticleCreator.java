@@ -24,8 +24,8 @@ public class ManualArticleCreator {
     }
 
     /**
-     * Function that gets article name from the user
-     * @return String representation of the title from user input
+     * Function that gets article name from the user.
+     * @return String representation of the title from user input.
      */
     public static String getArticle() {
         System.out.println("Enter the title of the article?");
@@ -33,8 +33,8 @@ public class ManualArticleCreator {
     }
 
     /**
-     * Function that gets the URL from the user
-     * @return String representation of url from user input
+     * Function that gets the URL from the user.
+     * @return String representation of url from user input.
      */
     public static String getUrl() {
         System.out.println("What is the URl of the article (type \"No URL\")?");
@@ -42,14 +42,18 @@ public class ManualArticleCreator {
     }
 
     /**
-     * Function that gets category from the user
-     * @return String representation of category from user input
+     * Function that gets category from the user.
+     * @return String representation of category from user input.
      */
     public static String getCategory() {
         System.out.println("What is the category (type \"default\" if you don't know it)");
         return Ui.getCommand();
     }
 
+    /**
+     * Function that asks and gets extract from the user.
+     * @return String representation of category from user input.
+     */
     public static String getExtract() {
         System.out.println("Would you like to add any extract?");
         return Ui.getCommand();

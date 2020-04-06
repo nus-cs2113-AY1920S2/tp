@@ -25,8 +25,8 @@ public class ManualJobCreator {
     }
 
     /**
-     * Function that asks and gets job title
-     * @return String representation of title from user input
+     * Function that asks and gets job title.
+     * @return String representation of title from user input.
      */
     public static String getTitle() {
         System.out.println("Enter the title of the job?");
@@ -34,7 +34,7 @@ public class ManualJobCreator {
     }
 
     /**
-     * Function that asks and gets job description
+     * Function that asks and gets job description.
      * @return String representation of job description given by user.
      */
     public static String getText() {
@@ -43,14 +43,18 @@ public class ManualJobCreator {
     }
 
     /**
-     * Function that asks and gets job category
-     * @return String representation of job category given by user
+     * Function that asks and gets job category.
+     * @return String representation of job category given by user.
      */
     public static String getCategory() {
         System.out.println("What is the category (type \"default\" if you don't know it)");
         return Ui.getCommand();
     }
 
+    /**
+     * Function that asks and gets job extract
+     * @return String representation of extract form user input.
+     */
     public static String getExtract() {
         System.out.println("Would you like to add any extract?");
         return Ui.getCommand();

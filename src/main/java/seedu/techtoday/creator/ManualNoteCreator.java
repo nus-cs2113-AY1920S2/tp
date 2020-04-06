@@ -26,8 +26,8 @@ public class ManualNoteCreator {
     }
 
     /**
-     * Function that asks and gets title of note
-     * @return String representation of note title from user input
+     * Function that asks and gets title of note.
+     * @return String representation of note title from user input.
      */
     public static String getNote() {
         System.out.println("Enter the title you would like to give this Note?");
@@ -35,8 +35,8 @@ public class ManualNoteCreator {
     }
 
     /**
-     * Function that asks and gets url of note
-     * @return String representation of url from user input
+     * Function that asks and gets url of note.
+     * @return String representation of url from user input.
      */
     public static String getUrl() {
         System.out.println("Paste any URLs associated with this note:");
@@ -44,8 +44,8 @@ public class ManualNoteCreator {
     }
 
     /**
-     * Function that asks and gets category of note
-     * @return String representation of category from user input
+     * Function that asks and gets category of note.
+     * @return String representation of category from user input.
      */
     public static String getCategory () {
         System.out.println("What is the category (type \"default\" if you don't know it)");
@@ -53,8 +53,8 @@ public class ManualNoteCreator {
     }
 
     /**
-     * Function that asks and gets note extract
-     * @return String representation of extract from user input
+     * Function that asks and gets note extract.
+     * @return String representation of extract from user input.
      */
     public static String getExtract() {
         System.out.println("What would you like to add to the extract of this note?");
