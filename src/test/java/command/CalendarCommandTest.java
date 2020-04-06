@@ -18,8 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 //@@author
 public class CalendarCommandTest {
@@ -77,6 +76,8 @@ public class CalendarCommandTest {
     private static final int EMPTY_BOX_PADDING = MAX_CALENDAR_BOX_WIDTH - 1;
     private static final int CONTENT_WIDTH = MAX_CALENDAR_BOX_WIDTH - 1;
 
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
     /**
      * Setup Commands, Calendar before each test.
      */
@@ -85,9 +86,6 @@ public class CalendarCommandTest {
         testTaskList = new TaskList();
         testUi = new Ui();
         testBuilder = new StringBuilder();
-
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
         final String date1 = "13/03/2020 18:00";
         final String date2 = "13/03/2020 20:30";
@@ -148,6 +146,35 @@ public class CalendarCommandTest {
         testTaskList.addTask(testCaseRepeatMonthly);
         testTaskList.addTask(testCaseRepeatYearly);
     }
+
+    @Test
+    public void testCalendarCommand() {
+        assertNotNull(testCalendarCommand.execute(testTaskList, testUi).feedbackToUser);
+        assertEquals(testCalendarCommand.execute(testTaskList, testUi).feedbackToUser.getClass(), String.class);
+        assertTrue(testCalendarCommand.execute(testTaskList, testUi).feedbackToUser.contains("January 2020"));
+    }
+
+    @Test
+    public void testBuildMonthCalendar() {
+        assertNotNull(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList));
+        assertEquals(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList).getClass(), String.class);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList).contains("January 2020"));
+
+        StringBuilder testBorder = new StringBuilder();
+        testCalendarCommand.addCalendarBorder(testBorder);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList).contains(testBorder.toString()));
+
+        StringBuilder testCalendarLegend = new StringBuilder();
+        testCalendarCommand.addCalendarBorder(testCalendarLegend);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList).contains(testCalendarLegend.toString()));
+
+        StringBuilder testCalendarTitle = new StringBuilder();
+        testCalendarCommand.addCalendarBorder(testCalendarTitle);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList).contains(testCalendarTitle.toString()));
+
+    }
+
+
 
     @Test
     public void testCalibrateCalendar() {

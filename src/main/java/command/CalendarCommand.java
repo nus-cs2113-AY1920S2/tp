@@ -82,19 +82,16 @@ public class CalendarCommand extends Command {
      * @param taskList TaskList object that handles tasks operations
      * @return String object that contains the calendar view
      */
-    private String buildMonthCalendar(LocalDate dateTime, TaskList taskList) {
+    public String buildMonthCalendar(LocalDate dateTime, TaskList taskList) {
         Calendar calendar = Calendar.getInstance();
         calibrateCalendar(dateTime, calendar);
 
         // Get calendar parameters
-        final int year       = calendar.get(Calendar.YEAR);
         final int month      = calendar.get(Calendar.MONTH); // Jan = 0, dec = 11
         assert month == (dateTime.getMonthValue() - 1);
         final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         assert dayOfMonth == 1;
         final int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // get day of week {1 = sunday, 7 = saturday}
-        final int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-        final int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
         final int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // maximum no. days in given month
 
         ArrayList<Task> monthlyTaskList = duplicateRepeatEvents(dateTime, getTasksByYearMonth(dateTime, taskList));
