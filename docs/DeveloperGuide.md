@@ -209,7 +209,7 @@ By doing so, the following operations are carried out:
 ##### Step 1:
 When a user enters a delete from semester command, e.g `delete id/IS4241 s/4`, this command is being parsed in `Controller`.
 `Controller` then returns a `DeleteFromSemCommand`, which calls 
-`Command#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
 `DeleteFromSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
 
 ##### Step 2:
@@ -242,7 +242,7 @@ By doing so, the following operations are carried out:
 ##### Step 1:
 When a user first inputs a `delete` command, eg. `delete id/CS1010`, this command is being parsed in `Controller`.
 `Controller` then returns a `DeleteFromAvailableCommand`, which follows to call 
-`Command#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
 `DeleteFromAvailableCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
 
 ##### Step 2:
