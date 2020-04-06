@@ -36,7 +36,7 @@ public class GraphCommand extends Command {
         try {
             switch (inputs[0]) {
             case "targets":
-                Ui.graphTargets(activityList);
+                Ui.graphTargets(lastShownList);
                 break;
             case "tags":
                 graphTags();
