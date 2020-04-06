@@ -150,7 +150,7 @@ public class PatientParser {
         for (String detail : details) {
             if (detail.startsWith(NAME_TAG) && isInputEmpty(parseInput[0])) {
                 parseInput[0] = detail.substring(1).trim();
-            } else if (detail.startsWith(NRIC_TAG) && isValidNric(parseInput[1], detail)) {
+            } else if (detail.startsWith(NRIC_TAG) && isInputEmpty(parseInput[1])) {
                 parseInput[1] = detail.substring(2).trim().toUpperCase();
             } else if (detail.startsWith(PHONE_NUMBER_TAG) && isValidPhoneNum(parseInput[1], detail)) {
                 parseInput[2] = detail.substring(1).trim();
@@ -168,6 +168,8 @@ public class PatientParser {
         }
 
         while (hasMissingFields(parseInput)) {
+            System.out.println(parseInput[1]);
+            System.out.println(Checker.isValidNric(parseInput[1]));
             printMissingFields(parseInput);
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {

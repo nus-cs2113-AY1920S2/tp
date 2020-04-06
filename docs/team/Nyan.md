@@ -1,4 +1,4 @@
-# Yap Kesin - Project Portfolio Page
+# Nyan Wun Paing - Project Portfolio Page
 
 ## `PROJECT: HappyPills`
 

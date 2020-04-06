@@ -167,7 +167,7 @@ public class PatientRecordParser {
         String[] parseInput = {"", "", "", "", "", ""};
 
         for (String detail : details) {
-            if (detail.startsWith(NRIC_TAG) && isValidNric(parseInput[0],detail)) {
+            if (detail.startsWith(NRIC_TAG) && isInputEmpty(parseInput[0])) {
                 parseInput[0] = detail.substring(2).trim().toUpperCase();
             } else if (detail.startsWith(SYMPTOM_TAG) && isInputEmpty(parseInput[1])) {
                 parseInput[1] = detail.substring(3).trim();
