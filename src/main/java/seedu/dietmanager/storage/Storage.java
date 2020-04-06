@@ -193,7 +193,8 @@ public class Storage {
             myReader.close();
         } catch (FileNotFoundException | InvalidFormatException | InvalidNameException | InvalidAgeException
                 | InvalidGenderException | InvalidHeightException | InvalidWeightException e) {
-            ui.displayFileErrorMessage();
+            logsCentre.writeInfoLog("Error in loading Profile Information, Profile cleared.");
+            clearProfileFile();
         }
     }
 

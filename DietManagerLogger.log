@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-04-06T16:22:31.535862900Z</date>
-  <millis>1586190151535</millis>
-  <nanos>862900</nanos>
+  <date>2020-04-06T16:35:58.374288500Z</date>
+  <millis>1586190958374</millis>
+  <nanos>288500</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-04-06T16:22:31.645245700Z</date>
-  <millis>1586190151645</millis>
-  <nanos>245700</nanos>
+  <date>2020-04-06T16:35:58.546353200Z</date>
+  <millis>1586190958546</millis>
+  <nanos>353200</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -26,10 +26,22 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-04-06T16:22:31.669483700Z</date>
-  <millis>1586190151669</millis>
-  <nanos>483700</nanos>
+  <date>2020-04-06T16:35:58.572361500Z</date>
+  <millis>1586190958572</millis>
+  <nanos>361500</nanos>
   <sequence>2</sequence>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
+  <method>writeInfoLog</method>
+  <thread>1</thread>
+  <message>Error in loading Profile Information, Profile cleared.</message>
+</record>
+<record>
+  <date>2020-04-06T16:35:58.575665Z</date>
+  <millis>1586190958575</millis>
+  <nanos>665000</nanos>
+  <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.commons.core.LogsCentre</class>
@@ -38,10 +50,10 @@
   <message>Starting Diet Manager</message>
 </record>
 <record>
-  <date>2020-04-06T16:22:41.243413400Z</date>
-  <millis>1586190161243</millis>
-  <nanos>413400</nanos>
-  <sequence>3</sequence>
+  <date>2020-04-06T16:36:17.132949Z</date>
+  <millis>1586190977132</millis>
+  <nanos>949000</nanos>
+  <sequence>4</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.commons.core.LogsCentre</class>
