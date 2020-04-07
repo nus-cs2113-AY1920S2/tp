@@ -23,13 +23,12 @@ What can I do for you today, doctor?
                                                    (Y/N)?
     =====================================================
     =====================================================
-    The current information is not added.
-    Please add all the details again! Thank you.
+    Command has been aborted.
     =====================================================
     =====================================================
-    Please input your missing detail listed below
-    /n[NAME]
-    =====================================================
+    Please input your missing/incorrect detail listed below
+    /n NAME
+    To abort, enter "clear"
     =====================================================
         Are you sure all the listed details are correct?
         Name : Alice
@@ -61,7 +60,9 @@ What can I do for you today, doctor?
     Command is invalid. Enter help to know how to use HappyPills.
     =====================================================
     =====================================================
-    Alice | S9876543G
+    Here is your list of patients:
+    NRIC      | Name
+    S9876543G | Alice
     =====================================================
     =====================================================
     Incorrect input format. Sorry please try again
@@ -73,26 +74,20 @@ What can I do for you today, doctor?
     Command is invalid. Enter help to know how to use HappyPills.
     =====================================================
     =====================================================
-    d 22feb92 is not a valid input.
-    d 22feb92 will not be added
-    =====================================================
-    t 2o'clock is not a valid input.
-    t 2o'clock will not be added
-    =====================================================
-    Please input your missing detail listed below
+    Please input your missing/incorrect detail listed below
     /ic NRIC (Format: [S/T][7-digits][A-Z])
     /sym SYMPTOMS
     /diag DIAGNOSIS
     /d DATE  (Format: DD/MM/YYYY)
     /t TIME (Format: HH:mm)
+    To abort, enter "clear"
     =====================================================
-    =====================================================
-    Please input your missing detail listed below
+    Please input your missing/incorrect detail listed below
     /sym SYMPTOMS
     /diag DIAGNOSIS
     /d DATE  (Format: DD/MM/YYYY)
     /t TIME (Format: HH:mm)
-    =====================================================
+    To abort, enter "clear"
     =====================================================
         Are you sure all the listed details are correct?
         NRIC : S9876543F
