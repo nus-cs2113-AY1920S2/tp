@@ -16,7 +16,10 @@ import stock.Stock;
  */
 public class DeleteStockCommand extends StockCommand {
     
+    /** The ingredient to be deleted within the stock. */
     private final Ingredient ingredientToDelete;
+    
+    private final String ls = System.lineSeparator();
     
     /**
      * A convenience constructor that contains information of an ingredient 
@@ -92,8 +95,15 @@ public class DeleteStockCommand extends StockCommand {
             } else if (trimmedArg.contains("q/")) {
                 quantity = Optional.of(parseIngredientQuantity(trimmedArg));
             } else {
-                throw new InvalidStockCommandException("The user's input given cannot"
-                        + " be parsed into ingredient arguments.");
+                throw new InvalidStockCommandException("There is no tag specified."
+                        + " Please enter in the following format: "
+                        + ls
+                        + ls
+                        + "`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` "
+                        + ls
+                        + "               or"
+                        + ls
+                        + "`delete stock; i/INGREDIENT_NAME;`.");
             }
         }
         

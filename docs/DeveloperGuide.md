@@ -36,14 +36,33 @@ Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a
 Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; k/tomato;`, which will display the following result in the image. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77921374-47b58b00-72d2-11ea-84bd-fe0c790b1d59.PNG">
+  <img src="https://user-images.githubusercontent.com/59989652/78652378-3da81380-78f4-11ea-8b7a-63115ead3ca5.PNG">
+</p>
+
+Step 4. If the ingredient that the user is searching for does not exist within the stock, a different message will be displayed as shown in the following image.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59989652/78652553-75af5680-78f4-11ea-9df1-5aa85951d216.PNG">
 </p>
 
 The following sequence diagram shows how the search operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77916616-e8ed1300-72cb-11ea-9ba0-79e1ccc119ab.png">
+  <img src="https://user-images.githubusercontent.com/59989652/78683492-efaa0480-7921-11ea-82c4-e2b4abb9da92.png">
 </p>
+
+
+The sequence diagram can be interpreted as such:
+* 1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
+* 2. Assuming the user input the search stock command correctly, `SearchStockCommand#SearchStockCommand(...)` constructor is called. 
+* 3. The newly constructed `SearchStockCommand` invokes its `SearchStockCommand#parseIntoSearchKeyword(...)` and does not return anything.
+* 4. The `CommandParser` then invokes `SearchStockCommand#execute(...)`, which then further invokes `Stock#searchStock(...)` from the Stock object.
+* 5. The `Stock` object then self-invoke `Stock#checkIngredientInStock(...)` to see if there are ingredients that matches keyword that was passed into earlier.
+* 6. If there are search results, `Stock#printSearchResult(...)` will display all the ingredients that matches the keyword given.
+* 7. If there is no ingredient that matches the keyword, the program will display a different message to show the user.
+* 8. Next, the time line returns back to `CommandParser` and the `SearchStockCommand` object is destroyed here.
+* 9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
+
 
 #### 1.1.2 Design Considerations
 ##### Aspect: How search stock executes
@@ -86,7 +105,7 @@ Step 3. The user can now view the current `stock` to see what ingredients are th
 The following class diagram shows how the listing operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77920226-cc070e80-72d0-11ea-82a5-b285173d4844.png">
+  <img src="https://user-images.githubusercontent.com/59989652/78657922-0a698280-78fc-11ea-8fd6-13030985ef80.png">
 </p>
 
 1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
@@ -94,6 +113,25 @@ The following class diagram shows how the listing operation works:
 3. The CommandParser object detects `list stock` as the user input, in which it will then create a ListStockCommand object.
 4. The ListStockCommand object is then executed via its `execute(stock)` method, which takes in the stock object initialized previously and instruct it to list all ingredients through its `listIngredient()` method.
 5. Within  the `listIngredient()` method, a temporary `List` data structure is used to convert from the `HashMap` in the stock object. The list is then sorted by supplying a `new Comparator` that compares the ingredient's quantity. Afterwards, the sorted list is then printed to be displayed to the user.
+
+Alternatively, the listing mechanism process can be summarized in the following sequence diagram below:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59989652/78683798-52030500-7922-11ea-8a8d-3aaa5d7af486.png">
+</p>
+
+
+The sequence diagram can be interpreted as such:
+* 1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
+* 2. Assuming the user input the list stock command correctly, `ListStockCommand#ListStockCommand()` constructor is called. 
+* 3. The time line returns back to `CommandParser`.
+* 4. The `CommandParser` then invokes `ListStockCommand#execute(...)`, which then further invokes `Stock#ListStock()` from the Stock object.
+* 5. The `Stock` object then self-invoke `Stock#printStock()` to print the ingredients that are in the stock to display it to the user.
+* 6. Note that within the method `Stock#printStock()`, the hashMap in the `Stock` will be sorted in descending ingredient quantity.
+* 7. If there is no ingredient that in the `Stock`, the program will display a different message to show the user.
+* 8. Next, the time line returns back to `CommandParser` and the `ListStockCommand` object is destroyed here.
+* 9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
+
 
 
 #### 1.2.2 Design Considerations
