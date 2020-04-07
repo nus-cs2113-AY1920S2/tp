@@ -972,4 +972,9 @@ Target user profile:
 ### 6.5 Appendix E: Documentation
 Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
 
+### 6.6 Appendix F: Instructions for Manual Testing 
+#### 6.6.1 Adding `assignment` task type
+
+
+
 [Back to Top](#)
