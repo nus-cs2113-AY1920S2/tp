@@ -70,7 +70,7 @@ public class Jikan {
 
         while (true) {
             try {
-                Command command = parser.parseUserCommands(in, activityList, storageCleaner, tagFile);
+                Command command = parser.parseUserCommands(in, tagFile);
                 if (command == null) {
                     continue;
                 }

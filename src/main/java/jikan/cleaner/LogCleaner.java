@@ -101,10 +101,7 @@ public class LogCleaner extends Cleaner {
             String line = recycledDataScanner.nextLine();
             logsForRecycling.add(line);
         }
-        while (numberOfLogsToClean != 0) {
-            if (!liveDataScanner.hasNext()) {
-                break;
-            }
+        while (numberOfLogsToClean != 0 && liveDataScanner.hasNext()) {
             String line = liveDataScanner.nextLine();
             logsForRecycling.add(line);
             numberOfLogsToClean -= 1;

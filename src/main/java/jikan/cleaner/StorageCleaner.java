@@ -90,52 +90,57 @@ public class StorageCleaner extends Cleaner {
 
     /**
      * Method to clean up data file and move them to the recycled folder.
-     * @param activitiesForRecycling an array list consisting of data to be written to recycled folder.
-     * @param activitiesLeftInData an array list consisting of the data left after clean up.
+     * @param listForRecycling an array list consisting of data to be written to recycled folder.
+     * @param listLeftInData an array list consisting of the data left after clean up.
      * @return a storage file that holds the activity list at run time.
      * @throws FileNotFoundException if file could not be found at the filepath.
      */
-    private File recycleData(List<String> activitiesForRecycling, List<String> activitiesLeftInData)
-            throws IOException {
+    private File recycleData(List<String> listForRecycling, List<String> listLeftInData) throws IOException {
         String filePath = storage.dataFilePath;
         File liveData = new File(filePath);
         Scanner recycledDataScanner = new Scanner(recycledData);
         Scanner liveDataScanner = new Scanner(liveData);
         while (recycledDataScanner.hasNext()) {
             String line = recycledDataScanner.nextLine();
-            activitiesForRecycling.add(line);
+            listForRecycling.add(line);
         }
-        parseLiveData(activitiesForRecycling, activitiesLeftInData, liveDataScanner);
+        parseLiveData(listForRecycling, listLeftInData, liveDataScanner);
         return liveData;
     }
 
     /**
      * Method to check the activities in storage line by line and see if they should be cleaned or not.
-     * @param activitiesForRecycling an array list consisting of data to be written to recycled folder.
-     * @param activitiesLeftInData an array list consisting of the data left after clean up.
-     * @param liveDataScanner used to scan the activities in storage line by line.
+     * @param listForRecycling an array list consisting of data to be written to recycled folder.
+     * @param listLeftInData an array list consisting of the data left after clean up.
+     * @param liveDataSc used to scan the activities in storage line by line.
      */
-    private void parseLiveData(List<String> activitiesForRecycling, List<String> activitiesLeftInData,
-                               Scanner liveDataScanner) {
-        while (numberOfActivitiesToClean != 0) {
-            if (!liveDataScanner.hasNext()) {
-                break;
-            }
-            String line = liveDataScanner.nextLine();
+    private void parseLiveData(List<String> listForRecycling, List<String> listLeftInData, Scanner liveDataSc) {
+        cleanUpActivities(listForRecycling, listLeftInData, liveDataSc);
+        while (liveDataSc.hasNext()) {
+            String line = liveDataSc.nextLine();
+            listLeftInData.add(line);
+        }
+    }
+
+    /**
+     * Checks and clean up completed activities.
+     * @param listForRecycling an array list consisting of data to be written to recycled folder.
+     * @param listLeftInData an array list consisting of the data left after clean up.
+     * @param liveDataSc used to scan the activities in storage line by line.
+     */
+    private void cleanUpActivities(List<String> listForRecycling, List<String> listLeftInData, Scanner liveDataSc) {
+        while (numberOfActivitiesToClean != 0 && liveDataSc.hasNext()) {
+            String line = liveDataSc.nextLine();
             String[] tokenizedLine = line.split(",");
             Duration duration = Duration.parse(tokenizedLine[3]);
             Duration allocatedTime = Duration.parse(tokenizedLine[4]);
             int result = duration.compareTo(allocatedTime);
             if (result >= 0 && allocatedTime != Duration.parse("PT0S")) {
-                activitiesForRecycling.add(line);
+                listForRecycling.add(line);
                 numberOfActivitiesToClean -= 1;
             } else {
-                activitiesLeftInData.add(line);
+                listLeftInData.add(line);
             }
-        }
-        while (liveDataScanner.hasNext()) {
-            String line = liveDataScanner.nextLine();
-            activitiesLeftInData.add(line);
         }
     }
 }
