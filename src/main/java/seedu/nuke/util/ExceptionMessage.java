@@ -29,14 +29,11 @@ public class ExceptionMessage {
     public static final String MESSAGE_INVALID_DATETIME_FORMAT =
             "Sorry, the deadline you entered is not in a recognised datetime format.\n"
             + "Please make sure to follow the datetime format as such:\n\t"
-            + DateTime.FORMAT + "\nExample: 06/06/2020 12:00am\n\n"
-            + "Alternatively, enter 'help datetime', 'help date' or 'help time' to find out other accepted "
-            + "variations of the datetime format.\n";
+            + DateTime.FORMAT + "\nExample: 06/06/2020 12:00am\n";
     public static final String MESSAGE_INVALID_DATE_FORMAT =
             "Sorry, the date you entered is not in a recognised date format.\n"
             + "Please make sure to follow the date format as such:\n\t"
-            + DateTime.DATE_FORMAT + "\nExample: 07/07/2020\n"
-            + "Alternatively, enter 'help date' to find out other accepted variations of the date format.\n";
+            + DateTime.DATE_FORMAT + "\nExample: 07/07/2020\n";
 
     public static final String MESSAGE_LIST_NUMBER_NOT_FOUND =
             "The List number is not found on the list! Deletion is aborted.\n";

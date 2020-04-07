@@ -63,8 +63,7 @@ public class ScreenShotManager {
      * @throws CorruptedFileException exception is thrown when converting a corrupted string to moduleList.
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
      */
-    public static void undo() throws IOException, CorruptedFileException, EmptyStackException,
-            IncorrectDirectoryLevelException {
+    public static void undo() throws IOException, CorruptedFileException, EmptyStackException {
         ScreenShot previousState = popPreviousScreenShot();
         String encodedSavedList = previousState.getEncodedSavedList();
 
@@ -86,8 +85,7 @@ public class ScreenShotManager {
      * @throws CorruptedFileException exception is thrown when converting a corrupted string to moduleList.
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
      */
-    public static void redo() throws IOException, CorruptedFileException, EmptyStackException,
-            IncorrectDirectoryLevelException {
+    public static void redo() throws IOException, CorruptedFileException, EmptyStackException {
         ScreenShot redoScreenShot = popRedoScreenShot();
         String encodedSavedList = redoScreenShot.getEncodedSavedList();
 

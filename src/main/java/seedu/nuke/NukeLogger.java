@@ -12,7 +12,4 @@ public class NukeLogger {
         return logger;
     }
 
-    public static void setUpLogger() {
-        logger.addHandler(new ConsoleHandler());
-    }
 }

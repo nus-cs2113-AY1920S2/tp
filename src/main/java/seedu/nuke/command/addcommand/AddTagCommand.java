@@ -38,7 +38,7 @@ public class AddTagCommand extends Command {
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
-    private final ArrayList<String> infos;
+    private final ArrayList<String> tagNames;
     private String taskDescription;
     private String moduleCode;
     private String categoryName;
@@ -46,7 +46,7 @@ public class AddTagCommand extends Command {
     /**
      * Constructs an Add Tag Command.
      *
-     * @param infos
+     * @param tagNames
      *  The tag info
      * @param taskDescription
      *  The description of the task
@@ -55,8 +55,8 @@ public class AddTagCommand extends Command {
      * @param categoryName
      *  The name of the parent category
      */
-    public AddTagCommand(ArrayList<String> infos, String moduleCode, String categoryName, String taskDescription) {
-        this.infos = infos;
+    public AddTagCommand(ArrayList<String> tagNames, String moduleCode, String categoryName, String taskDescription) {
+        this.tagNames = tagNames;
         this.taskDescription = taskDescription;
         this.moduleCode = moduleCode;
         this.categoryName = categoryName;
@@ -65,9 +65,9 @@ public class AddTagCommand extends Command {
     protected CommandResult executeAdd() {
         try {
             Task toAddTag = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
-            toAddTag.setTag(infos);
-            for (String info : infos) {
-                assert toAddTag.getTags().contains(info) : "tag have been successfully added";
+            toAddTag.setTag(tagNames);
+            for (String tag : tagNames) {
+                assert toAddTag.getTags().contains(tag) : "tag have been successfully added";
             }
             return new CommandResult(MESSAGE_TAG_ADDED);
         } catch (ModuleManager.ModuleNotFoundException e) {
