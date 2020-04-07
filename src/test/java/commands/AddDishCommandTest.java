@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.InvalidPriceException;
 import menu.Menu;
 import org.junit.jupiter.api.Test;
 
@@ -48,14 +49,14 @@ public class AddDishCommandTest {
     }
 
     @Test
-    public void parsePriceTestA() {
+    public void parsePriceTestA() throws InvalidPriceException {
         Menu m = new Menu();
         String d1 = "n/bacon pizza; p/3.00; i/cheese, bacon;";
         assertEquals(3.00, AddDishCommand.parsePrice(d1));
     }
 
     @Test
-    public void parsePriceTestB() {
+    public void parsePriceTestB() throws InvalidPriceException {
         Menu m = new Menu();
         String d2 = "p/6.00; i/chicken, rice, chili; n/chicken biryani;";
         assertEquals(6.00, AddDishCommand.parsePrice(d2));

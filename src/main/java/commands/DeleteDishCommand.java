@@ -36,7 +36,7 @@ public class DeleteDishCommand extends Menu {
      * @throws DishNameMissingException exception for missing name
      * @throws InvalidDeleteDishCommandException exception for invalid delete format
      */
-     public static void checkFormat(String input) throws DishNameMissingException, InvalidDeleteDishCommandException {
+    public static void checkFormat(String input) throws DishNameMissingException, InvalidDeleteDishCommandException {
         if (!input.contains("n/")) {
             throw new DishNameMissingException();
         } else if (input.chars().filter(ch -> ch == ';').count() != 1) {

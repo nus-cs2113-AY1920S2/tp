@@ -17,7 +17,7 @@ public class DeleteDishCommandTest {
         String d2 = "i/chicken, rice, chili; n/chicken biryani; p/10.00;";
         AddDishCommand.addDish(d2);
         assertTrue(Menu.getDishMap().containsKey("chicken biryani"));
-        DeleteDishCommand.deleteDish("bacon pizza");
+        DeleteDishCommand.deleteDish("n/bacon pizza;");
         assertFalse(Menu.getDishMap().containsKey("bacon pizza"));
         assertTrue(Menu.getDishMap().containsKey("chicken biryani"));
     }
@@ -30,9 +30,9 @@ public class DeleteDishCommandTest {
         assertTrue(Menu.getDishMap().containsKey("bacon pizza"));
         String d2 = "i/chicken, rice, chili; n/chicken biryani; p/10.00;";
         AddDishCommand.addDish(d2);
-        DeleteDishCommand.deleteDish("bacon pizza");
+        DeleteDishCommand.deleteDish("n/bacon pizza;");
         assertFalse(Menu.getDishMap().containsKey("bacon pizza"));
-        DeleteDishCommand.deleteDish("chicken biryani");
+        DeleteDishCommand.deleteDish("n/chicken biryani;");
         assertFalse(Menu.getDishMap().containsKey("chicken biryani"));
     }
 
