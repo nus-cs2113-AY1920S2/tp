@@ -23,32 +23,37 @@ health data.
 
 ---
 
-### Summary of Contributions
+## Summary of Contributions
 
-####Code Contributed:
+
+###Code Contributed:
 
 **__Diet Manager__**:<br>
 Link to code on tP Code Dashboard 
 [**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=dejunnn).
 
-####Enhancements implemented:
+###Enhancements implemented:
 
 * A summary of the enhancements you implemented.
 
-####Contributions to documentation: 
+
+###Contributions to documentation: 
 
 * Which sections did you contribute to the UG?
 
-####Contributions to the DG: 
+
+###Contributions to the DG: 
 
 * Which sections did you contribute to the DG? 
 * Which UML diagrams did you add/updated?
 
-####Contributions to team-based tasks :
+
+###Contributions to team-based tasks :
 
 * Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways
 
-####Contributions beyond the project team:
+
+###Contributions beyond the project team:
 
 * Evidence of helping others e.g. responses you posted in our forum, bugs you reported in other team's products,
 * Evidence of technical leadership e.g. sharing useful information in the forum
@@ -56,9 +61,10 @@ Link to code on tP Code Dashboard
 * We recommend that you mention things that will earn you a fair score e.g., explain how deep the enhancement is, 
 why it is complete, how hard it was to implement etc..
 
+
 ---
 
-### Contributions to the User Guide
+## Contributions to the User Guide
 
 Reproduce the parts in the User Guide that you wrote. 
 This can include features you implemented as well as features you propose to implement.
@@ -69,7 +75,7 @@ to use a UML diagram type not used by the actual features.
 
 ---
 
-### Contributions to the Developer Guide
+## Contributions to the Developer Guide
 
 Reproduce the parts in the Developer Guide that you wrote. 
 Ensure there is enough content to evaluate your technical documentation skills and UML modelling skills. 
