@@ -20,10 +20,20 @@ class StockCommandTest {
     }
     
     @Test
-    public void parse_parseIngredientName_parseNormally() {
+    public void parse_parseIngredientName_parseNormally() throws InvalidStockCommandException {
         StockCommand stockCommand = new StockCommand();
         assertEquals("tomato", stockCommand.parseIngredientName("i/tomato"));
         assertFalse(stockCommand.parseIngredientName("i/tomato").equals("potato"));
+    }
+    
+    @Test
+    public void parse_parseIngredientName_blankIngredientNameSupplied() {
+        StockCommand stockCommand = new StockCommand();
+        try {
+            stockCommand.parseIngredientName("q/");
+        } catch (InvalidStockCommandException isce) {
+            assertEquals("Please enter the ingredient's name to be added.", isce.getMessage());
+        }
     }
     
     @Test
@@ -57,9 +67,19 @@ class StockCommandTest {
     }
     
     @Test
+    public void parse_parseIngredientQuantity_blankIngredientQuantitySupplied() {
+        StockCommand stockCommand = new StockCommand();
+        try {
+            stockCommand.parseIngredientQuantity("q/");
+        } catch (InvalidStockCommandException isce) {
+            assertEquals("Please ensure that the quantity specified is an integer!", 
+                    isce.getMessage());
+        }
+    }
+    
+    @Test
     public void parse_parseIngredientQuantity_quantityIsNotInteger() {
         StockCommand stockCommand = new StockCommand();
-        
 
         try {
             int parsedInvalidQuantityTwo = stockCommand.parseIngredientQuantity("q/LOL");
@@ -101,6 +121,28 @@ class StockCommandTest {
                     nfe.getMessage());
         } catch (InvalidStockCommandException isce) {
             assertEquals("Please enter a positive value for the ingredient's price!",
+                    isce.getMessage());
+        }
+    }
+    
+    @Test
+    public void parse_parseIngredientPrice_blankIngredientPriceSupplied() {
+        StockCommand stockCommand = new StockCommand();
+        try {
+            stockCommand.parseIngredientPrice("p/");
+        } catch (InvalidStockCommandException isce) {
+            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
+                    isce.getMessage());
+        }
+    }
+    
+    @Test
+    public void parse_parseIngredientPrice_RandomUserInputSupplied() {
+        StockCommand stockCommand = new StockCommand();
+        try {
+            stockCommand.parseIngredientName("p/$$$$$");
+        } catch (InvalidStockCommandException isce) {
+            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
                     isce.getMessage());
         }
     }
