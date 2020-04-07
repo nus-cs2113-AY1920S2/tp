@@ -1,15 +1,16 @@
-package seedu.dietmanager.logic.commands;
+package seedu.dietmanager.logic.commands.profile;
 
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.commons.exceptions.InvalidAgeException;
+import seedu.dietmanager.commons.exceptions.InvalidNameException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.parser.AgeParser;
+import seedu.dietmanager.logic.commands.Command;
+import seedu.dietmanager.logic.parser.NameParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
-public class SetAgeCommand extends Command {
+public class SetNameCommand extends Command {
 
-    private int age;
+    private String name;
     private boolean isValidCommand;
     private boolean isValidProfile;
 
@@ -19,12 +20,12 @@ public class SetAgeCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetAgeCommand(String command, String description) {
+    public SetNameCommand(String command, String description) {
         super(command);
         this.isValidCommand = true;
         try {
-            this.age = AgeParser.parseAge(description);
-        } catch (InvalidAgeException e) {
+            this.name = NameParser.parseName(description);
+        } catch (InvalidNameException e) {
             this.isValidCommand = false;
         }
     }
@@ -36,7 +37,7 @@ public class SetAgeCommand extends Command {
             this.isValidCommand = false;
         }
         if (this.isValidCommand) {
-            profile.setAge(this.age);
+            profile.setName(this.name);
         }
         Result result = getResult(profile);
         return result;
@@ -47,9 +48,9 @@ public class SetAgeCommand extends Command {
         if (!this.isValidProfile) {
             this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (this.isValidCommand) {
-            this.resultString = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
+            this.resultString = MessageBank.NAME_CHANGE_MESSAGE + profile.getName() + ".";
         } else {
-            this.resultString = MessageBank.INVALID_AGE_MESSAGE;
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
         return new Result(this.resultString);
     }

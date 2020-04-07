@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public class DailyFoodRecord {
     private String date;
-    private ArrayList<Food> breakfast;
-    private ArrayList<Food> lunch;
-    private ArrayList<Food> dinner;
+    private ArrayList<Food> morning;
+    private ArrayList<Food> afternoon;
+    private ArrayList<Food> night;
 
     /**
      * Constructs the Daily Food Record.
@@ -17,9 +17,9 @@ public class DailyFoodRecord {
 
     public DailyFoodRecord(String date) {
         setDate(date);
-        breakfast = new ArrayList<Food>();
-        lunch = new ArrayList<Food>();
-        dinner = new ArrayList<Food>();
+        this.morning = new ArrayList<Food>();
+        this.afternoon = new ArrayList<Food>();
+        this.night = new ArrayList<Food>();
     }
 
     /**
@@ -50,13 +50,13 @@ public class DailyFoodRecord {
     public void recordMeals(String mealType, ArrayList<Food> foodList) {
         switch (mealType) {
         case "morning":
-            breakfast.addAll(foodList);
+            this.morning.addAll(foodList);
             break;
         case "afternoon":
-            lunch.addAll(foodList);
+            this.afternoon.addAll(foodList);
             break;
         case "night":
-            dinner.addAll(foodList);
+            this.night.addAll(foodList);
             break;
         default:
             break;
@@ -71,13 +71,13 @@ public class DailyFoodRecord {
     public void clearRecords(String mealType) {
         switch (mealType) {
         case "morning":
-            breakfast.clear();
+            this.morning.clear();
             break;
         case "afternoon":
-            lunch.clear();
+            this.afternoon.clear();
             break;
         case "night":
-            dinner.clear();
+            this.night.clear();
             break;
         default:
             break;
@@ -100,7 +100,7 @@ public class DailyFoodRecord {
 
     public String showBreakfast() {
         String message = "";
-        for (Food food : breakfast) {
+        for (Food food : this.morning) {
             message = message + food.toString();
         }
         if (message.equals("")) {
@@ -115,7 +115,7 @@ public class DailyFoodRecord {
 
     public String showLunch() {
         String message = "";
-        for (Food food : lunch) {
+        for (Food food : this.afternoon) {
             message = message + food.toString();
         }
         if (message.equals("")) {
@@ -130,7 +130,7 @@ public class DailyFoodRecord {
 
     public String showDinner() {
         String message = "";
-        for (Food food : dinner) {
+        for (Food food : this.night) {
             message = message + food.toString();
         }
         if (message.equals("")) {
@@ -150,9 +150,9 @@ public class DailyFoodRecord {
      */
     public ArrayList<Food> getDailyFood() {
         ArrayList<Food> allDailyFood = new ArrayList<>();
-        allDailyFood.addAll(breakfast);
-        allDailyFood.addAll(lunch);
-        allDailyFood.addAll(dinner);
+        allDailyFood.addAll(this.morning);
+        allDailyFood.addAll(this.afternoon);
+        allDailyFood.addAll(this.night);
         return allDailyFood;
     }
 
@@ -164,11 +164,11 @@ public class DailyFoodRecord {
     public ArrayList<Food> getDailyFood(String timeFrame) {
         switch (timeFrame) {
         case "morning":
-            return breakfast;
+            return this.morning;
         case "afternoon":
-            return lunch;
+            return this.afternoon;
         case "night":
-            return dinner;
+            return this.night;
         default:
             return new ArrayList<>();
         }
@@ -260,19 +260,19 @@ public class DailyFoodRecord {
         String message = this.date;
         message = String.format("%1$-10s", message);
 
-        for (Food food : breakfast) {
+        for (Food food : morning) {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
         message = String.format("%1$-70s", message);
 
-        for (Food food : lunch) {
+        for (Food food : afternoon) {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
         message = String.format("%1$-130s", message);
 
-        for (Food food : dinner) {
+        for (Food food : night) {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);

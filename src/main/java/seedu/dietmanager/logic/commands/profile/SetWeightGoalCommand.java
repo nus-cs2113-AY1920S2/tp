@@ -1,15 +1,16 @@
-package seedu.dietmanager.logic.commands;
+package seedu.dietmanager.logic.commands.profile;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.WeightParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
-public class SetWeightCommand extends Command {
+public class SetWeightGoalCommand extends Command {
 
-    private double weight;
+    private double weightGoal;
     private boolean isValidCommand;
     private boolean isValidProfile;
 
@@ -19,11 +20,11 @@ public class SetWeightCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetWeightCommand(String command, String description) {
+    public SetWeightGoalCommand(String command, String description) {
         super(command);
         this.isValidCommand = true;
         try {
-            this.weight = WeightParser.parseWeight(description);
+            this.weightGoal = WeightParser.parseWeight(description);
         } catch (InvalidWeightException e) {
             this.isValidCommand = false;
         }
@@ -36,7 +37,7 @@ public class SetWeightCommand extends Command {
             this.isValidCommand = false;
         }
         if (this.isValidCommand) {
-            profile.setWeight(weight);
+            profile.setWeightGoal(this.weightGoal);
         }
         Result result = getResult(profile);
         return result;
@@ -47,7 +48,8 @@ public class SetWeightCommand extends Command {
         if (!this.isValidProfile) {
             this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (this.isValidCommand) {
-            this.resultString = MessageBank.WEIGHT_CHANGE_MESSAGE + String.format("%.2f.", profile.getWeight());
+            this.resultString = MessageBank.WEIGHT_GOAL_CHANGE_MESSAGE
+                    + String.format("%.2f.", profile.getWeightGoal());
         } else {
             this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }

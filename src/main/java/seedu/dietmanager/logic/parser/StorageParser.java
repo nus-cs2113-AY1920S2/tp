@@ -11,7 +11,7 @@ public class StorageParser {
     /**
      * Parses the user input and prepares it to be analysed and used to generate commands.
      *
-     * @param profileDataLine       the command description.
+     * @param profileDataLine the command description.
      * @throws InvalidFormatException if user input has the wrong format.
      */
 
@@ -28,7 +28,7 @@ public class StorageParser {
     /**
      * Parses the user input and prepares it to be analysed and used to generate commands.
      *
-     * @param foodNutritionRecordDataLine       the command description.
+     * @param foodNutritionRecordDataLine the command description.
      * @throws InvalidFormatException if user input has the wrong format.
      */
 

@@ -38,48 +38,48 @@ public class UI {
 
     public void displayWelcomeMessage() {
         showMessage(
-            LOGO,
-            WELCOME_MESSAGE);
+                LOGO,
+                WELCOME_MESSAGE);
     }
 
     public void displayHelpMenu() {
         showMessage(
-            FUNCTION_LIST);
+                FUNCTION_LIST);
     }
 
     public void displayExitMessage() {
         showMessage(
-            EXIT_APP_MESSAGE);
+                EXIT_APP_MESSAGE);
     }
 
     public void displayFileErrorMessage() {
         showMessage(
-            FILE_ERROR_MESSAGE);
+                FILE_ERROR_MESSAGE);
     }
 
     public void displayInvalidCommandMessage() {
         showMessage(
-            INVALID_COMMAND_MESSAGE);
+                INVALID_COMMAND_MESSAGE);
     }
 
     public void displayInvalidFormatMessage() {
         showMessage(
-            INVALID_FORMAT_MESSAGE);
+                INVALID_FORMAT_MESSAGE);
     }
 
     public void displayIndexOutOfBoundMessage() {
         showMessage(
-            INVALID_INDEX);
+                INVALID_INDEX);
     }
 
     public void displayInvalidGenderMessage() {
         showMessage(
-            INVALID_GENDER_MESSAGE);
+                INVALID_GENDER_MESSAGE);
     }
 
     public void showExecutionResult(String result) {
         showMessage(
-            result);
+                result);
     }
 
     /**

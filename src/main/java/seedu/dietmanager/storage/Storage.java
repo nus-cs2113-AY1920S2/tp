@@ -22,7 +22,6 @@ import seedu.dietmanager.model.FoodNutritionRecord;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -72,7 +71,8 @@ public class Storage {
     private static String DAILY_FOOD_RECORD_FILE_PATH = DATA_DIRECTORY_PATH
             + File.separator + "daily-food-record.txt";
 
-    /** To be implemented at a later stage.
+    /**
+     * To be implemented at a later stage.
      * The file path of the data file that contains food nutritional information.
      */
 
@@ -320,5 +320,7 @@ public class Storage {
             ui.displayFileErrorMessage();
         }
     }
+
+
 
 }
