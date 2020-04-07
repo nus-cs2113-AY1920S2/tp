@@ -76,7 +76,7 @@ Delete menu items, ingredients and reservations.
   + Example: `delete dish; n/bacon pizza;`<br/>
 
 
-#### Delete stock of ingredient: delete stock
+#### Delete ingredient in stock: delete stock
 * Format: `delete stock; i/INGREDIENT; [q/QUANTITY;]`
   + Example: `delete stock; i/tomato; q/1;`<br/>
   + Example: `delete stock; i/tomato;`<br/>
