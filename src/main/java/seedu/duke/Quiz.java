@@ -53,10 +53,9 @@ public class Quiz {
             throw new EscException("No questions for this subject.");
         }
         ScoreList scores = subject.getScoreList();
-        int max = cards.size();
         int attempted = 0;
         double score = 0;
-        while (attempted < max && attempted != numToQuiz) {
+        while (attempted < numToQuiz) {
             try {
                 double obtainedScore = quizNext(cards, set);
                 if (obtainedScore == -1.0) {

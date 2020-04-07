@@ -185,7 +185,7 @@ public class Parser {
     private static Command prepareQuiz(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, QuizCommand.MESSAGE_USAGE);
         arguments[1] = " " + arguments[1];
-        checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG, QUIZ_ARG);
+        checkArgumentPrefixes(arguments[1], QuizCommand.MESSAGE_USAGE, SUBJECT_ARG);
         int subjectIndex = getSubjectIndex(arguments[1]);
         int numToQuiz = getNumberToQuiz(arguments[1]);
 
@@ -200,8 +200,14 @@ public class Parser {
         checkNumberOfArguments(arguments, ScoreCommand.MESSAGE_USAGE);
         arguments[1] = " " + arguments[1];
         checkArgumentPrefixes(arguments[1], ScoreCommand.MESSAGE_USAGE, SUBJECT_ARG);
-        int subjectIndex = getSubjectIndex(arguments[1]);
 
+        String[] trimmedArguments = arguments[1].trim().split(" ");
+
+        if (trimmedArguments.length > 1) {
+            throw new EscException("Too many inputs. " + ScoreCommand.MESSAGE_USAGE);
+        }
+
+        int subjectIndex = getSubjectIndex(" " + trimmedArguments[0]);
         return new ScoreCommand(subjectIndex);
     }
 
@@ -256,17 +262,26 @@ public class Parser {
      * @throws EscException if the input number is a non-integer.
      */
     private static int getNumberToQuiz(String argument) throws EscException {
-        String num = argument.split(QUIZ_ARG)[1].trim();
-        int numToQuiz = 0;
-        try {
-            numToQuiz = Integer.parseInt(num);
-        } catch (NumberFormatException e) {
-            throw new EscException("Number of questions to quiz has to be an integer.");
+        if (!argument.contains(QUIZ_ARG)) {
+            return -1;
+        } else {
+            int numToQuiz = 0;
+            String num;
+            try {
+                num = argument.split(QUIZ_ARG)[1].trim();
+                numToQuiz = Integer.parseInt(num.split(" ")[0]);
+            } catch (NumberFormatException e) {
+                throw new EscException("Number of questions to quiz has to be an integer.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new EscException("The number of questions to quiz is needed.");
+            }
+            if (numToQuiz == 0) {
+                throw new EscException("Number of questions to quiz has to be a positive integer.");
+            } else if (num.split(" ").length > 1) {
+                throw new EscException("Too many inputs. " + QuizCommand.MESSAGE_USAGE);
+            }
+            return numToQuiz;
         }
-        if (numToQuiz == 0) {
-            throw new EscException("Number of questions to quiz has to be a positive integer.");
-        }
-        return numToQuiz;
     }
 
     /**
@@ -349,13 +364,6 @@ public class Parser {
      * @throws EscException if the event date format is wrong or absent.
      */
     private static LocalDate getEventDate(String argument) throws EscException {
-        String argWithoutPrefixes = argument.split(DATE_ARG)[1];
-        String dateString = argWithoutPrefixes.replace(DATE_ARG,"").trim();
-
-        if (dateString.trim().isEmpty()) {
-            throw new EscException("The event date is required");
-        }
-
         DateTimeFormatter dateKey = DateTimeFormatter.ofPattern("[dd/MM/yyyy][d/M/yyyy][dd/MM/yy][d/M/yy]"
                 + "[yyyy/MM/dd][yyyy-MM-dd][yyyy-M-d]"
                 + "[dd-MM-yyyy][d-M-yyyy][dd-MM-yy][d-M-yy]"
@@ -364,7 +372,10 @@ public class Parser {
 
         LocalDate parsedDate;
         try {
+            String dateString = argument.split(DATE_ARG)[1].trim();
             parsedDate = LocalDate.parse(dateString, dateKey);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new EscException("The event date is required.");
         } catch (DateTimeParseException e) {
             throw new EscException("Wrong date format.");
         }
