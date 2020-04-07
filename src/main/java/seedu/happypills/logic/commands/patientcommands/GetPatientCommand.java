@@ -19,6 +19,15 @@ public class GetPatientCommand extends PatientCommand {
         this.patientNric = patientNric;
     }
 
+    /**
+     * Get the details of a patient.
+     * @author janicetyy
+     * @param patients Shared map of patients
+     * @param appointments Shared map of appointments
+     * @param visits Shared map of patient records
+     * @return Error Message or Success Message
+     * @throws HappyPillsException if patient not found
+     */
     @Override
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) throws HappyPillsException {

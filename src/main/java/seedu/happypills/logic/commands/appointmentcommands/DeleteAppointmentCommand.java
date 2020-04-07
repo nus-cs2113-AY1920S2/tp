@@ -58,6 +58,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     /**
      * Delete an appointment of the patient from the shared map.
      *
+     * @author sitinadiah25
      * @param appointments The shared appointment map.
      * @param appointmentId The id of the appointment to be deleted.
      */
@@ -72,6 +73,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     /**
      * Delete an appointment of the patient in the patient object.
      *
+     * @author janicetyy
      * @param patient The patient whose appointment is to be deleted.
      * @param apptID The id of the appointment to be deleted.
      */
@@ -85,6 +87,15 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         return false;
     }
 
+    /**
+     * Carry out the procedures for deleting appointment
+     * @author janicetyy, sitinadiah25
+     * @param patients Shared map of patients
+     * @param appointments Shared map of appointments
+     * @param visits Shared map of patient records
+     * @return errorMessage or successMessage
+     * @throws HappyPillsException not used but required as part of command
+     */
     @Override
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
