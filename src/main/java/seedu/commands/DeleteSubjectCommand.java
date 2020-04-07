@@ -10,7 +10,7 @@ public class DeleteSubjectCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "deletesubject";
 
-    public static final String MESSAGE_USAGE = "To delete subject, type command: delete s/[SUBJECT INDEX]";
+    public static final String MESSAGE_USAGE = "To delete subject, type command: deletesubject s/[SUBJECT INDEX]";
 
     private int subjectIndex;
 
@@ -25,7 +25,7 @@ public class DeleteSubjectCommand extends DeleteCommand {
         return subjectIndex;
     }
 
-    /** Removes a card from the application. */
+    /** Removes a subject from the application. */
     public void execute(SubjectList subjectList) throws EscException {
         subjectList.removeSubject(this.subjectIndex);
         //ui display

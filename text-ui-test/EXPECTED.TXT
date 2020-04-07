@@ -9,9 +9,17 @@ Hello from
 ______________________
 Enter command: 
 [Command entered: addsubject s/biology]
+biology has been added.
+Here is the list of subjects.
+1. biology
 ______________________
 Enter command: 
 [Command entered: addcard s/1 q/question a/answer]
+Q:question
+A:answer
+A new card has been added to subject {biology}
+Here is the list of questions.
+1. question
 ______________________
 Enter command: 
 [Command entered: exit]

@@ -37,7 +37,7 @@ class DeleteCardCommandTest {
     }
 
     @Test
-    void execute_emptyCardList_exceptionThrown() {
+    void execute_emptyCardList_exceptionThrown() throws EscException {
         deleteCardCommand = new DeleteCardCommand(1,1);
         AddSubjectCommand addSubjectCommand = new AddSubjectCommand(subjectName);
         addSubjectCommand.execute(subjectList);
