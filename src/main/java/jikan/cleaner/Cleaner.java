@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Cleaner {
-    protected static String STATUS_FILE_PATH;
-    protected static String DATA_FILE_PATH;
+    protected String statusFilePath;
+    protected String dataFilePath;
     protected File status;
     protected File recycledData;
     public boolean toClean;
-    private static final int defaultNumberOfDataToClean = 5;
+    private static final int DEFAULT_LINES_TO_CLEAN = 5;
 
     /**
      * Initialise a data file containing the deleted logs.
@@ -84,7 +84,7 @@ public abstract class Cleaner {
                 fw.write("0" + "\n");
                 fw.write("5" + "\n");
                 fw.close();
-                return defaultNumberOfDataToClean;
+                return DEFAULT_LINES_TO_CLEAN;
             }
         } catch (IOException e) {
             System.out.println("Error loading/creating cleaning file.");
@@ -100,7 +100,7 @@ public abstract class Cleaner {
      */
     public void setStatus(boolean status, int number) throws IOException {
         this.toClean = status;
-        File dataFile = new File(STATUS_FILE_PATH);
+        File dataFile = new File(statusFilePath);
         if (!dataFile.exists()) {
             dataFile.createNewFile();
         }

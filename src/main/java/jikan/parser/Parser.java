@@ -85,7 +85,7 @@ public class Parser {
                 command = new StartCommand(tokenizedInputs[1], scanner);
             } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
                 makeInfoLog("Activity started without activity name");
-                Ui.printDivider("Activity name cannot be empty!");
+                Ui.printDivider("Start command cannot be empty");
             }
             break;
         case "end":

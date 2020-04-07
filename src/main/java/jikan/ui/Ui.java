@@ -30,7 +30,7 @@ public class Ui {
 
     public static final int TOTALBARS = 50;
 
-    private static final DecimalFormat df2 = new DecimalFormat("#.##");
+    private static final DecimalFormat DF2 = new DecimalFormat("#.##");
 
     /** Prints the logo and greeting so users know the app is working. */
     public void printGreeting() {
@@ -243,7 +243,7 @@ public class Ui {
                 System.out.print(" ");
             }
         }
-        System.out.println("|  " + df2.format(percent) + "%");
+        System.out.println("|  " + DF2.format(percent) + "%");
     }
 
     /**

@@ -27,10 +27,10 @@ public class StorageCleaner extends Cleaner {
      */
     public StorageCleaner(Storage storage) {
         this.storage = storage;
-        super.STATUS_FILE_PATH = "data/recycled/status.txt";
-        super.status = new File(STATUS_FILE_PATH);
-        super.DATA_FILE_PATH = "data/recycled/data.csv";
-        super.recycledData = new File(DATA_FILE_PATH);
+        super.statusFilePath = "data/recycled/status.txt";
+        super.status = new File(statusFilePath);
+        super.dataFilePath = "data/recycled/data.csv";
+        super.recycledData = new File(dataFilePath);
         initialiseDataFile();
         int value = initialiseCleaner();
         if (value != -1) {
@@ -45,7 +45,7 @@ public class StorageCleaner extends Cleaner {
      */
     public void setNumberOfActivitiesToClean(int value) throws IOException {
         boolean status = this.toClean;
-        File dataFile = new File(STATUS_FILE_PATH);
+        File dataFile = new File(statusFilePath);
         this.numberOfActivitiesToClean = value;
         if (!dataFile.exists()) {
             dataFile.createNewFile();

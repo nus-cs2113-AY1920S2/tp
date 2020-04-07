@@ -24,10 +24,10 @@ public class LogCleaner extends Cleaner {
      * Constructor for the log cleaner.
      */
     public LogCleaner() {
-        super.STATUS_FILE_PATH = "data/recycled/logStatus.txt";
-        super.status = new File(STATUS_FILE_PATH);
-        super.DATA_FILE_PATH = "data/recycled/logData.txt";
-        super.recycledData = new File(DATA_FILE_PATH);
+        super.statusFilePath = "data/recycled/logStatus.txt";
+        super.status = new File(statusFilePath);
+        super.dataFilePath = "data/recycled/logData.txt";
+        super.recycledData = new File(dataFilePath);
         initialiseDataFile();
         int value = initialiseCleaner();
         if (value != -1) {
@@ -42,7 +42,7 @@ public class LogCleaner extends Cleaner {
      */
     public void setNumberOfLogsToClean(int value) throws IOException {
         boolean status = this.toClean;
-        File dataFile = new File(STATUS_FILE_PATH);
+        File dataFile = new File(statusFilePath);
         this.numberOfLogsToClean = value;
         if (!dataFile.exists()) {
             dataFile.createNewFile();

@@ -22,7 +22,7 @@ public class StartCommand extends Command {
     private boolean hasAllocation = false;
     private boolean hasTag = false;
     private boolean hasAllocationAndTag = false;
-    private static final int maxActivityLength = 25;
+    private static final int MAX_ACTIVITY_LENGTH = 25;
 
     /**
      * Constructor to create a new start command.
@@ -60,6 +60,7 @@ public class StartCommand extends Command {
      * Stops executing current activity if a concurrent running activity is found.
      */
     private void stopExecution() {
+        assert Parser.startTime != null;
         String line = Parser.activityName + " is ongoing!";
         Log.makeInfoLog("Could not start activity due to already ongoing activity.");
         Ui.printDivider(line);
@@ -70,31 +71,15 @@ public class StartCommand extends Command {
      * @param activityList a list of tracked activities.
      */
     private void continueExecution(ActivityList activityList) {
-        boolean commandIsEmpty = hasParameter(this.parameters);
-        String activityName = "";
-        if (commandIsEmpty) {
-            Ui.printDivider("Start command cannot be empty");
-        } else {
-            activityName = parseActivityName(this.parameters);
-        }
+        String activityName = parseActivityName(this.parameters);
         if (activityName.isEmpty()) {
+            Log.makeFineLog("Empty activity name was provided.");
             Ui.printDivider("Activity name cannot be empty");
         } else {
             checkActivity(activityName, activityList);
         }
     }
 
-    /**
-     * Check if the start command is empty.
-     * @param parameters the parameters to start command.
-     * @return true if it is empty and false otherwise.
-     */
-    private boolean hasParameter(String parameters) {
-        if (parameters.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Get activity name from parameters to start command.
@@ -109,15 +94,19 @@ public class StartCommand extends Command {
         scenario = getScenario(tagDelimiter, allocateDelimiter);
         switch (scenario) {
         case "hasTagAndAllocation":
+            assert tagDelimiter != -1 && allocateDelimiter != -1;
             activityName = handleTagAndAllocation(this.parameters, tagDelimiter, allocateDelimiter);
             break;
         case "hasTagOnly":
+            assert tagDelimiter != -1 && allocateDelimiter == -1;
             activityName = handleTagOrAllocation(this.parameters, tagDelimiter);
             break;
         case "hasAllocationOnly":
+            assert tagDelimiter == -1 && allocateDelimiter != -1;
             activityName = handleTagOrAllocation(this.parameters, allocateDelimiter);
             break;
         case "hasNoTagAndAllocation":
+            assert tagDelimiter == -1 && allocateDelimiter == -1;
             activityName = this.parameters.trim();
             break;
         default:
@@ -156,13 +145,14 @@ public class StartCommand extends Command {
      * @return activity name
      */
     private String handleTagAndAllocation(String parameters, int tagDelimiter, int allocateDelimiter) {
-        String activityName = "";
+        String activityName;
         int delimiter = 0;
         if (tagDelimiter < allocateDelimiter) {
             delimiter = tagDelimiter;
         } else if (allocateDelimiter < tagDelimiter) {
             delimiter = allocateDelimiter;
         }
+        assert delimiter == tagDelimiter || delimiter == allocateDelimiter;
         activityName = parameters.substring(0, delimiter);
         activityName = activityName.trim();
         if (activityName.isEmpty()) {
@@ -179,6 +169,7 @@ public class StartCommand extends Command {
      * @return activity name.
      */
     private String handleTagOrAllocation(String parameters, int delimiter) {
+        assert delimiter != -1;
         String activityName = parameters.substring(0, delimiter);
         activityName = activityName.trim();
         if (activityName.isEmpty()) {
@@ -189,17 +180,18 @@ public class StartCommand extends Command {
     }
 
     /**
-     * Method to check if the activity exists in activitylist and does not exceed 25 characters.
+     * Method to check if the activity exists in activity list and does not exceed 25 characters.
      * @param activityName the string representing activity name.
      * @param activityList a list of tracked activities.
      */
     private void checkActivity(String activityName, ActivityList activityList) {
+        assert !activityName.isEmpty();
         int index = activityList.findActivity(activityName);
         if (index != -1) {
             Ui.printDivider("There is already an activity with this name. Would you like to continue it?");
             continueActivity(activityList, scanner, index);
-        } else if (activityName.length() > maxActivityLength) {
-            Log.makeInfoLog("Activity name longer than 25 characters");
+        } else if (activityName.length() > MAX_ACTIVITY_LENGTH) {
+            Log.makeInfoLog("Activity name longer than 25 characters.");
             Ui.printDivider("Please input an activity name that is shorter than 25 characters.");
         } else {
             addActivityToList(activityName);
@@ -230,6 +222,7 @@ public class StartCommand extends Command {
     private void parseActivityWithBothField(String activityName, String line) {
         int allocateIndex = line.indexOf("/a");
         int tagIndex = line.indexOf("/t");
+        assert tagIndex != -1 && allocateIndex != -1;
         String tagInfo = "";
         String durationInfo = "";
         if (tagIndex < allocateIndex) {
@@ -257,26 +250,41 @@ public class StartCommand extends Command {
      * @param activityName the string representing activity name.
      */
     private void addActivityWithBothField(String durationInfo, String tagInfo, String activityName) {
-        LocalTime startTime = LocalTime.MIN;
-        LocalTime endTime;
-        String[] tagString = tagInfo.split(" ");
+        String[] tagStrings = tagInfo.split(" ");
         try {
-            endTime = LocalTime.parse(durationInfo);
-            Duration allocatedTime = Duration.between(startTime, endTime);
-            if (tagInfo.isEmpty()) {
-                Ui.printDivider("Please provide a valid tag");
-            } else if (allocatedTime == Duration.parse("PT0S")) {
-                Ui.printDivider("Please provide a non zero allocated time");
-            } else if (tagString.length > 2) {
-                Ui.printDivider("Cannot have more than 2 tags");
-            } else {
-                Parser.tags.addAll(Arrays.asList(tagString));
-                Parser.allocatedTime = allocatedTime;
-                addActivity(activityName);
-            }
+            checkBothField(durationInfo, tagInfo, activityName, tagStrings);
         } catch (DateTimeException e) {
+            Log.makeInfoLog("Allocated time provided was not valid.");
             Ui.printDivider("Time provided is invalid, please provide time in this format"
                     + " HH:MM:SS");
+        }
+    }
+
+    /**
+     * Check if allocated time and tags are formatted correctly/not empty
+     * @param durationInfo information about the duration.
+     * @param tagInfo information about the tag.
+     * @param activityName the string representing activity name.
+     * @param tagStrings tokenized information about the tags.
+     */
+    private void checkBothField(String durationInfo, String tagInfo, String activityName, String[] tagStrings) {
+        LocalTime startTime = LocalTime.MIN;
+        LocalTime endTime;
+        endTime = LocalTime.parse(durationInfo);
+        Duration allocatedTime = Duration.between(startTime, endTime);
+        if (tagInfo.isEmpty()) {
+            Log.makeInfoLog("No tags found with tag flag.");
+            Ui.printDivider("Please provide a valid tag");
+        } else if (allocatedTime == Duration.parse("PT0S")) {
+            Log.makeInfoLog("Allocated time is zero.");
+            Ui.printDivider("Please provide a non zero allocated time");
+        } else if (tagStrings.length > 2) {
+            Log.makeInfoLog("Activity has more than 2 tags.");
+            Ui.printDivider("Cannot have more than 2 tags");
+        } else {
+            Parser.tags.addAll(Arrays.asList(tagStrings));
+            Parser.allocatedTime = allocatedTime;
+            addActivity(activityName);
         }
     }
 
@@ -290,19 +298,25 @@ public class StartCommand extends Command {
         String durationInfo = line.substring(index + 2);
         durationInfo = durationInfo.trim();
         LocalTime startTime = LocalTime.MIN;
-        LocalTime endTime;
         try {
-            endTime = LocalTime.parse(durationInfo);
-            Duration allocatedTime = Duration.between(startTime, endTime);
-            if (allocatedTime == Duration.parse("PT0S")) {
-                Ui.printDivider("Please provide a non zero allocated time");
-            } else {
-                Parser.allocatedTime = allocatedTime;
-                addActivity(activityName);
-            }
+            checkTime(activityName, durationInfo, startTime);
         } catch (DateTimeException e) {
+            Log.makeInfoLog("Allocated time provided was not valid.");
             Ui.printDivider("Time provided is invalid, please provide time in this format"
                     + " HH:MM:SS");
+        }
+    }
+
+    private void checkTime(String activityName, String durationInfo, LocalTime startTime) {
+        LocalTime endTime;
+        endTime = LocalTime.parse(durationInfo);
+        Duration allocatedTime = Duration.between(startTime, endTime);
+        if (allocatedTime == Duration.parse("PT0S")) {
+            Log.makeInfoLog("Allocated time is zero.");
+            Ui.printDivider("Please provide a non zero allocated time");
+        } else {
+            Parser.allocatedTime = allocatedTime;
+            addActivity(activityName);
         }
     }
 
@@ -315,13 +329,15 @@ public class StartCommand extends Command {
         int index = line.indexOf("/t");
         String tagInfo = line.substring(index + 2);
         tagInfo = tagInfo.trim();
-        String[] tagString = tagInfo.split(" ");
+        String[] tagStrings = tagInfo.split(" ");
         if (tagInfo.isEmpty()) {
+            Log.makeInfoLog("No tags found with tag flag.");
             Ui.printDivider("Please provide a valid tag");
-        } else if (tagString.length > 2) {
+        } else if (tagStrings.length > 2) {
+            Log.makeInfoLog("Activity has more than 2 tags.");
             Ui.printDivider("Cannot have more than 2 tags");
         } else {
-            Parser.tags.addAll(Arrays.asList(tagString));
+            Parser.tags.addAll(Arrays.asList(tagStrings));
             addActivity(activityName);
         }
     }
