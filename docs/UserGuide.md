@@ -142,6 +142,64 @@ Screenshot showing score:
 
 <hr>
 
+### Adding New Event
+Creates a new event and adds it to the app.
+
+Format: `addevent e/<DESCRIPTION> d/<DATE>`
+* The `DESCRIPTION` is a text description of the event to be input by the user.
+* The `DATE` formats that are accepted are:
+    1. dd-MM-yy, dd-MM-yyyy, yyyy-MM-dd 
+    2. dd/MM/yy, dd/MM/yyyy, yyyy/MM/dd
+    3. dd.MM.yy, dd.MM.yyyy, yyyy.MM.dd
+    4. dd-MMM-yy, dd-MMM-yyyy
+
+Example of Usage:
+* `addevent e/CS2113T exam d/2/5/2020`
+* `addevent e/GE4214 final proj presentation d/16-04-2020`
+
+Screenshot showing score:
+
+![](images/addevent.png)
+
+### Listing Stored Events
+Lists all the stored events in the order they were added.
+
+Format: `listevent`
+
+Screenshot showing listevent:
+
+![](images/listevent.png)
+
+### Showing Upcoming Events
+Shows all upcoming events within a user-specified time frame, listed in chronological order.
+
+Format: `showupcoming d/<DATE RANGE>`
+* The `DATE RANGE` defines the date range of upcoming events to show.
+
+Example of Usage:
+* `showupcoming d/30`
+* `showupcoming d/5`
+
+Screenshot showing showupcoming:
+
+![](images/showupcoming.png)
+
+### Deleting an Event
+Deletes an event based on its index.
+
+Format: `deleteevent e/<INDEX>`
+* The `INDEX` is based on the index of the event. This can be found using the `listevent` command.
+
+Example of Usage:
+* `deleteevent e/2`
+* `deleteevent e/1`
+
+Screenshot showing deleteevent:
+
+![](images/deleteevent.png)
+
+<hr>
+
 ### Displaying the Help Page
 Displays the list of available commands.
 
@@ -170,26 +228,39 @@ Format & Usage: `exit`
 <hr>
 
 **Q**: If I delete a subject, what happens to the cards?
+
 **A**: By deleting a subject, you'll delete everything in that subject. So be careful with this.
 
 <hr>
 
 **Q**: Can I create a card that does not belong to any subject?
+
 **A**: Sorry, you can't. You must need a subject for every card.
 
 <hr>
 
 **Q**: Can I create a card that belongs to multiple subject?
+
 **A**: Sorry, at current stage this is not supported.
 
 <hr>
 
 **Q**: Will I be able to export the cards to a external file i.e. a text file?
+
 **A**: Sorry, at current stage this is not supported.
 
 <hr>
-**Q**: Can I add something else other than exam date to the programm? 
+
+**Q**: Can I add something else other than exam date to the program? 
+
 **A**: Feel free to add anything you'd like.
+
+<hr>
+
+**Q**: Will the app be able to mark my answers automatically?
+
+**A**: This is not supported at the current stage of development, as users are allowed to add open-ended questions
+which cannot be accurately marked automatically.
 
 
 
@@ -202,5 +273,9 @@ Format & Usage: `exit`
 * Delete the specified card from the specified category `deletecard s/<INDEX> c/<INDEX>`
 * Start a quiz from the specified subject `quiz s/<INDEX>`
 * Get previous scores of quizzes from specified subject `score s/<INDEX>`
+* Add an event `addevent e/<DESCRIPTION> d/<DATE>`
+* List all events `listevent`
+* Show upcoming events `showupcoming d/<DAYS>`
+* Delete an event `deleteevent e/<INDEX>`
 * Displays the help page `help`
 * Exits the program `exit` 
