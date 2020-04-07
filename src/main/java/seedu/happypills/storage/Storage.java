@@ -31,6 +31,7 @@ public class Storage {
      * Overwrite file with a formatted string of the entire list provided. Creates file if it does not exist.
      * Used for edit and delete commands
      *
+     * @author janicetyy
      * @param filePath location of file to save to, requires directory/file.
      * @param dataString  a formatted string of a list of items to be saved to file.
      * @throws IOException if unable to save to file, possibly due to interruptions.
@@ -54,6 +55,7 @@ public class Storage {
     /**
      * Add new single line formatted strings to file. Creates file if it does not exist.
      *
+     * @author janicetyy
      * @param filePath location of file to save to, requires directory/file.
      * @param dataString  single item as string to be saved to file.
      * @throws IOException if unable to save to file, possibly due to interruptions.
@@ -78,6 +80,7 @@ public class Storage {
      * Read and send file data to parse line by line as string.
      * Returns a list of historical patients patient list
      *
+     * @author janicetyy
      * @param filePath location of file to read from.
      * @return patientList of all patients found in the file.
      * @throws FileNotFoundException if the file specified by directory/filename does not exist.
@@ -97,6 +100,7 @@ public class Storage {
 
     /**
      * convert a single line data into values of a patients and add it back to the provided patientList.
+     * @author janicetyy
      * @param savedString a single string with all the data required for a patient.
      * @param storedPatients a list which the patient details retrieved should be added into.
      */
@@ -116,6 +120,7 @@ public class Storage {
      * Read and send file data to parse line by line as string.
      * Returns a list of historical appointment list
      *
+     * @author janicetyy
      * @param filePath location of file to read from.
      * @param patients Shared map of all patient
      * @return patientList of all patients found in the file.
@@ -137,6 +142,7 @@ public class Storage {
 
     /**
      * convert a single line data into values of an appointment and add it back to the provided apptList.
+     * @author janicetyy
      * @param savedString a single string with all the data required for a appointment.
      * @param storedAppt a list which the appointment details retrieved should be added into.
      */
@@ -161,6 +167,7 @@ public class Storage {
      * Read and send file data to parse line by line as string.
      * Returns a list of historical patients record list
      *
+     * @author janicetyy
      * @param filePath location of file to read from.
      * @param patients Shared map of all patients
      * @return patientList of all patients found in the file.
@@ -182,6 +189,7 @@ public class Storage {
 
     /**
      * convert a single line data into values of an appointment and add it back to the provided apptList.
+     * @author janicetyy
      * @param savedString a single string with all the data required for a appointment.
      * @param storedPr a list which the patient record details retrieved should be added into.
      */
