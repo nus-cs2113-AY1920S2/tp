@@ -31,11 +31,11 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 ### Minor enhancement: Added the view of answers when listing.
 ### Minor enhancement: Added the ability to detect duplicates in subjects
 
-### Code contributed: <a href="https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=jeremy733&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos" target="_blank">Code</a>
-
-
 ###Contributions to documentation
+
 ####Contributions to the DG : Added user stories and the architecture section. 
+
 ####Contributions to the UG : Added FAQ section and editted feature section acorrding to latest codes.
 
+### Code contributed: <a href="https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=jeremy733&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos" target="_blank">Code</a>
 
