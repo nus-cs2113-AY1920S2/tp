@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import seedu.exams.Exam;
+import seedu.events.Event;
 import seedu.exception.EscException;
 import seedu.subjects.Subject;
 
@@ -60,16 +60,16 @@ public class Storage {
     @SuppressWarnings("unchecked")
     public static ArrayList<Subject> loadObjects() throws EscException {
         ArrayList tempSub;
-        ArrayList tempExam;
+        ArrayList tempEvent;
 
         ArrayList returnList = new ArrayList<>();
         ArrayList<Subject> loadSubs = new ArrayList<>();
-        ArrayList<Exam> loadExam = new ArrayList<>();
+        ArrayList<Event> loadEvent = new ArrayList<>();
 
         if (!saveFile.exists()) {
             ensureFileExists();
             returnList.add(loadSubs);
-            returnList.add(loadExam);
+            returnList.add(loadEvent);
         } else {
             try {
                 FileInputStream fileRead = new FileInputStream(saveFile);
@@ -80,14 +80,14 @@ public class Storage {
                     loadSubs.add((Subject) tempSub.get(i));
                 }
 
-                tempExam = (ArrayList) objRead.readObject();
-                for (int i = 0; i < tempExam.size(); i++) {
-                    loadExam.add((Exam) tempExam.get(i));
+                tempEvent = (ArrayList) objRead.readObject();
+                for (int i = 0; i < tempEvent.size(); i++) {
+                    loadEvent.add((Event) tempEvent.get(i));
                 }
                 objRead.close();
 
                 returnList.add(loadSubs);
-                returnList.add(loadExam);
+                returnList.add(loadEvent);
             } catch (IOException | ClassNotFoundException e) {
                 throw new EscException("Load error");
             }
@@ -100,7 +100,7 @@ public class Storage {
      * Saves the current card list to the save file.
      * @param currSub the current subject list
      */
-    public void saveSubs(ArrayList<Subject> currSub, ArrayList<Exam> currExam) throws EscException {
+    public void saveSubs(ArrayList<Subject> currSub, ArrayList<Event> currEvent) throws EscException {
         ensureFileExists();
 
         try {
@@ -108,7 +108,7 @@ public class Storage {
             ObjectOutputStream objWrite = new ObjectOutputStream(fileWrite);
 
             objWrite.writeObject(currSub);
-            objWrite.writeObject(currExam);
+            objWrite.writeObject(currEvent);
             objWrite.flush();
             objWrite.close();
         } catch (IOException e) {

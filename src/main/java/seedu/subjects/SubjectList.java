@@ -1,22 +1,20 @@
 package seedu.subjects;
 
+import seedu.events.Event;
 import seedu.duke.UI;
-import seedu.exams.Exam;
 import seedu.exception.EscException;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectList {
     private ArrayList<Subject> subjects;
-    private ArrayList<Exam> exams;
+    private ArrayList<Event> events;
     UI ui = new UI();
 
     public SubjectList() {
         this.subjects = new ArrayList<Subject>();
-        this.exams = new ArrayList<Exam>();
+        this.events = new ArrayList<Event>();
     }
 
     /**
@@ -25,15 +23,20 @@ public class SubjectList {
      */
     public SubjectList(ArrayList returnObj) {
         this.subjects = (ArrayList<Subject>) returnObj.get(0);
-        this.exams = (ArrayList<Exam>) returnObj.get(1);
+        this.events = (ArrayList<Event>) returnObj.get(1);
+    }
+
+    public SubjectList(ArrayList<Subject> subjects, ArrayList<Event> eventDates) {
+        this.subjects = subjects;
+        this.events = eventDates;
     }
 
     public ArrayList<Subject> getSubjects() {
         return this.subjects;
     }
 
-    public ArrayList<Exam> getExamDates() {
-        return this.exams;
+    public ArrayList<Event> getEvents() {
+        return this.events;
     }
 
     /**
@@ -132,17 +135,40 @@ public class SubjectList {
     }
 
     /**
-     * Lists all upcoming events.
-     * @param exams List of upcoming exams.
+     * Adds an event to the deck.
+     * @param event Event to be added.
      */
-    public static void listUpcoming(ArrayList<Exam> exams) {
-        if (exams.size() == 0) {
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    /**
+     * Removes an event from the deck.
+     * @param index Index of event to be removed.
+     */
+    public void removeEvent(int index) throws EscException {
+        if (this.events.size() == 0) {
+            throw new EscException("The event list is empty.");
+        }
+        try {
+            events.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new EscException("The event item does not exist.");
+        }
+    }
+
+    /**
+     * Lists all upcoming events.
+     * @param events List of upcoming events.
+     */
+    public static void listUpcoming(ArrayList<Event> events) {
+        if (events.size() == 0) {
             System.out.println("No upcoming events.");
         } else {
             System.out.println("Here is the list of upcoming events.");
-            for (int i = 0; i < exams.size(); i++) {
+            for (int i = 0; i < events.size(); i++) {
                 int j = i + 1;
-                System.out.println(j + ". " + exams.get(i).toString());
+                System.out.println(j + ". " + events.get(i).toString());
             }
         }
     }

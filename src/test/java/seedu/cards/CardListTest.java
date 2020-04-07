@@ -25,6 +25,7 @@ public class CardListTest {
         flashcard1 = new Card("What does HTTP stand for?", "HyperText Transfer Protocol");
         flashcard2 = new Card("What does HTML stand for?", "Hypertext Markup Language");
         subject = new Subject("Junit");
+        subjectList = new SubjectList();
         subjectList.addSubject(subject);
     }
 
