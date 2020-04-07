@@ -5,10 +5,10 @@ public class Help extends UI {
     public void printGetHelp() {
         StringBuilder output = new StringBuilder(
             "Hello, please select 1-4 for its command format.\n"
-            + "1. Event-related\n"
-            + "2. Attendance\n"
-            + "3. Performance\n"
-            + "4. Student List\n"
+            + "1. Student List\n"
+            + "2. Event-related\n"
+            + "3. Calendar\n"
+            + "4. Attendance\n" + "5. Peformance\n"
         );
         output.append("To track any list, input: <type_of_list> list\n");
         output.append("Note: All command are NOT case sensitive.\n");
@@ -41,6 +41,14 @@ public class Help extends UI {
             + "\tevent delete i/Event_index\n"
         );
         display(output.toString());
+    }
+
+    public void printCalendarHelp() {
+        display("To view events in a calendar, there should be events that exist in the event list.");
+        display("\tTo view calendar, input: s/Semester_Number ay/Year_one-Year_two.\n");
+        display("* Note that semester can only be an integer 1 or 2.");
+        display("* Note that the academic year must contain two consecutive years separated by a hyphen.\n "
+                + " Each year should be in a double digit format.");
     }
 
     public void printPerformanceHelp() {
