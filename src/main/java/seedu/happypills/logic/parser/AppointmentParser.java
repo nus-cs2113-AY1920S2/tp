@@ -19,6 +19,7 @@ import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
 
+//@@author sitinadiah25
 public class AppointmentParser extends Parser {
 
     /**

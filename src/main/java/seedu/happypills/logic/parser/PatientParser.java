@@ -103,26 +103,6 @@ public class PatientParser extends Parser {
         return input.equalsIgnoreCase("");
     }
 
-    private static boolean isValidPhoneNum(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidPhoneNum(detail.substring(1).trim());
-    }
-
-    private static boolean isValidDateOfBirth(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidDate(detail.substring(3).trim());
-    }
-
-    private static boolean isValidBloodType(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidBloodType(detail.substring(1).trim());
-    }
-
-    private static boolean isValidNric(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidNric(detail.substring(2).trim().toUpperCase());
-    }
-
     private static boolean hasMissingFields(String[] parseInput) {
         for (int index = 0; index < 5; index++) {
             if (parseInput[index].equalsIgnoreCase("")) {
@@ -156,37 +136,17 @@ public class PatientParser extends Parser {
     }
 
     private static PatientCommand parseAddCommand(String content) throws HappyPillsException {
-        String[] details = checkInput(content);
+        String[] details = splitInput(content);
         String[] parseInput = {"", "", "", "", "", "NIL", "NIL"};
         parseInput = parseInput(details, parseInput);
 
-//        for (String detail : details) {
-//            if (detail.startsWith(NAME_TAG) && isInputEmpty(parseInput[0])) {
-//                parseInput[0] = detail.substring(1).trim();
-//            } else if (detail.startsWith(NRIC_TAG) && isValidNric(parseInput[1],detail)) {
-//                parseInput[1] = detail.substring(2).trim().toUpperCase();
-//            } else if (detail.startsWith(PHONE_NUMBER_TAG) && isValidPhoneNum(parseInput[2], detail)) {
-//                parseInput[2] = detail.substring(1).trim();
-//            } else if (detail.startsWith(DATE_OF_BIRTH_TAG) && isValidDateOfBirth(parseInput[3],detail)) {
-//                parseInput[3] = detail.substring(3).trim();
-//            } else if (detail.startsWith(BLOOD_TYPE_TAG) && isValidBloodType(parseInput[4],detail)) {
-//                parseInput[4] = detail.substring(1).trim().toUpperCase();
-//            } else if (detail.startsWith(ALLERGIES_TAG) && parseInput[5].equalsIgnoreCase("NIL")) {
-//                parseInput[5] = detail.substring(1).trim();
-//            } else if (detail.startsWith(REMARKS_TAG) && parseInput[6].equalsIgnoreCase("NIL")) {
-//                parseInput[6] = detail.substring(2).trim();
-//            } else {
-//                PatientTextUi.patientNotAddedMessage(detail);
-//            }
-//        }
-
         while (hasMissingFields(parseInput)) {
             printMissingFields(parseInput);
-            String input = readUserInput().trim();
+            String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
                 throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
-            String[] updates = checkInput(input);
+            String[] updates = splitInput(input);
             updates = trimArray(updates);
             parseInput(updates, parseInput);
         }
@@ -194,22 +154,6 @@ public class PatientParser extends Parser {
         if (!loopPrompt(promptConfirmation(parseInput))) {
             throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED); // check
         }
-
-//        boolean hasConfirmation = false;
-//        System.out.println(promptConfirmation(parseInput));
-//
-//        while (!hasConfirmation) {
-//            String confirmation = readUserInput();
-//            boolean isConfirmed = confirmation.equalsIgnoreCase("y");
-//            boolean isNotConfirmed = confirmation.equalsIgnoreCase("n");
-//            if (isConfirmed) {
-//                hasConfirmation = true;
-//            } else if (isNotConfirmed) {
-//                return new IncorrectPatientCommand(Messages.MESSAGE_PATIENT_RECORD_NOT_ADDED);
-//            } else {
-//                System.out.println(Messages.MESSAGE_USER_CONFIRMATION);
-//            }
-//        }
         return new AddPatientCommand(parseInput[0].trim(), parseInput[1].toUpperCase().trim(),
                 Integer.parseInt(parseInput[2].trim()), parseInput[3].trim(), parseInput[4].trim(),
                 parseInput[5].trim(), parseInput[6].trim());
@@ -259,25 +203,6 @@ public class PatientParser extends Parser {
                 System.out.println(update);
             }
         }
-    }
-
-    private static String[] checkInput(String content) {
-        String[] details;
-        if (content.startsWith("/")) {
-            details = content.substring(1).split(" /");
-        } else {
-            content = "@" + content;
-            details = content.split(" /");
-        }
-        return details;
-    }
-
-    private static String readUserInput() {
-        System.out.println(TextUi.DIVIDER);
-        Scanner in = HappyPills.scanner;
-        String reInput = in.nextLine();
-        System.out.println(TextUi.DIVIDER);
-        return reInput;
     }
 
     /**
