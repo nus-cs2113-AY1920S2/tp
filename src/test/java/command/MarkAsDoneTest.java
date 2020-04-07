@@ -82,6 +82,7 @@ public class MarkAsDoneTest {
 
         DoneCommand testDoneCommand = new DoneCommand(5);
         CommandResult result = testDoneCommand.execute(testTaskList, testUi);
-        assertEquals(String.format(Messages.INVALID_ID_ERROR, testTaskList.getRangeOfValidIndex(testTaskList)), result.feedbackToUser);
+        assertEquals(String.format(Messages.INVALID_ID_ERROR, testTaskList.getRangeOfValidIndex(testTaskList)),
+                result.feedbackToUser);
     }
 }
