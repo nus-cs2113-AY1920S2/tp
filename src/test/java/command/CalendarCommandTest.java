@@ -309,7 +309,7 @@ public class CalendarCommandTest {
         ArrayList<Task> finalTaskList = new ArrayList<>();
         for (Task task : resultList) {
             if (task instanceof RepeatEvent && task.equals(testCaseRepeatDaily)) {
-                testCalendarCommand.addRepeatEvents(endOfMonth, finalTaskList, testCaseRepeatDaily);
+                testCalendarCommand.parseRepeatEvents(endOfMonth, finalTaskList, testCaseRepeatDaily);
             }
         }
         assertEquals(finalTaskList.size(), testLocalDate.until(endOfMonth).getDays()
@@ -321,7 +321,7 @@ public class CalendarCommandTest {
         LocalDate endOfMonth = YearMonth.from(testRepeatLocalDate).atEndOfMonth();
         ArrayList<Task> resultList = new ArrayList<>();
 
-        testCalendarCommand.addRepeatEvents(endOfMonth, resultList, testCaseRepeatWeekly);
+        testCalendarCommand.parseRepeatEvents(endOfMonth, resultList, testCaseRepeatWeekly);
         assertEquals(resultList.size(), testLocalDate.until(endOfMonth).getDays()
                 / (testCaseRepeatWeekly.getNumOfPeriod() * DAYS_IN_WEEK));
     }
@@ -330,7 +330,7 @@ public class CalendarCommandTest {
     public void testAddRepeatEvent_Monthly_Yearly() {
         LocalDate endOfMonth = YearMonth.from(testRepeatLocalDate).atEndOfMonth();
         ArrayList<Task> resultList = new ArrayList<>();
-        testCalendarCommand.addRepeatEvents(endOfMonth, resultList, testCaseRepeatMonthly);
+        testCalendarCommand.parseRepeatEvents(endOfMonth, resultList, testCaseRepeatMonthly);
         assertEquals(resultList.size(), 0);
 
     }
@@ -339,7 +339,7 @@ public class CalendarCommandTest {
     public void testAddRepeatEvent_Yearly() {
         LocalDate endOfMonth = YearMonth.from(testRepeatLocalDate).atEndOfMonth();
         ArrayList<Task> resultList = new ArrayList<>();
-        testCalendarCommand.addRepeatEvents(endOfMonth, resultList, testCaseRepeatYearly);
+        testCalendarCommand.parseRepeatEvents(endOfMonth, resultList, testCaseRepeatYearly);
         assertEquals(resultList.size(), 0);
     }
 

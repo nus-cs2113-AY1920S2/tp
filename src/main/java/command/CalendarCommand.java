@@ -27,16 +27,6 @@ public class CalendarCommand extends Command {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    // ANSI background colour scheme
-    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-
     private static final String BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String STARTING_BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String PAD = " ";
@@ -59,7 +49,7 @@ public class CalendarCommand extends Command {
 
     private LocalDate date;
 
-    public CalendarCommand(LocalDate date) {
+    public CalendarCommand (LocalDate date) {
         this.date = date;
     }
 
@@ -82,7 +72,7 @@ public class CalendarCommand extends Command {
      * @param taskList TaskList object that handles tasks operations
      * @return String object that contains the calendar view
      */
-    public String buildMonthCalendar(LocalDate dateTime, TaskList taskList) {
+    public String buildMonthCalendar (LocalDate dateTime, TaskList taskList) {
         Calendar calendar = Calendar.getInstance();
         calibrateCalendar(dateTime, calendar);
 
@@ -109,7 +99,7 @@ public class CalendarCommand extends Command {
      * @param dateTime user specified date to base calendar on
      * @param calendar Calendar object that calendar view is based of on
      */
-    public void calibrateCalendar(LocalDate dateTime, Calendar calendar) {
+    public void calibrateCalendar (LocalDate dateTime, Calendar calendar) {
         int givenDay = dateTime.getDayOfMonth();
         int givenMonth = dateTime.getMonthValue();
         int givenYear = dateTime.getYear();
@@ -126,7 +116,7 @@ public class CalendarCommand extends Command {
      * @param taskList TaskList object that handles tasks operations
      * @return ArrayList of tasks that falls within given date
      */
-    public ArrayList<Task> getTasksByYearMonth(LocalDate dateTime, TaskList taskList) {
+    public ArrayList<Task> getTasksByYearMonth (LocalDate dateTime, TaskList taskList) {
         YearMonth yearMonth = YearMonth.from(dateTime);
         LocalDate endOfMonth = yearMonth.atEndOfMonth();
         LocalDate startOfMonth = yearMonth.atDay(1);
@@ -140,7 +130,7 @@ public class CalendarCommand extends Command {
      * @param unrepeatedTaskList ArrayList of Tasks that contains task from TaskList
      * @return ArrayList of Tasks that contains duplicated tasks of repeat events
      */
-    public ArrayList<Task> duplicateRepeatEvents(LocalDate dateTime, ArrayList<Task> unrepeatedTaskList) {
+    public ArrayList<Task> duplicateRepeatEvents (LocalDate dateTime, ArrayList<Task> unrepeatedTaskList) {
         ArrayList<Task> resultTaskList = new ArrayList<>();
         YearMonth yearMonth = YearMonth.from(dateTime);
         LocalDate endOfMonth = yearMonth.atEndOfMonth();
@@ -148,19 +138,19 @@ public class CalendarCommand extends Command {
         for (Task task : unrepeatedTaskList) {
             resultTaskList.add(task);
             if (task instanceof RepeatEvent) {
-                addRepeatEvents(endOfMonth, resultTaskList, (RepeatEvent) task);
+                parseRepeatEvents(endOfMonth, resultTaskList, (RepeatEvent) task);
             }
         }
         return resultTaskList;
     }
 
     /**
-     * Add repeating Event as separate Event to resultTaskList.
+     * Add repeating Event as separate Event according to the repeat type to resultTaskList.
      * @param endOfMonth LocalDate that represents the last day of the month
      * @param resultTaskList ArrayList of Task that contains duplicated tasks of repeat events
      * @param event Event to repeat and add to resultTaskList
      */
-    public void addRepeatEvents(LocalDate endOfMonth, ArrayList<Task> resultTaskList, RepeatEvent event) {
+    public void parseRepeatEvents(LocalDate endOfMonth, ArrayList<Task> resultTaskList, RepeatEvent event) {
         int numOfPeriod = event.getNumOfPeriod();
         String typeOfPeriod = event.getTypeOfPeriod();
         LocalDate eventDate = event.getDateAndTime().toLocalDate();
@@ -169,11 +159,11 @@ public class CalendarCommand extends Command {
         switch (typeOfPeriod) {
         case RepeatCommand.DAILY_ICON:
             daysToAdd = numOfPeriod;
-            addSeparateRepeatEvent(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
+            addRepeatEventSeparately(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
             break;
         case RepeatCommand.WEEKLY_ICON:
             daysToAdd = numOfPeriod * DAYS_IN_WEEK;
-            addSeparateRepeatEvent(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
+            addRepeatEventSeparately(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
             break;
         case RepeatCommand.MONTHLY_ICON:
         case RepeatCommand.YEARLY_ICON:
@@ -191,8 +181,8 @@ public class CalendarCommand extends Command {
      * @param eventDate LocalDate that holds event date
      * @param daysToAdd frequency of repeating event
      */
-    private void addSeparateRepeatEvent(LocalDate endOfMonth, ArrayList<Task> resultTaskList,
-                                        RepeatEvent event, LocalDate eventDate, int daysToAdd) {
+    private void addRepeatEventSeparately (LocalDate endOfMonth, ArrayList<Task> resultTaskList,
+                                          RepeatEvent event, LocalDate eventDate, int daysToAdd) {
         for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
              timesRepeated++) {
             resultTaskList.add(new Event(event.getName(), event.getLocation(),
@@ -209,7 +199,7 @@ public class CalendarCommand extends Command {
      * @param monthlyTaskList ArrayList of tasks that falls within the given month
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    private void addCalendarBody(int startingDayOfWeek, int daysInMonth,
+    private void addCalendarBody (int startingDayOfWeek, int daysInMonth,
                                  ArrayList<Task> monthlyTaskList, StringBuilder calendarView) {
         for (int calendarRow = 0; calendarRow <= MAX_CALENDAR_ROWS; calendarRow++) {
             if (calendarRow % CALENDAR_BOX_HEIGHT == 0) {
@@ -245,7 +235,7 @@ public class CalendarCommand extends Command {
      * @param calendarRow Calendar row that is being worked on
      * @param currentDayRepresented Integer that represents date the calendar iterator is on
      */
-    public void appendTaskToView(ArrayList<Task> monthlyTaskList, StringBuilder calendarView,
+    public void appendTaskToView (ArrayList<Task> monthlyTaskList, StringBuilder calendarView,
                                   int calendarRow, int currentDayRepresented) {
         boolean hasPrintedTask = false;
         for (Task task : monthlyTaskList) {
@@ -268,7 +258,7 @@ public class CalendarCommand extends Command {
      * Adds an indicator to indicate that there are Tasks are not shown.
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    public void addTaskNotShownIndicator(StringBuilder calendarView) {
+    public void addTaskNotShownIndicator (StringBuilder calendarView) {
         calendarView.append(PAD.repeat(MIDDLE_JUSTIFIED_WIDTH_PADDING))
                 .append(MORE_TASK_INDICATOR)
                 .append(PAD.repeat(CONTENT_WIDTH - MIDDLE_JUSTIFIED_WIDTH_PADDING - 5))
@@ -279,7 +269,7 @@ public class CalendarCommand extends Command {
      * Add a newline to calendar view.
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    public void addCalendarNewLine(StringBuilder calendarView) {
+    public void addCalendarNewLine (StringBuilder calendarView) {
         calendarView.append(System.lineSeparator());
     }
 
@@ -289,7 +279,7 @@ public class CalendarCommand extends Command {
      * @param calendarView StringBuilder object that is used to format the calendar view
      * @param task task that is being appended to calendarView
      */
-    public void addTaskToCalendar(ArrayList<Task> monthlyTaskList, StringBuilder calendarView, Task task) {
+    public void addTaskToCalendar (ArrayList<Task> monthlyTaskList, StringBuilder calendarView, Task task) {
         final int taskListSize = monthlyTaskList.size();
         String taskDetails = task.getTime().format(Parser.PRINT_TIME_FORMAT) + task.getName();
         if (taskDetails.length() > CONTENT_WIDTH) {
@@ -310,7 +300,7 @@ public class CalendarCommand extends Command {
      * Appends a starting border to the Calendar.
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    public void addCalendarStartBorder(StringBuilder calendarView) {
+    public void addCalendarStartBorder (StringBuilder calendarView) {
         calendarView.append(STARTING_BORDER);
     }
 
@@ -318,7 +308,7 @@ public class CalendarCommand extends Command {
      * Appends an empty calendar slot to the calendarView.
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    public void addEmptyCalendarBody(StringBuilder calendarView) {
+    public void addEmptyCalendarBody (StringBuilder calendarView) {
         calendarView.append(PAD.repeat(EMPTY_BOX_PADDING)).append(BORDER);
     }
 
@@ -327,7 +317,7 @@ public class CalendarCommand extends Command {
      * @param calendarView StringBuilder object that is used to format the calendar view
      * @param currentDayRepresented day of month to append to calendarView
      */
-    public void addCalendarDate(StringBuilder calendarView, int currentDayRepresented) {
+    public void addCalendarDate (StringBuilder calendarView, int currentDayRepresented) {
         calendarView.append(PAD.repeat(DATE_PADDING_WIDTH)).append(ANSI_CYAN)
                 .append(currentDayRepresented).append(ANSI_RESET);
 
@@ -342,7 +332,7 @@ public class CalendarCommand extends Command {
      * Appends a legend for the calendar.
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    public void addCalendarLegend(StringBuilder calendarView) {
+    public void addCalendarLegend (StringBuilder calendarView) {
         String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         addCalendarBorder(calendarView);
 
@@ -359,7 +349,7 @@ public class CalendarCommand extends Command {
      * @param calendar Calendar object that calendar view is based of on
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    public void addCalendarTitle(Calendar calendar, StringBuilder calendarView) {
+    public void addCalendarTitle (Calendar calendar, StringBuilder calendarView) {
         calendarView.append(ANSI_RED + "Assignments are represented in red" + ANSI_RESET)
                 .append(System.lineSeparator());
         calendarView.append(ANSI_GREEN + "Events are represented in green" + ANSI_RESET)
@@ -372,7 +362,7 @@ public class CalendarCommand extends Command {
      * Appends a horizontal border for the calendarView.
      * @param calendarView StringBuilder object that is used to format the calendar view
      */
-    public void addCalendarBorder(StringBuilder calendarView) {
+    public void addCalendarBorder (StringBuilder calendarView) {
         calendarView.append(BORDER.repeat(MAX_CALENDAR_BOX_WIDTH * DAYS_IN_WEEK + 1))
                 .append(System.lineSeparator());
     }
