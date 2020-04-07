@@ -28,9 +28,11 @@ class StockTest {
      */
     @Test
     public void addIngredient_AddIngredientWithQuantitySupplied_addNormally() {
+        
         Stock stockA = new Stock(); 
         stockA.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.40)));
         stockA.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50)));     
+        
         assertFalse(stockA.getStock().get("tomato").second().equals(0.40));
     }
     
@@ -39,11 +41,29 @@ class StockTest {
      */
     @Test
     public void addIngredient_AddIngredientWithQuantitySupplied_sumQuantity() {
+        
         Stock stockB = new Stock();
         stockB.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.40)));
         stockB.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50))); 
+        
         assertTrue(stockB.getStock().get("tomato").first().equals(3));
         assertFalse(stockB.getStock().get("tomato").first().equals(1));
+    }
+    
+    /**
+     * Test against the stock by adding an ingredient of similar name that exists w
+     * within the stock.
+     */
+    @Test
+    public void addIngredient_AddIngredientOfSimilarName_DuplicateIngredientName() {
+        
+        Stock stockC = new Stock();
+        stockC.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockC.addIngredient(new Ingredient("RiCe", Optional.of(1), Optional.of(0.50)));
+        stockC.addIngredient(new Ingredient("RICE", Optional.of(1), Optional.of(0.50)));
+        stockC.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50))); 
+            
+        assertEquals(createAddStockOutputCopyOne(), checkForDuplicateIngredient("RiCe", stockC));
     }
     
     /**
@@ -51,12 +71,14 @@ class StockTest {
      */
     @Test
     public void testAdd_CompareAgainstStockCopy_TrueIfSameContent() {
-        Stock stockC = new Stock();
+        
+        Stock stockD = new Stock();
         final Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
-        stockC.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
-        stockC.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
-        stockC.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
-        assertEquals(stockC.getStock().keySet(), (stockCopy.keySet()));
+        stockD.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockD.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        stockD.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        
+        assertEquals(stockD.getStock().keySet(), (stockCopy.keySet()));
     }
     
     /**
@@ -66,10 +88,11 @@ class StockTest {
     public void deleteIngredient_DeleteIngredientWithQuantity_deleteNormally() 
             throws IngredientNotFoundException {
         
-        Stock stockD = new Stock();
-        stockD.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.50)));
-        stockD.deleteIngredient(new Ingredient("tomato", Optional.of(1), Optional.empty()));        
-        assertEquals(0, stockD.getStock().get("tomato").first());
+        Stock stockE = new Stock();
+        stockE.addIngredient(new Ingredient("tomato", Optional.of(1), Optional.of(0.50)));
+        stockE.deleteIngredient(new Ingredient("tomato", Optional.of(1), Optional.empty()));        
+        
+        assertEquals(0, stockE.getStock().get("tomato").first());
     }
     
     /**
@@ -79,26 +102,29 @@ class StockTest {
     public void deleteIngredient_DeleteIngredientWithoutQuantity_deleteNormally() 
             throws IngredientNotFoundException {
         
-        Stock stockE = new Stock();
-        stockE.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
-        stockE.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
-        assertFalse(stockE.getStock().containsKey("banana"));
+        Stock stockF = new Stock();
+        stockF.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
+        stockF.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
+        
+        assertFalse(stockF.getStock().containsKey("banana"));
     }
     
     @Test
     public void testDelete_CompareAgainstStockCopy_TrueIfSameContent() 
             throws IngredientNotFoundException {
         
-        Stock stockF = new Stock();
-        stockF.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
-        stockF.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
-        assertFalse(stockF.getStock().containsKey("banana"));
+        Stock stockG = new Stock();
+        stockG.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
+        stockG.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
+       
+        assertFalse(stockG.getStock().containsKey("banana"));
         
         final Map<String, Pair<Integer, Double>> stockCopy = createStockCopy();
-        stockF.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
-        stockF.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
-        stockF.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
-        assertEquals(stockF.getStock().keySet(), (stockCopy.keySet()));
+        stockG.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stockG.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockG.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        
+        assertEquals(stockG.getStock().keySet(), (stockCopy.keySet()));
     }
     
     @Test
@@ -108,6 +134,7 @@ class StockTest {
         Stock stock = new Stock();
         stock.addIngredient(new Ingredient("banana", Optional.of(3), Optional.of(0.50)));
         stock.deleteIngredient(new Ingredient("banana", Optional.empty(), Optional.empty()));
+        
         assertFalse(stock.getStock().containsKey("banana"));
         
         try {
@@ -115,27 +142,47 @@ class StockTest {
         } catch (IngredientNotFoundException infe) {
             assertEquals("This ingredient is not in the stock currently!", infe.getMessage());
         }
-    }
-    
+    }  
     
     @Test
-    public void list_ListIngredient_ListInSameOrder() {
+    public void test_equalMap_bothMapsAreEqual() {
         Stock stock = new Stock();
-        final Stock stockCopyG = new Stock();
+        final Stock stockCopyH = new Stock();
         
         stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
         stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
         stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         
-        stockCopyG.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
-        stockCopyG.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
-        stockCopyG.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        stockCopyH.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stockCopyH.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stockCopyH.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
         
-        assertTrue(areEqualMap(stock.getStock(), stockCopyG.getStock()));
+        assertTrue(areEqualMap(stock.getStock(), stockCopyH.getStock()));
     }
     
     @Test
-    public void search_searchIngredientInStock_IngredientIsFoundOutput() {
+    public void listStock_listIngredientInDescendingQuantity_listNormally() {
+        
+        Stock stock = new Stock();
+        
+        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        
+        assertEquals(createListStockOutputCopyOne(), printlistIngredientToString(stock));
+    }
+    
+    @
+    Test
+    public void listStock_ListIngredientInDescendingQuantity_noIngredientFound() {
+        Stock stock = new Stock();
+        
+        assertEquals(createListStockOutputCopyTwo(), printlistIngredientToString(stock));
+    }
+    
+    @Test
+    public void searchStock_searchIngredientInStock_ingredientIsFoundOutput() {
+        
         Stock stock = new Stock();
         
         stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
@@ -146,7 +193,8 @@ class StockTest {
     }
     
     @Test
-    public void search_searchIngredientInStock_IngredientNotFoundOutput() {
+    public void searchStock_searchIngredientInStock_ingredientNotFoundOutput() {
+        
         Stock stock = new Stock();
         
         stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
@@ -157,7 +205,8 @@ class StockTest {
     }
     
     @Test
-    public void search_searchIngredientInStock_testCaseSensitivity() {
+    public void searchStock_searchIngredientInStock_testCaseSensitivity() {
+        
         Stock stock = new Stock();
         
         stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
@@ -219,6 +268,69 @@ class StockTest {
      * Utility functions ====================================================================================.
      */
     
+    private String createAddStockOutputCopyOne() {
+        String outputMessage = "";
+        
+        outputMessage += "=================================================================="
+                + "==========================================================";
+                
+        outputMessage += ls
+                + "Please note that there are other similar ingredient names in the stock."
+                + ls
+                + ls;
+
+        outputMessage += "You are currently adding: 'RiCe'"
+                + ls
+                + ls;
+
+        outputMessage += "Here are the ingredients in the stock with similar names:"
+                + ls
+                + "rice"
+                + ls
+                + "RiCe"
+                + ls
+                + "RICE"
+                + ls
+                + ls;
+
+        outputMessage += "You may want to remove the unwanted ingredient names if it is a duplicate."
+                + ls;
+        
+        outputMessage += "==================================================================="
+                + "=========================================================";
+        
+        return outputMessage;
+    }
+    
+    private String createListStockOutputCopyOne() {
+        String outputMessage = "";
+        outputMessage += ("Here are the ingredients in the stock currently:"
+                + ls)
+                + ("============================================================"
+                + "================================================================"
+                + ls);
+        
+        outputMessage += ("1. [10][$1.00] chicken"
+                + ls
+                + "2. [3][$0.50] tomato"
+                + ls 
+                + "3. [1][$0.50] rice"
+                + ls); 
+                
+        outputMessage += ("============================================================"
+                + "================================================================"
+                + ls);
+        
+        return outputMessage;
+    }
+    
+    private String createListStockOutputCopyTwo() {
+        String outputMessage = "";
+        outputMessage += ("There is nothing in the stock currently.");
+        
+        return outputMessage;
+    }
+    
     private String createSearchStockOutputCopyOne() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock that matches the keyword:"
@@ -246,7 +358,6 @@ class StockTest {
     
     /**
      * Returns a string representation of output when a search function is executed.
-     * @param keyword
      */
     private String executeSearch(Stock stock, String keyword) {  
         String outputMessage = "";
@@ -333,6 +444,54 @@ class StockTest {
         return hasIngredientWithKeyword;
     }
     
+    /** 
+     * A utility function of similar implementation to checkForDuplicateIngredient() in Stock
+     * class. This method returns a string instead of void.
+     */
+    private String checkForDuplicateIngredient(String ingredientNameToCheck, Stock stock) {
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.getStock().entrySet()); 
+        
+        if (tempList.size() <= 1) {
+            return "";
+        } else if (checkIngredientInStock(ingredientNameToCheck, stock)) {
+            String outputMessage = "============================================================" 
+                    + "================================================================"
+                    + ls;
+            
+            outputMessage += ("Please note that there are other similar ingredient names in the stock."
+                    + ls
+                    + ls);
+            
+            outputMessage += ("You are currently adding: '"
+                    + ingredientNameToCheck
+                    + "'");
+            
+            outputMessage += (ls
+                    + ls
+                    + "Here are the ingredients in the stock with similar names:"
+                    + ls);
+            
+          
+            for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+                String ingredientName = ingredient.getKey();
+                if (ingredientName.toLowerCase().equals(ingredientNameToCheck.toLowerCase())) {
+                    outputMessage += (ingredientName
+                            + ls);
+                }
+            }
+            
+            outputMessage += (ls
+                    + "You may want to remove the unwanted ingredient names if it is a duplicate.");
+            
+            outputMessage += (ls
+                    + "============================================================"
+                    + "================================================================");
+        
+            return outputMessage;
+        } else {
+            return "";
+        }
+    }
     
     private Map<String, Pair<Integer, Double>> createStockCopy() {
         Map<String, Pair<Integer, Double>> stockCopy = new HashMap<>();
@@ -397,5 +556,30 @@ class StockTest {
      
         return firstMap.entrySet().stream()
           .allMatch(e -> e.getValue().equals(secondMap.get(e.getKey())));
-    } 
+    }
+    
+    /**
+     * A String representation of printing the stock as to when user input 'list stock'.
+     */
+    private String printlistIngredientToString(Stock stock) {
+        String outputMessage = "";
+        
+        if (stock.getStock().isEmpty()) {
+            outputMessage += ("There is nothing in the stock currently.");
+        } else {
+            outputMessage += ("Here are the ingredients in the stock currently:"
+                    + ls)
+                    + ("============================================================"
+                    + "================================================================"
+                    + ls);
+            
+            outputMessage += printStockOutput(stock);
+            
+            outputMessage += ("============================================================"
+                    + "================================================================"
+                    + ls);
+        }
+        
+        return outputMessage;
+    }
 }

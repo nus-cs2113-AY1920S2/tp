@@ -173,8 +173,8 @@ class SearchStockCommandTest {
    
     
     /**
-     * Returns a string representation of output when a search function is executed.
-     * @param keyword
+     * A utility function of similar implementation to searchStock() in the Stock class.
+     * This method returns a string instead of void.
      */
     private String executeSearch(Stock stock, String keyword) {  
         String outputMessage = "";
@@ -190,8 +190,8 @@ class SearchStockCommandTest {
     }
     
     /**
-     * Returns a string representation of the search results of ingredients within the stock that matches 
-     * the keyword given.
+     * A utility function of similar implementation to printSearchResult() in the Stock class.
+     * This method returns a string instead of void.
      */
     private String printSearchResult(Stock stock, String keyword) {
         String outputMessage = ("Here are the ingredients in the stock that matches the keyword:"
@@ -238,8 +238,8 @@ class SearchStockCommandTest {
     }
     
     /**
-     * A utility function to check against stock if any of the ingredient within the stock
-     * matches the keyword supplied by the user.
+     * A utility function of similar implementation to checkIngredientInStock()
+     * in the Stock class. This method returns a string instead of void.
      */
     private boolean checkIngredientInStock(String keyword, Stock stock) {
         boolean hasIngredientWithKeyword = false;
@@ -259,6 +259,84 @@ class SearchStockCommandTest {
         }
         
         return hasIngredientWithKeyword;
+    }
+       
+    /**
+     * A utility function of similar implementation of parseIntoSearchKeyword()
+     * in SearchStockCommand class. This method returns a string instead of void.                                      
+     */
+    private String parseIntoSearchKeyword(String fullInputLine) 
+            throws InvalidStockCommandException {
+        
+        checkValidSearchKeywordArgumentsSupplied(fullInputLine);
+        
+        String trimmedKeyword = fullInputLine.trim();
+        
+        if (trimmedKeyword.contains(";")) {
+            String trimmedKeywordWithColon = trimmedKeyword
+                    .substring(indexAfterSlash, trimmedKeyword.length() - 1);
+            return trimmedKeywordWithColon; 
+        } else {
+            String trimmedKeywordWithoutColon = trimmedKeyword
+                .substring(indexAfterSlash, trimmedKeyword.length());
+            return trimmedKeywordWithoutColon; 
+        }            
+    }
+    
+    /**
+     * A utility function of similar implementation of checkValidSearchKeywordArgumentsSupplied()
+     * in SearchStockCommand class.                                 
+     */
+    private void checkValidSearchKeywordArgumentsSupplied(String fullInputLine) 
+            throws InvalidStockCommandException {
+        
+        String trimmedFullInputLine = fullInputLine.trim();
+        checkForBlankArguments(trimmedFullInputLine);
+        checkForKAndSlashBeforeKeyword(trimmedFullInputLine);
+    }
+    
+    /**
+     * A utility function of similar implementation of checkForBlankArguments() in SearchStockCommand
+     * class. 
+     */
+    private void checkForBlankArguments(String trimmedFullInputLine) 
+            throws InvalidStockCommandException {
+        
+        if (trimmedFullInputLine.isBlank()) {
+            throw new InvalidStockCommandException("Please "
+                    + "enter an ingredient's name to be "
+                    + "searched against the stock.");
+        } else if (trimmedFullInputLine.length() == keywordTagLength) {
+            checkForKAndSlashBeforeKeyword(trimmedFullInputLine);
+            throw new InvalidStockCommandException("Please "
+                    + "enter an ingredient's name to be "
+                    + "searched against the stock.");
+        } else if (trimmedFullInputLine.length() > keywordTagLength) {
+            if (trimmedFullInputLine.substring(indexAfterSlash, 
+                    trimmedFullInputLine.length()).isBlank()) {
+                throw new InvalidStockCommandException("Please "
+                        + "enter an ingredient's name to be "
+                        + "searched against the stock.");
+            }
+        }            
+    }
+    
+    /**
+     * A utility function of similar implementation of checkForKAndSlashBeforeKeyword() in 
+     * SearchStockCommand class.
+     */
+    private void checkForKAndSlashBeforeKeyword(String trimmedFullInputLine) 
+            throws InvalidStockCommandException {
+        if (trimmedFullInputLine.length() < keywordTagLength) {
+            throw new InvalidStockCommandException("Please "
+                    + "specify the keyword using the format "
+                    + "'k/keyword;'");
+        } else if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
+                && trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
+            throw new InvalidStockCommandException("Please "
+                    + "specify the keyword using the format "
+                    + "'k/keyword;'");
+        }
     }
     
     
@@ -322,75 +400,5 @@ class SearchStockCommandTest {
                 + ls);
         
         return outputMessage;
-    }
-       
-    /**
-     * A utility function of similar implementation of parseIntoSearchKeyword()
-     * in SearchStockCommand.                                      
-     */
-    private String parseIntoSearchKeyword(String fullInputLine) 
-            throws InvalidStockCommandException {
-        
-        checkValidSearchKeywordArgumentsSupplied(fullInputLine);
-        
-        String trimmedKeyword = fullInputLine.trim();
-        String trimmedKeywordWithoutColon = 
-                trimmedKeyword.substring(indexAfterSlash, trimmedKeyword.length() - 1);
-
-        return trimmedKeywordWithoutColon;      
-    }
-    
-    /**
-     * A utility function of similar implementation of checkValidSearchKeywordArgumentsSupplied()
-     * in SearchStockCommand.                                      
-     */
-    private void checkValidSearchKeywordArgumentsSupplied(String fullInputLine) 
-            throws InvalidStockCommandException {
-        
-        String trimmedFullInputLine = fullInputLine.trim();
-        checkForBlankArguments(trimmedFullInputLine);
-        checkForKAndSlashBeforeKeyword(trimmedFullInputLine);
-    }
-    
-    /**
-     * A utility function of similar implementation of checkForBlankArguments() in SearchStockCommand.
-     */
-    private void checkForBlankArguments(String trimmedFullInputLine) 
-            throws InvalidStockCommandException {
-        
-        if (trimmedFullInputLine.isBlank()) {
-            throw new InvalidStockCommandException("Please "
-                    + "enter an ingredient's name to be "
-                    + "searched against the stock.");
-        } else if (trimmedFullInputLine.length() == keywordTagLength) {
-            checkForKAndSlashBeforeKeyword(trimmedFullInputLine);
-            throw new InvalidStockCommandException("Please "
-                    + "enter an ingredient's name to be "
-                    + "searched against the stock.");
-        } else if (trimmedFullInputLine.length() > keywordTagLength) {
-            if (trimmedFullInputLine.substring(indexAfterSlash, 
-                    trimmedFullInputLine.length()).isBlank()) {
-                throw new InvalidStockCommandException("Please "
-                        + "enter an ingredient's name to be "
-                        + "searched against the stock.");
-            }
-        }            
-    }
-    
-    /**
-     * A utility function of similar implementation of checkForKAndSlashBeforeKeyword in SearchStockCommand.
-     */
-    private void checkForKAndSlashBeforeKeyword(String trimmedFullInputLine) 
-            throws InvalidStockCommandException {
-        if (trimmedFullInputLine.length() < keywordTagLength) {
-            throw new InvalidStockCommandException("Please "
-                    + "specify the keyword using the format "
-                    + "'k/keyword;'");
-        } else if (trimmedFullInputLine.charAt(indexOfKCharacter) != 'k' 
-                && trimmedFullInputLine.charAt(indexOfSlashCharacter) != '/') {
-            throw new InvalidStockCommandException("Please "
-                    + "specify the keyword using the format "
-                    + "'k/keyword;'");
-        }
     }
 }
