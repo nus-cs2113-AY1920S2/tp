@@ -110,20 +110,24 @@ Screenshot showing deletecard:
 ### Starting a Quiz
 Starts a quiz of the specified number of questions from the specified subject.
 
-Format: `quiz s/<INDEX> n/<NUMBER>`
+Format: `quiz s/<INDEX> n/<NUMBER>`  OR  `quiz s/<INDEX>`
 * The `INDEX` is based on the index of the subject. This can be found using the `listsubject` command.
 * The `NUMBER` is the number of questions the user wishes to be quizzed on.
+This is an optional field that can be omitted. 
+* If the `NUMBER` is not specified or if the `NUMBER` exceeds the total number of stored questions
+for that subject, ALL questions in that subject will be tested instead.
+* A quiz can be aborted early by inputting `exitquiz` anytime during the quiz.
 
 Example of Usage:
 * `quiz s/2 n/15`
-* `quiz s/1 n/5`
+* `quiz s/1`
 
 Screenshot showing quiz:
 
 ![](images/quiz.png)
 
 ### Viewing Past Scores
-Shows the previous scores of quizzes from the specified subject 
+Shows the previous scores of quizzes from the specified subject in chronological order.
 
 Format: `score s/<INDEX>`
 * The `INDEX` is based on the index of the subject. This can be found using the `listsubject` command.
