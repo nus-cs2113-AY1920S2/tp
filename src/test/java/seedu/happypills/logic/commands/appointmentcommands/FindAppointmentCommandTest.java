@@ -75,8 +75,8 @@ public class FindAppointmentCommandTest {
     public void getAppointment_List_found() throws HappyPillsException {
         String expectedOutputInList = "    Here are the patient's appointments:\n"
                 + "    ID    | NRIC      | Date       | Time      | Reason      \n"
-                + "    1     | S123A     | 01/02/2020 | 12:00:00  | reason1\n"
-                + "    2     | S123A     | 01/03/2020 | 13:00:00  | reason2\n"
+                + "    1     | S1234567A | 01/02/2020 | 12:00:00  | reason1\n"
+                + "    2     | S1234567A | 01/03/2020 | 13:00:00  | reason2\n"
                 + DIVIDER;
         String message = new FindAppointmentCommand("S1234567A").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
