@@ -64,13 +64,11 @@ public class DateTimeFormat {
 
         if (dateTimeData.length == 1) {
             try {
-                LocalDate date = LocalDate.now();
                 String time = dateTimeData[0].trim().toUpperCase();
-                return new DateTime(date, stringToTime(time));
+                return new DateTime(stringToTime(time));
             } catch (InvalidTimeException e) {
                 String date = dateTimeData[0].trim();
-                final String time = "11:59PM"; // Default value when time is missing
-                return new DateTime(stringToDate(date), stringToTime(time));
+                return new DateTime(stringToDate(date));
             }
         } else if (dateTimeData.length == 2) {
             String date = dateTimeData[0].trim();
@@ -186,7 +184,7 @@ public class DateTimeFormat {
 
         for (String format : ALL_TIME_FORMATS) {
             try {
-                return LocalTime.parse(time, DateTimeFormatter.ofPattern(format));
+                return LocalTime.parse(time.toUpperCase(), DateTimeFormatter.ofPattern(format));
             } catch (DateTimeParseException e) {
                 // Ignore invalid formats
             }
