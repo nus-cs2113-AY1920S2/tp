@@ -20,7 +20,7 @@ public class DeleteDishCommand extends Menu {
                 System.out.println("Dish " + name + " does not exist!");
             } else {
                 Menu.getDishMap().remove(name);
-                System.out.println("Dish " + name + " successfully remove!");
+                System.out.println("Dish " + name + " successfully removed!");
             }
         } catch (DishNameMissingException e) {
             System.out.println("Must include name of dish to delete!");
