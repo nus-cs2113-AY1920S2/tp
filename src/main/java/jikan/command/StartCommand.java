@@ -263,10 +263,12 @@ public class StartCommand extends Command {
         try {
             endTime = LocalTime.parse(durationInfo);
             Duration allocatedTime = Duration.between(startTime, endTime);
-            if (tagString.length > 2) {
-                Ui.printDivider("Cannot have more than 2 tags");
+            if (tagInfo.isEmpty()) {
+                Ui.printDivider("Please provide a valid tag");
             } else if (allocatedTime == Duration.parse("PT0S")) {
                 Ui.printDivider("Please provide a non zero allocated time");
+            } else if (tagString.length > 2) {
+                Ui.printDivider("Cannot have more than 2 tags");
             } else {
                 Parser.tags.addAll(Arrays.asList(tagString));
                 Parser.allocatedTime = allocatedTime;
@@ -297,7 +299,6 @@ public class StartCommand extends Command {
             } else {
                 Parser.allocatedTime = allocatedTime;
                 addActivity(activityName);
-
             }
         } catch (DateTimeException e) {
             Ui.printDivider("Time provided is invalid, please provide time in this format"
@@ -315,7 +316,9 @@ public class StartCommand extends Command {
         String tagInfo = line.substring(index + 2);
         tagInfo = tagInfo.trim();
         String[] tagString = tagInfo.split(" ");
-        if (tagString.length > 2) {
+        if (tagInfo.isEmpty()) {
+            Ui.printDivider("Please provide a valid tag");
+        } else if (tagString.length > 2) {
             Ui.printDivider("Cannot have more than 2 tags");
         } else {
             Parser.tags.addAll(Arrays.asList(tagString));
