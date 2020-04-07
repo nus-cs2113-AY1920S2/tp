@@ -29,59 +29,72 @@ public class Parser {
     public static final DateTimeFormatter PRINT_TIME_FORMAT = DateTimeFormatter.ofPattern("HH':'mm");
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
 
+    private static final String COMMAND_TYPE_FIELD = "command";
+    private static final String TASK_NAME_FIELD = "taskName";
+    private static final String MODULE_NAME_FIELD = "moduleName";
+    private static final String LOCATION_FIELD = "location";
+    private static final String DATE_TIME_FIELD = "dateTime";
+    private static final String COMMENTS_FIELD = "comments";
+    private static final String TASK_TYPE_FIELD = "taskType";
+    private static final String TASK_INDEX_FIELD = "index";
+    private static final String NUM_OF_PERIOD_FIELD = "numOfPeriod";
+    private static final String TYPE_OF_PERIOD_FIELD = "typeOfPeriod";
+    private static final String CALENDAR_DATE_FIELD = "calendarDate";
+
     // regex for an add assignment command
     public static final Pattern ASSIGNMENT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<taskType>(?i)"
+            "(?<" + COMMAND_TYPE_FIELD + ">(?i)"
                     + AssignmentCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+n/\\s*(?<assignmentName>[^|/\\s]+[^|/]*)"
-                    + "\\s+m/\\s*(?<moduleName>[^|/\\s]+[^|/]*)"
-                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
-                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
+                    + "\\s+n/\\s*(?<" + TASK_NAME_FIELD + ">[^|/\\s]+[^|/]*)"
+                    + "\\s+m/\\s*(?<" + MODULE_NAME_FIELD + ">[^|/\\s]+[^|/]*)"
+                    + "\\s+d/\\s*(?<" + DATE_TIME_FIELD + ">\\d{2}/\\d{2}/\\d{2}\\s+\\d{4})"
+                    + "\\s+c/\\s*(?<" + COMMENTS_FIELD + ">[^|/\\s]+[^|/]*)$"
     );
 
     // regex for an add event command
     public static final Pattern EVENT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<taskType>(?i)"
+            "(?<" + COMMAND_TYPE_FIELD + ">(?i)"
                     + EventCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+n/\\s*(?<eventName>[^|/\\s]+[^|/]*)"
-                    + "\\s+l/\\s*(?<location>[^|/\\s]+[^|/]*)"
-                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
-                    + "\\s+c/\\s*(?<comments>[^|/\\s]+[^|/]*)$"
+                    + "\\s+n/\\s*(?<" + TASK_NAME_FIELD + ">[^|/\\s]+[^|/]*)"
+                    + "\\s+l/\\s*(?<" + LOCATION_FIELD + ">[^|/\\s]+[^|/]*)"
+                    + "\\s+d/\\s*(?<" + DATE_TIME_FIELD + ">\\d{2}/\\d{2}/\\d{2}\\s+\\d{4}\\s*-\\s*\\d{4})"
+                    + "\\s+c/\\s*(?<" + COMMENTS_FIELD + ">[^|/\\s]+[^|/]*)$"
     );
 
     //regex for search command
     public static final Pattern SEARCH_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<search>(?i)"
+            "(?<" + COMMAND_TYPE_FIELD + ">(?i)"
                     + SearchCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+t/\\s*(?<taskType>[^|/\\s]+[^|/]*)"
-                    + "\\s+n/\\s*(?<name>[^|/\\s]+[^|/]*)");
+                    + "\\s+t/\\s*(?<" + TASK_TYPE_FIELD + ">[^|/\\s]+[^|/]*)"
+                    + "\\s+n/\\s*(?<" + TASK_NAME_FIELD + ">[^|/\\s]+[^|/]*)");
 
     //regex for Searchd command
     public static final Pattern SEARCHD_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<search>(?i)"
+            "(?<" + COMMAND_TYPE_FIELD + ">(?i)"
                     + SearchCommand.dCOMMAND_WORD
                     + "\\b)"
-                    + "\\s+t/\\s*(?<taskType>[^|/\\s]+[^|/]*)"
-                    + "\\s+n/\\s*(?<taskName>[^|/\\s]+[^|/]*)"
-                    + "\\s+d/\\s*(?<dateTime>\\d{2}/\\d{2}/\\d{2})");
+                    + "\\s+t/\\s*(?<" + TASK_TYPE_FIELD + ">[^|/\\s]+[^|/]*)"
+                    + "\\s+n/\\s*(?<" + TASK_NAME_FIELD + ">[^|/\\s]+[^|/]*)"
+                    + "\\s+d/\\s*(?<" + DATE_TIME_FIELD + ">\\d{2}/\\d{2}/\\d{2})");
 
     //regex for repeat command
     public static final Pattern REPEAT_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<repeat>(?i)"
+            "(?<" + COMMAND_TYPE_FIELD + ">(?i)"
                     + RepeatCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+id/\\s*(?<eventIndex>\\d+)"
-                    + "\\s+p/\\s*(?<numOfPeriod>\\d+)" + "(?<typeOfPeriod>[dwmy])?");
+                    + "\\s+id/\\s*(?<" + TASK_INDEX_FIELD + ">\\d+)"
+                    + "\\s+p/\\s*(?<" + NUM_OF_PERIOD_FIELD + ">\\d+)"
+                    + "(?<" + TYPE_OF_PERIOD_FIELD + ">[dwmy])?");
 
     //regex for calendar command
     public static final Pattern CALENDAR_PARAMETERS_FORMAT = Pattern.compile(
-            "(?<calendar>(?i)"
+            "(?<" + COMMAND_TYPE_FIELD + ">(?i)"
                     + CalendarCommand.COMMAND_WORD
                     + "\\b)"
-                    + "\\s+d/\\s*(?<date>\\d{2}/\\d{2})");
+                    + "\\s+d/\\s*(?<" + CALENDAR_DATE_FIELD + ">\\d{2}/\\d{2})");
 
     //@@author lwxymere
     /**
@@ -150,14 +163,14 @@ public class Parser {
 
         LocalDateTime dateTime;
         try {
-            dateTime = parseDate(matcher.group("dateTime"));
+            dateTime = parseDate(matcher.group(DATE_TIME_FIELD));
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
 
-        String assignmentName = capitalize(matcher.group("assignmentName").replaceAll("\\s+", " ").trim());
-        String moduleName = matcher.group("moduleName").replaceAll("\\s+", " ").trim();
-        String comments = capitalize(matcher.group("comments").replaceAll("\\s+", " ").trim());
+        String assignmentName = capitalize(matcher.group(TASK_NAME_FIELD).replaceAll("\\s+", " ").trim());
+        String moduleName = matcher.group(MODULE_NAME_FIELD).replaceAll("\\s+", " ").trim();
+        String comments = capitalize(matcher.group(COMMENTS_FIELD).replaceAll("\\s+", " ").trim());
         return new AssignmentCommand(assignmentName, moduleName, dateTime, comments);
     }
 
@@ -168,8 +181,8 @@ public class Parser {
             return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
                     capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE));
         }
-        String taskType = matcher.group("taskType").toLowerCase().trim();
-        String taskName = matcher.group("name").trim();
+        String taskType = matcher.group(TASK_TYPE_FIELD).toLowerCase().trim();
+        String taskName = matcher.group(TASK_NAME_FIELD).trim();
         return new SearchCommand(taskName, taskType, null);
     }
 
@@ -179,9 +192,9 @@ public class Parser {
             return new IncorrectCommand(String.format(Messages.INCORRECT_ARGUMENT_ERROR,
                     capitalize(SearchCommand.dCOMMAND_WORD), SearchCommand.dCOMMAND_USAGE));
         }
-        String taskType = matcher.group("taskType").toLowerCase().trim();
-        String taskName = matcher.group("taskName").trim();
-        String stringDate = matcher.group("dateTime").trim();
+        String taskType = matcher.group(TASK_TYPE_FIELD).toLowerCase().trim();
+        String taskName = matcher.group(TASK_NAME_FIELD).trim();
+        String stringDate = matcher.group(DATE_TIME_FIELD).trim();
         LocalDate date;
         try {
             date = LocalDate.parse(stringDate, INPUT_DATE_FORMAT);
@@ -232,7 +245,7 @@ public class Parser {
         LocalDateTime startDateTime;
         LocalDateTime endDateTime;
         try {
-            String startEndDateTime = matcher.group("dateTime");
+            String startEndDateTime = matcher.group(DATE_TIME_FIELD);
             String[] dateTimeTokens = startEndDateTime.split("\\s+", 2);
             String[] timeTokens = dateTimeTokens[1].split("-", 2);
             startDateTime = parseDate(dateTimeTokens[0] + " " + timeTokens[0].trim());
@@ -245,9 +258,9 @@ public class Parser {
             return new IncorrectCommand(Messages.INCORRECT_START_END_TIME_ERROR);
         }
 
-        String eventName = capitalize(matcher.group("eventName").replaceAll("\\s+", " ").trim());
-        String location = matcher.group("location").replaceAll("\\s+", " ").trim();
-        String comments = capitalize(matcher.group("comments").replaceAll("\\s+", " ").trim());
+        String eventName = capitalize(matcher.group(TASK_NAME_FIELD).replaceAll("\\s+", " ").trim());
+        String location = matcher.group(LOCATION_FIELD).replaceAll("\\s+", " ").trim();
+        String comments = capitalize(matcher.group(COMMENTS_FIELD).replaceAll("\\s+", " ").trim());
         return new EventCommand(eventName, location, startDateTime, endDateTime, comments);
     }
 
@@ -316,9 +329,9 @@ public class Parser {
                     capitalize(RepeatCommand.COMMAND_WORD), RepeatCommand.COMMAND_USAGE));
         }
         try {
-            int eventIndex = Integer.parseInt(matcher.group("eventIndex")) - 1;
-            int numOfPeriod = Integer.parseInt(matcher.group("numOfPeriod"));
-            String typeOfPeriod = matcher.group("typeOfPeriod");
+            int eventIndex = Integer.parseInt(matcher.group(TASK_INDEX_FIELD)) - 1;
+            int numOfPeriod = Integer.parseInt(matcher.group(NUM_OF_PERIOD_FIELD));
+            String typeOfPeriod = matcher.group(TYPE_OF_PERIOD_FIELD);
             if (numOfPeriod != 0 && typeOfPeriod == null) {
                 return new IncorrectCommand(String.format(Messages.INCORRECT_FORMAT_ERROR,
                         capitalize(RepeatCommand.COMMAND_WORD), RepeatCommand.COMMAND_USAGE));
@@ -341,7 +354,8 @@ public class Parser {
 
         LocalDate date;
         try {
-            date = LocalDate.parse(String.format("01/%s", matcher.group("date").trim()), INPUT_DATE_FORMAT);
+            date = LocalDate.parse(
+                    String.format("01/%s", matcher.group(CALENDAR_DATE_FIELD).trim()), INPUT_DATE_FORMAT);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }

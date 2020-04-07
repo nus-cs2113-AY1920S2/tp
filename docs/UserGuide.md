@@ -93,7 +93,7 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
     Example index of list:  
     ![Task Index Example](images/task_index_example.png)
 
--   Dates supplied by the user must follow the format `DD/MM/YY`.  
+-   Dates supplied by the user must follow the format `DD/MM/YY` unless specified otherwise.  
     Example: 01/03/20 represents the date 1st March 2020.
 
 -   Times supplied by the user must follow the 24h format `HHmm`. '`:`' is not needed.  
@@ -151,8 +151,9 @@ Format: `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMME
 
 -   `COMMENTS` will be any other notes relevant to your `event`.
 
-> **Note**:
-> The new `event` added cannot have the same `NAME` as another existing `event`.
+> **Note**:  
+> The new `event` added cannot have the same `NAME` as another existing `event`.  
+> The `event` cannot span multiple days. The ability to create an `event` that lasts over a few days will be coming in a later version of **ATAS**. 
 
 Example: `event n/Lecture l/NUS LT19 d/25/03/20 0800 - 1000 c/Remember to bring a jacket`
 
