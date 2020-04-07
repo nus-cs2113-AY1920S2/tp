@@ -50,6 +50,7 @@ public class DietManager {
             if (profile.isProfileExist()) {
                 storage.writeProfileFile();
             }
+            storage.writeFoodNutritionRecordFile();
         }
 
         ui.displayExitMessage();

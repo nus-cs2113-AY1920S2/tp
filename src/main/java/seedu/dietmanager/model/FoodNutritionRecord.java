@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class FoodNutritionRecord {
 
-    private List<Food> foodNutritionList = new ArrayList<>();
+    private List<Food> foodNutritionRecordList = new ArrayList<>();
     private static FoodNutritionRecord theOne = null;
 
     /**
@@ -16,17 +16,17 @@ public class FoodNutritionRecord {
      */
 
     private FoodNutritionRecord() {
-        foodNutritionList.add(new Food("chicken-rice", 702));
-        foodNutritionList.add(new Food("fried-rice", 508));
-        foodNutritionList.add(new Food("chicken-curry", 450));
-        foodNutritionList.add(new Food("prawn-noodles-dry", 459));
-        foodNutritionList.add(new Food("fishball-noodles-soup", 330));
-        foodNutritionList.add(new Food("cheeseburger", 300));
-        foodNutritionList.add(new Food("white-bread", 77));
-        foodNutritionList.add(new Food("french-fries", 450));
-        foodNutritionList.add(new Food("orange-juice", 80));
-        foodNutritionList.add(new Food("soft-drink", 120));
-        foodNutritionList.add(new Food("fresh-milk", 163));
+        foodNutritionRecordList.add(new Food("chicken-rice", 702));
+        foodNutritionRecordList.add(new Food("fried-rice", 508));
+        foodNutritionRecordList.add(new Food("chicken-curry", 450));
+        foodNutritionRecordList.add(new Food("prawn-noodles-dry", 459));
+        foodNutritionRecordList.add(new Food("fishball-noodles-soup", 330));
+        foodNutritionRecordList.add(new Food("cheeseburger", 300));
+        foodNutritionRecordList.add(new Food("white-bread", 77));
+        foodNutritionRecordList.add(new Food("french-fries", 450));
+        foodNutritionRecordList.add(new Food("orange-juice", 80));
+        foodNutritionRecordList.add(new Food("soft-drink", 120));
+        foodNutritionRecordList.add(new Food("fresh-milk", 163));
     }
 
     /**
@@ -50,7 +50,7 @@ public class FoodNutritionRecord {
      */
     public Optional<Food> findFood(String foodName) {
         Optional<Food> foodFound = Optional.empty();
-        for (Food food : foodNutritionList) {
+        for (Food food : foodNutritionRecordList) {
             if (food.getFoodName().toLowerCase().equals(foodName.toLowerCase())) {
                 foodFound = Optional.of(food);
             }
@@ -59,7 +59,7 @@ public class FoodNutritionRecord {
     }
 
     public Food findFood(int index) {
-        return foodNutritionList.get(index);
+        return foodNutritionRecordList.get(index);
     }
 
     /**
@@ -70,7 +70,7 @@ public class FoodNutritionRecord {
      */
     public boolean isInDatabase(String foodName) {
         boolean isFoodFound = false;
-        for (Food food : foodNutritionList) {
+        for (Food food : foodNutritionRecordList) {
             if (food.getFoodName().toLowerCase().equals(foodName.toLowerCase())) {
                 isFoodFound = true;
                 break;
@@ -84,7 +84,7 @@ public class FoodNutritionRecord {
      */
     public String showFoodDatabase() {
         StringBuilder foodDatabase = new StringBuilder(MessageBank.FOOD_DATABASE_MESSAGE);
-        for (Food food : foodNutritionList) {
+        for (Food food : foodNutritionRecordList) {
             foodDatabase.append(food);
         }
         return foodDatabase.toString();
@@ -100,7 +100,7 @@ public class FoodNutritionRecord {
 
     public boolean addFoodNutritionRecord(String foodName, Double calories) {
         if (!isInDatabase(foodName)) {
-            foodNutritionList.add(new Food(foodName, calories));
+            foodNutritionRecordList.add(new Food(foodName, calories));
             return true;
         } else {
             return false;
@@ -117,18 +117,26 @@ public class FoodNutritionRecord {
     public boolean deleteFoodNutritionRecord(String foodName) {
         if (findFood(foodName).isPresent()) {
             Food toBeDeleted = findFood(foodName).get();
-            foodNutritionList.remove(toBeDeleted);
+            foodNutritionRecordList.remove(toBeDeleted);
             return true;
         } else {
             return false;
         }
     }
 
+    public List<Food> getFoodNutritionRecordList() {
+        return this.foodNutritionRecordList;
+    }
+
+    public void clearFoodNutritionRecordList() {
+        this.foodNutritionRecordList.clear();
+    }
+
     public int getListSize() {
-        return this.foodNutritionList.size();
+        return this.foodNutritionRecordList.size();
     }
 
     public double getFoodCalories(int index) {
-        return foodNutritionList.get(index).getCalories().get();
+        return foodNutritionRecordList.get(index).getCalories().get();
     }
 }

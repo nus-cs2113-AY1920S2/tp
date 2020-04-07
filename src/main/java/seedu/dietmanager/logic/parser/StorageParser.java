@@ -25,4 +25,21 @@ public class StorageParser {
         return descriptionArray;
     }
 
+    /**
+     * Parses the user input and prepares it to be analysed and used to generate commands.
+     *
+     * @param foodNutritionRecordDataLine       the command description.
+     * @throws InvalidFormatException if user input has the wrong format.
+     */
+
+    public static String[] parseFoodNutritionRecordDataLine(String foodNutritionRecordDataLine)
+            throws InvalidFormatException, NullPointerException {
+        int argumentsRequired = 2;
+        String[] descriptionArray = foodNutritionRecordDataLine.trim().split(",", argumentsRequired);
+        if (descriptionArray.length != argumentsRequired) {
+            throw new InvalidFormatException();
+        }
+        return descriptionArray;
+    }
+
 }
