@@ -10,11 +10,9 @@ import java.util.ArrayList;
  * Represents the entire deck of flashcards.
  */
 public class CardList implements Serializable {
-    public ArrayList<Card> cards;
+    private ArrayList<Card> cards;
 
-    public CardList() {
-        this.cards = new ArrayList<Card>();
-    }
+    public CardList() { this.cards = new ArrayList<Card>(); }
 
     public CardList(ArrayList<Card> cards) {
         this.cards = cards;
@@ -98,4 +96,19 @@ public class CardList implements Serializable {
         return this.cards.size();
     }
 
+    public void removeCardSilent(int index) throws EscException {
+        if (this.size() == 0) {
+            throw new EscException("The card list is empty.");
+        }
+
+        try {
+            cards.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new EscException("The card item does not exist.");
+        }
+    }
+
+    public void addCardSilent(Card card, Subject subject, int index) {
+        cards.add(index,card);
+    }
 }

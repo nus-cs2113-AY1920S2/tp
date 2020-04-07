@@ -47,11 +47,11 @@ public class EditCardCommand extends AddCommand{
     public void execute(SubjectList subjectList) throws EscException {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
         CardList cardList = chosenSubject.getCardList();
-        cardList.cards.remove(cardIndex);
-        cardList.cards.add(cardIndex,card);
+        cardList.removeCardSilent(cardIndex);
+        cardList.addCardSilent(card,chosenSubject,cardIndex);
         System.out.println("The selected card has been edited");
-        System.out.println("Q: " + cardList.cards.get(cardIndex).getQuestion() +" / " +
-                            "A: "+ cardList.cards.get(cardIndex).getQuestion());
+        System.out.println("Q: " + cardList.getCard(cardIndex).getQuestion() +" / " +
+                            "A: "+ cardList.getCard(cardIndex).getQuestion());
     }
 }
 
