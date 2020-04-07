@@ -1,5 +1,6 @@
 package seedu.happypills.logic.parser;
 
+import org.w3c.dom.Text;
 import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.appointmentcommands.AppointmentCommand;
 
@@ -150,22 +151,6 @@ public class AppointmentParser {
         Scanner in = HappyPills.scanner;
         String reInput = in.nextLine();
         return reInput;
-    }
-
-    /**
-     * Check if the String can be converted to Integer.
-     *
-     * @param input value to check if is integer
-     * @return true if is an integer, false otherwise
-     */
-    public static boolean isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-
     }
 
     /**

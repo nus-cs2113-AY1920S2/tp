@@ -16,12 +16,15 @@ public class PatientTextUi extends TextUi {
      * @return a message to be displayed to user.
      */
     public static String getPatientList(PatientMap patients) {
-        String message = "";
+        String message = "    Here is your list of patients:\n"
+                + "    NRIC      | Name        \n";
+//        String message = "";
         for (Map.Entry patient : patients.entrySet()) {
             String nric = (String)patient.getKey();
             Patient p = (Patient)patient.getValue();
             String name = p.getName();
-            message += "    " + name + " | " + nric + "\n";
+            message += "    " + nric + repeat(10 - nric.length())
+                    + "| " + name + "\n";
         }
         message += DIVIDER;
         return message;

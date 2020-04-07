@@ -82,4 +82,25 @@ public class TextUi {
         String msg = "    Command is incomplete. Please use the " + helpString + " command.";
         return msg;
     }
+
+    /**
+     * Repeat a string count number of times.
+     *
+     * @param count the number of times to be repeated.
+     * @param with the string to be repeated.
+     * @return the resulting string.
+     */
+    public static String repeat(int count, String with) {
+        return new String(new char[count]).replace("\0", with);
+    }
+
+    /**
+     * Repeat a blank space count number of times.
+     *
+     * @param count the number of times to be repeated.
+     * @return the resulting string.
+     */
+    public static String repeat(int count) {
+        return repeat(count, " ");
+    }
 }

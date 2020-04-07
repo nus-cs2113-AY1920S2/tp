@@ -15,13 +15,15 @@ public class PatientRecordTextUi extends TextUi {
      * @return a formatted success message string to be displayed to user.
      */
     public static String getPatientRecordListSuccessMessage(ArrayList<PatientRecord> patientRecords) {
-        String message = "    Here is your list of patient's records:\n"
-                + "    ID | date       | time     \n";
+        String nric = patientRecords.get(0).getNric();
+        String message = "    Here is the list of " + nric + "'s records:\n"
+                + "    ID    | Date       | Time     \n";
         for (int index = 0; index < patientRecords.size(); index++) {
-            int id = index + 1;
+            String id = Integer.toString(index + 1);
             String date = patientRecords.get(index).getDate();
             String time = patientRecords.get(index).getTime();
-            message += "    " + id + "  | " + date + " | " + time + "\n";
+            message += "    " + id + repeat(6-id.length()) + "| "
+                    + date + repeat(11 - date.length()) + "| " + time + "\n";
         }
         message += DIVIDER;
         return message;
