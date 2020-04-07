@@ -35,8 +35,8 @@ public class TextUi {
      * Displays Exit message.
      */
     public static void printExit() {
-        System.out.println("Thank you for using HappyPills! ^.^");
-        System.out.println("See you again!\n" + DIVIDER);
+        System.out.println("    Thank you for using HappyPills! ^.^");
+        System.out.println("    See you again!\n" + DIVIDER);
     }
 
     //General methods
