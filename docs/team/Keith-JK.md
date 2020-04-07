@@ -20,12 +20,13 @@ ATAS is catered for students who want to maximise their productivity and cultiva
     
     * Calendar feature was implemented with ANSI escape sequences which colours command line output, that other commands can take advantage of to improve the user interface and experience.          
     
-**Minor Enhancement**: Implemented Ui component which handles all user inputs and outputs.
+**Minor Enhancement**: 
+* Implemented Ui component which handles all user inputs and outputs.
+* ExitCommand [#48](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/48)
 
-Other Minor Enhancements which might have been refactored by team mates include:
-* HelpCommand and the corresponding help messages for all commands.
-* ExitCommand
-* DoneCommand 
+Other Minor Enhancements which were subsequently refactored by team mates include:
+* HelpCommand and the corresponding help messages for all commands.[#40](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/40)
+* AssignmentCommand, EventCommand & DoneCommand[#27](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/27)
 
 **Code contributed**:[View on RepoSense](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=keith-jk&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=Keith-JK&tabRepo=AY1920S2-CS2113T-M16-1%2Ftp%5Bmaster%5D)
 
@@ -35,8 +36,12 @@ Other Minor Enhancements which might have been refactored by team mates include:
     * Added section 3.10 Calendar view.
     
 * Developer Guide:
-    * Added and wrote section 3.6 Calendar feature.    
-
-* Others:
-    * Reviewed and provided suggestions for Clear command, in particular refactored logic of Clear Done tasks. [#72](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/72)    
+    * Added and wrote section 3.6 Calendar feature.
+    * Wrote Appendix A: Target User Profile
+    * Wrote Appendix D: Non-functional requirements
     
+* Contributions to team-based tasks:
+    * Managed issue tracker    
+
+* Community:
+    * Reviewed and provided improvements for team member's code, in particular refactored logic of Clear Done tasks. [#72](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/72)    
