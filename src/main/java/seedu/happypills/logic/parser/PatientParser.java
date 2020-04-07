@@ -125,7 +125,6 @@ public class PatientParser {
                 return true;
             }
         }
-        System.out.println(parseInput[4]);
         boolean isIncorrectFormat = !Checker.isValidNric(parseInput[1])
                 || !Checker.isValidDate(parseInput[3]) || !Checker.isValidBloodType(parseInput[4])
                 || !Checker.isValidPhoneNum(parseInput[2].trim());
@@ -175,7 +174,6 @@ public class PatientParser {
                 PatientTextUi.patientNotAddedMessage(detail);
             }
         }
-        System.out.println(parseInput[4]);
         while (hasMissingFields(parseInput)) {
             printMissingFields(parseInput);
             String input = readUserInput().trim();
