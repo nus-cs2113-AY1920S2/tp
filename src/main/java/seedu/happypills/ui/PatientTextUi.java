@@ -18,7 +18,6 @@ public class PatientTextUi extends TextUi {
     public static String getPatientList(PatientMap patients) {
         String message = "    Here is your list of patients:\n"
                 + "    NRIC      | Name        \n";
-//        String message = "";
         for (Map.Entry patient : patients.entrySet()) {
             String nric = (String)patient.getKey();
             Patient p = (Patient)patient.getValue();

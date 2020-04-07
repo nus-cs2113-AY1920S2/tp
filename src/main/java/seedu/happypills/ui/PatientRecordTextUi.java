@@ -22,7 +22,7 @@ public class PatientRecordTextUi extends TextUi {
             String id = Integer.toString(index + 1);
             String date = patientRecords.get(index).getDate();
             String time = patientRecords.get(index).getTime();
-            message += "    " + id + repeat(6-id.length()) + "| "
+            message += "    " + id + repeat(6 - id.length()) + "| "
                     + date + repeat(11 - date.length()) + "| " + time + "\n";
         }
         message += DIVIDER;
