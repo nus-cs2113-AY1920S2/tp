@@ -9,7 +9,6 @@ import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.StorageTextUi;
-import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -55,7 +54,7 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
             try {
                 Storage.addSingleItemToFile(Storage.PATIENT_RECORD_FILEPATH, patientRecord.toSave());
             } catch (IOException e) {
-                logger.warning(StorageTextUi.failToAddPrMsg);
+                logger.warning(StorageTextUi.FAIL_TO_ADD_PR_MSG);
             }
             message = Messages.MESSAGE_PATIENT_RECORD_ADDED;
         }

@@ -131,6 +131,6 @@ What can I do for you today, doctor?
     Patient does not exist. Please try again.
     =====================================================
     =====================================================
-Thank you for using HappyPills! ^.^
-See you again!
+    Thank you for using HappyPills! ^.^
+    See you again!
     =====================================================

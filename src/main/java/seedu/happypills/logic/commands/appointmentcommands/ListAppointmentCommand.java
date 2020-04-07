@@ -11,7 +11,7 @@ public class ListAppointmentCommand extends AppointmentCommand {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
         String message;
         if (appointments.size() == 0) {
-            message = AppointmentTextUi.getEmptyAppointmentListMessage;
+            message = AppointmentTextUi.GET_EMPTY_APPOINTMENT_LIST_MESSAGE;
         } else {
             assert !appointments.isEmpty();
             message = AppointmentTextUi.getAppointmentList(appointments);

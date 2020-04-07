@@ -195,7 +195,7 @@ public class EditPatientCommand extends PatientCommand {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
                     StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
-            logger.info(StorageTextUi.failToWritePatientMsg);
+            logger.info(StorageTextUi.FAIL_TO_WRITE_PATIENT_MSG);
         }
         assert output.length() > 0 : "output message is invalid";
         return output;

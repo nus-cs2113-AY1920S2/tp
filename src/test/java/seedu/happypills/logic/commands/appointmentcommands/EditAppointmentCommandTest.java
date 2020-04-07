@@ -25,9 +25,9 @@ class EditAppointmentCommandTest {
         newPatientRecordMap = new PatientRecordMap();
 
         //Add test patient
-        Patient patientOne = new Patient("P1", "S123A", 123,
+        Patient patientOne = new Patient("P1", "S1234567A", 123,
                 "01/01/2000", "O+", "None", "NIL");
-        Patient patientTwo = new Patient("P2", "S456B", 456,
+        Patient patientTwo = new Patient("P2", "S4567890B", 456,
                 "01/02/1990", "O+", "None", "NIL");
         try {
             newPatientMap.add(patientOne);
@@ -37,9 +37,9 @@ class EditAppointmentCommandTest {
         }
 
         //add test appointment
-        Appointment appointmentThree = new Appointment("3","S123A",  "01/04/2020", "14:00:00","reason3",false);
-        Appointment appointmentOne = new Appointment("1","S123A", "01/02/2020", "12:00:00","reason1",false);
-        Appointment appointmentTwo = new Appointment("2","S123A", "01/03/2020", "13:00:00","reason2", false);
+        Appointment appointmentThree = new Appointment("3","S1234567A",  "01/04/2020", "14:00:00","reason3",false);
+        Appointment appointmentOne = new Appointment("1","S1234567A", "01/02/2020", "12:00:00","reason1",false);
+        Appointment appointmentTwo = new Appointment("2","S1234567A", "01/03/2020", "13:00:00","reason2", false);
 
 
         try {
@@ -63,7 +63,7 @@ class EditAppointmentCommandTest {
                 + "      edit appt NRIC APPT_ID /r [REASON] to edit appointment's reason\"\n"
                 + "    Do note that editing the patient's records will overwrite any previous information.\n"
                 + "    The apptID can be found using \"find appt NRIC\"\n";
-        String message = new EditAppointmentCommand("S123A", "2", "/r ").execute(
+        String message = new EditAppointmentCommand("S1234567A", "2", "/r ").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputMissingInput, message);
     }
@@ -71,14 +71,14 @@ class EditAppointmentCommandTest {
     @Test
     public void editAppointment_editReason() throws HappyPillsException {
         String expectedOutputeditReason = "    Patient appointment have been updated as follows:\n"
-                + "        NRIC     : S123A\n"
+                + "        NRIC     : S1234567A\n"
                 + "        Date     : 01/03/2020\n"
                 + "        Time     : 13:00:00\n"
                 + "        Reason   : Very sick hehe\n"
                 + "        ID       : 2\n"
                 + "        Attended : No\n"
                 + "    =====================================================";
-        String message = new EditAppointmentCommand("S123A", "2",
+        String message = new EditAppointmentCommand("S1234567A", "2",
                 "/r Very sick hehe").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputeditReason, message);
     }
@@ -87,7 +87,7 @@ class EditAppointmentCommandTest {
     public void editAppointment_editDate_invalidDate() throws HappyPillsException {
         String expectedOutputEditDateInvalid = "    Invalid date or date format(DD/MM/YYYY).\n"
                 + "    =====================================================";
-        String message = new EditAppointmentCommand("S123A", "3",
+        String message = new EditAppointmentCommand("S1234567A", "3",
                 "/d 01/01/202s").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditDateInvalid, message);
     }
@@ -95,14 +95,14 @@ class EditAppointmentCommandTest {
     @Test
     public void editAppointment_editDate_validDate() throws HappyPillsException {
         String expectedOutputEditDateValid = "    Patient appointment have been updated as follows:\n"
-                + "        NRIC     : S123A\n"
+                + "        NRIC     : S1234567A\n"
                 + "        Date     : 01/01/2020\n"
                 + "        Time     : 14:00:00\n"
                 + "        Reason   : reason3\n"
                 + "        ID       : 3\n"
                 + "        Attended : No\n"
                 + "    =====================================================";
-        String message = new EditAppointmentCommand("S123A", "3",
+        String message = new EditAppointmentCommand("S1234567A", "3",
                 "/d 01/01/2020").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditDateValid, message);
     }
@@ -111,7 +111,7 @@ class EditAppointmentCommandTest {
     public void editAppointment_editTime_invalidTime() throws HappyPillsException {
         String expectedOutputEditTimeInvalid = "    Invalid time or time format(HH:MM).\n"
                 + "    =====================================================";
-        String message = new EditAppointmentCommand("S123A", "1",
+        String message = new EditAppointmentCommand("S1234567A", "1",
                 "/t 24:00").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditTimeInvalid, message);
     }
@@ -119,14 +119,14 @@ class EditAppointmentCommandTest {
     @Test
     public void editAppointment_editTime_validTime() throws HappyPillsException {
         String expectedOutputEditTimeValid = "    Patient appointment have been updated as follows:\n"
-                + "        NRIC     : S123A\n"
+                + "        NRIC     : S1234567A\n"
                 + "        Date     : 01/02/2020\n"
                 + "        Time     : 23:59:00\n"
                 + "        Reason   : reason1\n"
                 + "        ID       : 1\n"
                 + "        Attended : No\n"
                 + "    =====================================================";
-        String message = new EditAppointmentCommand("S123A", "1",
+        String message = new EditAppointmentCommand("S1234567A", "1",
                 "/t 23:59").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEditTimeValid, message);
     }

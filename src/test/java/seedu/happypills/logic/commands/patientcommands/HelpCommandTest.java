@@ -42,7 +42,7 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_addCommandMessage() throws HappyPillsException {
-        String expectedOutput = HelpTextUi.AddPatientHelpMessage + TextUi.DIVIDER;
+        String expectedOutput = HelpTextUi.ADD_PATIENT_HELP_MESSAGE + TextUi.DIVIDER;
         String message = new HelpCommand("help add patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutput, message);
@@ -50,7 +50,7 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_listCommandMessage() throws HappyPillsException {
-        String expectedOutput = HelpTextUi.listPatientHelpMessage + TextUi.DIVIDER;
+        String expectedOutput = HelpTextUi.LIST_PATIENT_HELP_MESSAGE + TextUi.DIVIDER;
         String message = new HelpCommand("help list patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutput, message);
@@ -58,7 +58,7 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_getCommandMessage() throws HappyPillsException {
-        String expectedOutput = HelpTextUi.getPatientHelpMessage + TextUi.DIVIDER;
+        String expectedOutput = HelpTextUi.GET_PATIENT_HELP_MESSAGE + TextUi.DIVIDER;
         String message = new HelpCommand("help get patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutput, message);
@@ -66,7 +66,7 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_editCommandMessage() throws HappyPillsException {
-        String expectedOutput = HelpTextUi.editPatientHelpMessage + TextUi.DIVIDER;
+        String expectedOutput = HelpTextUi.EDIT_PATIENT_HELP_MESSAGE + TextUi.DIVIDER;
         String message = new HelpCommand("help edit patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutput, message);
@@ -74,7 +74,7 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_deleteCommandMessage() throws HappyPillsException {
-        String expectedOutput = HelpTextUi.deletePatientHelpMessage + TextUi.DIVIDER;
+        String expectedOutput = HelpTextUi.DELETE_PATIENT_HELP_MESSAGE + TextUi.DIVIDER;
         String message = new HelpCommand("help delete patient").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutput, message);
@@ -82,7 +82,7 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_helpCommandMessage() throws HappyPillsException {
-        String expectedOutput = HelpTextUi.generalHelpMessage + TextUi.DIVIDER;
+        String expectedOutput = HelpTextUi.GENERAL_HELP_MESSAGE + TextUi.DIVIDER;
         String message = new HelpCommand("help").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutput, message);
@@ -90,7 +90,7 @@ class HelpCommandTest {
 
     @Test
     public void helpCommand_exitCommandMessage() throws HappyPillsException {
-        String expectedOutput = HelpTextUi.exitHelpMessage + TextUi.DIVIDER;
+        String expectedOutput = HelpTextUi.EXIT_HELP_MESSAGE + TextUi.DIVIDER;
         String message = new HelpCommand("help exit").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutput, message);
