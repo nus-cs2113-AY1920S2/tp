@@ -104,9 +104,7 @@ public class CommandFormatText {
         case ListFileCommand.COMMAND_WORD:
             return getListFileFormat();
         case ListTaskSortedCommand.COMMAND_WORD:
-            return getListTaskDeadlineFormat();
-        case ListModuleTask.COMMAND_WORD:
-            return getListModuleTaskDeadlineFormat();
+            return getListTaskSortedFormat();
 
         case EditModuleCommand.COMMAND_WORD:
             return getEditModuleFormat();
@@ -320,20 +318,12 @@ public class CommandFormatText {
         return commandFormat;
     }
 
-    private static TextFlow getListTaskDeadlineFormat() {
+    private static TextFlow getListTaskSortedFormat() {
         commandFormat.getChildren().addAll(
                 createText(ListTaskSortedCommand.COMMAND_WORD, Color.GREEN),
                 createText(String.format(" %s %s %s %s %s %s",
-                        "[ <moduleCode> ]", "[", DEADLINE_PREFIX, PRIORITY_PREFIX,
+                        "[ <module code> ]", "[", DEADLINE_PREFIX, PRIORITY_PREFIX,
                         "(choose 1; default -d)", "]"), Color.DARKGRAY)
-        );
-        return commandFormat;
-    }
-
-    private static TextFlow getListModuleTaskDeadlineFormat() {
-        commandFormat.getChildren().addAll(
-                createText(ListModuleTask.COMMAND_WORD, Color.GREEN),
-                createText(String.format(" %s %s %s", "[", "<module code>", "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }

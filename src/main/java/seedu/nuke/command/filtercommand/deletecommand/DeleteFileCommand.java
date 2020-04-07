@@ -23,6 +23,12 @@ public class DeleteFileCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delf";
     public static final String FORMAT = COMMAND_WORD + " <file name> -m <module code> "
             + "-c <category name> -t <task description> [ -e -a ]";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Filter and delete the files of task(s)\n"
+            + "Note: -e to filter for exact keywords; -a to filter across ALL your files\n"
+            + "Format: %s\n"
+            + "Example: delf tut_4 -m cs2113t -c tutorial -t do tut 4 -e -a\n",
+            COMMAND_WORD, FORMAT);
 
     private String moduleCode;
     private String categoryName;

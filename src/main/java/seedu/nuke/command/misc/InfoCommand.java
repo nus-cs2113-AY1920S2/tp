@@ -17,9 +17,10 @@ import java.util.ArrayList;
 public class InfoCommand extends Command {
     public static final String COMMAND_WORD = "info";
     public static final String FORMAT = COMMAND_WORD;
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Display information about the current directory"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Display information about the current directory\n"
+            + "Format: %s\n",
+            COMMAND_WORD, FORMAT);
 
     private Directory directory;
 

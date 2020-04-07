@@ -14,16 +14,9 @@ import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.FileSystemException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_DELETE_FILE_ERROR;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_NOT_FOUND_DELETE;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SECURITY_EXCEPTION;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_ABORTED;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_FILE_SUCCESS;
@@ -143,8 +136,7 @@ public class DeleteConfirmationPrompt extends Command {
      * @param toDeleteIndices
      *  The list of indices of the files to be deleted
      */
-    private void deleteMultipleFiles(ArrayList<TaskFile> files, ArrayList<Integer> toDeleteIndices)
-            throws IOException {
+    private void deleteMultipleFiles(ArrayList<TaskFile> files, ArrayList<Integer> toDeleteIndices) {
         for (int index : toDeleteIndices) {
             TaskFile toDelete = files.get(index);
             deleteSingleFile(toDelete);
@@ -231,19 +223,8 @@ public class DeleteConfirmationPrompt extends Command {
             ArrayList<TaskFile> filteredFiles = filteredList.stream()
                     .map(TaskFile.class::cast)
                     .collect(Collectors.toCollection(ArrayList::new));
-            try {
-                deleteMultipleFiles(filteredFiles, toDeleteIndices);
-                return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
-            } catch (FileNotFoundException e) {
-                return new CommandResult(String.format("%s%s\n",
-                        MESSAGE_FILE_NOT_FOUND_DELETE, e.getMessage()));
-            } catch (FileSystemException e) {
-                return new CommandResult(MESSAGE_FILE_SYSTEM_EXCEPTION);
-            } catch (IOException e) {
-                return new CommandResult(MESSAGE_DELETE_FILE_ERROR);
-            } catch (SecurityException e) {
-                return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
-            }
+            deleteMultipleFiles(filteredFiles, toDeleteIndices);
+            return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
         }
 
         default:

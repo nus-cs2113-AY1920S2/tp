@@ -21,11 +21,13 @@ import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
  */
 public class ListTaskSortedCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsts";
-    public static final String FORMAT = COMMAND_WORD + " [ <moduleCode> ] [ -d -p (choose 1; default -d) ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "List all undone tasks from earliest to latest deadline or "
-            + "from largest to smallest priority"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String FORMAT = COMMAND_WORD + " [ <module code> ] [ -d -p (choose 1; default -d) ]";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - List all undone tasks from nearest to latest deadline or from largest to smallest priority\n"
+            + "Note: -d to filter by deadline (default); -p to filter by priority\n"
+            + "Format: %s\n"
+            + "Example: lsts cs2113t -p\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + ")?)"

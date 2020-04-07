@@ -14,9 +14,12 @@ public class ListFileCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsf";
     public static final String FORMAT = "lsf [ <file keyword> -m <module keyword> "
             + "-c <category keyword> -t <task keyword> -e -a ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Filters and lists your files"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Filter and show the files of task(s)\n"
+            + "Note: -e to filter for exact keywords; -a to filter across ALL your files\n"
+            + "Format: %s\n"
+            + "Example: lsf tut -m cs2113t -t tut -a\n",
+            COMMAND_WORD, FORMAT);
 
     private String moduleKeyWord;
     private String categoryKeyword;

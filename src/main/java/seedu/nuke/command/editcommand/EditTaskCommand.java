@@ -35,22 +35,22 @@ import static seedu.nuke.util.Message.MESSAGE_TASK_EXCEED_LIMIT;
 public class EditTaskCommand extends EditCommand {
     public static final String COMMAND_WORD = "edt";
     public static final String FORMAT = COMMAND_WORD
-            + " <task description> -m <module code> -c <category name>"
-            + " [ -t <new task description> -d <new deadline> -p <new priority> (must include at least one) ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Edit description, deadline and priority of task"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+            + " <task description> -m <module code> -c <category name>\n\t"
+            + " { -t <new task description> -d <new deadline> -p <new priority> }";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Edit the description, deadline and priority of a task\n"
+            + "Format: %s\n"
+            + "Example: edt read week 6 nites -m CS2113T -c Lecture -t read week 8 notes -d sun -p 1\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<optional>(?:\\s+-[dp](?:\\s+\\w\\S*)+)*)"
-            + "(?<invalid>.*)"
-    );
-    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<prioritySecond>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<invalid>.*)"
     );
 
     private String oldTaskDescription;

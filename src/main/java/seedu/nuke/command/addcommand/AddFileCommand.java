@@ -55,10 +55,13 @@ import static seedu.nuke.util.Message.messageAddFileSuccess;
  */
 public class AddFileCommand extends AddCommand {
     public static final String COMMAND_WORD = "addf";
-    public static final String FORMAT = COMMAND_WORD;
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a file to task"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
-
+    public static final String FORMAT = COMMAND_WORD + " [ <file name> ] -m <module code> -c <category name> "
+            + "-t <task description> -f <file path>";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Add a new file to a task\n"
+            + "Format: %s\n"
+            + "Example: addf tut_1 -m CS2113T -c Tutorial -t do tutorial 1 -f C:/Users/a/Desktop/CS2113T/tut_1.pdf\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"

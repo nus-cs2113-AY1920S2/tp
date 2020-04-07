@@ -45,9 +45,11 @@ public class OpenFileCommand extends FilterCommand {
     public static final String COMMAND_WORD = "open";
     public static final String FORMAT = COMMAND_WORD + " [ <file name> ] -m <module code> "
             + "-c <category name> -t <task description>";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Open the file(s) of a specified task"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Open the file(s) of a task\n"
+            + "Format: %s\n"
+            + "Example: open tut_4 -m cs2113t -c Tutorial -t do tutorial 4\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"

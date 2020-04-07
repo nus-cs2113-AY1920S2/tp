@@ -13,10 +13,12 @@ public class ListTaskCommand extends ListCommand {
     public static final String COMMAND_WORD = "lst";
     public static final String FORMAT = COMMAND_WORD + " [ <task keyword> -m <module keyword> "
             + "-c <category keyword> -e -a ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Filters and lists your tasks"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
-
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Filter and show the tasks of category(s)\n"
+            + "Note: -e to filter for exact keywords; -a to filter across ALL your tasks\n"
+            + "Format: %s\n"
+            + "Example: lst tut -m cs2113t -e\n",
+            COMMAND_WORD, FORMAT);
     private String moduleKeyWord;
     private String categoryKeyword;
     private String taskKeyword;

@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * information of the task's deadline.
  */
 public class DateTime {
-    public static final String FORMAT = "<date dd/mm/yyyy> <time hh:mma>";
+    public static final String FORMAT = "dd/mm/yyyy hh:mma";
     public static final String DATE_FORMAT = "dd/MM/yyyy"; // Date format to be displayed
     public static final String TIME_FORMAT = "hh:mma"; // Time format to be displayed
 
