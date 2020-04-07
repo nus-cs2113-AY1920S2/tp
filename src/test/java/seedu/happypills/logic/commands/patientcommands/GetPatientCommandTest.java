@@ -8,6 +8,7 @@ import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.TextUi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -40,9 +41,10 @@ public class GetPatientCommandTest {
 
     @Test
     public void getList_notInList_notFound() throws HappyPillsException {
-        String expectedOutputNotInList = "    The patient cannot be found. Please try again.\n" + DIVIDER;
+        String expectedOutputNotInList = "    The patient cannot be found. Please try again.\n"
+                + TextUi.DIVIDER;
         try {
-            new GetPatientCommand("S789C").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+            new GetPatientCommand("S7890123C").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
         } catch (HappyPillsException hpe) {
             assertEquals(expectedOutputNotInList, hpe.getMessage());
         }

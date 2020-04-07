@@ -35,8 +35,8 @@ public class TextUi {
      * Displays Exit message.
      */
     public static void printExit() {
-        System.out.println("Thank you for using HappyPills! ^.^");
-        System.out.println("See you again!\n" + DIVIDER);
+        System.out.println("    Thank you for using HappyPills! ^.^");
+        System.out.println("    See you again!\n" + DIVIDER);
     }
 
     //General methods
@@ -69,17 +69,11 @@ public class TextUi {
     }
 
 
-    public static String printIncorrectCommand(String command) {
+    public static String incorrectCommandMessage(String command) {
         return "    The command \"" + command + "\" does not exist. Please try again.\n";
     }
 
-    /**
-     * Construct a string for incomplete commands, probably missing something.
-     * @param helpString provide the help command that user can use to find the right format
-     * @return a string for incomplete commands.
-     */
-    public  static String incompleteCommandString(String helpString) {
-        String msg = "    Command is incomplete. Please use the " + helpString + " command.";
-        return msg;
-    }
+    public static final String INVALID_NRIC_MESSAGE = ""
+            + "    The NRIC provided is invalid, please try again with a valid NRIC.\n";
+
 }

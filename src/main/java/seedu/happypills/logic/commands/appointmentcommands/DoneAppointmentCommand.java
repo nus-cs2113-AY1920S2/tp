@@ -1,6 +1,7 @@
 package seedu.happypills.logic.commands.appointmentcommands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
@@ -10,6 +11,7 @@ import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.AppointmentTextUi;
 import seedu.happypills.ui.StorageTextUi;
+import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -98,6 +100,9 @@ public class DoneAppointmentCommand extends AppointmentCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
+        if (!Checker.isValidNric(nric)) {
+            return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
+        }
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
             throw new HappyPillsException("    Patient not found. Please try again.");
@@ -114,7 +119,7 @@ public class DoneAppointmentCommand extends AppointmentCommand {
                 Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
                         StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
-                logger.info(StorageTextUi.failToWriteAppointmentMsg);
+                logger.info(StorageTextUi.FAIL_TO_WRITE_APPOINTMENT_MSG);
             }
         }
 

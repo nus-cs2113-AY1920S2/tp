@@ -1,6 +1,7 @@
 package seedu.happypills.logic.commands.appointmentcommands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
@@ -88,16 +89,19 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
+        if (!Checker.isValidNric(nric)) {
+            return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
+        }
         String message = "";
         Patient delPatient = findPatient(patients);
         if (delPatient == null) {
-            message = PatientTextUi.patientNotFoundMessage;
-            return TextUi.appendDivider(message);
+            message = PatientTextUi.PATIENT_NOT_FOUND_MESSAGE;
+            return message;
         }
         Appointment delAppt = findAppointment(appointments);
         if (delAppt == null) {
-            message = AppointmentTextUi.appointmentNotFoundMessage;
-            return TextUi.appendDivider(message);
+            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE;
+            return message;
         }
         Boolean isSuccess = deleteAppt(appointments,appointmentId) && deleteAppt(delPatient,appointmentId);
         if (isSuccess) {
@@ -106,10 +110,10 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
                 Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
                         StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
-                logger.info(StorageTextUi.failToWriteAppointmentMsg);
+                logger.info(StorageTextUi.FAIL_TO_WRITE_APPOINTMENT_MSG);
             }
         } else {
-            message = AppointmentTextUi.appointmentNotFoundMessage;
+            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE;
         }
         return message;
     }

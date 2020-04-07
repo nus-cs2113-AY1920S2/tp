@@ -74,7 +74,7 @@ public class DeletePatientCommand extends PatientCommand {
                         Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
                                 StorageTextUi.getFormattedPatientString(patients));
                     } catch (IOException e) {
-                        logger.info(StorageTextUi.failToWritePatientMsg);
+                        logger.info(StorageTextUi.FAIL_TO_WRITE_PATIENT_MSG);
                     }
                     isConfirmed = true;
                     logger.log(logLevel, "patient is deleted");
@@ -92,7 +92,7 @@ public class DeletePatientCommand extends PatientCommand {
             return message;
 
         } else {
-            throw new HappyPillsException(PatientTextUi.patientNotFoundMessage);
+            throw new HappyPillsException(PatientTextUi.PATIENT_NOT_FOUND_MESSAGE);
         }
     }
 }
