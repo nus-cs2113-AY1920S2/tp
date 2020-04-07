@@ -11,6 +11,8 @@ import jikan.ui.Ui;
 
 import java.util.Scanner;
 
+import static jikan.Jikan.lastShownList;
+
 /**
  * Represents a command to end an activity.
  */
@@ -34,6 +36,9 @@ public class EndCommand extends Command {
                 throw new NoSuchActivityException();
             } else {
                 activityList.saveActivity();
+                // reset lastShownList to include new activity
+                lastShownList.activities.clear();
+                lastShownList.activities.addAll(activityList.activities);
             }
         } catch (NoSuchActivityException e) {
             Log.makeInfoLog("End command failed as no activity was ongoing");
