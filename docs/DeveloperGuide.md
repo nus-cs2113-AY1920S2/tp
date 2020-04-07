@@ -10,28 +10,44 @@
 
 ## 1. Design
 ### Architecture
+![](images/architecture.jpeg)
+Figure 1. Architecture Diagram
+
 The Duke class is the main class of the product. It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes storage method where necessary.	
 
 The product also contains the following components:
-* Cards: Holds the data in the type of Card and relative operations
-* Subjects: Holds the data in the type of Subject and relative operations
-* Score: Holds the data in the type of Score and relative operations
-* Commands: Deals with user input and communicate CLI to relative methods
-* Exceptions: Deals with illegal inputs
-* Parser: Convert CLI inputs into command keywords
+* Model:
+  * Cards: Holds the data in the type of Card and relative operations
+  * Subjects: Holds the data in the type of Subject and relative operations
+  * Score: Holds the data in the type of Score and relative operations
+* Logic:
+  * Commands: Deals with user input and communicate CLI to relative methods
+  * Parser: Convert CLI inputs into command keywords
+* Storage:
+  * Manages the data stored in the application.
+* UI:
+  * Deals with the input from the user and the output to the user.
+* Quiz:
+  * Deals with selection of quiz questions and update of scores.  
+* Exceptions: 
+  * Deals with illegal inputs
+
 
 In these components, cards and subjects have similar structure. Both of them contains a Card/Subject class and CardList/SubjectList class.
 Duke, along with all command class and Parser form the logic box of the product.
 <br />![](images/logicuml.jpg)
+Figure 2. Class diagram of Logic Component
 
 <br />Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, ScoreList.
-<br />![](images/modeluml.jpg)
+<br />![](images/model.jpeg)
+Figure 3. Class diagram of Model Component
 
 <br />Finally the Storage box, i.e. Storage class will handle reading and writing the content to files.
 The Storage component saves the SubjectList objects in Serializable format and loads it back.
 <br />![](images/storageuml.jpg)
+Figure 4. Class diagram of Storage Component
 
 ## 2. Implementation
 ### 2.1. [Proposed] Subject Feature
@@ -48,6 +64,7 @@ the command ``addsubject s/SUBJECTNAME``.
 The following diagram describes how the add subject operation works:
 
 ![](images/addsubject_sequence_uml.jpg)
+Figure 5. Sequence diagram for addsubject command
 
 Step 2. The user executes the command ``listsubjects`` to view the subjects currently stored in the application.
 
@@ -56,6 +73,7 @@ to add a flashcard into the subject.
 The following diagram describes how the add card operation works:
 
 ![](images/addcard_sequence_uml.jpg)
+Figure 6. Sequence diagram of addcard command.
 
 #### 2.1.2. Design Considerations
 ##### Aspect: How user can add a flashcard into a subject
@@ -93,6 +111,7 @@ in that subject will be quizzed.
 The following diagram describes how the quiz operation works:
 
 ![](images/quiz_sequence_uml.png)
+Figure 7. Sequence diagram of quiz command.
 
 Step 3: The quiz will end upon completion of the specified number of questions, or by stopping the quiz using the
 command ``exitquiz``.
@@ -131,6 +150,7 @@ quiz session for that subject, using the command ``score s/SUBJECTINDEX``.
 The following diagram describes how the score operation works:
 
 ![](images/scores_sequence_uml.png)
+Figure 8. Sequence diagram of score command
 
 #### 2.x.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
@@ -161,6 +181,7 @@ To deserialize the object after being read from file via `java.io.FileInputStrea
 
 The reading and writing functions can be found in the `Storage#loadSubs()` and `Storage#saveSubs()` methods respectively.
 ![](images/storage_sequence_uml.jpg)
+Figure 9. Sequence diagram of storage command
 
 ## Appendix A: Product Scope
 ### Target User Profile
