@@ -240,6 +240,8 @@ than using the mouse.
 ## Appendix E: Instructions for Manual Testing
 
 1. Download the jar file and copy it into an empty folder.
+1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory folder in command terminal. 
+1. Add an event by typing `event add n/NAME`
 1. View the populated events by typing `event list`
 1. View the populated seminars by typing `seminar list`
 1. Delete an event by typing `delete i/INDEX`
