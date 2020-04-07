@@ -51,14 +51,18 @@ public class StorageTextUi extends TextUi {
     /**
      * Returns a list of patients' NRIC and records.
      * @param patientRecords A list with all existing patient record.
+     * @param patientMap A shared map of patients
      * @return a string to be used in storage.
      */
-    public static String getFormattedPrString(PatientRecordMap patientRecords) {
+    public static String getFormattedPrString(PatientRecordMap patientRecords, PatientMap patientMap) {
         String formattedPrString = "";
-        for (Map.Entry patientRecordArray : patientRecords.entrySet()) {
-            ArrayList<PatientRecord> prs = (ArrayList<PatientRecord>) patientRecordArray.getValue();
-            for (int index = 0; index < patientRecords.size(); index++) {
-                formattedPrString += prs.get(index).toSave();
+        for (Map.Entry patients : patientMap.entrySet()) {
+            Patient patient = (Patient) patients.getValue();
+            if (patientRecords.containsKey(patient.getNric())) {
+                ArrayList<PatientRecord> prs = patientRecords.get(patient.getNric());
+                for (int index = 0; index < patientRecords.size(); index++) {
+                    formattedPrString += prs.get(index).toSave();
+                }
             }
         }
         return formattedPrString;

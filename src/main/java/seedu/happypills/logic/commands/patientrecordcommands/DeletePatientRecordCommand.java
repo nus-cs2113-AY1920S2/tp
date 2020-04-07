@@ -56,7 +56,7 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
             deletePr(patientRecordMap,patientRecords);
             try {
                 Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
-                        StorageTextUi.getFormattedPrString(patientRecordMap));
+                        StorageTextUi.getFormattedPrString(patientRecordMap,patients));
             } catch (IOException e) {
                 logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
             }

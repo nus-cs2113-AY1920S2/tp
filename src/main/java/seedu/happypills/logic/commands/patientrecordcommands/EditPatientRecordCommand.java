@@ -102,7 +102,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         if (output) {
             try {
                 Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
-                        StorageTextUi.getFormattedPrString(patientRecords));
+                        StorageTextUi.getFormattedPrString(patientRecords,patients));
             } catch (IOException e) {
                 logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
             }
