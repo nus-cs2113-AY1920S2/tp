@@ -38,6 +38,10 @@ add stock; i/CuRrY; q/10; p/$1.40;
 add stock; i/pepper; q/10; p/$1.00;
 add stock; i/PePPer; q/10; p/$1.00;
 add stock; i/PEPPER; q/10; p/$1.00;
+add stock; i/; q/10; p/$1.00;
+add stock; i/water; q/; p/$1.00;
+add stock; i/water; q/10; p/;
+add stock; i/water; q/10; p/$$$$;
 list stock
 delete stock; i/tomato; q/1;
 delete stock; q/1; i/tomato;
