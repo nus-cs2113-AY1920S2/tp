@@ -1,6 +1,7 @@
 package seedu.happypills.logic.commands.appointmentcommands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
@@ -65,16 +66,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * check string if fits date format.
-     * @param date date in String type
-     * @return true if correct date format, false otherwise
-     */
-    static boolean checkDate(String date) {
-        String pattern = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((2[0-9])[0-9]{2})";
-        return date.matches(pattern);
-    }
-
-    /**
      * Edit the date of the appointment in the list within the patient object.
      *
      * @param patient Contains the patient that to get appointment from.
@@ -82,7 +73,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return the appointment with the specified apptID or null if not found
      */
     private Boolean editDate(Patient patient, String newDate) {
-        if (!checkDate(newDate)) {
+        if (!Checker.isValidDate(newDate)) {
             return false;
         }
         for (Appointment appointment : patient.getAppointments()) {
@@ -102,23 +93,13 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return true if successful, false otherwise.
      */
     private Boolean editDate(Appointment appointment, String newDate) {
-        if (!checkDate(newDate)) {
+        if (!Checker.isValidDate(newDate)) {
             TextUi.print(HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE);
             return false;
         } else {
             appointment.setDate(newDate);
             return true;
         }
-    }
-
-    /**
-     * check string if fits time format.
-     * @param time time in String type.
-     * @return true if correct date format, false otherwise.
-     */
-    static boolean checkTime(String time) {
-        String pattern = "([01][0-9]|2[0-3]):([0-5][0-9])";
-        return time.matches(pattern);
     }
 
     /**
@@ -129,7 +110,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return the appointment with the specified apptID or null if not found.
      */
     private Boolean editTime(Patient patient, String newTime) {
-        if (!checkTime(newTime)) {
+        if (!Checker.isValidTime(newTime)) {
             return false;
         }
         newTime += ":00";
@@ -150,7 +131,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @return true if successful, false otherwise.
      */
     private Boolean editTime(Appointment appointment, String newTime) {
-        if (checkTime(newTime)) {
+        if (Checker.isValidTime(newTime)) {
             newTime += ":00";
             appointment.setTime(newTime);
             return true;
@@ -198,6 +179,9 @@ public class EditAppointmentCommand extends AppointmentCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
+        if(!Checker.isValidNric(nric)) {
+            return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
+        }
         if (newContent.length() < 3) {
             return HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE;
         }
