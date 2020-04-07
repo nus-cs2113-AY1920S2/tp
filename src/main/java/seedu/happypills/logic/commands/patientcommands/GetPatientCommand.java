@@ -26,7 +26,7 @@ public class GetPatientCommand extends PatientCommand {
      * @param appointments Shared map of appointments
      * @param visits Shared map of patient records
      * @return Error Message or Success Message
-     * @throws HappyPillsException
+     * @throws HappyPillsException if patient not found
      */
     @Override
     public String execute(
