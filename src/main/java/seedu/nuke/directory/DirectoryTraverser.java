@@ -47,6 +47,7 @@ public class DirectoryTraverser {
 
     /**
      * Set the current level to root(for test usage).
+     * 
      */
     public static void setCurrentLevelToRoot() {
         currentLevel = 0;

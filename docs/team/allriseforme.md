@@ -1,72 +1,77 @@
-= John Doe - Project Portfolio
-:site-section: AboutUs
-:imagesDir: ../images
-:stylesDir: ../stylesheets
-
-== PROJECT: AddressBook - Level 3
+PROJECT: AddressBook - Level 3
+==============================
 
 ---
 
-== Overview
+Overview
+========
 
 AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-== Summary of contributions
+Summary of contributions
+========================
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+-   **Major enhancement**: added **the ability to undo/redo previous commands**
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+    -   What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+    -   Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
 
-* *Other contributions*:
+    -   Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+    -   Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-_{you can add/remove categories in the list above}_
+-   **Minor enhancement**: added a history command that allows the user to navigate to previous commands using up/down keys.
 
-== Contributions to the User Guide
+-   **Code contributed**: \[[Functional code](https://github.com)\] \[[Test code](https://github.com)\] *{give links to collated code files}*
 
+-   **Other contributions**:
 
-|===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
-|===
+    -   Project management:
 
-include::../UserGuide.adoc[tag=delete]
+        -   Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
-include::../UserGuide.adoc[tag=dataencryption]
+    -   Enhancements to existing features:
 
-== Contributions to the Developer Guide
+        -   Updated the GUI color scheme (Pull requests [\#33](https://github.com), [\#34](https://github.com))
 
-|===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
-|===
+        -   Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](https://github.com), [\#38](https://github.com))
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+    -   Documentation:
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+        -   Did cosmetic tweaks to existing contents of the User Guide: [\#14](https://github.com)
 
+    -   Community:
 
-== PROJECT: PowerPointLabs
+        -   PRs reviewed (with non-trivial review comments): [\#12](https://github.com), [\#32](https://github.com), [\#19](https://github.com), [\#42](https://github.com)
+
+        -   Contributed to forum discussions (examples: [1](https://github.com), [2](https://github.com), [3](https://github.com), [4](https://github.com))
+
+        -   Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com), [2](https://github.com), [3](https://github.com))
+
+        -   Some parts of the history feature I added was adopted by several other class mates ([1](https://github.com), [2](https://github.com))
+
+    -   Tools:
+
+        -   Integrated a third party library (Natty) to the project ([\#42](https://github.com))
+
+        -   Integrated a new Github plugin (CircleCI) to the team repo
+
+*{you can add/remove categories in the list above}*
+
+Contributions to the User Guide
+===============================
+
+<table><colgroup><col style="width: 100%" /></colgroup><tbody><tr class="odd"><td><p><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td></tr></tbody></table>
+
+Contributions to the Developer Guide
+====================================
+
+<table><colgroup><col style="width: 100%" /></colgroup><tbody><tr class="odd"><td><p><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td></tr></tbody></table>
+
+PROJECT: PowerPointLabs
+=======================
 
 ---
 
-_{Optionally, you may include other projects in your portfolio.}_
+*{Optionally, you may include other projects in your portfolio.}*
