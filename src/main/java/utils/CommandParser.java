@@ -58,8 +58,6 @@ public class CommandParser {
                 // Add stock.
                 try {
                     new AddStockCommand(commands[1]).execute(stock);
-                    successfulCommand();
-
                 } catch (IllegalStateException | InvalidStockCommandException e) {
 
                     errorCommand();
@@ -81,7 +79,6 @@ public class CommandParser {
                 // Delete stock.
                 try {
                     new DeleteStockCommand(commands[1]).execute(stock);
-                    successfulCommand();
                 } catch (InvalidStockCommandException | IllegalStateException e) {
                     errorCommand();
                     printErrorMessage(e.getMessage());
@@ -105,7 +102,6 @@ public class CommandParser {
             } else if (splitCommands[1].equals("stock")) {
                 // List stock.
                 new ListStockCommand().execute(stock);
-                successfulCommand();
             } else if (splitCommands[1].equals("reservation")) {
                 // List all reservation.
                 new ListReservationCommand().execute(reservations, ui);
@@ -123,7 +119,6 @@ public class CommandParser {
                 // Search stock.
                 try {
                     new SearchStockCommand(commands[1]).execute(stock);
-                    successfulCommand();
                 } catch (InvalidStockCommandException e) {
                     errorCommand();
                     printErrorMessage(e.getMessage());
