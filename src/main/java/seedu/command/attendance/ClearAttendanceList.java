@@ -11,11 +11,11 @@ import seedu.ui.UI;
 public class ClearAttendanceList extends Command {
 
     protected UI ui;
-    protected AttendanceList attendances;
+    protected AttendanceList attendanceList;
     protected String eventName;
 
     public ClearAttendanceList(AttendanceList attendances, String eventName) {
-        this.attendances = attendances;
+        this.attendanceList = attendances;
         this.ui = new UI();
         this.eventName = eventName;
     }
@@ -26,7 +26,7 @@ public class ClearAttendanceList extends Command {
      */
     private void clear() throws PacException {
         try {
-            attendances.clearList();
+            attendanceList.clearList();
             ui.clearAttendanceMessage(eventName);
         } catch (Exception e) {
             throw new PacException("Attendance List fail to clear");

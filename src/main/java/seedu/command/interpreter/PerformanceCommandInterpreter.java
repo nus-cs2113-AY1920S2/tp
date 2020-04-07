@@ -3,7 +3,8 @@ package seedu.command.interpreter;
 import seedu.command.Command;
 import seedu.command.performance.AddPerformance;
 import seedu.command.performance.DeletePerformance;
-import seedu.command.performance.ListStudentPerformance;
+import seedu.command.performance.EditPerformance;
+import seedu.command.performance.ViewStudentPerformance;
 import seedu.command.performance.SortPerformanceListByName;
 import seedu.command.performance.SortPerformanceListByGrade;
 import seedu.event.EventList;
@@ -37,8 +38,10 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
             return new AddPerformance(performances, eventName);
         case "delete":
             return new DeletePerformance(performances, eventName);
+        case "edit":
+            return new EditPerformance(performances, eventName);
         case "list":
-            return new ListStudentPerformance(performances);
+            return new ViewStudentPerformance(performances);
         case "sort":
             return getSortCommand();
         default:
@@ -61,7 +64,7 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
         } else if (type.equals("grade")) {
             return new SortPerformanceListByGrade(performances, eventName);
         }
-        throw new PacException("Performance sort: Unknown command. Enter 'name' or 'student'.");
+        throw new PacException("Performance sort: Unknown sort type. Enter 'name' or 'student'.");
     }
 
     /**

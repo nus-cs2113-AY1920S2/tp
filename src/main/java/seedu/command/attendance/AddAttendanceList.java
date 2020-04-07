@@ -4,6 +4,8 @@ import seedu.attendance.Attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
 import seedu.exception.PacException;
+import seedu.student.StudentList;
+import seedu.parser.AttendanceParser;
 import seedu.ui.UI;
 
 import java.util.ArrayList;
@@ -18,14 +20,21 @@ import static seedu.pac.Pac.studentListCollection;
  */
 public class AddAttendanceList extends Command {
 
-    protected AttendanceList attendances;
+
+    protected AttendanceParser attendanceParser = new AttendanceParser();
+    protected AttendanceList attendanceList;
     protected String eventName;
-    private UI ui;
+    protected StudentList newStudentList;
+    private UI ui = new UI();
+    protected String studentName = "";
+    protected String status = "";
+    protected String input = "";
+    protected int studentNumber = 1;
 
     public AddAttendanceList(AttendanceList attendances, String eventName) {
-        this.attendances = attendances;
+        this.attendanceList = attendances;
         this.eventName = eventName;
-        this.ui = new UI();
+        this.newStudentList = new StudentList(eventName);
     }
 
     /**
@@ -36,42 +45,93 @@ public class AddAttendanceList extends Command {
         UI.display("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         if (isByNameList()) {
-            if (studentListCollection.isEmpty()) {
-                UI.display("There is no existing student list to import");
-            } else {
-                ui.printStudentListCollection();
-                ArrayList<String> studentNameList = fetchAttendanceList();
-                appendWithExistingList(studentNameList);
-            }
+            createWithExistingList();
         } else {
             createNewList();
         }
     }
 
     /**
-     * Create new attendanceList.
+     * Method to create with existing student list.
+     * @throws PacException If there is no existing student list.
+     */
+    private void createWithExistingList() throws PacException {
+        if (studentListCollection.isEmpty()) {
+            throw new PacException("There is no existing student list to import");
+        } else {
+            ui.printStudentListCollection();
+            ArrayList<String> studentNameList = fetchAttendanceList();
+            appendWithExistingList(studentNameList);
+        }
+    }
+
+    /**
+     * Method to create new attendanceList.
      * @throws PacException If parameter provided is invalid.
      */
     private void createNewList() throws PacException {
-        int studentNumber = 0;
-        String name = "";
-        String status = "";
-        while (!status.equals("done")) {
-            UI.display("Please key in student name.");
+
+        UI.display("Do you wish to have line by line prompt? If so, please enter 'yes'");
+        if (isNewUser()) {
+            withFlag();
+        } else {
+            lineByLine();
+        }
+    }
+
+    /**
+     * Method to create new attendanceList using flags within the user input.
+     * @throws PacException If parameter provided is invalid.
+     */
+    private void withFlag() throws PacException {
+        while (!input.toLowerCase().equals("done")) {
+            UI.display("Please key following format:\n"
+                    + "n/Name p/Status[Y/N]");
             ui.readUserInput();
-            name = ui.getUserInput();
-            if (name.equals("done")) {
+            input = ui.getUserInput();
+            if (input.equals("done")) {
                 break;
             }
-            UI.display("Please key in the student's attendance status [Y/N].");
-            ui.readUserInput();
-            status = ui.getUserInput();
-            attendances.addToList(new Attendance(name,status), eventName);
+            attendanceList.addToList(attendanceParser.parseAttendance(input), eventName);
+            studentName = attendanceParser.parseAttendance(input).getStudentName();
+            newStudentList.addToList(studentName);
             studentNumber++;
         }
+        studentListCollection.push(newStudentList);
         UI.display("You have successfully added "
                 + studentNumber + " to the attendance list.\n");
     }
+
+    /**
+     * Method to create new attendanceList using a line-by-line input from the user.
+     * @throws PacException If parameter provided is invalid.
+     */
+    private void lineByLine() throws PacException {
+        while (!studentName.equals("done")) {
+            UI.display("Please key in student name.");
+            ui.readUserInput();
+            studentName = ui.getUserInput();
+            if (studentName.equals("done")) {
+                break;
+            }
+            if (attendanceList.isDuplicate(studentName)) {
+                throw new PacException("Duplicated name found, student name : [ " + studentName + " ] not added");
+            } else {
+                UI.display("To mark the student as present, please use 'y' or 'Y'.\n"
+                        + "By default the student will be marked as absent,"
+                        + " if any other input is given.");
+                ui.readUserInput();
+                status = ui.getUserInput();
+                attendanceList.addToList(new Attendance(studentName, status), eventName);
+                newStudentList.addToList(studentName);
+                studentNumber++;
+            }
+        }
+        studentListCollection.push(newStudentList);
+        UI.display("You have successfully added "
+                + studentNumber + " to the attendance list.\n");
+    }
+
 
     /**
      * Append attendanceList with an existing student list.
@@ -79,7 +139,7 @@ public class AddAttendanceList extends Command {
      */
     private void appendWithExistingList(ArrayList<String> studentNameList) {
         for (String studentName: studentNameList) {
-            attendances.addToList(new Attendance(studentName,
+            attendanceList.addToList(new Attendance(studentName,
                     ui.getAttendanceStatusOfStudent(studentName)), eventName);
         }
         UI.display("AttendanceList added");
@@ -92,7 +152,21 @@ public class AddAttendanceList extends Command {
      */
     private boolean isByNameList() {
         String reply = ui.getStringInput();
-        if (reply.contains("yes")) {
+        if (reply.toLowerCase().contains("yes")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Check the user input.
+     * @return true if the user is a new user.
+     * @return false if the user is an experience user.
+     */
+    private boolean isNewUser() {
+        String reply = ui.getStringInput();
+        if (reply.toLowerCase().contains("yes")) {
             return true;
         } else {
             return false;
@@ -121,7 +195,8 @@ public class AddAttendanceList extends Command {
         try {
             addToList();
         } catch (Exception e) {
-            throw new PacException("Attendance List fail to add. If you wish to add attendance again,\n"
+            throw new PacException("Attendance List fail to add.\n"
+                    + "If you wish to add attendance again,\n"
                     + "please type the command 'attendance add' again");
         }
 

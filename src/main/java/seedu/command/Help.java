@@ -22,16 +22,19 @@ public class Help extends Command {
         String typeOfHelp = help.getStringInput();
         switch (typeOfHelp) {
         case "1":
-            help.printEventHelp();
+            help.printStudentListHelp();
             break;
         case "2":
-            help.printAttendanceHelp();
+            help.printEventHelp();
             break;
         case "3":
-            help.printPerformanceHelp();
+            help.printCalendarHelp();
             break;
         case "4":
-            help.printStudentListHelp();
+            help.printAttendanceHelp();
+            break;
+        case "5":
+            help.printPerformanceHelp();
             break;
         default: throw new PacException("Invalid help function selected.");
         }
