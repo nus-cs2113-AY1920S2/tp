@@ -54,11 +54,11 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords)
             throws HappyPillsException {
         if (newContent.length() < 3) {
-            return HelpTextUi.editPatientRecordHelpMessage;
+            return HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE;
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return HelpTextUi.editPatientRecordHelpMessage;
+            return HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE;
         }
         String field = "";
         if (newContent.contains(SYMPTOM_TAG)) {
