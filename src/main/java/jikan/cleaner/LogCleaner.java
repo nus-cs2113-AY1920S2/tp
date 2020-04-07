@@ -1,5 +1,8 @@
 package jikan.cleaner;
 
+import jikan.log.Log;
+import jikan.ui.Ui;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,6 +35,9 @@ public class LogCleaner extends Cleaner {
         int value = initialiseCleaner();
         if (value != -1) {
             this.numberOfLogsToClean = value;
+        } else {
+            Log.makeInfoLog("Problem initialising cleaner");
+            Ui.printDivider("There is a problem initialising cleaner, please remove the status file");
         }
     }
 
@@ -53,7 +59,7 @@ public class LogCleaner extends Cleaner {
         } else {
             writer.write("0" + "\n");
         }
-        writer.write(Integer.toString(value) + "\n");
+        writer.write(value + "\n");
         writer.close();
     }
 
@@ -67,7 +73,6 @@ public class LogCleaner extends Cleaner {
         List<String> logsLeftInData = new ArrayList<>();
         if (this.toClean) {
             File liveData = recycleLog(logsForRecycling, logsLeftInData);
-
             BufferedWriter recycledDataWriter = new BufferedWriter(new FileWriter(recycledData));
             for (String line : logsForRecycling) {
                 recycledDataWriter.write(line + "\n");
@@ -88,7 +93,7 @@ public class LogCleaner extends Cleaner {
      * @return a log file that holds all the logging at run time.
      * @throws FileNotFoundException if file could not be found at the filepath.
      */
-    private File recycleLog(List<String> logsForRecycling, List<String> logsLeftInData) throws FileNotFoundException {
+    private File recycleLog(List<String> logsForRecycling, List<String> logsLeftInData) throws IOException {
         File liveData = new File(LOG_FILE_PATH);
         Scanner recycledDataScanner = new Scanner(recycledData);
         Scanner liveDataScanner = new Scanner(liveData);

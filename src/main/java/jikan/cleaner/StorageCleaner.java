@@ -1,6 +1,8 @@
 package jikan.cleaner;
 
+import jikan.log.Log;
 import jikan.storage.Storage;
+import jikan.ui.Ui;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,6 +37,9 @@ public class StorageCleaner extends Cleaner {
         int value = initialiseCleaner();
         if (value != -1) {
             this.numberOfActivitiesToClean = value;
+        } else {
+            Log.makeInfoLog("Problem initialising cleaner");
+            Ui.printDivider("There is a problem initialising cleaner, please remove the status file");
         }
     }
 
@@ -56,7 +61,7 @@ public class StorageCleaner extends Cleaner {
         } else {
             writer.write("0" + "\n");
         }
-        writer.write(Integer.toString(value) + "\n");
+        writer.write(value + "\n");
         writer.close();
     }
 
@@ -70,7 +75,6 @@ public class StorageCleaner extends Cleaner {
         List<String> activitiesLeftInData = new ArrayList<>();
         if (this.toClean) {
             File liveData = recycleData(activitiesForRecycling, activitiesLeftInData);
-
             BufferedWriter recycledDataWriter = new BufferedWriter(new FileWriter(recycledData));
             for (String line : activitiesForRecycling) {
                 recycledDataWriter.write(line + "\n");
@@ -92,7 +96,7 @@ public class StorageCleaner extends Cleaner {
      * @throws FileNotFoundException if file could not be found at the filepath.
      */
     private File recycleData(List<String> activitiesForRecycling, List<String> activitiesLeftInData)
-            throws FileNotFoundException {
+            throws IOException {
         String filePath = storage.dataFilePath;
         File liveData = new File(filePath);
         Scanner recycledDataScanner = new Scanner(recycledData);
