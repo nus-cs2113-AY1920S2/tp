@@ -28,6 +28,7 @@ public class ProfileCommand extends Command {
     public Result getResult(Profile profile) {
         if (profile.isProfileExist()) {
             this.resultString = MessageBank.WELCOME_MESSAGE + System.lineSeparator()
+                    + String.format("Name:         %s", profile.getName()) + System.lineSeparator()
                     + String.format("Age:          %d years old", profile.getAge()) + System.lineSeparator()
                     + String.format("Gender:       %s", profile.getGender()) + System.lineSeparator()
                     + String.format("Height:       %.2f centimetres", profile.getHeight()) + System.lineSeparator()

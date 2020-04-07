@@ -47,6 +47,10 @@ public class DietManager {
             } catch (IndexOutOfBoundsException e) {
                 ui.displayIndexOutOfBoundMessage();
             }
+            if (profile.isProfileExist()) {
+                storage.writeProfileFile();
+            }
+            storage.writeFoodNutritionRecordFile();
         }
 
         ui.displayExitMessage();
@@ -54,18 +58,17 @@ public class DietManager {
     }
 
     private static void initialiseApplication() {
-        logsCentre = new LogsCentre();
-        foodNutritionRecord = FoodNutritionRecord.getInstance();
-        profile = new Profile();
         ui = new UI();
-        storage = new Storage(ui, logsCentre);
+        logsCentre = new LogsCentre();
+        profile = new Profile();
+        foodNutritionRecord = FoodNutritionRecord.getInstance();
+        storage = new Storage(ui, logsCentre, profile, foodNutritionRecord);
 
         testAssertions();
     }
 
     private static void testAssertions() {
         assert !ui.isExitStatus();
-        assert !profile.isProfileExist();
     }
 
 }

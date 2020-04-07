@@ -10,7 +10,6 @@ public class Profile {
     private double height; //Height in centimeter
     private double weight; //Weight in kg
     private double weightGoal;
-    private double bmi;
     private boolean profileExist;
     private List<DailyFoodRecord> personalFoodRecord;
     private List<Double> weightRecord;
