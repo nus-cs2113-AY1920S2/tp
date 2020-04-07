@@ -25,9 +25,10 @@ health data.
 
 ### Summary of Contributions
 
-
-**__Diet Manager:__**<br>
-Link to code on tP Code Dashboard [**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=dejunnn).
+####Code Contributed:
+**__Diet Manager__**:<br>
+Link to code on tP Code Dashboard 
+[**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=dejunnn).
 
 ####Enhancements implemented:
 * A summary of the enhancements you implemented.
