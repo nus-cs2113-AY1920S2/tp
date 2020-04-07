@@ -34,7 +34,6 @@ public class AddDishCommand extends Menu {
             printFormat();
         } catch (InvalidPriceException e) {
             System.out.println("Invalid price! Price must be a number.");
-            printFormat();
         } catch (DishIngredientsMissingException e) {
             System.out.println("Dish ingredient(s) are missing!");
             printFormat();
@@ -98,6 +97,14 @@ public class AddDishCommand extends Menu {
                 + "[i/INGREDIENT1, INGREDIENT2, ...]; p/PRICE;");
     }
 
+    /**
+     * Check format of add dish command.
+     * @param input input string
+     * @throws DishNameMissingException exception for missing dish name
+     * @throws DishIngredientsMissingException exception for missing ingredients
+     * @throws InvalidAddDishCommandException exception for invalid add dish format
+     * @throws DishPriceMissingException exception for missing dish price
+     */
     private static void checkFormat(String input) throws DishNameMissingException,
             DishIngredientsMissingException, InvalidAddDishCommandException, DishPriceMissingException {
         if (!input.contains("n/")) {

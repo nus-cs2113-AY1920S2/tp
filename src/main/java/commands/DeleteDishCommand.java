@@ -1,9 +1,6 @@
 package commands;
 
-import exceptions.DishIngredientsMissingException;
 import exceptions.DishNameMissingException;
-import exceptions.DishPriceMissingException;
-import exceptions.InvalidAddDishCommandException;
 import exceptions.InvalidDeleteDishCommandException;
 import menu.Menu;
 
@@ -31,13 +28,18 @@ public class DeleteDishCommand extends Menu {
             System.out.println("Invalid delete dish command!");
             System.out.println("The correct format is: delete dish; n/NAME;");
         }
-
     }
 
+    /**
+     * Check format for delete dish command.
+     * @param input input string
+     * @throws DishNameMissingException exception for missing name
+     * @throws InvalidDeleteDishCommandException exception for invalid delete format
+     */
      public static void checkFormat(String input) throws DishNameMissingException, InvalidDeleteDishCommandException {
         if (!input.contains("n/")) {
             throw new DishNameMissingException();
-        } else if (input.chars().filter(ch -> ch == ';').count() != 2) {
+        } else if (input.chars().filter(ch -> ch == ';').count() != 1) {
             throw new InvalidDeleteDishCommandException();
         }
     }
