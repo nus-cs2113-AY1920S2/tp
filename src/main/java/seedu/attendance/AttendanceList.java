@@ -57,6 +57,14 @@ public class AttendanceList {
     }
 
     /**
+     * To load to the existing attendanceList of the specific event from storage.
+     * @param attendance the attendanceList in the event.
+     */
+    public void loadFromStorage(Attendance attendance) {
+        attendanceList.add(attendance);
+    }
+
+    /**
      * To display the existing attendanceList in the selected event.
      * @throws PacException If the existing attendanceList is empty.
      */
