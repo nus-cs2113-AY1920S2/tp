@@ -26,6 +26,7 @@ public class DoneAppointmentCommand extends AppointmentCommand {
      * Constructor for DoneAppointmentCommand Class.
      * It creates a new DoneAppointmentCommand Object with the information provided.
      *
+     * @author janicetyy
      * @param nric Contains the nric of the patient that is to be retrieved.
      * @param apptID Contains the id of the appointment to be marked as done
      */
@@ -37,7 +38,9 @@ public class DoneAppointmentCommand extends AppointmentCommand {
     /**
      * Retrieve the patient from the NRIC of the Done command.
      *
+     * @author janicetyy
      * @param patients Contains the list of patients to be searched.
+     * @return patient or null if not found
      */
     private Patient findPatient(PatientMap patients) {
         if (patients.containsKey(nric)) {
@@ -50,6 +53,7 @@ public class DoneAppointmentCommand extends AppointmentCommand {
     /**
      * Retrieve the appointment from the patient provided.
      *
+     * @author janicetyy
      * @param appointments Contains the appointment map to get appointment from.
      * @return the appointment with the specified apptID or null if not found
      */
@@ -63,8 +67,8 @@ public class DoneAppointmentCommand extends AppointmentCommand {
     /**
      * Mark appointment in the list within the patient object as done.
      *
+     * @author janicetyy
      * @param patient Contains the patient that to get appointment from.
-     *
      * @return the appointment with the specified apptID or null if not found
      */
     private Boolean editDone(Patient patient) {
@@ -80,8 +84,8 @@ public class DoneAppointmentCommand extends AppointmentCommand {
     /**
      * Mark appointment in the shared appointment map as done.
      *
+     * @author janicetyy
      * @param appointment The appointment which is to be marked done.
-     *
      * @return true if successful, false otherwise.
      */
     private Boolean editDone(Appointment appointment) {
@@ -91,10 +95,11 @@ public class DoneAppointmentCommand extends AppointmentCommand {
 
     /**
      * Edit the appointment details with the information provided by calling.
-     *
+     * @author janicetyy
      * @param patients Contains the list of patients on which the commands are executed on.
      * @param appointments Contains the list of appointments on which the commands are executed on.
      * @throws HappyPillsException Throws an exception if the edit field is not valid.
+     * @return errorMessage or successMessage
      */
     @Override
     public String execute(

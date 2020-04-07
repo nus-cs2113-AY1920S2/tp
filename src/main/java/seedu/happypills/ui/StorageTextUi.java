@@ -22,6 +22,7 @@ public class StorageTextUi extends TextUi {
 
     /**
      * returns a list of patients' name and their details.
+     * @author janicetyy
      * @param patients A patient list with all existing patients.
      * @return a message to be displayed to user.
      */
@@ -36,6 +37,7 @@ public class StorageTextUi extends TextUi {
 
     /**
      * Returns a list of patients' NRIC and appointment details.
+     * @author janicetyy
      * @param appointments An appointment list with all existing patients.
      * @return a message to be displayed to user.
      */
@@ -50,6 +52,7 @@ public class StorageTextUi extends TextUi {
 
     /**
      * Returns a list of patients' NRIC and records.
+     * @author janicetyy
      * @param patientRecords A list with all existing patient record.
      * @param patientMap A shared map of patients
      * @return a string to be used in storage.
@@ -58,9 +61,10 @@ public class StorageTextUi extends TextUi {
         String formattedPrString = "";
         for (Map.Entry patients : patientMap.entrySet()) {
             Patient patient = (Patient) patients.getValue();
-            if (patientRecords.containsKey(patient.getNric())) {
+            if (patientRecords.containsKey(patient.getNric()) &&
+                    (patientRecords.get(patient.getNric()) != null)) {
                 ArrayList<PatientRecord> prs = patientRecords.get(patient.getNric());
-                for (int index = 0; index < patientRecords.size(); index++) {
+                for (int index = 0; index < prs.size(); index++) {
                     formattedPrString += prs.get(index).toSave();
                 }
             }
