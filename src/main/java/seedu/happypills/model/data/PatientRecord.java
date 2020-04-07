@@ -39,10 +39,6 @@ public class PatientRecord {
         return nric;
     }
 
-    public void setNric(String nric) {
-        this.nric = nric;
-    }
-
     public String getSymptom() {
         return symptom;
     }
