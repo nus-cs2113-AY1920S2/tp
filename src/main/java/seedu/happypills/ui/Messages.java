@@ -56,7 +56,8 @@ public class Messages {
     public static final String MESSAGE_CONTENT_IS_EMPTY = "    Please do not leave the field as empty string";
     public static final String MESSAGE_NAME_FORMAT = "    /n NAME";
     public static final String MESSAGE_PHONE_NUMBER_FORMAT = "    /p PHONE (Format: 8-digit number starting with 8/9)";
-    public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "    /b BLOOD TYPE (Format: A/B/O/AB with +/-)";
+    public static final String MESSAGE_BLOOD_TYPE_FORMAT = "    /b BLOOD TYPE (Format: A/B/O/AB with +/-)";
     public static final String MESSAGE_INCORRECT_INPUT_FORMAT = "    Incorrect input format. Sorry please try again";
+    public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "    /dob DATE OF BIRTH (Format: DD/MM/YYYY)";
 }
 

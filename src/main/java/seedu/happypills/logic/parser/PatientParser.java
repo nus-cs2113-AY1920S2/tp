@@ -125,6 +125,7 @@ public class PatientParser {
                 return true;
             }
         }
+        System.out.println(parseInput[4]);
         boolean isIncorrectFormat = !Checker.isValidNric(parseInput[1])
                 || !Checker.isValidDate(parseInput[3]) || !Checker.isValidBloodType(parseInput[4])
                 || !Checker.isValidPhoneNum(parseInput[2].trim());
@@ -146,7 +147,7 @@ public class PatientParser {
             System.out.println(Messages.MESSAGE_DATE_OF_BIRTH_FORMAT);
         }
         if (parseInput[4].equalsIgnoreCase("") || !Checker.isValidBloodType(parseInput[4])) {
-            System.out.println(Messages.MESSAGE_TIME_FORMAT);
+            System.out.println(Messages.MESSAGE_BLOOD_TYPE_FORMAT);
         }
     }
 
@@ -174,7 +175,7 @@ public class PatientParser {
                 PatientTextUi.patientNotAddedMessage(detail);
             }
         }
-
+        System.out.println(parseInput[4]);
         while (hasMissingFields(parseInput)) {
             printMissingFields(parseInput);
             String input = readUserInput().trim();

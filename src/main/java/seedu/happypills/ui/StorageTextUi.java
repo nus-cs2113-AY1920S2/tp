@@ -61,7 +61,11 @@ public class StorageTextUi extends TextUi {
             if (patientRecords.containsKey(patient.getNric())) {
                 ArrayList<PatientRecord> prs = patientRecords.get(patient.getNric());
                 for (int index = 0; index < patientRecords.size(); index++) {
-                    formattedPrString += prs.get(index).toSave();
+                    try {
+                        formattedPrString += prs.get(index).toSave();
+                    } catch (IndexOutOfBoundsException e) {
+                        return formattedPrString;
+                    }
                 }
             }
         }
