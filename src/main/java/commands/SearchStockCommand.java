@@ -46,10 +46,15 @@ public class SearchStockCommand extends StockCommand {
         
         String trimmedKeyword = fullInputLine.trim();
         
-        String trimmedKeywordWithoutColon = trimmedKeyword
-                .substring(indexAfterSlash, trimmedKeyword.length() - 1);
-
-        return trimmedKeywordWithoutColon;      
+        if (trimmedKeyword.contains(";")) {
+            String trimmedKeywordWithColon = trimmedKeyword
+                    .substring(indexAfterSlash, trimmedKeyword.length() - 1);
+            return trimmedKeywordWithColon; 
+        } else {
+            String trimmedKeywordWithoutColon = trimmedKeyword
+                .substring(indexAfterSlash, trimmedKeyword.length());
+            return trimmedKeywordWithoutColon; 
+        }            
     }
     
     /**
