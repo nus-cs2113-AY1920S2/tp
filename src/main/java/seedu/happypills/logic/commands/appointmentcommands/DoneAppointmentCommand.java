@@ -119,7 +119,7 @@ public class DoneAppointmentCommand extends AppointmentCommand {
                 Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
                         StorageTextUi.getFormattedApptString(appointments));
             } catch (IOException e) {
-                logger.info(StorageTextUi.failToWriteAppointmentMsg);
+                logger.info(StorageTextUi.FAIL_TO_WRITE_APPOINTMENT_MSG);
             }
         }
 

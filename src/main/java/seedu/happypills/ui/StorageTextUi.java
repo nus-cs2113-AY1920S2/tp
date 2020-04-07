@@ -12,12 +12,12 @@ import java.util.Map;
 
 public class StorageTextUi extends TextUi {
 
-    public static String failToAddPatientMsg = "Fail to add patient to file.";
-    public static String failToAddAppointmentMsg = "Fail to add appointment to file.";
-    public static String failToWritePatientMsg = "Failed to write patients to file.";
-    public static String failToWriteAppointmentMsg = "Failed to write patient's appointments to file.";
-    public static String failToAddPrMsg = "Fail to add patient record to file.";
-    public static String failToWritePrMsg = "Failed to write patient recordsto file.";
+    public static final String FAIL_TO_ADD_PATIENT_MSG = "Fail to add patient to file.";
+    public static final String FAIL_TO_ADD_APPOINTMENT_MSG = "Fail to add appointment to file.";
+    public static final String FAIL_TO_WRITE_PATIENT_MSG = "Failed to write patients to file.";
+    public static final String FAIL_TO_WRITE_APPOINTMENT_MSG = "Failed to write patient's appointments to file.";
+    public static final String FAIL_TO_ADD_PR_MSG = "Fail to add patient record to file.";
+    public static final String FAIL_TO_WRITE_PR_MSG = "Failed to write patient records to file.";
 
     /**
      * returns a list of patients' name and their details.

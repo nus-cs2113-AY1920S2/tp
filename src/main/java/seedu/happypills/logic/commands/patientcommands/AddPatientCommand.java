@@ -11,7 +11,6 @@ import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
-import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -75,7 +74,7 @@ public class AddPatientCommand extends PatientCommand {
         try {
             Storage.addSingleItemToFile(Storage.PATIENT_FILEPATH, tempPatient.toSave());
         } catch (IOException e) {
-            logger.info(StorageTextUi.failToAddPatientMsg);
+            logger.info(StorageTextUi.FAIL_TO_ADD_PATIENT_MSG);
         }
         String message = "";
         message = PatientTextUi.addPatientSuccessMessage(patients.get(nric));

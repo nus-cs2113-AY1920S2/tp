@@ -30,7 +30,7 @@ public class FindAppointmentCommand extends AppointmentCommand {
         if (patients.containsKey(patientNric)) {
             return AppointmentTextUi.getAppointmentSuccessMessage(patients.get(patientNric));
         } else {
-            return PatientTextUi.patientNotFoundMessage;
+            return PatientTextUi.PATIENT_NOT_FOUND_MESSAGE;
         }
     }
 

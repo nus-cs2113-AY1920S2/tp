@@ -11,10 +11,8 @@ import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.AppointmentTextUi;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
-import seedu.happypills.ui.TextUi;
 
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class AddAppointmentCommand extends AppointmentCommand {
@@ -55,7 +53,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
     ) throws HappyPillsException {
         String message = "";
         if (!patients.containsKey(nric)) {
-            message = PatientTextUi.patientNotFoundMessage;
+            message = PatientTextUi.PATIENT_NOT_FOUND_MESSAGE;
         } else {
             Appointment appointment = new Appointment(nric, reason, date, time);
             appointments.addAppointment(appointment);
@@ -64,7 +62,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
             try {
                 Storage.addSingleItemToFile(Storage.APPOINTMENT_FILEPATH, appointment.toSave());
             } catch (IOException e) {
-                logger.warning(StorageTextUi.failToAddAppointmentMsg);
+                logger.warning(StorageTextUi.FAIL_TO_ADD_APPOINTMENT_MSG);
             }
             message = AppointmentTextUi.addAppointmentSuccessMessage(appointment);
         }
