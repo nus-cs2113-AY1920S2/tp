@@ -23,7 +23,7 @@ and maintain an overview of how time was spent.
     * The `list` command allows the user to list all the activities for a specified
     date or range of dates. In many cases, the user does not want to specify
     the exact dates; that is why the user can simply ask to `list day`, `list week`,
-    `list month 05` etc. to list entries belonging in the specified time frame.
+    `list month april` etc. to list entries belonging in the specified time frame.
 
 ### Contributions to documentation
 * Provided information on how to use the `list` command, including
