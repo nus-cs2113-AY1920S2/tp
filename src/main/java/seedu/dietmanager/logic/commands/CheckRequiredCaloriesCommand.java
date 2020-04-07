@@ -48,6 +48,7 @@ public class CheckRequiredCaloriesCommand extends Command {
 
     @Override
     public Result execute(Profile profile, UI ui) {
+        testAssertions(isInValidCommand);
         if (!profile.isProfileExist()) {
             noProfileFound = true;
             getResult(profile);
@@ -136,5 +137,9 @@ public class CheckRequiredCaloriesCommand extends Command {
         }
 
         return new Result(this.resultString);
+    }
+
+    public static void testAssertions(boolean isInValidCommand) {
+        assert (!isInValidCommand);
     }
 }
