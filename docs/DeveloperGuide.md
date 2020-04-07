@@ -73,17 +73,19 @@ The `Profile` component is responsible for:
 * Storing all user profile information
 
 The Profile consists of the following classes: 
-* `Profile` - 
-* `DailyFoodRecord` - 
+* `Profile` - Stores the personal information of a person including the name, age, gender, height, weight, weight goal, list of food consumed and list of weight changes
+* `DailyFoodRecord` - Keeps a record of the food consumed in a day, comprising morning, afternoon and night
 
 ### Food component
 
 The `Food` component is responsible for:
-* 
+* Creating a food Object with a name if food exists in the FoodNutritionInfo class OR
+* Creating a food Object with a name and no calories value if food does not exists in the FoodNutritionInfo class OR
+* Creating a food Object with a name and calories value from user input
 
 The Food consists of the following classes: 
-* `Food` - 
-* `FoodNutritionInfo` - 
+* `Food` - Create a food Object from the user input
+* `FoodNutritionInfo` - Provides a data bank of food items with the food name and calories value
 
 
 ## Implementation
@@ -106,7 +108,7 @@ Step 2.  The `Logic` composition calls the `execute()` method of the `RecordMeal
 
 During the process of execution, the command object will generate a `ArrayList<Food> foodList`, which maintains all `Food` items listed in the user input. 
 If a certain kind of `Food` can be found in the database of `FoodNuritionInfo`, then this food item will be fetched from the database. 
-Else a new food object will be generated simply with `foodName` without all the nutrition info.
+Else a new `Food` object will be generated simply with `foodName` without all the nutrition info.
 
 During execution, the command object will try to get a `record` object of the class `DailyFoodRecord`. The date of record is specified by the user. 
 If no record of that day is found in profile, it will automatically generate a new record of the day. Then with `foodList` and `record`, can call 
