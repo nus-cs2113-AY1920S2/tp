@@ -146,7 +146,7 @@ public class PatientParser {
             System.out.println(Messages.MESSAGE_DATE_OF_BIRTH_FORMAT);
         }
         if (parseInput[4].equalsIgnoreCase("") || !Checker.isValidBloodType(parseInput[4])) {
-            System.out.println(Messages.MESSAGE_TIME_FORMAT);
+            System.out.println(Messages.MESSAGE_BLOOD_TYPE_FORMAT);
         }
     }
 
@@ -174,7 +174,6 @@ public class PatientParser {
                 PatientTextUi.patientNotAddedMessage(detail);
             }
         }
-
         while (hasMissingFields(parseInput)) {
             printMissingFields(parseInput);
             String input = readUserInput().trim();
@@ -210,8 +209,8 @@ public class PatientParser {
         for (String update : updates) {
             if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
                 parseInput[0] = update.substring(1).trim();
-            } else if (update.trim().startsWith("ic") && (parseInput[1].equalsIgnoreCase(""))
-                    || !Checker.isValidNric(parseInput[1].trim())) {
+            } else if (update.trim().startsWith("ic") && ((parseInput[1].equalsIgnoreCase(""))
+                    || !Checker.isValidNric(parseInput[1].trim()))) {
                 parseInput[1] = update.trim().substring(2).toUpperCase().trim();
             } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
                     || !Checker.isPositiveInteger(parseInput[2].trim())
@@ -223,6 +222,8 @@ public class PatientParser {
             } else if (update.trim().startsWith("b") && (parseInput[4].equalsIgnoreCase(""))
                     || !Checker.isValidBloodType(parseInput[4].trim())) {
                 parseInput[4] = update.trim().substring(1).trim();
+            } else {
+                System.out.println(update);
             }
         }
     }

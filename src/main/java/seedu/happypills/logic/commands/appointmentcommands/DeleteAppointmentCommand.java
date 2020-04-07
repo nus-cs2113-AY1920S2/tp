@@ -24,6 +24,11 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
 
     Logger logger = Logger.getLogger(HappyPills.class.getName());
 
+    /**
+     * Retrieve the patient's confirmation.
+     *
+     * @param nric  y to confirm deletion, n to stop deletion.
+     */
     public DeleteAppointmentCommand(String nric, String appointmentId) {
         this.nric = nric;
         this.appointmentId = appointmentId;
@@ -88,7 +93,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * Carry out the procedures for deleting appointment
+     * Carry out the procedures for deleting appointment.
      * @author janicetyy, sitinadiah25
      * @param patients Shared map of patients
      * @param appointments Shared map of appointments
