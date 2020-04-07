@@ -45,7 +45,7 @@ public class CheckWeightRecordCommand extends Command {
     public Result execute(Profile profile, UI ui) {
         if (!this.noDescription) {
             weightRecord = profile.getWeightRecord();
-            ui.showMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE); //Wil change this part later on
+            ui.showMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE);
             for (int i = 0; i < weightRecord.size(); i++) {
                 ui.showMessage(i + 1 + ". " + weightRecord.get(i) + "kg ");
             }
@@ -72,6 +72,7 @@ public class CheckWeightRecordCommand extends Command {
         } else {
             this.resultString = String.format(MessageBank.WEIGHT_GAIN_MESSAGE, abs(weightDifference));
         }
+
         return new Result(this.resultString);
     }
 
