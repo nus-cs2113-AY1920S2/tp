@@ -1,38 +1,36 @@
 package seedu.commands;
 
-import seedu.exams.Exam;
+import seedu.events.Event;
 import seedu.exception.EscException;
 import seedu.subjects.SubjectList;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Command class for the AddExamCommand.
+ * Command class for the AddEventCommand.
  */
-public class AddExamCommand extends Command {
+public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addevent";
 
     public static final String MESSAGE_USAGE = "To add an upcoming event, "
             + "type command: addevent e/[DESCRIPTION] d/[DATE]";
 
-    private Exam exam;
+    private Event event;
 
     /**
-     * Initialises the parameters for score command.
+     * Initialises the parameters for the AddEvent command.
      */
-    public AddExamCommand(Exam exam) {
-        this.exam = exam;
+    public AddEventCommand(Event event) {
+        this.event = event;
     }
 
     /**
-     * View all the scores attained for a subject.
+     * Adds an event to the events list.
      */
     @Override
     public void execute(SubjectList subjectList) throws EscException {
-        ArrayList<Exam> exams = subjectList.getExamDates();
-        exams.add(this.exam);
+        subjectList.addEvent(this.event);
     }
 
 
