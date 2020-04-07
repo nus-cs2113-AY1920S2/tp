@@ -55,4 +55,5 @@ wrote the code skeleton for various JUnit Tests (e.g. `AssignmentTest`,`EventTes
 **Community** :
 * Fixed overlooked wrong index in UG: [#191](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/191)
 * Reviewed and improved other team member's code: [#93](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/93)
+* Fixed bug for invalid escape sequence, overlooked by other team members: [#139](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/139)
 
