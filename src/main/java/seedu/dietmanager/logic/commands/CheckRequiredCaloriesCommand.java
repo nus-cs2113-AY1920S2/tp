@@ -75,10 +75,10 @@ public class CheckRequiredCaloriesCommand extends Command {
     public double getRecommendedCaloriesIntake(Profile profile, String activityLevel) {
         double basalMetabolicRate;
         switch (profile.getGender()) {
-        case "Male":
+        case "male":
             basalMetabolicRate = 10 * profile.getWeight() + 6.25 * profile.getHeight() - 5 * profile.getAge() + 5;
             break;
-        case "Female":
+        case "female":
             basalMetabolicRate = 10 * profile.getWeight() + 6.25 * profile.getHeight() - 5 * profile.getAge() - 161;
             break;
         default:
@@ -97,7 +97,7 @@ public class CheckRequiredCaloriesCommand extends Command {
             this.caloriesRequired = basalMetabolicRate * 1.725;
             break;
         default:
-            isInValidCommand = false;
+            isInValidCommand = true;
         }
         return caloriesRequired;
     }
