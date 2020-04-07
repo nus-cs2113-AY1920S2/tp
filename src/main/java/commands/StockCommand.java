@@ -26,11 +26,19 @@ public class StockCommand {
     /**
      * Extract the name of the ingredient from a string. For example, 
      * 'i/tomato' will return 'tomato'.
+     * @throws InvalidStockCommandException 
      * 
      */ 
-    protected String parseIngredientName(String ingredientNameInput) {
+    protected String parseIngredientName(String ingredientNameInput) 
+            throws InvalidStockCommandException {
+        
         String ingredientName = ingredientNameInput.trim()
                 .substring(indexAfterSlash, ingredientNameInput.length());
+        
+        if (ingredientName.isBlank()) {
+            throw new InvalidStockCommandException("Please enter the "
+                    + "ingredient's name to be added.");
+        }
         
         return ingredientName;
     }
@@ -79,6 +87,11 @@ public class StockCommand {
         String trimmedInput = ingredientPriceInput.trim();
         
         try {
+            
+            if (!ingredientPriceInput.contains("$")) {
+                throw new InvalidStockCommandException("Please ensure that the "
+                        + "price specified has a '$' sign and is a decimal!");
+            } 
             
             double price = Double.parseDouble(trimmedInput.substring(
                     indexAfterDollarSign, ingredientPriceInput.length()));
