@@ -103,24 +103,20 @@ public class PatientParser {
         return input.equalsIgnoreCase("");
     }
 
-    private static boolean isValidPhoneNum(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidPhoneNum(detail.substring(1).trim());
+    private static boolean isValidPhoneNum(String detail) {
+        return Checker.isValidPhoneNum(detail.substring(1).trim());
     }
 
-    private static boolean isValidDateOfBirth(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidDate(detail.substring(3).trim());
+    private static boolean isValidDateOfBirth(String detail) {
+        return Checker.isValidDate(detail.substring(3).trim());
     }
 
-    private static boolean isValidBloodType(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidBloodType(detail.substring(1).trim());
+    private static boolean isValidBloodType(String detail) {
+        return Checker.isValidBloodType(detail.substring(1).trim());
     }
 
-    private static boolean isValidNric(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidNric(detail.substring(2).trim().toUpperCase());
+    private static boolean isValidNric(String detail) {
+        return Checker.isValidNric(detail.substring(2).trim().toUpperCase());
     }
 
     private static boolean hasMissingFields(String[] parseInput) {
@@ -162,13 +158,13 @@ public class PatientParser {
         for (String detail : details) {
             if (detail.startsWith(NAME_TAG) && isInputEmpty(parseInput[0])) {
                 parseInput[0] = detail.substring(1).trim();
-            } else if (detail.startsWith(NRIC_TAG) && isValidNric(parseInput[1],detail)) {
+            } else if (detail.startsWith(NRIC_TAG) && isValidNric(detail)) {
                 parseInput[1] = detail.substring(2).trim().toUpperCase();
-            } else if (detail.startsWith(PHONE_NUMBER_TAG) && isValidPhoneNum(parseInput[2], detail)) {
+            } else if (detail.startsWith(PHONE_NUMBER_TAG) && isValidPhoneNum(detail)) {
                 parseInput[2] = detail.substring(1).trim();
-            } else if (detail.startsWith(DATE_OF_BIRTH_TAG) && isValidDateOfBirth(parseInput[3],detail)) {
+            } else if (detail.startsWith(DATE_OF_BIRTH_TAG) && isValidDateOfBirth(detail)) {
                 parseInput[3] = detail.substring(3).trim();
-            } else if (detail.startsWith(BLOOD_TYPE_TAG) && isValidBloodType(parseInput[4],detail)) {
+            } else if (detail.startsWith(BLOOD_TYPE_TAG) && isValidBloodType(detail)) {
                 parseInput[4] = detail.substring(1).trim().toUpperCase();
             } else if (detail.startsWith(ALLERGIES_TAG) && parseInput[5].equalsIgnoreCase("NIL")) {
                 parseInput[5] = detail.substring(1).trim();

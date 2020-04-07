@@ -136,19 +136,16 @@ public class PatientRecordParser {
         return input.equalsIgnoreCase("");
     }
 
-    private static boolean isValidNric(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidDate(detail.substring(2).trim().toUpperCase());
+    private static boolean isValidNricInput(String detail) {
+        return Checker.isValidNric(detail.substring(2).trim().toUpperCase());
     }
 
-    private static boolean isValidDateInput(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidDate(detail.substring(1).trim());
+    private static boolean isValidDateInput(String detail) {
+        return Checker.isValidDate(detail.substring(1).trim());
     }
 
-    private static boolean isValidTimeInput(String input, String detail) {
-        return isInputEmpty(input)
-                && Checker.isValidTime(detail.substring(1).trim());
+    private static boolean isValidTimeInput(String detail) {
+        return Checker.isValidTime(detail.substring(1).trim());
     }
 
     private static boolean hasMissingFields(String[] parseInput) {
@@ -168,15 +165,15 @@ public class PatientRecordParser {
         String[] parseInput = {"", "", "", "", "", ""};
 
         for (String detail : details) {
-            if (detail.startsWith(NRIC_TAG) && isInputEmpty(parseInput[0])) {
+            if (detail.startsWith(NRIC_TAG) && isValidNricInput(detail)) {
                 parseInput[0] = detail.substring(2).trim().toUpperCase();
             } else if (detail.startsWith(SYMPTOM_TAG) && isInputEmpty(parseInput[1])) {
                 parseInput[1] = detail.substring(3).trim();
             } else if (detail.startsWith(DIAGNOSIS_TAG) && isInputEmpty(parseInput[2])) {
                 parseInput[2] = detail.substring(4).trim();
-            } else if (detail.startsWith(DATE_TAG) && isValidDateInput(parseInput[3], detail)) {
+            } else if (detail.startsWith(DATE_TAG) && isValidDateInput(detail)) {
                 parseInput[3] = detail.substring(1).trim();
-            } else if (detail.startsWith(TIME_TAG) && isValidTimeInput(parseInput[4], detail)) {
+            } else if (detail.startsWith(TIME_TAG) && isValidTimeInput(detail)) {
                 parseInput[4] = detail.substring(1).trim();
             } else {
                 PatientRecordTextUi.patientRecordNotAddedMessage(detail);

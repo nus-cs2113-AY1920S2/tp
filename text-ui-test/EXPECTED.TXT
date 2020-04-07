@@ -28,7 +28,7 @@ What can I do for you today, doctor?
     =====================================================
     =====================================================
     Please input your missing detail listed below
-    /n[NAME]
+    /n NAME
     =====================================================
     =====================================================
         Are you sure all the listed details are correct?
@@ -72,6 +72,9 @@ What can I do for you today, doctor?
     =====================================================
     Command is invalid. Enter help to know how to use HappyPills.
     =====================================================
+    =====================================================
+    ic is not a valid input.
+    ic will not be added
     =====================================================
     d 22feb92 is not a valid input.
     d 22feb92 will not be added
