@@ -202,7 +202,7 @@ public abstract class FilterCommand extends Command {
         Comparator<Task> sortByTask =
                 Comparator.comparing(Task::getDescription);
         Comparator<Task> sortByDeadline =
-                Comparator.comparing(task -> task.getDeadline().getDateTimeSortFormat());
+                Comparator.comparing(task -> task.getDeadline().getDateTimeInSortFormat());
         Comparator<Task> sortByPriority =
                 Comparator.comparing(Task::getPriority, Comparator.reverseOrder());
 
