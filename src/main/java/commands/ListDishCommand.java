@@ -18,7 +18,7 @@ public class ListDishCommand extends Menu {
                 }
                 ingredientList = ingredientList.substring(0, ingredientList.length() - 2);
                 double price = Menu.getDishMap().get(name).getPrice();
-                System.out.println("Name: " + name + "; Ingredients: " + ingredientList + "; Price: " + price);
+                System.out.println("Name: " + name + "; Ingredients: " + ingredientList + "; Price: $" + price + ";");
                 System.out.println("Dishes successfully listed.");
             }
         }
