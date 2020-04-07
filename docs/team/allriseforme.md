@@ -1,4 +1,4 @@
-PROJECT: AddressBook - Level 3
+PROJECT: Nuke
 ==============================
 
 ---
@@ -6,30 +6,30 @@ PROJECT: AddressBook - Level 3
 Overview
 ========
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+This Nuke application is a simple yet powerful task management system that is dedicated to providing NUS students efficient organisation of *modules* and *tasks*. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 17 kLoC.
 
 Summary of contributions
 ========================
+**Code contributed**: \[[Functional code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=a11riseforme)\]
 
--   **Major enhancement**: added **the ability to undo/redo previous commands**
+**Major enhancement**: 
 
-    -   What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
+1. added **the ability to undo/redo previous commands**
 
-    -   Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+- What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
+- Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+- Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-    -   Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+2. added the **ability to preload the information of all modules provided by NUS**
 
-    -   Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+**Minor enhancement**: added a history command that allows the user to navigate to previous commands using up/down keys.
 
--   **Minor enhancement**: added a history command that allows the user to navigate to previous commands using up/down keys.
-
--   **Code contributed**: \[[Functional code](https://github.com)\] \[[Test code](https://github.com)\] *{give links to collated code files}*
 
 -   **Other contributions**:
 
     -   Project management:
 
-        -   Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+        -   Managed releases `v1.0` ,  `v2.0-cli` (2 releases) on GitHub
 
     -   Enhancements to existing features:
 
@@ -56,8 +56,6 @@ Summary of contributions
         -   Integrated a third party library (Natty) to the project ([\#42](https://github.com))
 
         -   Integrated a new Github plugin (CircleCI) to the team repo
-
-*{you can add/remove categories in the list above}*
 
 Contributions to the User Guide
 ===============================
