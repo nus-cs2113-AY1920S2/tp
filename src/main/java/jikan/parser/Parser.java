@@ -74,6 +74,10 @@ public class Parser {
 
         switch (instruction) {
         case "bye":
+            if (tokenizedInputs.length > 1 && !tokenizedInputs[1].isBlank()) {
+                Ui.printDivider("Extra parameters detected!");
+                break;
+            }
             command = new ByeCommand(null);
             break;
         case "start":
@@ -85,14 +89,14 @@ public class Parser {
             }
             break;
         case "end":
-            if (tokenizedInputs.length > 1) {
+            if (tokenizedInputs.length > 1 && !tokenizedInputs[1].isBlank()) {
                 Ui.printDivider("Extra parameters detected!");
                 break;
             }
             command = new EndCommand(null);
             break;
         case "abort":
-            if (tokenizedInputs.length > 1) {
+            if (tokenizedInputs.length > 1 && !tokenizedInputs[1].isBlank()) {
                 Ui.printDivider("Extra parameters detected!");
                 break;
             }
