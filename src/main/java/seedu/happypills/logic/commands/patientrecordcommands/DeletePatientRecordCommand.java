@@ -61,6 +61,7 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
                 logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
             }
             return PatientRecordTextUi.deletePatientRecordSuccessMessage(patientRecord, patientNric);
+
         } else {
             String message = Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND
                     + "\n"

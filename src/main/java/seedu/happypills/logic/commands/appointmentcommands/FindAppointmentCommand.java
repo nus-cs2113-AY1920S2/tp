@@ -21,6 +21,14 @@ public class FindAppointmentCommand extends AppointmentCommand {
         this.patientNric = patientNric;
     }
 
+    /**
+     * Find appointments for a specific patient.
+     * @author janicetyy
+     * @param patients Shared map of patients
+     * @param appointments Shared map of appointments
+     * @param visits Shared map of patient records
+     * @return errorMessage or successMessage
+     */
     @Override
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
         if (!Checker.isValidNric(patientNric)) {
