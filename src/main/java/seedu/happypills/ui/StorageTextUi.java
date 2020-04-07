@@ -8,6 +8,7 @@ import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class StorageTextUi extends TextUi {
@@ -54,9 +55,11 @@ public class StorageTextUi extends TextUi {
      */
     public static String getFormattedPrString(PatientRecordMap patientRecords) {
         String formattedPrString = "";
-        for (Map.Entry patientRecord : patientRecords.entrySet()) {
-            PatientRecord pr = (PatientRecord) patientRecord.getValue();
-            formattedPrString += pr.toSave();
+        for (Map.Entry patientRecordArray : patientRecords.entrySet()) {
+            ArrayList<PatientRecord> prs = (ArrayList<PatientRecord>) patientRecordArray.getValue();
+            for (int index = 0; index < patientRecords.size(); index++) {
+                formattedPrString += prs.get(index).toSave();
+            }
         }
         return formattedPrString;
     }
