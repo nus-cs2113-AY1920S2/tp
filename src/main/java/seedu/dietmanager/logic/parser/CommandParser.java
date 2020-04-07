@@ -6,7 +6,7 @@ import seedu.dietmanager.logic.commands.nutritionrecord.AddFoodCommand;
 import seedu.dietmanager.logic.commands.recipe.BuildNewRecipeCommand;
 import seedu.dietmanager.logic.commands.foodrecord.CalculateCaloriesCommand;
 import seedu.dietmanager.logic.commands.foodrecord.CheckRecordCommand;
-import seedu.dietmanager.logic.commands.foodrecord.CheckRequiredCaloriesCommand;
+import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 import seedu.dietmanager.logic.commands.profile.CheckWeightRecordCommand;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.commands.nutritionrecord.DeleteFoodCommand;
