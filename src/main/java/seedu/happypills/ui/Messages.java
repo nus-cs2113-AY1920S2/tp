@@ -49,14 +49,14 @@ public class Messages {
             "    Please try again. To learn more about the Edit patient command, "
                     + "\n    enter \"help edit patient\"";
 
-    public static final String MESSAGE_EMPTY_PATIENT = "    There are no patients in the list.";
+    public static final String MESSAGE_EMPTY_PATIENT = "    There are no patients in the list.\n" + DIVIDER;
     public static final String MESSAGE_INDEX_OUT_OF_BOUND = "    No record found with given Index";
     public static final String MESSAGE_PATIENT_IS_IN_THE_MAP =
             "    Patient is already in the list. Please use help command.";
     public static final String MESSAGE_CONTENT_IS_EMPTY = "    Please do not leave the field as empty string";
-    public static final String MESSAGE_NAME_FORMAT = "    /n NAME";
-    public static final String MESSAGE_PHONE_NUMBER_FORMAT = "    /p PHONE (Format: 8-digit number starting with 8/9)";
-    public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "    /b BLOOD TYPE (Format: A/B/O/AB with +/-)";
+    public static final String MESSAGE_NAME_FORMAT = "    /n[NAME]";
+    public static final String MESSAGE_PHONE_NUMBER_FORMAT = "    /p[PHONE] only number and must be 8 digit";
+    public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "    /b[BLOOD TYPE]";
     public static final String MESSAGE_INCORRECT_INPUT_FORMAT = "    Incorrect input format. Sorry please try again";
 }
 
