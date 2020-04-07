@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ListCreatorTest {
 
-    final String divider = String.format("%s%s%s\n", "+", "-".repeat(98), "+");
+    private final String divider = String.format("%s%s%s\n", "+", "-".repeat(98), "+");
 
     @Test
     void createGeneralListTable() {

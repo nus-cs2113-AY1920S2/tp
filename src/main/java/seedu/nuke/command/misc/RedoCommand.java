@@ -32,8 +32,6 @@ public class RedoCommand extends Command {
             return new CommandResult(MESSAGE_REDO_UNSUCCESSFUL);
         } catch (EmptyStackException e) {
             return new CommandResult(MESSAGE_REDO_AT_END);
-        } catch (IncorrectDirectoryLevelException e) {
-            return new CommandResult(MESSAGE_TRAVERSE_ERROR);
         }
     }
 }

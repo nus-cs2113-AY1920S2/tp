@@ -122,16 +122,6 @@ public class Module extends Directory {
     }
 
     /**
-     * Edit the Category List of the module.
-     *
-     * @param categories
-     *  The Category List of the module
-     */
-    public void setCategories(CategoryManager categories) {
-        this.categories = categories;
-    }
-
-    /**
      * Checks if one module has the same module code as another.
      *
      * @param moduleCode

@@ -32,8 +32,6 @@ public class UndoCommand extends Command {
             return new CommandResult(MESSAGE_UNDO_UNSUCCESSFUL);
         } catch (EmptyStackException e) {
             return new CommandResult(MESSAGE_UNDO_AT_BEGINNING);
-        } catch (IncorrectDirectoryLevelException e) {
-            return new CommandResult(MESSAGE_TRAVERSE_ERROR);
         }
     }
 }

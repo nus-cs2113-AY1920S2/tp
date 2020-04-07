@@ -86,7 +86,7 @@ public class DirectoryTraverser {
     /**
      * Traverse to a specified directory.
      */
-    public static void traverseTo(Directory toTraverse) throws IncorrectDirectoryLevelException {
+    public static void traverseTo(Directory toTraverse) {
         // Clear the stack
         directoryStack.empty();
 
@@ -111,9 +111,6 @@ public class DirectoryTraverser {
             directoryStack.push(toTraverse.getParent());
             directoryStack.push(toTraverse);
             currentLevel = FILE_LEVEL;
-        } else {
-            currentLevel = ROOT_LEVEL;
-            throw new IncorrectDirectoryLevelException();
         }
     }
 

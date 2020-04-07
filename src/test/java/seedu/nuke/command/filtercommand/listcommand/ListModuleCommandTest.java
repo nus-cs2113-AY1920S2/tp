@@ -7,6 +7,7 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Root;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class ListModuleCommandTest {
     @Test
     public void testEmptyModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("lsm");
         assertEquals(MESSAGE_NO_MODULES_TO_SHOW, result.getFeedbackToUser());
@@ -31,7 +32,7 @@ public class ListModuleCommandTest {
     @Test
     public void testNormalModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("addm CS3235");

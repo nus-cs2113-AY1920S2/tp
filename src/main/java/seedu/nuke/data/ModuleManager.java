@@ -18,7 +18,6 @@ import java.util.Iterator;
  * Contains a Module List and performs operations related to modules
  */
 public class ModuleManager implements Iterable<Module> {
-    private static Root root;
     private static ArrayList<Module> moduleList;
     private static HashMap<String, String> modulesMap;
 
@@ -31,9 +30,8 @@ public class ModuleManager implements Iterable<Module> {
      *  The hash map containing NUS provided modules
      */
     public static void initialise(HashMap<String, String> modulesMap) {
-        ModuleManager.root = new Root();
         if (modulesMap == null) {
-            ModuleManager.modulesMap = new HashMap<String,String>();
+            ModuleManager.modulesMap = new HashMap<>();
         } else {
             ModuleManager.modulesMap = modulesMap;
         }
@@ -44,10 +42,6 @@ public class ModuleManager implements Iterable<Module> {
         ModuleManager.initialise(null);
     }
 
-
-    public static Root getRoot() {
-        return root;
-    }
 
     public static HashMap<String, String> getModulesMap() {
         return modulesMap;
