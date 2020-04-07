@@ -46,7 +46,9 @@ public class HelpTextUi extends TextUi {
             + "      list patient | Lists all the patients in the program\n"
             + "      get patient | Retrieves the details of a given patient\n"
             + "      edit patient | Edits a patient's detail\n"
-            + "      delete patient | Deletes a patient from the program\n";
+            + "      delete patient | Deletes a patient from the program\n"
+            + "    For more specific command instructions, enter `help [COMMAND]`\n"
+            + "      Example: help add patient\n";
 
     public static final String ADD_PATIENT_HELP_MESSAGE = ""
             + "    To add a new patient into the program, use the following command:\n"
@@ -95,7 +97,9 @@ public class HelpTextUi extends TextUi {
             + "      edit pr | Edits a prior patient record\n"
             + "      delete pr | Deletes a prior patient record\n"
             + "      list pr | List down all records for a particular patient\n"
-            + "      find pr | Retrieves a particular record\n";
+            + "      find pr | Retrieves a particular record\n"
+            + "    For more specific command instructions, enter `help [COMMAND]`\n"
+            + "      Example: help add pr\n";;
 
     public static final String ADD_PATIENT_RECORD_HELP_MESSAGE = ""
             + "    To add a new patient record into the program, use the following command:\n"
@@ -139,7 +143,9 @@ public class HelpTextUi extends TextUi {
             + "      edit appt | Edits an appointment in the program\n"
             + "      delete appt | Deletes an appointment from the program\n"
             + "      done appt | Marks an appointment as done\n"
-            + "      find appt | Finds all the appointments under a patient\n";
+            + "      find appt | Finds all the appointments under a patient\n"
+            + "    For more specific command instructions, enter `help [COMMAND]`\n"
+            + "      Example: help add appt\n";;
 
     public static final String ADD_APPOINTMENT_HELP_MESSAGE = ""
             + "    To add a new appointment into the program, use the following command:\n"
@@ -180,12 +186,4 @@ public class HelpTextUi extends TextUi {
             + "    Note: patient details are in UPPER CASE\n"
             + "      done appt NRIC APPT_ID\n";
 
-    //List
-    public static String printListHelp = ""
-            + "    To list all patients, run:\n"
-            + "      list patient\n"
-            + "    To list all patient records of a particular patient, run:\n"
-            + "      list pr NRIC\n"
-            + "    To list all appointments, run:\n"
-            + "      list appt\n";
 }
