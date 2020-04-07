@@ -12,9 +12,12 @@ import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 public class ListCategoryCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsc";
     public static final String FORMAT = COMMAND_WORD + " [ <category keyword> -m <module keyword> -e -a ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Filters and lists your categories"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Filter and show the categories of module(s)\n"
+            + "Note: -e to filter for exact keywords; -a to filter across ALL your categories\n"
+            + "Format: %s\n"
+            + "Example: lsc tutorial -e -a\n",
+            COMMAND_WORD, FORMAT);
 
     private String moduleKeyWord;
     private String categoryKeyword;

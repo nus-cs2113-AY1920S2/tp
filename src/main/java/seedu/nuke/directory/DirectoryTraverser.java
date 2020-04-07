@@ -19,6 +19,11 @@ public class DirectoryTraverser {
     private static int currentLevel = 0;
     private static final int MINIMUM_LEVEL = 0;
     private static final int MAXIMUM_LEVEL = 4;
+    private static final int ROOT_LEVEL = 0;
+    private static final int MODULE_LEVEL = 1;
+    private static final int CATEGORY_LEVEL = 2;
+    private static final int TASK_LEVEL = 3;
+    private static final int FILE_LEVEL = 4;
 
     /**
      * Returns the current directory.
@@ -75,6 +80,40 @@ public class DirectoryTraverser {
         }
         currentLevel--;
         directoryStack.pop();
+    }
+
+    /**
+     * Traverse to a specified directory.
+     */
+    public static void traverseTo(Directory toTraverse) throws IncorrectDirectoryLevelException {
+        // Clear the stack
+        directoryStack.empty();
+
+        // Fill up the stack with parent directories
+        if (toTraverse instanceof Root) {
+            currentLevel = ROOT_LEVEL;
+        } else if (toTraverse instanceof Module) {
+            directoryStack.push(toTraverse);
+            currentLevel = MODULE_LEVEL;
+        } else if (toTraverse instanceof Category) {
+            directoryStack.push(toTraverse.getParent());
+            directoryStack.push(toTraverse);
+            currentLevel = CATEGORY_LEVEL;
+        } else if (toTraverse instanceof Task) {
+            directoryStack.push(toTraverse.getParent().getParent());
+            directoryStack.push(toTraverse.getParent());
+            directoryStack.push(toTraverse);
+            currentLevel = TASK_LEVEL;
+        } else if (toTraverse instanceof TaskFile) {
+            directoryStack.push(toTraverse.getParent().getParent().getParent());
+            directoryStack.push(toTraverse.getParent().getParent());
+            directoryStack.push(toTraverse.getParent());
+            directoryStack.push(toTraverse);
+            currentLevel = FILE_LEVEL;
+        } else {
+            currentLevel = ROOT_LEVEL;
+            throw new IncorrectDirectoryLevelException();
+        }
     }
 
     /**

@@ -23,8 +23,12 @@ public class DeleteTaskCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delt";
     public static final String FORMAT = COMMAND_WORD + " <task description> -m <module code> "
             + "-c <category name> [ -e -a ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Delete a task of module"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Filter and delete the tasks of category(s)\n"
+            + "Note: -e to filter for exact keywords; -a to filter across ALL your tasks\n"
+            + "Format: %s\n"
+            + "Example: delt work -m cs2113t -c tutorial -e\n",
+            COMMAND_WORD, FORMAT);
     private String moduleCode;
     private String categoryName;
     private String taskDescription;

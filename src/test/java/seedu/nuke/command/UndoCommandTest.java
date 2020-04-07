@@ -2,17 +2,15 @@ package seedu.nuke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Executor;
+import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.data.storage.StoragePath;
-import seedu.nuke.directory.Module;
 
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.nuke.command.UndoCommand.MESSAGE_UNDO_AT_BEGINNING;
 
 class UndoCommandTest {
 

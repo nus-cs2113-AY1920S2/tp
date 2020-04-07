@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.misc;
 
+import seedu.nuke.command.Command;
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.filtercommand.FilterCommand;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Pattern;
 
+import static seedu.nuke.data.storage.StoragePath.TASK_FILE_DIRECTORY_PATH;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
 import static seedu.nuke.parser.Parser.TASK_PREFIX;
@@ -42,6 +45,11 @@ public class OpenFileCommand extends FilterCommand {
     public static final String COMMAND_WORD = "open";
     public static final String FORMAT = COMMAND_WORD + " [ <file name> ] -m <module code> "
             + "-c <category name> -t <task description>";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Open the file(s) of a task\n"
+            + "Format: %s\n"
+            + "Example: open tut_4 -m cs2113t -c Tutorial -t do tutorial 4\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -111,7 +119,8 @@ public class OpenFileCommand extends FilterCommand {
         ArrayList<String> nonExistentFiles = new ArrayList<>();
 
         for (TaskFile file : filesToOpen) {
-            File[] filesInDirectory = new File(file.getFilePath()).listFiles();
+            String filePath = String.format("%s/%s",  TASK_FILE_DIRECTORY_PATH, file.getFilePath());
+            File[] filesInDirectory = new File(filePath).listFiles();
             if (filesInDirectory == null || filesInDirectory.length == 0) {
                 nonExistentFiles.add(file.getFileName());
                 continue;

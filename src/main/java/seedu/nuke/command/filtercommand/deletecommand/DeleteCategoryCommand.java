@@ -22,8 +22,12 @@ import static seedu.nuke.util.Message.messagePromptDeleteCategoryIndices;
 public class DeleteCategoryCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delc";
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> [ -e -a ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Delete a category under module"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Filter and delete the categories of module(s)\n"
+            + "Note: -e to filter for exact keywords; -a to filter across ALL your categories\n"
+            + "Format: %s\n"
+            + "Example: delc assignment -m CS2113T -a\n",
+            COMMAND_WORD, FORMAT);
     private String moduleCode;
     private String categoryName;
     private boolean isExact;

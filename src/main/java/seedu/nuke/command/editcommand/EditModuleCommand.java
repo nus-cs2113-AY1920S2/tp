@@ -3,6 +3,7 @@ package seedu.nuke.command.editcommand;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -26,8 +27,11 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_MODULE_SUCCESS;
 public class EditModuleCommand extends EditCommand {
     public static final String COMMAND_WORD = "edm";
     public static final String FORMAT = COMMAND_WORD + " <module code> -m <new module code>";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Edit module code of module"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Edit the module code of a module\n"
+            + "Format: %s\n"
+            + "Example: edm CS2113 -m CS2113T\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -64,7 +68,7 @@ public class EditModuleCommand extends EditCommand {
         try {
             Module toEdit = DirectoryTraverser.getModuleDirectory(oldModuleCode);
             ModuleManager.edit(toEdit, newModuleCode);
-
+            StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_MODULE_SUCCESS);
         }  catch (ModuleNotProvidedException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_PROVIDED);

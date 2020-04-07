@@ -31,19 +31,34 @@ public class Message {
             + "     \\__\\/        \\__\\/        \\__\\/        \\__\\/    \n"
             + "\n";
 
-    public static final String MESSAGE_WELCOME_1 = "Welcome to NUKE";
-    public static final String MESSAGE_WELCOME_2 = "What can I do for you?";
+    public static final String MESSAGE_WELCOME_1 = "Welcome to NUKE Task Tracker!";
+    public static final String MESSAGE_WELCOME_2 = "What would you like to do today?";
+    public static final String DIVIDER = "-".repeat(100);
+    public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
 
     public static String messageTaskSuccessfullyList(int taskCount) {
         return String.format("There are (is) %d task(s) in the list!\n", taskCount);
     }
 
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT =
+            "Sorry, the command entered contains some unrecognised parameters:\n";
+    public static final String MESSAGE_CHECK_COMMAND_FORMAT =
+            "Please check to make sure to follow the command format as such:\n";
+    public static final String MESSAGE_UNKNOWN_COMMAND_WORD =
+            "Sorry, the command word at the start of your input is unrecognised.\n";
     public static final String MESSAGE_EXTRA_PARAMETERS =
             "There seems to be some extra parameters in the command.\n"
             + "Please check the command format again or enter help to find out more.\n";
-    public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
-    public static final String DIVIDER = "-".repeat(100);
+    public static final String MESSAGE_NO_PREFIX_ALLOWED = "Sorry, no prefix allowed for this command.\n";
+    public static final String MESSAGE_EMPTY_INPUT = "Please enter a command.\n";
+
+    public static final String MESSAGE_MISSING_MODULE_CODE = "Please enter a module code.\n";
+    public static final String MESSAGE_MISSING_CATEGORY_NAME = "Please enter a category name.\n";
+    public static final String MESSAGE_MISSING_TASK_DESCRIPTION = "Please enter a task description.\n";
+    public static final String MESSAGE_MISSING_FILE_NAME = "Please enter a file name.\n";
+    public static final String MESSAGE_MISSING_FILE_PATH = "Please enter a file path.\n";
+    public static final String MESSAGE_MISSING_TAG_NAME = "Please enter a tag name.\n";
+
 
     public static final String MESSAGE_SHOW_LIST = "";
     public static final String MESSAGE_NO_MODULES_TO_SHOW = "There are no modules to show.\n";
@@ -54,14 +69,11 @@ public class Message {
     public static final String MESSAGE_DEADLINE_OR_PRIORITY =
             "Please choose either to sort by deadline or priority.\n";
 
-
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
     public static final String MESSAGE_NO_CATEGORIES_FOUND = "Sorry. No categories found.\n";
     public static final String MESSAGE_NO_TASKS_FOUND = "Sorry. No tasks found.\n";
     public static final String MESSAGE_NO_FILES_FOUND = "Sorry. No files found.\n";
 
-
-    public static final String MESSAGE_GO_INTO_MODULE = "please go inside a Module!\n";
     public static final String MESSAGE_HELP = "Here are valid commands and corresponding format:\n";
 
     public static final String MESSAGE_TAG_ADDED = "Tag added!";
@@ -72,7 +84,7 @@ public class Message {
     public static final String MESSAGE_FILE_EXCEED_LIMIT = "Sorry, the file name cannot exceed 30 characters.\n";
 
     public static String messageAddModuleSuccess(String moduleCode, String title) {
-        return String.format("SUCCESS!! Module %s %s has been added.\n", moduleCode, title);
+        return String.format("SUCCESS!! Module %s %s is added.\n", moduleCode, title);
     }
 
     public static String messageAddCategorySuccess(String categoryName) {
@@ -88,11 +100,11 @@ public class Message {
     }
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "SUCCESS!! Module(s) have been deleted.\n";
-    public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "SUCCESS!! Category/Categories have been deleted.\n";
+    public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "SUCCESS!! Category(s) have been deleted.\n";
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "SUCCESS!! Task(s) have been deleted.\n";
     public static final String MESSAGE_DELETE_FILE_SUCCESS = "SUCCESS!! Files(s) have been deleted.\n";
 
-    public static final String MESSAGE_DELETE_ABORTED = "Deletion is aborted.\n";
+    public static final String MESSAGE_DELETE_ABORTED = "The deletion is aborted.\n";
 
     /**
      * Creates the message to confirm deletion of a module.
@@ -140,7 +152,7 @@ public class Message {
         ArrayList<Module> modules = filteredModules.stream()
                 .map(Module.class::cast)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching modules found.\n"
+        return "Multiple matching modules were found.\n"
                 + ListCreator.createModuleListTable(modules)
                 + "\nEnter the list number(s) of the modules to delete.\n";
     }
@@ -190,7 +202,7 @@ public class Message {
         ArrayList<Category> categories = filteredCategories.stream()
                 .map(Category.class::cast)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching categories found.\n"
+        return "Multiple matching categories were found.\n"
                 + ListCreator.createCategoryListTable(categories)
                 + "\nEnter the list number(s) of the categories to delete.\n";
     }
@@ -239,7 +251,7 @@ public class Message {
         ArrayList<Task> tasks = filteredTasks.stream()
                 .map(Task.class::cast)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching tasks found.\n"
+        return "Multiple matching tasks were found.\n"
                 + ListCreator.createTaskListTable(tasks)
                 + "\nEnter the list number(s) of the tasks to delete.\n";
     }
@@ -289,25 +301,41 @@ public class Message {
         ArrayList<TaskFile> files = filteredFiles.stream()
                 .map(TaskFile.class::cast)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching files found.\n"
+        return "Multiple matching files were found.\n"
                 + ListCreator.createFileListTable(files)
-                + "\nEnter the list number(s) of the tasks to delete.\n";
+                + "\nEnter the list number(s) of the files to delete.\n";
     }
 
     public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.\n";
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
     public static final String MESSAGE_ILLEGAL_DELETE =
-            "Attempting to delete the current or its parent's directory.\nMove out of the directory first.\n";
+            "Attempting to delete the current or its parent's directory.\nPlease move out of the directory first.\n";
+    public static final String MESSAGE_MISSING_DIRECTORY_TO_DELETE =
+            "Please enter the name of the directory to delete.\n";
+    public static final String MESSAGE_NO_DIRECTORY_TO_DELETE = "Sorry, there is nothing else to delete here.\n";
 
-    public static final String MESSAGE_INVALID_TIME_SPECIFIER = "Alert! Invalid time specifier.\n";
+    public static final String MESSAGE_INVALID_TIME_SPECIFIER =
+            "Sorry, the time specifier you entered is not recognised.\n"
+            + "Please make sure the time specifier entered is either:\n\t"
+            + "'before', 'after' or 'on'\n"
+            + "Alternatively, you can also enter 'over' without the date information to see all your overdue tasks.\n"
+            + "To find out other accepted variations of the time specifier, enter 'help timespec'.\n";
 
-    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "SUCCESS!! Module has been updated.\n";
-    public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! Category has been updated.\n";
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
+    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "SUCCESS!! The module has been updated.\n";
+    public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! The category has been updated.\n";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! The task has been updated.\n";
+    public static final String MESSAGE_EDIT_FILE_SUCCESS = "SUCCESS!! The file has been updated.\n";
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
+    public static final String MESSAGE_NO_EDIT_MODULE = "Please enter a new module code to edit.\n";
+    public static final String MESSAGE_NO_EDIT_CATEGORY =
+            "Please enter either a new category name or priority to edit.\n";
+    public static final String MESSAGE_NO_EDIT_TASK =
+            "Please enter a new task description, priority or deadline to edit.\n";
+    public static final String MESSAGE_NO_EDIT_FILE = "Please enter a new file name to edit.\n";
 
-    public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to last state.\n";
+    public static final String MESSAGE_REDO_SUCCESS = "SUCCESS!! Data has been reverted back to the next state.\n";
+    public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to the previous state.\n";
 
-    public static final String MESSAGE_OPEN_FILE_SUCCESS = "SUCCESS!! The files are opening now...\n";
+    public static final String MESSAGE_OPEN_FILE_SUCCESS = "The files are opening now...\n";
     public static final String MESSAGE_NO_FILE_CHOSEN = "No file was chosen.\n";
 }

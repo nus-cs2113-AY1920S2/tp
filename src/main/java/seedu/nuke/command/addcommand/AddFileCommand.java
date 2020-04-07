@@ -1,17 +1,20 @@
 package seedu.nuke.command.addcommand;
 
+import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.data.storage.StoragePath;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.ExceedLimitException;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
+import seedu.nuke.gui.io.GuiExecutor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,9 +39,10 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_IMPLICIT_FILE_EXCEED_LIMIT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_FILE_PATH;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_FILE_PATH;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_FILE_PATH;
+import static seedu.nuke.util.Message.MESSAGE_NO_FILE_CHOSEN;
 import static seedu.nuke.util.Message.MESSAGE_FILE_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.messageAddFileSuccess;
 
@@ -51,10 +55,13 @@ import static seedu.nuke.util.Message.messageAddFileSuccess;
  */
 public class AddFileCommand extends AddCommand {
     public static final String COMMAND_WORD = "addf";
-    public static final String FORMAT = COMMAND_WORD
-            + " <file name> -m <module code> -c <category name> -t <task description> -f <file path>";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a file to task"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String FORMAT = COMMAND_WORD + " [ <file name> ] -m <module code> -c <category name> "
+            + "-t <task description> -f <file path>";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Add a new file to a task\n"
+            + "Format: %s\n"
+            + "Example: addf tut_1 -m CS2113T -c Tutorial -t do tutorial 1 -f C:/Users/a/Desktop/CS2113T/tut_1.pdf\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -68,6 +75,7 @@ public class AddFileCommand extends AddCommand {
     private String categoryName;
     private String taskDescription;
     private String fileName;
+    private String originalFilePath;
     private String filePath;
 
     /**
@@ -90,7 +98,7 @@ public class AddFileCommand extends AddCommand {
         this.categoryName = categoryName;
         this.taskDescription = taskDescription;
         this.fileName = fileName;
-        this.filePath = filePath;
+        this.originalFilePath = filePath;
     }
 
     /**
@@ -136,7 +144,7 @@ public class AddFileCommand extends AddCommand {
      */
     private void copyFile(Task task) throws IOException, ExceedLimitException,
             TaskFileManager.DuplicateTaskFileException {
-        File sourceFile = new File(filePath);
+        File sourceFile = new File(originalFilePath);
         if (!sourceFile.exists() || !sourceFile.isFile()) {
             throw new FileNotFoundException();
         }
@@ -163,7 +171,7 @@ public class AddFileCommand extends AddCommand {
         Files.createDirectories(destinationPath.getParent());
 
         Files.copy(sourcePath, destinationPath, REPLACE_EXISTING);
-        filePath = String.format("%s/%s", StoragePath.TASK_FILE_DIRECTORY_PATH, randomHash);
+        filePath = randomHash;
     }
 
     private boolean exceedLengthLimit() {
@@ -172,6 +180,21 @@ public class AddFileCommand extends AddCommand {
 
     private boolean isDuplicateName(Task task, String fileName) {
         return task.getFiles().contains(fileName);
+    }
+
+    private void retrieveFile() throws Exception {
+        if (originalFilePath.isEmpty()) {
+            assert Executor.isGui() : "Must be using a Gui in order to retrieve file!";
+
+            String[] chosenFileInformation = GuiExecutor.executeFileChooser();
+            if (chosenFileInformation == null) {
+                throw new Exception(MESSAGE_NO_FILE_CHOSEN);
+            }
+            originalFilePath = chosenFileInformation[0];
+            if (fileName.isEmpty()) {
+                fileName = chosenFileInformation[1];
+            }
+        }
     }
 
     /**
@@ -186,14 +209,18 @@ public class AddFileCommand extends AddCommand {
         if (exceedLengthLimit()) {
             return new CommandResult(MESSAGE_FILE_EXCEED_LIMIT);
         }
-        if (filePath.isEmpty()) {
+        if (originalFilePath.isEmpty() && !Executor.isGui()) {
             return new CommandResult(MESSAGE_MISSING_FILE_PATH);
         }
         try {
             Task parentTask = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
+            retrieveFile();
+
             copyFile(parentTask);
-            TaskFile toAdd = new TaskFile(parentTask, fileName, filePath);
+            String fullFilePath = new File(originalFilePath).getAbsolutePath();
+            TaskFile toAdd = new TaskFile(parentTask, fileName, filePath, fullFilePath);
             parentTask.getFiles().add(toAdd);
+            StorageManager.setIsSave();
             return new CommandResult(messageAddFileSuccess(fileName));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
@@ -217,6 +244,8 @@ public class AddFileCommand extends AddCommand {
             return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
         } catch (ExceedLimitException e) {
             return new CommandResult(MESSAGE_IMPLICIT_FILE_EXCEED_LIMIT);
+        } catch (Exception e) {
+            return new CommandResult(e.getMessage());
         }
     }
 }

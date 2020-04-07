@@ -1,4 +1,3 @@
-
 package seedu.nuke;
 
 import seedu.nuke.command.CommandResult;
@@ -12,7 +11,7 @@ import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
 import seedu.nuke.util.Message;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Nuke {
@@ -31,7 +30,7 @@ public class Nuke {
         storageManager = new StorageManager(StoragePath.SAVE_PATH);
         ModuleManager.initialise(modulesMap);
         storageManager.loadList();
-        ScreenShotManager.saveScreenShot();
+        ScreenShotManager.initialise();
     }
 
     /**
@@ -65,8 +64,18 @@ public class Nuke {
      * Method to print the exit message to the user.
      */
     public void exit() {
-        ui.showSystemMessage(Message.DIVIDER);
-        storageManager.saveList();
+        try {
+            storageManager.cleanUp();
+        } catch (IOException e) {
+            ui.showMessage(e.getMessage());
+        }
+        ui.showMessage(Message.DIVIDER);
+
+        try {
+            storageManager.saveList();
+        } catch (IOException e) {
+            ui.showMessage(e.getMessage());
+        }
     }
 
     /**
@@ -79,9 +88,15 @@ public class Nuke {
             commandResult = Executor.executeCommand(userInput);
             ui.showResult(commandResult);
 
-            ScreenShotManager.saveScreenShot();
-
-            storageManager.saveList();
+            // Save list
+            if (StorageManager.isToSave()) {
+                try {
+                    storageManager.saveList();
+                } catch (IOException e) {
+                    ui.showMessage(e.getMessage());
+                }
+                ScreenShotManager.saveScreenShot();
+            }
         } while (!ExitCommand.isExit());
     }
 

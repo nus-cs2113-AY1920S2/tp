@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -17,6 +18,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_CATEGORY;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_CATEGORY_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.MESSAGE_EDIT_CATEGORY_SUCCESS;
 
 /**
@@ -28,11 +30,12 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_CATEGORY_SUCCESS;
 public class EditCategoryCommand extends EditCommand {
     public static final String COMMAND_WORD = "edc";
     public static final String FORMAT = COMMAND_WORD
-            + " <category name> -m <module code> [ -c <new category name> -p <new priority> "
-            + "(must include at least one) ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Edit name and priority of category"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+            + " <category name> -m <module code> { -c <new category name> -p <new priority> }";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Edit the name and priority of a category\n"
+            + "Format: %s\n"
+            + "Example: edc Priject -m CS2113T -c Project -p 3\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -95,6 +98,10 @@ public class EditCategoryCommand extends EditCommand {
         }
     }
 
+    private boolean exceedLengthLimit() {
+        return newCategoryName.length() > 15;
+    }
+
     /**
      * Executes the <b>Edit Category Command</b> to edit a <b>Category</b> with the <code>category name</code>
      * from the <b>Category List</b>.
@@ -106,10 +113,14 @@ public class EditCategoryCommand extends EditCommand {
      */
     @Override
     public CommandResult execute() {
+        if (exceedLengthLimit()) {
+            return new CommandResult(MESSAGE_CATEGORY_EXCEED_LIMIT);
+        }
         try {
             Category toEdit = DirectoryTraverser.getCategoryDirectory(moduleCode, oldCategoryName);
             fillAllAttributes(toEdit);
             toEdit.getParent().getCategories().edit(toEdit, newCategoryName, newPriority);
+            StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_CATEGORY_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

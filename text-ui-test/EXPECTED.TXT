@@ -13,17 +13,17 @@
 
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
-Welcome to NUKE
-What can I do for you?
+Welcome to NUKE Task Tracker!
+What would you like to do today?
 ----------------------------------------------------------------------------------------------------
 root : 
 There are no modules to show.
 
 root : 
-SUCCESS!! Module CS3235 Computer Security has been added.
+SUCCESS!! Module CS3235 Computer Security is added.
 
 root : 
-ALERT! The module is not provided by NUS currently.
+Sorry, the module is not provided by NUS currently.
 
 root : 
 There are no tasks to show.

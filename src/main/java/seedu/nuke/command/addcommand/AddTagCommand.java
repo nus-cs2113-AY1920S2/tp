@@ -25,12 +25,14 @@ public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "addg";
     public static final String FORMAT = COMMAND_WORD
-            + " <tag info> -m <module code> -c <category name>"
-            + " -t <task description>";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add tags to task"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+            + " <tag name> -m <module code> -c <category name> -t <task description>";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Add a tag to a task\n"
+            + "Format: %s\n"
+            + "Example: addg urgent -m CS2113T -c Lab -t complete project\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMATS = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"

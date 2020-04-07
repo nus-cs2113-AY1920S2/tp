@@ -5,6 +5,7 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -23,6 +24,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_TASK_EXCEED_LIMIT;
 
 /**
  * <h3>Edit Task Command</h3>
@@ -33,22 +35,22 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
 public class EditTaskCommand extends EditCommand {
     public static final String COMMAND_WORD = "edt";
     public static final String FORMAT = COMMAND_WORD
-            + " <task description> -m <module code> -c <category name>"
-            + " [ -t <new task description> -d <new deadline> -p <new priority> (must include at least one) ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "Edit description, deadline and priority of task"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+            + " <task description> -m <module code> -c <category name>\n\t"
+            + " { -t <new task description> -d <new deadline> -p <new priority> }";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Edit the description, deadline and priority of a task\n"
+            + "Format: %s\n"
+            + "Example: edt read week 6 nites -m CS2113T -c Lecture -t read week 8 notes -d sun -p 1\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<optional>(?:\\s+-[dp](?:\\s+\\w\\S*)+)*)"
-            + "(?<invalid>.*)"
-    );
-    public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<prioritySecond>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<invalid>.*)"
     );
 
     private String oldTaskDescription;
@@ -123,6 +125,10 @@ public class EditTaskCommand extends EditCommand {
         }
     }
 
+    private boolean exceedLengthLimit() {
+        return newTaskDescription.length() > 25;
+    }
+
     /**
      * Executes the <b>Edit Task Command</b> to edit a <b>Task</b> with the <code>task description</code>
      * from the <b>Task List</b>.
@@ -134,10 +140,14 @@ public class EditTaskCommand extends EditCommand {
      */
     @Override
     public CommandResult execute() {
+        if (exceedLengthLimit()) {
+            return new CommandResult(MESSAGE_TASK_EXCEED_LIMIT);
+        }
         try {
             Task toEdit = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, oldTaskDescription);
             fillAllAttributes(toEdit);
             toEdit.getParent().getTasks().edit(toEdit, newTaskDescription, newDeadline, newPriority);
+            StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

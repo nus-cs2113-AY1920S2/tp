@@ -9,10 +9,10 @@ import seedu.nuke.directory.DirectoryTraverser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_ADD_FILE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_FILE_PATH;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_FILE_EXCEED_LIMIT;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_FILE_PATH;
 
 public class AddFileCommandTest {
 

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import static seedu.nuke.parser.Parser.DEADLINE_PREFIX;
 import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_NO_TASKS_TO_SHOW;
 import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 
@@ -20,28 +21,40 @@ import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
  */
 public class ListTaskSortedCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsts";
-    public static final String FORMAT = COMMAND_WORD + " [ -d -p (choose 1; default -d) ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
-            + "List all undone tasks from earliest to latest deadline or "
-            + "from largest to smallest priority"
-            + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String FORMAT = COMMAND_WORD + " [ <module code> ] [ -d -p (choose 1; default -d) ]";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - List all undone tasks from nearest to latest deadline or from largest to smallest priority\n"
+            + "Note: -d to filter by deadline (default); -p to filter by priority\n"
+            + "Format: %s\n"
+            + "Example: lsts cs2113t -p\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<priority>(?:\\s+" + PRIORITY_PREFIX + ")?)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + ")?)"
             + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + ")?)"
             + "(?<prioritySecond>(?:\\s+" + PRIORITY_PREFIX + ")?)"
             + "(?<invalid>.*)"
     );
 
+    private String moduleCode;
     private boolean isByPriority;
 
-    public ListTaskSortedCommand(boolean isByPriority) {
+    public ListTaskSortedCommand(String moduleCode, boolean isByPriority) {
+        this.moduleCode = moduleCode;
         this.isByPriority = isByPriority;
     }
 
     @Override
     public CommandResult execute() {
-        // Get all tasks
-        ArrayList<Task> filteredTaskList = ModuleManager.getAllTasks().stream()
+        // Checks if module exists in Module List
+        if (!moduleCode.isEmpty()) {
+            if (!ModuleManager.contains(moduleCode)) {
+                return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
+            }
+        }
+        // Get all tasks with module code
+        String noKeyword = "";
+        ArrayList<Task> filteredTaskList = ModuleManager.filterExact(moduleCode, noKeyword, noKeyword).stream()
                 .filter(task -> !task.isDone()).collect(Collectors.toCollection(ArrayList::new));
 
         if (filteredTaskList.isEmpty()) {

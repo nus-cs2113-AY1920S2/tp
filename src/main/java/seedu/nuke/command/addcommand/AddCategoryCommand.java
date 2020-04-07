@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
+import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
@@ -29,10 +30,13 @@ import static seedu.nuke.util.Message.messageAddCategorySuccess;
 public class AddCategoryCommand extends AddCommand {
     public static final String COMMAND_WORD = "addc";
     public static final String FORMAT = COMMAND_WORD + " <category name> -m <module code> [ -p <priority> ]";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a new category under module"
-        + System.lineSeparator() + FORMAT + System.lineSeparator();
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - Add a new category to a module\n"
+            + "Format: %s\n"
+            + "Example: addc Project -m CS2113T -p 4\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
@@ -90,6 +94,7 @@ public class AddCategoryCommand extends AddCommand {
             Module parentModule = DirectoryTraverser.getModuleDirectory(moduleCode);
             Category toAdd = new Category(parentModule, categoryName, categoryPriority);
             parentModule.getCategories().add(toAdd);
+            StorageManager.setIsSave();
             return new CommandResult(messageAddCategorySuccess(categoryName));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);

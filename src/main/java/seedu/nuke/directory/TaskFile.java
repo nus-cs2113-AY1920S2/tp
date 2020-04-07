@@ -3,6 +3,7 @@ package seedu.nuke.directory;
 public class TaskFile extends Directory {
     private String fileName;
     private String filePath;
+    private String originalFilePath;
 
     /**
      * Constructs the task file.
@@ -13,11 +14,14 @@ public class TaskFile extends Directory {
      *  The name of the file
      * @param filePath
      *  The path to the file
+     * @param originalFilePath
+     *  The original path to the file
      */
-    public TaskFile(Task task, String fileName, String filePath) {
+    public TaskFile(Task task, String fileName, String filePath, String originalFilePath) {
         super(task);
         this.fileName = fileName;
         this.filePath = filePath;
+        this.originalFilePath = originalFilePath;
     }
 
     /**
@@ -38,6 +42,16 @@ public class TaskFile extends Directory {
      */
     public String getFilePath() {
         return filePath;
+    }
+
+    /**
+     * Returns the original path of the file.
+     *
+     * @return
+     *  The original path of the file
+     */
+    public String getOriginalFilePath() {
+        return originalFilePath;
     }
 
     @Override
@@ -90,8 +104,9 @@ public class TaskFile extends Directory {
      */
     @Override
     public String toString() {
-        return String.format("File Name: %s\nModule Code: %s\nCategory Name: %s\nTask Description: %s\n",
+        return String.format("File Name: %s\nModule Code: %s\nCategory Name: %s\nTask Description: %s\n"
+                + "Original File Path: %s\n",
                 fileName, getParent().getParent().getParent().getModuleCode(),
-                getParent().getParent().getCategoryName(), getParent().getDescription());
+                getParent().getParent().getCategoryName(), getParent().getDescription(), originalFilePath);
     }
 }
