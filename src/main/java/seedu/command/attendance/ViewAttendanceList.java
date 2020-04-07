@@ -3,25 +3,29 @@ package seedu.command.attendance;
 import seedu.attendance.AttendanceList;
 import seedu.command.Command;
 import seedu.exception.PacException;
-import seedu.ui.UI;
 
 /**
  * Class representing an attendance related command to List an attendanceList of a specific event.
  */
 public class ViewAttendanceList extends Command {
 
-    protected AttendanceList attendances;
+    protected AttendanceList attendanceList;
 
     public ViewAttendanceList(AttendanceList attendances) {
-        this.attendances = attendances;
+        this.attendanceList = attendances;
     }
 
+    /**
+     * To view the existing attendanceList.
+     * If the attendanceList is empty, it will display a message to inform that the attendanceList is empty.
+     * @throws PacException If AttendanceList is empty or AttendanceList fail to view.
+     */
     private void view() throws PacException {
         try {
-            if (attendances.isEmpty()) {
-                UI.display("Attendance List is empty");
+            if (attendanceList.isEmpty()) {
+                throw new PacException("Attendance List is empty");
             } else {
-                attendances.printList();
+                attendanceList.displayAttendanceList();
             }
         } catch (Exception e) {
             throw new PacException("Attendance List fail to view.");

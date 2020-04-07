@@ -18,6 +18,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
+/**
+ * To interpret the attendance command.
+ */
 public class AttendanceCommandInterpreter extends CommandInterpreter {
 
     AttendanceList attendances;
@@ -65,26 +68,34 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
         logger.info("My First Log");
         logger.fine("My Second Log");
 
-        switch (commandType) {
+        switch (commandType.toLowerCase().trim()) {
         case "add":
-            eventName = ui.getEventNameForAttendance();
-            attendances = getAttendance(eventName);
-            return new AddAttendanceList(attendances, eventName);
-        case "list":
-            eventName = ui.getEventNameForAttendance();
-            attendances = getAttendance(eventName);
-            return new ViewAttendanceList(attendances);
+            try {
+                eventName = ui.getEventNameForAttendance();
+                attendances = getAttendance(eventName);
+                return new AddAttendanceList(attendances, eventName);
+            } catch (Exception e) {
+                throw new PacException("Attendance Command Add failed.");
+            }
+        case "view":
+            try {
+                eventName = ui.getEventNameForAttendance();
+                attendances = getAttendance(eventName);
+                return new ViewAttendanceList(attendances);
+            }  catch (Exception e) {
+                throw new PacException("Attendance Command View failed.");
+            }
         case "clear":
-            eventName = ui.getEventNameForAttendance();
-            attendances = getAttendance(eventName);
-            return new ClearAttendanceList(attendances, eventName);
-
+            try {
+                eventName = ui.getEventNameForAttendance();
+                attendances = getAttendance(eventName);
+                return new ClearAttendanceList(attendances, eventName);
+            } catch (Exception e) {
+                throw new PacException("Attendance Command Clear failed.");
+            }
         case "sort":
             try {
-                UI.display("Please Key in either 'name' or 'status'.");
-                ui.readUserInput();
-                String sortType = ui.getUserInput();
-                switch (sortType) {
+                switch (sortType()) {
                 case "name":
                     try {
                         eventName = ui.getEventNameForAttendance();
@@ -114,5 +125,11 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
 
     private AttendanceList getAttendance(String eventName) throws PacException {
         return eventList.getEvent(eventName).getAttendanceList();
+    }
+
+    private String sortType() {
+        UI.display("Please Key in either 'name' or 'status'.");
+        ui.readUserInput();
+        return ui.getUserInput().toLowerCase().trim();
     }
 }
