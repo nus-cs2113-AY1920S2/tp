@@ -110,7 +110,7 @@ public abstract class FilterCommand extends Command {
         }
     }
 
-    protected ArrayList<TaskFile> createFilteredFileList(String moduleKeyword, String categoryKeyword,
+        protected ArrayList<TaskFile> createFilteredFileList(String moduleKeyword, String categoryKeyword,
             String taskKeyword, String fileKeyword, boolean isExact, boolean isAll) {
         if (isAll) {
             return filterFiles(moduleKeyword, categoryKeyword, taskKeyword, fileKeyword, isExact);

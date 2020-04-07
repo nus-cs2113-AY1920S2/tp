@@ -21,7 +21,7 @@ import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
 
 public class MarkAsDoneCommand extends EditCommand {
     public static final String COMMAND_WORD = "done";
-    public static final String FORMAT = COMMAND_WORD + " -m <module code> -c <category name>";
+    public static final String FORMAT = COMMAND_WORD + " <task description> -m <module code> -c <category name>";
     public static final String MESSAGE_USAGE = String.format(
             "%s - Mark a task as done\n"
             + "Format: %s\n"
