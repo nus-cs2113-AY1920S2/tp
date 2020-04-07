@@ -6,12 +6,10 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.storage.StoragePath;
-import seedu.nuke.directory.Category;
-import seedu.nuke.directory.Directory;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.Message.MESSAGE_NO_CATEGORIES_TO_SHOW;
 import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 
