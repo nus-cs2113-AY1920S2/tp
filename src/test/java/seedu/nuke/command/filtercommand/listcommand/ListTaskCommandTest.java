@@ -19,7 +19,7 @@ import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 public class ListTaskCommandTest {
 
     @Test
-    public void testEmptyTaskList () {
+    public void testEmptyTaskList() {
         ModuleManager.initialise();
         DirectoryTraverser.setCurrentLevelToRoot();
 
