@@ -30,6 +30,14 @@ public class PerformanceList {
         }
     }
 
+    /**
+     * Add performance to performanceList
+     * @param performance the performance to be added
+     */
+    public void add(Performance performance) {
+        performanceList.add(performance);
+    }
+
     private boolean isRepeated(Performance performance) {
         if (isEmpty()) {
             return false;

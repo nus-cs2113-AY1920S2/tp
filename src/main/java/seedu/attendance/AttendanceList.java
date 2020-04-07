@@ -57,10 +57,10 @@ public class AttendanceList {
     }
 
     /**
-     * To load to the existing attendanceList of the specific event from storage.
-     * @param attendance the attendanceList in the event.
+     * Add attendance to attendanceList
+     * @param attendance the attendance to be added
      */
-    public void loadFromStorage(Attendance attendance) {
+    public void add(Attendance attendance) {
         attendanceList.add(attendance);
     }
 
