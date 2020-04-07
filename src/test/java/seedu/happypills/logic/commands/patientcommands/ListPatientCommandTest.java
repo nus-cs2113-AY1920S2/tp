@@ -24,7 +24,7 @@ class ListPatientCommandTest {
     public static final String DIVIDER = "    =====================================================";
     private static String expectedOutputFromEmptyList = "    There are no patients in the list.\n" + DIVIDER;
     private static String expectedOutputFromFilledList = "    Here is your list of patients:\n"
-            + "    NRIC      | Name        \n"
+            + "    NRIC      | Name\n"
             + "    T9999999N | Mallory\n"
             + "    S9876543F | Eve\n"
             + "    S9888888G | Bob\n"
