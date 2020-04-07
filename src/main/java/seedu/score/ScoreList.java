@@ -43,10 +43,10 @@ public class ScoreList implements Serializable {
         String msg;
         int counter = 1;
         for (double score : scores) {
-            System.out.println(counter + ") " + score);
+            System.out.println(counter + ") " + score + "%");
             counter++;
         }
-        System.out.println("Average Score: " + getAvg());
+        System.out.println("Average Score: " + getAvg() + "%");
     }
 
 }
