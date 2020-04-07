@@ -8,17 +8,18 @@
     2. [View user profile](#32-view-user-profile)
     3. [Record meals](#33-record-meals)
     4. [Check meals](#34-check-meals)
-    5. [Calculate calories](#35-calculate-calories)
-    6. [List food database](#36-list-food-database)
-    7. [Add food into database](#37-add-food-into-database)
-    8. [Delete food from database](#38-delete-food-from-database)
-    9. [Get a recommended recipe](#39-get-a-recommended-recipe)
-    10. [View recipe](#310-view-recipe)
-    11. [Check Weight Progress](#311-check-weight-progress)
-    12. [Update Weight](#312-update-weight-progress)
-    13. [Delete weight](#313-delete-weight-progress)
-    14. [Help](#314-help)
-    15. [Exit application](#315-exit-application)    
+    5. [Check required calories](#35-check-required-calories)
+    6. [Calculate calories](#36-calculate-calories)
+    7. [List food database](#37-list-food-database)
+    8. [Add food into database](#38-add-food-into-database)
+    9. [Delete food from database](#39-delete-food-from-database)
+    10. [Get a recommended recipe](#310-get-a-recommended-recipe)
+    11. [View recipe](#311-view-recipe)
+    11. [Check Weight Progress](#312-check-weight-progress)
+    12. [Update Weight](#313-update-weight-progress)
+    13. [Delete weight](#314-delete-weight-progress)
+    14. [Help](#315-help)
+    15. [Exit application](#316-exit-application)    
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -163,8 +164,47 @@ Expected Output:
     Food: noodles, Calories: 2.00cal
     For morning, total calculable calories intake: 7.00cal.
     ```
-  
-### 3.5 Calculate calories
+
+### 3.5 Check required calories
+Check the required calories for the current `profile` based on the activity level for the day.
+
+Format: `check-required-cal DATE ACTIVITYLEVEL`
+
+Attention:
+```
+`DATE` is restricted to the range of `Monday` to `Sunday`.
+`ACTIVITYLEVEL` is restricted to `low`, `moderate` or `high`.
+```
+
+Example of usage:
+
+`check-required-cal Monday low`
+
+Expected Output:
+
+* If the profile is trying to gain weight but is having insufficient calories for the day:
+    ```
+    Calories Intake and Requirement for SATURDAY:
+    Total calculable calories intake for the entire day: 5.00cal.
+    Calories requirement for high activity level: 2848.41cal.
+    Ohh no!!! You have consumed too little calories.
+    ```
+* If the profile is trying to lose weight but is having excess calories for the day:
+    ```
+    Calories Intake and Requirement for WEDNESDAY:
+    Total calculable calories intake for the entire day: 2805.00cal.
+    Calories requirement for moderate activity level: 2559.44cal.
+    Ohh no!!! You have consumed too much calories
+    ```
+* If the profile is working towards the weight goal and is having sufficient calories for the day:
+    ```
+    Calories Intake and Requirement for MONDAY:
+    Total calculable calories intake for the entire day: 2860.00cal.
+    Calories requirement for low activity level: 2270.47cal.
+    Well done!!! You have consumed sufficient calories.
+    ```
+
+### 3.6 Calculate calories
 Calculates calories intake on a day or during a time period.
 
 Format: 
@@ -192,9 +232,9 @@ Example of usage:
   calculate Monday->Wednesday
   Your Calories intake during the given period is 19.00.
   ```
-  * Notice `Apple` is in out database with calories info: 2.00
+  * Notice `Apple` is in our database with calories info: 2.00
 
-### 3.6 List food database
+### 3.7 List food database
 Lists all foods and relevant calories info recorded in our database.
 
 Format: `list-food`
@@ -212,7 +252,7 @@ Food: Oil, Calories: 5.00cal
 Food: Tea, Calories: 6.00cal
 ```
 
-### 3.7 Add food into database
+### 3.8 Add food into database
 Adds a new food into database.
 
 Format: `addf FOODNAME --CALORIES`
@@ -231,7 +271,7 @@ Sorry, to add new food to database you must input correct calories info.
 It has to be positive Integer or Float
 ```
 
-### 3.8 Delete food from database
+### 3.9 Delete food from database
 Deletes a food from the database
 
 Format: `delf FOODNAME`
@@ -250,7 +290,7 @@ Example of usage:
     No need to delete! Referred Food doesn't exist in database
     ```
 
-### 3.9 Get a recommended recipe
+### 3.10 Get a recommended recipe
 Get a recommend recipe based on user's physical conditions and activity level.
 
 Format: `new-recipe MAXIMUM_FODD_TYPES ACTIVITY_LEVEL`
@@ -303,7 +343,7 @@ Example of usage:
 
     ```
 
-### 3.10 View recipe
+### 3.11 View recipe
 Show the recipe recommended for the user.
 
 Format: `show-recipe`
@@ -336,7 +376,8 @@ Example of usage:`show-recipe`
     SATURDAY  Chicken(1.00),Carrots(3.00)                                 Apple(2.00),Chicken(1.00)                                   Carrots(3.00),Apple(2.00)
     SUNDAY    Chicken(1.00),Apple(2.00)                                   Rice(4.00),Chicken(1.00)                                    Rice(4.00),Chicken(1.00)
     ```
-### 3.11 Check Weight Progress
+
+### 3.12 Check Weight Progress
 Check current weight progress from the beginning.
 
 Format: `check-weight-progress JOHN`
@@ -374,7 +415,7 @@ Example of usage:`check-weight-progress JOHN`
                                                                                   
     ```  
 
-### 3.12 Update Weight Progress
+### 3.13 Update Weight Progress
 
 Update weight in profile when there is changes to user's weight after following diet plan.
 
@@ -390,7 +431,7 @@ Format: `update-weight 70`
                                                                                       
     ```
 
-### 3.13 Delete Weight Progress
+### 3.14 Delete Weight Progress
 
 Allows user to delete wrong weight input or remove any previous input weights in the profile.
 
@@ -417,7 +458,7 @@ Format: `delete-weight 2`
                                                                                       
     ```
 
-### 3.14 Help
+### 3.15 Help
 Show the help function table with the list of commands available
 
 Format: `help`
@@ -455,7 +496,7 @@ Format: `help`
     ```
 
 
-### 3.15 Exit application
+### 3.16 Exit application
 Terminates and exits the application
 
 Format: `exit`
@@ -489,14 +530,15 @@ No. | Command | Description
 2  | `profile` | View user profile
 3  | `record-meal` | Record a meal
 4  | `check-meal` | Check a meal 
-5  | `calculate` | Calculates calories intake on a day or during a time period
-6  | `list-food` | List all foods recorded in the database 
-7  | `addf` | Add a new food into database
-8  | `delf` | Delete a food from the database
-9  | `new-recipe` | Create a recommended recipe for user
-10 | `show-recipe` | Show the recipe recommended for user
-11 | `update-weight` | Update user's weight changes
-12 | `check-weight-progress` | Check user's weight progress
-13 | `delete-weight` | Delete user's weight from progress
-14 | `help` | Show the help function table
-15 | `exit` | Exit application
+5  | `check-required-cal` | Check calories required for an activity level
+6  | `calculate` | Calculates calories intake on a day or during a time period
+7  | `list-food` | List all foods recorded in the database 
+8  | `addf` | Add a new food into database
+9  | `delf` | Delete a food from the database
+10 | `new-recipe` | Create a recommended recipe for user
+11 | `show-recipe` | Show the recipe recommended for user
+12 | `update-weight` | Update user's weight changes
+13 | `check-weight-progress` | Check user's weight progress
+14 | `delete-weight` | Delete user's weight from progress
+15 | `help` | Show the help function table
+16 | `exit` | Exit application
