@@ -27,7 +27,9 @@ public class SearchCommandTest {
     private String stringDate1;
     private static LocalDate testDate1;
 
-    //Set up the variables needed for the tests
+    /**
+     * Set up variables for tests
+     */
     @BeforeEach
     public void setup() {
         emptyTaskList = new TaskList();
