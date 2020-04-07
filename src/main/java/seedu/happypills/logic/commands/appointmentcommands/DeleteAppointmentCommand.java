@@ -1,6 +1,7 @@
 package seedu.happypills.logic.commands.appointmentcommands;
 
 import seedu.happypills.HappyPills;
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.Appointment;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
@@ -88,16 +89,19 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
+        if(!Checker.isValidNric(nric)) {
+            return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
+        }
         String message = "";
         Patient delPatient = findPatient(patients);
         if (delPatient == null) {
             message = PatientTextUi.patientNotFoundMessage;
-            return TextUi.appendDivider(message);
+            return message;
         }
         Appointment delAppt = findAppointment(appointments);
         if (delAppt == null) {
             message = AppointmentTextUi.appointmentNotFoundMessage;
-            return TextUi.appendDivider(message);
+            return message;
         }
         Boolean isSuccess = deleteAppt(appointments,appointmentId) && deleteAppt(delPatient,appointmentId);
         if (isSuccess) {

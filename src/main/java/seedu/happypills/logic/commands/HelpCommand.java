@@ -36,7 +36,7 @@ public class HelpCommand implements Command {
         } else if (userCommand[2].equalsIgnoreCase("appt")) {
             message = getAppointmentHelp(userCommand[1]);
         } else {
-            message = TextUi.printIncorrectCommand(userCommand[1] + " " + userCommand[2]);
+            message = TextUi.incorrectCommandMessage(userCommand[1] + " " + userCommand[2]);
         }
         return message + TextUi.DIVIDER;
     }

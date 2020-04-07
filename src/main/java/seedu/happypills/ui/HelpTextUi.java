@@ -2,6 +2,16 @@ package seedu.happypills.ui;
 
 public class HelpTextUi extends TextUi {
 
+    /**
+     * Construct a string for incomplete commands, probably missing something.
+     * @param helpString provide the help command that user can use to find the right format
+     * @return a string for incomplete commands.
+     */
+    public static String incompleteCommandString(String helpString) {
+        String msg = "    Command is incomplete. Please use the " + helpString + " command to find out more.";
+        return msg;
+    }
+
     public static final String GENERAL_HELP_MESSAGE = ""
             + "    HappyPills Commands\n"
             + "    ---------------------------------------------------\n"
@@ -185,5 +195,4 @@ public class HelpTextUi extends TextUi {
             + "    To make an appointment as done, run the following command:\n"
             + "    Note: patient details are in UPPER CASE\n"
             + "      done appt NRIC APPT_ID\n";
-
 }

@@ -9,10 +9,10 @@ public class Checker {
      * @return boolean true if the time format is correct otherwise false
      */
     public static boolean isValidPhoneNum(String phoneNumber) {
-        //String pattern = "^[0-9]{9}$";
+        //String pattern = "^[89][0-9]{7}$";
         //return phoneNumber.matches(pattern);
         String pattern = "([8-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
-        return phoneNumber.matches(pattern);
+        return phoneNumber.isEmpty() && phoneNumber.matches(pattern);
     }
 
     /**
@@ -77,10 +77,10 @@ public class Checker {
     /**
      * Check if the String can be converted to Integer.
      *
-     * @param input value to check if is integer
+     * @param input value to check if is positive integer
      * @return true if is an integer, false otherwise
      */
-    public static boolean isInteger(String input) {
+    public static boolean isPositiveInteger(String input) {
         try {
             int x = Integer.parseInt(input);
             if (x < 1) {
