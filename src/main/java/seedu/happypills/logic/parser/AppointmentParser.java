@@ -134,6 +134,7 @@ public class AppointmentParser {
         if (parseInput[3].equalsIgnoreCase("")) {
             System.out.println("    /r[REASONS]");
         }
+        System.out.println("    To abort, enter \"clear\"");
     }
 
     private static String[] splitInput(String content) {

@@ -72,7 +72,7 @@ public class AppointmentTextUi extends TextUi {
             content += "    " + id + "| " + nric + "| " + date + "| " + time + "| " + reason + "\n";
         }
         if (content.isEmpty()) {
-            returnMessage = "    There are no appointments in the list.\n";
+            returnMessage = "    The patient does not have any appointments scheduled.\n" + TextUi.DIVIDER;
         } else {
             returnMessage += content + DIVIDER;
         }
