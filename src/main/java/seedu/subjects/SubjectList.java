@@ -118,8 +118,6 @@ public class SubjectList {
         return subject;
     }
 
-
-
     /**
      * Lists all the subjects in the list.
      * @param subjects A list of subjects to be displayed.
