@@ -552,6 +552,11 @@ If the user supplies an `assignment` command, the `editAssignment()` method will
 
 If the user supplies an `event` command, the `editEvent()` method will be invoked. This method extracts the `eventName`, `location`, `startDateTime`, `endDateTime` and `comments` string to return a new instance of the `Event` class.
 
+Afterwards, the task will be checked to see whether it is a `RepeatEvent` task type. If it is not, it will proceed to **Step 6**.
+If it is a `RepeatEvent` task, the edited task as well as the task to be edited is passed to a `editRepeatEvent` method to edit the repeated task. 
+In the `editRepeatEvent` method, the `numOfPeriod`, `typeOfPeriod`, `originalDateAndTime` and `periodCounter` will be extracted to be passed into creating a new `RepeatEvent` task. 
+
+
 **Step 6**  
 This newly instanced class (either `Assignment` or `Event`) will be passed into the method `editTask()` of the `TaskList` class. The `editTask()` method of the `TaskList` class uses Java’s `ArrayList` `set()` method to replace the task.
 
@@ -560,7 +565,11 @@ Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed 
 
 The following sequence diagram summarises what happens when the `EditCommand` class is executed.
 
-![EditCommand\_SequenceDiagram.png](images/EditCommand_SequenceDiagram.png)
+![EditCommand\_SequenceDiagram.png](images/EditCommand_MainSequence.png)
+
+The following sequence diagram shows the checking of `RepeatEvent` task type.
+
+![EditCommand\_Ref.png](images/EditCommand_Ref.png)
 
 #### 3.5.2. Design Considerations
 
