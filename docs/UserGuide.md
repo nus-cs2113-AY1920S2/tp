@@ -192,6 +192,11 @@ By using the `goal` command, users can set specific goals for how long they woul
 
 **Example:** `goal core /g 24:00:00` a goal of `24:00:00` is added for the tag `core`  
 
+### Delete goal: `goal TAG_NAME /d`
+**Usage:** Deletes the duration goal set for the tag.
+
+**Format:** `goal TAG_NAME /d`
+
 ### View goals: `goal`
 **Usage:** Displays the tags with their goals, actual time spent on activities with these tags and the difference between the 2 timings.
 
