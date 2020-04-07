@@ -31,7 +31,7 @@ public class PerformanceList {
     }
 
     /**
-     * Add performance to performanceList
+     * Add performance to performanceList.
      * @param performance the performance to be added
      */
     public void add(Performance performance) {

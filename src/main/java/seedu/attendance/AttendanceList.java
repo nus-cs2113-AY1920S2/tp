@@ -57,7 +57,7 @@ public class AttendanceList {
     }
 
     /**
-     * Add attendance to attendanceList
+     * Add attendance to attendanceList.
      * @param attendance the attendance to be added
      */
     public void add(Attendance attendance) {
