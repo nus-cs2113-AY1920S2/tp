@@ -13,6 +13,7 @@ import seedu.happypills.logic.commands.appointmentcommands.IncorrectAppointmentC
 import seedu.happypills.logic.commands.appointmentcommands.ListAppointmentCommand;
 
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.TextUi;
 
@@ -37,14 +38,14 @@ public class AppointmentParser {
                 return new EditAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim(),
                         detailedCommand[2]);
             } else {
-                throw new HappyPillsException(TextUi.incompleteCommandString(" help edit appt"));
+                throw new HappyPillsException(HelpTextUi.incompleteCommandString("help edit appt"));
             }
         } else if (userCommand[0].equalsIgnoreCase("done")) {
             String [] detailedCommand = userCommand[2].trim().split(" ",2);
             if (detailedCommand.length == 2) {
                 return new DoneAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim());
             } else {
-                throw new HappyPillsException(TextUi.incompleteCommandString(" help done appt"));
+                throw new HappyPillsException(HelpTextUi.incompleteCommandString("help done appt"));
             }
         } else if (userCommand[0].equalsIgnoreCase("list")) {
             return new ListAppointmentCommand();
@@ -53,12 +54,12 @@ public class AppointmentParser {
             if (detailedCommand.length == 2) {
                 return new DeleteAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim());
             } else {
-                throw new HappyPillsException(TextUi.incompleteCommandString(" help delete appt"));
+                throw new HappyPillsException(HelpTextUi.incompleteCommandString("help delete appt"));
             }
         } else if (userCommand[0].equalsIgnoreCase("find")) {
             return new FindAppointmentCommand(userCommand[2]);
         } else {
-            throw new HappyPillsException(TextUi.printIncorrectCommand(userCommand[0]));
+            throw new HappyPillsException(TextUi.incorrectCommandMessage(userCommand[0]));
         }
     }
 

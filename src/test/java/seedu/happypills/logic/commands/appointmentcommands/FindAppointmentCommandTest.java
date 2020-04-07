@@ -29,9 +29,9 @@ public class FindAppointmentCommandTest {
         newPatientRecordMap = new PatientRecordMap();
 
         //Add test patient
-        Patient patientOne = new Patient("P1", "S123A", 123,
+        Patient patientOne = new Patient("P1", "S1234567A", 123,
                 "01/01/2000", "O+", "None", "NIL");
-        Patient patientTwo = new Patient("P2", "S456B", 456,
+        Patient patientTwo = new Patient("P2", "S4567890B", 456,
                 "01/02/1990", "O+", "None", "NIL");
         try {
             newPatientMap.add(patientOne);
@@ -41,9 +41,9 @@ public class FindAppointmentCommandTest {
         }
 
         Appointment appointmentOne = new Appointment(
-                "1","S123A", "01/02/2020", "12:00:00","reason1",false);
+                "1","S1234567A", "01/02/2020", "12:00:00","reason1",false);
         Appointment appointmentTwo = new Appointment(
-                "2","S123A", "01/03/2020", "13:00:00","reason2", false);
+                "2","S1234567A", "01/03/2020", "13:00:00","reason2", false);
 
         patientOne.addAppointment(appointmentOne);
         patientOne.addAppointment(appointmentTwo);
@@ -58,7 +58,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void getAppointment_patientNotFound() throws HappyPillsException {
         String expectedOutputNotfound = "    The patient cannot be found. Please try again.\n" + DIVIDER;
-        String message = new FindAppointmentCommand("S789C").execute(
+        String message = new FindAppointmentCommand("S7890123C").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputNotfound, message);
     }
@@ -66,7 +66,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void getAppointment_EmptyList_notFound() throws HappyPillsException {
         String expectedOutputEmptyList = "    There are no appointments in the list.\n";
-        String message = new FindAppointmentCommand("S456B").execute(
+        String message = new FindAppointmentCommand("S4567890B").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEmptyList, message);
     }
@@ -78,7 +78,7 @@ public class FindAppointmentCommandTest {
                 + "    1     | S123A     | 01/02/2020 | 12:00:00  | reason1\n"
                 + "    2     | S123A     | 01/03/2020 | 13:00:00  | reason2\n"
                 + DIVIDER;
-        String message = new FindAppointmentCommand("S123A").execute(
+        String message = new FindAppointmentCommand("S1234567A").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputInList, message);
     }

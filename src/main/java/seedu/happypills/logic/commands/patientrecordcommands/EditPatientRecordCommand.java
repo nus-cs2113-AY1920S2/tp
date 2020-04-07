@@ -54,11 +54,11 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords)
             throws HappyPillsException {
         if (newContent.length() < 3) {
-            return HelpTextUi.editPatientRecordHelpMessage;
+            return HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE;
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return HelpTextUi.editPatientRecordHelpMessage;
+            return HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE;
         }
         String field = "";
         if (newContent.contains(SYMPTOM_TAG)) {
@@ -102,9 +102,9 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         if (output) {
             try {
                 Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
-                        StorageTextUi.getFormattedPrString(patientRecords));
+                        StorageTextUi.getFormattedPrString(patientRecords,patients));
             } catch (IOException e) {
-                logger.info("Adding patient list to file failed.");
+                logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
             }
         }
         errorMsg = TextUi.appendDivider(errorMsg);

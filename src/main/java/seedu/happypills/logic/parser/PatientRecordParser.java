@@ -71,7 +71,7 @@ public class PatientRecordParser {
     }
 
     private static void checkIndexValidity(String[] input) throws HappyPillsException {
-        if (!Checker.isInteger(input[1])) {
+        if (!Checker.isPositiveInteger(input[1])) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_INDEX);
         }
     }
@@ -122,7 +122,7 @@ public class PatientRecordParser {
         if (edit.length < 4) {
             throw new HappyPillsException(Messages.MESSAGE_MISSING_FIELD);
         }
-        if (!Checker.isInteger(edit[3].trim())) {
+        if (!Checker.isPositiveInteger(edit[3].trim())) {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_INDEX);
         }
         if (!Checker.isValidNric(edit[2].toUpperCase().trim())) {

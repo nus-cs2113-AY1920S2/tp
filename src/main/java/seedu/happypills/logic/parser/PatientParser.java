@@ -8,7 +8,6 @@ import seedu.happypills.logic.commands.patientcommands.PatientCommand;
 import seedu.happypills.logic.commands.patientcommands.IncorrectPatientCommand;
 import seedu.happypills.logic.commands.patientcommands.ListPatientCommand;
 import seedu.happypills.logic.commands.patientcommands.GetPatientCommand;
-import seedu.happypills.logic.commands.patientrecordcommands.IncorrectPatientRecordCommand;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
@@ -51,6 +50,9 @@ public class PatientParser {
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
             return parsePatientEdit(fullCommand);
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
+            if (userCommand.length != 3 || isCommandLengthOne) {
+                throw new HappyPillsException(Messages.MESSAGE_INCORRECT_INPUT_FORMAT);
+            }
             return new DeletePatientCommand(userCommand[2]);
         } else {
             throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
@@ -216,7 +218,8 @@ public class PatientParser {
                     || !Checker.isValidNric(parseInput[1].trim())) {
                 parseInput[1] = update.trim().substring(2).toUpperCase().trim();
             } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
-                    || !Checker.isInteger(parseInput[2].trim()) || !Checker.isValidPhoneNum(parseInput[2].trim())))) {
+                    || !Checker.isPositiveInteger(parseInput[2].trim())
+                    || !Checker.isValidPhoneNum(parseInput[2].trim())))) {
                 parseInput[2] = update.substring(1).trim();
             } else if (update.trim().startsWith("dob") && (parseInput[3].equalsIgnoreCase("")
                     || !Checker.isValidDate(parseInput[3].trim()))) {

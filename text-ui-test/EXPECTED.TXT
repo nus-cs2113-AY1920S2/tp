@@ -12,116 +12,6 @@ What can I do for you today, doctor?
     Command is invalid. Enter help to know how to use HappyPills.
     =====================================================
     =====================================================
-    Command is invalid. Enter help to know how to use HappyPills.
-    =====================================================
-    =====================================================
-    ic is not a valid input.
-    ic will not be added
-    =====================================================
-    Please input your missing detail listed below
-    /n[NAME]
-    /ic NRIC (Format: [S/T][7-digits][A-Z])
-    /p[PHONE] only number and must be 8 digit
-    /b[BLOOD TYPE]
-    /t TIME (Format: HH:mm)
-    =====================================================
-    =====================================================
-    Please input your missing detail listed below
-    /p[PHONE] only number and must be 8 digit
-    =====================================================
-    =====================================================
-    Please input your missing detail listed below
-    /p[PHONE] only number and must be 8 digit
-    =====================================================
-    =====================================================
-        Are you sure all the listed details are correct?
-        Name : Eve
-        NRIC : S9876543F
-        Phone Number : 91265432
-        DOB : 22/05/1999
-        Blood Type : O-
-        Allergies : NIL
-        Remarks : NIL
-                                                   (Y/N)?
-    =====================================================
-    =====================================================
-    The current information is not added.
-    Please add all the details again! Thank you.
-    =====================================================
-    =====================================================
-        Are you sure all the listed details are correct?
-        Name : Eve
-        NRIC : S9876543F
-        Phone Number : 91265432
-        DOB : 22/05/1999
-        Blood Type : O-
-        Allergies : School
-        Remarks : Best Friend with Mallory
-                                                   (Y/N)?
-    =====================================================
-    =====================================================
-    Got it! I've added this patient:
-        Name : Eve
-        NRIC : S9876543F
-        Phone Number : 91265432
-        DOB : 22/05/1999
-        Blood Type : O-
-        Allergies : School
-        Remarks : Best Friend with Mallory
-    =====================================================
-    =====================================================
-    ic is not a valid input.
-    ic will not be added
-    =====================================================
-    blah is not a valid input.
-    blah will not be added
-    =====================================================
-    p 123456 is not a valid input.
-    p 123456 will not be added
-    =====================================================
-    dob is not a valid input.
-    dob will not be added
-    =====================================================
-    b is not a valid input.
-    b will not be added
-    =====================================================
-    Please input your missing detail listed below
-    /n[NAME]
-    /ic NRIC (Format: [S/T][7-digits][A-Z])
-    /p[PHONE] only number and must be 8 digit
-    /b[BLOOD TYPE]
-    /t TIME (Format: HH:mm)
-    =====================================================
-    =====================================================
-        Are you sure all the listed details are correct?
-        Name : Eve
-        NRIC : S9876543F
-        Phone Number : 91265432
-        DOB : 22/05/1999
-        Blood Type : O-
-        Allergies : NIL
-        Remarks : NIL
-                                                   (Y/N)?
-    =====================================================
-    =====================================================
-    The current information is not added.
-    Please add all the details again! Thank you.
-    =====================================================
-    =====================================================
-        Are you sure all the listed details are correct?
-        Name : Eve
-        NRIC : S9876543F
-        Phone Number : 91265432
-        DOB : 22/05/1999
-        Blood Type : O-
-        Allergies : School
-        Remarks : Best Friend with Mallory
-                                                   (Y/N)?
-    =====================================================
-    =====================================================
-    Patient is already in the list. Please use help command.
-    =====================================================
-    =====================================================
         Are you sure all the listed details are correct?
         Name : Alice
         NRIC : S9876543G
@@ -172,7 +62,6 @@ What can I do for you today, doctor?
     =====================================================
     =====================================================
     Alice | S9876543G
-    Eve | S9876543F
     =====================================================
     =====================================================
     Incorrect input format. Sorry please try again
@@ -227,7 +116,7 @@ What can I do for you today, doctor?
                                                    (Y/N)?
     =====================================================
     =====================================================
-    Patient Record has been added.
+    Patient does not exist. Please try again.
     =====================================================
     =====================================================
         Are you sure all the listed details are correct?
@@ -239,5 +128,9 @@ What can I do for you today, doctor?
                                                    (Y/N)?
     =====================================================
     =====================================================
-    Patient Record has been added.
+    Patient does not exist. Please try again.
+    =====================================================
+    =====================================================
+    Thank you for using HappyPills! ^.^
+    See you again!
     =====================================================
