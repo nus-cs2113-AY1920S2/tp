@@ -30,6 +30,11 @@ public class DateTime {
         this.time = time;
     }
 
+    public DateTime(LocalDate date) {
+        this.date = date;
+        this.time = LocalTime.of(23, 59);
+    }
+
     public DateTime() {
         this(null, null);
     }
@@ -100,7 +105,7 @@ public class DateTime {
         return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "_";
     }
 
-    public String getDateTimeSortFormat() {
+    public String getDateTimeInSortFormat() {
         return getDateInSortFormat() + getTimeInSortFormat();
     }
 

@@ -225,8 +225,8 @@ public class ModuleManager implements Iterable<Module> {
     public static ArrayList<Task> sortAllTasks() {
         ArrayList<Task> allTasks = getAllTasks();
         allTasks.sort((t1, t2) -> {
-            String t1Deadline = t1.getDeadline().isPresent() ? t1.getDeadline().getDateTimeSortFormat() : "";
-            String t2Deadline = t2.getDeadline().isPresent() ? t2.getDeadline().getDateTimeSortFormat() : "";
+            String t1Deadline = t1.getDeadline().isPresent() ? t1.getDeadline().getDateTimeInSortFormat() : "";
+            String t2Deadline = t2.getDeadline().isPresent() ? t2.getDeadline().getDateTimeInSortFormat() : "";
             return t1Deadline.compareToIgnoreCase(t2Deadline);
         });
         return allTasks;
