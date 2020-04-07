@@ -11,7 +11,6 @@
 2. [Setting Up](#2-setting-up)  
     2.1. [Requirements](#21-requirements)   
     2.2. [Startup using Command Line](#22-startup-using-command-line)  
-    2.3. [Startup using JAR](#23-startup-using-jar)   
 3. [Quick Start](#3-quick-start)  
     3.1. [Using Pac](#31-using-pac)
 4. [Features](#4-features)  
@@ -81,13 +80,6 @@ or above installed in your Computer.
 1.  You should see this screen if everything is successful:    
     ![screen](images/Startupscreen.PNG)
 
-### 2.3 Startup using JAR
-1.  Open home folder containing Pac.
-1.  Run the packaged JAR file by double clicking it 
-    and a window should appear in a few seconds.
-    <INSERT IMAGE>
-1.  Once opened, type in the command when prompted and press **Enter**.
-1.  You should see this screen if everything is successful.
 
 ##
 ## 3. Quick Start
