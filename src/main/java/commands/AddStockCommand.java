@@ -67,7 +67,6 @@ public class AddStockCommand extends StockCommand {
     private Map<String, Pair<Integer, Double>> parseIntoAddIngredientArgs(
             String fullInputLine) throws InvalidStockCommandException {
         
-        Map<String, Pair<Integer, Double>> ingredientInfo = new HashMap<>();
         String[] wordArgs = fullInputLine.split(";");
         
         Optional<String> parsedIngredientName = Optional.empty();
@@ -98,6 +97,7 @@ public class AddStockCommand extends StockCommand {
         // Second check.
         checkValidParsedIngredientArguments(parsedIngredientName, parsedQuantity, parsedPrice);
         
+        Map<String, Pair<Integer, Double>> ingredientInfo = new HashMap<>();
         ingredientInfo.put(parsedIngredientName.get(), Pair.of(parsedQuantity.get(), parsedPrice.get()));    
         return ingredientInfo;
     }    
@@ -196,7 +196,7 @@ public class AddStockCommand extends StockCommand {
                     + ls
                     + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
         } else {
-            assert(hasIngredientNameTag && hasQuantityTag && hasPriceTag);
+            assert (hasIngredientNameTag && hasQuantityTag && hasPriceTag);
             return;
         }
     }
