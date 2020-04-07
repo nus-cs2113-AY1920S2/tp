@@ -37,6 +37,10 @@ CS2100 -|||- Computer Organisation -|||- NIL
 Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
+Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+Lecture -|||- 1
 --- TASK ---
 watch webcast -|||- N -|||-  -|||- 1
 --- FILE ---
@@ -62,14 +66,13 @@ Big Lab Work -|||- N -|||- 25/03/2020 06:00PM -|||- 7
 --- END TASK ---
 Lab -|||- 0
 --- TASK ---
+read -|||- N -|||-  -|||- 0
+--- FILE ---
+--- END FILE ---
 tp -|||- N -|||-  -|||- 0
 --- FILE ---
---- END FILE ---
-read handouts -|||- N -|||- 28/03/2020 11:59PM -|||- 0
---- FILE ---
---- END FILE ---
-write -|||- N -|||- 07/04/2020 11:59PM -|||- 0
---- FILE ---
+Number_2 -|||- zpNbS6YtMIQgq8sz -|||- C:\Users\icecl\Desktop\CS2113T\tP Diagrams\Number_2.png
+Number_1 -|||- fwDbf0OsCZSUwyxH -|||- C:\Users\icecl\Desktop\CS2113T\tP Diagrams\Number_1.png
 --- END FILE ---
 --- END TASK ---
 Lecture -|||- 1

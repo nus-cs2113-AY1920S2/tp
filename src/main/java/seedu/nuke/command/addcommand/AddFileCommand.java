@@ -39,9 +39,9 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_FILE_SYSTEM_EXCEPTION;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_IMPLICIT_FILE_EXCEED_LIMIT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_FILE_PATH;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_FILE_PATH;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_FILE_PATH;
 import static seedu.nuke.util.Message.MESSAGE_NO_FILE_CHOSEN;
 import static seedu.nuke.util.Message.MESSAGE_FILE_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.messageAddFileSuccess;
@@ -193,7 +193,6 @@ public class AddFileCommand extends AddCommand {
             }
         }
     }
-
 
     /**
      * Executes the <b>Add File Command</b> to add a <b>File</b> into the <b>File List</b>.

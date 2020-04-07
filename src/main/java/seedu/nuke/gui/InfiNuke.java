@@ -18,15 +18,17 @@ import java.util.HashMap;
 
 public class InfiNuke extends Application {
 
+    private StorageManager storageManager;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void init() throws Exception {
+    public void init() {
         // Load modules and tasks
         HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
-        StorageManager storageManager = new StorageManager(StoragePath.SAVE_PATH);
+        storageManager = new StorageManager(StoragePath.SAVE_PATH);
         ModuleManager.initialise(modulesMap);
         storageManager.loadList();
         ScreenShotManager.initialise();
@@ -39,6 +41,15 @@ public class InfiNuke extends Application {
         stage.getIcons().add(new Image("images/venus_icon.png"));
         stage.setMinWidth(1250);
         stage.setMinHeight(700);
+
+        stage.setOnCloseRequest(event -> {
+            try {
+                storageManager.saveList();
+            } catch (IOException e) {
+                System.out.println("Error saving file list...");
+            }
+            stage.close();
+        });
 
         FXMLLoader sceneLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent mainRoot = sceneLoader.load();

@@ -38,7 +38,10 @@ public class Message {
         return String.format("There are (is) %d task(s) in the list!\n", taskCount);
     }
 
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT =
+            "Sorry, the command entered contains some unrecognised parameters:\n";
+    public static final String MESSAGE_CHECK_COMMAND_FORMAT =
+            "Please check to make sure to follow the command format as such:\n";
     public static final String MESSAGE_UNKNOWN_COMMAND_WORD =
             "Sorry, the command word at the start of your input is unrecognised.\n";
     public static final String MESSAGE_EXTRA_PARAMETERS =
@@ -46,6 +49,14 @@ public class Message {
             + "Please check the command format again or enter help to find out more.\n";
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon.";
     public static final String DIVIDER = "-".repeat(100);
+
+    public static final String MESSAGE_MISSING_MODULE_CODE = "Please enter a module code.\n";
+    public static final String MESSAGE_MISSING_CATEGORY_NAME = "Please enter a category name.\n";
+    public static final String MESSAGE_MISSING_TASK_DESCRIPTION = "Please enter a task description.\n";
+    public static final String MESSAGE_MISSING_FILE_NAME = "Please enter a file name.\n";
+    public static final String MESSAGE_MISSING_FILE_PATH = "Please enter a file path.\n";
+    public static final String MESSAGE_MISSING_TAG_NAME = "Please enter a tag name.\n";
+
 
     public static final String MESSAGE_SHOW_LIST = "";
     public static final String MESSAGE_NO_MODULES_TO_SHOW = "There are no modules to show.\n";
@@ -56,14 +67,11 @@ public class Message {
     public static final String MESSAGE_DEADLINE_OR_PRIORITY =
             "Please choose either to sort by deadline or priority.\n";
 
-
     public static final String MESSAGE_NO_MODULES_FOUND = "Sorry. No modules found.\n";
     public static final String MESSAGE_NO_CATEGORIES_FOUND = "Sorry. No categories found.\n";
     public static final String MESSAGE_NO_TASKS_FOUND = "Sorry. No tasks found.\n";
     public static final String MESSAGE_NO_FILES_FOUND = "Sorry. No files found.\n";
 
-
-    public static final String MESSAGE_GO_INTO_MODULE = "please go inside a Module!\n";
     public static final String MESSAGE_HELP = "Here are valid commands and corresponding format:\n";
 
     public static final String MESSAGE_TAG_ADDED = "Tag added!";
@@ -299,7 +307,10 @@ public class Message {
     public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.\n";
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
     public static final String MESSAGE_ILLEGAL_DELETE =
-            "Attempting to delete the current or its parent's directory.\nMove out of the directory first.\n";
+            "Attempting to delete the current or its parent's directory.\nPlease move out of the directory first.\n";
+    public static final String MESSAGE_MISSING_DIRECTORY_TO_DELETE =
+            "Please enter the name of the directory to delete.\n";
+    public static final String MESSAGE_NO_DIRECTORY_TO_DELETE = "Sorry, there is nothing else to delete here.\n";
 
     public static final String MESSAGE_INVALID_TIME_SPECIFIER = "Alert! Invalid time specifier.\n";
 
@@ -307,6 +318,12 @@ public class Message {
     public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! Category has been updated.\n";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "SUCCESS!! Task has been updated.\n";
     public static final String MESSAGE_NO_EDIT = "There is nothing to edit.\n";
+    public static final String MESSAGE_NO_EDIT_MODULE = "Please enter a new module code to edit.\n";
+    public static final String MESSAGE_NO_EDIT_CATEGORY =
+            "Please enter either a new category name or priority to edit.\n";
+    public static final String MESSAGE_NO_EDIT_TASK =
+            "Please enter a new task description, priority or deadline to edit.\n";
+    public static final String MESSAGE_NO_EDIT_FILE = "Please enter a new file name to edit.\n";
 
     public static final String MESSAGE_REDO_SUCCESS = "SUCCESS!! Data has been reverted back to next state.\n";
     public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to previous state.\n";

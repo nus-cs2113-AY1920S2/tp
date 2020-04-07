@@ -11,7 +11,9 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_INVALID_COMMAND = "ALERT! Unrecognised command.\n";
 
-    public static final String MESSAGE_MISSING_DIRECTORY_NAME = "ALERT! Directory name is missing.\n";
+    public static final String MESSAGE_MISSING_DIRECTORY_NAME =
+            "Please include the name of the directory you want to move to.\n"
+            + "Alternatively, enter .. to move to the parent directory instead.\n";
 
 
     public static final String MESSAGE_MODULE_NOT_FOUND = "ALERT! Module is not found.\n";
@@ -53,7 +55,8 @@ public class ExceptionMessage {
 
     public static final String MESSAGE_INVALID_PARAMETERS = "Alert! Invalid or missing parameters found!\n";
     public static final String MESSAGE_INVALID_PREFIX = "Alert! Invalid prefix(es) found!\n";
-    public static final String MESSAGE_DUPLICATE_PREFIX_FOUND = "Alert! There are duplicate prefix(es).\n";
+    public static final String MESSAGE_DUPLICATE_PREFIX_FOUND =
+            "There seems to be duplicate prefix(es) in your input...\n";
 
     public static final String MESSAGE_FILE_IO_EXCEPTION = "Alert! There was an error in retrieving your file.\n";
     public static final String MESSAGE_FILE_SYSTEM_EXCEPTION = "Alert! There was an error in retrieving your file. "
@@ -70,5 +73,4 @@ public class ExceptionMessage {
             "Deletion completed.\n"
             + "However, note that the following file(s) could not be deleted completely from Nuke as they "
             + "could not be found:\n";
-    public static final String MESSAGE_MISSING_FILE_PATH = "Please enter a file path.\n";
 }

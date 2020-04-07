@@ -33,7 +33,7 @@ public class AddCategoryCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a new category under module"
         + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
-            "(?<identifier>(?:\\s+\\w\\S*)+)"
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"

@@ -26,20 +26,26 @@ import static seedu.nuke.parser.Parser.TASK_PREFIX;
 public abstract class FilterCommand extends Command {
     public static final Pattern MODULE_REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
-            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
+            + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<invalid>.*)"
     );
     public static final Pattern CATEGORY_REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
+            + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<invalid>.*)"
     );
     public static final Pattern TASK_REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
+            + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<invalid>.*)"
     );
     public static final Pattern FILE_REGEX_FORMAT = Pattern.compile(
@@ -47,12 +53,15 @@ public abstract class FilterCommand extends Command {
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<optional>(?:\\s+-[ea])*)"
+            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
+            + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<invalid>.*)"
     );
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
-            "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
-            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
+            + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
     );
 
     protected ArrayList<Module> createFilteredModuleList(String moduleKeyword, boolean isExact) {
