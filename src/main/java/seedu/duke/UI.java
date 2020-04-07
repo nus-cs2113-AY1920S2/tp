@@ -76,7 +76,6 @@ public class UI {
                 + "\n"
                 + "\taddcard s/<INDEX> q/<QUESTION> a/<ANSWER>  Add a card into the specified subject\n"
                 + "\tlistcard s/<INDEX>                         List all cards in specified subject\n"
-                + "\teditcard s/<INDEX> c/<INDEX> q/<QUESTION> a/<ANSWER>   Edit the card in specified subject and index\n"
                 + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified subject\n"
                 + "\n"
                 + "\tquiz s/<INDEX> n/<NUMBER>                  Start a quiz of the specified number of questions from"

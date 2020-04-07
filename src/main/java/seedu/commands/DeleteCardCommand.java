@@ -12,7 +12,7 @@ public class DeleteCardCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "deletecard";
 
-    public static final String MESSAGE_USAGE = "To delete card, type command: deletecard s/[SUBJECT INDEX] c/[CARD INDEX]";
+    public static final String MESSAGE_USAGE = "To delete card, type command: delete s/[SUBJECT INDEX] c/[CARD INDEX]";
 
     private int subjectIndex;
 
