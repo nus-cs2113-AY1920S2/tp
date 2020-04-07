@@ -20,7 +20,7 @@ public class AgeParser {
         } catch (NumberFormatException e) {
             throw new InvalidAgeException();
         }
-        if (age <= 0 || age >= 100) {
+        if (age <= 0 || age >= 150) {
             throw new InvalidAgeException();
         }
         testAssertions(age);
@@ -29,7 +29,7 @@ public class AgeParser {
 
     public static void testAssertions(int age) {
         assert (age > 0);
-        assert (age < 100);
+        assert (age < 150);
     }
 
 }

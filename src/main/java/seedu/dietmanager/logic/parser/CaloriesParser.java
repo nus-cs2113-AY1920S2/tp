@@ -14,7 +14,7 @@ public class CaloriesParser {
      */
 
     public static double parseCalories(String description) throws InvalidCaloriesException {
-        double calories = -1.00;
+        double calories;
         try {
             calories = Double.parseDouble(description);
         } catch (NumberFormatException e) {

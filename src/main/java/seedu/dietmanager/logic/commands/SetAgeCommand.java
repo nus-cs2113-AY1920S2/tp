@@ -49,7 +49,7 @@ public class SetAgeCommand extends Command {
         } else if (this.isValidCommand) {
             this.resultString = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
         } else {
-            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.INVALID_AGE_MESSAGE;
         }
         return new Result(this.resultString);
     }

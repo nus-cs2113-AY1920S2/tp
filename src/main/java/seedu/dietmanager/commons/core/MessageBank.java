@@ -19,6 +19,8 @@ public class MessageBank {
 
     public static String INVALID_GENDER_MESSAGE = "Sorry, that is an invalid gender.";
 
+    public static String INVALID_AGE_MESSAGE = "Sorry, that is an invalid age.";
+
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
 
     public static String EXIT_COMMAMD_MESSAGE = "Thank you and see you again soon!";
