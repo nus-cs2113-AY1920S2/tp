@@ -20,6 +20,10 @@ public class AddStockCommand extends StockCommand {
     /** The ingredient to be added into the stock. */
     private final Ingredient ingredientToAdd;
     
+    private final int defaultNumOfIngredientArgs = 3;
+    
+    private final String ls = System.lineSeparator();
+    
     /** 
      * A convenience constructor that contains information of an ingredient stored in a 
      * hashMap.
@@ -52,9 +56,12 @@ public class AddStockCommand extends StockCommand {
      * ' i/tomato; q/10; p/$0.50;' will store 'tomato' as the ingredient name, '10' as
      * the ingredient quantity and '$0.50' as the ingedient's price. Note that the 
      * constructor of an Ingredient is new Ingredient(NAME, QUANTITY, PRICE).
+     * Two checks are ENFORCED here. The first check checks if there are missing tags in
+     * the user's input. The second check checks if there are any blanks after parsing
+     * the various arguments.
      * @throws InvalidStockCommandException If the user's input does not meet the required
      *                                      format by specifying i/INGREDIENT; q/QUANTITY;
-     *                                      p/PRICE;
+     *                                      p/PRICE STRICTLY;
      * 
      */
     private Map<String, Pair<Integer, Double>> parseIntoAddIngredientArgs(
@@ -63,27 +70,135 @@ public class AddStockCommand extends StockCommand {
         Map<String, Pair<Integer, Double>> ingredientInfo = new HashMap<>();
         String[] wordArgs = fullInputLine.split(";");
         
-        Optional<String> ingredientName = Optional.empty();
-        Optional<Integer> quantity = Optional.empty();
-        Optional<Double> price = Optional.empty();
+        Optional<String> parsedIngredientName = Optional.empty();
+        Optional<Integer> parsedQuantity = Optional.empty();
+        Optional<Double> parsedPrice = Optional.empty();
+        
+        // First check.
+        checkMissingTagInUserInput(fullInputLine);
         
         for (String argument : wordArgs) {
             String trimmedArg = argument.trim();
             if (trimmedArg.contains("i/")) {
-                ingredientName = Optional.of(parseIngredientName(trimmedArg));
+                parsedIngredientName = Optional.of(parseIngredientName(trimmedArg));
             } else if (trimmedArg.contains("q/")) {
-                quantity = Optional.of(parseIngredientQuantity(trimmedArg));
+                parsedQuantity = Optional.of(parseIngredientQuantity(trimmedArg));
             } else if (trimmedArg.contains("p/")) {
-                price = Optional.of(parseIngredientPrice(trimmedArg));
+                parsedPrice = Optional.of(parseIngredientPrice(trimmedArg));
             } else {
-                throw new InvalidStockCommandException("The user's input given cannot"
-                        + " be parsed into ingredient arguments.");
+                throw new InvalidStockCommandException("The user's input did not meet the required format."
+                        + " Please enter in the following format: "
+                        + ls
+                        + ls
+                        + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; "
+                        + "p/PRICE;` ");
             }
+        }     
+        
+        // Second check.
+        checkValidParsedIngredientArguments(parsedIngredientName, parsedQuantity, parsedPrice);
+        
+        ingredientInfo.put(parsedIngredientName.get(), Pair.of(parsedQuantity.get(), parsedPrice.get()));    
+        return ingredientInfo;
+    }    
+    
+    /**
+     * Checks the parsed ingredients' arguments if all information of the ingredient are 
+     * being tag accordingly. For example, the ingredient's name must be tagged with 'i/',
+     * the ingredient's quantity must be tagged with 'q/' and the ingredient's price must
+     * be tagged with 'p/'.
+     * @throws InvalidStockCommandException If the user's input does not meet the required
+     *                                      format by specifying i/INGREDIENT; q/QUANTITY;
+     *                                      p/PRICE;
+     *                                      
+     */
+    private void checkMissingTagInUserInput(String fullInputLine) throws InvalidStockCommandException {
+        String[] wordArgs = fullInputLine.split(";");
+        
+        if (wordArgs.length < defaultNumOfIngredientArgs) {
+            return;
         }
         
-        checkValidParsedIngredientArguments(ingredientName, quantity, price);
-        ingredientInfo.put(ingredientName.get(), Pair.of(quantity.get(), price.get()));    
-        return ingredientInfo;
+        String ingredientName = "";
+        String quantity = "";
+        String price = "";
+        
+        boolean hasIngredientNameTag = false;
+        boolean hasQuantityTag = false;
+        boolean hasPriceTag = false;
+        
+        for (String argument : wordArgs) {
+            String trimmedArg = argument.trim();
+            if (trimmedArg.contains("i/")) {
+                hasIngredientNameTag = true;
+            } else if (trimmedArg.contains("q/")) {
+                hasQuantityTag = true;
+            } else if (trimmedArg.contains("p/")) {
+                hasPriceTag = true;
+            } 
+        }
+            
+        if (!hasIngredientNameTag && hasQuantityTag && hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the 'i/' tag"
+                    + " before the ingredient's name."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (hasIngredientNameTag && !hasQuantityTag && hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the 'q/' tag"
+                    + " before the ingredient's quantity."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (hasIngredientNameTag && hasQuantityTag && !hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the 'p/' tag"
+                    + " before the ingredient's price."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (!hasIngredientNameTag && !hasQuantityTag && hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'i/' tag and 'q/' tag"
+                    + " before the ingredient's name and quantity."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (!hasIngredientNameTag && hasQuantityTag && !hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'i/' tag and 'p/' tag"
+                    + " before the ingredient's name and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (hasIngredientNameTag && !hasQuantityTag && !hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'q/' tag and 'p/' tag"
+                    + " before the ingredient's quantity and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (!hasIngredientNameTag && !hasQuantityTag && !hasPriceTag)  {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'i/', 'q/' tag and 'p/' tag"
+                    + " before the ingredient's name, quantity and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else {
+            assert(hasIngredientNameTag && hasQuantityTag && hasPriceTag);
+            return;
+        }
     }
     
     /**
@@ -134,6 +249,7 @@ public class AddStockCommand extends StockCommand {
         System.out.println("Ingredient " 
                 + ingredientToAdd.getIngredientName() 
                 + " successfully added!");
+        
     }
     
     /** A utility function to facilitate testing of execute(). */
