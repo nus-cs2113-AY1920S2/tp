@@ -25,8 +25,8 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(subjectList);
-                isExit = c.isExit();
                 storage.saveSubs(subjectList.getSubjects(), subjectList.getEvents());
+                isExit = c.isExit();
             } catch (EscException e) {
                 System.out.println(e.getMessage());
             }
