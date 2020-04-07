@@ -16,23 +16,23 @@
 
 <a name="design-report"></a>
 
-### Restaurant Daily Report
+### 1. Restaurant Daily Report
 
 `Restaurant Daily Report` is a CLI app that generates a whitepaper, summarizing the internals of a restaurant. It’s aim is to provide restaurant owners a quick overview of how their restaurant is performing daily so that restaurant owners can better manage their business operations.
 
 <a name="summary-contribution"></a>
 
-### Summary of Contributions
+### 2. Summary of Contributions
 
 <a name="code-contribution"></a>
 
-#### Code contribution:
+#### 2.1 Code contribution:
 You can view my code contribution for this project [here:](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=josephlimweijie)
 
 <a name="enhancement-implemented"></a>
 
-#### Enhancements implemented:
-##### Stock category:
+#### 2.2 Enhancements implemented:
+##### 2.2.1 Stock category:
 
 ###### Add:
 * 1. Basic add functionality.
@@ -68,9 +68,9 @@ You can view my code contribution for this project [here:](https://nus-cs2113-ay
 
 <a name="contribute-documentation"></a>
 
-#### Contributions to documentations:
+#### 2.3 Contributions to documentations:
 
-###### User guide contribution:
+###### 2.3.1 User guide contribution:
 * 1. Anchoring using Table of Content at the top of the user guide.
 * 2. Introduction
 * 3. Quick Start
@@ -86,7 +86,7 @@ You can view my code contribution for this project [here:](https://nus-cs2113-ay
 
 <a name="contribute-developerguide"></a>
 
-##### Developer guide contribution:
+##### 2.4 Developer guide contribution:
 * 1. Anchoring using Table of Content at the top of the developer guide.
 * 2. Design & Implementation:
     Sections:
@@ -95,19 +95,19 @@ You can view my code contribution for this project [here:](https://nus-cs2113-ay
 
 <a name="contribute-team"></a>
 
-#### Contributions to team-based tasks:
+#### 2.5 Contributions to team-based tasks:
 
 <a name="review-mentoring"></a>
 
-#### Review/Mentoring contributions: 
+#### 2.6 Review/Mentoring contributions: 
 
 <a name="contribute-team"></a>
 
-#### Contributions beyond the project team:
+#### 2.7 Contributions beyond the project team:
 
 <a name="contribute-ug"></a>
 
-#### Contributions to the User Guide (Extracts):
+#### 3. Contributions to the User Guide (Extracts):
 
 # User Guide
 
@@ -204,7 +204,7 @@ Search items in the menu, stock and reservations.
 
 <a name="contribute-dg"></a>
 
-#### Contributions to the Developer Guide (Extracts):
+#### 4. Contributions to the Developer Guide (Extracts):
 
 # Developer Guide
 
@@ -257,18 +257,16 @@ The following sequence diagram shows how the search operation works:
   <img src="https://user-images.githubusercontent.com/59989652/78655767-0851f480-78f9-11ea-8b29-1e0758084777.png">
 </p>
 
-```
 The sequence diagram can be interpreted as such:
-* 1. CommandParser calls its own CommandParser#parseCommand(...). 
-* 2. Assuming the user input the search stock command correctly, SearchStockCommand#SearchStockCommand(...) constructor is called. 
-* 3. The newly constructed SearchStockCommand invokes its SearchStockCommand#parseIntoSearchKeyword(...) and does not return anything.
-* 4. The CommandParser then invokes SearchStockCommand#execute(...), which then further invokes Stock#searchStock(...) from the Stock object.
-* 5. The Stock object then self-invoke Stock#checkIngredientInStock(...) to see if there are ingredients that matches keyword that was passed into earlier.
-* 6. If there are search results, Stock#printSearchResult(...) will display all the ingredients that matches the keyword given.
+* 1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
+* 2. Assuming the user input the search stock command correctly, `SearchStockCommand#SearchStockCommand(...)` constructor is called. 
+* 3. The newly constructed `SearchStockCommand` invokes its `SearchStockCommand#parseIntoSearchKeyword(...)` and does not return anything.
+* 4. The `CommandParser` then invokes `SearchStockCommand#execute(...)`, which then further invokes `Stock#searchStock(...)` from the Stock object.
+* 5. The `Stock` object then self-invoke `Stock#checkIngredientInStock(...)` to see if there are ingredients that matches keyword that was passed into earlier.
+* 6. If there are search results, `Stock#printSearchResult(...)` will display all the ingredients that matches the keyword given.
 * 7. If there is no ingredient that matches the keyword, the program will display a different message to show the user.
-* 8. Next, the time line returns back to CommandParser and the SearchStockCommand object is destroyed here.
-* 9. If however, the user input did not input the search stock command correctly, CommandParser will invoke CommandParser#errorCommand() to notify the user.
-``` 
+* 8. Next, the time line returns back to `CommandParser` and the `SearchStockCommand` object is destroyed here.
+* 9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
 
 #### 1.1.2 Design Considerations
 ##### Aspect: How search stock executes
@@ -326,18 +324,16 @@ Alternatively, the listing mechanism process can be summarized in the following 
   <img src="https://user-images.githubusercontent.com/59989652/78656166-975f0c80-78f9-11ea-90f2-a8dd68915b88.png">
 </p>
 
-```
 The sequence diagram can be interpreted as such:
-* 1. CommandParser calls its own CommandParser#parseCommand(...). 
-* 2. Assuming the user input the list stock command correctly, ListStockCommand#ListStockCommand() constructor is called. 
-* 3. The time line returns back to CommandParser.
-* 4. The CommandParser then invokes ListStockCommand#execute(...), which then further invokes Stock#ListStock() from the Stock object.
-* 5. The Stock object then self-invoke Stock#printStock() to print the ingredients that are in the stock to display it to the user.
-* 6. Note that within the method Stock#printStock(), the hashMap in the stock will be sorted in descending ingredient quantity.
-* 7. If there is no ingredient that in the stock, the program will display a different message to show the user.
-* 8. Next, the time line returns back to CommandParser and the ListStockCommand object is destroyed here.
-* 9. If however, the user input did not input the search stock command correctly, CommandParser will invoke CommandParser#errorCommand() to notify the user.
-```
+* 1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
+* 2. Assuming the user input the list stock command correctly, `ListStockCommand#ListStockCommand()` constructor is called. 
+* 3. The time line returns back to `CommandParser`.
+* 4. The `CommandParser` then invokes `ListStockCommand#execute(...)`, which then further invokes `Stock#ListStock()` from the Stock object.
+* 5. The `Stock` object then self-invoke `Stock#printStock()` to print the ingredients that are in the stock to display it to the user.
+* 6. Note that within the method `Stock#printStock()`, the hashMap in the `Stock` will be sorted in descending ingredient quantity.
+* 7. If there is no ingredient that in the `Stock`, the program will display a different message to show the user.
+* 8. Next, the time line returns back to `CommandParser` and the `ListStockCommand` object is destroyed here.
+* 9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
 
 
 #### 1.2.2 Design Considerations
