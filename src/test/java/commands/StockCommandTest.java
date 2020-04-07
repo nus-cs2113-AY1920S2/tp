@@ -115,9 +115,9 @@ class StockCommandTest {
         StockCommand stockCommand = new StockCommand();
 
         try {
-            assertEquals(0.5, stockCommand.parseIngredientPrice("p/$0.50"));
+            assertEquals(0.5, stockCommand.parseIngredientPrice("p/0.50"));
         } catch (NumberFormatException nfe) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
+            assertEquals("Please ensure that the price specified is a decimal!", 
                     nfe.getMessage());
         } catch (InvalidStockCommandException isce) {
             assertEquals("Please enter a positive value for the ingredient's price!",
@@ -131,7 +131,7 @@ class StockCommandTest {
         try {
             stockCommand.parseIngredientPrice("p/");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
+            assertEquals("Please ensure that the price specified is a decimal!", 
                     isce.getMessage());
         }
     }
@@ -142,7 +142,7 @@ class StockCommandTest {
         try {
             stockCommand.parseIngredientName("p/$$$$$");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
+            assertEquals("Please ensure that the price specified is a decimal!", 
                     isce.getMessage());
         }
     }
@@ -152,9 +152,9 @@ class StockCommandTest {
         StockCommand stockCommand = new StockCommand();
         
         try {
-            double parsedInvalidPrice = stockCommand.parseIngredientPrice("p/$10");
+            double parsedInvalidPrice = stockCommand.parseIngredientPrice("p/10");
         } catch (NumberFormatException nfe) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
+            assertEquals("Please ensure that the price specified is a decimal!", 
                     nfe.getMessage());
         } catch (InvalidStockCommandException isce) {
             assertEquals("Please enter a positive value for the ingredient's price!",
@@ -169,25 +169,10 @@ class StockCommandTest {
         try {
             double parsedInvalidPriceTwo = stockCommand.parseIngredientPrice("p/LOL");
         } catch (NumberFormatException nfe) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
+            assertEquals("Please ensure that the price specified is a decimal!", 
                     nfe.getMessage());
         } catch (InvalidStockCommandException isce) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!",
-                    isce.getMessage());
-        }
-    }
-    
-    @Test
-    public void parse_parseIngredientPrice_priceMissingDollarSign() {
-        StockCommand stockCommand = new StockCommand();
-        
-        try {
-            double parsedInvalidPriceThree = stockCommand.parseIngredientPrice("p/10.0");
-        } catch (NumberFormatException nfe) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
-                    nfe.getMessage());
-        } catch (InvalidStockCommandException isce) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!",
+            assertEquals("Please ensure that the price specified is a decimal!",
                     isce.getMessage());
         }
     }
@@ -197,9 +182,9 @@ class StockCommandTest {
         StockCommand stockCommand = new StockCommand();
 
         try {
-            double parsedInvalidPriceFour = stockCommand.parseIngredientPrice("p/$-10.0");
+            double parsedInvalidPriceFour = stockCommand.parseIngredientPrice("p/-10.0");
         } catch (NumberFormatException nfe) {
-            assertEquals("Please ensure that the price specified has a '$' sign and is a decimal!", 
+            assertEquals("Please ensure that the price specified is a decimal!", 
                     nfe.getMessage());
         } catch (InvalidStockCommandException isce) {
             assertEquals("Please enter a positive value for the ingredient's price!", 
