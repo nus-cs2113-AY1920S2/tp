@@ -5,6 +5,7 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Root;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
@@ -18,7 +19,7 @@ public class MarkAsDoneCommandTest {
     @Test
     public void testEmptyModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("done");
         assertEquals(MESSAGE_INCORRECT_DIRECTORY_LEVEL, result.getFeedbackToUser());
@@ -33,7 +34,7 @@ public class MarkAsDoneCommandTest {
     @Test
     public void testEmptyTaskList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
 
@@ -58,7 +59,7 @@ public class MarkAsDoneCommandTest {
     @Test
     public void testNormalTaskList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("addm CS3235");
