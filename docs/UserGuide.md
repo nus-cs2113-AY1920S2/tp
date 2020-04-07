@@ -1,8 +1,15 @@
 # User Guide
 
+## Target user profile
+
+University students with poor time management skills who are struggling to allocate time efficiently for
+the numerous deadlines/tasks.
+
 ## Introduction
 
-Jikan is a CLI time management tool that allows you to track the amount of time that you spend on different activities. This user guide will show you how to use the program effectively. 
+Jikan is a CLI time management tool that allows you to track the amount of time that you spend on different activities so as to ensure
+that time is allocated more efficiently to the different activities (i.e spending too much/too little time on an activity) . 
+This user guide will show you how to use the program effectively. 
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
