@@ -8,6 +8,7 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Root;
 import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class ListModuleTasksDeadlineTest {
     @Test
     public void testEmptyTaskList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
 
@@ -54,7 +55,7 @@ public class ListModuleTasksDeadlineTest {
     @Test
     public void testNormalTaskList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
 

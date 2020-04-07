@@ -5,6 +5,7 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Root;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_ADD_FILE_NOT_FOUND;
@@ -19,7 +20,7 @@ public class AddFileCommandTest {
     @Test
     public void testEmptyModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addf save.txt -f C:\\save.txt");
         assertEquals(MESSAGE_INCORRECT_DIRECTORY_LEVEL, result.getFeedbackToUser());
@@ -37,64 +38,64 @@ public class AddFileCommandTest {
     @Test
     public void testEmptyTaskList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
-        CommandResult result = Executor.executeCommand("addm CS2113");
-        result = Executor.executeCommand("cd CS2113");
+        Executor.executeCommand("addm CS2113");
+        Executor.executeCommand("cd CS2113");
 
-        result = Executor.executeCommand("addf save.txt -f C:\\save.txt");
+        CommandResult result = Executor.executeCommand("addf save.txt -f C:\\save.txt");
         assertEquals(MESSAGE_INCORRECT_DIRECTORY_LEVEL, result.getFeedbackToUser());
 
-        result = Executor.executeCommand("addf save.txt -t read -f C:\\save.txt");
-        assertEquals(MESSAGE_INCORRECT_DIRECTORY_LEVEL, result.getFeedbackToUser());
+        CommandResult resultSecond = Executor.executeCommand("addf save.txt -t read -f C:\\save.txt");
+        assertEquals(MESSAGE_INCORRECT_DIRECTORY_LEVEL, resultSecond.getFeedbackToUser());
 
-        result = Executor.executeCommand("addf save.txt -c Lab -t read -f C:\\save.txt");
-        assertEquals(MESSAGE_TASK_NOT_FOUND, result.getFeedbackToUser());
+        CommandResult resultThird = Executor.executeCommand("addf save.txt -c Lab -t read -f C:\\save.txt");
+        assertEquals(MESSAGE_TASK_NOT_FOUND, resultThird.getFeedbackToUser());
     }
 
     @Test
     public void testLengthExceedFile() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
-        CommandResult result = Executor.executeCommand("addm CS2113");
-        result = Executor.executeCommand("addt read -m CS2113 -c Lab -d tmr 2359");
+        Executor.executeCommand("addm CS2113");
+        Executor.executeCommand("addt read -m CS2113 -c Lab -d tmr 2359");
 
-        result = Executor.executeCommand("cd CS2113");
-        result = Executor.executeCommand("cd Lab");
-        result = Executor.executeCommand("cd read");
-        result = Executor.executeCommand("addf abcdefghijklmnopqrstuvwxyzaaaaa");
+        Executor.executeCommand("cd CS2113");
+        Executor.executeCommand("cd Lab");
+        Executor.executeCommand("cd read");
+        CommandResult result = Executor.executeCommand("addf abcdefghijklmnopqrstuvwxyzaaaaa");
         assertEquals(MESSAGE_FILE_EXCEED_LIMIT, result.getFeedbackToUser());
     }
 
     @Test
     public void testNoFilePath() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
-        CommandResult result = Executor.executeCommand("addm CS2113");
-        result = Executor.executeCommand("addt read -m CS2113 -c Lab -d tmr 2359");
+        Executor.executeCommand("addm CS2113");
+        Executor.executeCommand("addt read -m CS2113 -c Lab -d tmr 2359");
 
-        result = Executor.executeCommand("cd CS2113");
-        result = Executor.executeCommand("cd Lab");
-        result = Executor.executeCommand("cd read");
-        result = Executor.executeCommand("addf save.txt");
+        Executor.executeCommand("cd CS2113");
+        Executor.executeCommand("cd Lab");
+        Executor.executeCommand("cd read");
+        CommandResult result = Executor.executeCommand("addf save.txt");
         assertEquals(MESSAGE_MISSING_FILE_PATH, result.getFeedbackToUser());
     }
 
     @Test
     public void testInvalidPath() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
-        CommandResult result = Executor.executeCommand("addm CS2113");
-        result = Executor.executeCommand("addt read -m CS2113 -c Lab -d tmr 2359");
+        Executor.executeCommand("addm CS2113");
+        Executor.executeCommand("addt read -m CS2113 -c Lab -d tmr 2359");
 
 
-        result = Executor.executeCommand("cd CS2113");
-        result = Executor.executeCommand("cd Lab");
-        result = Executor.executeCommand("cd read");
-        result = Executor.executeCommand("addf save.txt -f C:\\save.txt");
+        Executor.executeCommand("cd CS2113");
+        Executor.executeCommand("cd Lab");
+        Executor.executeCommand("cd read");
+        CommandResult result = Executor.executeCommand("addf save.txt -f C:\\save.txt");
         assertEquals(MESSAGE_ADD_FILE_NOT_FOUND, result.getFeedbackToUser());
     }
 }

@@ -32,7 +32,7 @@ import static seedu.nuke.util.Message.MESSAGE_HELP;
 
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
-    public static final String FORMAT = COMMAND_WORD + " [ specific help ]";
+    public static final String FORMAT = COMMAND_WORD;
     public static final String MESSAGE_USAGE = String.format(
             "%s - Show a help guide\n"
             + "Format: %s\n",

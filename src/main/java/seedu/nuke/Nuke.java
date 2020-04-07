@@ -100,7 +100,4 @@ public class Nuke {
         } while (!ExitCommand.isExit());
     }
 
-    public CommandResult getCommandResult() {
-        return commandResult;
-    }
 }

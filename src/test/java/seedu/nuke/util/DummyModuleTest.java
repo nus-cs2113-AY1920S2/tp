@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DummyModuleTest {
 
-    DummyModule dummyModule = new DummyModule();
+    private DummyModule dummyModule = new DummyModule();
 
     @Test
     void setModuleCode() {

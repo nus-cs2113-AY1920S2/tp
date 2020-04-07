@@ -5,6 +5,7 @@ import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Root;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.Message.MESSAGE_NO_FILES_FOUND;
@@ -14,7 +15,7 @@ public class DeleteFileCommandTest {
     @Test
     public void testEmptyModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("delf");
         assertEquals(MESSAGE_NO_FILES_FOUND, result.getFeedbackToUser());
@@ -31,7 +32,7 @@ public class DeleteFileCommandTest {
      */
     public void testEmptyFileList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("delf");

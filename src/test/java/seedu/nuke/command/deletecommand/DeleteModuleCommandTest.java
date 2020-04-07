@@ -6,6 +6,7 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
+import seedu.nuke.directory.Root;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class DeleteModuleCommandTest {
     @Test
     public void testEmptyModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("delm CS2113");
         assertEquals(MESSAGE_NO_MODULES_FOUND, result.getFeedbackToUser());
@@ -33,7 +34,7 @@ public class DeleteModuleCommandTest {
     @Test
     public void testNormalModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("addm CS3235");

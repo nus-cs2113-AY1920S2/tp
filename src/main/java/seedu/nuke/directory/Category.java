@@ -85,16 +85,6 @@ public class Category extends Directory {
     }
 
     /**
-     * Edit the Task List of the category.
-     *
-     * @param tasks
-     *  The Task List of the category
-     */
-    public void setTasks(TaskManager tasks) {
-        this.tasks = tasks;
-    }
-
-    /**
      * Checks if one category has the same category name as another.
      *
      * @param categoryName

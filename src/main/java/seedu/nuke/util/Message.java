@@ -318,8 +318,7 @@ public class Message {
             "Sorry, the time specifier you entered is not recognised.\n"
             + "Please make sure the time specifier entered is either:\n\t"
             + "'before', 'after' or 'on'\n"
-            + "Alternatively, you can also enter 'over' without the date information to see all your overdue tasks.\n"
-            + "To find out other accepted variations of the time specifier, enter 'help timespec'.\n";
+            + "Alternatively, you can also enter 'over' without the date information to see all your overdue tasks.\n";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "SUCCESS!! The module has been updated.\n";
     public static final String MESSAGE_EDIT_CATEGORY_SUCCESS = "SUCCESS!! The category has been updated.\n";
