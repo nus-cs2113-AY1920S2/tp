@@ -93,7 +93,7 @@ Refer to [Section 3, "Features"](#3-features) for the detailed instruction of th
     Example index of list:  
     ![Task Index Example](images/task_index_example.png)
 
--   Dates supplied by the user must follow the format `DD/MM/YY`.  
+-   Dates supplied by the user must follow the format `DD/MM/YY` unless specified otherwise.  
     Example: 01/03/20 represents the date 1st March 2020.
 
 -   Times supplied by the user must follow the 24h format `HHmm`.  
