@@ -376,7 +376,7 @@ public class GuiParser {
         addText(new Pair<>(categoryName, Color.BLUE));
 
         smartParseModule(matcher, parameters, startIndex, true);
-        smartParsePriority(matcher, parameters);
+        smartParsePriority(matcher, parameters, PRIORITY_GROUP);
 
         checkInvalid(matcher);
 
@@ -391,8 +391,14 @@ public class GuiParser {
 
         smartParseModule(matcher, parameters, startIndex, true);
         smartParseCategory(matcher, parameters, startIndex, true);
+
+        boolean hasPriority = smartParsePriority(matcher, parameters, PRIORITY_GROUP);
         smartParseDeadline(matcher, parameters, startIndex);
-        smartParsePriority(matcher, parameters);
+        if (hasPriority) {
+            highlightIncorrect(matcher, PRIORITY_GROUP_SECOND);
+        } else {
+            smartParsePriority(matcher, parameters, PRIORITY_GROUP_SECOND);
+        }
 
         checkInvalid(matcher);
     }
@@ -615,7 +621,7 @@ public class GuiParser {
         smartParseIdentityCategory(matcher, parameters, startIndex);
         smartParseModule(matcher, parameters, startIndex, true);
         checkDuplicateCategory(matcher, parameters);
-        smartParsePriority(matcher, parameters);
+        smartParsePriority(matcher, parameters, PRIORITY_GROUP);
 
         checkInvalid(matcher);
     }
@@ -627,8 +633,14 @@ public class GuiParser {
         smartParseModule(matcher, parameters, startIndex, true);
         smartParseCategory(matcher, parameters, startIndex, true);
         checkDuplicateTask(matcher, parameters);
+
+        boolean hasPriority = smartParsePriority(matcher, parameters, PRIORITY_GROUP);
         smartParseDeadline(matcher, parameters, startIndex);
-        smartParsePriority(matcher, parameters);
+        if (hasPriority) {
+            highlightIncorrect(matcher, PRIORITY_GROUP_SECOND);
+        } else {
+            smartParsePriority(matcher, parameters, PRIORITY_GROUP_SECOND);
+        }
 
         checkInvalid(matcher);
     }
@@ -1075,17 +1087,18 @@ public class GuiParser {
         }
     }
 
-    private void smartParsePriority(Matcher matcher, String parameters) throws ParseFailureException {
-        String priorityGroup = matcher.group(PRIORITY_GROUP);
+    private boolean smartParsePriority(Matcher matcher, String parameters, String groupName)
+            throws ParseFailureException {
+        String priorityGroup = matcher.group(groupName);
         if (priorityGroup.isBlank()) {
-            return;
+            return false;
         }
 
         int endIndexOfPrefix = priorityGroup.indexOf(PRIORITY_PREFIX) + PREFIX_LENGTH;
         String prefix = priorityGroup.substring(0, endIndexOfPrefix);
         String rawPriority = priorityGroup.substring(endIndexOfPrefix);
         String priority = rawPriority.trim();
-        String parametersAfter =  parameters.substring(matcher.end(PRIORITY_GROUP));
+        String parametersAfter =  parameters.substring(matcher.end(groupName));
 
         addText(new Pair<>(prefix, Color.GREEN));
 
@@ -1095,6 +1108,8 @@ public class GuiParser {
             addText(new Pair<>(rawPriority, Color.CRIMSON), new Pair<>(parametersAfter, Color.DARKGRAY));
             throw new ParseFailureException();
         }
+
+        return true;
     }
 
     private boolean smartParseFlag(Matcher matcher, String flagName, String flagPrefix) {

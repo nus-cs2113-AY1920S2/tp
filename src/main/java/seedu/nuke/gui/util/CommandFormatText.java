@@ -207,15 +207,14 @@ public class CommandFormatText {
     private static TextFlow getAddFileFormat() {
         commandFormat.getChildren().addAll(
                 createText(AddFileCommand.COMMAND_WORD, Color.GREEN),
-                createText(" <file name> ", Color.BLUE),
+                createText(" [ <file name> ] ", Color.DARKGRAY),
                 createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code> ", Color.BLUE),
                 createText(CATEGORY_PREFIX, Color.GREEN),
                 createText(" <category name> ", Color.BLUE),
                 createText(TASK_PREFIX, Color.GREEN),
-                createText(" <task description> ", Color.BLUE),
-                createText(FILE_PREFIX, Color.GREEN),
-                createText(" <file path>", Color.BLUE)
+                createText(" <task description>", Color.BLUE),
+                createText(String.format(" %s %s %s %s", "[", FILE_PREFIX, "<file path>", "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -233,7 +232,6 @@ public class CommandFormatText {
         );
         return commandFormat;
     }
-
 
     private static TextFlow getDeleteModuleFormat() {
         commandFormat.getChildren().addAll(
@@ -323,8 +321,11 @@ public class CommandFormatText {
     }
 
     private static TextFlow getListTaskDeadlineFormat() {
-        commandFormat.getChildren().add(
-                createText(ListTaskSortedCommand.COMMAND_WORD, Color.GREEN)
+        commandFormat.getChildren().addAll(
+                createText(ListTaskSortedCommand.COMMAND_WORD, Color.GREEN),
+                createText(String.format(" %s %s %s %s %s %s",
+                        "[ <moduleCode> ]", "[", DEADLINE_PREFIX, PRIORITY_PREFIX,
+                        "(choose 1; default -d)", "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -353,8 +354,8 @@ public class CommandFormatText {
                 createText(" <category name> ", Color.BLUE),
                 createText(MODULE_PREFIX, Color.GREEN),
                 createText(" <module code>", Color.BLUE),
-                createText(String.format(" %s %s %s %s %s %s", "[", CATEGORY_PREFIX, "<new category name>",
-                        PRIORITY_PREFIX, "<new priority>", "]"), Color.DARKGRAY)
+                createText(String.format(" %s %s %s %s %s %s", "{", CATEGORY_PREFIX, "<new category name>",
+                        PRIORITY_PREFIX, "<new priority>", "}"), Color.DARKGRAY)
 
         );
         return commandFormat;
@@ -368,11 +369,11 @@ public class CommandFormatText {
                 createText(" <module code> ", Color.BLUE),
                 createText(CATEGORY_PREFIX, Color.GREEN),
                 createText(" <category name>", Color.BLUE),
-                createText(String.format(" %s %s %s %s %s %s %s %s", "[",
+                createText(String.format(" %s %s %s %s %s %s %s %s", "{",
                         TASK_PREFIX, "<new task description>", DEADLINE_PREFIX, "<new deadline>",
-                        PRIORITY_PREFIX, "<new priority>", "]"), Color.DARKGRAY)
+                        PRIORITY_PREFIX, "<new priority>", "}"), Color.DARKGRAY)
         );
-        commandFormat.setStyle("-fx-font-size: 11pt");
+        commandFormat.setStyle("-fx-font-size: 9.8pt");
         return commandFormat;
     }
 
@@ -385,7 +386,9 @@ public class CommandFormatText {
                 createText(CATEGORY_PREFIX, Color.GREEN),
                 createText(" <category name> ", Color.BLUE),
                 createText(TASK_PREFIX, Color.GREEN),
-                createText(" <task description>", Color.BLUE)
+                createText(" <task description> ", Color.BLUE),
+                createText(FILE_PREFIX, Color.GREEN),
+                createText(" <new file name>", Color.BLUE)
         );
         return commandFormat;
     }

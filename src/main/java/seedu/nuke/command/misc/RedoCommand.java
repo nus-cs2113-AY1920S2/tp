@@ -4,10 +4,12 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ScreenShotManager;
 import seedu.nuke.exception.CorruptedFileException;
+import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.io.IOException;
 import java.util.EmptyStackException;
 
+import static seedu.nuke.util.ExceptionMessage.MESSAGE_TRAVERSE_ERROR;
 import static seedu.nuke.util.Message.MESSAGE_REDO_SUCCESS;
 
 public class RedoCommand extends Command {
@@ -24,6 +26,8 @@ public class RedoCommand extends Command {
             return new CommandResult(MESSAGE_REDO_UNSUCCESSFUL);
         } catch (EmptyStackException e) {
             return new CommandResult(MESSAGE_REDO_AT_END);
+        } catch (IncorrectDirectoryLevelException e) {
+            return new CommandResult(MESSAGE_TRAVERSE_ERROR);
         }
     }
 }

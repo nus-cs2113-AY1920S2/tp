@@ -86,7 +86,8 @@ public class ScreenShotManager {
      * @throws CorruptedFileException exception is thrown when converting a corrupted string to moduleList.
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
      */
-    public static void redo() throws IOException, CorruptedFileException, EmptyStackException {
+    public static void redo() throws IOException, CorruptedFileException, EmptyStackException,
+            IncorrectDirectoryLevelException {
         ScreenShot redoScreenShot = popRedoScreenShot();
         String encodedSavedList = redoScreenShot.getEncodedSavedList();
 
@@ -96,7 +97,9 @@ public class ScreenShotManager {
         ArrayList<Module> moduleList = new Decoder(bufferedReader).decode();
         ModuleManager.setModuleList(moduleList);
         bufferedReader.close();
-        // isLastCommandRedo = true;
+
+        // Move back to Root for now to avoid "unusual" situations
+        DirectoryTraverser.traverseTo(new Root());
     }
 
     private static ScreenShot popRedoScreenShot() throws EmptyStackException {
