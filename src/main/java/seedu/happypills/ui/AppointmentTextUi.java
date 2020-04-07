@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class AppointmentTextUi extends TextUi {
 
-    public static final String GET_EMPTY_APPOINTMENT_LIST_MESSAGE = "    There are no appointments in the list.\n" + DIVIDER;
+    public static final String GET_EMPTY_APPOINTMENT_LIST_MESSAGE = ""
+            + "    There are no appointments in the list.\n" + DIVIDER;
     public static final String APPOINTMENT_NOT_FOUND_MESSAGE = ""
             + "    The appointment cannot be found. Please try again."
             + DIVIDER;

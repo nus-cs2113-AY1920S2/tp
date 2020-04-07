@@ -109,7 +109,7 @@ public class HelpTextUi extends TextUi {
             + "      list pr | List down all records for a particular patient\n"
             + "      find pr | Retrieves a particular record\n"
             + "    For more specific command instructions, enter `help [COMMAND]`\n"
-            + "      Example: help add pr\n";;
+            + "      Example: help add pr\n";
 
     public static final String ADD_PATIENT_RECORD_HELP_MESSAGE = ""
             + "    To add a new patient record into the program, use the following command:\n"
@@ -155,7 +155,7 @@ public class HelpTextUi extends TextUi {
             + "      done appt | Marks an appointment as done\n"
             + "      find appt | Finds all the appointments under a patient\n"
             + "    For more specific command instructions, enter `help [COMMAND]`\n"
-            + "      Example: help add appt\n";;
+            + "      Example: help add appt\n";
 
     public static final String ADD_APPOINTMENT_HELP_MESSAGE = ""
             + "    To add a new appointment into the program, use the following command:\n"

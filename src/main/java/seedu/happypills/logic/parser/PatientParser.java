@@ -215,7 +215,8 @@ public class PatientParser {
                     || !Checker.isValidNric(parseInput[1].trim())) {
                 parseInput[1] = update.trim().substring(2).toUpperCase().trim();
             } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
-                    || !Checker.isPositiveInteger(parseInput[2].trim()) || !Checker.isValidPhoneNum(parseInput[2].trim())))) {
+                    || !Checker.isPositiveInteger(parseInput[2].trim())
+                    || !Checker.isValidPhoneNum(parseInput[2].trim())))) {
                 parseInput[2] = update.substring(1).trim();
             } else if (update.trim().startsWith("dob") && (parseInput[3].equalsIgnoreCase("")
                     || !Checker.isValidDate(parseInput[3].trim()))) {

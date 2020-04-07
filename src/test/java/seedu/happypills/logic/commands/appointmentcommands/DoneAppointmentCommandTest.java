@@ -25,9 +25,9 @@ class DoneAppointmentCommandTest {
         newPatientRecordMap = new PatientRecordMap();
 
         //Add test patient
-        Patient patientOne = new Patient("P1", "S123A", 123,
+        Patient patientOne = new Patient("P1", "S1234567A", 123,
                 "01/01/2000", "O+", "None", "NIL");
-        Patient patientTwo = new Patient("P2", "S456B", 456,
+        Patient patientTwo = new Patient("P2", "S4567890B", 456,
                 "01/02/1990", "O+", "None", "NIL");
         try {
             newPatientMap.add(patientOne);
@@ -37,8 +37,8 @@ class DoneAppointmentCommandTest {
         }
 
         //add test appointment
-        Appointment appointmentOne = new Appointment("1","S123A", "01/02/2020", "12:00:00","reason1",false);
-        Appointment appointmentTwo = new Appointment("2","S123A", "01/03/2020", "13:00:00","reason2", false);
+        Appointment appointmentOne = new Appointment("1","S1234567A", "01/02/2020", "12:00:00","reason1",false);
+        Appointment appointmentTwo = new Appointment("2","S1234567A", "01/03/2020", "13:00:00","reason2", false);
 
         try {
             newAppointmentMap.addAppointment(appointmentOne);
@@ -53,14 +53,14 @@ class DoneAppointmentCommandTest {
     @Test
     public void editAppointment_Done() throws HappyPillsException {
         String expectedOutputMissingInput = "    The following appointment has been marked done:\n"
-                + "        NRIC     : S123A\n"
+                + "        NRIC     : S1234567A\n"
                 + "        Date     : 01/02/2020\n"
                 + "        Time     : 12:00:00\n"
                 + "        Reason   : reason1\n"
                 + "        ID       : 1\n"
                 + "        Attended : Yes\n"
                 + "    =====================================================";
-        String message = new DoneAppointmentCommand("S123A", "1").execute(
+        String message = new DoneAppointmentCommand("S1234567A", "1").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputMissingInput, message);
     }

@@ -23,7 +23,7 @@ public class FindAppointmentCommand extends AppointmentCommand {
 
     @Override
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) {
-        if(!Checker.isValidNric(patientNric)) {
+        if (!Checker.isValidNric(patientNric)) {
             return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
         }
         assert !patientNric.isEmpty() : "No NRIC was provided";

@@ -179,7 +179,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
     ) throws HappyPillsException {
-        if(!Checker.isValidNric(nric)) {
+        if (!Checker.isValidNric(nric)) {
             return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
         }
         if (newContent.length() < 3) {
