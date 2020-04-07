@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.AddDishCommandTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-04-07T02:38:20" hostname="Ganeshs-MacBook-Pro.local" time="0.007">
+<testsuite name="commands.AddDishCommandTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-04-07T02:47:19" hostname="Ganeshs-MacBook-Pro.local" time="0.006">
   <properties/>
-  <testcase name="parseNameTestA()" classname="commands.AddDishCommandTest" time="0.001"/>
+  <testcase name="parseNameTestA()" classname="commands.AddDishCommandTest" time="0.0"/>
   <testcase name="parseNameTestB()" classname="commands.AddDishCommandTest" time="0.0"/>
   <testcase name="addDishTestA()" classname="commands.AddDishCommandTest" time="0.001"/>
-  <testcase name="addDishTestB()" classname="commands.AddDishCommandTest" time="0.0"/>
+  <testcase name="addDishTestB()" classname="commands.AddDishCommandTest" time="0.001"/>
   <testcase name="parseIngredientsTestA()" classname="commands.AddDishCommandTest" time="0.0"/>
   <testcase name="parseIngredientsTestB()" classname="commands.AddDishCommandTest" time="0.0"/>
   <testcase name="parsePriceTestA()" classname="commands.AddDishCommandTest" time="0.001"/>

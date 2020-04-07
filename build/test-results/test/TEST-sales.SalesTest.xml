@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="sales.SalesTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-04-07T02:38:20" hostname="Ganeshs-MacBook-Pro.local" time="0.077">
+<testsuite name="sales.SalesTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-04-07T02:47:18" hostname="Ganeshs-MacBook-Pro.local" time="0.049">
   <properties/>
-  <testcase name="testTotalProfit()" classname="sales.SalesTest" time="0.057"/>
-  <testcase name="testAddSale1()" classname="sales.SalesTest" time="0.002"/>
+  <testcase name="testTotalProfit()" classname="sales.SalesTest" time="0.034"/>
+  <testcase name="testAddSale1()" classname="sales.SalesTest" time="0.001"/>
   <testcase name="testAddSale2()" classname="sales.SalesTest" time="0.002"/>
-  <testcase name="testPopularDishAndProfit()" classname="sales.SalesTest" time="0.012"/>
+  <testcase name="testPopularDishAndProfit()" classname="sales.SalesTest" time="0.007"/>
   <testcase name="testNoDish()" classname="sales.SalesTest" time="0.001"/>
   <system-out><![CDATA[Dish bacon pizza successfully added.
 Dish chicken biryani successfully added.
