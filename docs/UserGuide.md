@@ -49,6 +49,10 @@ Format: `set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL`
 * If profile doesn't exist, the command will generate a new `Profile` object.
 * If profile already exist, the command will automatically update profile info.
 
+Attention:
+* Height has units in centimetres.
+* Weight has units in kilograms.
+
 Example of usage:
 
 `set-profile John 20 male 180 80 75`
