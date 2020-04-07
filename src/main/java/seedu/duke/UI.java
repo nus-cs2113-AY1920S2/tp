@@ -75,8 +75,8 @@ public class UI {
                 + "\tdeletesubject s/<INDEX>                    Delete a subject and all its cards\n"
                 + "\n"
                 + "\taddcard s/<INDEX> q/<QUESTION> a/<ANSWER>  Add a card into the specified subject\n"
-                + "\tlistcard s/<INDEX>                         List all cards in specified subject\n"
-                + "\teditcard s/<INDEX> c/<INDEX> q/<QUESTION> a/<ANSWER>   Edit the card in specified subject and index\n"
+                + "\tlistcard s/<INDEX>                         List all cards in the specified subject\n"
+                + "\teditcard s/<IDX> c/<IDX> q/<QN> a/<ANS>    Edit the question/answer of the specified card\n"
                 + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified subject\n"
                 + "\n"
                 + "\tquiz s/<INDEX> n/<NUMBER>                  Start a quiz of the specified number of questions from"
@@ -87,7 +87,6 @@ public class UI {
                 + "\thelp                                       Displays the help page\n"
                 + "\texit                                       Exits the program";
         //+ "\t> View Answer: ​       answer [INDEX] e.g. answer 1\n"
-        //+ "\tselect <INDEX> Select a subject by subject index\n";
 
         System.out.println(helpMessage);
     }

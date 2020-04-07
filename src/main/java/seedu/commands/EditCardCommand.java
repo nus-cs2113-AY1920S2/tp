@@ -6,7 +6,7 @@ import seedu.exception.EscException;
 import seedu.subjects.Subject;
 import seedu.subjects.SubjectList;
 
-public class EditCardCommand extends AddCommand{
+public class EditCardCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "editcard";
 
@@ -50,8 +50,8 @@ public class EditCardCommand extends AddCommand{
         cardList.cards.remove(cardIndex);
         cardList.cards.add(cardIndex,card);
         System.out.println("The selected card has been edited");
-        System.out.println("Q: " + cardList.cards.get(cardIndex).getQuestion() +" / " +
-                            "A: "+ cardList.cards.get(cardIndex).getQuestion());
+        System.out.println("Q: " + cardList.cards.get(cardIndex).getQuestion() + " / "
+                        + "A: " + cardList.cards.get(cardIndex).getQuestion());
     }
 }
 

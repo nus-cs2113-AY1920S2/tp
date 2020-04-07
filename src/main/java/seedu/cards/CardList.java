@@ -46,7 +46,8 @@ public class CardList implements Serializable {
         }
 
         try {
-            System.out.println("The card: [Q: " + cards.get(index).getQuestion() + " A: " + cards.get(index).getAnswer() + "] has been removed");
+            System.out.println("The card: [Q: " + cards.get(index).getQuestion()
+                    + " A: " + cards.get(index).getAnswer() + "] has been removed");
             cards.remove(index);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The card item does not exist.");

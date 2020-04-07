@@ -89,7 +89,7 @@ public class Storage {
                 returnList.add(loadSubs);
                 returnList.add(loadEvent);
             } catch (IOException | ClassNotFoundException e) {
-                throw new EscException("Load error");
+                throw new EscException("Load error " + e);
             }
         }
 
