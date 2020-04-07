@@ -2,28 +2,32 @@ package command;
 
 import common.Messages;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import seedu.atas.Parser;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 //@@author joelczk
-public class SearchCommandTest {
+public class SearchdTest {
+    public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
     private static TaskList filledTaskList;
     private static TaskList emptyTaskList;
     private static Ui ui;
     private StringBuilder searchString;
+    private static String stringDate1 = "13/03/20";
+    private static LocalDate date1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
 
     /**
      * Initialize hard-coded test cases.
      */
-    public SearchCommandTest() {
+    public SearchdTest() {
         emptyTaskList = new TaskList();
         filledTaskList = new TaskList();
         ui = new Ui();
@@ -40,23 +44,21 @@ public class SearchCommandTest {
         LocalDateTime testDateTime3 = LocalDateTime.parse(date3, dateTimeFormatter);
         LocalDateTime testDateTime4 = LocalDateTime.parse(date4, dateTimeFormatter);
 
-        Assignment testCaseOne = new Assignment("Test 3", "CS2102", testDateTime1, "-");
+        Assignment testCaseOne = new Assignment("Assignment 3", "CS2102", testDateTime1, "-");
         Assignment testCaseTwo = new Assignment("Assignment 5", "CS2102", testDateTime1, "-");
         Assignment testCaseThree = new Assignment("OP1", "CS2101", testDateTime3, "15%");
         Event testCaseFour = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, "-");
         Event testCaseFive = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
         Event testCaseSix = new Event("mid", "MPSH1A", testDateTime1, testDateTime2, "-");
-        Assignment testCaseSeven = new Assignment("Test 5", "CS2102", testDateTime1, "-");
         filledTaskList.addTask(testCaseOne);
         filledTaskList.addTask(testCaseTwo);
         filledTaskList.addTask(testCaseThree);
         filledTaskList.addTask(testCaseFour);
         filledTaskList.addTask(testCaseFive);
         filledTaskList.addTask(testCaseSix);
-        filledTaskList.addTask(testCaseSeven);
     }
 
-    private String searchSingleEvent() {
+    private String eventSingleResultString() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
         searchString.append("  4.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
@@ -66,7 +68,7 @@ public class SearchCommandTest {
         return searchString.toString();
     }
 
-    private String searchMultipleEvents() {
+    private String eventMultipleResultsString() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
         searchString.append("  4.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
@@ -80,24 +82,24 @@ public class SearchCommandTest {
         return searchString.toString();
     }
 
-    private String searchSingleAssignment() {
+    private String assignmentSingleResultString() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
-        searchString.append("  1.[A][X] Test 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
+        searchString.append("  1.[A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
         return searchString.toString();
     }
 
-    private String searchMultipleAssignments() {
+    private String assignmentMultipleResultsString() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
-        searchString.append("  1.[A][X] Test 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
+        searchString.append("  1.[A][X] Assignment 3 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
-        searchString.append("  7.[A][X] Test 5 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
+        searchString.append("  2.[A][X] Assignment 5 (by: Fri 13 Mar 2020 18:00 | mod: CS2102)");
         searchString.append(System.lineSeparator());
         searchString.append("            notes: -");
         searchString.append(System.lineSeparator());
@@ -105,53 +107,52 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void searchExecuteMethod_emptyTaskList() {
-        assertEquals(new SearchCommand("test", "all",null).execute(emptyTaskList,ui).feedbackToUser,
+    public void executeMethod_EmptyTaskList() {
+        assertEquals(new SearchCommand("test", "all", date1).execute(emptyTaskList,ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
-        assertEquals(new SearchCommand("test", "assignment",null).execute(emptyTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("test", "assignment", date1).execute(emptyTaskList, ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
-        assertEquals(new SearchCommand("test", "event",null).execute(emptyTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("test", "event", date1).execute(emptyTaskList, ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
     }
 
     @Test
-    public void searchExecuteMethod_invalidSearchArgument() {
-        assertEquals(new SearchCommand("test", "abcd",null).execute(filledTaskList, ui).feedbackToUser,
-                String.format(Messages.INCORRECT_ARGUMENT_ERROR,
-                        Parser.capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE));
+    public void executeMethod_searchOneEvent_success() {
+        String stringDate1 = "13/03/20";
+        LocalDate date1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
+        assertEquals(new SearchCommand("midterms", "event", date1).execute(filledTaskList, ui).feedbackToUser,
+                eventSingleResultString());
     }
 
     @Test
-    public void searchExecuteMethod_searchOneEvent_success() {
-        assertEquals(new SearchCommand("midterms", "event",null).execute(filledTaskList, ui).feedbackToUser,
-                searchSingleEvent());
+    public void executeMethod_searchMultipleEvents_success() {
+        String stringDate1 = "13/03/20";
+        LocalDate date1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
+        assertEquals(new SearchCommand("mid", "event", date1).execute(filledTaskList, ui).feedbackToUser,
+                eventMultipleResultsString());
     }
 
     @Test
-    public void searchExecuteMethod_searchMultipleEvents_success() {
-        assertEquals(new SearchCommand("mid", "event",null).execute(filledTaskList, ui).feedbackToUser,
-                searchMultipleEvents());
+    public void executeMethod_searchOneAssignment_success() {
+        String stringDate1 = "13/03/20";
+        LocalDate date1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
+        assertEquals(new SearchCommand("assignment 3", "assignment", date1).execute(filledTaskList,ui).feedbackToUser,
+                assignmentSingleResultString());
     }
 
     @Test
-    public void searchExecuteMethod_searchOneAssignment_success() {
-        assertEquals(new SearchCommand("Test 3", "assignment",null).execute(filledTaskList,ui).feedbackToUser,
-                searchSingleAssignment());
+    public void executeMethod_searchMultipleAssignments_success() {
+        assertEquals(new SearchCommand("assignment", "assignment", date1).execute(filledTaskList,ui).feedbackToUser,
+                assignmentMultipleResultsString());
     }
 
     @Test
-    public void searchExecuteMethod_searchMultipleAssignments_success() {
-        assertEquals(new SearchCommand("test", "assignment",null).execute(filledTaskList,ui).feedbackToUser,
-                searchMultipleAssignments());
-    }
-
-    @Test
-    public void executeMethod_emptyResults() {
-        assertEquals(new SearchCommand("abcd", "event",null).execute(filledTaskList, ui).feedbackToUser,
+    public void  executeMethod_emptyResults() {
+        assertEquals(new SearchCommand("abcd","event", date1).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
-        assertEquals(new SearchCommand("abcd", "assignment",null).execute(filledTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("abcd", "assignment", date1).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
-        assertEquals(new SearchCommand("abcd", "all",null).execute(filledTaskList, ui).feedbackToUser,
+        assertEquals(new SearchCommand("abcd", "all", date1).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
     }
 }

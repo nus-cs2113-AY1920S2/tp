@@ -272,7 +272,7 @@ The String results from Step 5 will be parsed into `SearchCommand#resultsList` t
         
 The following sequence diagram summarizes how the *search* and *searchd* command works :
 
-![Search operations](images/search.png)
+![Search operations](images/search command.png)
 
 #### 3.2.2. Design Considerations:
 
@@ -354,7 +354,7 @@ are no completed tasks
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
-![clear command](images/clear.png)
+![clear command](images/clear command.png)
 
 #### 3.3.2. Design Considerations
 
