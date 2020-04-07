@@ -136,6 +136,15 @@ Screenshot showing score:
 
 ![](images/score.png)
 
+### Adding upcoming events
+Adds a event information to keep track
+
+Formar: `addevent e/[DESCRIPTION] d/[DATE]"`
+
+Example of Usage:
+* `addevent e/CS2113 PE d/05-04-2020`
+* `addevent e/CS2113 Final Exam d/30-04-2020` 
+
 <hr>
 
 ### Displaying the Help Page
