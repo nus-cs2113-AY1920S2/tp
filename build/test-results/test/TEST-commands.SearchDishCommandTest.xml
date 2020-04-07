@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.SearchDishCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-05T15:28:10" hostname="DESKTOP-FPGAEA4" time="0.015">
+<testsuite name="commands.SearchDishCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-07T02:38:20" hostname="Ganeshs-MacBook-Pro.local" time="0.03">
   <properties/>
-  <testcase name="searchDishTestA()" classname="commands.SearchDishCommandTest" time="0.01"/>
-  <testcase name="searchDishTestB()" classname="commands.SearchDishCommandTest" time="0.001"/>
-  <testcase name="searchDishTestC()" classname="commands.SearchDishCommandTest" time="0.0"/>
-  <testcase name="searchDishTestD()" classname="commands.SearchDishCommandTest" time="0.001"/>
-  <system-out><![CDATA[Here are the dishes that match your keyword:
+  <testcase name="searchDishTestA()" classname="commands.SearchDishCommandTest" time="0.016"/>
+  <testcase name="searchDishTestB()" classname="commands.SearchDishCommandTest" time="0.007"/>
+  <testcase name="searchDishTestC()" classname="commands.SearchDishCommandTest" time="0.002"/>
+  <testcase name="searchDishTestD()" classname="commands.SearchDishCommandTest" time="0.002"/>
+  <system-out><![CDATA[Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
+Here are the dishes that match your keyword:
 Name: chicken biryani; Ingredients: chicken, rice, chili; Price: $10.0;
 Name: pasta with chicken; Ingredients: chicken, pasta, sauce; Price: $7.0;
+Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
 Here are the dishes that match your keyword:
 Name: bacon pizza; Ingredients: cheese, bacon; Price: $5.0;
 Name: bacon flatbread; Ingredients: flatbread, bacon, cheese; Price: $3.0;
 Here are the dishes that match your keyword:
 Name: bacon pizza; Ingredients: cheese, bacon; Price: $5.0;
 Name: bacon flatbread; Ingredients: flatbread, bacon, cheese; Price: $3.0;
+Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
 Here are the dishes that match your keyword:
+Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
 Here are the dishes that match your keyword:
 Name: bacon pizza; Ingredients: cheese, bacon; Price: $5.0;
 ]]></system-out>

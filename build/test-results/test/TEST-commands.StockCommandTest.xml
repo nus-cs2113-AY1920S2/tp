@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.StockCommandTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-04-05T15:28:10" hostname="DESKTOP-FPGAEA4" time="0.009">
+<testsuite name="commands.StockCommandTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-04-07T02:38:20" hostname="Ganeshs-MacBook-Pro.local" time="0.012">
   <properties/>
-  <testcase name="parse_parseIngredientQuantity_quantityIsNotInteger()" classname="commands.StockCommandTest" time="0.0"/>
-  <testcase name="parse_parseIngredientName_parseNormally()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientQuantity_quantityIsNotInteger()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="parse_parseIngredientName_parseNormally()" classname="commands.StockCommandTest" time="0.001"/>
   <testcase name="parse_parseIngredientPrice_priceMissingDollarSign()" classname="commands.StockCommandTest" time="0.0"/>
   <testcase name="parse_parseIngredientQuantity_parseNormally()" classname="commands.StockCommandTest" time="0.0"/>
-  <testcase name="parse_parseIngredientPrice_priceIsDouble()" classname="commands.StockCommandTest" time="0.0"/>
-  <testcase name="parse_parseIngredientPrice_priceIsIntger()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientPrice_priceIsDouble()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="parse_parseIngredientPrice_priceIsIntger()" classname="commands.StockCommandTest" time="0.001"/>
   <testcase name="parse_parseIngredientQuantity_quantityIsTypeDouble()" classname="commands.StockCommandTest" time="0.001"/>
   <testcase name="execute_executeStockCommand_throwsException()" classname="commands.StockCommandTest" time="0.001"/>
-  <testcase name="parse_parseIngredientPrice_parseNormally()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="parse_parseIngredientPrice_parseNormally()" classname="commands.StockCommandTest" time="0.0"/>
   <testcase name="parse_parseIngredientQuantity_quantityIsNegative()" classname="commands.StockCommandTest" time="0.0"/>
-  <testcase name="parse_parseIngredientPrice_priceIsNegative()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientPrice_priceIsNegative()" classname="commands.StockCommandTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
