@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Represents the entire deck of flashcards.
  */
 public class CardList implements Serializable {
-    public ArrayList<Card> cards;
+    private ArrayList<Card> cards;
 
     public CardList() {
         this.cards = new ArrayList<Card>();
@@ -32,7 +32,7 @@ public class CardList implements Serializable {
         cards.add(card);
         System.out.println("Q:" + card.getQuestion());
         System.out.println("A:" + card.getAnswer());
-        System.out.println("Card has been added to subject {" + subject.getSubject() + "}");
+        System.out.println("A new card has been added to subject {" + subject.getSubject() + "}");
         listCards();
     }
 
@@ -46,8 +46,6 @@ public class CardList implements Serializable {
         }
 
         try {
-            System.out.println("The card: [Q: " + cards.get(index).getQuestion()
-                    + " A: " + cards.get(index).getAnswer() + "] has been removed");
             cards.remove(index);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The card item does not exist.");
@@ -84,8 +82,7 @@ public class CardList implements Serializable {
             System.out.println("Here is the list of questions.");
             for (int i = 0; i < cards.size(); i++) {
                 int j = i + 1;
-                System.out.println(j + ".Q. " + cards.get(i).getQuestion());
-                System.out.println("  A. " + cards.get(i).getAnswer());
+                System.out.println(j + ". " + cards.get(i).getQuestion());
             }
         }
     }
