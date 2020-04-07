@@ -16,33 +16,67 @@ import static seedu.attendance.Attendance.attendanceStatusComparator;
 public class AttendanceList {
 
     protected ArrayList<Attendance> attendanceList;
-    protected UI ui;
-    private DisplayTable displayTable;
+    protected UI ui = new UI();
+    private DisplayTable displayTable = new DisplayTable();
 
-    public AttendanceList() {
-        this.ui = new UI();
-        this.displayTable = new DisplayTable();
-        attendanceList = new ArrayList<>();
-    }
-
+    /**
+    * To fetch the existing attendanceList.
+    * @return attendanceList.
+    */
     public ArrayList<Attendance> getAttendanceList() {
         return attendanceList;
     }
 
+    /**
+     * To check if there is an existing name in the attendanceList.
+     * @param name the name of the student to be added into the attendanceList.
+     * @return  If there is an existing name in the attendanceList, return true.
+     *          ELse, return false.
+     */
+    public boolean isDuplicate(String name) {
+        String existingStudentName;
+        String newStudentName;
+        for (int i = 0; i < attendanceList.size(); i++) {
+            existingStudentName = attendanceList.get(i).getStudentName().toLowerCase();
+            newStudentName = name.toLowerCase();
+            if (existingStudentName.equals(newStudentName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * To add to the existing attendanceList in the selected event.
+     * @param attendance the existing attendanceList in the event.
+     * @param eventName the name of the event.
+     */
     public void addToList(Attendance attendance, String eventName) {
         attendanceList.add(attendance);
         ui.addAttendanceMessage(attendance.studentName, attendance.getAttendanceStatus(), eventName);
     }
 
-    public void printList() throws PacException {
+    /**
+     * To display the existing attendanceList in the selected event.
+     * @throws PacException If the existing attendanceList is empty.
+     */
+    public void displayAttendanceList() throws PacException {
         if (isEmpty()) {
             throw new PacException("No attendance list under this event");
+        } else {
+            printTable();
         }
-        int i = 1;
+    }
+
+    /**
+     * To display the attendanceList in table form.
+     */
+    public void printTable() {
+        int index = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Status");
         for (Attendance attendance : attendanceList) {
-            displayTable.printBodyOfThree(i, attendance.getStudentName(), attendance.getAttendanceStatus());
-            i++;
+            displayTable.printBodyOfThree(index, attendance.getStudentName(), attendance.getAttendanceStatus());
+            index++;
         }
     }
 
@@ -54,7 +88,6 @@ public class AttendanceList {
         return attendanceList.isEmpty();
     }
 
-
     /**
      * Clear the attendanceList.
      */
@@ -62,20 +95,20 @@ public class AttendanceList {
         attendanceList.clear();
     }
 
-    public void sort() {
+    /**
+     * To sort the attendanceList by the name of the student alphabetically.
+     */
+    public void sortByName() {
         Collections.sort(attendanceList,attendanceListNameComparator);
     }
 
+
+    /**
+     * To sort the attendanceList by the status of the student.
+     */
     public void sortByStatus() {
         Collections.sort(attendanceList,attendanceStatusComparator);
     }
 
-    public boolean isDuplicate(String name) {
-        for (int i = 0; i < attendanceList.size(); i++) {
-            if (attendanceList.get(i).getStudentName().toLowerCase().equals(name.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 }

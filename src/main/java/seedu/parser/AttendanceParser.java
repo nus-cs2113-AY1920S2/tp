@@ -12,7 +12,7 @@ public class AttendanceParser {
      *
      * @param commandParameters A String contains information of the Attendance, to be parsed.
      * @return                  A Attendance containing information parsed from commandParameters.
-     * @throws PacException    Throws PacException when the commandParameters contains wrong
+     * @throws PacException     Throws PacException when the commandParameters contains wrong
      *                          tokens or insufficient parameter.
      */
     public Attendance parseAttendance(String commandParameters) throws PacException {
