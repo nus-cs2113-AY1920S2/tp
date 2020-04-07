@@ -155,6 +155,7 @@ public class TaskList {
         return eventList;
     }
 
+    //@@author joelczk
     /**
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
@@ -165,6 +166,7 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
+    //@@author joelczk
     /**
      * Getter for all assignment tasks.
      * @return ArrayList object containing all assignments
@@ -181,7 +183,7 @@ public class TaskList {
         return assignmentList;
     }
 
-    //@@author
+    //@@author joelczk
     /**
      * Adds a task to TaskList.
      * @param task task object to be added

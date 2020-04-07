@@ -9,7 +9,7 @@ import tasks.Task;
 
 import java.util.ArrayList;
 
-//@@author
+//@@author joelczk
 public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     private static final String CLEAR_ALL_COMMAND_USAGE = "- Clear All Tasks: clear all";
@@ -24,7 +24,8 @@ public class ClearCommand extends Command {
     protected final String clearParam;
 
     /**
-     * Constructs the clear command.
+     * Constructor for clear all and clear done command.
+     * @param clearParam Parameter to distinguish between clear all and clear done command
      */
     public ClearCommand(String clearParam) {
         this.clearParam = clearParam;

@@ -53,13 +53,13 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void executeMethod_clearAll_filledList_success() {
+    public void clearAll_FilledList_success() {
         assertEquals(new ClearCommand("all").execute(filledTaskList,ui).feedbackToUser,
                 Messages.CLEAR_SUCCESS_MESSAGE);
     }
 
     @Test
-    public void executeMethod_clearAll_emptyList() {
+    public void clearAll_EmptyList_noTaskMessage() {
         assertEquals(filledTaskList.getListSize(),6);
         assertEquals(new ClearCommand("all").execute(emptyTaskList,ui).feedbackToUser,
                 Messages.NO_TASKS_MSG);
@@ -67,7 +67,7 @@ public class ClearCommandTest {
 
 
     @Test
-    public void executeMethod_clearDone_filledList_success() {
+    public void clearDone_filledList_success() {
         filledTaskList.markTaskAsDone(2);
         filledTaskList.markTaskAsDone(4);
         assertEquals(new ClearCommand("done").execute(filledTaskList,ui).feedbackToUser,
@@ -76,14 +76,14 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void executeMethod_clear_filledList_failure() {
+    public void clearDone_filledList_failure() {
         assertEquals(new ClearCommand("done").execute(filledTaskList,ui).feedbackToUser,
                 Messages.EMPTY_DONE_CLEAR_ERROR);
     }
 
 
     @Test
-    public void executeMethod_clearDone_EmptyList() {
+    public void clearDone_EmptyList() {
         assertEquals(new ClearCommand("done").execute(emptyTaskList,ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
     }
