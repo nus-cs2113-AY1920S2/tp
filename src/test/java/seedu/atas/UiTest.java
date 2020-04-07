@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-
 public class UiTest {
     private PrintStream consoleOut;
     private InputStream consoleIn;
