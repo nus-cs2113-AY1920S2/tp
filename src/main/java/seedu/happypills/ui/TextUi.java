@@ -73,6 +73,37 @@ public class TextUi {
         return "    The command \"" + command + "\" does not exist. Please try again.\n";
     }
 
+    /**
+     * Construct a string for incomplete commands, probably missing something.
+     * @param helpString provide the help command that user can use to find the right format
+     * @return a string for incomplete commands.
+     */
+    public  static String incompleteCommandString(String helpString) {
+        String msg = "    Command is incomplete. Please use the " + helpString + " command.";
+        return msg;
+    }
+
+    /**
+     * Repeat a string count number of times.
+     *
+     * @param count the number of times to be repeated.
+     * @param with the string to be repeated.
+     * @return the resulting string.
+     */
+    public static String repeat(int count, String with) {
+        return new String(new char[count]).replace("\0", with);
+    }
+
+    /**
+     * Repeat a blank space count number of times.
+     *
+     * @param count the number of times to be repeated.
+     * @return the resulting string.
+     */
+    public static String repeat(int count) {
+        return repeat(count, " ");
+    }
+
     public static final String INVALID_NRIC_MESSAGE = ""
             + "    The NRIC provided is invalid, please try again with a valid NRIC.\n";
 

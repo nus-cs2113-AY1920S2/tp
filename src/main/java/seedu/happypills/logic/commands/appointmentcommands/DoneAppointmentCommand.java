@@ -58,7 +58,8 @@ public class DoneAppointmentCommand extends AppointmentCommand {
      * @return the appointment with the specified apptID or null if not found
      */
     private Appointment findAppointment(AppointmentMap appointments) {
-        if (appointments.containsKey(apptID)) {
+        if (appointments.containsKey(apptID)
+                && appointments.get(apptID).getNric().equalsIgnoreCase(nric)) {
             return appointments.get(apptID);
         }
         return null;

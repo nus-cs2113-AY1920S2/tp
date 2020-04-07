@@ -1,12 +1,15 @@
 package seedu.happypills.logic.parser;
 
+import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.Command;
 import seedu.happypills.logic.commands.ExitCommand;
 import seedu.happypills.logic.commands.HelpCommand;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
+import seedu.happypills.ui.TextUi;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 /**
  * Parses user input.
@@ -27,6 +30,7 @@ public class Parser {
      * @throws HappyPillsException throws an exception for invalid commands
      */
     public static Command parse(String fullCommand) throws HappyPillsException {
+        fullCommand = fullCommand.trim();
         String[] userCommand = fullCommand.trim().split(" ", 3); // leading spaces removed
         if (userCommand.length == 1) {
             return parseGeneralCommands(fullCommand, userCommand);
@@ -59,5 +63,57 @@ public class Parser {
         } else {
             throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    /**
+     * Prompt the user.
+     *
+     * @return The string entered by the user.
+     */
+    public static String promptUser() {
+        System.out.println(TextUi.DIVIDER);
+        Scanner in = HappyPills.scanner;
+        String reInput = in.nextLine();
+        return reInput;
+    }
+
+    /**
+     * Loop the user prompting (y/n).
+     *
+     * @param output The output after the user enters (y).
+     * @return true if the user enters y, false if the user enters n.
+     */
+    public static boolean loopPrompt(String output) {
+        boolean userConfirmation = false;
+        System.out.println(output);
+        while (!userConfirmation) {
+            String confirmation = promptUser();
+            System.out.println(TextUi.DIVIDER);
+            if (confirmation.equalsIgnoreCase("y")) {
+                userConfirmation = true;
+            } else if (confirmation.equalsIgnoreCase("n")) {
+                return false;
+            } else {
+                System.out.println("    Please input [y] for yes or [n] for no");
+            }
+        }
+        return true;
+    }
+
+    /**
+     * split the user input according to the tags.
+     *
+     * @param content the user input.
+     * @return the array containing the split input.
+     */
+    public static String[] splitInput(String content) {
+        String[] details;
+        if (content.startsWith("/")) {
+            details = content.substring(1).split(" /");
+        } else {
+            content = "@" + content;
+            details = content.split(" /");
+        }
+        return details;
     }
 }

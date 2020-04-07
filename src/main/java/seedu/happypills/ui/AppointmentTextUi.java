@@ -12,8 +12,7 @@ public class AppointmentTextUi extends TextUi {
     public static final String GET_EMPTY_APPOINTMENT_LIST_MESSAGE = ""
             + "    There are no appointments in the list.\n" + DIVIDER;
     public static final String APPOINTMENT_NOT_FOUND_MESSAGE = ""
-            + "    The appointment cannot be found. Please try again."
-            + DIVIDER;
+            + "    The appointment cannot be found. Please try again.";
 
     /**
      * Shows list of appointments in the program.
@@ -22,14 +21,17 @@ public class AppointmentTextUi extends TextUi {
      */
     public static String getAppointmentList(AppointmentMap appointments) {
         String message = "    Here is your list of appointments:\n"
-                + "    ID | date       | time     | NRIC\n";
+                + "    ID    | date       | time      | NRIC\n";
         for (Map.Entry appointment : appointments.entrySet()) {
             Appointment a = (Appointment)appointment.getValue();
             String nric = a.getNric();
-            String id = a.getAppointmentId();
-            String date = a.getDate();
-            String time = a.getTime();
-            message += "    " + id + "  | " + date + " | " + time + " | " + nric + "\n";
+            String id = a.getAppointmentId()
+                    + repeat(6 - a.getAppointmentId().length());
+            String date = a.getDate()
+                    + repeat(11 - a.getDate().length());
+            String time = a.getTime()
+                    + repeat(10 - a.getTime().length());
+            message += "    " + id + "| " + date + "| " + time + "| " + nric + "\n";
         }
         message += DIVIDER;
         return message;
@@ -54,19 +56,23 @@ public class AppointmentTextUi extends TextUi {
      */
     public static String getAppointmentSuccessMessage(Patient patient) {
         String returnMessage = "    Here are the patient's appointments:\n"
-                + "     | ID | NRIC   | Reason | Date      | Time     |\n";
+                + "    ID    | NRIC      | Date       | Time      | Reason      \n";
         String content = "";
         ArrayList<Appointment> tempList = patient.getAppointments();
         for (Appointment appointment : tempList) {
-            String id = appointment.getAppointmentId();
-            String nric = appointment.getNric();
+            String id = appointment.getAppointmentId()
+                    + repeat(6 - appointment.getAppointmentId().length());
+            String nric = appointment.getNric()
+                    + repeat(10 - appointment.getNric().length());
             String reason = appointment.getReason();
-            String date = appointment.getDate();
-            String time = appointment.getTime();
-            content += "     | " + id + " | " + nric + " | " + reason + " | " + date + " | " + time + " | \n";
+            String date = appointment.getDate()
+                    + repeat(11 - appointment.getDate().length());
+            String time = appointment.getTime()
+                    + repeat(10 - appointment.getTime().length());
+            content += "    " + id + "| " + nric + "| " + date + "| " + time + "| " + reason + "\n";
         }
         if (content.isEmpty()) {
-            returnMessage = "    There are no appointments in the list.\n";
+            returnMessage = "    The patient does not have any appointments scheduled.\n" + TextUi.DIVIDER;
         } else {
             returnMessage += content + DIVIDER;
         }

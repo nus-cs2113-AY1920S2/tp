@@ -54,7 +54,8 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
      * @return the appointment with the specified apptID or null if not found
      */
     private Appointment findAppointment(AppointmentMap appointments) {
-        if (appointments.containsKey(appointmentId)) {
+        if (appointments.containsKey(appointmentId)
+                && appointments.get(appointmentId).getNric().equalsIgnoreCase(nric)) {
             return appointments.get(appointmentId);
         }
         return null;

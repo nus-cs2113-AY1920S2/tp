@@ -49,7 +49,7 @@ public class Messages {
             "    Please try again. To learn more about the Edit patient command, "
                     + "\n    enter \"help edit patient\"";
 
-    public static final String MESSAGE_EMPTY_PATIENT = "    There are no patients in the list.";
+    public static final String MESSAGE_EMPTY_PATIENT = "    There are no patients in the list.\n" + DIVIDER;
     public static final String MESSAGE_INDEX_OUT_OF_BOUND = "    No record found with given Index";
     public static final String MESSAGE_PATIENT_IS_IN_THE_MAP =
             "    Patient is already in the list. Please use help command.";

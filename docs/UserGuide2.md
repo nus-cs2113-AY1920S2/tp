@@ -148,7 +148,7 @@ You can also add a new patient with the specified parameters in any order.
     
 >***Expected output:***
 >
->![MissingInput](images/Patient/MissingAddPatientInput.PNG "Missing Add Ouput")
+>![MissingInput](images/MissingAddPatientInput.PNG "Missing Add Ouput")
 >
 > Enter `/p 999` to add missing field.
 
@@ -157,7 +157,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](images/Patient/addConfirm.PNG "Add Confirmation Ouput")
+>   ![CheckConfirmAdd](images/addConfirm.PNG "Add Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -182,7 +182,7 @@ Edit information of the patient with the specified NRIC.
 
 > ***Expected output:***
 >
-> ![editPatientOutput](images/Patient/EditCommandOutput.PNG "Edit Patient Ouput")
+> ![editPatientOutput](images/EditCommandOutput.PNG "Edit Patient Ouput")
 
 :information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
 ---------------------|--------------------------------------------------------------------------
@@ -201,7 +201,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](images/Patient/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+> ![confirmDelete](images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -210,7 +210,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](images/Patient/DeleteSuccessful.PNG "Successfully Deleted Ouput")
+>  ![SuccessfulDelete](images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
 :heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
 -------------------------|-------------------------------------------------------------------
@@ -225,7 +225,7 @@ Displays all the patients in the patient list.
     
 > ***Expected output:***
 >
-> ![ListPatient](images/Patient/ListPatientOutput.PNG "List Ouput")  
+> ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
@@ -241,7 +241,7 @@ Retrieve details of the patient with the specified NRIC.
     
 > ***Expected output:***
 >
-> ![getpatient](images/Patient/GetPatientOutput.PNG "Get Ouput")
+> ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
 
 ### 3.3. Patient Medical Records 
 

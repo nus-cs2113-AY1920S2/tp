@@ -19,7 +19,7 @@ import java.util.Scanner;
 /**
  * This class is used to parse the user input for patient record commands.
  */
-public class PatientRecordParser {
+public class PatientRecordParser extends Parser {
     public static final String NRIC_TAG = "ic";
     public static final String SYMPTOM_TAG = "sym";
     public static final String DIAGNOSIS_TAG = "diag";
@@ -136,18 +136,6 @@ public class PatientRecordParser {
         return input.equalsIgnoreCase("");
     }
 
-    private static boolean isValidNricInput(String detail) {
-        return Checker.isValidNric(detail.substring(2).trim().toUpperCase());
-    }
-
-    private static boolean isValidDateInput(String detail) {
-        return Checker.isValidDate(detail.substring(1).trim());
-    }
-
-    private static boolean isValidTimeInput(String detail) {
-        return Checker.isValidTime(detail.substring(1).trim());
-    }
-
     private static boolean hasMissingFields(String[] parseInput) {
         for (int index = 0; index < 5; index++) {
             if (parseInput[index].equalsIgnoreCase("")) {
@@ -161,54 +149,45 @@ public class PatientRecordParser {
 
     private static PatientRecordCommand parseAddCommand(String content) throws HappyPillsException {
         String[] details;
-        details = checkInput(content);
+        details = splitInput(content);
         String[] parseInput = {"", "", "", "", "", ""};
+        parseInput = parseInput(details, parseInput);
+        while (hasMissingFields(parseInput)) {
+            printMissingFields(parseInput);
+            String input = promptUser().trim();
+            if (input.equalsIgnoreCase("clear")) {
+                throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
+            }
+            String[] updates = splitInput(input);
+            updates = trimArray(updates);
+            updateInput(parseInput, updates);
+        }
 
+        if (!loopPrompt(PatientRecordTextUi.promptConfirmation(parseInput))) {
+            return new IncorrectPatientRecordCommand(Messages.MESSAGE_PATIENT_RECORD_NOT_ADDED);
+        }
+
+        return new AddPatientRecordCommand(parseInput[0].toUpperCase(), parseInput[1],
+                parseInput[2], parseInput[3], parseInput[4]);
+    }
+
+    private static String[] parseInput(String[] details, String[] parseInput) {
         for (String detail : details) {
-            if (detail.startsWith(NRIC_TAG) && isValidNricInput(detail)) {
+            if (detail.startsWith(NRIC_TAG)) {
                 parseInput[0] = detail.substring(2).trim().toUpperCase();
-            } else if (detail.startsWith(SYMPTOM_TAG) && isInputEmpty(parseInput[1])) {
+            } else if (detail.startsWith(SYMPTOM_TAG)) {
                 parseInput[1] = detail.substring(3).trim();
-            } else if (detail.startsWith(DIAGNOSIS_TAG) && isInputEmpty(parseInput[2])) {
+            } else if (detail.startsWith(DIAGNOSIS_TAG)) {
                 parseInput[2] = detail.substring(4).trim();
-            } else if (detail.startsWith(DATE_TAG) && isValidDateInput(detail)) {
+            } else if (detail.startsWith(DATE_TAG)) {
                 parseInput[3] = detail.substring(1).trim();
-            } else if (detail.startsWith(TIME_TAG) && isValidTimeInput(detail)) {
+            } else if (detail.startsWith(TIME_TAG)) {
                 parseInput[4] = detail.substring(1).trim();
             } else {
                 PatientRecordTextUi.patientRecordNotAddedMessage(detail);
             }
         }
-
-        while (hasMissingFields(parseInput)) {
-            printMissingFields(parseInput);
-            String input = readUserInput().trim();
-            if (input.equalsIgnoreCase("clear")) {
-                throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
-            }
-            String[] updates = checkInput(input);
-            updates = trimArray(updates);
-            updateInput(parseInput, updates);
-        }
-
-        boolean hasConfirmation = false;
-        System.out.println(PatientRecordTextUi.promptConfirmation(parseInput));
-
-        while (!hasConfirmation) {
-            String confirmation = readUserInput();
-            boolean isConfirmed = confirmation.equalsIgnoreCase("y");
-            boolean isNotConfirmed = confirmation.equalsIgnoreCase("n");
-            if (isConfirmed) {
-                hasConfirmation = true;
-            } else if (isNotConfirmed) {
-                return new IncorrectPatientRecordCommand(Messages.MESSAGE_PATIENT_RECORD_NOT_ADDED);
-            } else {
-                System.out.println(Messages.MESSAGE_USER_CONFIRMATION);
-            }
-        }
-
-        return new AddPatientRecordCommand(parseInput[0].toUpperCase(), parseInput[1],
-                parseInput[2], parseInput[3], parseInput[4]);
+        return parseInput;
     }
 
     private static void updateInput(String[] parseInput, String[] updates) {
@@ -231,7 +210,7 @@ public class PatientRecordParser {
     }
 
     private static void printMissingFields(String[] parseInput) {
-        System.out.println(Messages.MESSAGE_INFORM_MISSING);
+        System.out.println("    Please input your missing/incorrect detail listed below");
         if (isInputEmpty(parseInput[0]) || !Checker.isValidNric(parseInput[0])) {
             System.out.println(Messages.MESSAGE_NRIC_FORMAT);
         }
@@ -247,24 +226,6 @@ public class PatientRecordParser {
         if (parseInput[4].equalsIgnoreCase("") || !Checker.isValidTime(parseInput[4])) {
             System.out.println(Messages.MESSAGE_TIME_FORMAT);
         }
-    }
-
-    private static String[] checkInput(String content) {
-        String[] details;
-        if (content.startsWith("/")) {
-            details = content.substring(1).split(" /");
-        } else {
-            content = "@" + content;
-            details = content.split(" /");
-        }
-        return details;
-    }
-
-    private static String readUserInput() {
-        System.out.println(TextUi.DIVIDER);
-        Scanner in = HappyPills.scanner;
-        String reInput = in.nextLine();
-        System.out.println(TextUi.DIVIDER);
-        return reInput;
+        System.out.println("    To abort, enter \"clear\"");
     }
 }
