@@ -65,7 +65,7 @@ public class FindAppointmentCommandTest {
 
     @Test
     public void getAppointment_EmptyList_notFound() throws HappyPillsException {
-        String expectedOutputEmptyList = "    There are no appointments in the list.\n";
+        String expectedOutputEmptyList = "    The patient does not have any appointments scheduled.\n" + DIVIDER;
         String message = new FindAppointmentCommand("S4567890B").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputEmptyList, message);

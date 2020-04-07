@@ -19,7 +19,7 @@ import java.util.Scanner;
 /**
  * This class is used to parse the user input for patient record commands.
  */
-public class PatientRecordParser {
+public class PatientRecordParser extends Parser {
     public static final String NRIC_TAG = "ic";
     public static final String SYMPTOM_TAG = "sym";
     public static final String DIAGNOSIS_TAG = "diag";

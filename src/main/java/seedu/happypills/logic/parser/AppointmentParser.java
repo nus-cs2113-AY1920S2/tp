@@ -19,7 +19,7 @@ import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
 
-public class AppointmentParser {
+public class AppointmentParser extends Parser {
 
     /**
      * Parses the command given by the user to appointment commands.
@@ -76,33 +76,16 @@ public class AppointmentParser {
             printMissingInput(parseInput);
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
-                return new IncorrectAppointmentCommand("    Appointment is not added\n");
+                throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
             String[] updates = splitInput(input);
             parseInput = parseInput(updates, parseInput);
         }
-        if (!loopPrompt(parseInput)) {
+        if (!loopPrompt(promptConfirmation(parseInput))) {
             return new IncorrectAppointmentCommand("    Appointment is not added.\n");
         }
         return new AddAppointmentCommand(parseInput[0].toUpperCase().trim(), parseInput[1].trim(),
                 parseInput[2].trim(), parseInput[3].trim());
-    }
-
-    private static boolean loopPrompt(String[] parseInput) {
-        boolean userConfirmation = false;
-        System.out.println(promptConfirmation(parseInput));
-        while (!userConfirmation) {
-            String confirmation = promptUser();
-            System.out.println(TextUi.DIVIDER);
-            if (confirmation.equalsIgnoreCase("y")) {
-                userConfirmation = true;
-            } else if (confirmation.equalsIgnoreCase("n")) {
-                return false;
-            } else {
-                System.out.println("    Please input [y] for yes or [n] for no");
-            }
-        }
-        return true;
     }
 
     private static String[] parseInput(String[] details, String[] parseInput) {
@@ -135,24 +118,6 @@ public class AppointmentParser {
             System.out.println("    /r[REASONS]");
         }
         System.out.println("    To abort, enter \"clear\"");
-    }
-
-    private static String[] splitInput(String content) {
-        String[] details;
-        if (content.startsWith("/")) {
-            details = content.substring(1).split(" /");
-        } else {
-            content = "@" + content;
-            details = content.split(" /");
-        }
-        return details;
-    }
-
-    private static String promptUser() {
-        System.out.println(TextUi.DIVIDER);
-        Scanner in = HappyPills.scanner;
-        String reInput = in.nextLine();
-        return reInput;
     }
 
     /**

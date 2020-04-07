@@ -89,7 +89,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     }
 
     /**
-     * Carry out the procedures for deleting appointment
+     * Carry out the procedures for deleting appointment.
      * @author janicetyy, sitinadiah25
      * @param patients Shared map of patients
      * @param appointments Shared map of appointments
