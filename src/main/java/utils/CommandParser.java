@@ -17,6 +17,8 @@ import commands.SearchStockCommand;
 import commands.SearchReservationCommand;
 import commands.HelpCommand;
 import commands.QuitCommand;
+import exceptions.DishNameMissingException;
+import exceptions.InvalidDeleteDishCommandException;
 import exceptions.InvalidStockCommandException;
 import menu.Menu;
 import report.ReportWriter;
@@ -53,7 +55,6 @@ public class CommandParser {
             if (splitCommands[1].equals("dish")) {
                 // Add dish.
                 AddDishCommand.addDish(commands[1]);
-                successfulCommand();
             } else if (splitCommands[1].equals("stock")) {
                 // Add stock.
                 try {
@@ -74,9 +75,7 @@ public class CommandParser {
         } else if (splitCommands[0].equals("delete")) {
             if (splitCommands[1].equals("dish")) {
                 // Delete dish.
-                String newcomm = commands[1].substring(3, commands[1].length() - 1);
-                DeleteDishCommand.deleteDish(newcomm);
-                successfulCommand();
+                DeleteDishCommand.deleteDish(commands[1]);
             } else if (splitCommands[1].equals("stock")) {
                 // Delete stock.
                 try {
@@ -101,7 +100,6 @@ public class CommandParser {
             if (splitCommands[1].equals("dish")) {
                 // List dish.
                 ListDishCommand.printDishes();
-                successfulCommand();
             } else if (splitCommands[1].equals("stock")) {
                 // List stock.
                 new ListStockCommand().execute(stock);
@@ -134,7 +132,6 @@ public class CommandParser {
             } else if (splitCommands[1].equals("dish")) {
                 // Search dish
                 SearchDishCommand.searchDish(commands[1]);
-                successfulCommand();
             } else {
                 errorCommand();
             }
