@@ -28,7 +28,7 @@ public class SearchCommandTest {
     private static LocalDate testDate1;
 
     /**
-     * Set up variables for tests
+     * Set up variables for tests.
      */
     @BeforeEach
     public void setup() {
