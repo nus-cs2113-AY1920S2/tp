@@ -18,9 +18,17 @@ Summary of contributions
 
 - What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
 - Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-- Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+- Highlights: This enhancement does not affects existing commands, but it required an in-depth analysis of the data formation of the current project. The implementation too was challenging as it required to add in a middle step in the main function of the program. I have to make sure that it won't go wrong and adversely affects the main program.
 
-2. added the **ability to preload the information of all modules provided by NUS**
+added the **ability to preload the information of all modules provided by NUS**
+
+- What it does: Preloads the information of all modules provided by NUS, including module codes and module titles.
+- Justification: This feature makes our product more targeted at our intended user(NUS students) more, it also enables the auto-complete features when users are adding their modules by entering module codes, which enhances usability.
+- Highlights: This enhancement is based on the json file which is retrieved from the [NUSMods](https://api.nusmods.com/v2/) API, and it has to deal with the case when there is no relevant json file on the disk, then the product needs to fetch the content from [NUSMods](https://api.nusmods.com/v2/) API, and if the user has no network connection(which is a very rare case), the product also needs to be compatible with such extreme case.
+- Credits: 
+  - [NUSMods](https://api.nusmods.com/v2/) API: For providing the API to retrieve the information of all the modules provided by NUS.
+  - [FastJson](https://github.com/alibaba/fastjson) library: For parsing the json file.
+  - [Commons IO](http://commons.apache.org/proper/commons-io/) from Apache: For downloading the json file from [NUSMods](https://api.nusmods.com/v2/) API.
 
 **Minor enhancement**: added a history command that allows the user to navigate to previous commands using up/down keys.
 
