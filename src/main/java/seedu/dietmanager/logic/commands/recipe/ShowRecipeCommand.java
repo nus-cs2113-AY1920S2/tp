@@ -1,6 +1,7 @@
-package seedu.dietmanager.logic.commands;
+package seedu.dietmanager.logic.commands.recipe;
 
 import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.model.RecipeManager;
 import seedu.dietmanager.ui.UI;

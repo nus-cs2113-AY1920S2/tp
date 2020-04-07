@@ -2,29 +2,28 @@ package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.commands.AddFoodCommand;
-import seedu.dietmanager.logic.commands.BuildNewRecipeCommand;
-import seedu.dietmanager.logic.commands.CalculateCaloriesCommand;
-import seedu.dietmanager.logic.commands.CheckRecordCommand;
-import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
-import seedu.dietmanager.logic.commands.CheckWeightRecordCommand;
+import seedu.dietmanager.logic.commands.nutritionrecord.AddFoodCommand;
+import seedu.dietmanager.logic.commands.recipe.BuildNewRecipeCommand;
+import seedu.dietmanager.logic.commands.foodrecord.CalculateCaloriesCommand;
+import seedu.dietmanager.logic.commands.foodrecord.CheckRecordCommand;
+import seedu.dietmanager.logic.commands.foodrecord.CheckRequiredCaloriesCommand;
+import seedu.dietmanager.logic.commands.profile.CheckWeightRecordCommand;
 import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.commands.DeleteFoodCommand;
-import seedu.dietmanager.logic.commands.DeleteWeightCommand;
-import seedu.dietmanager.logic.commands.ExitCommand;
-import seedu.dietmanager.logic.commands.HelpCommand;
-import seedu.dietmanager.logic.commands.ListFoodDatabaseCommand;
-import seedu.dietmanager.logic.commands.ProfileCommand;
-import seedu.dietmanager.logic.commands.RecordMealCommand;
-import seedu.dietmanager.logic.commands.SetAgeCommand;
-import seedu.dietmanager.logic.commands.SetGenderCommand;
-import seedu.dietmanager.logic.commands.SetHeightCommand;
-import seedu.dietmanager.logic.commands.SetNameCommand;
-import seedu.dietmanager.logic.commands.SetProfileCommand;
-import seedu.dietmanager.logic.commands.SetWeightCommand;
-import seedu.dietmanager.logic.commands.SetWeightGoalCommand;
-import seedu.dietmanager.logic.commands.ShowRecipeCommand;
-import seedu.dietmanager.logic.commands.HelpCommand;
+import seedu.dietmanager.logic.commands.nutritionrecord.DeleteFoodCommand;
+import seedu.dietmanager.logic.commands.profile.DeleteWeightCommand;
+import seedu.dietmanager.logic.commands.utility.ExitCommand;
+import seedu.dietmanager.logic.commands.utility.HelpCommand;
+import seedu.dietmanager.logic.commands.nutritionrecord.ListFoodDatabaseCommand;
+import seedu.dietmanager.logic.commands.profile.ProfileCommand;
+import seedu.dietmanager.logic.commands.foodrecord.RecordMealCommand;
+import seedu.dietmanager.logic.commands.profile.SetAgeCommand;
+import seedu.dietmanager.logic.commands.profile.SetGenderCommand;
+import seedu.dietmanager.logic.commands.profile.SetHeightCommand;
+import seedu.dietmanager.logic.commands.profile.SetNameCommand;
+import seedu.dietmanager.logic.commands.profile.SetProfileCommand;
+import seedu.dietmanager.logic.commands.profile.SetWeightCommand;
+import seedu.dietmanager.logic.commands.profile.SetWeightGoalCommand;
+import seedu.dietmanager.logic.commands.recipe.ShowRecipeCommand;
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.
@@ -157,7 +156,7 @@ public class CommandParser {
         case "show-recipe":
             command = new ShowRecipeCommand(commandPrompt);
             break;
-        case "help" :
+        case "help":
             command = new HelpCommand(commandPrompt);
             break;
         default:
