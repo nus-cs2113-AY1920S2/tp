@@ -7,6 +7,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Root;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,7 +25,7 @@ public class DeleteCategoryCommandTest {
     @Test
     public void testEmptyModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("delc");
         assertEquals(MESSAGE_NO_CATEGORIES_FOUND, result.getFeedbackToUser());
@@ -43,7 +44,7 @@ public class DeleteCategoryCommandTest {
     @Test
     public void testNormalCategoryList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("addm CS3235");

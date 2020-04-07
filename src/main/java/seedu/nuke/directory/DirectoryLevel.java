@@ -9,7 +9,7 @@ public enum DirectoryLevel {
     FILE {
         @Override
         public DirectoryLevel next() {
-            return null;
+            return NONE;
         }
     };
 

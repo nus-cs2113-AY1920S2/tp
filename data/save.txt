@@ -21,6 +21,13 @@ work -|||- N -|||- 31/03/2020 08:00PM -|||- 3
 --- END TASK ---
 Lecture -|||- 1
 --- TASK ---
+read chapter 6 notes -|||- N -|||-  -|||- 1
+--- FILE ---
+notes_6 -|||- ENxre2l2bHmdagbY -|||- C:\Users\icecl\Desktop\CS2113T\tP Diagrams\Number_4.png
+--- END FILE ---
+Lecture Quiz 6 -|||- N -|||- 06/06/2020 11:59PM -|||- 6
+--- FILE ---
+--- END FILE ---
 --- END TASK ---
 Tutorial -|||- 2
 --- TASK ---

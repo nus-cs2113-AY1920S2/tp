@@ -17,15 +17,6 @@ public class Task extends Directory implements Tag {
     private TaskFileManager files;
     private ArrayList<String> tags;
 
-
-    public ArrayList<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(ArrayList<String> tags) {
-        this.tags = tags;
-    }
-
     /**
      * Constructs the task.
      *
@@ -46,10 +37,6 @@ public class Task extends Directory implements Tag {
         this.priority = priority;
         this.files = new TaskFileManager();
         this.tags = new ArrayList<>();
-    }
-
-    public void setFiles(TaskFileManager files) {
-        this.files = files;
     }
 
     public void setDescription(String description) {
@@ -151,8 +138,8 @@ public class Task extends Directory implements Tag {
     }
 
     @Override
-    public void setTag(ArrayList<String> infos) {
-        this.tags.addAll(infos);
+    public void setTag(ArrayList<String> tagNames) {
+        this.tags.addAll(tagNames);
     }
 
     @Override
@@ -170,6 +157,9 @@ public class Task extends Directory implements Tag {
         return this.tags == null ? "" : tags.toString();
     }
 
+    public ArrayList<String> getTags() {
+        return tags;
+    }
 
     /**
      * Returns a string containing the standard Task attributes.
@@ -189,7 +179,7 @@ public class Task extends Directory implements Tag {
         if (tags.isEmpty()) {
             taskString.append("-\n");
         } else {
-            tags.stream().map(tag -> String.format("%s ", tag)).forEach(taskString::append);
+            taskString.append(String.join(", ", tags));
             taskString.append("\n");
         }
         taskString.append(String.format("Number of Files: %d\n", files.getFileList().size()));

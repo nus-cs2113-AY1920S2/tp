@@ -64,12 +64,8 @@ public class ChangeDirectoryCommand extends Command {
     public CommandResult execute() {
         // Traverse to specified directory
         if (directory != null) {
-            try {
-                DirectoryTraverser.traverseTo(directory);
-                return new CommandResult(null);
-            } catch (IncorrectDirectoryLevelException e) {
-                return new CommandResult(MESSAGE_TRAVERSE_ERROR);
-            }
+            DirectoryTraverser.traverseTo(directory);
+            return new CommandResult(null);
         }
 
         // Traverse up or down current directory

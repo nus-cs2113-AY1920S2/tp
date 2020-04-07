@@ -36,7 +36,6 @@ import java.util.stream.Collectors;
 
 public class Ui {
     private static final String LS = System.lineSeparator();
-    public static final ArrayList<String> commands = new ArrayList<>();
 
     private final Scanner in;
     private final PrintStream out;
@@ -48,26 +47,6 @@ public class Ui {
     public Ui() {
         in = new Scanner(System.in);
         out = new PrintStream(System.out);
-        commands.add(ChangeDirectoryCommand.MESSAGE_USAGE);
-        commands.add(AddModuleCommand.MESSAGE_USAGE);
-        commands.add(AddCategoryCommand.MESSAGE_USAGE);
-        commands.add(AddTaskCommand.MESSAGE_USAGE);
-        commands.add(AddTagCommand.MESSAGE_USAGE);
-        commands.add(AddFileCommand.MESSAGE_USAGE);
-        commands.add(EditModuleCommand.MESSAGE_USAGE);
-        commands.add(EditCategoryCommand.MESSAGE_USAGE);
-        commands.add(EditTaskCommand.MESSAGE_USAGE);
-        commands.add(MarkAsDoneCommand.MESSAGE_USAGE);
-        commands.add(DeleteModuleCommand.MESSAGE_USAGE);
-        commands.add(DeleteCategoryCommand.MESSAGE_USAGE);
-        commands.add(DeleteTaskCommand.MESSAGE_USAGE);
-        commands.add(DeleteTagCommand.MESSAGE_USAGE);
-        commands.add(ListCategoryCommand.MESSAGE_USAGE);
-        commands.add(ListTaskCommand.MESSAGE_USAGE);
-        commands.add(ListModuleTask.MESSAGE_USAGE);
-        commands.add(ListTaskSortedCommand.MESSAGE_USAGE);
-        commands.add(HelpCommand.MESSAGE_USAGE);
-        commands.add(ExitCommand.MESSAGE_USAGE);
     }
 
     /**

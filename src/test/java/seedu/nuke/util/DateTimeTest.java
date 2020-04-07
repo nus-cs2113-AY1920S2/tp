@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,13 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DateTimeTest {
 
-    DateTime dateTime = new DateTime(DateTimeFormat.stringToDate("08082020"), DateTimeFormat.stringToTime("4:38PM"));
-    DateTime dateTimeSecond = new DateTime(DateTimeFormat.stringToTime("1800"));
-    DateTime emptyDateTime = new DateTime();
-
-
-    DateTimeTest() throws DateTimeFormat.InvalidTimeException, DateTimeFormat.InvalidDateException {
-    }
+    private DateTime dateTime = new DateTime(LocalDate.of(2020, 8, 8), LocalTime.of(16, 38));
+    private DateTime dateTimeSecond = new DateTime(LocalTime.of(18, 0));
+    private DateTime emptyDateTime = new DateTime();
 
     @Test
     void isPresent() {

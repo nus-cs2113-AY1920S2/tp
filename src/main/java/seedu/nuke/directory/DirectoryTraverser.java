@@ -46,13 +46,6 @@ public class DirectoryTraverser {
     }
 
     /**
-     * Set the current level to root(for test usage).
-     */
-    public static void setCurrentLevelToRoot() {
-        currentLevel = 0;
-    }
-
-    /**
      * Traverse one level down in the directory.
      *
      * @param nextLevel
@@ -85,7 +78,7 @@ public class DirectoryTraverser {
     /**
      * Traverse to a specified directory.
      */
-    public static void traverseTo(Directory toTraverse) throws IncorrectDirectoryLevelException {
+    public static void traverseTo(Directory toTraverse) {
         // Clear the stack
         directoryStack.empty();
 
@@ -110,9 +103,6 @@ public class DirectoryTraverser {
             directoryStack.push(toTraverse.getParent());
             directoryStack.push(toTraverse);
             currentLevel = FILE_LEVEL;
-        } else {
-            currentLevel = ROOT_LEVEL;
-            throw new IncorrectDirectoryLevelException();
         }
     }
 

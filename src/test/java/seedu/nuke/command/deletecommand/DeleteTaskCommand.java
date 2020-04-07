@@ -7,6 +7,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Root;
 import seedu.nuke.directory.Task;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class DeleteTaskCommand {
     @Test
     public void testEmptyModuleList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("delt");
         assertEquals(MESSAGE_NO_TASKS_FOUND, result.getFeedbackToUser());
@@ -40,7 +41,7 @@ public class DeleteTaskCommand {
     @Test
     public void testEmptyTaskList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("addm CS3235");
@@ -58,7 +59,7 @@ public class DeleteTaskCommand {
     @Test
     public void testNormalTaskList() {
         ModuleManager.initialise();
-        DirectoryTraverser.setCurrentLevelToRoot();
+        DirectoryTraverser.traverseTo(new Root());
 
         CommandResult result = Executor.executeCommand("addm CS2113");
         result = Executor.executeCommand("addm CS3235");
