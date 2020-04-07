@@ -99,8 +99,9 @@ public class EditCommand extends Command {
                 } else if (taskList.getTask(editIndex) instanceof Event) {
                     taskList.editTask(editIndex, editedEvent);
                     return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
+                } else {
+                    return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
                 }
-                return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
             default:
                 return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR);
             }

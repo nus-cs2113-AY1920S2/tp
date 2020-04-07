@@ -758,17 +758,21 @@ To make a new release:
 ### 6.1. Appendix A: Product Scope
 Target user profile:  
 
--   manages many university assignments or events
+-   university students who require the use of computer device often and is reasonably comfortable with the command line interface
 
--   understands how to use a command line interface application
+-   desire to efficiently organise, manage, view and record their day to day events and tasks through an application 
+
+-   has a need to manage large scale of university assignments and / or university / personal events that might occur on a regular basis
 
 -   prefers desktop applications over other types of applications
 
 -   prefers using a command line interface over a graphical user interface
 
--   types fast
+-   able to type fast and prefers typing over mouse input
 
-**Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
+-   prefer one shot commands over multi-step commands
+
+**Value proposition:** manage tasks faster and with greater efficiency than a typical GUI based task manager application
 
 ### 6.2. Appendix B: User Stories
 <table>
@@ -936,7 +940,25 @@ Target user profile:
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
 
-3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
+3.  App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
+
+4.  The user interface should be intuitive enough for users who are not IT-savvy but understands the basics of a task managing application.
+
+5.  Data inputted in a session should be persistent and carry forward to the next session of use. 
+
+6.  Saved data files should be portable across different instance of application on different devices, meaning one can resume a saved session on another device if he so chooses to. Moving from one OS to another does not create any issues either.
+
+7.  Application should not crash, application should always recover from error gracefully with an error message. 
+
+8.  Response in the form of command line output should be intuitive, quick and respond specifically to the user's intent or instructions
+
+9.  Documentation in the form of User Guide and Developer Guide should be clear, concise and understandable to their respective target audience. 
+
+11. Source code are to remain open source such that anyone can make editions to create their own rendition of the application. 
+
+12. Saved data files should not be tampered with by the user unless they understand the methods to make changes. Application should recover from unreadable tampered data files by overwriting the entire file with new session data while old session data is lost.  
+
+13. Application should be scalable to handle increased functionality at any instance. 
 
 ### 6.5 Appendix E: Documentation
 Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)

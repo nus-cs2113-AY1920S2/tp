@@ -27,16 +27,6 @@ public class CalendarCommand extends Command {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    // ANSI background colour scheme
-    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-
     private static final String BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String STARTING_BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String PAD = " ";
@@ -82,19 +72,16 @@ public class CalendarCommand extends Command {
      * @param taskList TaskList object that handles tasks operations
      * @return String object that contains the calendar view
      */
-    private String buildMonthCalendar(LocalDate dateTime, TaskList taskList) {
+    public String buildMonthCalendar(LocalDate dateTime, TaskList taskList) {
         Calendar calendar = Calendar.getInstance();
         calibrateCalendar(dateTime, calendar);
 
         // Get calendar parameters
-        final int year       = calendar.get(Calendar.YEAR);
         final int month      = calendar.get(Calendar.MONTH); // Jan = 0, dec = 11
         assert month == (dateTime.getMonthValue() - 1);
         final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         assert dayOfMonth == 1;
         final int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // get day of week {1 = sunday, 7 = saturday}
-        final int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-        final int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
         final int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // maximum no. days in given month
 
         ArrayList<Task> monthlyTaskList = duplicateRepeatEvents(dateTime, getTasksByYearMonth(dateTime, taskList));
@@ -151,32 +138,32 @@ public class CalendarCommand extends Command {
         for (Task task : unrepeatedTaskList) {
             resultTaskList.add(task);
             if (task instanceof RepeatEvent) {
-                addRepeatEvents(endOfMonth, resultTaskList, (RepeatEvent) task);
+                parseRepeatEvents(endOfMonth, resultTaskList, (RepeatEvent) task);
             }
         }
         return resultTaskList;
     }
 
     /**
-     * Add repeating Event as separate Event to resultTaskList.
+     * Add repeating Event as separate Event according to the repeat type to resultTaskList.
      * @param endOfMonth LocalDate that represents the last day of the month
      * @param resultTaskList ArrayList of Task that contains duplicated tasks of repeat events
      * @param event Event to repeat and add to resultTaskList
      */
-    public void addRepeatEvents(LocalDate endOfMonth, ArrayList<Task> resultTaskList, RepeatEvent event) {
+    public void parseRepeatEvents(LocalDate endOfMonth, ArrayList<Task> resultTaskList, RepeatEvent event) {
         int numOfPeriod = event.getNumOfPeriod();
         String typeOfPeriod = event.getTypeOfPeriod();
         LocalDate eventDate = event.getDateAndTime().toLocalDate();
-        int daysToAdd = 0;
+        int daysToAdd;
 
         switch (typeOfPeriod) {
         case RepeatCommand.DAILY_ICON:
             daysToAdd = numOfPeriod;
-            addSeparateRepeatEvent(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
+            addRepeatEventSeparately(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
             break;
         case RepeatCommand.WEEKLY_ICON:
             daysToAdd = numOfPeriod * DAYS_IN_WEEK;
-            addSeparateRepeatEvent(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
+            addRepeatEventSeparately(endOfMonth, resultTaskList, event, eventDate, daysToAdd);
             break;
         case RepeatCommand.MONTHLY_ICON:
         case RepeatCommand.YEARLY_ICON:
@@ -194,8 +181,8 @@ public class CalendarCommand extends Command {
      * @param eventDate LocalDate that holds event date
      * @param daysToAdd frequency of repeating event
      */
-    private void addSeparateRepeatEvent(LocalDate endOfMonth, ArrayList<Task> resultTaskList,
-                                        RepeatEvent event, LocalDate eventDate, int daysToAdd) {
+    private void addRepeatEventSeparately(LocalDate endOfMonth, ArrayList<Task> resultTaskList,
+                                          RepeatEvent event, LocalDate eventDate, int daysToAdd) {
         for (int timesRepeated = 1; eventDate.plusDays(daysToAdd * timesRepeated).compareTo(endOfMonth) <= 0;
              timesRepeated++) {
             resultTaskList.add(new Event(event.getName(), event.getLocation(),

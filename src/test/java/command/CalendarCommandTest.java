@@ -20,6 +20,7 @@ import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //@@author
 public class CalendarCommandTest {
@@ -46,29 +47,19 @@ public class CalendarCommandTest {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    // ANSI background colour scheme
-    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-
     private static final String BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String STARTING_BORDER = ANSI_PURPLE + "*" + ANSI_RESET;
     private static final String PAD = " ";
+    private static final String MORE_TASK_INDICATOR = ANSI_CYAN + "....." + ANSI_RESET;
+
     private static Assignment testCaseTwo = null;
-    private static Event testCaseRepeatDaily = null;
+    private static RepeatEvent testCaseRepeatDaily = null;
     private static Event testCaseFour = null;
     private RepeatEvent testCaseRepeatWeekly = null;
     private RepeatEvent testCaseRepeatMonthly = null;
     private RepeatEvent testCaseRepeatYearly = null;
 
     // Calendar dimensions
-    private static final int MAX_CALENDAR_ROWS = 30;
-    private static final int CALENDAR_BOX_HEIGHT = 6;
     private static final int DAYS_IN_WEEK = 7;
 
     // sizing of each Calendar box
@@ -76,6 +67,9 @@ public class CalendarCommandTest {
     private static final int DATE_PADDING_WIDTH = MAX_CALENDAR_BOX_WIDTH - 3;
     private static final int EMPTY_BOX_PADDING = MAX_CALENDAR_BOX_WIDTH - 1;
     private static final int CONTENT_WIDTH = MAX_CALENDAR_BOX_WIDTH - 1;
+    private static final int MIDDLE_JUSTIFIED_WIDTH_PADDING = MAX_CALENDAR_BOX_WIDTH / 2 - 3;
+
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     /**
      * Setup Commands, Calendar before each test.
@@ -85,9 +79,6 @@ public class CalendarCommandTest {
         testTaskList = new TaskList();
         testUi = new Ui();
         testBuilder = new StringBuilder();
-
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
         final String date1 = "13/03/2020 18:00";
         final String date2 = "13/03/2020 20:30";
@@ -150,6 +141,35 @@ public class CalendarCommandTest {
     }
 
     @Test
+    public void testCalendarCommand() {
+        assertNotNull(testCalendarCommand.execute(testTaskList, testUi).feedbackToUser);
+        assertEquals(testCalendarCommand.execute(testTaskList, testUi).feedbackToUser.getClass(), String.class);
+        assertTrue(testCalendarCommand.execute(testTaskList, testUi).feedbackToUser.contains("January 2020"));
+    }
+
+    @Test
+    public void testBuildMonthCalendar() {
+        assertNotNull(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList));
+        assertEquals(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList).getClass(), String.class);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList).contains("January 2020"));
+
+        StringBuilder testBorder = new StringBuilder();
+        testCalendarCommand.addCalendarBorder(testBorder);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList)
+                .contains(testBorder.toString()));
+
+        StringBuilder testCalendarLegend = new StringBuilder();
+        testCalendarCommand.addCalendarBorder(testCalendarLegend);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList)
+                .contains(testCalendarLegend.toString()));
+
+        StringBuilder testCalendarTitle = new StringBuilder();
+        testCalendarCommand.addCalendarBorder(testCalendarTitle);
+        assertTrue(testCalendarCommand.buildMonthCalendar(testLocalDate, testTaskList)
+                .contains(testCalendarTitle.toString()));
+    }
+
+    @Test
     public void testCalibrateCalendar() {
         testCalendarCommand.calibrateCalendar(testLocalDate, testCalendar);
         assertEquals(testCalendar.get(Calendar.MONTH), testLocalDate.getMonthValue() - 1);
@@ -171,7 +191,7 @@ public class CalendarCommandTest {
         assertEquals(4, resultListRepeatEvents.size());
         ArrayList<Task> resultListRepeatEvents2 = testCalendarCommand.getTasksByYearMonth(testRepeatLocalDate2,
                 testTaskList);
-        assertEquals(4, resultListRepeatEvents.size());
+        assertEquals(4, resultListRepeatEvents2.size());
     }
 
     @Test
@@ -191,11 +211,8 @@ public class CalendarCommandTest {
         testCalendarCommand.calibrateCalendar(testLocalDate, testCalendar);
         ArrayList<Task> arrayList = testCalendarCommand.getTasksByYearMonth(testLocalDate, testTaskList);
         testCalendarCommand.addTaskToCalendar(arrayList, testBuilder, testCaseTwo);
-        assertTrue(arrayList.size() == 1);
+        assertEquals(1, arrayList.size());
         String taskDetails = testCaseTwo.getTime().format(Parser.PRINT_TIME_FORMAT) + testCaseTwo.getName();
-        if (taskDetails.length() > CONTENT_WIDTH) {
-            taskDetails = taskDetails.substring(0, CONTENT_WIDTH);
-        }
         String testString = ANSI_RED + taskDetails + ANSI_RESET
                 + PAD.repeat((CONTENT_WIDTH - taskDetails.length())) + BORDER;
         assertEquals(testBuilder.toString(), testString);
@@ -230,14 +247,13 @@ public class CalendarCommandTest {
     @Test
     public void testAddCalendarDate() {
         final int testDaySingleDigit = 9;
-        final int testDayDoubleDigit = 30;
         testCalendarCommand.addCalendarDate(testBuilder, testDaySingleDigit);
         String testString = PAD.repeat(DATE_PADDING_WIDTH) + ANSI_CYAN
                 + testDaySingleDigit + ANSI_RESET + PAD + BORDER;
         assertEquals(testString, testBuilder.toString());
 
-        // reset string builder
         testBuilder.delete(0, testBuilder.length());
+        final int testDayDoubleDigit = 30;
         testCalendarCommand.addCalendarDate(testBuilder, testDayDoubleDigit);
         String testString2 = PAD.repeat(DATE_PADDING_WIDTH) + ANSI_CYAN
                 + testDayDoubleDigit + ANSI_RESET + BORDER;
@@ -250,13 +266,14 @@ public class CalendarCommandTest {
 
         StringBuilder calendarView = new StringBuilder();
         String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-        testCalendarCommand.addCalendarBorder(calendarView);
-        testCalendarCommand.addCalendarStartBorder(calendarView);
+        calendarView.append(BORDER.repeat(MAX_CALENDAR_BOX_WIDTH * DAYS_IN_WEEK + 1))
+                .append(System.lineSeparator());
+        calendarView.append(STARTING_BORDER);
         for (int dayRepresented = 0; dayRepresented < DAYS_IN_WEEK; dayRepresented++) {
             calendarView.append(PAD.repeat(CONTENT_WIDTH - days[dayRepresented].length()));
             calendarView.append(ANSI_CYAN).append(days[dayRepresented]).append(ANSI_RESET).append(BORDER);
         }
-        testCalendarCommand.addCalendarNewLine(calendarView);
+        calendarView.append(System.lineSeparator());
 
         assertEquals(testBuilder.toString(), calendarView.toString());
     }
@@ -281,7 +298,8 @@ public class CalendarCommandTest {
                 .duplicateRepeatEvents(YearMonth.from(testLocalDate).atEndOfMonth(), resultList);
         assertTrue(resultTaskList.size() > resultList.size());
         assertEquals(resultTaskList.size(), resultList.size()
-                + testLocalDate.until(YearMonth.from(testLocalDate).atEndOfMonth()).getDays() / 14);
+                + testLocalDate.until(YearMonth.from(testLocalDate).atEndOfMonth()).getDays()
+                / testCaseRepeatDaily.getNumOfPeriod());
     }
 
     @Test
@@ -291,11 +309,11 @@ public class CalendarCommandTest {
         ArrayList<Task> finalTaskList = new ArrayList<>();
         for (Task task : resultList) {
             if (task instanceof RepeatEvent && task.equals(testCaseRepeatDaily)) {
-                testCalendarCommand.addRepeatEvents(endOfMonth, finalTaskList, (RepeatEvent) testCaseRepeatDaily);
+                testCalendarCommand.parseRepeatEvents(endOfMonth, finalTaskList, testCaseRepeatDaily);
             }
         }
-
-        assertEquals(finalTaskList.size(), testLocalDate.until(endOfMonth).getDays() / 14);
+        assertEquals(finalTaskList.size(), testLocalDate.until(endOfMonth).getDays()
+                / testCaseRepeatDaily.getNumOfPeriod());
     }
 
     @Test
@@ -303,15 +321,16 @@ public class CalendarCommandTest {
         LocalDate endOfMonth = YearMonth.from(testRepeatLocalDate).atEndOfMonth();
         ArrayList<Task> resultList = new ArrayList<>();
 
-        testCalendarCommand.addRepeatEvents(endOfMonth, resultList, testCaseRepeatWeekly);
-        assertEquals(resultList.size(), testLocalDate.until(endOfMonth).getDays() / 7);
+        testCalendarCommand.parseRepeatEvents(endOfMonth, resultList, testCaseRepeatWeekly);
+        assertEquals(resultList.size(), testLocalDate.until(endOfMonth).getDays()
+                / (testCaseRepeatWeekly.getNumOfPeriod() * DAYS_IN_WEEK));
     }
 
     @Test
     public void testAddRepeatEvent_Monthly_Yearly() {
         LocalDate endOfMonth = YearMonth.from(testRepeatLocalDate).atEndOfMonth();
         ArrayList<Task> resultList = new ArrayList<>();
-        testCalendarCommand.addRepeatEvents(endOfMonth, resultList, testCaseRepeatMonthly);
+        testCalendarCommand.parseRepeatEvents(endOfMonth, resultList, testCaseRepeatMonthly);
         assertEquals(resultList.size(), 0);
 
     }
@@ -320,7 +339,7 @@ public class CalendarCommandTest {
     public void testAddRepeatEvent_Yearly() {
         LocalDate endOfMonth = YearMonth.from(testRepeatLocalDate).atEndOfMonth();
         ArrayList<Task> resultList = new ArrayList<>();
-        testCalendarCommand.addRepeatEvents(endOfMonth, resultList, testCaseRepeatYearly);
+        testCalendarCommand.parseRepeatEvents(endOfMonth, resultList, testCaseRepeatYearly);
         assertEquals(resultList.size(), 0);
     }
 
@@ -328,24 +347,22 @@ public class CalendarCommandTest {
     public void testAppendTaskToView() {
         ArrayList<Task> emptyArrayList = new ArrayList<>();
         testCalendarCommand.appendTaskToView(emptyArrayList, testBuilder, 2, 3);
-        StringBuilder test1 = new StringBuilder();
-        testCalendarCommand.addEmptyCalendarBody(test1);
-        assertEquals(testBuilder.toString(), test1.toString());
+        assertEquals(testBuilder.toString(), PAD.repeat(EMPTY_BOX_PADDING) + BORDER);
 
         ArrayList<Task> resultList = testCalendarCommand.getTasksByYearMonth(testLocalDate, testTaskList);
         testBuilder = new StringBuilder();
-        StringBuilder test2 = new StringBuilder();
         testCalendarCommand.appendTaskToView(resultList, testBuilder, 5, 1);
-        testCalendarCommand.addTaskNotShownIndicator(test2);
-        assertEquals(test2.toString(), testBuilder.toString());
+        String test2 = PAD.repeat(MIDDLE_JUSTIFIED_WIDTH_PADDING) + MORE_TASK_INDICATOR
+                + PAD.repeat(CONTENT_WIDTH - MIDDLE_JUSTIFIED_WIDTH_PADDING - 5) + BORDER;
+        assertEquals(test2, testBuilder.toString());
     }
 
     @Test
     public void testTaskNotShown() {
         testCalendarCommand.addTaskNotShownIndicator(testBuilder);
-        StringBuilder test = new StringBuilder();
-        testCalendarCommand.addTaskNotShownIndicator(test);
-        assertEquals(test.toString(), testBuilder.toString());
-
+        String test = PAD.repeat(MIDDLE_JUSTIFIED_WIDTH_PADDING)
+                + MORE_TASK_INDICATOR + PAD.repeat(CONTENT_WIDTH - MIDDLE_JUSTIFIED_WIDTH_PADDING - 5)
+                + BORDER;
+        assertEquals(test, testBuilder.toString());
     }
 }
