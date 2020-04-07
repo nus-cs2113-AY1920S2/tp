@@ -5,17 +5,17 @@ ______  ______  _____ ______    ___  __  __ ______        __  _______  ______
 ||   \\ ||           \  ||  /    ||  ||  || ||   \\   /    || ||    ||   ||
 ||    \\||____   _____\ || /     ||   \__/  ||    \\ /     Daily Report v2.0
 Input next command:
-The command has been successfully executed.
+Dish pizza successfully added.
 Input next command:
-Name: pizza; Ingredients: cheese, sauce
-The command has been successfully executed.
+Name: pizza; Ingredients: cheese, sauce; Price: 7.0
+Dishes successfully listed.
 Input next command:
-The command has been successfully executed.
+Dish rice successfully added.
 Input next command:
-The command has been successfully executed.
+Dish pizza successfully removed!
 Input next command:
-Name: rice; Ingredients: rice, salt
-The command has been successfully executed.
+Name: rice; Ingredients: rice, salt; Price: 12.0
+Dishes successfully listed.
 Input next command:
 Ingredient tomato successfully added!
 Input next command:
@@ -67,10 +67,7 @@ Incorrect command
 Please ensure that the quantity specified is an integer!
 ============================================================================================================================
 Input next command:
-Incorrect command
-============================================================================================================================
-Please ensure that the price specified has a '$' sign and is a decimal!
-============================================================================================================================
+Ingredient tomato successfully added!
 Input next command:
 Incorrect command
 ============================================================================================================================
@@ -84,7 +81,7 @@ Please enter a positive value for the ingredient's price!
 Input next command:
 Incorrect command
 ============================================================================================================================
-Please ensure that the price specified has a '$' sign and is a decimal!
+Please ensure that the price specified is a decimal!
 ============================================================================================================================
 Input next command:
 Incorrect command
@@ -118,7 +115,10 @@ Ingredient greenie successfully added!
 Input next command:
 Ingredient toxic greens successfully added!
 Input next command:
-Ingredient curry successfully added!
+Incorrect command
+============================================================================================================================
+Please ensure that the price specified is a decimal!
+============================================================================================================================
 Input next command:
 Incorrect command
 ============================================================================================================================
@@ -165,16 +165,6 @@ The user's input did not specify the 'i/', 'q/' tag and 'p/' tag before the ingr
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 Input next command:
-============================================================================================================================
-Please note that there are other similar ingredient names in the stock.
-
-You are currently adding: 'CuRrY'
-
-Here are the ingredients in the stock with similar names:
-curry
-
-You may want to remove the unwanted ingredient names if it is a duplicate.
-============================================================================================================================
 Ingredient CuRrY successfully added!
 Input next command:
 Ingredient pepper successfully added!
@@ -216,17 +206,17 @@ Please ensure that the quantity specified is an integer!
 Input next command:
 Incorrect command
 ============================================================================================================================
-Please ensure that the price specified has a '$' sign and is a decimal!
+Please ensure that the price specified is a decimal!
 ============================================================================================================================
 Input next command:
 Incorrect command
 ============================================================================================================================
-Please ensure that the price specified has a '$' sign and is a decimal!
+Please ensure that the price specified is a decimal!
 ============================================================================================================================
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
-1. [40][$0.50] tomato
+1. [50][$0.50] tomato
 2. [20][$0.20] salt
 3. [11][$0.40] rice
 4. [10][$1.00] pepper
@@ -236,7 +226,6 @@ Here are the ingredients in the stock currently:
 8. [10][$1.00] PePPer
 9. [1][$0.40] toxic greens
 10. [0][$0.40] greenie
-11. [0][$0.40] curry
 ============================================================================================================================
 All ingredients listed successfully!
 Input next command:
@@ -248,7 +237,7 @@ Ingredient tomato reduced by 9!
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
-1. [29][$0.50] tomato
+1. [39][$0.50] tomato
 2. [20][$0.20] salt
 3. [11][$0.40] rice
 4. [10][$1.00] pepper
@@ -258,7 +247,6 @@ Here are the ingredients in the stock currently:
 8. [10][$1.00] PePPer
 9. [1][$0.40] toxic greens
 10. [0][$0.40] greenie
-11. [0][$0.40] curry
 ============================================================================================================================
 All ingredients listed successfully!
 Input next command:
@@ -326,7 +314,6 @@ Here are the ingredients in the stock currently:
 7. [10][$1.00] PePPer
 8. [1][$0.40] toxic greens
 9. [0][$0.40] greenie
-10. [0][$0.40] curry
 ============================================================================================================================
 All ingredients listed successfully!
 Input next command:

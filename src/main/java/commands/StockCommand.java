@@ -16,9 +16,6 @@ public class StockCommand {
     /** The relative index after the '/' present within the string. */
     protected final int indexAfterSlash = 2;
     
-    /** The relative index after the '$' present within the string. */
-    protected final int indexAfterDollarSign = 3;
-    
     public void setData(Stock stock) {
         this.stock = stock;
     }
@@ -74,11 +71,11 @@ public class StockCommand {
     
     /**
      * Extract the price of the ingredient from a string. For example, 
-     * 'p/$0.50' will return '0.5'. Note that the price will not strictly 
+     * 'p/0.50' will return '0.5'. Note that the price will not strictly 
      * be in 2 decimal places. This will be handled in the AddCommand.
      * @throws InvalidStockCommandException If the price specified does not
-     *                                      have a '$' sign, is not a 
-     *                                      decimal or is not a positive value.
+     *                                      is not a decimal or is not a 
+     *                                      positive value.
      * 
      */ 
     protected double parseIngredientPrice(String ingredientPriceInput) 
@@ -88,13 +85,8 @@ public class StockCommand {
         
         try {
             
-            if (!ingredientPriceInput.contains("$")) {
-                throw new InvalidStockCommandException("Please ensure that the "
-                        + "price specified has a '$' sign and is a decimal!");
-            } 
-            
             double price = Double.parseDouble(trimmedInput.substring(
-                    indexAfterDollarSign, ingredientPriceInput.length()));
+                    indexAfterSlash, ingredientPriceInput.length()));
             
             if (price < 0.0) {
                 throw new InvalidStockCommandException("Please enter a"
@@ -104,7 +96,7 @@ public class StockCommand {
             return price;
         } catch (NumberFormatException nfe) {
             throw new InvalidStockCommandException("Please ensure that the "
-                    + "price specified has a '$' sign and is a decimal!");
+                    + "price specified is a decimal!");
         }
     }
     
