@@ -136,7 +136,10 @@ And save execution `results` in the `RecordMealCommand` object.
 ## Product Scope
 ### Target user profile
 
-Students who are too busy with work to carefully monitor their eating habits, and are concerned about their health.
+Students that :
+* are too busy with work to carefully monitor their eating habits
+* are concerned about their health.
+* wished to keep track of their weight
 
 ### Value proposition
 
@@ -144,13 +147,28 @@ Diet Manager aims to achieve the following:
 * Streamline the diet recording process 
 * Allow users to track and monitor their eating habits
 * Provide personalised information and recommendations for the user
+* Monitor and track user's weight changes to achieve weight goal
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0| student|record my calories intake|can keep track of my total calorie intake for the week effectively|
+|v1.0| student|see my diet history|can track my diet and maintain a balanced and healthy diet lifestyle|
+|v1.0| student|know my intake frequency of certain food types|can reduce the intake of that food|
+|v1.0| student|classify foods into specific food groups|can have a good balance of multiple food types|
+|v1.0| student|monitor my diet|can save money on unnecessary food while still having sufficient nutrition|
+|v1.0| student|select certain food items and retrieve the nutritional value|can retrieve the nutritional values efficiently|
+|v1.0| student|receive meal alerts during meal times|do not miss a meal or skip a mea|
+|v1.0| student|receive dietary alerts|do not over or under eat and keep to my diet|
+|v1.0| student|enter my information|can receive a tailored/recommended food plan for my body type/age/gender|
+|v1.0| student|set the diet I am pursuing |have a framework to pursue|
+|v1.0| student|export my diet history|have a record of my food intake|
+|v1.0| student|import my diet history|have a record of my food intake|
+|v1.0| student|generate a high-protein diet plan|can build up my muscles after workouts|
+|v1.0| student|receive workout advice based on my excess calorie intake for the day|can maintain my calories for the day|
+|v1.0| student|mark some food as ‘dislike’|i wont get the recommendation from the app anymore|
+|v1.0| student|record my weight changes|can see if i am doing well towards my expectation|
 
 ## Non-Functional Requirements
 
