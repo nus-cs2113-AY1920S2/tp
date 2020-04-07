@@ -2,6 +2,16 @@ package seedu.dietmanager.ui;
 
 import java.util.Scanner;
 
+import static seedu.dietmanager.commons.core.MessageBank.EXIT_APP_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.FILE_ERROR_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.FUNCTION_LIST;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_COMMAND_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_FORMAT_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_GENDER_MESSAGE;
+import static seedu.dietmanager.commons.core.MessageBank.INVALID_INDEX;
+import static seedu.dietmanager.commons.core.MessageBank.LOGO;
+import static seedu.dietmanager.commons.core.MessageBank.WELCOME_MESSAGE;
+
 /**
  * UI is the public class responsible for managing all user interface functions.
  */
@@ -27,41 +37,54 @@ public class UI {
      */
 
     public void displayWelcomeMessage() {
-        System.out.println(MessageBank.LOGO);
-        System.out.println(MessageBank.WELCOME_MESSAGE);
+        showMessage(
+            LOGO,
+            WELCOME_MESSAGE);
+    }
+
+    public void displayHelpMenu() {
+        showMessage(
+            FUNCTION_LIST);
     }
 
     public void displayExitMessage() {
-        System.out.println(MessageBank.EXIT_APP_MESSAGE);
+        showMessage(
+            EXIT_APP_MESSAGE);
     }
 
     public void displayFileErrorMessage() {
-        System.out.println(MessageBank.FILE_ERROR_MESSAGE);
+        showMessage(
+            FILE_ERROR_MESSAGE);
     }
 
     public void displayInvalidCommandMessage() {
-        System.out.println(MessageBank.INVALID_COMMAND_MESSAGE);
+        showMessage(
+            INVALID_COMMAND_MESSAGE);
     }
 
     public void displayInvalidFormatMessage() {
-        System.out.println(MessageBank.INVALID_FORMAT_MESSAGE);
+        showMessage(
+            INVALID_FORMAT_MESSAGE);
     }
 
     public void displayIndexOutOfBoundMessage() {
-        System.out.println(MessageBank.INVALID_INDEX);
+        showMessage(
+            INVALID_INDEX);
     }
 
-
     public void displayInvalidGenderMessage() {
-        System.out.println(MessageBank.INVALID_GENDER_MESSAGE);
+        showMessage(
+            INVALID_GENDER_MESSAGE);
     }
 
     public void showExecutionResult(String result) {
-        System.out.println(result);
+        showMessage(
+            result);
     }
 
     /**
      * Returns the exit status.
+     *
      * @return the exit status.
      */
 
@@ -71,6 +94,7 @@ public class UI {
 
     /**
      * Updates the exit status.
+     *
      * @param update the updated exit status.
      */
 
@@ -80,6 +104,7 @@ public class UI {
 
     /**
      * Returns the next line of user input.
+     *
      * @return the next line of user input.
      */
 
@@ -89,10 +114,11 @@ public class UI {
     }
 
     /**
-     * Show messages from executing commands.
-     * @param message String fo message to be shown to user
+     * Printer to print out strings of messages to user.
+     *
+     * @param message String of message to be shown to user
      */
-    public void showCommandMessage(String... message) {
+    public void showMessage(String... message) {
         for (String m : message) {
             System.out.println(m);
         }

@@ -1,16 +1,20 @@
 package seedu.dietmanager;
 
-import seedu.dietmanager.commands.Command;
-import seedu.dietmanager.exceptions.InvalidCommandException;
-import seedu.dietmanager.exceptions.InvalidFormatException;
-import seedu.dietmanager.exceptions.InvalidGenderException;
-import seedu.dietmanager.parser.Parser;
+import seedu.dietmanager.commons.core.LogsCentre;
+import seedu.dietmanager.commons.exceptions.InvalidCommandException;
+import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.Result;
+import seedu.dietmanager.logic.commands.Command;
+import seedu.dietmanager.logic.parser.CommandParser;
+import seedu.dietmanager.model.FoodNutritionRecord;
+import seedu.dietmanager.model.Profile;
+import seedu.dietmanager.storage.Storage;
 import seedu.dietmanager.ui.UI;
 
 public class DietManager {
 
-    private static AppLogger appLogger;
-    private static FoodNutritionInfo foodNutritionInfo;
+    private static LogsCentre logsCentre;
+    private static FoodNutritionRecord foodNutritionRecord;
     private static Profile profile;
     private static UI ui;
     private static Storage storage;
@@ -26,36 +30,35 @@ public class DietManager {
 
     private static void runApplication() {
 
-        appLogger.logExecuteProgramme();
+        logsCentre.logExecuteProgramme();
         ui.displayWelcomeMessage();
+        ui.displayHelpMenu();
 
         while (!ui.isExitStatus()) {
             try {
                 String userInput = ui.readInput();
-                Command command = Parser.parseInput(userInput);
-                command.execute(profile, ui);
-                ui.showCommandMessage(command.getResult());
+                Command command = CommandParser.parseInput(userInput);
+                Result result = command.execute(profile, ui);
+                ui.showMessage(result.toString());
             } catch (InvalidFormatException | NumberFormatException e) {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {
                 ui.displayInvalidCommandMessage();
-            } catch (InvalidGenderException e) {
-                ui.displayInvalidGenderMessage();
             } catch (IndexOutOfBoundsException e) {
                 ui.displayIndexOutOfBoundMessage();
             }
         }
 
         ui.displayExitMessage();
-        appLogger.logExitProgramme();
+        logsCentre.logExitProgramme();
     }
 
     private static void initialiseApplication() {
-        appLogger = new AppLogger();
-        foodNutritionInfo = FoodNutritionInfo.getInstance();
+        logsCentre = new LogsCentre();
+        foodNutritionRecord = FoodNutritionRecord.getInstance();
         profile = new Profile();
         ui = new UI();
-        storage = new Storage(ui, appLogger);
+        storage = new Storage(ui, logsCentre);
 
         testAssertions();
     }

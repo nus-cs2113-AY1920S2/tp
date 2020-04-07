@@ -7,5 +7,26 @@
                                                        __/ |
                                                       |___/
 Welcome to Diet Manager! How may I assist you today?
+ _____________________________________________________________________________________________________________
+|                          Functions:                        |                 Descriptions:                  |
+|____________________________________________________________|________________________________________________|
+|   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       |
+|   profile                                                  |  View user profile details                     |
+|   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              |
+|   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             |
+|   calculate DATE                                           |  Calculate Calorie intake for the day          |
+|   calculate DATE1->DATE2                                   |  Calculate Calorie intake from DATE1 to DATE2  |
+|   list-food                                                |  Lists all foods info in database.             |
+|   addf FOOD_NAME --CALORIES                                |  Add new food info into database               |
+|   delf FOOD_NAME                                           |  Delete food info from database                |
+|   set-weight                                               |  Set/Update weight in user profile             |
+|   check-weight-progress NAME                               |  List index of weight progress                 |
+|   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
+|   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
+|   show-recipe                                              |  Show recommended recipe to user               |
+|   help                                                     |  Show this function help table                 |
+|   exit                                                     |  Exit the application                          |
+|____________________________________________________________|________________________________________________|
+Please key in your command: 
 Thank you and see you again soon!
 Thanks for using Diet Manager! See you again soon. :)
