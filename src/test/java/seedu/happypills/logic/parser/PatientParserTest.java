@@ -6,7 +6,8 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 //@@author NyanWunPaing
