@@ -12,7 +12,7 @@ public class Checker {
         //String pattern = "^[89][0-9]{7}$";
         //return phoneNumber.matches(pattern);
         String pattern = "([8-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
-        return phoneNumber.isEmpty() && phoneNumber.matches(pattern);
+        return phoneNumber.matches(pattern);
     }
 
     /**
@@ -83,10 +83,7 @@ public class Checker {
     public static boolean isPositiveInteger(String input) {
         try {
             int x = Integer.parseInt(input);
-            if (x < 1) {
-                return false;
-            }
-            return true;
+            return x >= 1;
         } catch (Exception e) {
             return false;
         }
