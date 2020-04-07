@@ -1,13 +1,24 @@
 package seedu.atas;
 
-import command.*;
-import common.Messages;
+import command.AssignmentCommand;
+import command.CommandResult;
+import command.EventCommand;
+import command.HelpCommand;
+import command.ListCommand;
+import command.DoneCommand;
+import command.EditCommand;
+import command.DeleteCommand;
+import command.ClearCommand;
+import command.RepeatCommand;
+import command.SearchCommand;
+import command.CalendarCommand;
+import command.ExitCommand;
 import org.junit.jupiter.api.Test;
-import tasks.Event;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class HelpTest {
     @Test
