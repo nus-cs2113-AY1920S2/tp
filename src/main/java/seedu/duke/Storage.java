@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.events.Event;
 import seedu.exception.EscException;
 import seedu.subjects.Subject;
 
@@ -53,36 +54,53 @@ public class Storage {
     }
 
     /**
-     * Loads any pre-existing cards from the save file and creates a new card list.
-     * @return pre-existing card list (if any) or a new list
+     * Loads any pre-existing cards & exams from the save file into an ArrayList to be initiated.
+     * @return ArrayList of pre-existing subject & exam list (if any) or blank lists
      */
-    public static ArrayList<Subject> loadSubs() throws EscException {
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Subject> loadObjects() throws EscException {
+        ArrayList tempSub;
+        ArrayList tempEvent;
+
+        ArrayList returnList = new ArrayList<>();
         ArrayList<Subject> loadSubs = new ArrayList<>();
-        ArrayList tempList;
+        ArrayList<Event> loadEvent = new ArrayList<>();
+
         if (!saveFile.exists()) {
             ensureFileExists();
+            returnList.add(loadSubs);
+            returnList.add(loadEvent);
         } else {
             try {
                 FileInputStream fileRead = new FileInputStream(saveFile);
                 ObjectInputStream objRead = new ObjectInputStream(fileRead);
-                tempList = (ArrayList) objRead.readObject();
-                for (int i = 0; i < tempList.size(); i++) {
-                    loadSubs.add((Subject) tempList.get(i));
+
+                tempSub = (ArrayList) objRead.readObject();
+                for (int i = 0; i < tempSub.size(); i++) {
+                    loadSubs.add((Subject) tempSub.get(i));
                 }
 
+                tempEvent = (ArrayList) objRead.readObject();
+                for (int i = 0; i < tempEvent.size(); i++) {
+                    loadEvent.add((Event) tempEvent.get(i));
+                }
                 objRead.close();
+
+                returnList.add(loadSubs);
+                returnList.add(loadEvent);
             } catch (IOException | ClassNotFoundException e) {
                 throw new EscException("Load error");
             }
         }
-        return loadSubs;
+
+        return returnList;
     }
 
     /**
      * Saves the current card list to the save file.
      * @param currSub the current subject list
      */
-    public void saveSubs(ArrayList<Subject> currSub) throws EscException {
+    public void saveSubs(ArrayList<Subject> currSub, ArrayList<Event> currEvent) throws EscException {
         ensureFileExists();
 
         try {
@@ -90,10 +108,11 @@ public class Storage {
             ObjectOutputStream objWrite = new ObjectOutputStream(fileWrite);
 
             objWrite.writeObject(currSub);
+            objWrite.writeObject(currEvent);
             objWrite.flush();
             objWrite.close();
         } catch (IOException e) {
-            throw new EscException("Save error");
+            throw new EscException("Save error ");
         }
     }
 }

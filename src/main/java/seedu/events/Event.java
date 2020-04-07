@@ -1,8 +1,9 @@
 package seedu.events;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Event implements Comparable<Event> {
+public class Event implements Comparable<Event>, Serializable {
     private String topic;
     private LocalDate eventDate;
 

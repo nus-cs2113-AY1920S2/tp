@@ -5,6 +5,7 @@ import seedu.duke.UI;
 import seedu.exception.EscException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SubjectList {
     private ArrayList<Subject> subjects;
@@ -16,9 +17,13 @@ public class SubjectList {
         this.events = new ArrayList<Event>();
     }
 
-    public SubjectList(ArrayList<Subject> subjects) {
-        this.subjects = subjects;
-        this.events = new ArrayList<Event>();
+    /**
+     * Constructor for loading SubjectList.
+     * @param returnObj Arraylist of subjects and exams.
+     */
+    public SubjectList(ArrayList returnObj) {
+        this.subjects = (ArrayList<Subject>) returnObj.get(0);
+        this.events = (ArrayList<Event>) returnObj.get(1);
     }
 
     public SubjectList(ArrayList<Subject> subjects, ArrayList<Event> eventDates) {
@@ -112,6 +117,8 @@ public class SubjectList {
         }
         return subject;
     }
+
+
 
     /**
      * Lists all the subjects in the list.
