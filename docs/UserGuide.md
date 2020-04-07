@@ -136,7 +136,7 @@ Format: `exit`
 **Command** | **Format**
 --------|----------
 Add a patient's information | `add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]`
-Edit a patient's information |  `edit patient NRIC /n[NAME] or /p[PHONE_NUMBER] or /dob[DOB] or /b[BLOOD_TYPE] or /a[ALLERGIES] or /rm[REMARKS]`
+Edit a patient's information |  `edit patient NRIC /n<NAME> or /p<PHONE_NUMBER> or /dob<DOB> or /b<BLOOD_TYPE> or /a<ALLERGIES> or /rm<REMARKS>`
 list all patients | `list patient`
 Retrieve a patient's information | `get patient NRIC`
 
