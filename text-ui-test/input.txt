@@ -27,17 +27,30 @@ add stock; i/salt; q/20; p/$0.20;
 add stock; i/vege; q/10; p/$0.40;
 add stock; i/greenie; q/0; p/$0.40;
 add stock; i/toxic greens; q/1; p/$0.40;
+add stock; i/curry; q/0; p/$0.40;
+add stock; curry; q/0; p/$0.40;
+add stock; i/curry; 0; p/$0.40;
+add stock; i/curry; q/0; $0.40;
+add stock; curry; 0; p/$0.40;
+add stock; i/curry; 0; $0.40;
+add stock; curry; 0; $0.40;
+add stock; i/CuRrY; q/10; p/$1.40;
+add stock; i/pepper; q/10; p/$1.00;
+add stock; i/PePPer; q/10; p/$1.00;
+add stock; i/PEPPER; q/10; p/$1.00;
 list stock
 delete stock; i/tomato; q/1;
 delete stock; q/1; i/tomato;
 delete stock; i/tomato; q/9;
 list stock
+delete stock; green
 delete stock; i/tomato;
 delete stock;
 delete stock; q/10;
 delete stock; i/tomato; q/LOL;
 delete stock; i/tomato; q/-10;
 delete stock; tomato; q/1;
+delete stock; i/tomato; 1;
 list stock
 search stock;      
 search stock; tomato
@@ -45,6 +58,7 @@ search stock; rice
 search stock; o
 search stock; k/tomato;
 search stock; k/tomato
+search stock; k/GReeNie;
 search stock; k/toxic greens;
 search stock; toxic greensk/;
 search stock; k/   

@@ -18,20 +18,18 @@ Name: rice; Ingredients: rice, salt
 The command has been successfully executed.
 Input next command:
 Ingredient tomato successfully added!
-The command has been successfully executed.
 Input next command:
 Ingredient tomato successfully added!
-The command has been successfully executed.
 Input next command:
 Ingredient tomato successfully added!
-The command has been successfully executed.
 Input next command:
 Ingredient tomato successfully added!
-The command has been successfully executed.
 Input next command:
 Incorrect command
 ============================================================================================================================
-The user's input given cannot be parsed into ingredient arguments.
+The user's input did not meet the required format. Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 Input next command:
 Incorrect command
@@ -70,7 +68,6 @@ Please ensure that the quantity specified is an integer!
 ============================================================================================================================
 Input next command:
 Ingredient tomato successfully added!
-The command has been successfully executed.
 Input next command:
 Incorrect command
 ============================================================================================================================
@@ -89,73 +86,177 @@ Please ensure that the price specified has a '$' sign and is a decimal!
 Input next command:
 Incorrect command
 ============================================================================================================================
-The user's input given cannot be parsed into ingredient arguments.
+The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 Input next command:
 Incorrect command
 ============================================================================================================================
-The user's input given cannot be parsed into ingredient arguments.
+The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 Input next command:
 Incorrect command
 ============================================================================================================================
-The user's input given cannot be parsed into ingredient arguments.
+The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 Input next command:
 Ingredient rice successfully added!
-The command has been successfully executed.
 Input next command:
 Ingredient salt successfully added!
-The command has been successfully executed.
 Input next command:
 Ingredient vege successfully added!
-The command has been successfully executed.
 Input next command:
 Ingredient greenie successfully added!
-The command has been successfully executed.
 Input next command:
 Ingredient toxic greens successfully added!
-The command has been successfully executed.
+Input next command:
+Ingredient curry successfully added!
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input did not specify the 'i/' tag and 'q/' tag before the ingredient's name and quantity.
+ Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input did not specify the 'q/' tag and 'p/' tag before the ingredient's quantity and price.
+ Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+The user's input did not specify the 'i/', 'q/' tag and 'p/' tag before the ingredient's name, quantity and price.
+ Please enter in the following format: 
+
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
+============================================================================================================================
+Input next command:
+============================================================================================================================
+Please note that there are other similar ingredient names in the stock.
+
+You are currently adding: 'CuRrY'
+
+Here are the ingredients in the stock with similar names:
+curry
+
+You may want to remove the unwanted ingredient names if it is a duplicate.
+============================================================================================================================
+Ingredient CuRrY successfully added!
+Input next command:
+Ingredient pepper successfully added!
+Input next command:
+============================================================================================================================
+Please note that there are other similar ingredient names in the stock.
+
+You are currently adding: 'PePPer'
+
+Here are the ingredients in the stock with similar names:
+pepper
+
+You may want to remove the unwanted ingredient names if it is a duplicate.
+============================================================================================================================
+Ingredient PePPer successfully added!
+Input next command:
+============================================================================================================================
+Please note that there are other similar ingredient names in the stock.
+
+You are currently adding: 'PEPPER'
+
+Here are the ingredients in the stock with similar names:
+pepper
+PePPer
+
+You may want to remove the unwanted ingredient names if it is a duplicate.
+============================================================================================================================
+Ingredient PEPPER successfully added!
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [50][$0.50] tomato
 2. [20][$0.20] salt
 3. [11][$0.40] rice
-4. [10][$0.40] vege
-5. [1][$0.40] toxic greens
-6. [0][$0.40] greenie
+4. [10][$1.00] pepper
+5. [10][$1.40] CuRrY
+6. [10][$1.00] PEPPER
+7. [10][$0.40] vege
+8. [10][$1.00] PePPer
+9. [1][$0.40] toxic greens
+10. [0][$0.40] greenie
+11. [0][$0.40] curry
 ============================================================================================================================
 All ingredients listed successfully!
-The command has been successfully executed.
 Input next command:
 Ingredient tomato reduced by 1!
-The command has been successfully executed.
 Input next command:
 Ingredient tomato reduced by 1!
-The command has been successfully executed.
 Input next command:
 Ingredient tomato reduced by 9!
-The command has been successfully executed.
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [39][$0.50] tomato
 2. [20][$0.20] salt
 3. [11][$0.40] rice
-4. [10][$0.40] vege
-5. [1][$0.40] toxic greens
-6. [0][$0.40] greenie
+4. [10][$1.00] pepper
+5. [10][$1.40] CuRrY
+6. [10][$1.00] PEPPER
+7. [10][$0.40] vege
+8. [10][$1.00] PePPer
+9. [1][$0.40] toxic greens
+10. [0][$0.40] greenie
+11. [0][$0.40] curry
 ============================================================================================================================
 All ingredients listed successfully!
-The command has been successfully executed.
-Input next command:
-Ingredient tomato deleted from the stock!
-The command has been successfully executed.
 Input next command:
 Incorrect command
 ============================================================================================================================
-The user's input given cannot be parsed into ingredient arguments.
+There is no tag specified. Please enter in the following format: 
+
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
+               or
+`delete stock; i/INGREDIENT_NAME;`.
+============================================================================================================================
+Input next command:
+Ingredient tomato deleted from the stock!
+Input next command:
+Incorrect command
+============================================================================================================================
+There is no tag specified. Please enter in the following format: 
+
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
+               or
+`delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
 Input next command:
 Incorrect command
@@ -175,19 +276,36 @@ Please enter a positive value for the quantity to be added!
 Input next command:
 Incorrect command
 ============================================================================================================================
-The user's input given cannot be parsed into ingredient arguments.
+There is no tag specified. Please enter in the following format: 
+
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
+               or
+`delete stock; i/INGREDIENT_NAME;`.
+============================================================================================================================
+Input next command:
+Incorrect command
+============================================================================================================================
+There is no tag specified. Please enter in the following format: 
+
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
+               or
+`delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
 Input next command:
 Here are the ingredients in the stock currently:
 ============================================================================================================================
 1. [20][$0.20] salt
 2. [11][$0.40] rice
-3. [10][$0.40] vege
-4. [1][$0.40] toxic greens
-5. [0][$0.40] greenie
+3. [10][$1.00] pepper
+4. [10][$1.40] CuRrY
+5. [10][$1.00] PEPPER
+6. [10][$0.40] vege
+7. [10][$1.00] PePPer
+8. [1][$0.40] toxic greens
+9. [0][$0.40] greenie
+10. [0][$0.40] curry
 ============================================================================================================================
 All ingredients listed successfully!
-The command has been successfully executed.
 Input next command:
 Incorrect command
 ============================================================================================================================
@@ -209,21 +327,19 @@ Incorrect command
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
 Input next command:
-Here are the ingredients in the stock that matches the keyword:
-============================================================================================================================
-============================================================================================================================
-The command has been successfully executed.
+There is no ingredient that matches the keyword given.
+Input next command:
+There is no ingredient that matches the keyword given.
 Input next command:
 Here are the ingredients in the stock that matches the keyword:
 ============================================================================================================================
+1. [0][$0.40] greenie
 ============================================================================================================================
-The command has been successfully executed.
 Input next command:
 Here are the ingredients in the stock that matches the keyword:
 ============================================================================================================================
 1. [1][$0.40] toxic greens
 ============================================================================================================================
-The command has been successfully executed.
 Input next command:
 Incorrect command
 ============================================================================================================================
