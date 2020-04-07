@@ -1,15 +1,11 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
-import seedu.nuke.command.ChangeDirectoryCommand;
+
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
 import seedu.nuke.command.IncorrectCommand;
-import seedu.nuke.command.InfoCommand;
-import seedu.nuke.command.OpenFileCommand;
-import seedu.nuke.command.RedoCommand;
-import seedu.nuke.command.UndoCommand;
 import seedu.nuke.command.addcommand.AddCategoryCommand;
 import seedu.nuke.command.addcommand.AddFileCommand;
 import seedu.nuke.command.addcommand.AddModuleCommand;
@@ -30,8 +26,14 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTasksDeadlineCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
+import seedu.nuke.command.misc.ChangeDirectoryCommand;
+import seedu.nuke.command.misc.ClearCommand;
+import seedu.nuke.command.misc.InfoCommand;
+import seedu.nuke.command.misc.OpenFileCommand;
+import seedu.nuke.command.misc.RedoCommand;
+import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.command.promptcommand.ConfirmationStatus;
 import seedu.nuke.command.promptcommand.DeleteConfirmationPrompt;
 import seedu.nuke.command.promptcommand.ListNumberPrompt;
@@ -125,12 +127,10 @@ public class Parser {
         try {
             switch (commandWord) {
 
-            case GENERIC_LIST_COMMAND:
-                return prepareGenericListCommand(parameters.trim());
-
             case GENERIC_ADD_COMMAND:
                 return prepareGenericAddCommand(parameters);
-
+            case GENERIC_LIST_COMMAND:
+                return prepareGenericListCommand(parameters.trim());
             case GENERIC_DELETE_COMMAND:
                 return prepareGenericDeleteCommand(parameters);
 
@@ -162,10 +162,10 @@ public class Parser {
                 return prepareDeleteAndListTaskCommand(parameters, false);
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
-            case ListModuleTasksDeadlineCommand.COMMAND_WORD:
-                return new ListModuleTasksDeadlineCommand(parameters.trim());
+            case ListModuleTask.COMMAND_WORD:
+                return new ListModuleTask(parameters.trim());
             case ListTaskSortedCommand.COMMAND_WORD:
-                return prepareListTaskSort(parameters);
+                return prepareListTaskSortedCommand(parameters);
             case DueCommand.COMMAND_WORD:
                 return prepareDueCommand(parameters);
 
@@ -197,6 +197,9 @@ public class Parser {
 
             case HelpCommand.COMMAND_WORD:
                 return prepareCommandWithoutParameters(new HelpCommand(), parameters);
+
+            case ClearCommand.COMMAND_WORD:
+                return prepareClearCommand(parameters);
 
             case ExitCommand.COMMAND_WORD:
                 return prepareCommandWithoutParameters(new ExitCommand(), parameters);
@@ -250,46 +253,23 @@ public class Parser {
         }
     }
 
-
-
-
-
     /**
-     * Prepare the command to list the content based on the directory of the user is currently in.
-     * @param parameters The parameters given by the user
-     * @return The command to change the current directory
-     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
-     * @throws InvalidParameterException exception is thrown when parameter is invalid.
-     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     * Prepares the command to clear the GUI Console Screen.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to clear the GUI Console Screen
      */
-    private Command prepareGenericListCommand(String parameters)
-            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
-        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
-        case ROOT:
-            if (parameters.isEmpty()) {
-                return prepareDeleteAndListModuleCommand(parameters, false);
-            } else {
-                parameters = " " + MODULE_PREFIX + " " + parameters;
-                return prepareDeleteAndListCategoryCommand(parameters, false);
-            }
-        case MODULE:
-            if (parameters.isEmpty()) {
-                return prepareDeleteAndListCategoryCommand(parameters, false);
-            } else {
-                parameters = " " + CATEGORY_PREFIX + " " + parameters;
-                return prepareDeleteAndListTaskCommand(parameters, false);
-            }
-        case CATEGORY:
-            if (parameters.isEmpty()) {
-                return prepareDeleteAndListTaskCommand(parameters, false);
-            } else {
-                parameters = " " + TASK_PREFIX + " " + parameters;
-                return prepareDeleteAndListFileCommand(parameters, false);
-            }
-        case TASK:
-            return prepareDeleteAndListFileCommand(parameters, false);
-        default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+    private Command prepareClearCommand(String parameters) {
+        // This is exclusive for Gui only
+        if (!Executor.isGui()) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        if (!parameters.isEmpty()) {
+            return new IncorrectCommand(MESSAGE_EXTRA_PARAMETERS);
+        } else {
+            return new ClearCommand();
         }
     }
 
@@ -313,7 +293,46 @@ public class Parser {
         case TASK:
             return prepareAddFileCommand(parameters);
         default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL + HelpCommand.MESSAGE_USAGE);
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+        }
+    }
+
+    /**
+     * Prepare the command to list the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidPrefixException exception is thrown when prefix is invalid.
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericListCommand(String parameters)
+            throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            if (parameters.isEmpty()) {
+                return prepareDeleteAndListModuleCommand(parameters, false);
+            } else {
+                String listCategoriesString = String.format(" %s %s", MODULE_PREFIX, parameters);
+                return prepareDeleteAndListCategoryCommand(listCategoriesString, false);
+            }
+        case MODULE:
+            if (parameters.isEmpty()) {
+                return prepareDeleteAndListCategoryCommand(parameters, false);
+            } else {
+                String listTasksString = String.format(" %s %s", CATEGORY_PREFIX, parameters);
+                return prepareDeleteAndListTaskCommand(listTasksString, false);
+            }
+        case CATEGORY:
+            if (parameters.isEmpty()) {
+                return prepareDeleteAndListTaskCommand(parameters, false);
+            } else {
+                String listFilesString = String.format(" %s %s", TASK_PREFIX, parameters);
+                return prepareDeleteAndListFileCommand(listFilesString, false);
+            }
+        case TASK:
+            return prepareDeleteAndListFileCommand(parameters, false);
+        default:
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
         }
     }
 
@@ -612,11 +631,12 @@ public class Parser {
      * @return
      *  The command to show a list of undone tasks sorted by deadline or priority
      */
-    private Command prepareListTaskSort(String parameters)
+    private Command prepareListTaskSortedCommand(String parameters)
             throws InvalidPrefixException, InvalidParameterException, DuplicatePrefixException {
         Matcher matcher = ListTaskSortedCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, DEADLINE_GROUP, PRIORITY_GROUP);
 
+        String moduleCode = matcher.group(IDENTIFIER_GROUP).trim();
         String priorityFlag = matcher.group(PRIORITY_GROUP).trim();
         String deadlineFlag = matcher.group(DEADLINE_GROUP).trim();
         // If user types -p after -d
@@ -632,8 +652,8 @@ public class Parser {
         boolean isByPriority = !priorityFlag.isEmpty();
         boolean isByPrioritySecond = !priorityFlagSecond.isEmpty();
 
-        return isByPriority ? new ListTaskSortedCommand(true)
-                : new ListTaskSortedCommand(isByPrioritySecond);
+        return isByPriority ? new ListTaskSortedCommand(moduleCode, true)
+                : new ListTaskSortedCommand(moduleCode, isByPrioritySecond);
     }
 
     /**
@@ -652,7 +672,7 @@ public class Parser {
         Matcher matcher = DueCommand.REGEX_FORMAT.matcher(parameters);
         validateParameters(parameters, matcher, ALL_FLAG);
 
-        String dateFilter = matcher.group(IDENTIFIER_GROUP).trim();
+        String dateFilter = matcher.group(IDENTIFIER_GROUP).trim().toLowerCase();
         String allFlag = matcher.group(ALL_GROUP).trim();
         boolean isAll = !allFlag.isEmpty();
 
@@ -662,6 +682,9 @@ public class Parser {
 
         String[] dateFilterData = dateFilter.trim().split("\\s+");
         try {
+            if (dateFilterData[0].equals("over")) {
+                return new IncorrectCommand(MESSAGE_EXCESS_PARAMETERS);
+            }
             if (dateFilterData.length == 1) {
                 return new DueCommand(DateTimeFormat.stringToDate(dateFilterData[0]), null, isAll);
             } else if (dateFilterData.length == 2) {

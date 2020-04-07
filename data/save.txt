@@ -1,6 +1,24 @@
 --- MODULE ---
 CS1231 -|||- Discrete Structures -|||- NIL
 --- CATEGORY ---
+Assignment -|||- 5
+--- TASK ---
+group work -|||- Y -|||- 28/03/2020 06:00PM -|||- 20
+--- FILE ---
+--- END FILE ---
+some -|||- N -|||- 06/04/2020 03:00PM -|||- 5
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+a task -|||- Y -|||- 03/04/2020 03:00PM -|||- 3
+--- FILE ---
+--- END FILE ---
+work -|||- N -|||- 31/03/2020 08:00PM -|||- 3
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
 Lecture -|||- 1
 --- TASK ---
 --- END TASK ---
@@ -9,12 +27,23 @@ Tutorial -|||- 2
 Tutorial 6 -|||- N -|||- 24/03/2020 11:59PM -|||- 6
 --- FILE ---
 --- END FILE ---
---- END TASK ---
-Assignment -|||- 5
---- TASK ---
-group work -|||- Y -|||- 28/03/2020 06:00PM -|||- 20
+a work -|||- N -|||- 03/04/2020 08:00PM -|||- 2
 --- FILE ---
 --- END FILE ---
+--- END TASK ---
+--- END CATEGORY ---
+CS2100 -|||- Computer Organisation -|||- NIL
+--- CATEGORY ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+--- TASK ---
+watch webcast -|||- N -|||-  -|||- 1
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
 --- END TASK ---
 --- END CATEGORY ---
 CS2113 -|||- Software Engineering & Object-Oriented Programming -|||- NIL
@@ -56,36 +85,36 @@ tutorial worksheet 10 -|||- N -|||- 25/03/2020 12:00PM -|||- 5
 --- END FILE ---
 --- END TASK ---
 --- END CATEGORY ---
-CS2100 -|||- Computer Organisation -|||- NIL
+CS2113T -|||- Software Engineering & Object-Oriented Programming -|||- NIL
 --- CATEGORY ---
-Lecture -|||- 1
---- TASK ---
-watch webcast -|||- N -|||-  -|||- 1
---- FILE ---
---- END FILE ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
---- END TASK ---
 Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
 Lab -|||- 3
+--- TASK ---
+--- END TASK ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
 --- TASK ---
 --- END TASK ---
 --- END CATEGORY ---
-LAK3202 -|||- Korean 4 -|||- NIL
+CS3230 -|||- Design and Analysis of Algorithms -|||- NIL
 --- CATEGORY ---
-Lecture -|||- 1
---- TASK ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
---- END TASK ---
 Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
 Lab -|||- 3
+--- TASK ---
+lab1 -|||- N -|||-  -|||- 3
+--- FILE ---
+--- END FILE ---
+--- END TASK ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
 --- TASK ---
 --- END TASK ---
 --- END CATEGORY ---

@@ -43,6 +43,8 @@ public class ExceptionMessage {
 
 
 
+    public static final String MESSAGE_TRAVERSE_ERROR =
+            "There seems to be an error when traversing. Moving back to Root...\n";
     public static final String MESSAGE_FAILED_DIRECTORY_TRAVERSAL = "Unable to traverse further.\n";
     public static final String MESSAGE_DIRECTORY_NOT_FOUND = "Alert! The next directory could not be found.\n";
     public static final String MESSAGE_INCORRECT_DIRECTORY_LEVEL =

@@ -19,7 +19,7 @@ import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 /**
  * sort all tasks of one module according to deadline of task and print it out to the user.
  */
-public class ListModuleTasksDeadlineCommand extends ListCommand {
+public class ListModuleTask extends ListCommand {
 
     public static final String COMMAND_WORD = "lsmtd";
     public static final String FORMAT = COMMAND_WORD + " <module code>";
@@ -29,7 +29,7 @@ public class ListModuleTasksDeadlineCommand extends ListCommand {
 
     private String moduleCode;
 
-    public ListModuleTasksDeadlineCommand(String moduleCode) {
+    public ListModuleTask(String moduleCode) {
         this.moduleCode = moduleCode;
     }
 

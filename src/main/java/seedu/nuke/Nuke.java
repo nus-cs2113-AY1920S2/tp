@@ -1,4 +1,3 @@
-
 package seedu.nuke;
 
 import seedu.nuke.command.CommandResult;
@@ -12,7 +11,6 @@ import seedu.nuke.ui.TextUi;
 import seedu.nuke.ui.Ui;
 import seedu.nuke.util.Message;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -69,14 +67,14 @@ public class Nuke {
         try {
             storageManager.cleanUp();
         } catch (IOException e) {
-            ui.showSystemMessage(e.getMessage());
+            ui.showMessage(e.getMessage());
         }
-        ui.showSystemMessage(Message.DIVIDER);
+        ui.showMessage(Message.DIVIDER);
 
         try {
             storageManager.saveList();
         } catch (IOException e) {
-            ui.showSystemMessage(e.getMessage());
+            ui.showMessage(e.getMessage());
         }
     }
 
@@ -95,11 +93,10 @@ public class Nuke {
                 try {
                     storageManager.saveList();
                 } catch (IOException e) {
-                    ui.showSystemMessage(e.getMessage());
+                    ui.showMessage(e.getMessage());
                 }
                 ScreenShotManager.saveScreenShot();
             }
-
         } while (!ExitCommand.isExit());
     }
 

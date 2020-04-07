@@ -1,5 +1,7 @@
-package seedu.nuke.command;
+package seedu.nuke.command.misc;
 
+import seedu.nuke.command.Command;
+import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.filtercommand.FilterCommand;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
@@ -43,6 +45,9 @@ public class OpenFileCommand extends FilterCommand {
     public static final String COMMAND_WORD = "open";
     public static final String FORMAT = COMMAND_WORD + " [ <file name> ] -m <module code> "
             + "-c <category name> -t <task description>";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator()
+            + "Open the file(s) of a specified task"
+            + System.lineSeparator() + FORMAT + System.lineSeparator();
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"

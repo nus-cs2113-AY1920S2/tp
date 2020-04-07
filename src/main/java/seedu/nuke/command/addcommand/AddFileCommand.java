@@ -1,5 +1,6 @@
 package seedu.nuke.command.addcommand;
 
+import seedu.nuke.Executor;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
@@ -13,6 +14,7 @@ import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.ExceedLimitException;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
+import seedu.nuke.gui.io.GuiExecutor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,6 +42,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_FILE_PATH;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_FILE_PATH;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_NO_FILE_CHOSEN;
 import static seedu.nuke.util.Message.MESSAGE_FILE_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.messageAddFileSuccess;
 
@@ -52,10 +55,10 @@ import static seedu.nuke.util.Message.messageAddFileSuccess;
  */
 public class AddFileCommand extends AddCommand {
     public static final String COMMAND_WORD = "addf";
-    public static final String FORMAT = COMMAND_WORD
-            + " <file name> -m <module code> -c <category name> -t <task description> -f <file path>";
+    public static final String FORMAT = COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_WORD + System.lineSeparator() + "Add a file to task"
             + System.lineSeparator() + FORMAT + System.lineSeparator();
+
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -176,6 +179,22 @@ public class AddFileCommand extends AddCommand {
         return task.getFiles().contains(fileName);
     }
 
+    private void retrieveFile() throws Exception {
+        if (originalFilePath.isEmpty()) {
+            assert Executor.isGui() : "Must be using a Gui in order to retrieve file!";
+
+            String[] chosenFileInformation = GuiExecutor.executeFileChooser();
+            if (chosenFileInformation == null) {
+                throw new Exception(MESSAGE_NO_FILE_CHOSEN);
+            }
+            originalFilePath = chosenFileInformation[0];
+            if (fileName.isEmpty()) {
+                fileName = chosenFileInformation[1];
+            }
+        }
+    }
+
+
     /**
      * Executes the <b>Add File Command</b> to add a <b>File</b> into the <b>File List</b>.
      *
@@ -188,11 +207,13 @@ public class AddFileCommand extends AddCommand {
         if (exceedLengthLimit()) {
             return new CommandResult(MESSAGE_FILE_EXCEED_LIMIT);
         }
-        if (originalFilePath.isEmpty()) {
+        if (originalFilePath.isEmpty() && !Executor.isGui()) {
             return new CommandResult(MESSAGE_MISSING_FILE_PATH);
         }
         try {
             Task parentTask = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
+            retrieveFile();
+
             copyFile(parentTask);
             String fullFilePath = new File(originalFilePath).getAbsolutePath();
             TaskFile toAdd = new TaskFile(parentTask, fileName, filePath, fullFilePath);
@@ -221,6 +242,8 @@ public class AddFileCommand extends AddCommand {
             return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
         } catch (ExceedLimitException e) {
             return new CommandResult(MESSAGE_IMPLICIT_FILE_EXCEED_LIMIT);
+        } catch (Exception e) {
+            return new CommandResult(e.getMessage());
         }
     }
 }

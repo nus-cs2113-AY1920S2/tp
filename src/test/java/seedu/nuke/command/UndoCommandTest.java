@@ -2,6 +2,7 @@ package seedu.nuke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.nuke.Executor;
+import seedu.nuke.command.misc.UndoCommand;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.ScreenShotManager;
