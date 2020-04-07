@@ -51,6 +51,9 @@ public class PatientParser {
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
             return parsePatientEdit(fullCommand);
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
+            if (userCommand.length != 3 || isCommandLengthOne) {
+                throw new HappyPillsException(Messages.MESSAGE_INCORRECT_INPUT_FORMAT);
+            }
             return new DeletePatientCommand(userCommand[2]);
         } else {
             throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
