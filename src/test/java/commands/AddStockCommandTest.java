@@ -15,6 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddStockCommandTest {
 
+    private final String ls = System.lineSeparator();
+    
+    private final int defaultNumOfIngredientArgs = 3;
+    
     @Test
     public void construct_AddStockCommand_constructNormally() 
             throws InvalidStockCommandException {
@@ -39,34 +43,100 @@ class AddStockCommandTest {
     }
     
     @Test
-    public void parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientTag() {
+    public void parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameTagOnly() {
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
                     parseIntoAddIngredientArgs("tomato; q/1; p/$0.50;");            
         } catch (InvalidStockCommandException isce) {
-            assertEquals("The user's input given cannot be parsed into ingredient arguments.",
+            assertEquals("The user's input did not specify the 'i/' tag before the ingredient's name. "
+                    + "Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ", 
                     isce.getMessage());          
         }
     }
     
     @Test
-    public void parse_ParseUserInputIntoAddIngredientsArgs_missingQuantityTag() { 
+    public void parse_ParseUserInputIntoAddIngredientsArgs_missingQuantityTagOnly() { 
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
                     parseIntoAddIngredientArgs("i/tomato; 1; p/$0.50;");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("The user's input given cannot be parsed into ingredient arguments.",
+            assertEquals("The user's input did not specify the 'q/' tag before the ingredient's quantity. "
+                    + "Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ", 
                     isce.getMessage());          
         }
     }
     
     @Test
-    public void parse_ParseUserInputIntoAddIngredientsArgs_missingPriceTag() { 
+    public void parse_ParseUserInputIntoAddIngredientsArgs_missingPriceTagOnly() { 
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
                     parseIntoAddIngredientArgs("i/tomato; q/1; $0.50;");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("The user's input given cannot be parsed into ingredient arguments.",
+            assertEquals("The user's input did not specify the 'p/' tag before the ingredient's price."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ", 
+                    isce.getMessage());          
+        }
+    }
+    
+    @Test
+    public void parse_ParseUserInputIntoAddIngredientsArgs_missingPriceAndQuantityTag() { 
+        try {
+            Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
+                    parseIntoAddIngredientArgs("i/tomato; 1; $0.50;");
+        } catch (InvalidStockCommandException isce) {
+            assertEquals("The user's input did not specify the "
+                    + "'q/' tag and 'p/' tag"
+                    + " before the ingredient's quantity and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ", 
+                    isce.getMessage());          
+        }
+    }
+    
+    @Test
+    public void parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndQuantityTag() { 
+        try {
+            Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
+                    parseIntoAddIngredientArgs("tomato; 1; p/$0.50;");
+        } catch (InvalidStockCommandException isce) {
+            assertEquals("The user's input did not specify the "
+                    + "'i/' tag and 'q/' tag"
+                    + " before the ingredient's name and quantity."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ", 
+                    isce.getMessage());          
+        }
+    }
+    
+    @Test
+    public void parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndPriceTag() { 
+        try {
+            Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
+                    parseIntoAddIngredientArgs("tomato; q/1; $0.50;");
+        } catch (InvalidStockCommandException isce) {
+            assertEquals("The user's input did not specify the "
+                    + "'i/' tag and 'p/' tag"
+                    + " before the ingredient's name and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ", 
                     isce.getMessage());          
         }
     }
@@ -77,8 +147,13 @@ class AddStockCommandTest {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
                     parseIntoAddIngredientArgs(" ");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("The user's input given cannot be parsed into ingredient arguments.",
-                    isce.getMessage());           
+            assertEquals("The user's input did not meet the required"
+                    + " format."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ", 
+                    isce.getMessage());          
         }
     }
     
@@ -166,39 +241,48 @@ class AddStockCommandTest {
      */
    
     /**
-     * A utility function of similar implementation of parseIntoIngredientArgs() in AddStockCommand.
+     * A utility function of similar implementation of parseIntoIngredientArgs() in AddStockCommand class.
      */
     private Map<String, Pair<Integer, Double>> parseIntoAddIngredientArgs(
             String fullInputLine) throws InvalidStockCommandException {
-        
-        Map<String, Pair<Integer, Double>> ingredientInfo = new HashMap<>();
+       
         String[] wordArgs = fullInputLine.split(";");
         
-        Optional<String> ingredientName = Optional.empty();
-        Optional<Integer> quantity = Optional.empty();
-        Optional<Double> price = Optional.empty();
+        Optional<String> parsedIngredientName = Optional.empty();
+        Optional<Integer> parsedQuantity = Optional.empty();
+        Optional<Double> parsedPrice = Optional.empty();
+        
+        // First check.
+        checkMissingTagInUserInput(fullInputLine);
         
         for (String argument : wordArgs) {
             String trimmedArg = argument.trim();
             if (trimmedArg.contains("i/")) {
-                ingredientName = Optional.of(parseIngredientName(trimmedArg));
+                parsedIngredientName = Optional.of(parseIngredientName(trimmedArg));
             } else if (trimmedArg.contains("q/")) {
-                quantity = Optional.of(parseIngredientQuantity(trimmedArg));
+                parsedQuantity = Optional.of(parseIngredientQuantity(trimmedArg));
             } else if (trimmedArg.contains("p/")) {
-                price = Optional.of(parseIngredientPrice(trimmedArg));
+                parsedPrice = Optional.of(parseIngredientPrice(trimmedArg));
             } else {
-                throw new InvalidStockCommandException("The user's input given cannot"
-                        + " be parsed into ingredient arguments.");
+                throw new InvalidStockCommandException("The user's input did not meet the required"
+                        + " format."
+                        + " Please enter in the following format: "
+                        + ls
+                        + ls
+                        + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
             }
-        }
+        }     
         
-        checkValidParsedIngredientArguments(ingredientName, quantity, price);
-        ingredientInfo.put(ingredientName.get(), Pair.of(quantity.get(), price.get()));    
+        // Second check.
+        checkValidParsedIngredientArguments(parsedIngredientName, parsedQuantity, parsedPrice);
+        
+        Map<String, Pair<Integer, Double>> ingredientInfo = new HashMap<>();
+        ingredientInfo.put(parsedIngredientName.get(), Pair.of(parsedQuantity.get(), parsedPrice.get()));    
         return ingredientInfo;
-    }   
+    }  
     
     /** 
-     * A utility function of similar implementation of parseIntoIngredientName() in AddStockCommand.
+     * A utility function of similar implementation of parseIntoIngredientName() in AddStockCommand class.
      */
     private String parseIngredientName(String ingredientNameInput) {
         String ingredientName = ingredientNameInput.trim()
@@ -208,7 +292,7 @@ class AddStockCommandTest {
     }
     
     /** 
-     * A utility function of similar implementation of parseIntoIngredientQuantity() in AddStockCommand.
+     * A utility function of similar implementation of parseIntoIngredientQuantity() in AddStockCommand class.
      */
     private int parseIngredientQuantity(String ingredientQuantityInput) 
             throws InvalidStockCommandException {
@@ -231,7 +315,7 @@ class AddStockCommandTest {
     }
     
     /** 
-     * A utility function of similar implementation of parseIntoIngredientPrice() in AddStockCommand.
+     * A utility function of similar implementation of parseIntoIngredientPrice() in AddStockCommand class.
      */
     private double parseIngredientPrice(String ingredientPriceInput) 
             throws InvalidStockCommandException {
@@ -256,7 +340,7 @@ class AddStockCommandTest {
     
     /**
      * A utility function of similar implementation of checkValidParsedIngredientArguments() 
-     * in AddStockCommand.
+     * in AddStockCommand class.
      */
     private void checkValidParsedIngredientArguments(Optional<String> ingredientName, 
             Optional<Integer> quantity, Optional<Double> price) 
@@ -290,19 +374,112 @@ class AddStockCommandTest {
         } else {
             return;
         }
+    } 
+    
+    /**
+     * A utility function of similar implementation to checkMissingTagInUserInput() in
+     * AddStockCommand class. 
+     */
+    private void checkMissingTagInUserInput(String fullInputLine) throws InvalidStockCommandException {
+        String[] wordArgs = fullInputLine.split(";");
+        
+        if (wordArgs.length < defaultNumOfIngredientArgs) {
+            return;
+        }
+        
+        String ingredientName = "";
+        String quantity = "";
+        String price = "";
+        
+        boolean hasIngredientNameTag = false;
+        boolean hasQuantityTag = false;
+        boolean hasPriceTag = false;
+        
+        for (String argument : wordArgs) {
+            String trimmedArg = argument.trim();
+            if (trimmedArg.contains("i/")) {
+                hasIngredientNameTag = true;
+            } else if (trimmedArg.contains("q/")) {
+                hasQuantityTag = true;
+            } else if (trimmedArg.contains("p/")) {
+                hasPriceTag = true;
+            } 
+        }
+            
+        if (!hasIngredientNameTag && hasQuantityTag && hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the 'i/' tag"
+                    + " before the ingredient's name."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (hasIngredientNameTag && !hasQuantityTag && hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the 'q/' tag"
+                    + " before the ingredient's quantity."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (hasIngredientNameTag && hasQuantityTag && !hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the 'p/' tag"
+                    + " before the ingredient's price."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (!hasIngredientNameTag && !hasQuantityTag && hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'i/' tag and 'q/' tag"
+                    + " before the ingredient's name and quantity."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (!hasIngredientNameTag && hasQuantityTag && !hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'i/' tag and 'p/' tag"
+                    + " before the ingredient's name and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (hasIngredientNameTag && !hasQuantityTag && !hasPriceTag) {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'q/' tag and 'p/' tag"
+                    + " before the ingredient's quantity and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else if (!hasIngredientNameTag && !hasQuantityTag && !hasPriceTag)  {
+            throw new InvalidStockCommandException("The user's input did not specify the "
+                    + "'i/', 'q/' tag and 'p/' tag"
+                    + " before the ingredient's name, quantity and price."
+                    + ls
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` ");
+        } else {
+            assert (hasIngredientNameTag && hasQuantityTag && hasPriceTag);
+            return;
+        }
     }
     
     /**
-     * Returns a string representation of output when AddStockCommand is executed.
+     * A utility function similar to execute() in AddStockCommand class.
+     * This method returns a string instead of void.
      */
     private String executeAdd(Stock stock, Ingredient ingredientToAdd) {
         String outputMessage = "";
         stock.addIngredient(ingredientToAdd);
-        
         outputMessage += ("Ingredient " 
                 + ingredientToAdd.getIngredientName() 
                 + " successfully added!");
-        
+              
         return outputMessage;
     }
 }

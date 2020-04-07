@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DeleteStockCommandTest {
     
+    private final String ls = System.lineSeparator();
+    
     /**
      * Test when the user input is in the correct format of 'i/INGREDIENT; q/QUANTITY;'
      * with quantity specified.
@@ -162,8 +164,15 @@ class DeleteStockCommandTest {
             Map<String, Optional<Integer>> parsedIngredientInfo = 
                     parseIntoDeleteIngredientArgs("");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("The user's input given cannot be parsed into ingredient arguments.",
-                    isce.getMessage());           
+            assertEquals("There is no tag specified."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` "
+                    + ls
+                    + "               or"
+                    + ls
+                    + "`delete stock; i/INGREDIENT_NAME;`.", isce.getMessage());           
         }
     }
     
@@ -173,8 +182,15 @@ class DeleteStockCommandTest {
             Map<String, Optional<Integer>> parsedIngredientInfo = 
                     parseIntoDeleteIngredientArgs("tomato");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("The user's input given cannot be parsed into ingredient arguments.",
-                    isce.getMessage());           
+            assertEquals("There is no tag specified."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` "
+                    + ls
+                    + "               or"
+                    + ls
+                    + "`delete stock; i/INGREDIENT_NAME;`.", isce.getMessage());           
         }
     }
       
@@ -184,8 +200,15 @@ class DeleteStockCommandTest {
             Map<String, Optional<Integer>> parsedIngredientInfo = 
                     parseIntoDeleteIngredientArgs("i/tomato; 10");
         } catch (InvalidStockCommandException isce) {
-            assertEquals("The user's input given cannot be parsed into ingredient arguments.",
-                    isce.getMessage());           
+            assertEquals("There is no tag specified."
+                    + " Please enter in the following format: "
+                    + ls
+                    + ls
+                    + "`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` "
+                    + ls
+                    + "               or"
+                    + ls
+                    + "`delete stock; i/INGREDIENT_NAME;`.", isce.getMessage());           
         }
     }
 
@@ -204,7 +227,8 @@ class DeleteStockCommandTest {
      */  
     
     /**
-     * A utility function of similar implementation of parseIntoIngredientArgs() in DeleteStockCommand.
+     * A utility function of similar implementation of parseIntoIngredientArgs() in DeleteStockCommand
+     * class. This method returns a string instead of void.
      */
     private Map<String, Optional<Integer>> parseIntoDeleteIngredientArgs(
             String fullInputLine) throws InvalidStockCommandException {
@@ -222,8 +246,15 @@ class DeleteStockCommandTest {
             } else if (trimmedArg.contains("q/")) {
                 quantity = Optional.of(parseIngredientQuantity(trimmedArg));
             } else {
-                throw new InvalidStockCommandException("The user's input given cannot"
-                        + " be parsed into ingredient arguments.");
+                throw new InvalidStockCommandException("There is no tag specified."
+                        + " Please enter in the following format: "
+                        + ls
+                        + ls
+                        + "`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` "
+                        + ls
+                        + "               or"
+                        + ls
+                        + "`delete stock; i/INGREDIENT_NAME;`.");
             }
         }
         
@@ -233,7 +264,8 @@ class DeleteStockCommandTest {
     }  
     
     /** 
-     * A utility function of similar implementation of parseIngredientName() in DeleteStockCommand.
+     * A utility function of similar implementation of parseIngredientName() in DeleteStockCommand
+     * class. This method returns a string instead of void.
      */
     private String parseIngredientName(String ingredientNameInput) {
         String ingredientName = ingredientNameInput.trim()
@@ -243,7 +275,8 @@ class DeleteStockCommandTest {
     }
     
     /** 
-     * A utility function of similar implementation of parseIngredientQuantity() in DeleteStockCommand.
+     * A utility function of similar implementation of parseIngredientQuantity() in DeleteStockCommand
+     * class. This method returns a string instead of void.
      */
     private int parseIngredientQuantity(String ingredientQuantityInput) 
             throws InvalidStockCommandException {
@@ -266,7 +299,8 @@ class DeleteStockCommandTest {
     }
     
     /**
-     * A utility function of similar implementation of checkValidParsedArguments() in DeleteStockCommand.
+     * A utility function of similar implementation of checkValidParsedArguments() in DeleteStockCommand
+     * class. This method returns a string instead of void.
      */
     private void checkValidParsedIngredientArguments(Optional<String> ingredientName,
             Optional<Integer> quantity) throws InvalidStockCommandException {
@@ -283,7 +317,9 @@ class DeleteStockCommandTest {
     }
     
     /**
-     * Returns a string representation of output when DeleteStockCommand is executed.
+     * Returns a string representation of output when DeleteStockCommand is executed. 
+     * The implementation is similar to execute() in DeleteStockCommand class.
+     * This method returns a string instead of void.
      */
     private String executeDelete(Stock stock, Ingredient ingredientToDelete) {
         String outputMessage = "";
@@ -302,7 +338,8 @@ class DeleteStockCommandTest {
     
     /**
      * A utility function to return a string representation. The implementation is
-     * similar to createDeleteResultMessage() in DeleteStockCommand.
+     * similar to createDeleteResultMessage() in DeleteStockCommand class.
+     * This method returns a string instead of void.
      */
     private String createDeleteResultMessage(Ingredient ingredientToDelete) {
         boolean hasQuantitySpecified = ingredientToDelete.isQuantitySpecified();

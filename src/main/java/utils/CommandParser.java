@@ -58,8 +58,6 @@ public class CommandParser {
                 // Add stock.
                 try {
                     new AddStockCommand(commands[1]).execute(stock);
-                    successfulCommand();
-
                 } catch (IllegalStateException | InvalidStockCommandException e) {
 
                     errorCommand();
@@ -68,7 +66,6 @@ public class CommandParser {
             } else if (splitCommands[1].equals("reservation")) {
                 // Add reservation.
                 new AddReservationCommand(commands[1]).execute(reservations, ui);
-                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -82,7 +79,6 @@ public class CommandParser {
                 // Delete stock.
                 try {
                     new DeleteStockCommand(commands[1]).execute(stock);
-                    successfulCommand();
                 } catch (InvalidStockCommandException | IllegalStateException e) {
                     errorCommand();
                     printErrorMessage(e.getMessage());
@@ -90,7 +86,6 @@ public class CommandParser {
             } else if (splitCommands[1].equals("reservation")) {
                 // Delete reservation.
                 new VoidReservationCommand(commands[1]).execute(reservations, ui);
-                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -107,19 +102,15 @@ public class CommandParser {
             } else if (splitCommands[1].equals("stock")) {
                 // List stock.
                 new ListStockCommand().execute(stock);
-                successfulCommand();
             } else if (splitCommands[1].equals("reservation")) {
                 // List all reservation.
                 new ListReservationCommand().execute(reservations, ui);
-                successfulCommand();
             } else if (splitCommands[1].equals("served reservation")) {
                 // List served reservation.
                 new ListServedCommand().execute(reservations, ui);
-                successfulCommand();
             } else if (splitCommands[1].equals("unserved reservation")) {
                 // List unserved reservation.
                 new ListUnservedCommand().execute(reservations, ui);
-                successfulCommand();
             } else {
                 errorCommand();
             }
@@ -128,15 +119,15 @@ public class CommandParser {
                 // Search stock.
                 try {
                     new SearchStockCommand(commands[1]).execute(stock);
-                    successfulCommand();
                 } catch (InvalidStockCommandException e) {
                     errorCommand();
                     printErrorMessage(e.getMessage());
                 }
             } else if (splitCommands[1].equals("reservation")) {
+                // Search reservation
                 new SearchReservationCommand(commands[1]).execute(reservations, ui);
-                successfulCommand();
             } else if (splitCommands[1].equals("dish")) {
+                // Search dish
                 SearchDishCommand.searchDish(commands[1]);
                 successfulCommand();
             } else {

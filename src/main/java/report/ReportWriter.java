@@ -80,7 +80,7 @@ public class ReportWriter {
                     + ls
                     + ls);
             fw.write(reserveTitle);
-            for (int i = 0; i < reservations.getSize(); i++) {
+            for (int i = 1; i <= reservations.getSize(); i++) {
                 Reservation reserved = reservations.getReservation(i);
                 String writtenString = String.format("%s" + ls, reserved.toString());
                 fw.write(writtenString);

@@ -67,42 +67,17 @@ class ListStockCommandTest {
     
     /**
      * Utility functions ===========================================================================.
-     */  
-    private String createListIngredientOutputCopy() {
-        String outputMessage = "";
-        outputMessage += ("Here are the ingredients in the stock currently:"
-                + ls)
-                + ("============================================================"
-                + "================================================================"
-                + ls);
-     
-        outputMessage += ("1. [10][$0.50] tomato" 
-                + ls
-                + "2. [5][$0.20] vegetable"
-                + ls
-                + "3. [3][$10.00] toxic greens"
-                + ls
-                + "4. [1][$0.50] potato"
-                + ls);
-                
-        outputMessage += ("============================================================"
-                + "================================================================"
-                + ls
-                + "All ingredients listed successfully!");
-        
-        return outputMessage;
-    }
+     */
     
     /**
-     * A String representation of printing the ingredients in the stock. This 
-     * method has the same implementation of printStock() in the Stock class,
-     * except that it returns a String instead of void.
+     * A utility function of similar implementation to printStock() in the Stock class.
+     * This method returns a string instead of void.
      */
     private String printStock(Stock stock) {
         String outputMessage = "";
         
         List<Entry<String, Pair<Integer, Double>>> tempList = 
-                new ArrayList<>(stock.getStock().entrySet());
+                new ArrayList<>(Stock.getStock().entrySet());
         
         Collections.sort(tempList, 
                 new Comparator<Entry<String, Pair<Integer, Double>>>() {
@@ -142,21 +117,52 @@ class ListStockCommandTest {
     }
     
     /**
-     * A String representation of printing the stock as to when user input 'list stock'.
+     * A utility function of similar implementation to listIngredient() in the stock class.
+     * This method returns a string instead of void.
      */
     private String printlistIngredientToString(Stock stock) {
+        String outputMessage = "";
+        
+        if (Stock.getStock().isEmpty()) {
+            outputMessage += ("There is nothing in the stock currently.");
+        } else {
+            outputMessage += ("Here are the ingredients in the stock currently:"
+                    + ls)
+                    + ("============================================================"
+                    + "================================================================");
+            
+            outputMessage += printStock(stock) 
+                    + ls;
+            
+            outputMessage += ("============================================================"
+                    + "================================================================"
+                    + ls);
+        }
+        
+        return outputMessage;
+    }
+    
+    private String createListIngredientOutputCopy() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock currently:"
                 + ls)
                 + ("============================================================"
-                + "================================================================");
-        
-        outputMessage += printStock(stock) 
-                + ls;
-        
-        outputMessage += ("============================================================"
                 + "================================================================"
                 + ls);
+     
+        outputMessage += ("1. [10][$0.50] tomato" 
+                + ls
+                + "2. [5][$0.20] vegetable"
+                + ls
+                + "3. [3][$10.00] toxic greens"
+                + ls
+                + "4. [1][$0.50] potato"
+                + ls);
+                
+        outputMessage += ("============================================================"
+                + "================================================================"
+                + ls
+                + "All ingredients listed successfully!");
         
         return outputMessage;
     }

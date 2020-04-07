@@ -36,14 +36,33 @@ Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a
 Step 3. The user can now search against the current `stock` to see if an ingredient is stored in the `stock`. The user now executes `search stock; k/tomato;`, which will display the following result in the image. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77921374-47b58b00-72d2-11ea-84bd-fe0c790b1d59.PNG">
+  <img src="https://user-images.githubusercontent.com/59989652/78652378-3da81380-78f4-11ea-8b7a-63115ead3ca5.PNG">
+</p>
+
+Step 4. If the ingredient that the user is searching for does not exist within the stock, a different message will be displayed as shown in the following image.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59989652/78652553-75af5680-78f4-11ea-9df1-5aa85951d216.PNG">
 </p>
 
 The following sequence diagram shows how the search operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77916616-e8ed1300-72cb-11ea-9ba0-79e1ccc119ab.png">
+  <img src="https://user-images.githubusercontent.com/59989652/78683492-efaa0480-7921-11ea-82c4-e2b4abb9da92.png">
 </p>
+
+
+The sequence diagram can be interpreted as such:
+* 1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
+* 2. Assuming the user input the search stock command correctly, `SearchStockCommand#SearchStockCommand(...)` constructor is called. 
+* 3. The newly constructed `SearchStockCommand` invokes its `SearchStockCommand#parseIntoSearchKeyword(...)` and does not return anything.
+* 4. The `CommandParser` then invokes `SearchStockCommand#execute(...)`, which then further invokes `Stock#searchStock(...)` from the Stock object.
+* 5. The `Stock` object then self-invoke `Stock#checkIngredientInStock(...)` to see if there are ingredients that matches keyword that was passed into earlier.
+* 6. If there are search results, `Stock#printSearchResult(...)` will display all the ingredients that matches the keyword given.
+* 7. If there is no ingredient that matches the keyword, the program will display a different message to show the user.
+* 8. Next, the time line returns back to `CommandParser` and the `SearchStockCommand` object is destroyed here.
+* 9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
+
 
 #### 1.1.2 Design Considerations
 ##### Aspect: How search stock executes
@@ -86,7 +105,7 @@ Step 3. The user can now view the current `stock` to see what ingredients are th
 The following class diagram shows how the listing operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/77920226-cc070e80-72d0-11ea-82a5-b285173d4844.png">
+  <img src="https://user-images.githubusercontent.com/59989652/78657922-0a698280-78fc-11ea-8fd6-13030985ef80.png">
 </p>
 
 1. When the user first runs the application, the Main object is initialized. The Main object then initializes the ui and the stock object in its `start()` method. 
@@ -94,6 +113,25 @@ The following class diagram shows how the listing operation works:
 3. The CommandParser object detects `list stock` as the user input, in which it will then create a ListStockCommand object.
 4. The ListStockCommand object is then executed via its `execute(stock)` method, which takes in the stock object initialized previously and instruct it to list all ingredients through its `listIngredient()` method.
 5. Within  the `listIngredient()` method, a temporary `List` data structure is used to convert from the `HashMap` in the stock object. The list is then sorted by supplying a `new Comparator` that compares the ingredient's quantity. Afterwards, the sorted list is then printed to be displayed to the user.
+
+Alternatively, the listing mechanism process can be summarized in the following sequence diagram below:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59989652/78683798-52030500-7922-11ea-8a8d-3aaa5d7af486.png">
+</p>
+
+
+The sequence diagram can be interpreted as such:
+* 1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
+* 2. Assuming the user input the list stock command correctly, `ListStockCommand#ListStockCommand()` constructor is called. 
+* 3. The time line returns back to `CommandParser`.
+* 4. The `CommandParser` then invokes `ListStockCommand#execute(...)`, which then further invokes `Stock#ListStock()` from the Stock object.
+* 5. The `Stock` object then self-invoke `Stock#printStock()` to print the ingredients that are in the stock to display it to the user.
+* 6. Note that within the method `Stock#printStock()`, the hashMap in the `Stock` will be sorted in descending ingredient quantity.
+* 7. If there is no ingredient that in the `Stock`, the program will display a different message to show the user.
+* 8. Next, the time line returns back to `CommandParser` and the `ListStockCommand` object is destroyed here.
+* 9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
+
 
 
 #### 1.2.2 Design Considerations
@@ -146,7 +184,7 @@ Step 3. The user can generate the profit by inputting `profit`.
 <a name="search-reservation"></a>
 
 ### 1.4 [Proposed] Search reservation
-#### 1.4.1. Propose Implementation
+#### 1.4.1. Proposed Implementation
 
 In the restaurant daily report, users can search against the reservation category by supplying either a reservation number or a date.
 
@@ -156,41 +194,57 @@ The feature implements the following operations:
 
 The following class diagram shows the structures relevant to the "search reservation" feature:
 <p align="center">
-    <img src="documentations\Sibing\ClassDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\ClassDiagramforSearchReservation.png" width="900">
 </p>
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. An empty `reservation` will be initialized.
+Step 1. The user launches the application for the first time. An empty `reservations` will be initialized.
 
-Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservation` list.  
-Further, the user may add more reservations into the current `reservation` list.  
+Step 2. The user executes `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;` command to add a reservation into the `reservations` list.  
+Further, the user may add more reservations into the current `reservations` list.  
 Suppose the user executes `add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;`  
 and `add reservation; p/Lisa; m/no spicy food please; d/2020-03-12 12:00; n/3; c/98889999;` as well.
 
-Step 3. The user can now search against the current `reservation` list to see if an reservation is stored in the `reservation` list.  
-If the user executes `search reservation; r/0;`, the following result will be displayed in the image.
-
+The following object diagram illustrates how the `reservations` list looks like:
 <p align="center">
-    <img src="documentations\Sibing\SearchByIndex.png">
+    <img src="documentations\Sibing\ObjectDiagramforSearchReservation.png" width="900">
 </p>
 
-If the user executes `search reservation; d/2020-03-12;`, the following result will be displayed in the image.
+Step 3. The user can now search against the current `reservations` list to see if an reservation is stored in the `reservations` list.  
+If the user executes `search reservation; r/1;`, the mechanism is shown as follows:
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with only valid reservation number will be executed, calling `ReservationList#getReservation(reservationNumber)` to fetch the target `Reservation` object.
+* The following result with formatted information will be displayed in the image:
 
 <p align="center">
-    <img src="documentations\Sibing\SearchByDate.png">
+    <img src="documentations\Sibing\SearchByIndex.png" width="300">
 </p>
 
-If the user executes `search reservation; r/0; d/2020-03-13;`, the following result will be displayed in the image.
+If the user executes `search reservation; d/2020-03-12;`, the mechanism is shown as follows:  
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with only valid date will be executed, doing a linear search along the whole `reservations` list to pick out the `Reservation` objects with the same date.
+* The following result will with formatted information be displayed in the image:
 
 <p align="center">
-    <img src="documentations\Sibing\SearchByIndexnDate.png">
+    <img src="documentations\Sibing\SearchByDate.png" width="500">
 </p>
 
-The following sequence diagram shows the relevant interactions behind `search reservation`:
+If the user executes `search reservation; r/1; d/2020-03-13;`, the mechanism is shown as follows:  
+* The `search reservation` command calls `SearchReservationCommand#execute()`.
+* The branch with both valid date and reservation number will be executed.
+* `SearchReservationCommand#execute()` is called to fetch the `Reservation` object in that reservation number.
+* Date of the `Reservation` object is checked to see whether it matches the target date or not.
+* In this case, the date does not match, so the following result will be displayed in the image:
 
 <p align="center">
-    <img src="documentations\Sibing\SequenceDiagramforSearchReservation.png">
+    <img src="documentations\Sibing\SearchByIndexnDate.png" width="300">
+</p>
+
+The following sequence diagram shows how `search reservation` operation works:
+
+<p align="center">
+    <img src="documentations\Sibing\SequenceDiagramforSearchReservation.png" width="900">
 </p>
 
 #### 1.4.2 Design Considerations
@@ -205,11 +259,6 @@ Once a new Reservation object is created, it will be added into the `HashMap` ac
   + Pros: Easier for searching in terms of date.
   + Cons: Extra memory space is needed.
 
-**The reason to make the current choice:**  
-There is a trade-off between time and space.
-So far the reservation list size is not very large, so it is acceptable to do linear search along the list.
-Creating `HashMap` for each date will lead to many `HashMap`s, which is space-wasting in current stage.
-Utilization of `HashMap` will be considered if the restaurant becomes more popular and the reservation list gets longer and longer.
 
 ##### Aspect: Data structure to support the search reservation feature.
 * **Alternative 1 (current choice)**: Display all all `Reservation` objects that contain the reservation number or date provided to the screen directly.
@@ -220,8 +269,6 @@ Utilization of `HashMap` will be considered if the restaurant becomes more popul
   + Pros: Objects are stored in a data structure, which is easier to do operation on that specific collections of objects.
   + Cons: Extra memory space is needed.
 
-**The reason to make the current choice:**  
-There is no need for objects to be stored separately given current user stories and functionality required.
 
 <a name="search-dish"></a>
 

@@ -26,4 +26,6 @@ public class Constants {
     public static final String RES_COMMENT_MARKER = "m/";
     
     public static final String DELIMITER = ";";
+    
+    public static final String LOG_FOLDER = "logs/";
 }

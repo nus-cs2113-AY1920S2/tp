@@ -13,7 +13,7 @@ public class ListReservationCommand extends ReservationCommand {
      */
     @Override
     public void execute(ReservationList reservations, Ui ui) {
-        for (int i = 0; i < reservations.getSize(); i++) {
+        for (int i = 1; i <= reservations.getSize(); i++) {
             ui.showMessage(reservations.getReservation(i).toString());
         }
     }
