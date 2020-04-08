@@ -103,12 +103,8 @@ public class RepeatEvent extends Event {
         //Update date of endDateAndTime without changing time.
         endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
                 endDateAndTime.toLocalTime());
+        nextDateAndTime = startDateAndTime.plusDays(numOfPeriod);
 
-        if (startDateAndTime.compareTo(LocalDateTime.now()) < 0) {
-            nextDateAndTime = startDateAndTime.plusDays(numOfPeriod);
-        } else {
-            nextDateAndTime = startDateAndTime;
-        }
     }
 
     /**
@@ -124,15 +120,11 @@ public class RepeatEvent extends Event {
             periodCounter += 1;
             this.setNotDone();
         }
-        startDateAndTime = startDateAndTime.plusMonths(periodCounter * numOfPeriod);
-        endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
+        startDateAndTime = originalDateAndTime.plusMonths(periodCounter * numOfPeriod);
+        //Update date of endDateAndTime without changing time.
+        endDateAndTime = LocalDateTime.of(originalDateAndTime.plusMonths(periodCounter * numOfPeriod).toLocalDate(),
                 endDateAndTime.toLocalTime());
-
-        if (startDateAndTime.compareTo(LocalDateTime.now()) <= 0) {
-            nextDateAndTime = startDateAndTime.plusMonths(numOfPeriod);
-        } else {
-            nextDateAndTime = startDateAndTime;
-        }
+        nextDateAndTime = startDateAndTime.plusMonths(numOfPeriod);
     }
 
     /**
@@ -148,15 +140,12 @@ public class RepeatEvent extends Event {
             periodCounter += 1;
             this.setNotDone();
         }
-        startDateAndTime = startDateAndTime.plusYears(periodCounter * numOfPeriod);
-        endDateAndTime = LocalDateTime.of(originalDateAndTime.plusDays(periodCounter * numOfPeriod).toLocalDate(),
+        startDateAndTime = originalDateAndTime.plusYears(periodCounter * numOfPeriod);
+        //Update date of endDateAndTime without changing time.
+        endDateAndTime = LocalDateTime.of(originalDateAndTime.plusYears(periodCounter * numOfPeriod).toLocalDate(),
                 endDateAndTime.toLocalTime());
+        nextDateAndTime = startDateAndTime.plusYears(numOfPeriod);
 
-        if (startDateAndTime.compareTo(LocalDateTime.now()) <= 0) {
-            nextDateAndTime = startDateAndTime.plusYears(numOfPeriod);
-        } else {
-            nextDateAndTime = startDateAndTime;
-        }
     }
 
     @Override

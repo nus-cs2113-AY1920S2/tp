@@ -27,10 +27,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class ListCommandTest {
 
-    private static TaskList filledTasklist;
-    private static TaskList emptyTasklist;
+    private static TaskList filledTaskList;
+    private static TaskList emptyTaskList;
     private static TaskList filledWeeklyTaskList;
-
     private static Ui ui;
 
     private static LocalDateTime currDateTime1 = LocalDateTime.now();
@@ -40,20 +39,13 @@ public class ListCommandTest {
     private static LocalDateTime afterCurrButSameDayDateTime1 = currDateTime1.plusSeconds(30);
     private static LocalDateTime afterCurrButSameDayDateTime2 = currDateTime1.plusSeconds(300);
     private static LocalDateTime pastDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(5, 12));
-    private static String beforeCurrDateTimeString1 = "13/02/20 1800";
-    private static String beforeCurrDateTimeString2 = "13/02/20 2030";
-    private static String afterCurrDateTimeString1 = "01/01/21 0000";
-    private static String afterCurrDateTimeString2 = "01/01/21 0259";
 
     //@@author jichngan
-    private static LocalDateTime beforeCurrDateTime1 =
-            LocalDateTime.parse(beforeCurrDateTimeString1, Parser.INPUT_DATE_TIME_FORMAT);
-    private static LocalDateTime beforeCurrDateTime2 =
-            LocalDateTime.parse(beforeCurrDateTimeString2, Parser.INPUT_DATE_TIME_FORMAT);
-    private static LocalDateTime afterCurrDateTime1 =
-            LocalDateTime.parse(afterCurrDateTimeString1, Parser.INPUT_DATE_TIME_FORMAT);
-    private static LocalDateTime afterCurrDateTime2 =
-            LocalDateTime.parse(afterCurrDateTimeString2, Parser.INPUT_DATE_TIME_FORMAT);
+    private static LocalDateTime beforeCurrDateTime1 = LocalDateTime.of(2020, 2, 13, 18, 00);
+    private static LocalDateTime beforeCurrDateTime2 = LocalDateTime.of(2020, 2, 13, 20, 30);
+    private static LocalDateTime afterCurrDateTime1 = LocalDateTime.of(2021, 1, 1, 00, 00);
+    private static LocalDateTime afterCurrDateTime2 = LocalDateTime.of(2021, 1, 1, 02, 59);
+
     private static String currDateTimeStringForPrint1 = currDateTime1.format(Parser.PRINT_DATE_FORMAT);
     private static String currDateTimeStringForPrint2 = currDateTime2.format(Parser.PRINT_TIME_FORMAT);
     private static String nextWeekDateTimeStringForPrint1 = oneWeekDateTime1.format(Parser.PRINT_DATE_FORMAT);
@@ -64,7 +56,8 @@ public class ListCommandTest {
             afterCurrButSameDayDateTime2.format(Parser.PRINT_TIME_FORMAT);
 
     //@@author e0309556
-    private static String expectedOutputFromFilledTasklist = "Here are the relevant tasks:"
+    // Hard coded Expected output from various tests
+    private static String expectedOutputFromFilledTaskList = "Here are the relevant tasks:"
             + System.lineSeparator()
             + "  1. [A][/] Assignment 3 (by: Thu 13 Feb 2020 18:00 | mod: CS2109)"
             + System.lineSeparator() + Messages.COMMENTS_INDENT + "-"
@@ -146,14 +139,13 @@ public class ListCommandTest {
             + pastDateTime.plusMinutes(15).format(Parser.PRINT_TIME_FORMAT) + ")"
             + System.lineSeparator() + String.format(Messages.REPEAT_EVENT_WITH_COMMENTS_INDENT, "4d") + "before sleep";
 
-
     /**
      * Initialize hardcoded test cases for testing.
      */
     @BeforeAll
     public static void setup() {
-        filledTasklist = new TaskList();
-        emptyTasklist = new TaskList();
+        filledTaskList = new TaskList();
+        emptyTaskList = new TaskList();
         filledWeeklyTaskList = new TaskList();
         ui = new Ui();
 
@@ -165,12 +157,12 @@ public class ListCommandTest {
         Event eventOnSameDayAfterCurrTime = new Event("Bathe", "Toilet", afterCurrButSameDayDateTime1,
                 afterCurrButSameDayDateTime2, "-");
 
-        filledTasklist.addTask(assignBeforeCurrDateTime);
-        filledTasklist.addTask(assignAfterCurrDateTime);
-        filledTasklist.addTask(eventBeforeCurrDateTime);
-        filledTasklist.addTask(eventAfterCurrDateTime);
-        filledTasklist.addTask(eventOnSameDayAfterCurrTime);
-        filledTasklist.markTaskAsDone(0);
+        filledTaskList.addTask(assignBeforeCurrDateTime);
+        filledTaskList.addTask(assignAfterCurrDateTime);
+        filledTaskList.addTask(eventBeforeCurrDateTime);
+        filledTaskList.addTask(eventAfterCurrDateTime);
+        filledTaskList.addTask(eventOnSameDayAfterCurrTime);
+        filledTaskList.markTaskAsDone(0);
 
         //@@author jichngan
         Assignment currDateTimeAssignment = new Assignment("Assignment 1", "CS2113", currDateTime1,
@@ -189,31 +181,31 @@ public class ListCommandTest {
     @Test
     public void printList_emptyList_emptyListMsg() {
         assertEquals(Messages.EMPTY_TASKLIST_MESSAGE,
-                new ListCommand(null).execute(emptyTasklist, ui).feedbackToUser);
+                new ListCommand(null).execute(emptyTaskList, ui).feedbackToUser);
     }
 
     @Test
     public void printList_invalidArgs_errorMsg() {
         assertEquals("Invalid arguments for List Command" + System.lineSeparator() + ListCommand.COMMAND_USAGE,
-                new ListCommand("everything i want").execute(filledTasklist, ui).feedbackToUser);
+                new ListCommand("everything i want").execute(filledTaskList, ui).feedbackToUser);
     }
 
     @Test
     public void printList_filledList_incompleteAssignOnly() {
         assertEquals(expectedOutputFromIncompleteAssign,
-                new ListCommand("incomplete assignments").execute(filledTasklist, ui).feedbackToUser);
+                new ListCommand("incomplete assignments").execute(filledTaskList, ui).feedbackToUser);
     }
 
     @Test
     public void printList_filledList_allTaskListMsg() {
-        assertEquals(expectedOutputFromFilledTasklist,
-                new ListCommand(null).execute(filledTasklist, ui).feedbackToUser);
+        assertEquals(expectedOutputFromFilledTaskList,
+                new ListCommand(null).execute(filledTaskList, ui).feedbackToUser);
     }
 
     @Test
     public void printList_filledList_upcomingEventsOnly() {
         assertEquals(expectedOutputFromUpcomingEvent,
-                new ListCommand("upcoming events").execute(filledTasklist, ui).feedbackToUser);
+                new ListCommand("upcoming events").execute(filledTaskList, ui).feedbackToUser);
     }
 
     //@@author jichngan
@@ -238,19 +230,19 @@ public class ListCommandTest {
         RepeatEvent testRepeatEvent = new RepeatEvent("Bathe2", "Toilet", pastDateTime,
                 pastDateTime.plusMinutes(15), "before sleep", 4, RepeatCommand.DAILY_ICON,
                 pastDateTime, 0);
-        filledTasklist.addTask(testRepeatEvent);
+        filledTaskList.addTask(testRepeatEvent);
 
-        RepeatEvent repeatEvent = ((RepeatEvent) filledTasklist.getTask(5));
+        RepeatEvent repeatEvent = ((RepeatEvent) filledTaskList.getTask(5));
         repeatEvent.updateDate();
         assertEquals(expectedOutputFromTodayFilledTasklistForRepeating,
-                new ListCommand("today").execute(filledTasklist, ui).feedbackToUser);
+                new ListCommand("today").execute(filledTaskList, ui).feedbackToUser);
     }
 
     @Test
     public void repeatingEvent_filledList_weekTasks() {
-        RepeatEvent repeatEvent = ((RepeatEvent) filledTasklist.getTask(5));
+        RepeatEvent repeatEvent = ((RepeatEvent) filledTaskList.getTask(5));
         repeatEvent.updateDate();
         assertEquals(expectedOutputFromUpcomingEventFilledTasklistForRepeating,
-                new ListCommand("upcoming events").execute(filledTasklist, ui).feedbackToUser);
+                new ListCommand("upcoming events").execute(filledTaskList, ui).feedbackToUser);
     }
 }

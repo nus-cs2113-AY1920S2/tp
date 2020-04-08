@@ -24,9 +24,10 @@ Table of Contents
 		- [Design Considerations](#332-design-considerations)
 	- [Repeat event feature](#34-repeat-event-feature)
 		- [Current Implementation](#341-current-implementation)
-		- [`Event` and `RepeatEvent` Differences and Impact](#342-event-and-repeatevent-differences-and-impact)
-		- [Design Considerations](#343-design-considerations)
-		- [Future Enhancement](#344-future-enhancement)
+		- [`Event` and `RepeatEvent` Differences and Impact](#342-event-and-repeatevent-differences-and-their-impact)
+		- [How date and time is updated](#343-how-date-and-time-is-updated-in-repeateventupdateevent)
+		- [Design Considerations](#344-design-considerations)
+		- [Future Enhancement](#344-future-enhancements)
 	- [Edit Task Feature](#35-edit-task-feature)
 		- [Implementation](#351-implementation)
 		- [Design Considerations](#352-design-considerations)
@@ -63,6 +64,9 @@ This section will guide you on how to set up this project on your own computer.
 1.  JDK 11 or above
 
 2.  IntelliJ IDE
+
+> **Note**: Knowing [`LocalDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html) API from Java 
+> would help in understanding how Date and Time is used in our implementation and [Tests](#4-testing).
 
 ### 1.2. Setting up the project
 1.  Fork this repository, and clone the fork to your computer
@@ -381,7 +385,8 @@ The following sequence diagram summarizes how the `ClearCommand` operation works
             -   Cons: `ArrayList` will be filled up with unnecessary tasks that could have been removed. This might affect the time complexity of future addition or searching operations on the `ArrayList`.
 
 ### 3.4. Repeat event feature
-This feature allow users to repeat their events, removing the need to insert the same event multiple times with different dates.
+This feature allow users to repeat their events at a specified frequency forever, removing the need to insert the
+same event multiple times with different dates.
 
 #### 3.4.1. Current Implementation
 
@@ -419,19 +424,19 @@ The `execute()` method will check 3 things after it calls `getTask()` method fro
      
 **Step 4**  
 After the `execute()` method completes, a new `CommandResult` class with a string containing the result of the execution. This string will 
-be printed by calling `showToUser()` method in the `Ui` class. Then the event will be saved into local file by calling
-`Atas#trySaveTaskList()`.
+be printed by calling `Ui#showToUser()` Then the event will be saved into local file by calling `Atas#trySaveTaskList()`.
 
-The following sequence diagram summarizes how repeat command operation works, from the parser creating an `RepeatCommand` to the end of
- `execute()` method called by `Atas`:
+The following sequence diagram summarizes how repeat command operation works, from the parser creating an `RepeatCommand` till when
+ `execute()` method called by `Atas` is returned:
 
 ![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
 
 #### 3.4.2. `Event` and `RepeatEvent` Differences and their Impact
 
--   There are 4 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an event to repeat accurately.
+-   There are 5 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an
+ event to repeat accurately.
 
-    1.  `int numOfPeriod`: Set to the given value that states the frequency which `typeOfPeriod` will repeat at.
+    1.  `int numOfPeriod`: Set to the user input value that states the frequency which `typeOfPeriod` will repeat at.
 
     2.  `String typeOfPeriod`: Set to `d` (days), `w` (weeks), `m` (months) or `y` (years) to indicate how often it will repeat.
 
@@ -440,22 +445,50 @@ The following sequence diagram summarizes how repeat command operation works, fr
 
     4.  `int periodCounter`: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods` with 
         type `typeOfPeriod` has passed.  
-        For example, if `numofPeriod` is `2` and `typeOfPeriod` is `d`, and 6 days has passed since `originalDateAndTime`, then 
+        For example, if `numofPeriod` is `2`, `typeOfPeriod` is `d` and 6 days has passed since `originalDateAndTime`, then 
         `periodCounter` will be 3.
+        
+    5. `LocalDateTime nextDateAndTime`: Not initialized initially, but gets updated every time `updateDate()` is called. This is used to
+     keep track of the event's next date and time so that it could be utilized in other areas, such as `list upcoming events` for corner
+     cases. For example, a repeating event that occurs today but we have past its time (thus will not appear in `list upcoming events` as
+      the event has past and its date will not be updated yet since it is still today) but should appear as it will repeat into the future.
 
 -   With this implementation in mind, every time the app is launched, after `load()` method in `Storage` class is called, the app will
     call a method `updateEventDate()` which will iterate through every task in the list and calls `RepeatEvent#updateDate()` if the task is
     of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also 
     `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future
-    date if today is not possible.
+    date if today is not possible. (More information on how date and time is updated is given below)
+    
+    > **NOTE**: Using `originalDateAndTime` instead of the recorded dead and time of the task helps to circumvent a potential bug concerning
+     the last few dates of a month. For example, given 31st Jan 2020, adding 1 month to it using the LocalDateTime Java API,
+     we will get 29th Feb 2020. Then adding another month, we will get 29th March 2020 instead of 31st March 2020.
+    >
+    > However by using `originalDateAndTime`, we must also keep track of how much time has past to accurately and quickly obtain the correct
+    next date and time. Hence we also utilize `periodCounter` to count how many `numOfPeriods` with type `typeOfPeriod` has passed.
 
 -   To users, apart from minor differences such as the icon and listing of `RepeatEvent` shows how often it is being repeated, there will be
  no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and 
 they can only add or edit `Event` or `Assignment` and would appear as if there are only 2 type of tasks.
 
-#### 3.4.3. Design Considerations
+#### 3.4.3 How date and time is updated in `RepeatEvent#updateEvent()`
+There are 2 ways an event's date and time is updated. 
+1. When a `RepeatCommand` is created to convert an `Event` object to `RepeatEvent` object in `setRepeat()` method under Step 3 of
+ `RepeatCommand`.
+2. When a user starts up ATAS with `RepeatEvent` object in its `TaskList`, `Atas#updateEventDate()` will be called. It will then
+ call `updateEvent()` for each `RepeatEvent` objects and its date will be updated if it is in the past.
+ 
+-  `updateEvent()` solely compares dates. 
+- It will loop until `startDate` (which is the `RepeatEvent` object's stated `startDateAndTime.toLocalDate()`) is equal to or
+  greater than the current date. With each loop, it will simply add `numOfPeriod` of days, months or years using the methods
+   provided in `LocalDateTime` API of Java to `startDate`. `periodCounter` will also increase by one per iteration. 
+- At the end of the loop, we add `numOfPeriod` * `periodCounter` of days, months or years to `originalDateAndTime` to get our
+ `startDateAndTime`. Similarly, we add the same amount to the `endDateAndTime`. <br/> 
+  Then we add 1 more `numOfPeriod` of days, months or years to `startDateAndTime` to get our `nextDateAndTime`.
 
--   Allowing only tasks that are `Event` to be repeated.
+#### 3.4.4. Design Considerations
+
+-   Allowing only tasks that are `Event` to be repeated. As stated in our UG, an event is a task that you plan to do at a particular date
+    and time.  
 
     -   Rationale:  
         We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it 
@@ -487,7 +520,7 @@ they can only add or edit `Event` or `Assignment` and would appear as if there a
     -   Rationale:  
         It allows the repeated events to be easily removed or un-repeated as a there will only be a single `RepeatEvent` present in the list.
         However, this means that past instances of that event will not be kept and we feel that it is acceptable as the past events are not 
-        nearly as important as future events.
+        nearly as important as future events for a time management app.
 
     -   Alternative considered:  
 
@@ -727,6 +760,8 @@ Testing is required to ensure that the code written is accurate, bug free (at le
 -   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 
 -   To run all test using Gradle: Open a console and run the command `gradlew clean test`
+    > **Note**: For more tips on how to use gradle commands, look at 
+    [Gradle Tutorial](https://github.com/AY1920S2-CS2113T-M16-1/tp/blob/master/tutorials/gradleTutorial.md)
 
 -   For individual test, navigate to folder `src/test/java`. From there, you can right-click any of the test **package**, **class** or a
     single test and choose `Run 'TEST'` to run the corresponding test.

@@ -80,7 +80,7 @@ public class EditCommand extends Command {
             switch (commandType) {
             case AssignmentCommand.COMMAND_WORD:
                 Task editedAssignment = editAssignment(userInput, ui);
-                if (taskList.isRepeatTask(taskList, editedAssignment)) {
+                if (taskList.isSameTask(taskList, editedAssignment)) {
                     return new CommandResult(Messages.SAME_TASK_ERROR);
                 }
 
@@ -88,7 +88,7 @@ public class EditCommand extends Command {
                 return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedAssignment));
             case EventCommand.COMMAND_WORD:
                 Event editedEvent = editEvent(userInput, ui);
-                if (taskList.isRepeatTask(taskList, editedEvent)) {
+                if (taskList.isSameTask(taskList, editedEvent)) {
                     return new CommandResult((Messages.SAME_TASK_ERROR));
                 }
                 //Check if Event to be edited is repeating event.
