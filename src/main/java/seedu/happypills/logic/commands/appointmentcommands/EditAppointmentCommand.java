@@ -191,6 +191,9 @@ public class EditAppointmentCommand extends AppointmentCommand {
         if (!Checker.isValidNric(nric)) {
             return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
         }
+        if (!Checker.isPositiveInteger(apptID)) {
+            return TextUi.appendDivider(TextUi.INVALID_APPTID_MESSAGE);
+        }
         if (newContent.length() < 3) {
             return HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE;
         }

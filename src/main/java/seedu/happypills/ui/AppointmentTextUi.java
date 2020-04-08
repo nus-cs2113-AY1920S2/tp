@@ -12,8 +12,8 @@ public class AppointmentTextUi extends TextUi {
     public static final String GET_EMPTY_APPOINTMENT_LIST_MESSAGE = ""
             + "    There are no appointments in the list.\n" + DIVIDER;
     public static final String APPOINTMENT_NOT_FOUND_MESSAGE = ""
-            + "    The appointment cannot be found. Please try again.\n";
-
+            + "    The appointment cannot be found. Please try again.";
+    public static final String border = "-";
     /**
      * Shows list of appointments in the program.
      * @param appointments The list of appointments.
@@ -53,16 +53,21 @@ public class AppointmentTextUi extends TextUi {
      */
     public static String getAppointmentSuccessMessage(Patient patient) {
         String returnMessage = "    Here are the patient's appointments:\n"
-                + "     | ID | NRIC   | Reason | Date      | Time     |\n";
+                + "     " + border.repeat(47) + "\n"
+                + "     | ID | NRIC     | Date       | Time  | Reason |\n"
+                + "     " + border.repeat(46) + "\n";
         String content = "";
         ArrayList<Appointment> tempList = patient.getAppointments();
         for (Appointment appointment : tempList) {
+            String tempContent = "";
             String id = appointment.getAppointmentId();
             String nric = appointment.getNric();
             String reason = appointment.getReason();
             String date = appointment.getDate();
             String time = appointment.getTime();
-            content += "     | " + id + " | " + nric + " | " + reason + " | " + date + " | " + time + " | \n";
+            tempContent = "     | " + id + " | " + nric + " | " + date + " | " + time + " | " + reason + " | \n";
+            content += tempContent;
+            content += "     " + border.repeat(tempContent.length() - 5) + "\n";
         }
         if (content.isEmpty()) {
             returnMessage = "    There are no appointments in the list.\n";
