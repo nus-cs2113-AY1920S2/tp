@@ -15,7 +15,7 @@ import static seedu.attendance.Attendance.attendanceStatusComparator;
  */
 public class AttendanceList {
 
-    protected ArrayList<Attendance> attendanceList;
+    protected ArrayList<Attendance> attendanceList = new ArrayList<>();
     protected UI ui = new UI();
     private DisplayTable displayTable = new DisplayTable();
 
