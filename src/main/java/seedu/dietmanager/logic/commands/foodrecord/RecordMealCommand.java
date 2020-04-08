@@ -67,7 +67,7 @@ public class RecordMealCommand extends Command {
         FoodNutritionRecord foodInfo = FoodNutritionRecord.getInstance();
 
         for (String singleFoodDescription : foodDescription) {
-            if (singleFoodDescription.equals("")) {
+            if (singleFoodDescription.strip().equals("")) {
                 continue;
             }
 
