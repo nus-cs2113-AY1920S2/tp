@@ -15,11 +15,11 @@ import java.util.Map;
 //@@author joelczk
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
-    public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
+    public static final String COMMAND_USAGE = "Search for tasks: search t/[all/event/assignment] n/[TASK NAME]";
 
     public static final String dCOMMAND_WORD = "searchd";
     public static final String dCOMMAND_USAGE = "Search for tasks according to date: "
-            + "searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
+            + "searchd t/[all/event/assignment] n/[TASK NAME] d/[DD/MM/YY]";
 
     protected static String CURRENT_COMMAND_WORD = "";
     protected static String CURRENT_COMMAND_USAGE = "";
@@ -94,7 +94,7 @@ public class SearchCommand extends Command {
      * @param results ArrayList storing the results
      * @return ArrayList storing Assignments objects that match the search query
      */
-    private ArrayList<Task> loopArrayNoDateEventAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results) {
+    private ArrayList<Task> loopArrayNoDateEventsAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results) {
         for (Map.Entry<Task,Integer> entry: tasks.entrySet()) {
             Task task = entry.getKey();
             if (task.getName().toLowerCase().contains(searchParam)) {
@@ -112,7 +112,7 @@ public class SearchCommand extends Command {
      * @param date query date
      * @return ArrayList storing Assignment objects that match the search query and date
      */
-    private ArrayList<Task> loopArrayWithDateEventAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results,
+    private ArrayList<Task> loopArrayWithDateEventsAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results,
                                                               LocalDate date) {
         for (Map.Entry<Task,Integer> entry: tasks.entrySet()) {
             Task task = entry.getKey();
@@ -150,9 +150,9 @@ public class SearchCommand extends Command {
             eventsOrAssignments) {
         ArrayList<Task> results = new ArrayList<>();
         if (date == null) {
-            results = loopArrayNoDateEventAssignments(eventsOrAssignments, results);
+            results = loopArrayNoDateEventsAssignments(eventsOrAssignments, results);
         } else {
-            results = loopArrayWithDateEventAssignments(eventsOrAssignments, results, date);
+            results = loopArrayWithDateEventsAssignments(eventsOrAssignments, results, date);
         }
         return results;
     }

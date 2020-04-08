@@ -73,16 +73,6 @@ public class SearchCommandTest {
         return searchString.toString();
     }
 
-    private String eventSingleResultString() {
-        searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
-        searchString.append(System.lineSeparator());
-        searchString.append("  4.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
-        searchString.append(System.lineSeparator());
-        searchString.append("            notes: -");
-        searchString.append(System.lineSeparator());
-        return searchString.toString();
-    }
-
     private String searchMultipleEvents() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
@@ -139,7 +129,7 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void  executeMethod_emptyResults() {
+    public void executeMethod_emptyResults() {
         assertEquals(new SearchCommand("abcd","event", testDate1).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
         assertEquals(new SearchCommand("abcd", "assignment", testDate1).execute(filledTaskList, ui).feedbackToUser,
@@ -202,4 +192,27 @@ public class SearchCommandTest {
                 searchMultipleAssignments());
     }
 
+    @Test
+    public void executeMethod_searchAllSingleResult() {
+        assertEquals(new SearchCommand("midterms", "all", null).execute(filledTaskList,ui).feedbackToUser,
+                searchSingleEvent());
+    }
+
+    @Test
+    public void executeMethod_searchdAllSingleResult() {
+        assertEquals(new SearchCommand("midterms", "all", testDate1).execute(filledTaskList,ui).feedbackToUser,
+                searchSingleEvent());
+    }
+
+    @Test
+    public void executeMethod_searchMultipleResults() {
+        assertEquals(new SearchCommand("test 3", "all", null).execute(filledTaskList, ui).feedbackToUser,
+                searchSingleAssignment());
+    }
+
+    @Test
+    public void executeMethod_searchdMultipleResults() {
+        assertEquals(new SearchCommand("test", "all", null).execute(filledTaskList,ui).feedbackToUser,
+                searchMultipleAssignments());
+    }
 }
