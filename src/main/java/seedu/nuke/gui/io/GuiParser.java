@@ -786,9 +786,9 @@ public class GuiParser {
             return;
         }
 
-        String fileName = fileGroup.replace(TASK_PREFIX, NONE).trim();
+        String fileName = fileGroup.replace(FILE_PREFIX, NONE).trim();
 
-        int endIndexOfPrefix = fileGroup.indexOf(TASK_PREFIX) + PREFIX_LENGTH;
+        int endIndexOfPrefix = fileGroup.indexOf(FILE_PREFIX) + PREFIX_LENGTH;
         String prefix = fileGroup.substring(0, endIndexOfPrefix);
         String rawFileName = fileGroup.substring(endIndexOfPrefix);
         String parametersAfter =  parameters.substring(matcher.end(FILE_GROUP));
@@ -838,8 +838,7 @@ public class GuiParser {
             console.getEntriesPopup().hide();
         }
 
-        highlightInput(moduleCode, rawModuleCode, parametersAfter, endIndexOfModule,
-                suggestedModules, isExact);
+        highlightInput(moduleCode, rawModuleCode, parametersAfter, endIndexOfModule, suggestedModules, isExact);
     }
 
     private void smartParseIdentityCategory(Matcher matcher, String parameters, int startIndex)
@@ -869,8 +868,7 @@ public class GuiParser {
             console.getEntriesPopup().hide();
         }
 
-        highlightInput(categoryName, rawCategoryName, parametersAfter, endIndexOfCategory,
-                suggestedCategories, false);
+        highlightInput(categoryName, rawCategoryName, parametersAfter, endIndexOfCategory, suggestedCategories, false);
     }
 
     private void smartParseIdentityTask(Matcher matcher, String parameters, int startIndex)

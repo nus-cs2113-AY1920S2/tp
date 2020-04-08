@@ -41,7 +41,7 @@ public class Message {
     }
 
     public static final String MESSAGE_INVALID_COMMAND_FORMAT =
-            "Sorry, the command entered contains some unrecognised parameters:\n";
+            "Sorry, the command entered contains some unrecognised parameters starting from here:\n";
     public static final String MESSAGE_CHECK_COMMAND_FORMAT =
             "Please check to make sure to follow the command format as such:\n";
     public static final String MESSAGE_UNKNOWN_COMMAND_WORD =
