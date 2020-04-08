@@ -13,6 +13,7 @@ public class AppointmentTextUi extends TextUi {
             + "    There are no appointments in the list.\n" + DIVIDER;
     public static final String APPOINTMENT_NOT_FOUND_MESSAGE = ""
             + "    The appointment cannot be found. Please try again.";
+
     /**
      * Shows list of appointments in the program.
      * @param appointments The list of appointments.

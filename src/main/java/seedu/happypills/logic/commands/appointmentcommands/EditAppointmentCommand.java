@@ -9,7 +9,12 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.*;
+import seedu.happypills.ui.AppointmentTextUi;
+import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.StorageTextUi;
+import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.Messages;
+import seedu.happypills.ui.HelpTextUi;
 
 import java.io.IOException;
 import java.util.logging.Logger;
