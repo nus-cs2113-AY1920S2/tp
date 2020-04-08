@@ -107,7 +107,7 @@ public class Ui {
             }
             System.out.println(DIVIDER);
         } else {
-            System.out.println("There are no activities matching that description.\n");
+            printDivider("There are no activities matching that description.\n");
         }
     }
 
@@ -254,11 +254,13 @@ public class Ui {
             if (activityList.get(i).getAllocatedTime() == Duration.parse("PT0S")) {
                 continue;
             }
-            double percent = activityList.get(i).getProgressPercent();
+            double percent = activityList.get(i).getProgressPercent();\
+            /*
             double max = 100;
             if (percent > max) {
                 percent = max;
             }
+             */
             String activityName = activityList.get(i).getName();
             printProgressBar(percent, activityName);
         }
