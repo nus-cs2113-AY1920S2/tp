@@ -5,11 +5,14 @@
 **Nuke** is a simply yet powerful task management application that targets towards _NUS students_ and aims to facilitate record, classification, management and navigation of their acdemical tasks. The users can interact with **Nuke** using both a _Command Line Interface (CLI)_ and a complementary _Graphical User Interface (GUI)_. **Nuke** is written in Java, and has about 17000 lines of code.
 
 
+
 ## Summary of Contributions
 
 ### Code Contributed
 
 [Functional and Test Code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=HAOYUN49&sort=totalCommits%20dsc&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByNone&tabOpen=true&tabType=authorship&tabAuthor=HAOYUN49&tabRepo=AY1920S2-CS2113T-T13-2%2Ftp%5Bmaster%5D) from _GitHub RepoSense_ 
+
+
 
 ### Major Enhancement
 
@@ -28,17 +31,26 @@
 - Highlights: This enhancement provides a new criteria for users to manage and navigate their tasks. The implementation includes adding a new attribute to existing object, filtering tasks of differnt categories of different modules in terms of tags which users can choose to use exact tag or keyword of tag to filter tasks leading t o changes to existing commands.
 
 
-##### 
 
 ### Minor Enhancement
 Added **help** command which will show a simple user guide to enable users find valid commands and corresponding format when using **Nuke**.
 
-### Contributions to documentation
 
-### Contributions to the DG
 
-### Contributions to team-based tasks
+### Other Contributions
+- Project managment:
+  - Necessary general code enhancements
+  
+  - Maintaing the issue tracker
+  
+- Enhancements to existing features:
+  - Wrote a majority of JunitTests for existing features to increase coverage to a greate extent
 
-### Review/mentoring contributions
+- Documentation
+
+- Community
+  - PRs reviewed (with non-trivial review comments)
+  
+  - Reported bugs and suggestions for other teams using CaTcher (with non-trivial issues)
 
 
