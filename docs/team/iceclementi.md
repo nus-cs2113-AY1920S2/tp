@@ -1,11 +1,10 @@
-
 # Project Portfolio Page -- Clement Cheng
 ## Project Nuke <small>v2.1</small>
 
 <hr>
 
 ## Overview
-**Nuke v2.1** is a desktop task management application target towards **NUS students**.  **Nuke** aims to provide a more efficient way to organise the user's modules and tasks. The user interacts with **Nuke** using a _Command Line Interface_ (CLI). In its latest versions, it also has a complementary _Graphical User Interface_ version created with JavaFX, though the GUI is still in its _Beta_ stage. **Nuke** is written in Java, and has about 10, 000 lines of code.
+**Nuke v2.1** is a simple yet powerful task management application target towards **NUS students**.  **Nuke** aims to provide a more efficient way to organise the user's modules and tasks. The user interacts with **Nuke** using a _Command Line Interface_ (CLI). In its latest versions, it also has a complementary _Graphical User Interface_ version created with JavaFX, though the GUI is still in its _Beta_ stage. **Nuke** is written in Java, and has about 10, 000 lines of code.
 
 
 ## Summary of Contributions
@@ -43,7 +42,6 @@ Using RegEx will greatly aid the process of extracting the keywords from the use
 Using RegEx to support the parsing was challenging initially. Most commands needs to have its own unique RegEx, since they have a different command format than that of other commands. The RegEx needs to be correct, otherwise it does not serve its purpose. As such, multiple testing was done with various possible input to ensure its correctness. This had been done for each command.
 
 
-
 ### Minor Enhancements
 Improve the feedback messages shown to the user for invalid commands by making them more informative, so the user knows exactly where in their input was wrong.
 
@@ -57,10 +55,16 @@ Generally oversee the progress of the entire project, and set targets for the te
 #### Documentation
 ##### User Guide
 - Created User Guide template -- [#86](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/86/commits/4564354abd1dd6bb2cc5cbee7d33a8494d5dbbb6)
-- Documented Add nodules, categories and tasks Features -- [#86](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/86/commits/4564354abd1dd6bb2cc5cbee7d33a8494d5dbbb6)
+- Documented Add modules, categories and tasks Features -- [#86](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/86)
 
 ##### Developer Guide
-- Created Developer Guide template -- [#91](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/91/commits/63df694b1df6aef9f5eab62be7995d9fc04714c6)
+- Created Developer Guide template -- [#91](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/91)
+- Documented Delete features including class and sequence diagrams -- [#93](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/93)  [#94](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/94)  [#95](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/95)  [#104](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/104)
+
+#### Community
+##### Bugs
+Amended bug issues in **Nuke** raised by other course members -- [#126](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/126) [#129](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/129) [#135](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/135) [147](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/147)
+Reviewed other course member's tP -- [#1](https://github.com/iceclementi/ped/issues/1) [#2](https://github.com/iceclementi/ped/issues/2) [#3](https://github.com/iceclementi/ped/issues/3) [#4](https://github.com/iceclementi/ped/issues/4) [#5](https://github.com/iceclementi/ped/issues/5) [#6](https://github.com/iceclementi/ped/issues/6) [#7](https://github.com/iceclementi/ped/issues/7) [#8](https://github.com/iceclementi/ped/issues/8) [#9](https://github.com/iceclementi/ped/issues/9) [#10](https://github.com/iceclementi/ped/issues/10) [#11](https://github.com/iceclementi/ped/issues/11)
 
 ### Code Contributed
-[Functional and Test Code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=iceclementi&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos)
+[Functional and Test Code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=iceclementi&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos) from _GitHub RepoSense_
