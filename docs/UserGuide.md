@@ -143,10 +143,8 @@ By using `find` and `filter` commands, the user can reduce clutter and zoom-in t
 * `filter TAGNAME1 TAGNAME2`
 
 ### Chaining Lists, Finds & Filters: `-s`
-Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. This sublist is generated based on the previously shown list and also works after a `list` command.
-This is can be particularly useful when the user wants to generate a graph. 
-
-Note: This flag applies to `find` and `filter` commands only. 
+**Usage:** The user to `find` and `filter` based on the last shown list by providing the `-s` immediately each
+`find` or `filter`.
 
 **Format:** 
 * `find -s KEYWORD`
@@ -154,6 +152,41 @@ Note: This flag applies to `find` and `filter` commands only.
 * `filter -s TAGNAME1 TAGNAME2`
 * `find -s KEYWORD1 / KEYWORD2 / KEYWORD3`
 
+**Sample Use Case:**
+If the user wants to see how much time he/she spent studying for quizzes of specific modules this month, he/she can
+first `list month`, followed by `find -s 2106 / 1521` and `filter -s quiz`.
+
+```
+list month
+------------------------------------------------------------------------------------------
+Your completed activities:
+   | Name                      | Duration   | Allocation | Date       | Tags
+1  | revise 1521               | 00:00:00   | 03:25:34   | 2020-04-28 | [finals]
+2  | revise 1521               | 00:00:00   | 06:17:03   | 2020-04-28 | [quiz]
+3  | revise 2106               | 00:00:00   | 03:00:00   | 2020-04-02 | [finals]
+4  | revise 2106               | 00:00:00   | 01:20:12   | 2020-04-18 | [quiz]
+5  | revise ger                | 00:00:00   | 02:14:54   | 2020-04-18 | [finals]
+6  | revise ger                | 00:00:00   | 03:13:14   | 2020-04-19 | [quiz]
+------------------------------------------------------------------------------------------
+find -s 2106 / 1521
+------------------------------------------------------------------------------------------
+Here are the matching activities in your list:
+
+   | Name                      | Duration   | Allocation | Date
+1  | revise 2106               | 00:00:00   | 03:00:00   | 2020-04-02 | [finals]
+2  | revise 2106               | 00:00:00   | 01:20:12   | 2020-04-18 | [quiz]
+3  | revise 1521               | 00:00:00   | 03:25:34   | 2020-04-28 | [finals]
+4  | revise 1521               | 00:00:00   | 06:17:03   | 2020-04-28 | [quiz]
+------------------------------------------------------------------------------------------
+filter -s quiz
+------------------------------------------------------------------------------------------
+Here are the matching activities in your list:
+
+   | Name                      | Duration   | Allocation | Date
+1  | revise 2106               | 00:00:00   | 01:20:12   | 2020-04-18 | [quiz]
+2  | revise 1521               | 00:00:00   | 06:17:03   | 2020-04-28 | [quiz]
+------------------------------------------------------------------------------------------
+```
 **Example:**  
 ![chain graph activities](./pictures/filter-find_chain.PNG)
 If we want to find all CS2106 tutorials, we can first use `filter 2106` to filter out all activities tagged `2106`, then use the find command with the flag, `find -s Tutorial` to get a list of all 2106 Tutorials.
