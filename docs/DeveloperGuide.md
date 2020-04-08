@@ -61,12 +61,13 @@ Verifying Setup
 
 The architecture diagram above shows an overview of the high-level design of MeetingOrganizer. Meeting Organizer
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
-Here is q quick overview of each layer and the components residing in it.
+Here is a quick overview of each layer and the components residing in it.
 * UI: The CLI user interface of the application.
 * Commons: A collection of classes containing constants such as messages for ```common.exception```, modules that can't be formatted, etc.
 * Logic: The main control unit of the application which handles the business logic of the application.
 * Model: Holds the data of the application in memory which is easily accessible by any methods that requires it.
 * Storage: Writes data from Model layer to hard disk, as well as reading previously saved data from hard disk and storing it into Model layer.
+
 ### 2.2. UI component
 [Structure of UI layer]
 
@@ -75,19 +76,19 @@ The UI consists of....
 ![Logic Component](images/logiccomponent.png)<br>
 
 The LogicManager is the brain and backbone of the logic component. It depends on 3 sub-components for it to work.
-First, LogicManager instantiates```schedulelogic``` and ```modulelogic``` sub-components to enable the generation of common time slots from NUSMODS links.
-Afterwards, ```command``` sub-component would be initialize to interpret the user commands. LogicManager forms a whole-part relationship with Model component, where
+First, LogicManager instantiates```ScheduleLogic``` and ```ModuleLogic``` sub-components to enable the generation of common time slots from NUSMODS links.
+Afterwards, ```Command``` sub-component would be initialized to interpret the user commands. LogicManager forms a whole-part relationship with Model component, where
 all the data gathered from user commands would be stored.
 
 ### 2.3.1. Logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
-The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
+The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler``` and  ```LessonsGenerator```.
 
-1. ```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules a user is taking, including the timeslots of those modules.
+1. ```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules and the timeslots that a user has.
 2. ```LessonsGenerator``` also uses ```Modulehandler``` to retrieve a set of information related to a specific module.
 3. With both information, ```LessonsGenerator``` is able to dynamically generate the user's time-slots stored in ```ArrayList<String[]>``` via a series of Key-Value pair hashing.
-4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
+4. ```Arraylist<String[]> ``` contains the start and end times, days and weeks information of all modules the user is taking.
 <br>
 
 **Design of Logic.modulelogic component**
@@ -113,7 +114,7 @@ Blacklisted modules are filtered out based on the data from ```common.Blackliste
 
 The above figure shows a full overview of the UML sequence of the entire Logic.modulelogic component.<br>
 
-The last step would be for ```LessonsGenerator``` to collate the returned data structure from both ```ModuleHandler``` and ```TimetableParser```, calling```.lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
+The last step would be for ```LessonsGenerator``` to collate the returned data structure from both ```ModuleHandler``` and ```TimetableParser```, calling```lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
  <br>
  
  The information returned from ```LessonsGenerator``` would then be used in Logic.schedulelogic component.
@@ -147,6 +148,13 @@ The ```contact``` component of our application consists of 2 classes: ```TeamMem
 
 ### 2.5. Storage component
 
+![](storage_uml.png)
+
+Above image shows the structure of Storage object. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
+
+The `Storage` component,
+- can save `Contact` objects in .txt format and read it back.
+- can save scheduled meetings in .txt format and read it back.
 
 ### 2.6. Exception classes
 
@@ -190,6 +198,8 @@ Alternative 1. Furthermore, users are required to download the blacklisted file 
 ### 3.4 Schedule a new meeting
 
 ### 3.5 Delete a scheduled meeting
+
+### 3.6 Delete a member
 
 ### 3.6 List all scheduled meetings
 
