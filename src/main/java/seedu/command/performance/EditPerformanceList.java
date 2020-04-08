@@ -6,12 +6,12 @@ import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
-public class EditPerformance extends Command {
+public class EditPerformanceList extends Command {
     PerformanceList performances;
     String eventName;
     UI ui;
 
-    public EditPerformance(PerformanceList performances, String eventName) {
+    public EditPerformanceList(PerformanceList performances, String eventName) {
         this.ui = new UI();
         this.performances = performances;
         this.eventName = eventName;

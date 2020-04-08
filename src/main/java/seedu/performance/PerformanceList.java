@@ -139,7 +139,7 @@ public class PerformanceList {
             throw new PacException("No performance list under this event");
         }
         for (Performance performance: performanceList) {
-            if (performance.studentName.equals(studentName)) {
+            if (isSame(performance.studentName,studentName)) {
                 return performance;
             }
         }

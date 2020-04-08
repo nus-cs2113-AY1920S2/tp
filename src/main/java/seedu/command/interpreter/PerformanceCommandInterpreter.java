@@ -1,12 +1,12 @@
 package seedu.command.interpreter;
 
 import seedu.command.Command;
-import seedu.command.performance.AddPerformance;
-import seedu.command.performance.DeletePerformance;
-import seedu.command.performance.EditPerformance;
-import seedu.command.performance.ViewStudentPerformance;
+import seedu.command.performance.AddPerformanceList;
+import seedu.command.performance.DeletePerformanceList;
+import seedu.command.performance.EditPerformanceList;
+import seedu.command.performance.ViewStudentPerformanceList;
 import seedu.command.performance.SortPerformanceListByName;
-import seedu.command.performance.SortPerformanceListByGrade;
+import seedu.command.performance.SortPerformanceListByResult;
 import seedu.event.EventList;
 import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
@@ -35,13 +35,13 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
         performances = getPerformances(eventName); //performance list to be edited
         switch (commandType) {
         case "add":
-            return new AddPerformance(performances, eventName);
+            return new AddPerformanceList(performances, eventName);
         case "delete":
-            return new DeletePerformance(performances, eventName);
+            return new DeletePerformanceList(performances, eventName);
         case "edit":
-            return new EditPerformance(performances, eventName);
+            return new EditPerformanceList(performances, eventName);
         case "view":
-            return new ViewStudentPerformance(performances);
+            return new ViewStudentPerformanceList(performances);
         case "sort":
             return getSortCommand();
         default:
@@ -61,8 +61,8 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
         String type = ui.getSortType();
         if (type.equals("name")) {
             return new SortPerformanceListByName(performances, eventName);
-        } else if (type.equals("grade")) {
-            return new SortPerformanceListByGrade(performances, eventName);
+        } else if (type.equals("result")) {
+            return new SortPerformanceListByResult(performances, eventName);
         }
         throw new PacException("Performance sort: Unknown sort type. Enter 'name' or 'student'.");
     }

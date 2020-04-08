@@ -6,7 +6,7 @@ import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
-public class DeletePerformance extends Command {
+public class DeletePerformanceList extends Command {
     PerformanceList performances;
     Performance performance;
     String eventName;
@@ -17,7 +17,7 @@ public class DeletePerformance extends Command {
      * the name of event that the list is under.
      * @param performances A PerformanceList of students.
      */
-    public DeletePerformance(PerformanceList performances, String eventName) {
+    public DeletePerformanceList(PerformanceList performances, String eventName) {
         this.ui = new UI();
         this.performances = performances;
         this.eventName = eventName;

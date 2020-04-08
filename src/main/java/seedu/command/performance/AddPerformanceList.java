@@ -11,7 +11,7 @@ import seedu.ui.UI;
 
 import static seedu.pac.Pac.studentListCollection;
 
-public class AddPerformance extends Command {
+public class AddPerformanceList extends Command {
     private UI ui;
     private DisplayList displayList;
     PerformanceList performances;
@@ -22,7 +22,7 @@ public class AddPerformance extends Command {
      * event to be modified, and String eventName, name of the event that owns the
      * performance list.
      */
-    public AddPerformance(PerformanceList performances, String eventName) {
+    public AddPerformanceList(PerformanceList performances, String eventName) {
         this.performances = performances;
         this.eventName = eventName;
         this.ui = new UI();

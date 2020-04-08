@@ -5,7 +5,7 @@ import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
-public class ViewStudentPerformance extends Command {
+public class ViewStudentPerformanceList extends Command {
     UI ui;
     private PerformanceList performances;
 
@@ -13,7 +13,7 @@ public class ViewStudentPerformance extends Command {
      * Constructor for ViewAssignmentResultCommand. Takes in the
      * performance list.
      */
-    public ViewStudentPerformance(PerformanceList performances) {
+    public ViewStudentPerformanceList(PerformanceList performances) {
         this.performances = performances;
         this.ui = new UI();
     }

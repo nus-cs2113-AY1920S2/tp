@@ -259,7 +259,7 @@ public class UI {
     }
 
     public String getSortType() {
-        display("Do you want to sort by students' name or grade?");
+        display("Do you want to sort by students' name or result?");
         return getStringInput().toLowerCase();
     }
 
