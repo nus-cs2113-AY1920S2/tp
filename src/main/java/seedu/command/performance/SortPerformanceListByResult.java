@@ -11,12 +11,12 @@ import seedu.ui.UI;
  */
 public class SortPerformanceListByResult extends Command {
     protected UI ui;
-    protected PerformanceList performances;
+    protected PerformanceList performanceList;
     protected String eventName;
 
-    public SortPerformanceListByResult(PerformanceList performances, String eventName) {
+    public SortPerformanceListByResult(PerformanceList performanceList, String eventName) {
         this.eventName = eventName;
-        this.performances = performances;
+        this.performanceList = performanceList;
         this.ui = new UI();
     }
 
@@ -24,10 +24,10 @@ public class SortPerformanceListByResult extends Command {
      * Method to sort an performance list according to name.
      */
     private void sortPerformanceByResult() {
-        if (performances.isEmpty()) {
+        if (performanceList.isEmpty()) {
             UI.display("An empty list cannot be sorted");
         } else {
-            performances.sortByGrade();
+            performanceList.sortByGrade();
             ui.sortPerformanceByName(eventName);
         }
     }

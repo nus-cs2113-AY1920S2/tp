@@ -7,19 +7,19 @@ import seedu.ui.UI;
 
 public class ViewStudentPerformanceList extends Command {
     UI ui;
-    private PerformanceList performances;
+    private PerformanceList performanceList;
 
     /**
      * Constructor for ViewAssignmentResultCommand. Takes in the
      * performance list.
      */
-    public ViewStudentPerformanceList(PerformanceList performances) {
-        this.performances = performances;
+    public ViewStudentPerformanceList(PerformanceList performanceList) {
+        this.performanceList = performanceList;
         this.ui = new UI();
     }
 
     @Override
     public void execute() throws PacException {
-        performances.printList();
+        performanceList.printList();
     }
 }
