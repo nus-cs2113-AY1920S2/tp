@@ -130,7 +130,7 @@ Follow the following steps to manually test the product:
 
 1. This should load all the data in the folders. Type the following commands:
 
-        list article 
+  * `list article`
         
     You will get the following output:
 
@@ -156,7 +156,8 @@ Follow the following steps to manually test the product:
 
             __________________________________________________________________________________________
        
-               list job 
+
+  * `list article`
         
      You will get the following output:
 
@@ -184,21 +185,22 @@ Follow the following steps to manually test the product:
            
 
 
-            list note
+  * `list article`
            
       You will get the following output:
-            __________________________________________________________________________________________
+          
+              __________________________________________________________________________________________
 
 
-            _                                     Note List                                    _
+                _                                     Note List                                    _
 
 
-               1. Title: How to work with Github?
-               Date: 2020-Apr-08 Wed 10:06 PM
-               Category: default
-               URL: https://guides.github.com
-               Extract: This is a guide to githubs official tutorial.
+                   1. Title: How to work with Github?
+                   Date: 2020-Apr-08 Wed 10:06 PM
+                   Category: default
+                   URL: https://guides.github.com
+                   Extract: This is a guide to githubs official tutorial.
 
 
-            __________________________________________________________________________________________
+                __________________________________________________________________________________________
 
