@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuke User Guide v2.1</title>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <style type="text/css">
@@ -59,20 +59,29 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Add a Module into your Module List [&#10149;](#a-add-a-module-into-your-module-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Add a Category into your Category List [&#10149;](#b-add-a-category-into-your-category-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Add a Task into your Task List [&#10149;](#c-add-a-task-into-your-task-list)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Add a File into your File List [&#10149;](#d-add-a-file-into-your-file-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; **2. List** [&#10149;](#2-list)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. List your Modules [&#10149;](#a-list-your-modules)     
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. List your Categories [&#10149;](#b-list-your-categories)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. List your Tasks [&#10149;](#c-list-your-tasks)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. List your Tasks Sorted[&#10149;](#d-list-your-tasks-sorted)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. List your Files[&#10149;](#e-list-your-files)    
 &nbsp; &nbsp; &nbsp; &nbsp; **3. Delete** [&#10149;](#3-delete)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Delete Modules from your Module List [&#10149;](#a-delete-modules-from-your-module-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Delete Categories from your Category List [&#10149;](#b-delete-categories-from-your-category-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Delete Tasks from your Task List [&#10149;](#c-delete-tasks-from-your-task-list)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Delete Files from your File List [&#10149;](#d-delete-files-from-your-file-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; **4. Edit** [&#10149;](#4-edit)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Edit a Module in your Module List [&#10149;](#a-edit-a-module-in-your-module-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Edit a Category in your Category List [&#10149;](#b-edit-a-category-in-your-category-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Edit a Task in your Task List [&#10149;](#c-edit-a-task-in-your-task-list)    
-&nbsp; &nbsp; &nbsp; &nbsp; **5. Mark a Task as Done** [&#10149;](#5-mark-a-task-as-done)    
-&nbsp; &nbsp; &nbsp; &nbsp; **6. Change Directory** [&#10149;](#6-change-directory)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Edit a File in your File List [&#10149;](#d-edit-a-file-in-your-file-list)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. Mark a Task as Done [&#10149;](#e-mark-a-task-as-done)    
+&nbsp; &nbsp; &nbsp; &nbsp; **5. Change Directory** [&#10149;](#5-change-directory)    
+&nbsp; &nbsp; &nbsp; &nbsp; **6. Open File** [&#10149;](#6-open-file)    
+&nbsp; &nbsp; &nbsp; &nbsp; **7. Info** [&#10149;](#7-info)    
+&nbsp; &nbsp; &nbsp; &nbsp; **8. Undo** [&#10149;](#8-undo)    
+&nbsp; &nbsp; &nbsp; &nbsp; **9. Redo** [&#10149;](#9-redo)    
 <br>  <big style="color: green"> **Miscellaneous Information** [&#10149;](#miscellaneous-information) </big>   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Help** [&#10149;](#help)  
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Exiting the Nuke Program** [&#10149;](#exiting-the-nuke-program)  
@@ -95,7 +104,15 @@ You will be interacting with the application via the command line. With the **Nu
 If you are an **NUS student** and have not tried out **Nuke** yet...  
 What are you waiting for? Give **Nuke** a shot, and you will see how amazing it is!   
 </span>
-    
+   
+[Back To Top](#table-of-contents)
+
+<br>
+
+## Setting Up
+
+[Back To Top](#table-of-contents)
+
 <br>
 
 ## General Usage  
@@ -113,12 +130,13 @@ This section will explain the fundamental structure of the **Nuke** application,
 | **Category**    | The **third** level of the Directory Tree.<br>Added _tasks_ are in this level.    |
 | **Task**        | The **fourth** level of the Directory Tree.<br>Added _files_ are in this level.       |
 | **File**        | The **last** level of the Directory Tree.<br>Nothing else can be added.                                         |
+  
+<br>
+  
+Below is an illustration of a possible <b>Directory Tree</b> structure:    
+![Directory Tree Picture](images/Tree.png)  
 
 <br>
-
-```
-	// Todo add a sample Directory Tree diagram here
-```
 
 #### Root   
 The **Root** Directory is the **base** of the entire Directory Tree. Only **one** root exists in the entire Tree. _Modules_ are added into this level into a **Module List**. A _module_ consists of both a *module code* and a _module title_. 
@@ -129,7 +147,11 @@ Only <b>NUS modules</b> are allowed to be added in <b>Nuke</b>.
 </div>
 
 #### Module
-The **Module** Directory is the **second** level of the Directory Tree.  Each _module_ has a **Category List** that has several _categories_ to categorise your _tasks_, such as Lecture, Tutorial and Assignment, so that you can further organise your _tasks_. A _category_ consists of a _name_ and a _priority_ to indicate the importance of the _tasks_ in that _category_.
+The **Module** Directory is the **second** level of the Directory Tree.  Each _module_ has a **Category List** that has several _categories_ to categorise your _tasks_, such as Lecture, Tutorial and Assignment, so that you can further organise your _tasks_. A _category_ consists of a _name_ and a _priority_ to indicate the importance of the _tasks_ in that _category_.  
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+Upon adding a <i>module</i>, <b>Nuke</b> automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. So, you don't have to add those <i>categories</i> yourself!
+</div>   
 
 #### Category
 The **Category** Directory is the **third** level of the Directory Tree. Each _category_ has a **Task List** that can contain any number of _tasks_, which are ideally related to the _category_. A _task_ has several attributes, namely the _description_, _deadline_ of the _task_ if any, _priority_ and the _done status_ of the _task_.
@@ -150,7 +172,9 @@ For example, you can only add a <i>task</i> into the <b>Category</b> directory, 
 <i class="fa fa-info"></i> <b>Tip</b> <br> 
 You can shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command! <br>
 To learn how to traverse the various directories, see the <a href="#6-change-directory">Change Directory</a> command.
-</div>
+</div>   
+  
+[Back To Top](#table-of-contents)
 
 <br>
 
@@ -172,14 +196,16 @@ Some **attributes** and **prefixes** are _optional_ and the command can still ex
 
 ### Any
 There are times when you may have to include at least one from a set of **attributes** and **prefixes**. You may choose to include one <i>or</i> more from the set, but <b>not</b> none of them. Such **attributes** and **prefixes** will be wrapped in curly brackets `{ }` to help you to recognise them.   
-
+  
+[Back To Top](#table-of-contents)
+  
 <br>
 
 ## Command Prefixes  
 On many occasions, you may be required to enter more information to describe the commands you give to **Nuke**. For example, when adding a _task_, you may need to specify the _module_ and _category_ to add the _task_ into. You may also want to include additional attributes such as the _deadline_ and _priority_. All these information can only be recognised by **Nuke** if they are preceded by the correct **prefix**.<br>   
 All **command prefixes** in **Nuke** begins with a `-` and followed by a **letter**. Below is the exhaustive list of **command prefixes** and general information that should follow after.   
 
-#### <u>Command Prefix Table</u>  
+##### <u>Command Prefix Table</u>  
 
 | Command Prefix | General Definition                                               |
 |:--------------:|------------------------------------------------------------------|
@@ -195,82 +221,97 @@ All **command prefixes** in **Nuke** begins with a `-` and followed by a **lette
 <br>
 
 <div class="alert alert-warning">
-<i class="fa fa-exclamation">  </i><b>Note</b> <br> 
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 Because each <b>prefix</b> begins with a <code>-</code>, <b>Nuke</b> has to unfortunately restrict your choice of names for the directories. <br>
 Specifically, each word in the name of your directory has to begin with a alpha-numeric <i>(i.e. non-symbol)</i> or underscore character.
 </div>
+  
+[Back To Top](#table-of-contents)  
 
 <br><br>  
 
-# Features  
-## 1. Add  
+## Features  
+### 1. Add  
 Adds a _module_, _category_,  _task_ or <i>file</i> into their respective lists.<br>
 
-As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for creating a directory: `mkdir`
+As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. **Nuke** complements the Linux shell command by offering a generic add command word for creating a directory: `mkdir`  
+<br>
+Below sums up what `mkdir` does at each level of the Directory.
 
-- When you are at the **Root Directory**, `mkdir <module code>` will add a *module* into your **Module List**.
-- When you are at the **Module Directory**, `mkdir <category name>` will add a _category_ into your **Category List**.
-- When you are at the **Category Directory**, `mkdir <task description>` will add a _task_ into your **Task List**.
+##### <u>Generic Add Table</u>  
 
-The above mentioned commands have to be done in the corresponding directories, and the commands below can be done in any directories, but less generic.
+| Current Level   | What Happens?                                                        |  
+|:---------------:|----------------------------------------------------------------------|  
+| <b>Root</b>     | `mkdir <module code>` adds a *module* into the current directory     |  
+| <b>Module</b>   | `mkdir <category name>` adds a *category* into the current directory |  
+| <b>Category</b> | `mkdir <task description>` adds a *task* into the current directory  |  
+| <b>Task</b>     | `mkdir <file name>` adds a *file* into the current directory         |  
+| <b>File</b>     | You cannot `mkdir` here! :pensive:                                   |  
+
+
+The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
+
+[Back To Top](#table-of-contents)
+
 
 #### a. Add a Module into your Module List  
-Adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the List Module command.
+`addm` adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the [List Module command](#a-list-your-modules).
 
-#### Format  
+##### Format  
 `addm <module code>`  
 - `module code` -- The _module code_ of the   _module_  
-> **Note**: The _module code_ is **case-insensitive**. However, it must correspond to a valid **NUS module**. Only **NUS modules** can be added in this version of **Nuke**.
 
-#### Example Usage
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond to a valid <b>NUS module</b>. Only <b>NUS modules</b> can be added in this version of <b>Nuke</b>.
+</div>
+ 
+##### Example Usage and Expected Outcome  
+  
+![addm command](images/addm.png)
 
-```
-	addm cs2113t
-```
 
-#### Expected Outcome    
-
-```
-root :
-addm cs2113t
-SUCCESS!! Module CS2113 Software Engineering & Object-Oriented Programming has been added.
-```
-
-##### before:
+##### Before:
 
 ![image-20200330234001037](images/ug_addm_before.png)
 
-##### after:
+##### After:
 
 ![image-20200330233926681](images/ug_addm_after.png)
 
 
+  
+[Back To Top](#table-of-contents)   
 
-#### <br>  
+<br>
 
 #### b. Add a Category into your Category List  
-Adds a _category_ into your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the List Category command.
+`addc` adds a _category_ into your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the [List Category](#b-list-your-categories) command.
 
-#### Format  
+##### Format  
 `addc <category name> -m <module code> [ -p <priority> ]`  
 
 - `category name` -- The _name_ of the   _category_
 - `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
-- `priority` -- A number indicating the  _priority_ of the _category_
-> **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.  
-> **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the category. If the `priority` is not given, then it will be set to **0**.  
+- `priority` -- A number indicating the  _priority_ of the _category_ <i>(optional)</i>  
 
-#### Example Usage
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to <b>0</b>.  
+</div>
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. You can move to the  <i>module</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.  
+</div>
 
+##### Example Usage
 ```
-	addc Lecture -m cs2113t -p 3
+addc Project -m cs2113t -p 3
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ```
-root / CS2113T :
-addc Lecture -m cs2113t -p 3
-SUCCESS!! Category Lecture is created.
+SUCCESS!! Category Project is created.
 ```
 
 ##### before:
@@ -281,14 +322,14 @@ SUCCESS!! Category Lecture is created.
 
 ![image-20200331000110946](images/ug_addc_after.png)
 
+[Back To Top](#table-of-contents)
 
-
-#### <br>  
+<br>  
 
 #### c. Add a Task into your Task List  
-Adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the List Task command.
+`addt` adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the [List Task](#c-list-your-tasks) command.
 
-#### Format  
+##### Format  
 `addt <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]`  
 
 - `task description` -- The _description_ of the _task_  
@@ -300,13 +341,13 @@ Adds a _task_ into your **Task List**. The **Task List** contains all your added
 > **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the task. If the `priority` is not given, then it will be set to the same _priority_ as it's _category_.  
 > **Note**: The `deadline` provided consists of both a _date_ and a _time_. The `deadline` provided must adhere to the set of accepted [Date Time formats](#date-time-formats).   
 
-#### Example Usage    
+##### Example Usage    
 
 ```
 	addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 80
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ```
 root / CS2113T / Assignment :
 addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 80
@@ -321,13 +362,14 @@ SUCCESS!! Task urgent assignment is created.
 ![image-20200331000315462](images/ug_addt_after.png)
 
 
+[Back To Top](#table-of-contents)
 
-#### <br>
+<br>
 
-#### d. Add a File into your Task's File List  
-Adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ to the _task_ and can be viewed via the List File command.
+#### d. Add a File into your Task File List  
+`addf` adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
 
-#### Format  
+##### Format  
 `addf <file name> -m <module code> -c <category name> -t <task description> -f <file path>`  
 
 - `file name` -- The _name_ of the _file_  
@@ -339,7 +381,7 @@ Adds a _file_ into your _task_'s **File List**. The **File List** contains all y
 > **Note**: The `file path` that you give must exist. Otherwise, an error message will be displayed.
 > **Note**: The `file name` provided can be different from the real file name that is stored in the disk.   
 
-#### Example Usage
+##### Example Usage
 
 ```
 	addt save.txt -m CS2113t -c Lab -t tp -f C:\Users\JUNIOR\Downloads\save.txt
@@ -353,21 +395,21 @@ Adds a _file_ into your _task_'s **File List**. The **File List** contains all y
 	addt save.txt -f C:\Users\JUNIOR\Downloads\save.txt
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ```
 root / CS2113T / Lab / tp :
 addt save.txt -m CS2113t -c Lab -t tp -f C:\Users\JUNIOR\Downloads\save.txt
 SUCCESS!! File save.txt is added.
 ```
 
+[Back To Top](#table-of-contents)
 
-
-#### <br>
+<br>
 
 #### e. Add a Tag to your Task
 Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List File command. not available now).
 
-#### Format  
+##### Format  
 `addg <tag info> -m <module code> -c <category name> -t <task description>`  
 
 - `tag info` -- The _tag_ to be added  
@@ -376,7 +418,7 @@ Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your a
 - `task decription` -- The _description_ of the _task_  
 > **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
 
-#### Example Usage
+##### Example Usage
 
 ```
 	addg urgent -m CS2113t -c Lab -t tp
@@ -390,17 +432,18 @@ Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your a
 	addt urgent
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ```
 root / CS2113T / Lab / tp :
 addg urgent -m CS2113t -c Lab -t tp
 Tag added!
 ```
 
+[Back To Top](#table-of-contents)
 
-#### <br>
+<br>
 
-## 2. List  
+### 2. List  
 Lists the _modules_, _categories_ or _tasks_ in their respective lists.<br>
 
 As mentioned previously, **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for listing files in a directory: `ls`
@@ -415,19 +458,19 @@ The above mentioned commands have to be done in the corresponding directories, a
 
 List all *module*s in your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the List Module command.
 
-#### Format  
+##### Format  
 
 `lsm [keyword]`   
 
 > **Note**: If keyword is provided, `lsm` will list out all modules with module code containing the keyword, otherwise, `lsm` will list out all modules.
 
-#### Example Usage    
+##### Example Usage    
 
 ```
 	lsm
 ```
 
-#### Expected Outcome 
+##### Expected Outcome 
 
 ![image-20200401011642619](images/ug_lsm.png)
 
@@ -437,7 +480,7 @@ List all *module*s in your **Module List**. The **Module List** contains all you
 
 List all *category*s in your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the List Category command.
 
-#### Format  
+##### Format  
 
 `lsc [ -m <module code> ]`  
 
@@ -445,7 +488,7 @@ List all *category*s in your **Category List**. The **Category List** contains a
 
 > **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.
 
-#### Example Usage
+##### Example Usage
 
 ```
 	lsc -m c3235
@@ -455,7 +498,7 @@ List all *category*s in your **Category List**. The **Category List** contains a
 	lsc
 ```
 
-#### Expected Outcome
+##### Expected Outcome
 
 ![image-20200401012031973](images/ug_lsc.png)
 
@@ -465,7 +508,7 @@ List all *category*s in your **Category List**. The **Category List** contains a
 
 List all the *task*s in your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the List Task command.
 
-#### Format  
+##### Format  
 
 ```
 lst [ -m <module code> -c <category name>]
@@ -473,7 +516,7 @@ lst [ -m <module code> -c <category name>]
 
 > **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
 
-#### Example Usage 
+##### Example Usage 
 
 ```
 	lst -m cs3235 -c Assignment
@@ -487,7 +530,7 @@ lst [ -m <module code> -c <category name>]
 	lst
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ![image-20200401012942212](images/ug_lst.png)
 
 
@@ -495,7 +538,7 @@ lst [ -m <module code> -c <category name>]
 
 List all the undo *task*s in your **Task List**. The *task*s will be sorted in ascending order of `deadline` by deafault. User can also specify in the command to sort *task*s in descending order of `priority` by adding `-p` prefix.
 
-#### Format  
+##### Format  
 
 ```
 lsts [ -d -p (choose 1; default -d) ]
@@ -503,7 +546,7 @@ lsts [ -d -p (choose 1; default -d) ]
 
 > **Note**: You need **not** include the `-d` if you want to sort tasks in terms of `deadline`. You are supposed to choose only one prefix between `-d` and `-p`. 
 
-#### Example Usage
+##### Example Usage
 
 ```
 	lsts
@@ -513,7 +556,7 @@ lsts [ -d -p (choose 1; default -d) ]
 	lsts -p
 ```
 
-#### Expected Outcome
+##### Expected Outcome
 
 
 
@@ -521,7 +564,7 @@ lsts [ -d -p (choose 1; default -d) ]
 
 List all the *task*s in one of added *module*s. The *task*s will be sorted in ascending order of `deadline` by deafault.
 
-#### Format  
+##### Format  
 
 ```
 lsmtd <module code>
@@ -529,7 +572,7 @@ lsmtd <module code>
 
 > **Note**: You need **not** include the `module code` if you are currently in that *module*'s directory. Sepcifying a `module code` will make the command to list tasks in that *module*.
 
-#### Example Usage
+##### Example Usage
 
 ```
 	lsmtd
@@ -539,11 +582,11 @@ lsmtd <module code>
 	lsmtd CS2113
 ```
 
-#### Expected Outcome
+##### Expected Outcome
 
 
 
-## 3. Delete  
+### 3. Delete  
 Deletes _modules_, _categories_ or _tasks_ from their respective lists.<br>
 
 As mentioned previously, **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for deleting a directory: `rm`
@@ -560,7 +603,7 @@ The above mentioned commands have to be done in the corresponding directories, a
 
 Delete a _module_ from your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the List Module command.
 
-#### Format  
+##### Format  
 
 `delm <module code>`  
 
@@ -568,13 +611,13 @@ Delete a _module_ from your **Module List**. The **Module List** contains all yo
 
 > **Note**: The _module code_ is **case-insensitive**. However, it must correspond to a valid **NUS module**. Only **NUS modules** can be deleted in this version of **Nuke**.
 
-#### Example Usage    
+##### Example Usage    
 
 ```
 	delm cs3235
 ```
 
-#### Expected Outcome
+##### Expected Outcome
 
 ```
 root :
@@ -600,7 +643,7 @@ SUCCESS!! Module(s) have been deleted.
 
 Delete a _category_ from your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the List Category command.
 
-#### Format  
+##### Format  
 
 `delc <category name> -m <module code>`  
 
@@ -609,13 +652,13 @@ Delete a _category_ from your **Category List**. The **Category List** contains 
 
 > **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.
 
-#### Example Usage    
+##### Example Usage    
 
 `delc Lecture -m cs2113t` when not in the *module*'s  directory
 
 `delc Lecture` when in the *module*'s directory
 
-#### Expected Outcome    
+##### Expected Outcome    
 
 ```
 root :
@@ -641,7 +684,7 @@ SUCCESS!! Category/Categories have been deleted.
 
 Delete a _task_ from your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the List Task command.
 
-#### Format  
+##### Format  
 
 `delt <task description> -m <module code> -c <category name>`  
 
@@ -651,7 +694,7 @@ Delete a _task_ from your **Task List**. The **Task List** contains all your add
 
 > **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command. 
 
-#### Example Usage    
+##### Example Usage    
 
 `delt urgent assignment -m cs3235 -c Assignment` when not in the *module*'s  directory
 
@@ -659,7 +702,7 @@ Delete a _task_ from your **Task List**. The **Task List** contains all your add
 
 `delt urgent assignment` when in the *category*'s directory
 
-#### Expected Outcome    
+##### Expected Outcome    
 
 ```
 root :
@@ -679,7 +722,7 @@ SUCCESS!! Task(s) have been deleted.
 
 ![image-20200401021025877](images/ug_delt_after.png)
 
-## 4. Edit
+### 4. Edit
 
 Edits a _module_, _category_ or _task_ in their respective lists.<br>  
 
@@ -688,17 +731,17 @@ Edits a _module_, _category_ or _task_ in their respective lists.<br>
 	// To do
 ```
 
-#### Format  
+##### Format  
 ```
 	// To do
 ```
 
-#### Example Usage    
+##### Example Usage    
 ```
 	// To do
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ```
 	// To do
 ```
@@ -710,17 +753,17 @@ Edits a _module_, _category_ or _task_ in their respective lists.<br>
 	// To do
 ```
 
-#### Format  
+##### Format  
 ```
 	// To do
 ```
 
-#### Example Usage    
+##### Example Usage    
 ```
 	// To do
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ```
 	// To do
 ```
@@ -732,39 +775,39 @@ Edits a _module_, _category_ or _task_ in their respective lists.<br>
 	// To do
 ```
 
-#### Format  
+##### Format  
 ```
 	// To do
 ```
 
-#### Example Usage    
+##### Example Usage    
 ```
 	// To do
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 ```
 	// To do
 ```
 
 <br><br>  
 
-## 5. Mark a Task as Done  
+### 5. Mark a Task as Done  
 Marks a task as *done*.
 
-#### Format  
+##### Format  
 `done <task description> -m <module code> -c <category name>`  
 
 - `task description` -- The _description_ of the _task_
 - `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
 - `category name` -- The _name_ of the   _category_
   
-#### Example Usage    
+##### Example Usage    
 ```
 	done Tutorial 7 -m CS1231 -c Tutorial
 ```
 
-#### Expected Outcome    
+##### Expected Outcome    
 
 ```
 	SUCCESS!! Task has been updated.
@@ -772,10 +815,10 @@ Marks a task as *done*.
 
 <br><br>  
 
-## 6. Change Directory 
+### 6. Change Directory 
 Traverse up and down the Directory Tree from your current directory.  
 
-#### Format  
+##### Format  
 
 `cd <directory name>` to traverse down   
 `cd ..` to traverse up   
@@ -784,7 +827,7 @@ Traverse up and down the Directory Tree from your current directory.
 - `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
 - `category name` -- The _name_ of the   _category  
 
-#### Example Usage    
+##### Example Usage    
 
 ```  
 	cd Assignment
@@ -792,47 +835,48 @@ Traverse up and down the Directory Tree from your current directory.
 
 <br><br>
 
-# Miscellaneous Information  
+## Miscellaneous Information  
 
-## Help  
+### Help  
 In the event that you ever forget the usage of a command, you can look it up within the **Nuke** program itself. All you need to do is to enter the *keyword* `help`, followed by the command you wish to query.     
 
 <br>  
 
-## Exiting the Nuke Program  
+### Exiting the Nuke Program  
 Exiting the **Nuke** program is simple. Simply enter `bye` to exit.  
 Upon exiting, the program will [save](#saving) your entire Directory List into a file in your device.  
 
 <br>  
 
-## Loading and Saving  
+### Loading and Saving  
 The **Nuke** program loads and saves your entire Directory List **automatically**, so there is no explicit way to freely load or save your file.    
 
-### Loading 
+#### Loading 
 Loading is done once you start up the **Nuke** program. The data from the saved *directory list file* in your device is read to initialise your Directory List from when it was last saved.
 
-### Saving  
+#### Saving  
 Saving is done upon executing each of your commands in the **Nuke** program. Your Directory List will be saved into a *directory list file* in your device.    
 
 <br>  
 
-## Date Time Formats  
+### Date Time Formats  
 Any *date time* data that you provide has to adhere to certain formats pre-defined by the **Nuke** program. Failure to do so will likely result in the program to be unable to recognise your input command, and a warning will be shown.    
 Instances when you may need to enter a *date time* will be when adding a _deadline_ to your _tasks_.
     
 Here are the following *date time* formats:  
     
-### Date Formats  
+#### Date Formats  
 There are **two** types *date* formats allowed.  
 
-#### 1. Words  
+##### 1. Words  
 You may enter **only** the following *date* words.  
 - `today` or `tdy` -- represents the <u>current</u> date  
 - `tomorrow` or `tmr` -- represents the <u>next</u> date  
 - `yesterday` or `yst` -- represents the <u>previous</u> date  
   
 > **Note**: All dates are taken with reference to the current date on your device.  
-  #### 2. Standard Date Format  
+  
+##### 2. Standard Date Format  
 This refers to the typical dates that are represented with **numbers** and **delimiter symbols**.    
 
 In this **Nuke** program, *dates* should be in the order of **day**, **month**, then an <u>optional</u> **year**. If the **year** is not provided, the program will automatically assume it to be the **current year**.  Also, the **day**, **month** and **year** should only be entered as **numbers** and not words *(e.g. January is not accepted for the **month** attribute)*.  
@@ -849,7 +893,7 @@ An **exhaustive** list of the standard *date* formats is given below for your re
 ```
 > **Info**: `d` represents the **day** of the date. `M` represents the **month** of the date. `y` represents the **year** of the date.  
 
-### Time Formats  
+#### Time Formats  
 The **Nuke** program accepts most time formats that are represented with **numbers**, **delimiter symbols** and <u>optional</u> **am-pm markers**.    
     
 The *time* should be in the order of  **hour**, then **minute**. The **seconds** attribute of *time* should **not** be given. The **minute** attribute must be a **double** digit *(i.e. single digits must be padded with a 0 in front)*. The **minute** attribute is also <u>optional</u>, and should it be omitted, the **Nuke** program will automatically set the **minute** to be 0. Both the **12-h** format and the **24-h** format are valid *time* formats for this program.    
@@ -868,8 +912,8 @@ An **exhaustive** list of the *time* formats is given below for your reference.
 
 <br><br>
 
-# Command Summary
+## Command Summary
 
 <br><br>
 
-# FAQ
+## FAQ
