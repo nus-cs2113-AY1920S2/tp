@@ -1,6 +1,6 @@
-# Duke
+# TechToday
 
-{Give product intro here}
+Information Manager for technology news for the lifelong tech-learner.
 
 Useful links:
 * [User Guide](UserGuide.md)
