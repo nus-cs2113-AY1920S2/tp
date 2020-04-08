@@ -105,6 +105,9 @@ public class MessageBank {
 
     public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
 
+    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter: \n"
+            + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
+
     public static final String FUNCTION_LIST =
             " _______________________________________________________________________"
                     + "______________________________________\n"

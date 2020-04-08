@@ -72,8 +72,12 @@ public class AppManager {
                 String userInput = ui.readInput();
                 Optional<Command> command = CommandParser.parseInput(userInput);
                 if (command.isPresent()) {
-                    Result result = command.get().execute(profile, ui);
-                    ui.showMessage(result.showResult());
+                    if (isCommandValid(command.get())) {
+                        Result result = command.get().execute(profile, ui);
+                        ui.showMessage(result.showResult());
+                    } else {
+                        ui.displayCreateProfileMessage();
+                    }
                 } else {
                     ui.displayInvalidCommandMessage();
                 }
@@ -107,6 +111,20 @@ public class AppManager {
         storage = new Storage(ui, logsCentre, profile, foodNutritionRecord);
 
         testAssertions();
+    }
+
+    /**
+     * Check validity of commands depending on whether profile has been created.
+     * @return validity of Command being executed.
+     */
+
+    private static boolean isCommandValid(Command command) {
+        if (profile.isProfileExist() || command.getCommand().equals("set-profile") ||
+                command.getCommand().equals("help") || command.getCommand().equals("exit")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
