@@ -86,7 +86,7 @@ public class UI {
                 + "\taddevent e/<DESCRIPTION> d/<DATE>          Add an event\n"
                 + "\tlistevent                                  List all events\n"
                 + "\tdeleteevent e/<INDEX>                      Delete an event\n"
-                + "\tshowupcoming d<DAYS>                       Show upcoming events\n"
+                + "\tshowupcoming d/<DAYS>                      Show upcoming events\n"
                 + "\n"
                 + "\thelp                                       Displays the help page\n"
                 + "\texit                                       Exits the program";
