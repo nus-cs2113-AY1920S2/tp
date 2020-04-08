@@ -15,28 +15,29 @@ Features
 =======
 ## Usage
 Jikan lets you record how much time you spend on various activities so that you can easily see what took up the most time today / this week / this month.
+(In the example below, we use the example of a student tracking his/her schoolwork, but Jikan can be used for more than just that!)
 
 To start, record your first activity using the `start ACTIVITY_NAME` command.
 
-Add some tags to your activities to group similar activities together using `/t`.
+Add some tags to your activities to group similar activities together using `/t`. Tags help you group activities of the same type together, in this example, we use the tags feature to label activities according to their module code.
 
-Add allocated time to your activities using `/a`. Do note that the time allocated for an activity is represented by the target column in the diagram below. (These two words are used interchangeably).
+Add allocated time to your activities using `/a`. 
  
 When you are done with the activity, or want to move onto something else, tell Jikan to `end` and the Activity time will be recorded and saved to your list.
 
-You can view all your activities using the `list` command. Activities will be shown in this format:
-![Continue command sequence diagram](./pictures/list.PNG)
+You can view all your activities using the `list` command. Or view all your activities over a period of time by using `list` with extra parameters. For example `list week` will return a list of all activities this current week, as shown below.
+![list week](./pictures/list_week.PNG)
 
-You can also view all your activities over a period of time by using `list` with extra parameters. For example `list week` will return a list of all activities this current week, as shown below.
-![Continue command sequence diagram](./pictures/list_week.PNG)
+The list still looks very cluttered, we can reduce it further! Want to find everything you did for CS2113 this week? Filter out the activities you want to see using the `find` or `filter` command. This is our list after filtering out all our activities tagged as `2113`. (the -s flag tells Jikan to search our last shown list, i.e. the list of activities this week in this case)
+![Continue command sequence diagram](./pictures/filter.PNG)
 
-Filter out the activities you want to see using the `find` or `filter` command. This is our list after filtering out all our activities tagged as `core`. 
-![Continue command sequence diagram](./pictures/list_core.PNG)
+To easily see what took up the most of your time out of all the 2113 activities, use the `graph` command to view a chart of your activities. 
+![Continue command sequence diagram](./pictures/graph.PNG)
 
-To easily see what took up the most of your time, use the `graph` command to view a chart of your activities. 
-![Continue command sequence diagram](./pictures/graph_core.PNG)
+Curious about what module took up the most time this week? We can use the `graph tags` command on our weekly activity list to find out.
+![Continue command sequence diagram](./pictures/graphtags.PNG)
 
-Now it's clear that lab 3 ex3 took up the most of your time. 
+Evidently, it was CS2105.
 
 Not done with an activity and want to continue it? Use the `continue` command to continue recording time for a previously started activity.
 
@@ -51,13 +52,12 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 **Format:** `start ACTIVITY_NAME /a ALLOCATED_TIME /t TAGS`    
  * `ACTIVITY_NAME` can contains spaces and must be less than 25 characters.     
 * `ACTIVITY_NAME` must also be unique (should the user start an already existing activity, the option to `continue` will be given).  
-* `ALLOCATED_TIME` should be of the format [HH/MM/SS].  
-* `TAGS` are separated by spaces.  
+* `ALLOCATED_TIME` should be of the format [HH:MM:SS] and cannot exceed 23:59:59.
+* `TAGS` must be single spaced separated.  
 * `ALLOCATED_TIME` and `TAGS` are optional.  
-* `ALLOCATED_TIME` must always come before `TAGS` if both are used.
     
 **Example:**  
-`start CS1010 assignment /a 01/30/00 /t CS1010 core`   
+`start assignment /a 01:30:00 /t CS1010`   
 `start GER1000 quiz /t GER GEmod`  
 `start revision`  
   
@@ -68,7 +68,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 * `ACTIVITY_NAME` must be an existing activity in the activity list.  
   
 **Example:**  
-`continue CS1010 assignment`  
+`continue revision`  
   
 ### Ending an activity: `end`  
 **Usage:** Stops recording the time for an ongoing activity and stores it into the activity list.  
@@ -98,12 +98,13 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 * `TIME_PERIOD` can either be a specific date or over a range.  
   
 **Example:**  
-`list` List all activities.    
-`list month april` Lists all activities in April.  
-`list week` or `list weekly` List all activities in the current week.  
-`list day` or `list daily` List all activities in the current day.  
-`list 01/01/2020` or `list 2020-01-01` List all activities on 1 Jan 2020.  
-`list 01/01/2020 20/02/2020` List all activities than fall within 1 Jan 2020 and 20 Feb 2020.  
+* `list` List all activities.    
+* `list month april` Lists all activities in April.  
+* `list week` or `list weekly` List all activities in the current week.  
+* `list week 01/01/2020` lists all activities in the week of 01/01/2020.  
+* `list day` or `list daily` List all activities in the current day.  
+* `list 01/01/2020` or `list 2020-01-01` List all activities on 1 Jan 2020.  
+* `list 01/01/2020 20/02/2020` List all activities than fall within 1 Jan 2020 and 20 Feb 2020.  
   
 ### Editing an activity: `edit`
 **Usage:** Edits the name or allocated time of an activity in the activity list.
@@ -118,7 +119,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 `edit CS1010 assignment /ea 10:00:00` Allocated time for activity is edited to `10:00:00` 
   
 ## Finding and Filtering
-By using `find` and `filter` commands, users can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent with minimal clutter is required.
+By using `find` and `filter` commands, the user can reduce clutter and zoom-in to specific activities containing certain keywords or tags. The sub-query flag `-s` allows chaining any combination of `find` and `filter` commands to further reduce clutter. These features are particularly useful when the visualisation of time spent with minimal clutter is required.
 
 ### Finding Activities by Name: `find`
 **Usage:** Users can request for a sub-list of activities that has names which contain any of the given keywords. If there are more than one keyword, each keyword should be separated with ` / `.
@@ -153,15 +154,17 @@ If we want to find all CS2106 tutorials, we can first use `filter 2106` to filte
 ## Graphs
 By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 
 The 3 types of graphs are :
- * *Activity time graph* - Total time spent on each activity: `graph SCALE`
- * *Tags time graph* - Total time spent on each tag: `graph tags`
- * *Activity targets graph* - Progress of each activity in relation to its targeted time: `graph targets`
+ * *Activity time graph* - Total time spent on each activity: `graph activities SCALE`
+ * *Tags time graph* - Total time spent on each tag: `graph tags SCALE`
+ * *Activity targets graph* - Progress of each activity in relation to its allocated time: `graph allocations`
 
 Tip: Use `find`, `filter` and `list` commands to reduce clutter before graphing as the graphs are based on the last shown list of activities. 
 
 ### Activity time graph: `graph activities`
 **Usage:** View a comparison of the absolute time spent on each activity in the last shown list. 
-The parameter `SCALE` refers to the number of minutes represented by each point on the graph.
+The parameter `SCALE` refers to the number of minutes represented by each point on the graph.  
+
+Note: As the units of `SCALE` is minutes, if your activity is less than a minute, graph function will not show anything.
 
 **Format:**   
 `graph activities SCALE`
@@ -172,8 +175,21 @@ The parameter `SCALE` refers to the number of minutes represented by each point 
 ### Tags time graph: `graph tags`  
 **Usage:** View a comparison of the absolute time spent on each tag in the last shown list. 
 
+![graph tags](./pictures/graphtags_example.PNG)
+For example, if we `graph tags 1` for the activity list above, we will get the following graph:
+
+![graph tags](./pictures/graphtags_example2.png)
+`activity 1` and `activity 2` are both tagged `tag1` and have a duration of 5 mins. 
+`activity 3` and `activity 4` are both tagged `tag2` and have a duration of 2 and 3 mins respectively.   
+Adding up the durations for each tag, we get 10 mins for `tag1` and 5 mins for `tag2`. As we chose the graph to have a scale of 1 min, there are (10 asterisk representing 1 min each) for `tag1` and 5 asterisks for `tag2` in the graph.  
+
+As tags can be used to group activities of a similar nature together (i.e. same module), this feature can be used to easily see what type of activity took up the most time.
+
 **Format:**   
 `graph tags SCALE`
+
+**Example:**    
+`graph tags 1` 
 
 ### Activity targets graph: `graph targets`
 **Usage:** View the progress of activities to see how much time was spent on the activity relative to the time that was allocated. 
@@ -188,15 +204,15 @@ Using `list`, `find` and `filter` commands you can sieve out the information you
 
 **Graph Activities Example:**  
 ![chain graph activities](./pictures/filter-graph_chain.PNG)
-`filter 2113` gives all activities tagged `2113`, then we can use `graph activities 5` to view a graph of the duration for each activity. Each asterisk represents 5 minutes, as indicated by the `SCALE` parameter of the graph command.
+`filter 2113` gives all activities tagged `2113`, then we can use `graph activities 5` to view a graph of the duration for each activity.
 
 **Graph Tags Example:**
 ![chain graph tags](./pictures/list-graphtags_chain.PNG) 
-`list 25/03/2020` gives all activities completed on 25th March 2020, then we can use `graph tags 5` to view the graph of the tags. From this, it is easy to tell that the user spent more time on CS2105 than CS2106 that day.
+`list 25/03/2020` gives all activities completed on 25th March 2020, then we can use `graph tags 5` to view the graph of the tags. Each asterisk represents 5 minutes, as indicated by the `SCALE` parameter of the graph command.
 
 **Graph Allocations Example:**
 ![chain graph tags](./pictures/find-allocations_chain.PNG) 
-`find Lab` gives us all 'Lab' activities, then we can use `graph allocations` to view the progress bar of each of the activities to see how much time was spent on the activity relative to the time that was allocated. 
+`find Lab` gives us all `Lab` activities, then we can use `graph allocations` to view the progress bar of each of the activities to see how much time was spent on the activity relative to the time that was allocated. 
 
 
 
