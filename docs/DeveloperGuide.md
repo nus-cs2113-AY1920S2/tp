@@ -61,7 +61,7 @@ Verifying Setup
 
 The architecture diagram above shows an overview of the high-level design of MeetingOrganizer. Meeting Organizer
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
-Here is q quick overview of each layer and the components residing in it.
+Here is a quick overview of each layer and the components residing in it.
 * UI: The CLI user interface of the application.
 * Commons: A collection of classes containing constants such as messages for ```common.exception```, modules that can't be formatted, etc.
 * Logic: The main control unit of the application which handles the business logic of the application.
@@ -121,6 +121,8 @@ The ```schedulelogic``` consists of the class ```ScheduleHandler```.
 2. ```ScheduleHandler``` checks if a time slot fits in the main user's schedule.
 
 **Design of Logic.schedulelogic component**
+ 
+![logic.schedulelogic Component](images/schedulelogic.png)<br>
 
 ### 2.3.4. logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
@@ -141,6 +143,13 @@ The ```contact``` component of our application consists of 2 classes: ```TeamMem
 
 ### 2.5. Storage component
 
+![storage component structure](images/storage_uml.png)
+
+Above image shows the structure of Storage object. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
+
+The `Storage` component,
+- can save `Contact` objects in .txt format and read it back.
+- can save scheduled meetings in .txt format and read it back.
 
 ### 2.6. Exception classes
 
@@ -208,6 +217,8 @@ Given below is an example usage and how ```list contact``` command behaves.
 ### 3.4 Schedule a new meeting
 
 ### 3.5 Delete a scheduled meeting
+
+### 3.6 Delete a member
 
 ### 3.6 List all scheduled meetings
 
