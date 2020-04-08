@@ -98,6 +98,22 @@ Step 3: The quiz will end upon completion of the specified number of questions, 
 command ``exitquiz``.
 
 #### 2.x.2. Design Considerations
+##### Aspect: How the answers are marked for correctness
+- **Alternative 1 (current choice)**: Display the correct answer after the user has submitted his answer, and prompt
+the user to indicate if his answer is correct or wrong.
+  - Pros: 
+    - Allows the user to input open-ended questions with open-ended answers.
+    - Ensures that all answers will be marked accurately.
+  - Cons: 
+    - The quiz will be slower for the user as they will have to input an extra input every answer.
+  
+- **Alternative 2**: Automatically mark answers submitted by the user by matching it with the correct stored answer.
+  - Pros:
+    - The user will not need to type any extra inputs, and the quiz process will be shorter.
+  - Cons:
+    - The user will be restricted to adding short-answer questions without open-ended answers.
+    - There will be a high probability of inaccurate marking due to factors such as typographical errors or difference in phrasing answers.
+
 ##### Aspect: How the user can control how many questions to be quizzed
 - **Alternative 1**: Always quiz all stored questions for that subject, but allow users to stop the quiz whenever they want.
   - Pros: 
