@@ -317,23 +317,28 @@ public class StartCommand extends Command {
         String tagInfo = line.substring(index + 2);
         tagInfo = tagInfo.trim();
         String[] seperatedTags = tagInfo.split(" ");
-        ArrayList<String> tagString = new ArrayList<>();
+        ArrayList<String> tagsArray = new ArrayList<>();
         for (String i : seperatedTags) {
-            populateTagString(tagString, i);
+            populateTagString(tagsArray, i);
         }
         if (tagInfo.isEmpty()) {
             Ui.printDivider("Please provide a valid tag");
-        } else if (tagString.size() > 2) {
+        } else if (tagsArray.size() > 2) {
             Ui.printDivider("Cannot have more than 2 tags");
         } else {
-            Parser.tags.addAll(tagString);
+            Parser.tags.addAll(tagsArray);
             addActivity(activityName);
         }
     }
 
-    private void populateTagString(ArrayList<String> tagString, String i) {
-        if (i.length() > 0) {
-            tagString.add(i);
+    /**
+     * Checks for valid tag and add it to the array of tags.
+     * @param tagsArray the array of tags
+     * @param tag the tag to be checked and added
+     */
+    private void populateTagString(ArrayList<String> tagsArray, String tag) {
+        if (tag.length() > 0) {
+            tagsArray.add(tag);
         }
     }
 

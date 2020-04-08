@@ -86,7 +86,7 @@ If you'd like to graph by tags, enter the command <graph tags>.
 Please specify whether you want to graph activities / tags / targets.
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
-Activity name cannot be empty!
+Start command cannot be empty
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 You have not started any activity!
