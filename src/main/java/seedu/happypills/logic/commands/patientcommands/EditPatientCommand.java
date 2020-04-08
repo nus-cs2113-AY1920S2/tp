@@ -163,6 +163,7 @@ public class EditPatientCommand extends PatientCommand {
         if (content.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
+        content = content.trim();
         if (field.equals(PHONE_NUMBER_TAG)) {
             if (Checker.isValidPhoneNum(content.trim())) {
                 output = editPhone(editPatient, content);

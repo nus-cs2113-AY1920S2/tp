@@ -71,8 +71,11 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             field = newContent.substring(0, 2);
             content = newContent.substring(2);
         }
+        if (!patientRecords.containsKey(nric)) {
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
+        }
         PatientRecord editPatientRecord = findPatientRecord(nric, index, patientRecords);
-        boolean isIndexOutOfBound = patientRecords.get(nric).size() <= index && index > 0;
+        boolean isIndexOutOfBound = patientRecords.get(nric).size() < index || index < 0;
         if (editPatientRecord == null) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
@@ -84,6 +87,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         if (content.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
+        content = content.trim();
         boolean output = false;
         String errorMsg = Messages.MESSAGE_EDIT_ERROR + TextUi.NEWLINE;
         if (field.equals(SYMPTOM_TAG)) {
@@ -153,7 +157,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
 
     private PatientRecord findPatientRecord(String nric, int index, PatientRecordMap patientRecords) {
         ArrayList<PatientRecord> patientRecordlist = patientRecords.get(nric);
-        if (patientRecordlist != null) {
+        if (patientRecordlist != null && index <= patientRecordlist.size()) {
             PatientRecord patientRecord = patientRecordlist.get(index);
             return patientRecord;
         } else {

@@ -43,10 +43,13 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecordMap
     ) throws HappyPillsException {
+        if (!patientRecordMap.containsKey(patientNric)) {
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
+        }
         boolean isIndexOutOfBound = patientRecordMap.get(patientNric).size() <= index && index >= 0;
         assert !patientNric.isEmpty() : "No NRIC was provided";
         if (patients.containsKey(patientNric)) {
-            if (patientRecordMap.get(patientNric) == null) {
+            if (patientRecordMap.get(patientNric) == null || patientRecordMap.get(patientNric).isEmpty()) {
                 throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT);
             } else if (isIndexOutOfBound) {
                 throw new HappyPillsException(Messages.MESSAGE_INDEX_OUT_OF_BOUND);
