@@ -44,8 +44,8 @@ Besides being able to store your assignment and event details in a text file, **
 ### 1.3. How does **ATAS** solve the problem of our target audience?
 University students often have piles of assignments and events that are difficult to manage and track efficiently. **ATAS** allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due to manage their time wisely and allocate sufficient time to complete these tasks.
 ### 1.4. What is this guide for?
-This guide aims to show you on how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3, "Features"](#3-features) section.
-Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2, "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
+This guide aims to show you on how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3. "Features"](#3-features) section.
+Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2. "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
 ## 2. Quick Start
 ### 2.1. Setting up
 1.  Ensure you have Java 11 or above installed on your computer.
@@ -71,8 +71,8 @@ Interested in cultivating a habit of time management and plan your time more eff
         4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
 
 ### 2.2. Usage
-1.  To use **ATAS**, simply type a valid command into the terminal and press `[Enter]` to run the command.  
-    e.g. Typing `help` command and pressing `[Enter]` will list the commands present
+1.  To use **ATAS**, simply type a valid command into the terminal and press `[Enter]` key  run the command.  
+    e.g. Typing `help` command and pressing `[Enter]` key will list the commands present
 
 2.  Some example commands you can try to get familiar with **ATAS**:
 
@@ -80,8 +80,8 @@ Interested in cultivating a habit of time management and plan your time more eff
     -   `assignment n/Assignment One m/CS2113T d/01/01/20 1600 c/Important Assignment`: Adds an assignment called **Assignment one** for the module **CS2113T**. This assignment is due on **01/01/2020 1600** and the comments for this assignment is that it is an **Important Assignment**.
     -   `exit`: Exits **ATAS**.
 
-A summary of all the features available in **ATAS** can be found in [Command Summary](#41-list-of-available-atas-commands).  
-Refer to [Section 3, "Features"](#3-features) for the detailed instruction of the various commands of **ATAS**.
+A summary of all the features available in **ATAS** can be found in [Section 4. Command Summary](#41-list-of-available-atas-commands).  
+Refer to [Section 3. "Features"](#3-features) for the detailed instruction of the various commands of **ATAS**.
 
 ## 3. Features
 **Command Format**
@@ -89,14 +89,14 @@ Refer to [Section 3, "Features"](#3-features) for the detailed instruction of th
 -   Words in UPPER\_CASE and wrapped in \[square brackets\] are parameters to be supplied by the user.  
     Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used as `assignment n/user guide draft`.
 
--   The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is shown on the left of each task whenever a `list` command is used.  
+-   The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is shown on the left of each task whenever a `list` command is used. For more information about `list` commands, refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list).   
     Example index of list:  
     ![Task Index Example](images/task_index_example.png)
 
 -   Dates supplied by the user must follow the format `DD/MM/YY` unless specified otherwise.  
     Example: 01/03/20 represents the date 1st March 2020.
 
--   Times supplied by the user must follow the 24h format `HHmm`.  
+-   Times supplied by the user must follow the 24h format `HHmm`. '`:`' is not needed.  
     Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm.
 
 -   The parameters of a command cannot be reordered.  
@@ -105,7 +105,7 @@ Refer to [Section 3, "Features"](#3-features) for the detailed instruction of th
 -   The special characters `|` and `/` cannot be used in the various parameters that you can pass to commands, unless explicitly required by the command's format.
 
 > **Note**: 
-> Don’t worry if all of these seems overwhelming. 
+> Don’t worry if all of these seems overwhelming. <br/> 
 > There are plenty of examples provided to aid your understanding and learning of **ATAS** commands.
 
 ### 3.1. Add Assignments: **`assignment`**
@@ -175,8 +175,8 @@ Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
 
 > **Note**:
 > Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y` <br/>
-> `INDEX` of task specified has to be an **event** task. Read on to `list` command to learn more about index of specific tasks. 
-> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
+> `INDEX` of task specified has to be an **event** task. <br/>
+> Refer to [Section 3.4. List Tasks: `list`](#34-list-tasks-list) for usage on the `list` commands.
 
 Example: `repeat id/6 p/11m`  
 This command will repeat task of index 6 every 11 months.
@@ -250,7 +250,7 @@ Here are the relevant tasks:
             notes: false
 ```
 
-> **Note**: <br/>
+> **Note**:
 > The first symbol in the square bracket stands for: `[A]` assignment, `[E]` event or `[R]` repeating event. <br/>
 > The second symbol in the square bracket stands for: `[X]` task is not done, `[/]` task is done.
 
@@ -329,13 +329,17 @@ Format: `edit [INDEX]`
 
 > **Tip**:
 > Users can issue a `list` command to find the index of specific tasks. <br/>
-> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
+> Refer to [Section 3.4. List Tasks: `list`](#34-list-tasks-list) for usage on the `list` commands.
 
 Example: `edit 1`
 
 After issuing the `edit` command, you can input the changes you want to make by entering in the `assignment` or `events` command.
 Refer to [Section 3.1, "Add Assignments: `assignment`](#31-add-assignments-assignment) or 
 [Section 3.1, "Add Events: `event`"](#32-add-events-event) for usage of the commands.
+
+> **Note**:
+> This function focuses on editing the details of the `assingment` or `event`. <br/>
+> If you wish to change the repeating period of an event, refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat)
 
 
 ### 3.6. Delete Tasks: **`delete`**
@@ -346,7 +350,7 @@ Format: `delete [INDEX]`
 
 > **Tip**:
 > Users can issue a `list` command to find the index of specific tasks. <br/>
-> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
+> Refer to [Section 3.4. List Tasks: `list`](#34-list-tasks-list) for usage on the `list` commands.
 
 Example: `delete 1`
 
@@ -358,7 +362,7 @@ Format: `done [INDEX]`
 
 > **Tip**:
 > Users can issue a `list` command to find the index of specific tasks. <br/>
-> Refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list) for usage on the `list` commands.
+> Refer to [Section 3.4. List Tasks: `list`](#34-list-tasks-list) for usage on the `list` commands.
 
 Example: `done 1`
 
@@ -380,20 +384,20 @@ Format: `clear all`
 
 #### 3.7.2. Clear All Done Tasks
 
-> **Note**: <br/>
-> `clear done` command only deletes completed events that is not set to repeat<br/>
-
 -   You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.  
 
 -   Format: `clear done` You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.
 
 Format: `clear done`
 
+> **Note**:
+> `clear done` command only deletes completed events that is not set to repeat.
+
 ### 3.9. Search tasks: **`search`**
 
 #### 3.9.1. Search by Name 
 You can search for tasks in the list by specifying the type and name of task you might be searching for.
-The task types available for searching are `assignment`,`event`,`all` only. (case-sensitive)
+The task types available for searching are `assignment`,`event`,`all` only. (case-insensitive)
 
 > **Tip**:
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
@@ -419,7 +423,7 @@ Here are the search results:
 
 You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for. However,
 Events classified as repeating events cannot be found using `searchd` command
-The task types available for searching are `assignment`,`event`,`all` only. (case-sensitive)
+The task types available for searching are `assignment`,`event`,`all` only. (case-insensitive)
 
 > **Tip**: 
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
@@ -597,6 +601,6 @@ Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days o
 A: Setting a repeat period of `3d` will mean that the event repeats **3 days later**. The numeric representation of the repeat command indicates the number of days before the event is repeated.  
 e.g. `repeat id/1 p/3d`  
 Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`.  
-Refer to [Section 3.3, "Repeating Events: `repeat`"](#33-repeating-events-repeat).
+Refer to [Section 3.3, Repeating Events: `repeat`](#33-repeating-events-repeat).
 
 [Back to Top](#)
