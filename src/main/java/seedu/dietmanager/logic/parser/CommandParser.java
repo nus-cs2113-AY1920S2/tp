@@ -2,20 +2,17 @@ package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.commands.nutritionrecord.AddFoodCommand;
-import seedu.dietmanager.logic.commands.recipe.BuildNewRecipeCommand;
+import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.commands.foodrecord.CalculateCaloriesCommand;
 import seedu.dietmanager.logic.commands.foodrecord.CheckRecordCommand;
-import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
-import seedu.dietmanager.logic.commands.profile.CheckWeightRecordCommand;
-import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.commands.nutritionrecord.DeleteFoodCommand;
-import seedu.dietmanager.logic.commands.profile.DeleteWeightCommand;
-import seedu.dietmanager.logic.commands.utility.ExitCommand;
-import seedu.dietmanager.logic.commands.utility.HelpCommand;
-import seedu.dietmanager.logic.commands.nutritionrecord.ListFoodDatabaseCommand;
-import seedu.dietmanager.logic.commands.profile.ProfileCommand;
 import seedu.dietmanager.logic.commands.foodrecord.RecordMealCommand;
+import seedu.dietmanager.logic.commands.nutritionrecord.AddFoodCommand;
+import seedu.dietmanager.logic.commands.nutritionrecord.DeleteFoodCommand;
+import seedu.dietmanager.logic.commands.nutritionrecord.ListFoodDatabaseCommand;
+import seedu.dietmanager.logic.commands.profile.CheckRequiredCaloriesCommand;
+import seedu.dietmanager.logic.commands.profile.CheckWeightRecordCommand;
+import seedu.dietmanager.logic.commands.profile.DeleteWeightCommand;
+import seedu.dietmanager.logic.commands.profile.ProfileCommand;
 import seedu.dietmanager.logic.commands.profile.SetAgeCommand;
 import seedu.dietmanager.logic.commands.profile.SetGenderCommand;
 import seedu.dietmanager.logic.commands.profile.SetHeightCommand;
@@ -23,7 +20,10 @@ import seedu.dietmanager.logic.commands.profile.SetNameCommand;
 import seedu.dietmanager.logic.commands.profile.SetProfileCommand;
 import seedu.dietmanager.logic.commands.profile.SetWeightCommand;
 import seedu.dietmanager.logic.commands.profile.SetWeightGoalCommand;
+import seedu.dietmanager.logic.commands.recipe.BuildNewRecipeCommand;
 import seedu.dietmanager.logic.commands.recipe.ShowRecipeCommand;
+import seedu.dietmanager.logic.commands.utility.ExitCommand;
+import seedu.dietmanager.logic.commands.utility.HelpCommand;
 
 /**
  * Parser is the public class responsible for parsing user input and generating the relevant commands.

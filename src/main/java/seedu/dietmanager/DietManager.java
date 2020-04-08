@@ -1,9 +1,11 @@
 package seedu.dietmanager;
 
+import seedu.dietmanager.logic.AppManager;
+
 public class DietManager {
 
     /**
-     * Begins the application and creates the relevant objects required for the application to function.
+     * Launches the Diet Manager application.
      */
 
     public static void main(String[] args) {
