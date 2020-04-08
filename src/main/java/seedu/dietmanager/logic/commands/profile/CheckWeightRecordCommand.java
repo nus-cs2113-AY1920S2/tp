@@ -21,6 +21,8 @@ public class CheckWeightRecordCommand extends Command {
     private double initialWeight;
     private double currentWeight;
     private double weightDifference;
+    private double weightToGoal;
+    private double weightGoal;
     private boolean noDescription;
 
     /**
@@ -33,7 +35,6 @@ public class CheckWeightRecordCommand extends Command {
             throws InvalidFormatException, NumberFormatException {
         super(command);
         this.noDescription = false;
-
         try {
             String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.profileName = descriptionArray[0];
@@ -44,6 +45,7 @@ public class CheckWeightRecordCommand extends Command {
 
     @Override
     public Result execute(Profile profile, UI ui) {
+        this.weightGoal = profile.getWeightGoal();
         if (!this.noDescription) {
             weightRecord = profile.getWeightRecord();
             ui.showMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE);
@@ -66,12 +68,31 @@ public class CheckWeightRecordCommand extends Command {
         initialWeight = weightRecord.get(0);
         currentWeight = weightRecord.get(weightRecord.size() - 1);
         weightDifference = initialWeight - currentWeight;
+        weightToGoal = abs(weightGoal-currentWeight);
         if (weightDifference > 0) {
-            this.resultString = String.format(MessageBank.WEIGHT_LOSS_MESSAGE, weightDifference);
+            if(currentWeight == weightGoal) {
+                this.resultString = String.format(MessageBank.WEIGHT_LOSS_MESSAGE +
+                        MessageBank.WEIGHT_GOAL_ACHIEVED_MESSAGE, weightDifference, weightToGoal);
+            } else {
+                this.resultString = String.format(MessageBank.WEIGHT_LOSS_MESSAGE +
+                        MessageBank.WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE, weightDifference, weightToGoal);
+            }
         } else if (weightDifference == 0) {
-            this.resultString = MessageBank.WEIGHT_NO_CHANGE_MESSAGE;
+            if(currentWeight == weightGoal) {
+                this.resultString = String.format(MessageBank.WEIGHT_NO_CHANGE_MESSAGE +
+                        MessageBank.WEIGHT_GOAL_ACHIEVED_MESSAGE, weightDifference, weightToGoal);
+            } else {
+                this.resultString = String.format(MessageBank.WEIGHT_NO_CHANGE_MESSAGE +
+                        MessageBank.WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE, weightDifference, weightToGoal);
+            }
         } else {
-            this.resultString = String.format(MessageBank.WEIGHT_GAIN_MESSAGE, abs(weightDifference));
+            if(currentWeight == weightGoal) {
+                this.resultString = String.format(MessageBank.WEIGHT_GAIN_MESSAGE +
+                        MessageBank.WEIGHT_GOAL_ACHIEVED_MESSAGE, abs(weightDifference), weightToGoal);
+            } else {
+                this.resultString = String.format(MessageBank.WEIGHT_GAIN_MESSAGE +
+                        MessageBank.WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE, abs(weightDifference), weightToGoal);
+            }
         }
 
         return new Result(this.resultString);

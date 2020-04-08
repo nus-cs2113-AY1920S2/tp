@@ -63,11 +63,11 @@ public class MessageBank {
 
     public static String INVALID_INDEX = "Invalid index of weight! Please check and try again.";
 
-    public static String WEIGHT_LOSS_MESSAGE = "Great job! You have lost %.2f kg since the beginning!";
+    public static String WEIGHT_LOSS_MESSAGE = "\nGreat job! You have lost %.2f kg since the beginning!\n\n";
 
-    public static String WEIGHT_NO_CHANGE_MESSAGE = "No Pain No Gain! You have not lost weight yet! Strive on!";
+    public static String WEIGHT_NO_CHANGE_MESSAGE = "\nNo Pain No Gain! You have not lost weight yet! Strive on!\n\n";
 
-    public static String WEIGHT_GAIN_MESSAGE = "Maintain your diet! You have gained %.2f kg since the beginning!";
+    public static String WEIGHT_GAIN_MESSAGE = "\nMaintain your diet! You have gained %.2f kg since the beginning!\n\n";
 
     public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
 
@@ -102,6 +102,12 @@ public class MessageBank {
 
     public static String INVALID_PROFILE_MESSAGE = "Invalid profile detected. "
             + "Please set a new profile using the set-profile command.";
+
+    public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n\n"
+            + "All girls/boys will now fall for your determination and physique! :)\n\n"
+            + "You can also set a new weight goal using set-weight-goal NEW_GOAL\n";
+
+    public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
 
     public static final String FUNCTION_LIST =
             " _______________________________________________________________________"

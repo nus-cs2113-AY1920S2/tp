@@ -18,7 +18,7 @@ health data and weight goal.
 ### Code Contributed
 **__Diet Manager__**:<br>
 Link to code on tP Code Dashboard 
-[**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=lamyuewei&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos).
+[**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=yuxianglim&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos).
 
 ### Enhancements implemented
 1. Created the CheckWeightProgress class which allows users to check their past weight records from the beginning till present.
@@ -26,6 +26,15 @@ Link to code on tP Code Dashboard
     
     * There might be further enhancement such as showing the % gain or loss in weight of the user.
     
+2. Created/ updated set-weight and update-weight(removed) to allow user to store their weight in an Arraylist that is tied to their profile.
+
+3. Added(Not yet done) Calculate BMI function of the user and comparing it to the BMI database to check if user is in healthy or unhealthy range.
+
+4. Added delete weight functions to enable user to delete the stored weight based on the index of the weight stored.
+
+5. Added help functions to enable user to check for help while using the program.
+    * There was some slight hiccup in the process as gradle test allows for only 120 character per line. However i wished to implement a full table with sample inputs for user as it is more intuitive when using the program.
+    * Also added the help table to show at the launch of the program as this will be more user-friendly to all users as they do not have to refer to the user guide that often.
     * Below is the original table which contains the sample input for user
     
     No. | Functions: | Descriptions: | Example: 
@@ -46,17 +55,7 @@ Link to code on tP Code Dashboard
     14 | `delete-weight` | Delete user's weight from progress | (eg. delete-weight 2 ) 
     15 | `help` | Show the help function table |  (eg. help )
     16 | `exit` | Exit application | (eg. exit )
-    
-    
-2. Created/ updated set-weight and update-weight(removed) to allow user to store their weight in an Arraylist that is tied to their profile.
 
-3. Added(Not yet done) Calculate BMI function of the user and comparing it to the BMI database to check if user is in healthy or unhealthy range.
-
-4. Added delete weight functions to enable user to delete the stored weight based on the index of the weight stored.
-
-5. Added help functions to enable user to check for help while using the program.
-    * There was some slight hiccup in the process as gradle test allows for only 120 character per line. However i wished to implement a full table with sample inputs for user as it is more intuitive when using the program.
-    * Also added the help table to show at the launch of the program as this will be more user-friendly to all users as they do not have to refer to the user guide that often.
 
 ### Contributions to documentation
 I contributed to the User Guide under the section of check weight progress. 
