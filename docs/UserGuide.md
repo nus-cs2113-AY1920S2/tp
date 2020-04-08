@@ -1,6 +1,10 @@
-# User Guide
-
-</br>
+# WhenFree Meeting Organizer - User Guide
+ * [1. Introduction](#introduction)  
+ * [2. Quick Start](#quick-start)  
+ * [3. Features](#features)
+ * [4. FAQ](#faq)
+ * [5. Command Summary](#command-summary)
+<br/>
 
 ## Introduction
 
@@ -22,8 +26,8 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
     - To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html).
 2. Download the .jar file of our latest release of WhenFree, V2.1 [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
 3. Copy the downloaded .jar file to an empty folder.
-4. Open Command Prompt or Terminal and navigate to the folder using ```cd <folder path>```.
-5. Run the .jar file using ```java -jar <.jar file name>```.
+4. Open Command Prompt or Terminal and navigate to the folder using ```cd <folder_path>```.
+5. Run the .jar file using ```java -jar <file_name.jar>```.
 
 You will see this welcome message if you have done the above steps correctly.
 
@@ -72,6 +76,7 @@ TODO: change image
 ![](images/capture.png)
 - You can add as many contacts as you want thereafter.
 
+[&#8593; Return to list of Features](#Features)
 
 <br/><br/>
 
@@ -87,6 +92,9 @@ Example of usage:
     contacts
 
 ![](images/capture2.png)
+
+[&#8593; Return to list of Features](#Features)
+
 <br/><br/>
 
 ### Display timetable of selected contacts: `timetable`
@@ -136,6 +144,8 @@ Note:
 `contacts`.
 - Both `timetable` and `timetable 0 ` display your (main user's) timetable.
 
+[&#8593; Return to list of Features](#Features)
+
 <br/><br/>
    
 
@@ -163,6 +173,8 @@ Timetables of other contacts will not be modified.
     TODO change image
     
     ![](images/capture6.png)
+
+[&#8593; Return to list of Features](#Features)
 
 </br></br>
 
@@ -208,6 +220,8 @@ will remind you to check `meetings` if you try to edit over a scheduled meeting.
 
     TODO change image
     ![](images/capture6.png)
+
+[&#8593; Return to list of Features](#Features)
     
 </br></br>
 
@@ -231,6 +245,8 @@ Note:
 - You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using `meetings`.
 - Be careful to include the -m tag in `delete -m` when you wish to delete a meeting. 
 - `delete -m` which is used to delete a meeting, should be differentiated from `delete -c` which is used to delete a contact.
+
+[&#8593; Return to list of Features](#Features)
 <br/><br/>
 
 ### Delete a contact: `delete -c`
@@ -253,6 +269,8 @@ Note:
 
     TODO change image
     ![](images/capture7.png)
+
+[&#8593; Return to list of Features](#Features)
 </br></br>
 
 ### List all meetings: `meetings`
@@ -267,6 +285,8 @@ Example of usage:
     meetings
 
 ![](images/capture8.png)
+
+[&#8593; Return to list of Features](#Features)
 </br></br>
 
 ### Exit the application: `exit`
@@ -281,6 +301,8 @@ Example of usage:
     exit
 
 ![](images/capture9.png)
+
+[&#8593; Return to list of Features](#Features)
 </br></br>
 
 ## FAQ
