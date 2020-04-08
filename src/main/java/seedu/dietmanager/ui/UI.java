@@ -2,6 +2,7 @@ package seedu.dietmanager.ui;
 
 import java.util.Scanner;
 
+import static seedu.dietmanager.commons.core.MessageBank.CREATE_PROFILE_MESSAGE;
 import static seedu.dietmanager.commons.core.MessageBank.EXIT_APP_MESSAGE;
 import static seedu.dietmanager.commons.core.MessageBank.FILE_ERROR_MESSAGE;
 import static seedu.dietmanager.commons.core.MessageBank.FUNCTION_LIST;
@@ -67,6 +68,12 @@ public class UI {
     public void displayInvalidGenderMessage() {
         showMessage(INVALID_GENDER_MESSAGE);
     }
+
+    public void displayCreateProfileMessage() {
+        showMessage(CREATE_PROFILE_MESSAGE);
+    }
+
+    ;
 
     public void showExecutionResult(String result) {
         showMessage(result);

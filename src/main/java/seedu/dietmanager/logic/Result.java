@@ -14,6 +14,7 @@ public class Result {
 
     /**
      * Constructs the Result object.
+     *
      * @param commandResult The results derived from execution of a command.
      */
 
@@ -23,6 +24,7 @@ public class Result {
 
     /**
      * Returns the results derived from the execution of a command.
+     *
      * @return the results derived from the execution of a command.
      */
 

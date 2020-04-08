@@ -1,6 +1,10 @@
 package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.commons.exceptions.InvalidWeightException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * StorageParser is the public class responsible for validating the Storage data and
@@ -27,6 +31,25 @@ public class StorageParser {
         }
         testAssertions(descriptionArray, argumentsRequired);
         return descriptionArray;
+    }
+
+    /**
+     * Validates the weightList storage data and parsing it into a valid weight list.
+     *
+     * @param weightListDataLine the weightList data description.
+     * @return weightList in standard form.
+     * @throws NullPointerException if storage data generates a null value.
+     */
+
+    public static List<Double> parseWeightListDataLine(String weightListDataLine)
+            throws NullPointerException, InvalidWeightException {
+        String[] descriptionArray = weightListDataLine.trim().split(",");
+        List<Double> weightList = new ArrayList<>();
+        for (String arg : descriptionArray) {
+            double weight = WeightParser.parseWeight(arg);
+            weightList.add(weight);
+        }
+        return weightList;
     }
 
     /**

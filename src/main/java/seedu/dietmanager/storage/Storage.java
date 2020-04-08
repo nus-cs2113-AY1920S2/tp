@@ -30,6 +30,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -151,7 +152,7 @@ public class Storage {
             Optional<Integer> age = Optional.empty();
             Optional<String> gender = Optional.empty();
             Optional<Double> height = Optional.empty();
-            Optional<Double> weight = Optional.empty();
+            Optional<List<Double>> weightList = Optional.empty();
             Optional<Double> weightGoal = Optional.empty();
 
             while (myReader.hasNextLine()) {
@@ -172,8 +173,8 @@ public class Storage {
                 case "Height":
                     height = Optional.of(HeightParser.parseHeight(description));
                     break;
-                case "Weight":
-                    weight = Optional.of(WeightParser.parseWeight(description));
+                case "WeightList":
+                    weightList = Optional.of(StorageParser.parseWeightListDataLine(description));
                     break;
                 case "Weight-Goal":
                     weightGoal = Optional.of(WeightParser.parseWeight(description));
@@ -183,15 +184,19 @@ public class Storage {
                 }
             }
             if (name.isPresent() && age.isPresent() && gender.isPresent()
-                    && height.isPresent() && weight.isPresent() && weightGoal.isPresent()) {
+                    && height.isPresent() && weightList.isPresent() && weightGoal.isPresent()) {
                 String profileName = name.get();
                 int profileAge = age.get();
                 String profileGender = gender.get();
                 double profileHeight = height.get();
-                double profileWeight = weight.get();
+                List<Double> profileWeightList = weightList.get();
                 double profileWeightGoal = weightGoal.get();
                 this.profile.setProfile(profileName, profileAge, profileGender,
-                        profileHeight, profileWeight, profileWeightGoal);
+                        profileHeight, profileWeightList.get(profileWeightList.size() - 1), profileWeightGoal);
+                this.profile.getWeightRecord().clear();
+                for (int i = 0; i < (profileWeightList.size()); i++) {
+                    this.profile.getWeightRecord().add(profileWeightList.get(i));
+                }
             } else {
                 throw new InvalidFormatException();
             }
@@ -227,7 +232,11 @@ public class Storage {
             myWriter.write("Age: " + this.profile.getAge() + System.lineSeparator());
             myWriter.write("Gender: " + this.profile.getGender() + System.lineSeparator());
             myWriter.write("Height: " + this.profile.getHeight() + System.lineSeparator());
-            myWriter.write("Weight: " + this.profile.getWeight() + System.lineSeparator());
+            myWriter.write("WeightList: ");
+            for (double weightRecord : this.profile.getWeightRecord()) {
+                myWriter.write(weightRecord + ",");
+            }
+            myWriter.write(System.lineSeparator());
             myWriter.write("Weight-Goal: " + this.profile.getWeightGoal());
             myWriter.close();
         } catch (IOException e) {
