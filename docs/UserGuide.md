@@ -333,7 +333,7 @@ Example output:
 
 &ensp;&ensp;&ensp;&ensp;**A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
    
-[&#8593; Return to the top](#whenfree-meeting-organizer---user-guide)
+[&#8593; Return to the top](#whenfree---user-guide)
 
 <br/><br/>
 
@@ -350,4 +350,4 @@ Delete a contact | `delete -c <Contact Index>` | `delete -c 1`
 List all scheduled meetings | `meetings` | `meetings`
 Exit application | `exit` | `exit`
 
-[&#8593; Return to the top](#whenfree-meeting-organizer---user-guide)
+[&#8593; Return to the top](#whenfree---user-guide)
