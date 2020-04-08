@@ -126,7 +126,7 @@ Follow the following steps to manually test the product:
 
 1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.josn', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the jar file mentioned above.
 
-1. Open the terminal and go afformentioned folder and type `java -jat tp.jar`.
+1. Open the terminal and go afformentioned folder and type `java -jar tp.jar`.
 
 1. This should load all the data in the folders. Type the following commands:
 
