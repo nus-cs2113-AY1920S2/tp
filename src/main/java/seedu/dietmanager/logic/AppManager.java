@@ -115,12 +115,13 @@ public class AppManager {
 
     /**
      * Check validity of commands depending on whether profile has been created.
+     *
      * @return validity of Command being executed.
      */
 
     private static boolean isCommandValid(Command command) {
-        if (profile.isProfileExist() || command.getCommand().equals("set-profile") ||
-                command.getCommand().equals("help") || command.getCommand().equals("exit")) {
+        if (profile.isProfileExist() || command.getCommand().equals("set-profile")
+                || command.getCommand().equals("help") || command.getCommand().equals("exit")) {
             return true;
         } else {
             return false;

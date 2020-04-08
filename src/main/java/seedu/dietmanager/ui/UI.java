@@ -71,7 +71,9 @@ public class UI {
 
     public void displayCreateProfileMessage() {
         showMessage(CREATE_PROFILE_MESSAGE);
-    };
+    }
+
+    ;
 
     public void showExecutionResult(String result) {
         showMessage(result);
