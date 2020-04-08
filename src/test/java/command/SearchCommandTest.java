@@ -1,22 +1,19 @@
 package command;
 
 import common.Messages;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
-import tasks.Task;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author joelczk
 public class SearchCommandTest {
     public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
     public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -215,4 +212,5 @@ public class SearchCommandTest {
         assertEquals(new SearchCommand("test", "all", null).execute(filledTaskList,ui).feedbackToUser,
                 searchMultipleAssignments());
     }
+    //@@author
 }
