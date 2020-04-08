@@ -4,7 +4,8 @@
  * [3. Features](#features)
  * [4. FAQ](#faq)
  * [5. Command Summary](#command-summary)
-<br/>
+ 
+<br/><br/>
 
 ## Introduction
 
@@ -17,7 +18,7 @@ set up and use this application easily by following along this User Guide.
 
 Get ready the NUSMODS links of you and your friends, and let's get started!
 
-<br/>
+<br/><br/>
 
 ## Quick Start
 
@@ -36,7 +37,7 @@ TODO: change image
 
 The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
 
-<br/>
+<br/><br/>
 
 ## Features 
 
@@ -80,7 +81,7 @@ TODO: change image
 
 [&#8593; Return to list of Features](#features)
 
-<br/><br/>
+<br/>
 
 ### List all contacts: `contacts`
 Displays index and names of all added contacts stored in the program.
@@ -99,7 +100,7 @@ Example output:
 
 [&#8593; Return to list of Features](#features)
 
-<br/><br/>
+<br/>
 
 ### Display timetable of selected contacts: `timetable`
 **Use case 1:** Displays your (main user's) timetable.
@@ -162,7 +163,7 @@ Note:
 
 [&#8593; Return to list of Features](#features)
 
-<br/><br/>   
+<br/>
 
 ### Schedule a new meeting: `schedule`
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
@@ -193,7 +194,7 @@ TODO change image
 
 [&#8593; Return to list of Features](#features)
 
-<br/><br/>
+<br/>
 
 ### Edit a contact's timetable: `edit`
 **Use case 1:** Edits a contact's timetable to be **busy** for a specified time slot. You need to key in **Contact Index**
@@ -240,7 +241,7 @@ Note:
 
 [&#8593; Return to list of Features](#features)
     
-<br/><br/>
+<br/>
 
 ### Delete a meeting: `delete -m`
 Deletes a scheduled meeting from the meeting list. You will need to key in **Meeting Index** of the meeting you wish 
@@ -266,7 +267,7 @@ Note:
 
 [&#8593; Return to list of Features](#features)
 
-<br/><br/>
+<br/>
 
 ### Delete a contact: `delete -c`
 Deletes a contact from the contact list. You will need to key in **Contact Index** of the contact you wish 
@@ -286,14 +287,13 @@ Note:
 - You can check `<Contact Index>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
 - Be careful to include the -c tag in `delete -c` when you wish to delete a contact. 
 - `delete -c` which is used to delete a contact, should be differentiated from `delete -m` which is used to delete a meeting.
-<br/><br/>
 
 TODO change image
 ![](images/capture7.png)
 
 [&#8593; Return to list of Features](#features)
 
-<br/><br/>
+<br/>
 
 ### List all meetings: `meetings`
 List all scheduled meetings stored in program.
@@ -312,7 +312,7 @@ Example output:
 
 [&#8593; Return to list of Features](#features)
 
-<br/><br/>
+<br/>
 
 ### Exit the application: `exit`
 Exits the application and ends the current session.
