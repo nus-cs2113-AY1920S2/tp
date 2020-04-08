@@ -53,6 +53,7 @@ Table of Contents
     - [Use Cases](#63-appendix-c-use-cases)
     - [Non-Functional Requirements](#64-appendix-d-non-functional-requirements)
     - [Documentation](#65-appendix-e-documentation)
+    - [Instructions for Manual Testing](#66-appendix-f-instructions-for-manual-testing)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
