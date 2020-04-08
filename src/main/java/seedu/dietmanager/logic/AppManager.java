@@ -12,18 +12,54 @@ import seedu.dietmanager.ui.UI;
 
 import java.util.Optional;
 
+/**
+ * AppManager is the public class responsible for running and handling the logic flow of the application.
+ */
+
 public class AppManager {
 
+    /**
+     * LogsCentre handles the recording of logs for the application.
+     */
+
     private static LogsCentre logsCentre;
+
+    /**
+     * FoodNutritionRecord handles the storing of food nutritional information.
+     */
+
     private static FoodNutritionRecord foodNutritionRecord;
+
+    /**
+     * Profile stores all user-related information.
+     */
+
     private static Profile profile;
+
+    /**
+     * UI handles all user-interface-based functions.
+     */
+
     private static UI ui;
+
+    /**
+     * Storage handles all storage-based functions.
+     */
+
     private static Storage storage;
+
+    /**
+     * Launches the application by initialising the required objects and running the application.
+     */
 
     public static void launch() {
         initialiseApplication();
         runApplication();
     }
+
+    /**
+     * Runs the application by handling the logic flow and user inputs.
+     */
 
     private static void runApplication() {
 
@@ -58,6 +94,10 @@ public class AppManager {
         logsCentre.logExitProgramme();
     }
 
+    /**
+     * Initialises the application by creating the relevant objects and checking application status.
+     */
+
     private static void initialiseApplication() {
 
         ui = new UI();
@@ -69,8 +109,12 @@ public class AppManager {
         testAssertions();
     }
 
+    /**
+     * Assertion testing for the program before running.
+     */
+
     private static void testAssertions() {
-        assert !ui.isExitStatus();
+        assert (!ui.isExitStatus());
     }
 
 }
