@@ -343,16 +343,16 @@ Example output:
 <br/><br/>
 
 ## Command Summary
-| Feature     | Format      | Example usage |
-| ----------- | ----------- | --------------|
-| Adding a new contact     | `<name> <NUSMODS link>`      | `Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01` |
-| List all contacts     | `contacts`      | `contacts` |
-| Display timetable of selected contacts     | `timetable` <br><br> `timetable <Member Index>` <br><br> `timetable <Member A Index> <Member B Index>`      | `timetable` <br><br> `timetable 1` <br><br> `timetable 0 1 2`  |
-| Schedule a new meeting     | `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`      | `schedule meeting 3 17:00 3 19:00` |
-| Edit a contact's timetable     | `edit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>` <br><br> `edit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>`      | `edit busy 0 2 22:00 2 23:00` <br><br> `edit busy 0 2 22:00 2 23:00` |
-| Delete a meeting     | `delete -m <Meeting Index>`      | `delete -m 1` |
-| Delete a contact     | `delete -c <Contact Index>`      | `delete -c 1` |
-| List all scheduled meetings     | `meetings`      | `meetings` |
-| Exit application     | `exit`      | `exit` |
+Feature | Format | Example usage
+------- | ------ | -------------
+Adding a new contact     | `<name> <NUSMODS link>`      | `Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01`
+List all contacts     | `contacts`      | `contacts`
+Display timetable of selected contacts     | `timetable` <br><br> `timetable <Member Index>` <br><br> `timetable <Member A Index> <Member B Index>`      | `timetable` <br><br> `timetable 1` <br><br> `timetable 0 1 2`
+Schedule a new meeting     | `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>`      | `schedule meeting 3 17:00 3 19:00`
+Edit a contact's timetable     | `edit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>` <br><br> `edit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>`      | `edit busy 0 2 22:00 2 23:00` <br><br> `edit busy 0 2 22:00 2 23:00`
+Delete a meeting     | `delete -m <Meeting Index>`      | `delete -m 1`
+Delete a contact     | `delete -c <Contact Index>`      | `delete -c 1`
+List all scheduled meetings     | `meetings`      | `meetings`
+Exit application     | `exit`      | `exit`
 
 [&#8593; Return to the top](#whenfree-meeting-organizer---user-guide)
