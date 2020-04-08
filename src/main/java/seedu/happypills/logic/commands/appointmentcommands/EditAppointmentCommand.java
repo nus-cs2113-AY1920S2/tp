@@ -139,7 +139,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
      */
     private Boolean editTime(Appointment appointment, String newTime) {
         if (Checker.isValidTime(newTime)) {
-            newTime += ":00";
             appointment.setTime(newTime);
             return true;
         }
