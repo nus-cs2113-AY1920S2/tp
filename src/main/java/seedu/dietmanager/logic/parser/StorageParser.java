@@ -11,10 +11,11 @@ public class StorageParser {
 
     /**
      * Validates the profile storage data and parsing it into a valid description array.
+     *
      * @param profileDataLine the profile data description.
      * @return descriptionArray in standard form.
      * @throws InvalidFormatException if storage data has the wrong description format.
-     * @throws NullPointerException if storage data generates a null value.
+     * @throws NullPointerException   if storage data generates a null value.
      */
 
     public static String[] parseProfileDataLine(String profileDataLine)
@@ -30,10 +31,11 @@ public class StorageParser {
 
     /**
      * Validates the food nutrition record storage data and parsing it into a valid description array.
+     *
      * @param foodNutritionRecordDataLine the food nutrition record data description.
      * @return descriptionArray in standard form.
      * @throws InvalidFormatException if storage data has the wrong description format.
-     * @throws NullPointerException if storage data generates a null value.
+     * @throws NullPointerException   if storage data generates a null value.
      */
 
     public static String[] parseFoodNutritionRecordDataLine(String foodNutritionRecordDataLine)

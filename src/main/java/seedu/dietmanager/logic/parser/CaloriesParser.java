@@ -25,6 +25,7 @@ public class CaloriesParser {
 
     /**
      * Validate the user input and parsing it into a valid Calorie value.
+     *
      * @param description User input.
      * @return Calories in standard form.
      * @throws InvalidCaloriesException If input is not a valid Calorie value.

@@ -19,6 +19,7 @@ public class FoodNameParser {
 
     /**
      * Validate the user input and parsing it into a valid Food Name.
+     *
      * @param description User input.
      * @return Food Name in standard form.
      * @throws InvalidFoodNameException If input is not a valid Food Name.

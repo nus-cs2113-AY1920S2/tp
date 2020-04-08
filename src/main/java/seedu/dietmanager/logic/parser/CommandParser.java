@@ -54,6 +54,7 @@ public class CommandParser {
 
     /**
      * Parses the user input and prepares it to be analysed.
+     *
      * @param input the user input.
      * @throws InvalidCommandException if user input has too few arguments.
      */
@@ -79,6 +80,7 @@ public class CommandParser {
 
     /**
      * Validate the user input and parsing it into a valid Command.
+     *
      * @param input User input.
      * @return Command generated from the user input.
      * @throws InvalidCommandException if command is not supported by application.

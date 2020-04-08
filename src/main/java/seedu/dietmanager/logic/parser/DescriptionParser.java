@@ -17,11 +17,12 @@ public class DescriptionParser {
 
     /**
      * Validates the user input and parsing it into a valid description array.
+     *
      * @param description       the command description.
      * @param argumentsRequired the number of arguments required by the command.
      * @return descriptionArray in standard form.
      * @throws InvalidFormatException if input has the wrong description format.
-     * @throws NullPointerException if input generates a null value.
+     * @throws NullPointerException   if input generates a null value.
      */
 
     public static String[] parseDescription(String description, int argumentsRequired)

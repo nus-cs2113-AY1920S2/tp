@@ -31,6 +31,7 @@ public class HeightParser {
 
     /**
      * Validate the user input and parsing it into a valid Height.
+     *
      * @param description User input.
      * @return Height in standard form.
      * @throws InvalidHeightException If input is not a valid Height.

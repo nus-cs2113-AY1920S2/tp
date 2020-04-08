@@ -19,6 +19,7 @@ public class NameParser {
 
     /**
      * Validate the user input and parsing it into a valid Name.
+     *
      * @param description User input.
      * @return Name in standard form.
      * @throws InvalidNameException If input is not a valid Name.

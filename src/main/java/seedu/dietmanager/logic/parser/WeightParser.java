@@ -31,6 +31,7 @@ public class WeightParser {
 
     /**
      * Validate the user input and parsing it into a valid Weight.
+     *
      * @param description User input.
      * @return Weight in standard form.
      * @throws InvalidWeightException If input is not a valid Weight.

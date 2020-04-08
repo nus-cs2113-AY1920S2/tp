@@ -31,6 +31,7 @@ public class GenderParser {
 
     /**
      * Validate the user input and parsing it into a valid gender.
+     *
      * @param description User input.
      * @return Gender in standard form.
      * @throws InvalidGenderException If input is not a valid Gender.
