@@ -37,49 +37,39 @@ public class UI {
      */
 
     public void displayWelcomeMessage() {
-        showMessage(
-                LOGO,
-                WELCOME_MESSAGE);
+        showMessage(LOGO, WELCOME_MESSAGE);
     }
 
     public void displayHelpMenu() {
-        showMessage(
-                FUNCTION_LIST);
+        showMessage(FUNCTION_LIST);
     }
 
     public void displayExitMessage() {
-        showMessage(
-                EXIT_APP_MESSAGE);
+        showMessage(EXIT_APP_MESSAGE);
     }
 
     public void displayFileErrorMessage() {
-        showMessage(
-                FILE_ERROR_MESSAGE);
+        showMessage(FILE_ERROR_MESSAGE);
     }
 
     public void displayInvalidCommandMessage() {
-        showMessage(
-                INVALID_COMMAND_MESSAGE);
+        showMessage(INVALID_COMMAND_MESSAGE);
     }
 
     public void displayInvalidFormatMessage() {
-        showMessage(
-                INVALID_FORMAT_MESSAGE);
+        showMessage(INVALID_FORMAT_MESSAGE);
     }
 
     public void displayIndexOutOfBoundMessage() {
-        showMessage(
-                INVALID_INDEX);
+        showMessage(INVALID_INDEX);
     }
 
     public void displayInvalidGenderMessage() {
-        showMessage(
-                INVALID_GENDER_MESSAGE);
+        showMessage(INVALID_GENDER_MESSAGE);
     }
 
     public void showExecutionResult(String result) {
-        showMessage(
-                result);
+        showMessage(result);
     }
 
     /**
@@ -118,6 +108,7 @@ public class UI {
      *
      * @param message String of message to be shown to user
      */
+
     public void showMessage(String... message) {
         for (String m : message) {
             System.out.println(m);
