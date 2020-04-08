@@ -261,7 +261,7 @@ public class StartCommand extends Command {
     }
 
     /**
-     * Check if allocated time and tags are formatted correctly/not empty
+     * Check if allocated time and tags are formatted correctly/not empty.
      * @param durationInfo information about the duration.
      * @param tagInfo information about the tag.
      * @param activityName the string representing activity name.

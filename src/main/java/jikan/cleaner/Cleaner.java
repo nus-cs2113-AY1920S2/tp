@@ -11,7 +11,7 @@ public abstract class Cleaner {
     protected String dataFilePath;
     protected File status;
     protected File recycledData;
-    /** toClean acts as a switch to switch on/off the cleaner */
+    /** toClean acts as a switch to switch on/off the cleaner. */
     public boolean toClean;
     private static final int DEFAULT_LINES_TO_CLEAN = 5;
 
