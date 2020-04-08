@@ -42,6 +42,8 @@ Other Minor Enhancements which were subsequently refactored by team mates includ
     
 * Contributions to team-based tasks:
     * Managed issue tracker    
-
+    * Improved general code coverage of command package to 93% [#205](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/205) 
+    
 * Community:
-    * Reviewed and provided improvements for team member's code, in particular refactored logic of Clear Done tasks. [#72](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/72)    
+    * Reviewed and provided improvements for team member's code, in particular refactored logic of Clear Done tasks. [#72](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/72)
+    

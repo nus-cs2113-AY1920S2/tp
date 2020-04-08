@@ -8,6 +8,7 @@ import command.DoneCommand;
 import command.EventCommand;
 import command.ExitCommand;
 import command.HelpCommand;
+import command.SearchCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
@@ -307,4 +308,69 @@ public class ParserTest {
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
                 String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DATE_INCORRECT_OR_INVALID_ERROR));
     }
+
+    //@@author joelczk
+    @Test
+    public void parseSearchCommand_correct() {
+        Command parsedSearchCommand  = Parser.parseCommand(SearchCommand.COMMAND_WORD + " t/    all n/    test");
+        assertTrue(parsedSearchCommand instanceof SearchCommand);
+        Command parsedSearchdCommand  = Parser.parseCommand(SearchCommand.dCOMMAND_WORD + " t/    all n/    "
+                + "test d/12/02/20");
+        assertTrue(parsedSearchdCommand instanceof SearchCommand);
+    }
+
+    @Test
+    public void parseSearchCommand_MissingTask() {
+        Command parsedSearchCommand  = Parser.parseCommand(SearchCommand.COMMAND_WORD + " n/test");
+        assertTrue(parsedSearchCommand instanceof  IncorrectCommand);
+        assertEquals(parsedSearchCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR,String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                        Parser.capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE)));
+        Command parsedSearchdCommand  = Parser.parseCommand(SearchCommand.dCOMMAND_WORD + " n/test d/12/02/20");
+        assertTrue(parsedSearchdCommand instanceof  IncorrectCommand);
+        assertEquals(parsedSearchdCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR,String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                        Parser.capitalize(SearchCommand.dCOMMAND_WORD), SearchCommand.dCOMMAND_USAGE)));
+    }
+
+    @Test
+    public void parserSearchCommand_MissingQuery() {
+        Command parsedSearchCommand  = Parser.parseCommand(SearchCommand.COMMAND_WORD + " t/    assignment");
+        assertTrue(parsedSearchCommand instanceof  IncorrectCommand);
+        assertEquals(parsedSearchCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR,String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                        Parser.capitalize(SearchCommand.COMMAND_WORD), SearchCommand.COMMAND_USAGE)));
+        Command parsedSearchdCommand  = Parser.parseCommand(SearchCommand.dCOMMAND_WORD + " t/all d/12/02/20");
+        assertTrue(parsedSearchdCommand instanceof  IncorrectCommand);
+        assertEquals(parsedSearchdCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR,String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                        Parser.capitalize(SearchCommand.dCOMMAND_WORD), SearchCommand.dCOMMAND_USAGE)));
+    }
+
+    @Test
+    public void parseSearchdCommand_MissingDate() {
+        Command parsedCommand  = Parser.parseCommand(SearchCommand.dCOMMAND_WORD + " t/    assignment n/test");
+        assertTrue(parsedCommand instanceof  IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR,String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                        Parser.capitalize(SearchCommand.dCOMMAND_WORD), SearchCommand.dCOMMAND_USAGE)));
+    }
+
+    @Test
+    public void parseSearchdCommand_InvalidDate() {
+        Command parsedCommand  = Parser.parseCommand(SearchCommand.dCOMMAND_WORD + " t/    assignment "
+                + "n/test d/13/14/20");
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DATE_INCORRECT_OR_INVALID_ERROR));
+    }
+
+    @Test
+    public void parseSearchCommand_InvalidTask() {
+        Command parsedSearchCommand = Parser.parseCommand(SearchCommand.COMMAND_WORD + "t/test n/test");
+        assertTrue(parsedSearchCommand instanceof IncorrectCommand);
+        Command parsedSearchdCommand = Parser.parseCommand(SearchCommand.dCOMMAND_WORD + "t/test n/test d/12/02/20");
+        assertTrue(parsedSearchdCommand instanceof IncorrectCommand);
+    }
+    //@@ author
 }
