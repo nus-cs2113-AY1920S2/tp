@@ -98,7 +98,7 @@ The following diagram describes how the add subject operation works:
 </p>
 <br />Figure 6. Sequence diagram for addsubject command
 
-Step 2. The user executes the command ``listsubjects`` to view the subjects currently stored in the application.
+Step 2. The user executes the command ``listsubject`` to view the subjects currently stored in the application.
 
 Step 3. Once the user has chosen a subject, he/she can execute the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``
 to add a flashcard into the subject. 
@@ -128,7 +128,12 @@ The following diagram describes how the add card operation works:
 ### 2.x. Quiz Feature
 #### 2.x.1. Implementation
 The quiz feature now incorporates random testing, builds upon the subject feature to allows users to set how many questions to quiz for a selected subject. 
-This helps users to quiz by subject, and get a score at the end of each quiz. It implements the following operations:
+This helps users to quiz by subject, and get a score at the end of each quiz. 
+
+As of the current version, the quiz feature does not support automatic marking, and the user will have to mark their 
+own answers for each question. Automatic marking may be added in future versions.
+
+The quiz feature implements the following operations:
 
 - ``Quiz#quizQuestion()`` - Outputs a random question to the user that has not been tested before in this quiz session.
 - ``Quiz#quizNext()`` - Retrieves a random question from the available questions for that subject.
@@ -154,6 +159,22 @@ Step 3: The quiz will end upon completion of the specified number of questions, 
 command ``exitquiz``.
 
 #### 2.x.2. Design Considerations
+##### Aspect: How the answers are marked for correctness
+- **Alternative 1 (current choice)**: Display the correct answer after the user has submitted his answer, and prompt
+the user to indicate if his answer is correct or wrong.
+  - Pros: 
+    - Allows the user to input open-ended questions with open-ended answers.
+    - Ensures that all answers will be marked accurately.
+  - Cons: 
+    - The quiz will be slower for the user as they will have to input an extra input every answer.
+  
+- **Alternative 2**: Automatically mark answers submitted by the user by matching it with the correct stored answer.
+  - Pros:
+    - The user will not need to type any extra inputs, and the quiz process will be shorter.
+  - Cons:
+    - The user will be restricted to adding short-answer questions without open-ended answers.
+    - There will be a high probability of inaccurate marking due to factors such as typographical errors or difference in phrasing answers.
+
 ##### Aspect: How the user can control how many questions to be quizzed
 - **Alternative 1**: Always quiz all stored questions for that subject, but allow users to stop the quiz whenever they want.
   - Pros: 
@@ -211,6 +232,50 @@ The following diagram describes how the score operation works:
   - Cons:
     - User will be unable to track his progress.
     
+### 2.x. Event Management Feature
+#### 2.x.1 Implementation
+The event feature builds on the quiz feature by adding another aid to the user when preparing for an exam/event.
+This feature allows the user to add and keep track of upcoming events, such as exams/tests. It implements the following operations:
+
+- ``SubjectList#addEvent()`` - Adds a new event.
+- ``SubjectList#removeEvent()`` - Removes an existing event.
+- ``SubjectList#listEvents()`` - List all events in the order they were added.
+- ``SubjectList#showUpcoming()`` - Shows upcoming events in chronological order.
+
+Given below is an example usage scenario and how the event mechanism behaves at each step.
+
+Step 1. Before the user can manage his/her events, he/she needs to first add events using the
+ command ``addevent e/DESCRIPTION d/DATE``.
+The following diagram describes how the add event operation works:
+
+![](images/addevent_sequence_uml.jpg)
+Figure 9. Sequence diagram of addevent command
+
+Step 2. The user executes the command ``listevent`` to view the events currently stored in the application.
+
+Step 3. The user can then execute the command ``showupcoming d/DAYS`` to show events that are upcoming within ``DAYS``
+number of days.
+The following diagram describes how the show upcoming operation works:
+
+![](images/showupcoming_sequence_uml.png)
+Figure 10. Sequence diagram of showupcoming command
+
+#### 2.x.2. Design Considerations
+##### Aspect: How to format the score history shown to the user
+- **Alternative 1 (current choice)**: Allow the user to store any type of event (does not have to be a test/exam, and
+does not have to be tied to a pre-existing subject).
+  - Pros: 
+    - More flexibility for the user to add any upcoming events that he needs to keep track of.
+    - The user can keep track of any upcoming exams that do not belong to any of the subjects stored in the app.
+  - Cons: 
+    - The user is unable to sort his exam/event by subjects.
+  
+- **Alternative 2**: Only allow the user to add exams, and only to pre-existing subjects already in the app.
+  - Pros:
+    - The user is able to sort his exam/event by subjects.
+  - Cons:
+    - The user does not have the flexibility to add anything other than exams for subjects that have been created.
+    
 ### 2.x. Save/Load Feature
 #### 2.x.1 Implementation
 The save/load process is facilitated with the `java.io.Serializable` interface, which converts the given object to a byte stream and back.
@@ -221,7 +286,7 @@ To deserialize the object after being read from file via `java.io.FileInputStrea
 
 The reading and writing functions can be found in the `Storage#loadSubs()` and `Storage#saveSubs()` methods respectively.
 ![](images/storage_sequence_uml.jpg)
-<br />Figure 9. Sequence diagram of storage command
+Figure 11. Sequence diagram of storage command
 
 ## Appendix A: Product Scope
 ### Target User Profile
