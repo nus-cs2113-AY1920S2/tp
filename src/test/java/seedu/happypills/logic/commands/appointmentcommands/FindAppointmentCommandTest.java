@@ -9,6 +9,7 @@ import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.AppointmentTextUi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -73,11 +74,7 @@ public class FindAppointmentCommandTest {
 
     @Test
     public void getAppointment_List_found() throws HappyPillsException {
-        String expectedOutputInList = "    Here are the patient's appointments:\n"
-                + "    ID    | NRIC      | Date       | Time      | Reason      \n"
-                + "    1     | S1234567A | 01/02/2020 | 12:00:00  | reason1\n"
-                + "    2     | S1234567A | 01/03/2020 | 13:00:00  | reason2\n"
-                + DIVIDER;
+        String expectedOutputInList = AppointmentTextUi.getAppointmentSuccessMessage(newPatientMap.get("S1234567A"));
         String message = new FindAppointmentCommand("S1234567A").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputInList, message);

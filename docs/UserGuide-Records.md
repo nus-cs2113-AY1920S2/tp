@@ -28,14 +28,14 @@ Add patient's medical records to the database, to support the diagnosis and to j
 
 > ***Expected output:***
 >
-> ![addPR](images/PR/AddPR.PNG "addPR")
+> ![addPR](images/UG/PR/AddPR.PNG "addPR")
 >
 
 > Enter `y` to confirm.
 
 > ***Expected output:***
 >
-> ![cfmAddPR](images/PR/addprcfm.PNG "cfmAddPR")
+> ![cfmAddPR](images/UG/PR/addprcfm.PNG "cfmAddPR")
 >
 
  [&#8593; Return to Top](#table-of-content)
@@ -54,7 +54,7 @@ Displays all the patients record for a particular patient.
     
 > ***Expected output:***
 >
-> ![listPR](images/PR/listpr.PNG "list PR output")
+> ![listPR](images/UG/PR/listpr.PNG "list PR output")
 >
 
 <table>
@@ -68,7 +68,7 @@ Displays all the patients record for a particular patient.
 
 > ***Expected output:***
 >
-> ![listPR not found](images/PR/listprfail.PNG "list PR not found")
+> ![listPR not found](images/UG/PR/listprfail.PNG "list PR not found")
 >
 
  [&#8593; Return to Top](#table-of-content)
@@ -90,7 +90,7 @@ to check for the index used for the other commands.
 > ***Expected output:***
 >
 >
->![findPR](images/PR/findpr.PNG "find PR output")
+>![findPR](images/UG/PR/findpr.PNG "find PR output")
 
 <table>
   <col width="20">
@@ -104,7 +104,7 @@ to check for the index used for the other commands.
 > ***Expected output:***
 >
 >
->![PR not found](images/PR/prEmpty.PNG "PR not found")
+>![PR not found](images/UG/PR/prEmpty.PNG "PR not found")
 
  [&#8593; Return to Top](#table-of-content)
  
@@ -122,7 +122,7 @@ Edit patient's medical records when there is any error in previous inputs.
 
 > ***Expected output:***
 >
-> ![](images/PR/editprsuccess.PNG "help output")
+> ![](images/UG/PR/editprsuccess.PNG "help output")
 
 <table>
   <col width="20">
@@ -136,7 +136,7 @@ Edit patient's medical records when there is any error in previous inputs.
 > ***Expected output:***
 >
 >
->![](images/PR/prEmpty.PNG "help output")
+>![](images/UG/PR/prEmpty.PNG "help output")
 
  [&#8593; Return to Top](#table-of-content)
  
@@ -152,7 +152,7 @@ Delete patient's medical records based on the given NRIC and the index of record
 
 > ***Expected output:***
 >
-> ![Delete PR](images/PR/deleteprsuccess.PNG "Delete PR output")
+> ![Delete PR](images/UG/PR/deleteprsuccess.PNG "Delete PR output")
 
 <table>
   <col width="20">
@@ -165,6 +165,6 @@ Delete patient's medical records based on the given NRIC and the index of record
 
 > ***Expected output:***
 >
->![PR not found](images/PR/prEmpty.PNG "Delete PR not found")
+>![PR not found](images/UG/PR/prEmpty.PNG "Delete PR not found")
 
  [&#8593; Return to Top](#table-of-content)

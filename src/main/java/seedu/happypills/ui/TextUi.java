@@ -107,4 +107,8 @@ public class TextUi {
     public static final String INVALID_NRIC_MESSAGE = ""
             + "    The NRIC provided is invalid, please try again with a valid NRIC.\n";
 
+    public static final String INVALID_APPTID_MESSAGE = ""
+            + "    The appointment ID provided is invalid, please try again with a valid appointment ID.\n";
+
+
 }
