@@ -328,10 +328,17 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 
 ## 3. User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|restaurant owner|add a newly received reservation|record the details about the reservation and make corresponding preparations|
+|v1.0|restaurant owner|mark a reservation as invalid|I can update the status of the reservation if the reservation gets canceled|
+|v1.0|restaurant owner|list all reservations|I can view what reservations the restaurant has currently|
+|v2.0|restaurant owner|mark a reservation as served|I can update the status of the reservation|
+|v2.0|restaurant owner|list all served reservations|I can view the achievement of served reservation|
+|v2.0|restaurant owner|list all unserved reservations|I can know what reservations need to be prepared|
+|v2.0|restaurant owner|search a reservation via reservation number|I can know the details about a specific reservation|
+|v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
+
 
 <a name="nonfunctional-requirement"></a>
 

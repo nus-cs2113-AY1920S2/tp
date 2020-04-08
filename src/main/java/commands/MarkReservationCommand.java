@@ -43,6 +43,7 @@ public class MarkReservationCommand extends ReservationCommand {
             ui.showMessage("Please enter a valid positive integer.");
         } catch (InputMissingException e) {
             ui.showMessage(e.getMessage());
+            ui.showMessage("Try the 'help' command for the list of commands");
         } catch (DelimiterMissingException e) {
             ui.showMessage(e.getMessage());
         } catch (InvalidReservationNumberException e) {
