@@ -119,12 +119,16 @@ Examples:
 
     >>> student.list add
     What is the name of your list?
+    
     >>> CS2113T Tut
     Please enter a student Name. If you are finished, enter done
+    
     >>> John
     Please enter a student Name. If you are finished, enter done
+    
     >>> Jodi
     Please enter a student Name. If you are finished, enter done
+    
     >>> done
     Student List created, named : CS2113T Tut
     
@@ -191,6 +195,7 @@ Examples:
     
     >>> student.list delete
     Please state the index of the list you want to delete
+    
     >>> 1
     Here is the updated Student List Collection
     _________________________________________________________________________________________________
@@ -223,6 +228,7 @@ Examples:
     
     >>> student.list find
     Please state the list name you are searching for
+    
     >>> CS
     You have 2 matched:
     Here's the Search Result(s)
@@ -250,6 +256,7 @@ Examples:
     
     >>> student.list find
     Please state the list name you are searching for
+    
     >>> CG
     You have 1 matched:
     Here's the Search Result(s)
@@ -269,6 +276,7 @@ Examples:
                 
     >>> student.list find
     Please state the list name you are searching for
+    
     >>> EG
     Nothing match you description : EG
 
@@ -313,8 +321,10 @@ Examples:
     
     >>> student.list sort
     Please Key in either 'name' or 'list'.
+    
     >>> name
     Student List is sorted by name within the Student List Collection
+    
     >>> student.list view
     _________________________________________________________________________________________________
     | List #1   |  CG2028                                                                            |
@@ -380,8 +390,10 @@ in order, this command will force all existing lists to be sorted by their name.
     
     >>> student.list sort
     Please Key in either 'name' or 'list'.
+    
     >>> list
     StudentList sorted by name within the lists
+    
     >>> student.list list
     _________________________________________________________________________________________________
     | List #1   |  CG2028                                                                            |
@@ -575,6 +587,7 @@ Example:
 
     >>> attendance add
     Please key in the name of event.
+    
     >>> CS1010 Tutorial
     
 If the event is found, you can choose to add the student's attendance by manually key in each student, or you may choose
@@ -583,10 +596,13 @@ Do note that you need to have an existing name list before you are using this sh
 The following will show a success example of *using an existing name list to add attendance*. 
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    
     >>> yes
     Please choose the name list you wish to use by its index.
+    
     >>> 1    
     Please key in the attendance status for student Jodi Doe [Y/N].
+    
     >>>  N
     Attendance of Jodi Doe (Absent) has been taken successfully under event Event1
     ...
@@ -594,10 +610,13 @@ The following will show a success example of *using an existing name list to add
 The following will show a success example of *creating a new attendance list*.
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    
     >>> no
     Please key in student name.
+    
     >>> John Doe
     Please key in the student's attendance status [Y/N].
+    
     >>> Y
     Attendance of John Doe (Present) has been taken successfully under event Event1
     ...
@@ -632,6 +651,7 @@ Example:
 
     >>> attendance list
     Please key in the name of event.
+    
     >>> CS1010 Tutorial
     Attendance List cleared for Event: event1
             
@@ -645,8 +665,10 @@ Example:
 
     >>> attendance sort
     Please Key in either 'name' or 'status'.
+    
     >>> name
     Please key in the name of event.
+    
     >>> CS1010 Tutorial
     Attendance List is sorted by name for Event: event1
     
@@ -660,8 +682,10 @@ Example:
 
     >>> attendance sort
     Please Key in either 'name' or 'status'.
+    
     >>> name
     Please key in the name of event.
+    
     >>> CS1010 Tutorial
     Attendance List is sorted by attendance status for Event: event1
     
@@ -676,6 +700,7 @@ Step by step guide:
 
     >>> performance add
     Please key in the name of event that you wish to access to its student's performance. 
+    
     >>> event
     
 If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
@@ -684,10 +709,13 @@ before you are using this short cut.
 The following will show a success example of using a current name list to add performance. 
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    
     >>> yes
     Please choose the name list you wish to use. (shows a list of list names)
+    
     >>> 1
     Please key in the result for student (student1 name)
+    
     >>> A
     The result of student (student name) has been added successfully under event (event name)
     Please key in the result for student (student2 name)
@@ -704,10 +732,13 @@ Step by step guide:
 
     >>> performance delete
     Please key in the name of event that you wish to access to its student's performance. 
+    
     >>> event
     Please key in the name of student that you wish to delete his/her performance 
+    
     >>> name
     The result of student (name) has been deleted successfully under event event.
+    
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.3. View Performance List
@@ -720,6 +751,7 @@ Step by step guide:
 
     >>> performance view
     Please key in the name of event that you wish to access to its student's performance.
+    
     >>> event
     (example of Table format list is shown below)
     _________________________________________________________________________________________________
@@ -740,14 +772,19 @@ Step by step guide to edit name:
 
     >>> performance edit
     Please key in the name of event that you wish to access to its student's performance.
+    
     >>> event
     Please key in the name of student that you wish to edit his/her performance 
+    
     >>> Alice
     Please key in the type of performance parameter you want to edit: name / result
+    
     >>> name ***
     Please key in the student's new name
+    
     >>> Carl
     The student name has been changed to Carl successfully.
+    
 You can follow the same procedure to edit result, but change your input from
 `name` to `result` at the `***` line.
 
@@ -764,10 +801,13 @@ Step by step guide to edit name:
 
     >>> performance sort
     Please key in the name of event that you wish to access to its student's performance.
+    
     >>> event
     Please key in the name of student that you wish to edit his/her performance 
+    
     >>> Alice
     Do you want to sort by students' name or result?
+    
     >>> name ***
     Performance List is sorted by Performance name for Event:  event
     

@@ -91,7 +91,7 @@ public class PerformanceList {
                 hasEdited = true;
                 break;
             } else if (p != null
-                    && isSameString(p.getStudent(), performance.getStudent()) 
+                    && isSameString(p.getStudent(), performance.getStudent())
                     && isSameString(type, "result")) {
                 editResult(p);
                 hasEdited = true;
