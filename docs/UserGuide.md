@@ -68,17 +68,17 @@ Jump to [Section 2](#2-setting-up) to get started. Enjoy!
 ### 2.1. Requirements 
 1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
 or above installed in your Computer.
-1.  Download the latest Pac.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
+1.  Download the latest Pac-2.1.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
 1.  Copy the file to the folder you want to use as the home folder for this application.
 
 ### 2.2 Startup using Command Line
 1.  Open your terminal.
 1.  Navigate to the home folder containing Pac.
 1.  cd followed by the file path into the terminal as shown below:  
-    ![cdImage](images/filepath.PNG)
-1.  Type `java -jar` followed by the name of the jar file and press **Enter**.
+    ![cdImage](images/filepath.PNG "filepath")
+1.  Type `java -jar Pac-2.1.jar` and press **Enter**.
 1.  You should see this screen if everything is successful:    
-    ![screen](images/Startupscreen.PNG)
+    ![screen](images/startup.PNG "startup screen")
 
 
 ##
@@ -413,10 +413,12 @@ in order, this command will force all existing lists to be sorted by their name.
 #### 4.2.1. Add New Event
 Add a new event to the event list. 
 
-Format: `event add n/NAME [t/TIME d/DATE] [v/VENUE]`
+Format: `event add n/NAME [d/DATE t/TIME] [v/VENUE]`
 
-* Name and venue accepts input with spaces.
+* Name and Venue accepts input with spaces.
 * Date and Time must either be provided together, or not provided at all. 
+* The Date should be in the format: yyyy-mm-dd.  
+* The Time should be in the 24-hour format: HHmm.
 * Flags can be arranged in any order.
  
 Examples: 
@@ -474,10 +476,13 @@ Expected outcome:
     Your Event name was changed from |dinner with collegue| to |lunch with colleague|.
     
 #### 4.2.5. Edit Event Datetime
-Change the date and time of an existing event.
+Change the date and time of an existing event. 
+   
 
 Format: `event editdatetime i/INDEX d/NEW_DATE t/NEW_TIME`
-* alphabet cases for the command is not important
+* alphabet cases for the command is not important.    
+* The date should be in the format: yyyy-mm-dd.  
+* The time should be in the 24-hour format: HHmm.
 
 Examples:
 
@@ -485,7 +490,7 @@ Examples:
     
 Expected outcome:
 
-    Your Event date and time was changed from |yyyy-MM-dd HHmm| to |2020-03-23 1200|.
+    Your Event date and time was changed from || to |2020-03-23 1200|.
     Event: lunch with colleague, time: Mar 23 2020 1200
     
 #### 4.2.6. Edit Event Venue
@@ -526,6 +531,8 @@ to any 2 consecutive years with a hyphen separating them. Each year should be en
 i.e. ay/07-08.
 
 Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
+* Both the semester and academic year should be provided.
+* Order of the flags *matters*.
 
 Command: 
     
