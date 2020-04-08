@@ -268,8 +268,13 @@ The above commands have to be done in their corresponding directories. Conversel
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond to a valid <b>NUS module</b>. Only <b>NUS modules</b> can be added in this version of <b>Nuke</b>.
 </div>
+##### Example Usage
 
-##### Example Usage and Expected Outcome  
+```
+addm cs2113t
+```
+
+##### Expected Outcome
 
 ![addm command](images/addm.png)
 
@@ -281,8 +286,6 @@ The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond t
 ##### After:
 
 ![image-20200330233926681](images/ug_addm_after.png)
-
-
 
 [Back To Top](#table-of-contents)   
 
@@ -312,24 +315,24 @@ You need <b>not</b> include the <b>module code</b> information if you are curren
 addc Project -m cs2113t -p 3
 ```
 
-##### Expected Outcome    
-```
-SUCCESS!! Category Project is created.
-```
+##### Expected Outcome
 
-##### before:
+![addm command](images/ug_addc_outcome.png)
+
+
+##### Before:
 
 ![image-20200331000048607](images/ug_addc_before.png)
 
-##### after:
+##### After:
 
 ![image-20200331000110946](images/ug_addc_after.png)
 
 [Back To Top](#table-of-contents)
 
-<br>  
+<br>
 
-#### c. Add a Task into your Task List  
+#### c. Add a Task into your Task List
 `addt` adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the [List Task](#c-list-your-tasks) command.
 
 ##### Format  
@@ -347,20 +350,19 @@ SUCCESS!! Category Project is created.
 ##### Example Usage    
 
 ```
-	addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 80
+addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15
 ```
 
 ##### Expected Outcome    
-```
-root / CS2113T / Assignment :
-addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 80
-SUCCESS!! Task urgent assignment is created.
-```
-##### before:
+
+![image-20200331000315462](images/ug_addt_outcome.png)
+
+
+##### Before:
 
 ![image-20200331000255994](images/ug_addt_before.png)
 
-##### after:
+##### After:
 
 ![image-20200331000315462](images/ug_addt_after.png)
 
@@ -387,30 +389,35 @@ SUCCESS!! Task urgent assignment is created.
 ##### Example Usage
 
 ```
-	addt save.txt -m CS2113t -c Lab -t tp -f C:\Users\JUNIOR\Downloads\save.txt
+addf textbook.pdf -m CS2113t -c Assignment -t urgent assignment -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
 ```
 
 ```
-	addt save.txt -t tp -f C:\Users\JUNIOR\Downloads\save.txt
+addf textbook.pdf -t urgent assignment -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
 ```
 
 ```
-	addt save.txt -f C:\Users\JUNIOR\Downloads\save.txt
+addf textbook.pdf -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
 ```
 
 ##### Expected Outcome    
-```
-root / CS2113T / Lab / tp :
-addt save.txt -m CS2113t -c Lab -t tp -f C:\Users\JUNIOR\Downloads\save.txt
-SUCCESS!! File save.txt is added.
-```
+
+![image-20200331000315462](images/ug_addf_outcome.png)
+
+##### Before:
+
+![image-20200331000315462](images/ug_addf_before.png)
+
+#### After:
+
+![image-20200331000315462](images/ug_addf_after.png)
 
 [Back To Top](#table-of-contents)
 
 <br>
 
 #### e. Add a Tag to your Task
-Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List File command. not available now).
+Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
 
 ##### Format  
 `addg <tag info> -m <module code> -c <category name> -t <task description>`  
@@ -424,27 +431,36 @@ Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your a
 ##### Example Usage
 
 ```
-	addg urgent -m CS2113t -c Lab -t tp
-```
-
-```
-	addt urgent -t tp
-```
-
-```
-	addt urgent
-```
-
-##### Expected Outcome    
-```
-root / CS2113T / Lab / tp :
 addg urgent -m CS2113t -c Lab -t tp
-Tag added!
+```
+
+```
+addg urgent -t tp
+```
+
+```
+addg urgent
+```
+
+##### Expected Outcome
+
+![image-20200331000315462](images/ug_addg_outcome.png)
+
+##### Before:
+
+```
+TODO: attach the screenshot here
+```
+
+##### After:
+
+```
+TODO: attach the screenshot here
 ```
 
 [Back To Top](#table-of-contents)
 
-<br>
+<br><br>
 
 ### **2. List**  
 Lists the _modules_, _categories_ or _tasks_ in their respective lists.<br>
@@ -478,14 +494,16 @@ List all *module*s in your **Module List**. The **Module List** contains all you
 ##### Example Usage    
 
 ```
-	lsm
+lsm
 ```
 
 ##### Expected Outcome 
 
 ![image-20200401011642619](images/ug_lsm.png)
 
+[Back To Top](#table-of-contents)
 
+<br>
 
 #### b. List your Categories
 
@@ -502,18 +520,20 @@ List all *category*s in your **Category List**. The **Category List** contains a
 ##### Example Usage
 
 ```
-	lsc -m c3235
+lsc -m cs2113t
 ```
 
 ```
-	lsc
+lsc
 ```
 
 ##### Expected Outcome
 
 ![image-20200401012031973](images/ug_lsc.png)
 
+[Back To Top](#table-of-contents)
 
+<br>
 
 #### c. List your Tasks  
 
@@ -530,24 +550,75 @@ lst [ -m <module code> -c <category name>]
 ##### Example Usage 
 
 ```
-	lst -m cs3235 -c Assignment
+lst -m cs2113t -c Assignment
 ```
 
 ```
-	lst -c Assignment
+lst -c Assignment
 ```
 
 ```
-	lst
+lst
 ```
 
 ##### Expected Outcome    
 ![image-20200401012942212](images/ug_lst.png)
 
+[Back To Top](#table-of-contents)
 
-#### d. List your undo tasks in sorted order  
+<br>
 
-List all the undo *task*s in your **Task List**. The *task*s will be sorted in ascending order of `deadline` by deafault. User can also specify in the command to sort *task*s in descending order of `priority` by adding `-p` prefix.
+#### d. List your Files
+
+List all the *file*s in your **File List**. The **File List** contains all your added *file*s in the _task_ and can be viewed via the List File command.
+
+##### Format
+
+```
+lsf [ <file keyword> -m <module code> -c <category name> -e -a]
+```
+
+> **Note**: By default, `lsf` will list out **all** the files in the current directory and sub-directories. You need to include the `module code` if you wish to list out only the files in that _module_'s directory. Also, you need to include both `module code` and `category name`  if you wish to list out only the files in that _category_'s directory. You can move to the the respective directories via the [Change Directory](#6-change-directory) Command.  
+
+##### Example Usage 
+
+```
+lsf -m cs2113t -c Assignment -t urgent assignment
+```
+
+```
+lsf -c Assignment -t urgent assignment
+```
+
+```
+lsf -t urgent assignment
+```
+
+```
+lsf
+```
+
+##### Expected Outcome    
+
+![image-20200401012942212](images/ug_lsf_outcome.png)
+
+[Back To Top](#table-of-contents)
+
+<br>
+
+#### g. List Tags in your Task
+
+Lists *tag*s in your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
+
+```
+TODO: add the details and screenshots
+```
+
+
+
+#### f. List your undo tasks in sorted order  
+
+List all the undo *task*s in your **Task List**. The *task*s will be sorted in ascending order of `deadline` by default. User can also specify in the command to sort *task*s in descending order of `priority` by adding `-p` prefix.
 
 ##### Format  
 
@@ -560,22 +631,28 @@ lsts [ -d -p (choose 1; default -d) ]
 ##### Example Usage
 
 ```
-	lsts
+lsts
 ```
 
 ```
-	lsts -p
+lsts -p
 ```
 
 ##### Expected Outcome
 
+![image-20200401012942212](images/ug_lsts_1.png)
 
+![image-20200401012942212](images/ug_lsts_2.png)
 
-#### e. List your tasks under specific module in sorted order 
+[Back To Top](#table-of-contents)
 
-List all the *task*s in one of added *module*s. The *task*s will be sorted in ascending order of `deadline` by deafault.
+<br>
 
-##### Format  
+#### g. List your tasks under specific module in sorted order 
+
+List all the *task*s in one of added *module*s. The *task*s will be sorted in ascending order of `deadline` by default.
+
+##### Format
 
 ```
 lsmtd <module code>
@@ -586,18 +663,23 @@ lsmtd <module code>
 ##### Example Usage
 
 ```
-	lsmtd
+lsmtd
 ```
 
 ```
-	lsmtd CS2113
+lsmtd CS3235
 ```
 
 ##### Expected Outcome
 
+![image-20200401012942212](images/ug_lsmtd.png)
 
+[Back To Top](#table-of-contents)
 
-### **3. Delete**  
+<br><br>
+
+### 3. Delete**  
+
 Deletes _modules_, _categories_ or _tasks_ from their respective lists.<br>
 
 As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. **Nuke** complements the Linux shell command by offering a generic list command word for deleting directories: `rm`
@@ -610,7 +692,7 @@ Below sums up what `rm` does at each level of the Directory.
 | :-------------: | ------------------------------------------------------------ |
 |   <b>Root</b>   | `rm <module code>` remove the *module* from your **Module List**. |
 |  <b>Module</b>  | `rm <category name>` remove the *category* from your **Category List** in the current *module*. |
-| <b>Category</b> | `rm <task name>` remove the _task_ from your **Task List** in the current *category*. |
+| <b>Category</b> | `rm <task description>` remove the _task_ from your **Task List** in the current *category*. |
 |   <b>Task</b>   | `rm <file name>` remove the file from your **File List** in the current *task*. |
 |   <b>File</b>   | You cannot `rm` here! :pensive:                              |
 
@@ -633,20 +715,12 @@ Delete a _module_ from your **Module List**. The **Module List** contains all yo
 ##### Example Usage    
 
 ```
-	delm cs3235
+delm cs2113t
 ```
 
 ##### Expected Outcome
 
-```
-root :
-delm cs3235
-Confirm delete CS3235 Computer Security?
-
-root :
-y
-SUCCESS!! Module(s) have been deleted.
-```
+![image-20200401015356560](images/ug_delm_outcome.png)
 
 ##### before:
 
@@ -656,7 +730,9 @@ SUCCESS!! Module(s) have been deleted.
 
 ![image-20200401015411123](images/ug_delm_after.png)
 
+[Back To Top](#table-of-contents)
 
+<br>
 
 #### b. Delete Categories from your Category List   
 
@@ -673,31 +749,28 @@ Delete a _category_ from your **Category List**. The **Category List** contains 
 
 ##### Example Usage    
 
-`delc Lecture -m cs2113t` when not in the *module*'s  directory
-
-`delc Lecture` when in the *module*'s directory
+```
+delc Tutorial -m cs2113t
+```
+```
+delc Tutorial
+```
 
 ##### Expected Outcome    
 
-```
-root :
-delc Lecture -m cs3235
-Confirm delete Lecture?
+![image-20200401020252025](images/ug_delc_outcome.png)
 
-root :
-y
-SUCCESS!! Category/Categories have been deleted.
-```
-
-##### before:
+##### Before:
 
 ![image-20200401020252025](images/ug_delc_before.png)
 
-##### after:
+##### After:
 
 ![image-20200401020313566](images/ug_delc_after.png)  
 
+[Back To Top](#table-of-contents)
 
+<br>
 
 #### c. Delete Tasks from your Task List     
 
@@ -708,40 +781,135 @@ Delete a _task_ from your **Task List**. The **Task List** contains all your add
 `delt <task description> -m <module code> -c <category name>`  
 
 - `task description` -- The _description_ of the _task_
-- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
-- `category name` -- The _name_ of the   _category
+- `module code` -- The _module code_ of the _module_ to contain the _category_ to be added
+- `category name` -- The _name_ of the _category_
 
 > **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command. 
 
 ##### Example Usage    
 
-`delt urgent assignment -m cs3235 -c Assignment` when not in the *module*'s  directory
-
-`delt urgent assignment -c Assignment` when not in the *category*'s directory
-
-`delt urgent assignment` when in the *category*'s directory
-
-##### Expected Outcome    
-
 ```
-root :
-delt urgent assignment -m cs3235 -c Assignment
-Confirm delete urgent assignment?
-
-root :
-y
-SUCCESS!! Task(s) have been deleted.
+delt urgent assignment -m cs2113t -c Assignment
+```
+```
+delt urgent assignment -c Assignment
+```
+```
+delt urgent assignment
 ```
 
-##### before:
+##### Expected Outcome
+
+![image-20200401020857605](images/ug_delt_outcome.png)
+
+##### Before:
 
 ![image-20200401020857605](images/ug_delt_before.png)
 
-##### after:
+##### After:
 
 ![image-20200401021025877](images/ug_delt_after.png)
 
+[Back To Top](#table-of-contents)
+
+<br>
+
+#### d. Delete Files from your Task File List  
+
+`delf` deletes a _file_ from your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
+
+##### Format  
+
+`delf <file name> -m <module code> -c <category name> -t <task description> [ -e -a ]`  
+
+- `file name` -- The _name_ of the _file_  
+- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added  
+- `category name` -- The _name_ of the   _category_  
+- `task decription` -- The _description_ of the _task_  
+- `-e` to filter for exact keywords
+- `-a` to filter across ALL your files
+
+> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.
+
+##### Example Usage
+
+```
+delf textbook.pdf -m CS2113t -c Assignment -t urgent assignment
+```
+
+```
+delf textbook.pdf -c Assignment -t urgent assignment
+```
+
+```
+delf textbook.pdf -t urgent assignment
+```
+
+```
+delf textbook.pdf
+```
+
+##### Expected Outcome
+
+![image-20200331000315462](images/ug_delf_outcome.png)
+
+##### Before:
+
+![image-20200331000315462](images/ug_delf_before.png)
+
+#### After:
+
+![image-20200331000315462](images/ug_delf_after.png)
+
+[Back To Top](#table-of-contents)
+
+<br>
+
+#### e. Delete Tags from your Task
+
+Deletes a _tag_ from your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command, which will be implemented in the future).
+
+##### Format  
+
+`delg <tag info> -m <module code> -c <category name> -t <task description>`  
+
+- `tag info` -- The _tag_ to be deleted
+- `module code` -- The _module code_ of the _module_ to contain the _category_ to be added  
+- `category name` -- The _name_ of the   _category_  
+- `task decription` -- The _description_ of the _task_  
+
+> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
+
+##### Example Usage
+
+```
+delg urgent -m CS2113t -c Lab -t tp
+```
+
+```
+delg urgent -c Lab -t tp
+```
+
+```
+delg urgent -t tp
+```
+
+```
+delg urgent
+```
+
+##### Expected Outcome
+
+```
+TODO: screenshot to be attached here
+```
+
+[Back To Top](#table-of-contents)
+
+<br><br>
+
 ### **4. Edit**
+
 Edits a <i>module</i>, <i>category</i>,  <i>task</i> or <i>file</i>.<br>  
 
 #### **a. Edit a Module in your Module List**  
@@ -1004,6 +1172,7 @@ Also, do note that attempting to redo when you are at the newest state <i>(i.e. 
 ![redo command incorrect](images/redo_incorrect.png)  
 
 <br>
+
 <hr>
 
 ## **Miscellaneous Information**  
