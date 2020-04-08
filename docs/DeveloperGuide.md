@@ -157,7 +157,7 @@ Follow the following steps to manually test the product:
             __________________________________________________________________________________________
        
 
-  * `list article`
+  * `list job`
         
      You will get the following output:
 
@@ -185,7 +185,7 @@ Follow the following steps to manually test the product:
            
 
 
-  * `list article`
+  * `list note`
            
       You will get the following output:
           
