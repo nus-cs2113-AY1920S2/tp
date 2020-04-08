@@ -54,7 +54,7 @@ public class MessageBank {
             + "Choose from: morning/afternoon/night.";
 
     public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
-    
+
     public static String WEIGHT_DELETED_MESSAGE = " has been removed successfully!";
 
     public static String INVALID_INDEX = "Invalid index of weight! Please check and try again.";

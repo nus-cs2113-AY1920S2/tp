@@ -2,33 +2,62 @@ package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 
+import java.util.Optional;
+
+/**
+ * WeightParser is the public class responsible for validating the user input and
+ * parsing it into a valid Weight.
+ */
+
 public class WeightParser {
 
     /**
-     * Validate the user input gender and parse it into the standard gender accepted.
+     * Minimum boundary Weight value.
+     */
+
+    private static double MIN_WEIGHT = 0.00;
+
+    /**
+     * Maximum boundary Weight value.
+     */
+
+    private static double MAX_WEIGHT = 500.00;
+
+    /**
+     * Weight value parsed from user input.
+     */
+
+    private static Optional<Double> weight;
+
+    /**
+     * Validate the user input and parsing it into a valid Weight.
      *
-     * @param description User input gender.
-     * @return Gender in standard form.
-     * @throws InvalidWeightException If input is not a valid height value.
+     * @param description User input.
+     * @return Weight in standard form.
+     * @throws InvalidWeightException If input is not a valid Weight.
      */
 
     public static double parseWeight(String description) throws InvalidWeightException {
-        double weight = 0.00;
         try {
-            weight = Double.parseDouble(description);
+            weight = Optional.ofNullable(Double.parseDouble(description));
         } catch (NumberFormatException e) {
             throw new InvalidWeightException();
         }
-        if (weight <= 0.00 || weight >= 500.00) {
+        if (weight.isEmpty() || (weight.get() <= MIN_WEIGHT || weight.get() >= MAX_WEIGHT)) {
             throw new InvalidWeightException();
         }
-        testAssertions(weight);
-        return weight;
+        testAssertions();
+        return weight.get();
     }
 
-    public static void testAssertions(double weight) {
-        assert (weight > 0.00);
-        assert (weight < 500.00);
+    /**
+     * Assertion testing for Weight.
+     */
+
+    public static void testAssertions() {
+        assert (weight.isPresent());
+        assert (weight.get() > MIN_WEIGHT);
+        assert (weight.get() < MAX_WEIGHT);
     }
 
 }

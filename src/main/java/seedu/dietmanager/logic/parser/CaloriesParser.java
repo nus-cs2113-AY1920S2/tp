@@ -1,34 +1,56 @@
 package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidCaloriesException;
-import seedu.dietmanager.commons.exceptions.InvalidHeightException;
+
+import java.util.Optional;
+
+/**
+ * CaloriesParser is the public class responsible for validating the user input and
+ * parsing it into a valid Calorie value.
+ */
 
 public class CaloriesParser {
 
     /**
-     * Validate the user input gender and parse it into the standard gender accepted.
+     * Minimum boundary Calorie value.
+     */
+
+    private static double MIN_CALORIES = 0.00;
+
+    /**
+     * Calorie value parsed from user input.
+     */
+
+    private static Optional<Double> calories;
+
+    /**
+     * Validate the user input and parsing it into a valid Calorie value.
      *
-     * @param description User input gender.
-     * @return Gender in standard form.
-     * @throws InvalidHeightException If input is not a valid height value.
+     * @param description User input.
+     * @return Calories in standard form.
+     * @throws InvalidCaloriesException If input is not a valid Calorie value.
      */
 
     public static double parseCalories(String description) throws InvalidCaloriesException {
-        double calories;
         try {
-            calories = Double.parseDouble(description);
+            calories = Optional.ofNullable(Double.parseDouble(description));
         } catch (NumberFormatException e) {
             throw new InvalidCaloriesException();
         }
-        if (calories < 0.00) {
+        if (calories.isEmpty() || calories.get() < MIN_CALORIES) {
             throw new InvalidCaloriesException();
         }
-        testAssertions(calories);
-        return calories;
+        testAssertions();
+        return calories.get();
     }
 
-    public static void testAssertions(double calories) {
-        assert (calories >= 0.00);
+    /**
+     * Assertion testing for Calories.
+     */
+
+    public static void testAssertions() {
+        assert (calories.isPresent());
+        assert (calories.get() >= MIN_CALORIES);
     }
 
 }
