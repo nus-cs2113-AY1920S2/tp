@@ -101,17 +101,17 @@ public class Contact {
 
     /**
      * Defines the logic of converting from blocks of time and day of model.meeting to data structure.
-     * Used in addBusyBlocks().
+     * Used in addBusyBlocks() and addFreeBlocks()
      */
-    private void editBlocksLogic(Boolean blockedorfree, Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
+    private void editBlocksLogic(Boolean blockedOrFree, Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
                                     String meetingName, String[] onWeeks) throws MoException {
 
         String[] startOnWeeks = onWeeks.clone();
         String[] endOnWeeks = onWeeks.clone();
 
-        Boolean myScheduleStatus = blockedorfree;
+        Boolean myScheduleStatus = blockedOrFree;
         String myScheduleNameStatus = "null";
-        if (blockedorfree == MYSCHEDULEBLOCKED) {
+        if (blockedOrFree == MYSCHEDULEBLOCKED) {
             myScheduleNameStatus = meetingName;
         }
 
@@ -124,7 +124,7 @@ public class Contact {
             endDay -= 7;
             endOnWeeks[0] = Integer.toString(Integer.parseInt(endOnWeeks[0]) + 1);
         } else if (startDay > 6 && endDay < 7) {
-            throw new MoException("Meeting ends before it starts?");
+            throw new MoException("Meeting can't end before it starts.");
         }
 
         if (!startDay.equals(endDay)) {
