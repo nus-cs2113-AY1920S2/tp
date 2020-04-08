@@ -72,7 +72,7 @@ Here is q quick overview of each layer and the components residing in it.
 
 The UI consists of....
 ### 2.3. Logic component
-![Logic Component](images/logic component.png)<br>
+![Logic Component](images/logiccomponent.png)<br>
 
 The LogicManager is the brain and backbone of the logic component. It depends on 3 sub-components for it to work.
 First, LogicManager instantiates```schedulelogic``` and ```modulelogic``` sub-components to enable the generation of common time slots from NUSMODS links.
