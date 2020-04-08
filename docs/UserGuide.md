@@ -15,13 +15,13 @@
     3.1. [Using Pac](#31-using-pac)
 4. [Features](#4-features)  
 4.1. [Student List](#41-student)  
-4.1.1. [Add New Student List](#411-add-new-student-list)        
-4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-student-list)  
-4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection-student-clear)   
-4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection-student-delete)  
-4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection-student-find)  
-4.4.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-student-sort)  
-4.4.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name-student-sort)  
+4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
+4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-student-view)  
+4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-clear)   
+4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-delete)  
+4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection-studentlist-find)  
+4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-student-sort)  
+4.1.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name-student-sort)  
 4.2. [Event](#42-event)  
 4.2.1. [Add New Event](#421-add-new-event)  
 4.2.2. [View Event List](#422-list-events)  
@@ -32,13 +32,13 @@
 4.2.7. [Edit Event](#427-edit-event)    
 4.3. [Calendar](#43-calendar)  
 4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)
-4.4 [Attendance](#44-attendance)
+4.4 [Attendance List](#44-attendance)
 4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance-attendance-add)    
-4.4.2. [View Attendance List](#442-view-attendance-list-attendance-list)   
+4.4.2. [View Attendance List](#442-view-attendance-list-attendance-view)   
 4.4.3. [Clear Attendance](#443-clear-attendance-list-attendance-clear)  
 4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name-attendance-sort)  
 4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status-attendance-sort)  
-4.5. [Performance](#45-performance)     
+4.5. [Performance List](#45-performance-list)     
 4.5.1. [Add New Performance List](#451-add-performance-list)  
 4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
 4.5.3. [View Performance List](#453-view-performance-list)   
@@ -602,7 +602,7 @@ The following will show a success example of *creating a new attendance list*.
     Attendance of John Doe (Present) has been taken successfully under event Event1
     ...
     
-#### 4.4.2 View attendance list: `attendance list`
+#### 4.4.2 View attendance list: `attendance view`
 
 View the attendance list under a certain event.  
 
@@ -665,7 +665,7 @@ Example:
     >>> CS1010 Tutorial
     Attendance List is sorted by attendance status for Event: event1
     
-### 4.5. Performance
+### 4.5. Performance List
 #### 4.5.1. Add Performance List
 Add a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console. 
@@ -791,24 +791,24 @@ which category your command belongs to
 1. If you did not enter any flag, ie. event add: 
 
        Argument is required for command 'add'
-
-1. If there are no events in the list:    
-        
-       The event list is empty
     
 1. If event cannot be found in the list:
            
        Event is not found in the list.
        
-1. If there is no students' data in the student list:
-       
-       There is no existing student list.
-    
 1. If there are no events under a calendar for a particular semester in its academic year:
 
        Unable to find any events for this time period.
+
+1. If event list is empty:    
+        
+       The event list is empty
        
-1. If there is no performance' data under a event:
+1. If student list is empty:
+       
+       There is no existing student list.
+       
+1. If performance list under an event is empty:
 
        No performance list under this event
        _________________________________________________________________________________________________
@@ -852,27 +852,35 @@ step-by-step command for performance and all-in-one command for event?
 
 ## 7. Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
+{Give a 'cheat sheet' of commands here}  
+**Student**
 * Add student list `student.list add`
 * View student list `student.list view`
 * Clear student list `student.list clear`
 * Delete student list `student.list delete`
 * Find student list `student list.find`
-* Sort student list `student list.sort`
+* Sort student list `student list.sort`  
+
+**Event**
 * Add event `event add n/NAME d/DATE t/TIME v/VENUE`
-* list events `event list`
+* View event list `event list`
 * Edit name of existing event `event editname i/INDEX n/NAME`
 * Edit date and time of existing event `event editdatetime i/INDEX d/DATE t/TIME`
 * Edit venue of existing event `event editvenue i/INDEX v/VENUE`
-* Delete event `event delete i/INDEX`
+* Delete event `event delete i/INDEX`  
+
+**Calender**
 * View calendar `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
+
+**Attendance**  
 * Add attendance `attendance add`
-* View attendance list `attendance list`
+* View attendance list `attendance view`
 * Clear attendance list `attendance clear`
 * Sort attendance list `attendance sort`
+
+**Performance**
 * Add performance `performance add`
-* View performance list `performance list`
+* View performance list `performance view`
 * Delete performance of a student `performance delete`
 * Edit performance of a student `performance edit`
 * Sort performance of a student `performance sort`
