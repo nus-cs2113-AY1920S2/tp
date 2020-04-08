@@ -36,7 +36,7 @@ public class CommandParser {
      */
     public void parseCommand(String command, Menu menu,
                              Stock stock, ReservationList reservations, Sales sales, Ui ui) {
-
+        System.out.println("");
         String[] commands = command.split(";", 2);
         String[] splitCommands = commands[0].split(" ", 2);
         
@@ -143,6 +143,7 @@ public class CommandParser {
         } else {
             errorCommand();
         }
+        System.out.println("");
     }
 
 

@@ -5,26 +5,45 @@ ______  ______  _____ ______    ___  __  __ ______        __  _______  ______
 ||   \\ ||           \  ||  /    ||  ||  || ||   \\   /    || ||    ||   ||
 ||    \\||____   _____\ || /     ||   \__/  ||    \\ /     Daily Report v2.0
 Input next command:
+
 Dish pizza successfully added.
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Dish rice successfully added.
+
 Input next command:
+
 Dish pizza successfully removed!
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Ingredient tomato successfully added!
+
 Input next command:
+
 Ingredient tomato successfully added!
+
 Input next command:
+
 Ingredient tomato successfully added!
+
 Input next command:
+
 Ingredient tomato successfully added!
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -32,69 +51,93 @@ The user's input did not meet the required format. Please enter in the following
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input is missing both the ingredient's quantity to be added and the ingredient's price!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input must specify both the ingredient's name and the ingredient's price!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input must specify both the ingredient's name and the quantity to be added!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input must specify the ingredient's name!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input must specify the quantity of the ingredient to be added!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input must specify the ingredient's price!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please ensure that the quantity specified is an integer!
 ============================================================================================================================
+
 Input next command:
+
 Ingredient tomato successfully added!
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please enter a positive value for the quantity to be added!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please enter a positive value for the ingredient's price!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please ensure that the price specified is a decimal!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -102,7 +145,9 @@ The user's input did not specify the 'i/' tag before the ingredient's name. Plea
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -110,7 +155,9 @@ The user's input did not specify the 'q/' tag before the ingredient's quantity. 
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -118,23 +165,37 @@ The user's input did not specify the 'p/' tag before the ingredient's price. Ple
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Ingredient rice successfully added!
+
 Input next command:
+
 Ingredient salt successfully added!
+
 Input next command:
+
 Ingredient vege successfully added!
+
 Input next command:
+
 Ingredient greenie successfully added!
+
 Input next command:
+
 Ingredient toxic greens successfully added!
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please ensure that the price specified is a decimal!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -142,7 +203,9 @@ The user's input did not specify the 'i/' tag before the ingredient's name. Plea
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -150,7 +213,9 @@ The user's input did not specify the 'q/' tag before the ingredient's quantity. 
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -158,7 +223,9 @@ The user's input did not specify the 'p/' tag before the ingredient's price. Ple
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -167,7 +234,9 @@ The user's input did not specify the 'i/' tag and 'q/' tag before the ingredient
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -176,7 +245,9 @@ The user's input did not specify the 'q/' tag and 'p/' tag before the ingredient
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -185,11 +256,17 @@ The user's input did not specify the 'i/', 'q/' tag and 'p/' tag before the ingr
 
 `add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
 ============================================================================================================================
+
 Input next command:
+
 Ingredient CuRrY successfully added!
+
 Input next command:
+
 Ingredient pepper successfully added!
+
 Input next command:
+
 ============================================================================================================================
 Please note that there are other similar ingredient names in the stock.
 
@@ -201,7 +278,9 @@ pepper
 You may want to remove the unwanted ingredient names if it is a duplicate.
 ============================================================================================================================
 Ingredient PePPer successfully added!
+
 Input next command:
+
 ============================================================================================================================
 Please note that there are other similar ingredient names in the stock.
 
@@ -214,43 +293,63 @@ PePPer
 You may want to remove the unwanted ingredient names if it is a duplicate.
 ============================================================================================================================
 Ingredient PEPPER successfully added!
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please enter the ingredient's name to be added.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please ensure that the quantity specified is an integer!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please ensure that the price specified is a decimal!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please ensure that the price specified is a decimal!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Ingredient tomato reduced by 1!
+
 Input next command:
+
 Ingredient tomato reduced by 1!
+
 Input next command:
+
 Ingredient tomato reduced by 9!
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -260,9 +359,13 @@ There is no tag specified. Please enter in the following format:
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
+
 Input next command:
+
 Ingredient tomato deleted from the stock!
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -272,25 +375,33 @@ There is no tag specified. Please enter in the following format:
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input must specify an ingredient name.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please ensure that the quantity specified is an integer!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please enter a positive value for the quantity to be added!
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -300,7 +411,9 @@ There is no tag specified. Please enter in the following format:
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
@@ -310,130 +423,206 @@ There is no tag specified. Please enter in the following format:
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please enter an ingredient's name to be searched against the stock.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
+
 Input next command:
+
 There is no ingredient that matches the keyword given.
+
 Input next command:
+
 There is no ingredient that matches the keyword given.
+
 Input next command:
+
 Here are the ingredients in the stock that matches the keyword:
 ============================================================================================================================
 1. [0][$0.40] greenie
 ============================================================================================================================
+
 Input next command:
+
 Here are the ingredients in the stock that matches the keyword:
 ============================================================================================================================
 1. [1][$0.40] toxic greens
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please enter an ingredient's name to be searched against the stock.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please enter an ingredient's name to be searched against the stock.
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 Please specify the keyword using the format 'k/keyword;'
 ============================================================================================================================
+
 Input next command:
+
 Reservation[1] has been added into the list
+
 Input next command:
+
 Reservation[2] has been added into the list
+
 Input next command:
+
 Reservation[3] has been added into the list
+
 Input next command:
+
 Reservation[4] has been added into the list
+
 Input next command:
+
 Delimiter Missing.
+
 Input next command:
+
 Input Missing: number of guests n/ is missing.
+
 Input next command:
+
 Please follow the date time format strictly: yyyy-MM-dd HH:mm; eg. 2000-01-01 12:00
+
 Input next command:
+
 Please enter a valid positive integer.
+
 Input next command:
+
 Input Missing: name is missing.
+
 Input next command:
+
 Input Missing: contact is missing.
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Please enter a valid positive integer.
+
 Input next command:
+
 There is no Reservation[0] in the list.
+
 Input next command:
+
 Please enter a valid positive integer.
+
 Input next command:
+
 Please enter a valid positive integer.
+
 Input next command:
+
 Successfully void Reservation[1]
+
 Input next command:
+
 Reservation[1] is already Invalid. You cannot void a Invalid reservation.
+
 Input next command:
+
 Delimiter Missing.
+
 Input next command:
+
 There is no Reservation[-1] in the list.
+
 Input next command:
+
 There is no Reservation[5] in the list.
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Please enter a valid positive reservation number.
+
 Input next command:
+
 Reservation [1]
 Status: Invalid
 contact person: Peter
@@ -443,11 +632,17 @@ table size: S
 contact details: 98955555
 comments: No comments
 
+
 Input next command:
+
 Sorry! No such reservation.
+
 Input next command:
+
 Delimiter Missing.
+
 Input next command:
+
 Here comes the reservations on the date 2020-03-12:
 Reservation [1]
 Status: Invalid
@@ -467,42 +662,74 @@ table size: L
 contact details: 98887777
 comments: No comments
 
+
 Input next command:
+
 There is no Reservation[5] in the list.
+
 Input next command:
+
 Input Missing: either reservation number r/ or date d/ is missing.
+
 Input next command:
+
 Please enter a valid positive integer.
+
 Input next command:
+
 There is no Reservation[5] in the list.
+
 Input next command:
+
 There is no Reservation[-1] in the list.
+
 Input next command:
+
 Successfully mark Reservation[4] as served.
+
 Input next command:
+
 There is no Reservation[0] in the list.
+
 Input next command:
+
 Reservation[1] is already Invalid. It cannot be marked as Served.
+
 Input next command:
+
 Reservation[4] is already Served. You cannot void a Served reservation.
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
 Input next command:
+
 The command has been successfully executed.
+
 Input next command:
+
 The total profit for the day is: $57.0
 The command has been successfully executed.
+
 Input next command:
+
 The most popular dish today is: rice
 This has sales of: 5
 The command has been successfully executed.
+
 Input next command:
+
 The menu, stock and reservations have been saved to report.txt
 The program is now exiting
