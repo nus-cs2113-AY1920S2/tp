@@ -130,7 +130,7 @@ Step 2. The user can view the score history and average score of a selected subj
 quiz session for that subject, using the command ``score s/SUBJECTINDEX``.
 The following diagram describes how the score operation works:
 
-![](images/scores_sequence_uml.png)
+![](images/score.jpg)
 
 #### 2.x.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
@@ -150,6 +150,16 @@ The following diagram describes how the score operation works:
     - Simple implementation.
   - Cons:
     - User will be unable to track his progress.
+    
+### 2.x. Event Management Feature
+#### 2.x.1 Implementation
+The event feature builds on the quiz feature by adding another aid to the user when preparing for an exam/event.
+This feature allows the user to add and keep track of upcoming events, such as exams/tests. It implements the following operations:
+
+- ``SubjectList#addEvent()`` - Adds a new event.
+- ``SubjectList#removeEvent()`` - Removes an existing event.
+- ``SubjectList#listEvents()`` - List all events in the order they were added.
+- ``SubjectList#showUpcoming()`` - Shows upcoming events in chronological order.
     
 ### 2.x. Save/Load Feature
 #### 2.x.1 Implementation
