@@ -23,7 +23,7 @@ public class SelectedModule extends Module {
     }
 
     /**
-     * This is Module's constructor.
+     * This is Module's constructor, for when String type is "Both".
      *
      * @param type             the type of module identifier.
      * @param moduleId         the module's id

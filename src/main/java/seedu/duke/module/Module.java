@@ -59,7 +59,7 @@ public abstract class Module {
 
 
     public String getName() {
-        if (name == null || name.equals(null)) {
+        if (name == null) {
             name = "unnamed";
             return name;
         }
@@ -98,7 +98,6 @@ public abstract class Module {
         return preReqModulesStringList;
     }
 
-    /** This method can return preReqs which are not in available modules list. **/
     public String getPreReqModulesString() {
         return null;
     }
@@ -121,10 +120,7 @@ public abstract class Module {
         if (moduleObject.getModuleCredit() == this.getModuleCredit()) {
             sameMC = true;
         }
-        if (sameId && sameMC && sameName) {
-            return true;
-        }
-        return false;
+        return sameId && sameMC && sameName;
     }
 
     public boolean isNameValid() {

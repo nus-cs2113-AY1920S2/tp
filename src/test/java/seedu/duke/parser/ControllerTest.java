@@ -1,18 +1,22 @@
 package seedu.duke.parser;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.HelpingCommand;
+import seedu.duke.exception.InputException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ControllerTest {
     @Test
     public void testIsStandardCodeFormat() {
-        assertEquals(true, Controller.isStandardCodeFormat("CS2113"));
-        assertEquals(true, Controller.isStandardCodeFormat("acc4761h"));
-        assertEquals(false, Controller.isStandardCodeFormat("is001"));
-        assertEquals(false, Controller.isStandardCodeFormat("CS001T"));
-        assertEquals(false, Controller.isStandardCodeFormat("acc4761hh"));
-        assertEquals(false, Controller.isStandardCodeFormat(""));
+        assertTrue(Controller.isStandardCodeFormat("CS2113"));
+        assertTrue(Controller.isStandardCodeFormat("acc4761h"));
+        assertFalse(Controller.isStandardCodeFormat("is001"));
+        assertFalse(Controller.isStandardCodeFormat("CS001T"));
+        assertFalse(Controller.isStandardCodeFormat("acc4761hh"));
+        assertFalse(Controller.isStandardCodeFormat(""));
     }
 
 }
