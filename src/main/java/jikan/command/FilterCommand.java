@@ -45,7 +45,7 @@ public class FilterCommand extends Command {
             } else {
                 lastShownList.activities.clear();
                 String[] keywords = query.split(" ");
-                if (keywords.length < 1 ) {
+                if (keywords.length < 1) {
                     throw new EmptyQueryException();
                 }
                 for (String keyword : keywords) {
@@ -71,7 +71,7 @@ public class FilterCommand extends Command {
             } else {
                 lastShownList.activities.clear();
                 String[] keywords = query.split(" ");
-                if (keywords.length < 1 ) {
+                if (keywords.length < 1) {
                     throw new EmptyQueryException();
                 }
                 for (String keyword : keywords) {
