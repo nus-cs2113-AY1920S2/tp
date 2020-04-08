@@ -41,7 +41,7 @@ public class Message {
     }
 
     public static final String MESSAGE_INVALID_COMMAND_FORMAT =
-            "Sorry, the command entered contains some unrecognised parameters:\n";
+            "Sorry, the command entered contains some unrecognised parameters starting from here:\n";
     public static final String MESSAGE_CHECK_COMMAND_FORMAT =
             "Please check to make sure to follow the command format as such:\n";
     public static final String MESSAGE_UNKNOWN_COMMAND_WORD =
@@ -337,4 +337,10 @@ public class Message {
 
     public static final String MESSAGE_OPEN_FILE_SUCCESS = "The files are opening now...\n";
     public static final String MESSAGE_NO_FILE_CHOSEN = "No file was chosen.\n";
+    public static final String MESSAGE_INVALID_FILE_NAME =
+            "Sorry, the name of the file you are adding contains words that begins with a symbol.\n"
+            + "Please enter a new file name.\n";
+
+    public static final String MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC =
+            "Sorry, unable to execute the command at the current directory level.\n";
 }

@@ -45,9 +45,9 @@ public class AddTaskCommand extends AddCommand {
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + "\\s+\\S+)?)"
             + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-            + "(?<prioritySecond>(?:\\s+" + PRIORITY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<prioritySecond>(?:\\s+" + PRIORITY_PREFIX + "\\s+\\S+)?)"
             + "(?<invalid>.*)"
     );
 
