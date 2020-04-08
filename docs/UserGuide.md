@@ -331,7 +331,7 @@ Example output:
 ## FAQ
 **Q**: How do I transfer my data to another computer? 
 
-&nbsp;&nbsp;&nbsp;&nbsp;**A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
+&ensp;&ensp;&ensp;&ensp;**A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
    
 [&#8593; Return to the top](#whenfree-meeting-organizer---user-guide)
 
