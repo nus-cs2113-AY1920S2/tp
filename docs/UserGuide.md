@@ -137,9 +137,11 @@ Add daily sales and calculate profit
 * Example: `sell dish; d/pasta; q/10;`
 
 #### Generate Profit : calculate profit
+Calculates the net profit from all the sold dishes
 * Format: `profit`
 
 #### Find most popular dish : popular
+Prints the most popular dish from the sold list.
 * Format: `popular`
 
 <a name="save"></a>

@@ -2,6 +2,7 @@ package sales;
 
 import dish.Dish;
 import dish.Profit;
+import exceptions.CommandFormatException;
 import exceptions.EmptyStockException;
 import exceptions.IngredientMissingException;
 import exceptions.NegativeProfitException;
@@ -20,14 +21,18 @@ public class Sales {
     public void addSale(String command) {
         //Format: `d/DISH; q/QUANTITY;`
         String[] splitString = command.split(";");
-        String dishName = splitString[0].substring(splitString[0].indexOf("d/") + 2);
-        int quantity = Integer.parseInt(splitString[1].substring(splitString[1].indexOf("q/") + 2));
-        Dish dish = Menu.getDishMap().get(dishName);
-        if (dish == null) {
-            System.out.println("Dish doesn't exist");
+        if (splitString.length < 2) {
+            new CommandFormatException().getMessage();
         } else {
-            //System.out.print("dish: " + dishName + " quantity: " + quantity );
-            soldDishes.put(dish,quantity);
+            String dishName = splitString[0].substring(splitString[0].indexOf("d/") + 2);
+            int quantity = Integer.parseInt(splitString[1].substring(splitString[1].indexOf("q/") + 2));
+            Dish dish = Menu.getDishMap().get(dishName);
+            if (dish == null) {
+                System.out.println("Dish doesn't exist");
+            } else {
+                //System.out.print("dish: " + dishName + " quantity: " + quantity );
+                soldDishes.put(dish, quantity);
+            }
         }
     }
 
