@@ -1,4 +1,4 @@
 package seedu.nuke.exception;
 
-public abstract class InvalidFormatException extends Exception {
+public class InvalidFormatException extends Exception {
 }

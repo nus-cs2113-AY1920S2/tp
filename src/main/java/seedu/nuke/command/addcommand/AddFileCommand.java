@@ -14,6 +14,7 @@ import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.ExceedLimitException;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
+import seedu.nuke.exception.InvalidFormatException;
 import seedu.nuke.gui.io.GuiExecutor;
 
 import java.io.File;
@@ -41,9 +42,10 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_FILE_PATH;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_FILE_EXCEED_LIMIT;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_FILE_NAME;
 import static seedu.nuke.util.Message.MESSAGE_MISSING_FILE_PATH;
 import static seedu.nuke.util.Message.MESSAGE_NO_FILE_CHOSEN;
-import static seedu.nuke.util.Message.MESSAGE_FILE_EXCEED_LIMIT;
 import static seedu.nuke.util.Message.messageAddFileSuccess;
 
 /**
@@ -143,7 +145,7 @@ public class AddFileCommand extends AddCommand {
      *  If there is an error copying the file
      */
     private void copyFile(Task task) throws IOException, ExceedLimitException,
-            TaskFileManager.DuplicateTaskFileException {
+            TaskFileManager.DuplicateTaskFileException, InvalidFileNameException {
         File sourceFile = new File(originalFilePath);
         if (!sourceFile.exists() || !sourceFile.isFile()) {
             throw new FileNotFoundException();
@@ -151,9 +153,13 @@ public class AddFileCommand extends AddCommand {
 
         // Automatically updates new file name
         if (fileName.isEmpty()) {
-            fileName = removeExtension(sourceFile.getName());
+            fileName = removeExtension(sourceFile.getName()).trim();
             if (exceedLengthLimit()) {
                 throw new ExceedLimitException();
+            }
+            // File name begins with a symbol
+            if (fileName.matches("^\\W.*$")) {
+                throw new InvalidFileNameException();
             }
         }
 
@@ -192,7 +198,14 @@ public class AddFileCommand extends AddCommand {
             }
             originalFilePath = chosenFileInformation[0];
             if (fileName.isEmpty()) {
-                fileName = chosenFileInformation[1];
+                fileName = chosenFileInformation[1].trim();
+                if (exceedLengthLimit()) {
+                    throw new ExceedLimitException();
+                }
+                // File name begins with a symbol
+                if (fileName.matches("\\W.*")) {
+                    throw new InvalidFileNameException();
+                }
             }
         }
     }
@@ -217,6 +230,11 @@ public class AddFileCommand extends AddCommand {
             retrieveFile();
 
             copyFile(parentTask);
+
+            if (fileName == null) {
+                return new CommandResult(MESSAGE_INVALID_FILE_NAME);
+            }
+
             String fullFilePath = new File(originalFilePath).getAbsolutePath();
             TaskFile toAdd = new TaskFile(parentTask, fileName, filePath, fullFilePath);
             parentTask.getFiles().add(toAdd);
@@ -244,8 +262,13 @@ public class AddFileCommand extends AddCommand {
             return new CommandResult(MESSAGE_FILE_SECURITY_EXCEPTION);
         } catch (ExceedLimitException e) {
             return new CommandResult(MESSAGE_IMPLICIT_FILE_EXCEED_LIMIT);
+        } catch (InvalidFileNameException e) {
+            return new CommandResult(MESSAGE_INVALID_FILE_NAME);
         } catch (Exception e) {
             return new CommandResult(e.getMessage());
         }
+    }
+
+    public static class InvalidFileNameException extends InvalidFormatException {
     }
 }

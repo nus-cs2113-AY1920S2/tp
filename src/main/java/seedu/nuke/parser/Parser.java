@@ -1194,10 +1194,6 @@ public class Parser {
             this.message = message;
         }
 
-        public DuplicatePrefixException() {
-            this(null);
-        }
-
         @Override
         public String getMessage() {
             return message;

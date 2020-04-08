@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_MODULE_SUCCESS;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_NO_MODULES_FOUND;
+import static seedu.nuke.util.Message.MESSAGE_PROMPT_FORMAT;
 import static seedu.nuke.util.Message.messageConfirmDeleteModule;
 import static seedu.nuke.util.Message.messagePromptDeleteModuleIndices;
 
@@ -60,6 +61,8 @@ public class DeleteModuleCommandTest {
         } catch (ModuleManager.ModuleNotFoundException e) {
             System.out.println("Cannot find the module");
         }
+        result = Executor.executeCommand("x");
+        assertEquals(MESSAGE_PROMPT_FORMAT, result.getFeedbackToUser());
         result = Executor.executeCommand("y");
         assertEquals(MESSAGE_DELETE_MODULE_SUCCESS, result.getFeedbackToUser());
     }
