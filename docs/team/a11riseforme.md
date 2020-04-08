@@ -4,7 +4,6 @@
 
 <hr>
 
-
 ## Overview
 
 **Nuke v2.1** is a desktop task management application target towards **NUS students**.  **Nuke** aims to provide a more efficient way to organise the user's modules and tasks. The user interacts with **Nuke** using a _Command Line Interface_ (CLI). In its latest versions, it also has a complementary _Graphical User Interface_ version created with JavaFX, though the GUI is still in its _Beta_ stage. **Nuke** is written in Java, and has about 10, 000 lines of code.
@@ -35,43 +34,34 @@
 
 - What it does: Allow the user to execute the Linux filesystem associated command `ls` to list out directories, `mkdir` to create directories, and `rm` to remove directories.
 - Justification: This feature improves the user experience for the user with prior experience on Linux significantly because it reduces a lot of work for the users to remember other commands. 
-- Highlights: This enhancement does not affects existing commands, and it is actually based on the implementation of existing commands. The program will retrieve the current directory where the user is, and depending on the directory type(Root, Module, Category), it will distribute to the actual command to handle.
+- Highlights: This enhancement does not affects existing commands, and it is actually based on the implementation of existing commands. The program will retrieve the current directory where the user is, and depending on the directory type(Root, Module, Category, Task), it will distribute to the actual command to handle.
 
-#### **Minor enhancement**: 
+### **Minor enhancement**: 
 
-#### 1. added a history command that allows the user to navigate to previous commands using up/down keys.
+Improve the feedback messages shown to the users when listing out all the tasks, add one more column showing if the tasks are done, so that the users would know if they need to work on the task as soon as possible.
+
+### **Other contributions**:
+
+#### Project management:
+
+Managed releases `v1.0` ,  `v2.0` (2 releases) on GitHub
+
+#### Documentation:
+
+##### User Guide:
+
+-   Documented List modules/categories/tasks and Delete modules/categories/tasks Features -- [#122](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/122/commits/cececb821a8e6b54c2abc5da7ed13acf79262c08) 
+-   Elaborate Add modules/categories/tasks Features -- [#117](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/117/commits/f518160a8b8df0a2e4e7b6d481011b083cbeef40)
+
+##### Developer Guide:
+
+-   Documented Add modules/categories/tasks Implementation -- [#96](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/96/commits/6fe3ee74bec8fdb7c8eccca5871e974220200d9c)
+
+##### Community:
+
+-   
 
 
--   **Other contributions**:
--   Project management:
-
-    -   Managed releases `v1.0` ,  `v2.0-cli` (2 releases) on GitHub
-
--   Enhancements to existing features:
-
-    -   Updated the GUI color scheme (Pull requests [\#33](https://github.com), [\#34](https://github.com))
-
-    -   Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](https://github.com), [\#38](https://github.com))
-
--   Documentation:
-
-    -   Did cosmetic tweaks to existing contents of the User Guide: [\#14](https://github.com)
-
--   Community:
-
-    -   PRs reviewed (with non-trivial review comments): [\#12](https://github.com), [\#32](https://github.com), [\#19](https://github.com), [\#42](https://github.com)
-
-    -   Contributed to forum discussions (examples: [1](https://github.com), [2](https://github.com), [3](https://github.com), [4](https://github.com))
-
-    -   Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com), [2](https://github.com), [3](https://github.com))
-
-    -   Some parts of the history feature I added was adopted by several other class mates ([1](https://github.com), [2](https://github.com))
-
--   Tools:
-
-    -   Integrated a third party library (Natty) to the project ([\#42](https://github.com))
-
-    -   Integrated a new Github plugin (CircleCI) to the team repo
 
 Contributions to the User Guide
 ===============================
