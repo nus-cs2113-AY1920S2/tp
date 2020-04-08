@@ -357,7 +357,7 @@ public class Parser {
             date = LocalDate.parse(
                     String.format("01/%s", matcher.group(CALENDAR_DATE_FIELD).trim()), INPUT_DATE_FORMAT);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+            return new IncorrectCommand(String.format(Messages.CALENDAR_DATE_INVALID, CalendarCommand.COMMAND_USAGE));
         }
 
         return new CalendarCommand(date);
