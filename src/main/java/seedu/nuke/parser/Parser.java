@@ -51,7 +51,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
@@ -62,6 +61,7 @@ import static seedu.nuke.util.Message.MESSAGE_CHECK_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_DEADLINE_OR_PRIORITY;
 import static seedu.nuke.util.Message.MESSAGE_EMPTY_INPUT;
 import static seedu.nuke.util.Message.MESSAGE_EXTRA_PARAMETERS;
+import static seedu.nuke.util.Message.MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
 import static seedu.nuke.util.Message.MESSAGE_MISSING_CATEGORY_NAME;
@@ -271,7 +271,7 @@ public class Parser {
         case TASK:
             return prepareAddFileCommand(parameters);
         default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
         }
     }
 
@@ -312,7 +312,7 @@ public class Parser {
         case TASK:
             return prepareDeleteAndListFileCommand(parameters, false);
         default:
-            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
         }
     }
 
