@@ -1,4 +1,4 @@
-package seedu.duke.Command;
+package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 

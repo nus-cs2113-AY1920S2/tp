@@ -5,7 +5,8 @@ import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpingCommand;
 import seedu.duke.exception.InputException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ControllerTest {
     @Test

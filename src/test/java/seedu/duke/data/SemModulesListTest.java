@@ -5,7 +5,10 @@ import seedu.duke.exception.InputException;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.module.Module;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SemModulesListTest {
 
@@ -57,12 +60,12 @@ public class SemModulesListTest {
         SemModulesList semModulesList = new SemModulesList("8");
         SelectedModule selectedModule =
                 new SelectedModule("id", "CS1231", "8", 4);
-        SelectedModule selectedModule_2 =
+        SelectedModule anotherSelectedModule =
                 new SelectedModule("name", "Mathematics of Games", "8", 4);
         semModulesList.add(selectedModule);
         assertEquals(selectedModule, semModulesList.getModule("CS1231"));
-        semModulesList.add(selectedModule_2);
-        assertEquals(selectedModule_2, semModulesList.getModule("Mathematics of Games"));
+        semModulesList.add(anotherSelectedModule);
+        assertEquals(anotherSelectedModule, semModulesList.getModule("Mathematics of Games"));
         assertThrows(InputException.class, () -> semModulesList.getModule("Math of Games"));
     }
 }
