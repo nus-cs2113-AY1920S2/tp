@@ -49,7 +49,7 @@ The following diagram describes how the add subject operation works:
 
 ![](images/addsubject_sequence_uml.jpg)
 
-Step 2. The user executes the command ``listsubjects`` to view the subjects currently stored in the application.
+Step 2. The user executes the command ``listsubject`` to view the subjects currently stored in the application.
 
 Step 3. Once the user has chosen a subject, he/she can execute the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``
 to add a flashcard into the subject. 
@@ -130,7 +130,7 @@ Step 2. The user can view the score history and average score of a selected subj
 quiz session for that subject, using the command ``score s/SUBJECTINDEX``.
 The following diagram describes how the score operation works:
 
-![](images/score.jpg)
+![](images/scores_sequence_uml.jpg)
 
 #### 2.x.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
@@ -160,6 +160,38 @@ This feature allows the user to add and keep track of upcoming events, such as e
 - ``SubjectList#removeEvent()`` - Removes an existing event.
 - ``SubjectList#listEvents()`` - List all events in the order they were added.
 - ``SubjectList#showUpcoming()`` - Shows upcoming events in chronological order.
+
+Given below is an example usage scenario and how the event mechanism behaves at each step.
+
+Step 1. Before the user can manage his/her events, he/she needs to first add events using the
+ command ``addevent e/DESCRIPTION d/DATE``.
+The following diagram describes how the add event operation works:
+
+![](images/addevent_sequence_uml.jpg)
+
+Step 2. The user executes the command ``listevent`` to view the events currently stored in the application.
+
+Step 3. The user can then execute the command ``showupcoming d/DAYS`` to show events that are upcoming within ``DAYS``
+number of days.
+The following diagram describes how the show upcoming operation works:
+
+![](images/showupcoming_sequence_uml.png)
+
+#### 2.x.2. Design Considerations
+##### Aspect: How to format the score history shown to the user
+- **Alternative 1 (current choice)**: Allow the user to store any type of event (does not have to be a test/exam, and
+does not have to be tied to a pre-existing subject).
+  - Pros: 
+    - More flexibility for the user to add any upcoming events that he needs to keep track of.
+    - The user can keep track of any upcoming exams that do not belong to any of the subjects stored in the app.
+  - Cons: 
+    - The user is unable to sort his exam/event by subjects.
+  
+- **Alternative 2**: Only allow the user to add exams, and only to pre-existing subjects already in the app.
+  - Pros:
+    - The user is able to sort his exam/event by subjects.
+  - Cons:
+    - The user does not have the flexibility to add anything other than exams for subjects that have been created.
     
 ### 2.x. Save/Load Feature
 #### 2.x.1 Implementation
