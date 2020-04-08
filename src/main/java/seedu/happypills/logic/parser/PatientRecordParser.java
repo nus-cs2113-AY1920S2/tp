@@ -160,7 +160,7 @@ public class PatientRecordParser extends Parser {
             }
             String[] updates = splitInput(input);
             updates = trimArray(updates);
-            updateInput(parseInput, updates);
+            parseInput(updates, parseInput);
         }
 
         if (!loopPrompt(PatientRecordTextUi.promptConfirmation(parseInput))) {
@@ -173,15 +173,15 @@ public class PatientRecordParser extends Parser {
 
     private static String[] parseInput(String[] details, String[] parseInput) {
         for (String detail : details) {
-            if (detail.startsWith(NRIC_TAG)) {
+            if (detail.startsWith(NRIC_TAG) && detail.trim().length() > 3) {
                 parseInput[0] = detail.substring(2).trim().toUpperCase();
-            } else if (detail.startsWith(SYMPTOM_TAG)) {
+            } else if (detail.startsWith(SYMPTOM_TAG) && detail.trim().length() > 3) {
                 parseInput[1] = detail.substring(3).trim();
-            } else if (detail.startsWith(DIAGNOSIS_TAG)) {
+            } else if (detail.startsWith(DIAGNOSIS_TAG) && detail.trim().length() > 3) {
                 parseInput[2] = detail.substring(4).trim();
-            } else if (detail.startsWith(DATE_TAG)) {
+            } else if (detail.startsWith(DATE_TAG) && detail.trim().length() > 3) {
                 parseInput[3] = detail.substring(1).trim();
-            } else if (detail.startsWith(TIME_TAG)) {
+            } else if (detail.startsWith(TIME_TAG) && detail.trim().length() > 3) {
                 parseInput[4] = detail.substring(1).trim();
             } else {
                 PatientRecordTextUi.patientRecordNotAddedMessage(detail);

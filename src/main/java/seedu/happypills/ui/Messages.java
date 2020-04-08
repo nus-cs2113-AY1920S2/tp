@@ -10,8 +10,7 @@ public class Messages {
             + "Enter help to know how to use HappyPills.";
     public static final String MESSAGE_INCOMPLETE_COMMAND = "    Command is incomplete. Please use the help command.\n"
             + DIVIDER;
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "    Patient does not exist. Please try again.\n"
-            + DIVIDER;
+    public static final String MESSAGE_PATIENT_NOT_FOUND = "    Patient does not exist. Please try again.";
     public static final String MESSAGE_PATIENT_RECORD_ADDED = "    Patient Record has been added.\n"
             + DIVIDER;
     public static final String MESSAGE_MISSING_FIELD =
@@ -23,12 +22,13 @@ public class Messages {
             "    Patient's record details are not provided.";
     public static final String MESSAGE_PATIENT_DETAILS_NOT_PROVIDED = "    Patient's detail is empty.";
     public static final String MESSAGE_INFORM_MISSING = "    Please input your missing detail listed below";
-    public static final String MESSAGE_NRIC_FORMAT = "    /ic NRIC (Format: [S/T][7-digits][A-Z])";
-    public static final String MESSAGE_SYMPTOM_FORMAT = "    /sym SYMPTOMS";
-    public static final String MESSAGE_DIAGNOSIS_FORMAT = "    /diag DIAGNOSIS";
-    public static final String MESSAGE_DATE_FORMAT = "    /d DATE  (Format: DD/MM/YYYY)";
-    public static final String MESSAGE_TIME_FORMAT = "    /t TIME (Format: HH:mm)";
-    public static final String MESSAGE_COMMAND_ABORTED = "    Command has been aborted.";
+    public static final String MESSAGE_NRIC_FORMAT = "      /ic NRIC (Format: [S/T][7-digits][A-Z])";
+    public static final String MESSAGE_SYMPTOM_FORMAT = "      /sym SYMPTOMS";
+    public static final String MESSAGE_DIAGNOSIS_FORMAT = "      /diag DIAGNOSIS";
+    public static final String MESSAGE_DATE_FORMAT = "      /d DATE (Format: DD/MM/YYYY)";
+    public static final String MESSAGE_TIME_FORMAT = "      /t TIME (Format: HH:mm)";
+    public static final String MESSAGE_COMMAND_ABORTED = DIVIDER
+            + "\n    Command has been aborted.";
     public static final String MESSAGE_PATIENT_RECORD_NOT_ADDED = "    The current information is not added.\n"
             + "    Please add all the details again! Thank you.\n"
             + DIVIDER;
@@ -54,10 +54,11 @@ public class Messages {
     public static final String MESSAGE_PATIENT_IS_IN_THE_MAP =
             "    Patient is already in the list. Please use help command.";
     public static final String MESSAGE_CONTENT_IS_EMPTY = "    Please do not leave the field as empty string";
-    public static final String MESSAGE_NAME_FORMAT = "    /n NAME";
-    public static final String MESSAGE_PHONE_NUMBER_FORMAT = "    /p PHONE (Format: 8-digit number starting with 8/9)";
-    public static final String MESSAGE_BLOOD_TYPE_FORMAT = "    /b BLOOD TYPE (Format: A/B/O/AB with +/-)";
+    public static final String MESSAGE_NAME_FORMAT = "      /n NAME";
+    public static final String MESSAGE_PHONE_NUMBER_FORMAT =
+            "      /p PHONE (Format: 8-digit number starting with 8/9)";
+    public static final String MESSAGE_BLOOD_TYPE_FORMAT = "      /b BLOOD TYPE (Format: A/B/O/AB with +/-)";
     public static final String MESSAGE_INCORRECT_INPUT_FORMAT = "    Incorrect input format. Sorry please try again";
-    public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "    /dob DATE OF BIRTH (Format: DD/MM/YYYY)";
+    public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "      /dob DATE OF BIRTH (Format: DD/MM/YYYY)";
 }
 
