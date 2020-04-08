@@ -10,8 +10,11 @@
 
 ## 1. Design
 ### Architecture
-![](images/architecture.jpeg)
-Figure 1. Architecture Diagram
+<br />
+<p align="center">
+  <img src="images/architecture.jpeg" width="600" alt="Architecture Diagram"/>  
+</p>
+<br />Figure 1. Architecture Diagram
 
 The Duke class is the main class of the product. It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -37,17 +40,43 @@ The product also contains the following components:
 
 In these components, cards and subjects have similar structure. Both of them contains a Card/Subject class and CardList/SubjectList class.
 Duke, along with all command class and Parser form the logic box of the product.
-<br />![](images/logicuml.jpg)
-Figure 2. Class diagram of Logic Component
+<br />
+<p align="center">
+  <img src="images/logicuml.jpg" width="600" alt="Logic Class Diagram"/>  
+</p>
+<br />Figure 2. Class diagram of Logic Component
 
-<br />Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, ScoreList.
-<br />![](images/model.jpeg)
-Figure 3. Class diagram of Model Component
+The flow of the logic component is as follows:
+1) Duke uses the Parser class to parse the command
+2) The corresponding Command object is created and passed to Duke
+3) The Command object is then executed by Duke  
+<br />
+<p align="center">
+  <img src="images/command_sequence_diagram.jpeg" width="600" alt="Command Sequence Diagram"/>  
+</p>
+<br />Figure 3. Sequence diagram of Logic Component
 
-<br />Finally the Storage box, i.e. Storage class will handle reading and writing the content to files.
-The Storage component saves the SubjectList objects in Serializable format and loads it back.
-<br />![](images/storageuml.jpg)
-Figure 4. Class diagram of Storage Component
+<br />The Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, ScoreList.
+
+- The SubjectList class contains an array the subjects and exams
+- The Event class contains information about the upcoming events.
+- The Subject class contains details such as the subject name, a scorelist and a cardlist.
+- The ScoreList class contains an array of past scores of the quizzes which the user have completed.
+- The CardList class contains an array of cards.
+- The Card class contains both a question and an answer to the question.  
+<br />
+<p align="center">
+  <img src="images/modeluml.jpeg" width="600" alt="Model class Diagram"/>  
+</p>
+<br />Figure 4. Class diagram of Model Component
+
+<br />Finally, the Storage box, i.e. Storage class will handle reading and writing the content to files.
+<br />The Storage component saves the SubjectList objects in Serializable format and loads it back.
+<br />
+<p align="center">
+  <img src="images/storageuml.jpg" width="600" alt="Storage Class Diagram"/>  
+</p>
+<br />Figure 5. Class diagram of Storage Component
 
 ## 2. Implementation
 ### 2.1. [Proposed] Subject Feature
@@ -63,17 +92,22 @@ Step 1. Before the user decides to add a flashcard, he/she can create a subject 
 the command ``addsubject s/SUBJECTNAME``.
 The following diagram describes how the add subject operation works:
 
-![](images/addsubject_sequence_uml.jpg)
-Figure 5. Sequence diagram for addsubject command
+<br />
+<p align="center">
+  <img src="images/addsubject_sequence_diagram.jpeg" width="600" alt="Addsubject Sequence Diagram"/>  
+</p>
+<br />Figure 6. Sequence diagram for addsubject command
 
 Step 2. The user executes the command ``listsubjects`` to view the subjects currently stored in the application.
 
 Step 3. Once the user has chosen a subject, he/she can execute the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``
 to add a flashcard into the subject. 
 The following diagram describes how the add card operation works:
-
-![](images/addcard_sequence_uml.jpg)
-Figure 6. Sequence diagram of addcard command.
+<br />
+<p align="center">
+  <img src="images/addcard_sequence_uml.jpeg" width="600" alt="Addcard Sequence Diagram"/>  
+</p>
+<br />Figure 7. Sequence diagram of addcard command.
 
 #### 2.1.2. Design Considerations
 ##### Aspect: How user can add a flashcard into a subject
@@ -110,8 +144,11 @@ Step 2. The user can start a quiz by indicating a subject and the number of ques
 in that subject will be quizzed.
 The following diagram describes how the quiz operation works:
 
-![](images/quiz_sequence_uml.png)
-Figure 7. Sequence diagram of quiz command.
+<br />
+<p align="center">
+  <img src="images/quiz_sequence_uml.png" width="600" alt="Quiz Sequence Diagram"/>  
+</p>
+<br />Figure 7. Sequence diagram of quiz command.
 
 Step 3: The quiz will end upon completion of the specified number of questions, or by stopping the quiz using the
 command ``exitquiz``.
@@ -149,8 +186,11 @@ Step 2. The user can view the score history and average score of a selected subj
 quiz session for that subject, using the command ``score s/SUBJECTINDEX``.
 The following diagram describes how the score operation works:
 
-![](images/scores_sequence_uml.png)
-Figure 8. Sequence diagram of score command
+<br />
+<p align="center">
+  <img src="images/scores_sequence_uml.png" width="600" alt="Score Sequence Diagram"/>  
+</p>
+<br />Figure 8. Sequence diagram of score command
 
 #### 2.x.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
@@ -181,7 +221,7 @@ To deserialize the object after being read from file via `java.io.FileInputStrea
 
 The reading and writing functions can be found in the `Storage#loadSubs()` and `Storage#saveSubs()` methods respectively.
 ![](images/storage_sequence_uml.jpg)
-Figure 9. Sequence diagram of storage command
+<br />Figure 9. Sequence diagram of storage command
 
 ## Appendix A: Product Scope
 ### Target User Profile
