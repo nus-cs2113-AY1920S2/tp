@@ -744,11 +744,13 @@ Also, ensure that you do not enter the same <code>new module code</code> as an e
 
 ##### **Example Usage and Expected Outcome**     
 <small><u>**Correct Edit**</u></small>  
-![edm command correct](images/edm_correct.png)
+![edm command correct](images/edm_correct.png)   
+<br>     
 <small><u>**Duplicate Module (Incorrect)**</u></small>  
-![edm command duplicate module](images/edm_exist.png)
+![edm command duplicate module](images/edm_exist.png)   
+<br>     
 <small><u>**Invalid Module Code (Incorrect)**</u></small>  
-![edm command invalid module code](images/edm_invalid.png)
+![edm command invalid module code](images/edm_invalid.png)   
 
 <br>  
 
@@ -771,11 +773,14 @@ In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, 
 
 ##### **Example Usage and Expected Outcome**     
 <small><u>**Correct Edit**</u></small>  
-![edc command correct](images/edc_correct.png)
+![edc command correct](images/edc_correct.png)  
+<br>     
 <small><u>**Duplicate Category (Incorrect)**</u></small>  
-![edc command duplicate category](images/edc_exist.png)
+![edc command duplicate category](images/edc_exist.png)   
+<br>     
 <small><u>**Invalid Priority (Incorrect)**</u></small>  
-![edc command invalid priority](images/edc_invalid_priority.png)  
+![edc command invalid priority](images/edc_invalid_priority.png)    
+<br>     
 <small><u>**Nothing to Edit (Incorrect)**</u></small>  
 ![edc command nothing to edit](images/edc_empty.png)
 
@@ -805,13 +810,17 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 
 ##### **Example Usage and Expected Outcome**     
 <small><u>**Correct Edit**</u></small>  
-![edt command correct](images/edt_correct.png)
+![edt command correct](images/edt_correct.png)    
+<br>     
 <small><u>**Duplicate Category (Incorrect)**</u></small>  
-![edt command duplicate task](images/edt_exist.png)  
+![edt command duplicate task](images/edt_exist.png)   
+<br>     
 <small><u>**Invalid Deadline (Incorrect)**</u></small>  
-![edt command invalid deadline](images/edt_invalid_deadline.png)  
-<small><u>**Invalid Priority (Incorrect)**</u></small>  
-![edt command invalid priority](images/edt_invalid_priority.png)  
+![edt command invalid deadline](images/edt_invalid_deadline.png)   
+<br>     
+<small><u>**Invalid Priority (Incorrect)**</u></small>      
+![edt command invalid priority](images/edt_invalid_priority.png)     
+<br>     
 <small><u>**Nothing to Edit (Incorrect)**</u></small>  
 ![edt command nothing to edit](images/edt_empty.png)
 
@@ -830,7 +839,8 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 
 ##### **Example Usage and Expected Outcome**     
 <small><u>**Correct Edit**</u></small>  
-![edf command correct](images/edf_correct.png)
+![edf command correct](images/edf_correct.png)   
+<br>     
 <small><u>**Duplicate File (Incorrect)**</u></small>  
 ![edf command duplicate file](images/edf_exist.png)  
 
@@ -853,9 +863,11 @@ If the <i>task</i> was <b>already done</b>, and you execute the command, you wil
   
 ##### **Example Usage and Expected Outcome**   
 <small><u>**Done at Root Level**</u></small>  
-![done command root level](images/done_root_level.png)
+![done command root level](images/done_root_level.png)   
+<br>     
 <small><u>**Done at Task Level**</u></small>  
-![done command task level](images/done_task_level.png)
+![done command task level](images/done_task_level.png)  
+<br>     
 <small><u>**Done an Already Done Task**</u></small>  
 ![done command already](images/done_already.png)
 
@@ -907,8 +919,8 @@ To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, i
 
 ##### **Example Usage and Expected Outcome**    
 <small><u>**Opening at Root Level**</u></small>  
-![open file command root level](images/open_root_level.png) 
-<br>
+![open file command root level](images/open_root_level.png)    
+<br>     
 <small><u>**Opening at Task Level**</u></small>  
  ![open file command task level](images/open_task_level.png) 
 
