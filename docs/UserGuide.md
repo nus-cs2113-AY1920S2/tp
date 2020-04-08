@@ -342,9 +342,14 @@ addc Project -m cs2113t -p 3
 - `category name` -- The _name_ of the   _category_  
 - `deadline` -- The _deadline_ of the _task_  
 - `priority` -- A number indicating the  _priority_ of the _category_   
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
-> **Note**: The `priority` that you give must be a number between 0 and 100 inclusive. The bigger the number, the more important the task. If the `priority` is not given, then it will be set to the same _priority_ as it's _category_.  
-> **Note**: The `deadline` provided consists of both a _date_ and a _time_. The `deadline` provided must adhere to the set of accepted [Date Time formats](#date-time-formats).   
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to the same <i>priority</i> as it's <i>category</i>.<br>The <code>deadline</code> provided consists of both a <i>date</i> and a <i>time</i>. The <code>deadline</code> provided must adhere to the set of accepted <a href = '#date-time-formats'>Date Time formats</a>
+</div>
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory.You can move to the <i>module</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.  
+</div>
 
 ##### Example Usage    
 
@@ -381,9 +386,14 @@ addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
 - `file path` -- the **Absolute** _path_ of the _file_   
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
-> **Note**: The `file path` that you give must exist. Otherwise, an error message will be displayed.
-> **Note**: The `file name` provided can be different from the real file name that is stored in the disk.   
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <b>file path</b> provided must exist. Otherwise, an error message will be displayed. &#128543;
+</div>
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.<br> The <b>file path</b> provided can be different from the real file name that is stored in the disk. 
+</div>
 
 ##### Example Usage
 
@@ -425,7 +435,10 @@ Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your a
 - `module code` -- The _module code_ of the _module_ to contain the _category_ to be added  
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
+</div>
 
 ##### Example Usage
 
@@ -486,9 +499,12 @@ List all *module*s in your **Module List**. The **Module List** contains all you
 
 ##### Format  
 
-`lsm [keyword]`   
+`lsm [keyword]` 
 
-> **Note**: If keyword is provided, `lsm` will list out all modules with module code containing the keyword, otherwise, `lsm` will list out all modules.
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+If keyword is provided, <code>lsm</code> will list out all modules with module code containing the keyword, otherwise, <code>lsm</code> will list out all modules.
+</div>
 
 ##### Example Usage    
 
@@ -514,7 +530,10 @@ List all *category*s in your **Category List**. The **Category List** contains a
 
 - `module code` -- The _module code_ of the _module_ to contain the _category_ to be added
 
-> **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
+</div>
 
 ##### Example Usage
 
@@ -544,7 +563,10 @@ List all the *task*s in your **Task List**. The **Task List** contains all your 
 lst [ -m <module code> -c <category name>]
 ```
 
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
+</div>
 
 ##### Example Usage 
 
@@ -577,7 +599,10 @@ List all the *file*s in your **File List**. The **File List** contains all your 
 lsf [ <file keyword> -m <module code> -c <category name> -e -a]
 ```
 
-> **Note**: By default, `lsf` will list out **all** the files in the current directory and sub-directories. You need to include the `module code` if you wish to list out only the files in that _module_'s directory. Also, you need to include both `module code` and `category name`  if you wish to list out only the files in that _category_'s directory. You can move to the the respective directories via the [Change Directory](#6-change-directory) Command.  
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+By default, <code>lsf</code> will list out <b>all</b> the matching files in the current directory and sub-directories. You need to include the <b>module code</b> if you wish to list out only the files in that <i>module</i>'s directory. Also, you need to include both <b>module code</b> and <b>category name</b> if you wish to list out only the files in that <i>category</i>'s directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command. 
+</div>
 
 ##### Example Usage 
 
@@ -625,7 +650,10 @@ List all the undo *task*s in your **Task List**. The *task*s will be sorted in a
 lsts [ -d -p (choose 1; default -d) ]
 ```
 
-> **Note**: You need **not** include the `-d` if you want to sort tasks in terms of `deadline`. You are supposed to choose only one prefix between `-d` and `-p`. 
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <code>-d</code> if you want to sort tasks in terms of <b>deadline</b>. You are supposed to choose only one prefix between <code>-d</code> and <code>-p</code>. 
+</div>
 
 ##### Example Usage
 
@@ -656,6 +684,11 @@ List all the *task*s in one of added *module*s. The *task*s will be sorted in as
 ```
 lsmtd <module code>
 ```
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> if you are currently in that <i>module</i>'s directory. Sepcifying a <b>module code</b> will make the command to list tasks in that <i>module</i>.
+</div>
 
 > **Note**: You need **not** include the `module code` if you are currently in that *module*'s directory. Sepcifying a `module code` will make the command to list tasks in that *module*.
 
@@ -765,7 +798,12 @@ delm cs
 `delc <category name> -m <module code> [ -e -a ]`  
 
 - `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
-- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by 
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
+</div>
 
 ##### **Example Usage and Expected Outcome**    
 <small><u><b>Single Deletion</b></u></small>  
@@ -800,6 +838,11 @@ delc Tutorial
 - `task description` -- The _description_ of the _task_
 - `module code` -- The _module code_ of the _module_ to contain the _category_ to be added
 - `category name` -- The _name_ of the _category_
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
+</div>
 
 > **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command. 
 
@@ -846,7 +889,10 @@ delt urgent assignment
 - `-e` to filter for exact keywords
 - `-a` to filter across ALL your files
 
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
+</div>
 
 ##### Example Usage
 
@@ -895,7 +941,10 @@ Deletes a _tag_ from your _task_'s **Tag List**. The **Tag List** contains all y
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
 
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. Moreover, you need **not** include `module code`, `category name` and `task description` if you are currently in that _task_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
+</div>
 
 ##### Example Usage
 
