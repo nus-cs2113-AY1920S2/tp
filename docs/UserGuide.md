@@ -397,7 +397,7 @@ Format: `clear done`
 
 #### 3.9.1. Search by Name 
 You can search for tasks in the list by specifying the type and name of task you might be searching for.
-The task types available for searching are `assignment`,`event`,`all` only. (case-sensitive)
+The task types available for searching are `assignment`,`event`,`all` only. (case-insensitive)
 
 > **Tip**:
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
@@ -423,7 +423,7 @@ Here are the search results:
 
 You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for. However,
 Events classified as repeating events cannot be found using `searchd` command
-The task types available for searching are `assignment`,`event`,`all` only. (case-sensitive)
+The task types available for searching are `assignment`,`event`,`all` only. (case-insensitive)
 
 > **Tip**: 
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
