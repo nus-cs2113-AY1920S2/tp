@@ -40,13 +40,12 @@ div {
   color: #a94442;
 }
 </style>
-
 # **Nuke User Guide** <small>v2.1</small>     
 
 By: `CS2113T-T13-2`      Since: `Feb 2020`    
 <small>[Go to Webpage](https://ay1920s2-cs2113t-t13-2.github.io/tp/UserGuide.html)</small>   
 
-
+     
 ## **Table of Contents**  
 
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>   
@@ -65,8 +64,9 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. List your Modules [&#10149;](#a-list-your-modules)     
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. List your Categories [&#10149;](#b-list-your-categories)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. List your Tasks [&#10149;](#c-list-your-tasks)    
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. List your Tasks Sorted[&#10149;](#d-list-your-tasks-sorted)    
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. List your Files[&#10149;](#e-list-your-files)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. List your Tasks Sorted by Deadline or Priority[&#10149;](#d-list-your-tasks-sorted-by-deadline-or-priority)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. List your Tasks at Specified Time Period[&#10149;](#e-list-your-tasks-at-specified-time-period)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; f. List your Files[&#10149;](#f-list-your-files)    
 &nbsp; &nbsp; &nbsp; &nbsp; **3. Delete** [&#10149;](#3-delete)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Delete Modules from your Module Lists [&#10149;](#a-delete-modules-from-your-module-lists)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Delete Categories from your Category Lists [&#10149;](#b-delete-categories-from-your-category-lists)    
@@ -99,20 +99,23 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 
 ## **Introduction**  
 <span style="text-align: justify; display: block">
-This **Nuke** application is a simple yet powerful task management system that is dedicated to providing **NUS students** a more efficient way to organise their _modules_ and _tasks_.<br>  
-You will be interacting with the application via the command line. With the **Nuke** application, you will be able to perform various operations to manage your _modules_ and _tasks_ such as adding, deleting and listing your  _modules_ and _tasks_. You may also add additional properties to your _tasks_ such as _files_, _deadlines_, and _priorities_.<br>  
-**Nuke** facilitates users by automatically sorting user-added _tasks_ and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>  
-If you are an **NUS student** and have not tried out **Nuke** yet...  
-What are you waiting for? Give **Nuke** a shot, and you will see how amazing it is!   
-</span>
+This <b>Nuke</b> application is a simple yet powerful task management system that is dedicated to providing <b>NUS students</b> a more efficient way to organise their <i>modules</i> and <i>tasks</i>.<br>   
 
+You will be interacting with the application via the command line. With the <b>Nuke</b> application, you will be able to perform various operations to manage your <i>modules</i> and <i>tasks</i> such as adding, deleting and listing your  <i>modules</i> and <i>tasks</i>. You may also add additional properties to your <i>tasks</i> such as <i>files</i>,  <i>deadlines</i>, and <i>priorities</i>.<br>  
+
+<b>Nuke</b> facilitates users by automatically sorting user-added <i>tasks</i> and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>  
+
+If you are an <b>NUS student</b> and have not tried out <b>Nuke</b> yet...    
+What are you waiting for? Give <b>Nuke</b> a shot, and you will see how amazing it is!   
+</span>
+   
 [Back To Top](#table-of-contents)
 
 <br>
 
 ## **Setting Up**
 
-[Back To Top](#table-of-contents)
+[Back To Top](#table-of-contents)   
 
 <br>
 
@@ -131,9 +134,9 @@ This section will explain the fundamental structure of the **Nuke** application,
 | **Category**    | The **third** level of the Directory Tree.<br>Added _tasks_ are in this level.    |
 | **Task**        | The **fourth** level of the Directory Tree.<br>Added _files_ are in this level.       |
 | **File**        | The **last** level of the Directory Tree.<br>Nothing else can be added.                                         |
-
+  
 <br>
-
+  
 Below is an illustration of a possible <b>Directory Tree</b> structure:    
 <br>
 ![Directory Tree Image](images/Tree.png)  
@@ -141,7 +144,7 @@ Below is an illustration of a possible <b>Directory Tree</b> structure:
 
 <br>
 
-#### Root   
+#### **Root**   
 The **Root** Directory is the **base** of the entire Directory Tree. Only **one** root exists in the entire Tree. _Modules_ are added into this level into a **Module List**. A _module_ consists of both a *module code* and a _module title_. 
 
 <div class="alert alert-warning">
@@ -149,20 +152,20 @@ The **Root** Directory is the **base** of the entire Directory Tree. Only **one*
 Only <b>NUS modules</b> are allowed to be added in <b>Nuke</b>.  
 </div>
 
-#### Module
+#### **Module**
 The **Module** Directory is the **second** level of the Directory Tree.  Each _module_ has a **Category List** that has several _categories_ to categorise your _tasks_, such as Lecture, Tutorial and Assignment, so that you can further organise your _tasks_. A _category_ consists of a _name_ and a _priority_ to indicate the importance of the _tasks_ in that _category_.  
 <div class="alert alert-info">
 <i class="fa fa-info"></i> <b>Info</b> <br> 
 Upon adding a <i>module</i>, <b>Nuke</b> automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. So, you don't have to add those <i>categories</i> yourself!
 </div>   
 
-#### Category
+#### **Category**
 The **Category** Directory is the **third** level of the Directory Tree. Each _category_ has a **Task List** that can contain any number of _tasks_, which are ideally related to the _category_. A _task_ has several attributes, namely the _description_, _deadline_ of the _task_ if any, _priority_ and the _done status_ of the _task_.
 
-#### Task
+#### **Task**
 The **Task** Directory is the **fourth** level of the Directory Tree. Each _task_ can have _files_ attached to the it. _Files_ are stored in the **File List**. The _file_ must have a _file name_ and the _path_ to the _file_.   
 
-#### File
+#### **File**
 The **File** Directory is the **last** level of the Directory Tree. It contains no other directories.   
 
 <div class="alert alert-warning">
@@ -176,8 +179,8 @@ For example, you can only add a <i>task</i> into the <b>Category</b> directory, 
 You can shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command! <br>
 To learn how to traverse the various directories, see the <b><a href="#6-change-directory">Change Directory</a></b> command.
 </div>   
-
-[Back To Top](#table-of-contents)
+  
+[Back To Top](#table-of-contents)  
 
 <br>
 
@@ -199,9 +202,9 @@ Some **attributes** and **prefixes** are _optional_ and the command can still ex
 
 ### **Any**
 There are times when you may have to include at least one from a set of **attributes** and **prefixes**. You may choose to include one <i>or</i> more from the set, but <b>not</b> none of them. Such **attributes** and **prefixes** will be wrapped in curly brackets `{ }` to help you to recognise them.   
-
+  
 [Back To Top](#table-of-contents)
-
+  
 <br>
 
 ## **Command Prefixes**  
@@ -228,7 +231,7 @@ All **command prefixes** in **Nuke** begins with a `-` and followed by a **lette
 Because each <b>prefix</b> begins with a <code>-</code>, <b>Nuke</b> has to unfortunately restrict your choice of names for the directories. <br>
 Specifically, each word in the name of your directory has to begin with a alpha-numeric <i>(i.e. non-symbol)</i> or underscore character.
 </div>
-
+  
 [Back To Top](#table-of-contents)  
 
 <br><br>  
@@ -241,23 +244,22 @@ As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**
 <br>
 Below sums up what `mkdir` does at each level of the Directory.
 
-<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Add</b></small></span></div>
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Add Command</b></small></span></div>
 
-| Current Level   | What Happens?                                                        |
-|:---------------:|----------------------------------------------------------------------|
-| <b>Root</b>     | `mkdir <module code>` adds a *module* into the current directory     |
-| <b>Module</b>   | `mkdir <category name>` adds a *category* into the current directory |
-| <b>Category</b> | `mkdir <task description>` adds a *task* into the current directory  |
-| <b>Task</b>     | `mkdir <file name>` adds a *file* into the current directory         |
-| <b>File</b>     | You cannot `mkdir` here! :pensive:                                   |
-
+| Current Level   | What Happens?                                                        |  
+|:---------------:|----------------------------------------------------------------------|  
+| <b>Root</b>     | `mkdir <module code>` adds a *module* into the current directory     |  
+| <b>Module</b>   | `mkdir <category name>` adds a *category* into the current directory |  
+| <b>Category</b> | `mkdir <task description>` adds a *task* into the current directory  |  
+| <b>Task</b>     | `mkdir <file name>` adds a *file* into the current directory         |  
+| <b>File</b>     | You cannot `mkdir` here! :pensive:                                   |  
 
 The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
 [Back To Top](#table-of-contents)
 
 
-#### a. Add a Module into your Module List  
+#### **a. Add a Module into your Module List**  
 `addm` adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the [List Module command](#a-list-your-modules).
 
 ##### Format  
@@ -268,9 +270,9 @@ The above commands have to be done in their corresponding directories. Conversel
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond to a valid <b>NUS module</b>. Only <b>NUS modules</b> can be added in this version of <b>Nuke</b>.
 </div>
-
-##### Example Usage and Expected Outcome  
-
+ 
+##### **Example Usage and Expected Outcome**  
+  
 ![addm command](images/addm.png)
 
 
@@ -283,12 +285,12 @@ The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond t
 ![image-20200330233926681](images/ug_addm_after.png)
 
 
-
+  
 [Back To Top](#table-of-contents)   
 
 <br>
 
-#### b. Add a Category into your Category List  
+#### **b. Add a Category into your Category List**  
 `addc` adds a _category_ into your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the [List Category](#b-list-your-categories) command.
 
 ##### Format  
@@ -329,7 +331,7 @@ SUCCESS!! Category Project is created.
 
 <br>  
 
-#### c. Add a Task into your Task List  
+#### **c. Add a Task into your Task List**  
 `addt` adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the [List Task](#c-list-your-tasks) command.
 
 ##### Format  
@@ -369,7 +371,7 @@ SUCCESS!! Task urgent assignment is created.
 
 <br>
 
-#### d. Add a File into your Task File List  
+#### **d. Add a File into your Task File List**  
 `addf` adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
 
 ##### Format  
@@ -409,7 +411,7 @@ SUCCESS!! File save.txt is added.
 
 <br>
 
-#### e. Add a Tag to your Task
+#### e. **Add a Tag to your Task**
 Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List File command. not available now).
 
 ##### Format  
@@ -447,165 +449,178 @@ Tag added!
 <br>
 
 ### **2. List**  
-Lists the _modules_, _categories_ or _tasks_ in their respective lists.<br>
+Lists filtered <i>modules</i>, <i>categories</i>, <i>tasks</i> or <i>files</i>. <br>
 
-As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. **Nuke** complements the Linux shell command by offering a generic list command word for listing directories: `ls`
+Similar to a Linux shell, <b>Nuke</b> has a generic command word for listing <i>child directories</i>: `ls`  
+<br>
+In the table below, you can find what `ls` does at each level of the Directory.
 
-Below sums up what `ls` does at each level of the Directory.
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic List Command</b></small></span></div>
 
-<div style="text-align: center"><span style="color: green"><small>Table <b>Generic List</b></small></span></div>
+| Current Level   | What Happens?                                                           |  
+|:---------------:|-------------------------------------------------------------------------|  
+| <b>Root</b>     | `ls` shows all your <i>modules</i> in your <b>Module List</b><br>`ls <module code>` shows all the <i>categories</i> in the <b>Category List</b> of that <i>module</i>           |  
+| <b>Module</b>   | `ls` shows all your <i>categories</i> in the <i>module</i>'s <b>Category List</b><br>`ls <category name>` shows all the <i>tasks</i> in the <b>Task List</b> of that <i>category</i> |  
+| <b>Category</b> | `ls` shows all your <i>tasks</i> in the <i>category</i>'s <b>Task List</b><br>`ls <task description>` shows all the <i>files</i> in the <b>File List</b> of that <i>task</i>        |  
+| <b>Task</b>     | `ls` shows all your <i>files</i> in the <i>task</i>'s <b>File List</b>  |  
+| <b>File</b>     | You cannot `ls` here! :frowning:                                        |  
 
-|  Current Level  | What Happens?                                                |
-| :-------------: | ------------------------------------------------------------ |
-|   <b>Root</b>   | `ls` list out all *module*s in your **Module List**<br>`ls <module code>` list out all *catetory*s in the **Category List** in the *module* |
-|  <b>Module</b>  | `ls` list out all the *category*s in your **Category List** in the current *module*.<br>`ls <category name>` list out all *task*s in the **Task List** in the *category* |
-| <b>Category</b> | `ls` list out all *task*s in the **Task List** in the current *category*<br>`ls <task description>` list out all files in the *task* |
-|   <b>Task</b>   | `ls` list out all files in the current *task*                |
-|   <b>File</b>   | You cannot `ls` here! :pensive:                              |
+The above commands have to be done in their corresponding directories. On the other hand, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
-The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+Both <b>List</b> commands <i>(with the exception of <b><a href="#d-list-your-tasks-sorted-by-deadline-or-priority">List your Tasks Sorted by Deadline or Priority</a></b> and <b><a href="#e-list-your-tasks-at-specified-time-period">List your Tasks at Specified Time Period</a></b>)</i> and <b><a href="#3-delete">Delete</a></b> commands function by first filtering the relevant items from the <i>keywords</i> that you provide. You can further choose to enter <code>-e</code> to filter using the <b><i>exact</i></b> <i>keyword</i>, and <code>-a</code> to filter across <b><i>all</i></b> the directories. <br>  
+For more information on how filtering is done, see <a href="#how-does-the-filtering-process-works">here</a>.
+</div>   
 
-#### a. List your Modules
+[Back To Top](#table-of-contents)
+<br> 
 
-List all *module*s in your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the List Module command.
+#### **a. List your Modules**
+`lsm` will show your filtered <i>module(s)</i> in your <b>Module List</b>.
 
-##### Format  
+##### **Format**  
 
-`lsm [keyword]`   
+`lsm [ <module keyword> -e -a ]`   
 
-> **Note**: If keyword is provided, `lsm` will list out all modules with module code containing the keyword, otherwise, `lsm` will list out all modules.
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
 
-##### Example Usage    
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+If the <code>module keyword</code> is provided, <code>lsm</code> will list out all <i>modules</i> with <i>module code</i> containing the  <code>module keyword</code>. Otherwise, it will show <b>all</b> your <i>modules</i>.
+</div>   
 
-```
-	lsm
-```
-
-##### Expected Outcome 
+##### **Example Usage and Expected Outcome**    
 
 ![image-20200401011642619](images/ug_lsm.png)
 
+[Back To Top](#table-of-contents)   
+<Br> 
 
+#### **b. List your Categories**
+`lsc` will show your filtered <i>category(s)</i>.
 
-#### b. List your Categories
+##### **Format**  
 
-List all *category*s in your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the List Category command.
+`lsc [ <category keyword> -m <module code> -e -a ]`  
 
-##### Format  
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by    
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
 
-`lsc [ -m <module code> ]`  
-
-- `module code` -- The _module code_ of the _module_ to contain the _category_ to be added
-
-> **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.
-
-##### Example Usage
-
-```
-	lsc -m c3235
-```
-
-```
-	lsc
-```
-
-##### Expected Outcome
+##### **Example Usage and Expected Outcome**
 
 ![image-20200401012031973](images/ug_lsc.png)
 
+[Back To Top](#table-of-contents)   
+<br>  
 
+#### **c. List your Tasks**  
+`lst` will show your filtered <i>task(s)</i>.
 
-#### c. List your Tasks  
+##### **Format**  
 
-List all the *task*s in your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the List Task command.
+`lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]` 
 
-##### Format  
+- `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
 
-```
-lst [ -m <module code> -c <category name>]
-```
-
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command.  
-
-##### Example Usage 
-
-```
-	lst -m cs3235 -c Assignment
-```
-
-```
-	lst -c Assignment
-```
-
-```
-	lst
-```
-
-##### Expected Outcome    
+##### **Example Usage and Expected Outcome**
 ![image-20200401012942212](images/ug_lst.png)
 
+[Back To Top](#table-of-contents)   
+<br> 
 
-#### d. List your undo tasks in sorted order  
+#### **d. List your Tasks Sorted by Deadline or Priority**  
 
-List all the undo *task*s in your **Task List**. The *task*s will be sorted in ascending order of `deadline` by deafault. User can also specify in the command to sort *task*s in descending order of `priority` by adding `-p` prefix.
+`lsts` shows your <b>undone</b> <i>tasks</i>. By default, the <i>tasks</i> will be sorted by <i>deadline</i>, from the earliest to the latest <i>deadline</i>.  You may also specify in the command to sort your <i>tasks</i> by <i>priority</i> instead, in descending order of <i>priority</i>, by including the `-p` prefix. <br>
+Also, you can further choose to view the sorted <i>tasks</i> of a specific <i>module</i>. By default, this command will show you the sorted list of <b>all</b> your <i>tasks</i>. You can enter the `module code` to view the sorted list of the <i>tasks</i> in that <i>module</i> instead.
 
-##### Format  
+##### **Format**  
 
-```
-lsts [ -d -p (choose 1; default -d) ]
-```
+`lsts [ <module code> -d -p (choose at most one; default -d) ]`   
+- `module code` -- The <i>module code</i> of the <i>module</i> for which its sorted list of <i>tasks</i> is to be shown
 
-> **Note**: You need **not** include the `-d` if you want to sort tasks in terms of `deadline`. You are supposed to choose only one prefix between `-d` and `-p`. 
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+Since the command sorts by <i>deadline</i> by default, you need <b>not</b> include the <code>-d</code> prefix if you want to sort your <i>tasks</i> by <i>deadline</i> &#128521;. <br>
+However, you must choose between sorting by <i>deadline</i> <i><u>or</u></i> by <i>priority</i>. Entering both <code>-d</code> <i><u>and</u></i> <code>-p</code> will cause an error message to be shown &#128552;. 
+</div>   
 
-##### Example Usage
-
-```
-	lsts
-```
-
-```
-	lsts -p
-```
-
-##### Expected Outcome
-
-
-
-#### e. List your tasks under specific module in sorted order 
-
-List all the *task*s in one of added *module*s. The *task*s will be sorted in ascending order of `deadline` by deafault.
-
-##### Format  
-
-```
-lsmtd <module code>
-```
-
-> **Note**: You need **not** include the `module code` if you are currently in that *module*'s directory. Sepcifying a `module code` will make the command to list tasks in that *module*.
-
-##### Example Usage
-
-```
-	lsmtd
-```
-
-```
-	lsmtd CS2113
-```
-
-##### Expected Outcome
+##### **Example Usage and Expected Outcome**
+<small><u><b>Sort by Deadline</b></u></small>  
+![lsts command sort by deadline](images/lsts_deadline.png)    
+<br>  
+<small><u><b>Sort by Priority</b></u></small>   
+![lsts command sort by priority](images/lsts_priority.png)  
 
 
+[Back To Top](#table-of-contents)   
+<br>  
+
+#### **e. List your Tasks at Specified Time Period**
+`due` filters through <b>all</b> your tasks according to a specified <i>time period</i>. <br>
+
+A <i>time period</i> is defined by an <u>optional</u> <i>time specifier (e.g. on, before, after)</i> and a <i>date</i>. If the <i>time specifier</i> is left out, the <i>time period</i> is set to be <b>on</b> the <i>date</i> itself.  <br>
+
+The filtered <i>tasks</i> are then shown as a list.
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+As a bonus, you can also filter for <b>overdue</b> <i>tasks</i>. Simply enter <code>due over</code> to do so! &#128521;
+</div>
+
+##### **Format**  
+`due <time specifier> <date>`  
+- `time specifier` -- The  <u>optional</u> <i>time specifier</i> to define the <i>time period</i> to filter the <i>tasks</i>   
+- `date` -- The <i>date</i> to define the <i>time period</i> to filter the <i>tasks</i>   
+
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <code>time specifier</code> and <code>date</code> that you provide must adhere to the set of <b>Nuke</b>'s accepted <b><a href="#date-formats">Date formats</a></b>.
+</div>
+
+##### **Example Usage and Expected Outcome**  
+<small><u><b>With Time Specifier</b></u></small>  
+![due command with time specifier](images/due_timespec.png)    
+<br>  
+<small><u><b>Without Time Specifier</b></u></small>   
+![due command without time specifier](images/due_no_timespec.png)   
+<br>  
+<small><u><b>Overdue</b></u></small>   
+![due command overdue](images/due_over.png)   
+
+[Back To Top](#table-of-contents)   
+<br>  
+
+#### **f. List your Files** 
+`lsf` will show your filtered <i>files(s)</i>.
+
+##### **Format**  
+`lsf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]`
+
+- `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
+
+##### **Example Usage and Expected Outcome**
+
+[Back To Top](#table-of-contents)   
+
+<br><br>
 
 ### **3. Delete**  
+
 Deletes <i>modules</i>, <i>categories</i>,  <i>tasks</i> or <i>files</i> from their respective lists.   
 You will be prompted to either enter `yes`  to confirm the deletion <i>or</i> `no` to abort the deletion after entering the <b>Delete</b> command.   
 <br>
 Like the [<b>Add</b>](#1-add) Command, **Nuke** also supports a generic command for deleting a directory: `rm`
 <br>
-Below sums up what `rm` does at each level of the Directory.   
+The table below shows you `rm` does at each level of the Directory.
 
-<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Delete</b></small></span></div>
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Delete Command</b></small></span></div>
 
 | Current Level   | What Happens?                                                        |  
 |:---------------:|----------------------------------------------------------------------|  
@@ -618,13 +633,13 @@ Below sums up what `rm` does at each level of the Directory.
 The above commands have to be done in their corresponding directories. However, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
 <div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
+<i class="fa fa-info"></i> <b>Info</b> <br> 
 Just like the <b><a href="#2-list">List</a></b> commands, the <b>Delete</b> command works by first filtering the relevant items from the <i>keywords</i> that you provide. You can further choose to enter <code>-e</code> to filter to the <b><i>exact</i></b> <i>keyword</i>, and <code>-a</code> to filter across <b><i>all</i></b> the directories. <br>  
 For more information on how filtering is done, see <a href="#how-does-the-filtering-process-works">here</a>.  <br>
 <br>
 If there are <b>multiple</b> matches after filtering, you will receive a further prompt to let you choose which items you want to delete.
 </div>   
-
+  
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of your current <i>directory</i>'s <i>parent directories</i>. Doing so will result in an error message to be shown &#128543;. 
@@ -656,12 +671,14 @@ Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of yo
 
 ![image-20200401015411123](images/ug_delm_after.png)
 
+[Back To Top](#table-of-contents)   
+<br> 
 
 #### **b. Delete Categories from your Category Lists**   
 `delc` deletes <i>category(s)</i> from your <b>Category Lists</b>. The <b>Category List</b> contains all your added <i>categories</i> of a <i>module</i> and can be viewed via the [<b>List Category</b>](#b-list-your-categories) command.   
 
 ##### **Format**  
-`delc <category name> -m <module code> [ -e -a ]`  
+`delc <category keyword> -m <module keyword> [ -e -a ]`  
 
 - `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
 - `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
@@ -683,7 +700,8 @@ Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of yo
 
 ![image-20200401020313566](images/ug_delc_after.png)  
 
-
+[Back To Top](#table-of-contents)   
+<br> 
 
 #### **c. Delete Tasks from your Task Lists**     
 `delt` deletes <i>task(s)</i> from your <b>Task Lists</b>. The <b>Task List</b> contains all your added <i>tasks</i> of a <i>category</i> and can be viewed via the [<b>List Task</b>](#c-list-your-tasks) command.   
@@ -710,7 +728,9 @@ Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of yo
 
 ![image-20200401021025877](images/ug_delt_after.png)  
 
-
+[Back To Top](#table-of-contents)   
+<br>
+ 
 #### **c. Delete Files from your File Lists**     
 `delf` deletes <i>files(s)</i> from your <b>File Lists</b>. The <b>File List</b> contains all your added <i>files</i> of a <i>task</i> and can be viewed via the [<b>List File</b>](#d-list-your-files) command.   
 
@@ -727,9 +747,11 @@ Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of yo
 ![delf command match](images/delf_many.png)    
 <br>  
 <small><u><b>No Matches</b></u></small>   
-![delf command no match](images/delf_none.png)    
+![delf command no match](images/delt_none.png)    
+
+[Back To Top](#table-of-contents)   
   
-<br><br>  
+<br> 
   
 ### **4. Edit**
 Edits a <i>module</i>, <i>category</i>,  <i>task</i> or <i>file</i>.<br>  
@@ -758,6 +780,8 @@ Also, ensure that you do not enter the same <code>new module code</code> as an e
 <br>     
 <small><u><b>Invalid Module Code (Incorrect)</b></u></small>  
 ![edm command invalid module code](images/edm_invalid.png)   
+
+[Back To Top](#table-of-contents)   
 
 <br>  
 
@@ -789,7 +813,9 @@ In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, 
 ![edc command invalid priority](images/edc_invalid_priority.png)    
 <br>     
 <small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
-![edc command nothing to edit](images/edc_empty.png)
+![edc command nothing to edit](images/edc_empty.png)  
+
+[Back To Top](#table-of-contents)   
 
 <br>  
 
@@ -829,7 +855,10 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 ![edt command invalid priority](images/edt_invalid_priority.png)     
 <br>     
 <small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
-![edt command nothing to edit](images/edt_empty.png)
+![edt command nothing to edit](images/edt_empty.png)  
+
+[Back To Top](#table-of-contents)   
+<br>
 
 #### **d. Edit a File in your File List**  
 
@@ -851,7 +880,9 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 <small><u><b>Duplicate File (Incorrect)</b></u></small>  
 ![edf command duplicate file](images/edf_exist.png)  
 
-<br><br>  
+
+[Back To Top](#table-of-contents)   
+<br> 
 
 #### **e. Mark a Task as Done**  
 
@@ -877,6 +908,8 @@ If the <i>task</i> was <b>already done</b>, and you execute the command, you wil
 <br>     
 <small><u><b>Done an Already Done Task</b></u></small>  
 ![done command already](images/done_already.png)
+
+[Back To Top](#table-of-contents)   
 
 <br><br>  
 
@@ -904,7 +937,8 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
 <small><u><b>Incorrect Traversal</b></u></small>
 ![cd down command incorrect](images/cd_down_incorrect.png)    <br>
  ![cd up command incorrect](images/cd_up_incorrect.png)   
-
+ 
+ [Back To Top](#table-of-contents)   
 <br><br>
 
 ### **6. Open File**   
@@ -931,6 +965,7 @@ To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, i
 <small><u><b>Opening at Task Level</b></u></small>  
  ![open file command task level](images/open_task_level.png) 
 
+[Back To Top](#table-of-contents)   
 <br><br>
 
 ### **7. Info**  
@@ -944,6 +979,7 @@ For example, on the <b>Module</b> directory, the <b>Info</b> command will displa
 ##### **Example Usage and Expected Outcome**    
 ![info command](images/info.png)
 
+[Back To Top](#table-of-contents)   
 <br><br>
 
 ### **8. Undo** 
@@ -971,6 +1007,7 @@ Also, do note that attempting to undo when no changes were made will result in a
 <small><b><u>Incorrect Undo</u></b></small>
 ![undo command incorrect](images/undo_incorrect.png)  
 
+[Back To Top](#table-of-contents)   
 <br><br>
 
 ### **9.Redo** 
@@ -993,6 +1030,8 @@ Also, do note that attempting to redo when you are at the newest state <i>(i.e. 
 <small><u><b>Incorrect Redo</b></u></small>
 ![redo command incorrect](images/redo_incorrect.png)  
 
+
+[Back To Top](#table-of-contents)   
 <br>
 <hr>
 
@@ -1001,12 +1040,14 @@ Also, do note that attempting to redo when you are at the newest state <i>(i.e. 
 ### **Help**  
 In the event that you ever forget the usage of a command, you can look it up within the **Nuke** application itself. All you need to do is to enter the *keyword* `help` to show a command summary of all the available commands in <b>Nuke</b>.     
 
+[Back To Top](#table-of-contents)   
 <br>  
 
 ### **Exiting the Nuke Program**  
 Exiting the **Nuke** program is simple. Simply enter `bye` to exit.  
 Upon exiting, the program will [save](#saving) your entire Directory List into a file in your device.  
 
+[Back To Top](#table-of-contents)   
 <br>  
 
 ### **Loading and Saving**  
@@ -1018,6 +1059,7 @@ Loading is done once you start up the **Nuke** program. The data from the saved 
 #### **Saving**  
 Saving is done upon executing each of your commands in the **Nuke** program. Your Directory List will be saved into a *directory list file* in your device.    
 
+[Back To Top](#table-of-contents)   
 <br>  
 
 ### **Date Time Formats**  
@@ -1036,7 +1078,7 @@ You may enter **only** the following *date* words.
 - `yesterday` or `yst` -- represents the <u>previous</u> date  
   
 > **Note**: All dates are taken with reference to the current date on your device.  
-
+  
 ##### **2. Standard Date Format**  
 This refers to the typical dates that are represented with **numbers** and **delimiter symbols**.    
 
@@ -1054,8 +1096,11 @@ An **exhaustive** list of the standard *date* formats is given below for your re
 ```
 > **Info**: `d` represents the **day** of the date. `M` represents the **month** of the date. `y` represents the **year** of the date.  
 
+[Back To Top](#table-of-contents)   
+<br>
+
 #### **Time Formats**  
-The **Nuke** program accepts most time formats that are represented with **numbers**, **delimiter symbols** and <u>optional</u> **am-pm markers**.    
+The **Nuke** application accepts most time formats that are represented with **numbers**, **delimiter symbols** and <u>optional</u> **am-pm markers**.    
     
 The *time* should be in the order of  **hour**, then **minute**. The **seconds** attribute of *time* should **not** be given. The **minute** attribute must be a **double** digit *(i.e. single digits must be padded with a 0 in front)*. The **minute** attribute is also <u>optional</u>, and should it be omitted, the **Nuke** program will automatically set the **minute** to be 0. Both the **12-h** format and the **24-h** format are valid *time* formats for this program.    
     
@@ -1069,14 +1114,30 @@ An **exhaustive** list of the *time* formats is given below for your reference.
  H.mma, H.mm, hmma, Hmma, Hmm, 
  ha, Ha, H
 ```
- > **Info**: `H` and `h` represents the **hour** for the 24-h and 12-h time format respectively. `m` represents the **minute**. `a` represents the **am-pm markers**.  
-
+ > **Info**: `H` and `h` represents the **hour** for the 24-h and 12-h time format respectively. `m` represents the **minute**. `a` represents the **am-pm markers**.    
+  
+[Back To Top](#table-of-contents)   
 <br>
+
+#### **Time Specifier Formats**
+The <i>time specifier</i> is used in conjunction with a <i>date</i> to define the <i>time period</i> for the <b>[Due](#e-list-your-tasks-at-specified-time-period)</b> command. The following words are considered valid <i>time specifiers</i> in the <b>LumiChat</b> program.  
+- `on` -- <u>on</u> the specified  <i>date</i>  
+- `after` or `a` -- <u>after</u> the specified  <i>date</i>  
+- `before` or `b` -- <u>before</u> the specified  <i>date</i>
+
+The <i>time specifier</i> is <u>optional</u> and if omitted, is set to `on`.    
+  
+[Back To Top](#table-of-contents)   
+<br>
+
 <hr>
 
 ## **Command Summary**
 
+[Back To Top](#table-of-contents)   
 <br>
 <hr>
 
 ## **FAQ**
+
+[Back To Top](#table-of-contents)   
