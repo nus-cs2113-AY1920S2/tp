@@ -138,15 +138,17 @@ By using `find` and `filter` commands, users can reduce clutter and zoom-in to s
 Users can chain `find` and `filter` commands to generate an even smaller sub-list of activities based on their needs. This sublist is generated based on the previously shown list and also works after a `list` command.
 This is can be particularly useful when the user wants to generate a graph. 
 
-**Sample Use Case:** The user can chain a `list month MONTH` for a specfic date range, followed by `filter -s TAGNAME` for a specific tag and finally `find -s KEYWORD1 / KEYWORD2` for specfic activities containing either keyword.
-
-This flag applies to `find` and `filter` commands only. 
+Note: This flag applies to `find` and `filter` commands only. 
 
 **Format:** 
 * `find -s KEYWORD`
 * `filter -s TAGNAME`
 * `filter -s TAGNAME1 TAGNAME2`
 * `find -s KEYWORD1 / KEYWORD2 / KEYWORD3`
+
+**Example:**  
+![chain graph activities](./pictures/filter-find_chain.PNG)
+If we want to find all CS2106 tutorials, we can first use `filter 2106` to filter out all activities tagged `2106`, then use the find command with the flag, `find -s Tutorial` to get a list of all 2106 Tutorials.
 
 ## Graphs
 By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 
@@ -155,30 +157,48 @@ The 3 types of graphs are :
  * *Tags time graph* - Total time spent on each tag: `graph tags`
  * *Activity targets graph* - Progress of each activity in relation to its targeted time: `graph targets`
 
-Tip: Use `find` and `filter` commands to reduce clutter before graphing as the graphs are based on the last shown list of activities. 
+Tip: Use `find`, `filter` and `list` commands to reduce clutter before graphing as the graphs are based on the last shown list of activities. 
 
-### Activity time graph: `graph`
+### Activity time graph: `graph activities`
 **Usage:** View a comparison of the absolute time spent on each activity in the last shown list. 
 The parameter `SCALE` refers to the number of minutes represented by each point on the graph.
 
-**Format:** `graph SCALE`
+**Format:**   
+`graph activities SCALE`
 
-**Example:**  `graph 10`  
+**Example:**    
+`graph activities 10`    
 
-### Tags time graph: `graph tag`  
+### Tags time graph: `graph tags`  
 **Usage:** View a comparison of the absolute time spent on each tag in the last shown list. 
 
-**Format:** `graph tag`
+**Format:**   
+`graph tags SCALE`
 
 ### Activity targets graph: `graph targets`
-**Usage:** View the progress of activities in relation to their 
-targeted time. 
+**Usage:** View the progress of activities to see how much time was spent on the activity relative to the time that was allocated. 
 
 Note: Only activities with an `ALLOCATED_TIME` will be shown.
 
-**Format:** `graph targets`
+**Format:**   
+`graph allocations`
 
-![Continue command sequence diagram](./pictures/GraphTargets.png)
+### Chaining `list`, `find` and `filter` with `graph` command:
+Using `list`, `find` and `filter` commands you can sieve out the information you wish to be graphed.
+
+**Graph Activities Example:**  
+![chain graph activities](./pictures/filter-graph_chain.PNG)
+`filter 2113` gives all activities tagged `2113`, then we can use `graph activities 5` to view a graph of the duration for each activity. Each asterisk represents 5 minutes, as indicated by the `SCALE` parameter of the graph command.
+
+**Graph Tags Example:**
+![chain graph tags](./pictures/list-graphtags_chain.PNG) 
+`list 25/03/2020` gives all activities completed on 25th March 2020, then we can use `graph tags 5` to view the graph of the tags. From this, it is easy to tell that the user spent more time on CS2105 than CS2106 that day.
+
+**Graph Allocations Example:**
+![chain graph tags](./pictures/find-allocations_chain.PNG) 
+`find Lab` gives us all 'Lab' activities, then we can use `graph allocations` to view the progress bar of each of the activities to see how much time was spent on the activity relative to the time that was allocated. 
+
+
 
 ## Tag Goals
 
