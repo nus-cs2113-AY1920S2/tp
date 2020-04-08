@@ -1,19 +1,16 @@
 package command;
 
 import common.Messages;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
-import tasks.Task;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

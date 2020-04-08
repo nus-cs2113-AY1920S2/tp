@@ -212,7 +212,7 @@ Expected outcome:
 [Online Career Fair] will no longer repeat.
 ```
 > **Note**:
-> The symbol `[R]` will be replaced by `[E]` and there will not be any symbols beside `notes` section. 
+> The symbol `[R]` will be replaced by `[E]` and there will not be any symbol beside `notes` section. 
 > Below is an example: 
 > ```
 > Here are the relevant tasks: 
@@ -250,7 +250,7 @@ Here are the relevant tasks:
             notes: false
 ```
 
-> **Note**: <br/>
+> **Note**:
 > The first symbol in the square bracket stands for: `[A]` assignment, `[E]` event or `[R]` repeating event. <br/>
 > The second symbol in the square bracket stands for: `[X]` task is not done, `[/]` task is done.
 
@@ -293,6 +293,7 @@ Here are the relevant tasks:
 #### 3.4.4. List Upcoming Events: **`list upcoming events`**
 
 You can view **all** your **upcoming events** from the list of tasks regardless of how far it is from today.
+It will only show *events* that have not occurred yet and is time-sensitive. 
 
 Format: `list upcoming events`
 
@@ -306,6 +307,9 @@ Here are the relevant tasks:
   7. [E][X] CS2113T Final Exam (at: TBD | Sat 02 May 2020 13:00 - 14:00)
             notes: false
 ```
+> **Note**: 
+> If today is 27 March 2020 and it is after 10:00 am, event with index 4 shown above will not appear.
+
 #### 3.4.5. List Incomplete Assignments: **`list incomplete assignments`**
 
 You can view all your **incomplete assignments** from the list of tasks.
@@ -320,6 +324,8 @@ Here are the relevant tasks:
   5. [A][X] ATAS v2 (by: Sun 29 Mar 2020 22:00 | mod: CS2113T)
             notes: Complete DG draft to get tutor comments
 ```
+> **Note**: 
+> It will show all `assignments` that are not done, even if the deadline has passed.
 
 ### 3.5. Edit Tasks: **`edit`**
 
@@ -367,8 +373,9 @@ Expected outcome:
 [Final Reflection Draft] has been marked done!
 ```
 
-> **Note**: If a repeating event is marked done, it will automatically be marked undone once the date of the event passes today and 
-> is updated to the next one. 
+> **Note**: 
+> If a repeating event is marked done, it will automatically be marked undone once the date of the repeatEvent passes today and 
+> is updated to the next one. This also applies when you call `repeat` on an event that is marked done. 
 
 ### 3.8. Clear Tasks: **`clear`**
 
@@ -380,7 +387,7 @@ Format: `clear all`
 
 #### 3.7.2. Clear All Done Tasks
 
-> **Note**: <br/>
+> **Note**:
 > `clear done` command only deletes completed events that is not set to repeat<br/>
 
 -   You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.  

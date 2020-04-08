@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class TaskList {
@@ -60,7 +59,7 @@ public class TaskList {
      * @param addedTask new Task that needs to be checked
      * @return True if there already exists a task within tasklist. Otherwise, false.
      */
-    public Boolean isRepeatTask(TaskList tasklist, Task addedTask) {
+    public Boolean isSameTask(TaskList tasklist, Task addedTask) {
         for (Task task : tasklist.getTaskArray()) {
             if (task.equals(addedTask)) {
                 return true;

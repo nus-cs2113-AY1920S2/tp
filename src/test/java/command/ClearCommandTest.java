@@ -6,6 +6,8 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
+import tasks.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -87,5 +89,20 @@ public class ClearCommandTest {
         assertEquals(new ClearCommand("done").execute(emptyTaskList,ui).feedbackToUser,
                 Messages.EMPTY_TASKLIST_MESSAGE);
     }
-    //@@author
+
+    //@@author e0309556
+    @Test
+    public void repeatEventMarkedDone_clearDone_repeatEventNotCleared() {
+        LocalDateTime testDateTime = LocalDateTime.of(2020, 02, 14, 5, 30);
+        RepeatEvent testRepeatEvent = new RepeatEvent("Bathe2", "Toilet", testDateTime,
+                testDateTime.plusMinutes(15), "before sleep", 4, RepeatCommand.DAILY_ICON,
+                testDateTime, 0);
+        TaskList repeatTestTaskList = filledTaskList;
+        repeatTestTaskList.addTask(testRepeatEvent);
+        for (Task task : repeatTestTaskList.getTaskArray()) {
+            task.setDone();
+        }
+        CommandResult clearDone = new ClearCommand("done").execute(repeatTestTaskList, ui);
+        assertEquals(repeatTestTaskList.getListSize(), 1);
+    }
 }
