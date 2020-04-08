@@ -120,4 +120,85 @@ TechToday Information Tracker (TTIT) is targeted to lifelong followers of techno
 
 ## 7. Instructions for Manual Testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Follow the following steps to manually test the product:
+
+1. Download the latest release [here](ljsnc) and store it in a foler of your choice in your computer.
+
+1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.josn', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the jar file mentioned above.
+
+1. Open the terminal and go afformentioned folder and type `java -jat tp.jar`.
+
+1. This should load all the data in the folders. Type the following commands:
+
+        list article 
+        
+    You will get the following output:
+
+            __________________________________________________________________________________________
+
+
+            _                                   Article List                                   _
+
+
+               1. Title: A music discovery site used in over 1M videos and games
+               Date: 2020-Apr-08 Wed 02:22 PM
+               Category: default
+               Url: http://dig.ccmixter.org/
+               Extract: 
+
+
+               2. Title: HPE sets end date for hobbyist licenses for OpenVMS
+               Date: 2020-Apr-08 Wed 06:21 PM
+               Category: default
+               Url: https://legacyos.org/hpe-sets-end-date-for-hobbyist-licenses-for-openvms/
+               Extract: 
+
+
+            __________________________________________________________________________________________
+       
+               list job 
+        
+     You will get the following output:
+
+            __________________________________________________________________________________________
+
+
+            _                                     Job List                                     _
+
+
+               1. Title: Ask HN: What most annoying software problem you've recently faced?
+               Date: 2020-Apr-08 Wed 09:50 PM
+               Category: default
+               Text: I&#x27;ll start with myself. Recently, I have tried to use Forestry.io to set up a personal blog, bu...
+               Extract: 
+
+
+               2. Title: Ask HN: What is your blog and why should I read it?
+               Date: 2020-Apr-07 Tue 11:33 AM
+               Category: default
+               Text: Looking for awesome new places to read things written by actual human beings.<p>So where can I find ...
+               Extract: 
+
+
+            __________________________________________________________________________________________
+           
+
+
+            list note
+           
+      You will get the following output:
+            __________________________________________________________________________________________
+
+
+            _                                     Note List                                    _
+
+
+               1. Title: How to work with Github?
+               Date: 2020-Apr-08 Wed 10:06 PM
+               Category: default
+               URL: https://guides.github.com
+               Extract: This is a guide to githubs official tutorial.
+
+
+            __________________________________________________________________________________________
+
