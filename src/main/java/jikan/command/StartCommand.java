@@ -10,6 +10,7 @@ import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -315,14 +316,24 @@ public class StartCommand extends Command {
         int index = line.indexOf("/t");
         String tagInfo = line.substring(index + 2);
         tagInfo = tagInfo.trim();
-        String[] tagString = tagInfo.split(" ");
+        String[] seperatedTags = tagInfo.split(" ");
+        ArrayList<String> tagString = new ArrayList<>();
+        for (String i : seperatedTags) {
+            populateTagString(tagString, i);
+        }
         if (tagInfo.isEmpty()) {
             Ui.printDivider("Please provide a valid tag");
-        } else if (tagString.length > 2) {
+        } else if (tagString.size() > 2) {
             Ui.printDivider("Cannot have more than 2 tags");
         } else {
-            Parser.tags.addAll(Arrays.asList(tagString));
+            Parser.tags.addAll(tagString);
             addActivity(activityName);
+        }
+    }
+
+    private void populateTagString(ArrayList<String> tagString, String i) {
+        if (i.length() > 0) {
+            tagString.add(i);
         }
     }
 
