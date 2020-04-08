@@ -280,4 +280,6 @@ public class MessageBank {
                     + "|________|_______________________________________________________________________________"
                     +          "___________________________________________|\n";
 
+    public static final String USER_BMI_MESSAGE = "Your current BMI : %.2f\n";
+
 }

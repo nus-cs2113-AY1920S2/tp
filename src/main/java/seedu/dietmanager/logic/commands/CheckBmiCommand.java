@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 public class CheckBmiCommand extends Command {
 
     private static final int ARGUMENTS_REQUIRED = 1;
     private String profileName;
     private List<Double> weightRecord = new ArrayList<>();
-    private double initialWeight;
+    private double bmi;
     private double currentWeight;
-    private double weightDifference;
-    private double weightToGoal;
-    private double weightGoal;
+    private double currentHeight;
     private boolean noDescription;
 
     /**
@@ -30,8 +30,7 @@ public class CheckBmiCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public CheckBmiCommand(String command, String description)
-            throws InvalidFormatException, NumberFormatException {
+    public CheckBmiCommand(String command, String description) throws InvalidFormatException, NumberFormatException {
         super(command);
         this.noDescription = false;
         try {
@@ -44,7 +43,12 @@ public class CheckBmiCommand extends Command {
 
     @Override
     public Result execute(Profile profile, UI ui) {
-
+        if (!this.noDescription) {
+            this.currentHeight = profile.getHeight();
+            this.currentWeight = profile.getWeightRecord().get(profile.getWeightRecord().size() - 1);
+            bmi = currentWeight / pow((currentHeight / 100), 2);
+            ui.showMessage(String.format(MessageBank.USER_BMI_MESSAGE, bmi));
+        }
         Result result = getResult(profile);
         return result;
     }
