@@ -5,11 +5,11 @@ import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 public class WeightParser {
 
     /**
-     * Validate the user input gender and parse it into the standard gender accepted.
+     * Validate the user input String weight and parse it into a double.
      *
-     * @param description User input gender.
-     * @return Gender in standard form.
-     * @throws InvalidWeightException If input is not a valid height value.
+     * @param description User input weight in kg.
+     * @return weight in double form.
+     * @throws InvalidWeightException If input is not a valid weight value.
      */
 
     public static double parseWeight(String description) throws InvalidWeightException {
