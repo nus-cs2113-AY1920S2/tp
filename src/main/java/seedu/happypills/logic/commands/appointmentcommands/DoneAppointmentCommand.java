@@ -10,6 +10,7 @@ import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
 import seedu.happypills.ui.AppointmentTextUi;
+import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
 
@@ -110,15 +111,15 @@ public class DoneAppointmentCommand extends AppointmentCommand {
         }
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
-            throw new HappyPillsException("    Patient not found. Please try again.");
+            throw new HappyPillsException(PatientTextUi.PATIENT_NOT_FOUND_MESSAGE);
         }
         Appointment editAppt = findAppointment(appointments); //from the shared appointment map
         if (editAppt == null) {
-            throw new HappyPillsException("    Appointment not found. Please try again.");
+            throw new HappyPillsException(AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE);
         }
         Boolean output = editDone(editPatient) && editDone(editAppt);
         if (!output) {
-            throw new HappyPillsException(" An unknown error has occurred, please try again later.");
+            throw new HappyPillsException("   An unknown error has occurred, please try again later.");
         } else {
             try {
                 Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,

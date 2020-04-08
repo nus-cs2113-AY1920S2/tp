@@ -68,7 +68,7 @@ This section provides a high-level overview of HappyPills.
 
 ### 3.1. Architecture
 
-![Architecture diagram](images/ArchitectureDiagram.PNG "Overview of the Application")
+![Architecture diagram](images/DG/ArchitectureDiagram.PNG "Overview of the Application")
 
 The **Architecture diagram** above explains the high-level design of HappyPills.
 
@@ -102,10 +102,27 @@ The architecture of HappyPills is broken down into seven main classes:
 The `TextUi` component: 
 * Executes user commands using the command component.
 * Listens for changes and outputs messages accordingly from the Command component.
+* Store or generate formatted messages used by the other components, for display to the user.
+* Consist of 6 sub-parts:
+    - PatientTextUi
+    - AppointmentTextUi
+    - PatientRecordTextUi
+    - StorageTextUi
+    - HelpTextUi
+    - Messages
+
+The first three TextUi sub classes are categorized based on object type. Results and error messages for 
+commands executed on the relevant object are located here.
+
+StorageTextUi contains only strings used for logging of storage activities and format strings saved to
+the text files, so as to recover objects on next startup.
+
+HelpTextUi contains only the messages used in the help command, so as to provide guidance to the user on
+the usage of the commands.
 
 ### 3.3. Logic Component
 
-![Logic Diagram](images/Logic.png)
+![Logic Diagram](images/DG/Logic.png)
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -116,18 +133,26 @@ The diagram above shows the logic flow of HappyPills.
 
 ### 3.4. Model Component
 
-![Model Diagram](images/ModelDiagram.jpg)
+![Model Diagram](images/DG/ModelDiagram.jpg)
 
 ### 3.5. Storage Component
 
 The `Storage` class is called by the `HappyPills` class to handle the loading and saving of patient general details, 
 patient medical details and appointment schedule. 
 
-The `loadPatientsFromFile()`, `loadRecordsfromFile()` and `loadAppointmentsFromFile()` methods are used to read saved data from
-local files into the current session of HappyPills. 
+The `loadPatientsFromFile()`, `loadPatientRecordFromFile()` and `loadAppointmentsFromFile()` methods are used 
+to read saved data from local files into the current session of HappyPills. 
 
-The `writePatientsToFile()`, `writeRecordsToFile()` and `writeAppointmentsToFile()` methods write the current state of HappyPills
-into local files by calling them in the `ExitCommand` class.
+These data are parsed into corresponding
+objects, and added to a map which will be returned to the main program, using `parsePatientFileContent()`,
+`parsePatientRecordFileContent` and `parseAppointmentFileContent` respectively.
+
+The `writeAllToFile()` method will write the current list of object into the corresponding text file by stating
+the predefined filepath. This method is called on every delete, done and edit command for the corresponding objects, 
+as well as by the `ExitCommand` class to confirm the storage of the current state of HappyPills.
+
+The `addSingleItemToFile` appends an object as a new line the corresponding text file. This method is called only
+for add commands executed on the various objects. 
 
 ## 4. Implementation
 
@@ -177,7 +202,7 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 **Implementation** 
 
 The activity diagram below summarises the process of executing an `add` command.
-![Add Patient Sequence Diagram](images/AddPatientSequenceDiagram.jpg)
+![Add Patient Sequence Diagram](images/DG/AddPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -204,7 +229,7 @@ will edit the patient's allergies to `School`.
 
 **Implementation** 
 
-![Edit Patient Sequence Diagram](images/EditPatientSequenceDiagram.jpg)
+![Edit Patient Sequence Diagram](images/DG/EditPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -228,7 +253,7 @@ will delete the patient with NRIC `S7777777Z`, if found.
 
 **Implementation** 
 
-![Delete Patient Sequence Diagram](images/DeletePatientSequenceDiagram.jpg)
+![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -275,7 +300,7 @@ will retrieve the details of the patient with NRIC `S7777777Z`.
 
 **Implementation** 
 
-![Get Patient Sequence Diagram](images/GetPatientSequenceDiagram.jpg)
+![Get Patient Sequence Diagram](images/DG/GetPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -313,7 +338,7 @@ An `appointmentId` will also be given when an appointment is successfully added.
 
 **Implementation** 
 
-![Add Appointment Sequence Diagram](images/AddAppointmentSequenceDiagram.jpg)
+![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -329,11 +354,34 @@ The following steps explains the sequence of events:
 
 #### 4.3.2. Edit Appointment 
 
+The user can edit an appointment from the list of appointments currently in the program. The command:
+
+    edit appt S9999999z 1 /d 02/20/2020
+
+will edit the date of the appointment with appointment id `1`, to `02/02/2020`, if found. 
+
+**Implementation**
+The following steps explains the sequence of events:
+
+1. The user enters edit command.
+
+2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+
+3. `AppointmentParser#parse()` will then create an object `EditAppointmentCommand`. 
+
+4. `HappyPills` then calls `EditAppointmentCommand.execute()` to execute the command. 
+
+5. In `EditAppointmentCommand.execute()`, the respective appointment is edited and 
+a display message is obtained by calling `AppointmentTextUi#editAppointmentSuccessMessage()`.
+
+6. The display message is returned as a String until it reaches `HappyPills` where it would be printed. 
+
+
 #### 4.3.3. Delete Appointment 
 
 The user can delete an appointment from the list of appointments currently in the program. The command: 
 
-    delete appt 1 
+    delete appt S9999999z 1 
     
 will delete the appointment with appointment ID `1`, if found. 
 
@@ -352,6 +400,28 @@ The following steps explains the sequence of events:
 5. In `DeleteAppointmentCommand.execute()`, the respective patient is deleted and the display message is returned. 
 
 #### 4.3.4. Mark Appointment as Done 
+The user can mark an appointment as done from the list of appointments currently in the program. The command: 
+
+    done appt S9999999z 1 
+    
+will mark the appointment with appointment ID `1` as done, if found. 
+
+**Implementation** 
+
+The following steps explains the sequence of events: 
+
+1. The user enters `done appt S9999999z 1`. 
+
+2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+
+3. `AppointmentParser#parse()` will then create an object `DoneAppointmentCommand`. 
+
+4. `HappyPills` then calls `DoneAppointmentCommand.execute()` to execute the command. 
+
+5. In `DoneAppointmentCommand.execute()`, the respective appointment is marked as done and 
+a display message is obtained by calling `AppointmentTextUi#doneAppointmentSuccessMessage()`.
+
+6. The display message is returned as a String until it reaches `HappyPills` where it would be printed. 
 
 #### 4.3.5. List Appointments 
 
@@ -364,7 +434,7 @@ will list all the appointments in the `AppointmentMap`.
 
 **Implementation** 
 
-![List Appointment Sequence Diagram](images/ListAppointmentSequenceDiagram.jpg)
+![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
 
@@ -376,7 +446,8 @@ The following steps explains the sequence of events:
 
 4. `HappyPills` then calls `ListAppointmentCommand.execute()` to execute the method. 
 
-5. In `ListAppointmentCommand.execute()`, it calls `TextUi.getAppointmentList()` which is then returned as the display message. 
+5. In `ListAppointmentCommand.execute()`, it calls `TextUi.getAppointmentList()` which is 
+then returned as the display message. 
 
 #### 4.3.6. Find Appointments of Patient
 
@@ -389,7 +460,23 @@ will list all the appointments that the patient with NRIC S7777777Z has.
 
 **Implementation**
 
-![Find Appointment Sequence Diagram](images/FindAppointmentSequenceDiagram.jpg)
+![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.jpg)
+
+The following steps explains the sequence of events: 
+
+1. The user enters `find appt S7777777z`. 
+
+2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+
+3. `AppointmentParser#parse()` will then create an object `FindAppointmentCommand`. 
+
+4. `HappyPills` then calls `FindAppointmentCommand.execute()` to execute the command. 
+
+5. In `FindAppointmentCommand.execute()`, the respective appointment is retrieved and 
+a display message is obtained by calling `AppointmentTextUi#findAppointmentSuccessMessage()`.
+
+6. The display message is returned as a String until it reaches `HappyPills` where it would be printed. 
+
 
 
 ### 4.4. Storage
@@ -397,17 +484,19 @@ will list all the appointments that the patient with NRIC S7777777Z has.
 This is an internal feature of the program, implemented to allow users to recover information even after HappyPills is 
 closed in the terminal. This is achieved by storing all relevant information in a text file using a structured format.
 
-**Implementation** 
-
  The current methods implemented in this class and a brief description of each method:
- - `writeAllToFile` — writes the entire list of item to the specified text file.
- - `addSingleItemToFile` — adds a new item as a single string to the end of specified text file.
+ - `writeAllToFile` — writes the entire list of object to the specified text file.
+ - `addSingleItemToFile` — adds a new object as a single string to the end of specified text file.
  - `loadPatientFromFile` — access the patient file and retrieve all information in the file as strings.
  - `parsePatientFileContent` — process line-by-line to create a patient object and add to the shared patient map.
  - `loadAppointmentFromFile` — access the patient file and retrieve all information in the file as strings.
  - `parseAppointmentFileContent` — process line-by-line to create an appointment object and add to the 
                                    shared appointment map.
- 
+ - `loadPatientRecordFromFile` — access the patient record file and retrieve all information in the file as strings.
+ - `parsePatientRecordFileContent` — process line-by-line to create a patient record object and add to the shared patient map.
+
+**Implementation** 
+
  The following diagram shows how each command interacts with the other classes.
  
  *writeAllToFile*
@@ -420,7 +509,7 @@ closed in the terminal. This is achieved by storing all relevant information in 
   overwriting any existing strings in the file.
   This is implemented for edit and delete commands as they cannot be appended.
   
-  ![writing](images/StorageWriteAll.png)
+  ![writing](images/DG/STORAGE/StorageWriteAll.png)
  
  *addSingleItemToFile*
  
@@ -428,9 +517,10 @@ closed in the terminal. This is achieved by storing all relevant information in 
  within the text file. Hence, the toSave() string is constructed with  '|' as a divider, and a newline to indicate 
  the end of the object.  This storage method : addSingleItemToFile, uses the toSave() string of the object 
  it needs to save, by appending it to the back of the text file. 
- This provides improved performance as compared to using writeAllToFile().
+ This provides improved performance for add commands as compared to using writeAllToFile(), as less strings need 
+ to be retrieved.
  
- ![saving](images/StorageSave.png)
+ ![saving](images/DG/STORAGE/StorageSave.png)
  
  *loading and parsing file content to HappyPills*
  
@@ -439,7 +529,7 @@ For example, `loadingPatientsFromFile` retrieves the entire string from the pati
 `parsePatientFileContent` to convert each line into a patient object and adds it back to the patient map. 
 `loadAppointmentFromFile` and `parseAppointmentFileContent` does the same with the appointment file.
  
- ![loading](images/StorageLoad.png)
+ ![loading](images/DG/STORAGE/StorageLoad.png)
  
 **Design Considerations**
 

@@ -9,11 +9,7 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.TextUi;
-import seedu.happypills.ui.StorageTextUi;
-import seedu.happypills.ui.PatientTextUi;
-import seedu.happypills.ui.HelpTextUi;
-import seedu.happypills.ui.AppointmentTextUi;
+import seedu.happypills.ui.*;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -214,10 +210,10 @@ public class EditAppointmentCommand extends AppointmentCommand {
         String errorMsg = "    Something went wrong, the edit could not be made.\n";
         if (field.equals("/d")) {
             output = editDate(editPatient, content) && editDate(editAppt,content);
-            errorMsg = output ? errorMsg : "    Invalid date or date format(DD/MM/YYYY).\n";
+            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_DATE;
         } else if (field.equals("/t")) {
             output = editTime(editPatient, content) && editTime(editAppt,content);
-            errorMsg = output ? errorMsg : "    Invalid time or time format(HH:MM).\n";
+            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_TIME;
         } else if (field.equals("/r")) {
             output = editReason(editPatient, content) && editReason(editAppt,content);
         } else {

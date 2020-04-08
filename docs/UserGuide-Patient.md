@@ -34,7 +34,7 @@ You can also add a new patient with the specified parameters in any order.
     
 >***Expected output:***
 >
->![MissingInput](images/MissingAddPatientInput.PNG "Missing Add Ouput")
+>![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Ouput")
 >
 > Enter `/p 999` to add missing field.
 
@@ -50,7 +50,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](images/addConfirm.PNG "Add Confirmation Ouput")
+>   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -60,12 +60,13 @@ You can also add a new patient with the specified parameters in any order.
  <tr>
    <td><span> &#8505; </span></td>
    <td> Entering <code>n</code> will not save the patients' information when HappyPills prompt you for confirmation.</td>
+    <!--This is a comment. Patient's information will be discarded if <code>n</code> is entered.-->
  </tr>
 </table>
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
+>  ![SuccessfulAdd](images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
  [&#8593; Return to Top](#table-of-content)
  
@@ -83,7 +84,7 @@ Edit information of the patient with the specified NRIC.
 
 > ***Expected output:***
 >
-> ![editPatientOutput](images/EditCommandOutput.PNG "Edit Patient Ouput")
+> ![editPatientOutput](images/UG/PATIENT/EditCommandOutput.PNG "Edit Patient Ouput")
 
 <table>
   <col width="20">
@@ -91,6 +92,7 @@ Edit information of the patient with the specified NRIC.
  <tr>
    <td><span> &#8505; </span></td>
    <td> NRIC <code>cannot</code> be edited because it is what uniquely identifies the patient.</td>
+    <!--This is a comment. NRIC cannot be edited.-->
  </tr>
 </table>
 
@@ -110,7 +112,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+> ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -126,7 +128,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
+>  ![SuccessfulDelete](images/UG/PATIENT/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
 <table>
   <col width="20">
@@ -149,7 +151,7 @@ Displays all the patients in the patient list.
     
 > ***Expected output:***
 >
-> ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
+> ![ListPatient](images/UG/PATIENT/ListPatientOutput.PNG "List Ouput")  
 
  [&#8593; Return to Top](#table-of-content)
 
@@ -167,6 +169,6 @@ Retrieve details of the patient with the specified NRIC.
     
 > ***Expected output:***
 >
-> ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
+> ![getpatient](images/UG/PATIENT/GetPatientOutput.PNG "Get Ouput")
 
  [&#8593; Return to Top](#table-of-content)
