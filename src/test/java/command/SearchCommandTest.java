@@ -1,22 +1,19 @@
 package command;
 
 import common.Messages;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
-import tasks.Task;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author joelczk
 public class SearchCommandTest {
     public static final DateTimeFormatter INPUT_DATE_ONLY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
     public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -64,16 +61,6 @@ public class SearchCommandTest {
     }
 
     private String searchSingleEvent() {
-        searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
-        searchString.append(System.lineSeparator());
-        searchString.append("  4.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
-        searchString.append(System.lineSeparator());
-        searchString.append("            notes: -");
-        searchString.append(System.lineSeparator());
-        return searchString.toString();
-    }
-
-    private String eventSingleResultString() {
         searchString.append(Messages.SEARCH_SUCCESS_MESSAGE);
         searchString.append(System.lineSeparator());
         searchString.append("  4.[E][X] midterms (at: MPSH1A | Fri 13 Mar 2020 18:00 - 20:30)");
@@ -139,7 +126,7 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void  executeMethod_emptyResults() {
+    public void executeMethod_emptyResults() {
         assertEquals(new SearchCommand("abcd","event", testDate1).execute(filledTaskList, ui).feedbackToUser,
                 Messages.EMPTY_SEARCH_RESULTS_ERROR);
         assertEquals(new SearchCommand("abcd", "assignment", testDate1).execute(filledTaskList, ui).feedbackToUser,
@@ -202,4 +189,28 @@ public class SearchCommandTest {
                 searchMultipleAssignments());
     }
 
+    @Test
+    public void executeMethod_searchAllSingleResult() {
+        assertEquals(new SearchCommand("midterms", "all", null).execute(filledTaskList,ui).feedbackToUser,
+                searchSingleEvent());
+    }
+
+    @Test
+    public void executeMethod_searchdAllSingleResult() {
+        assertEquals(new SearchCommand("midterms", "all", testDate1).execute(filledTaskList,ui).feedbackToUser,
+                searchSingleEvent());
+    }
+
+    @Test
+    public void executeMethod_searchMultipleResults() {
+        assertEquals(new SearchCommand("test 3", "all", null).execute(filledTaskList, ui).feedbackToUser,
+                searchSingleAssignment());
+    }
+
+    @Test
+    public void executeMethod_searchdMultipleResults() {
+        assertEquals(new SearchCommand("test", "all", null).execute(filledTaskList,ui).feedbackToUser,
+                searchMultipleAssignments());
+    }
+    //@@author
 }
