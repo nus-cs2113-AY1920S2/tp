@@ -48,7 +48,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 - [Delete a meeting](#delete-a-meeting-delete--m)
 - [Delete a contact](#delete-a-contact-delete--c)
 - [List all meetings](#list-all-meetings-meetings)
-- [Exit application](#exit-application-exit)
+- [Exit application](#exit-the-application-exit)
 
 <br/>
 
@@ -65,6 +65,8 @@ Example of usage:
 
     Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01
 
+Example output:
+
 TODO: change image so that the words are the same font size
 ![](images/capture.png)
 
@@ -76,14 +78,14 @@ TODO: change image
 ![](images/capture.png)
 - You can add as many contacts as you want thereafter.
 
-[&#8593; Return to list of Features](#Features)
+[&#8593; Return to list of Features](#features)
 
 <br/><br/>
 
 ### List all contacts: `contacts`
 Displays index and names of all added contacts stored in the program.
 
-Format 
+Format:
     
     contacts 
 
@@ -91,63 +93,76 @@ Example of usage:
     
     contacts
 
+Example output:
+
 ![](images/capture2.png)
 
-[&#8593; Return to list of Features](#Features)
+[&#8593; Return to list of Features](#features)
 
 <br/><br/>
 
 ### Display timetable of selected contacts: `timetable`
-1) Displays your (main user's) timetable.
+**Use case 1:** Displays your (main user's) timetable.
     
-    Format: 
+Format: 
     
-        timetable 
+    timetable 
         
-    Example of usage: 
+Example of usage: 
     
-        timetable
-    TODO: update image
-    ![](images/capture3.png)`
-    
-    A cross in a 30-minute square of the timetable represents "busy", while an empty square represents "free".
+    timetable
 
-2) Displays the timetable of a selected contact. You will need to key in **Contact Index** of the selected contact.
+Example output:
 
-    Format: 
+TODO: update image
+![](images/capture3.png)
     
-        timetable <Contact Index>
-    
-    Example of usage: 
-    
-        timetable 1
-    TODO: update image
-    ![](images/capture4.png)
+A cross in a 30-minute square of the timetable represents "busy", while an empty square represents "free".
 
-3) Displays the combined timetable of multiple selected contacts. You will need to key in **Contact Index** of 
+<br/>
+
+**Use case 2:** Displays the timetable of a selected contact. You will need to key in **Contact Index** of the selected contact.
+
+Format: 
+    
+    timetable <Contact Index>
+    
+Example of usage: 
+    
+    timetable 1
+    
+Example output:
+
+TODO: update image
+![](images/capture4.png)
+
+<br/>
+
+**Use case 3:** Displays the combined timetable of multiple selected contacts. You will need to key in **Contact Index** of 
 each of the selected contacts.
    
-   Format: 
+Format: 
    
-       timetable <Contact A Index> <Contact B index>
+    timetable <Contact A Index> <Contact B index> ...
    
-   Example of usage: 
+Example of usage: 
    
-       timetable 0 1 2
-    TODO: update image
-    ![](images/capture5.png)
+    timetable 0 1 2
+    
+Example output:
+
+TODO: update image
+![](images/capture5.png)
     
 Note:
-- The `timetable` feature displays your timetable only for the current week. 
-- **To see next week's timetable, use the command  `more` after the `timetable` command.** You can use the command `more` only once i.e. you can display up to 2 weeks of timetable.
+- **To see up to two weeks of timetable, type in `more` as your next command.** You can only display up to 2 weeks of timetable.
 - You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
-`contacts`.
+[`contacts`](#list-all-contacts-contacts).
 - Both `timetable` and `timetable 0 ` display your (main user's) timetable.
 
-[&#8593; Return to list of Features](#Features)
+[&#8593; Return to list of Features](#features)
 
-<br/><br/>
-   
+<br/><br/>   
 
 ### Schedule a new meeting: `schedule`
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
@@ -161,76 +176,77 @@ Example of usage:
 
     schedule meeting 3 17:00 3 19:00
 
+Example output:
+
 ![](images/capture6.png)
-<br/><br/>
+
+<br/>
 
 Note:
 - Scheduling a meeting will modify only your (main user's) timetable, to be busy at the specified time slot. 
 Timetables of other contacts will not be modified.
 - You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
-`timetable` if you try to schedule a meeting during a time slot which you are busy for.
+your timetable if you try to schedule a meeting during a time slot which you are busy for.
 
-    TODO change image
-    
-    ![](images/capture6.png)
+TODO change image
+![](images/capture6.png)
 
-[&#8593; Return to list of Features](#Features)
+[&#8593; Return to list of Features](#features)
 
-</br></br>
+<br/><br/>
 
 ### Edit a contact's timetable: `edit`
-1) Edit a contact's timetable to be **busy** for a specified time slot. You will need to key in **Contact Index**
+**Use case 1:** Edits a contact's timetable to be **busy** for a specified time slot. You need to key in **Contact Index**
 of the contact, and specify the time slot to be marked busy with **Start Day**, **Start Time**, **End Day**, **End Time**.
 
-    Format: 
+Format: 
     
-        edit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
+    edit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
     
-    Example of usage:
+Example of usage:
     
-        edit busy 0 2 22:00 2 23:00
+    edit busy 0 2 22:00 2 23:00
         
-    TODO change image
-    ![](images/capture6.png)
+Example output:
 
-2) Edit a contact's timetable to be **free** for a specified time slot. You will need to key in the **Contact Index** of
+TODO change image
+![](images/capture6.png)
+
+<br/>
+
+**Use case 2:** Edits a contact's timetable to be **free** for a specified time slot. You need to key in the **Contact Index** of
  the contact, and specify the time slot to be marked free with **Start Day**, **Start Time**, **End Day**, **End Time**.
     
-    Format: 
+Format: 
     
-        edit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
+    edit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
     
-    Example of usage:
-    
-        edit free 0 2 22:00 2 23:00
+Example of usage:
+ 
+    edit free 0 2 22:00 2 23:00
+        
+Example output:
 
-    TODO change image
-    ![](images/capture6.png)
+TODO change image
+![](images/capture6.png)
     
 Note:
     
 - You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
-`contacts`.
+[`contacts`](#list-all-contacts-contacts).
 
 - You can check the timetable of the contact you wish to edit, by displaying his/her timetable using 
-`timetable <Contact Index>`
+[`timetable <Contact Index>`](#display-timetable-of-selected-contacts-timetable).
 
-- When editing your (main user's) timetable, be careful not to edit over a scheduled meeting's time slot. WhenFree 
-will remind you to check `meetings` if you try to edit over a scheduled meeting.
-
-    TODO change image
-    ![](images/capture6.png)
-
-[&#8593; Return to list of Features](#Features)
+[&#8593; Return to list of Features](#features)
     
-</br></br>
-
+<br/><br/>
 
 ### Delete a meeting: `delete -m`
 Deletes a scheduled meeting from the meeting list. You will need to key in **Meeting Index** of the meeting you wish 
 to delete.
 
-Format: 
+Format:
     
     delete -m <Meeting Index>
 
@@ -238,15 +254,18 @@ Example of usage:
 
     delete -m 1
 
+Example output:
+
 TODO change image
 ![](images/capture7.png)
 
 Note:
-- You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using `meetings`.
+- You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings).
 - Be careful to include the -m tag in `delete -m` when you wish to delete a meeting. 
 - `delete -m` which is used to delete a meeting, should be differentiated from `delete -c` which is used to delete a contact.
 
-[&#8593; Return to list of Features](#Features)
+[&#8593; Return to list of Features](#features)
+
 <br/><br/>
 
 ### Delete a contact: `delete -c`
@@ -260,18 +279,21 @@ Format:
 Example of usage:
 
     delete -c 1
+    
+Example output:
 
 Note:
-- You can check `<Contact Index>` of the contact you wish to delete, by first listing all added contacts using `contacts`.
+- You can check `<Contact Index>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
 - Be careful to include the -c tag in `delete -c` when you wish to delete a contact. 
 - `delete -c` which is used to delete a contact, should be differentiated from `delete -m` which is used to delete a meeting.
 <br/><br/>
 
-    TODO change image
-    ![](images/capture7.png)
+TODO change image
+![](images/capture7.png)
 
-[&#8593; Return to list of Features](#Features)
-</br></br>
+[&#8593; Return to list of Features](#features)
+
+<br/><br/>
 
 ### List all meetings: `meetings`
 List all scheduled meetings stored in program.
@@ -283,11 +305,14 @@ Format:
 Example of usage: 
 
     meetings
+    
+Example output:
 
 ![](images/capture8.png)
 
-[&#8593; Return to list of Features](#Features)
-</br></br>
+[&#8593; Return to list of Features](#features)
+
+<br/><br/>
 
 ### Exit the application: `exit`
 Exits the application and ends the current session.
@@ -299,16 +324,23 @@ Format:
 Example of usage: 
     
     exit
+    
+Example output:
 
 ![](images/capture9.png)
 
-[&#8593; Return to list of Features](#Features)
-</br></br>
+[&#8593; Return to list of Features](#features)
+
+<br/><br/>
 
 ## FAQ
--  **Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer? 
 
-   **A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
+&nbsp;&nbsp;&nbsp;&nbsp;**A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
+   
+[&#8593; Return to the top](#whenfree-meeting-organizer---user-guide)
+
+<br/><br/>
 
 ## Command Summary
 | Feature     | Format      | Example usage |
@@ -323,3 +355,4 @@ Example of usage:
 | List all scheduled meetings     | `meetings`      | `meetings` |
 | Exit application     | `exit`      | `exit` |
 
+[&#8593; Return to the top](#whenfree-meeting-organizer---user-guide)
