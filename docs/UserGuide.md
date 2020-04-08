@@ -189,9 +189,6 @@ Timetables of other contacts will not be modified.
 - You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
 your timetable if you try to schedule a meeting during a time slot which you are busy for.
 
-TODO change image
-![](images/capture6.png)
-
 [&#8593; Return to list of Features](#features)
 
 <br/>
@@ -231,11 +228,9 @@ Example output:
 TODO change image
 ![](images/capture6.png)
     
-Note:
-    
+Note: 
 - You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
 [`contacts`](#list-all-contacts-contacts).
-
 - You can check the timetable of the contact you wish to edit, by displaying his/her timetable using 
 [`timetable <Contact Index>`](#display-timetable-of-selected-contacts-timetable).
 
@@ -283,13 +278,13 @@ Example of usage:
     
 Example output:
 
+TODO change image
+![](images/capture7.png)
+
 Note:
 - You can check `<Contact Index>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
 - Be careful to include the -c tag in `delete -c` when you wish to delete a contact. 
 - `delete -c` which is used to delete a contact, should be differentiated from `delete -m` which is used to delete a meeting.
-
-TODO change image
-![](images/capture7.png)
 
 [&#8593; Return to list of Features](#features)
 
