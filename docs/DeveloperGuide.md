@@ -148,7 +148,7 @@ The ```contact``` component of our application consists of 2 classes: ```TeamMem
 
 ### 2.5. Storage component
 
-![](storage_uml.png)
+![storage component structure](images/storage_uml.png)
 
 Above image shows the structure of Storage object. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
 
