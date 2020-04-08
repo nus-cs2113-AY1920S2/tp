@@ -974,76 +974,184 @@ Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
 
 ### 6.6 Appendix F: Instructions for Manual Testing 
 #### 6.6.1 Launch and Shutdown 
-##### Launch **ATAS**
+Launch **ATAS**
 * Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases)
 * Using Terminal, navigate to folder containing **ATAS**
 * Maximise the screen size of terminal
 
 **Test Case**: `java -jar atas-2.0.0.jar`
 
-**Expected Output**: **ATAS** startup screen is displayed
+Expected Output: **ATAS** startup screen is displayed
 
-##### Exit **ATAS**
+Exit **ATAS** 
 
 **Test Case**: `exit`
 
-**Expected Output**: **ATAS** program terminates
+Expected Output: **ATAS** program terminates
 
 #### 6.6.2 Adding `assignment` task type
 
-**Prerequisites**: Issue`list` command, there are no tasks in the list
+**Prerequisites**: Issue `list` command, there are no tasks in the list
 
-**Test Case**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments`
+**Test Case 1**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments`
 
-**Expected Output**: A success message of adding the `assignment` task will be shown. Entering a `list` command will show 1 
+Expected Output: A success message of adding the `assignment` task will be shown. Entering a `list` command will show 1 
 task in the list. 
 
-**Test Case**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments` after running the `assignment` command as stated above
+**Test Case 2**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments` after running the `assignment` command as stated above
 
-**Expected Output**: An error message indicating that task already exist will be shown. Issuing a `list` command will only
+Expected Output: An error message indicating that task already exist will be shown. Issuing a `list` command will only
 show 1 `assignment` task in the list.
 
-**Test Case**: `assignment n/assignment two`
+**Test Case 3**: `assignment n/assignment two`
 
-**Expected Output**: An error message indicating that a wrong format of `assignment` command is issued. `list` command will 
+Expected Output: An error message indicating that a wrong format of `assignment` command is issued. `list` command will 
 not show `assignment two` on the list. 
 
-**Test Case**: `assignment n/assignment three m/cs2113 d/01/05/20 12:00 c/No comment`
+**Test Case 4**: `assignment n/assignment three m/cs2113 d/01/05/20 12:00 c/No comment`
 
-**Expected Output**: An error message indicating a wrong format of `assignment` command is issued. This is due to `:` in the
+Expected Output: An error message indicating a wrong format of `assignment` command is issued. This is due to `:` in the
 time entered. 
 
-**Test Case**: `assignment n/assignment four m/cs2113 d/40/40/20 1200 c/No comment`
+**Test Case 5**: `assignment n/assignment four m/cs2113 d/40/40/20 1200 c/No comment`
 
-**Expected Output**: An error message indicating a wrong format of date or invalid date is issued. `list` command will not
+Expected Output: An error message indicating a wrong format of date or invalid date is issued. `list` command will not
 show `assignment four` on the list. 
 
 **Prerequisites**: Prepare **today's** date in `DD/MM/YY` format to enter into `d/`
 
-**Test Case**: 
+**Test Case 6**: 
 1. `assignment n/assignment three m/cs2113 d/DD/MM/YY 1200 c/No comment` 
 2. `exit`
 3. `java -jar atas-2.0.0.jar`
 
-**Expected Output**: `assignment three` will be displayed when **ATAS** is started.
+Expected Output: `assignment three` will be displayed when **ATAS** is started.
 
 #### 6.6.3 Adding `event` task type
 
-**Test Case**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment`
+**Test Case 1**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment`
 
-**Expected Output**: A success message of adding the `event` task will be shown. Entering a `list` command will show the 
+Expected Output: A success message of adding the `event` task will be shown. Entering a `list` command will show the 
 `meeting one` on the list. 
 
-**Test Case**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment` after running the `event` command as stated above
+**Test Case 2**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment` after running the `event` command as stated above
 
-**Expected Output**: An error message indicating that task already exist will be shown. Issuing a `list` command will not show
+Expected Output: An error message indicating that task already exist will be shown. Issuing a `list` command will not show
 another `meeting one` on the list. 
 
-**Test Case**: `event n/meeting two`
+**Test Case 3**: `event n/meeting two`
 
-**Expected Output**: An error message indicating that a wrong format of `event` command is issued. `list` command will 
+Expected Output: An error message indicating that a wrong format of `event` command is issued. `list` command will 
 not show `meeting two` on the list.
 
+**Test Case 4**: `event n/meeting three l/com2 d/01/05/20 12:00-1300 c/none`
+
+Expected Output: An error message indicating a wrong format of `event` command is issued. This is due to `:` in the
+time entered.
+
+**Test Case 5**: `event n/meeting three l/com2 d/40/40/20 1200-1300 c/none`
+
+Expected Output: An error message indicating a wrong format of date or invalid date is issued. `list` command will not
+show `meeting three` on the list.
+
+**Test Case 6**: `event n/meeting four l/com2 d/01/05/20 1300-1200 c/none`
+
+Expected Output: An error message indicating that the end time should come after the start time. `list` command will not
+show `meeting four` on the list. 
+
+**Prerequisites**: Prepare **today's** date in `DD/MM/YY` format to enter into `d/`
+
+**Test Case 7**: 
+1. `event n/meeting four l/com2 d/DD/MM/YY 1200-1300 c/None` 
+2. `exit`
+3. `java -jar atas-2.0.0.jar`
+
+Expected Output: `meeting four` will be displayed when **ATAS** is started.
+
+#### 6.6.4 Setting an `event` task to `repeat`
+
+**Prerequisite**: 
+1. List of tasks contain both `assignment` and `event` tasks 
+2. In this test case, `event` task is listed in index `1` in the list
+3. In this test case, `assignment` task is listed in index `2` in the list
+
+> **Note**:
+> Index of tasks may vary depending on order of adding task. <br/>
+> [A] represents an `assignment` task type. <br/>
+> [E] represents an `event` task type.
+
+**Test Case 1**: `repeat id/1 p/3d`
+
+Expected Output: Success message indicating that `event` message will repeat every `3 days`. Issuing a `list` command will
+show that event changed to a `repeat event` task type with `[R]` to indicate repeat and `[3d]` to indicate `3 days`.
+
+**Test Case 2**: `repeat id/1 p/0`
+
+Expected Output: Success message indicating that `repeat event` will no longer repeat. Issuing a `list` command will 
+show that `repeat event` is changed to `event` task type. 
+
+**Test Case 3**: `repeat id/1 p/3a`
+
+Expected Output: An error message indicating wrong format of `repeat` command is entered. 
+
+**Test Case 4**: `repeat id/2 p/3d`
+
+Expected Output: An error message indicating that chosen task index is an `assignment` task. `repeat` command only works
+for `event` task types. 
+
+**Prerequisite**: List of task is not more than 10
+
+**Test Case 5**: `repeat id/20 p/3d`
+
+Expected Output: An error message indicating the valid range of task index to enter will be displayed. 
+
+
+#### 6.6.5 Listing Tasks
+**Prerequisite**: List is empty
+
+**Test Case 1**: `list`
+
+**Test Case 2**: `list incomplete assignments`
+
+**Test Case 3**: `list upcoming events`
+
+**Test Case 4**: `list today`
+
+**Test Case 5**: `list week`
+
+Expected Output: A message indicating that no tasks were found on the list. 
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. List should contain several `assignment`, `event` and `repeat event` task types occurring on the current date 
+3. List should contain several `event` task type that are occurring in the next week
+4. List should contain several `assignment` task type that are incomplete
+
+**Test Case 6**: `list`
+
+Expected Outcome: All tasks that are entered into **ATAS** will be shown in the order in which they are entered. 
+
+> **Note**:
+> This command lists all tasks on the list
+
+**Test Case 7**: `list today`
+
+Expected Outcome: All tasks that are occurring on current date will be displayed.
+
+**Test Case 8**: `list week`
+
+Expected Outcome: All tasks that are occurring within the current date and one week from current date will be displayed.
+
+**Test Case 9**: `list upcoming events`
+
+Expected Outcome: All `event` task types that are occurring from the current date and time will be displayed.
+
+**Test Case 10**: `list incomplete assignments`
+
+Expected Outcome: All `assignment` task types that are incomplete will be displayed.
+
+
+#### 6.6.6 Editing Tasks 
 
 
 
