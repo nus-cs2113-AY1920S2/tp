@@ -69,6 +69,12 @@ public class CheckWeightRecordCommand extends Command {
         currentWeight = weightRecord.get(weightRecord.size() - 1);
         weightDifference = initialWeight - currentWeight;
         weightToGoal = abs(weightGoal - currentWeight);
+        checkWeightStatus();
+
+        return new Result(this.resultString);
+    }
+
+    private void checkWeightStatus() {
         if (weightDifference > 0) {
             if (currentWeight == weightGoal) {
                 this.resultString = String.format(MessageBank.WEIGHT_LOSS_MESSAGE
@@ -94,8 +100,6 @@ public class CheckWeightRecordCommand extends Command {
                         + MessageBank.WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE, abs(weightDifference), weightToGoal);
             }
         }
-
-        return new Result(this.resultString);
     }
 
 }

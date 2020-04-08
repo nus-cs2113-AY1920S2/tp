@@ -23,7 +23,7 @@ public class MessageBank {
 
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
 
-    public static String EXIT_COMMAMD_MESSAGE = "Thank you and see you again soon!";
+    public static String EXIT_COMMAND_MESSAGE = "Thank you and see you again soon!";
 
     public static String EXIT_APP_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
 
@@ -53,12 +53,8 @@ public class MessageBank {
     public static String MEAL_TYPE_ERROR = "You have given wrong description of time!!! "
             + "Choose from: morning/afternoon/night.";
 
-    public static String WEIGHT_UPDATE_MESSAGE = "Your weight changes has been stored. Current weight is: ";
-
     public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
-
-    public static String DUMMY_MESSAGE = "No pain no gain! Continue striving on!";
-
+    
     public static String WEIGHT_DELETED_MESSAGE = " has been removed successfully!";
 
     public static String INVALID_INDEX = "Invalid index of weight! Please check and try again.";
