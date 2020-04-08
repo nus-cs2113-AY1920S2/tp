@@ -1,6 +1,6 @@
 package ui;
 
-import exception.MoException;
+import common.exception.MoException;
 import model.meeting.Meeting;
 import model.meeting.MeetingList;
 import model.contact.Contact;
@@ -178,6 +178,9 @@ public class TextUI {
             out.print(" +-----+-----+-----+-----+-----+-----+-----+");
         }
         out.println();
+        if (weeksMoreToView == 0) {
+            out.println("[NOTE] You can type \"more\" for next week's timetable as well!");
+        }
     }
 
     private static int getLatestTime(Boolean[][][] mySchedule, int weeksMoreToView, int weekNumber, int latestScheduledTime) {
@@ -355,11 +358,11 @@ public class TextUI {
     }
 
     public static void printFormatSchedule() {
-        out.println("\nTo schedule a meeting:\nschedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>");
+        out.println("\nTo schedule a meeting:\nschedule <Meeting Name> <Start Date> <Start Time> <End Date> <End Time>");
     }
 
     public static void printFormatEdit() {
-        out.println("\nTo edit a contact:\nedit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>"
+        out.println("\nTo edit a contact:\nedit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>"
                 + "\nedit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>");
     }
 

@@ -1,8 +1,8 @@
 package logic.command;
 
-import exception.InvalidUrlException;
+import common.exception.InvalidUrlException;
 import model.meeting.MeetingList;
-import exception.MoException;
+import common.exception.MoException;
 import model.meeting.Meeting;
 import logic.modulelogic.LessonsGenerator;
 import logic.schedulelogic.ScheduleHandler;
@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
+
 import static common.Messages.MESSAGE_WRONG_COMMAND_MEETING;
 import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
 

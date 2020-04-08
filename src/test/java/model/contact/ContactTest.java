@@ -1,7 +1,6 @@
 package model.contact;
 
-import exception.MoException;
-import model.contact.Contact;
+import common.exception.MoException;
 import org.junit.jupiter.api.Test;
 
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
