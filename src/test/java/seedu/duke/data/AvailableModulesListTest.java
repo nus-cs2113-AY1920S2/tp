@@ -2,10 +2,10 @@ package seedu.duke.data;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import seedu.duke.module.NewModule;
 import seedu.duke.data.ModuleList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AvailableModulesListTest {
 
@@ -14,5 +14,35 @@ public class AvailableModulesListTest {
         AvailableModulesList modulesList = new AvailableModulesList();
         NewModule module = new NewModule("CS1010", "Programming Methodology", 4);
         assertEquals(module, modulesList.getModule("CS1010"));
+        assertEquals(module, modulesList.getModule("Programming Methodology"));
     }
+
+    @Test
+    void isModuleNameInList() {
+        AvailableModulesList modulesList = new AvailableModulesList();
+        NewModule module = new NewModule("CS1010", "Programming Methodology", 4);
+        modulesList.add(module);
+        assertTrue(modulesList.isModuleNameInList("Programming Methodology"));
+        assertFalse(modulesList.isModuleNameInList("Program Methodology"));
+    }
+
+    @Test
+    void isModuleIdInList() {
+        AvailableModulesList modulesList = new AvailableModulesList();
+        NewModule module = new NewModule("CS1010", "Programming Methodology", 4);
+        modulesList.add(module);
+        assertTrue(modulesList.isModuleIdInList("CS1010"));
+        assertFalse(modulesList.isModuleIdInList("CS2040C"));
+    }
+
+    @Test
+    void remove() {
+        AvailableModulesList modulesList = new AvailableModulesList();
+        NewModule module = new NewModule("CS1231", "Discrete Structures", 4);
+        modulesList.add(module);
+        assertTrue(modulesList.isModuleIdInList("CS1231"));
+        modulesList.remove(module);
+        assertFalse(modulesList.isModuleIdInList("CS1231"));
+    }
+
 }
