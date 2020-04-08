@@ -47,9 +47,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-The user's input did not meet the required format. Please enter in the following format:
+The user's input did not meet the required format. Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -141,9 +141,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format:
+The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -151,9 +151,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format:
+The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -161,9 +161,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format:
+The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -199,9 +199,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format:
+The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -209,9 +209,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format:
+The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -219,9 +219,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format:
+The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -230,9 +230,9 @@ Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input did not specify the 'i/' tag and 'q/' tag before the ingredient's name and quantity.
- Please enter in the following format:
+ Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -241,9 +241,9 @@ Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input did not specify the 'q/' tag and 'p/' tag before the ingredient's quantity and price.
- Please enter in the following format:
+ Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -252,9 +252,9 @@ Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
 The user's input did not specify the 'i/', 'q/' tag and 'p/' tag before the ingredient's name, quantity and price.
- Please enter in the following format:
+ Please enter in the following format: 
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;` 
 ============================================================================================================================
 
 Input next command:
@@ -353,9 +353,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-There is no tag specified. Please enter in the following format:
+There is no tag specified. Please enter in the following format: 
 
-`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;`
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
@@ -369,9 +369,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-There is no tag specified. Please enter in the following format:
+There is no tag specified. Please enter in the following format: 
 
-`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;`
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
@@ -405,9 +405,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-There is no tag specified. Please enter in the following format:
+There is no tag specified. Please enter in the following format: 
 
-`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;`
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
@@ -417,9 +417,9 @@ Input next command:
 Command is of incorrect format
 Try the 'help' command for the list of commands
 ============================================================================================================================
-There is no tag specified. Please enter in the following format:
+There is no tag specified. Please enter in the following format: 
 
-`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;`
+`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` 
                or
 `delete stock; i/INGREDIENT_NAME;`.
 ============================================================================================================================
@@ -554,6 +554,7 @@ Delimiter Missing.
 Input next command:
 
 Input Missing: number of guests n/ is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
@@ -566,10 +567,12 @@ Please enter a valid positive integer.
 Input next command:
 
 Input Missing: name is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
 Input Missing: contact is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
@@ -670,6 +673,7 @@ There is no Reservation[5] in the list.
 Input next command:
 
 Input Missing: either reservation number r/ or date d/ is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
