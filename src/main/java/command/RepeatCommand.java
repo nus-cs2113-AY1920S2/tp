@@ -92,10 +92,11 @@ public class RepeatCommand extends Command {
         boolean isDone = event.getIsDone();
         RepeatEvent newRepeatEvent = new RepeatEvent(event.getName(), event.getLocation(), event.getDateAndTime(),
                 event.getEndDateAndTime(), event.getComments(), numOfPeriod, typeOfPeriod, event.getDateAndTime(), 0);
-        newRepeatEvent.updateDate();
         if (isDone) {
             newRepeatEvent.setDone();
         }
+        newRepeatEvent.updateDate();
+
         taskList.editTask(eventIndex, newRepeatEvent);
         return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, newRepeatEvent.getName(),
                 numOfPeriod == 1 ? "" : numOfPeriod + " ", iconToString(typeOfPeriod),

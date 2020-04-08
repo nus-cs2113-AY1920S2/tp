@@ -6,14 +6,15 @@ import seedu.atas.TaskList;
 import seedu.atas.Ui;
 import tasks.Assignment;
 import tasks.Event;
+import tasks.RepeatEvent;
 import tasks.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MarkAsDoneTest {
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -84,5 +85,33 @@ public class MarkAsDoneTest {
         CommandResult result = testDoneCommand.execute(testTaskList, testUi);
         assertEquals(String.format(Messages.INVALID_ID_ERROR, testTaskList.getRangeOfValidIndex(testTaskList)),
                 result.feedbackToUser);
+    }
+
+    //@@author e0309556
+    @Test
+    public void repeatEvent_markedDoneButRepeated_taskNotDone() {
+        LocalDateTime testDateTime = LocalDateTime.of(2020, 02, 14, 5, 30);
+        RepeatEvent testRepeatEvent = new RepeatEvent("testRepeat", "home", testDateTime, testDateTime.plusMinutes(2),
+                "-", 1, RepeatCommand.WEEKLY_ICON, testDateTime, 0);
+        testRepeatEvent.setDone();
+        assertEquals(testRepeatEvent.getIsDone(), true);
+        testRepeatEvent.updateDate();
+        assertEquals(testRepeatEvent.getIsDone(), false);
+    }
+
+    @Test
+    public void event_markedDoneThenRepeated_taskNotDone() {
+        LocalDateTime testDateTime = LocalDateTime.of(2020, 02, 14, 5, 30);
+        Event testEvent = new Event("8 days ago", "CS2113T", testDateTime, testDateTime.plusHours(4),
+                "testing");
+        testEvent.setDone();
+
+        TaskList testTaskList = new TaskList();
+        Ui testUi = new Ui();
+        testTaskList.addTask(testEvent);
+        assertEquals(testEvent.getIsDone(), true);
+        RepeatCommand testRepeatCommand = new RepeatCommand(0, 5, RepeatCommand.DAILY_ICON);
+        testRepeatCommand.execute(testTaskList, testUi);
+        assertEquals(testTaskList.getTask(0).getIsDone(), false);
     }
 }

@@ -40,7 +40,7 @@ public class EventCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newEvent = new Event(eventName, eventLocation, startDateTime, endDateTime, comments);
-        if (taskList.isRepeatTask(taskList, newEvent)) {
+        if (taskList.isSameTask(taskList, newEvent)) {
             return new CommandResult(Messages.SAME_TASK_ERROR);
         }
         taskList.addTask(newEvent);
