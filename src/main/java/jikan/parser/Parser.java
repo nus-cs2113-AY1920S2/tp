@@ -186,7 +186,7 @@ public class Parser {
      * Method to parse user inputs that are not recognised.
      */
     private void parseDefault() {
-        String line = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        String line = "OOPS!!! I'm sorry, but I don't know what that means :-(";
         makeInfoLog("Invalid command entered");
         Ui.printDivider(line);
     }
