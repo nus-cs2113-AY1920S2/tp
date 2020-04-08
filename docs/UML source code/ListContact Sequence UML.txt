@@ -1,0 +1,25 @@
+title ListContacts
+actor User
+participant ":LogicManager" as myLogicManager #pink
+participant ":CommandHandler" as myCommandHandler #lightgreen
+participant ":TextUI" as myTextUI #lightyellow
+participant ":ContactList" as myContactList #lightblue
+
+
+User->myLogicManager:List all contacts
+activate User
+myLogicManager->myCommandHandler: Request ContactList
+activate myLogicManager
+space
+deactivate myLogicManager
+deactivate myLogicManager
+activate myCommandHandler
+myCommandHandler->myContactList:getContactList()
+activate myContactList
+myContactList-->myCommandHandler: ContactList
+deactivate myContactList
+myCommandHandler->myTextUI: ListMsgUI(ContactList)
+deactivate myCommandHandler
+activate myTextUI
+myTextUI-->User: Display Contact List
+deactivate myTextUI
