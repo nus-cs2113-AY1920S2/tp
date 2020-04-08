@@ -35,8 +35,6 @@ public class Help extends Command {
             case "5":
                 help.printPerformanceHelp();
                 break;
-            case "list":
-                help.printGetHelp();
             default:
                 help.printGetHelp();
             }
