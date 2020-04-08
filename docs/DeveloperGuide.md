@@ -1124,42 +1124,183 @@ Expected Output: A message indicating that no tasks were found on the list.
 **Prerequisite**: 
 1. List should contain several `assignment`, `event` and `repeat event` task types
 2. List should contain several `assignment`, `event` and `repeat event` task types occurring on the current date 
-3. List should contain several `event` task type that are occurring in the next week
+3. List should contain several `event` and `repeat event` task types that are occurring in the next week
 4. List should contain several `assignment` task type that are incomplete
 
 **Test Case 6**: `list`
 
-Expected Outcome: All tasks that are entered into **ATAS** will be shown in the order in which they are entered. 
+Expected Output: All tasks that are entered into **ATAS** will be shown in the order in which they are entered. 
 
 > **Note**:
 > This command lists all tasks on the list
 
 **Test Case 7**: `list today`
 
-Expected Outcome: All tasks that are occurring on current date will be displayed.
+Expected Output: All tasks that are occurring on current date will be displayed.
 
 **Test Case 8**: `list week`
 
-Expected Outcome: All tasks that are occurring within the current date and one week from current date will be displayed.
+Expected Output: All tasks that are occurring within the current date and one week from current date will be displayed.
 
 **Test Case 9**: `list upcoming events`
 
-Expected Outcome: All `event` task types that are occurring from the current date and time will be displayed.
+Expected Output: All `event` and `repeat event` task types that are occurring from the current date and time will be displayed.
 
 **Test Case 10**: `list incomplete assignments`
 
-Expected Outcome: All `assignment` task types that are incomplete will be displayed.
-
+Expected Output: All `assignment` task types that are incomplete will be displayed.
 
 #### 6.6.6 Editing Tasks 
 
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+3. It is assumed that index `1` contains an `assignment` task type
+4. It is assumed that index `2` contains an `event` task type
+5. It is assumed that index `3` contains a `repeat event` task type
+
+**Test Case 1**: 
+1. `edit 1`
+2. `assignment n/edited assignment one m/cs2113 d/01/05/20 1200 c/No comments` 
+
+Expected Output: Success message indicating that `assignment` task is successfully edited is displayed. `list` command
+shows the newly edited `assignment` task.
+
+**Test Case 2**:
+1. `edit 2`
+2. `event n/edited meeting l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+Expected Output: Success message indicating that `event` task is successfully edited is displayed. `list` command shows
+the newly edited `event` task. 
+
+> **Note**:
+> Any error in entering `assignment` and `event` types will result in same error as adding `assignment` or `event` task type.
+
+**Test Case 3**: 
+1. `edit 3`
+2. `event n/edited repeat meeting l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+Expected Output: Success message indicating that `repeat event` task is successfully edited is displayed. `list` command shows
+the newly edited `repeat event` task. Task will retain `[R]` to indicate that it is still a `repeat event` task.
+
+**Test Case 4**: `edit 200`
+
+Expected Output: An error message indicating the range of valid task numbers. 
+
+#### 6.6.7 Marking Task as Done
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+
+**Test Case 1**: `done 1`
+
+Expected Output: A success message indicating the name of task that is marked done will be displayed. Issuing a `list` 
+command shows that the task marked done will be indicated with `[/]`.
+
+**Test Case 2**: `done 200`
+
+Expected Output: An error message indicating the range of valid task numbers. 
+
+#### 6.6.8 Deleting Task
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+
+**Test Case 1**: `delete 1`
+
+Expected Output: A success message indicating the name of task that is deleted will be displayed. Issuing a `list` 
+command shows that the task is deleted. 
+
+**Test Case 2**: `delete 200`
+
+Expected Output: An error message indicating the range of valid task numbers.
+
+#### 6.6.9 Clearing Task
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+3. List should contain several `assignment`, `event` and `repeat event` task types that are marked as done
+
+**Test Case 1**: `clear done`
+
+Expected Output: A success message indicating that all done tasks are cleared will be displayed. Issuing a `list` command
+shows that there are no done tasks in the list. All tasks should have a `[x]` indicator. 
+
+**Test Case 2**: 
+1. Issued after above command
+2. `clear done`
+
+Expected Output: An error message indicating that there are no done tasks at the moment is displayed. 
+
+**Test Case 3**: `clear all`
+
+Expected Output: A success message indicating that all tasks are cleared will be displayed. Issuing a `list` command 
+gives a no task is found error because there are no tasks on the list. 
+
+**Test Case 4**:
+1. Issued after above command
+2. `clear all`
+
+Expected Output: An error message indicating there are no tasks at the moment is displayed. 
+
+#### 6.6.10 Searching for Tasks
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. It is assumed that there is an `assignment` task type named `assignment one` in the list
+3. It is assumed that there is an `assignment` task type scheduled on the `01/05/20` in the list
+4. It is assumed that there is an `event` task type named `meeting one` in the list
+5. It is assumed that there is an `event` task type scheduled on the `01/05/20` in the list
+
+**Test Case 1**: `search t/assignment n/one`
+
+Expected Output: Success message showing the searched `assignment` task type will be displayed. 
+
+**Test Case 2**: `search t/event n/one`
+
+Expected Output: Success message showing the searched `event` task type will be displayed. 
+
+> **Note**:
+> Search for tasks is case-insensitive. <br/>
+> `search t/event n/One` is a valid search
 
 
+**Test Case 3**: `search t/anything n/one`
+
+Expected Output: Error message displaying invalid search command format will be displayed. 
+
+**Test Case 4**: `search t/assignment n/two`
+
+Expected Output: An error message showing that there is no matching task for the search query is shown.
+
+**Test Case 4**: `searchd t/assignment n/one d/01/05/20`
+
+Expected Output: Success message showing the searched `assignment` task type will be displayed.
+
+**Test Case 5**: `searchd t/event n/one d/01/05/20`
+
+Expected Output: Success message showing the searched `event` task type will be displayed.
+
+**Test Case 6**: `search t/assignment n/one d/02/05/20`
+
+Expected Output: An error message showing that there is no matching task for the search query is shown.
 
 
+#### 6.6.11 Calendar View
 
+**Prerequisites**:
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. Assume that list is populated with the above task types in the month of May
 
+**Test Case 1**: `calendar d/05/20`
 
+Expected Output: Calendar view of all tasks scheduled in May 2020 will be displayed. 
 
+**Test Case 2**: `calendar 05/20`
+
+Expected Output: Error message indicating that incorrect `calendar` command is entered will be displayed.
 
 [Back to Top](#)
