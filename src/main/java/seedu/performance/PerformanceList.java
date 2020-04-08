@@ -77,7 +77,7 @@ public class PerformanceList {
      * @param performance The Performance to be edited.
      * @param type        The type of parameter to be edited.
      */
-    public void edit(Performance performance, String type) {
+    public void editPerformance(Performance performance, String type) {
         boolean hasEdited = false;
         if (isEmpty()) {
             UI.display("No performance list under this event");
@@ -106,7 +106,7 @@ public class PerformanceList {
         performanceList.add(performance);
     }
 
-    public void editResult(Performance performance) {
+    private void editResult(Performance performance) {
         performance.result = ui.getPerformanceName("result");
         ui.editPerformanceMessage(performance, "result");
         performanceList.remove(performance);
