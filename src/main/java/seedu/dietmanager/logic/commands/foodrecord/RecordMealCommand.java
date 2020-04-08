@@ -5,7 +5,7 @@ import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.parser.CommandParser;
+import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Food;
 import seedu.dietmanager.model.FoodNutritionRecord;
@@ -37,7 +37,7 @@ public class RecordMealCommand extends Command {
         this.isInvalidDate = false;
 
         try {
-            String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
+            String[] descriptionArray = DescriptionParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.date = descriptionArray[0].trim().toUpperCase();
             this.mealType = descriptionArray[1].trim().toLowerCase();
             this.foodDescription = descriptionArray[2].trim().split("/");

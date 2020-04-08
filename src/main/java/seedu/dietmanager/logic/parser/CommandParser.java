@@ -25,41 +25,53 @@ import seedu.dietmanager.logic.commands.recipe.ShowRecipeCommand;
 import seedu.dietmanager.logic.commands.utility.ExitCommand;
 import seedu.dietmanager.logic.commands.utility.HelpCommand;
 
+import java.util.Optional;
+
 /**
- * Parser is the public class responsible for parsing user input and generating the relevant commands.
+ * CommandParser is the public class responsible for validating the user input and
+ * parsing it into a valid Command.
  */
 
 public class CommandParser {
 
     /**
-     * The command prompt entered by the user.
+     * The command prompt parsed from user input.
      */
 
-    private static String commandPrompt;
+    private static Optional<String> commandPrompt;
 
     /**
-     * The description of the command entered by the user.
+     * The description parsed from user input.
      */
 
-    private static String description;
+    private static Optional<String> description;
 
     /**
-     * Parses the user input and prepares it to be analysed and used to generate commands.
+     * The number of arguments in valid Command.
+     */
+
+    private static final int ARGUMENTS_REQUIRED = 2;
+
+    /**
+     * Parses the user input and prepares it to be analysed.
      *
      * @param input the user input.
      * @throws InvalidCommandException if user input has too few arguments.
      */
 
     public static void prepareInput(String input) throws InvalidCommandException {
-        String[] inputArray = input.trim().split(" ", 2);
+        commandPrompt = Optional.empty();
+        description = Optional.empty();
+
+        String[] inputArray = input.trim().split(" ", ARGUMENTS_REQUIRED);
         int numArguments = inputArray.length;
         switch (numArguments) {
         case 1:
-            commandPrompt = inputArray[0].trim().toLowerCase();
+            commandPrompt = Optional.ofNullable(inputArray[0].trim().toLowerCase());
             break;
         case 2:
-            commandPrompt = inputArray[0].trim().toLowerCase();
-            description = inputArray[1].trim();
+            commandPrompt = Optional.ofNullable(inputArray[0].trim().toLowerCase());
+            description = Optional.ofNullable(inputArray[1].trim());
             break;
         default:
             throw new InvalidCommandException();
@@ -67,103 +79,94 @@ public class CommandParser {
     }
 
     /**
-     * Parses the user input and prepares it to be analysed and used to generate commands.
+     * Validate the user input and parsing it into a valid Command.
      *
-     * @param description       the command description.
-     * @param argumentsRequired the number of arguments required by the command.
-     * @throws InvalidFormatException if user input has the wrong format.
-     */
-
-    public static String[] parseDescription(String description, int argumentsRequired) throws InvalidFormatException,
-            NullPointerException {
-        String[] descriptionArray = description.trim().split("\\s+", argumentsRequired);
-        if (descriptionArray.length != argumentsRequired) {
-            throw new InvalidFormatException();
-        }
-        return descriptionArray;
-    }
-
-    /**
-     * Analyses the user input and generates the relevant command.
-     *
-     * @param input the user input.
-     * @return the command generated from the user input.
+     * @param input User input.
+     * @return Command generated from the user input.
      * @throws InvalidCommandException if command is not supported by application.
-     * @throws InvalidFormatException  if format for command is wrong.
+     * @throws InvalidFormatException  if command format is invalid.
      */
 
-    public static Command parseInput(String input) throws InvalidCommandException, InvalidFormatException {
+    public static Optional<Command> parseInput(String input) throws InvalidCommandException, InvalidFormatException {
         prepareInput(input);
-        Command command;
-        switch (commandPrompt) {
-        case "profile":
-            command = new ProfileCommand(commandPrompt);
-            break;
-        case "set-profile":
-            command = new SetProfileCommand(commandPrompt, description);
-            break;
-        case "set-name":
-            command = new SetNameCommand(commandPrompt, description);
-            break;
-        case "set-age":
-            command = new SetAgeCommand(commandPrompt, description);
-            break;
-        case "set-gender":
-            command = new SetGenderCommand(commandPrompt, description);
-            break;
-        case "set-height":
-            command = new SetHeightCommand(commandPrompt, description);
-            break;
-        case "set-weight":
-            command = new SetWeightCommand(commandPrompt, description);
-            break;
-        case "set-weight-goal":
-            command = new SetWeightGoalCommand(commandPrompt, description);
-            break;
-        case "record-meal":
-            command = new RecordMealCommand(commandPrompt, description);
-            break;
-        case "check-meal":
-            command = new CheckRecordCommand(commandPrompt, description);
-            break;
-        case "exit":
-            command = new ExitCommand(commandPrompt);
-            break;
-        case "check-weight-progress":
-            command = new CheckWeightRecordCommand(commandPrompt, description);
-            break;
-        case "check-required-cal":
-            command = new CheckRequiredCaloriesCommand(commandPrompt, description);
-            break;
-        case "list-food":
-            command = new ListFoodDatabaseCommand(commandPrompt);
-            break;
-        case "calculate":
-            command = new CalculateCaloriesCommand(commandPrompt, description);
-            break;
-        case "delete-weight":
-            command = new DeleteWeightCommand(commandPrompt, description);
-            break;
-        case "addf":
-            command = new AddFoodCommand(commandPrompt, description);
-            break;
-        case "delf":
-            command = new DeleteFoodCommand(commandPrompt, description);
-            break;
-        case "new-recipe":
-            command = new BuildNewRecipeCommand(commandPrompt, description);
-            break;
-        case "show-recipe":
-            command = new ShowRecipeCommand(commandPrompt);
-            break;
-        case "help":
-            command = new HelpCommand(commandPrompt);
-            break;
-        default:
-            description = null;
+        Optional<Command> command;
+
+        if (commandPrompt.isPresent() && description.isEmpty()) {
+            switch (commandPrompt.get()) {
+            case "profile":
+                command = Optional.of(new ProfileCommand(commandPrompt.get()));
+                break;
+            case "list-food":
+                command = Optional.of(new ListFoodDatabaseCommand(commandPrompt.get()));
+                break;
+            case "show-recipe":
+                command = Optional.of(new ShowRecipeCommand(commandPrompt.get()));
+                break;
+            case "help":
+                command = Optional.of(new HelpCommand(commandPrompt.get()));
+                break;
+            case "exit":
+                command = Optional.of(new ExitCommand(commandPrompt.get()));
+                break;
+            default:
+                throw new InvalidCommandException();
+            }
+        } else if (commandPrompt.isPresent() && description.isPresent()) {
+            switch (commandPrompt.get()) {
+            case "set-profile":
+                command = Optional.of(new SetProfileCommand(commandPrompt.get(), description.get()));
+                break;
+            case "set-name":
+                command = Optional.of(new SetNameCommand(commandPrompt.get(), description.get()));
+                break;
+            case "set-age":
+                command = Optional.of(new SetAgeCommand(commandPrompt.get(), description.get()));
+                break;
+            case "set-gender":
+                command = Optional.of(new SetGenderCommand(commandPrompt.get(), description.get()));
+                break;
+            case "set-height":
+                command = Optional.of(new SetHeightCommand(commandPrompt.get(), description.get()));
+                break;
+            case "set-weight":
+                command = Optional.of(new SetWeightCommand(commandPrompt.get(), description.get()));
+                break;
+            case "set-weight-goal":
+                command = Optional.of(new SetWeightGoalCommand(commandPrompt.get(), description.get()));
+                break;
+            case "record-meal":
+                command = Optional.of(new RecordMealCommand(commandPrompt.get(), description.get()));
+                break;
+            case "check-meal":
+                command = Optional.of(new CheckRecordCommand(commandPrompt.get(), description.get()));
+                break;
+            case "check-weight-progress":
+                command = Optional.of(new CheckWeightRecordCommand(commandPrompt.get(), description.get()));
+                break;
+            case "check-required-cal":
+                command = Optional.of(new CheckRequiredCaloriesCommand(commandPrompt.get(), description.get()));
+                break;
+            case "calculate":
+                command = Optional.of(new CalculateCaloriesCommand(commandPrompt.get(), description.get()));
+                break;
+            case "delete-weight":
+                command = Optional.of(new DeleteWeightCommand(commandPrompt.get(), description.get()));
+                break;
+            case "addf":
+                command = Optional.of(new AddFoodCommand(commandPrompt.get(), description.get()));
+                break;
+            case "delf":
+                command = Optional.of(new DeleteFoodCommand(commandPrompt.get(), description.get()));
+                break;
+            case "new-recipe":
+                command = Optional.of(new BuildNewRecipeCommand(commandPrompt.get(), description.get()));
+                break;
+            default:
+                throw new InvalidCommandException();
+            }
+        } else {
             throw new InvalidCommandException();
         }
-        description = null;
         return command;
     }
 

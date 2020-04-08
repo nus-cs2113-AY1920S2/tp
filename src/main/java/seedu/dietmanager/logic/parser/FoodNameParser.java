@@ -1,31 +1,46 @@
 package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidFoodNameException;
-import seedu.dietmanager.commons.exceptions.InvalidNameException;
+
+import java.util.Optional;
+
+/**
+ * FoodNameParser is the public class responsible for validating the user input and
+ * parsing it into a valid Food Name.
+ */
 
 public class FoodNameParser {
 
     /**
-     * Validate the user input gender and parse it into the standard gender accepted.
+     * Food Name value parsed from user input.
+     */
+
+    private static Optional<String> foodName;
+
+    /**
+     * Validate the user input and parsing it into a valid Food Name.
      *
-     * @param description User input gender.
-     * @return Gender in standard form.
-     * @throws InvalidNameException If input is not a valid height value.
+     * @param description User input.
+     * @return Food Name in standard form.
+     * @throws InvalidFoodNameException If input is not a valid Food Name.
      */
 
     public static String parseFoodName(String description) throws InvalidFoodNameException {
-        String foodName = "";
-        foodName = description.trim().toLowerCase();
-        if (foodName.equals("")) {
+        foodName = Optional.ofNullable(description.trim().toLowerCase());
+        if (foodName.isEmpty()) {
             throw new InvalidFoodNameException();
         }
-        testAssertions(foodName);
-        foodName = foodName.replaceAll(" ", "-");
-        return foodName;
+        foodName = Optional.ofNullable(foodName.get().replaceAll(" ", "-"));
+        testAssertions();
+        return foodName.get();
     }
 
-    public static void testAssertions(String foodName) {
-        assert (!(foodName.equals("")));
+    /**
+     * Assertion testing for Food Name.
+     */
+
+    public static void testAssertions() {
+        assert (foodName.isPresent());
     }
 
 }
