@@ -94,7 +94,12 @@ Figure 6. Sequence diagram of addcard command.
 ### 2.x. Quiz Feature
 #### 2.x.1. Implementation
 The quiz feature now incorporates random testing, builds upon the subject feature to allows users to set how many questions to quiz for a selected subject. 
-This helps users to quiz by subject, and get a score at the end of each quiz. It implements the following operations:
+This helps users to quiz by subject, and get a score at the end of each quiz. 
+
+As of the current version, the quiz feature does not support automatic marking, and the user will have to mark their 
+own answers for each question. Automatic marking may be added in future versions.
+
+The quiz feature implements the following operations:
 
 - ``Quiz#quizQuestion()`` - Outputs a random question to the user that has not been tested before in this quiz session.
 - ``Quiz#quizNext()`` - Retrieves a random question from the available questions for that subject.
