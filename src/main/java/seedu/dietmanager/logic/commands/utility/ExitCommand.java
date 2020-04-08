@@ -30,7 +30,7 @@ public class ExitCommand extends Command {
 
     @Override
     public Result getResult(Profile profile) {
-        this.resultString = MessageBank.EXIT_COMMAMD_MESSAGE;
+        this.resultString = MessageBank.EXIT_COMMAND_MESSAGE;
         return new Result(this.resultString);
     }
 }
