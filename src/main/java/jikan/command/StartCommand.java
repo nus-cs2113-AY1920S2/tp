@@ -10,6 +10,7 @@ import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -272,17 +273,18 @@ public class StartCommand extends Command {
         LocalTime endTime;
         endTime = LocalTime.parse(durationInfo);
         Duration allocatedTime = Duration.between(startTime, endTime);
+        ArrayList<String> tags = getTags(tagStrings);
         if (tagInfo.isEmpty()) {
             Log.makeInfoLog("No tags found with tag flag.");
             Ui.printDivider("Please provide a valid tag");
         } else if (allocatedTime == Duration.parse("PT0S")) {
             Log.makeInfoLog("Allocated time is zero.");
             Ui.printDivider("Please provide a non zero allocated time");
-        } else if (tagStrings.length > 2) {
-            Log.makeInfoLog("Activity has more than 2 tags.");
+        } else if (tags.size() > 2) {
+            Log.makeInfoLog("Activity has more than 2 tags");
             Ui.printDivider("Cannot have more than 2 tags");
         } else {
-            Parser.tags.addAll(Arrays.asList(tagStrings));
+            Parser.tags.addAll(tags);
             Parser.allocatedTime = allocatedTime;
             addActivity(activityName);
         }
@@ -330,17 +332,35 @@ public class StartCommand extends Command {
         String tagInfo = line.substring(index + 2);
         tagInfo = tagInfo.trim();
         String[] tagStrings = tagInfo.split(" ");
+        ArrayList<String> tags = getTags(tagStrings);
         if (tagInfo.isEmpty()) {
             Log.makeInfoLog("No tags found with tag flag.");
             Ui.printDivider("Please provide a valid tag");
-        } else if (tagStrings.length > 2) {
-            Log.makeInfoLog("Activity has more than 2 tags.");
+        } else if (tags.size() > 2) {
+            Log.makeInfoLog("Activity has more than 2 tags");
             Ui.printDivider("Cannot have more than 2 tags");
         } else {
-            Parser.tags.addAll(Arrays.asList(tagStrings));
+            Parser.tags.addAll(tags);
             addActivity(activityName);
         }
     }
+
+    /**
+     * Method to get valid tags from an array of tags.
+     * @param tagStrings array of tags
+     * @return an array list consisting of valid tags
+     */
+    private ArrayList<String> getTags(String[] tagStrings) {
+        ArrayList<String> tags = new ArrayList<>();
+        for (String s : tagStrings) {
+            String tag = s.trim();
+            if (!tag.isEmpty()) {
+                tags.add(tag);
+            }
+        }
+        return tags;
+    }
+
 
     /**
      * Add activity to activity list.
@@ -356,7 +376,6 @@ public class StartCommand extends Command {
 
     /**
      * Received user input on whether or not to continue the activity.
-     *
      * @param activityList List of activities.
      * @param scanner Parse user input.
      */
