@@ -23,7 +23,7 @@ public class SortPerformanceListByName extends Command {
     /**
      * Method to sort an performance list according to name.
      */
-    private void sortPerformance() {
+    private void sortPerformanceByName() {
         if (performances.isEmpty()) {
             UI.display("An empty list cannot be sorted");
         } else {
@@ -34,6 +34,6 @@ public class SortPerformanceListByName extends Command {
 
     @Override
     public void execute() throws PacException {
-        sortPerformance();
+        sortPerformanceByName();
     }
 }
