@@ -60,7 +60,7 @@ public class CommandParser {
      * @throws InvalidCommandException if user input has too few arguments.
      */
 
-    public static void prepareInput(String input) throws InvalidCommandException {
+    private static void prepareInput(String input) throws InvalidCommandException {
         commandPrompt = Optional.empty();
         description = Optional.empty();
 
