@@ -7,12 +7,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Cleaner {
-    protected static String STATUS_FILE_PATH;
-    protected static String DATA_FILE_PATH;
+    protected String statusFilePath;
+    protected String dataFilePath;
     protected File status;
     protected File recycledData;
+    /** toClean acts as a switch to switch on/off the cleaner. */
     public boolean toClean;
-    private static final int defaultNumberOfDataToClean = 5;
+    private static final int DEFAULT_LINES_TO_CLEAN = 5;
 
     /**
      * Initialise a data file containing the deleted logs.
@@ -22,6 +23,50 @@ public abstract class Cleaner {
             loadFile(recycledData);
         } catch (IOException e) {
             System.out.println("Error loading/creating recycled file");
+        }
+    }
+
+    /**
+     * Activates/De-activates the auto clean up by checking the status file.
+     * @return the number of lines of data to automatically clean.
+     */
+    protected int initialiseCleaner() {
+        try {
+            return getDataFromStatusFile();
+        } catch (IOException e) {
+            System.out.println("Error loading/creating cleaning file.");
+            return -1;
+        } catch (NumberFormatException e) {
+            System.out.println("Error with loading status file. Please delete status file.");
+            return -1;
+        }
+    }
+
+    /**
+     * Scans the status file if it exists to initialise toClean and get data on
+     * the number of lines to clean.
+     * @return the number of lines of data to automatically clean.
+     * @throws IOException if status file could not be loaded/created.
+     */
+    private int getDataFromStatusFile() throws IOException, NumberFormatException {
+        if (loadCleaner(status)) {
+            Scanner sc = new Scanner(status);
+            String status = sc.nextLine();
+            int value = Integer.parseInt(status);
+            assert value == 0 || value == 1;
+            if (value == 1) {
+                this.toClean = true;
+            } else {
+                this.toClean = false;
+            }
+            String line = sc.nextLine();
+            return Integer.parseInt(line);
+        } else {
+            FileWriter fw = new FileWriter(status);
+            fw.write("0" + "\n");
+            fw.write("5" + "\n");
+            fw.close();
+            return DEFAULT_LINES_TO_CLEAN;
         }
     }
 
@@ -61,36 +106,6 @@ public abstract class Cleaner {
         file.createNewFile();
     }
 
-    /**
-     * Activates/De-activates the auto clean up by checking the status file.
-     * @return the number of lines of data to automatically clean.
-     */
-    protected int initialiseCleaner() {
-        try {
-            if (loadCleaner(status)) {
-                Scanner sc = new Scanner(status);
-                String status = sc.nextLine();
-                int value = Integer.parseInt(status);
-                assert value == 0 || value == 1;
-                if (value == 1) {
-                    this.toClean = true;
-                } else {
-                    this.toClean = false;
-                }
-                String line = sc.nextLine();
-                return Integer.parseInt(line);
-            } else {
-                FileWriter fw = new FileWriter(status);
-                fw.write("0" + "\n");
-                fw.write("5" + "\n");
-                fw.close();
-                return defaultNumberOfDataToClean;
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading/creating cleaning file.");
-            return -1;
-        }
-    }
 
     /**
      * Method to activate/de-activate the auto cleanup.
@@ -100,7 +115,7 @@ public abstract class Cleaner {
      */
     public void setStatus(boolean status, int number) throws IOException {
         this.toClean = status;
-        File dataFile = new File(STATUS_FILE_PATH);
+        File dataFile = new File(statusFilePath);
         if (!dataFile.exists()) {
             dataFile.createNewFile();
         }
@@ -110,7 +125,7 @@ public abstract class Cleaner {
         } else {
             writer.write("0" + "\n");
         }
-        writer.write(Integer.toString(number) + "\n");
+        writer.write(number + "\n");
         writer.close();
     }
 
