@@ -58,6 +58,8 @@ public class Messages {
     public static final String UNKNOWN_COMMAND_ERROR = "Unknown command entered";
     public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + DATE_FORMAT_HELP;
+    public static final String CALENDAR_DATE_INVALID = "Invalid date provided"
+            + System.lineSeparator() + "%s";
     public static final String START_END_DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + START_END_DATE_FORMAT_HELP;
 
