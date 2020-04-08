@@ -10,8 +10,7 @@ public class Messages {
             + "Enter help to know how to use HappyPills.";
     public static final String MESSAGE_INCOMPLETE_COMMAND = "    Command is incomplete. Please use the help command.\n"
             + DIVIDER;
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "    Patient does not exist. Please try again.\n"
-            + DIVIDER;
+    public static final String MESSAGE_PATIENT_NOT_FOUND = "    Patient does not exist. Please try again.";
     public static final String MESSAGE_PATIENT_RECORD_ADDED = "    Patient Record has been added.\n"
             + DIVIDER;
     public static final String MESSAGE_MISSING_FIELD =
@@ -28,7 +27,8 @@ public class Messages {
     public static final String MESSAGE_DIAGNOSIS_FORMAT = "      /diag DIAGNOSIS";
     public static final String MESSAGE_DATE_FORMAT = "      /d DATE (Format: DD/MM/YYYY)";
     public static final String MESSAGE_TIME_FORMAT = "      /t TIME (Format: HH:mm)";
-    public static final String MESSAGE_COMMAND_ABORTED = "    Command has been aborted.";
+    public static final String MESSAGE_COMMAND_ABORTED = DIVIDER
+            + "\n    Command has been aborted.";
     public static final String MESSAGE_PATIENT_RECORD_NOT_ADDED = "    The current information is not added.\n"
             + "    Please add all the details again! Thank you.\n"
             + DIVIDER;

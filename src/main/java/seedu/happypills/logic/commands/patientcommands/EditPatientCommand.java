@@ -158,7 +158,7 @@ public class EditPatientCommand extends PatientCommand {
         Patient editPatient = findPatient(patients);
         String output = "";
         if (editPatient == null) {
-            throw new HappyPillsException(PatientTextUi.PATIENT_NOT_FOUND_MESSAGE);
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
         if (content.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);

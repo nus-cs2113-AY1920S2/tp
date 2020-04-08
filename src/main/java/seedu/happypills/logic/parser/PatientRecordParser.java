@@ -160,7 +160,7 @@ public class PatientRecordParser extends Parser {
             }
             String[] updates = splitInput(input);
             updates = trimArray(updates);
-            updateInput(parseInput, updates);
+            parseInput(parseInput, updates);
         }
 
         if (!loopPrompt(PatientRecordTextUi.promptConfirmation(parseInput))) {

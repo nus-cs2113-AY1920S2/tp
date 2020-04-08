@@ -4,6 +4,7 @@ import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
 
 public class GetPatientCommand extends PatientCommand {
@@ -35,7 +36,7 @@ public class GetPatientCommand extends PatientCommand {
         if (patients.containsKey(patientNric)) {
             return PatientTextUi.getPatientSuccessMessage(patients.get(patientNric));
         } else {
-            throw new HappyPillsException(PatientTextUi.PATIENT_NOT_FOUND_MESSAGE);
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
     }
 
