@@ -13,18 +13,8 @@ public class NotePrinter {
      * @param note - Objecting representing note.
      */
     public static void execute(int taskCounter, Note note) {
-        String timeStamp = note.getTimeStamp();
-        String date = TimeStampToDateConverter.execute(timeStamp);
-        String title = note.getTitle();
-        String extract = note.getExtract();
-        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
-        String category = note.getCategory();
-        String url = note.getUrl();
-        System.out.println(taskCounter + ". Title: " + title + System.lineSeparator()
-                                + "   Date: " + date + System.lineSeparator()
-                                + "   Category: " + category + System.lineSeparator()
-                                + "   URL: " + url + System.lineSeparator()
-                                + "   Extract: " + upToNCharacters);
+        String noteToPrint = taskCounter + ". " + returnNoteString(note);
+        System.out.println("   " + noteToPrint);
     }
 
     /**
@@ -32,6 +22,17 @@ public class NotePrinter {
      * @param note - Object representing note.
      */
     public static void printIsolatedNote(Note note) {
+        String noteToPrint = returnNoteString(note);
+        System.out.println("   " + noteToPrint);
+    }
+
+    /**
+     * Returns a string represeting a note  object.
+     *
+     * @param note - represents a note object
+     * @return - String representing note.
+     */
+    private static String returnNoteString(Note note) {
         String timeStamp = note.getTimeStamp();
         String date = TimeStampToDateConverter.execute(timeStamp);
         String title = note.getTitle();
@@ -39,11 +40,12 @@ public class NotePrinter {
         String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
         String category = note.getCategory();
         String url = note.getUrl();
-        System.out.println("   Title: " + title + System.lineSeparator()
+        String noteToPrint = "Title: " + title + System.lineSeparator()
                 + "   Date: " + date + System.lineSeparator()
                 + "   Category: " + category + System.lineSeparator()
                 + "   URL: " + url + System.lineSeparator()
-                + "   Extract: " + upToNCharacters);
+                + "   Extract: " + upToNCharacters;
+        return noteToPrint;
     }
 }
 

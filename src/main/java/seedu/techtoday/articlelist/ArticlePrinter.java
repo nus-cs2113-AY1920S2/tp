@@ -14,18 +14,8 @@ public class ArticlePrinter {
      * @param article - Article representing an article object.
      */
     public static void execute(int taskCounter, Article article) {
-        String timeStamp = article.getTimeStamp();
-        String date = TimeStampToDateConverter.execute(timeStamp);
-        String title = article.getTitle();
-        String url = article.getUrl();
-        String category = article.getCategory();
-        String extract = article.getExtract();
-        String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
-        System.out.println(taskCounter + ". Title: " + title + System.lineSeparator()
-                                + "   Date: " + date + System.lineSeparator()
-                                + "   Category: " + category + System.lineSeparator()
-                                + "   Url: " + url + System.lineSeparator()
-                                + "   Extract: " + upToNCharacters);
+        String articleToPrint = taskCounter + ". " + returnArticleString(article);
+        System.out.println("   " + articleToPrint);
     }
 
     /**
@@ -34,6 +24,17 @@ public class ArticlePrinter {
      * @param article - Article representing an article object.
      */
     public static void printIsolatedArticle(Article article) {
+        String articleToPrint = returnArticleString(article);
+        System.out.println("   " + articleToPrint);
+    }
+
+    /**
+     * Retuns a string with the details of the article to be printed.
+     *
+     * @param article - Article under consideration.
+     * @return String representing article.
+     */
+    private static String returnArticleString(Article article) {
         String timeStamp = article.getTimeStamp();
         String date = TimeStampToDateConverter.execute(timeStamp);
         String title = article.getTitle();
@@ -41,10 +42,12 @@ public class ArticlePrinter {
         String category = article.getCategory();
         String extract = article.getExtract();
         String upToNCharacters = CommonMethods.returnUptoNcharacters(extract);
-        System.out.println("   Title: " + title + System.lineSeparator()
-                                + "   Date: " + date + System.lineSeparator()
-                                + "   Category: " + category + System.lineSeparator()
-                                + "   Url: " + url + System.lineSeparator()
-                                + "   Extract: " + upToNCharacters);
+        String articleToPrint = "Title: " + title + System.lineSeparator()
+                + "   Date: " + date + System.lineSeparator()
+                + "   Category: " + category + System.lineSeparator()
+                + "   Url: " + url + System.lineSeparator()
+                + "   Extract: " + upToNCharacters;
+        return articleToPrint;
     }
+
 }
