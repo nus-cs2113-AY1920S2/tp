@@ -17,7 +17,8 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
-import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_ALREADY_DONE_TASK;
+import static seedu.nuke.util.Message.MESSAGE_DONE_TASK;
 
 public class MarkAsDoneCommand extends EditCommand {
     public static final String COMMAND_WORD = "done";
@@ -58,10 +59,13 @@ public class MarkAsDoneCommand extends EditCommand {
     public CommandResult execute() {
         try {
             Task toMarkAsDone = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
+            if (toMarkAsDone.isDone()) {
+                return new CommandResult(MESSAGE_ALREADY_DONE_TASK);
+            }
             toMarkAsDone.setDone(true);
             assert toMarkAsDone.isDone() : "How can this be?";
             StorageManager.setIsSave();
-            return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
+            return new CommandResult(MESSAGE_DONE_TASK);
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         } catch (CategoryManager.CategoryNotFoundException e) {

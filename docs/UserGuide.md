@@ -725,102 +725,158 @@ SUCCESS!! Task(s) have been deleted.
 ![image-20200401021025877](images/ug_delt_after.png)
 
 ### **4. Edit**
+Edits a <i>module</i>, <i>category</i>,  <i>task</i> or <i>file</i>.<br>  
 
-Edits a _module_, _category_ or _task_ in their respective lists.<br>  
+#### **a. Edit a Module in your Module List**  
+`edm` edits a <i>module</i> in your <b>Module List</b>. The <b>Module List</b> contains all your added <i>modules</i> and can be viewed via the [<b>List Module</b>](#a-list-your-modules) command.
 
-#### a. Edit a Module in your Module List  
-```
-	// To do
-```
+##### **Format**  
+`edm <module code> -m <new module code>`  
 
-##### Format  
-```
-	// To do
-```
+- `module code` -- The <i>module code</i> of the <i>module</i> to be edited   
+- `new module code` -- The <u>new</u> <i>module code</i> of the <i>module</i>      
 
-##### Example Usage    
-```
-	// To do
-```
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+Similar to the <a href="#a-add-a-module-into-your-module-list"><b>Add Module</b></a> command, do make sure that the <code>new module code</code> that you enter is a valid <b>NUS module</b>.  <br>
+Also, ensure that you do not enter the same <code>new module code</code> as an existing <i>module</i> in the <b>Module List</b> &#128558;.
+</div>
 
-##### Expected Outcome    
-```
-	// To do
-```
-
-<br>  
-
-#### b. Edit a Category in your Category List  
-```
-	// To do
-```
-
-##### Format  
-```
-	// To do
-```
-
-##### Example Usage    
-```
-	// To do
-```
-
-##### Expected Outcome    
-```
-	// To do
-```
+##### **Example Usage and Expected Outcome**     
+<small><u>**Correct Edit**</u></small>  
+![edm command correct](images/edm_correct.png)   
+<br>     
+<small><u>**Duplicate Module (Incorrect)**</u></small>  
+![edm command duplicate module](images/edm_exist.png)   
+<br>     
+<small><u>**Invalid Module Code (Incorrect)**</u></small>  
+![edm command invalid module code](images/edm_invalid.png)   
 
 <br>  
 
-#### c. Edit a Task in your Task List  
-```
-	// To do
-```
+#### **b. Edit a Category in your Category List**  
+`edc` edits a <i>category</i> in your <b>Category List</b>. The <b>Category List</b> contains all your added <i>categories</i> of a <i>module</i> and can be viewed via the [<b>List Category</b>](#b-list-your-categories) command.
 
-##### Format  
-```
-	// To do
-```
+##### **Format**  
+`edc <category name> -m <module code> { -c <new category name> -p <new priority> }`  
 
-##### Example Usage    
-```
-	// To do
-```
+- `category name` -- The <i>name</i> of the <i>category</i> to be edited
+- `module code` -- The <i>module code</i> of the <i>module</i> containing the <i>category</i> to be edited   
+- `new category name` -- The <u>new</u> <i>name</i> of the <i>category</i>      
+- `new priority` -- The <u>new</u> <i>priority</i> of the <i>category</i>      
 
-##### Expected Outcome    
-```
-	// To do
-```
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+You need to enter at least one of <code>new category name</code> and <code>new priority</code>. If both are omitted, an error message would be shown! &#128555; <br>
+In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, the <code>new priority</code> must be between 0 and 20 inclusive.
+</div>
+
+##### **Example Usage and Expected Outcome**     
+<small><u>**Correct Edit**</u></small>  
+![edc command correct](images/edc_correct.png)  
+<br>     
+<small><u>**Duplicate Category (Incorrect)**</u></small>  
+![edc command duplicate category](images/edc_exist.png)   
+<br>     
+<small><u>**Invalid Priority (Incorrect)**</u></small>  
+![edc command invalid priority](images/edc_invalid_priority.png)    
+<br>     
+<small><u>**Nothing to Edit (Incorrect)**</u></small>  
+![edc command nothing to edit](images/edc_empty.png)
+
+<br>  
+
+#### **c. Edit a Task in your Task List**  
+
+`edt` edits a <i>task</i> in your <b>Task List</b>. The <b>Task List</b> contains all your added <i>tasks</i> of a <i>category</i> and can be viewed via the [<b>List Task</b>](#c-list-your-tasks) command.
+
+##### **Format**  
+`edt <task description> -m <module code> -c <category name>`      
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;`{ -t <new task description> -d <new deadline> -p <new priority> }`  
+
+- `task description` -- The <i>description</i> of the <i>task</i> to be edited      
+- `module code` -- The <i>module code</i> of the <i>module</i> containing the <i>task</i> to be edited   
+- `category name` -- The <i>name</i> of the <i>category</i> containing the <i>task</i> to be edited
+- `new task description` -- The <u>new</u> <i>description</i> of the <i>task</i>      
+- `new deadline` -- The <u>new</u> <i>deadline</i> of the <i>task</i>      
+- `new priority` -- The <u>new</u> <i>priority</i> of the <i>task</i>      
+
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+You need to enter at least one of <code>new task description</code>, <code>new deadline</code> and <code>new priority</code>. If all are omitted, an error message would be shown! &#128555; <br>  
+As with all <code>deadline</code> attribute, the <code>new deadline</code> must follow <b>Nuke</b>'s accepted <a href="#date-time-formats">Date Time Formats</a>.<br>  
+In addition, the <code>new priority</code> should also be between 0 and 20 inclusive.
+</div>
+
+##### **Example Usage and Expected Outcome**     
+<small><u>**Correct Edit**</u></small>  
+![edt command correct](images/edt_correct.png)    
+<br>     
+<small><u>**Duplicate Category (Incorrect)**</u></small>  
+![edt command duplicate task](images/edt_exist.png)   
+<br>     
+<small><u>**Invalid Deadline (Incorrect)**</u></small>  
+![edt command invalid deadline](images/edt_invalid_deadline.png)   
+<br>     
+<small><u>**Invalid Priority (Incorrect)**</u></small>      
+![edt command invalid priority](images/edt_invalid_priority.png)     
+<br>     
+<small><u>**Nothing to Edit (Incorrect)**</u></small>  
+![edt command nothing to edit](images/edt_empty.png)
+
+#### **d. Edit a File in your File List**  
+
+`edf` edits a <i>file</i> in your <b>File List</b>. The <b>File List</b> contains all your added <i>files</i> of a <i>task</i> and can be viewed via the [<b>List File</b>](#d-list-your-files) command.
+
+##### **Format**  
+`edt <file name> -m <module code> -c <category name> -t <task description> -f <new file name>`      
+
+- `file name` -- The <i>name</i> of the <i>file</i> to be edited      
+- `module code` -- The <i>module code</i> of the <i>module</i> containing the <i>file</i> to be edited   
+- `category name` -- The <i>name</i> of the <i>category</i> containing the <i>file</i> to be edited
+- `task description` -- The <i>description</i> of the <i>task</i> containing the <i>file</i> to be edited      
+- `new file name` -- The <u>new</u> <i>name</i> of the <i>file</i>      
+
+##### **Example Usage and Expected Outcome**     
+<small><u>**Correct Edit**</u></small>  
+![edf command correct](images/edf_correct.png)   
+<br>     
+<small><u>**Duplicate File (Incorrect)**</u></small>  
+![edf command duplicate file](images/edf_exist.png)  
 
 <br><br>  
 
-### 5. Mark a Task as Done  
-Marks a task as *done*.
+#### **e. Mark a Task as Done**  
 
-##### Format  
+Marks a <b>previously undone</b> <i>task</i> as <i>done</i>.  
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+If the <i>task</i> was <b>already done</b>, and you execute the command, you will be shown an error message instead!! &#128553;
+</div>
+
+##### **Format**   
 `done <task description> -m <module code> -c <category name>`  
 
-- `task description` -- The _description_ of the _task_
-- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
-- `category name` -- The _name_ of the   _category_
+- `task description` -- The <i>description</i> of the <i>task</i> to be <i>done</i>  
+- `module code` -- The <i>module code</i> of the <i>module</i> containing the <i>task</i>   
+- `category name` -- The <i>name</i> of the   <i>category</i> containing the <i>task</i>   
   
-##### Example Usage    
-```
-	done Tutorial 7 -m CS1231 -c Tutorial
-```
-
-##### Expected Outcome    
-
-```
-	SUCCESS!! Task has been updated.
-```
+##### **Example Usage and Expected Outcome**   
+<small><u>**Done at Root Level**</u></small>  
+![done command root level](images/done_root_level.png)   
+<br>     
+<small><u>**Done at Task Level**</u></small>  
+![done command task level](images/done_task_level.png)  
+<br>     
+<small><u>**Done an Already Done Task**</u></small>  
+![done command already](images/done_already.png)
 
 <br><br>  
 
 ### **5. Change Directory** 
-`cd` traverses up and down the Directory Tree from your current directory.  
+`cd` traverses up and down the <b>Directory Tree</b> from your current directory.  
 
-##### Format  
+##### **Format**  
 
 `cd <directory name>` to traverse down   
 `cd ..` to traverse up   
@@ -833,12 +889,12 @@ There will <b>not</b> be any message shown for successful traversal &#128528;. I
 However, attempting to traverse ahead of the <b>Root</b> Directory (first directory) <i>or</i> beyond the <b>File</b> Directory <i>(last directory)</i> will result in an error message being shown &#128552;.
 </div>
 
-##### Example Usage and Expected Outcome    
-<small><u>Correct Traversal </u></small>
+##### **Example Usage and Expected Outcome**    
+<small><u>**Correct Traversal**</u></small>
 ![cd down command correct](images/cd_down_correct.png)   <br>
  ![cd up command correct](images/cd_up_correct.png)    
 <br>  
-<small><u>Incorrect Traversal </u></small>
+<small><u>**Incorrect Traversal**</u></small>
 ![cd down command incorrect](images/cd_down_incorrect.png)    <br>
  ![cd up command incorrect](images/cd_up_incorrect.png)   
  
@@ -847,7 +903,7 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
 ### **6. Open File**   
 `open` opens your <i>file(s)</i> of a specified <i>task</i>. You can choose between opening a single <i>file</i> <i>or</i> <b>all</b> your <i>files</i> in the <b>File List</b>.  
 
-##### Format  
+##### **Format**  
 
 `open [ <file name> ] -m <module code> -c <category name> -t <task description>`  
 
@@ -861,11 +917,11 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
 To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, if you want to open <b>all</b> the <i>files</i> in the list, leave the <code>file name</code> blank.
 </div>
 
-##### Example Usage and Expected Outcome    
-<small><u>Opening at Root Level</u></small>  
-![open file command root level](images/open_root_level.png) 
-<br>
-<small><u>Opening at Task Level</u></small>  
+##### **Example Usage and Expected Outcome**    
+<small><u>**Opening at Root Level**</u></small>  
+![open file command root level](images/open_root_level.png)    
+<br>     
+<small><u>**Opening at Task Level**</u></small>  
  ![open file command task level](images/open_task_level.png) 
 
 <br><br>
@@ -874,11 +930,11 @@ To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, i
 `info` displays information about your current directory. It shows you the current directory's attributes, and a list of its child directories, <i>if any</i>. <br>
 For example, on the <b>Module</b> directory, the <b>Info</b> command will display the <i>module</i>'s <i>code</i> and <i>title</i>, as well as its <b>Category List</b>.   
 
-##### Format  
+##### **Format**  
 
 `info`   
 
-##### Example Usage and Expected Outcome    
+##### **Example Usage and Expected Outcome**    
 ![info command](images/info.png)
 
 <br><br>
@@ -891,7 +947,7 @@ For example, on the <b>Module</b> directory, the <b>Info</b> command will displa
 <i>Change</i> here refers to a successful <a href="#1-add"><b>Add</b></a>, <a href="#3-delete"><b>Delete</b></a>, <a href="#4-edit"><b>Edit</b></a> or <a href="#8-undo"><b>Undo</b></a> command. These commands changes your lists. The <b>Undo</b> command reverts these changes.
 </div>
 
-##### Format  
+##### **Format**  
 
 `undo`   
 
@@ -901,11 +957,11 @@ On successful undo, you will be moved back to the <b>Root</b> Directory &#128550
 Also, do note that attempting to undo when no changes were made will result in an error message being shown &#128552;.
 </div>
 
-##### Example Usage and Expected Outcome    
-<small><u>Correct Undo</u></small>
+##### **Example Usage and Expected Outcome**    
+<small><b><u>Correct Undo</u></b></small>
 ![undo command correct](images/undo_correct.png)  
 <br>  
-<small><u>Incorrect Undo</u></small>
+<small><b><u>Incorrect Undo</u></b></small>
 ![undo command incorrect](images/undo_incorrect.png)  
 
 <br><br>
@@ -913,7 +969,7 @@ Also, do note that attempting to undo when no changes were made will result in a
 ### **9.Redo** 
 `redo` redoes the change made by an earlier <b>[Undo](#8-undo)</b> command.
 
-##### Format  
+##### **Format**  
 
 `redo`   
 
@@ -923,11 +979,11 @@ On successful redo, you will be moved back to the <b>Root</b> Directory &#128550
 Also, do note that attempting to redo when you are at the newest state <i>(i.e. the most recent change was not due to an <a href="#8-undo"><b>Undo</b></a> command)</i> will result in an error message being shown &#128552;.
 </div>
 
-##### Example Usage and Expected Outcome    
-<small><u>Correct Redo</u></small>
+##### **Example Usage and Expected Outcome**    
+<small><u><b>Correct Redo</b></u></small>
 ![redo command correct](images/redo_correct.png)  
 <br>  
-<small><u>Incorrect Redo</u></small>
+<small><u><b>Incorrect Redo</b></u></small>
 ![redo command incorrect](images/redo_incorrect.png)  
 
 <br>
@@ -949,10 +1005,10 @@ Upon exiting, the program will [save](#saving) your entire Directory List into a
 ### **Loading and Saving**  
 The **Nuke** program loads and saves your entire Directory List **automatically**, so there is no explicit way to freely load or save your file.    
 
-#### Loading 
+#### **Loading** 
 Loading is done once you start up the **Nuke** program. The data from the saved *directory list file* in your device is read to initialise your Directory List from when it was last saved.
 
-#### Saving  
+#### **Saving**  
 Saving is done upon executing each of your commands in the **Nuke** program. Your Directory List will be saved into a *directory list file* in your device.    
 
 <br>  
@@ -963,10 +1019,10 @@ Instances when you may need to enter a *date time* will be when adding a _deadli
     
 Here are the following *date time* formats:  
     
-#### Date Formats  
+#### **Date Formats**  
 There are **two** types *date* formats allowed.  
 
-##### 1. Words  
+##### **1. Words**  
 You may enter **only** the following *date* words.  
 - `today` or `tdy` -- represents the <u>current</u> date  
 - `tomorrow` or `tmr` -- represents the <u>next</u> date  
@@ -974,7 +1030,7 @@ You may enter **only** the following *date* words.
   
 > **Note**: All dates are taken with reference to the current date on your device.  
   
-##### 2. Standard Date Format  
+##### **2. Standard Date Format**  
 This refers to the typical dates that are represented with **numbers** and **delimiter symbols**.    
 
 In this **Nuke** program, *dates* should be in the order of **day**, **month**, then an <u>optional</u> **year**. If the **year** is not provided, the program will automatically assume it to be the **current year**.  Also, the **day**, **month** and **year** should only be entered as **numbers** and not words *(e.g. January is not accepted for the **month** attribute)*.  
@@ -991,7 +1047,7 @@ An **exhaustive** list of the standard *date* formats is given below for your re
 ```
 > **Info**: `d` represents the **day** of the date. `M` represents the **month** of the date. `y` represents the **year** of the date.  
 
-#### Time Formats  
+#### **Time Formats**  
 The **Nuke** program accepts most time formats that are represented with **numbers**, **delimiter symbols** and <u>optional</u> **am-pm markers**.    
     
 The *time* should be in the order of  **hour**, then **minute**. The **seconds** attribute of *time* should **not** be given. The **minute** attribute must be a **double** digit *(i.e. single digits must be padded with a 0 in front)*. The **minute** attribute is also <u>optional</u>, and should it be omitted, the **Nuke** program will automatically set the **minute** to be 0. Both the **12-h** format and the **24-h** format are valid *time* formats for this program.    

@@ -331,6 +331,8 @@ public class Message {
     public static final String MESSAGE_NO_EDIT_TASK =
             "Please enter a new task description, priority or deadline to edit.\n";
     public static final String MESSAGE_NO_EDIT_FILE = "Please enter a new file name to edit.\n";
+    public static final String MESSAGE_DONE_TASK = "SUCCESS!! The task has been marked as done.\n";
+    public static final String MESSAGE_ALREADY_DONE_TASK = "Hm... The task seems to have already been done.\n";
 
     public static final String MESSAGE_REDO_SUCCESS = "SUCCESS!! Data has been reverted back to the next state.\n";
     public static final String MESSAGE_UNDO_SUCCESS = "SUCCESS!! Data has been reverted to the previous state.\n";
