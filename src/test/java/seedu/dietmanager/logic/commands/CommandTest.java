@@ -40,6 +40,7 @@ class CommandTest {
         profile.setProfile("John",20, "Male", 180, 80, 75);
         Command command = new CheckWeightRecordCommand("check-weight-progress", "John");
         command.execute(profile, ui);
-        assertEquals("No Pain No Gain! You have not lost weight yet! Strive on!", command.resultString);
+        assertEquals("\nNo Pain No Gain! You have not lost weight yet! Strive on!\n\n"
+                + "0.00 kg more to go to meet your dream girl/boy!", command.resultString);
     }
 }

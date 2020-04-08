@@ -32,6 +32,7 @@ public class Profile {
         this.setAge(age);
         this.setGender(gender);
         this.setHeight(height);
+        weightRecord.clear();
         this.setWeight(weight);
         this.setWeightGoal(weightGoal);
         this.setProfileExist(true);
