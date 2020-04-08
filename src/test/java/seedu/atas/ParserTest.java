@@ -306,7 +306,8 @@ public class ParserTest {
         Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/00/00");
         assertTrue(parsedCommand instanceof IncorrectCommand);
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DATE_INCORRECT_OR_INVALID_ERROR));
+                String.format(Messages.INCORRECT_COMMAND_ERROR,
+                        String.format(Messages.CALENDAR_DATE_INVALID, CalendarCommand.COMMAND_USAGE)));
     }
 
     //@@author joelczk
