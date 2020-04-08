@@ -109,16 +109,16 @@ What are you waiting for? Give **Nuke** a shot, and you will see how amazing it 
 
 <br>
 
-## Setting Up
+## **Setting Up**
 
 [Back To Top](#table-of-contents)
 
 <br>
 
-## General Usage  
+## **General Usage**  
 This section will explain the fundamental structure of the **Nuke** application, and important guidelines to follow to ensure smooth usage of the application.  
 
-### Nuke Structure
+### **Nuke Structure**
 **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. This Directory Tree comprises various levels:
 
 <div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>
@@ -180,30 +180,30 @@ To learn how to traverse the various directories, see the <a href="#6-change-dir
 
 <br>
 
-## Command Format  
+## **Command Format**  
 In this User Guide, the format for each feature _(command)_ will usually be of this form:  
 `CommandWord <attr0> -pfix1 <attr1> ... [ -pfix2 <attr2> ... ] { -pfix3 <attr3> -pfix4 <attr4> ... }`
 
-### Command Word
+### **Command Word**
 Each command you give to **Nuke** has to begin with its corresponding unique **command word**. This helps **Nuke** to know that you want it to execute a particular command.  
 
-### Attribute
+### **Attribute**
 **Attributes** are information to be provided in the command. An **attribute** for the command will be wrapped in angular brackets `< >` to help you to recognise it.   
 
-### Prefix
+### **Prefix**
 A **prefix** is used to provide additional supplementary information to the command. More information on the various **command prefixes** can be found [here](#command-prefixes).   
 
-### Optional
+### **Optional**   
 Some **attributes** and **prefixes** are _optional_ and the command can still execute properly even when omitted. However, they may be useful if you want to provide a more specific information to the command. Optional **attributes** and **prefixes** will be wrapped in square brackets `[ ]` to help you to recognise them.   
 
-### Any
+### **Any**
 There are times when you may have to include at least one from a set of **attributes** and **prefixes**. You may choose to include one <i>or</i> more from the set, but <b>not</b> none of them. Such **attributes** and **prefixes** will be wrapped in curly brackets `{ }` to help you to recognise them.   
   
 [Back To Top](#table-of-contents)
   
 <br>
 
-## Command Prefixes  
+## **Command Prefixes**  
 On many occasions, you may be required to enter more information to describe the commands you give to **Nuke**. For example, when adding a _task_, you may need to specify the _module_ and _category_ to add the _task_ into. You may also want to include additional attributes such as the _deadline_ and _priority_. All these information can only be recognised by **Nuke** if they are preceded by the correct **prefix**.<br>   
 All **command prefixes** in **Nuke** begins with a `-` and followed by a **letter**. Below is the exhaustive list of **command prefixes** and general information that should follow after.   
 
@@ -232,8 +232,8 @@ Specifically, each word in the name of your directory has to begin with a alpha-
 
 <br><br>  
 
-## Features  
-### 1. Add  
+## **Features**  
+### **1. Add**  
 Adds a _module_, _category_,  _task_ or <i>file</i> into their respective lists.<br>
 
 As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. **Nuke** complements the Linux shell command by offering a generic add command word for creating a directory: `mkdir`  
@@ -445,7 +445,7 @@ Tag added!
 
 <br>
 
-### 2. List  
+### **2. List**  
 Lists the _modules_, _categories_ or _tasks_ in their respective lists.<br>
 
 As mentioned previously, **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for listing files in a directory: `ls`
@@ -588,7 +588,7 @@ lsmtd <module code>
 
 
 
-### 3. Delete  
+### **3. Delete**  
 Deletes _modules_, _categories_ or _tasks_ from their respective lists.<br>
 
 As mentioned previously, **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for deleting a directory: `rm`
@@ -724,7 +724,7 @@ SUCCESS!! Task(s) have been deleted.
 
 ![image-20200401021025877](images/ug_delt_after.png)
 
-### 4. Edit
+### **4. Edit**
 
 Edits a _module_, _category_ or _task_ in their respective lists.<br>  
 
@@ -817,7 +817,7 @@ Marks a task as *done*.
 
 <br><br>  
 
-### 5. Change Directory 
+### **5. Change Directory** 
 `cd` traverses up and down the Directory Tree from your current directory.  
 
 ##### Format  
@@ -829,8 +829,8 @@ Marks a task as *done*.
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-There will <b>not</b> be any message shown for successful traversal &#128528. Instead, you will be able to see a change in the current directory path as shown in the positive traversing example below. <br>
-However, attempting to traverse ahead of the <b>Root</b> Directory (first directory) <i>or</i> beyond the <b>File</b> Directory <i>(last directory)</i> will result in an error message being shown &#128552.
+There will <b>not</b> be any message shown for successful traversal &#128528;. Instead, you will be able to see a change in the current directory path as shown in the positive traversing example below. <br>
+However, attempting to traverse ahead of the <b>Root</b> Directory (first directory) <i>or</i> beyond the <b>File</b> Directory <i>(last directory)</i> will result in an error message being shown &#128552;.
 </div>
 
 ##### Example Usage and Expected Outcome    
@@ -844,7 +844,7 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
  
 <br><br>
 
-### 6. Open File   
+### **6. Open File**   
 `open` opens your <i>file(s)</i> of a specified <i>task</i>. You can choose between opening a single <i>file</i> <i>or</i> <b>all</b> your <i>files</i> in the <b>File List</b>.  
 
 ##### Format  
@@ -870,7 +870,7 @@ To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, i
 
 <br><br>
 
-### 7. Info  
+### **7. Info**  
 `info` displays information about your current directory. It shows you the current directory's attributes, and a list of its child directories, <i>if any</i>. <br>
 For example, on the <b>Module</b> directory, the <b>Info</b> command will display the <i>module</i>'s <i>code</i> and <i>title</i>, as well as its <b>Category List</b>.   
 
@@ -883,7 +883,7 @@ For example, on the <b>Module</b> directory, the <b>Info</b> command will displa
 
 <br><br>
 
-### 8. Undo 
+### **8. Undo** 
 `undo` undoes a <i>change</i> made to the application.  
 
 <div class="alert alert-info">
@@ -897,8 +897,8 @@ For example, on the <b>Module</b> directory, the <b>Info</b> command will displa
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-On successful undo, you will be moved back to the <b>Root</b> Directory &#128550. This is to allow the application to correctly reload the correct state.<br>
-Also, do note that attempting to undo when no changes were made will result in an error message being shown &#128552.
+On successful undo, you will be moved back to the <b>Root</b> Directory &#128550;. This is to allow the application to correctly reload the correct state.<br>
+Also, do note that attempting to undo when no changes were made will result in an error message being shown &#128552;.
 </div>
 
 ##### Example Usage and Expected Outcome    
@@ -910,7 +910,7 @@ Also, do note that attempting to undo when no changes were made will result in a
 
 <br><br>
 
-### 9.Redo 
+### **9.Redo** 
 `redo` redoes the change made by an earlier <b>[Undo](#8-undo)</b> command.
 
 ##### Format  
@@ -919,8 +919,8 @@ Also, do note that attempting to undo when no changes were made will result in a
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-On successful redo, you will be moved back to the <b>Root</b> Directory &#128550. This is to allow the application to correctly reload the correct state.<br>
-Also, do note that attempting to redo when you are at the newest state <i>(i.e. the most recent change was not due to an <a href="#8-undo"><b>Undo</b></a> command)</i> will result in an error message being shown &#128552.
+On successful redo, you will be moved back to the <b>Root</b> Directory &#128550;. This is to allow the application to correctly reload the correct state.<br>
+Also, do note that attempting to redo when you are at the newest state <i>(i.e. the most recent change was not due to an <a href="#8-undo"><b>Undo</b></a> command)</i> will result in an error message being shown &#128552;.
 </div>
 
 ##### Example Usage and Expected Outcome    
@@ -933,20 +933,20 @@ Also, do note that attempting to redo when you are at the newest state <i>(i.e. 
 <br>
 <hr>
 
-## Miscellaneous Information  
+## **Miscellaneous Information**  
 
-### Help  
+### **Help**  
 In the event that you ever forget the usage of a command, you can look it up within the **Nuke** application itself. All you need to do is to enter the *keyword* `help` to show a command summary of all the available commands in <b>Nuke</b>.     
 
 <br>  
 
-### Exiting the Nuke Program  
+### **Exiting the Nuke Program**  
 Exiting the **Nuke** program is simple. Simply enter `bye` to exit.  
 Upon exiting, the program will [save](#saving) your entire Directory List into a file in your device.  
 
 <br>  
 
-### Loading and Saving  
+### **Loading and Saving**  
 The **Nuke** program loads and saves your entire Directory List **automatically**, so there is no explicit way to freely load or save your file.    
 
 #### Loading 
@@ -957,7 +957,7 @@ Saving is done upon executing each of your commands in the **Nuke** program. You
 
 <br>  
 
-### Date Time Formats  
+### **Date Time Formats**  
 Any *date time* data that you provide has to adhere to certain formats pre-defined by the **Nuke** program. Failure to do so will likely result in the program to be unable to recognise your input command, and a warning will be shown.    
 Instances when you may need to enter a *date time* will be when adding a _deadline_ to your _tasks_.
     
@@ -1011,9 +1011,9 @@ An **exhaustive** list of the *time* formats is given below for your reference.
 <br>
 <hr>
 
-## Command Summary
+## **Command Summary**
 
 <br>
 <hr>
 
-## FAQ
+## **FAQ**
