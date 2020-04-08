@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-04-08T12:57:14.769428200Z</date>
-  <millis>1586350634769</millis>
-  <nanos>428200</nanos>
+  <date>2020-04-08T15:48:54.286557100Z</date>
+  <millis>1586360934286</millis>
+  <nanos>557100</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-04-08T12:57:14.859032Z</date>
-  <millis>1586350634859</millis>
-  <nanos>32000</nanos>
+  <date>2020-04-08T15:48:54.358244Z</date>
+  <millis>1586360934358</millis>
+  <nanos>244000</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-04-08T12:57:14.877430200Z</date>
-  <millis>1586350634877</millis>
-  <nanos>430200</nanos>
+  <date>2020-04-08T15:48:54.375616800Z</date>
+  <millis>1586360934375</millis>
+  <nanos>616800</nanos>
   <sequence>2</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -38,9 +38,9 @@
   <message>Existing Food Nutrition Record found: food-nutrition-record.txt</message>
 </record>
 <record>
-  <date>2020-04-08T12:57:14.881691200Z</date>
-  <millis>1586350634881</millis>
-  <nanos>691200</nanos>
+  <date>2020-04-08T15:48:54.379207800Z</date>
+  <millis>1586360934379</millis>
+  <nanos>207800</nanos>
   <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -50,9 +50,9 @@
   <message>Starting Diet Manager</message>
 </record>
 <record>
-  <date>2020-04-08T12:57:58.529061600Z</date>
-  <millis>1586350678529</millis>
-  <nanos>61600</nanos>
+  <date>2020-04-08T15:49:12.076239300Z</date>
+  <millis>1586360952076</millis>
+  <nanos>239300</nanos>
   <sequence>4</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>

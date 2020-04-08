@@ -171,7 +171,6 @@ public class CommandParser {
         } else {
             throw new InvalidCommandException();
         }
-        description = null;
         return command;
     }
 
