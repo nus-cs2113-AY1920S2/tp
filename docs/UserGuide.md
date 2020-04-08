@@ -1,4 +1,4 @@
-# WhenFree Meeting Organizer - User Guide
+# WhenFree - User Guide
  * [1. Introduction](#introduction)  
  * [2. Quick Start](#quick-start)  
  * [3. Features](#features)
@@ -9,8 +9,8 @@
 
 ## Introduction
 
-WhenFree is a chatbot that helps you find common free time among your and your friends, 
-using just the NUSMODS links to your school timetable. 
+WhenFree is a scheduler chatbot that helps you find common free time among your and your friends, 
+using just the NUSMODS links to your school timetable.
 
 WhenFree is for NUS students who want to save time gathering their friends' schedules to set up a 
 meeting, whether for a long project discussion or a quick meal. With an easy-to-use command line interface, anyone can
