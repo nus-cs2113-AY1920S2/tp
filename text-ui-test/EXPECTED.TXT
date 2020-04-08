@@ -1,0 +1,139 @@
+Hello from
+ __   __  _______  _______  _______  __   __  _______  ___   ___      ___      _______
+|  | |  ||   _   ||       ||       ||  | |  ||       ||   | |   |    |   |    |       |
+|  |_|  ||  |_|  ||    _  ||    _  ||  |_|  ||    _  ||   | |   |    |   |    |  _____|
+|       ||       ||   |_| ||   |_| ||       ||   |_| ||   | |   |    |   |    | |_____
+|       ||       ||    ___||    ___||_     _||    ___||   | |   |___ |   |___ |_____  |
+|   _   ||   _   ||   |    |   |      |   |  |   |    |   | |       ||       | _____| |
+|__| |__||__| |__||___|    |___|      |___|  |___|    |___| |_______||_______||_______|
+
+What can I do for you today, doctor?
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Alice
+        NRIC : S9876543G
+        Phone Number : 99999999
+        DOB : 22/09/1989
+        Blood Type : O-
+        Allergies : NIL
+        Remarks : NIL
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    The current information is not added.
+    Please add all the details again! Thank you.
+    =====================================================
+    =====================================================
+    Please input your missing detail listed below
+    /n NAME
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Alice
+        NRIC : S9876543G
+        Phone Number : 99999999
+        DOB : 22/09/1989
+        Blood Type : O-
+        Allergies : NIL
+        Remarks : NIL
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Got it! I've added this patient:
+        Name : Alice
+        NRIC : S9876543G
+        Phone Number : 99999999
+        DOB : 22/09/1989
+        Blood Type : O-
+        Allergies : NIL
+        Remarks : NIL
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    Alice | S9876543G
+    =====================================================
+    =====================================================
+    Incorrect input format. Sorry please try again
+    =====================================================
+    =====================================================
+    Command is incomplete. Please use the help command.
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    ic is not a valid input.
+    ic will not be added
+    =====================================================
+    d 22feb92 is not a valid input.
+    d 22feb92 will not be added
+    =====================================================
+    t 2o'clock is not a valid input.
+    t 2o'clock will not be added
+    =====================================================
+    Please input your missing detail listed below
+    /ic NRIC (Format: [S/T][7-digits][A-Z])
+    /sym SYMPTOMS
+    /diag DIAGNOSIS
+    /d DATE  (Format: DD/MM/YYYY)
+    /t TIME (Format: HH:mm)
+    =====================================================
+    =====================================================
+    Please input your missing detail listed below
+    /sym SYMPTOMS
+    /diag DIAGNOSIS
+    /d DATE  (Format: DD/MM/YYYY)
+    /t TIME (Format: HH:mm)
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        NRIC : S9876543F
+        Symptom : cough
+        Diagnosis : fever
+        Date : 22/02/1992
+        time : 22:22
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    The current information is not added.
+    Please add all the details again! Thank you.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        NRIC : S9876543F
+        Symptom : cough
+        Diagnosis : fever
+        Date : 22/02/1992
+        time : 22:22
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Patient does not exist. Please try again.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        NRIC : S9876543F
+        Symptom : cough
+        Diagnosis : cough syrup
+        Date : 22/03/2020
+        time : 22:22
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Patient does not exist. Please try again.
+    =====================================================
+    =====================================================
+    Thank you for using HappyPills! ^.^
+    See you again!
+    =====================================================
