@@ -1,6 +1,5 @@
 package seedu.dietmanager.storage;
 
-import jdk.jfr.Description;
 import seedu.dietmanager.commons.core.LogsCentre;
 import seedu.dietmanager.commons.exceptions.InvalidAgeException;
 import seedu.dietmanager.commons.exceptions.InvalidCaloriesException;
@@ -12,7 +11,6 @@ import seedu.dietmanager.commons.exceptions.InvalidNameException;
 import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 import seedu.dietmanager.logic.parser.AgeParser;
 import seedu.dietmanager.logic.parser.CaloriesParser;
-import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.logic.parser.FoodNameParser;
 import seedu.dietmanager.logic.parser.GenderParser;
 import seedu.dietmanager.logic.parser.HeightParser;

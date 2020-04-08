@@ -38,7 +38,7 @@ public class StorageParser {
      *
      * @param weightListDataLine the weightList data description.
      * @return weightList in standard form.
-     * @throws NullPointerException   if storage data generates a null value.
+     * @throws NullPointerException if storage data generates a null value.
      */
 
     public static List<Double> parseWeightListDataLine(String weightListDataLine)

@@ -3,7 +3,6 @@ package seedu.dietmanager.logic.commands;
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -11,9 +10,7 @@ import seedu.dietmanager.ui.UI;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Math.abs;
 import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
 
 public class CheckBmiCommand extends Command {
 
