@@ -30,13 +30,13 @@ You can also add a new patient with the specified parameters in any order.
     
 **Example:**
 
-    add patient /ic S9999999Z /n Bob /dob 12-11-98 /b A+
+    add patient /ic S9876543F /n Eve /dob 22/05/1999 /b O-
     
 >***Expected output:***
 >
->![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Ouput")
+>![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Output")
 >
-> Enter `/p 999` to add missing field.
+> Enter `/p 91265432` to add missing field.
 
 <table>
   <col width="20">
@@ -50,7 +50,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Ouput")
+>   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Output")
 >
 > Enter `y` to confirm.
 
@@ -66,7 +66,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
+>  ![SuccessfulAdd](images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG "Successfully Added Output")
 
  [&#8593; Return to Top](#table-of-content)
  
@@ -76,23 +76,37 @@ Edit information of the patient with the specified NRIC.
 
 ##### Usage example: 
  
-    edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
+    edit patient NRIC /n<NAME> 
+                      /p<PHONE_NUMBER> 
+                      /dob<DOB> 
+                      /b<BLOOD_TYPE> 
+                      /a<ALLERGIES> 
+                      /rm<REMARKS>
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
+   There should <code>no spaces</code> between the tag and the edited information.</td>
+ </tr>
+</table>
 
 **Example:**
 
-    edit patient S0618 /p9111
+    edit patient S9876543F /p99112233
 
 > ***Expected output:***
 >
-> ![editPatientOutput](images/UG/PATIENT/EditCommandOutput.PNG "Edit Patient Ouput")
+> ![editPatientOutput](images/UG/PATIENT/EditCommandOutput.PNG "Edit Patient Output")
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> NRIC <code>cannot</code> be edited because it is what uniquely identifies the patient.</td>
-    <!--This is a comment. NRIC cannot be edited.-->
+   <td> NRIC <code>cannot</code> be edited because it is used to uniquely identify the patient.</td>
  </tr>
 </table>
 
@@ -112,7 +126,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+> ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Output")
 >
 > Enter `y` to confirm.
 
@@ -128,14 +142,14 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](images/UG/PATIENT/DeleteSuccessful.PNG "Successfully Deleted Ouput")
+>  ![SuccessfulDelete](images/UG/PATIENT/DeleteSuccessful.PNG "Successfully Deleted Output")
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Upon <code>successful deletion </code>, patient's information will not be able to be retrieved again. </td>
+   <td> Upon <code>successful deletion</code>, patient's information will not be able to be retrieved again. </td>
  </tr>
 </table>
 
@@ -151,7 +165,7 @@ Displays all the patients in the patient list.
     
 > ***Expected output:***
 >
-> ![ListPatient](images/UG/PATIENT/ListPatientOutput.PNG "List Ouput")  
+> ![ListPatient](images/UG/PATIENT/ListPatientOutput.PNG "List Output")  
 
  [&#8593; Return to Top](#table-of-content)
 
@@ -165,10 +179,10 @@ Retrieve details of the patient with the specified NRIC.
     
 **Example:**
 
-    get patient S9876543Z
+    get patient T9999999N
     
 > ***Expected output:***
 >
-> ![getpatient](images/UG/PATIENT/GetPatientOutput.PNG "Get Ouput")
+> ![getpatient](images/UG/PATIENT/GetPatientOutput.PNG "Get Output")
 
  [&#8593; Return to Top](#table-of-content)
