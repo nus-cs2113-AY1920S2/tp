@@ -208,6 +208,7 @@ Example of expected output:
 
 `Okay! Here is your module plan:`
 
+
  `Y2S1`
  
  `1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+`
