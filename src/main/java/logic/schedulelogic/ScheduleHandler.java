@@ -1,6 +1,6 @@
 package logic.schedulelogic;
 
-import exception.MoException;
+import common.exception.MoException;
 import model.contact.Contact;
 
 import java.time.LocalTime;
@@ -10,7 +10,6 @@ import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_INVALID_MEETING;
 import static common.Messages.MESSAGE_INVALID_EDIT;
-import static common.Messages.MESSAGE_INVALID_MEETING_RANGE;
 
 /**
  * TESTING SUMMARY DOC.

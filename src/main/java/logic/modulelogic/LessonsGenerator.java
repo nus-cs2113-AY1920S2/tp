@@ -3,12 +3,11 @@ package logic.modulelogic;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import common.LessonType;
-import exception.InvalidUrlException;
-import exception.UnformattedModuleException;
+import common.exception.InvalidUrlException;
+import common.exception.UnformattedModuleException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 

@@ -9,7 +9,6 @@ ________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
 [schedule] Schedule a new meeting.
-[edit] Edit a contact's timetable.
 [delete] Delete a scheduled meeting.
 [meetings] List all scheduled meetings.
 [exit] Exit application.

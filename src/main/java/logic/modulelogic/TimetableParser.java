@@ -1,6 +1,6 @@
 package logic.modulelogic;
 
-import exception.InvalidUrlException;
+import common.exception.InvalidUrlException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
