@@ -12,8 +12,7 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [2.3. Logic component](#23-logic-component)
 	* [2.4. Model component](#24-model-component)
 	* [2.5. Storage component](#25-storage-component)
-	* [2.6. Exception classes](#26-exception-classes)
-	* [2.7. Common classes](#27-common-classes)
+	* [2.7. Common classes](#26-common-classes)
 * [3. Implementation](#3-implementation)
 	* [3.1. Add new contact](#31-add-new-contact)
 	* [3.2. List all contacts](#32-list-all-contacts)
@@ -58,28 +57,29 @@ Verifying Setup
 ## 2. Design
 
 ### 2.1. Architecture
-[Architecture Diagram]
+![Architecture Diagram](images/architecture.png)<br>
 
 The architecture diagram above shows an overview of the high-level design of MeetingOrganizer. Meeting Organizer
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
 Here is q quick overview of each layer and the components residing in it.
 * UI: The CLI user interface of the application.
-* Commons: A collection of classes containing constants such as messages for ```exception```, modules that can't be formatted, etc.
+* Commons: A collection of classes containing constants such as messages for ```common.exception```, modules that can't be formatted, etc.
 * Logic: The main control unit of the application which handles the business logic of the application.
 * Model: Holds the data of the application in memory which is easily accessible by any methods that requires it.
-* Storage: Writes data from Model layer to hard disk, as well as reading data from hard disk and storing it into Model layer.
+* Storage: Writes data from Model layer to hard disk, as well as reading previously saved data from hard disk and storing it into Model layer.
 ### 2.2. UI component
 [Structure of UI layer]
 
 The UI consists of....
 ### 2.3. Logic component
-[Structure of logic layer (all sub components)]
+![Logic Component](images/logic component.png)<br>
 
-The logic component is the brain and backbone of our application. The logic component contains 3 sub-components. The
-```schedulelogic``` and ```modulelogic``` sub-components work together to enable the generation of common time slots from NUSMODS links.
-The ```commands``` sub-component interprets the user command and calls the ```schedulelogic``` and ```modulelogic``` components.
+The LogicManager is the brain and backbone of the logic component. It depends on 3 sub-components for it to work.
+First, LogicManager instantiates```schedulelogic``` and ```modulelogic``` sub-components to enable the generation of common time slots from NUSMODS links.
+Afterwards, ```command``` sub-component would be initialize to interpret the user commands. LogicManager forms a whole-part relationship with Model component, where
+all the data gathered from user commands would be stored.
 
-### 2.3.1. logic.modulelogic component
+### 2.3.1. Logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
@@ -90,28 +90,35 @@ The modulelogic component consists of 4 classes: ```TimetableParser```, ```Modul
 4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
 <br>
 
-**Detailed implementation of logic.modulelogic component**
+**Design of Logic.modulelogic component**
  
-[TODO: redraw the UML sequence diagram]
 ![logic.modulelogic Component](images/TimetableParser.png)<br>
 The above figure shows```TimetableParser```, a private class called exclusively by ```LessonsGenerator```. It makes use of regex to sift through timetable link provided by user in the form of ```String``` object and stores
-the semester and the user's module information according to the timetable link provided. It depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
+the user's module information according to the timetable link provided. It depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
 
 ![logic.modulelogic Component](images/ModuleHandler.jpg)<br>
- From the figure above, ```ModuleApiParser``` instantiates a HTTP GET request object to fetch a Json object from the open-sourced NUSMOD API server, and is called by ```ModuleHandler``` every time a particular module information is requested.
- 
- Blacklisted modules are filtered out based on the data from ```common.BlacklistedModule```. [NOTE] Blacklisted modules are modules that doesn't follow the conventional
- 13 weeks programme and as such, ```ModuleHandler``` is unable to handle the JSON and parse it correctly.
- <br>
- 
-```ModuleHandler``` cleans the data provided by ```ModuleApiParser``` and stores an easy to use data structure to be used by ```LessonsGenerator```.
+From the figure above, ```ModuleApiParser``` instantiates a HTTP GET request object to fetch a Json object from the open-sourced NUSMOD API server, and is called by ```ModuleHandler``` every time a particular module information is requested.
+```ModuleApiParser``` would return the moduleInformation in Json.
+
+Finally, ```ModuleHandler``` cleans the data and filter out any blacklisted modules provided by ```ModuleApiParser```, and stores an easy to use data structure to be used by ```LessonsGenerator```.
+
+Blacklisted modules are filtered out based on the data from ```common.BlacklistedModule```. 
+
+[NOTE] Blacklisted modules are modules that doesn't follow the conventional
+13 weeks programme and as such, ```ModuleHandler``` is unable to handle the JSON and parse it correctly.
+<br>
+<br>
 
 ![logic.modulelogic Component](images/LessonsGenerator.jpg)<br>
- Finally, ```LessonsGenerator``` collates the returned data structure from both ```ModuleHandler```(looped for as many modules the user takes) and ```TimetableParser```, calling```.lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
+
+The above figure shows a full overview of the UML sequence of the entire Logic.modulelogic component.<br>
+
+The last step would be for ```LessonsGenerator``` to collate the returned data structure from both ```ModuleHandler``` and ```TimetableParser```, calling```.lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
  <br>
- The information from ```LessonsGenerator``` would then be included in the schedule of a particular ```TeamMember```.
  
-### 2.3.2. logic.schedulelogic component
+ The information returned from ```LessonsGenerator``` would then be used in Logic.schedulelogic component.
+ 
+### 2.3.2. Logic.schedulelogic component
 
 The ```schedulelogic``` component finds common time slots from team members' schedules.
 The ```schedulelogic``` consists of the class ```ScheduleHandler```. 

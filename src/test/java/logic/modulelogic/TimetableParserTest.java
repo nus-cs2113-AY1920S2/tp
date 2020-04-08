@@ -1,6 +1,6 @@
 package logic.modulelogic;
 
-import exception.InvalidUrlException;
+import common.exception.InvalidUrlException;
 import org.junit.jupiter.api.Test;
 
 import static common.Messages.MESSAGE_RETURN_SUCCESS;

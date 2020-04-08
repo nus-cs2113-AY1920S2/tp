@@ -1,11 +1,9 @@
 package logic.schedulelogic;
 
-import exception.MoException;
+import common.exception.MoException;
 import model.contact.Contact;
 import org.junit.jupiter.api.Test;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

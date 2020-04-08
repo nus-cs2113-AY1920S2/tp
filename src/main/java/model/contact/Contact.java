@@ -1,10 +1,10 @@
 package model.contact;
 
-import exception.MoException;
+import common.exception.MoException;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
+
 
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;

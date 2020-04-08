@@ -1,16 +1,10 @@
 package logic.modulelogic;
 
-import exception.UnformattedModuleException;
+import common.exception.UnformattedModuleException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 import static common.BlacklistedModules.blacklistModule;

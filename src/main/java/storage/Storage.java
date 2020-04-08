@@ -133,7 +133,8 @@ public class Storage {
         ArrayList<Contact> list = new ArrayList<>();
 
         Path path = Paths.get("data");
-
+        File file = new File("data");
+        boolean dirCreated = file.mkdir();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
             for (Path entry : stream) {
                 if (entry.toString().contains("_schedule.txt")) {

@@ -1,5 +1,5 @@
-import logic.command.CommandHandler;
-import exception.MoException;
+import logic.LogicManager;
+import common.exception.MoException;
 
 import model.meeting.MeetingList;
 import model.contact.Contact;
@@ -12,26 +12,20 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
-
 /**
  * TESTING SUMMARY DOC.
  */
 public class MeetingOrganizer {
-    public static Storage storage;
-    private MeetingList myMeetingList;
-    private ContactList myContactList;
-    private Contact mainUser;
-    private int currentWeekNumber;
-    private String day;
     public static final int RECESS_WEEK = 14;
     public static final int FREE_WEEK = 15;
-
-
+    public static Storage storage;
+    private LogicManager myLogicManager;
+    private int currentWeekNumber;
 
     public MeetingOrganizer() {
-        //declare objects here
-        myMeetingList = new MeetingList();
+        MeetingList myMeetingList;
+        ContactList myContactList;
+        Contact mainUser = null;
         getWeekNumber();
 
         try {
@@ -56,92 +50,52 @@ public class MeetingOrganizer {
                     }
                 }
             }
-            assert getMainUser() != null;
-            CommandHandler.listContacts(getMyContactList());
         } catch (FileNotFoundException e) {
             TextUI.introMsg();
             TextUI.showLoadingError();
             myMeetingList = new MeetingList();
             myContactList = new ContactList(new ArrayList<>());
-        } catch (MoException e) {
-            System.out.println(e.getMessage());
         }
+        myLogicManager = new LogicManager(myMeetingList, myContactList, mainUser);
     }
 
     public static void main(String[] args) {
         new MeetingOrganizer().run();
     }
 
-    void botResponse(String[] userInputWords, String previousUserInput)
-            throws MoException, DateTimeParseException, NumberFormatException {
+    void botResponse(String[] userInputWords, String prevUserInputWord)
+        throws MoException, DateTimeParseException, NumberFormatException {
         String userCommand = userInputWords[0];
 
-        // To adapt user input of format <name> <NUSMODS link> to fit into the following switch statements to allow
-        // for both link and manual input.
         // TODO member's name can only be 1 word at the moment.
         if (userInputWords.length == 2 && userInputWords[1].contains("http")) {
             //eg. xz https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
-            Contact newMember;
-
-            newMember = CommandHandler.addContact(myContactList, userInputWords, null, null);
-            if (checkMainUserDoesNotExists()) {
-                mainUser = newMember;
-                newMember.setMainUser();
-            }
-            myContactList.add(newMember);
+            myLogicManager.addContact(userInputWords);
         } else {
-            if (checkMainUserDoesNotExists()) {
-                throw new MoException("Please enter main user first.");
+            if (myLogicManager.checkMainUserDoesNotExists()) {
+                throw new MoException("Please enter main user first");
             }
             switch (userCommand) {
             case "more":
-                if (previousUserInput.equals("")) {
-                    throw new MoException("Nothing to see more of.");
-                } else if (previousUserInput.contains("timetable")) {
-                    int weeksMoreToView = 1;
-                    CommandHandler.displayTimetable(userInputWords, getMainUser(),
-                            getMyContactList(), currentWeekNumber, weeksMoreToView);
-                } else if (previousUserInput.equals("more")) {
-                    throw new MoException("No more :o");
-                } else {
-                    throw new MoException("more does not work with this command.");
-                }
+                myLogicManager.viewMoreTimetable(prevUserInputWord, userInputWords, currentWeekNumber);
                 break;
-            case "edit": // edit busy <Member Number> <startDay> <startTime> <endDay> <endTime>
-                // OR edit free <Member Number> <startDay> <startTime> <endDay> <endTime>
-                // (eg. edit busy 0 2 22:00 2 23:00)
-                CommandHandler.editContact(userInputWords, getMainUser(), getMyContactList(), currentWeekNumber);
+            case "edit":
+                myLogicManager.editSchedule(userInputWords, currentWeekNumber);
                 break;
-            case "contacts":  //list all contacts. contacts
-                CommandHandler.listContacts(getMyContactList());
+            case "contacts":
+                myLogicManager.listContacts();
                 break;
-            case "timetable": //timetable OR timetable <Member Number> OR timetable <Member Number1> <Member Number2>
-                //(eg. timetable 0 1 3)
-                int weeksMoreToView = 0;
-                CommandHandler.displayTimetable(userInputWords, getMainUser(), getMyContactList(), currentWeekNumber, weeksMoreToView);
+            case "timetable":
+                myLogicManager.viewTimetable(userInputWords, currentWeekNumber);
                 break;
-            case "schedule": //schedule a meeting. schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
-                //(eg. schedule meeting 3 17:00 3 19:00)
-                CommandHandler.scheduleMeeting(userInputWords, getMyMeetingList(),
-                        getMainUser(), getMyContactList(), currentWeekNumber);
+            case "schedule":
+                myLogicManager.scheduleMeeting(userInputWords, currentWeekNumber);
                 break;
-            case "delete": //delete a model.meeting slot. delete <Meeting Number>
-                try {
-                    if (userInputWords.length != 2) {
-                        throw new MoException(MESSAGE_WRONG_COMMAND_DELETE);
-                    }
-                    int numCheck = Integer.parseInt(userInputWords[1]);
-                    CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList());
-                } catch (NumberFormatException e) {
-                    myContactList.remove(userInputWords[1]);
-                } catch (MoException e) {
-                    System.out.println(e.getMessage());
-                    TextUI.printFormatDeleteMember();
-                    TextUI.printFormatDeleteMeeting();
-                }
+            case "delete":
+                myLogicManager.deleteMeeting(userInputWords);
                 break;
-            case "meetings": //list all scheduled model.meeting slots. meetings
-                CommandHandler.listMeetings(userInputWords, getMyMeetingList());
+            case "meetings":
+                myLogicManager.listMeetings(userInputWords);
                 break;
             default:
                 throw new MoException("Unknown command, please try again.");
@@ -153,6 +107,9 @@ public class MeetingOrganizer {
      * Main entry-point for the application.
      */
     public void run() {
+        MeetingList myMeetingList = myLogicManager.getMyMeetingList();
+        ContactList myContactList = myLogicManager.getMyContactList();
+
         Scanner in = new Scanner(System.in);
         String previousUserInput = "";
         TextUI.menuMsg(myContactList.getSize());
@@ -167,7 +124,7 @@ public class MeetingOrganizer {
                 botResponse(userInputWords, previousUserInput);
                 storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
                 storage.updateMemberListToDisk(myContactList.getContactList());
-                previousUserInput = userInput;
+                previousUserInput = userInputWords[0];
             } catch (MoException e) {
                 TextUI.errorMsg(e);
             } catch (DateTimeParseException e) {
@@ -183,25 +140,10 @@ public class MeetingOrganizer {
         TextUI.exitMsg();
     }
 
-    private Boolean checkMainUserDoesNotExists() {
-        return (myContactList.getSize() == 0);
-    }
-
-    private Contact getMainUser() {
-        return mainUser;
-    }
-
-    private ContactList getMyContactList() {
-        return myContactList;
-    }
-
-    private MeetingList getMyMeetingList() {
-        return myMeetingList;
-    }
 
     private void getWeekNumber() {
         String[] tempTime = java.util.Calendar.getInstance().getTime().toString().split(" "); //Thu Mar 26 08:22:02 IST 2015
-        this.day = tempTime[0];
+        String day = tempTime[0];
         String month = tempTime[1];
         int date = Integer.parseInt(tempTime[2]);
         //week starts on Sunday
