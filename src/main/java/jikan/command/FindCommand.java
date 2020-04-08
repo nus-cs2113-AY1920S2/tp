@@ -83,7 +83,7 @@ public class FindCommand extends Command {
      */
     private void populateLastShownList(String keyword, ArrayList<Activity> activities) {
         for (Activity i : activities) {
-            if (i.getName().contains(keyword)) {
+            if (i.getName().contains(keyword) && !lastShownList.activities.contains(i)) {
                 lastShownList.activities.add(i);
             }
         }
