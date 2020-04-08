@@ -14,7 +14,7 @@ public class Result {
 
     /**
      * Constructs the Result object.
-     * @param commandResult
+     * @param commandResult The results derived from execution of a command.
      */
 
     public Result(String commandResult) {
