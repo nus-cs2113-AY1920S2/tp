@@ -54,7 +54,9 @@ I also contributed to the User Guide under the section of set user profile.
 * Added some key information of the units used for the user to take note of when using the command
 
 ### Contributions to the DG
-I contributed to the Developer Guide under the section of ...
+I contributed to the Developer Guide under the section of profile component and food component.
+* Stated the responsibility of the 2 component
+* Provided a description for the classes that the 2 component consists of
 
 ### Contributions to team-based tasks
 To be completed...
