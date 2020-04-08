@@ -3,33 +3,37 @@ package seedu.dietmanager.logic.parser;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 
 /**
- * Parser is the public class responsible for parsing user input and generating the relevant commands.
+ * StorageParser is the public class responsible for validating the Storage data and
+ * parsing it into a valid description array.
  */
 
 public class StorageParser {
 
     /**
-     * Parses the user input and prepares it to be analysed and used to generate commands.
-     *
-     * @param profileDataLine the command description.
-     * @throws InvalidFormatException if user input has the wrong format.
+     * Validates the profile storage data and parsing it into a valid description array.
+     * @param profileDataLine the profile data description.
+     * @return descriptionArray in standard form.
+     * @throws InvalidFormatException if storage data has the wrong description format.
+     * @throws NullPointerException if storage data generates a null value.
      */
 
-    public static String[] parseProfileDataLine(String profileDataLine) throws InvalidFormatException,
-            NullPointerException {
+    public static String[] parseProfileDataLine(String profileDataLine)
+            throws InvalidFormatException, NullPointerException {
         int argumentsRequired = 2;
         String[] descriptionArray = profileDataLine.trim().split(": ", argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }
+        testAssertions(descriptionArray, argumentsRequired);
         return descriptionArray;
     }
 
     /**
-     * Parses the user input and prepares it to be analysed and used to generate commands.
-     *
-     * @param foodNutritionRecordDataLine the command description.
-     * @throws InvalidFormatException if user input has the wrong format.
+     * Validates the food nutrition record storage data and parsing it into a valid description array.
+     * @param foodNutritionRecordDataLine the food nutrition record data description.
+     * @return descriptionArray in standard form.
+     * @throws InvalidFormatException if storage data has the wrong description format.
+     * @throws NullPointerException if storage data generates a null value.
      */
 
     public static String[] parseFoodNutritionRecordDataLine(String foodNutritionRecordDataLine)
@@ -39,7 +43,16 @@ public class StorageParser {
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }
+        testAssertions(descriptionArray, argumentsRequired);
         return descriptionArray;
+    }
+
+    /**
+     * Assertion testing for Description Array.
+     */
+
+    public static void testAssertions(String[] descriptionArray, int argumentsRequired) {
+        assert (descriptionArray.length == argumentsRequired);
     }
 
 }

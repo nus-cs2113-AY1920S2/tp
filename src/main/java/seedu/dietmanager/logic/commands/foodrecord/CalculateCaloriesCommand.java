@@ -6,6 +6,7 @@ import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.CommandParser;
+import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -55,7 +56,7 @@ public class CalculateCaloriesCommand extends Command {
         this.sum = 0.00;
 
         try {
-            String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
+            String[] descriptionArray = DescriptionParser.parseDescription(description, ARGUMENTS_REQUIRED);
             String[] timeDescription = descriptionArray[0].split("->");
 
             this.begin = timeDescription[0].trim().toUpperCase();

@@ -30,6 +30,9 @@ public class DescriptionParser {
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }
+        for (String arg : descriptionArray) {
+            arg.trim();
+        }
         testAssertions(argumentsRequired);
         return descriptionArray;
     }

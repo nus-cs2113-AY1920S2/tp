@@ -10,6 +10,8 @@ import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.storage.Storage;
 import seedu.dietmanager.ui.UI;
 
+import java.util.Optional;
+
 public class AppManager {
 
     private static LogsCentre logsCentre;
@@ -32,9 +34,13 @@ public class AppManager {
         while (!ui.isExitStatus()) {
             try {
                 String userInput = ui.readInput();
-                Command command = CommandParser.parseInput(userInput);
-                Result result = command.execute(profile, ui);
-                ui.showMessage(result.showResult());
+                Optional<Command> command = CommandParser.parseInput(userInput);
+                if (command.isPresent()) {
+                    Result result = command.get().execute(profile, ui);
+                    ui.showMessage(result.showResult());
+                } else {
+                    ui.displayInvalidCommandMessage();
+                }
             } catch (InvalidFormatException | NumberFormatException e) {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {

@@ -10,10 +10,10 @@ import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.AgeParser;
+import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.logic.parser.GenderParser;
 import seedu.dietmanager.logic.parser.HeightParser;
 import seedu.dietmanager.logic.parser.NameParser;
-import seedu.dietmanager.logic.parser.SetProfileParser;
 import seedu.dietmanager.logic.parser.WeightParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -38,7 +38,7 @@ public class SetProfileCommand extends Command {
         super(command);
         this.isValidCommand = true;
         try {
-            String[] descriptionArray = SetProfileParser.parseProfileDescription(description);
+            String[] descriptionArray = DescriptionParser.parseDescription(description, 6);
             this.name = NameParser.parseName(descriptionArray[0]);
             this.age = AgeParser.parseAge(descriptionArray[1]);
             this.gender = GenderParser.parseGender(descriptionArray[2]);

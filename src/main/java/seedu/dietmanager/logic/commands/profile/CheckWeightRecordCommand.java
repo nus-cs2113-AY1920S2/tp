@@ -5,6 +5,7 @@ import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.CommandParser;
+import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
@@ -36,7 +37,7 @@ public class CheckWeightRecordCommand extends Command {
         super(command);
         this.noDescription = false;
         try {
-            String[] descriptionArray = CommandParser.parseDescription(description, ARGUMENTS_REQUIRED);
+            String[] descriptionArray = DescriptionParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.profileName = descriptionArray[0];
         } catch (NullPointerException e) {
             this.noDescription = true;

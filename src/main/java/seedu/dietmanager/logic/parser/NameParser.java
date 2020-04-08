@@ -29,6 +29,7 @@ public class NameParser {
         if (name.isEmpty()) {
             throw new InvalidNameException();
         }
+        name = Optional.ofNullable(name.get().replaceAll(" ", "-"));
         testAssertions();
         return name.get();
     }
