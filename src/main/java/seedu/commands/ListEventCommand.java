@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class ListEventCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "listevents";
+    public static final String COMMAND_WORD = "listevent";
 
     public static final String MESSAGE_USAGE = "To list cards, type command: listevents";
 

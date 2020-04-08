@@ -29,7 +29,8 @@ public class ScoreList implements Serializable {
             totalScore += score;
         }
         double avgScore = totalScore / scores.size();
-        return avgScore;
+        double roundedAvg = (double) Math.round(avgScore * 100) / 100;
+        return roundedAvg;
     }
 
     /**

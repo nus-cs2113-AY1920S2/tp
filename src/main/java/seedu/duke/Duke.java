@@ -16,16 +16,16 @@ public class Duke {
     /**
      * Reads the user's commands and executes them until the user issues the exit command.
      */
-    private void run() {
+    private void run() throws EscException {
         ui.showWelcome();
         boolean isExit = false;
+        subjectList = new SubjectList(storage.loadObjects());
         while (!isExit) {
             try {
-                //subjectList = new SubjectList(storage.loadSubs());
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(subjectList);
-                storage.saveSubs(subjectList.getSubjects());
+                storage.saveSubs(subjectList.getSubjects(), subjectList.getEvents());
                 isExit = c.isExit();
             } catch (EscException e) {
                 System.out.println(e.getMessage());
@@ -36,7 +36,7 @@ public class Duke {
     /**
      * Main method.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EscException {
         //assert false : "dummy to fail";
         new Duke().run();
     }
