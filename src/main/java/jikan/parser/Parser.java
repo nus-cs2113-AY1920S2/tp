@@ -2,7 +2,6 @@ package jikan.parser;
 
 import jikan.exception.ExtraParametersException;
 import jikan.log.Log;
-import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
 import jikan.cleaner.StorageCleaner;
 import jikan.ui.Ui;
@@ -60,11 +59,9 @@ public class Parser {
      * Parses user commands to relevant functions to carry out the commands.
      *
      * @param scanner      scanner object which reads user input
-     * @param activityList the list of activities
      */
-    public Command parseUserCommands(Scanner scanner, ActivityList activityList, StorageCleaner cleaner,
-                                     File tagFile) throws
-            EmptyNameException, NullPointerException, ArrayIndexOutOfBoundsException {
+    public Command parseUserCommands(Scanner scanner, File tagFile) throws EmptyNameException,
+            NullPointerException, ArrayIndexOutOfBoundsException {
         makeInfoLog("Starting to parse inputs.");
 
         String userInput = scanner.nextLine();
@@ -85,7 +82,7 @@ public class Parser {
                 command = new StartCommand(tokenizedInputs[1], scanner);
             } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
                 makeInfoLog("Activity started without activity name");
-                Ui.printDivider("Activity name cannot be empty!");
+                Ui.printDivider("Start command cannot be empty");
             }
             break;
         case "end":
