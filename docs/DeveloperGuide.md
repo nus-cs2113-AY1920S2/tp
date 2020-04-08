@@ -973,7 +973,84 @@ Target user profile:
 Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
 
 ### 6.6 Appendix F: Instructions for Manual Testing 
-#### 6.6.1 Adding `assignment` task type
+#### 6.6.1 Launch and Shutdown 
+##### Launch **ATAS**
+* Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases)
+* Using Terminal, navigate to folder containing **ATAS**
+* Maximise the screen size of terminal
+
+**Test Case**: `java -jar atas-2.0.0.jar`
+
+**Expected Output**: **ATAS** startup screen is displayed
+
+##### Exit **ATAS**
+
+**Test Case**: `exit`
+
+**Expected Output**: **ATAS** program terminates
+
+#### 6.6.2 Adding `assignment` task type
+
+**Prerequisites**: Issue`list` command, there are no tasks in the list
+
+**Test Case**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments`
+
+**Expected Output**: A success message of adding the `assignment` task will be shown. Entering a `list` command will show 1 
+task in the list. 
+
+**Test Case**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments` after running the `assignment` command as stated above
+
+**Expected Output**: An error message indicating that task already exist will be shown. Issuing a `list` command will only
+show 1 `assignment` task in the list.
+
+**Test Case**: `assignment n/assignment two`
+
+**Expected Output**: An error message indicating that a wrong format of `assignment` command is issued. `list` command will 
+not show `assignment two` on the list. 
+
+**Test Case**: `assignment n/assignment three m/cs2113 d/01/05/20 12:00 c/No comment`
+
+**Expected Output**: An error message indicating a wrong format of `assignment` command is issued. This is due to `:` in the
+time entered. 
+
+**Test Case**: `assignment n/assignment four m/cs2113 d/40/40/20 1200 c/No comment`
+
+**Expected Output**: An error message indicating a wrong format of date or invalid date is issued. `list` command will not
+show `assignment four` on the list. 
+
+**Prerequisites**: Prepare **today's** date in `DD/MM/YY` format to enter into `d/`
+
+**Test Case**: 
+1. `assignment n/assignment three m/cs2113 d/DD/MM/YY 1200 c/No comment` 
+2. `exit`
+3. `java -jar atas-2.0.0.jar`
+
+**Expected Output**: `assignment three` will be displayed when **ATAS** is started.
+
+#### 6.6.3 Adding `event` task type
+
+**Test Case**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+**Expected Output**: A success message of adding the `event` task will be shown. Entering a `list` command will show the 
+`meeting one` on the list. 
+
+**Test Case**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment` after running the `event` command as stated above
+
+**Expected Output**: An error message indicating that task already exist will be shown. Issuing a `list` command will not show
+another `meeting one` on the list. 
+
+**Test Case**: `event n/meeting two`
+
+**Expected Output**: An error message indicating that a wrong format of `event` command is issued. `list` command will 
+not show `meeting two` on the list.
+
+
+
+
+
+
+
+
 
 
 
