@@ -44,7 +44,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 - [List all contacts](#list-all-contacts-contacts)
 - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
 - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
-- [Edit a contact's timetable](#edit-a-contact's-timetable-edit)
+- [Edit a contact's timetable](#edit-a-contacts-timetable-edit)
 - [Delete a meeting](#delete-a-meeting-delete--m)
 - [Delete a contact](#delete-a-contact-delete--c)
 - [List all meetings](#list-all-meetings-meetings)
