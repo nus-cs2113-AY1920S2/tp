@@ -1,5 +1,6 @@
 package seedu.happypills.logic.parser;
 
+import org.w3c.dom.Text;
 import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.appointmentcommands.AppointmentCommand;
 
@@ -18,7 +19,8 @@ import seedu.happypills.ui.TextUi;
 
 import java.util.Scanner;
 
-public class AppointmentParser {
+//@@author sitinadiah25
+public class AppointmentParser extends Parser {
 
     /**
      * Parses the command given by the user to appointment commands.
@@ -75,33 +77,16 @@ public class AppointmentParser {
             printMissingInput(parseInput);
             String input = promptUser().trim();
             if (input.equalsIgnoreCase("clear")) {
-                return new IncorrectAppointmentCommand("    Appointment is not added\n");
+                throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
             String[] updates = splitInput(input);
             parseInput = parseInput(updates, parseInput);
         }
-        if (!loopPrompt(parseInput)) {
+        if (!loopPrompt(promptConfirmation(parseInput))) {
             return new IncorrectAppointmentCommand("    Appointment is not added.\n");
         }
         return new AddAppointmentCommand(parseInput[0].toUpperCase().trim(), parseInput[1].trim(),
                 parseInput[2].trim(), parseInput[3].trim());
-    }
-
-    private static boolean loopPrompt(String[] parseInput) {
-        boolean userConfirmation = false;
-        System.out.println(promptConfirmation(parseInput));
-        while (!userConfirmation) {
-            String confirmation = promptUser();
-            System.out.println(TextUi.DIVIDER);
-            if (confirmation.equalsIgnoreCase("y")) {
-                userConfirmation = true;
-            } else if (confirmation.equalsIgnoreCase("n")) {
-                return false;
-            } else {
-                System.out.println("    Please input [y] for yes or [n] for no");
-            }
-        }
-        return true;
     }
 
     private static String[] parseInput(String[] details, String[] parseInput) {
@@ -133,40 +118,7 @@ public class AppointmentParser {
         if (parseInput[3].equalsIgnoreCase("")) {
             System.out.println("    /r[REASONS]");
         }
-    }
-
-    private static String[] splitInput(String content) {
-        String[] details;
-        if (content.startsWith("/")) {
-            details = content.substring(1).split(" /");
-        } else {
-            content = "@" + content;
-            details = content.split(" /");
-        }
-        return details;
-    }
-
-    private static String promptUser() {
-        System.out.println(TextUi.DIVIDER);
-        Scanner in = HappyPills.scanner;
-        String reInput = in.nextLine();
-        return reInput;
-    }
-
-    /**
-     * Check if the String can be converted to Integer.
-     *
-     * @param input value to check if is integer
-     * @return true if is an integer, false otherwise
-     */
-    public static boolean isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-
+        System.out.println("    To abort, enter \"clear\"");
     }
 
     /**

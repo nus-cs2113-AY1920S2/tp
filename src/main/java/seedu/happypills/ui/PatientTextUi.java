@@ -7,8 +7,7 @@ import java.util.Map;
 
 public class PatientTextUi extends TextUi {
 
-    public static final String PATIENT_NOT_FOUND_MESSAGE = ""
-            + "    The patient cannot be found. Please try again.\n" + DIVIDER;
+    public static final String PATIENT_NOT_FOUND_MESSAGE = "    The patient cannot be found. Please try again.";
     public static final String EMPTY_PATIENT_LIST_MESSAGE = "    There are no patients in the list.\n" + DIVIDER;
 
     /**
@@ -17,12 +16,14 @@ public class PatientTextUi extends TextUi {
      * @return a message to be displayed to user.
      */
     public static String getPatientList(PatientMap patients) {
-        String message = "";
+        String message = "    Here is your list of patients:\n"
+                + "    NRIC      | Name\n";
         for (Map.Entry patient : patients.entrySet()) {
             String nric = (String)patient.getKey();
             Patient p = (Patient)patient.getValue();
             String name = p.getName();
-            message += "    " + name + " | " + nric + "\n";
+            message += "    " + nric + repeat(10 - nric.length())
+                    + "| " + name + "\n";
         }
         message += DIVIDER;
         return message;

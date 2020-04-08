@@ -7,6 +7,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
+import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.StorageTextUi;
 import seedu.happypills.ui.TextUi;
@@ -92,7 +93,7 @@ public class DeletePatientCommand extends PatientCommand {
             return message;
 
         } else {
-            throw new HappyPillsException(PatientTextUi.PATIENT_NOT_FOUND_MESSAGE);
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         }
     }
 }
