@@ -14,7 +14,7 @@ public class Help extends UI {
         output.append("To view event list, input: event list\n");
         output.append("To view other lists, input: <type_of_list> view\n");
         output.append("Note: All command are NOT CASE SENSITIVE.\n");
-
+        output.append("To exit help function, enter 'back'\n");
         display(output.toString());
     }
 
@@ -42,6 +42,7 @@ public class Help extends UI {
             + "To delete an event, use the command\n"
             + "\tevent delete i/Event_index\n"
         );
+        output.append("Enter 'list' for command format list. To exit help function, enter 'back'\n");
         display(output.toString());
     }
 
@@ -51,6 +52,7 @@ public class Help extends UI {
         display("* Note that semester can only be an integer 1 or 2.");
         display("* Note that the academic year must contain two consecutive years separated by a hyphen.\n "
                 + " Each year should be in a double digit format.");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
     public void printPerformanceHelp() {
@@ -68,6 +70,7 @@ public class Help extends UI {
         display("\tYou are allowed to sort student's performance by students' name or result.\n");
         display("To view a student's performance under an event, input:\n\t"
                 + "Performance view");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
     public void printAttendanceHelp() {
@@ -79,6 +82,7 @@ public class Help extends UI {
                 + "Attendance delete\n");
         display("To sort a student's attendance list, input:\n\t"
                 + "Attendance sort\n");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
     public void printStudentListHelp() {
@@ -96,5 +100,6 @@ public class Help extends UI {
                 + "student.list sort/by/name\n");
         display("To sort all name within the existing studentList, input:\n\t"
                 + "student.list sort/by/list\n");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 }
