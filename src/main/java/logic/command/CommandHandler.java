@@ -104,8 +104,8 @@ public class CommandHandler {
 
             String meetingName = userInputWords[2];
 
-            int memberNumber = Integer.parseInt(userInputWords[2]);
-            Contact member = contactList.getContactList().get(memberNumber);
+            int memberIndex = Integer.parseInt(userInputWords[2]);
+            Contact member = contactList.getContactList().get(memberIndex);
             String memberName = member.getName();
             LocalTime startTime = LocalTime.parse(userInputWords[4]);
             LocalTime endTime = LocalTime.parse(userInputWords[6]);
@@ -113,7 +113,7 @@ public class CommandHandler {
             String endTimeString = userInputWords[6];
             String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
 
-            if (memberNumber != 0 || ScheduleHandler.isValidEdit(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
+            if (memberIndex != 0 || mainUser.isValidEdit(startDay, startTime, endDay, endTime, currentWeekNumber)) {
                 if (userInputWords[1].equals("busy")) {
                     member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
                 } else if (userInputWords[1].equals("free")) {
@@ -223,7 +223,7 @@ public class CommandHandler {
 
             LocalTime startTime = LocalTime.parse(userInputWords[3]);
             LocalTime endTime = LocalTime.parse(userInputWords[5]);
-            if (ScheduleHandler.isValidMeeting(mainUser, startDay, startTime, endDay, endTime, currentWeekNumber)) {
+            if (mainUser.isValidMeeting(startDay, startTime, endDay, endTime, currentWeekNumber)) {
                 Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime, startDate, endDate);
                 meetingList.add(myMeeting);
                 String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
@@ -347,15 +347,15 @@ public class CommandHandler {
 
     public static void displayTimetable(String[] userInputWords, Contact mainUser,
                                         ContactList contactList, int weekNumber, int weeksMoreToView) throws MoException {
-        int memberNumber;
+        int memberIndex;
         Contact member;
         try {
             String todayDate = java.util.Calendar.getInstance().getTime().toString().substring(0, 10).trim();
             if (userInputWords.length > 1) {
                 ArrayList<Contact> myScheduleList = new ArrayList<Contact>();
                 for (int i = 1; i < userInputWords.length; i++) {
-                    memberNumber = Integer.parseInt(userInputWords[i]);
-                    member = contactList.getContactList().get(memberNumber);
+                    memberIndex = Integer.parseInt(userInputWords[i]);
+                    member = contactList.getContactList().get(memberIndex);
                     myScheduleList.add(member);
                 }
 
