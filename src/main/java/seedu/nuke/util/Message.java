@@ -337,4 +337,7 @@ public class Message {
 
     public static final String MESSAGE_OPEN_FILE_SUCCESS = "The files are opening now...\n";
     public static final String MESSAGE_NO_FILE_CHOSEN = "No file was chosen.\n";
+    public static final String MESSAGE_INVALID_FILE_NAME =
+            "Sorry, the name of the file you are adding contains words that begins with a symbol.\n"
+            + "Please enter a new file name.\n";
 }
