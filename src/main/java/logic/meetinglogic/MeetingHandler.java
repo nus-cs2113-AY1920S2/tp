@@ -1,7 +1,7 @@
 package logic.meetinglogic;
 
 import common.Messages;
-import exception.MoException;
+import common.exception.MoException;
 import model.contact.Contact;
 
 import java.time.LocalTime;
