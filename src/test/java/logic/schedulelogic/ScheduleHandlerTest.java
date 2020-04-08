@@ -15,11 +15,6 @@ public class ScheduleHandlerTest {
     private final Boolean myScheduleFree = false;
 
     @Test
-    public void testGetDayFromNumber() {
-        assertEquals("Sunday", ScheduleHandler.getDayFromNumber(0));
-    }
-
-    @Test
     public void testScheduleHandler() throws MoException {
         ArrayList<Contact> myScheduleList = new ArrayList<>();
         final Contact member1 = new Contact("member1");

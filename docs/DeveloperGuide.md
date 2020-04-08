@@ -12,14 +12,15 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [2.3. Logic component](#23-logic-component)
 	* [2.4. Model component](#24-model-component)
 	* [2.5. Storage component](#25-storage-component)
-	* [2.7. Common classes](#26-common-classes)
+	* [2.6. Common component](#26-common-classes)
 * [3. Implementation](#3-implementation)
 	* [3.1. Add new contact](#31-add-new-contact)
 	* [3.2. List all contacts](#32-list-all-contacts)
 	* [3.3. Display timetable of selected contacts](#33-display-timetable-of-selected-contacts)
 	* [3.4. Schedule a new meeting](#34-schedule-a-new-meeting)
 	* [3.5. Delete a scheduled meeting](#35-delete-a-scheduled-meeting)
-	* [3.6. List all scheduled meetings](#36-list-all-scheduled-meetings)
+	* [3.6. Delete a member](#36-delete-a-member)
+	* [3.7 List all scheduled meetings](#37-list-all-scheduled-meetings)
 * [4. Documentation](#4-documentation)
 * [5. Testing](#5-testing)
 * [6. Dev Ops](#6-dev-ops)
@@ -124,27 +125,26 @@ The last step would be for ```LessonsGenerator``` to collate the returned data s
 The ```schedulelogic``` component finds common time slots from team members' schedules.
 The ```schedulelogic``` consists of the class ```ScheduleHandler```. 
 
-1. ```ScheduleHandler``` retrieves the schedule of selected ```Contact```s in the ```ContactList```, to generate a combined schedule.
-2. ```ScheduleHandler``` checks if a time slot fits in the main user's schedule.
+1. ```ScheduleHandler``` retrieves the schedule of ```Contact```s to generate a combined schedule.
 
 **Design of Logic.schedulelogic component**
  
 ![logic.schedulelogic Component](images/schedulelogic.png)<br>
 
-### 2.3.4. logic.commands component
+### 2.3.4. Logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
 The ```commands``` consists of the class ```CommandHandler```.
 
-### 2.4. model component
+### 2.4. Model component
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meeting```, ```contact```
 
-### 2.4.1. model.meeting component
-The ```meeting``` component of our application consists of 2 classes: ```Meeting```, ```MeetingList```
+### 2.4.1. Model.meetings component
+The ```meetings``` component of our application consists of 2 classes: ```Meeting```, ```MeetingList```
 <br>
 
-### 2.4.2. model.contact component
-The ```contact``` component of our application consists of 2 classes: ```TeamMember```, ```TeamMemberList```
+### 2.4.2. Model.contacts component
+The ```contacts``` component of our application consists of 2 classes: ```TeamMember```, ```TeamMemberList```
 1. ```TeamMember``` consists of information of a member's name and schedule.
 2. ```TeamMemberList``` is a ```Arraylist<TeamMember> ``` which new ```TeamMember``` can be added to.
 
@@ -158,9 +158,8 @@ The `Storage` component,
 - can save `Contact` objects in .txt format and read it back.
 - can save scheduled meetings in .txt format and read it back.
 
-### 2.6. Exception classes
-
-### 2.7. Common classes
+### 2.6. Common component
+#### 2.6.1 Exception classes
 
 
 ## 3. Implementation
@@ -203,7 +202,7 @@ Alternative 1. Furthermore, users are required to download the blacklisted file 
 
 ### 3.6 Delete a member
 
-### 3.6 List all scheduled meetings
+### 3.7 List all scheduled meetings
 
 ## 4. Documentation
 
