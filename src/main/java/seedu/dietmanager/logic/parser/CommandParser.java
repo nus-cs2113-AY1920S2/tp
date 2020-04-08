@@ -2,6 +2,7 @@ package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
+import seedu.dietmanager.logic.commands.CheckBmiCommand;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.commands.foodrecord.CalculateCaloriesCommand;
 import seedu.dietmanager.logic.commands.foodrecord.CheckRecordCommand;
@@ -158,6 +159,9 @@ public class CommandParser {
             break;
         case "help":
             command = new HelpCommand(commandPrompt);
+            break;
+        case "check-bmi":
+            command = new CheckBmiCommand(commandPrompt,description);
             break;
         default:
             description = null;
