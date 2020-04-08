@@ -818,7 +818,7 @@ Marks a task as *done*.
 <br><br>  
 
 ### 5. Change Directory 
-Traverse up and down the Directory Tree from your current directory.  
+`cd` traverses up and down the Directory Tree from your current directory.  
 
 ##### Format  
 
@@ -826,11 +826,11 @@ Traverse up and down the Directory Tree from your current directory.
 `cd ..` to traverse up   
 
 - `directory name` -- The name of the next _directory_   
-- 
+
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-There will <b>not</b> be any message shown for successful traversal. Instead, you will be able to see a change in the current directory path as shown in the positive traversing example below. <br>
-However, attempting to traverse ahead of the <b>Root</b> Directory (first directory) <i>or</i> beyond the <b>File</b> Directory <i>(last directory)</i> will result in an error message being shown.
+There will <b>not</b> be any message shown for successful traversal &#128528. Instead, you will be able to see a change in the current directory path as shown in the positive traversing example below. <br>
+However, attempting to traverse ahead of the <b>Root</b> Directory (first directory) <i>or</i> beyond the <b>File</b> Directory <i>(last directory)</i> will result in an error message being shown &#128552.
 </div>
 
 ##### Example Usage and Expected Outcome    
@@ -844,30 +844,99 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
  
 <br><br>
 
-### 6. Open File 
- 
+### 6. Open File   
+`open` opens your <i>file(s)</i> of a specified <i>task</i>. You can choose between opening a single <i>file</i> <i>or</i> <b>all</b> your <i>files</i> in the <b>File List</b>.  
+
+##### Format  
+
+`open [ <file name> ] -m <module code> -c <category name> -t <task description>`  
+
+- `file name` -- The <i>name</i> of the <i>file</i> <i>(optional)</i>   
+- `module code` -- The <i>module code</i> of the <i>module</i> containing the <i>file</i>   
+- `category name` -- The <i>name</i> of the   <i>category</i> containing the <i>file</i>   
+- `task description` -- The <i>description</i> of the <i>task</i> containing the <i>file</i>  
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, if you want to open <b>all</b> the <i>files</i> in the list, leave the <code>file name</code> blank.
+</div>
+
+##### Example Usage and Expected Outcome    
+<small><u>Opening at Root Level</u></small>  
+![open file command root level](images/open_root_level.png) 
+<br>
+<small><u>Opening at Task Level</u></small>  
+ ![open file command task level](images/open_task_level.png) 
 
 <br><br>
 
-### 7. Info 
-  
+### 7. Info  
+`info` displays information about your current directory. It shows you the current directory's attributes, and a list of its child directories, <i>if any</i>. <br>
+For example, on the <b>Module</b> directory, the <b>Info</b> command will display the <i>module</i>'s <i>code</i> and <i>title</i>, as well as its <b>Category List</b>.   
+
+##### Format  
+
+`info`   
+
+##### Example Usage and Expected Outcome    
+![info command](images/info.png)
 
 <br><br>
 
 ### 8. Undo 
-   
+`undo` undoes a <i>change</i> made to the application.  
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+<i>Change</i> here refers to a successful <a href="#1-add"><b>Add</b></a>, <a href="#3-delete"><b>Delete</b></a>, <a href="#4-edit"><b>Edit</b></a> or <a href="#8-undo"><b>Undo</b></a> command. These commands changes your lists. The <b>Undo</b> command reverts these changes.
+</div>
+
+##### Format  
+
+`undo`   
+
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+On successful undo, you will be moved back to the <b>Root</b> Directory &#128550. This is to allow the application to correctly reload the correct state.<br>
+Also, do note that attempting to undo when no changes were made will result in an error message being shown &#128552.
+</div>
+
+##### Example Usage and Expected Outcome    
+<small><u>Correct Undo</u></small>
+![undo command correct](images/undo_correct.png)  
+<br>  
+<small><u>Incorrect Undo</u></small>
+![undo command incorrect](images/undo_incorrect.png)  
 
 <br><br>
 
 ### 9.Redo 
-  
+`redo` redoes the change made by an earlier <b>[Undo](#8-undo)</b> command.
 
-<br><br>
+##### Format  
+
+`redo`   
+
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+On successful redo, you will be moved back to the <b>Root</b> Directory &#128550. This is to allow the application to correctly reload the correct state.<br>
+Also, do note that attempting to redo when you are at the newest state <i>(i.e. the most recent change was not due to an <a href="#8-undo"><b>Undo</b></a> command)</i> will result in an error message being shown &#128552.
+</div>
+
+##### Example Usage and Expected Outcome    
+<small><u>Correct Redo</u></small>
+![redo command correct](images/redo_correct.png)  
+<br>  
+<small><u>Incorrect Redo</u></small>
+![redo command incorrect](images/redo_incorrect.png)  
+
+<br>
+<hr>
 
 ## Miscellaneous Information  
 
 ### Help  
-In the event that you ever forget the usage of a command, you can look it up within the **Nuke** program itself. All you need to do is to enter the *keyword* `help`, followed by the command you wish to query.     
+In the event that you ever forget the usage of a command, you can look it up within the **Nuke** application itself. All you need to do is to enter the *keyword* `help` to show a command summary of all the available commands in <b>Nuke</b>.     
 
 <br>  
 
@@ -939,10 +1008,12 @@ An **exhaustive** list of the *time* formats is given below for your reference.
 ```
  > **Info**: `H` and `h` represents the **hour** for the 24-h and 12-h time format respectively. `m` represents the **minute**. `a` represents the **am-pm markers**.  
 
-<br><br>
+<br>
+<hr>
 
 ## Command Summary
 
-<br><br>
+<br>
+<hr>
 
 ## FAQ
