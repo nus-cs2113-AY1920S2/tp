@@ -77,9 +77,9 @@ The UI consists of....
 ![Logic Component](images/logiccomponent.png)<br>
 
 The LogicManager is the brain and backbone of the logic component. It depends on 3 sub-components for it to work.
-First, LogicManager instantiates```schedulelogic``` and ```modulelogic``` sub-components to enable the generation of common time slots from NUSMODS links.
-Afterwards, ```command``` sub-component would be initialize to interpret the user commands. LogicManager forms a whole-part relationship with the classes in the Model component, mainly 
-```ContactList``` and ```MeetingList``` where all the data gathered from user commands would be stored. LogicManager also stores a ```mainUser:Contact``` containing the user's timetable
+First, ```command``` sub-component would be initialize to interpret the user commands. 
+Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` sub-components via ```CommandHandler``` to enable the generation of common time slots from NUSMODS links.
+LogicManager forms a whole-part relationship with the classes in the Model component, mainly ```ContactList``` and ```MeetingList``` where all the data generated from user commands would be stored. Besides, ```LogicManager``` also stores a ```mainUser:Contact``` containing the user's timetable
 which is used to store scheduled meetings.
 
 ### 2.3.1. Logic.modulelogic component
