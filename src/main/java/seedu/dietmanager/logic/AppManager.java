@@ -1,9 +1,8 @@
-package seedu.dietmanager;
+package seedu.dietmanager.logic;
 
 import seedu.dietmanager.commons.core.LogsCentre;
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.CommandParser;
 import seedu.dietmanager.model.FoodNutritionRecord;

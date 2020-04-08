@@ -1,4 +1,4 @@
-package seedu.dietmanager.logic.commands;
+package seedu.dietmanager.logic.commands.profile;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
