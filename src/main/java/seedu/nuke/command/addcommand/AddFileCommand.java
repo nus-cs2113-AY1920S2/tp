@@ -198,7 +198,7 @@ public class AddFileCommand extends AddCommand {
             }
             originalFilePath = chosenFileInformation[0];
             if (fileName.isEmpty()) {
-                fileName = chosenFileInformation[1].trim();
+                fileName = removeExtension(chosenFileInformation[1].trim());
                 if (exceedLengthLimit()) {
                     throw new ExceedLimitException();
                 }

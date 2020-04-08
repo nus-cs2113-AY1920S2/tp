@@ -12,7 +12,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
-import static seedu.nuke.util.Message.MESSAGE_EDIT_TASK_SUCCESS;
+import static seedu.nuke.util.Message.MESSAGE_DONE_TASK;
 
 public class MarkAsDoneCommandTest {
 
@@ -72,7 +72,7 @@ public class MarkAsDoneCommandTest {
         result = Executor.executeCommand("cd Lab");
 
         result = Executor.executeCommand("done Big Lab Work");
-        assertEquals(MESSAGE_EDIT_TASK_SUCCESS, result.getFeedbackToUser());
+        assertEquals(MESSAGE_DONE_TASK, result.getFeedbackToUser());
 
         result = Executor.executeCommand("done Tutorial 6");
         assertEquals(MESSAGE_TASK_NOT_FOUND, result.getFeedbackToUser());
@@ -81,7 +81,7 @@ public class MarkAsDoneCommandTest {
         assertEquals(MESSAGE_INCORRECT_DIRECTORY_LEVEL, result.getFeedbackToUser());
 
         result = Executor.executeCommand("done lab1 -m CS3235 -c Lab");
-        assertEquals(MESSAGE_EDIT_TASK_SUCCESS, result.getFeedbackToUser());
+        assertEquals(MESSAGE_DONE_TASK, result.getFeedbackToUser());
 
     }
 }
