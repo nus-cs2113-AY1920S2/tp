@@ -40,12 +40,13 @@ div {
   color: #a94442;
 }
 </style>
+
 # **Nuke User Guide** <small>v2.1</small>     
 
 By: `CS2113T-T13-2`      Since: `Feb 2020`    
 <small>[Go to Webpage](https://ay1920s2-cs2113t-t13-2.github.io/tp/UserGuide.html)</small>   
 
-     
+
 ## **Table of Contents**  
 
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>   
@@ -104,7 +105,7 @@ You will be interacting with the application via the command line. With the **Nu
 If you are an **NUS student** and have not tried out **Nuke** yet...  
 What are you waiting for? Give **Nuke** a shot, and you will see how amazing it is!   
 </span>
-   
+
 [Back To Top](#table-of-contents)
 
 <br>
@@ -130,9 +131,9 @@ This section will explain the fundamental structure of the **Nuke** application,
 | **Category**    | The **third** level of the Directory Tree.<br>Added _tasks_ are in this level.    |
 | **Task**        | The **fourth** level of the Directory Tree.<br>Added _files_ are in this level.       |
 | **File**        | The **last** level of the Directory Tree.<br>Nothing else can be added.                                         |
-  
+
 <br>
-  
+
 Below is an illustration of a possible <b>Directory Tree</b> structure:    
 <br>
 ![Directory Tree Image](images/Tree.png)  
@@ -175,7 +176,7 @@ For example, you can only add a <i>task</i> into the <b>Category</b> directory, 
 You can shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command! <br>
 To learn how to traverse the various directories, see the <a href="#6-change-directory">Change Directory</a> command.
 </div>   
-  
+
 [Back To Top](#table-of-contents)
 
 <br>
@@ -198,9 +199,9 @@ Some **attributes** and **prefixes** are _optional_ and the command can still ex
 
 ### **Any**
 There are times when you may have to include at least one from a set of **attributes** and **prefixes**. You may choose to include one <i>or</i> more from the set, but <b>not</b> none of them. Such **attributes** and **prefixes** will be wrapped in curly brackets `{ }` to help you to recognise them.   
-  
+
 [Back To Top](#table-of-contents)
-  
+
 <br>
 
 ## **Command Prefixes**  
@@ -227,7 +228,7 @@ All **command prefixes** in **Nuke** begins with a `-` and followed by a **lette
 Because each <b>prefix</b> begins with a <code>-</code>, <b>Nuke</b> has to unfortunately restrict your choice of names for the directories. <br>
 Specifically, each word in the name of your directory has to begin with a alpha-numeric <i>(i.e. non-symbol)</i> or underscore character.
 </div>
-  
+
 [Back To Top](#table-of-contents)  
 
 <br><br>  
@@ -242,13 +243,13 @@ Below sums up what `mkdir` does at each level of the Directory.
 
 <div style="text-align: center"><span style="color: green"><small>Table <b>Generic Add</b></small></span></div>
 
-| Current Level   | What Happens?                                                        |  
-|:---------------:|----------------------------------------------------------------------|  
-| <b>Root</b>     | `mkdir <module code>` adds a *module* into the current directory     |  
-| <b>Module</b>   | `mkdir <category name>` adds a *category* into the current directory |  
-| <b>Category</b> | `mkdir <task description>` adds a *task* into the current directory  |  
-| <b>Task</b>     | `mkdir <file name>` adds a *file* into the current directory         |  
-| <b>File</b>     | You cannot `mkdir` here! :pensive:                                   |  
+| Current Level   | What Happens?                                                        |
+|:---------------:|----------------------------------------------------------------------|
+| <b>Root</b>     | `mkdir <module code>` adds a *module* into the current directory     |
+| <b>Module</b>   | `mkdir <category name>` adds a *category* into the current directory |
+| <b>Category</b> | `mkdir <task description>` adds a *task* into the current directory  |
+| <b>Task</b>     | `mkdir <file name>` adds a *file* into the current directory         |
+| <b>File</b>     | You cannot `mkdir` here! :pensive:                                   |
 
 
 The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
@@ -267,9 +268,9 @@ The above commands have to be done in their corresponding directories. Conversel
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond to a valid <b>NUS module</b>. Only <b>NUS modules</b> can be added in this version of <b>Nuke</b>.
 </div>
- 
+
 ##### Example Usage and Expected Outcome  
-  
+
 ![addm command](images/addm.png)
 
 
@@ -282,7 +283,7 @@ The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond t
 ![image-20200330233926681](images/ug_addm_after.png)
 
 
-  
+
 [Back To Top](#table-of-contents)   
 
 <br>
@@ -448,13 +449,21 @@ Tag added!
 ### **2. List**  
 Lists the _modules_, _categories_ or _tasks_ in their respective lists.<br>
 
-As mentioned previously, **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for listing files in a directory: `ls`
+As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. **Nuke** complements the Linux shell command by offering a generic list command word for listing directories: `ls`
 
-- When you are at the **Root Directory**, `ls` will list out all your *module*s in your **Module List**. `ls <module code>` will list out all *category*s in the **Category List** in the *module*
-- When you are at the **Module Directory**, `ls` will list out all the *category*s in your **Category List**. `ls <category name>` will list out all *task*s in the **Task List** in the *category*
-- When you are at the **Category Directory**, `ls` will list out all the *task*s in your **Task List**.
+Below sums up what `ls` does at each level of the Directory.
 
-The above mentioned commands have to be done in the corresponding directories, and the commands below can be done in any directories, but less generic.
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic List</b></small></span></div>
+
+|  Current Level  | What Happens?                                                |
+| :-------------: | ------------------------------------------------------------ |
+|   <b>Root</b>   | `ls` list out all *module*s in your **Module List**<br>`ls <module code>` list out all *catetory*s in the **Category List** in the *module* |
+|  <b>Module</b>  | `ls` list out all the *category*s in your **Category List** in the current *module*.<br>`ls <category name>` list out all *task*s in the **Task List** in the *category* |
+| <b>Category</b> | `ls` list out all *task*s in the **Task List** in the current *category*<br>`ls <task description>` list out all files in the *task* |
+|   <b>Task</b>   | `ls` list out all files in the current *task*                |
+|   <b>File</b>   | You cannot `ls` here! :pensive:                              |
+
+The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
 #### a. List your Modules
 
@@ -591,15 +600,23 @@ lsmtd <module code>
 ### **3. Delete**  
 Deletes _modules_, _categories_ or _tasks_ from their respective lists.<br>
 
-As mentioned previously, **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for deleting a directory: `rm`
+As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. **Nuke** complements the Linux shell command by offering a generic list command word for deleting directories: `rm`
 
-- When you are at the **Root Directory**, `rm <module code>` will remove a *module* from your **Module List**.
-- When you are at the **Module Directory**, `rm <category name>` will remove a *category* from your **Category List**. 
-- When you are at the **Category Directory**, `rm <task name>` will remove a _task_ from your **Task List**.
+Below sums up what `rm` does at each level of the Directory.
+
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Delete</b></small></span></div>
+
+|  Current Level  | What Happens?                                                |
+| :-------------: | ------------------------------------------------------------ |
+|   <b>Root</b>   | `rm <module code>` remove the *module* from your **Module List**. |
+|  <b>Module</b>  | `rm <category name>` remove the *category* from your **Category List** in the current *module*. |
+| <b>Category</b> | `rm <task name>` remove the _task_ from your **Task List** in the current *category*. |
+|   <b>Task</b>   | `rm <file name>` remove the file from your **File List** in the current *task*. |
+|   <b>File</b>   | You cannot `rm` here! :pensive:                              |
 
 For Delete command, user will be prompted to confirm by entering `y` or `yes`  or to abort by entering `n` or `no` after entering the Delete command.
 
-The above mentioned commands have to be done in the corresponding directories, and the commands below can be done in any directories, but less generic.
+The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
 #### a. Delete Modules from your Module List
 
@@ -897,7 +914,7 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
 <small><u>**Incorrect Traversal**</u></small>
 ![cd down command incorrect](images/cd_down_incorrect.png)    <br>
  ![cd up command incorrect](images/cd_up_incorrect.png)   
- 
+
 <br><br>
 
 ### **6. Open File**   
@@ -1029,7 +1046,7 @@ You may enter **only** the following *date* words.
 - `yesterday` or `yst` -- represents the <u>previous</u> date  
   
 > **Note**: All dates are taken with reference to the current date on your device.  
-  
+
 ##### **2. Standard Date Format**  
 This refers to the typical dates that are represented with **numbers** and **delimiter symbols**.    
 
