@@ -16,7 +16,7 @@
     10. [Get a recommended recipe](#310-get-a-recommended-recipe)
     11. [View recipe](#311-view-recipe)
     11. [Check Weight Progress](#312-check-weight-progress)
-    12. [Update Weight](#313-update-weight-progress)
+    12. [Set Weight](#313-set-weight-progress)
     13. [Delete weight](#314-delete-weight-progress)
     14. [Help](#315-help)
     15. [Exit application](#316-exit-application)    
@@ -419,18 +419,18 @@ Example of usage:`check-weight-progress JOHN`
                                                                                   
     ```  
 
-### 3.13 Update Weight Progress
+### 3.13 Set Weight Progress
 
 Update weight in profile when there is changes to user's weight after following diet plan.
 
 This will allow the program to keep track of user's weight along the entire period.
 
-Format: `update-weight 70`
+Format: `set-weight 70`
 
 * Expected Output:
 
     ```
-        update-weight 70
+        set-weight 70
         Your weight has been changed to 70.00.
                                                                                       
     ```
