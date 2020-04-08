@@ -107,7 +107,7 @@ public class Ui {
             }
             System.out.println(DIVIDER);
         } else {
-            System.out.println("There are no activities matching that description.\n");
+            printDivider("There are no activities matching that description.");
         }
     }
 
@@ -202,9 +202,7 @@ public class Ui {
      */
     public static void printProgressMessage(double percent) {
         System.out.println(DIVIDER);
-        if (percent < 50) {
-            System.out.println("Try harder next time! Here's your progress:");
-        } else if (percent < 100) {
+        if (percent < 100) {
             System.out.println("Almost there ! Here's your progress:");
         } else {
             System.out.println("Great job! Here's your progress:");
@@ -257,10 +255,6 @@ public class Ui {
                 continue;
             }
             double percent = activityList.get(i).getProgressPercent();
-            double max = 100;
-            if (percent > max) {
-                percent = max;
-            }
             String activityName = activityList.get(i).getName();
             printProgressBar(percent, activityName);
         }

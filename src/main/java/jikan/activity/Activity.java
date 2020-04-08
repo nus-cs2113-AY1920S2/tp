@@ -104,7 +104,7 @@ public class Activity {
      */
     public double getProgressPercent() {
         double percent = ((double)this.duration.toMillis() / this.allocatedTime.toMillis()) * 100;
-        return percent;
+        return Math.min(percent, 100);
     }
 
     /**
