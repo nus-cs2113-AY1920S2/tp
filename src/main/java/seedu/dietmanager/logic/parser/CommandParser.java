@@ -162,6 +162,9 @@ public class CommandParser {
             case "new-recipe":
                 command = Optional.of(new BuildNewRecipeCommand(commandPrompt.get(), description.get()));
                 break;
+            case "check-bmi":
+                command = Optional.of(new CheckBmiCommand(commandPrompt.get(), description.get()));
+                break;
             default:
                 throw new InvalidCommandException();
             }
