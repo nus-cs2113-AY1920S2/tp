@@ -15,13 +15,13 @@
     3.1. [Using Pac](#31-using-pac)
 4. [Features](#4-features)  
 4.1. [Student List](#41-student)  
-4.1.1. [Add New Student List](#411-add-new-student-list)        
-4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-student-list)  
-4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection-student-clear)   
-4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection-student-delete)  
-4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection-student-find)  
-4.4.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-student-sort)  
-4.4.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name-student-sort)  
+4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
+4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-student-view)  
+4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-clear)   
+4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-delete)  
+4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection-studentlist-find)  
+4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-student-sort)  
+4.1.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name-student-sort)  
 4.2. [Event](#42-event)  
 4.2.1. [Add New Event](#421-add-new-event)  
 4.2.2. [View Event List](#422-list-events)  
@@ -32,19 +32,22 @@
 4.2.7. [Edit Event](#427-edit-event)    
 4.3. [Calendar](#43-calendar)  
 4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)
-4.4 [Attendance](#44-attendance)
+4.4 [Attendance List](#44-attendance)
 4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance-attendance-add)    
-4.4.2. [View Attendance List](#442-view-attendance-list-attendance-list)   
+4.4.2. [View Attendance List](#442-view-attendance-list-attendance-view)   
 4.4.3. [Clear Attendance](#443-clear-attendance-list-attendance-clear)  
 4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name-attendance-sort)  
 4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status-attendance-sort)  
-4.5. [Performance](#45-performance)     
-4.5.1. [Add New Performance](#451-add-performance)  
-4.5.2. [Delete Current Performance](#452-delete-performance)   
-4.5.3. [View Performance List](#453-view-performance-list)       
+4.5. [Performance List](#45-performance-list)     
+4.5.1. [Add New Performance List](#451-add-performance-list)  
+4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
+4.5.3. [View Performance List](#453-view-performance-list)   
+4.5.4. [Edit Performance List](#454-edit-performance-list)
+4.5.5. [Sort Performance List](#455-sort-performance-list)    
 5. [Possible Console Messages and Reasons](#5-possible-console-messages-and-reasons)           
 6. [FAQ](#6-faq)  
 7. [Command Summary](#7-command-summary)  
+8. [Contact Us](#8-contact-us)
   
 ## 1. Introduction
 
@@ -423,9 +426,9 @@ Format: `event add n/NAME [d/DATE t/TIME] [v/VENUE]`
  
 Examples: 
 
-    event add n/dinner with collegue
-    event add n/World Cup d/2022-11-21 t/0000
-    event add n/soccer match v/Kallang d/2020-01-23 t/1900
+    >>> event add n/dinner with collegue
+    >>> event add n/World Cup d/2022-11-21 t/0000
+    >>> event add n/soccer match v/Kallang d/2020-01-23 t/1900
     
 Expected outcome:
 
@@ -452,8 +455,8 @@ Format: `event delete i/INDEX`
 
 Examples:
 
-    event delete i/3
-    event delete i/4
+    >>> event delete i/3
+    >>> event delete i/4
     
 Expected outcome:
 
@@ -469,7 +472,7 @@ Format: `event editname i/INDEX n/NEW_NAME`
 
 Examples:
 
-    event editname i/1 n/lunch with colleague
+    >>> event editname i/1 n/lunch with colleague
     
 Expected outcome:
 
@@ -478,7 +481,6 @@ Expected outcome:
 #### 4.2.5. Edit Event Datetime
 Change the date and time of an existing event. 
    
-
 Format: `event editdatetime i/INDEX d/NEW_DATE t/NEW_TIME`
 * alphabet cases for the command is not important.    
 * The date should be in the format: yyyy-mm-dd.  
@@ -486,7 +488,7 @@ Format: `event editdatetime i/INDEX d/NEW_DATE t/NEW_TIME`
 
 Examples:
 
-    event editdatetime i/1 d/2020-03-23 t/1200
+    >>> event editdatetime i/1 d/2020-03-23 t/1200
     
 Expected outcome:
 
@@ -501,7 +503,7 @@ Format: `event editvenue i/INDEX v/NEW_VENUE`
 
 Examples:
 
-    event editvenue i/1 v/Marina Bay Sands
+    >>> event editvenue i/1 v/Marina Bay Sands
     
 Expected outcome:
 
@@ -516,7 +518,7 @@ Format: `event editevent i/INDEX n/NEW_NAME [t/NEW_TIME d/NEW_DATE] [v/NEW_VENUE
 
 Examples:
 
-    event editevent i/1 n/lunch by myself v/home
+    >>> event editevent i/1 n/lunch by myself v/home
     
 Expected outcome:
 
@@ -536,7 +538,7 @@ Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
 
 Command: 
     
-    calendar s/2 ay/19-20
+    >>> calendar s/2 ay/19-20
     
 Example: 
 
@@ -600,7 +602,7 @@ The following will show a success example of *creating a new attendance list*.
     Attendance of John Doe (Present) has been taken successfully under event Event1
     ...
     
-#### 4.4.2 View attendance list: `attendance list`
+#### 4.4.2 View attendance list: `attendance view`
 
 View the attendance list under a certain event.  
 
@@ -663,8 +665,8 @@ Example:
     >>> CS1010 Tutorial
     Attendance List is sorted by attendance status for Event: event1
     
-### 4.5. Performance
-#### 4.5.1. Add Performance
+### 4.5. Performance List
+#### 4.5.1. Add Performance List
 Add a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console. 
 
@@ -690,8 +692,9 @@ The following will show a success example of using a current name list to add pe
     The result of student (student name) has been added successfully under event (event name)
     Please key in the result for student (student2 name)
     ...
+*Note: All commands above are not case sensitive.*
 
-#### 4.5.2. Delete Performance
+#### 4.5.2. Delete Performance List
 Delete a student’s result to the performance list.  
 This is a step by step command and you may follow the instructions given by the console.  
 
@@ -701,20 +704,21 @@ Step by step guide:
 
     >>> performance delete
     Please key in the name of event that you wish to access to its student's performance. 
-    >>>event
+    >>> event
     Please key in the name of student that you wish to delete his/her performance 
-    >>>name
-    The result of student (name) has been deleted successfully under event name.
+    >>> name
+    The result of student (name) has been deleted successfully under event event.
+*Note: All commands above are not case sensitive.*
 
 #### 4.5.3. View Performance List
 View the list of students' result under a certain event.  
 This is a step by step command and you may follow the instructions given by the console. 
 
-Format: `performance list`
+Format: `performance view`
     
 Step by step guide: 
 
-    >>> performance delete
+    >>> performance view
     Please key in the name of event that you wish to access to its student's performance.
     >>> event
     (example of Table format list is shown below)
@@ -723,11 +727,63 @@ Step by step guide:
     |___________|_____________________________________|_____________________________________________|
     | 1         |  XX                                 |  A                                          |
     |___________|_____________________________________|_____________________________________________|
-        
+*Note: All commands above are not case sensitive.*
+
+#### 4.5.4. Edit Performance List
+Edit the list of students' result under a certain event.  
+This is a step by step command and you may follow the instructions given by the console. 
+During the process, you can choose to edit either student's name or result.
+
+Format: `performance edit`
     
+Step by step guide to edit name: 
+
+    >>> performance edit
+    Please key in the name of event that you wish to access to its student's performance.
+    >>> event
+    Please key in the name of student that you wish to edit his/her performance 
+    >>> Alice
+    Please key in the type of performance parameter you want to edit: name / result
+    >>> name ***
+    Please key in the student's new name
+    >>> Carl
+    The student name has been changed to Carl successfully.
+You can follow the same procedure to edit result, but change your input from
+`name` to `result` at the `***` line.
+
+*Note: All commands above are not case sensitive.*
+
+#### 4.5.5. Sort Performance List
+Sort the list of students' result under a certain event.  
+This is a step by step command and you may follow the instructions given by the console. 
+During the process, you can choose to sort by either student's name or result.
+
+Format: `performance sort`
+    
+Step by step guide to edit name: 
+
+    >>> performance sort
+    Please key in the name of event that you wish to access to its student's performance.
+    >>> event
+    Please key in the name of student that you wish to edit his/her performance 
+    >>> Alice
+    Do you want to sort by students' name or result?
+    >>> name ***
+    Performance List is sorted by Performance name for Event:  event
+    
+You can follow the same procedure to sort by result, but change your input from
+`name` to `result` at the `***` line.  
+
+*Note: All commands above are not case sensitive.*
+
 ## FAQ
 
 ## 5. Possible Console Messages and Reasons:  
+1. If you entered a wrong command type, ie. not specifying 
+which category your command belongs to
+
+       Please provide a valid command category. Refer to 'help' for more info.
+
 1. If you entered two flags, i.e. n/work n/presentation:
 
        EventParser: Duplicate name flag 
@@ -735,22 +791,29 @@ Step by step guide:
 1. If you did not enter any flag, ie. event add: 
 
        Argument is required for command 'add'
-
-1. If there are no events in the list:    
-        
-       The event list is empty
     
 1. If event cannot be found in the list:
            
        Event is not found in the list.
        
-1. If there are no students' data in the student list:
-       
-       There is no existing student list.
-    
 1. If there are no events under a calendar for a particular semester in its academic year:
 
        Unable to find any events for this time period.
+
+1. If event list is empty:    
+        
+       The event list is empty
+       
+1. If student list is empty:
+       
+       There is no existing student list.
+       
+1. If performance list under an event is empty:
+
+       No performance list under this event
+       _________________________________________________________________________________________________
+       | index     |  Name of Student                                   |  Result                      |
+       |___________|____________________________________________________|______________________________|
            
 ## 6. FAQ
 
@@ -775,30 +838,52 @@ allow users to add more types of events in this application.
 
 ---
 
+**Q**: Why does pac use different types of command for different features, i.e.
+step-by-step command for performance and all-in-one command for event?
+
+**A**: We want to enhance user experience when using pac, and believe that 
+ implementing step-by-step command will do so by reducing the number of flags
+ and command format a user has to remember, making it easier for using pac.  
+ Currently, features in performance, attendance and student list are using
+ step-by-step command, and we will synchronise the command type according to 
+ future feedback to fit user needs.    
+
+---
+
 ## 7. Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
+{Give a 'cheat sheet' of commands here}  
+**Student**
 * Add student list `student.list add`
 * View student list `student.list view`
 * Clear student list `student.list clear`
 * Delete student list `student.list delete`
 * Find student list `student list.find`
-* Sort student list `student list.sort`
+* Sort student list `student list.sort`  
+
+**Event**
 * Add event `event add n/NAME d/DATE t/TIME v/VENUE`
-* list events `event list`
+* View event list `event list`
 * Edit name of existing event `event editname i/INDEX n/NAME`
 * Edit date and time of existing event `event editdatetime i/INDEX d/DATE t/TIME`
 * Edit venue of existing event `event editvenue i/INDEX v/VENUE`
-* Delete event `event delete i/INDEX`
+* Delete event `event delete i/INDEX`  
+
+**Calender**
 * View calendar `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
+
+**Attendance**  
 * Add attendance `attendance add`
-* View attendance list `attendance list`
+* View attendance list `attendance view`
 * Clear attendance list `attendance clear`
 * Sort attendance list `attendance sort`
+
+**Performance**
 * Add performance `performance add`
-* View performance list `performance list`
+* View performance list `performance view`
 * Delete performance of a student `performance delete`
+* Edit performance of a student `performance edit`
+* Sort performance of a student `performance sort`
 
 ## 8. Contact Us
 If you have further queries or feedback on Pac, please contact us at [contact_us@pac.com](contact_us@Pac.com)
