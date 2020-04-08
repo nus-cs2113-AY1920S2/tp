@@ -121,7 +121,7 @@ This section will explain the fundamental structure of the **Nuke** application,
 ### Nuke Structure
 **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. This Directory Tree comprises various levels:
 
-##### <u>Directory Levels Table</u>  
+<div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>
 
 | Directory Level | Description                                                                      |
 |:---------------:|----------------------------------------------------------------------------------|
@@ -134,7 +134,9 @@ This section will explain the fundamental structure of the **Nuke** application,
 <br>
   
 Below is an illustration of a possible <b>Directory Tree</b> structure:    
-![Directory Tree Picture](images/Tree.png)  
+<br>
+![Directory Tree Image](images/Tree.png)  
+<span style="color: green"><small><i>Figure <b>Sample Directory Tree</b></i></small></span>
 
 <br>
 
@@ -205,7 +207,7 @@ There are times when you may have to include at least one from a set of **attrib
 On many occasions, you may be required to enter more information to describe the commands you give to **Nuke**. For example, when adding a _task_, you may need to specify the _module_ and _category_ to add the _task_ into. You may also want to include additional attributes such as the _deadline_ and _priority_. All these information can only be recognised by **Nuke** if they are preceded by the correct **prefix**.<br>   
 All **command prefixes** in **Nuke** begins with a `-` and followed by a **letter**. Below is the exhaustive list of **command prefixes** and general information that should follow after.   
 
-##### <u>Command Prefix Table</u>  
+<div style="text-align: center"><span style="color: green"><small>Table <b>Command Prefixes</b></small></span></div>
 
 | Command Prefix | General Definition                                               |
 |:--------------:|------------------------------------------------------------------|
@@ -238,7 +240,7 @@ As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**
 <br>
 Below sums up what `mkdir` does at each level of the Directory.
 
-##### <u>Generic Add Table</u>  
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Add</b></small></span></div>
 
 | Current Level   | What Happens?                                                        |  
 |:---------------:|----------------------------------------------------------------------|  
@@ -815,7 +817,7 @@ Marks a task as *done*.
 
 <br><br>  
 
-### 6. Change Directory 
+### 5. Change Directory 
 Traverse up and down the Directory Tree from your current directory.  
 
 ##### Format  
@@ -823,15 +825,42 @@ Traverse up and down the Directory Tree from your current directory.
 `cd <directory name>` to traverse down   
 `cd ..` to traverse up   
 
-- `directory name` -- The name of the next _directory_
-- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
-- `category name` -- The _name_ of the   _category  
+- `directory name` -- The name of the next _directory_   
+- 
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+There will <b>not</b> be any message shown for successful traversal. Instead, you will be able to see a change in the current directory path as shown in the positive traversing example below. <br>
+However, attempting to traverse ahead of the <b>Root</b> Directory (first directory) <i>or</i> beyond the <b>File</b> Directory <i>(last directory)</i> will result in an error message being shown.
+</div>
 
-##### Example Usage    
+##### Example Usage and Expected Outcome    
+<small><u>Correct Traversal </u></small>
+![cd down command correct](images/cd_down_correct.png)   <br>
+ ![cd up command correct](images/cd_up_correct.png)    
+<br>  
+<small><u>Incorrect Traversal </u></small>
+![cd down command incorrect](images/cd_down_incorrect.png)    <br>
+ ![cd up command incorrect](images/cd_up_incorrect.png)   
+ 
+<br><br>
 
-```  
-	cd Assignment
-```
+### 6. Open File 
+ 
+
+<br><br>
+
+### 7. Info 
+  
+
+<br><br>
+
+### 8. Undo 
+   
+
+<br><br>
+
+### 9.Redo 
+  
 
 <br><br>
 

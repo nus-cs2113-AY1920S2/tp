@@ -51,14 +51,31 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
-import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MISSING_PARAMETERS;
-import static seedu.nuke.util.Message.*;
+import static seedu.nuke.util.Message.MESSAGE_CHECK_COMMAND_FORMAT;
+import static seedu.nuke.util.Message.MESSAGE_DEADLINE_OR_PRIORITY;
+import static seedu.nuke.util.Message.MESSAGE_EMPTY_INPUT;
+import static seedu.nuke.util.Message.MESSAGE_EXTRA_PARAMETERS;
+import static seedu.nuke.util.Message.MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nuke.util.Message.MESSAGE_INVALID_DELETE_INDICES;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_CATEGORY_NAME;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_DIRECTORY_TO_DELETE;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_MODULE_CODE;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_TAG_NAME;
+import static seedu.nuke.util.Message.MESSAGE_MISSING_TASK_DESCRIPTION;
+import static seedu.nuke.util.Message.MESSAGE_NO_DIRECTORY_TO_DELETE;
+import static seedu.nuke.util.Message.MESSAGE_NO_EDIT_CATEGORY;
+import static seedu.nuke.util.Message.MESSAGE_NO_EDIT_FILE;
+import static seedu.nuke.util.Message.MESSAGE_NO_EDIT_MODULE;
+import static seedu.nuke.util.Message.MESSAGE_NO_EDIT_TASK;
+import static seedu.nuke.util.Message.MESSAGE_NO_PREFIX_ALLOWED;
+import static seedu.nuke.util.Message.MESSAGE_UNKNOWN_COMMAND_WORD;
 
 
 public class Parser {
