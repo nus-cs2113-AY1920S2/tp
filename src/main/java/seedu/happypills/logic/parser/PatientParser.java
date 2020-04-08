@@ -1,6 +1,11 @@
 package seedu.happypills.logic.parser;
 
-import seedu.happypills.logic.commands.patientcommands.*;
+import seedu.happypills.logic.commands.patientcommands.AddPatientCommand;
+import seedu.happypills.logic.commands.patientcommands.DeletePatientCommand;
+import seedu.happypills.logic.commands.patientcommands.EditPatientCommand;
+import seedu.happypills.logic.commands.patientcommands.GetPatientCommand;
+import seedu.happypills.logic.commands.patientcommands.ListPatientCommand;
+import seedu.happypills.logic.commands.patientcommands.PatientCommand;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
