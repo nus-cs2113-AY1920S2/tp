@@ -121,7 +121,8 @@ class EditAppointmentCommandTest {
     public void editAppointment_editTime_validTime() throws HappyPillsException {
         String message = new EditAppointmentCommand("S1234567A", "1",
                 "/t 23:59").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
-        String expectedOutputEditTimeValid = AppointmentTextUi.editAppointmentSuccessMessage(newAppointmentMap.get("1"));
+        String expectedOutputEditTimeValid = ""
+                + AppointmentTextUi.editAppointmentSuccessMessage(newAppointmentMap.get("1"));
         assertEquals(expectedOutputEditTimeValid, message);
     }
 
