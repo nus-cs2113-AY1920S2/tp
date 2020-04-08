@@ -67,10 +67,10 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. List your Tasks Sorted[&#10149;](#d-list-your-tasks-sorted)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. List your Files[&#10149;](#e-list-your-files)    
 &nbsp; &nbsp; &nbsp; &nbsp; **3. Delete** [&#10149;](#3-delete)  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Delete Modules from your Module List [&#10149;](#a-delete-modules-from-your-module-list)    
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Delete Categories from your Category List [&#10149;](#b-delete-categories-from-your-category-list)    
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Delete Tasks from your Task List [&#10149;](#c-delete-tasks-from-your-task-list)    
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Delete Files from your File List [&#10149;](#d-delete-files-from-your-file-list)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Delete Modules from your Module Lists [&#10149;](#a-delete-modules-from-your-module-lists)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Delete Categories from your Category Lists [&#10149;](#b-delete-categories-from-your-category-lists)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Delete Tasks from your Task Lists [&#10149;](#c-delete-tasks-from-your-task-lists)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Delete Files from your File Lists [&#10149;](#d-delete-files-from-your-file-lists)    
 &nbsp; &nbsp; &nbsp; &nbsp; **4. Edit** [&#10149;](#4-edit)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Edit a Module in your Module List [&#10149;](#a-edit-a-module-in-your-module-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Edit a Category in your Category List [&#10149;](#b-edit-a-category-in-your-category-list)    
@@ -173,7 +173,7 @@ For example, you can only add a <i>task</i> into the <b>Category</b> directory, 
 <div class="alert alert-info">
 <i class="fa fa-info"></i> <b>Tip</b> <br> 
 You can shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command! <br>
-To learn how to traverse the various directories, see the <a href="#6-change-directory">Change Directory</a> command.
+To learn how to traverse the various directories, see the <b><a href="#6-change-directory">Change Directory</a></b> command.
 </div>   
   
 [Back To Top](#table-of-contents)
@@ -234,7 +234,7 @@ Specifically, each word in the name of your directory has to begin with a alpha-
 
 ## **Features**  
 ### **1. Add**  
-Adds a _module_, _category_,  _task_ or <i>file</i> into their respective lists.<br>
+Adds a <i>module</i>, <i>category</i>,  <i>task</i> or <i>file</i> into their respective lists.<br>
 
 As mentioned previously, **Nuke** follows the structure of a [**Directory Tree**](#nuke-structure) _(i.e. folder sub-folder structure)_. **Nuke** complements the Linux shell command by offering a generic add command word for creating a directory: `mkdir`  
 <br>
@@ -589,88 +589,83 @@ lsmtd <module code>
 
 
 ### **3. Delete**  
-Deletes _modules_, _categories_ or _tasks_ from their respective lists.<br>
 
-As mentioned previously, **Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. Therefore, **Nuke** also supports Linux file-system-related command for deleting a directory: `rm`
+Deletes <i>modules</i>, <i>categories</i>,  <i>tasks</i> or <i>files</i> from their respective lists.   
+You will be prompted to either enter `yes`  to confirm the deletion <i>or</i> `no` to abort the deletion after entering the <b>Delete</b> command.   
+<br>
+Like the [<b>Add</b>](#1-add) Command, **Nuke** also supports a generic command for deleting a directory: `rm`
+<br>
+Below sums up what `rm` does at each level of the Directory.
 
-- When you are at the **Root Directory**, `rm <module code>` will remove a *module* from your **Module List**.
-- When you are at the **Module Directory**, `rm <category name>` will remove a *category* from your **Category List**. 
-- When you are at the **Category Directory**, `rm <task name>` will remove a _task_ from your **Task List**.
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Delete</b></small></span></div>
 
-For Delete command, user will be prompted to confirm by entering `y` or `yes`  or to abort by entering `n` or `no` after entering the Delete command.
+| Current Level   | What Happens?                                                        |  
+|:---------------:|----------------------------------------------------------------------|  
+| <b>Root</b>     | `rm <module code>` deletes a *module* from the current directory     |  
+| <b>Module</b>   | `rm <category name>` deletes a *category* from the current directory |  
+| <b>Category</b> | `rm <task description>` deletes a *task* from the current directory  |  
+| <b>Task</b>     | `rm <file name>` deletes a *file* from the current directory         |  
+| <b>File</b>     | You cannot `rm` here! :grimacing:                                    |  
 
-The above mentioned commands have to be done in the corresponding directories, and the commands below can be done in any directories, but less generic.
+The above commands have to be done in their corresponding directories. However, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
-#### a. Delete Modules from your Module List
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+Just like the <b><a href="#2-list">List</a></b> commands, the <b>Delete</b> command works by first filtering the relevant items from the <i>keywords</i> that you provide. You can further choose to enter <code>-e</code> to filter to the <b><i>exact</i></b> <i>keyword</i>, and <code>-a</code> to filter across <b><i>all</i></b> the directories. <br>  
+For more information on how filtering is done, see <a href="#how-does-the-filtering-process-works">here</a>.  <br>
+<br>
+If there are <b>multiple</b> matches after filtering, you will receive a further prompt to let you choose which items you want to delete.
+</div>   
 
-Delete a _module_ from your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the List Module command.
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of your current <i>directory</i>'s <i>parent directories</i>. Doing so will result in an error message to be shown &#128543;. 
+</div>   
 
-##### Format  
+[Back To Top](#table-of-contents)
 
-`delm <module code>`  
+#### a. Delete Modules from your Module Lists
 
-- `module code` -- The _module code_ of the _module_  
+`delm` deletes <i>module(s)</i> from your <b>Module Lists</b>. The <b>Module List</b> contains all your added <i>modules</i> and can be viewed via the [<b>List Module</b>](#a-list-your-modules) command.
 
-> **Note**: The _module code_ is **case-insensitive**. However, it must correspond to a valid **NUS module**. Only **NUS modules** can be deleted in this version of **Nuke**.
+##### **Format**  
+`delm <module keyword> [ -e -a ]`  
 
-##### Example Usage    
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by    
 
-```
-	delm cs3235
-```
+##### **Example Usage and Expected Outcome**    
+<small><u><b>Single Deletion</b></u></small>  
+![delm command single delete](images/delm_one.png)    
+<br>  
+<small><u><b>Multiple Deletion</b></u></small>   
+![delm command multiple delete](images/delm_many.png)  
 
-##### Expected Outcome
-
-```
-root :
-delm cs3235
-Confirm delete CS3235 Computer Security?
-
-root :
-y
-SUCCESS!! Module(s) have been deleted.
-```
-
-##### before:
+##### **before**:
 
 ![image-20200401015356560](images/ug_delm_before.png)
 
-##### after:
+##### **after**:
 
 ![image-20200401015411123](images/ug_delm_after.png)
 
 
+#### **b. Delete Categories from your Category Lists**   
+`delc` deletes <i>category(s)</i> from your <b>Category Lists</b>. The <b>Category List</b> contains all your added <i>categories</i> of a <i>module</i> and can be viewed via the [<b>List Category</b>](#b-list-your-categories) command.   
 
-#### b. Delete Categories from your Category List   
+##### **Format**  
+`delc <category name> -m <module code> [ -e -a ]`  
 
-Delete a _category_ from your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the List Category command.
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
 
-##### Format  
 
-`delc <category name> -m <module code>`  
+##### **Example Usage and Expected Outcome**    
+<small><u><b>Single Deletion</b></u></small>  
+![delc command single delete](images/delc_one.png)    
+<br>  
+<small><u><b>Multiple Deletion</b></u></small>   
+![delc command multiple delete](images/delc_many.png)  
 
-- `category name` -- The _name_ of the   _category_
-- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
-
-> **Note**: You need **not** include the `module code` information if you are currently in that _module_'s directory. You can move to the  _module_'s directory via the [Change Directory](#6-change-directory) Command.
-
-##### Example Usage    
-
-`delc Lecture -m cs2113t` when not in the *module*'s  directory
-
-`delc Lecture` when in the *module*'s directory
-
-##### Expected Outcome    
-
-```
-root :
-delc Lecture -m cs3235
-Confirm delete Lecture?
-
-root :
-y
-SUCCESS!! Category/Categories have been deleted.
-```
 
 ##### before:
 
@@ -682,39 +677,22 @@ SUCCESS!! Category/Categories have been deleted.
 
 
 
-#### c. Delete Tasks from your Task List     
+#### **c. Delete Tasks from your Task Lists**     
+`delt` deletes <i>task(s)</i> from your <b>Task Lists</b>. The <b>Task List</b> contains all your added <i>tasks</i> of a <i>category</i> and can be viewed via the [<b>List Task</b>](#c-list-your-tasks) command.   
 
-Delete a _task_ from your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the List Task command.
+##### **Format**  
+`delt <task keyword> -m <module keyword> -c <category keyword> [ -e -a ]`  
 
-##### Format  
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
 
-`delt <task description> -m <module code> -c <category name>`  
-
-- `task description` -- The _description_ of the _task_
-- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added
-- `category name` -- The _name_ of the   _category
-
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command. 
-
-##### Example Usage    
-
-`delt urgent assignment -m cs3235 -c Assignment` when not in the *module*'s  directory
-
-`delt urgent assignment -c Assignment` when not in the *category*'s directory
-
-`delt urgent assignment` when in the *category*'s directory
-
-##### Expected Outcome    
-
-```
-root :
-delt urgent assignment -m cs3235 -c Assignment
-Confirm delete urgent assignment?
-
-root :
-y
-SUCCESS!! Task(s) have been deleted.
-```
+##### **Example Usage and Expected Outcome**    
+<small><u><b>Single Deletion</b></u></small>  
+![delt command single delete](images/delt_one.png)    
+<br>  
+<small><u><b>Multiple Deletion</b></u></small>   
+![delt command multiple delete](images/delt_many.png)  
 
 ##### before:
 
@@ -722,8 +700,29 @@ SUCCESS!! Task(s) have been deleted.
 
 ##### after:
 
-![image-20200401021025877](images/ug_delt_after.png)
+![image-20200401021025877](images/ug_delt_after.png)  
 
+
+#### **c. Delete Files from your File Lists**     
+`delf` deletes <i>files(s)</i> from your <b>File Lists</b>. The <b>File List</b> contains all your added <i>files</i> of a <i>task</i> and can be viewed via the [<b>List File</b>](#d-list-your-files) command.   
+
+##### **Format**  
+`delf <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> [ -e -a ]`  
+
+- `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
+
+##### **Example Usage and Expected Outcome**    
+<small><u><b>Have Matches</b></u></small>  
+![delf command match](images/delf_many.png)    
+<br>  
+<small><u><b>No Matches</b></u></small>   
+![delf command no match](images/delf_none.png)    
+  
+<br><br>  
+  
 ### **4. Edit**
 Edits a <i>module</i>, <i>category</i>,  <i>task</i> or <i>file</i>.<br>  
 
@@ -743,13 +742,13 @@ Also, ensure that you do not enter the same <code>new module code</code> as an e
 </div>
 
 ##### **Example Usage and Expected Outcome**     
-<small><u>**Correct Edit**</u></small>  
+<small><u><b>Correct Edit</b></u></small>  
 ![edm command correct](images/edm_correct.png)   
 <br>     
-<small><u>**Duplicate Module (Incorrect)**</u></small>  
+<small><u><b>Duplicate Module (Incorrect)</b></u></small>  
 ![edm command duplicate module](images/edm_exist.png)   
 <br>     
-<small><u>**Invalid Module Code (Incorrect)**</u></small>  
+<small><u><b>Invalid Module Code (Incorrect)</b></u></small>  
 ![edm command invalid module code](images/edm_invalid.png)   
 
 <br>  
@@ -772,16 +771,16 @@ In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, 
 </div>
 
 ##### **Example Usage and Expected Outcome**     
-<small><u>**Correct Edit**</u></small>  
+<small><u><b>Correct Edit</b></u></small>  
 ![edc command correct](images/edc_correct.png)  
 <br>     
-<small><u>**Duplicate Category (Incorrect)**</u></small>  
+<small><u><b>Duplicate Category (Incorrect)</b></u></small>  
 ![edc command duplicate category](images/edc_exist.png)   
 <br>     
-<small><u>**Invalid Priority (Incorrect)**</u></small>  
+<small><u><b>Invalid Priority (Incorrect)</b></u></small>  
 ![edc command invalid priority](images/edc_invalid_priority.png)    
 <br>     
-<small><u>**Nothing to Edit (Incorrect)**</u></small>  
+<small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
 ![edc command nothing to edit](images/edc_empty.png)
 
 <br>  
@@ -809,19 +808,19 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 </div>
 
 ##### **Example Usage and Expected Outcome**     
-<small><u>**Correct Edit**</u></small>  
+<small><u><b>Correct Edit</b></u></small>  
 ![edt command correct](images/edt_correct.png)    
 <br>     
-<small><u>**Duplicate Category (Incorrect)**</u></small>  
+<small><u><b>Duplicate Category (Incorrect)</b></u></small>  
 ![edt command duplicate task](images/edt_exist.png)   
 <br>     
-<small><u>**Invalid Deadline (Incorrect)**</u></small>  
+<small><u><b>Invalid Deadline (Incorrect)</b></u></small>  
 ![edt command invalid deadline](images/edt_invalid_deadline.png)   
 <br>     
-<small><u>**Invalid Priority (Incorrect)**</u></small>      
+<small><u><b>Invalid Priority (Incorrect</b>*</u></small>      
 ![edt command invalid priority](images/edt_invalid_priority.png)     
 <br>     
-<small><u>**Nothing to Edit (Incorrect)**</u></small>  
+<small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
 ![edt command nothing to edit](images/edt_empty.png)
 
 #### **d. Edit a File in your File List**  
@@ -838,10 +837,10 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 - `new file name` -- The <u>new</u> <i>name</i> of the <i>file</i>      
 
 ##### **Example Usage and Expected Outcome**     
-<small><u>**Correct Edit**</u></small>  
+<small><u><b>Correct Edit</b></u></small>  
 ![edf command correct](images/edf_correct.png)   
 <br>     
-<small><u>**Duplicate File (Incorrect)**</u></small>  
+<small><u><b>Duplicate File (Incorrect)</b></u></small>  
 ![edf command duplicate file](images/edf_exist.png)  
 
 <br><br>  
@@ -862,13 +861,13 @@ If the <i>task</i> was <b>already done</b>, and you execute the command, you wil
 - `category name` -- The <i>name</i> of the   <i>category</i> containing the <i>task</i>   
   
 ##### **Example Usage and Expected Outcome**   
-<small><u>**Done at Root Level**</u></small>  
+<small><u><b>Done at Root Level</b></u></small>  
 ![done command root level](images/done_root_level.png)   
 <br>     
-<small><u>**Done at Task Level**</u></small>  
+<small><u><b>Done at Task Level</b></u></small>  
 ![done command task level](images/done_task_level.png)  
 <br>     
-<small><u>**Done an Already Done Task**</u></small>  
+<small><u><b>Done an Already Done Task</b></u></small>  
 ![done command already](images/done_already.png)
 
 <br><br>  
@@ -890,11 +889,11 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
 </div>
 
 ##### **Example Usage and Expected Outcome**    
-<small><u>**Correct Traversal**</u></small>
+<small><u><b>Correct Traversal</b></u></small>
 ![cd down command correct](images/cd_down_correct.png)   <br>
  ![cd up command correct](images/cd_up_correct.png)    
 <br>  
-<small><u>**Incorrect Traversal**</u></small>
+<small><u><b>Incorrect Traversal</b></u></small>
 ![cd down command incorrect](images/cd_down_incorrect.png)    <br>
  ![cd up command incorrect](images/cd_up_incorrect.png)   
  
@@ -918,10 +917,10 @@ To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, i
 </div>
 
 ##### **Example Usage and Expected Outcome**    
-<small><u>**Opening at Root Level**</u></small>  
+<small><u><b>Opening at Root Level</b></u></small>  
 ![open file command root level](images/open_root_level.png)    
 <br>     
-<small><u>**Opening at Task Level**</u></small>  
+<small><u><b>Opening at Task Level</b></u></small>  
  ![open file command task level](images/open_task_level.png) 
 
 <br><br>
