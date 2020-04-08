@@ -84,11 +84,15 @@ public class PerformanceList {
         }
 
         for (Performance p : performanceList) {
-            if (p != null && isSameString(p.getStudent(), performance.getStudent()) && isSameString(type, "name")) {
+            if (p != null
+                    && isSameString(p.getStudent(), performance.getStudent())
+                    && isSameString(type, "name")) {
                 editName(p);
                 hasEdited = true;
                 break;
-            } else if (p != null && isSameString(p.getStudent(), performance.getStudent()) && isSameString(type, "result")) {
+            } else if (p != null
+                    && isSameString(p.getStudent(), performance.getStudent()) 
+                    && isSameString(type, "result")) {
                 editResult(p);
                 hasEdited = true;
             }
