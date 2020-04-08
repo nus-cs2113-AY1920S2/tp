@@ -71,6 +71,7 @@ public class SearchReservationCommand extends ReservationCommand {
             ui.showMessage("Please follow the date time format strictly: yyyy-MM-dd; eg. 2000-01-01");
         } catch (InputMissingException e) {
             ui.showMessage(e.getMessage());
+            ui.showMessage("Try the 'help' command for the list of commands");
         } catch (DelimiterMissingException e) {
             ui.showMessage(e.getMessage());
         } catch (InvalidReservationNumberException e) {
