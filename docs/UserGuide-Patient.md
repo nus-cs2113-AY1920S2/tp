@@ -43,7 +43,7 @@ You can also add a new patient with the specified parameters in any order.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>HappyPills will prompt you for missing details that are important.</td>
+   <td>HappyPills will prompt you for any missing inputs that are necessary.</td>
  </tr>
 </table>
 
@@ -59,7 +59,7 @@ You can also add a new patient with the specified parameters in any order.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> Entering <code>n</code> will not save the patients' information when HappyPills prompt you for confirmation.</td>
+   <td> Entering <code>n</code> will abort the command and HappyPills will not save the patients' information.</td>
     <!--This is a comment. Patient's information will be discarded if <code>n</code> is entered.-->
  </tr>
 </table>
