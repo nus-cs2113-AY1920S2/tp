@@ -1,6 +1,5 @@
 package seedu.happypills.logic.parser;
 
-import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.patientrecordcommands.AddPatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.DeletePatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.EditPatientRecordCommand;
@@ -11,9 +10,6 @@ import seedu.happypills.logic.commands.patientrecordcommands.PatientRecordComman
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientRecordTextUi;
-import seedu.happypills.ui.TextUi;
-
-import java.util.Scanner;
 
 //@@author NyanWunPaing
 /**
