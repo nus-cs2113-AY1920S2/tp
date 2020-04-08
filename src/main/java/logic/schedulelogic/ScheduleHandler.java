@@ -49,7 +49,7 @@ public class ScheduleHandler {
     }
 
     public static String getDayFromNumber(int dayNum) {
-        String day;m
+        String day;
         switch (dayNum) {
         case 0:
             day = "Sunday";
