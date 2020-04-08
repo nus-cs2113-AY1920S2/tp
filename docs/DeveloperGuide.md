@@ -126,7 +126,9 @@ The ```schedulelogic``` consists of the class ```ScheduleHandler```.
 1. ```ScheduleHandler``` retrieves the schedule of selected ```Contact```s in the ```ContactList```, to generate a combined schedule.
 2. ```ScheduleHandler``` checks if a time slot fits in the main user's schedule.
 
-**Detailed implementation of logic.schedulelogic component**
+**Design of Logic.schedulelogic component**
+ 
+![logic.schedulelogic Component](images/schedulelogic.png)<br>
 
 ### 2.3.4. logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
