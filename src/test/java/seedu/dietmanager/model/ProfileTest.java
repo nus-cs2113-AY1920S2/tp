@@ -1,4 +1,4 @@
-package seedu.dietmanager;
+package seedu.dietmanager.model;
 
 import org.junit.jupiter.api.Test;
 import seedu.dietmanager.model.DailyFoodRecord;

@@ -2,6 +2,10 @@ package seedu.dietmanager;
 
 import seedu.dietmanager.logic.AppManager;
 
+/**
+ * Diet Manager class is the main class responsible for launching the application.
+ */
+
 public class DietManager {
 
     /**
