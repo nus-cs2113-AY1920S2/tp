@@ -34,7 +34,7 @@ public class AppManager {
                 String userInput = ui.readInput();
                 Command command = CommandParser.parseInput(userInput);
                 Result result = command.execute(profile, ui);
-                ui.showMessage(result.toString());
+                ui.showMessage(result.showResult());
             } catch (InvalidFormatException | NumberFormatException e) {
                 ui.displayInvalidFormatMessage();
             } catch (InvalidCommandException e) {
@@ -53,6 +53,7 @@ public class AppManager {
     }
 
     private static void initialiseApplication() {
+
         ui = new UI();
         logsCentre = new LogsCentre();
         profile = new Profile();

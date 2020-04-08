@@ -8,8 +8,7 @@ public class Result {
         this.commandResult = commandResult;
     }
 
-    @Override
-    public String toString() {
+    public String showResult() {
         return this.commandResult;
     }
 
