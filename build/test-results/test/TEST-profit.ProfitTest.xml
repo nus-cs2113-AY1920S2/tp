@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="profit.ProfitTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-09T19:28:59" hostname="Ganeshs-MacBook-Pro.local" time="0.005">
+<testsuite name="profit.ProfitTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-09T20:20:36" hostname="Ganeshs-MacBook-Pro.local" time="0.004">
   <properties/>
   <testcase name="profitTestA()" classname="profit.ProfitTest" time="0.001"/>
   <testcase name="profitTestB()" classname="profit.ProfitTest" time="0.001"/>
-  <testcase name="profitTestC()" classname="profit.ProfitTest" time="0.001"/>
-  <testcase name="profitTestD()" classname="profit.ProfitTest" time="0.001"/>
+  <testcase name="profitTestC()" classname="profit.ProfitTest" time="0.0"/>
+  <testcase name="profitTestD()" classname="profit.ProfitTest" time="0.0"/>
   <system-out><![CDATA[Dish bacon pizza successfully added.
 Dish chicken biryani successfully added.
 Dish pasta with chicken successfully added.

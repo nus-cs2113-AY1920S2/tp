@@ -18,18 +18,18 @@ public class SearchDishCommand extends Menu {
         HashMap<String, Dish> matchingDishes = new HashMap<String, Dish>();
         try {
             checkFormat(input);
-            String keyword = parseKeyword(input);
-            for (String name: Menu.getDishMap().keySet()) {
-                if (name.contains(keyword)) {
-                    matchingDishes.put(name, Menu.getDishMap().get(name));
-                }
-            }
-            if (matchingDishes.keySet().isEmpty()) {
-                System.out.println("There are no dishes that match the keyword " + keyword + "!");
+            if (Menu.getDishMap().isEmpty()) {
+                System.out.println("The menu is currently empty!");
             } else {
-                System.out.println("Here are the dishes that match your keyword:");
-                for (String name: matchingDishes.keySet()) {
-                    generateIngredientList(matchingDishes, name);
+                String keyword = parseKeyword(input);
+                generateMatches(matchingDishes, keyword);
+                if (matchingDishes.keySet().isEmpty()) {
+                    System.out.println("There are no dishes that match the keyword " + keyword + "!");
+                } else {
+                    System.out.println("Here are the dishes that match your keyword:");
+                    for (String name: matchingDishes.keySet()) {
+                        generateIngredientList(matchingDishes, name);
+                    }
                 }
             }
         } catch (KeywordMissingException e){
@@ -40,6 +40,19 @@ public class SearchDishCommand extends Menu {
             System.out.println("The correct format is: search dish; k/KEYWORD;");
         }
         return matchingDishes;
+    }
+
+    /**
+     * Generate matching dishes.
+     * @param matchingDishes hashMap of matching dishes
+     * @param keyword keyword to search for
+     */
+    private static void generateMatches(HashMap<String, Dish> matchingDishes, String keyword) {
+        for (String name: Menu.getDishMap().keySet()) {
+            if (name.contains(keyword)) {
+                matchingDishes.put(name, Menu.getDishMap().get(name));
+            }
+        }
     }
 
     /**
