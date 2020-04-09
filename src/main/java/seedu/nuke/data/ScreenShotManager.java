@@ -6,7 +6,6 @@ import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Root;
 import seedu.nuke.exception.CorruptedFileException;
-import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -24,12 +23,6 @@ import java.util.Stack;
 public class ScreenShotManager {
     private static Stack<ScreenShot> undoStack = new Stack<>();
     private static Stack<ScreenShot> redoStack = new Stack<>();
-
-    // public static void setIsLastCommandRedo(boolean isLastCommandRedo) {
-    //     ScreenShotManager.isLastCommandRedo = isLastCommandRedo;
-    // }
-    //
-    // private static boolean isLastCommandRedo = false;
 
     /**
      * Initialises the screen shot manager with its first screen shot of the starting list.
