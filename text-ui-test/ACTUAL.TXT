@@ -554,6 +554,7 @@ Delimiter Missing.
 Input next command:
 
 Input Missing: number of guests n/ is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
@@ -566,10 +567,12 @@ Please enter a valid positive integer.
 Input next command:
 
 Input Missing: name is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
 Input Missing: contact is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
@@ -670,6 +673,7 @@ There is no Reservation[5] in the list.
 Input next command:
 
 Input Missing: either reservation number r/ or date d/ is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
