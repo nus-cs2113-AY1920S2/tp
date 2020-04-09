@@ -251,11 +251,11 @@ public class UI {
     }
 
     public void sortAttendanceByName(String eventName) {
-        display("Attendance List is sorted by attendance status for Event:  " + eventName);
+        display("Attendance List is sorted by attendance name for Event:  " + eventName);
     }
 
     public void sortPerformanceByName(String eventName) {
-        display("Performance List is sorted by Performance name for Event:  " + eventName);
+        display("Performance List is sorted by Performance status for Event:  " + eventName);
     }
 
     public String getSortType() {

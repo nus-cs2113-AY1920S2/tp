@@ -1,6 +1,5 @@
 package seedu.attendance;
 
-import seedu.exception.PacException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
@@ -35,10 +34,9 @@ public class AttendanceList {
      */
     public boolean isDuplicate(String name) {
         String existingStudentName;
-        String newStudentName;
+        String newStudentName = name.toLowerCase();
         for (int i = 0; i < attendanceList.size(); i++) {
             existingStudentName = attendanceList.get(i).getStudentName().toLowerCase();
-            newStudentName = name.toLowerCase();
             if (existingStudentName.equals(newStudentName)) {
                 return true;
             }
@@ -53,7 +51,7 @@ public class AttendanceList {
      */
     public void addToList(Attendance attendance, String eventName) {
         attendanceList.add(attendance);
-        ui.addAttendanceMessage(attendance.studentName, attendance.getAttendanceStatus(), eventName);
+        ui.addAttendanceMessage(attendance.studentName, attendance.getStatus(), eventName);
     }
 
     /**
@@ -65,25 +63,13 @@ public class AttendanceList {
     }
 
     /**
-     * To display the existing attendanceList in the selected event.
-     * @throws PacException If the existing attendanceList is empty.
-     */
-    public void displayAttendanceList() throws PacException {
-        if (isEmpty()) {
-            throw new PacException("No attendance list under this event");
-        } else {
-            printTable();
-        }
-    }
-
-    /**
      * To display the attendanceList in table form.
      */
-    public void printTable() {
+    public void displayAttendanceList() {
         int index = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Status");
         for (Attendance attendance : attendanceList) {
-            displayTable.printBodyOfThree(index, attendance.getStudentName(), attendance.getAttendanceStatus());
+            displayTable.printBodyOfThree(index, attendance.getStudentName(), attendance.getStatus());
             index++;
         }
     }

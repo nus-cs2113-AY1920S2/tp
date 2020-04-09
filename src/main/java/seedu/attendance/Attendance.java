@@ -48,7 +48,7 @@ public class Attendance {
      * Retrieves the attendance status of the student.
      * @return isPresent the attendance status of the student.
      */
-    public String getAttendanceStatus() {
+    public String getStatus() {
         return isPresent;
     }
 
@@ -66,8 +66,8 @@ public class Attendance {
      */
     public static Comparator<Attendance> attendanceStatusComparator = new Comparator<Attendance>() {
         public int compare(Attendance s1, Attendance s2) {
-            String listName1 = s1.getAttendanceStatus().toUpperCase();
-            String listName2 = s2.getAttendanceStatus().toUpperCase();
+            String listName1 = s1.getStatus().toUpperCase();
+            String listName2 = s2.getStatus().toUpperCase();
             return listName1.compareTo(listName2);
         }
     };
