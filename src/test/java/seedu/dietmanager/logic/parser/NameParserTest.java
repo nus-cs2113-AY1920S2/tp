@@ -1,12 +1,10 @@
 package seedu.dietmanager.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.dietmanager.commons.exceptions.InvalidHeightException;
 import seedu.dietmanager.commons.exceptions.InvalidNameException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NameParserTest {
 
