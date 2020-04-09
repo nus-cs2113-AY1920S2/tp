@@ -32,10 +32,10 @@ public class SearchDishCommand extends Menu {
                     }
                 }
             }
-        } catch (KeywordMissingException e){
+        } catch (KeywordMissingException e) {
             System.out.println("You must include a keyword!");
             System.out.println("The correct format is: search dish; k/KEYWORD;");
-        } catch (InvalidSearchDishCommandException | StringIndexOutOfBoundsException e){
+        } catch (InvalidSearchDishCommandException | StringIndexOutOfBoundsException e) {
             System.out.println("Invalid search dish command!");
             System.out.println("The correct format is: search dish; k/KEYWORD;");
         }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ingredient.IngredientTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:21:19" hostname="Ganeshs-MacBook-Pro.local" time="0.002">
+<testsuite name="ingredient.IngredientTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:27:05" hostname="Ganeshs-MacBook-Pro.local" time="0.002">
   <properties/>
   <testcase name="print_IngredientToString_toStringIsIngredientName()" classname="ingredient.IngredientTest" time="0.0"/>
   <testcase name="getName_GetIngredientNameNameOfIngredient()" classname="ingredient.IngredientTest" time="0.0"/>

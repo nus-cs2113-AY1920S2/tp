@@ -49,7 +49,7 @@ public class LoadDish {
             throw new InvalidLoadException();
         }
         Scanner sc = new Scanner(f);
-        while(sc.hasNext()) {
+        while (sc.hasNext()) {
             String cl = sc.nextLine();
             if (cl.equals("Menu Items")) {
                 if (sc.hasNext()) {
