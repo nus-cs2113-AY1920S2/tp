@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.MarkReservationCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:32:09" hostname="Ganeshs-MacBook-Pro.local" time="0.005">
+<testsuite name="commands.MarkReservationCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:36:35" hostname="Ganeshs-MacBook-Pro.local" time="0.007">
   <properties/>
   <testcase name="parseInput_delimiterMissingMarkReservationCommand_exceptionThrown()" classname="commands.MarkReservationCommandTest" time="0.001"/>
-  <testcase name="parseInput_inputMissingMarkReservationCommand_exceptionThrown()" classname="commands.MarkReservationCommandTest" time="0.0"/>
+  <testcase name="parseInput_inputMissingMarkReservationCommand_exceptionThrown()" classname="commands.MarkReservationCommandTest" time="0.001"/>
   <testcase name="parseInput_invalidReservationNumberMarkReservationCommand_exceptionThrown()" classname="commands.MarkReservationCommandTest" time="0.0"/>
   <testcase name="execute_normalMarkReservationCommand_success()" classname="commands.MarkReservationCommandTest" time="0.001"/>
   <system-out><![CDATA[Reservation[1] has been added into the list
@@ -11,15 +11,15 @@ Reservation[1] has been added into the list
 Reservation[1] has been added into the list
 Successfully mark Reservation[1] as served.
 ]]></system-out>
-  <system-err><![CDATA[Apr 09, 2020 7:32:09 PM reservation.ReservationList addReservation
+  <system-err><![CDATA[Apr 09, 2020 7:36:35 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:32:09 PM reservation.ReservationList addReservation
+Apr 09, 2020 7:36:35 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:32:09 PM reservation.ReservationList addReservation
+Apr 09, 2020 7:36:35 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:32:09 PM reservation.ReservationList addReservation
+Apr 09, 2020 7:36:35 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:32:09 PM reservation.ReservationList markReservationAsServed
+Apr 09, 2020 7:36:35 PM reservation.ReservationList markReservationAsServed
 INFO: Mark Reservation[1] as Served.
 ]]></system-err>
 </testsuite>
