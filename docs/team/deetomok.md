@@ -36,7 +36,7 @@ In this project, I added on to parts of Delete command and
 
 ### Contributions to documentation (Which sections did u contribute to the UG?)
 The user guide is updated with relevant instructions and their correct format. I was responsible for the 
-Command Format, Mark as Done feature, Deleting features, FAQ, Command summary.
+Command Format, Mark as Done feature, Deleting features, FAQ, Command summary, Table of contents.
 
 Below is a small portion from the User Guide, showing my documentation for the Deleting feature.
 
